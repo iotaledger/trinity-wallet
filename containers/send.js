@@ -84,7 +84,7 @@ class Send extends React.Component {
             <View style={{ flex: 8, paddingRight: width / 20 }}>
               <TextField
                 style={{ color:'white', fontFamily: 'Lato-Light' }}
-                containerStyle={{ height: height / 7 }}
+                containerStyle={{ height: height / 6 }}
                 labelTextStyle={{ fontFamily: 'Lato-Regular' }}
                 baseColor='white'
                 label='ADDRESS'
