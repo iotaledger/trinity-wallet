@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../actions/iotaActions';
-{/*import { randomBytes } from 'react-native-randombytes'*/}
+import { randomBytes } from 'react-native-randombytes'
 
 
 const { height, width } = Dimensions.get('window');
@@ -59,15 +59,15 @@ class NewSeedSetup extends React.Component {
     });
 
 
-    {/*}// synchronous API
+    // synchronous API
     // uses SJCL
     var rand = randomBytes(4)
 
     // asynchronous API
     // uses iOS-side SecRandomCopyBytes
-    randomBytes(4, (err, bytes) => {
+    randomBytes(10, (err, bytes) => {
       console.log(bytes)
-    })*/}
+    })
   }
 
   onNextClick() {
