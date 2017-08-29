@@ -26,8 +26,8 @@ class EnterSeed extends React.Component {
   }
   onDoneClick() {
     if (this.state.seed.length > 59) {
-      this.props.setLoggedIn(true);
       this.props.setSeed(this.state.seed);
+      this.setState({ seed: '' });
       this.props.navigator.push({
         screen: 'setPassword',
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
@@ -207,9 +207,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setLoggedIn: (boolean) => {
-    dispatch(setLoggedIn(boolean));
-  },
   setSeed: (seed) => {
     dispatch(setSeed(seed));
   },

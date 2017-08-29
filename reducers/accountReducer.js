@@ -1,11 +1,12 @@
 const accountReducer = (state = {
+  firstUse: true,
 }, action) => {
   switch (action.type) {
 
-    case 'SET_LOGGEDIN':
+    case 'SET_FIRSTUSE':
       state = {
         ...state,
-        loggedIn: action.payload,
+        firstUse: action.payload,
       };
       break;
   }

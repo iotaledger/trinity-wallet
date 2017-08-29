@@ -26,7 +26,7 @@ class Loading extends React.Component {
 
   async getWalletData() {
     await this.props.getPrice('USD');
-    await this.props.checkNode();
+    await this.props.checkNode(this.props.iota.seed);
     await this.props.getMarketData();
     await this.props.getChartData('USD', '24h');
   }

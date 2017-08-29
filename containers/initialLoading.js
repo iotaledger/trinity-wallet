@@ -22,7 +22,7 @@ class InitialLoading extends React.Component {
 
   onLoaded() {
     const state = store.getState();
-    if (!state.account.loggedIn) {
+    if (state.account.firstUse) {
       this.props.navigator.push({
         screen: 'welcome',
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
@@ -30,7 +30,7 @@ class InitialLoading extends React.Component {
       });
     } else {
       this.props.navigator.push({
-        screen: 'loading',
+        screen: 'login',
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
         animated: false,
       });

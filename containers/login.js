@@ -10,7 +10,7 @@ import {
   ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setLoggedIn } from '../actions/accountActions';
+import { setSeed } from '../actions/accountActions';
 import { getFromKeychain } from '../libs/cryptography'
 import { TextField } from 'react-native-material-textfield';
 
@@ -25,17 +25,15 @@ class Login extends React.Component {
   }
 
   onDoneClick() {
-    getFromKeychain(this.state.password);
-    this.props.navigator.push({
-      screen: 'loading',
-      navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
-      animated: false,
-    });
-  }
-  onBackClick() {
-    this.props.navigator.pop({
-      animated: false,
-    });
+   var seed = this.props.getFromKeychain(this.state.password);
+   if(seed.length>0){
+      this.props.setSeed(seed);
+      this.props.navigator.push({
+        screen: 'loading',
+        navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
+        animated: false,
+      });
+    }
   }
 
   render() {
@@ -73,13 +71,6 @@ class Login extends React.Component {
               <TouchableHighlight onPress={event => this.onDoneClick()} style={{ paddingBottom: height / 30 }}>
                 <View style={styles.doneButton} >
                   <Text style={styles.doneText}>DONE</Text>
-                </View>
-              </TouchableHighlight>
-            </View>
-            <View style={{ alignItems: 'center' }}>
-              <TouchableHighlight onPress={event => this.onBackClick()}>
-                <View style={styles.backButton} >
-                  <Text style={styles.backText}>BACK</Text>
                 </View>
               </TouchableHighlight>
             </View>
@@ -197,8 +188,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setLoggedIn: (boolean) => {
-    dispatch(setLoggedIn(boolean));
+  setSeed: (seed) => {
+    dispatch(setSeed(seed));
+  },
+  getFromKeychain: (key) => {
+    dispatch(getFromKeychain(key));
   },
 });
 
