@@ -1,8 +1,9 @@
 import { iota } from '../libs/iota';
+import { randomBytes } from 'react-native-randombytes'
 
-const seed = 'CQJUXQMEKUYGSOF9HYH9WLTRKMKCHVGJLNEOFYKUAJXMNOQAYE9IWQPPDIOOOCGINMGACETMFZTKEDGVE';
+{/*const seed = 'CQJUXQMEKUYGSOF9HYH9WLTRKMKCHVGJLNEOFYKUAJXMNOQAYE9IWQPPDIOOOCGINMGACETMFZTKEDGVE';*/}
 
-export function checkNode() {
+export function checkNode(seed) {
   return (dispatch) => {
     iota.api.getNodeInfo((error) => {
       if (!error) {
@@ -57,6 +58,32 @@ export function sendTransaction(seed, address, value, message) {
       console.log('SUCCESSFULLY SENT TRANSFER: ', success);
     }
   });
+}
+
+export function randomiseSeed(){
+  return (dispatch) => {
+    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
+    var seed = '';
+
+    // uncomment for synchronous API, uses SJCL
+    {/*var rand = randomBytes(1)*/}
+
+    // asynchronous API, uses iOS-side SecRandomCopyBytes
+    randomBytes(100, (error, bytes) => {
+      if(!error) {
+        Object.keys(bytes).map(function(key, index) {
+          if(bytes[key] < 243 && seed.length < 81){
+            let randomNumber = bytes[key] % 27;
+            let randomLetter = charset.charAt(randomNumber);
+            seed += randomLetter;
+          }
+        });
+        dispatch(setSeed(seed));
+      } else {
+        console.log(error);
+      }
+    });
+  }
 }
 
 function sortTransactions(transactions) {

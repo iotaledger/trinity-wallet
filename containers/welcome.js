@@ -10,12 +10,17 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setLoggedIn } from '../actions/accountActions';
+import { randomiseSeed } from '../actions/iotaActions';
 
 const { height, width } = Dimensions.get('window');
 
 class Welcome extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount(){
+    this.props.randomiseSeed()
   }
 
   onYesClick() {
@@ -187,6 +192,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setLoggedIn: (boolean) => {
     dispatch(setLoggedIn(boolean));
+  },
+  randomiseSeed: () => {
+    dispatch(randomiseSeed());
   },
 });
 

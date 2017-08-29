@@ -10,7 +10,7 @@ import {
   ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setLoggedIn } from '../actions/accountActions';
+import { setFirstUse } from '../actions/accountActions';
 import { storeInKeychain } from '../libs/cryptography'
 import { TextField } from 'react-native-material-textfield';
 
@@ -26,14 +26,21 @@ class SetPassword extends React.Component {
   }
 
   onDoneClick() {
-    if (this.state.password.length > 6){
-        storeInKeychain(this.state.password, this.props.iota.seed);
+    if (this.state.password.length > 6 && this.state.password == this.state.reentry){
+      storeInKeychain(this.state.password, this.props.iota.seed);
+      this.setState({
+        password: '',
+        reentry: ''
+      });
+      this.props.setFirstUse(false);
+      this.props.navigator.push({
+        screen: 'login',
+        navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
+        animated: false,
+      });
+    } else {
+
     }
-    this.props.navigator.push({
-      screen: 'login',
-      navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
-      animated: false,
-    });
   }
   onBackClick() {
     this.props.navigator.pop({
@@ -226,8 +233,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setLoggedIn: (boolean) => {
-    dispatch(setLoggedIn(boolean));
+  setFirstUse: (boolean) => {
+    dispatch(setFirstUse(boolean));
+  },
+  storeInKeychain: (password) => {
+    dispatch(storeInKeychain(password));
   },
 });
 

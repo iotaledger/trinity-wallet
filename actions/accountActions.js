@@ -1,6 +1,6 @@
-export function setLoggedIn(boolean) {
+export function setFirstUse(boolean) {
   return {
-    type: 'SET_LOGGEDIN',
+    type: 'SET_FIRSTUSE',
     payload: boolean,
   };
 }

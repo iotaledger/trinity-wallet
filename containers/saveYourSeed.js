@@ -109,7 +109,7 @@ class SaveYourSeed extends React.Component {
             </View>
           </View>
         </View>
-        <View style={{ justifyContent: 'center', flexDirection: 'row', alignItems: 'flex-end' }}>
+        <View style={ styles.bottomContainer }>
           <View style={{ paddingRight: width / 16 }}>
               <TouchableWithoutFeedback onPress={event => this.onBackClick()}>
                 <View style={styles.backButton} >
@@ -152,9 +152,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: width / 15,
   },
   bottomContainer: {
-    width: width / 1.5,
-    flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    paddingBottom: height / 30
   },
   leftContainer: {
     flex: 1,
@@ -292,6 +293,7 @@ const styles = StyleSheet.create({
     height: width / 6,
     width: width / 6,
   },
+
 });
 
 const mapStateToProps = state => ({
