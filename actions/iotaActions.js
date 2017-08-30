@@ -1,9 +1,7 @@
 import { iota } from '../libs/iota';
 import { randomBytes } from 'react-native-randombytes'
 
-{/*const seed = 'CQJUXQMEKUYGSOF9HYH9WLTRKMKCHVGJLNEOFYKUAJXMNOQAYE9IWQPPDIOOOCGINMGACETMFZTKEDGVE';*/}
-
-export function checkNode(seed) {
+export function checkNode() {
   return (dispatch) => {
     iota.api.getNodeInfo((error) => {
       if (!error) {
@@ -20,7 +18,7 @@ export function getAccountInfo(seed) {
   return (dispatch) => {
     iota.api.getAccountData(seed, (error, success) => {
       if (!error) {
-        Promise.resolve(dispatch(generateNewAddress()), dispatch(setAccountInfo(success))).then(dispatch(setReady()));
+        Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
       } else {
         console.log('SOMETHING WENT WRONG: ', error);
       }
@@ -28,7 +26,7 @@ export function getAccountInfo(seed) {
   };
 }
 
-export function generateNewAddress() {
+export function generateNewAddress(seed) {
   return (dispatch) => {
     iota.api.getNewAddress(seed, { checksum: true }, (error, success) => {
       if (!error) {
@@ -124,6 +122,12 @@ export function setAccountInfo(accountInfo) {
     balance,
     transactions,
   };
+}
+
+export function clearIOTA(){
+  return{
+    type: 'CLEAR_IOTA'
+  }
 }
 
 export function setReady() {

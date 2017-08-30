@@ -6,9 +6,6 @@ const iotaReducer = (state = {
       state = {
         ...state,
         balance: action.balance,
-        fullBalance: action.fullBalance,
-        balanceUnit: action.balanceUnit,
-        needPlusSign: action.needPlusSign,
         transactions: action.transactions,
       };
       break;
@@ -28,6 +25,16 @@ const iotaReducer = (state = {
       state = {
         ...state,
         ready: action.payload,
+      };
+      break;
+    case 'CLEAR_IOTA':
+      state = {
+        ...state,
+        balance: 0,
+        transactions: [],
+        addresses: [],
+        seed: '',
+        ready: false
       };
       break;
   }

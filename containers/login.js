@@ -10,7 +10,7 @@ import {
   ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed } from '../actions/accountActions';
+import { setSeed } from '../actions/iotaActions';
 import { getFromKeychain } from '../libs/cryptography'
 import { TextField } from 'react-native-material-textfield';
 
@@ -24,16 +24,29 @@ class Login extends React.Component {
     };
   }
 
-  onDoneClick() {
-   var seed = this.props.getFromKeychain(this.state.password);
-   if(seed.length>0){
-      this.props.setSeed(seed);
-      this.props.navigator.push({
+
+  onDoneClick(props) {
+    getFromKeychain(this.state.password, function(value){
+      if(typeof value !== 'undefined'){
+         login(value);
+      }
+   })
+   function login(value){
+     props.setSeed(value);
+      props.navigator.push({
         screen: 'loading',
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
         animated: false,
       });
-    }
+   }
+  }
+
+  onNewSeedClick(props) {
+    this.props.navigator.push({
+      screen: 'welcome',
+      navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
+      animated: false,
+    });
   }
 
   render() {
@@ -68,9 +81,16 @@ class Login extends React.Component {
           </ScrollView>
           <View style={styles.bottomContainer}>
             <View style={{ alignItems: 'center'}}>
-              <TouchableHighlight onPress={event => this.onDoneClick()} style={{ paddingBottom: height / 30 }}>
+              <TouchableHighlight onPress={event => this.onDoneClick(this.props)} style={{ paddingBottom: height / 30 }}>
                 <View style={styles.doneButton} >
                   <Text style={styles.doneText}>DONE</Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+            <View style={{ alignItems: 'center' }}>
+              <TouchableHighlight onPress={event => this.onNewSeedClick()}>
+                <View style={styles.newSeedButton} >
+                  <Text style={styles.newSeedText}>CHANGE WALLET</Text>
                 </View>
               </TouchableHighlight>
             </View>
@@ -155,7 +175,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
-  backButton: {
+  newSeedButton: {
     borderColor: '#F7D002',
     borderWidth: 1.5,
     borderRadius: 10,
@@ -170,7 +190,7 @@ const styles = StyleSheet.create({
     fontSize: width / 25.3,
     backgroundColor: 'transparent',
   },
-  backText: {
+  newSeedText: {
     color: '#F7D002',
     fontFamily: 'Lato-Light',
     fontSize: width / 25.3,
@@ -190,9 +210,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setSeed: (seed) => {
     dispatch(setSeed(seed));
-  },
-  getFromKeychain: (key) => {
-    dispatch(getFromKeychain(key));
   },
 });
 
