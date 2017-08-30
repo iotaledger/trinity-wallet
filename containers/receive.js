@@ -28,7 +28,7 @@ class Receive extends React.Component {
   }
 
   onGeneratePress() {
-    this.props.generateNewAddress();
+    this.props.generateNewAddress(this.props.iota.seed);
   }
 
   render() {
@@ -124,8 +124,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  generateNewAddress: () => {
-    dispatch(generateNewAddress());
+  generateNewAddress: (seed) => {
+    dispatch(generateNewAddress(seed));
   },
 
 });

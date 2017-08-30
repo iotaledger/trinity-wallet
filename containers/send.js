@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#009f3f',
     position:'absolute',
     left: width / 3,
-    top: height / 3.5
+    top: height / 3
   },
   sendIOTAText: {
     color: 'white',

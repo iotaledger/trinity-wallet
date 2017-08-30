@@ -27,21 +27,20 @@ class Balance extends React.Component {
   }
 
   onBalanceClick() {
-    switch (this.state.balanceIsShort) {
-      case (true):
+      if (this.state.balanceIsShort){
         this.setState({ balanceIsShort: false });
-      case (false):
+      } else {
         this.setState({ balanceIsShort: true });
-    }
+      }
   }
 
   render() {
-    const shortenedBalance = round(this.props.iota.balance, 1).toString() + (this.props.iota.balance < 1000 ? '' : '+');
+    const shortenedBalance = round(formatValue(this.props.iota.balance, 1)) + (this.props.iota.balance < 1000 ? '' : '+');
     return (
       <View style={styles.container}>
         <View style={styles.balanceContainer}>
-          <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>{this.state.balanceIsShort ? shortenedBalance : formatValue(this.props.iota.balance)} {formatUnit(this.props.iota.balance)}</Text>
-          <Text style={styles.fiatBalance}>$ {round(this.props.iota.balance * this.props.marketData.usdPrice, 2)} </Text>
+          <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>{this.state.balanceIsShort ? shortenedBalance : this.props.iota.balance} {formatUnit(this.props.iota.balance)}</Text>
+          <Text style={styles.fiatBalance}>$ {round(this.props.iota.balance * this.props.marketData.usdPrice / 1000000, 2).toFixed(2)} </Text>
         </View>
         <View style={styles.line} />
         <View style={styles.transactionsContainer}>
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
   },
   iotaBalance: {
     color: 'white',
-    fontFamily: 'Lato-Black',
+    fontFamily: 'Lato-Heavy',
     fontSize: width / 9,
     backgroundColor: 'transparent'
   },

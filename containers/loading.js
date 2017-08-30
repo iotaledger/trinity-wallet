@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../actions/marketDataActions';
-import { checkNode } from '../actions/iotaActions';
+import { getAccountInfo, checkNode } from '../actions/iotaActions';
 import Home from './home';
 
 const { height, width } = Dimensions.get('window');
@@ -25,8 +25,8 @@ class Loading extends React.Component {
   }
 
   async getWalletData() {
+    await this.props.getAccountInfo(this.props.iota.seed);
     await this.props.getPrice('USD');
-    await this.props.checkNode(this.props.iota.seed);
     await this.props.getMarketData();
     await this.props.getChartData('USD', '24h');
   }
@@ -76,8 +76,11 @@ const mapDispatchToProps = dispatch => ({
   getChartData: (currency, timeFrame) => {
     dispatch(getChartData(currency, timeFrame));
   },
-  checkNode: () => {
-    dispatch(checkNode());
+  getAccountInfo: (seed) => {
+    dispatch(getAccountInfo(seed));
+  },
+  checkNode: (seed) => {
+    dispatch(checkNode(seed));
   },
 });
 

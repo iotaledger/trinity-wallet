@@ -9,7 +9,9 @@ import {
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { setLoggedIn } from '../actions/accountActions';
+import { clearIOTA } from '../actions/iotaActions';
+import store from '../store';
+import {persistStore} from 'redux-persist'
 
 const { height, width } = Dimensions.get('window');
 
@@ -20,10 +22,10 @@ class Tools extends React.Component {
   }
 
   onLogOutClick() {
-    this.props.setLoggedIn(false);
+    this.props.clearIOTA()
     Navigation.startSingleScreenApp({
       screen: {
-        screen: 'welcome',
+        screen: 'login',
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
       },
     });
@@ -67,8 +69,8 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setLoggedIn: (boolean) => {
-    dispatch(setLoggedIn(boolean));
+  clearIOTA: () => {
+    dispatch(clearIOTA());
   },
 });
 
