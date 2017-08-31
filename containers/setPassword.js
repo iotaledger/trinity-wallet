@@ -4,13 +4,14 @@ import {
   View,
   Dimensions,
   Text,
-  TouchableHighlight,
+  TouchableWithoutFeedback,
   Image,
   ImageBackground,
   ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setFirstUse } from '../actions/accountActions';
+import { setSeed } from '../actions/iotaActions';
 import { storeInKeychain } from '../libs/cryptography'
 import { TextField } from 'react-native-material-textfield';
 
@@ -27,11 +28,7 @@ class SetPassword extends React.Component {
 
   onDoneClick() {
     if (this.state.password.length > 6 && this.state.password == this.state.reentry){
-      storeInKeychain(this.state.password, this.props.iota.seed);
-      this.setState({
-        password: '',
-        reentry: ''
-      });
+      Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed)).then(setSeed(''));
       this.props.setFirstUse(false);
       this.props.navigator.push({
         screen: 'login',
@@ -82,6 +79,7 @@ class SetPassword extends React.Component {
             value={password}
             onChangeText={ (password) => this.setState({ password }) }
             containerStyle={{ paddingHorizontal: width / 6 }}
+            secureTextEntry={true}
           />
           <TextField
             style={{color:'white', fontFamily: 'Lato-Light' }}
@@ -94,23 +92,24 @@ class SetPassword extends React.Component {
             value={reentry}
             onChangeText={ (reentry) => this.setState({ reentry }) }
             containerStyle={{ paddingHorizontal: width / 6 }}
+            secureTextEntry={true}
           />
         </View>
         </ScrollView>
         <View style={styles.bottomContainer}>
           <View style={{ alignItems: 'center'}}>
-            <TouchableHighlight onPress={event => this.onDoneClick()} style={{ paddingBottom: height / 30 }}>
+            <TouchableWithoutFeedback onPress={event => this.onDoneClick()} style={{ paddingBottom: height / 30 }}>
               <View style={styles.doneButton} >
                 <Text style={styles.doneText}>DONE</Text>
               </View>
-            </TouchableHighlight>
+            </TouchableWithoutFeedback>
           </View>
           <View style={{ alignItems: 'center' }}>
-            <TouchableHighlight onPress={event => this.onBackClick()}>
+            <TouchableWithoutFeedback onPress={event => this.onBackClick()}>
               <View style={styles.backButton} >
                 <Text style={styles.backText}>BACK</Text>
               </View>
-            </TouchableHighlight>
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </ImageBackground>
@@ -238,6 +237,9 @@ const mapDispatchToProps = dispatch => ({
   },
   storeInKeychain: (password) => {
     dispatch(storeInKeychain(password));
+  },
+  setSeed: (seed) => {
+    dispatch(setSeed(seed));
   },
 });
 

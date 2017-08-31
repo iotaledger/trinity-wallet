@@ -26,7 +26,7 @@ class Tools extends React.Component {
     Navigation.startSingleScreenApp({
       screen: {
         screen: 'login',
-        navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+        navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
       },
     });
   }

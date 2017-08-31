@@ -4,13 +4,13 @@ import {
   View,
   Dimensions,
   Text,
-  TouchableHighlight,
+  TouchableWithoutFeedback,
   Image,
   ImageBackground,
   ScrollView
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed } from '../actions/iotaActions';
+import { setPassword, getAccountInfo } from '../actions/iotaActions';
 import { getFromKeychain } from '../libs/cryptography'
 import { TextField } from 'react-native-material-textfield';
 
@@ -23,16 +23,15 @@ class Login extends React.Component {
       password: '',
     };
   }
-
-
   onDoneClick(props) {
+    this.props.setPassword(this.state.password);
     getFromKeychain(this.state.password, function(value){
       if(typeof value !== 'undefined'){
          login(value);
       }
    })
    function login(value){
-     props.setSeed(value);
+      props.getAccountInfo(value);
       props.navigator.push({
         screen: 'loading',
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
@@ -76,23 +75,24 @@ class Login extends React.Component {
                enablesReturnKeyAutomatically={true}
                onChangeText={ (password) => this.setState({ password }) }
                containerStyle={{ paddingHorizontal: width / 6 }}
+               secureTextEntry={true}
              />
           </View>
           </ScrollView>
           <View style={styles.bottomContainer}>
             <View style={{ alignItems: 'center'}}>
-              <TouchableHighlight onPress={event => this.onDoneClick(this.props)} style={{ paddingBottom: height / 30 }}>
+              <TouchableWithoutFeedback onPress={event => this.onDoneClick(this.props)} style={{ paddingBottom: height / 30 }}>
                 <View style={styles.doneButton} >
                   <Text style={styles.doneText}>DONE</Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableWithoutFeedback>
             </View>
             <View style={{ alignItems: 'center' }}>
-              <TouchableHighlight onPress={event => this.onNewSeedClick()}>
+              <TouchableWithoutFeedback onPress={event => this.onNewSeedClick()}>
                 <View style={styles.newSeedButton} >
                   <Text style={styles.newSeedText}>CHANGE WALLET</Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableWithoutFeedback>
             </View>
           </View>
       </ImageBackground>
@@ -208,8 +208,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setSeed: (seed) => {
-    dispatch(setSeed(seed));
+  setPassword: (password) => {
+    dispatch(setPassword(password));
+  },
+  getAccountInfo: (seed) => {
+    dispatch(getAccountInfo(seed));
   },
 });
 
