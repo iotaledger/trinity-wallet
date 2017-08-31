@@ -76,6 +76,10 @@ class SetPassword extends React.Component {
           <TextField
             style={{color:'white', fontFamily: 'Lato-Light' }}
             labelTextStyle={{ fontFamily: 'Lato-Light' }}
+            labelFontSize={height / 55}
+            height={height / 40}
+            fontSize={height / 45}
+            labelHeight={height / 50}
             baseColor='white'
             label='PASSWORD'
             autoCapitalize={'none'}
@@ -83,12 +87,16 @@ class SetPassword extends React.Component {
             enablesReturnKeyAutomatically={true}
             value={password}
             onChangeText={ (password) => this.setState({ password }) }
-            containerStyle={{ paddingHorizontal: width / 6 }}
+            containerStyle={{ paddingHorizontal: width / 6, paddingBottom: height / 60, paddingTop: height / 40 }}
             secureTextEntry={true}
           />
           <TextField
             style={{color:'white', fontFamily: 'Lato-Light' }}
             labelTextStyle={{ fontFamily: 'Lato-Light' }}
+            labelFontSize={height / 55}
+            height={height / 40}
+            fontSize={height / 45}
+            labelHeight={height / 50}
             baseColor='white'
             label='RETYPE PASSWORD'
             autoCapitalize={'none'}

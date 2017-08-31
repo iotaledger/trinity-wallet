@@ -60,6 +60,8 @@ class EnterSeed extends React.Component {
             <TextField
               style={{color:'white', fontFamily: 'Lato-Light' }}
               labelTextStyle={{ fontFamily: 'Lato-Light' }}
+              labelFontSize={height / 55}
+              fontSize={height / 45}
               baseColor='white'
               label='SEED'
               value={seed}
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: height / 8,
     paddingTop: height / 35,
-    paddingBottom: height / 15,
+    paddingBottom: height / 20,
   },
   title: {
     color: 'white',

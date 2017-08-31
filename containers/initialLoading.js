@@ -10,7 +10,6 @@ import {
 
 import store from '../store';
 
-
 const { height, width } = Dimensions.get('window');
 
 class InitialLoading extends React.Component {
@@ -70,6 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     fontFamily: 'Lato-Regular',
     color: 'white',
+    fontSize: width / 33.75
   },
   textContainer: {
     justifyContent: 'flex-end',

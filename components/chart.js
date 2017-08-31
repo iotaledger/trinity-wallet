@@ -17,7 +17,7 @@ import {
 const { height, width } = Dimensions.get('window');
 
 
-const viewbox =  `0 0 ${width / 1.14} 320`
+const viewbox =  `0 0 ${width / 1.035} ${width / 1.29375}`
 
 class Chart extends React.Component {
 
@@ -96,8 +96,8 @@ class Chart extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, paddingBottom: height / 50, paddingTop: height / 80 }}>
-        <View style={styles.priceContainer}>
+      <View style={styles.container}>
+        <View style={styles.topContainer}>
         <View style={{flex: 1}}>
           <TouchableWithoutFeedback onPress={event => this.onCurrencyClick()}>
             <View style={styles.button}>
@@ -105,7 +105,7 @@ class Chart extends React.Component {
             </View>
         </TouchableWithoutFeedback>
         </View>
-        <View style={{flex: 8, alignItems: 'center'}}>
+        <View style={styles.priceContainer}>
           <Text style={styles.iotaPrice}>{this.props.marketData.price} / Mi</Text>
         </View>
         <View style={{flex: 1}}>
@@ -130,12 +130,12 @@ class Chart extends React.Component {
               dependentAxis
               standalone={false}
               style={{
-                axis: { stroke: 'transparent', padding: 5 },
-                tickLabels: { fill: 'white', fontSize: width / 36.8, fontFamily: 'Lato-Regular' },
+                axis: { stroke: 'transparent' },
+                tickLabels: { fill: 'white', fontSize: width / 40, fontFamily: 'Lato-Regular' },
               }}
               height={height / 2.65}
               gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.25 }} />}
-              tickLabelComponent={<VictoryLabel x={-width / 54} textAnchor="start" />}
+              tickLabelComponent={<VictoryLabel x={-width / 50} textAnchor="start" />}
               tickValues={this.getTickValues()}
               domain={{
                 y: [this.getMinY(), this.getMaxY()],
@@ -175,7 +175,12 @@ class Chart extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  priceContainer: {
+  container: {
+    flex: 1,
+    paddingBottom: height / 50,
+    paddingTop: height / 80
+  },
+  topContainer: {
     flex: 1,
     flexDirection: 'row',
     backgroundColor: 'transparent',
@@ -183,7 +188,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     zIndex: 1,
     paddingBottom: height / 25,
-    paddingHorizontal: width / 12,
+    paddingHorizontal: width / 7.5,
+  },
+  priceContainer: {
+    flex: 8,
+    alignItems: 'center'
   },
   button: {
     justifyContent: 'center',
@@ -194,6 +203,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 0,
+    paddingLeft: width / 11
   },
   marketDataContainer: {
     flex: 0.6,
@@ -201,7 +211,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: width / 12,
+    paddingHorizontal: width / 7.5,
   },
   buttonText: {
     color: 'white',
