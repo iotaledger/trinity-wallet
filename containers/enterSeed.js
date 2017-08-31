@@ -27,7 +27,6 @@ class EnterSeed extends React.Component {
   onDoneClick() {
     if (this.state.seed.length > 59) {
       this.props.setSeed(this.state.seed);
-      this.setState({ seed: '' });
       this.props.navigator.push({
         screen: 'setPassword',
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
@@ -70,6 +69,7 @@ class EnterSeed extends React.Component {
               maxLength={81}
               onChangeText={ (seed) => this.setState({ seed }) }
               containerStyle={{ paddingHorizontal: width / 8 }}
+              secureTextEntry={true}
             />
          </View>
         </ScrollView>

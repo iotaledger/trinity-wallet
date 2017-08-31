@@ -138,6 +138,12 @@ export function setReady() {
   };
 }
 
+export function setPassword(password) {
+  return {
+    type: 'SET_PASSWORD',
+    payload: password,
+  };
+}
 export function setSeed(seed) {
   return {
     type: 'SET_SEED',

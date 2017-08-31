@@ -4,7 +4,7 @@ import {
   View,
   Dimensions,
   Text,
-  TouchableHighlight,
+  TouchableWithoutFeedback,
   Image,
   ImageBackground,
 } from 'react-native';
@@ -62,18 +62,18 @@ class Welcome extends React.Component {
         </View>
         <View style={styles.bottomContainer}>
           <View style={{ alignItems: 'center'}}>
-            <TouchableHighlight onPress={event => this.onYesClick()} style={{ paddingBottom: height / 30 }}>
+            <TouchableWithoutFeedback onPress={event => this.onYesClick()} style={{ paddingBottom: height / 30 }}>
               <View style={styles.yesButton} >
                 <Text style={styles.yesText}>YES - I have seed</Text>
               </View>
-            </TouchableHighlight>
+            </TouchableWithoutFeedback>
           </View>
           <View style={{ alignItems: 'center' }}>
-            <TouchableHighlight onPress={event => this.onNoClick()}>
+            <TouchableWithoutFeedback onPress={event => this.onNoClick()}>
               <View style={styles.noButton} >
                 <Text style={styles.noText}>NO - I need a new seed</Text>
               </View>
-            </TouchableHighlight>
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </ImageBackground>
