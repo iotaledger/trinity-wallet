@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../actions/iotaActions';
 import { getFromKeychain } from '../libs/cryptography'
 import { TextField } from 'react-native-material-textfield';
+import DropdownAlert from 'react-native-dropdownalert'
 
 const { height, width } = Dimensions.get('window');
 
@@ -24,10 +25,13 @@ class Login extends React.Component {
     };
   }
   onDoneClick(props) {
+
     this.props.setPassword(this.state.password);
     getFromKeychain(this.state.password, function(value){
       if(typeof value !== 'undefined'){
          login(value);
+      } else {
+         error();
       }
    })
    function login(value){
@@ -37,6 +41,9 @@ class Login extends React.Component {
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
         animated: false,
       });
+   }
+   function error(){
+     this.dropdown.alertWithType('error', 'Unrecognised password', 'The password was not recognised. Please try again.');
    }
   }
 
@@ -80,8 +87,8 @@ class Login extends React.Component {
           </View>
           </ScrollView>
           <View style={styles.bottomContainer}>
-            <View style={{ alignItems: 'center'}}>
-              <TouchableWithoutFeedback onPress={event => this.onDoneClick(this.props)} style={{ paddingBottom: height / 30 }}>
+            <View style={{ alignItems: 'center', paddingBottom: height / 30}}>
+              <TouchableWithoutFeedback onPress={event => this.onDoneClick(this.props)}>
                 <View style={styles.doneButton} >
                   <Text style={styles.doneText}>DONE</Text>
                 </View>
@@ -95,6 +102,9 @@ class Login extends React.Component {
               </TouchableWithoutFeedback>
             </View>
           </View>
+          <DropdownAlert
+            ref={(ref) => dropdown = ref}
+          />
       </ImageBackground>
     );
   }

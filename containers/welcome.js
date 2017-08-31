@@ -61,8 +61,8 @@ class Welcome extends React.Component {
                        </Text>
         </View>
         <View style={styles.bottomContainer}>
-          <View style={{ alignItems: 'center'}}>
-            <TouchableWithoutFeedback onPress={event => this.onYesClick()} style={{ paddingBottom: height / 30 }}>
+          <View style={{ alignItems: 'center', paddingBottom: height / 30 }}>
+            <TouchableWithoutFeedback onPress={event => this.onYesClick()}>
               <View style={styles.yesButton} >
                 <Text style={styles.yesText}>YES - I have seed</Text>
               </View>

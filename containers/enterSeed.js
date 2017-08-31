@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
+import DropdownAlert from 'react-native-dropdownalert'
 import { setSeed } from '../actions/iotaActions';
 import { setLoggedIn } from '../actions/accountActions';
 import { getMarketData, getChartData, getPrice } from '../actions/marketDataActions';
@@ -33,7 +34,7 @@ class EnterSeed extends React.Component {
         animated: false,
       });
     } else {
-
+      this.dropdown.alertWithType('error', 'Seed is too short', 'Seeds must be at least 60 characters long. Please try again.');
     }
   }
   onBackClick() {
@@ -98,6 +99,9 @@ class EnterSeed extends React.Component {
             </TouchableHighlight>
           </View>
         </View>
+        <DropdownAlert
+          ref={(ref) => this.dropdown = ref}
+        />
       </ImageBackground>
     );
   }
