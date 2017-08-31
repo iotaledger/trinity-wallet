@@ -46,7 +46,7 @@ class Receive extends React.Component {
 
   render() {
     return (
-      <View style={{ alignItems: 'center', paddingTop: height / 20 }}>
+      <View style={styles.container}>
         <View style={{ paddingBottom: height / 40 }}>
           <View style={styles.receiveAddressContainer}>
             <Text style={styles.receiveAddressText}>{this.props.iota.addresses[this.props.iota.addresses.length - 1]}</Text>
@@ -81,8 +81,8 @@ class Receive extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'red',
+    alignItems: 'center',
+    paddingTop: height / 20 
   },
   receiveAddressContainer: {
     borderColor: 'white',

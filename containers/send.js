@@ -79,13 +79,17 @@ class Send extends React.Component {
     let { amount, address } = this.state;
     return (
       <ScrollView scrollEnabled={false} style={styles.container}>
-        <View style={styles.textFieldsContainer}>
+        <View style={styles.topContainer}>
           <View style={{ flexDirection: 'row', flex: 1 }}>
-            <View style={{ flex: 8, paddingRight: width / 20 }}>
+            <View style={styles.textFieldContainer}>
               <TextField
-                style={{ color:'white', fontFamily: 'Lato-Light' }}
+                style={styles.textField}
                 containerStyle={{ height: height / 6 }}
                 labelTextStyle={{ fontFamily: 'Lato-Regular' }}
+                labelFontSize={height / 55}
+                height={height / 40}
+                fontSize={height / 45}
+                labelHeight={height / 50}
                 baseColor='white'
                 label='ADDRESS'
                 autoCorrect={false}
@@ -107,11 +111,15 @@ class Send extends React.Component {
             </View>
           </View>
           <View style={{ flexDirection: 'row', flex: 1 }}>
-            <View style={{ flex: 8, paddingRight: width / 20 }}>
+            <View style={styles.textFieldContainer}>
               <TextField
                 keyboardType = {'numeric'}
                 style={{color:'white', fontFamily: 'Lato-Light' }}
                 labelTextStyle={{ fontFamily: 'Lato-Regular' }}
+                labelFontSize={height / 55}
+                height={height / 40}
+                fontSize={height / 45}
+                labelHeight={height / 50}
                 baseColor='white'
                 enablesReturnKeyAutomatically={true}
                 label='AMOUNT'
@@ -166,10 +174,18 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: height / 20
   },
-  textFieldsContainer: {
+  topContainer: {
     paddingHorizontal: width / 10,
     zIndex: 1,
     flex: 1
+  },
+  textFieldContainer: {
+    flex: 8,
+    paddingRight: width / 20
+  },
+  textField: {
+    color:'white',
+    fontFamily: 'Lato-Light'
   },
   qrButton: {
     flexDirection: 'row',

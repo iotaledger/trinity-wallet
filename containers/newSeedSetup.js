@@ -47,6 +47,8 @@ class NewSeedSetup extends React.Component {
   }
 
   onItemClick(sectionID) {
+    console.log(width)
+    console.log(height)
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
       randomBytes(5, (error, bytes) => {
         if(!error) {
@@ -95,8 +97,10 @@ class NewSeedSetup extends React.Component {
             contentContainerStyle={styles.list}
             dataSource={ds.cloneWithRows(this.props.iota.seed)}
             renderRow={(rowData, rowID, sectionID) =>
-                             (<TouchableHighlight style={{ padding: 5 }} key={sectionID} onPress={event => this.onItemClick(sectionID)} underlayColor="#F7D002">
-                               <Text style={styles.item}>{rowData}</Text>
+                             (<TouchableHighlight  key={sectionID} onPress={event => this.onItemClick(sectionID)} underlayColor="#F7D002">
+                               <View style={styles.tile}>
+                                <Text style={styles.item}>{rowData}</Text>
+                               </View>
                              </TouchableHighlight>)
                             }
             style={ styles.squareContainer }
@@ -111,8 +115,8 @@ class NewSeedSetup extends React.Component {
           <Text style={styles.warningText}>
                          NEVER SHARE YOUR SEED WITH ANYONE
                       </Text>
-          <View style={{ alignItems: 'flex-end', justifyContent: 'center', flexDirection: 'row' }}>
-             <View style={{ paddingRight: width / 16, paddingTop: height / 60 }}>
+          <View style={styles.buttonsContainer}>
+             <View style={styles.backButtonContainer}>
                 <TouchableWithoutFeedback onPress={event => this.onBackClick()}>
                   <View style={styles.backButton} >
                     <Text style={styles.backText}>GO BACK</Text>
@@ -157,7 +161,8 @@ const styles = StyleSheet.create({
   squareContainer: {
     flex: 1,
     height: width / 1.1 ,
-    width: width / 1.1
+    width: width / 1.1,
+
   },
   list: {
     justifyContent: 'center',
@@ -172,7 +177,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Bold',
     fontSize: width / 28.9,
     textAlign: 'center',
-    paddingTop: 4,
+    paddingTop: height / 130
+  },
+  tile: {
+    padding: height / 150,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   textContainer: {
     justifyContent: 'center',
@@ -221,6 +231,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     paddingRight: 10,
   },
+  buttonsContainer: {
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    flexDirection: 'row'
+  },
   nextButton: {
     borderColor: '#9DFFAF',
     borderWidth: 1.5,
@@ -244,6 +259,10 @@ const styles = StyleSheet.create({
     height: height / 16,
     alignItems: 'center',
     justifyContent: 'space-around',
+  },
+  backButtonContainer: {
+    paddingRight: width / 16,
+    paddingTop: height / 60
   },
   backText: {
     color: '#F7D002',

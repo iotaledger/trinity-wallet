@@ -35,7 +35,7 @@ class Balance extends React.Component {
   }
 
   render() {
-    const shortenedBalance = round(formatValue(this.props.iota.balance, 1)) + (this.props.iota.balance < 1000 ? '' : '+');
+    const shortenedBalance = round(formatValue(this.props.iota.balance, 1)).toFixed(1) + (this.props.iota.balance < 1000 ? '' : '+');
     return (
       <View style={styles.container}>
         <View style={styles.balanceContainer}>

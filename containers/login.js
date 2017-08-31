@@ -25,7 +25,6 @@ class Login extends React.Component {
     };
   }
   onDoneClick(props) {
-
     this.props.setPassword(this.state.password);
     getFromKeychain(this.state.password, function(value){
       if(typeof value !== 'undefined'){
@@ -73,7 +72,12 @@ class Login extends React.Component {
                               Please enter your password.
                            </Text>
              <TextField
-               style={{color:'white', fontFamily: 'Lato-Light'}}
+               style={{ color:'white', fontFamily: 'Lato-Light', fontSize: height / 38.6 }}
+               labelTextStyle={{ fontFamily: 'Lato-Light' }}
+               labelFontSize={height / 55}
+               height={height / 40}
+               fontSize={height / 45}
+               labelHeight={height / 50}
                baseColor='white'
                label='PASSWORD'
                value={password}
@@ -87,7 +91,7 @@ class Login extends React.Component {
           </View>
           </ScrollView>
           <View style={styles.bottomContainer}>
-            <View style={{ alignItems: 'center', paddingBottom: height / 30}}>
+            <View style={styles.buttonsContainer}>
               <TouchableWithoutFeedback onPress={event => this.onDoneClick(this.props)}>
                 <View style={styles.doneButton} >
                   <Text style={styles.doneText}>DONE</Text>
@@ -163,7 +167,7 @@ const styles = StyleSheet.create({
     fontSize: width / 20.25,
     textAlign: 'center',
     paddingHorizontal: width / 7,
-    paddingBottom: height / 20,
+    paddingBottom: height / 10,
     backgroundColor: 'transparent',
   },
   questionText: {
@@ -175,6 +179,10 @@ const styles = StyleSheet.create({
     paddingRight: width / 7,
     paddingTop: height / 25,
     backgroundColor: 'transparent',
+  },
+  buttonsContainer: {
+    alignItems: 'center',
+    paddingBottom: height / 30
   },
   doneButton: {
     borderColor: '#9DFFAF',

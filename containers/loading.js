@@ -35,6 +35,7 @@ class Loading extends React.Component {
         <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
           <View style={{ height: width / 1.75, paddingLeft: 5 }}>
             <WebView
+              scrollEnabled={false}
               source={logoSpin}
               style={{ backgroundColor: 'transparent', width: width / 1.75 }}
             />

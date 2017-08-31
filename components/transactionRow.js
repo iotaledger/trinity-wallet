@@ -5,22 +5,13 @@ const { height, width } = Dimensions.get('window');
 
 class TransactionRow extends React.Component {
 
-  styleTitleColor() {
-    let titleColour = '';
-    if (this.props.rowData[0].transactionValue < 0) {
-      titleColour = '#F7D002';
-    } else {
-      titleColour = '#72BBE8';
-    }
-    return titleColour;
-  }
-
   render() {
+    const titleColour = this.props.rowData[0].transactionValue < 0 ? '#F7D002' : '#72BBE8';
     return (
       <View style={{ flex: 1, alignItems: 'center' }}>
         <View style={styles.container}>
           <View style={{ flex: 3 }}>
-            <Text style={{ color: this.styleTitleColor(), justifyContent: 'space-between', backgroundColor: 'transparent', fontFamily: 'Lato-Regular', fontSize: width / 33.75, paddingBottom: 4}}>
+            <Text style={{ color: titleColour, justifyContent: 'space-between', backgroundColor: 'transparent', fontFamily: 'Lato-Regular', fontSize: width / 33.75, paddingBottom: 4}}>
               {this.props.rowData[0].transactionValue < 0 ? 'SEND' : 'RECEIVE' } {round(formatValue(this.props.rowData[0].value), 1)} {formatUnit(this.props.rowData[0].value)}
             </Text>
             <Text style={ styles.bundleTitle }>
