@@ -14,6 +14,7 @@ import { setFirstUse } from '../actions/accountActions';
 import { setSeed } from '../actions/iotaActions';
 import { storeInKeychain } from '../libs/cryptography'
 import { TextField } from 'react-native-material-textfield';
+import DropdownAlert from 'react-native-dropdownalert'
 
 const { height, width } = Dimensions.get('window');
 
@@ -27,7 +28,7 @@ class SetPassword extends React.Component {
   }
 
   onDoneClick() {
-    if (this.state.password.length > 6 && this.state.password == this.state.reentry){
+    if (this.state.password.length > 7 && (this.state.password == this.state.reentry)){
       Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed)).then(setSeed(''));
       this.props.setFirstUse(false);
       this.props.navigator.push({
@@ -36,7 +37,11 @@ class SetPassword extends React.Component {
         animated: false,
       });
     } else {
-
+      if(this.state.password.length < 8 || this.state.reentry.length < 8 ){
+        this.dropdown.alertWithType('error', 'Password is too short', 'Your password must be at least 8 characters. Please try again.');
+      } else if(!(this.state.password == this.state.reentry)){
+        this.dropdown.alertWithType('error', 'Passwords do not match', 'The passwords you have entered do not match. Please try again.');
+      }
     }
   }
   onBackClick() {
@@ -97,8 +102,8 @@ class SetPassword extends React.Component {
         </View>
         </ScrollView>
         <View style={styles.bottomContainer}>
-          <View style={{ alignItems: 'center'}}>
-            <TouchableWithoutFeedback onPress={event => this.onDoneClick()} style={{ paddingBottom: height / 30 }}>
+          <View style={{ alignItems: 'center', paddingBottom: height / 30 }}>
+            <TouchableWithoutFeedback onPress={event => this.onDoneClick()}>
               <View style={styles.doneButton} >
                 <Text style={styles.doneText}>DONE</Text>
               </View>
@@ -112,6 +117,9 @@ class SetPassword extends React.Component {
             </TouchableWithoutFeedback>
           </View>
         </View>
+        <DropdownAlert
+          ref={(ref) => this.dropdown = ref}
+        />
       </ImageBackground>
     );
   }

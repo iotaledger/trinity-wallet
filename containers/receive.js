@@ -12,6 +12,7 @@ import {
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
 import { generateNewAddress } from '../actions/iotaActions';
+import { getFromKeychain } from '../libs/cryptography'
 import TransactionRow from '../components/transactionRow';
 
 const { height, width } = Dimensions.get('window');
@@ -27,8 +28,20 @@ class Receive extends React.Component {
     };
   }
 
-  onGeneratePress() {
-    this.props.generateNewAddress(this.props.iota.seed);
+  onGeneratePress(props) {
+    getFromKeychain(this.props.iota.password, function(value){
+      if(typeof value !== 'undefined'){
+         generate(value);
+      } else {
+         error();
+      }
+   });
+   function generate(value){
+      props.generateNewAddress(value);
+   };
+   function error(){
+     this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+   };
   }
 
   render() {
@@ -47,7 +60,7 @@ class Receive extends React.Component {
             fgColor="#FFF"
           />
         </View>
-        <TouchableWithoutFeedback onPress={event => this.onGeneratePress()}>
+        <TouchableWithoutFeedback onPress={event => this.onGeneratePress(this.props)}>
           <View style={styles.generateButton}>
             <Image style={styles.generateImage} source={require('../images/plus.png')} />
             <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
@@ -127,7 +140,6 @@ const mapDispatchToProps = dispatch => ({
   generateNewAddress: (seed) => {
     dispatch(generateNewAddress(seed));
   },
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Receive);
