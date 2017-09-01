@@ -1,5 +1,5 @@
 import { iota } from '../libs/iota';
-import { randomBytes } from 'react-native-randombytes'
+import { randomBytes } from 'react-native-randombytes';
 
 export function checkNode() {
   return (dispatch) => {
@@ -58,21 +58,21 @@ export function sendTransaction(seed, address, value, message) {
   });
 }
 
-export function randomiseSeed(){
+export function randomiseSeed() {
   return (dispatch) => {
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-    var seed = '';
+    let seed = '';
 
     // uncomment for synchronous API, uses SJCL
-    {/*var rand = randomBytes(1)*/}
+    { /* var rand = randomBytes(1) */ }
 
     // asynchronous API, uses iOS-side SecRandomCopyBytes
     randomBytes(100, (error, bytes) => {
-      if(!error) {
-        Object.keys(bytes).map(function(key, index) {
-          if(bytes[key] < 243 && seed.length < 81){
-            let randomNumber = bytes[key] % 27;
-            let randomLetter = charset.charAt(randomNumber);
+      if (!error) {
+        Object.keys(bytes).map((key, index) => {
+          if (bytes[key] < 243 && seed.length < 81) {
+            const randomNumber = bytes[key] % 27;
+            const randomLetter = charset.charAt(randomNumber);
             seed += randomLetter;
           }
         });
@@ -81,7 +81,7 @@ export function randomiseSeed(){
         console.log(error);
       }
     });
-  }
+  };
 }
 
 function sortTransactions(transactions) {
@@ -124,10 +124,10 @@ export function setAccountInfo(accountInfo) {
   };
 }
 
-export function clearIOTA(){
-  return{
-    type: 'CLEAR_IOTA'
-  }
+export function clearIOTA() {
+  return {
+    type: 'CLEAR_IOTA',
+  };
 }
 
 export function setReady() {

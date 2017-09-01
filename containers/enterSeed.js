@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from 'react-native-dropdownalert'
+import DropdownAlert from 'react-native-dropdownalert';
 import { setSeed } from '../actions/iotaActions';
 import { setLoggedIn } from '../actions/accountActions';
 import { getMarketData, getChartData, getPrice } from '../actions/marketDataActions';
@@ -44,11 +44,11 @@ class EnterSeed extends React.Component {
   }
 
   render() {
-    let { seed } = this.state;
+    const { seed } = this.state;
     return (
       <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
-      <ScrollView scrollEnabled={false}>
-         <View style={styles.topContainer}>
+        <ScrollView scrollEnabled={false}>
+          <View style={styles.topContainer}>
             <View style={styles.logoContainer}>
               <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
             </View>
@@ -58,35 +58,35 @@ class EnterSeed extends React.Component {
                            </Text>
             </View>
             <TextField
-              style={{color:'white', fontFamily: 'Lato-Light' }}
+              style={{ color: 'white', fontFamily: 'Lato-Light' }}
               labelTextStyle={{ fontFamily: 'Lato-Light' }}
               labelFontSize={height / 55}
               fontSize={height / 45}
-              baseColor='white'
-              label='SEED'
+              baseColor="white"
+              label="SEED"
               value={seed}
-              multiline={true}
+              multiline
               autoCorrect={false}
               autoCapitalize={'characters'}
-              enablesReturnKeyAutomatically={true}
+              enablesReturnKeyAutomatically
               maxLength={81}
-              onChangeText={ (seed) => this.setState({ seed }) }
+              onChangeText={seed => this.setState({ seed })}
               containerStyle={{ paddingHorizontal: width / 8 }}
-              secureTextEntry={true}
+              secureTextEntry
             />
-         </View>
+          </View>
         </ScrollView>
-          <View style={styles.midContainer}>
-            <Text style={styles.infoText}>
+        <View style={styles.midContainer}>
+          <Text style={styles.infoText}>
                           Seeds should be 81 characters long, and should contain capital letters A-Z, or the number 9.
                           You cannot use seeds longer than 81 characters.
             </Text>
-            <Text style={styles.warningText}>
+          <Text style={styles.warningText}>
                           NEVER SHARE YOUR SEED WITH ANYONE
             </Text>
-          </View>
+        </View>
         <View style={styles.bottomContainer}>
-          <View style={{ alignItems: 'center'}}>
+          <View style={{ alignItems: 'center' }}>
             <TouchableHighlight onPress={event => this.onDoneClick()} style={{ paddingBottom: height / 30 }}>
               <View style={styles.doneButton} >
                 <Text style={styles.doneText}>DONE</Text>
@@ -102,7 +102,7 @@ class EnterSeed extends React.Component {
           </View>
         </View>
         <DropdownAlert
-          ref={(ref) => this.dropdown = ref}
+          ref={ref => this.dropdown = ref}
         />
       </ImageBackground>
     );
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   midContainer: {
     flex: 1,
     alignItems: 'center',
-    position: 'absolute'
+    position: 'absolute',
   },
   bottomContainer: {
     flex: 1,

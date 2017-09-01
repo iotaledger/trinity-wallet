@@ -12,7 +12,7 @@ import {
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
 import { generateNewAddress } from '../actions/iotaActions';
-import { getFromKeychain } from '../libs/cryptography'
+import { getFromKeychain } from '../libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 
 const { height, width } = Dimensions.get('window');
@@ -29,19 +29,19 @@ class Receive extends React.Component {
   }
 
   onGeneratePress(props) {
-    getFromKeychain(this.props.iota.password, function(value){
-      if(typeof value !== 'undefined'){
-         generate(value);
+    getFromKeychain(this.props.iota.password, (value) => {
+      if (typeof value !== 'undefined') {
+        generate(value);
       } else {
-         error();
+        error();
       }
-   });
-   function generate(value){
-      props.generateNewAddress(value);
-   };
-   function error(){
+    });
+    function generate(value) {
+     props.generateNewAddress(value);
+   }
+    function error() {
      this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
-   };
+   }
   }
 
   render() {
@@ -82,7 +82,7 @@ class Receive extends React.Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    paddingTop: height / 20 
+    paddingTop: height / 20,
   },
   receiveAddressContainer: {
     borderColor: 'white',
