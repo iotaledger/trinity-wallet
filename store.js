@@ -23,8 +23,6 @@ export default store = createStore(
 
 
 );
-persistStore(store, { storage: AsyncStorage }, () => {
+persistStore(store, { storage: AsyncStorage, blacklist: ['iota'] }, () => {
   console.log('restored');
 });
-
-{/*, blacklist: ['iota']*/}

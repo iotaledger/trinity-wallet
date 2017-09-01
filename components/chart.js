@@ -177,7 +177,7 @@ class Chart extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: height / 50,
+    paddingBottom: height / 40,
     paddingTop: height / 80
   },
   topContainer: {
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontFamily: 'Lato-Regular',
-    fontSize: width / 28.9,
+    fontSize: width / 30,
   },
   iotaPrice: {
     color: 'white',
