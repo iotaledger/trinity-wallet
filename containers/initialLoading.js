@@ -16,7 +16,7 @@ class InitialLoading extends React.Component {
 
 
   componentDidMount() {
-    this.timeout = setTimeout(this.onLoaded.bind(this), 100);
+    this.timeout = setTimeout(this.onLoaded.bind(this), 1800);
   }
 
   onLoaded() {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     fontFamily: 'Lato-Regular',
     color: 'white',
-    fontSize: width / 33.75
+    fontSize: width / 33.75,
   },
   textContainer: {
     justifyContent: 'flex-end',

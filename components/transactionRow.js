@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { formatTime, formatValue, formatUnit, round } from '../libs/util';
+
 const { height, width } = Dimensions.get('window');
 
 class TransactionRow extends React.Component {
@@ -11,21 +12,21 @@ class TransactionRow extends React.Component {
       <View style={{ flex: 1, alignItems: 'center' }}>
         <View style={styles.container}>
           <View style={{ flex: 3 }}>
-            <Text style={{ color: titleColour, justifyContent: 'space-between', backgroundColor: 'transparent', fontFamily: 'Lato-Regular', fontSize: width / 33.75, paddingBottom: 4}}>
+            <Text style={{ color: titleColour, justifyContent: 'space-between', backgroundColor: 'transparent', fontFamily: 'Lato-Regular', fontSize: width / 33.75, paddingBottom: 4 }}>
               {this.props.rowData[0].transactionValue < 0 ? 'SEND' : 'RECEIVE' } {round(formatValue(this.props.rowData[0].value), 1)} {formatUnit(this.props.rowData[0].value)}
             </Text>
-            <Text style={ styles.bundleTitle }>
+            <Text style={styles.bundleTitle}>
                         Bundle Hash:
                     </Text>
-            <Text style={ styles.hash } numberOfLines={2}>
+            <Text style={styles.hash} numberOfLines={2}>
               {this.props.rowData[0].bundle}
             </Text>
           </View>
           <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'space-between' }}>
-            <Text style={ styles.status }>
+            <Text style={styles.status}>
               {this.props.rowData[0].persistence ? this.props.rowData[0].transactionValue < 0 ? 'Sent' : 'Received' : 'Pending'}
             </Text>
-            <Text style={ styles.timestamp }>
+            <Text style={styles.timestamp}>
               {formatTime(this.props.rowData[0].timestamp)}
             </Text>
           </View>
@@ -67,14 +68,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     fontFamily: 'Lato-Regular',
     fontSize: width / 40.5,
-    paddingTop: 2
+    paddingTop: 2,
   },
   timestamp: {
     color: 'white',
     backgroundColor: 'transparent',
     fontFamily: 'Lato-Regular',
-    fontSize: width / 40.5
-  }
+    fontSize: width / 40.5,
+  },
 
 });
 

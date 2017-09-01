@@ -27,11 +27,11 @@ class Balance extends React.Component {
   }
 
   onBalanceClick() {
-      if (this.state.balanceIsShort){
-        this.setState({ balanceIsShort: false });
-      } else {
-        this.setState({ balanceIsShort: true });
-      }
+    if (this.state.balanceIsShort) {
+      this.setState({ balanceIsShort: false });
+    } else {
+      this.setState({ balanceIsShort: true });
+    }
   }
 
   render() {
@@ -81,20 +81,20 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'Lato-Heavy',
     fontSize: width / 9,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   fiatBalance: {
     color: 'white',
     paddingTop: 5,
     fontFamily: 'Lato-Regular',
     fontSize: width / 25,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   transactionsContainer: {
     flex: 16.5,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: height / 40
+    paddingVertical: height / 40,
   },
   line: {
     borderBottomColor: 'white',
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   listView: {
     flex: 1,
     justifyContent: 'center',
-  }
+  },
 });
 
 const mapStateToProps = state => ({

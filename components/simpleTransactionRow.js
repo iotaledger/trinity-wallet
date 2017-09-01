@@ -21,17 +21,17 @@ class SimpleTransactionRow extends React.Component {
           <Image source={icon} style={styles.icon} />
         </View>
         <View style={{ flex: 3, alignItems: 'flex-start' }}>
-          <Text style={{color: titleColour, backgroundColor: 'transparent', padding: 5, fontFamily: 'Lato-Bold', fontSize: width / 33.5}}>
+          <Text style={{ color: titleColour, backgroundColor: 'transparent', padding: 5, fontFamily: 'Lato-Bold', fontSize: width / 33.5 }}>
             {formatTime(this.props.rowData[0].timestamp)}
           </Text>
         </View>
         <View style={{ flex: 2, alignItems: 'flex-start' }}>
-          <Text style={{color: titleColour, backgroundColor: 'transparent', fontFamily: 'Lato-Bold', fontSize: width / 33.5 }}>
+          <Text style={{ color: titleColour, backgroundColor: 'transparent', fontFamily: 'Lato-Bold', fontSize: width / 33.5 }}>
             {this.props.rowData[0].transactionValue < 0 ? 'Sent' : 'Received'}
           </Text>
         </View>
-        <View style={{ flex: 2, alignItems: 'flex-end'}}>
-          <Text style={{color: titleColour, backgroundColor: 'transparent', fontFamily: 'Lato-Bold', fontSize: width / 33.5 }}>
+        <View style={{ flex: 2, alignItems: 'flex-end' }}>
+          <Text style={{ color: titleColour, backgroundColor: 'transparent', fontFamily: 'Lato-Bold', fontSize: width / 33.5 }}>
             {sign} {round(formatValue(this.props.rowData[0].value), 1)} {formatUnit(this.props.rowData[0].value)}
           </Text>
         </View>
