@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed, randomiseSeed } from '../actions/iotaActions';
-import { randomBytes } from 'react-native-randombytes'
+import { randomBytes } from 'react-native-randombytes';
 
 
 const { height, width } = Dimensions.get('window');
@@ -47,29 +47,29 @@ class NewSeedSetup extends React.Component {
   }
 
   onItemClick(sectionID) {
-    console.log(width)
-    console.log(height)
+    console.log(width);
+    console.log(height);
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-      randomBytes(5, (error, bytes) => {
-        if(!error) {
-          var i = 0;
-          let seed = this.props.iota.seed
-          Object.keys(bytes).map(function(key, index) {
-            if(bytes[key] < 243 && i < 1){
-              let randomNumber = bytes[key] % 27;
-              let randomLetter = charset.charAt(randomNumber);
-              let substr1 = seed.substr(0, sectionID);
-              sectionID++;
-              let substr2 = seed.substr(sectionID, 80);
-              seed = substr1 + randomLetter + substr2;
-              i++;
-            }
-          });
-          this.props.setSeed(seed)
-        } else {
-          console.log(error);
-        }
-      });
+    randomBytes(5, (error, bytes) => {
+      if (!error) {
+        let i = 0;
+        let seed = this.props.iota.seed;
+        Object.keys(bytes).map((key, index) => {
+          if (bytes[key] < 243 && i < 1) {
+            const randomNumber = bytes[key] % 27;
+            const randomLetter = charset.charAt(randomNumber);
+            const substr1 = seed.substr(0, sectionID);
+            sectionID++;
+            const substr2 = seed.substr(sectionID, 80);
+            seed = substr1 + randomLetter + substr2;
+            i++;
+          }
+        });
+        this.props.setSeed(seed);
+      } else {
+        console.log(error);
+      }
+    });
   }
 
   render() {
@@ -92,23 +92,23 @@ class NewSeedSetup extends React.Component {
                           Press individual letters to randomise them.
                        </Text>
         </View>
-        <View style={ styles.midContainer }>
+        <View style={styles.midContainer}>
           <ListView
             contentContainerStyle={styles.list}
             dataSource={ds.cloneWithRows(this.props.iota.seed)}
             renderRow={(rowData, rowID, sectionID) =>
-                             (<TouchableHighlight  key={sectionID} onPress={event => this.onItemClick(sectionID)} underlayColor="#F7D002">
+                             (<TouchableHighlight key={sectionID} onPress={event => this.onItemClick(sectionID)} underlayColor="#F7D002">
                                <View style={styles.tile}>
-                                <Text style={styles.item}>{rowData}</Text>
+                                 <Text style={styles.item}>{rowData}</Text>
                                </View>
                              </TouchableHighlight>)
                             }
-            style={ styles.squareContainer }
+            style={styles.squareContainer}
             initialListSize={81}
             scrollEnabled={false}
           />
         </View>
-        <View style={ styles.bottomContainer }>
+        <View style={styles.bottomContainer}>
           <Text style={styles.infoText}>
                          Seeds are 81 characters long, and contain capital letters A-Z, or the number 9.
                       </Text>
@@ -116,18 +116,18 @@ class NewSeedSetup extends React.Component {
                          NEVER SHARE YOUR SEED WITH ANYONE
                       </Text>
           <View style={styles.buttonsContainer}>
-             <View style={styles.backButtonContainer}>
-                <TouchableWithoutFeedback onPress={event => this.onBackClick()}>
-                  <View style={styles.backButton} >
-                    <Text style={styles.backText}>GO BACK</Text>
-                  </View>
-                </TouchableWithoutFeedback>
-              </View>
-            <TouchableWithoutFeedback onPress={event => this.onNextClick()}>
-                <View style={styles.nextButton} >
-                  <Text style={styles.nextText}>NEXT</Text>
+            <View style={styles.backButtonContainer}>
+              <TouchableWithoutFeedback onPress={event => this.onBackClick()}>
+                <View style={styles.backButton} >
+                  <Text style={styles.backText}>GO BACK</Text>
                 </View>
               </TouchableWithoutFeedback>
+            </View>
+            <TouchableWithoutFeedback onPress={event => this.onNextClick()}>
+              <View style={styles.nextButton} >
+                <Text style={styles.nextText}>NEXT</Text>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </ImageBackground>
@@ -150,17 +150,17 @@ const styles = StyleSheet.create({
   },
   midContainer: {
     flex: 4.2,
-    paddingTop: height / 40
+    paddingTop: height / 40,
   },
   bottomContainer: {
     flex: 1.5,
     justifyContent: 'flex-end',
     paddingBottom: height / 30,
-    paddingHorizontal: width / 5
+    paddingHorizontal: width / 5,
   },
   squareContainer: {
     flex: 1,
-    height: width / 1.1 ,
+    height: width / 1.1,
     width: width / 1.1,
 
   },
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Bold',
     fontSize: width / 28.9,
     textAlign: 'center',
-    paddingTop: height / 130
+    paddingTop: height / 130,
   },
   tile: {
     padding: height / 150,
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     alignItems: 'flex-end',
     justifyContent: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   nextButton: {
     borderColor: '#9DFFAF',
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   },
   backButtonContainer: {
     paddingRight: width / 16,
-    paddingTop: height / 60
+    paddingTop: height / 60,
   },
   backText: {
     color: '#F7D002',

@@ -7,13 +7,13 @@ import {
   TouchableWithoutFeedback,
   Image,
   ImageBackground,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../actions/iotaActions';
-import { getFromKeychain } from '../libs/cryptography'
+import { getFromKeychain } from '../libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from 'react-native-dropdownalert'
+import DropdownAlert from 'react-native-dropdownalert';
 
 const { height, width } = Dimensions.get('window');
 
@@ -26,22 +26,22 @@ class Login extends React.Component {
   }
   onDoneClick(props) {
     this.props.setPassword(this.state.password);
-    getFromKeychain(this.state.password, function(value){
-      if(typeof value !== 'undefined'){
-         login(value);
+    getFromKeychain(this.state.password, (value) => {
+      if (typeof value !== 'undefined') {
+        login(value);
       } else {
-         error();
+        error();
       }
-   })
-   function login(value){
-      props.getAccountInfo(value);
-      props.navigator.push({
+    });
+    function login(value) {
+     props.getAccountInfo(value);
+     props.navigator.push({
         screen: 'loading',
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
         animated: false,
       });
    }
-   function error(){
+    function error() {
      this.dropdown.alertWithType('error', 'Unrecognised password', 'The password was not recognised. Please try again.');
    }
   }
@@ -71,25 +71,25 @@ class Login extends React.Component {
             <Text style={styles.greetingText}>
                               Please enter your password.
                            </Text>
-             <TextField
-               style={{ color:'white', fontFamily: 'Lato-Light', fontSize: height / 38.6 }}
+            <TextField
+               style={{ color: 'white', fontFamily: 'Lato-Light', fontSize: height / 38.6 }}
                labelTextStyle={{ fontFamily: 'Lato-Light' }}
                labelFontSize={height / 55}
                height={height / 40}
                fontSize={height / 45}
                labelHeight={height / 50}
-               baseColor='white'
-               label='PASSWORD'
+               baseColor="white"
+               label="PASSWORD"
                value={password}
                autoCorrect={false}
                autoCapitalize={'none'}
-               enablesReturnKeyAutomatically={true}
-               onChangeText={ (password) => this.setState({ password }) }
+               enablesReturnKeyAutomatically
+               onChangeText={password => this.setState({ password })}
                containerStyle={{ paddingHorizontal: width / 6 }}
-               secureTextEntry={true}
+               secureTextEntry
              />
           </View>
-          </ScrollView>
+        </ScrollView>
           <View style={styles.bottomContainer}>
             <View style={styles.buttonsContainer}>
               <TouchableWithoutFeedback onPress={event => this.onDoneClick(this.props)}>
@@ -106,8 +106,8 @@ class Login extends React.Component {
               </TouchableWithoutFeedback>
             </View>
           </View>
-          <DropdownAlert
-            ref={(ref) => dropdown = ref}
+        <DropdownAlert
+            ref={ref => dropdown = ref}
           />
       </ImageBackground>
     );
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  iota: state.iota
+  iota: state.iota,
 });
 
 const mapDispatchToProps = dispatch => ({
