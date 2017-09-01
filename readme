@@ -1,14 +1,20 @@
-Feel free to critique whatever you like. Bear in mind that this is a project for my MSc CS conversion master’s thesis, so the code might be lacking in some areas. I appreciate any feedback, so thank you in advance for taking the time. 
+Feel free to critique whatever you like. Bear in mind that this is a project for my MSc CS conversion master’s thesis, 
+so the code might be lacking in some areas. I appreciate any feedback, so thank you in advance for taking the time. 
 
-It’s worth trying the wallet with a seed that has some previous transactions/balance. Feel free to test out TUIUIQVBSJVRFLDKQWTRYCFHRLDQFWUDWSXFOHZJTSTFJCV9VXXXLOS9XEKRNATUXKCFWOTDROCANIYDE
+It’s worth trying the wallet with a seed that has some previous transactions/balance. 
+Feel free to test out TUIUIQVBSJVRFLDKQWTRYCFHRLDQFWUDWSXFOHZJTSTFJCV9VXXXLOS9XEKRNATUXKCFWOTDROCANIYDE
 
-I suggest running the app on the iPhone 7 Plus simulator in Xcode (this has the correct chart scaling). I haven’t tested the app in Android for a while. I’m getting an error `undefined is not a function (evaluating ‘Uint32Array.from’)`. I don’t have time to work out what’s going on here (need to get on with writing the thesis itself), so if you have any ideas please let me know.
+I suggest running the app on the iPhone 7 Plus simulator in Xcode (this has the correct chart scaling). 
+I haven’t tested the app in Android for a while. I’m getting an error `undefined is not a function (evaluating ‘Uint32Array.from’)`. 
+I don’t have time to work out what’s going on here (need to get on with writing the thesis itself), so if you have any ideas please let me know.
 
 -------------------------------
 
 Need suggestions on what to do here:
 
-When setting up your seed (either generating a new seed, or entering an existing seed), the seed is stored temporarily in Redux store. It is cleared from the store and added to keychain/keystore on setting a password. Do you any suggestions on a more secure approach? Storing in keychain could work if users set up a password before their seed.
+When setting up your seed (either generating a new seed, or entering an existing seed), the seed is stored temporarily in Redux store. 
+It is cleared from the store and added to keychain/keystore on setting a password. Do you any suggestions on a more secure approach? 
+Storing in keychain could work if users set up a password before their seed.
 
 -------------------------------
 
@@ -50,7 +56,9 @@ Minor details:
 
 Known Issues:
 
-Password security - The user’s password is currently stored in plain text throughout the session. This allows the seed to be obtained from the keystore/keychain when needed. This will be replaced by a hash of the password, with that hash used instead of the password in the key-value pair.
+Password security - The user’s password is currently stored in plain text throughout the session. 
+This allows the seed to be obtained from the keystore/keychain when needed. 
+This will be replaced by a hash of the password, with that hash used instead of the password in the key-value pair.
 
 Block colour to gradient rendering delay on screen push - This is an issue with Wix’s React-Native-Navigation. I’ll probably swap to different navigation library
 https://github.com/wix/react-native-navigation/issues/358
