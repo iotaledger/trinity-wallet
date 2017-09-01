@@ -3,10 +3,9 @@ To run the project:
 1. cd project folder
 2. npm install
 3. ./node_modules/.bin/rn-nodeify --hack --install
-4. npm start
-5. Open ./ios/iotaWallet.xcodeproj in Xcode
-6. Select iPhone 7 Plus Simulator in Xcode
-7. Run
+4. Open ./ios/iotaWallet.xcodeproj in Xcode
+5. Select iPhone 7 Plus Simulator in Xcode
+6. Run
 
 If you test the project, or want to give feedback, then it would be great if you could fill this out this form afterwards:
 
