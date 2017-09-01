@@ -83,20 +83,17 @@ class Send extends React.Component {
           <View style={{ flexDirection: 'row', flex: 1 }}>
             <View style={styles.textFieldContainer}>
               <TextField
+                keyboardType = {'numeric'}
                 style={styles.textField}
-                containerStyle={{ height: height / 6 }}
                 labelTextStyle={{ fontFamily: 'Lato-Regular' }}
                 labelFontSize={height / 55}
                 height={height / 40}
                 fontSize={height / 45}
                 labelHeight={height / 50}
                 baseColor='white'
+                enablesReturnKeyAutomatically={true}
                 label='ADDRESS'
                 autoCorrect={false}
-                autoCapitalize={'characters'}
-                multiline={true}
-                maxLength={81}
-                enablesReturnKeyAutomatically={true}
                 value={address}
                 onChangeText={ (address) => this.setState({ address }) }
               />
@@ -114,7 +111,7 @@ class Send extends React.Component {
             <View style={styles.textFieldContainer}>
               <TextField
                 keyboardType = {'numeric'}
-                style={{color:'white', fontFamily: 'Lato-Light' }}
+                style={styles.textField}
                 labelTextStyle={{ fontFamily: 'Lato-Regular' }}
                 labelFontSize={height / 55}
                 height={height / 40}
@@ -238,7 +235,6 @@ const styles = StyleSheet.create({
   qrContainer: {
     flex: 1,
     justifyContent: 'center',
-    paddingBottom: 10,
     paddingRight: width / 20
   },
   dropdownItem: {
@@ -260,7 +256,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#009f3f',
     position:'absolute',
     left: width / 3,
-    top: height / 3
+    top: height / 4
   },
   sendIOTAText: {
     color: 'white',
