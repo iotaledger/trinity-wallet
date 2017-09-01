@@ -8,6 +8,27 @@ To run the project:
 6. Select iPhone 7 Plus Simulator in Xcode
 7. Run
 
+If you test the project, or want to give feedback, then it would be great if you could fill this out this form afterwards:
+
+-------------------------------
+
+Tested by:
+
+Suggestions for code improvement:
+Suggestions for security:
+Other comments:
+
+Bugs/problems encountered
+
+Issue:
+How to reproduce:
+Suggested Solution:
+
+Issue:
+How to reproduce:
+Suggested Solution:
+
+-------------------------------
 
 Feel free to critique whatever you like. I appreciate any feedback, so thank you in advance for taking the time. 
 Bear in mind that this is a project for my MSc CS conversion master’s thesis, so the code might be lacking in some areas.
