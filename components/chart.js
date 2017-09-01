@@ -17,7 +17,7 @@ import {
 const { height, width } = Dimensions.get('window');
 
 
-const viewbox =  `0 0 ${width / 1.035} ${width / 1.29375}`
+const viewbox = `0 0 ${width / 1.035} ${width / 1.29375}`;
 
 class Chart extends React.Component {
 
@@ -68,17 +68,17 @@ class Chart extends React.Component {
   }
 
   getMaxY() {
-    const maxValue = Math.max(...this.props.marketData.chartData.map(function (object) { return object.y; }));
+    const maxValue = Math.max(...this.props.marketData.chartData.map((object) => { return object.y; }));
     return maxValue;
   }
 
   getMinY() {
-    const minValue = Math.min(...this.props.marketData.chartData.map(function (object) { return object.y; }));
+    const minValue = Math.min(...this.props.marketData.chartData.map((object) => { return object.y; }));
     return minValue;
   }
 
   getMaxX() {
-    const maxValue = Math.max(...this.props.marketData.chartData.map(function (object) { return object.x; }));
+    const maxValue = Math.max(...this.props.marketData.chartData.map((object) => { return object.x; }));
     return maxValue;
   }
 
@@ -98,23 +98,23 @@ class Chart extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.topContainer}>
-        <View style={{flex: 1}}>
-          <TouchableWithoutFeedback onPress={event => this.onCurrencyClick()}>
+          <View style={{ flex: 1 }}>
+            <TouchableWithoutFeedback onPress={event => this.onCurrencyClick()}>
             <View style={styles.button}>
               <Text style={styles.buttonText}>{this.props.marketData.currency}</Text>
             </View>
-        </TouchableWithoutFeedback>
-        </View>
-        <View style={styles.priceContainer}>
-          <Text style={styles.iotaPrice}>{this.props.marketData.price} / Mi</Text>
-        </View>
-        <View style={{flex: 1}}>
-          <TouchableWithoutFeedback onPress={event => this.onTimeFrameClick()}>
-            <View style={styles.button}>
-              <Text style={styles.buttonText}>{this.props.marketData.timeFrame}</Text>
-            </View>
-          </TouchableWithoutFeedback>
-        </View>
+            </TouchableWithoutFeedback>
+          </View>
+          <View style={styles.priceContainer}>
+            <Text style={styles.iotaPrice}>{this.props.marketData.price} / Mi</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <TouchableWithoutFeedback onPress={event => this.onTimeFrameClick()}>
+              <View style={styles.button}>
+                <Text style={styles.buttonText}>{this.props.marketData.timeFrame}</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
         </View>
         <View style={styles.chartContainer}>
           <Svg height={height / 2.65} width={width} viewBox={viewbox}>
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingBottom: height / 40,
-    paddingTop: height / 80
+    paddingTop: height / 80,
   },
   topContainer: {
     flex: 1,
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   priceContainer: {
     flex: 8,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   button: {
     justifyContent: 'center',
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 0,
-    paddingLeft: width / 11
+    paddingLeft: width / 11,
   },
   marketDataContainer: {
     flex: 0.6,
