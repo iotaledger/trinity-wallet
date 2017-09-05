@@ -3,6 +3,12 @@ package com.iotawallet;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.tradle.react.UdpSocketsModule;
+import com.peel.react.TcpSocketsModule;
+import com.horcrux.svg.SvgPackage;
+import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
+import com.bitgo.randombytes.RandomBytesPackage;
+import com.reactnativenavigation.bridge.NavigationReactPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -27,6 +33,7 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
+            new RandomBytesPackage(),
             new SvgPackage(),
             new RNSensitiveInfoPackage()
     );
