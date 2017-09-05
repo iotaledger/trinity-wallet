@@ -133,6 +133,12 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-udp')
+    compile project(':react-native-tcp')
+    compile project(':react-native-svg')
+    compile project(':react-native-sensitive-info')
+    compile project(':react-native-randombytes')
+    compile project(':react-native-navigation')
 	compile fileTree(dir: "libs", include: ["*.jar"])
 	compile "com.facebook.react:react-native:+" //
 	compile "com.android.support:appcompat-v7:23.0.1"
