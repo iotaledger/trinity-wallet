@@ -14,6 +14,7 @@ import { setPassword, getAccountInfo } from '../actions/iotaActions';
 import { getFromKeychain } from '../libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
+import {Keyboard} from 'react-native'
 
 const { height, width } = Dimensions.get('window');
 
@@ -58,7 +59,8 @@ class Login extends React.Component {
     let { password } = this.state;
     return (
       <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
-        <ScrollView scrollEnabled={false}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>
           <View style={styles.topContainer}>
             <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
             <View style={styles.textContainer}>
@@ -89,7 +91,6 @@ class Login extends React.Component {
                secureTextEntry
              />
           </View>
-        </ScrollView>
           <View style={styles.bottomContainer}>
             <View style={styles.buttonsContainer}>
               <TouchableWithoutFeedback onPress={event => this.onDoneClick(this.props)}>
@@ -101,14 +102,18 @@ class Login extends React.Component {
             <View style={{ alignItems: 'center' }}>
               <TouchableWithoutFeedback onPress={event => this.onNewSeedClick()}>
                 <View style={styles.newSeedButton} >
-                  <Text style={styles.newSeedText}>CHANGE WALLET</Text>
+                  <Text style={styles.newSeedText}>ADD NEW WALLET</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
           </View>
+          </View>
+          </TouchableWithoutFeedback>
+
         <DropdownAlert
             ref={ref => dropdown = ref}
           />
+
       </ImageBackground>
     );
   }
