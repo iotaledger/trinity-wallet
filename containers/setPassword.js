@@ -15,6 +15,7 @@ import { setSeed } from '../actions/iotaActions';
 import { storeInKeychain } from '../libs/cryptography'
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert'
+import {Keyboard} from 'react-native'
 
 const { height, width } = Dimensions.get('window');
 
@@ -54,7 +55,8 @@ class SetPassword extends React.Component {
     let { password, reentry } = this.state;
     return (
       <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
-        <ScrollView scrollEnabled={false}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>
         <View style={styles.topContainer}>
           <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
           <View style={styles.textContainer}>
@@ -108,7 +110,6 @@ class SetPassword extends React.Component {
             secureTextEntry={true}
           />
         </View>
-        </ScrollView>
         <View style={styles.bottomContainer}>
           <View style={{ alignItems: 'center', paddingBottom: height / 30 }}>
             <TouchableWithoutFeedback onPress={event => this.onDoneClick()}>
@@ -128,6 +129,8 @@ class SetPassword extends React.Component {
         <DropdownAlert
           ref={(ref) => this.dropdown = ref}
         />
+      </View>
+      </TouchableWithoutFeedback>
       </ImageBackground>
     );
   }
