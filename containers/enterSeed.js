@@ -5,6 +5,7 @@ import {
   Dimensions,
   Text,
   TouchableHighlight,
+  TouchableWithoutFeedback,
   Image,
   ScrollView,
   ImageBackground,
@@ -15,6 +16,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import { setSeed } from '../actions/iotaActions';
 import { setLoggedIn } from '../actions/accountActions';
 import { getMarketData, getChartData, getPrice } from '../actions/marketDataActions';
+import {Keyboard} from 'react-native'
 
 const { height, width } = Dimensions.get('window');
 
@@ -47,7 +49,8 @@ class EnterSeed extends React.Component {
     const { seed } = this.state;
     return (
       <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
-        <ScrollView scrollEnabled={false}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
           <View style={styles.topContainer}>
             <View style={styles.logoContainer}>
               <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
@@ -75,7 +78,6 @@ class EnterSeed extends React.Component {
               secureTextEntry
             />
           </View>
-        </ScrollView>
         <View style={styles.midContainer}>
           <Text style={styles.infoText}>
                           Seeds should be 81 characters long, and should contain capital letters A-Z, or the number 9.
@@ -104,6 +106,8 @@ class EnterSeed extends React.Component {
         <DropdownAlert
           ref={ref => this.dropdown = ref}
         />
+      </View>
+      </TouchableWithoutFeedback>
       </ImageBackground>
     );
   }
@@ -116,7 +120,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#102e36',
   },
   topContainer: {
     flex: 1,
