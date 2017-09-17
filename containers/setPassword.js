@@ -57,79 +57,79 @@ class SetPassword extends React.Component {
       <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
-        <View style={styles.topContainer}>
-          <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>
-                                PASSWORD SETUP
+            <View style={styles.topContainer}>
+              <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
+              <View style={styles.textContainer}>
+                <Text style={styles.title}>
+                                    PASSWORD SETUP
+                               </Text>
+              </View>
+            </View>
+            <View style={styles.midContainer}>
+              <Text style={styles.greetingText}>
+                              Okay, now we need to set up a password.
                            </Text>
-          </View>
-        </View>
-        <View style={styles.midContainer}>
-          <Text style={styles.greetingText}>
-                          Okay, now we need to set up a password.
-                       </Text>
-          <Text style={styles.infoText}>
-            An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.
-          </Text>
-          <Text style={styles.warningText}>
-            Ensure you use a strong password.
-          </Text>
-          <TextField
-            style={{color:'white', fontFamily: 'Lato-Light' }}
-            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-            labelFontSize={height / 55}
-            height={height / 40}
-            fontSize={height / 45}
-            labelHeight={height / 50}
-            baseColor='white'
-            label='PASSWORD'
-            autoCapitalize={'none'}
-            autoCorrect={false}
-            enablesReturnKeyAutomatically={true}
-            value={password}
-            onChangeText={ (password) => this.setState({ password }) }
-            containerStyle={{ paddingHorizontal: width / 6, paddingBottom: height / 60, paddingTop: height / 40 }}
-            secureTextEntry={true}
-          />
-          <TextField
-            style={{color:'white', fontFamily: 'Lato-Light' }}
-            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-            labelFontSize={height / 55}
-            height={height / 40}
-            fontSize={height / 45}
-            labelHeight={height / 50}
-            baseColor='white'
-            label='RETYPE PASSWORD'
-            autoCapitalize={'none'}
-            autoCorrect={false}
-            enablesReturnKeyAutomatically={true}
-            value={reentry}
-            onChangeText={ (reentry) => this.setState({ reentry }) }
-            containerStyle={{ paddingHorizontal: width / 6 }}
-            secureTextEntry={true}
-          />
-        </View>
-        <View style={styles.bottomContainer}>
-          <View style={{ alignItems: 'center', paddingBottom: height / 30 }}>
-            <TouchableWithoutFeedback onPress={event => this.onDoneClick()}>
-              <View style={styles.doneButton} >
-                <Text style={styles.doneText}>DONE</Text>
+              <Text style={styles.infoText}>
+                An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.
+              </Text>
+              <Text style={styles.warningText}>
+                Ensure you use a strong password.
+              </Text>
+              <TextField
+                style={{color:'white', fontFamily: 'Lato-Light' }}
+                labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                labelFontSize={height / 55}
+                height={height / 40}
+                fontSize={height / 45}
+                labelHeight={height / 50}
+                baseColor='white'
+                label='PASSWORD'
+                autoCapitalize={'none'}
+                autoCorrect={false}
+                enablesReturnKeyAutomatically={true}
+                value={password}
+                onChangeText={ (password) => this.setState({ password }) }
+                containerStyle={{ paddingHorizontal: width / 6, paddingBottom: height / 60, paddingTop: height / 40 }}
+                secureTextEntry={true}
+              />
+              <TextField
+                style={{color:'white', fontFamily: 'Lato-Light' }}
+                labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                labelFontSize={height / 55}
+                height={height / 40}
+                fontSize={height / 45}
+                labelHeight={height / 50}
+                baseColor='white'
+                label='RETYPE PASSWORD'
+                autoCapitalize={'none'}
+                autoCorrect={false}
+                enablesReturnKeyAutomatically={true}
+                value={reentry}
+                onChangeText={ (reentry) => this.setState({ reentry }) }
+                containerStyle={{ paddingHorizontal: width / 6 }}
+                secureTextEntry={true}
+              />
+            </View>
+            <View style={styles.bottomContainer}>
+              <View style={{ alignItems: 'center', paddingBottom: height / 30 }}>
+                <TouchableWithoutFeedback onPress={event => this.onDoneClick()}>
+                  <View style={styles.doneButton} >
+                    <Text style={styles.doneText}>DONE</Text>
+                  </View>
+                </TouchableWithoutFeedback>
               </View>
-            </TouchableWithoutFeedback>
-          </View>
-          <View style={{ alignItems: 'center' }}>
-            <TouchableWithoutFeedback onPress={event => this.onBackClick()}>
-              <View style={styles.backButton} >
-                <Text style={styles.backText}>BACK</Text>
+              <View style={{ alignItems: 'center' }}>
+                <TouchableWithoutFeedback onPress={event => this.onBackClick()}>
+                  <View style={styles.backButton} >
+                    <Text style={styles.backText}>BACK</Text>
+                  </View>
+                </TouchableWithoutFeedback>
               </View>
-            </TouchableWithoutFeedback>
+            </View>
+            <DropdownAlert
+              ref={(ref) => this.dropdown = ref}
+            />
           </View>
-        </View>
-        <DropdownAlert
-          ref={(ref) => this.dropdown = ref}
-        />
-      </View>
       </TouchableWithoutFeedback>
       </ImageBackground>
     );
