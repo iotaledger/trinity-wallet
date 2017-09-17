@@ -50,63 +50,65 @@ class EnterSeed extends React.Component {
     return (
       <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
-          <View style={styles.topContainer}>
-            <View style={styles.logoContainer}>
-              <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
-            </View>
-            <View style={styles.textContainer}>
-              <Text style={styles.title}>
-                                ENTER YOUR SEED
-                           </Text>
-            </View>
-            <TextField
-              style={{ color: 'white', fontFamily: 'Lato-Light' }}
-              labelTextStyle={{ fontFamily: 'Lato-Light' }}
-              labelFontSize={height / 55}
-              fontSize={height / 45}
-              baseColor="white"
-              label="SEED"
-              value={seed}
-              multiline
-              autoCorrect={false}
-              autoCapitalize={'characters'}
-              enablesReturnKeyAutomatically
-              maxLength={81}
-              onChangeText={seed => this.setState({ seed })}
-              containerStyle={{ paddingHorizontal: width / 8 }}
-              secureTextEntry
-            />
-          </View>
-        <View style={styles.midContainer}>
-          <Text style={styles.infoText}>
-                          Seeds should be 81 characters long, and should contain capital letters A-Z, or the number 9.
-                          You cannot use seeds longer than 81 characters.
-            </Text>
-          <Text style={styles.warningText}>
-                          NEVER SHARE YOUR SEED WITH ANYONE
-            </Text>
-        </View>
-        <View style={styles.bottomContainer}>
-          <View style={{ alignItems: 'center' }}>
-            <TouchableHighlight onPress={event => this.onDoneClick()} style={{ paddingBottom: height / 30 }}>
-              <View style={styles.doneButton} >
-                <Text style={styles.doneText}>DONE</Text>
+          <View>
+              <View style={styles.container}>
+                  <View style={styles.topContainer}>
+                    <View style={styles.logoContainer}>
+                      <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
+                    </View>
+                    <View style={styles.textContainer}>
+                      <Text style={styles.title}>
+                                        ENTER YOUR SEED
+                                   </Text>
+                    </View>
+                    <TextField
+                      style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                      labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                      labelFontSize={height / 55}
+                      fontSize={height / 45}
+                      baseColor="white"
+                      label="SEED"
+                      value={seed}
+                      multiline
+                      autoCorrect={false}
+                      autoCapitalize={'characters'}
+                      enablesReturnKeyAutomatically
+                      maxLength={81}
+                      onChangeText={seed => this.setState({ seed })}
+                      containerStyle={{ paddingHorizontal: width / 8 }}
+                      secureTextEntry
+                    />
+                  </View>
+                <View style={styles.midContainer}>
+                  <Text style={styles.infoText}>
+                                  Seeds should be 81 characters long, and should contain capital letters A-Z, or the number 9.
+                                  You cannot use seeds longer than 81 characters.
+                    </Text>
+                  <Text style={styles.warningText}>
+                                  NEVER SHARE YOUR SEED WITH ANYONE
+                    </Text>
+                </View>
+                <View style={styles.bottomContainer}>
+                  <View style={{ alignItems: 'center' }}>
+                    <TouchableHighlight onPress={event => this.onDoneClick()} style={{ paddingBottom: height / 30 }}>
+                      <View style={styles.doneButton} >
+                        <Text style={styles.doneText}>DONE</Text>
+                      </View>
+                    </TouchableHighlight>
+                  </View>
+                  <View style={{ alignItems: 'center' }}>
+                    <TouchableHighlight onPress={event => this.onBackClick()}>
+                      <View style={styles.backButton} >
+                        <Text style={styles.backText}>GO BACK</Text>
+                      </View>
+                    </TouchableHighlight>
+                  </View>
+                </View>
+                <DropdownAlert
+                  ref={ref => this.dropdown = ref}
+                />
               </View>
-            </TouchableHighlight>
           </View>
-          <View style={{ alignItems: 'center' }}>
-            <TouchableHighlight onPress={event => this.onBackClick()}>
-              <View style={styles.backButton} >
-                <Text style={styles.backText}>GO BACK</Text>
-              </View>
-            </TouchableHighlight>
-          </View>
-        </View>
-        <DropdownAlert
-          ref={ref => this.dropdown = ref}
-        />
-      </View>
       </TouchableWithoutFeedback>
       </ImageBackground>
     );
