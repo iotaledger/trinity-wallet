@@ -12,13 +12,13 @@ export function getPrice(currency) {
 
 export function getChartData(currency, timeFrame) {
   return function (dispatch) {
-    const url = `https://min-api.cryptocompare.com/data/histo${getTimeValues(timeFrame)[0]}?fsym=IOT&tsym=${currency}&limit=${getTimeValues(timeFrame)[1]}`;
+    const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(timeFrame)}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeFrame)}`;
     return fetch(url)
           .then(
               response => response.json(),
               error => console.log('SOMETHING WENT WRONG: ', error),
           )
-          .then(json => dispatch(setChartData(json, getTimeValues(timeFrame)[1])),
+          .then(json => dispatch(setChartData(json, getUrlNumberFormat(timeFrame))),
           );
   };
 }
@@ -35,23 +35,44 @@ export function getMarketData() {
   };
 }
 
-function getTimeValues(timeFrame) {
+function getUrlTimeFormat(timeFrame) {
   // Used for setting correct CryptoCompare URL when fetching chart data
   switch (timeFrame) {
     case '24h':
-      return (['hour', '23']);
+      return 'hour';
       break;
     case '7d':
-      return (['day', '6']);
+      return 'day';
       break;
     case '1m':
-      return (['day', '29']);
+      return 'day';
       break;
     case '1h':
-      return (['minute', '59']);
+      return 'minute';
       break;
     case '6h':
-      return (['hour', '5']);
+      return 'hour';
+      break;
+  }
+}
+
+function getUrlNumberFormat(timeFrame) {
+  // Used for setting correct CryptoCompare URL when fetching chart data
+  switch (timeFrame) {
+    case '24h':
+      return '23';
+      break;
+    case '7d':
+      return '6';
+      break;
+    case '1m':
+      return '29';
+      break;
+    case '1h':
+      return '59';
+      break;
+    case '6h':
+      return '5';
       break;
   }
 }
