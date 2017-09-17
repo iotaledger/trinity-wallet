@@ -60,54 +60,54 @@ class Login extends React.Component {
     return (
       <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View>
-          <View style={styles.topContainer}>
-            <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
-            <View style={styles.textContainer}>
-              <Text style={styles.title}>
-                                  LOGIN
-                             </Text>
-            </View>
-          </View>
-          <View style={styles.midContainer}>
-            <Text style={styles.greetingText}>
-                              Please enter your password.
-                           </Text>
-            <TextField
-               style={{ color: 'white', fontFamily: 'Lato-Light', fontSize: height / 38.6 }}
-               labelTextStyle={{ fontFamily: 'Lato-Light' }}
-               labelFontSize={height / 55}
-               height={height / 40}
-               fontSize={height / 45}
-               labelHeight={height / 50}
-               baseColor="white"
-               label="PASSWORD"
-               value={password}
-               autoCorrect={false}
-               autoCapitalize={'none'}
-               enablesReturnKeyAutomatically
-               onChangeText={password => this.setState({ password })}
-               containerStyle={{ paddingHorizontal: width / 6 }}
-               secureTextEntry
-             />
-          </View>
-          <View style={styles.bottomContainer}>
-            <View style={styles.buttonsContainer}>
-              <TouchableWithoutFeedback onPress={event => this.onDoneClick(this.props)}>
-                <View style={styles.doneButton} >
-                  <Text style={styles.doneText}>DONE</Text>
+            <View>
+              <View style={styles.topContainer}>
+                <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
+                <View style={styles.textContainer}>
+                  <Text style={styles.title}>
+                                      LOGIN
+                                 </Text>
                 </View>
-              </TouchableWithoutFeedback>
-            </View>
-            <View style={{ alignItems: 'center' }}>
-              <TouchableWithoutFeedback onPress={event => this.onNewSeedClick()}>
-                <View style={styles.newSeedButton} >
-                  <Text style={styles.newSeedText}>ADD NEW WALLET</Text>
+              </View>
+              <View style={styles.midContainer}>
+                <Text style={styles.greetingText}>
+                                  Please enter your password.
+                               </Text>
+                <TextField
+                   style={{ color: 'white', fontFamily: 'Lato-Light', fontSize: height / 38.6 }}
+                   labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                   labelFontSize={height / 55}
+                   height={height / 40}
+                   fontSize={height / 45}
+                   labelHeight={height / 50}
+                   baseColor="white"
+                   label="PASSWORD"
+                   value={password}
+                   autoCorrect={false}
+                   autoCapitalize={'none'}
+                   enablesReturnKeyAutomatically
+                   onChangeText={password => this.setState({ password })}
+                   containerStyle={{ paddingHorizontal: width / 6 }}
+                   secureTextEntry
+                 />
+              </View>
+              <View style={styles.bottomContainer}>
+                <View style={styles.buttonsContainer}>
+                  <TouchableWithoutFeedback onPress={event => this.onDoneClick(this.props)}>
+                    <View style={styles.doneButton} >
+                      <Text style={styles.doneText}>DONE</Text>
+                    </View>
+                  </TouchableWithoutFeedback>
                 </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </View>
-          </View>
+                <View style={{ alignItems: 'center' }}>
+                  <TouchableWithoutFeedback onPress={event => this.onNewSeedClick()}>
+                    <View style={styles.newSeedButton} >
+                      <Text style={styles.newSeedText}>ADD NEW WALLET</Text>
+                    </View>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+              </View>
           </TouchableWithoutFeedback>
 
         <DropdownAlert
