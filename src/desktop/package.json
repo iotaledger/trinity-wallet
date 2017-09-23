@@ -1,0 +1,93 @@
+{
+  "name": "iota-desktop-wallet",
+  "version": "0.1.0",
+  "description": "iota light wallet for desktop",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.dev.js",
+    "develop": "node server.js",
+    "build": "cross-env NODE_ENV=production webpack -p --env=production",
+    "compile:win": "electron-builder --win --x64 --ia32",
+    "compile:win64": "electron-builder --win --x64",
+    "compile:win32": "electron-builder --win --x32"
+  },
+  "devDependencies": {
+    "babel-core": "^6.7.6",
+    "babel-eslint": "^8.0.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "case-sensitive-paths-webpack-plugin": "^2.1.1",
+    "cross-env": "^5.0.5",
+    "css-hot-loader": "^1.3.1",
+    "css-loader": "^0.23.1",
+    "electron": "^1.7.6",
+    "electron-builder": "^19.29.2",
+    "electron-devtools-installer": "^2.2.0",
+    "electron-prebuilt": "^1.4.13",
+    "eslint": "^4.7.2",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-react": "^7.3.0",
+    "express": "^4.13.4",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^3.4.2",
+    "postcss-nested": "^2.1.2",
+    "react-dev-utils": "^4.0.1",
+    "react-error-overlay": "^2.0.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "style-loader": "^0.13.1",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-hot-middleware": "^2.19.1"
+  },
+  "build": {
+    "directories": {
+      "buildResources": "../shared/build",
+      "output": "out"
+    },
+    "appId": "com.iotatoken.wallet",
+    "protocols": [
+      {
+        "name": "IOTA URL Scheme",
+        "schemes": [
+          "iota"
+        ]
+      }
+    ],
+    "dmg": {
+      "iconSize": 125,
+      "contents": [
+        {
+          "x": 235,
+          "y": 290,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 235,
+          "y": 20,
+          "type": "file"
+        }
+      ]
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "tar.gz"
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    }
+  }
+}

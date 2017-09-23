@@ -1,0 +1,11 @@
+{
+  "name": "shared",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "Manuel Bieh <node@manuelbieh.de> (https://github.com/manuelbieh)",
+  "license": "MIT",
+  "devDependencies": {
+    "random-bytes": "^1.0.0"
+  }
+}
