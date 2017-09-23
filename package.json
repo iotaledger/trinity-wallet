@@ -34,7 +34,7 @@
     "react-native-randombytes": "^2.3.0",
     "react-native-sensitive-info": "^5.1.0",
     "react-native-svg": "^5.4.1",
-    "react-native-tcp": "^2.0.4",
+    "react-native-tcp": "^3.3.0",
     "react-native-triangle": "0.0.8",
     "react-native-udp": "^1.2.9",
     "react-redux": "^5.0.6",
