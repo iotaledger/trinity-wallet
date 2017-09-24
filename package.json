@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "node_modules/.bin/react-native run-android",
+    "lint": "node_modules/.bin/eslint --ext .js .",
     "ios": "node_modules/.bin/react-native run-ios",
     "test": "jest"
   },
@@ -56,8 +57,16 @@
     "vm-browserify": "0.0.4"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.0",
     "babel-jest": "20.0.3",
     "babel-preset-react-native": "3.0.1",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-react-native": "^3.1.0",
     "jest": "20.0.4",
     "react-test-renderer": "16.0.0-alpha.12",
     "rn-nodeify": "^7.0.1"
