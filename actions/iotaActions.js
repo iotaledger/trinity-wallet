@@ -1,16 +1,73 @@
-import { iota } from '../libs/iota';
 import { randomBytes } from 'react-native-randombytes';
+import { iota } from '../libs/iota';
 
-export function checkNode() {
-  return (dispatch) => {
-    iota.api.getNodeInfo((error) => {
-      if (!error) {
-        dispatch(getAccountInfo(seed));
-        console.log('SUCCESSFULLY CHECKED NODE');
-      } else {
-        console.log(error);
+// FIXME: Hacking no-console linting.
+// Should rather be dispatching an action.
+
+/* eslint-disable no-console */
+
+export function setAddress(address) {
+  return {
+    type: 'SET_ADDRESS',
+    payload: address,
+  };
+}
+
+export function setReady() {
+  return {
+    type: 'SET_READY',
+    payload: true,
+  };
+}
+
+export function setSeed(seed) {
+  return {
+    type: 'SET_SEED',
+    payload: seed,
+  };
+}
+
+function addTransactionValues(transactions, addresses) {
+  // Add transaction value property to each transaction object
+  // FIXME: We should never mutate parameters at any level.
+  return transactions.map((arr) => {
+    /* eslint-disable no-param-reassign */
+    arr[0].transactionValue = 0;
+    arr.map((obj) => {
+      if (addresses.includes(obj.address)) {
+        arr[0].transactionValue += obj.value;
       }
+
+      /* eslint-enable no-param-reassign */
+      return obj;
     });
+
+    return arr;
+  });
+}
+
+function sortTransactions(transactions) {
+  // Order transactions from oldest to newest
+  const sortedTransactions = transactions.sort((a, b) => {
+    if (a[0].timestamp > b[0].timestamp) {
+      return -1;
+    }
+    if (a[0].timestamp < b[0].timestamp) {
+      return 1;
+    }
+    return 0;
+  });
+  return sortedTransactions;
+}
+
+export function setAccountInfo(accountInfo) {
+  const balance = accountInfo.balance;
+  let transactions = sortTransactions(accountInfo.transfers);
+  transactions = addTransactionValues(transactions, accountInfo.addresses);
+  return {
+    type: 'SET_ACCOUNTINFO',
+    balance,
+    transactions,
   };
 }
 
@@ -21,6 +78,18 @@ export function getAccountInfo(seed) {
         Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
       } else {
         console.log('SOMETHING WENT WRONG: ', error);
+      }
+    });
+  };
+}
+
+export function checkNode() {
+  return (dispatch) => {
+    iota.api.getNodeInfo((error) => {
+      if (!error) {
+        dispatch(getAccountInfo(seed));
+      } else {
+        console.log(error);
       }
     });
   };
@@ -39,9 +108,9 @@ export function generateNewAddress(seed) {
 }
 
 export function sendTransaction(seed, address, value, message) {
-    // Stringify to JSON
+  // Stringify to JSON
   const messageStringified = JSON.stringify(message);
-    // Convert to Trytes
+  // Convert to Trytes
   const messageTrytes = iota.utils.toTrytes(messageStringified);
   const transfer = [{
     address,
@@ -64,12 +133,12 @@ export function randomiseSeed() {
     let seed = '';
 
     // uncomment for synchronous API, uses SJCL
-    { /* var rand = randomBytes(1) */ }
+    // var rand = randomBytes(1)
 
     // asynchronous API, uses iOS-side SecRandomCopyBytes
     randomBytes(100, (error, bytes) => {
       if (!error) {
-        Object.keys(bytes).map((key, index) => {
+        Object.keys(bytes).forEach((key) => {
           if (bytes[key] < 243 && seed.length < 81) {
             const randomNumber = bytes[key] % 27;
             const randomLetter = charset.charAt(randomNumber);
@@ -84,57 +153,9 @@ export function randomiseSeed() {
   };
 }
 
-function sortTransactions(transactions) {
-  // Order transactions from oldest to newest
-  const sortedTransactions = transactions.sort((a, b) => {
-    if (a[0].timestamp > b[0].timestamp) {
-      return -1;
-    }
-    if (a[0].timestamp < b[0].timestamp) {
-      return 1;
-    }
-    return 0;
-  });
-  return sortedTransactions;
-}
-
-function addTransactionValues(transactions, addresses) {
-  // Add transaction value property to each transaction object
-  const updatedTransactions = transactions.map((arr) => {
-    arr[0].transactionValue = 0;
-    arr.map((obj) => {
-      if (addresses.includes(obj.address)) {
-        arr[0].transactionValue += obj.value;
-      }
-      return obj;
-    });
-    return arr;
-  });
-  return updatedTransactions;
-}
-
-export function setAccountInfo(accountInfo) {
-  const balance = accountInfo.balance;
-  let transactions = sortTransactions(accountInfo.transfers);
-  transactions = addTransactionValues(transactions, accountInfo.addresses);
-  return {
-    type: 'SET_ACCOUNTINFO',
-    balance,
-    transactions,
-  };
-}
-
 export function clearIOTA() {
   return {
     type: 'CLEAR_IOTA',
-  };
-}
-
-export function setReady() {
-  console.log('SUCCESSFULLY SET READY');
-  return {
-    type: 'SET_READY',
-    payload: true,
   };
 }
 
@@ -142,18 +163,5 @@ export function setPassword(password) {
   return {
     type: 'SET_PASSWORD',
     payload: password,
-  };
-}
-export function setSeed(seed) {
-  return {
-    type: 'SET_SEED',
-    payload: seed,
-  };
-}
-
-export function setAddress(address) {
-  return {
-    type: 'SET_ADDRESS',
-    payload: address,
   };
 }
