@@ -1,0 +1,6 @@
+android/*
+ios/*
+node_modules/*
+**/node_modules/*
+*.min.js
+
