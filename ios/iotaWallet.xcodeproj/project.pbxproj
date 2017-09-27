@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -37,6 +38,8 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		CB3E91DB1F55A2E5007EFF4C /* libRNRandomBytes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB3E91D81F55A2CE007EFF4C /* libRNRandomBytes.a */; };
+		CB492E4F1F7A98D000DB3EA4 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB492E4E1F7A98D000DB3EA4 /* Inconsolata-Regular.ttf */; };
+		CB492E731F7A99B000DB3EA4 /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB492E721F7A99B000DB3EA4 /* Inconsolata-Bold.ttf */; };
 		CB59C8F11F56292600840103 /* libRNSensitiveInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB59C8EE1F5628FB00840103 /* libRNSensitiveInfo.a */; };
 		CB87E5C01F550673009DB5ED /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB87E5BF1F55064B009DB5ED /* libReactNativeNavigation.a */; };
 		CB87E5C61F5506D0009DB5ED /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB87E5C11F5506D0009DB5ED /* Lato-Black.ttf */; };
@@ -329,6 +332,8 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9090DAE9334840B081B3AC44 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 		CB3E91B51F55A2B8007EFF4C /* RNRandomBytes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNRandomBytes.xcodeproj; path = "../node_modules/react-native-randombytes/RNRandomBytes.xcodeproj"; sourceTree = "<group>"; };
+		CB492E4E1F7A98D000DB3EA4 /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
+		CB492E721F7A99B000DB3EA4 /* Inconsolata-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Bold.ttf"; path = "../custom-fonts/Inconsolata-Bold.ttf"; sourceTree = "<group>"; };
 		CB59C8CA1F5628EE00840103 /* RNSensitiveInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSensitiveInfo.xcodeproj; path = "../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo.xcodeproj"; sourceTree = "<group>"; };
 		CB87E5951F550649009DB5ED /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		CB87E5C11F5506D0009DB5ED /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "../custom-fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
@@ -336,7 +341,6 @@
 		CB87E5C31F5506D0009DB5ED /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Heavy.ttf"; path = "../custom-fonts/Lato-Heavy.ttf"; sourceTree = "<group>"; };
 		CB87E5C41F5506D0009DB5ED /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../custom-fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
 		CB87E5C51F5506D0009DB5ED /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../custom-fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
-		
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -557,6 +561,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CB492E721F7A99B000DB3EA4 /* Inconsolata-Bold.ttf */,
+				CB492E4E1F7A98D000DB3EA4 /* Inconsolata-Regular.ttf */,
 				CB87E5C11F5506D0009DB5ED /* Lato-Black.ttf */,
 				CB87E5C21F5506D0009DB5ED /* Lato-Bold.ttf */,
 				CB87E5C31F5506D0009DB5ED /* Lato-Heavy.ttf */,
@@ -1055,7 +1061,9 @@
 				CB87E5C61F5506D0009DB5ED /* Lato-Black.ttf in Resources */,
 				CB87E5C91F5506D0009DB5ED /* Lato-Light.ttf in Resources */,
 				CB87E5CA1F5506D0009DB5ED /* Lato-Regular.ttf in Resources */,
+				CB492E4F1F7A98D000DB3EA4 /* Inconsolata-Regular.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				CB492E731F7A99B000DB3EA4 /* Inconsolata-Bold.ttf in Resources */,
 				CB87E5C71F5506D0009DB5ED /* Lato-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1192,7 +1200,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iotaWallet.app/iotaWallet";
-				
 			};
 			name = Debug;
 		};
@@ -1201,6 +1208,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-tcp/ios/**",
+				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1214,10 +1225,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iotaWallet.app/iotaWallet";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-tcp/ios/**",
-				);
 			};
 			name = Release;
 		};
@@ -1285,7 +1292,6 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
-				
 			};
 			name = Debug;
 		};
@@ -1316,7 +1322,6 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
-				
 			};
 			name = Release;
 		};

@@ -1,14 +1,4 @@
-import { Navigation } from 'react-native-navigation';
-import { Provider } from 'react-redux';
-import { registerScreens } from './navigation';
-import store from './store';
-import './shim.js'
+import { AppRegistry } from 'react-native';
+import Wallet from './routes/entry';
 
-registerScreens(store, Provider);
-
-Navigation.startSingleScreenApp({
-  screen: {
-    screen: 'initialLoading',
-    navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
-  },
-});
+AppRegistry.registerComponent('iotaWallet', () => Wallet);
