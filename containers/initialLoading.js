@@ -16,7 +16,7 @@ class InitialLoading extends React.Component {
 
 
   componentDidMount() {
-    this.timeout = setTimeout(this.onLoaded.bind(this), 1800);
+    this.timeout = setTimeout(this.onLoaded.bind(this), 100);
   }
 
   onLoaded() {
