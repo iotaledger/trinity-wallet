@@ -32,7 +32,7 @@ class NewSeedSetup extends React.Component {
     super(props);
   }
 
-  onNextClick() {
+  onNextPress() {
     this.props.navigator.push({
       screen: 'saveYourSeed',
       navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
@@ -40,13 +40,13 @@ class NewSeedSetup extends React.Component {
     });
   }
 
-  onBackClick() {
+  onBackPress() {
     this.props.navigator.pop({
       animated: false,
     });
   }
 
-  onItemClick(sectionID) {
+  onItemPress(sectionID) {
     console.log(width);
     console.log(height);
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
@@ -97,7 +97,7 @@ class NewSeedSetup extends React.Component {
             contentContainerStyle={styles.list}
             dataSource={ds.cloneWithRows(this.props.iota.seed)}
             renderRow={(rowData, rowID, sectionID) =>
-                             (<TouchableHighlight key={sectionID} onPress={event => this.onItemClick(sectionID)} underlayColor="#F7D002">
+                             (<TouchableHighlight key={sectionID} onPress={event => this.onItemPress(sectionID)} underlayColor="#F7D002">
                                <View style={styles.tile}>
                                  <Text style={styles.item}>{rowData}</Text>
                                </View>
@@ -117,13 +117,13 @@ class NewSeedSetup extends React.Component {
                       </Text>
           <View style={styles.buttonsContainer}>
             <View style={styles.backButtonContainer}>
-              <TouchableWithoutFeedback onPress={event => this.onBackClick()}>
+              <TouchableWithoutFeedback onPress={event => this.onBackPress()}>
                 <View style={styles.backButton} >
                   <Text style={styles.backText}>GO BACK</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
-            <TouchableWithoutFeedback onPress={event => this.onNextClick()}>
+            <TouchableWithoutFeedback onPress={event => this.onNextPress()}>
               <View style={styles.nextButton} >
                 <Text style={styles.nextText}>NEXT</Text>
               </View>
