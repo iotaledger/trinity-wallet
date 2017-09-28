@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   View,
@@ -12,129 +13,12 @@ import {
   Image,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed, randomiseSeed } from '../actions/iotaActions';
 import { randomBytes } from 'react-native-randombytes';
-
+import { setSeed, randomiseSeed } from '../actions/iotaActions';
 
 const { height, width } = Dimensions.get('window');
 
-{ /* import sjcl from "sjcl";
-
-const randArray = length => {
-  return sjcl.random.randomWords(length, 10);
-}; */ }
-
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
-class NewSeedSetup extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  onNextClick() {
-    this.props.navigator.push({
-      screen: 'saveYourSeed',
-      navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-      animated: false,
-    });
-  }
-
-  onBackClick() {
-    this.props.navigator.pop({
-      animated: false,
-    });
-  }
-
-  onItemClick(sectionID) {
-    console.log(width);
-    console.log(height);
-    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-    randomBytes(5, (error, bytes) => {
-      if (!error) {
-        let i = 0;
-        let seed = this.props.iota.seed;
-        Object.keys(bytes).map((key, index) => {
-          if (bytes[key] < 243 && i < 1) {
-            const randomNumber = bytes[key] % 27;
-            const randomLetter = charset.charAt(randomNumber);
-            const substr1 = seed.substr(0, sectionID);
-            sectionID++;
-            const substr2 = seed.substr(sectionID, 80);
-            seed = substr1 + randomLetter + substr2;
-            i++;
-          }
-        });
-        this.props.setSeed(seed);
-      } else {
-        console.log(error);
-      }
-    });
-  }
-
-  render() {
-    return (
-      <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
-        <View style={styles.topContainer}>
-          <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>
-                                GENERATE A NEW SEED
-                           </Text>
-          </View>
-          <TouchableOpacity onPress={event => this.props.randomiseSeed()} style={{ paddingBottom: height / 80 }}>
-            <View style={styles.generateButton} >
-              <Image style={styles.generateImage} source={require('../images/plus.png')} />
-              <Text style={styles.generateText}>GENERATE NEW SEED</Text>
-            </View>
-          </TouchableOpacity>
-          <Text style={styles.infoText}>
-                          Press individual letters to randomise them.
-                       </Text>
-        </View>
-        <View style={styles.midContainer}>
-          <ListView
-            contentContainerStyle={styles.list}
-            dataSource={ds.cloneWithRows(this.props.iota.seed)}
-            renderRow={(rowData, rowID, sectionID) =>
-                             (<TouchableHighlight key={sectionID} onPress={event => this.onItemClick(sectionID)} underlayColor="#F7D002">
-                               <View style={styles.tile}>
-                                 <Text style={styles.item}>{rowData}</Text>
-                               </View>
-                             </TouchableHighlight>)
-                            }
-            style={styles.squareContainer}
-            initialListSize={81}
-            scrollEnabled={false}
-          />
-        </View>
-        <View style={styles.bottomContainer}>
-          <Text style={styles.infoText}>
-                         Seeds are 81 characters long, and contain capital letters A-Z, or the number 9.
-                      </Text>
-          <Text style={styles.warningText}>
-                         NEVER SHARE YOUR SEED WITH ANYONE
-                      </Text>
-          <View style={styles.buttonsContainer}>
-            <View style={styles.backButtonContainer}>
-              <TouchableWithoutFeedback onPress={event => this.onBackClick()}>
-                <View style={styles.backButton} >
-                  <Text style={styles.backText}>GO BACK</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-            <TouchableWithoutFeedback onPress={event => this.onNextClick()}>
-              <View style={styles.nextButton} >
-                <Text style={styles.nextText}>NEXT</Text>
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </View>
-      </ImageBackground>
-    );
-  }
-}
-
 
 const styles = StyleSheet.create({
   container: {
@@ -278,8 +162,132 @@ const styles = StyleSheet.create({
     height: width / 6,
     width: width / 6,
   },
-
 });
+
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable global-require */
+
+class NewSeedSetup extends Component {
+  onNextClick() {
+    this.props.navigator.push({
+      screen: 'saveYourSeed',
+      navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+      animated: false,
+    });
+  }
+
+  onBackClick() {
+    this.props.navigator.pop({
+      animated: false,
+    });
+  }
+
+  onItemClick(sectionID) {
+    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
+
+    randomBytes(5, (error, bytes) => {
+      if (!error) {
+        let i = 0;
+        let seed = this.props.iota.seed;
+        /* eslint-disable no-plusplus */
+        /* eslint-disable no-param-reassign */
+        Object.keys(bytes).forEach((key) => {
+          if (bytes[key] < 243 && i < 1) {
+            const randomNumber = bytes[key] % 27;
+            const randomLetter = charset.charAt(randomNumber);
+            const substr1 = seed.substr(0, sectionID);
+            sectionID++;
+            const substr2 = seed.substr(sectionID, 80);
+            seed = substr1 + randomLetter + substr2;
+            i++;
+          }
+        });
+
+        /* eslint-enable no-plusplus */
+        /* eslint-enable no-param-reassign */
+        this.props.setSeed(seed);
+      } else {
+        console.log(error); // eslint-disable-line no-console
+      }
+    });
+  }
+
+  render() {
+    return (
+      <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
+        <View style={styles.topContainer}>
+          <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>
+              GENERATE A NEW SEED
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => this.props.randomiseSeed()}
+            style={{ paddingBottom: height / 80 }}
+          >
+            <View style={styles.generateButton} >
+              <Image style={styles.generateImage} source={require('../images/plus.png')} />
+              <Text style={styles.generateText}>GENERATE NEW SEED</Text>
+            </View>
+          </TouchableOpacity>
+          <Text style={styles.infoText}>
+            Press individual letters to randomise them.
+          </Text>
+        </View>
+        <View style={styles.midContainer}>
+          <ListView
+            contentContainerStyle={styles.list}
+            dataSource={ds.cloneWithRows({ seed: this.props.iota.seed })}
+            renderRow={(rowData, rowID, sectionID) =>
+              (<TouchableHighlight
+                key={sectionID}
+                onPress={() => this.onItemClick(sectionID)}
+                underlayColor="#F7D002"
+              >
+                <View style={styles.tile}>
+                  <Text style={styles.item}>{rowData}</Text>
+                </View>
+              </TouchableHighlight>)
+            }
+            style={styles.squareContainer}
+            initialListSize={81}
+            scrollEnabled={false}
+          />
+        </View>
+        <View style={styles.bottomContainer}>
+          <Text style={styles.infoText}>
+            Seeds are 81 characters long, and contain capital letters A-Z, or the number 9.
+          </Text>
+          <Text style={styles.warningText}>
+            NEVER SHARE YOUR SEED WITH ANYONE
+          </Text>
+          <View style={styles.buttonsContainer}>
+            <View style={styles.backButtonContainer}>
+              <TouchableWithoutFeedback onPress={() => this.onBackClick()}>
+                <View style={styles.backButton} >
+                  <Text style={styles.backText}>GO BACK</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+            <TouchableWithoutFeedback onPress={() => this.onNextClick()}>
+              <View style={styles.nextButton} >
+                <Text style={styles.nextText}>NEXT</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
+      </ImageBackground>
+    );
+  }
+}
+
+NewSeedSetup.propTypes = {
+  navigator: PropTypes.object.isRequired,
+  iota: PropTypes.object.isRequired,
+  setSeed: PropTypes.func.isRequired,
+  randomiseSeed: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   iota: state.iota,
