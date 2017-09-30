@@ -4,7 +4,7 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   Dimensions,
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
@@ -34,11 +34,11 @@ class Tools extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={event => this.onLogOutClick()}>
+        <TouchableOpacity onPress={event => this.onLogOutClick()}>
           <View style={styles.logOutButton} >
             <Text style={styles.logOutText}>LOG OUT</Text>
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     );
   }

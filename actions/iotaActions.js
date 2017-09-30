@@ -48,6 +48,11 @@ export function sendTransaction(seed, address, value, message) {
     value,
     message: messageTrytes,
   }];
+  if(!iota.valid.isTransfersArray(transfer)){
+    console.log('Error: Invalid transfer array');
+    return;
+  }
+
     // Send transfer with depth 4 and minWeightMagnitude 18
   iota.api.sendTransfer(seed, 4, 18, transfer, (error, success) => {
     if (!error) {
