@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: height / 30,
+    paddingTop: height / 22,
     paddingHorizontal: width / 20
   },
   midContainer: {
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'flex-end',
-    paddingBottom: height / 30
+    paddingBottom: height / 25
   },
   optionButtonText: {
     color: '#8BD4FF',
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   title: {
     color: 'white',
     fontFamily: 'Lato-Bold',
-    fontSize: width / 20.25,
+    fontSize: width / 23,
     textAlign: 'center',
     backgroundColor: 'transparent',
   },
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
   },
   doneButton: {
     borderColor: '#9DFFAF',
-    borderWidth: 1.5,
+    borderWidth: 1.2,
     borderRadius: 10,
     width: width / 3,
     height: height / 16,
@@ -261,24 +261,9 @@ const styles = StyleSheet.create({
     fontSize: width / 25.3,
     backgroundColor: 'transparent',
   },
-  backButton: {
-    borderColor: '#F7D002',
-    borderWidth: 1.5,
-    borderRadius: 10,
-    width: width / 3,
-    height: height / 16,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  backText: {
-    color: '#F7D002',
-    fontFamily: 'Lato-Light',
-    fontSize: width / 25.3,
-    backgroundColor: 'transparent',
-  },
   iotaLogo: {
-    height: width / 6,
-    width: width / 6,
+    height: width / 5,
+    width: width / 5,
   },
   seedBox: {
     borderColor: 'white',
