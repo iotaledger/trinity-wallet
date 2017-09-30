@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   View,
@@ -11,21 +12,18 @@ import {
   Image,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed, randomiseSeed } from '../actions/iotaActions';
+import { randomiseSeed, setSeed } from '../actions/iotaActions';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from 'react-native-dropdownalert';
 
 const { height, width } = Dimensions.get('window');
 
-{ /* import sjcl from "sjcl";
-
-const randArray = length => {
-  return sjcl.random.randomWords(length, 10);
-}; */ }
-
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
-class NewSeedSetup extends React.Component {
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable global-require */
+
+class NewSeedSetup extends Component {
 
   constructor(props) {
     super(props);
@@ -54,12 +52,6 @@ class NewSeedSetup extends React.Component {
     this.timeout = setTimeout(this.flashText2.bind(this), 4050);
     this.timeout = setTimeout(this.flashText1.bind(this), 4200);
     this.timeout = setTimeout(this.flashText2.bind(this), 4450);
-
-
-
-
-
-
   }
 
   flashText1() {
@@ -72,7 +64,6 @@ class NewSeedSetup extends React.Component {
       infoTextContainerHeight: 100
     })
   }
-
   onNextPress() {
     if(this.state.randomised){
       this.props.navigator.push({
@@ -84,7 +75,6 @@ class NewSeedSetup extends React.Component {
       this.dropdown.alertWithType('error', 'Seed has not been generated', 'Please click the Generate New Seed button.');
     }
   }
-
   onBackPress() {
     this.props.navigator.pop({
       animated: false,
@@ -179,7 +169,6 @@ class NewSeedSetup extends React.Component {
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -316,6 +305,13 @@ const styles = StyleSheet.create({
   }
 
 });
+
+NewSeedSetup.propTypes = {
+  navigator: PropTypes.object.isRequired,
+  iota: PropTypes.object.isRequired,
+  setSeed: PropTypes.func.isRequired,
+  randomiseSeed: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   iota: state.iota,

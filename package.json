@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android": "node_modules/.bin/react-native run-android",
+    "lint": "node_modules/.bin/eslint --ext .js .",
+    "ios": "node_modules/.bin/react-native run-ios",
     "test": "jest"
   },
   "dependencies": {
@@ -21,6 +24,7 @@
     "os-browserify": "^0.1.2",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
+    "prop-types": "^15.6.0",
     "querystring-es3": "^0.2.1",
     "react": "16.0.0-alpha.12",
     "react-native": "0.47.2",
@@ -34,7 +38,7 @@
     "react-native-randombytes": "^2.3.0",
     "react-native-sensitive-info": "^5.1.0",
     "react-native-svg": "^5.4.1",
-    "react-native-tcp": "^2.0.4",
+    "react-native-tcp": "^3.3.0",
     "react-native-triangle": "0.0.8",
     "react-native-udp": "^1.2.9",
     "react-redux": "^5.0.6",
@@ -54,8 +58,16 @@
     "vm-browserify": "0.0.4"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.0",
     "babel-jest": "20.0.3",
     "babel-preset-react-native": "3.0.1",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-react-native": "^3.1.0",
     "jest": "20.0.4",
     "react-test-renderer": "16.0.0-alpha.12",
     "rn-nodeify": "^7.0.1"
