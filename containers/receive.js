@@ -7,7 +7,7 @@ import {
   Image,
   ListView,
   Dimensions,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
 } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
@@ -60,12 +60,12 @@ class Receive extends React.Component {
             fgColor="#FFF"
           />
         </View>
-        <TouchableWithoutFeedback onPress={event => this.onGeneratePress(this.props)}>
+        <TouchableOpacity onPress={event => this.onGeneratePress(this.props)}>
           <View style={styles.generateButton}>
             <Image style={styles.generateImage} source={require('../images/plus.png')} />
             <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
           </View>
-        </TouchableWithoutFeedback>
+        </TouchableOpacity>
         <View style={{ paddingTop: height / 20 }}>
           {/* <ListView
                 dataSource={this.state.dataSource}

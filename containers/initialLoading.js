@@ -23,7 +23,7 @@ class InitialLoading extends React.Component {
     const state = store.getState();
     if (state.account.firstUse) {
       this.props.navigator.push({
-        screen: 'welcome',
+        screen: 'languageSetup',
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
         animated: false,
       });
