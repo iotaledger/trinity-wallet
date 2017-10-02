@@ -29,5 +29,4 @@ export function registerScreens(store, Provider) {
   Navigation.registerComponent('copySeedToClipboard', () => CopySeedToClipboard, store, Provider);
   Navigation.registerComponent('languageSetup', () => LanguageSetup, store, Provider);
   Navigation.registerComponent('welcome', () => Welcome, store, Provider);
-
 }
