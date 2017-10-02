@@ -1,9 +1,5 @@
 const iotaReducer = (state = {
-  balance: 0, 
-  ready: false, 
-  addresses: [], 
-  password: '', 
-  seed: ''
+  balance: 0, ready: false, addresses: [], password: '', seed: '                                                                                 '
 }, action) => {
   switch (action.type) {
     case 'SET_ACCOUNTINFO':
