@@ -5,6 +5,7 @@ import {
   Text,
   Image,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   LayoutAnimation,
   ListView,
   ScrollView,
@@ -91,6 +92,8 @@ class Send extends React.Component {
                 fontSize={height / 45}
                 labelHeight={height / 50}
                 baseColor='white'
+                tintColor="#F7D002"
+                labelPadding={3}
                 enablesReturnKeyAutomatically={true}
                 label='ADDRESS'
                 autoCorrect={false}
@@ -99,12 +102,12 @@ class Send extends React.Component {
               />
             </View>
             <View style={styles.qrContainer}>
-              <TouchableWithoutFeedback onPress={this.onQRClick()}>
+              <TouchableOpacity onPress={this.onQRClick()}>
                 <View style={styles.qrButton}>
                   <Image source={require('../../shared/images/camera.png')} style={styles.qrImage} />
                     <Text style={styles.qrText} > QR </Text>
                 </View>
-              </TouchableWithoutFeedback>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={{ flexDirection: 'row', flex: 1 }}>
@@ -120,6 +123,8 @@ class Send extends React.Component {
                 baseColor='white'
                 enablesReturnKeyAutomatically={true}
                 label='AMOUNT'
+                tintColor="#F7D002"
+                labelPadding={3}
                 autoCorrect={false}
                 value={amount}
                 onChangeText={ (amount) => this.setState({ amount }) }
