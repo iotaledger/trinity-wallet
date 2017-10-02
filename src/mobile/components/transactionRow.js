@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { formatTime, formatValue, formatUnit, round } from '../libs/util';
+import { formatTime, formatValue, formatUnit, round } from '../../shared/libs/util';
 
 const { height, width } = Dimensions.get('window');
 
