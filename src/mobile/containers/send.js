@@ -101,7 +101,7 @@ class Send extends React.Component {
             <View style={styles.qrContainer}>
               <TouchableWithoutFeedback onPress={this.onQRClick()}>
                 <View style={styles.qrButton}>
-                  <Image source={require('../images/camera.png')} style={styles.qrImage} />
+                  <Image source={require('../../shared/images/camera.png')} style={styles.qrImage} />
                     <Text style={styles.qrText} > QR </Text>
                 </View>
               </TouchableWithoutFeedback>
