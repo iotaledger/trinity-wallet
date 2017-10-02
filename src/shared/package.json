@@ -7,5 +7,10 @@
   "license": "MIT",
   "devDependencies": {
     "random-bytes": "^1.0.0"
+  },
+  "dependencies": {
+    "redux": "^3.7.2",
+    "redux-persist": "^4.10.1",
+    "redux-thunk": "^2.2.0"
   }
 }
