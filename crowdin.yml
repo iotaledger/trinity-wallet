@@ -1,0 +1,7 @@
+files:
+  - source: /locales/en/translation.json
+    translation: /locales/%two_letters_code%/translation.json
+    languages_mapping:
+      two_letters_code:
+        zh-CN: zh-CN
+        zh-TW: zh-TW
