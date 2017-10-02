@@ -5,6 +5,7 @@ import {
   Dimensions,
   Text,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   Image,
   ImageBackground,
   ScrollView,
@@ -49,7 +50,7 @@ class Login extends React.Component {
 
   onNewSeedClick(props) {
     this.props.navigator.push({
-      screen: 'welcome',
+      screen: 'walletSetup',
       navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
       animated: false,
     });
@@ -82,29 +83,31 @@ class Login extends React.Component {
                    labelHeight={height / 50}
                    baseColor="white"
                    label="PASSWORD"
+                   tintColor="#F7D002"
+                   labelPadding={3}
                    value={password}
                    autoCorrect={false}
                    autoCapitalize={'none'}
                    enablesReturnKeyAutomatically
                    onChangeText={password => this.setState({ password })}
-                   containerStyle={{ paddingHorizontal: width / 6 }}
+                   containerStyle={{ width: width / 1.65 }}
                    secureTextEntry
                  />
               </View>
               <View style={styles.bottomContainer}>
                 <View style={styles.buttonsContainer}>
-                  <TouchableWithoutFeedback onPress={event => this.onDoneClick(this.props)}>
+                  <TouchableOpacity onPress={event => this.onDoneClick(this.props)}>
                     <View style={styles.doneButton} >
                       <Text style={styles.doneText}>DONE</Text>
                     </View>
-                  </TouchableWithoutFeedback>
+                  </TouchableOpacity>
                 </View>
                 <View style={{ alignItems: 'center' }}>
-                  <TouchableWithoutFeedback onPress={event => this.onNewSeedClick()}>
+                  <TouchableOpacity onPress={event => this.onNewSeedClick()}>
                     <View style={styles.newSeedButton} >
                       <Text style={styles.newSeedText}>ADD NEW WALLET</Text>
                     </View>
-                  </TouchableWithoutFeedback>
+                  </TouchableOpacity>
                 </View>
               </View>
               </View>
@@ -130,18 +133,19 @@ const styles = StyleSheet.create({
     flex: 1.2,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: height / 30,
+    paddingTop: height / 22,
   },
   midContainer: {
     flex: 2,
     justifyContent: 'flex-start',
     paddingTop: height / 10,
+    alignItems: 'center'
   },
   bottomContainer: {
     flex: 2,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingBottom: height / 7,
+    paddingBottom: height / 14,
   },
   textContainer: {
     justifyContent: 'center',
@@ -152,7 +156,7 @@ const styles = StyleSheet.create({
   title: {
     color: 'white',
     fontFamily: 'Lato-Bold',
-    fontSize: width / 20.25,
+    fontSize: width / 23,
     textAlign: 'center',
     backgroundColor: 'transparent',
   },
@@ -191,19 +195,19 @@ const styles = StyleSheet.create({
   },
   doneButton: {
     borderColor: '#9DFFAF',
-    borderWidth: 1.5,
+    borderWidth: 1.2,
     borderRadius: 10,
-    width: width * 0.6,
-    height: height * 0.06,
+    width: width / 1.65,
+    height: height / 17,
     alignItems: 'center',
     justifyContent: 'space-around',
   },
   newSeedButton: {
     borderColor: '#F7D002',
-    borderWidth: 1.5,
+    borderWidth: 1.2,
     borderRadius: 10,
-    width: width * 0.6,
-    height: height * 0.06,
+    width: width / 1.65,
+    height: height / 17,
     alignItems: 'center',
     justifyContent: 'space-around',
   },
@@ -220,8 +224,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   iotaLogo: {
-    height: width / 6,
-    width: width / 6,
+    height: width / 5,
+    width: width / 5,
   },
 
 });
