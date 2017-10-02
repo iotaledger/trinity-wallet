@@ -32,7 +32,7 @@ class Loading extends React.Component {
   render() {
     if (!this.props.iota.ready) {
       return (
-        <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
+        <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
           <View style={{ height: width / 1.75, paddingLeft: 5 }}>
             <WebView
               scrollEnabled={false}

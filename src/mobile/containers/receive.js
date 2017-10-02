@@ -62,7 +62,7 @@ class Receive extends React.Component {
         </View>
         <TouchableWithoutFeedback onPress={event => this.onGeneratePress(this.props)}>
           <View style={styles.generateButton}>
-            <Image style={styles.generateImage} source={require('../images/plus.png')} />
+            <Image style={styles.generateImage} source={require('../../shared/images/plus.png')} />
             <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
           </View>
         </TouchableWithoutFeedback>
