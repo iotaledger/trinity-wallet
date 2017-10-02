@@ -9,6 +9,8 @@
 		<string>Lato-Heavy.ttf</string>
 		<string>Lato-Light.ttf</string>
 		<string>Lato-Regular.ttf</string>
+		<string>Inconsolata-Regular.ttf</string>
+		<string>Inconsolata-Bold.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
