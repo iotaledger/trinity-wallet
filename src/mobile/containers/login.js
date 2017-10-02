@@ -58,11 +58,11 @@ class Login extends React.Component {
   render() {
     let { password } = this.state;
     return (
-      <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
+      <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View>
               <View style={styles.topContainer}>
-                <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
+                <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                 <View style={styles.textContainer}>
                   <Text style={styles.title}>
                                       LOGIN
