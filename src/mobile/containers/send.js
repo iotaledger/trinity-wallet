@@ -151,7 +151,7 @@ class Send extends React.Component {
           </View>
         </View>
         <View style={styles.sendIOTAButton}>
-          <Image style={styles.sendIOTAImage} source={require('../images/sendIota.png')} />
+          <Image style={styles.sendIOTAImage} source={require('../../shared/images/sendIota.png')} />
           <Text style={styles.sendIOTAText}>SEND IOTA</Text>
         </View>
         {/* }<ListView

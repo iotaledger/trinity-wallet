@@ -38,9 +38,9 @@ class InitialLoading extends React.Component {
 
   render() {
     return (
-      <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
+      <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
         <View style={styles.logoContainer}>
-          <Image source={require('../images/iota-white.png')} style={styles.logo} />
+          <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.text}>

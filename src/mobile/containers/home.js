@@ -119,10 +119,10 @@ class Home extends React.Component {
 
   render() {
     return (
-      <ImageBackground source={require('../images/bg-green.png')} style={{flex: 1}}>
+      <ImageBackground source={require('../../shared/images/bg-green.png')} style={{flex: 1}}>
           <View style={styles.titleContainer}>
             <View style={styles.banner}>
-              <Image style={styles.logo} source={require('../images/iota.png')} />
+              <Image style={styles.logo} source={require('../../shared/images/iota.png')} />
               <Text style={styles.mode}>{this.state.mode}</Text>
               <Text style={styles.title}>{this.state.bannerText}</Text>
             </View>
@@ -133,31 +133,31 @@ class Home extends React.Component {
           <View style={styles.tabBar}>
             <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
               <View style={styles.button}>
-                <Image style={[styles.icon, { opacity: this.state.balanceOpacity }]} source={require('../images/balance.png')} />
+                <Image style={[styles.icon, { opacity: this.state.balanceOpacity }]} source={require('../../shared/images/balance.png')} />
                 <Text style={[styles.iconTitle, { opacity: this.state.balanceOpacity }]}>BALANCE</Text>
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={event => this.clickSend()}>
               <View style={styles.button}>
-                <Image style={[styles.icon, { opacity: this.state.sendOpacity }]} source={require('../images/send.png')} />
+                <Image style={[styles.icon, { opacity: this.state.sendOpacity }]} source={require('../../shared/images/send.png')} />
                 <Text style={[styles.iconTitle, { opacity: this.state.sendOpacity }]}>SEND</Text>
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
               <View style={styles.button}>
-                <Image style={[styles.icon, { opacity: this.state.receiveOpacity }]} source={require('../images/receive.png')} />
+                <Image style={[styles.icon, { opacity: this.state.receiveOpacity }]} source={require('../../shared/images/receive.png')} />
                 <Text style={[styles.iconTitle, { opacity: this.state.receiveOpacity }]}>RECEIVE</Text>
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
               <View style={styles.button}>
-                <Image style={[styles.icon, { opacity: this.state.historyOpacity }]} source={require('../images/history.png')} />
+                <Image style={[styles.icon, { opacity: this.state.historyOpacity }]} source={require('../../shared/images/history.png')} />
                 <Text style={[styles.iconTitle, { opacity: this.state.historyOpacity }]}>HISTORY</Text>
               </View>
             </TouchableWithoutFeedback>
             <TouchableWithoutFeedback onPress={event => this.clickTools()}>
               <View style={styles.button}>
-                <Image style={[styles.icon, { opacity: this.state.toolsOpacity }]} source={require('../images/tools.png')} />
+                <Image style={[styles.icon, { opacity: this.state.toolsOpacity }]} source={require('../../shared/images/tools.png')} />
                 <Text style={[styles.iconTitle, { opacity: this.state.toolsOpacity }]}>TOOLS</Text>
               </View>
             </TouchableWithoutFeedback>
