@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
-import { formatTime, round, formatValue, formatUnit } from '../libs/util';
+import { formatTime, round, formatValue, formatUnit } from '../../shared/libs/util';
 
 const { height, width } = Dimensions.get('window');
 
@@ -11,7 +11,7 @@ class SimpleTransactionRow extends React.Component {
   }
 
   render() {
-    const icon = this.props.rowData[0].transactionValue < 0 ? require('../images/send.png') : require('../images/receive.png');
+    const icon = this.props.rowData[0].transactionValue < 0 ? require('../../shared/images/send.png') : require('../../shared/images/receive.png');
     const sign = this.props.rowData[0].transactionValue < 0 ? '-' : '+';
     const titleColour = this.props.rowData[0].transactionValue < 0 ? '#F7D002' : '#72BBE8';
 
