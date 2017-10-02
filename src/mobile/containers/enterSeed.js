@@ -4,19 +4,17 @@ import {
   View,
   Dimensions,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   Image,
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
-import { setSeed } from '../../shared/actions/iotaActions';
-import { setLoggedIn } from '../../shared/actions/accountActions';
-import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketDataActions';
 import {Keyboard} from 'react-native'
+import { connect } from 'react-redux';
+import { setSeed } from '../actions/iotaActions';
 
 const { height, width } = Dimensions.get('window');
 
@@ -44,6 +42,9 @@ class EnterSeed extends React.Component {
       animated: false,
     });
   }
+  onQRClick() {
+
+  }
 
   render() {
     const { seed } = this.state;
@@ -56,60 +57,77 @@ class EnterSeed extends React.Component {
                     <View style={styles.logoContainer}>
                       <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
                     </View>
-                    <View style={styles.textContainer}>
+                    <View style={styles.titleContainer}>
                       <Text style={styles.title}>
                                         ENTER YOUR SEED
                                    </Text>
                     </View>
-                    <TextField
-                      style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                      labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                      labelFontSize={height / 55}
-                      fontSize={height / 45}
-                      baseColor="white"
-                      label="SEED"
-                      value={seed}
-                      multiline
-                      autoCorrect={false}
-                      autoCapitalize={'characters'}
-                      enablesReturnKeyAutomatically
-                      maxLength={81}
-                      onChangeText={seed => this.setState({ seed })}
-                      containerStyle={{ paddingHorizontal: width / 8 }}
-                      secureTextEntry
-                    />
                   </View>
                 <View style={styles.midContainer}>
-                  <Text style={styles.infoText}>
-                                  Seeds should be 81 characters long, and should contain capital letters A-Z, or the number 9.
-                                  You cannot use seeds longer than 81 characters.
-                    </Text>
-                  <Text style={styles.warningText}>
-                                  NEVER SHARE YOUR SEED WITH ANYONE
-                    </Text>
+                  <View style={styles.textFieldContainer}>
+                  <TextField
+                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                    labelFontSize={height / 55}
+                    labelPadding={3}
+                    fontSize={height / 40}
+                    tintColor="#F7D002"
+                    baseColor="white"
+                    label="Seed"
+                    value={seed}
+                    multiline
+                    autoCorrect={false}
+                    autoCapitalize={'characters'}
+                    enablesReturnKeyAutomatically
+                    maxLength={81}
+                    onChangeText={seed => this.setState({ seed })}
+                    containerStyle={{ width: width / 1.55 }}
+                    secureTextEntry
+                  />
+                  <View style={styles.qrContainer}>
+                    <TouchableOpacity onPress={this.onQRClick()}>
+                      <View style={styles.qrButton}>
+                        <Image source={require('../images/camera.png')} style={styles.qrImage} />
+                          <Text style={styles.qrText} > QR </Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                  </View>
+                  <View style={{ paddingTop: height / 4.65, position: 'absolute' }}>
+                    <View style={styles.infoTextContainer}>
+                      <Image source={require('../images/info.png')} style={styles.infoIcon}/>
+                      <Text style={styles.infoText}>
+                                      Seeds should be 81 characters long, and should contain capital letters A-Z, or the number 9.
+                                      You cannot use seeds longer than 81 characters.
+                        </Text>
+                      <Text style={styles.warningText}>
+                                      NEVER SHARE YOUR SEED WITH ANYONE
+                        </Text>
+                    </View>
+                  </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                  <View style={{ alignItems: 'center' }}>
-                    <TouchableHighlight onPress={event => this.onDoneClick()} style={{ paddingBottom: height / 30 }}>
+                  <View style={styles.buttonsContainer}>
+                    <TouchableOpacity onPress={event => this.onDoneClick()}>
                       <View style={styles.doneButton} >
                         <Text style={styles.doneText}>DONE</Text>
                       </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                   </View>
                   <View style={{ alignItems: 'center' }}>
-                    <TouchableHighlight onPress={event => this.onBackClick()}>
+                    <TouchableOpacity onPress={event => this.onBackClick()}>
                       <View style={styles.backButton} >
                         <Text style={styles.backText}>GO BACK</Text>
                       </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                   </View>
                 </View>
-                <DropdownAlert
-                  ref={ref => this.dropdown = ref}
-                />
               </View>
           </View>
       </TouchableWithoutFeedback>
+      <DropdownAlert
+        ref={ref => this.dropdown = ref}
+      />
       </ImageBackground>
     );
   }
@@ -124,46 +142,57 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   topContainer: {
-    flex: 1,
-    paddingTop: height / 30,
+    flex: 0.7,
+    paddingTop: height / 22,
   },
   midContainer: {
-    flex: 1,
+    flex: 1.3,
     alignItems: 'center',
-    position: 'absolute',
+    justifyContent: 'flex-start',
   },
   bottomContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingBottom: height / 7,
+    paddingBottom: height / 14,
   },
   logoContainer: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textContainer: {
+  titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: height / 8,
     paddingTop: height / 35,
-    paddingBottom: height / 20,
   },
   title: {
     color: 'white',
     fontFamily: 'Lato-Bold',
-    fontSize: width / 20.25,
+    fontSize: width / 23,
     textAlign: 'center',
     backgroundColor: 'transparent',
+  },
+  textFieldContainer: {
+    paddingTop: height / 30,
+  },
+  infoTextContainer: {
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 15,
+    width: width / 1.85,
+    height: height / 3.7,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingHorizontal: width / 15,
+    borderStyle: 'dotted',
+    paddingTop: height / 40
   },
   infoText: {
     color: 'white',
     fontFamily: 'Lato-Light',
     fontSize: width / 33.75,
     textAlign: 'center',
-    paddingRight: width / 5,
-    paddingLeft: width / 5,
-    paddingTop: width / 20,
+    paddingTop: width / 30,
     backgroundColor: 'transparent',
   },
   warningText: {
@@ -171,24 +200,28 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Bold',
     fontSize: width / 33.75,
     textAlign: 'center',
-    paddingTop: 7,
+    paddingTop: height / 40,
     backgroundColor: 'transparent',
+  },
+  buttonsContainer: {
+    alignItems: 'center',
+    paddingBottom: height / 30
   },
   doneButton: {
     borderColor: '#9DFFAF',
-    borderWidth: 1.5,
+    borderWidth: 1.2,
     borderRadius: 10,
-    width: width * 0.6,
-    height: height * 0.06,
+    width: width / 1.65,
+    height: height / 17,
     alignItems: 'center',
     justifyContent: 'space-around',
   },
   backButton: {
     borderColor: '#F7D002',
-    borderWidth: 1.5,
+    borderWidth: 1.2,
     borderRadius: 10,
-    width: width * 0.6,
-    height: height * 0.06,
+    width: width / 1.65,
+    height: height / 17,
     alignItems: 'center',
     justifyContent: 'space-around',
   },
@@ -205,10 +238,41 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   iotaLogo: {
-    height: width / 6,
-    width: width / 6,
+    height: width / 5,
+    width: width / 5,
   },
-
+  infoIcon: {
+    width: width / 20,
+    height: width / 20,
+  },
+  qrImage: {
+    height: width / 30,
+    width: width / 30,
+  },
+  qrButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 8,
+    width: width / 8,
+    height: height / 22,
+    marginLeft: height / 100,
+    marginBottom: height / 100,
+    paddingLeft: 2
+  },
+  qrText: {
+    color: 'white',
+    fontFamily: 'Lato-Bold',
+    fontSize: width / 40,
+    backgroundColor: 'transparent',
+    paddingLeft: 1
+  },
+  textFieldContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end'
+  },
 });
 
 const mapStateToProps = state => ({
@@ -220,15 +284,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setSeed: (seed) => {
     dispatch(setSeed(seed));
-  },
-  getMarketData: () => {
-    dispatch(getMarketData());
-  },
-  getPrice: (currency) => {
-    dispatch(getPrice(currency));
-  },
-  getChartData: (currency, timeFrame) => {
-    dispatch(getChartData(currency, timeFrame));
   },
 });
 

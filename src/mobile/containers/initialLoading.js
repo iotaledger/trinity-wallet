@@ -16,14 +16,14 @@ class InitialLoading extends React.Component {
 
 
   componentDidMount() {
-    this.timeout = setTimeout(this.onLoaded.bind(this), 1800);
+    this.timeout = setTimeout(this.onLoaded.bind(this), 100);
   }
 
   onLoaded() {
     const state = store.getState();
     if (state.account.firstUse) {
       this.props.navigator.push({
-        screen: 'welcome',
+        screen: 'languageSetup',
         navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
         animated: false,
       });
