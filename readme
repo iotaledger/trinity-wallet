@@ -1,8 +1,14 @@
 To run the project:
 
 1. cd project folder
-2. npm install
-3. ./node_modules/.bin/rn-nodeify --hack --install
+2. yarn install
+
+Note:
+https://github.com/l3wi/iota.lib.js is used in favor of official iota.lib.js as it supports react-native.
+In case yarn fails to install l3wi/iota.lib.js (https://github.com/yarnpkg/yarn/issues/513#issuecomment-253010084),
+please add the following to `~/.ssh/config`:
+                Host github.com
+                       User git
 4. Open ./ios/iotaWallet.xcodeproj in Xcode
 5. Select iPhone 7 Plus Simulator in Xcode
 6. Run
