@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
-import { AsyncStorage } from 'react-native';
+import { autoRehydrate } from 'redux-persist';
 import thunk from 'redux-thunk';
+
 import marketData from './reducers/marketDataReducer';
 import iota from './reducers/iotaReducer';
 import account from './reducers/accountReducer';
@@ -15,9 +15,10 @@ const store = createStore(
   compose(
     applyMiddleware(thunk),
     autoRehydrate(),
+    typeof window !== 'undefined' && window.devToolsExtension
+        ? window.devToolsExtension()
+        : (f) => f
   ),
 );
-
-persistStore(store, { storage: AsyncStorage, blacklist: ['iota'] });
 
 export default store;
