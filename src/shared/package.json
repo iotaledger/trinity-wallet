@@ -5,7 +5,6 @@
   "keywords": [],
   "author": "Manuel Bieh <node@manuelbieh.de> (https://github.com/manuelbieh)",
   "license": "MIT",
-  "devDependencies": {},
   "dependencies": {
     "iota.lib.js": "git:github.com/l3wi/iota.lib.js.git",
     "random-bytes": "^1.0.0",

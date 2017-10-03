@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "iota light wallet for desktop",
   "main": "main.js",
+  "moduleRoots": [
+    ".",
+    "src",
+    "../../shared"
+  ],
   "scripts": {
     "start": "electron main.dev.js",
     "devserver": "node server.js",
@@ -38,62 +43,20 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^3.4.2",
+    "postcss-loader": "^2.0.6",
     "postcss-nested": "^2.1.2",
     "react-dev-utils": "^4.0.1",
     "react-error-overlay": "^2.0.1",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "redux-persist": "^4.9.1",
     "style-loader": "^0.13.1",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1"
   },
-  "build": {
-    "directories": {
-      "buildResources": "../shared/build",
-      "output": "out"
-    },
-    "appId": "com.iotatoken.wallet",
-    "protocols": [
-      {
-        "name": "IOTA URL Scheme",
-        "schemes": [
-          "iota"
-        ]
-      }
-    ],
-    "dmg": {
-      "iconSize": 125,
-      "contents": [
-        {
-          "x": 235,
-          "y": 290,
-          "type": "link",
-          "path": "/Applications"
-        },
-        {
-          "x": 235,
-          "y": 20,
-          "type": "file"
-        }
-      ]
-    },
-    "win": {
-      "target": "nsis"
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb",
-        "rpm",
-        "tar.gz"
-      ]
-    },
-    "mac": {
-      "category": "public.app-category.developer-tools"
-    }
-  },
   "dependencies": {
-    "postcss-loader": "^2.0.6"
+    "i18next": "^9.0.1",
+    "react-i18next": "^6.0.4"
   }
 }
