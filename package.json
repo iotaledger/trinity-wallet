@@ -21,7 +21,7 @@
     "domain-browser": "^1.1.7",
     "events": "^1.1.1",
     "https-browserify": "0.0.1",
-    "iota.lib.js": "ssh://github.com/l3wi/iota.lib.js",
+    "iota.lib.js": "git+https://git@github.com/l3wi/iota.lib.js.git",
     "os-browserify": "^0.1.2",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
