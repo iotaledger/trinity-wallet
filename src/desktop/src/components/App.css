@@ -1,7 +1,16 @@
-body {
-    background: white;
+:root {
+    --color-primary: #0A2E38;
+    --color-bg: white;
+    --color-bg-1: #103b45;
+    --color-bg-2: #052730;
+    --color-text: white;
 }
 
-/*.h1 {
-    color: blue;
-}*/
+body {
+    background: var(--color-bg-1);
+    radial-gradient(ellipse at center, #093c4a 0%,#113c46 100%)
+    background-size: 100%;
+    background-attachment: fixed;
+    color: var(--color-text);
+    min-height: 100vh;
+}
