@@ -1,3 +1,9 @@
+@custom-media --xs (min-width: 0px);
+@custom-media --sm (max-width: 480px);
+@custom-media --md (max-width: 768px);
+@custom-media --lg (max-width: 1024px);
+@custom-media --xl (max-width: 1440px);
+
 :root {
     --color-primary: #0A2E38;
     --color-bg: white;
