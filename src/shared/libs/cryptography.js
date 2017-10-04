@@ -1,4 +1,4 @@
-import SInfo from 'react-native-sensitive-info';
+import { SInfo } from '../../mobile/exports';
 
 export function storeInKeychain(key, value) {
   SInfo.setItem(key, value, {
