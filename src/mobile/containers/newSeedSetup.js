@@ -12,7 +12,7 @@ import {
   Image,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { randomiseSeed, setSeed } from '../actions/iotaActions';
+import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from 'react-native-dropdownalert';
 
