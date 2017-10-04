@@ -1,12 +1,12 @@
 {
-  "name": "shared",
+  "name": "iota-wallet-shared-modules",
   "version": "0.0.0",
   "description": "",
   "keywords": [],
   "author": "Manuel Bieh <node@manuelbieh.de> (https://github.com/manuelbieh)",
   "license": "MIT",
   "dependencies": {
-    "iota.lib.js": "git:github.com/l3wi/iota.lib.js.git",
+    "iota.lib.js": "git+https://git@github.com/l3wi/iota.lib.js.git",
     "random-bytes": "^1.0.0",
     "react-native-sensitive-info": "^5.1.0",
     "redux": "^3.7.2",
