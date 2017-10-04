@@ -7,8 +7,6 @@
   "license": "MIT",
   "dependencies": {
     "iota.lib.js": "git+https://git@github.com/l3wi/iota.lib.js.git",
-    "random-bytes": "^1.0.0",
-    "react-native-sensitive-info": "^5.1.0",
     "redux": "^3.7.2",
     "redux-persist": "^4.10.1",
     "redux-thunk": "^2.2.0"
