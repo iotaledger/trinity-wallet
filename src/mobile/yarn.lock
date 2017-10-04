@@ -5635,6 +5635,10 @@ watch@~0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/watch/-/watch-0.10.0.tgz#77798b2da0f9910d595f1ace5b0c2258521f21dc"
 
+"watchman@git+https://github.com/facebook/watchman.git":
+  version "0.0.0"
+  resolved "git+https://github.com/facebook/watchman.git#63614128d492828f542e9d21ef1290e56726515f"
+
 webidl-conversions@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"

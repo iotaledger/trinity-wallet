@@ -31,9 +31,9 @@ class CopySeedToClipboard extends React.Component {
   render() {
     return (
 
-      <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
+      <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
         <View style={styles.topContainer}>
-          <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
+          <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
           <View style={styles.titleContainer}>
             <Text style={styles.title}>
                                 SAVE YOUR SEED
@@ -73,7 +73,7 @@ class CopySeedToClipboard extends React.Component {
         </View>
         <View style={styles.midContainer}>
           <View style={styles.seedBox}>
-            <Image source={require('../images/arrow-white.png')} style={styles.arrow}/>
+            <Image source={require('../../shared/images/arrow-white.png')} style={styles.arrow}/>
             <View style={styles.seedBoxTextContainer}>
               <View>
                 <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(0, 3)}</Text>
@@ -114,7 +114,7 @@ class CopySeedToClipboard extends React.Component {
           </View>
           <TouchableOpacity onPress={event => this.onCopyPress()} style={{paddingTop: height / 30}}>
             <View style={styles.copyButton}>
-              <Image style={styles.copyImage} source={require('../images/clipboard.png')} />
+              <Image style={styles.copyImage} source={require('../../shared/images/clipboard.png')} />
               <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
             </View>
           </TouchableOpacity>

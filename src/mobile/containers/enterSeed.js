@@ -14,7 +14,7 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import {Keyboard} from 'react-native'
 import { connect } from 'react-redux';
-import { setSeed } from '../actions/iotaActions';
+import { setSeed } from '../../shared/actions/iotaActions';
 
 const { height, width } = Dimensions.get('window');
 
@@ -87,7 +87,7 @@ class EnterSeed extends React.Component {
                   <View style={styles.qrContainer}>
                     <TouchableOpacity onPress={this.onQRClick()}>
                       <View style={styles.qrButton}>
-                        <Image source={require('../images/camera.png')} style={styles.qrImage} />
+                        <Image source={require('../../shared/images/camera.png')} style={styles.qrImage} />
                           <Text style={styles.qrText} > QR </Text>
                       </View>
                     </TouchableOpacity>
@@ -95,7 +95,7 @@ class EnterSeed extends React.Component {
                   </View>
                   <View style={{ paddingTop: height / 4.65, position: 'absolute' }}>
                     <View style={styles.infoTextContainer}>
-                      <Image source={require('../images/info.png')} style={styles.infoIcon}/>
+                      <Image source={require('../../shared/images/info.png')} style={styles.infoIcon}/>
                       <Text style={styles.infoText}>
                                       Seeds should be 81 characters long, and should contain capital letters A-Z, or the number 9.
                                       You cannot use seeds longer than 81 characters.
