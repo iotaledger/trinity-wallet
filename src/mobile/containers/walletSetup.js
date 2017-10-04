@@ -34,9 +34,9 @@ class WalletSetup extends React.Component {
 
   render() {
     return (
-      <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
+      <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
         <View style={styles.topContainer}>
-          <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
+          <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
           <View style={styles.titleContainer}>
             <Text style={styles.title}>
                                 WALLET SETUP
@@ -53,7 +53,7 @@ class WalletSetup extends React.Component {
         </View>
         <View style={styles.midContainer}>
           <View style={styles.infoTextContainer}>
-            <Image source={require('../images/info.png')} style={styles.infoIcon}/>
+            <Image source={require('../../shared/images/info.png')} style={styles.infoIcon}/>
             <Text style={styles.infoText}>The IOTA seed is like a username and password to your account, combined into one string of 81 characters.</Text>
             <Text style={styles.infoText}>
               <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>

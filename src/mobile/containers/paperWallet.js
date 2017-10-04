@@ -18,7 +18,7 @@ class PaperWallet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checkboxImage: require('../images/checkbox-checked.png'),
+      checkboxImage: require('../../shared/images/checkbox-checked.png'),
       showIotaLogo: true
     }
   }
@@ -30,14 +30,14 @@ class PaperWallet extends React.Component {
   }
 
   onCheckboxPress() {
-    if(this.state.checkboxImage == require('../images/checkbox-checked.png')) {
+    if(this.state.checkboxImage == require('../../shared/images/checkbox-checked.png')) {
       this.setState({
-        checkboxImage: require('../images/checkbox-unchecked.png'),
+        checkboxImage: require('../../shared/images/checkbox-unchecked.png'),
         showIotaLogo: false
       })
     } else {
       this.setState({
-        checkboxImage: require('../images/checkbox-checked.png'),
+        checkboxImage: require('../../shared/images/checkbox-checked.png'),
         showIotaLogo: true
       })
     }
@@ -50,7 +50,7 @@ class PaperWallet extends React.Component {
   _renderIotaLogo () {
         if (this.state.showIotaLogo) {
             return (
-                <Image style={styles.paperWalletLogo} source={require('../images/iota-full.png')}/>
+                <Image style={styles.paperWalletLogo} source={require('../../shared/images/iota-full.png')}/>
             );
         } else {
             return null;
@@ -60,9 +60,9 @@ class PaperWallet extends React.Component {
   render() {
     return (
 
-      <ImageBackground source={require('../images/bg-green.png')} style={styles.container}>
+      <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
         <View style={styles.topContainer}>
-          <Image source={require('../images/iota-glow.png')} style={styles.iotaLogo} />
+          <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
           <View style={styles.titleContainer}>
             <Text style={styles.title}>
                                 SAVE YOUR SEED
@@ -105,7 +105,7 @@ class PaperWallet extends React.Component {
         <View style={styles.midContainer}>
           <View style={styles.paperWalletContainer}>
           <View style={styles.seedBox}>
-            <Image source={require('../images/arrow-black.png')} style={styles.arrow}/>
+            <Image source={require('../../shared/images/arrow-black.png')} style={styles.arrow}/>
             <View style={styles.seedBoxTextContainer}>
               <View>
                 <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(0, 3)}</Text>
@@ -164,7 +164,7 @@ class PaperWallet extends React.Component {
           <View style={{paddingTop: height / 20}}>
           <TouchableOpacity onPress={event => this.onPrintPress()}>
             <View style={styles.printButton}>
-              <Image style={styles.printImage} source={require('../images/print.png')} />
+              <Image style={styles.printImage} source={require('../../shared/images/print.png')} />
               <Text style={styles.printText}>PRINT PAPER WALLET</Text>
             </View>
           </TouchableOpacity>
