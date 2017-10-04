@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb",
+  "plugins": [
+    "babel",
+    "react",
+    "react-native",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "react/forbid-prop-types": ["error", { "forbid": ["any", "array"] }]
+  }
+}
