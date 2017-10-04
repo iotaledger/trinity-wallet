@@ -1,5 +1,5 @@
 import { iota } from '../libs/iota';
-import randomBytes from 'random-bytes';
+import { randomBytes } from '../../mobile/exports';
 
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
