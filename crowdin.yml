@@ -1,6 +1,6 @@
 files:
-  - source: src/shared/locales/en/translation.json
-    translation: src/shared/locales/%two_letters_code%/translation.json
+  - source: /src/shared/locales/en/translation.json
+    translation: /src/shared/locales/%two_letters_code%/translation.json
     languages_mapping:
       two_letters_code:
         zh-CN: zh-CN
