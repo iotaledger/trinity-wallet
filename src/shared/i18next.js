@@ -25,6 +25,7 @@ i18next
             fr: { 'Common': require('./locales/fr/translation.json') },
             he: { 'Common': require('./locales/he/translation.json') },
             hi: { 'Common': require('./locales/hi/translation.json') },
+            it: { 'Common': require('./locales/it/translation.json') },
             ja: { 'Common': require('./locales/ja/translation.json') },
             ko: { 'Common': require('./locales/ko/translation.json') },
             nl: { 'Common': require('./locales/nl/translation.json') },
