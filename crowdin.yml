@@ -1,7 +1,10 @@
 files:
-  - source: /locales/en.json
-    translation: /locales/%two_letters_code%.json
+  - source: src/shared/locales/en/translation.json
+    translation: src/shared/locales/%two_letters_code%/translation.json
     languages_mapping:
       two_letters_code:
         zh-CN: zh-CN
         zh-TW: zh-TW
+        es-ES: es-ES
+        pt-PT: pt-PT
+        sv-SE: sv-SE
