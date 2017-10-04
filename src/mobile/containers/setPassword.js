@@ -19,6 +19,7 @@ import DropdownAlert from 'react-native-dropdownalert'
 import {Keyboard} from 'react-native'
 
 const { height, width } = Dimensions.get('window');
+const MIN_PASSWORD_LENGTH = 11;
 
 class SetPassword extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class SetPassword extends React.Component {
   }
 
   onDoneClick() {
-    if (this.state.password.length > 11 && (this.state.password == this.state.reentry)){
+    if (this.state.password.length > MIN_PASSWORD_LENGTH && (this.state.password == this.state.reentry)){
       Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed)).then(setSeed(''));
       this.props.setFirstUse(false);
       this.props.navigator.push({
@@ -39,8 +40,12 @@ class SetPassword extends React.Component {
         animated: false,
       });
     } else {
-      if(this.state.password.length < 8 || this.state.reentry.length < 8 ){
-        this.dropdown.alertWithType('error', 'Password is too short', 'Your password must be at least 11 characters. Please try again.');
+      if(this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH ){
+        this.dropdown.alertWithType(
+          'error',
+          'Password is too short',
+          `Your password must be at least ${MIN_PASSWORD_LENGTH} characters. Please try again.`
+        );
       } else if(!(this.state.password == this.state.reentry)){
         this.dropdown.alertWithType('error', 'Passwords do not match', 'The passwords you have entered do not match. Please try again.');
       }
