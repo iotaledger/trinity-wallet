@@ -103,9 +103,28 @@ class LanguageSetup extends React.Component {
           </View>
           <View style={{ height: this.state.dropdownHeight, overflow: 'hidden', backgroundColor: 'transparent', alignItems: 'flex-start', width: width / 1.5 }}>
             <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('English (International)')}>English (International)</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('French')}>French</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('German')}>German</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Spanish')}>Spanish</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Arabic')}>عربى</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Danish')}>Dansk</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('German')}>Deutsch</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Greek')}>Ελληνικά</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Spanish')}>Español</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Finnish')}>Suomi</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('French')}>Français</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Hebrew')}>עִברִית</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Hindi')}>हिंदी</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Italian')}>Italiano</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Japanese')}>日本語</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Korean')}>한국어</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Dutch')}>Nederlands</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Norwegian')}>Norsk</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Polish')}>Polski</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Portuguese')}>Português</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Romanian')}>Română</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Russian')}>Pусский</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Swedish')}>Svenska</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Turkish')}>Türkçe</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Chinese Simplified')}>中文 (简体)</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Chinese Traditional')}>中文繁體</Text>
           </View>
           </View>
         </View>
