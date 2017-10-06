@@ -31,6 +31,7 @@ i18next
             nl: { 'Common': require('./locales/nl/translation.json') },
             no: { 'Common': require('./locales/no/translation.json') },
             pl: { 'Common': require('./locales/pl/translation.json') },
+            pt_BR: { 'Common': require('./locales/pt-BR/translation.json') },
             pt_PT: { 'Common': require('./locales/pt-PT/translation.json') },
             ro: { 'Common': require('./locales/ro/translation.json') },
             ru: { 'Common': require('./locales/ru/translation.json') },
