@@ -103,28 +103,29 @@ class LanguageSetup extends React.Component {
           </View>
           <View style={{ height: this.state.dropdownHeight, overflow: 'hidden', backgroundColor: 'transparent', alignItems: 'flex-start', width: width / 1.5 }}>
             <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('English (International)')}>English (International)</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Arabic')}>عربى</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Danish')}>Dansk</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('German')}>Deutsch</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Greek')}>Ελληνικά</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Spanish')}>Español</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Finnish')}>Suomi</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('French')}>Français</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Hebrew')}>עִברִית</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Hindi')}>हिंदी</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Italian')}>Italiano</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Japanese')}>日本語</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Korean')}>한국어</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Dutch')}>Nederlands</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Norwegian')}>Norsk</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Polish')}>Polski</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Portuguese')}>Português</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Romanian')}>Română</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Russian')}>Pусский</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Swedish')}>Svenska</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Turkish')}>Türkçe</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Chinese Simplified')}>中文 (简体)</Text>
-            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Chinese Traditional')}>中文繁體</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('عربى - Arabic')}>عربى - Arabic</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Dansk - Danish')}>Dansk - Danish</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Deutsch - German')}>Deutsch - German</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Ελληνικά - German')}>Ελληνικά - Greek</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Español - Spanish')}>Español - Spanish</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Suomi - Finnish')}>Suomi - Finnish</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Français - French')}>Français - French</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('עִברִית - Hebrew')}>עִברִית</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('हिंदी - Hindi')}>हिंदी - Hindi</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Italiano - Italian')}>Italiano - Italian</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('日本語 - Japanese')}>日本語 - Japanese</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('한국어 - Korean')}>한국어 - Korean</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Nederlands - Dutch')}>Nederlands - Dutch</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Norsk - Norwegian')}>Norsk - Norwegian</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Polski - Polish')}>Polski - Polish</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Português (Brasil) - Portuguese (Brazil)')}>Português (Brasil) - Portuguese (Brazil)</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Português (Portugal) - Portuguese (Portugal)')}>Português (Portugal) - Portuguese (Portugal)</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Română - Romanian')}>Română - Romanian</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Pусский - Russian')}>Pусский - Russian</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Svenska - Swedish')}>Svenska - Swedish</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Türkçe - Turkish')}>Türkçe - Turkish</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('中文 (简体) - Chinese (Simplified)')}>中文 (简体) - Chinese (Simplified)</Text>
+            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('中文 (繁體) - Chinese (Traditional)')}>中文 (繁體) - Chinese (Traditional)</Text>
           </View>
           </View>
         </View>
