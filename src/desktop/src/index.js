@@ -9,7 +9,7 @@ import App from './components/App';
 render(
     <Redux store={store}>
         <I18nextProvider i18n={i18next}>
-            <App name='IOTA'/>
+            <App name="IOTA" />
         </I18nextProvider>
     </Redux>,
     document.getElementById('root')
