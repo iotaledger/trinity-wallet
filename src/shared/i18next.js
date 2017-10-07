@@ -7,19 +7,33 @@ i18next
     .init({
         fallbackLng: I18N_DEFAULT_LANGUAGE,
         fallbackNS: 'Common',
-        order: [
-            'querystring', 
-            'cookie', 
-            'localStorage', 
-            'navigator', 
-            'htmlTag'
-        ],
+        order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
         resources: {
-            de: { 'Common': require('./locales/de/translation.json') },
-            en: { 'Common': require('./locales/en/translation.json') },
-            fr: { 'Common': require('./locales/fr/translation.json') },
-            it: { 'Common': require('./locales/it/translation.json') },
-        },
+            ar: { Common: require('./locales/ar/translation.json') },
+            da: { Common: require('./locales/da/translation.json') },
+            de: { Common: require('./locales/de/translation.json') },
+            el: { Common: require('./locales/el/translation.json') },
+            en: { Common: require('./locales/en/translation.json') },
+            es_ES: { Common: require('./locales/es-ES/translation.json') },
+            fi: { Common: require('./locales/fi/translation.json') },
+            fr: { Common: require('./locales/fr/translation.json') },
+            he: { Common: require('./locales/he/translation.json') },
+            hi: { Common: require('./locales/hi/translation.json') },
+            it: { Common: require('./locales/it/translation.json') },
+            ja: { Common: require('./locales/ja/translation.json') },
+            ko: { Common: require('./locales/ko/translation.json') },
+            nl: { Common: require('./locales/nl/translation.json') },
+            no: { Common: require('./locales/no/translation.json') },
+            pl: { Common: require('./locales/pl/translation.json') },
+            pt_BR: { Common: require('./locales/pt-BR/translation.json') },
+            pt_PT: { Common: require('./locales/pt-PT/translation.json') },
+            ro: { Common: require('./locales/ro/translation.json') },
+            ru: { Common: require('./locales/ru/translation.json') },
+            sv_SE: { Common: require('./locales/sv-SE/translation.json') },
+            tr: { Common: require('./locales/tr/translation.json') },
+            zh_CN: { Common: require('./locales/zh-CN/translation.json') },
+            zh_TW: { Common: require('./locales/zh-TW/translation.json') }
+        }
     });
 
 export default i18next;

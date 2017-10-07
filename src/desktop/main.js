@@ -4,8 +4,7 @@ const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
 
-function createWindow () {
-
+function createWindow() {
     mainWindow = new BrowserWindow({
         width: 1280,
         height: 768
@@ -20,7 +19,6 @@ function createWindow () {
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
-
 }
 
 app.on('ready', createWindow);
