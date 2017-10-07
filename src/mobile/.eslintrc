@@ -1,5 +1,9 @@
 {
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
   "plugins": [
     "babel",
     "react",

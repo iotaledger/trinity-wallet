@@ -5,7 +5,7 @@
 @custom-media --xl (max-width: 1440px);
 
 :root {
-    --color-primary: #0A2E38;
+    --color-primary: #0a2e38;
     --color-bg: white;
     --color-bg-1: #103b45;
     --color-bg-2: #052730;
@@ -14,8 +14,7 @@
 
 body {
     background: var(--color-bg-1);
-    radial-gradient(ellipse at center, #093c4a 0%,#113c46 100%)
-    background-size: 100%;
+    radial-gradient(ellipse at center, #093c4a 0%,#113c46 100%): 100%;
     background-attachment: fixed;
     color: var(--color-text);
     min-height: 100vh;
