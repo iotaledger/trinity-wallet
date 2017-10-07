@@ -6,13 +6,13 @@ const settingsReducer = (state = {
 }, action) => {
   switch (action.type) {
 
-    case ActionTypes.LOCALE:
+    case ActionTypes.SET_LOCALE:
       return {
         ...state,
         locale: action.payload,
       };
 
-    case ActionTypes.FULLNODE:
+    case ActionTypes.SET_FULLNODE:
       return {
         ...state,
         fullNode: action.payload,

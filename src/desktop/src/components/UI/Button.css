@@ -1,0 +1,35 @@
+.button {
+    background: transparent;
+    border: 1px solid;
+    border-radius: 8px;
+    border-color: inherit;
+    padding: 16px 32px;
+    &:focus {
+        outline: none;
+    }
+}
+
+.default, .primary {
+    composes: button;
+    color: var(--color-button-default);
+}
+
+.danger {
+    composes: button;
+    color: var(--color-button-danger);
+}
+
+.success {
+    composes: button;
+    color: var(--color-button-success);
+}
+
+.extra {
+    composes: button;
+    color: var(--color-button-extra);
+}
+
+.warning {
+    composes: button;
+    color: var(--color-button-warning);
+}

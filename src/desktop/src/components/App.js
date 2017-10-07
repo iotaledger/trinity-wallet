@@ -1,20 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
-// import './test.css';
+import { connect } from 'react-redux';
+import i18next from 'libs/i18next';
+import Onboarding from './Layout/Onboarding';
 
-class Hello extends React.PureComponent {
+import './App.css';
+
+class App extends React.Component {
 
     static propTypes = {
-        name: PropTypes.string,
+        settings: PropTypes.shape({
+            locale: PropTypes.string.isRequired,
+            fullNode: PropTypes.string.isRequired,
+        }).isRequired,
     };
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.settings.locale !== this.props.settings.locale) {
+            i18next.changeLanguage(nextProps.settings.locale);
+        }
+    }
 
     render() {
         return (
-            <h1>Hello, {this.props.name}!</h1>
+            <Onboarding />
         );
     }
-
 }
 
-export default Hello;
+const mapStateToProps = (state) => ({
+    settings: state.settings,
+});
+
+export default connect(mapStateToProps)(App);

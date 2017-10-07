@@ -30,7 +30,9 @@ module.exports = {
                                 camelCase: true,
                                 modules: true,
                                 importLoaders: 1,
-                                // localIdentName: '[hash:base64:5]' : '[name]__[local]',
+                                localIdentName: process.env.NODE_ENV === 'production'
+                                    ? '[hash:base64]'
+                                    : '[name]__[local]',
                                 sourceMap: true
                             }
                         },
@@ -43,6 +45,10 @@ module.exports = {
                     ]
                 }))
             },
+            {
+                test: /\.(png|jpeg|ttf|jpg|svg)$/,
+                use: [{ loader: 'url-loader', options: { limit: 8192 } } ]
+            }
         ]
     },
     resolve: {
