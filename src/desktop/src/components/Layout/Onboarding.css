@@ -1,0 +1,35 @@
+.wrapper {
+
+    margin: auto;
+    max-width: 100%;
+    text-align: center;
+    width: 512px;
+
+    > div {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+        width: 100%;
+
+        > header, > main, > footer {
+            flex: 1 1 auto;
+            width: 100%;
+        }
+
+        > header {
+            max-height: 200px;
+        }
+
+        > footer {
+            max-height: 150px;
+        }
+
+    }
+
+}
+
+.formGroup {
+    text-align: left;
+}
