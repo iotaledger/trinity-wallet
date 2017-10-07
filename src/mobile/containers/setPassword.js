@@ -31,7 +31,7 @@ class SetPassword extends React.Component {
     }
 
     onDoneClick() {
-        if (this.state.password.length > MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
+        if (this.state.password.length > MIN_PASSWORD_LENGTH - 1 && this.state.password == this.state.reentry) {
             Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed)).then(setSeed(''));
             this.props.setFirstUse(false);
             this.props.navigator.push({
