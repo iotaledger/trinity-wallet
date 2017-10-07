@@ -3,8 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Welcome from '../Onboarding/Welcome';
 import css from './Onboarding.css';
 
-export default class Onboarding extends React.PureComponent {
-
+export default class Onboarding extends React.Component {
     render() {
         return (
             <div className={css.wrapper}>
@@ -14,5 +13,4 @@ export default class Onboarding extends React.PureComponent {
             </div>
         );
     }
-
 }
