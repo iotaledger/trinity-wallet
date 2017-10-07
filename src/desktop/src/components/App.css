@@ -1,3 +1,5 @@
+@import-normalize;
+
 @custom-media --xs (min-width: 0px);
 @custom-media --sm (max-width: 480px);
 @custom-media --md (max-width: 768px);
@@ -5,18 +7,35 @@
 @custom-media --xl (max-width: 1440px);
 
 :root {
-    --color-primary: #0A2E38;
-    --color-bg: white;
-    --color-bg-1: #103b45;
-    --color-bg-2: #052730;
     --color-text: white;
+    --color-yellow: #F7D002;
+    --color-blue: #8BD4FF;
+    --color-red: #FF6C69;
+    --color-green: #9DFFAF;
+
+    --color-label: var(--color-yellow);
+    --color-button-warning: var(--color-yellow);
+    --color-button-danger: var(--color-red);
+    --color-button-success: var(--color-green);
+    --color-button-extra: var(--color-blue);
+    --color-button-default: white;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 body {
-    background: var(--color-bg-1);
-    radial-gradient(ellipse at center, #093c4a 0%,#113c46 100%)
-    background-size: 100%;
+    background-image: url(../../../shared/images/bg-green.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     background-attachment: fixed;
     color: var(--color-text);
-    min-height: 100vh;
+}
+
+label {
+    color: var(--color-label);
+    display: block;
 }

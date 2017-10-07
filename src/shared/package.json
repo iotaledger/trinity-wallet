@@ -11,6 +11,7 @@
     "react-native-sensitive-info": "^5.1.0",
     "redux": "^3.7.2",
     "redux-persist": "^4.10.1",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
   }
 }

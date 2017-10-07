@@ -4,7 +4,7 @@ const config = require('./config.base');
 config.devtool = 'eval-source-map';
 
 config.entry = [
-    'webpack-hot-middleware/client',
+    'webpack-hot-middleware/client?reload=true',
     'react-error-overlay',
 ].concat(config.entry);
 
