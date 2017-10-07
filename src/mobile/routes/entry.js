@@ -6,9 +6,12 @@ import store from '../../shared/store';
 registerScreens(store, Provider);
 
 Navigation.startSingleScreenApp({
-  screen: {
-    screen: 'initialLoading',
-    navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png', screenBackgroundColor: '#102e36' },
-  },
+    screen: {
+        screen: 'initialLoading',
+        navigatorStyle: {
+            navBarHidden: true,
+            screenBackgroundImageName: 'bg-green.png',
+            screenBackgroundColor: '#102e36'
+        }
+    }
 });
-
