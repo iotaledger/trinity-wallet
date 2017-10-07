@@ -17,12 +17,15 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: [{ loader: 'babel-loader' }]
+                use: [{
+                    loader: 'babel-loader'
+                }]
             },
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                    publicPath: process.env.NODE_ENV === 'production' ? '../' : undefined,
                     use: [
                         {
                             loader: 'css-loader',
@@ -46,9 +49,15 @@ module.exports = {
                 }))
             },
             {
-                test: /\.(png|jpeg|ttf|jpg|svg)$/,
-                use: [{ loader: 'url-loader', options: { limit: 8192 } } ]
-            }
+                test: /\.(png|jpg|jpeg|svg|ttf)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192,
+                        name: 'images/[hash:8].[ext]'
+                    }
+                }]
+            },
         ]
     },
     resolve: {
