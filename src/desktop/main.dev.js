@@ -4,8 +4,7 @@ const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
 
-function createWindow () {
-
+function createWindow() {
     mainWindow = new BrowserWindow({
         width: 1280,
         height: 768
@@ -19,21 +18,15 @@ function createWindow () {
         mainWindow = null;
     });
 
-    const {
-        default: installExtension,
-        REACT_DEVELOPER_TOOLS,
-        REDUX_DEVTOOLS
-    } = require('electron-devtools-installer');
+    const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 
-    Promise.all([
-        installExtension(REACT_DEVELOPER_TOOLS),
-        installExtension(REDUX_DEVTOOLS),
-    ]).then((exts) => {
-        exts.forEach((name) => console.log(`Added Extension: ${name}`));
-    }).catch((err) => {
-        console.log('An error occurred: ', err);
-    });
-
+    Promise.all([installExtension(REACT_DEVELOPER_TOOLS), installExtension(REDUX_DEVTOOLS)])
+        .then(exts => {
+            exts.forEach(name => console.log(`Added Extension: ${name}`));
+        })
+        .catch(err => {
+            console.log('An error occurred: ', err);
+        });
 }
 
 app.on('ready', createWindow);

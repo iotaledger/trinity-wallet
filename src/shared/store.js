@@ -8,19 +8,17 @@ import account from './reducers/accountReducer';
 import settings from './reducers/settings';
 
 const store = createStore(
-  combineReducers({
-    marketData,
-    iota,
-    account,
-    settings,
-  }),
-  compose(
-    applyMiddleware(thunk),
-    autoRehydrate(),
-    typeof window !== 'undefined' && window.devToolsExtension
-        ? window.devToolsExtension()
-        : (f) => f
-  ),
+    combineReducers({
+        marketData,
+        iota,
+        account,
+        settings,
+    }),
+    compose(
+        applyMiddleware(thunk),
+        autoRehydrate(),
+        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : (f) => f
+    )
 );
 
 export default store;
