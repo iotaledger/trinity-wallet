@@ -3,6 +3,7 @@
     border: 1px solid;
     border-radius: 8px;
     border-color: inherit;
+    line-height: 1.15;
     padding: 16px 32px;
     &:focus {
         outline: none;
