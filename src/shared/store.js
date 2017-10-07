@@ -5,12 +5,14 @@ import thunk from 'redux-thunk';
 import marketData from './reducers/marketDataReducer';
 import iota from './reducers/iotaReducer';
 import account from './reducers/accountReducer';
+import settings from './reducers/settings';
 
 const store = createStore(
   combineReducers({
     marketData,
     iota,
     account,
+    settings,
   }),
   compose(
     applyMiddleware(thunk),
