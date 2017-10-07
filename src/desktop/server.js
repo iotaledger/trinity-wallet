@@ -20,7 +20,7 @@ app.use(webpackHotMiddleware(compiler));
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/', (request, response) => {
+app.get('*', (request, response) => {
     response.sendFile(__dirname + '/dist/index.html');
 });
 
