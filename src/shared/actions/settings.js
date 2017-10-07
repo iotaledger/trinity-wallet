@@ -5,15 +5,15 @@ export const ActionTypes = {
 };
 
 export function setLocale(locale) {
-  return {
-    type: ActionTypes.SET_LOCALE,
-    payload: locale,
-  };
+    return {
+        type: ActionTypes.SET_LOCALE,
+        payload: locale,
+    };
 }
 
 export function setFullNode(fullNode) {
-  return {
-    type: ActionTypes.SET_FULLNODE,
-    payload: fullNode,
-  };
+    return {
+        type: ActionTypes.SET_FULLNODE,
+        payload: fullNode,
+    };
 }
