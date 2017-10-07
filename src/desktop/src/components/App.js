@@ -4,17 +4,13 @@ import './App.css';
 // import './test.css';
 
 class Hello extends React.PureComponent {
-
     static propTypes = {
-        name: PropTypes.string,
+        name: PropTypes.string
     };
 
     render() {
-        return (
-            <h1>Hello, {this.props.name}!</h1>
-        );
+        return <h1>Hello, {this.props.name}!</h1>;
     }
-
 }
 
 export default Hello;

@@ -3,8 +3,8 @@ import { AsyncStorage } from 'react-native';
 import store from '../shared/store';
 
 persistStore(store, {
-    storage: AsyncStorage, 
-    blacklist: ['iota'] 
+    storage: AsyncStorage,
+    blacklist: ['iota']
 });
 
 export default store;
