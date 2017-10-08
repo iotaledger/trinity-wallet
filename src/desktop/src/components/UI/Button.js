@@ -3,27 +3,21 @@ import PropTypes from 'prop-types';
 import css from './Button.css';
 
 export default class Button extends React.PureComponent {
-
     static propTypes = {
         children: PropTypes.node,
-        variant: PropTypes.oneOf([
-            'default',
-            'success',
-            'warning',
-            'danger',
-            'info',
-        ]).isRequired,
+        variant: PropTypes.oneOf(['default', 'success', 'warning', 'danger', 'info']).isRequired
     };
 
     static defaultProps = {
-        variant: 'default',
+        variant: 'default'
     };
 
     render() {
         const { children, variant } = this.props;
         return (
-            <button className={css[variant]}>{children}</button>
+            <button {...this.props} className={css[variant]}>
+                {children}
+            </button>
         );
     }
-
 }

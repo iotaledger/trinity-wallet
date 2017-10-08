@@ -8,10 +8,10 @@
 
 :root {
     --color-text: white;
-    --color-yellow: #F7D002;
-    --color-blue: #8BD4FF;
-    --color-red: #FF6C69;
-    --color-green: #9DFFAF;
+    --color-yellow: #f7d002;
+    --color-blue: #8bd4ff;
+    --color-red: #ff6c69;
+    --color-green: #9dffaf;
 
     --color-label: var(--color-yellow);
     --color-button-warning: var(--color-yellow);
@@ -19,9 +19,12 @@
     --color-button-success: var(--color-green);
     --color-button-extra: var(--color-blue);
     --color-button-default: white;
+
+    --font-size-default: 14px;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -33,6 +36,7 @@ body {
     background-size: 100% 100%;
     background-attachment: fixed;
     color: var(--color-text);
+    font-size: var(--font-size-default);
 }
 
 label {
