@@ -1,0 +1,13 @@
+.wrapper {
+    border: 1px dashed white;
+    border-radius: 16px;
+    padding: 16px;
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
