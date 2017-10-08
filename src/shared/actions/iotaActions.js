@@ -1,5 +1,4 @@
 import { iota } from '../libs/iota';
-import { randomBytes } from '../../mobile/exports';
 
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
@@ -134,7 +133,7 @@ export function sendTransaction(seed, address, value, message) {
     });
 }
 
-export function randomiseSeed() {
+export function randomiseSeed(randomBytesFn) {
     return dispatch => {
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
         let seed = '';
@@ -143,7 +142,7 @@ export function randomiseSeed() {
         // var rand = randomBytes(1)
 
         // asynchronous API, uses iOS-side SecRandomCopyBytes
-        randomBytes(100, (error, bytes) => {
+        randomBytesFn(100, (error, bytes) => {
             if (!error) {
                 Object.keys(bytes).forEach(key => {
                     if (bytes[key] < 243 && seed.length < 81) {
@@ -152,6 +151,7 @@ export function randomiseSeed() {
                         seed += randomLetter;
                     }
                 });
+
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);
