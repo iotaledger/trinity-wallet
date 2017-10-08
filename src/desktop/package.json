@@ -104,6 +104,7 @@
         }
     },
     "dependencies": {
-        "eslint-config-prettier": "^2.6.0"
+        "eslint-config-prettier": "^2.6.0",
+        "randombytes": "^2.0.5"
     }
 }
