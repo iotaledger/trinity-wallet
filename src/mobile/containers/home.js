@@ -5,6 +5,8 @@ import Send from './send';
 import Receive from './receive';
 import History from './history';
 import Tools from './tools';
+import DropdownAlert from 'react-native-dropdownalert';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 
@@ -164,6 +166,7 @@ class Home extends React.Component {
                             <Text style={[styles.iconTitle, { opacity: this.state.toolsOpacity }]}>TOOLS</Text>
                         </View>
                     </TouchableWithoutFeedback>
+                    <DropdownAlert ref={ref => DropdownHolder.setDropDown(ref)} />
                 </View>
             </ImageBackground>
         );
