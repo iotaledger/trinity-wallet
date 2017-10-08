@@ -1,3 +1,5 @@
+import merge from 'lodash/merge';
+import split from 'lodash/split';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -9,7 +11,8 @@ import {
     ImageBackground,
     ListView,
     TouchableOpacity,
-    Image
+    Image,
+    Platform
 } from 'react-native';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
@@ -23,160 +26,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable global-require */
 
-class NewSeedSetup extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            randomised: false,
-            infoTextContainerHeight: 100
-        };
-    }
-
-    onGeneratePress() {
-        this.props.randomiseSeed();
-        this.setState({
-            randomised: true
-        });
-        this.timeout = setTimeout(this.flashText1.bind(this), 1000);
-        this.timeout = setTimeout(this.flashText2.bind(this), 1250);
-        this.timeout = setTimeout(this.flashText1.bind(this), 1400);
-        this.timeout = setTimeout(this.flashText2.bind(this), 1650);
-
-        this.timeout = setTimeout(this.flashText1.bind(this), 2400);
-        this.timeout = setTimeout(this.flashText2.bind(this), 2650);
-        this.timeout = setTimeout(this.flashText1.bind(this), 2800);
-        this.timeout = setTimeout(this.flashText2.bind(this), 3050);
-
-        this.timeout = setTimeout(this.flashText1.bind(this), 3800);
-        this.timeout = setTimeout(this.flashText2.bind(this), 4050);
-        this.timeout = setTimeout(this.flashText1.bind(this), 4200);
-        this.timeout = setTimeout(this.flashText2.bind(this), 4450);
-    }
-
-    flashText1() {
-        this.setState({
-            infoTextContainerHeight: 0
-        });
-    }
-    flashText2() {
-        this.setState({
-            infoTextContainerHeight: 100
-        });
-    }
-    onNextPress() {
-        if (this.state.randomised) {
-            this.props.navigator.push({
-                screen: 'saveYourSeed',
-                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-                animated: false
-            });
-        } else {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed has not been generated',
-                'Please click the Generate New Seed button.'
-            );
-        }
-    }
-    onBackPress() {
-        this.props.navigator.pop({
-            animated: false
-        });
-    }
-
-    onItemPress(sectionID) {
-        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-        randomBytes(5, (error, bytes) => {
-            if (!error) {
-                let i = 0;
-                let seed = this.props.iota.seed;
-                Object.keys(bytes).map((key, index) => {
-                    if (bytes[key] < 243 && i < 1) {
-                        const randomNumber = bytes[key] % 27;
-                        const randomLetter = charset.charAt(randomNumber);
-                        const substr1 = seed.substr(0, sectionID);
-                        sectionID++;
-                        const substr2 = seed.substr(sectionID, 80);
-                        seed = substr1 + randomLetter + substr2;
-                        i++;
-                    }
-                });
-                this.props.setSeed(seed);
-            } else {
-                console.log(error);
-            }
-        });
-    }
-
-    render() {
-        return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>GENERATE A NEW SEED</Text>
-                    </View>
-                    <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingBottom: height / 80 }}>
-                        <View style={styles.generateButton}>
-                            <Image style={styles.generateImage} source={require('../../shared/images/plus.png')} />
-                            <Text style={styles.generateText}>GENERATE NEW SEED</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.midContainer}>
-                    <ListView
-                        contentContainerStyle={styles.list}
-                        dataSource={ds.cloneWithRows(this.props.iota.seed)}
-                        renderRow={(rowData, rowID, sectionID) => (
-                            <TouchableHighlight
-                                key={sectionID}
-                                onPress={event => this.onItemPress(sectionID)}
-                                underlayColor="#F7D002"
-                            >
-                                <View style={styles.tile}>
-                                    <Text style={styles.item}>{rowData}</Text>
-                                </View>
-                            </TouchableHighlight>
-                        )}
-                        style={styles.squareContainer}
-                        initialListSize={81}
-                        scrollEnabled={false}
-                    />
-                </View>
-                <View style={styles.bottomContainer}>
-                    <View
-                        style={{
-                            justifyContent: 'flex-end',
-                            paddingBottom: height / 150,
-                            height: this.state.infoTextContainerHeight,
-                            overflow: 'hidden'
-                        }}
-                    >
-                        <Text style={styles.infoText}>Press individual letters to randomise them.</Text>
-                        <Text style={styles.infoText}>Then click NEXT.</Text>
-                    </View>
-                    <View style={styles.buttonsContainer}>
-                        <View style={styles.backButtonContainer}>
-                            <TouchableOpacity onPress={event => this.onBackPress()}>
-                                <View style={styles.backButton}>
-                                    <Text style={styles.backText}>GO BACK</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        <TouchableOpacity onPress={event => this.onNextPress()}>
-                            <View style={styles.nextButton}>
-                                <Text style={styles.nextText}>NEXT</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <DropdownAlert ref={ref => (this.dropdown = ref)} />
-            </ImageBackground>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
@@ -310,6 +160,174 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
     }
 });
+
+const androidStyles = StyleSheet.create({
+    squareContainer: {
+        height: width / 1.2,
+        width: width / 1.2
+    },
+    midContainer: {
+        flex: 3,
+        paddingTop: height / 30
+    }
+});
+
+class NewSeedSetup extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            randomised: false,
+            infoTextContainerHeight: 100
+        };
+    }
+
+    onGeneratePress() {
+        this.props.randomiseSeed();
+        this.setState({
+            randomised: true
+        });
+        this.timeout = setTimeout(this.flashText1.bind(this), 1000);
+        this.timeout = setTimeout(this.flashText2.bind(this), 1250);
+        this.timeout = setTimeout(this.flashText1.bind(this), 1400);
+        this.timeout = setTimeout(this.flashText2.bind(this), 1650);
+
+        this.timeout = setTimeout(this.flashText1.bind(this), 2400);
+        this.timeout = setTimeout(this.flashText2.bind(this), 2650);
+        this.timeout = setTimeout(this.flashText1.bind(this), 2800);
+        this.timeout = setTimeout(this.flashText2.bind(this), 3050);
+
+        this.timeout = setTimeout(this.flashText1.bind(this), 3800);
+        this.timeout = setTimeout(this.flashText2.bind(this), 4050);
+        this.timeout = setTimeout(this.flashText1.bind(this), 4200);
+        this.timeout = setTimeout(this.flashText2.bind(this), 4450);
+    }
+
+    flashText1() {
+        this.setState({
+            infoTextContainerHeight: 0
+        });
+    }
+    flashText2() {
+        this.setState({
+            infoTextContainerHeight: 100
+        });
+    }
+    onNextPress() {
+        if (this.state.randomised) {
+            this.props.navigator.push({
+                screen: 'saveYourSeed',
+                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                animated: false
+            });
+        } else {
+            this.dropdown.alertWithType(
+                'error',
+                'Seed has not been generated',
+                'Please click the Generate New Seed button.'
+            );
+        }
+    }
+    onBackPress() {
+        this.props.navigator.pop({
+            animated: false
+        });
+    }
+
+    onItemPress(sectionID) {
+        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
+        randomBytes(5, (error, bytes) => {
+            if (!error) {
+                let i = 0;
+                let seed = this.props.iota.seed;
+                Object.keys(bytes).map((key, index) => {
+                    if (bytes[key] < 243 && i < 1) {
+                        const randomNumber = bytes[key] % 27;
+                        const randomLetter = charset.charAt(randomNumber);
+                        const substr1 = seed.substr(0, sectionID);
+                        sectionID++;
+                        const substr2 = seed.substr(sectionID, 80);
+                        seed = substr1 + randomLetter + substr2;
+                        i++;
+                    }
+                });
+                this.props.setSeed(seed);
+            } else {
+                console.log(error);
+            }
+        });
+    }
+
+    render() {
+        const isAndroid = Platform.OS === 'android';
+        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
+
+        const { iota: { seed } } = this.props;
+        return (
+            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <View style={styles.topContainer}>
+                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>GENERATE A NEW SEED</Text>
+                    </View>
+                    <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingBottom: height / 80 }}>
+                        <View style={styles.generateButton}>
+                            <Image style={styles.generateImage} source={require('../../shared/images/plus.png')} />
+                            <Text style={styles.generateText}>GENERATE NEW SEED</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.midContainer}>
+                    <ListView
+                        contentContainerStyle={styles.list}
+                        dataSource={ds.cloneWithRows(split(seed, ''))}
+                        renderRow={(rowData, rowID, sectionID) => (
+                            <TouchableHighlight
+                                key={sectionID}
+                                onPress={event => this.onItemPress(sectionID)}
+                                underlayColor="#F7D002"
+                            >
+                                <View style={styles.tile}>
+                                    <Text style={styles.item}>{rowData}</Text>
+                                </View>
+                            </TouchableHighlight>
+                        )}
+                        style={styles.squareContainer}
+                        initialListSize={81}
+                        scrollEnabled={false}
+                    />
+                </View>
+                <View style={styles.bottomContainer}>
+                    <View
+                        style={{
+                            justifyContent: 'flex-end',
+                            paddingBottom: height / 150,
+                            height: this.state.infoTextContainerHeight,
+                            overflow: 'hidden'
+                        }}
+                    >
+                        <Text style={styles.infoText}>Press individual letters to randomise them.</Text>
+                        <Text style={styles.infoText}>Then click NEXT.</Text>
+                    </View>
+                    <View style={styles.buttonsContainer}>
+                        <View style={styles.backButtonContainer}>
+                            <TouchableOpacity onPress={event => this.onBackPress()}>
+                                <View style={styles.backButton}>
+                                    <Text style={styles.backText}>GO BACK</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                        <TouchableOpacity onPress={event => this.onNextPress()}>
+                            <View style={styles.nextButton}>
+                                <Text style={styles.nextText}>NEXT</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <DropdownAlert ref={ref => (this.dropdown = ref)} />
+            </ImageBackground>
+        );
+    }
+}
 
 NewSeedSetup.propTypes = {
     navigator: PropTypes.object.isRequired,
