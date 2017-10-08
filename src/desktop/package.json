@@ -17,7 +17,6 @@
         "compile:win32": "electron-builder --win --x32"
     },
     "devDependencies": {
-        "7zip-bin-linux": "^1.1.0",
         "babel-core": "^6.7.6",
         "babel-eslint": "^8.0.0",
         "babel-loader": "^6.2.4",
