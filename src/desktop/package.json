@@ -37,6 +37,7 @@
         "electron-devtools-installer": "^2.2.0",
         "electron-prebuilt": "^1.4.13",
         "eslint": "^4.7.2",
+        "eslint-config-prettier": "^2.6.0",
         "eslint-plugin-babel": "^4.1.2",
         "eslint-plugin-import": "^2.7.0",
         "eslint-plugin-react": "^7.3.0",
@@ -102,8 +103,5 @@
         "mac": {
             "category": "public.app-category.developer-tools"
         }
-    },
-    "dependencies": {
-        "eslint-config-prettier": "^2.6.0"
     }
 }
