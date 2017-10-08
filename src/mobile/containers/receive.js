@@ -43,10 +43,7 @@ class Receive extends React.Component {
 
     componentDidMount() {
         const dropdown = DropdownHolder.getDropDown();
-        setTimeout(
-            () => dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.'),
-            200
-        );
+        console.log(dropdown);
     }
 
     render() {
