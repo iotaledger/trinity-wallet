@@ -8,7 +8,7 @@
         "format": "prettier --write \"**/*.{js,json,css}\"",
         "precommit": "lint-staged",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "full-setup": "cd src/desktop && yarn && cd ../shared && yarn && cd ../mobile && yarn"
+        "full-setup": "yarn && cd src/desktop && yarn && cd ../shared && yarn && cd ../mobile && yarn"
     },
     "lint-staged": {
         "*.{js,json,css}": ["prettier --write", "git add"]

@@ -49,6 +49,7 @@
         "postcss-loader": "^2.0.6",
         "postcss-nested": "^2.1.2",
         "postcss-normalize": "^4.0.0",
+        "randombytes": "^2.0.5",
         "react": "^16.0.0",
         "react-dev-utils": "^4.1.0",
         "react-dom": "^16.0.0",
