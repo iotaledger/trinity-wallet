@@ -73,9 +73,13 @@ export function round(value, precision) {
     return Math.round(value * multiplier) / multiplier;
 }
 
-export const isServerAddressValid = server => {
+export const isValidServerAddress = server => {
     if (!server.startsWith('http://') && !server.startsWith('https://')) {
         return false;
     }
     return true;
+};
+
+export const isValidSeed = seed => {
+    return /^[A-Z9]{81}$/.test(seed);
 };
