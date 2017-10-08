@@ -1,107 +1,12 @@
-import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import merge from 'lodash/merge';
+import React, { Component } from 'react';
+import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, Platform } from 'react-native';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const { height, width } = Dimensions.get('window');
 
-class SaveYourSeed extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    onNextPress() {
-        this.props.navigator.push({
-            screen: 'setPassword',
-            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-            animated: false
-        });
-    }
-
-    onBackPress() {
-        this.props.navigator.pop({
-            animated: false
-        });
-    }
-
-    onWriteClick() {
-        this.props.navigator.push({
-            screen: 'writeSeedDown',
-            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-            animated: false
-        });
-    }
-    onPrintClick() {
-        this.props.navigator.push({
-            screen: 'paperWallet',
-            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-            animated: false
-        });
-    }
-    onCopyClick() {
-        this.props.navigator.push({
-            screen: 'copySeedToClipboard',
-            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-            animated: false
-        });
-    }
-
-    render() {
-        return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>SAVE YOUR SEED</Text>
-                    </View>
-                    <Text style={styles.infoText}>
-                        <Text style={styles.infoTextNormal}>You must save your seed with</Text>
-                        <Text style={styles.infoTextBold}> at least one </Text>
-                        <Text style={styles.infoTextNormal}>of the options listed below.</Text>
-                    </Text>
-                </View>
-                <View style={styles.midContainer}>
-                    <View style={{ paddingTop: height / 20 }}>
-                        <TouchableOpacity onPress={event => this.onWriteClick()}>
-                            <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>MANUAL COPY</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onPrintClick()}>
-                            <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>PRINT PAPER WALLET</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onCopyClick()}>
-                            <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>COPY TO CLIPBOARD</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={styles.bottomContainer}>
-                    <View style={{ paddingRight: width / 16 }}>
-                        <TouchableOpacity onPress={event => this.onBackPress()}>
-                            <View style={styles.backButton}>
-                                <Text style={styles.backText}>GO BACK</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <TouchableOpacity onPress={event => this.onNextPress()}>
-                        <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>NEXT</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </ImageBackground>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -215,8 +120,114 @@ const styles = StyleSheet.create({
     }
 });
 
+const androidStyles = StyleSheet.create({
+    midContainer: {
+        flex: 1
+    }
+});
+
+class SaveYourSeed extends Component {
+    onNextPress() {
+        this.props.navigator.push({
+            screen: 'setPassword',
+            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+            animated: false
+        });
+    }
+
+    onBackPress() {
+        this.props.navigator.pop({
+            animated: false
+        });
+    }
+
+    onWriteClick() {
+        this.props.navigator.push({
+            screen: 'writeSeedDown',
+            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+            animated: false
+        });
+    }
+    onPrintClick() {
+        this.props.navigator.push({
+            screen: 'paperWallet',
+            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+            animated: false
+        });
+    }
+    onCopyClick() {
+        this.props.navigator.push({
+            screen: 'copySeedToClipboard',
+            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+            animated: false
+        });
+    }
+
+    render() {
+        const isAndroid = Platform.OS === 'android';
+        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
+
+        return (
+            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <View style={styles.topContainer}>
+                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>SAVE YOUR SEED</Text>
+                    </View>
+                    <Text style={styles.infoText}>
+                        <Text style={styles.infoTextNormal}>You must save your seed with</Text>
+                        <Text style={styles.infoTextBold}> at least one </Text>
+                        <Text style={styles.infoTextNormal}>of the options listed below.</Text>
+                    </Text>
+                </View>
+                <View style={styles.midContainer}>
+                    <View style={{ paddingTop: height / 20 }}>
+                        <TouchableOpacity onPress={event => this.onWriteClick()}>
+                            <View style={styles.optionButton}>
+                                <Text style={styles.optionButtonText}>MANUAL COPY</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ paddingTop: height / 25 }}>
+                        <TouchableOpacity onPress={event => this.onPrintClick()}>
+                            <View style={styles.optionButton}>
+                                <Text style={styles.optionButtonText}>PRINT PAPER WALLET</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ paddingTop: height / 25 }}>
+                        <TouchableOpacity onPress={event => this.onCopyClick()}>
+                            <View style={styles.optionButton}>
+                                <Text style={styles.optionButtonText}>COPY TO CLIPBOARD</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View style={styles.bottomContainer}>
+                    <View style={{ paddingRight: width / 16 }}>
+                        <TouchableOpacity onPress={event => this.onBackPress()}>
+                            <View style={styles.backButton}>
+                                <Text style={styles.backText}>GO BACK</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity onPress={event => this.onNextPress()}>
+                        <View style={styles.nextButton}>
+                            <Text style={styles.nextText}>NEXT</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
+        );
+    }
+}
+
 const mapStateToProps = state => ({
     iota: state.iota
 });
+
+SaveYourSeed.propTypes = {
+    navigator: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps)(SaveYourSeed);
