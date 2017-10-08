@@ -2,6 +2,7 @@ import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
 import { registerScreens } from './navigation';
 import store from '../../shared/store';
+import '../shim';
 
 registerScreens(store, Provider);
 
