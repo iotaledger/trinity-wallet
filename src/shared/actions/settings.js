@@ -1,6 +1,6 @@
-import { isServerAddressValid } from '../libs/util';
+import { isValidServerAddress } from '../libs/util';
+import { showNotification } from './notifications';
 
-/* eslint-disable import/prefer-default-export */
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
     SET_FULLNODE: 'IOTA/SETTINGS/FULLNODE',
@@ -14,9 +14,19 @@ export function setLocale(locale) {
     };
 }
 
+export const invalidServerError = () => {
+    return showNotification({
+        type: 'error',
+        title: 'invalidServer_title',
+        text: 'invalidServer_text',
+        translate: true,
+    });
+};
+
 export function setFullNode(fullNode) {
     return dispatch => {
-        if (!isServerAddressValid(fullNode)) {
+        if (!isValidServerAddress(fullNode)) {
+            dispatch(invalidServerError());
             return false;
         }
 
@@ -34,11 +44,12 @@ export function addCustomNode(customNode = '') {
         const { settings } = getState();
 
         if (!isValidServerAddress(customNode)) {
+            dispatch(invalidServerError());
             return false;
         }
 
         if (settings.availableNodes.includes(customNode)) {
-            return false;
+            return true;
         }
 
         dispatch({
