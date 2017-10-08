@@ -33,7 +33,7 @@ export function addCustomNode(customNode = '') {
     return (dispatch, getState) => {
         const { settings } = getState();
 
-        if (!isServerAddressValid(customNode)) {
+        if (!isValidServerAddress(customNode)) {
             return false;
         }
 
