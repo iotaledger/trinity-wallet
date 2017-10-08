@@ -72,6 +72,7 @@ class Receive extends React.Component {
                 renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
               /> */}
                 </View>
+                <DropdownAlert ref={ref => (this.dropdown = ref)} />
             </View>
         );
     }
