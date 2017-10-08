@@ -1,12 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, ListView, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, ListView, Dimensions, TouchableOpacity, Clipboard } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownAlert from 'react-native-dropdownalert';
-import Clipboard from 'react-native-clipboard';
 
 const { height, width } = Dimensions.get('window');
 
@@ -37,7 +36,7 @@ class Receive extends React.Component {
 
     onAddressPress() {
         Clipboard.setString(this.props.iota.addresses[this.props.iota.addresses.length - 1]);
-        this.dropdown.alertWithType('success', 'Address copied', `The address has been copied to the clipboard.`);
+        this.dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
     }
 
     render() {
