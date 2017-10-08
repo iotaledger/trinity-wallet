@@ -182,7 +182,7 @@ class NewSeedSetup extends Component {
     }
 
     onGeneratePress() {
-        this.props.randomiseSeed();
+        this.props.randomiseSeed(randomBytes);
         this.setState({
             randomised: true
         });
@@ -344,9 +344,7 @@ const mapDispatchToProps = dispatch => ({
     setSeed: seed => {
         dispatch(setSeed(seed));
     },
-    randomiseSeed: () => {
-        dispatch(randomiseSeed());
-    }
+    randomiseSeed: randomBytesFn => dispatch(randomiseSeed(randomBytesFn))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup);
