@@ -4,14 +4,13 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { setFullNode } from 'actions/settings';
 
-class LanguageSelect extends React.PureComponent {
+class ServerSelect extends React.PureComponent {
     static propTypes = {
         availableNodes: PropTypes.array.isRequired,
         fullNode: PropTypes.string,
         onChange: PropTypes.func,
         setFullNode: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired
-        // setLocale: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     state = {};
@@ -47,11 +46,11 @@ class LanguageSelect extends React.PureComponent {
 
 const mapStateToProps = (state, ownProps) => ({
     fullNode: ownProps.fullNode || state.settings.fullNode,
-    availableNodes: state.settings.availableNodes
+    availableNodes: state.settings.availableNodes,
 });
 
 const mapDispatchToProps = {
-    setFullNode
+    setFullNode,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(LanguageSelect));
+export default translate('lightserver')(connect(mapStateToProps, mapDispatchToProps)(ServerSelect));

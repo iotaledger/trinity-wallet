@@ -1,5 +1,4 @@
 .wrapper {
-
     margin: auto;
     max-width: 100%;
     text-align: center;
@@ -13,9 +12,12 @@
         min-height: 100vh;
         width: 100%;
 
-        > header, > main, > footer {
+        > header,
+        > main,
+        > footer {
             flex: 1 1 auto;
             width: 100%;
+            padding: 0 16px;
         }
 
         > header {
@@ -25,11 +27,10 @@
         > footer {
             max-height: 150px;
         }
-
     }
-
 }
 
 .formGroup {
     text-align: left;
+    margin: 0 0 16px 0;
 }

@@ -23,6 +23,15 @@
     --font-size-default: 14px;
 }
 
+@keyframes :global(slide-in-left-20) {
+    from {
+        transform: translate3d(20px, 0px, 0px);
+    }
+    to {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
 html,
 body {
     margin: 0;
@@ -35,6 +44,7 @@ body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
+    font-family: arial;
     color: var(--color-text);
     font-size: var(--font-size-default);
 }
@@ -42,4 +52,43 @@ body {
 label {
     color: var(--color-label);
     display: block;
+    margin-bottom: 8px;
+}
+
+select {
+    &:focus {
+        outline: 0;
+    }
+    background: rgba(0, 0, 0, 0.2);
+    border: 0;
+    padding: 16px 4px;
+    width: 100%;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+option {
+    background: transparent;
+    color: black;
+    padding: 4px;
+}
+
+input {
+    box-sizing: border-box;
+
+    &:focus {
+        outline: none;
+    }
+
+    &[type='text'],
+    &[type='email'],
+    &[type='tel'],
+    &[type='password'] {
+        background: rgba(0, 0, 0, 0.2);
+        border: 0;
+        border-bottom: 2px solid white;
+        color: white;
+        padding: 16px;
+        width: 100%;
+    }
 }

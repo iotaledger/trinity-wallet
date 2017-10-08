@@ -16,26 +16,19 @@ class LightServerSetup extends React.PureComponent {
         setFullNode: PropTypes.func.isRequired,
         fullNode: PropTypes.string.isRequired,
         history: PropTypes.shape({
-            push: PropTypes.func.isRequired
+            push: PropTypes.func.isRequired,
         }).isRequired,
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     state = {
-        fullNode: this.props.fullNode
-    };
-
-    validateServer = (server = this.state.fullNode) => {
-        if (!server.startsWith('http://') && !server.startsWith('https://')) {
-            return false;
-        }
-        return true;
+        fullNode: this.props.fullNode,
     };
 
     onCustomServerChange = e => {
         const { target: { value: customServer } } = e;
         this.setState(() => ({
-            customServer
+            customServer,
         }));
     };
 
@@ -48,8 +41,6 @@ class LightServerSetup extends React.PureComponent {
                 history.push('/onboarding/wallet');
                 return;
             }
-            alert('Server already exists in list or is invalid.');
-            console.log('custom server invalid or already exists', customServer);
             return;
         }
 
@@ -62,7 +53,7 @@ class LightServerSetup extends React.PureComponent {
     setServer = server => {
         this.setState(() => ({
             fullNode: server,
-            customServer: null
+            customServer: null,
         }));
     };
 
@@ -83,7 +74,7 @@ class LightServerSetup extends React.PureComponent {
                     {fullNode === '' && (
                         <div className={css.formGroup}>
                             <label>{t('custom_server_label')}</label>
-                            <input type="text" name="customServer" onChange={this.onCustomServerChange} />
+                            <input type="text" name="customServer" onChange={this.onCustomServerChange} autoFocus />
                         </div>
                     )}
                 </main>
@@ -101,12 +92,12 @@ class LightServerSetup extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    fullNode: state.settings.fullNode
+    fullNode: state.settings.fullNode,
 });
 
 const mapDispatchToProps = {
     addCustomNode,
-    setFullNode
+    setFullNode,
 };
 
 export default translate('lightserver')(connect(mapStateToProps, mapDispatchToProps)(LightServerSetup));
