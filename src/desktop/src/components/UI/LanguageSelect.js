@@ -5,13 +5,18 @@ import i18next from 'libs/i18next';
 import { setLocale } from 'actions/settings';
 
 class LanguageSelect extends React.PureComponent {
-
     static propTypes = {
         locale: PropTypes.string,
-        setLocale: PropTypes.func.isRequired,
+        setLocale: PropTypes.func.isRequired
     };
 
-    changeHandler = (e) => {
+    static languages = {
+        en: 'English',
+        'es-ES': 'Espanol',
+        de: 'Deutsch'
+    };
+
+    changeHandler = e => {
         const { target } = e;
         const { setLocale } = this.props;
         setLocale(target.value);
@@ -19,7 +24,6 @@ class LanguageSelect extends React.PureComponent {
     };
 
     render() {
-
         const { locale } = this.props;
 
         return (
@@ -29,14 +33,12 @@ class LanguageSelect extends React.PureComponent {
                 <option value="de">Deutsch</option>
             </select>
         );
-
     }
-
 }
 
-const mapStateToProps = ((state) => ({
-    locale: state.settings.locale,
-}));
+const mapStateToProps = state => ({
+    locale: state.settings.locale
+});
 
 const mapDispatchToProps = {
     setLocale
