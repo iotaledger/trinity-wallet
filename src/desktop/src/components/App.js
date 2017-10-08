@@ -7,11 +7,11 @@ import store from '../store';
 import i18next from 'libs/i18next';
 import Loading from 'components/Layout/Loading';
 import Onboarding from 'components/Layout/Onboarding';
+import Notifications from 'components/UI/Notifications';
 
 import './App.css';
 
 class App extends React.Component {
-
     static propTypes = {
         settings: PropTypes.shape({
             locale: PropTypes.string.isRequired,
@@ -20,11 +20,11 @@ class App extends React.Component {
     };
 
     state = {
-        initialized: false
+        initialized: false,
     };
 
     componentWillMount() {
-        persistStore(store, { blacklist: ['iota'] }, () => {
+        persistStore(store, { blacklist: ['iota', 'notifications'] }, () => {
             this.setState(() => ({
                 initialized: true,
             }));
@@ -38,19 +38,20 @@ class App extends React.Component {
     }
 
     render() {
-
         if (this.state.initialized === false) {
             return <Loading />;
         }
 
         return (
-            <Onboarding />
+            <div>
+                <Notifications />
+                <Onboarding />
+            </div>
         );
-
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     settings: state.settings,
 });
 

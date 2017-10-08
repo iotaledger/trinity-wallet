@@ -6,6 +6,8 @@ import marketData from './reducers/marketDataReducer';
 import iota from './reducers/iotaReducer';
 import account from './reducers/accountReducer';
 import settings from './reducers/settings';
+import seeds from './reducers/seeds';
+import notifications from './reducers/notifications';
 
 const store = createStore(
     combineReducers({
@@ -13,12 +15,14 @@ const store = createStore(
         iota,
         account,
         settings,
+        seeds,
+        notifications,
     }),
     compose(
         applyMiddleware(thunk),
         autoRehydrate(),
-        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : (f) => f
-    )
+        typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
+    ),
 );
 
 export default store;
