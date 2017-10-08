@@ -4,9 +4,23 @@ export const ActionTypes = {
     REMOVE_SEED: 'IOTA/SEEDS/REMOVE_SEED',
 };
 
-export function addSeed(seed) {
+export const addSeed = seed => {
     return {
         type: ActionTypes.ADD_SEED,
         payload: seed,
     };
-}
+};
+
+export const setActiveSeed = seed => {
+    return {
+        type: ActionTypes.SET_SEED,
+        payload: seed,
+    };
+};
+
+export const removeSeed = seed => {
+    return {
+        type: ActionTypes.REMOVE_SEED,
+        payload: seed,
+    };
+};
