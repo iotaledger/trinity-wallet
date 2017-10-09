@@ -39,10 +39,10 @@ class Receive extends React.Component {
         this.dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
     }
 
-    componentDidMount() {
-        //  const dropdown = DropdownHolder.getDropDown();
-        this.dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
-    }
+    //  componentDidMount() {
+    //  const dropdown = DropdownHolder.getDropDown();
+    //    this.dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
+    //}
 
     render() {
         return (
