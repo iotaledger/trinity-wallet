@@ -31,7 +31,7 @@ class SetPassword extends React.Component {
     }
 
     onDoneClick() {
-        if (this.state.password.length > MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
+        if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
             Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed)).then(setSeed(''));
             this.props.setFirstUse(false);
             this.props.navigator.push({
@@ -50,7 +50,7 @@ class SetPassword extends React.Component {
                     'Password is too short',
                     `Your password must be at least ${MIN_PASSWORD_LENGTH} characters. Please try again.`
                 );
-            } else if (!(this.state.password == this.state.reentry)) {
+            } else if (!(this.state.password === this.state.reentry)) {
                 this.dropdown.alertWithType(
                     'error',
                     'Passwords do not match',
