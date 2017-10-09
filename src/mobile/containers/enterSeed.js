@@ -37,7 +37,8 @@ class EnterSeed extends React.Component {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                'Seeds must be at least 60 characters long. Please try again.'
+                `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
+                    .seed.length} characters long. Please try again.`
             );
         }
     }

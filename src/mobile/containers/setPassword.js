@@ -48,7 +48,8 @@ class SetPassword extends React.Component {
                 this.dropdown.alertWithType(
                     'error',
                     'Password is too short',
-                    `Your password must be at least ${MIN_PASSWORD_LENGTH} characters. Please try again.`
+                    `Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state
+                        .password.length} characters long. Please try again.`
                 );
             } else if (!(this.state.password === this.state.reentry)) {
                 this.dropdown.alertWithType(
