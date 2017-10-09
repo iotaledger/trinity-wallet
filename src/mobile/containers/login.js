@@ -121,7 +121,7 @@ class Login extends React.Component {
                     </View>
                 </TouchableWithoutFeedback>
 
-                <DropdownAlert ref={ref => (dropdown = ref)} />
+                <DropdownAlert ref={ref => (dropdown = ref)} errorColor="#A10702" />
             </ImageBackground>
         );
     }

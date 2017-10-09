@@ -173,7 +173,7 @@ class Home extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
-                <DropdownAlert ref={c => (this.dropdown = c)} />
+                <DropdownAlert ref={c => (this.dropdown = c)} errorColor="#A10702" successColor="#009f3f" />
             </ImageBackground>
         );
     }
