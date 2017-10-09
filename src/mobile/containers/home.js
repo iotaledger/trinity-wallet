@@ -5,6 +5,8 @@ import Send from './send';
 import Receive from './receive';
 import History from './history';
 import Tools from './tools';
+import DropdownAlert from 'react-native-dropdownalert';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 
@@ -22,6 +24,12 @@ class Home extends React.Component {
             bannerText: 'BALANCE',
             mode: 'STANDARD'
         };
+    }
+
+    componentDidMount() {
+        if (this.dropdown) {
+            this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        }
     }
 
     setTab(tabChoice) {
@@ -165,6 +173,7 @@ class Home extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
+                <DropdownAlert ref={c => (this.dropdown = c)} />
             </ImageBackground>
         );
     }
