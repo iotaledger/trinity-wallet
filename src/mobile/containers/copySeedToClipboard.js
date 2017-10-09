@@ -109,7 +109,7 @@ class CopySeedToClipboard extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <DropdownAlert ref={ref => DropdownHolder.setDropDown(ref)} />
+                <DropdownAlert ref={ref => DropdownHolder.setDropDown(ref)} successColor="#009f3f" />
             </ImageBackground>
         );
     }
