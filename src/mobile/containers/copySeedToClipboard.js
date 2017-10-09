@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, Clipboard } from 'react-native';
 import { connect } from 'react-redux';
+import DropdownAlert from 'react-native-dropdownalert';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 
@@ -15,7 +17,11 @@ class CopySeedToClipboard extends React.Component {
         });
     }
 
-    onCopyPress() {}
+    onCopyPress() {
+        Clipboard.setString(this.props.iota.seed);
+        const dropdown = DropdownHolder.getDropDown();
+        dropdown.alertWithType('success', 'Seed copied', 'The seed has been copied to the clipboard.');
+    }
 
     render() {
         return (
@@ -103,6 +109,7 @@ class CopySeedToClipboard extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
+                <DropdownAlert ref={ref => DropdownHolder.setDropDown(ref)} />
             </ImageBackground>
         );
     }
