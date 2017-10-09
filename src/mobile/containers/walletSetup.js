@@ -68,7 +68,7 @@ class WalletSetup extends React.Component {
                     <View style={styles.buttonsContainer}>
                         <TouchableOpacity onPress={event => this.onYesClick()}>
                             <View style={styles.yesButton}>
-                                <Text style={styles.yesText}>YES - I have seed</Text>
+                                <Text style={styles.yesText}>YES - I have a seed</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
