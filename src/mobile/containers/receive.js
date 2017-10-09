@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
-import DropdownAlert from 'react-native-dropdownalert';
-import DropdownHolder from './dropdownHolder';
+//mport DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 
@@ -37,18 +36,17 @@ class Receive extends React.Component {
 
     onAddressPress() {
         Clipboard.setString(this.props.iota.addresses[this.props.iota.addresses.length - 1]);
-        const dropdown = DropdownHolder.getDropDown();
-        dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
+        this.dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
     }
 
     componentDidMount() {
-        const dropdown = DropdownHolder.getDropDown();
-        console.log(dropdown);
+        //  const dropdown = DropdownHolder.getDropDown();
+        this.dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
     }
 
     render() {
         return (
-            /*<View style={styles.container}>
+            <View style={styles.container}>
                 <View style={{ paddingBottom: height / 40 }}>
                     <TouchableOpacity onPress={event => this.onAddressPress(this.props)}>
                         <View style={styles.receiveAddressContainer}>
@@ -72,15 +70,16 @@ class Receive extends React.Component {
                         <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
                     </View>
                 </TouchableOpacity>
-             <View style={{ paddingTop: height / 20 }}>
-                    {<ListView
-                dataSource={this.state.dataSource}
-                renderRow={(data) => <TransactionRow rowData={data} />}
-                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-              />}
-              </View>
-            </View> */
-            <View style={{ position: 'absolute', top: 0 }} />
+                <View style={{ paddingTop: height / 20 }}>
+                    {
+                        <ListView
+                            dataSource={this.state.dataSource}
+                            renderRow={data => <TransactionRow rowData={data} />}
+                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                        />
+                    }
+                </View>
+            </View>
         );
     }
 }
