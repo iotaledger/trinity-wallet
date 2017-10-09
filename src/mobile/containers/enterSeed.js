@@ -132,7 +132,7 @@ class EnterSeed extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert ref={ref => (this.dropdown = ref)} />
+                <DropdownAlert ref={ref => (this.dropdown = ref)} errorColor="#A10702" />
             </ImageBackground>
         );
     }
