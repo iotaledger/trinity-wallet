@@ -26,6 +26,12 @@ class Home extends React.Component {
         };
     }
 
+    componentDidMount() {
+        if (this.dropdown) {
+            this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        }
+    }
+
     setTab(tabChoice) {
         let tabContent;
         switch (tabChoice) {
@@ -166,8 +172,8 @@ class Home extends React.Component {
                             <Text style={[styles.iconTitle, { opacity: this.state.toolsOpacity }]}>TOOLS</Text>
                         </View>
                     </TouchableWithoutFeedback>
-                    <DropdownAlert ref={ref => DropdownHolder.setDropDown(ref)} />
                 </View>
+                <DropdownAlert ref={c => (this.dropdown = c)} />
             </ImageBackground>
         );
     }
