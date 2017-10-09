@@ -15,12 +15,22 @@ class CopySeedToClipboard extends React.Component {
         this.props.navigator.pop({
             animated: false
         });
+        Clipboard.setString('');
+        dropdown.alertWithType(
+            'info',
+            'Seed cleared',
+            'The seed has been cleared from the clipboard for your security.'
+        );
     }
 
     onCopyPress() {
         Clipboard.setString(this.props.iota.seed);
         const dropdown = DropdownHolder.getDropDown();
-        dropdown.alertWithType('success', 'Seed copied', 'The seed has been copied to the clipboard.');
+        dropdown.alertWithType(
+            'success',
+            'Seed copied',
+            'The seed has been copied to the clipboard and will be cleared once you press DONE.'
+        );
     }
 
     render() {
@@ -50,7 +60,7 @@ class CopySeedToClipboard extends React.Component {
                     </View>
                     <Text style={styles.infoTextNormal}>
                         Click the button below to copy your seed to a password manager. It will stay in your clipboard
-                        for 60 seconds.
+                        until you continue to the next screen.
                     </Text>
                     <Text style={styles.infoTextBold}> Do not store the seed in plain text.</Text>
                 </View>
