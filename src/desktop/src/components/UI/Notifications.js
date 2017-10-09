@@ -30,11 +30,11 @@ class Notifications extends React.PureComponent {
                 {Object.keys(notifications).map(id => {
                     let { title, text } = notifications[id];
 
-                    const { type = 'info', translationScope = 'notifications', translate } = notifications[id];
+                    const { type = 'info', translationScope, translate } = notifications[id];
 
                     if (translationScope || translate) {
-                        title = t(title, { ns: translationScope });
-                        text = t(text, { ns: translationScope });
+                        title = t(title, { ns: translationScope || 'notifications' });
+                        text = t(text, { ns: translationScope || 'notifications' });
                     }
 
                     return (
