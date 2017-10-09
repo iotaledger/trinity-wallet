@@ -26,11 +26,11 @@ class Home extends React.Component {
         };
     }
 
-    componentDidMount() {
-        if (this.dropdown) {
-            this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
-        }
-    }
+    //  componentDidMount() {
+    //    if (this.dropdown) {
+    //      this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+    //}
+    //}
 
     setTab(tabChoice) {
         let tabContent;
