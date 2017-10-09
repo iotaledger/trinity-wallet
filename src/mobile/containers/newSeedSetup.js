@@ -213,19 +213,19 @@ class NewSeedSetup extends Component {
         });
     }
     onNextPress() {
-        //  if (this.state.randomised) {
-        this.props.navigator.push({
-            screen: 'saveYourSeed',
-            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-            animated: false
-        });
-        /*} else {
+        if (this.state.randomised) {
+            this.props.navigator.push({
+                screen: 'saveYourSeed',
+                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                animated: false
+            });
+        } else {
             this.dropdown.alertWithType(
                 'error',
                 'Seed has not been generated',
                 'Please click the Generate New Seed button.'
             );
-        }*/
+        }
     }
     onBackPress() {
         this.props.navigator.pop({
