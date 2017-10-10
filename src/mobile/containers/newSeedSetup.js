@@ -323,7 +323,7 @@ class NewSeedSetup extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <DropdownAlert ref={ref => (this.dropdown = ref)} />
+                <DropdownAlert ref={ref => (this.dropdown = ref)} errorColor="#A10702" />
             </ImageBackground>
         );
     }
