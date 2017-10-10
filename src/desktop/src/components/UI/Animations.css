@@ -1,0 +1,15 @@
+@keyframes slide-in-left-20 {
+    from {
+        transform: translate3d(20px, 0px, 0px);
+    }
+    to {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+.slide-in-left {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.1, 0.9, 0.2, 1);
+    animation-fill-mode: both;
+    animation-name: slide-in-left-20;
+}
