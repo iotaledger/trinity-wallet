@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
-//mport DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 
@@ -36,13 +35,8 @@ class Receive extends React.Component {
 
     onAddressPress() {
         Clipboard.setString(this.props.iota.addresses[this.props.iota.addresses.length - 1]);
-        this.dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
+        // this.dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
     }
-
-    //  componentDidMount() {
-    //  const dropdown = DropdownHolder.getDropDown();
-    //    this.dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
-    //}
 
     render() {
         return (
@@ -71,13 +65,11 @@ class Receive extends React.Component {
                     </View>
                 </TouchableOpacity>
                 <View style={{ paddingTop: height / 20 }}>
-                    {
-                        <ListView
-                            dataSource={this.state.dataSource}
-                            renderRow={data => <TransactionRow rowData={data} />}
-                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                        />
-                    }
+                    <ListView
+                        dataSource={this.state.dataSource}
+                        renderRow={data => <TransactionRow rowData={data} />}
+                        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                    />
                 </View>
             </View>
         );
