@@ -1,16 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
-// import './test.css';
+import { connect } from 'react-redux';
+import { persistStore } from 'redux-persist';
+import { withRouter } from 'react-router-dom';
+import store from '../store';
+import i18next from 'libs/i18next';
+import Loading from 'components/Layout/Loading';
+import Onboarding from 'components/Layout/Onboarding';
+import Notifications from 'components/UI/Notifications';
 
-class Hello extends React.PureComponent {
+import './App.css';
+
+class App extends React.Component {
     static propTypes = {
-        name: PropTypes.string
+        settings: PropTypes.shape({
+            locale: PropTypes.string.isRequired,
+            fullNode: PropTypes.string.isRequired,
+        }).isRequired,
     };
 
+    state = {
+        initialized: false,
+    };
+
+    componentWillMount() {
+        persistStore(store, { blacklist: ['iota', 'notifications'] }, () => {
+            this.setState(() => ({
+                initialized: true,
+            }));
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.settings.locale !== this.props.settings.locale) {
+            i18next.changeLanguage(nextProps.settings.locale);
+        }
+    }
+
     render() {
-        return <h1>Hello, {this.props.name}!</h1>;
+        if (this.state.initialized === false) {
+            return <Loading />;
+        }
+
+        return (
+            <div>
+                <Notifications />
+                <Onboarding />
+            </div>
+        );
     }
 }
 
-export default Hello;
+const mapStateToProps = state => ({
+    settings: state.settings,
+});
+
+export default withRouter(connect(mapStateToProps)(App));

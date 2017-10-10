@@ -12,14 +12,18 @@ const compiler = webpack(config);
 app.use(
     webpackDevMiddleware(compiler, {
         noInfo: false,
-        publicPath: config.output.publicPath
+        publicPath: config.output.publicPath,
+        stats: {
+            colors: true
+        }
     })
 );
+
 app.use(webpackHotMiddleware(compiler));
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/', (request, response) => {
+app.get('*', (request, response) => {
     response.sendFile(__dirname + '/dist/index.html');
 });
 
