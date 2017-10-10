@@ -32,7 +32,15 @@ class Login extends React.Component {
             if (typeof value !== 'undefined') {
                 login(value);
             } else {
-                error();
+                if (this.state.password == '') {
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Empty password',
+                        'You must enter a password to log in. Please try again.'
+                    );
+                } else {
+                    error();
+                }
             }
         });
         function login(value) {
@@ -121,7 +129,7 @@ class Login extends React.Component {
                     </View>
                 </TouchableWithoutFeedback>
 
-                <DropdownAlert ref={ref => (dropdown = ref)} />
+                <DropdownAlert ref={ref => (dropdown = ref)} errorColor="#A10702" />
             </ImageBackground>
         );
     }

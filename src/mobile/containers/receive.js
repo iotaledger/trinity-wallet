@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, ListView, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, ListView, Dimensions, TouchableOpacity, Clipboard } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
@@ -33,15 +33,25 @@ class Receive extends React.Component {
         }
     }
 
+    onAddressPress() {
+        if (this.props.iota.addresses.length >= 1) {
+            Clipboard.setString(this.props.iota.addresses[this.props.iota.addresses.length - 1]);
+        } else {
+            return;
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <View style={{ paddingBottom: height / 40 }}>
-                    <View style={styles.receiveAddressContainer}>
-                        <Text style={styles.receiveAddressText}>
-                            {this.props.iota.addresses[this.props.iota.addresses.length - 1]}
-                        </Text>
-                    </View>
+                    <TouchableOpacity onPress={event => this.onAddressPress(this.props)}>
+                        <View style={styles.receiveAddressContainer}>
+                            <Text style={styles.receiveAddressText}>
+                                {this.props.iota.addresses[this.props.iota.addresses.length - 1]}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
                 <View style={{ paddingBottom: height / 40 }}>
                     <QRCode
@@ -58,11 +68,11 @@ class Receive extends React.Component {
                     </View>
                 </TouchableOpacity>
                 <View style={{ paddingTop: height / 20 }}>
-                    {/* <ListView
-                dataSource={this.state.dataSource}
-                renderRow={(data) => <TransactionRow rowData={data} />}
-                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-              /> */}
+                    <ListView
+                        dataSource={this.state.dataSource}
+                        renderRow={data => <TransactionRow rowData={data} />}
+                        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                    />
                 </View>
             </View>
         );
