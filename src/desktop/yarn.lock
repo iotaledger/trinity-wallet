@@ -3478,6 +3478,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+"jsqr@https://github.com/JodusNodus/jsQR.git":
+  version "0.2.2"
+  resolved "https://github.com/JodusNodus/jsQR.git#5ba1acefa1cbb9b2bc92b49f503f2674e2ec212b"
+
 jsx-ast-utils@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-2.0.1.tgz#e801b1b39985e20fffc87b40e3748080e2dcac7f"
@@ -4615,7 +4619,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -4788,6 +4792,14 @@ react-proxy@^1.1.7:
   dependencies:
     lodash "^4.6.1"
     react-deep-force-update "^1.0.0"
+
+react-qr-reader@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-qr-reader/-/react-qr-reader-1.2.1.tgz#17adeb40ed5db234ed4051a518988fd5d5908dbd"
+  dependencies:
+    jsqr "https://github.com/JodusNodus/jsQR.git"
+    prop-types "^15.5.8"
+    webrtc-adapter "^2.0.8"
 
 react-redux@^5.0.6:
   version "5.0.6"
@@ -5233,6 +5245,10 @@ schema-utils@^0.3.0:
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
   dependencies:
     ajv "^5.0.0"
+
+sdp@^1.0.0:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/sdp/-/sdp-1.5.4.tgz#8e038f6ddb14bd765ae1f4b5216e12094511e0d0"
 
 semver-diff@^2.0.0:
   version "2.1.0"
@@ -6025,6 +6041,12 @@ webpack@^3.6.0:
     watchpack "^1.4.0"
     webpack-sources "^1.0.1"
     yargs "^8.0.2"
+
+webrtc-adapter@^2.0.8:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-2.1.0.tgz#612b5bc6ce8e73c9d0660038a21f9255a867bf3e"
+  dependencies:
+    sdp "^1.0.0"
 
 websocket-driver@>=0.5.1:
   version "0.7.0"

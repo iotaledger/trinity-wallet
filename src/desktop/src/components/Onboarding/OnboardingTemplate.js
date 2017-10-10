@@ -3,22 +3,34 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Header from './Header';
 import ButtonLink from '../UI/ButtonLink';
-
-import css from '../Layout/Onboarding.css';
+import { Route } from 'react-router-dom';
+import SeedManualCopy from './SeedManualCopy';
 
 class Template extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
+        match: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired,
     };
 
-    state = {};
+    componentWillMount() {
+        this.navigateTo('/onboarding/seed/generate/save/manual');
+    }
+
+    navigateTo(url) {
+        const { history } = this.props;
+        history.push(url);
+    }
 
     render() {
-        const { t } = this.props;
+        const { t, match } = this.props;
+
         return (
             <form onSubmit={e => e.preventDefault()}>
-                <Header headline={t('title')} />
-                <main>Content</main>
+                <Header headline={t('save your seed')} />
+                <main>
+                    <Route path={`${match.url}/manual`} component={SeedManualCopy} />
+                </main>
                 <footer>
                     <ButtonLink to="/" variant="success">
                         {t('button3')}
