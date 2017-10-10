@@ -34,8 +34,11 @@ class Receive extends React.Component {
     }
 
     onAddressPress() {
-        Clipboard.setString(this.props.iota.addresses[this.props.iota.addresses.length - 1]);
-        // this.dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
+        if (this.props.iota.addresses.length >= 1) {
+            Clipboard.setString(this.props.iota.addresses[this.props.iota.addresses.length - 1]);
+        } else {
+            return;
+        }
     }
 
     render() {
