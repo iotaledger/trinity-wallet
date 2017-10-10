@@ -1,3 +1,5 @@
+@import-normalize;
+
 @custom-media --xs (min-width: 0px);
 @custom-media --sm (max-width: 480px);
 @custom-media --md (max-width: 768px);
@@ -5,17 +7,88 @@
 @custom-media --xl (max-width: 1440px);
 
 :root {
-    --color-primary: #0a2e38;
-    --color-bg: white;
-    --color-bg-1: #103b45;
-    --color-bg-2: #052730;
     --color-text: white;
+    --color-yellow: #f7d002;
+    --color-blue: #8bd4ff;
+    --color-red: #ff6c69;
+    --color-green: #9dffaf;
+
+    --color-label: var(--color-yellow);
+    --color-button-warning: var(--color-yellow);
+    --color-button-danger: var(--color-red);
+    --color-button-success: var(--color-green);
+    --color-button-extra: var(--color-blue);
+    --color-button-default: white;
+
+    --font-size-default: 14px;
+}
+
+@keyframes :global(slide-in-left-20) {
+    from {
+        transform: translate3d(20px, 0px, 0px);
+    }
+    to {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 body {
-    background: var(--color-bg-1);
-    radial-gradient(ellipse at center, #093c4a 0%,#113c46 100%): 100%;
+    background-image: url(../../../shared/images/bg-green.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     background-attachment: fixed;
+    font-family: arial;
     color: var(--color-text);
-    min-height: 100vh;
+    font-size: var(--font-size-default);
+}
+
+label {
+    color: var(--color-label);
+    display: block;
+    margin-bottom: 8px;
+}
+
+select {
+    &:focus {
+        outline: 0;
+    }
+    background: rgba(0, 0, 0, 0.2);
+    border: 0;
+    padding: 16px 4px;
+    width: 100%;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+option {
+    background: transparent;
+    color: black;
+    padding: 4px;
+}
+
+input {
+    box-sizing: border-box;
+
+    &:focus {
+        outline: none;
+    }
+
+    &[type='text'],
+    &[type='email'],
+    &[type='tel'],
+    &[type='password'] {
+        background: rgba(0, 0, 0, 0.2);
+        border: 0;
+        border-bottom: 2px solid white;
+        color: white;
+        padding: 16px;
+        width: 100%;
+    }
 }

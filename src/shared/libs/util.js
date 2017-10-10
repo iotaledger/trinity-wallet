@@ -72,3 +72,22 @@ export function round(value, precision) {
     const multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
 }
+
+export const isValidServerAddress = server => {
+    if (!server.startsWith('http://') && !server.startsWith('https://')) {
+        return false;
+    }
+    return true;
+};
+
+export const isValidSeed = seed => {
+    return /^[A-Z9]{81}$/.test(seed);
+};
+
+export const guid = () => {
+    const s4 = () =>
+        Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+};
