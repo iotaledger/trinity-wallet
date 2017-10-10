@@ -11,10 +11,7 @@ class CopySeedToClipboard extends React.Component {
         super(props);
     }
 
-    onDonePress() {
-        this.props.navigator.pop({
-            animated: false
-        });
+    clearClipboard() {
         Clipboard.setString('');
         dropdown.alertWithType(
             'info',
@@ -23,14 +20,25 @@ class CopySeedToClipboard extends React.Component {
         );
     }
 
+    componentWillUnmount() {
+        clearClipboard();
+    }
+
+    onDonePress() {
+        this.props.navigator.pop({
+            animated: false
+        });
+    }
+
     onCopyPress() {
         Clipboard.setString(this.props.iota.seed);
         const dropdown = DropdownHolder.getDropDown();
         dropdown.alertWithType(
             'success',
             'Seed copied',
-            'The seed has been copied to the clipboard and will be cleared once you press DONE.'
+            'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.'
         );
+        setTimeout(clearClipboard(), 60000);
     }
 
     render() {
