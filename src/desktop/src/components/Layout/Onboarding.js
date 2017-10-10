@@ -7,6 +7,7 @@ import LightServerSetup from '../Onboarding/LightServerSetup';
 import WalletSetup from '../Onboarding/WalletSetup';
 import GenerateSeed from '../Onboarding/GenerateSeed';
 import EnterSeed from '../Onboarding/EnterSeed';
+import OnboardingTemplate from '../Onboarding/OnboardingTemplate';
 
 import css from './Onboarding.css';
 
@@ -30,10 +31,7 @@ export default class Onboarding extends React.Component {
                     <Route exact path="/onboarding/wallet" component={WalletSetup} />
                     <Route exact path="/onboarding/seed/enter" component={EnterSeed} />
                     <Route exact path="/onboarding/seed/generate" component={GenerateSeed} />
-                    <Route exact path="/onboarding/seed/generate/save" component={Placeholder} />
-                    <Route exact path="/onboarding/seed/generate/save/manual" component={Placeholder} />
-                    <Route exact path="/onboarding/seed/generate/save/pdf" component={Placeholder} />
-                    <Route exact path="/onboarding/seed/generate/save/clipboard" component={Placeholder} />
+                    <Route path="/onboarding/seed/generate/save" component={OnboardingTemplate} />
                     <Route exact path="/onboarding/security/password" component={Placeholder} />
                     <Route exact path="/onboarding/security/password/set" component={Placeholder} />
                     <Route exact path="/onboarding/security/extra" component={Placeholder} />
