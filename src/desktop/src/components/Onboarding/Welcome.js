@@ -9,7 +9,7 @@ import css from '../Layout/Onboarding.css';
 export default translate('setLanguage')(
     class Welcome extends React.PureComponent {
         static propTypes = {
-            t: PropTypes.func.isRequired
+            t: PropTypes.func.isRequired,
         };
 
         render() {
@@ -24,12 +24,12 @@ export default translate('setLanguage')(
                         </div>
                     </main>
                     <footer>
-                        <ButtonLink to="/onboarding/instructions" variant="success">
+                        <ButtonLink to="/onboarding/seed/generate/save" variant="success">
                             {t('button1')}
                         </ButtonLink>
                     </footer>
                 </div>
             );
         }
-    }
+    },
 );
