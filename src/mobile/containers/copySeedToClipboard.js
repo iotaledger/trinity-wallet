@@ -153,7 +153,7 @@ class CopySeedToClipboard extends React.Component {
                         backgroundColor: 'transparent',
                         fontFamily: 'Lato-Regular'
                     }}
-                    defaultTextContainer={{ flex: 1, padding: 20 }}
+                    defaultTextContainer={{ flex: 1, padding: 15 }}
                     messageStyle={{
                         fontSize: 14,
                         textAlign: 'left',
