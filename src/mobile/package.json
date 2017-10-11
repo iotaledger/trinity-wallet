@@ -59,7 +59,7 @@
         "url": "^0.10.3",
         "util": "^0.10.3",
         "victory-native": "^0.14.0",
-        "vm-browserify": "0.0.4",
+        "vm-browserify": "0.0.4"
     },
     "devDependencies": {
         "babel-eslint": "^8.0.0",
