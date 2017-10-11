@@ -30,7 +30,8 @@ const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
+        barStyle: 'light-content'
     },
     topContainer: {
         flex: 2.3,

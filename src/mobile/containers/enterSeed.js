@@ -8,7 +8,8 @@ import {
     TouchableWithoutFeedback,
     Image,
     ScrollView,
-    ImageBackground
+    ImageBackground,
+    StatusBar
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -17,6 +18,7 @@ import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/iotaActions';
 
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
 
 class EnterSeed extends React.Component {
     constructor(props) {
@@ -52,6 +54,7 @@ class EnterSeed extends React.Component {
     render() {
         const { seed } = this.state;
         return (
+            //  <StatusBar barStyle="light-content"/>
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -154,6 +157,7 @@ class EnterSeed extends React.Component {
                         fontFamily: 'Lato-Regular'
                     }}
                     imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
                 />
             </ImageBackground>
         );
@@ -164,7 +168,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        barStyle: 'light-content'
     },
     topContainer: {
         flex: 0.7,

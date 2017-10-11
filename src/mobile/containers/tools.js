@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        paddingBottom: height / 20
+        paddingBottom: height / 20,
+        barStyle: 'light-content'
     },
     logOutButton: {
         borderColor: '#9DFFAF',
