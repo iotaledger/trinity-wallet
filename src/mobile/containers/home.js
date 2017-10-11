@@ -177,7 +177,8 @@ const styles = StyleSheet.create({
     titleContainer: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'stretch'
+        alignItems: 'stretch',
+        barStyle: 'light-content'
     },
     banner: {
         alignItems: 'center',

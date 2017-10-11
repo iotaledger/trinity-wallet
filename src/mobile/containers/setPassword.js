@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     Image,
     ImageBackground,
-    ScrollView
+    ScrollView,
+    StatusBar
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setFirstUse } from '../../shared/actions/accountActions';
@@ -20,6 +21,7 @@ import { Keyboard } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 const MIN_PASSWORD_LENGTH = 11;
+const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
 
 class SetPassword extends React.Component {
     constructor(props) {
@@ -69,6 +71,7 @@ class SetPassword extends React.Component {
     render() {
         let { password, reentry } = this.state;
         return (
+            //<StatusBar barStyle="light-content"/>
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -163,6 +166,7 @@ class SetPassword extends React.Component {
                                 fontFamily: 'Lato-Regular'
                             }}
                             imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
+                            inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
                         />
                     </View>
                 </TouchableWithoutFeedback>
