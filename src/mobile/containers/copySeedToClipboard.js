@@ -3,26 +3,29 @@ import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackg
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 import DropdownHolder from './dropdownHolder';
-import BackgroundTimer from 'react-native-background-timer';
 
 const { height, width } = Dimensions.get('window');
 
+const dropdown = DropdownHolder.getDropDown();
+
+function clearClipboard() {
+    Clipboard.setString('');
+    const dropdown = DropdownHolder.getDropDown();
+    dropdown.alertWithType('info', 'Seed cleared', 'The seed has been cleared from the clipboard for your security.');
+}
 class CopySeedToClipboard extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    clearClipboard() {
+    /* clearClipboard() {
         Clipboard.setString('');
         dropdown.alertWithType(
             'info',
             'Seed cleared',
             'The seed has been cleared from the clipboard for your security.'
         );
-        const intervalId = BackgroundTimer.setInterval(() => {
-            console.log('test');
-        }, 1000);
-    }
+    } */
 
     componentWillUnmount() {
         clearClipboard();
@@ -42,9 +45,15 @@ class CopySeedToClipboard extends React.Component {
             'Seed copied',
             'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.'
         );
-        const intervalId = BackgroundTimer.setInterval(() => {
-            console.log('test');
-        }, 1000);
+        setTimeout(function() {
+            Clipboard.setString('');
+            //  const dropdown = DropdownHolder.getDropDown();
+            dropdown.alertWithType(
+                'info',
+                'Seed cleared',
+                'The seed has been cleared from the clipboard for your security.'
+            );
+        }, 60000);
     }
 
     render() {
@@ -133,7 +142,28 @@ class CopySeedToClipboard extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <DropdownAlert ref={ref => DropdownHolder.setDropDown(ref)} successColor="#009f3f" />
+                <DropdownAlert
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
+                    titleStyle={{
+                        fontSize: 16,
+                        textAlign: 'left',
+                        fontWeight: 'bold',
+                        color: 'white',
+                        backgroundColor: 'transparent',
+                        fontFamily: 'Lato-Regular'
+                    }}
+                    defaultTextContainer={{ flex: 1, padding: 20 }}
+                    messageStyle={{
+                        fontSize: 14,
+                        textAlign: 'left',
+                        fontWeight: 'bold',
+                        color: 'white',
+                        backgroundColor: 'transparent',
+                        fontFamily: 'Lato-Regular'
+                    }}
+                    imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
+                />
             </ImageBackground>
         );
     }
