@@ -28,6 +28,8 @@
         "prettier": "^1.7.4"
     },
     "dependencies": {
-        "eslint-config-prettier": "^2.6.0"
+        "eslint-config-prettier": "^2.6.0",
+        "react-native-html-to-pdf": "^0.4.0",
+        "react-native-print": "^0.3.0"
     }
 }
