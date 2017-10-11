@@ -19,6 +19,9 @@ class CopySeedToClipboard extends React.Component {
             'Seed cleared',
             'The seed has been cleared from the clipboard for your security.'
         );
+        const intervalId = BackgroundTimer.setInterval(() => {
+            console.log('test');
+        }, 1000);
     }
 
     componentWillUnmount() {
