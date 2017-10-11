@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iotawallet"
+    xmlns:tools="http://schemas.android.com/tools"
     android:versionCode="1"
     android:versionName="1.0">
 
@@ -8,7 +9,8 @@
 
     <uses-sdk
         android:minSdkVersion="16"
-        android:targetSdkVersion="22" />
+        android:targetSdkVersion="22"
+        tools:overrideLibrary="com.rnprint.RNPrint"/>
 
     <application
       android:name=".MainApplication"

@@ -4435,6 +4435,10 @@ react-native-dropdownalert@^2.11.0:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-html-to-pdf@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-html-to-pdf/-/react-native-html-to-pdf-0.4.0.tgz#93a1af31db12c0e7f4ec51c569070d8e61177479"
+
 "react-native-http@github:tradle/react-native-http#834492d":
   version "1.0.0"
   resolved "https://codeload.github.com/tradle/react-native-http/tar.gz/834492dbc792b1dec8ec8f0a1c9671f640339f01"
@@ -4464,6 +4468,10 @@ react-native-navigation@^1.1.205:
 react-native-os@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-os/-/react-native-os-1.1.0.tgz#bfbe1c44d8a5b14a6f3a3a405d8ada6f547a516e"
+
+react-native-print@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-print/-/react-native-print-0.3.0.tgz#870082cdd14cc1a064cf0fa3b7460932cb032768"
 
 react-native-qrcode@^0.2.6:
   version "0.2.6"
@@ -5648,10 +5656,6 @@ walker@~1.0.5:
 watch@~0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/watch/-/watch-0.10.0.tgz#77798b2da0f9910d595f1ace5b0c2258521f21dc"
-
-"watchman@git+https://github.com/facebook/watchman.git":
-  version "0.0.0"
-  resolved "git+https://github.com/facebook/watchman.git#63614128d492828f542e9d21ef1290e56726515f"
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
