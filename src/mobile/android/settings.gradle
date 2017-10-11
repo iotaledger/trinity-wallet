@@ -1,4 +1,8 @@
 rootProject.name = 'iotaWallet'
+include ':react-native-html-to-pdf'
+project(':react-native-html-to-pdf').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-html-to-pdf/android')
+include ':react-native-print'
+project(':react-native-print').projectDir = new File(rootProject.projectDir,'../node_modules/react-native-print/android')
 include ':react-native-udp'
 project(':react-native-udp').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-udp/android')
 include ':react-native-tcp'
