@@ -3,7 +3,6 @@ import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackg
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 import DropdownHolder from './dropdownHolder';
-import BackgroundTimer from 'react-native-background-timer';
 
 const { height, width } = Dimensions.get('window');
 
@@ -39,9 +38,7 @@ class CopySeedToClipboard extends React.Component {
             'Seed copied',
             'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.'
         );
-        const intervalId = BackgroundTimer.setInterval(() => {
-            console.log('test');
-        }, 1000);
+        setTimeout(clearClipboard(), 60000);
     }
 
     render() {
