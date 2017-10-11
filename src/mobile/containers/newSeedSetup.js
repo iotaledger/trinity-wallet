@@ -177,29 +177,35 @@ class NewSeedSetup extends Component {
         super(props);
         this.state = {
             randomised: false,
-            infoTextContainerHeight: 100
+            infoTextContainerHeight: 100,
+            flashComplete: false
         };
     }
 
     onGeneratePress() {
-        this.props.randomiseSeed(randomBytes);
+        this.props.randomiseSeed();
         this.setState({
             randomised: true
         });
-        this.timeout = setTimeout(this.flashText1.bind(this), 1000);
-        this.timeout = setTimeout(this.flashText2.bind(this), 1250);
-        this.timeout = setTimeout(this.flashText1.bind(this), 1400);
-        this.timeout = setTimeout(this.flashText2.bind(this), 1650);
+        if (!this.state.flashComplete){
+            this.timeout = setTimeout(this.flashText1.bind(this), 1000);
+            this.timeout = setTimeout(this.flashText2.bind(this), 1250);
+            this.timeout = setTimeout(this.flashText1.bind(this), 1400);
+            this.timeout = setTimeout(this.flashText2.bind(this), 1650);
 
-        this.timeout = setTimeout(this.flashText1.bind(this), 2400);
-        this.timeout = setTimeout(this.flashText2.bind(this), 2650);
-        this.timeout = setTimeout(this.flashText1.bind(this), 2800);
-        this.timeout = setTimeout(this.flashText2.bind(this), 3050);
+            this.timeout = setTimeout(this.flashText1.bind(this), 2400);
+            this.timeout = setTimeout(this.flashText2.bind(this), 2650);
+            this.timeout = setTimeout(this.flashText1.bind(this), 2800);
+            this.timeout = setTimeout(this.flashText2.bind(this), 3050);
 
-        this.timeout = setTimeout(this.flashText1.bind(this), 3800);
-        this.timeout = setTimeout(this.flashText2.bind(this), 4050);
-        this.timeout = setTimeout(this.flashText1.bind(this), 4200);
-        this.timeout = setTimeout(this.flashText2.bind(this), 4450);
+            this.timeout = setTimeout(this.flashText1.bind(this), 3800);
+            this.timeout = setTimeout(this.flashText2.bind(this), 4050);
+            this.timeout = setTimeout(this.flashText1.bind(this), 4200);
+            this.timeout = setTimeout(this.flashText2.bind(this), 4450);
+            this.setState({
+                flashComplete: true
+            });
+        }
     }
 
     flashText1() {
@@ -323,7 +329,7 @@ class NewSeedSetup extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <DropdownAlert ref={ref => (this.dropdown = ref)} errorColor="#A10702" />
+                <DropdownAlert ref={ref => (this.dropdown = ref)} />
             </ImageBackground>
         );
     }
@@ -344,7 +350,9 @@ const mapDispatchToProps = dispatch => ({
     setSeed: seed => {
         dispatch(setSeed(seed));
     },
-    randomiseSeed: randomBytesFn => dispatch(randomiseSeed(randomBytesFn))
+    randomiseSeed: () => {
+        dispatch(randomiseSeed());
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup);
