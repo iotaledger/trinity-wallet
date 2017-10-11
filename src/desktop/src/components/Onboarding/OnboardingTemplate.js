@@ -1,41 +1,34 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Header from './Header';
-import ButtonLink from '../UI/ButtonLink';
-import { Route } from 'react-router-dom';
-import SeedManualCopy from './SeedManualCopy';
 
-class Template extends React.PureComponent {
+class Template extends PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
-        match: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired,
+        header: PropTypes.string.isRequired,
+        subHeader: PropTypes.node.isRequired,
+        main: PropTypes.node.isRequired,
+        footer: PropTypes.node.isRequired,
     };
 
-    componentWillMount() {
-        this.navigateTo('/onboarding/seed/generate/save/manual');
-    }
-
-    navigateTo(url) {
-        const { history } = this.props;
-        history.push(url);
-    }
-
     render() {
-        const { t, match } = this.props;
-
+        const { t, main, header, subHeader, footer } = this.props;
         return (
             <form onSubmit={e => e.preventDefault()}>
-                <Header headline={t('save your seed')} />
-                <main>
-                    <Route path={`${match.url}/manual`} component={SeedManualCopy} />
+                <Header headline={t(header)} />
+                {subHeader}
+                <main
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignSelf: 'center',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    {main}
                 </main>
-                <footer>
-                    <ButtonLink to="/" variant="success">
-                        {t('button3')}
-                    </ButtonLink>
-                </footer>
+                <footer>{footer}</footer>
             </form>
         );
     }
