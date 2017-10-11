@@ -60,7 +60,6 @@
         "util": "^0.10.3",
         "victory-native": "^0.14.0",
         "vm-browserify": "0.0.4",
-        "watchman": "git+https://github.com/facebook/watchman.git"
     },
     "devDependencies": {
         "babel-eslint": "^8.0.0",
