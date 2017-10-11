@@ -1,10 +1,21 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, Clipboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Text,
+    TouchableOpacity,
+    Image,
+    ImageBackground,
+    Clipboard,
+    StatusBar
+} from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
 
 const dropdown = DropdownHolder.getDropDown();
 
@@ -163,6 +174,7 @@ class CopySeedToClipboard extends React.Component {
                         fontFamily: 'Lato-Regular'
                     }}
                     imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
                 />
             </ImageBackground>
         );
@@ -174,7 +186,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
+        barStyle: 'light-content'
     },
     topContainer: {
         flex: 1.2,

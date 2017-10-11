@@ -82,7 +82,8 @@ class Receive extends React.Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        paddingTop: height / 20
+        paddingTop: height / 20,
+        barStyle: 'light-content'
     },
     receiveAddressContainer: {
         borderColor: 'white',

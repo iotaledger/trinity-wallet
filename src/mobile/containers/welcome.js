@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
+        barStyle: 'light-content'
     },
     topContainer: {
         flex: 0.5,
