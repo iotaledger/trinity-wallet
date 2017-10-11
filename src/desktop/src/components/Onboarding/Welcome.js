@@ -24,7 +24,7 @@ export default translate('setLanguage')(
                         </div>
                     </main>
                     <footer>
-                        <ButtonLink to="/onboarding/seed/generate/save" variant="success">
+                        <ButtonLink to="/onboarding/seed/generate/save/options" variant="success">
                             {t('button1')}
                         </ButtonLink>
                     </footer>
