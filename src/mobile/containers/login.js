@@ -129,7 +129,28 @@ class Login extends React.Component {
                     </View>
                 </TouchableWithoutFeedback>
 
-                <DropdownAlert ref={ref => (dropdown = ref)} errorColor="#A10702" />
+                <DropdownAlert
+                    ref={ref => (dropdown = ref)}
+                    errorColor="#A10702"
+                    titleStyle={{
+                        fontSize: 16,
+                        textAlign: 'left',
+                        fontWeight: 'bold',
+                        color: 'white',
+                        backgroundColor: 'transparent',
+                        fontFamily: 'Lato-Regular'
+                    }}
+                    defaultTextContainer={{ flex: 1, padding: 20 }}
+                    messageStyle={{
+                        fontSize: 14,
+                        textAlign: 'left',
+                        fontWeight: 'bold',
+                        color: 'white',
+                        backgroundColor: 'transparent',
+                        fontFamily: 'Lato-Regular'
+                    }}
+                    imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
+                />
             </ImageBackground>
         );
     }
