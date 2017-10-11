@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     Image,
     ImageBackground,
-    ScrollView
+    ScrollView,
+    StatusBar
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
@@ -18,6 +19,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
 
 class Login extends React.Component {
     constructor(props) {
@@ -79,6 +81,7 @@ class Login extends React.Component {
     render() {
         let { password } = this.state;
         return (
+            //<StatusBar barStyle="light-content"/>
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -150,6 +153,7 @@ class Login extends React.Component {
                         fontFamily: 'Lato-Regular'
                     }}
                     imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
                 />
             </ImageBackground>
         );
