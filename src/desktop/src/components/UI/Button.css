@@ -30,7 +30,8 @@
     color: var(--color-button-success);
 }
 
-.extra {
+.extra,
+.info {
     composes: button;
     color: var(--color-button-extra);
 }

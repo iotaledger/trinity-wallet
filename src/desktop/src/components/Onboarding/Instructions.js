@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Header from './Header';
-import ButtonLink from '../UI/ButtonLink';
+import Button from '../UI/Button';
 
 // import css from '../Layout/Onboarding.css';
 
 export default translate('welcome1')(
     class Instruction extends React.PureComponent {
         static propTypes = {
-            t: PropTypes.func.isRequired
+            t: PropTypes.func.isRequired,
         };
 
         render() {
@@ -25,15 +25,15 @@ export default translate('welcome1')(
                         </p>
                     </main>
                     <footer>
-                        <ButtonLink to="/" variant="warning">
+                        <Button to="/" variant="warning">
                             {t('button2')}
-                        </ButtonLink>
-                        <ButtonLink to="/onboarding/lightserver" variant="success">
+                        </Button>
+                        <Button to="/onboarding/lightserver" variant="success">
                             {t('button1')}
-                        </ButtonLink>
+                        </Button>
                     </footer>
                 </div>
             );
         }
-    }
+    },
 );

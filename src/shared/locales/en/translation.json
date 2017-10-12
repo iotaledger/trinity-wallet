@@ -2,7 +2,9 @@
     "id": "en",
     "notifications": {
         "invalidServer_title": "Invalid server",
-        "invalidServer_text": "The server address you entered is not valid"
+        "invalidServer_text": "The server address you entered is not valid",
+        "unknownError_title": "Unknown error occured",
+        "unknownError_text": "We could not perform the desired action this time. Please try again."
     },
     "setLanguage": {
         "title": "HELLO",
@@ -53,6 +55,9 @@
         "title": "ENTER YOUR SEED",
         "error_title": "Seed is too short",
         "error_text": "Seeds must be at least 60 characters long. Please try again.",
+        "invalid_seed_title": "Invalid seed",
+        "invalid_seed_text":
+            "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
         "placeholder": "SEED",
         "seed_explanation":
             "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
@@ -93,21 +98,21 @@
         "optionA": "Manual Copy",
         "optionB": " Paper Wallet",
         "optionC": "Copy To Clipboard",
-        "explanation": "Click the button below to print a paper copy of your seed.",
-        "text": "Store it safely",
-        "check_button": "IOTA logo",
-        "button1": "PRINT PAPER WALLET",
-        "button2": "DONE"
-    },
-    "saveYourSeed3": {
-        "title": "SAVE YOUR SEED",
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
         "explanation":
             "Click the button below to copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
         "text": "Do not store the seed in plain text.",
         "button1": "COPY TO CLIPBOARD",
+        "button2": "DONE"
+    },
+    "saveYourSeed4": {
+        "title": "SAVE YOUR SEED",
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Click the button below to print a paper copy of your seed.",
+        "text": "Store it safely",
+        "check_button": "IOTA logo",
+        "button1": "PRINT PAPER WALLET",
         "button2": "DONE"
     },
     "setPassword": {
