@@ -35,12 +35,12 @@ export default class Onboarding extends React.Component {
                     <Route path="/onboarding/instructions" component={Instructions} />
                     <Route path="/onboarding/lightserver" component={LightServerSetup} />
                     <Route path="/onboarding/wallet" component={WalletSetup} />
-                    <Route path="/onboarding/seed/enter" component={EnterSeed} />
                     <Route exact path="/onboarding/seed/generate" component={GenerateSeed} />
                     <Route exact path="/onboarding/seed/save" component={SaveYourSeedOptions} />
                     <Route path="/onboarding/seed/save/manual" component={SeedManualCopy} />
-                    <Route path="/onboarding/seed/save/copy-to-clipboard" component={SeedCopyToClipboard} />
-                    <Route path="/onboarding/seed/save/paper-wallet" component={SeedPaperWallet} />
+                    <Route path="/onboarding/seed/save/clipboard" component={SeedCopyToClipboard} />
+                    <Route path="/onboarding/seed/save/paperwallet" component={SeedPaperWallet} />
+                    <Route path="/onboarding/seed/enter" component={EnterSeed} />
                     <Route exact path="/onboarding/security/password" component={Done} />
                     <Route path="/onboarding/security/password/set" component={Placeholder} />
                     <Route exact path="/onboarding/security/extra" component={Placeholder} />
