@@ -42,7 +42,7 @@ class SeedPaperWallet extends PureComponent {
                                     Your seed is 81 characters long. Please read from left to right.
                                 </span>
                             </div>
-                            <QRCode value="http://facebook.github.io/react/" />
+                            <QRCode value={seed} />
                         </div>
                     </div>
                 }
