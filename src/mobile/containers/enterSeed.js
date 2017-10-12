@@ -54,8 +54,8 @@ class EnterSeed extends React.Component {
     render() {
         const { seed } = this.state;
         return (
-            //  <StatusBar barStyle="light-content"/>
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
@@ -168,8 +168,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        barStyle: 'light-content'
+        alignItems: 'center'
     },
     topContainer: {
         flex: 0.7,

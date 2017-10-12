@@ -71,8 +71,8 @@ class SetPassword extends React.Component {
     render() {
         let { password, reentry } = this.state;
         return (
-            //<StatusBar barStyle="light-content"/>
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
