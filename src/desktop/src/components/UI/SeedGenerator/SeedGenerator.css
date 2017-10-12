@@ -1,0 +1,82 @@
+.wrapper {
+    /*display: inline-block;*/
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+.letter {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    display: block;
+    float: left;
+    margin: 0;
+    max-width: 50px;
+    padding: 0;
+    position: relative;
+    vertical-align: middle;
+    flex: 1 0;
+    min-width: 11.111%;
+
+    &:after {
+        content: '';
+        display: block;
+        padding-bottom: 100%;
+    }
+
+    span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        line-height: 0;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active,
+    &:focus {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:nth-child(9n + 1) {
+        clear: left;
+    }
+
+    &.updated_1 {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    &.updated_2 {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    &.updated_3 {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    &.updated_4 {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    &.updated_5 {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    &.updated_alot {
+        background: rgba(255, 255, 255, 0.3);
+    }
+}
