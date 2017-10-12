@@ -10,6 +10,7 @@ import EnterSeed from '../Onboarding/EnterSeed';
 import SaveYourSeedOptions from '../Onboarding/SaveYourSeedOptions';
 import SeedManualCopy from '../Onboarding/SeedManualCopy';
 import SeedCopyToClipboard from '../Onboarding/SeedCopyToClipboard';
+import SeedPaperWallet from '../Onboarding/SeedPaperWallet';
 
 import css from './Onboarding.css';
 
@@ -40,6 +41,7 @@ export default class Onboarding extends React.Component {
                         path="/onboarding/seed/generate/save/copy-to-clipboard"
                         component={SeedCopyToClipboard}
                     />
+                    <Route exact path="/onboarding/seed/generate/save/paper-wallet" component={SeedPaperWallet} />
                     <Route exact path="/onboarding/security/password" component={Placeholder} />
                     <Route exact path="/onboarding/security/password/set" component={Placeholder} />
                     <Route exact path="/onboarding/security/extra" component={Placeholder} />
