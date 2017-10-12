@@ -4,9 +4,8 @@ import QrReader from 'react-qr-reader';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { isValidSeed } from '../../../../shared/libs/util';
-import { showNotification } from 'actions/notifications';
+import { showError } from 'actions/notifications';
 import Header from './Header';
-import ButtonLink from '../UI/ButtonLink';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 
@@ -17,7 +16,7 @@ class EnterSeed extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        showNotification: PropTypes.func.isRequired,
+        showError: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     };
 
@@ -26,9 +25,9 @@ class EnterSeed extends React.PureComponent {
     };
 
     onChange = e => {
-        const { target: { name, value } } = e;
+        const { target: { name, value = '' } } = e;
         this.setState(() => ({
-            [name]: value,
+            [name]: value.replace(/[^A-Z9]*/g, ''),
         }));
     };
 
@@ -64,10 +63,9 @@ class EnterSeed extends React.PureComponent {
 
     onSubmit = e => {
         e.preventDefault();
-        const { history, showNotification, t } = this.props;
+        const { history, showError, t } = this.props;
         if (!isValidSeed(this.state.seed)) {
-            showNotification({
-                type: 'error',
+            showError({
                 title: t('invalid_seed_title'),
                 text: t('invalid_seed_text'),
             });
@@ -120,9 +118,9 @@ class EnterSeed extends React.PureComponent {
                     </Infobox>
                 </main>
                 <footer>
-                    <ButtonLink to="/onboarding/wallet" variant="warning">
+                    <Button to="/onboarding/wallet" variant="warning">
                         {t('button2')}
-                    </ButtonLink>
+                    </Button>
                     <Button type="submit" variant="success">
                         {t('button1')}
                     </Button>
@@ -133,7 +131,7 @@ class EnterSeed extends React.PureComponent {
 }
 
 const mapDispatchToProps = {
-    showNotification,
+    showError,
 };
 
 export default translate('enterSeed')(connect(null, mapDispatchToProps)(EnterSeed));
