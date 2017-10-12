@@ -5,7 +5,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { translate } from 'react-i18next';
 import OnboardingTemplate from './OnboardingTemplate';
 import BoxedSeed from './BoxedSeed';
-import ButtonLink from '../UI/ButtonLink';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
 
@@ -36,9 +35,9 @@ class SeedCopyToClipboard extends React.PureComponent {
                 }
                 footer={
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <ButtonLink to="/" variant="warning">
+                        <Button to="/" variant="warning">
                             {t(toUpper('done'))}
-                        </ButtonLink>
+                        </Button>
                     </div>
                 }
             />
