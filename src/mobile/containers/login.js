@@ -138,15 +138,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 2,
-        justifyContent: 'flex-start',
-        paddingTop: height / 10,
+        flex: 1.6,
         alignItems: 'center',
     },
     bottomContainer: {
