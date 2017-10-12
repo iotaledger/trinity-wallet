@@ -140,7 +140,7 @@ class LanguageSetup extends React.Component {
                             </Text>
                             <Text
                                 style={styles.dropdownItem}
-                                onPress={event => this.clickDropdownItem('Ελληνικά - German')}
+                                onPress={event => this.clickDropdownItem('Ελληνικά - Greek')}
                             >
                                 Ελληνικά - Greek
                             </Text>
@@ -166,7 +166,7 @@ class LanguageSetup extends React.Component {
                                 style={styles.dropdownItem}
                                 onPress={event => this.clickDropdownItem('עִברִית - Hebrew')}
                             >
-                                עִברִית
+                                עִברִית - Hebrew
                             </Text>
                             <Text
                                 style={styles.dropdownItem}
@@ -186,7 +186,9 @@ class LanguageSetup extends React.Component {
                             >
                                 日本語 - Japanese
                             </Text>
-                            <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('한국어 - Korean')}>
+                            <Text style={styles.dropdownItem} 
+                                onPress={event => this.clickDropdownItem('한국어 - Korean')}
+                            >
                                 한국어 - Korean
                             </Text>
                             <Text

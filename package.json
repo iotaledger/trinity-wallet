@@ -13,11 +13,6 @@
     "lint-staged": {
         "*.{js,json,css}": ["prettier --write", "git add"]
     },
-    "prettier": {
-        "printWidth": 120,
-        "singleQuote": true,
-        "tabWidth": 4
-    },
     "repository": {
         "type": "git",
         "url": "git+ssh://git@gitlab.com/iota-community/wallet.git"
@@ -31,5 +26,10 @@
         "husky": "^0.14.3",
         "lint-staged": "^4.2.3",
         "prettier": "^1.7.4"
+    },
+    "dependencies": {
+        "eslint-config-prettier": "^2.6.0",
+        "react-native-html-to-pdf": "^0.4.0",
+        "react-native-print": "^0.3.0"
     }
 }

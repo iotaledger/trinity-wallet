@@ -178,7 +178,8 @@ class NewSeedSetup extends Component {
         super(props);
         this.state = {
             randomised: false,
-            infoTextContainerHeight: 100
+            infoTextContainerHeight: 100,
+            flashComplete: false
         };
     }
 
@@ -187,20 +188,25 @@ class NewSeedSetup extends Component {
         this.setState({
             randomised: true
         });
-        this.timeout = setTimeout(this.flashText1.bind(this), 1000);
-        this.timeout = setTimeout(this.flashText2.bind(this), 1250);
-        this.timeout = setTimeout(this.flashText1.bind(this), 1400);
-        this.timeout = setTimeout(this.flashText2.bind(this), 1650);
+        if (!this.state.flashComplete){
+            this.timeout = setTimeout(this.flashText1.bind(this), 1000);
+            this.timeout = setTimeout(this.flashText2.bind(this), 1250);
+            this.timeout = setTimeout(this.flashText1.bind(this), 1400);
+            this.timeout = setTimeout(this.flashText2.bind(this), 1650);
 
-        this.timeout = setTimeout(this.flashText1.bind(this), 2400);
-        this.timeout = setTimeout(this.flashText2.bind(this), 2650);
-        this.timeout = setTimeout(this.flashText1.bind(this), 2800);
-        this.timeout = setTimeout(this.flashText2.bind(this), 3050);
+            this.timeout = setTimeout(this.flashText1.bind(this), 2400);
+            this.timeout = setTimeout(this.flashText2.bind(this), 2650);
+            this.timeout = setTimeout(this.flashText1.bind(this), 2800);
+            this.timeout = setTimeout(this.flashText2.bind(this), 3050);
 
-        this.timeout = setTimeout(this.flashText1.bind(this), 3800);
-        this.timeout = setTimeout(this.flashText2.bind(this), 4050);
-        this.timeout = setTimeout(this.flashText1.bind(this), 4200);
-        this.timeout = setTimeout(this.flashText2.bind(this), 4450);
+            this.timeout = setTimeout(this.flashText1.bind(this), 3800);
+            this.timeout = setTimeout(this.flashText2.bind(this), 4050);
+            this.timeout = setTimeout(this.flashText1.bind(this), 4200);
+            this.timeout = setTimeout(this.flashText2.bind(this), 4450);
+            this.setState({
+                flashComplete: true
+            });
+        }
     }
 
     flashText1() {
