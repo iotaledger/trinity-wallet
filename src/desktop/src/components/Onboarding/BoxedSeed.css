@@ -1,0 +1,34 @@
+.boxedSeedContainer {
+    border-radius: 7px;
+    padding: 10px 8px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.default {
+    composes: boxedSeedContainer;
+    border: 1px solid #ffffff;
+}
+.white {
+    composes: boxedSeedContainer;
+    border: 1px solid #000000;
+}
+.arrowRight {
+    width: 100%;
+}
+.copyableSeed {
+    margin-top: 10px;
+    display: flex;
+    flex: 2;
+}
+.seedColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.seedPartials {
+    letter-spacing: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 4px;
+}
