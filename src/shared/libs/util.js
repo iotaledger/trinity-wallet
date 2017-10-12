@@ -1,4 +1,5 @@
-export function formatTime(ts) {
+// TODO: replace with a localized date library (e.g. moment.js)
+export const formatTime = ts => {
     const dateToFormat = new Date(ts * 1000);
     const minutes = `0${dateToFormat.getMinutes()}`;
     const hours = dateToFormat.getHours();
@@ -23,9 +24,9 @@ export function formatTime(ts) {
         formattedTime = beforeYesterdayFormat;
     }
     return formattedTime;
-}
+};
 
-export function formatValue(value) {
+export const formatValue = value => {
     switch (true) {
         case value < 1000:
             break;
@@ -43,9 +44,9 @@ export function formatValue(value) {
             break;
     }
     return value;
-}
+};
 
-export function formatUnit(value) {
+export const formatUnit = value => {
     let unit = '';
     switch (true) {
         case value < 1000:
@@ -59,7 +60,7 @@ export function formatUnit(value) {
         case value < 1000000000000000:
             return 'Ti';
     }
-}
+};
 
 export function formatIota(value) {
     const iota = formatValue(value);
@@ -90,4 +91,24 @@ export const guid = () => {
             .toString(16)
             .substring(1);
     return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+};
+
+export const createRandomSeed = (randomBytesFn, length = 81) => {
+    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
+    const bytes = randomBytesFn(100);
+    let seed = '';
+
+    if (length > 81 || length < 1) {
+        length = 81;
+    }
+
+    Object.keys(bytes).forEach(key => {
+        if (bytes[key] < 243 && seed.length < length) {
+            const randomNumber = bytes[key] % 27;
+            const randomLetter = charset.charAt(randomNumber);
+            seed += randomLetter;
+        }
+    });
+
+    return seed;
 };

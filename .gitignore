@@ -52,5 +52,5 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 
-
 node_modules_*
+dist

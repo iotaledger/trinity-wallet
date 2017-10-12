@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Header from './Header';
-import ButtonLink from '../UI/ButtonLink';
+import Button from '../UI/Button';
 import LanguageSelect from 'components/UI/LanguageSelect';
 import css from '../Layout/Onboarding.css';
 
 export default translate('setLanguage')(
     class Welcome extends React.PureComponent {
         static propTypes = {
-            t: PropTypes.func.isRequired
+            t: PropTypes.func.isRequired,
         };
 
         render() {
@@ -21,15 +21,16 @@ export default translate('setLanguage')(
                         <div className={css.formGroup}>
                             <label>{t('dropdown_title')}</label>
                             <LanguageSelect />
+                            {/* <Button to="/onboarding/seed/generate">Quick start</Button> */}
                         </div>
                     </main>
                     <footer>
-                        <ButtonLink to="/onboarding/instructions" variant="success">
+                        <Button to="/onboarding/instructions" variant="success">
                             {t('button1')}
-                        </ButtonLink>
+                        </Button>
                     </footer>
                 </div>
             );
         }
-    }
+    },
 );
