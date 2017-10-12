@@ -7,7 +7,6 @@ import LightServerSetup from '../Onboarding/LightServerSetup';
 import WalletSetup from '../Onboarding/WalletSetup';
 import GenerateSeed from '../Onboarding/GenerateSeed';
 import EnterSeed from '../Onboarding/EnterSeed';
-// import SaveSeed from '../Onboarding/SaveSeed';
 import SaveYourSeedOptions from '../Onboarding/SaveYourSeedOptions';
 import SeedManualCopy from '../Onboarding/SeedManualCopy';
 import SeedCopyToClipboard from '../Onboarding/SeedCopyToClipboard';
