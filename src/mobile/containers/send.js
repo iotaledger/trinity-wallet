@@ -9,7 +9,8 @@ import {
     LayoutAnimation,
     ListView,
     ScrollView,
-    Dimensions
+    Dimensions,
+    StatusBar
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import Triangle from 'react-native-triangle';
@@ -76,6 +77,7 @@ class Send extends React.Component {
         let { amount, address } = this.state;
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
                         <View style={styles.textFieldContainer}>
@@ -191,8 +193,7 @@ class Send extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: height / 10,
-        barStyle: 'light-content'
+        paddingTop: height / 10
     },
     topContainer: {
         paddingHorizontal: width / 10,

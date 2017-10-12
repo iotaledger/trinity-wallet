@@ -1,5 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableWithoutFeedback, Image, Dimensions, View, ImageBackground } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    TouchableWithoutFeedback,
+    Image,
+    Dimensions,
+    View,
+    ImageBackground,
+    StatusBar
+} from 'react-native';
 import Balance from './balance';
 import Send from './send';
 import Receive from './receive';
@@ -112,6 +121,7 @@ class Home extends React.Component {
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.titleContainer}>
                     <View style={styles.banner}>
                         <Image style={styles.logo} source={require('../../shared/images/iota.png')} />
@@ -177,8 +187,7 @@ const styles = StyleSheet.create({
     titleContainer: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'stretch',
-        barStyle: 'light-content'
+        alignItems: 'stretch'
     },
     banner: {
         alignItems: 'center',

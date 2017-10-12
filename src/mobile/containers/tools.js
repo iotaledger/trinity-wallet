@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearIOTA } from '../../shared/actions/iotaActions';
@@ -30,6 +30,7 @@ class Tools extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <TouchableOpacity onPress={event => this.onLogOutClick()}>
                     <View style={styles.logOutButton}>
                         <Text style={styles.logOutText}>LOG OUT</Text>
@@ -45,8 +46,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        paddingBottom: height / 20,
-        barStyle: 'light-content'
+        paddingBottom: height / 20
     },
     logOutButton: {
         borderColor: '#9DFFAF',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions, Image, ImageBackground, Text } from 'react-native';
+import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar } from 'react-native';
 
 import store from '../../shared/store';
 
@@ -30,6 +30,7 @@ class InitialLoading extends React.Component {
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
                     <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
                 </View>
@@ -45,8 +46,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        barStyle: 'light-content'
+        alignItems: 'center'
     },
     logoContainer: {
         flex: 1,

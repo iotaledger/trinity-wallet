@@ -1,5 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, ListView, Dimensions, TouchableOpacity, Clipboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    Image,
+    ListView,
+    Dimensions,
+    TouchableOpacity,
+    Clipboard,
+    StatusBar
+} from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
@@ -44,6 +54,7 @@ class Receive extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={{ paddingBottom: height / 40 }}>
                     <TouchableOpacity onPress={event => this.onAddressPress(this.props)}>
                         <View style={styles.receiveAddressContainer}>
@@ -82,8 +93,7 @@ class Receive extends React.Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        paddingTop: height / 20,
-        barStyle: 'light-content'
+        paddingTop: height / 20
     },
     receiveAddressContainer: {
         borderColor: 'white',

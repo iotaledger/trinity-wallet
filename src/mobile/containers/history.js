@@ -24,8 +24,7 @@ class History extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: height / 20,
-        barStyle: 'light-content'
+        paddingTop: height / 20
     },
     separator: {
         flex: 1,
