@@ -26,7 +26,7 @@ class SaveYourSeedOptions extends React.PureComponent {
             },
             {
                 title: 'copy to clipboard',
-                href: '/onboarding/seed/generate/save/print-paper-wallet',
+                href: '/onboarding/seed/generate/save/copy-to-clipboard',
                 variant: 'extra',
             },
         ],
@@ -39,7 +39,7 @@ class SaveYourSeedOptions extends React.PureComponent {
                 display: 'flex',
                 flexDirection: 'column',
                 alignSelf: 'center',
-                justifyContent: 'space-between',
+                justifyContent: 'space-around',
             },
         };
     }
