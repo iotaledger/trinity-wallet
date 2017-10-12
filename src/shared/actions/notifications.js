@@ -42,3 +42,14 @@ export const hideNotification = id => {
         payload: id,
     };
 };
+
+export const showError = notification => {
+    return dispatch => {
+        dispatch(
+            showNotification({
+                ...notification,
+                type: 'error',
+            }),
+        );
+    };
+};
