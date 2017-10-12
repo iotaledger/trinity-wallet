@@ -33,6 +33,7 @@ export default class Onboarding extends React.Component {
                     <Route exact path="/onboarding/instructions" component={Instructions} />
                     <Route exact path="/onboarding/lightserver" component={LightServerSetup} />
                     <Route exact path="/onboarding/wallet" component={WalletSetup} />
+                    <Route exact path="/onboarding/seed/enter" component={EnterSeed} />
                     <Route exact path="/onboarding/seed/generate" component={GenerateSeed} />
                     <Route exact path="/onboarding/seed/generate/save" component={SaveSeed} />
                     <Route exact path="/onboarding/seed/generate/save/manual" component={Placeholder} />
