@@ -4,16 +4,9 @@ import { Link } from 'react-router-dom';
 import css from './Button.css';
 
 export default class ButtonLink extends React.PureComponent {
-
     static propTypes = {
         children: PropTypes.node,
-        variant: PropTypes.oneOf([
-            'default',
-            'success',
-            'warning',
-            'danger',
-            'info',
-        ]).isRequired,
+        variant: PropTypes.oneOf(['default', 'success', 'warning', 'danger', 'info', 'extra']).isRequired,
     };
 
     static defaultProps = {
@@ -28,5 +21,4 @@ export default class ButtonLink extends React.PureComponent {
             </Link>
         );
     }
-
 }
