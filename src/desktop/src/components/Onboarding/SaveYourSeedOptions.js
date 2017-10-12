@@ -1,67 +1,43 @@
-import map from 'lodash/map';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import OnboardingTemplate from './OnboardingTemplate';
+import Header from './Header';
 import Button from '../UI/Button';
-import css from './OnboardingTemplate.css';
 
 class SaveYourSeedOptions extends PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
-        savingOptions: PropTypes.array,
     };
-
-    static defaultProps = {
-        savingOptions: [
-            {
-                title: 'manual copy',
-                href: '/onboarding/seed/save/manual',
-                variant: 'extra',
-            },
-            {
-                title: 'print paper wallet',
-                href: '/onboarding/seed/save/paper-wallet',
-                variant: 'extra',
-            },
-            {
-                title: 'copy to clipboard',
-                href: '/onboarding/seed/save/copy-to-clipboard',
-                variant: 'extra',
-            },
-        ],
-    };
-
-    renderOptions(options, t) {
-        return map(options, (value, k) => (
-            <Button to={value.href} variant={value.variant} key={k}>
-                {t(value.title)}
-            </Button>
-        ));
-    }
 
     render() {
-        const { t, savingOptions } = this.props;
+        const { t } = this.props;
 
-        const options = this.renderOptions(savingOptions, t);
         return (
-            <OnboardingTemplate
-                header={'save your seed'}
-                subHeader={<h3>You must save your seed with at least one of the options below</h3>}
-                main={<div className={css['options-wrapper']}>{options}</div>}
-                footer={
-                    <div className={css['options-links']}>
-                        <Button to="/" variant="warning">
-                            {t('Go Back')}
-                        </Button>
-                        <Button to="/" variant="success">
-                            {t('Next')}
-                        </Button>
-                    </div>
-                }
-            />
+            <div>
+                <Header headline={t('title')} />
+                <p>{t('text1')}</p>
+                <main>
+                    <Button to="/onboarding/seed/save/manual" variant="extra">
+                        {t('optionA')}
+                    </Button>
+                    <Button to="/onboarding/seed/save/paperwallet" variant="extra">
+                        {t('optionB')}
+                    </Button>
+                    <Button to="/onboarding/seed/save/clipboard" variant="extra">
+                        {t('optionC')}
+                    </Button>
+                </main>
+                <footer>
+                    <Button to="/" variant="warning">
+                        {t('button2')}
+                    </Button>
+                    <Button to="/" variant="success">
+                        {t('button1')}
+                    </Button>
+                </footer>
+            </div>
         );
     }
 }
 
-export default translate('welcome1')(SaveYourSeedOptions);
+export default translate('saveYourSeed')(SaveYourSeedOptions);
