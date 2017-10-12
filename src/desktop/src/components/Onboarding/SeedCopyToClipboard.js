@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { translate } from 'react-i18next';
-import OnboardingTemplate from './OnboardingTemplate';
 import BoxedSeed from './BoxedSeed';
+import Header from './Header';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
 
@@ -22,27 +22,27 @@ class SeedCopyToClipboard extends React.PureComponent {
         const { t, seed } = this.props;
 
         return (
-            <OnboardingTemplate
-                header={toUpper('save your seed')}
-                subHeader={<Steps />}
-                main={
+            <div>
+                <Header title={t('title')} />
+                <Steps />
+                <main>
                     <div style={{ display: 'flex', flex: 5, flexDirection: 'column', justifyContent: 'space-around' }}>
                         <BoxedSeed t={t} seed={seed} />
                         <CopyToClipboard text={seed}>
-                            <Button variant="success">{t(toUpper('Copy to clipboard'))}</Button>
+                            <Button variant="success">{t('button1')}</Button>
                         </CopyToClipboard>
                     </div>
-                }
-                footer={
+                </main>
+                <footer>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Button to="/" variant="warning">
-                            {t(toUpper('done'))}
+                            {t('button2')}
                         </Button>
                     </div>
-                }
-            />
+                </footer>
+            </div>
         );
     }
 }
 
-export default translate('seedManualCopy')(SeedCopyToClipboard);
+export default translate('saveYourSeed3')(SeedCopyToClipboard);

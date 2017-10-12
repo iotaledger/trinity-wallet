@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import OnboardingTemplate from './OnboardingTemplate';
 import BoxedSeed from './BoxedSeed';
+import Header from './Header';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
 
@@ -20,24 +20,24 @@ class SeedManualCopy extends PureComponent {
         const { t, seed } = this.props;
 
         return (
-            <OnboardingTemplate
-                header={'save your seed'}
-                subHeader={<Steps />}
-                main={
+            <div>
+                <Header title={t('title')} />
+                <Steps />
+                <main>
                     <div>
                         <BoxedSeed t={t} seed={seed} />
                     </div>
-                }
-                footer={
+                </main>
+                <footer>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Button to="/" variant="warning">
                             {t('done')}
                         </Button>
                     </div>
-                }
-            />
+                </footer>
+            </div>
         );
     }
 }
 
-export default translate('seedManualCopy')(SeedManualCopy);
+export default translate('saveYourSeed2')(SeedManualCopy);

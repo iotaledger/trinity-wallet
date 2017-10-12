@@ -98,21 +98,21 @@
         "optionA": "Manual Copy",
         "optionB": " Paper Wallet",
         "optionC": "Copy To Clipboard",
-        "explanation": "Click the button below to print a paper copy of your seed.",
-        "text": "Store it safely",
-        "check_button": "IOTA logo",
-        "button1": "PRINT PAPER WALLET",
-        "button2": "DONE"
-    },
-    "saveYourSeed3": {
-        "title": "SAVE YOUR SEED",
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
         "explanation":
             "Click the button below to copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
         "text": "Do not store the seed in plain text.",
         "button1": "COPY TO CLIPBOARD",
+        "button2": "DONE"
+    },
+    "saveYourSeed4": {
+        "title": "SAVE YOUR SEED",
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Click the button below to print a paper copy of your seed.",
+        "text": "Store it safely",
+        "check_button": "IOTA logo",
+        "button1": "PRINT PAPER WALLET",
         "button2": "DONE"
     },
     "setPassword": {
