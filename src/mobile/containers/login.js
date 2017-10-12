@@ -19,7 +19,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
-const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
+//const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
 
 class Login extends React.Component {
     constructor(props) {
@@ -81,8 +81,8 @@ class Login extends React.Component {
     render() {
         let { password } = this.state;
         return (
-            //<StatusBar barStyle="light-content"/>
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, ImageBackground, WebView } from 'react-native';
+import { StyleSheet, View, Dimensions, ImageBackground, WebView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketDataActions';
 import Home from './home';
@@ -26,6 +26,7 @@ class Loading extends React.Component {
         if (!this.props.iota.ready) {
             return (
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                    <StatusBar barStyle="light-content" />
                     <View style={{ height: width / 1.75, paddingLeft: 5 }}>
                         <WebView
                             scrollEnabled={false}
@@ -44,8 +45,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        barStyle: 'light-content'
+        justifyContent: 'center'
     }
 });
 
