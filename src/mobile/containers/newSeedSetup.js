@@ -12,7 +12,8 @@ import {
     ListView,
     TouchableOpacity,
     Image,
-    Platform
+    Platform,
+    StatusBar
 } from 'react-native';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
@@ -30,8 +31,7 @@ const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#102e36',
-        barStyle: 'light-content'
+        backgroundColor: '#102e36'
     },
     topContainer: {
         flex: 2.3,
@@ -265,6 +265,7 @@ class NewSeedSetup extends Component {
         const { iota: { seed } } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <View style={styles.titleContainer}>

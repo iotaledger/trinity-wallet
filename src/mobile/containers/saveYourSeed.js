@@ -1,6 +1,16 @@
 import merge from 'lodash/merge';
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, Platform } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Text,
+    TouchableOpacity,
+    Image,
+    ImageBackground,
+    Platform,
+    StatusBar
+} from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -11,8 +21,7 @@ const baseStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
-        barStyle: 'light-content'
+        backgroundColor: '#102e36'
     },
     topContainer: {
         flex: 1,
@@ -170,6 +179,7 @@ class SaveYourSeed extends Component {
 
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <View style={styles.titleContainer}>
