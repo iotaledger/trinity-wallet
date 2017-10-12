@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     Image,
     ImageBackground,
-    ScrollView
+    ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
@@ -23,26 +23,22 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            password: ''
+            password: '',
         };
     }
     onDoneClick(props) {
-        this.props.setPassword(this.state.password);
-        getFromKeychain(this.state.password, value => {
-            if (typeof value !== 'undefined') {
-                login(value);
-            } else {
-                if (this.state.password == '') {
-                    this.dropdown.alertWithType(
-                        'error',
-                        'Empty password',
-                        'You must enter a password to log in. Please try again.'
-                    );
+        if (this.state.password == '') {
+            dropdown.alertWithType('error', 'Empty password', 'You must enter a password to log in. Please try again.');
+        } else {
+            this.props.setPassword(this.state.password);
+            getFromKeychain(this.state.password, value => {
+                if (typeof value !== 'undefined') {
+                    login(value);
                 } else {
                     error();
                 }
-            }
-        });
+            });
+        }
         function login(value) {
             props.getAccountInfo(value);
             props.navigator.push({
@@ -50,16 +46,16 @@ class Login extends React.Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     screenBackgroundImageName: 'bg-green.png',
-                    screenBackgroundColor: '#102e36'
+                    screenBackgroundColor: '#102e36',
                 },
-                animated: false
+                animated: false,
             });
         }
         function error() {
             this.dropdown.alertWithType(
                 'error',
                 'Unrecognised password',
-                'The password was not recognised. Please try again.'
+                'The password was not recognised. Please try again.',
             );
         }
     }
@@ -70,9 +66,9 @@ class Login extends React.Component {
             navigatorStyle: {
                 navBarHidden: true,
                 screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36'
+                screenBackgroundColor: '#102e36',
             },
-            animated: false
+            animated: false,
         });
     }
 
@@ -128,7 +124,6 @@ class Login extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-
                 <DropdownAlert ref={ref => (dropdown = ref)} errorColor="#A10702" />
             </ImageBackground>
         );
@@ -140,38 +135,36 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
-        flex: 2,
-        justifyContent: 'flex-start',
-        paddingTop: height / 10,
-        alignItems: 'center'
+        flex: 1.6,
+        alignItems: 'center',
     },
     bottomContainer: {
         flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 14
+        paddingBottom: height / 14,
     },
     textContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: height / 8,
-        paddingTop: height / 35
+        paddingTop: height / 35,
     },
     title: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoText: {
         color: 'white',
@@ -181,7 +174,7 @@ const styles = StyleSheet.create({
         paddingRight: width / 4,
         paddingLeft: width / 4,
         paddingTop: height / 30,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     greetingText: {
         color: 'white',
@@ -190,7 +183,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: width / 7,
         paddingBottom: height / 10,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     questionText: {
         color: 'white',
@@ -200,11 +193,11 @@ const styles = StyleSheet.create({
         paddingLeft: width / 7,
         paddingRight: width / 7,
         paddingTop: height / 25,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     buttonsContainer: {
         alignItems: 'center',
-        paddingBottom: height / 30
+        paddingBottom: height / 30,
     },
     doneButton: {
         borderColor: '#9DFFAF',
@@ -213,7 +206,7 @@ const styles = StyleSheet.create({
         width: width / 1.65,
         height: height / 17,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     newSeedButton: {
         borderColor: '#F7D002',
@@ -222,28 +215,28 @@ const styles = StyleSheet.create({
         width: width / 1.65,
         height: height / 17,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     doneText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     newSeedText: {
         color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
-    }
+        width: width / 5,
+    },
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota
+    iota: state.iota,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -252,7 +245,7 @@ const mapDispatchToProps = dispatch => ({
     },
     getAccountInfo: seed => {
         dispatch(getAccountInfo(seed));
-    }
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
