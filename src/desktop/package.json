@@ -105,6 +105,7 @@
         }
     },
     "dependencies": {
+        "qrcode.react": "^0.7.2",
         "react-copy-to-clipboard": "^5.0.1",
         "react-qr-reader": "^1.2.1"
     }
