@@ -1,5 +1,5 @@
 import { isValidServerAddress } from '../libs/util';
-import { showNotification } from './notifications';
+import { showError } from './notifications';
 
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
@@ -15,8 +15,7 @@ export function setLocale(locale) {
 }
 
 export const invalidServerError = () => {
-    return showNotification({
-        type: 'error',
+    return showError({
         title: 'invalidServer_title',
         text: 'invalidServer_text',
         translate: true,
