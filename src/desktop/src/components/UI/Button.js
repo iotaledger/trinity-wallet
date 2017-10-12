@@ -6,8 +6,7 @@ import css from './Button.css';
 export default class Button extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
-        variant: PropTypes.oneOf(['default', 'success', 'warning', 'danger', 'info']).isRequired,
-        to: PropTypes.string,
+        variant: PropTypes.oneOf(['default', 'success', 'warning', 'danger', 'info', 'extra']).isRequired,
     };
 
     static defaultProps = {
