@@ -21,7 +21,7 @@ class SaveYourSeedOptions extends React.PureComponent {
             },
             {
                 title: 'print paper wallet',
-                href: '/onboarding/seed/generate/save/print-paper-wallet',
+                href: '/onboarding/seed/generate/save/paper-wallet',
                 variant: 'extra',
             },
             {
