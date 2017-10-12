@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+import toUpper from 'lodash/toUpper';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -7,27 +9,25 @@ import ButtonLink from '../UI/ButtonLink';
 class SaveYourSeedOptions extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
-        match: PropTypes.object.isRequired,
         savingOptions: PropTypes.array,
-        history: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
         savingOptions: [
             {
-                title: 'manual_copy',
+                title: 'manual copy',
                 href: '/onboarding/seed/generate/save/manual',
-                variant: 'info',
+                variant: 'extra',
             },
             {
-                title: 'print_paper_wallet',
+                title: 'print paper wallet',
                 href: '/onboarding/seed/generate/save/print-paper-wallet',
-                variant: 'info',
+                variant: 'extra',
             },
             {
-                title: 'copy_to_clipboard',
+                title: 'copy to clipboard',
                 href: '/onboarding/seed/generate/save/print-paper-wallet',
-                variant: 'info',
+                variant: 'extra',
             },
         ],
     };
@@ -35,43 +35,40 @@ class SaveYourSeedOptions extends React.PureComponent {
     static getDefaultStyles() {
         return {
             wrapper: {
-                flex: 2,
+                flex: 5,
                 display: 'flex',
                 flexDirection: 'column',
                 alignSelf: 'center',
-                justifyContent: 'space-around',
+                justifyContent: 'space-between',
             },
         };
     }
 
+    renderOptions(options, t) {
+        return map(options, (value, k) => (
+            <ButtonLink to={value.href} variant={value.variant} key={k}>
+                {t(toUpper(value.title))}
+            </ButtonLink>
+        ));
+    }
+
     render() {
         const styles = SaveYourSeedOptions.getDefaultStyles();
-        const { t } = this.props;
+        const { t, savingOptions } = this.props;
 
+        const options = this.renderOptions(savingOptions, t);
         return (
             <OnboardingTemplate
-                header="save your seed"
+                header={toUpper('save your seed')}
                 subHeader={<h3>You must save your seed with at least one of the options below</h3>}
-                main={
-                    <div style={styles.wrapper}>
-                        <ButtonLink to="/" variant="extra">
-                            {t('Manual Copy')}
-                        </ButtonLink>
-                        <ButtonLink to="/" variant="extra">
-                            {t('Print Paper Wallet')}
-                        </ButtonLink>
-                        <ButtonLink to="/" variant="extra">
-                            {t('Copy to clipboard')}
-                        </ButtonLink>
-                    </div>
-                }
+                main={<div style={styles.wrapper}>{options}</div>}
                 footer={
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <ButtonLink to="/" variant="warning">
-                            {t('Go Back')}
+                            {t(toUpper('Go Back'))}
                         </ButtonLink>
                         <ButtonLink to="/" variant="success">
-                            {t('Next')}
+                            {t(toUpper('Next'))}
                         </ButtonLink>
                     </div>
                 }

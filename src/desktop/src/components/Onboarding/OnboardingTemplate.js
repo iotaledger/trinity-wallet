@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Header from './Header';
+import css from './OnboardingTemplate.css';
 
 class Template extends PureComponent {
     static propTypes = {
@@ -18,16 +19,7 @@ class Template extends PureComponent {
             <form onSubmit={e => e.preventDefault()}>
                 <Header headline={t(header)} />
                 {subHeader}
-                <main
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignSelf: 'center',
-                        justifyContent: 'space-between',
-                    }}
-                >
-                    {main}
-                </main>
+                <main className={css.main}>{main}</main>
                 <footer>{footer}</footer>
             </form>
         );
