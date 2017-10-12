@@ -40,7 +40,7 @@ class GenerateSeed extends React.PureComponent {
         }
 
         addAndSelectSeed(seed);
-        history.push('/onboarding/seed/generate/save');
+        history.push('/onboarding/seed/save');
     };
 
     render() {

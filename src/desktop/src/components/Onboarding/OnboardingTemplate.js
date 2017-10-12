@@ -1,29 +1,26 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Header from './Header';
-import ButtonLink from '../UI/ButtonLink';
+import css from './OnboardingTemplate.css';
 
-import css from '../Layout/Onboarding.css';
-
-class Template extends React.PureComponent {
+class Template extends PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
+        header: PropTypes.string.isRequired,
+        subHeader: PropTypes.node.isRequired,
+        main: PropTypes.node.isRequired,
+        footer: PropTypes.node.isRequired,
     };
 
-    state = {};
-
     render() {
-        const { t } = this.props;
+        const { t, main, header, subHeader, footer } = this.props;
         return (
             <form onSubmit={e => e.preventDefault()}>
-                <Header headline={t('title')} />
-                <main>Content</main>
-                <footer>
-                    <ButtonLink to="/" variant="success">
-                        {t('button3')}
-                    </ButtonLink>
-                </footer>
+                <Header headline={t(header)} />
+                {subHeader}
+                <main className={css.main}>{main}</main>
+                <footer>{footer}</footer>
             </form>
         );
     }
