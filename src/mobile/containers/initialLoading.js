@@ -16,13 +16,13 @@ class InitialLoading extends React.Component {
             this.props.navigator.push({
                 screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-                animated: false
+                animated: false,
             });
         } else {
             this.props.navigator.push({
                 screen: 'login',
                 navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-                animated: false
+                animated: false,
             });
         }
     }
@@ -46,28 +46,28 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     logoContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15
+        paddingTop: height / 15,
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         color: 'white',
-        fontSize: width / 33.75
+        fontSize: width / 33.75,
     },
     textContainer: {
         justifyContent: 'flex-end',
-        paddingBottom: height / 15
+        paddingBottom: height / 15,
     },
     logo: {
         width: width / 4,
-        height: width / 4
-    }
+        height: width / 4,
+    },
 });
 
 module.exports = InitialLoading;

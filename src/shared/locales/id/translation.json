@@ -1,0 +1,126 @@
+{
+  "id":"en",
+  "notifications":{
+    "invalidServer_title":"Server tidak sah",
+    "invalidServer_text":"Alamat server yang dituju tidak sah"
+  },
+  "setLanguage":{
+    "title":"HALO",
+    "dropdown_title":"Bahasa",
+    "button1":"LANJUT"
+  },
+  "welcome1":{
+    "title":"SELAMAT DATANG",
+    "text1":"Terima kasih telah mengunduh dompet IOTA",
+    "text2":"Kita akan menghabiskan beberapa menit untuk menyiapkan dompet Anda.",
+    "reminder":"Kami berharap anda tidak mencoba untuk melewatkan beberapa tahap penting ini",
+    "button1":"LANJUT",
+    "button2":"KEMBALI"
+  },
+  "welcome2":{
+    "title":"MEMPERSIAPKAN DOMPET",
+    "text1":"Oke. Mari menyiapkan dompet anda!",
+    "text2":"Apa anda sudah memiliki benih yang ingin digunakan?",
+    "seed_explanation1":"Benih adalah kata sandi untuk akun anda.",
+    "seed_explanation2":"Anda dapat mengakses dana anda dari dompet manapun dan di perangkat apapun. Tetapi jika anda lupa benih, anda akan kehilangan IOTA",
+    "reminder":"Harap disimpan benih anda dengan baik",
+    "button1":"IYA - saya punya benih",
+    "button2":"TIDAK - Saya perlu benih baru"
+  },
+  "lightserver":{
+    "title":"Menyiapkan Server ringan",
+    "text1":"Server ringan adalah pintu gerbang ke jaringan IOTA yang sudah dipersiapkan oleh komunitas dan mitra perusahaan kami.",
+    "text2":"Anda dapat menemukan informasi lebih lanjut tentang server di: http://iotasupport.com/lightwallet.shtml",
+    "text3":"Silakan pilih server dari daftar di bawah ini.",
+    "server_label":"Server",
+    "custom_server_label":"Alamat server lain",
+    "other":"Lainnya",
+    "button1":"LANJUT",
+    "button2":"KEMBALI"
+  },
+  "login":{
+    "title":"Masuk",
+    "text":"Silahkan masukan kata sandi Anda",
+    "placeholder":"KATA SANDI",
+    "error_title":"Kata sandi tidak dikenali",
+    "error_text":"Kata sandi tidak dikenali. Silahkan coba kembali.",
+    "button1":"SELESAI",
+    "button2":"UBAH DOMPET"
+  },
+  "enterSeed":{
+    "title":"MASUKKAN BENIH ANDA",
+    "error_title":"Benih terlalu singkat",
+    "error_text":"Benih harus setidaknya 60 karakter. Silakan coba kembali.",
+    "placeholder":"BENIH",
+    "seed_explanation":"Benih harus 81 karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan benih lebih dari 81 karakter.",
+    "reminder":"JANGAN PERNAH MEMBAGI BENIH DENGAN SIAPAPUN",
+    "button1":"SELESAI",
+    "button2":"KEMBALI"
+  },
+  "newSeedSetup":{
+    "title":"MEMBUAT BENIH BARU",
+    "button1":"MEMBUAT BENIH BARU",
+    "text1":"Tekan masing-masing huruf untuk mengacaknya.",
+    "text2":"Lalu tekan LANJUT",
+    "button2":"LANJUT",
+    "button3":"KEMBALI"
+  },
+  "saveYourSeed":{
+    "title":"SIMPAN BENIH ANDA",
+    "text1":"You must save your seed with at least one of the options listed below.",
+    "text2":"at least one",
+    "optionA":"MANUAL COPY",
+    "optionB":"PRINT PAPER WALLET",
+    "optionC":"COPY TO CLIPBOARD",
+    "button1":"NEXT",
+    "button2":"GO BACK"
+  },
+  "saveYourSeed2":{
+    "title":"SAVE YOUR SEED",
+    "optionA":"Manual Copy",
+    "optionB":" Paper Wallet",
+    "optionC":"Copy To Clipboard",
+    "explanation":"Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+    "text":"triple check",
+    "button":"DONE"
+  },
+  "saveYourSeed3":{
+    "title":"SAVE YOUR SEED",
+    "optionA":"Manual Copy",
+    "optionB":" Paper Wallet",
+    "optionC":"Copy To Clipboard",
+    "explanation":"Click the button below to copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+    "text":"Do not store the seed in plain text.",
+    "button1":"COPY TO CLIPBOARD",
+    "button2":"DONE"
+  },
+  "setPassword":{
+    "title":"PASSWORD SETUP",
+    "text":"Okay, now we need to set up a password.",
+    "explanation":"An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
+    "reminder":"Ensure you use a strong password.",
+    "placeholder1":"'PASSWORD'",
+    "placeholder2":"RETYPE PASSWORD",
+    "error1_title":"Password is too short",
+    "error1_text":"Your password must be at least 8 characters. Please try again.",
+    "error2_title":"Passwords do not match",
+    "error2_text":"The passwords you have entered do not match. Please try again.",
+    "button1":"DONE",
+    "button2":"GO BACK"
+  },
+  "home":{
+    "tab1":"BALANCE",
+    "tab2":"SEND",
+    "tab3":"RECEIVE",
+    "tab4":"HISTORY",
+    "tab5":"TOOLS",
+    "mcap":"MCAP",
+    "change":"Change",
+    "volume":"Volume",
+    "address":"ADDRESS",
+    "amount":"AMOUNT",
+    "botton1":"send IOTA",
+    "botton2":"GENERATE NEW ADDRESS",
+    "botton3":"LOG OUT"
+  }
+}
