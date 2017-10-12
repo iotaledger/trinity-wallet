@@ -1,14 +1,9 @@
-const accountReducer = (
-    state = {
-        firstUse: true
-    },
-    action
-) => {
+const accountReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_FIRSTUSE':
             state = {
                 ...state,
-                firstUse: action.payload
+                firstUse: action.payload,
             };
             break;
     }

@@ -12,7 +12,7 @@ import {
     ListView,
     TouchableOpacity,
     Image,
-    Platform
+    Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
@@ -30,33 +30,33 @@ const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
     },
     topContainer: {
         flex: 2.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 4.4,
-        paddingTop: height / 40
+        paddingTop: height / 40,
     },
     bottomContainer: {
         flex: 1.3,
         justifyContent: 'flex-end',
         paddingBottom: height / 25,
-        paddingHorizontal: width / 5
+        paddingHorizontal: width / 5,
     },
     squareContainer: {
         flex: 1,
         height: width / 1.1,
-        width: width / 1.1
+        width: width / 1.1,
     },
     list: {
         justifyContent: 'center',
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
     item: {
         backgroundColor: 'white',
@@ -66,25 +66,25 @@ const baseStyles = StyleSheet.create({
         fontFamily: 'Lato-Bold',
         fontSize: width / 28.9,
         textAlign: 'center',
-        paddingTop: height / 130
+        paddingTop: height / 130,
     },
     tile: {
         padding: height / 150,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: height / 35,
-        paddingBottom: height / 30
+        paddingBottom: height / 30,
     },
     title: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     generateButton: {
         flexDirection: 'row',
@@ -95,19 +95,19 @@ const baseStyles = StyleSheet.create({
         height: height / 20,
         alignItems: 'center',
         justifyContent: 'space-around',
-        backgroundColor: '#009f3f'
+        backgroundColor: '#009f3f',
     },
     generateText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 40.5,
         backgroundColor: 'transparent',
-        paddingRight: width / 50
+        paddingRight: width / 50,
     },
     buttonsContainer: {
         alignItems: 'flex-end',
         justifyContent: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     nextButton: {
         borderColor: '#9DFFAF',
@@ -116,13 +116,13 @@ const baseStyles = StyleSheet.create({
         width: width / 3,
         height: height / 16,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     nextText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     backButton: {
         borderColor: '#F7D002',
@@ -131,45 +131,45 @@ const baseStyles = StyleSheet.create({
         width: width / 3,
         height: height / 16,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     backButtonContainer: {
         paddingRight: width / 16,
-        paddingTop: height / 60
+        paddingTop: height / 60,
     },
     backText: {
         color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     generateImage: {
         height: width / 30,
         width: width / 30,
-        paddingLeft: width / 50
+        paddingLeft: width / 50,
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 28,
         textAlign: 'center',
-        backgroundColor: 'transparent'
-    }
+        backgroundColor: 'transparent',
+    },
 });
 
 const androidStyles = StyleSheet.create({
     squareContainer: {
         height: width / 1.2,
-        width: width / 1.2
+        width: width / 1.2,
     },
     midContainer: {
         flex: 3,
-        paddingTop: height / 30
-    }
+        paddingTop: height / 30,
+    },
 });
 
 class NewSeedSetup extends Component {
@@ -178,16 +178,16 @@ class NewSeedSetup extends Component {
         this.state = {
             randomised: false,
             infoTextContainerHeight: 100,
-            flashComplete: false
+            flashComplete: false,
         };
     }
 
     onGeneratePress() {
-        this.props.randomiseSeed();
+        this.props.randomiseSeed(randomBytes);
         this.setState({
-            randomised: true
+            randomised: true,
         });
-        if (!this.state.flashComplete){
+        if (!this.state.flashComplete) {
             this.timeout = setTimeout(this.flashText1.bind(this), 1000);
             this.timeout = setTimeout(this.flashText2.bind(this), 1250);
             this.timeout = setTimeout(this.flashText1.bind(this), 1400);
@@ -203,19 +203,19 @@ class NewSeedSetup extends Component {
             this.timeout = setTimeout(this.flashText1.bind(this), 4200);
             this.timeout = setTimeout(this.flashText2.bind(this), 4450);
             this.setState({
-                flashComplete: true
+                flashComplete: true,
             });
         }
     }
 
     flashText1() {
         this.setState({
-            infoTextContainerHeight: 0
+            infoTextContainerHeight: 0,
         });
     }
     flashText2() {
         this.setState({
-            infoTextContainerHeight: 100
+            infoTextContainerHeight: 100,
         });
     }
     onNextPress() {
@@ -223,19 +223,19 @@ class NewSeedSetup extends Component {
             this.props.navigator.push({
                 screen: 'saveYourSeed',
                 navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-                animated: false
+                animated: false,
             });
         } else {
             this.dropdown.alertWithType(
                 'error',
                 'Seed has not been generated',
-                'Please click the Generate New Seed button.'
+                'Please click the Generate New Seed button.',
             );
         }
     }
     onBackPress() {
         this.props.navigator.pop({
-            animated: false
+            animated: false,
         });
     }
 
@@ -308,7 +308,7 @@ class NewSeedSetup extends Component {
                             justifyContent: 'flex-end',
                             paddingBottom: height / 150,
                             height: this.state.infoTextContainerHeight,
-                            overflow: 'hidden'
+                            overflow: 'hidden',
                         }}
                     >
                         <Text style={styles.infoText}>Press individual letters to randomise them.</Text>
@@ -339,20 +339,20 @@ NewSeedSetup.propTypes = {
     navigator: PropTypes.object.isRequired,
     iota: PropTypes.object.isRequired,
     setSeed: PropTypes.func.isRequired,
-    randomiseSeed: PropTypes.func.isRequired
+    randomiseSeed: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-    iota: state.iota
+    iota: state.iota,
 });
 
 const mapDispatchToProps = dispatch => ({
     setSeed: seed => {
         dispatch(setSeed(seed));
     },
-    randomiseSeed: () => {
-        dispatch(randomiseSeed());
-    }
+    randomiseSeed: randomBytes => {
+        dispatch(randomiseSeed(randomBytes));
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup);

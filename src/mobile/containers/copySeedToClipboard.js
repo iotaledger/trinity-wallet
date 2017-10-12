@@ -13,13 +13,14 @@ class CopySeedToClipboard extends React.Component {
 
     onDonePress() {
         this.props.navigator.pop({
-            animated: false
+            animated: false,
         });
         Clipboard.setString('');
+        const dropdown = DropdownHolder.getDropDown();
         dropdown.alertWithType(
             'info',
             'Seed cleared',
-            'The seed has been cleared from the clipboard for your security.'
+            'The seed has been cleared from the clipboard for your security.',
         );
     }
 
@@ -29,7 +30,7 @@ class CopySeedToClipboard extends React.Component {
         dropdown.alertWithType(
             'success',
             'Seed copied',
-            'The seed has been copied to the clipboard and will be cleared once you press DONE.'
+            'The seed has been copied to the clipboard and will be cleared once you press DONE.',
         );
     }
 
@@ -59,8 +60,7 @@ class CopySeedToClipboard extends React.Component {
                         </View>
                     </View>
                     <Text style={styles.infoTextNormal}>
-                        Click the button below to copy your seed to a password manager. It will stay in your clipboard
-                        until you continue to the next screen.
+                        Click the button below and copy your seed to a password manager.
                     </Text>
                     <Text style={styles.infoTextBold}> Do not store the seed in plain text.</Text>
                 </View>
@@ -130,26 +130,26 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
     },
     topContainer: {
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
-        paddingHorizontal: width / 20
+        paddingHorizontal: width / 20,
     },
     midContainer: {
         flex: 3.8,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 5
+        paddingTop: height / 5,
     },
     bottomContainer: {
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        paddingBottom: height / 25
+        paddingBottom: height / 25,
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
         fontSize: width / 25.3,
         textAlign: 'center',
         paddingHorizontal: width / 20,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     optionButton: {
         borderColor: '#8BD4FF',
@@ -166,20 +166,20 @@ const styles = StyleSheet.create({
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: height / 35,
-        paddingBottom: height / 30
+        paddingBottom: height / 30,
     },
     title: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     currentSubtitle: {
         color: 'white',
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
         fontSize: width / 33,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
     subtitle: {
         color: 'white',
@@ -196,17 +196,17 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
         flexWrap: 'wrap',
-        opacity: 0.5
+        opacity: 0.5,
     },
     subtitlesContainer: {
         flexDirection: 'row',
         flex: 1,
-        paddingTop: height / 40
+        paddingTop: height / 40,
     },
     subtitleContainer: {
         paddingHorizontal: width / 75,
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     line: {
         color: 'white',
@@ -214,19 +214,20 @@ const styles = StyleSheet.create({
         fontSize: width / 33,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        opacity: 0.5
+        opacity: 0.5,
     },
     lineContainer: {
         flex: 1.5,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     infoTextNormal: {
         paddingTop: height / 12,
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 29,
-        textAlign: 'left',
-        backgroundColor: 'transparent'
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+        paddingHorizontal: width / 6,
     },
     infoTextBold: {
         color: 'white',
@@ -234,7 +235,7 @@ const styles = StyleSheet.create({
         fontSize: width / 29,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        paddingTop: height / 80
+        paddingTop: height / 80,
     },
     doneButton: {
         borderColor: '#9DFFAF',
@@ -243,17 +244,17 @@ const styles = StyleSheet.create({
         width: width / 3,
         height: height / 16,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     doneText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     copyButton: {
         flexDirection: 'row',
@@ -264,19 +265,19 @@ const styles = StyleSheet.create({
         height: height / 20,
         alignItems: 'center',
         justifyContent: 'space-around',
-        backgroundColor: '#009f3f'
+        backgroundColor: '#009f3f',
     },
     copyText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 40.5,
         backgroundColor: 'transparent',
-        paddingRight: width / 50
+        paddingRight: width / 50,
     },
     copyImage: {
         height: width / 27,
         width: width / 27,
-        paddingLeft: width / 50
+        paddingLeft: width / 50,
     },
     seedBox: {
         borderColor: 'white',
@@ -286,7 +287,7 @@ const styles = StyleSheet.create({
         height: height / 3.5,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 20
+        paddingTop: height / 20,
     },
     seedBoxTextContainer: {
         width: width / 1.65,
@@ -295,7 +296,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
         paddingTop: height / 80,
-        paddingLeft: width / 70
+        paddingLeft: width / 70,
     },
     seedBoxTextLeft: {
         color: 'white',
@@ -305,7 +306,7 @@ const styles = StyleSheet.create({
         letterSpacing: 8,
         backgroundColor: 'transparent',
         paddingRight: width / 70,
-        paddingVertical: 3
+        paddingVertical: 3,
     },
     seedBoxTextRight: {
         color: 'white',
@@ -314,16 +315,16 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         letterSpacing: 8,
         backgroundColor: 'transparent',
-        paddingVertical: 3
+        paddingVertical: 3,
     },
     arrow: {
         width: width / 2,
-        height: height / 80
-    }
+        height: height / 80,
+    },
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota
+    iota: state.iota,
 });
 
 export default connect(mapStateToProps)(CopySeedToClipboard);
