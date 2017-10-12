@@ -1,13 +1,15 @@
 import toUpper from 'lodash/toUpper';
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { translate } from 'react-i18next';
 import OnboardingTemplate from './OnboardingTemplate';
 import BoxedSeed from './BoxedSeed';
 import ButtonLink from '../UI/ButtonLink';
+import Button from '../UI/Button';
 import Steps from '../UI/Steps';
 
-class SeedManualCopy extends PureComponent {
+class SeedCopyToClipboard extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         seed: PropTypes.string,
@@ -25,8 +27,11 @@ class SeedManualCopy extends PureComponent {
                 header={toUpper('save your seed')}
                 subHeader={<Steps />}
                 main={
-                    <div>
+                    <div style={{ display: 'flex', flex: 5, flexDirection: 'column', justifyContent: 'space-around' }}>
                         <BoxedSeed t={t} seed={seed} />
+                        <CopyToClipboard text={seed}>
+                            <Button variant="success">{t(toUpper('Copy to clipboard'))}</Button>
+                        </CopyToClipboard>
                     </div>
                 }
                 footer={
@@ -41,4 +46,4 @@ class SeedManualCopy extends PureComponent {
     }
 }
 
-export default translate('seedManualCopy')(SeedManualCopy);
+export default translate('seedManualCopy')(SeedCopyToClipboard);
