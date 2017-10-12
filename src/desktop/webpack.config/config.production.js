@@ -9,4 +9,14 @@ config.plugins = [
     })
 ].concat(config.plugins);
 
+// config.node = {
+//     __dirname: false,
+//     __filename: false
+// };
+
+config.target = 'electron-renderer';
+
+config.output.publicPath = '../dist/';
+config.output.pathinfo = false;
+
 module.exports = config;

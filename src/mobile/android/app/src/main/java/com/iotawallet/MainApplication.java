@@ -2,7 +2,9 @@ package com.iotawallet;
 
 import android.app.Application;
 
+import com.rnprint.RNPrint.RNPrintPackage;
 import com.facebook.react.ReactApplication;
+import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.tradle.react.UdpSocketsModule;
 import com.peel.react.TcpSocketsModule;
 import com.horcrux.svg.SvgPackage;
@@ -35,6 +37,9 @@ public class MainApplication extends NavigationApplication {
             // eg. new VectorIconsPackage()
             new RandomBytesPackage(),
             new SvgPackage(),
+            new MainReactPackage(),
+            new RNHTMLtoPDFPackage(),
+            new RNPrintPackage(),
             new RNSensitiveInfoPackage()
     );
   }

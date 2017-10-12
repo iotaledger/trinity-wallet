@@ -3,15 +3,22 @@ import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackg
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode';
 
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import {RNPrint} from 'NativeModules';
+
 const { height, width } = Dimensions.get('window');
 
+
+
 class PaperWallet extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
             checkboxImage: require('../../shared/images/checkbox-checked.png'),
-            showIotaLogo: true
-        };
+            showIotaLogo: true,
+            iotaLogoVisibility: 'visible'
+        }
     }
 
     onDonePress() {
@@ -24,17 +31,34 @@ class PaperWallet extends React.Component {
         if (this.state.checkboxImage == require('../../shared/images/checkbox-checked.png')) {
             this.setState({
                 checkboxImage: require('../../shared/images/checkbox-unchecked.png'),
-                showIotaLogo: false
+                showIotaLogo: false,
+                iotaLogoVisibility: 'hidden'
             });
         } else {
             this.setState({
                 checkboxImage: require('../../shared/images/checkbox-checked.png'),
-                showIotaLogo: true
+                showIotaLogo: true,
+                iotaLogoVisibility: 'visible'
             });
         }
     }
 
-    onPrintPress() {}
+    async onPrintPress() {
+
+      const options = {
+            html: `<html><div id="item"><img id="arrow" src="/Users/charlie/Desktop/wallet/src/shared/images/arrow-black.png" /><table id="seedBox"><tr><td>${this.props.iota.seed.substring(0,3)}</td><td>${this.props.iota.seed.substring(3, 6)}</td><td>${this.props.iota.seed.substring(6, 9)}</td><td>${this.props.iota.seed.substring(9, 12)}</td></tr><tr><td>${this.props.iota.seed.substring(12, 15)}</td><td>${this.props.iota.seed.substring(15,18)}</td><td>${this.props.iota.seed.substring(18, 21)}</td><td>${this.props.iota.seed.substring(21,24)}</td></tr><tr><td>${this.props.iota.seed.substring(24,27)}</td><td>${this.props.iota.seed.substring(27,30)}</td><td>${this.props.iota.seed.substring(30,33)}</td><td>${this.props.iota.seed.substring(33,36)}</td></tr><tr><td>${this.props.iota.seed.substring(36,39)}</td><td>${this.props.iota.seed.substring(39,42)}</td><td>${this.props.iota.seed.substring(42,45)}</td><td>${this.props.iota.seed.substring(45,48)}</td></tr><tr><td>${this.props.iota.seed.substring(48,51)}</td><td>${this.props.iota.seed.substring(51,54)}</td><td>${this.props.iota.seed.substring(54,57)}</td><td>${this.props.iota.seed.substring(57,60)}</td></tr><tr><td>${this.props.iota.seed.substring(60,63)}</td><td>${this.props.iota.seed.substring(63,66)}</td><td>${this.props.iota.seed.substring(66,69)}</td><td>${this.props.iota.seed.substring(69,72)}</td></tr><tr><td>${this.props.iota.seed.substring(72,75)}</td><td>${this.props.iota.seed.substring(75,78)}</td><td>${this.props.iota.seed.substring(78,81)}</td></tr></table></div><div id="midItem"><img id="iotaLogo" src="/Users/charlie/Desktop/wallet/src/shared/images/iota-full.png"/> <p id="text" width="10"> Your seed is 81<br />characters, read<br />from left to right.</p></div><div id="item"><img src="/Users/charlie/Desktop/wallet/src/shared/images/2.png" width="240" height="240" /></div> <style> #seedBox {margin-left: 20px; padding-left: 6px; padding-right: 6px; padding-top: 30px; padding-bottom: 10px; border: solid #000;border-width: 2px; border-radius: 20px} @font-face { font-family: "Lato"; src: "/Users/charlie/Desktop/wallet/src/shared/custom-fonts/Lato-Regular.ttf"} @font-face { font-family: "Monospace"; src: "/Users/charlie/Desktop/wallet/src/shared/custom-fonts/Inconsolata-Bold.ttf"} #text {font-family: Lato; font-size: 20px; text-align: center; padding-top: 25px} #item {float: left} #midItem {float: left; margin: 30px} #iotaLogo {width: 109.1px; height: 36.73px; position: absolute; left: 308px; top: 5px; visibility: ${this.state.iotaLogoVisibility}}  td {padding-left: 7px; padding-right: 7px; font-size: 21px; font-family: Monospace} #arrow {position: absolute; left: 45px; top: 25px; width: 200px; height: 9.68px }</style></html>`,
+            fileName: 'paperWallet',
+            base64: true,
+          };
+
+      try {
+          const results = await RNHTMLtoPDF.convert(options)
+          const jobName = await RNPrint.print(results.filePath)
+          console.log(`Printing ${jobName} complete!`)
+      } catch (err) {
+          console.error(err)
+      }
+    }
 
     _renderIotaLogo() {
         if (this.state.showIotaLogo) {
@@ -135,7 +159,7 @@ class PaperWallet extends React.Component {
                                 Your seed is 81 characters, read from left to right.
                             </Text>
                         </View>
-                        <QRCode value={this.props.iota.seed} size={width / 4} bgColor="#000" fgColor="#FFF" />
+                        <QRCode value={this.props.iota.seed} size={width / 3.9} bgColor="#000" fgColor="#FFF" />
                     </View>
                     <TouchableOpacity style={styles.checkboxContainer} onPress={event => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
@@ -329,7 +353,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        paddingHorizontal: width / 30
     },
     seedBox: {
         borderColor: 'black',
@@ -392,7 +417,8 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         width: width / 7,
         height: height / 20,
-        paddingBottom: height / 10
+        paddingBottom: height / 10,
+
     },
     checkboxContainer: {
         height: height / 15,
