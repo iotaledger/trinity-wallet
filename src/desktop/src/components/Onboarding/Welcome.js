@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-// import Header from './Header';
-import Button from '../UI/Button';
-import LanguageSelect from 'components/UI/LanguageSelect';
-import css from '../Layout/Onboarding.css';
-
 import Template, { Main, Footer } from './Template';
+import Button from '../UI/Button';
+import LanguageSelect from '../UI/LanguageSelect';
+import css from '../Layout/Onboarding.css';
 
 export default translate('setLanguage')(
     class Welcome extends React.PureComponent {
