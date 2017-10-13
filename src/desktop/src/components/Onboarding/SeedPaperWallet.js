@@ -6,6 +6,7 @@ import Header from './Header';
 import BoxedSeed from './BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
+import css from './SeedPaperWaller.css';
 
 class SeedPaperWallet extends PureComponent {
     static propTypes = {
@@ -23,32 +24,25 @@ class SeedPaperWallet extends PureComponent {
         return (
             <div>
                 <Header headline={t('title')} />
-                <Steps currentStep="clipboard" />
-                <main style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                    <div style={{ display: 'flex', minHeight: '200px', background: 'white', padding: '12px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Steps currentStep="paper" />
+                <main>
+                    <p>Click the button below to print a paper copy of your seed. Store it safely.</p>
+                    <div className={css.wrapper}>
+                        <div className={css.innerWrapper}>
                             <BoxedSeed t={t} seed={seed} color="black" size="small" />
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: 'black',
-                                    paddingLeft: '8px',
-                                    paddingRight: '8px',
-                                }}
-                            >
+                            <div className={css.midWrapper}>
                                 <span>Your seed is 81 characters long. Please read from left to right.</span>
                             </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <div className={css.qrCodeWrapper}>
                                 <QRCode value={seed} />
                             </div>
                         </div>
                     </div>
-                    <Button to="/" variant="success">
-                        {t('button1')}
-                    </Button>
+                    <div className={css.printBtnWrapper}>
+                        <Button to="/" variant="success">
+                            {t('button1')}
+                        </Button>
+                    </div>
                 </main>
                 <footer>
                     <Button to="/" variant="success">
