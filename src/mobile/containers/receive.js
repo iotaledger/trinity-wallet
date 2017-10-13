@@ -13,7 +13,7 @@ class Receive extends React.Component {
         super(props);
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
-            dataSource: ds.cloneWithRows([])
+            dataSource: ds.cloneWithRows([]),
         };
     }
 
@@ -69,6 +69,7 @@ class Receive extends React.Component {
                 </TouchableOpacity>
                 <View style={{ paddingTop: height / 20 }}>
                     <ListView
+                        enableEmptySections={true}
                         dataSource={this.state.dataSource}
                         renderRow={data => <TransactionRow rowData={data} />}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
@@ -82,7 +83,7 @@ class Receive extends React.Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        paddingTop: height / 20
+        paddingTop: height / 20,
     },
     receiveAddressContainer: {
         borderColor: 'white',
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         width: width / 1.3,
         height: height / 10,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     receiveAddressText: {
         fontFamily: 'Lato-Regular',
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
         color: 'white',
         backgroundColor: 'transparent',
         paddingHorizontal: width / 14,
-        textAlign: 'center'
+        textAlign: 'center',
     },
     generateButton: {
         flexDirection: 'row',
@@ -109,35 +110,35 @@ const styles = StyleSheet.create({
         height: height / 20,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#009f3f'
+        backgroundColor: '#009f3f',
     },
     generateText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 40.5,
         backgroundColor: 'transparent',
-        paddingLeft: 6
+        paddingLeft: 6,
     },
     generateImage: {
         height: width / 30,
-        width: width / 30
+        width: width / 30,
     },
     separator: {
         flex: 1,
-        height: 15
-    }
+        height: 15,
+    },
 });
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
     iota: state.iota,
-    account: state.account
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
     generateNewAddress: seed => {
         dispatch(generateNewAddress(seed));
-    }
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Receive);
