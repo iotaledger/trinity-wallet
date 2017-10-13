@@ -8,7 +8,7 @@ import {
     Image,
     ImageBackground,
     Clipboard,
-    StatusBar
+    StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -29,23 +29,13 @@ class CopySeedToClipboard extends React.Component {
         super(props);
     }
 
-    /* clearClipboard() {
-        Clipboard.setString('');
-        const dropdown = DropdownHolder.getDropDown();
-        dropdown.alertWithType(
-            'info',
-            'Seed cleared',
-            'The seed has been cleared from the clipboard for your security.',
-        );
-    } */
-
     componentWillUnmount() {
         clearClipboard();
     }
 
     onDonePress() {
         this.props.navigator.pop({
-            animated: false
+            animated: false,
         });
     }
 
@@ -55,15 +45,14 @@ class CopySeedToClipboard extends React.Component {
         dropdown.alertWithType(
             'success',
             'Seed copied',
-            'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.'
+            'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.',
         );
         setTimeout(function() {
             Clipboard.setString('');
-            //  const dropdown = DropdownHolder.getDropDown();
             dropdown.alertWithType(
                 'info',
                 'Seed cleared',
-                'The seed has been cleared from the clipboard for your security.'
+                'The seed has been cleared from the clipboard for your security.',
             );
         }, 60000);
     }
@@ -163,7 +152,7 @@ class CopySeedToClipboard extends React.Component {
                         fontWeight: 'bold',
                         color: 'white',
                         backgroundColor: 'transparent',
-                        fontFamily: 'Lato-Regular'
+                        fontFamily: 'Lato-Regular',
                     }}
                     defaultTextContainer={{ flex: 1, padding: 15 }}
                     messageStyle={{
@@ -172,7 +161,7 @@ class CopySeedToClipboard extends React.Component {
                         fontWeight: 'bold',
                         color: 'white',
                         backgroundColor: 'transparent',
-                        fontFamily: 'Lato-Regular'
+                        fontFamily: 'Lato-Regular',
                     }}
                     imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
                     inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
