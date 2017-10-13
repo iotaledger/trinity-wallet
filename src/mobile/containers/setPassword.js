@@ -89,13 +89,10 @@ class SetPassword extends React.Component {
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
-                                height={height / 40}
-                                fontSize={height / 45}
-                                labelHeight={height / 50}
+                                fontSize={height / 40}
                                 baseColor="white"
                                 label="Password"
                                 tintColor="#F7D002"
-                                labelPadding={3}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
@@ -103,7 +100,6 @@ class SetPassword extends React.Component {
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
                                     width: width / 1.65,
-                                    paddingBottom: height / 60,
                                     paddingTop: height / 40,
                                 }}
                                 secureTextEntry={true}
@@ -112,9 +108,7 @@ class SetPassword extends React.Component {
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
-                                height={height / 40}
-                                fontSize={height / 45}
-                                labelHeight={height / 50}
+                                fontSize={height / 40}
                                 baseColor="white"
                                 label="Retype Password"
                                 tintColor="#F7D002"
