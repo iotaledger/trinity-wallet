@@ -43,7 +43,7 @@ class SaveYourSeedOptions extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state),
+    seed: getSelectedSeed(state).seed,
 });
 
 export default translate('saveYourSeed')(connect(mapStateToProps)(SaveYourSeedOptions));
