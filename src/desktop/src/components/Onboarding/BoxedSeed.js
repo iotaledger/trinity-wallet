@@ -3,8 +3,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import css from './BoxedSeed.css';
-import ArrowWhiteIcon from '../../../../shared/images/arrow-white.png';
-import ArrowBlackIcon from '../../../../shared/images/arrow-black.png';
+import ArrowWhiteIcon from 'images/arrow-white.png';
+import ArrowBlackIcon from 'images/arrow-black.png';
 
 class BoxedSeed extends PureComponent {
     static propTypes = {

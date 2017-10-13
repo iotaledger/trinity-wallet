@@ -6,7 +6,7 @@ import Header from './Header';
 import BoxedSeed from './BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
-import css from './SeedPaperWaller.css';
+import css from './SeedPaperWallet.css';
 
 class SeedPaperWallet extends PureComponent {
     static propTypes = {
