@@ -19,10 +19,17 @@ export default class Steps extends PureComponent {
         const pattern = value => new RegExp(value);
         const isSelected = value => pattern(currentStep).test(value);
 
+        let k = 0;
         each(steps, (step, i) => {
-            asUiElements.push(<span {...isSelected(step) && { className: css.colorOverride }}>{startCase(step)}</span>);
+            asUiElements.push(
+                <span {...isSelected(step) && { className: css.colorOverride }} key={k}>
+                    {startCase(step)}
+                </span>,
+            );
+            k += 1;
             if (i < steps.length - 1) {
-                asUiElements.push(<div className={css.separator} />);
+                asUiElements.push(<div key={k + 1} className={css.separator} />);
+                k += 2;
             }
         });
 

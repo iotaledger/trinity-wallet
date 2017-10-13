@@ -24,16 +24,16 @@ class SeedManualCopy extends PureComponent {
                 <Header headline={t('title')} />
                 <Steps currentStep="manual" />
                 <main>
-                    <div>
-                        <BoxedSeed t={t} seed={seed} />
-                    </div>
+                    <p>
+                        Your seed is 81 characters read from left to right. Write down your seed and checksum and triple
+                        check they are correct.
+                    </p>
+                    <BoxedSeed t={t} seed={seed} />
                 </main>
                 <footer>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Button to="/" variant="warning">
-                            {t('done')}
-                        </Button>
-                    </div>
+                    <Button to="/" variant="warning">
+                        {t('done')}
+                    </Button>
                 </footer>
             </div>
         );
