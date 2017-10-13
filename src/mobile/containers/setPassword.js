@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     Image,
     ImageBackground,
-    ScrollView
+    ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setFirstUse } from '../../shared/actions/accountActions';
@@ -26,7 +26,7 @@ class SetPassword extends React.Component {
         super(props);
         this.state = {
             password: '',
-            reentry: ''
+            reentry: '',
         };
     }
 
@@ -39,9 +39,9 @@ class SetPassword extends React.Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     screenBackgroundImageName: 'bg-green.png',
-                    screenBackgroundColor: '#102e36'
+                    screenBackgroundColor: '#102e36',
                 },
-                animated: false
+                animated: false,
             });
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
@@ -49,20 +49,20 @@ class SetPassword extends React.Component {
                     'error',
                     'Password is too short',
                     `Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state
-                        .password.length} characters long. Please try again.`
+                        .password.length} characters long. Please try again.`,
                 );
             } else if (!(this.state.password === this.state.reentry)) {
                 this.dropdown.alertWithType(
                     'error',
                     'Passwords do not match',
-                    'The passwords you have entered do not match. Please try again.'
+                    'The passwords you have entered do not match. Please try again.',
                 );
             }
         }
     }
     onBackClick() {
         this.props.navigator.pop({
-            animated: false
+            animated: false,
         });
     }
 
@@ -89,13 +89,10 @@ class SetPassword extends React.Component {
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
-                                height={height / 40}
-                                fontSize={height / 45}
-                                labelHeight={height / 50}
+                                fontSize={height / 40}
                                 baseColor="white"
                                 label="Password"
                                 tintColor="#F7D002"
-                                labelPadding={3}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
@@ -103,8 +100,7 @@ class SetPassword extends React.Component {
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
                                     width: width / 1.65,
-                                    paddingBottom: height / 60,
-                                    paddingTop: height / 40
+                                    paddingTop: height / 40,
                                 }}
                                 secureTextEntry={true}
                             />
@@ -112,11 +108,10 @@ class SetPassword extends React.Component {
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
-                                height={height / 40}
-                                fontSize={height / 45}
-                                labelHeight={height / 50}
+                                fontSize={height / 40}
                                 baseColor="white"
                                 label="Retype Password"
+                                tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
@@ -155,38 +150,38 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
     },
     topContainer: {
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 3.5,
         justifyContent: 'flex-start',
         paddingTop: height / 10,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     bottomContainer: {
         flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 14
+        paddingBottom: height / 14,
     },
     textContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: width / 7,
-        paddingTop: height / 35
+        paddingTop: height / 35,
     },
     title: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoText: {
         color: 'white',
@@ -194,7 +189,7 @@ const styles = StyleSheet.create({
         fontSize: width / 33.75,
         textAlign: 'center',
         paddingHorizontal: width / 6,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     warningText: {
         color: 'white',
@@ -203,7 +198,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: width / 6,
         paddingTop: 5,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     greetingText: {
         color: 'white',
@@ -212,7 +207,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: width / 7,
         paddingBottom: height / 40,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     questionText: {
         color: 'white',
@@ -222,11 +217,11 @@ const styles = StyleSheet.create({
         paddingLeft: width / 7,
         paddingRight: width / 7,
         paddingTop: height / 25,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     buttonsContainer: {
         alignItems: 'center',
-        paddingBottom: height / 30
+        paddingBottom: height / 30,
     },
     doneButton: {
         borderColor: '#9DFFAF',
@@ -235,7 +230,7 @@ const styles = StyleSheet.create({
         width: width / 1.65,
         height: height / 17,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     backButton: {
         borderColor: '#F7D002',
@@ -244,28 +239,28 @@ const styles = StyleSheet.create({
         width: width / 1.65,
         height: height / 17,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     doneText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     backText: {
         color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
-    }
+        width: width / 5,
+    },
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota
+    iota: state.iota,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -277,7 +272,7 @@ const mapDispatchToProps = dispatch => ({
     },
     setSeed: seed => {
         dispatch(setSeed(seed));
-    }
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SetPassword);
