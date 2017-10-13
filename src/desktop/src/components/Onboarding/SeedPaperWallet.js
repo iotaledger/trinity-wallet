@@ -51,11 +51,9 @@ class SeedPaperWallet extends PureComponent {
                     </Button>
                 </main>
                 <footer>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Button to="/" variant="success">
-                            {t('button2')}
-                        </Button>
-                    </div>
+                    <Button to="/" variant="success">
+                        {t('button2')}
+                    </Button>
                 </footer>
             </div>
         );
