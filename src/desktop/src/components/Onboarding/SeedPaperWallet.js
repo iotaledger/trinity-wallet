@@ -23,32 +23,37 @@ class SeedPaperWallet extends PureComponent {
         return (
             <div>
                 <Header headline={t('title')} />
-                <Steps />
-                <main>
-                    <div style={{ display: 'flex', minHeight: '200px' }}>
+                <Steps currentStep="clipboard" />
+                <main style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+                    <div style={{ display: 'flex', minHeight: '200px', background: 'white', padding: '12px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <BoxedSeed t={t} seed={seed} />
+                            <BoxedSeed t={t} seed={seed} color="black" size="small" />
                             <div
                                 style={{
                                     display: 'flex',
                                     flexDirection: 'column',
                                     alignItems: 'center',
-                                    justifyContent: 'space-around',
+                                    justifyContent: 'center',
+                                    color: 'black',
+                                    paddingLeft: '8px',
+                                    paddingRight: '8px',
                                 }}
                             >
-                                <span style={{ flex: 1 }}>Logo</span>
-                                <span style={{ flex: 3 }}>
-                                    Your seed is 81 characters long. Please read from left to right.
-                                </span>
+                                <span>Your seed is 81 characters long. Please read from left to right.</span>
                             </div>
-                            <QRCode value={seed} />
+                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                <QRCode value={seed} />
+                            </div>
                         </div>
                     </div>
+                    <Button to="/" variant="success">
+                        {t('button1')}
+                    </Button>
                 </main>
                 <footer>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Button to="/" variant="warning">
-                            {t('button1')}
+                        <Button to="/" variant="success">
+                            {t('button2')}
                         </Button>
                     </div>
                 </footer>
