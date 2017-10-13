@@ -15,10 +15,6 @@ class SeedPaperWallet extends PureComponent {
         seed: PropTypes.string,
     };
 
-    static defaultProps = {
-        seed: 'BSWMMBSBPVWAXYYVTYAAHDONCCZIXGJCMQOXTRGKK9PIVVRCMXYJWKUBWHOP9VUIZNFTIKHOIYKTIODGD',
-    };
-
     render() {
         const { t, seed } = this.props;
 
