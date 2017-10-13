@@ -4,5 +4,5 @@ const seedsSelector = state => state.seeds;
 
 export const getSelectedSeed = createSelector(
     seedsSelector,
-    ({ items, selectedSeedIndex }) => items[selectedSeedIndex],
+    ({ items, selectedSeedIndex }) => items[selectedSeedIndex] || {},
 );
