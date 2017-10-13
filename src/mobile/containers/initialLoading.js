@@ -59,13 +59,14 @@ export default class InitialLoading extends Component {
     }
 
     render() {
+        const currentYear = getCurrentYear();
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <View style={styles.logoContainer}>
                     <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>IOTA Foundation © {getCurrentYear}</Text>
+                    <Text style={styles.text}>IOTA Foundation © {currentYear}</Text>
                 </View>
             </ImageBackground>
         );
