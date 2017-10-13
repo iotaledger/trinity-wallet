@@ -4,26 +4,23 @@ import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode';
 
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
-import {RNPrint} from 'NativeModules';
+import { RNPrint } from 'NativeModules';
 
 const { height, width } = Dimensions.get('window');
 
-
-
 class PaperWallet extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
             checkboxImage: require('../../shared/images/checkbox-checked.png'),
             showIotaLogo: true,
-            iotaLogoVisibility: 'visible'
-        }
+            iotaLogoVisibility: 'visible',
+        };
     }
 
     onDonePress() {
         this.props.navigator.pop({
-            animated: false
+            animated: false,
         });
     }
 
@@ -32,32 +29,76 @@ class PaperWallet extends React.Component {
             this.setState({
                 checkboxImage: require('../../shared/images/checkbox-unchecked.png'),
                 showIotaLogo: false,
-                iotaLogoVisibility: 'hidden'
+                iotaLogoVisibility: 'hidden',
             });
         } else {
             this.setState({
                 checkboxImage: require('../../shared/images/checkbox-checked.png'),
                 showIotaLogo: true,
-                iotaLogoVisibility: 'visible'
+                iotaLogoVisibility: 'visible',
             });
         }
     }
 
     async onPrintPress() {
-
-      const options = {
-            html: `<html><div id="item"><img id="arrow" src="/Users/charlie/Desktop/wallet/src/shared/images/arrow-black.png" /><table id="seedBox"><tr><td>${this.props.iota.seed.substring(0,3)}</td><td>${this.props.iota.seed.substring(3, 6)}</td><td>${this.props.iota.seed.substring(6, 9)}</td><td>${this.props.iota.seed.substring(9, 12)}</td></tr><tr><td>${this.props.iota.seed.substring(12, 15)}</td><td>${this.props.iota.seed.substring(15,18)}</td><td>${this.props.iota.seed.substring(18, 21)}</td><td>${this.props.iota.seed.substring(21,24)}</td></tr><tr><td>${this.props.iota.seed.substring(24,27)}</td><td>${this.props.iota.seed.substring(27,30)}</td><td>${this.props.iota.seed.substring(30,33)}</td><td>${this.props.iota.seed.substring(33,36)}</td></tr><tr><td>${this.props.iota.seed.substring(36,39)}</td><td>${this.props.iota.seed.substring(39,42)}</td><td>${this.props.iota.seed.substring(42,45)}</td><td>${this.props.iota.seed.substring(45,48)}</td></tr><tr><td>${this.props.iota.seed.substring(48,51)}</td><td>${this.props.iota.seed.substring(51,54)}</td><td>${this.props.iota.seed.substring(54,57)}</td><td>${this.props.iota.seed.substring(57,60)}</td></tr><tr><td>${this.props.iota.seed.substring(60,63)}</td><td>${this.props.iota.seed.substring(63,66)}</td><td>${this.props.iota.seed.substring(66,69)}</td><td>${this.props.iota.seed.substring(69,72)}</td></tr><tr><td>${this.props.iota.seed.substring(72,75)}</td><td>${this.props.iota.seed.substring(75,78)}</td><td>${this.props.iota.seed.substring(78,81)}</td></tr></table></div><div id="midItem"><img id="iotaLogo" src="/Users/charlie/Desktop/wallet/src/shared/images/iota-full.png"/> <p id="text" width="10"> Your seed is 81<br />characters, read<br />from left to right.</p></div><div id="item"><img src="/Users/charlie/Desktop/wallet/src/shared/images/2.png" width="240" height="240" /></div> <style> #seedBox {margin-left: 20px; padding-left: 6px; padding-right: 6px; padding-top: 30px; padding-bottom: 10px; border: solid #000;border-width: 2px; border-radius: 20px} @font-face { font-family: "Lato"; src: "/Users/charlie/Desktop/wallet/src/shared/custom-fonts/Lato-Regular.ttf"} @font-face { font-family: "Monospace"; src: "/Users/charlie/Desktop/wallet/src/shared/custom-fonts/Inconsolata-Bold.ttf"} #text {font-family: Lato; font-size: 20px; text-align: center; padding-top: 25px} #item {float: left} #midItem {float: left; margin: 30px} #iotaLogo {width: 109.1px; height: 36.73px; position: absolute; left: 308px; top: 5px; visibility: ${this.state.iotaLogoVisibility}}  td {padding-left: 7px; padding-right: 7px; font-size: 21px; font-family: Monospace} #arrow {position: absolute; left: 45px; top: 25px; width: 200px; height: 9.68px }</style></html>`,
+        const options = {
+            html: `<html><div id="item"><img id="arrow" src="/Users/charlie/Desktop/wallet/src/shared/images/arrow-black.png" /><table id="seedBox"><tr><td>${this.props.iota.seed.substring(
+                0,
+                3,
+            )}</td><td>${this.props.iota.seed.substring(3, 6)}</td><td>${this.props.iota.seed.substring(
+                6,
+                9,
+            )}</td><td>${this.props.iota.seed.substring(9, 12)}</td></tr><tr><td>${this.props.iota.seed.substring(
+                12,
+                15,
+            )}</td><td>${this.props.iota.seed.substring(15, 18)}</td><td>${this.props.iota.seed.substring(
+                18,
+                21,
+            )}</td><td>${this.props.iota.seed.substring(21, 24)}</td></tr><tr><td>${this.props.iota.seed.substring(
+                24,
+                27,
+            )}</td><td>${this.props.iota.seed.substring(27, 30)}</td><td>${this.props.iota.seed.substring(
+                30,
+                33,
+            )}</td><td>${this.props.iota.seed.substring(33, 36)}</td></tr><tr><td>${this.props.iota.seed.substring(
+                36,
+                39,
+            )}</td><td>${this.props.iota.seed.substring(39, 42)}</td><td>${this.props.iota.seed.substring(
+                42,
+                45,
+            )}</td><td>${this.props.iota.seed.substring(45, 48)}</td></tr><tr><td>${this.props.iota.seed.substring(
+                48,
+                51,
+            )}</td><td>${this.props.iota.seed.substring(51, 54)}</td><td>${this.props.iota.seed.substring(
+                54,
+                57,
+            )}</td><td>${this.props.iota.seed.substring(57, 60)}</td></tr><tr><td>${this.props.iota.seed.substring(
+                60,
+                63,
+            )}</td><td>${this.props.iota.seed.substring(63, 66)}</td><td>${this.props.iota.seed.substring(
+                66,
+                69,
+            )}</td><td>${this.props.iota.seed.substring(69, 72)}</td></tr><tr><td>${this.props.iota.seed.substring(
+                72,
+                75,
+            )}</td><td>${this.props.iota.seed.substring(75, 78)}</td><td>${this.props.iota.seed.substring(
+                78,
+                81,
+            )}</td></tr></table></div><div id="midItem"><img id="iotaLogo" src="/Users/charlie/Desktop/wallet/src/shared/images/iota-full.png"/> <p id="text" width="10"> Your seed is 81<br />characters, read<br />from left to right.</p></div><div id="item"><img src="/Users/charlie/Desktop/wallet/src/shared/images/qr.png" width="240" height="240" /></div> <style> #seedBox {margin-left: 20px; padding-left: 6px; padding-right: 6px; padding-top: 30px; padding-bottom: 10px; border: solid #000;border-width: 2px; border-radius: 20px} @font-face { font-family: "Lato"; src: "/Users/charlie/Desktop/wallet/src/shared/custom-fonts/Lato-Regular.ttf"} @font-face { font-family: "Monospace"; src: "/Users/charlie/Desktop/wallet/src/shared/custom-fonts/Inconsolata-Bold.ttf"} #text {font-family: Lato; font-size: 20px; text-align: center; padding-top: 25px} #item {float: left} #midItem {float: left; margin: 30px} #iotaLogo {width: 109.1px; height: 36.73px; position: absolute; left: 308px; top: 5px; visibility: ${this
+                .state
+                .iotaLogoVisibility}}  td {padding-left: 7px; padding-right: 7px; font-size: 21px; font-family: Monospace} #arrow {position: absolute; left: 45px; top: 25px; width: 200px; height: 9.68px }</style></html>`,
             fileName: 'paperWallet',
             base64: true,
-          };
+            fonts: ['src/shared/custom-fonts/Inconsolata-Bold.ttf'],
+        };
 
-      try {
-          const results = await RNHTMLtoPDF.convert(options)
-          const jobName = await RNPrint.print(results.filePath)
-          console.log(`Printing ${jobName} complete!`)
-      } catch (err) {
-          console.error(err)
-      }
+        try {
+            const results = await RNHTMLtoPDF.convert(options);
+            const jobName = await RNPrint.print(results.filePath);
+            console.log(`Printing ${jobName} complete!`);
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     _renderIotaLogo() {
@@ -190,26 +231,26 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
     },
     topContainer: {
         flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
-        paddingHorizontal: width / 20
+        paddingHorizontal: width / 20,
     },
     midContainer: {
         flex: 3.6,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 7
+        paddingTop: height / 7,
     },
     bottomContainer: {
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        paddingBottom: height / 25
+        paddingBottom: height / 25,
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -217,7 +258,7 @@ const styles = StyleSheet.create({
         fontSize: width / 25.3,
         textAlign: 'center',
         paddingHorizontal: width / 20,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     optionButton: {
         borderColor: '#8BD4FF',
@@ -226,20 +267,20 @@ const styles = StyleSheet.create({
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: height / 35,
-        paddingBottom: height / 30
+        paddingBottom: height / 30,
     },
     title: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     currentSubtitle: {
         color: 'white',
@@ -247,7 +288,7 @@ const styles = StyleSheet.create({
         fontSize: width / 33,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
     subtitle: {
         color: 'white',
@@ -256,17 +297,17 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
         flexWrap: 'wrap',
-        opacity: 0.5
+        opacity: 0.5,
     },
     subtitlesContainer: {
         flexDirection: 'row',
         flex: 1,
-        paddingTop: height / 40
+        paddingTop: height / 40,
     },
     subtitleContainer: {
         paddingHorizontal: width / 75,
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     line: {
         color: 'white',
@@ -274,11 +315,11 @@ const styles = StyleSheet.create({
         fontSize: width / 33,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        opacity: 0.5
+        opacity: 0.5,
     },
     lineContainer: {
         flex: 1.5,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     infoText: {
         color: 'white',
@@ -288,21 +329,21 @@ const styles = StyleSheet.create({
         paddingTop: height / 11,
         paddingHorizontal: width / 8,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoTextNormal: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 29,
         textAlign: 'left',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoTextBold: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 29,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     doneButton: {
         borderColor: '#9DFFAF',
@@ -311,17 +352,17 @@ const styles = StyleSheet.create({
         width: width / 3,
         height: height / 16,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     doneText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     printButton: {
         flexDirection: 'row',
@@ -332,19 +373,19 @@ const styles = StyleSheet.create({
         height: height / 20,
         alignItems: 'center',
         justifyContent: 'space-around',
-        backgroundColor: '#009f3f'
+        backgroundColor: '#009f3f',
     },
     printText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 40.5,
         backgroundColor: 'transparent',
-        paddingRight: width / 50
+        paddingRight: width / 50,
     },
     printImage: {
         height: width / 27,
         width: width / 27,
-        paddingLeft: width / 50
+        paddingLeft: width / 50,
     },
     paperWalletContainer: {
         width: width / 1.1,
@@ -353,7 +394,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        paddingHorizontal: width / 30
+        paddingHorizontal: width / 30,
     },
     seedBox: {
         borderColor: 'black',
@@ -363,7 +404,7 @@ const styles = StyleSheet.create({
         height: height / 6.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 100
+        paddingTop: height / 100,
     },
     seedBoxTextContainer: {
         width: width / 1.65,
@@ -371,7 +412,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingTop: height / 200
+        paddingTop: height / 200,
     },
     seedBoxTextLeft: {
         color: 'black',
@@ -381,7 +422,7 @@ const styles = StyleSheet.create({
         letterSpacing: 2,
         backgroundColor: 'transparent',
         paddingRight: width / 70,
-        paddingVertical: 1
+        paddingVertical: 1,
     },
     seedBoxTextRight: {
         color: 'black',
@@ -390,18 +431,18 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         letterSpacing: 2,
         backgroundColor: 'transparent',
-        paddingVertical: 1
+        paddingVertical: 1,
     },
     arrow: {
         width: width / 4,
-        height: height / 160
+        height: height / 160,
     },
     paperWalletTextContainer: {
         width: width / 5,
         height: height / 6.5,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        paddingBottom: height / 4
+        paddingBottom: height / 4,
     },
     paperWalletText: {
         color: 'black',
@@ -410,37 +451,36 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         position: 'absolute',
         paddingTop: height / 10,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     paperWalletLogo: {
         resizeMode: 'contain',
         width: width / 7,
         height: height / 20,
         paddingBottom: height / 10,
-
     },
     checkboxContainer: {
         height: height / 15,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 50
+        paddingTop: height / 50,
     },
     checkbox: {
         width: width / 30,
-        height: width / 30
+        height: width / 30,
     },
     checkboxText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 30,
         color: 'white',
         backgroundColor: 'transparent',
-        paddingLeft: 5
-    }
+        paddingLeft: 5,
+    },
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota
+    iota: state.iota,
 });
 
 export default connect(mapStateToProps)(PaperWallet);

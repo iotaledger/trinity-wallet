@@ -8,21 +8,21 @@ import { iota } from '../libs/iota';
 export function setAddress(address) {
     return {
         type: 'SET_ADDRESS',
-        payload: address
+        payload: address,
     };
 }
 
 export function setReady() {
     return {
         type: 'SET_READY',
-        payload: true
+        payload: true,
     };
 }
 
 export function setSeed(seed) {
     return {
         type: 'SET_SEED',
-        payload: seed
+        payload: seed,
     };
 }
 
@@ -66,7 +66,7 @@ export function setAccountInfo(accountInfo) {
     return {
         type: 'SET_ACCOUNTINFO',
         balance,
-        transactions
+        transactions,
     };
 }
 
@@ -113,10 +113,11 @@ export function sendTransaction(seed, address, value, message) {
     const messageTrytes = iota.utils.toTrytes(messageStringified);
     const transfer = [
         {
-            address,
-            value,
-            message: messageTrytes
-        }
+            address: address,
+            value: value,
+            message: messageTrytes,
+            tag: 'AAA',
+        },
     ];
     if (!iota.valid.isTransfersArray(transfer)) {
         console.log('Error: Invalid transfer array');
@@ -126,9 +127,9 @@ export function sendTransaction(seed, address, value, message) {
     // Send transfer with depth 4 and minWeightMagnitude 18
     iota.api.sendTransfer(seed, 4, 18, transfer, (error, success) => {
         if (!error) {
-            console.log('SOMETHING WENT WRONG: ', error);
-        } else {
             console.log('SUCCESSFULLY SENT TRANSFER: ', success);
+        } else {
+            console.log('SOMETHING WENT WRONG: ', error);
         }
     });
 }
@@ -162,13 +163,13 @@ export function randomiseSeed(randomBytesFn) {
 
 export function clearIOTA() {
     return {
-        type: 'CLEAR_IOTA'
+        type: 'CLEAR_IOTA',
     };
 }
 
 export function setPassword(password) {
     return {
         type: 'SET_PASSWORD',
-        payload: password
+        payload: password,
     };
 }
