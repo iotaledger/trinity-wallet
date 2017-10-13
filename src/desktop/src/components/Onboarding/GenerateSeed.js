@@ -43,7 +43,10 @@ class GenerateSeed extends React.PureComponent {
             });
         }
 
-        addAndSelectSeed(seed);
+        addAndSelectSeed({
+            seed: seed,
+        });
+
         history.push('/onboarding/seed/save');
     };
 
@@ -71,7 +74,7 @@ class GenerateSeed extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state),
+    seed: getSelectedSeed(state).seed,
 });
 
 const mapDispatchToProps = {

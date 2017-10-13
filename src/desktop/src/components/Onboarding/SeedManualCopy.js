@@ -43,7 +43,7 @@ class SeedManualCopy extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state),
+    seed: getSelectedSeed(state).seed,
 });
 
 export default translate('saveYourSeed2')(connect(mapStateToProps)(SeedManualCopy));

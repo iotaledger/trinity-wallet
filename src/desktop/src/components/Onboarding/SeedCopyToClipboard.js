@@ -53,7 +53,7 @@ class SeedCopyToClipboard extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
-    seed: getSelectedSeed(state),
+    seed: getSelectedSeed(state).seed,
 });
 
 const mapDispatchToProps = {
