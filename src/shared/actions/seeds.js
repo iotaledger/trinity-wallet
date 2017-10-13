@@ -21,6 +21,8 @@ export const selectSeed = index => {
 
 export const addAndSelectSeed = seed => {
     return (dispatch, getState) => {
+        // TODO: don't add seed if already in store
+        // const { seeds } = getState();
         dispatch(addSeed(seed));
         dispatch(selectSeed(getState().seeds.items.length - 1));
     };
