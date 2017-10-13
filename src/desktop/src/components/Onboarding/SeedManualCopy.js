@@ -21,8 +21,8 @@ class SeedManualCopy extends PureComponent {
 
         return (
             <div>
-                <Header title={t('title')} />
-                <Steps />
+                <Header headline={t('title')} />
+                <Steps currentStep="manual" />
                 <main>
                     <div>
                         <BoxedSeed t={t} seed={seed} />

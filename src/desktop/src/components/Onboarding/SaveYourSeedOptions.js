@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Header from './Header';
 import Button from '../UI/Button';
+import css from './SaveYourSeedOptions.css';
 
 class SaveYourSeedOptions extends PureComponent {
     static propTypes = {
@@ -16,7 +17,7 @@ class SaveYourSeedOptions extends PureComponent {
             <div>
                 <Header headline={t('title')} />
                 <p>{t('text1')}</p>
-                <main>
+                <main className={css.main}>
                     <Button to="/onboarding/seed/save/manual" variant="extra">
                         {t('optionA')}
                     </Button>

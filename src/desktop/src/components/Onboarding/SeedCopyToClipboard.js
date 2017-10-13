@@ -23,8 +23,8 @@ class SeedCopyToClipboard extends React.PureComponent {
 
         return (
             <div>
-                <Header title={t('title')} />
-                <Steps />
+                <Header headline={t('title')} />
+                <Steps currentStep="clipboard" />
                 <main>
                     <div style={{ display: 'flex', flex: 5, flexDirection: 'column', justifyContent: 'space-around' }}>
                         <BoxedSeed t={t} seed={seed} />
