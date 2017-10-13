@@ -9,7 +9,7 @@ import {
     Image,
     ImageBackground,
     ScrollView,
-    StatusBar
+    StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
@@ -19,7 +19,6 @@ import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
-//const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
 
 class Login extends React.Component {
     constructor(props) {
@@ -137,7 +136,7 @@ class Login extends React.Component {
                         fontWeight: 'bold',
                         color: 'white',
                         backgroundColor: 'transparent',
-                        fontFamily: 'Lato-Regular'
+                        fontFamily: 'Lato-Regular',
                     }}
                     defaultTextContainer={{ flex: 1, padding: 20 }}
                     messageStyle={{
@@ -146,7 +145,7 @@ class Login extends React.Component {
                         fontWeight: 'bold',
                         color: 'white',
                         backgroundColor: 'transparent',
-                        fontFamily: 'Lato-Regular'
+                        fontFamily: 'Lato-Regular',
                     }}
                     imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
                     inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
