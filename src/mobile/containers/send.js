@@ -9,11 +9,15 @@ import {
     LayoutAnimation,
     ListView,
     ScrollView,
-    Dimensions
+    Dimensions,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
+import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import TransactionRow from '../components/transactionRow.js';
+import { round } from '../../shared/libs/util';
+import { getFromKeychain } from '../../shared/libs/cryptography';
+import { sendTransaction } from '../../shared/actions/iotaActions';
 
 const { height, width } = Dimensions.get('window');
 const CustomLayoutSpring = {
@@ -21,12 +25,12 @@ const CustomLayoutSpring = {
     create: {
         type: LayoutAnimation.Types.spring,
         property: LayoutAnimation.Properties.scaleXY,
-        springDamping: 0.7
+        springDamping: 0.7,
     },
     update: {
         type: LayoutAnimation.Types.spring,
-        springDamping: 0.7
-    }
+        springDamping: 0.7,
+    },
 };
 
 class Send extends React.Component {
@@ -35,147 +39,196 @@ class Send extends React.Component {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
         this.state = {
-            triangleDirection: 'down',
-            dropdownHeight: 0,
-            dropdownSelected: 'Mi',
+            denomination: 'Mi',
             amount: '',
             address: '',
-            dataSource: ds.cloneWithRows([])
+            message: '',
+            dataSource: ds.cloneWithRows([]),
         };
     }
 
-    clickDenomination() {
-        LayoutAnimation.configureNext(CustomLayoutSpring);
-        switch (this.state.triangleDirection) {
-            case 'down':
-                this.setState({
-                    triangleDirection: 'up',
-                    dropdownHeight: 100
-                });
+    onDenominationPress() {
+        switch (this.state.denomination) {
+            case 'Mi':
+                this.setState({ denomination: 'Gi' });
                 break;
-            case 'up':
-                this.setState({
-                    triangleDirection: 'down',
-                    dropdownHeight: 0
-                });
+            case 'Gi':
+                this.setState({ denomination: 'Ti' });
+                break;
+            case 'Ti':
+                this.setState({ denomination: 'i' });
+                break;
+            case 'i':
+                this.setState({ denomination: 'Ki' });
+                break;
+            case 'Ki':
+                this.setState({ denomination: 'Mi' });
                 break;
         }
     }
 
-    clickDropdownItem(item) {
+    onQRPress() {}
+
+    onMaxPress() {
         this.setState({
-            dropdownHeight: 0,
-            triangleDirection: 'down',
-            dropdownSelected: item
+            amount: (this.props.iota.balance / 1000000).toString(),
+            denomination: 'Mi',
         });
     }
 
-    onQRClick() {}
+    sendTransaction() {
+        var address = this.state.address;
+        var value = parseInt(this.state.amount);
+        var message = this.state.message;
+
+        getFromKeychain(this.props.iota.password, seed => {
+            if (typeof seed !== 'undefined') {
+                sendTx(seed);
+            } else {
+                console.log('error');
+            }
+        });
+
+        function sendTx(seed) {
+            sendTransaction(seed, address, value, message);
+        }
+    }
+
+    getUnitMultiplier() {
+        var multiplier = 1;
+        switch (this.state.denomination) {
+            case 'i':
+                break;
+            case 'Ki':
+                multiplier = 1000;
+                break;
+            case 'Mi':
+                multiplier = 1000000;
+                break;
+            case 'Gi':
+                multiplier = 1000000000;
+                break;
+            case 'Ti':
+                multiplier = 1000000000000;
+                break;
+        }
+        return multiplier;
+    }
 
     render() {
-        let { amount, address } = this.state;
+        let { amount, address, message } = this.state;
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
                 <View style={styles.topContainer}>
-                    <View style={{ flexDirection: 'row', flex: 1 }}>
+                    <View style={{ flexDirection: 'row' }}>
                         <View style={styles.textFieldContainer}>
                             <TextField
                                 keyboardType={'numeric'}
                                 style={styles.textField}
-                                labelTextStyle={{ fontFamily: 'Lato-Regular' }}
+                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
-                                height={height / 40}
-                                fontSize={height / 45}
-                                labelHeight={height / 50}
+                                fontSize={height / 40}
+                                height={height / 24}
+                                labelPadding={2}
                                 baseColor="white"
                                 tintColor="#F7D002"
-                                labelPadding={3}
                                 enablesReturnKeyAutomatically={true}
-                                label="ADDRESS"
+                                label="Recipient address"
                                 autoCorrect={false}
                                 value={address}
                                 onChangeText={address => this.setState({ address })}
                             />
                         </View>
-                        <View style={styles.qrContainer}>
-                            <TouchableOpacity onPress={this.onQRClick()}>
-                                <View style={styles.qrButton}>
-                                    <Image source={require('../../shared/images/camera.png')} style={styles.qrImage} />
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={this.onQRPress()}>
+                                <View style={styles.button}>
+                                    <Image
+                                        source={require('../../shared/images/camera.png')}
+                                        style={styles.buttonImage}
+                                    />
                                     <Text style={styles.qrText}> QR </Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', flex: 1 }}>
+                    <View style={{ flexDirection: 'row' }}>
                         <View style={styles.textFieldContainer}>
                             <TextField
                                 keyboardType={'numeric'}
                                 style={styles.textField}
-                                labelTextStyle={{ fontFamily: 'Lato-Regular' }}
+                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
-                                height={height / 40}
-                                fontSize={height / 45}
-                                labelHeight={height / 50}
+                                fontSize={height / 40}
+                                height={height / 24}
+                                labelPadding={2}
                                 baseColor="white"
                                 enablesReturnKeyAutomatically={true}
-                                label="AMOUNT"
+                                label="Amount"
                                 tintColor="#F7D002"
-                                labelPadding={3}
                                 autoCorrect={false}
                                 value={amount}
                                 onChangeText={amount => this.setState({ amount })}
                             />
                         </View>
-                        <View style={styles.dropdownButtonContainer}>
-                            <TouchableWithoutFeedback onPress={event => this.clickDenomination()}>
-                                <View style={styles.dropdownButton}>
-                                    <Text style={styles.denomination}> {this.state.dropdownSelected} </Text>
-                                    <Triangle
-                                        width={10}
-                                        height={10}
-                                        color={'white'}
-                                        direction={this.state.triangleDirection}
-                                        style={{ marginBottom: 8 }}
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
+                                <View style={styles.button}>
+                                    <Image
+                                        source={require('../../shared/images/iota.png')}
+                                        style={styles.buttonImage}
                                     />
+                                    <Text style={styles.buttonText}> {this.state.denomination} </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                     </View>
-                </View>
-                <View style={styles.dropdownContainer}>
-                    <View
-                        style={{
-                            height: this.state.dropdownHeight,
-                            overflow: 'hidden',
-                            width: 30,
-                            backgroundColor: 'transparent'
-                        }}
-                    >
-                        <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('i')}>
-                            {' '}
-                            i{' '}
-                        </Text>
-                        <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Ki')}>
-                            {' '}
-                            Ki{' '}
-                        </Text>
-                        <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Mi')}>
-                            {' '}
-                            Mi{' '}
-                        </Text>
-                        <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Gi')}>
-                            {' '}
-                            Gi{' '}
-                        </Text>
-                        <Text style={styles.dropdownItem} onPress={event => this.clickDropdownItem('Ti')}>
-                            {' '}
-                            Ti{' '}
-                        </Text>
+                    <Text style={styles.conversionText}>
+                        {' '}
+                        = ${' '}
+                        {round(
+                            parseInt(this.state.amount == '' ? 0 : this.state.amount) *
+                                this.props.marketData.usdPrice /
+                                1000000 *
+                                this.getUnitMultiplier(),
+                            2,
+                        ).toFixed(2)}{' '}
+                    </Text>
+                    <View style={styles.maxButtonContainer}>
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={event => this.onMaxPress()}>
+                                <View style={styles.maxButton}>
+                                    <Image source={require('../../shared/images/max.png')} style={styles.maxImage} />
+                                    <Text style={styles.maxButtonText}> MAX </Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.sendIOTAButton}>
-                    <Image style={styles.sendIOTAImage} source={require('../../shared/images/sendIota.png')} />
-                    <Text style={styles.sendIOTAText}>SEND IOTA</Text>
+                    <TextField
+                        style={styles.textField}
+                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                        labelFontSize={height / 55}
+                        fontSize={height / 40}
+                        height={height / 24}
+                        labelPadding={2}
+                        baseColor="white"
+                        enablesReturnKeyAutomatically={true}
+                        label="Message"
+                        tintColor="#F7D002"
+                        autoCorrect={false}
+                        value={message}
+                        onChangeText={message => this.setState({ message })}
+                    />
+                    <View style={styles.sendIOTAButtonContainer}>
+                        <TouchableOpacity onPress={event => this.sendTransaction()}>
+                            <View style={styles.sendIOTAButton}>
+                                <Image
+                                    style={styles.sendIOTAImage}
+                                    source={require('../../shared/images/sendIota.png')}
+                                />
+                                <Text style={styles.sendIOTAText}>SEND IOTA</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 {/* }<ListView
                 style={{position: 'absolute', top: 250, left: 0, right: 0, bottom: 0}}
@@ -191,80 +244,60 @@ class Send extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: height / 10
+        paddingTop: height / 10,
     },
     topContainer: {
         paddingHorizontal: width / 10,
         zIndex: 1,
-        flex: 1
+        flex: 1,
     },
     textFieldContainer: {
-        flex: 8,
-        paddingRight: width / 20
+        flex: 1,
+        paddingRight: width / 20,
     },
     textField: {
         color: 'white',
-        fontFamily: 'Lato-Light'
+        fontFamily: 'Lato-Light',
     },
-    qrButton: {
+    button: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'white',
-        borderWidth: 1,
+        borderWidth: 0.8,
         borderRadius: 8,
         width: width / 7,
-        height: height / 20
+        height: height / 20,
     },
     qrText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
+        fontSize: width / 39.8,
+        backgroundColor: 'transparent',
+        marginLeft: width / 20,
+    },
+    buttonText: {
+        color: 'white',
+        fontFamily: 'Lato-Bold',
         fontSize: width / 36.8,
         backgroundColor: 'transparent',
-        paddingLeft: 3
+        marginLeft: width / 20,
     },
-    denomination: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23.8,
-        backgroundColor: 'transparent',
-        paddingBottom: 3,
-        paddingRight: 3
-    },
-    dropdownButton: {
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        borderBottomColor: 'white',
-        borderBottomWidth: 1.2,
-        width: width / 7
-    },
-    dropdownButtonContainer: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        paddingBottom: 8,
-        paddingRight: width / 20
-    },
-    dropdownContainer: {
-        alignItems: 'flex-end',
-        paddingRight: width / 10,
-        zIndex: 1
+    buttonImage: {
+        position: 'absolute',
+        height: width / 28,
+        width: width / 28,
+        left: width / 40,
     },
     qrImage: {
         height: width / 28,
-        width: width / 28
+        width: width / 28,
+        marginRight: width / 100,
     },
-    qrContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        paddingRight: width / 20
-    },
-    dropdownItem: {
-        color: 'white',
-        fontSize: width / 23.8,
-        fontFamily: 'Lato-Regular',
-        backgroundColor: 'transparent',
-        textAlign: 'right'
+    buttonContainer: {
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        paddingBottom: height / 90,
     },
     sendIOTAButton: {
         flexDirection: 'row',
@@ -276,25 +309,71 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
-        position: 'absolute',
-        left: width / 3,
-        top: height / 4
     },
     sendIOTAText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 40.5,
         backgroundColor: 'transparent',
-        paddingLeft: 10
+        paddingLeft: 10,
     },
     sendIOTAImage: {
         height: width / 35,
-        width: width / 35
+        width: width / 35,
+    },
+    sendIOTAButtonContainer: {
+        alignItems: 'center',
+        paddingTop: height / 20,
     },
     separator: {
         flex: 1,
-        height: 15
-    }
+        height: 15,
+    },
+    conversionText: {
+        fontFamily: 'Lato-Light',
+        color: 'white',
+        opacity: 0.75,
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        right: width / 3.5,
+        top: height / 6,
+    },
+    maxButtonContainer: {
+        alignItems: 'flex-start',
+        paddingTop: height / 150,
+    },
+    maxButtonText: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 45.8,
+        backgroundColor: 'transparent',
+    },
+    maxButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: 'white',
+        borderWidth: 0.8,
+        borderRadius: 8,
+        width: width / 7.7,
+        height: height / 22,
+    },
+    maxImage: {
+        height: width / 50,
+        width: width / 34,
+        marginRight: 2,
+    },
 });
 
-module.exports = Send;
+const mapStateToProps = state => ({
+    marketData: state.marketData,
+    iota: state.iota,
+});
+
+const mapDispatchToProps = dispatch => ({
+    sendTransaction: (seed, address, value, message) => {
+        dispatch(sendTransaction(seed, address, value, message));
+    },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Send);
