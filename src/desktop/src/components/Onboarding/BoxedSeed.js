@@ -3,17 +3,20 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import css from './BoxedSeed.css';
-import ArrowRightIcon from '../../../../shared/images/arrow-white.png';
+import ArrowWhiteIcon from '../../../../shared/images/arrow-white.png';
+import ArrowBlackIcon from '../../../../shared/images/arrow-black.png';
 
 class BoxedSeed extends PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         seed: PropTypes.string.isRequired,
         border: PropTypes.oneOf(['default', 'black']).isRequired,
+        arrow: PropTypes.oneOf(['white', 'black']).isRequired,
     };
 
     static defaultProps = {
         border: 'default',
+        arrow: 'white',
     };
 
     getCopyableSeed(columns) {
@@ -42,7 +45,7 @@ class BoxedSeed extends PureComponent {
     }
 
     render() {
-        const { seed, border } = this.props;
+        const { seed, border, arrow } = this.props;
         const firstCol = this.breakDownSeed(seed, 0, 3, 72, 75);
         const secondCol = this.breakDownSeed(seed, 3, 6, 75, 78);
         const thirdCol = this.breakDownSeed(seed, 6, 9, 78, 81);
@@ -50,9 +53,11 @@ class BoxedSeed extends PureComponent {
 
         const copyableSeed = this.getCopyableSeed([firstCol, secondCol, thirdCol, fourthCol]);
 
+        const isWhite = arrow === 'white';
+        const arrowSrc = isWhite ? ArrowWhiteIcon : ArrowBlackIcon;
         return (
             <section className={`${css.boxedSeedContainer} ${css[border]}`}>
-                <img src={ArrowRightIcon} className={css.arrowRight} />
+                <img src={arrowSrc} className={css.arrowRight} />
                 <div className={css.copyableSeed}>{copyableSeed}</div>
             </section>
         );

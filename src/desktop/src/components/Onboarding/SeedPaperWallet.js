@@ -22,7 +22,7 @@ class SeedPaperWallet extends PureComponent {
 
         return (
             <div>
-                <Header title={t('title')} />
+                <Header headline={t('title')} />
                 <Steps />
                 <main>
                     <div style={{ display: 'flex', minHeight: '200px' }}>
