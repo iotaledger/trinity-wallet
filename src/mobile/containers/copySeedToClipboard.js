@@ -13,10 +13,10 @@ import {
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 import DropdownHolder from './dropdownHolder';
+import PropTypes from 'prop-types';
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
-
 const dropdown = DropdownHolder.getDropDown();
 
 function clearClipboard() {
@@ -146,24 +146,11 @@ class CopySeedToClipboard extends React.Component {
                 <DropdownAlert
                     ref={ref => DropdownHolder.setDropDown(ref)}
                     successColor="#009f3f"
-                    titleStyle={{
-                        fontSize: 16,
-                        textAlign: 'left',
-                        fontWeight: 'bold',
-                        color: 'white',
-                        backgroundColor: 'transparent',
-                        fontFamily: 'Lato-Regular',
-                    }}
-                    defaultTextContainer={{ flex: 1, padding: 15 }}
-                    messageStyle={{
-                        fontSize: 14,
-                        textAlign: 'left',
-                        fontWeight: 'bold',
-                        color: 'white',
-                        backgroundColor: 'transparent',
-                        fontFamily: 'Lato-Regular',
-                    }}
-                    imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
                 />
             </ImageBackground>
@@ -366,6 +353,32 @@ const styles = StyleSheet.create({
     arrow: {
         width: width / 2,
         height: height / 80,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 
