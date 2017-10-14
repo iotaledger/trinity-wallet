@@ -32,6 +32,14 @@
     }
 }
 
+* {
+    &,
+    &:before,
+    &:after {
+        box-sizing: border-box;
+    }
+}
+
 html,
 body {
     margin: 0;
@@ -44,9 +52,10 @@ body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
-    font-family: arial;
     color: var(--color-text);
+    font-family: arial;
     font-size: var(--font-size-default);
+    line-height: 1.5;
 }
 
 label {
@@ -90,5 +99,18 @@ input {
         color: white;
         padding: 16px;
         width: 100%;
+    }
+}
+
+textarea {
+    background: rgba(0, 0, 0, 0.2);
+    border: 0;
+    border-bottom: 2px solid white;
+    box-sizing: border-box;
+    color: white;
+    padding: 16px;
+    width: 100%;
+    &:focus {
+        outline: none;
     }
 }

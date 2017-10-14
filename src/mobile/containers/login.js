@@ -89,23 +89,23 @@ class Login extends React.Component {
                         <View style={styles.midContainer}>
                             <Text style={styles.greetingText}>Please enter your password.</Text>
                             <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light', fontSize: height / 38.6 }}
+                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
-                                height={height / 40}
-                                fontSize={height / 45}
-                                labelHeight={height / 50}
+                                fontSize={height / 40}
                                 baseColor="white"
-                                label="PASSWORD"
+                                label="Password"
                                 tintColor="#F7D002"
-                                labelPadding={3}
-                                value={password}
-                                autoCorrect={false}
                                 autoCapitalize={'none'}
-                                enablesReturnKeyAutomatically
+                                autoCorrect={false}
+                                enablesReturnKeyAutomatically={true}
+                                value={password}
                                 onChangeText={password => this.setState({ password })}
-                                containerStyle={{ width: width / 1.65 }}
-                                secureTextEntry
+                                containerStyle={{
+                                    width: width / 1.65,
+                                    paddingTop: height / 40,
+                                }}
+                                secureTextEntry={true}
                             />
                         </View>
                         <View style={styles.bottomContainer}>

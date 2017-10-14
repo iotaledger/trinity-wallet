@@ -4,7 +4,6 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { addCustomNode, setFullNode } from 'actions/settings';
 import Header from './Header';
-import ButtonLink from '../UI/ButtonLink';
 import Button from '../UI/Button';
 import ServerSelect from '../UI/ServerSelect';
 
@@ -79,9 +78,9 @@ class LightServerSetup extends React.PureComponent {
                     )}
                 </main>
                 <footer>
-                    <ButtonLink to="/onboarding/instructions" variant="warning">
+                    <Button to="/onboarding/instructions" variant="warning">
                         {t('button2')}
-                    </ButtonLink>
+                    </Button>
                     <Button onClick={this.onRequestNext} variant="success">
                         {t('button1')}
                     </Button>
