@@ -42,6 +42,7 @@ class Tools extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.modulesContainer} />
                 <View style={styles.modeButtonContainer}>
                     <View style={styles.modeButton} />
