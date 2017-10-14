@@ -4,7 +4,9 @@
     text-align: center;
     width: 512px;
 
-    > div {
+    > div,
+    > section,
+    > form {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -33,4 +35,19 @@
 .formGroup {
     text-align: left;
     margin: 0 0 16px 0;
+}
+
+.seed {
+    letter-spacing: 5px;
+    font-size: 150%;
+}
+
+.qrScanner {
+    height: 240px;
+    width: 320px;
+    margin: auto;
+    transform: rotateY(180deg);
+    video {
+        max-width: 100%;
+    }
 }
