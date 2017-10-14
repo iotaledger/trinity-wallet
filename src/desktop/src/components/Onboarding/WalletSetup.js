@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Header from './Header';
-import ButtonLink from '../UI/ButtonLink';
+import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 
 class WalletSetup extends React.PureComponent {
     static propTypes = {
-        t: PropTypes.func.isRequired
+        t: PropTypes.func.isRequired,
     };
 
     render() {
@@ -28,14 +28,14 @@ class WalletSetup extends React.PureComponent {
                 </main>
                 <footer>
                     <p>
-                        <ButtonLink to="/onboarding/seed/enter" variant="success">
+                        <Button to="/onboarding/seed/enter" variant="success">
                             {t('button1')}
-                        </ButtonLink>
+                        </Button>
                     </p>
                     <p>
-                        <ButtonLink to="/onboarding/seed/generate" variant="warning">
+                        <Button to="/onboarding/seed/generate" variant="warning">
                             {t('button2')}
-                        </ButtonLink>
+                        </Button>
                     </p>
                 </footer>
             </div>

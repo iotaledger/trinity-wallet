@@ -24,7 +24,7 @@ class App extends React.Component {
     };
 
     componentWillMount() {
-        persistStore(store, { blacklist: ['iota', 'notifications'] }, () => {
+        persistStore(store, { blacklist: ['iota', 'notifications', 'seeds'] }, () => {
             this.setState(() => ({
                 initialized: true,
             }));
