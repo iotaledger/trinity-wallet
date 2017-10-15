@@ -46,7 +46,7 @@ class SeedCopyToClipboard extends React.PureComponent {
                     </div>
                 </main>
                 <footer>
-                    <Button to="/" variant="warning">
+                    <Button to="/onboarding/seed/save" variant="warning">
                         {t('button2')}
                     </Button>
                 </footer>
