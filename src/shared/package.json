@@ -6,6 +6,8 @@
     "author": "Manuel Bieh <node@manuelbieh.de> (https://github.com/manuelbieh)",
     "license": "MIT",
     "dependencies": {
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-stage-0": "^6.24.1",
         "iota.lib.js": "git+https://git@github.com/l3wi/iota.lib.js.git",
         "redux": "^3.7.2",
         "redux-persist": "^4.10.1",
