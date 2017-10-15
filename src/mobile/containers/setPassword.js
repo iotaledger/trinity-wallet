@@ -9,6 +9,7 @@ import {
     Image,
     ImageBackground,
     ScrollView,
+    StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setFirstUse } from '../../shared/actions/accountActions';
@@ -17,9 +18,12 @@ import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 const MIN_PASSWORD_LENGTH = 11;
+const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
+const dropdown = DropdownHolder.getDropDown();
 
 class SetPassword extends React.Component {
     constructor(props) {
@@ -45,14 +49,14 @@ class SetPassword extends React.Component {
             });
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
-                this.dropdown.alertWithType(
+                dropdown.alertWithType(
                     'error',
                     'Password is too short',
                     `Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state
                         .password.length} characters long. Please try again.`,
                 );
             } else if (!(this.state.password === this.state.reentry)) {
-                this.dropdown.alertWithType(
+                dropdown.alertWithType(
                     'error',
                     'Passwords do not match',
                     'The passwords you have entered do not match. Please try again.',
@@ -70,6 +74,7 @@ class SetPassword extends React.Component {
         let { password, reentry } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
@@ -137,7 +142,16 @@ class SetPassword extends React.Component {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        <DropdownAlert ref={ref => (this.dropdown = ref)} errorColor="#A10702" />
+                        <DropdownAlert
+                            ref={ref => DropdownHolder.setDropDown(ref)}
+                            successColor="#009f3f"
+                            errorColor="#A10702"
+                            titleStyle={styles.dropdownTitle}
+                            defaultTextContainer={styles.dropdownTextContainer}
+                            messageStyle={styles.dropdownMessage}
+                            imageStyle={styles.dropdownImage}
+                            inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                        />
                     </View>
                 </TouchableWithoutFeedback>
             </ImageBackground>
@@ -256,6 +270,32 @@ const styles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 

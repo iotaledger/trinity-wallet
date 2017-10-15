@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Dimensions, Image, ImageBackground, Text } from 'react-native';
+import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar } from 'react-native';
 import { getCurrentYear } from '../../shared/libs/util';
 import store from '../../shared/store';
 
@@ -62,6 +62,7 @@ export default class InitialLoading extends Component {
         const currentYear = getCurrentYear();
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
                     <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
                 </View>
