@@ -28,7 +28,7 @@ class SeedManualCopy extends PureComponent {
                 </main>
                 <footer>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Button to="/" variant="warning">
+                        <Button to="/seed/save" variant="warning">
                             {t('done')}
                         </Button>
                     </div>
