@@ -112,3 +112,5 @@ export const createRandomSeed = (randomBytesFn, length = 81) => {
 
     return seed;
 };
+
+export const getCurrentYear = () => new Date().getFullYear();
