@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import QRCode from 'qrcode.react';
 import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
+import { getSelectedSeed } from 'selectors/seeds';
 import Header from './Header';
 import BoxedSeed from './BoxedSeed';
 import Button from '../UI/Button';
@@ -12,10 +14,6 @@ class SeedPaperWallet extends PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         seed: PropTypes.string,
-    };
-
-    static defaultProps = {
-        seed: 'BSWMMBSBPVWAXYYVTYAAHDONCCZIXGJCMQOXTRGKK9PIVVRCMXYJWKUBWHOP9VUIZNFTIKHOIYKTIODGD',
     };
 
     render() {
@@ -54,4 +52,8 @@ class SeedPaperWallet extends PureComponent {
     }
 }
 
-export default translate('saveYourSeed4')(SeedPaperWallet);
+const mapStateToProps = state => ({
+    seed: getSelectedSeed(state).seed,
+});
+
+export default translate('saveYourSeed4')(connect(mapStateToProps)(SeedPaperWallet));

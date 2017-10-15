@@ -8,21 +8,25 @@ import {
     TouchableWithoutFeedback,
     Image,
     ScrollView,
-    ImageBackground
+    ImageBackground,
+    StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/iotaActions';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
+const dropdown = DropdownHolder.getDropDown();
 
 class EnterSeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            seed: ''
+            seed: '',
         };
     }
     onDoneClick() {
@@ -31,20 +35,20 @@ class EnterSeed extends React.Component {
             this.props.navigator.push({
                 screen: 'setPassword',
                 navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-                animated: false
+                animated: false,
             });
         } else {
-            this.dropdown.alertWithType(
+            dropdown.alertWithType(
                 'error',
                 'Seed is too short',
                 `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
-                    .seed.length} characters long. Please try again.`
+                    .seed.length} characters long. Please try again.`,
             );
         }
     }
     onBackClick() {
         this.props.navigator.pop({
-            animated: false
+            animated: false,
         });
     }
     onQRClick() {}
@@ -53,6 +57,7 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
@@ -68,27 +73,26 @@ class EnterSeed extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
-                                <View style={styles.textFieldContainer}>
-                                    <TextField
-                                        style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                        labelFontSize={height / 55}
-                                        labelPadding={3}
-                                        fontSize={height / 40}
-                                        tintColor="#F7D002"
-                                        baseColor="white"
-                                        label="Seed"
-                                        value={seed}
-                                        multiline
-                                        autoCorrect={false}
-                                        autoCapitalize={'characters'}
-                                        enablesReturnKeyAutomatically
-                                        maxLength={81}
-                                        onChangeText={seed => this.setState({ seed })}
-                                        containerStyle={{ width: width / 1.55 }}
-                                        secureTextEntry
-                                    />
-                                    <View style={styles.qrContainer}>
+                                <View style={{ flexDirection: 'row', width: width / 1.42 }}>
+                                    <View style={styles.textFieldContainer}>
+                                        <TextField
+                                            style={styles.textField}
+                                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                            labelFontSize={height / 55}
+                                            fontSize={height / 40}
+                                            labelPadding={3}
+                                            baseColor="white"
+                                            tintColor="#F7D002"
+                                            enablesReturnKeyAutomatically={true}
+                                            label="Seed"
+                                            autoCorrect={false}
+                                            value={seed}
+                                            maxLength={81}
+                                            onChangeText={seed => this.setState({ seed })}
+                                            multiline
+                                        />
+                                    </View>
+                                    <View style={styles.qrButtonContainer}>
                                         <TouchableOpacity onPress={this.onQRClick()}>
                                             <View style={styles.qrButton}>
                                                 <Image
@@ -100,7 +104,7 @@ class EnterSeed extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
-                                <View style={{ paddingTop: height / 4.65, position: 'absolute' }}>
+                                <View style={{ paddingTop: height / 100 }}>
                                     <View style={styles.infoTextContainer}>
                                         <Image
                                             source={require('../../shared/images/info.png')}
@@ -133,7 +137,16 @@ class EnterSeed extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert ref={ref => (this.dropdown = ref)} errorColor="#A10702" />
+                <DropdownAlert
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                />
             </ImageBackground>
         );
     }
@@ -143,41 +156,38 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     topContainer: {
         flex: 0.7,
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 1.3,
         alignItems: 'center',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     bottomContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 14
+        paddingBottom: height / 14,
     },
     logoContainer: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 35
+        paddingTop: height / 35,
     },
     title: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
-        backgroundColor: 'transparent'
-    },
-    textFieldContainer: {
-        paddingTop: height / 30
+        backgroundColor: 'transparent',
     },
     infoTextContainer: {
         borderColor: 'white',
@@ -189,7 +199,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingHorizontal: width / 15,
         borderStyle: 'dotted',
-        paddingTop: height / 40
+        paddingTop: height / 40,
     },
     infoText: {
         color: 'white',
@@ -197,7 +207,7 @@ const styles = StyleSheet.create({
         fontSize: width / 33.75,
         textAlign: 'center',
         paddingTop: width / 30,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     warningText: {
         color: 'white',
@@ -205,11 +215,11 @@ const styles = StyleSheet.create({
         fontSize: width / 33.75,
         textAlign: 'center',
         paddingTop: height / 40,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     buttonsContainer: {
         alignItems: 'center',
-        paddingBottom: height / 30
+        paddingBottom: height / 30,
     },
     doneButton: {
         borderColor: '#9DFFAF',
@@ -218,7 +228,7 @@ const styles = StyleSheet.create({
         width: width / 1.65,
         height: height / 17,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     backButton: {
         borderColor: '#F7D002',
@@ -227,31 +237,32 @@ const styles = StyleSheet.create({
         width: width / 1.65,
         height: height / 17,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     doneText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     backText: {
         color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     infoIcon: {
         width: width / 20,
-        height: width / 20
+        height: width / 20,
     },
     qrImage: {
-        height: width / 30,
-        width: width / 30
+        height: width / 28,
+        width: width / 28,
+        marginRight: width / 100,
     },
     qrButton: {
         flexDirection: 'row',
@@ -260,35 +271,66 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 8,
-        width: width / 8,
-        height: height / 22,
-        marginLeft: height / 100,
-        marginBottom: height / 100,
-        paddingLeft: 2
+        width: width / 7,
+        height: height / 20,
     },
     qrText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40,
+        fontSize: width / 36.8,
         backgroundColor: 'transparent',
-        paddingLeft: 1
     },
     textFieldContainer: {
-        flexDirection: 'row',
-        alignItems: 'flex-end'
-    }
+        flex: 1,
+        paddingRight: width / 20,
+    },
+    textField: {
+        color: 'white',
+        fontFamily: 'Lato-Light',
+    },
+    qrButtonContainer: {
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        paddingBottom: height / 90,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
     iota: state.iota,
-    account: state.account
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
     setSeed: seed => {
         dispatch(setSeed(seed));
-    }
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EnterSeed);
