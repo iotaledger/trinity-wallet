@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { addAndSelectSeed } from 'actions/seeds';
 import { showError } from 'actions/notifications';
+import { getSelectedSeed } from 'selectors/seeds';
 import { isValidSeed } from '../../../../shared/libs/util';
 import Header from './Header';
 import Button from '../UI/Button';
@@ -16,10 +17,13 @@ class GenerateSeed extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
+        seed: PropTypes.string,
         showError: PropTypes.func.isRequired,
     };
 
-    state = {};
+    state = {
+        seed: this.props.seed,
+    };
 
     onUpdatedSeed = seed => {
         this.setState(() => ({
@@ -39,18 +43,22 @@ class GenerateSeed extends React.PureComponent {
             });
         }
 
-        addAndSelectSeed(seed);
+        addAndSelectSeed({
+            seed: seed,
+        });
+
         history.push('/onboarding/seed/save');
     };
 
     render() {
         const { t } = this.props;
+        const { seed } = this.state;
         return (
             <div>
                 <Header headline={t('title')} />
                 <main>
                     <p>{t('text1')}</p>
-                    <SeedGenerator onUpdatedSeed={this.onUpdatedSeed} />
+                    <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
                 </main>
                 <footer>
                     <Button to="/onboarding/wallet" variant="warning">
@@ -65,9 +73,13 @@ class GenerateSeed extends React.PureComponent {
     }
 }
 
+const mapStateToProps = state => ({
+    seed: getSelectedSeed(state).seed,
+});
+
 const mapDispatchToProps = {
     addAndSelectSeed,
     showError,
 };
 
-export default translate('newSeedSetup')(connect(null, mapDispatchToProps)(GenerateSeed));
+export default translate('newSeedSetup')(connect(mapStateToProps, mapDispatchToProps)(GenerateSeed));
