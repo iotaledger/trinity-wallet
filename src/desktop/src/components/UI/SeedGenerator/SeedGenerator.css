@@ -36,6 +36,7 @@
         left: 50%;
         top: 50%;
         line-height: 0;
+        pointer-events: none;
         transform: translateX(-50%) translateY(-50%);
     }
 
