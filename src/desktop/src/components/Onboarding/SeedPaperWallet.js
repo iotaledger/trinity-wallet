@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import QRCode from 'qrcode.react';
 import { translate } from 'react-i18next';
 import Header from './Header';
-import BoxedSeed from './BoxedSeed';
+import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
 
