@@ -1,19 +1,31 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, ListView, Dimensions, TouchableOpacity, Clipboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    Image,
+    ListView,
+    Dimensions,
+    TouchableOpacity,
+    Clipboard,
+    StatusBar,
+} from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
+//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+//const dropdown = DropdownHolder.getDropDown();
 
 class Receive extends React.Component {
     constructor(props) {
         super(props);
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
-            dataSource: ds.cloneWithRows([])
+            dataSource: ds.cloneWithRows([]),
         };
     }
 
@@ -29,7 +41,7 @@ class Receive extends React.Component {
             props.generateNewAddress(value);
         }
         function error() {
-            this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
         }
     }
 
@@ -44,6 +56,7 @@ class Receive extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={{ paddingBottom: height / 40 }}>
                     <TouchableOpacity onPress={event => this.onAddressPress(this.props)}>
                         <View style={styles.receiveAddressContainer}>
@@ -69,11 +82,24 @@ class Receive extends React.Component {
                 </TouchableOpacity>
                 <View style={{ paddingTop: height / 20 }}>
                     <ListView
+                        enableEmptySections={true}
                         dataSource={this.state.dataSource}
                         renderRow={data => <TransactionRow rowData={data} />}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>
+                // uncomment once dropdown issues are sorted out /*{' '}
+                <DropdownAlert
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                />{' '}
+                */
             </View>
         );
     }
@@ -82,7 +108,7 @@ class Receive extends React.Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        paddingTop: height / 20
+        paddingTop: height / 20,
     },
     receiveAddressContainer: {
         borderColor: 'white',
@@ -90,7 +116,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         width: width / 1.3,
         height: height / 10,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     receiveAddressText: {
         fontFamily: 'Lato-Regular',
@@ -98,7 +124,7 @@ const styles = StyleSheet.create({
         color: 'white',
         backgroundColor: 'transparent',
         paddingHorizontal: width / 14,
-        textAlign: 'center'
+        textAlign: 'center',
     },
     generateButton: {
         flexDirection: 'row',
@@ -109,35 +135,61 @@ const styles = StyleSheet.create({
         height: height / 20,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#009f3f'
+        backgroundColor: '#009f3f',
     },
     generateText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 40.5,
         backgroundColor: 'transparent',
-        paddingLeft: 6
+        paddingLeft: 6,
     },
     generateImage: {
         height: width / 30,
-        width: width / 30
+        width: width / 30,
     },
     separator: {
         flex: 1,
-        height: 15
-    }
+        height: 15,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
     iota: state.iota,
-    account: state.account
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
     generateNewAddress: seed => {
         dispatch(generateNewAddress(seed));
-    }
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Receive);

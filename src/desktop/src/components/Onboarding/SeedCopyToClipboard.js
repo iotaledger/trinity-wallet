@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { showNotification } from 'actions/notifications';
+import { getSelectedSeed } from 'selectors/seeds';
 import BoxedSeed from './BoxedSeed';
 import Header from './Header';
 import Button from '../UI/Button';
@@ -12,10 +15,6 @@ class SeedCopyToClipboard extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         seed: PropTypes.string,
-    };
-
-    static defaultProps = {
-        seed: 'BSWMMBSBPVWAXYYVTYAAHDONCCZIXGJCMQOXTRGKK9PIVVRCMXYJWKUBWHOP9VUIZNFTIKHOIYKTIODGD',
     };
 
     render() {
@@ -33,7 +32,16 @@ class SeedCopyToClipboard extends React.PureComponent {
                     <BoxedSeed t={t} seed={seed} />
                     <div className={css.buttonWrapper}>
                         <CopyToClipboard text={seed}>
-                            <Button variant="success">{t('button1')}</Button>
+                            <Button
+                                variant="success"
+                                onClick={() =>
+                                    this.props.showNotification({
+                                        type: 'success',
+                                        title: 'Seed copied to clipboard!',
+                                    })}
+                            >
+                                {t('button1')}
+                            </Button>
                         </CopyToClipboard>
                     </div>
                 </main>
@@ -47,4 +55,12 @@ class SeedCopyToClipboard extends React.PureComponent {
     }
 }
 
-export default translate('saveYourSeed3')(SeedCopyToClipboard);
+const mapStateToProps = state => ({
+    seed: getSelectedSeed(state).seed,
+});
+
+const mapDispatchToProps = {
+    showNotification,
+};
+
+export default translate('saveYourSeed3')(connect(mapStateToProps, mapDispatchToProps)(SeedCopyToClipboard));
