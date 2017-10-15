@@ -1,3 +1,4 @@
+// @flow
 export const ActionTypes = {
     ADD_SEED: 'IOTA/SEEDS/ADD_SEED',
     SELECT_SEED: 'IOTA/SEEDS/SELECT_SEED',
@@ -21,6 +22,11 @@ export const selectSeed = index => {
 
 export const addAndSelectSeed = seed => {
     return (dispatch, getState) => {
+        // TODO: don't add seed if already in store
+        // const { seeds } = getState();
+        // if (seeds.items.find(item => item.seed === seed.seed)) {
+        //     return;
+        // }
         dispatch(addSeed(seed));
         dispatch(selectSeed(getState().seeds.items.length - 1));
     };
