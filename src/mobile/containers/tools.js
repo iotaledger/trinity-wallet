@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearIOTA } from '../../shared/actions/iotaActions';
@@ -42,6 +42,7 @@ class Tools extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.modulesContainer} />
                 <View style={styles.modeButtonContainer}>
                     <View style={styles.modeButton} />
