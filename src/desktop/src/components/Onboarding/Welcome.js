@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Header from './Header';
+import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
-import LanguageSelect from 'components/UI/LanguageSelect';
+import LanguageSelect from '../UI/LanguageSelect';
 import css from '../Layout/Onboarding.css';
 
 export default translate('setLanguage')(
@@ -15,21 +15,19 @@ export default translate('setLanguage')(
         render() {
             const { t } = this.props;
             return (
-                <div>
-                    <Header headline="Hello / Salut / Hola / Hallo" />
-                    <main>
+                <Template headline="Hello / Salut / Hola / Hallo">
+                    <Main>
                         <div className={css.formGroup}>
                             <label>{t('dropdown_title')}</label>
                             <LanguageSelect />
-                            {/* <Button to="/onboarding/seed/generate">Quick start</Button> */}
                         </div>
-                    </main>
-                    <footer>
+                    </Main>
+                    <Footer>
                         <Button to="/onboarding/instructions" variant="success">
                             {t('button1')}
                         </Button>
-                    </footer>
-                </div>
+                    </Footer>
+                </Template>
             );
         }
     },
