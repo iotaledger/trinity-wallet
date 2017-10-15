@@ -15,10 +15,11 @@ import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
-//import DropdownHolder from './dropdownHolder';
+import DropdownHolder from './dropdownHolder';
+import DropdownAlert from 'react-native-dropdownalert';
 
 const { height, width } = Dimensions.get('window');
-//const dropdown = DropdownHolder.getDropDown();
+const dropdown = DropdownHolder.getDropDown();
 
 class Receive extends React.Component {
     constructor(props) {
@@ -40,9 +41,9 @@ class Receive extends React.Component {
         function generate(value) {
             props.generateNewAddress(value);
         }
-        function error() {
+        /*  function error() {
             dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
-        }
+        } */
     }
 
     onAddressPress() {
@@ -88,7 +89,6 @@ class Receive extends React.Component {
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>
-                // uncomment once dropdown issues are sorted out /*{' '}
                 <DropdownAlert
                     ref={ref => DropdownHolder.setDropDown(ref)}
                     successColor="#009f3f"
@@ -98,8 +98,7 @@ class Receive extends React.Component {
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
-                />{' '}
-                */
+                />
             </View>
         );
     }
