@@ -17,6 +17,9 @@ class App extends React.Component {
             locale: PropTypes.string.isRequired,
             fullNode: PropTypes.string.isRequired,
         }).isRequired,
+        app: PropTypes.shape({
+            isOnboardingCompleted: PropTypes.bool.isRequired,
+        }).isRequired,
     };
 
     state = {
@@ -38,6 +41,7 @@ class App extends React.Component {
     }
 
     render() {
+        const { app } = this.props;
         if (this.state.initialized === false) {
             return <Loading />;
         }
@@ -45,7 +49,7 @@ class App extends React.Component {
         return (
             <div>
                 <Notifications />
-                <Onboarding />
+                {app.isOnboardingCompleted ? <div /> : <Onboarding />}
             </div>
         );
     }
@@ -53,6 +57,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
     settings: state.settings,
+    app: state.app,
 });
 
 export default withRouter(connect(mapStateToProps)(App));
