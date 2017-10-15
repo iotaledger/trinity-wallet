@@ -8,7 +8,10 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.ADD_SEED:
-            const items = [].concat(state.items, action.payload);
+            const items = [].concat(state.items, {
+                name: action.payload.name,
+                seed: action.payload.seed,
+            });
             return {
                 ...state,
                 items,
@@ -21,7 +24,7 @@ export default (state = initialState, action) => {
             };
 
         case ActionTypes.REMOVE_SEED: {
-            const items = [].concat(state.items).filter(seed => seed !== action.payload);
+            const items = [].concat(state.items).filter(item => items.seed !== action.payload);
             return {
                 ...state,
                 items,
