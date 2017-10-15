@@ -5,6 +5,7 @@ const iotaReducer = (
         addresses: [],
         password: '',
         seed: '                                                                                 ',
+        transactions: [],
     },
     action,
 ) => {
