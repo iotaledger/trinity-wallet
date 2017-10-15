@@ -13,14 +13,16 @@ import {
     TouchableOpacity,
     Image,
     Platform,
-    StatusBar
+    StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from 'react-native-dropdownalert';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+const dropdown = DropdownHolder.getDropDown();
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -227,7 +229,7 @@ class NewSeedSetup extends Component {
                 animated: false,
             });
         } else {
-            this.dropdown.alertWithType(
+            dropdown.alertWithType(
                 'error',
                 'Seed has not been generated',
                 'Please click the Generate New Seed button.',
@@ -332,26 +334,14 @@ class NewSeedSetup extends Component {
                     </View>
                 </View>
                 <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
                     errorColor="#A10702"
-                    titleStyle={{
-                        fontSize: 16,
-                        textAlign: 'left',
-                        fontWeight: 'bold',
-                        color: 'white',
-                        backgroundColor: 'transparent',
-                        fontFamily: 'Lato-Regular'
-                    }}
-                    defaultTextContainer={{ flex: 1, padding: 20 }}
-                    messageStyle={{
-                        fontSize: 14,
-                        textAlign: 'left',
-                        fontWeight: 'bold',
-                        color: 'white',
-                        backgroundColor: 'transparent',
-                        fontFamily: 'Lato-Regular'
-                    }}
-                    imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
                 />
             </ImageBackground>
         );
