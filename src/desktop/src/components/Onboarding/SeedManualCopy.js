@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import BoxedSeed from './BoxedSeed';
 import Header from './Header';
+import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
 
