@@ -8,15 +8,17 @@ import {
     Dimensions,
     TouchableOpacity,
     Clipboard,
-    StatusBar
+    StatusBar,
 } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
+//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+//const dropdown = DropdownHolder.getDropDown();
 
 class Receive extends React.Component {
     constructor(props) {
@@ -39,7 +41,7 @@ class Receive extends React.Component {
             props.generateNewAddress(value);
         }
         function error() {
-            this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
         }
     }
 
@@ -86,6 +88,18 @@ class Receive extends React.Component {
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>
+                // uncomment once dropdown issues are sorted out /*{' '}
+                <DropdownAlert
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                />{' '}
+                */
             </View>
         );
     }

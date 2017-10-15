@@ -17,8 +17,10 @@ import { getFromKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+const dropdown = DropdownHolder.getDropDown();
 
 class Login extends React.Component {
     constructor(props) {
@@ -53,7 +55,7 @@ class Login extends React.Component {
             });
         }
         function error() {
-            this.dropdown.alertWithType(
+            dropdown.alertWithType(
                 'error',
                 'Unrecognised password',
                 'The password was not recognised. Please try again.',
@@ -128,26 +130,13 @@ class Login extends React.Component {
                 </TouchableWithoutFeedback>
 
                 <DropdownAlert
-                    ref={ref => (dropdown = ref)}
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
                     errorColor="#A10702"
-                    titleStyle={{
-                        fontSize: 16,
-                        textAlign: 'left',
-                        fontWeight: 'bold',
-                        color: 'white',
-                        backgroundColor: 'transparent',
-                        fontFamily: 'Lato-Regular',
-                    }}
-                    defaultTextContainer={{ flex: 1, padding: 20 }}
-                    messageStyle={{
-                        fontSize: 14,
-                        textAlign: 'left',
-                        fontWeight: 'bold',
-                        color: 'white',
-                        backgroundColor: 'transparent',
-                        fontFamily: 'Lato-Regular',
-                    }}
-                    imageStyle={{ padding: 8, width: 36, height: 36, alignSelf: 'center' }}
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
                 />
             </ImageBackground>
