@@ -43,7 +43,7 @@ class SeedPaperWallet extends PureComponent {
                     </div>
                 </main>
                 <footer>
-                    <Button to="/" variant="success">
+                    <Button to="/onboarding/seed/save" variant="success">
                         {t('button2')}
                     </Button>
                 </footer>
