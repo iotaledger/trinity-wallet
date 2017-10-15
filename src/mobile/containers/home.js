@@ -7,7 +7,7 @@ import {
     Dimensions,
     View,
     ImageBackground,
-    StatusBar
+    StatusBar,
 } from 'react-native';
 import Balance from './balance';
 import Send from './send';
@@ -18,6 +18,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+const dropdown = DropdownHolder.getDropDown();
 
 class Home extends React.Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class Home extends React.Component {
             historyOpacity: 0.6,
             toolsOpacity: 0.6,
             bannerText: 'BALANCE',
-            mode: 'STANDARD'
+            mode: 'STANDARD',
         };
     }
 
@@ -58,7 +59,7 @@ class Home extends React.Component {
         }
         this.setState({
             tabChoice,
-            tabContent
+            tabContent,
         });
     }
 
@@ -70,7 +71,7 @@ class Home extends React.Component {
             receiveOpacity: 0.6,
             historyOpacity: 0.6,
             toolsOpacity: 0.6,
-            bannerText: 'BALANCE'
+            bannerText: 'BALANCE',
         });
     }
     clickSend() {
@@ -81,7 +82,7 @@ class Home extends React.Component {
             receiveOpacity: 0.6,
             historyOpacity: 0.6,
             toolsOpacity: 0.6,
-            bannerText: 'SEND'
+            bannerText: 'SEND',
         });
     }
     clickReceive() {
@@ -92,7 +93,7 @@ class Home extends React.Component {
             receiveOpacity: 1,
             historyOpacity: 0.6,
             toolsOpacity: 0.6,
-            bannerText: 'RECEIVE'
+            bannerText: 'RECEIVE',
         });
     }
     clickHistory() {
@@ -103,7 +104,7 @@ class Home extends React.Component {
             receiveOpacity: 0.6,
             historyOpacity: 1,
             toolsOpacity: 0.6,
-            bannerText: 'HISTORY'
+            bannerText: 'HISTORY',
         });
     }
     clickTools() {
@@ -114,7 +115,7 @@ class Home extends React.Component {
             receiveOpacity: 0.6,
             historyOpacity: 0.6,
             toolsOpacity: 1,
-            bannerText: 'TOOLS'
+            bannerText: 'TOOLS',
         });
     }
 
@@ -177,7 +178,16 @@ class Home extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
-                <DropdownAlert ref={c => (this.dropdown = c)} errorColor="#A10702" successColor="#009f3f" />
+                <DropdownAlert
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                />
             </ImageBackground>
         );
     }
@@ -187,16 +197,16 @@ const styles = StyleSheet.create({
     titleContainer: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'stretch'
+        alignItems: 'stretch',
     },
     banner: {
         alignItems: 'center',
         paddingTop: 20,
-        flex: 1
+        flex: 1,
     },
     logo: {
         height: width / 10,
-        width: width / 10
+        width: width / 10,
     },
     tabBar: {
         flex: 0.12,
@@ -204,15 +214,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingBottom: 5
+        paddingBottom: 5,
     },
     button: {
         justifyContent: 'flex-end',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     icon: {
         height: width / 12,
-        width: width / 12
+        width: width / 12,
     },
     iconTitle: {
         color: 'white',
@@ -220,7 +230,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingTop: height / 60,
         fontFamily: 'Lato-Regular',
-        fontSize: width / 40.5
+        fontSize: width / 40.5,
     },
     title: {
         color: 'white',
@@ -228,15 +238,15 @@ const styles = StyleSheet.create({
         paddingTop: 8,
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 14.5
+        fontSize: width / 14.5,
     },
     mode: {
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 50.6,
-        paddingTop: 5
-    }
+        paddingTop: 5,
+    },
 });
 
 module.exports = Home;
