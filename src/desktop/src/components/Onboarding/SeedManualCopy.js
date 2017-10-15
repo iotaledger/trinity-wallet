@@ -29,7 +29,7 @@ class SeedManualCopy extends PureComponent {
                     <BoxedSeed t={t} seed={seed} />
                 </main>
                 <footer>
-                    <Button to="/" variant="warning">
+                    <Button to="/onboarding/seed/save" variant="warning">
                         {t('done')}
                     </Button>
                 </footer>
