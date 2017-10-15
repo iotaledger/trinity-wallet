@@ -59,6 +59,79 @@ function sortTransactions(transactions) {
     return sortedTransactions;
 }
 
+function filterSpentAddresses(inputs) {
+    return new Promise((resolve, reject) => {
+        iota.api.findTransactionObjects({ addresses: inputs.map(input => input.address) }, (err, txs) => {
+            if (err) {
+                reject(err);
+            }
+            txs = txs.filter(tx => tx.value < 0);
+            var bundleHashes = txs.map(tx => tx.bundle);
+            if (txs.length > 0) {
+                var bundles = txs.map(tx => tx.bundle);
+                iota.api.findTransactionObjects({ bundles: bundles }, (err, txs) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    var hashes = txs.filter(tx => tx.currentIndex === 0);
+                    var allBundleHashes = txs.map(tx => tx.bundle);
+                    hashes = hashes.map(tx => tx.hash);
+                    iota.api.getLatestInclusion(hashes, (err, states) => {
+                        if (err) {
+                            reject(err);
+                        }
+                        var confirmedHashes = hashes.filter((hash, i) => states[i]);
+                        var unconfirmedHashes = hashes
+                            .filter(hash => confirmedHashes.indexOf(hash) === -1)
+                            .map(hash => {
+                                return { hash: hash, validate: true };
+                            });
+                        var getBundles = confirmedHashes.concat(unconfirmedHashes).map(
+                            hash =>
+                                new Promise((resolve, reject) => {
+                                    iota.api.traverseBundle(
+                                        typeof hash == 'string' ? hash : hash.hash,
+                                        null,
+                                        [],
+                                        (err, bundle) => {
+                                            if (err) {
+                                                reject(err);
+                                            }
+                                            resolve(
+                                                typeof hash === 'string' ? bundle : { bundle: bundle, validate: true },
+                                            );
+                                        },
+                                    );
+                                }),
+                        );
+                        resolve(
+                            Promise.all(getBundles)
+                                .then(bundles => {
+                                    bundles = bundles
+                                        .filter(bundle => {
+                                            if (bundle.validate) {
+                                                return iota.utils.isBundle(bundle.bundle);
+                                            }
+                                            return true;
+                                        })
+                                        .map(bundle => (bundle.hasOwnProperty('validate') ? bundle.bundle : bundle));
+                                    var blacklist = bundles
+                                        .reduce((a, b) => a.concat(b), [])
+                                        .filter(tx => tx.value < 0)
+                                        .map(tx => tx.address);
+                                    return inputs.filter(input => blacklist.indexOf(input.address) === -1);
+                                })
+                                .catch(err => reject(err)),
+                        );
+                    });
+                });
+            } else {
+                resolve(inputs);
+            }
+        });
+    });
+}
+
 export function setAccountInfo(accountInfo) {
     const balance = accountInfo.balance;
     let transactions = sortTransactions(accountInfo.transfers);
@@ -119,10 +192,21 @@ export function sendTransaction(seed, address, value, message) {
             tag: 'AAA',
         },
     ];
+    var outputsToCheck = transfer.map(transfer => {
+        return { address: iota.utils.noChecksum(transfer.address) };
+    });
+    var exptectedOutputsLength = outputsToCheck.length;
     if (!iota.valid.isTransfersArray(transfer)) {
         console.log('Error: Invalid transfer array');
         return;
     }
+    // Check to make sure user is not sending to an already used address
+    filterSpentAddresses(outputsToCheck).then(filtered => {
+        if (filtered.length !== exptectedOutputsLength) {
+            console.log('You cannot send to an already used address');
+            return;
+        }
+    });
 
     // Send transfer with depth 4 and minWeightMagnitude 18
     iota.api.sendTransfer(seed, 4, 18, transfer, (error, success) => {
