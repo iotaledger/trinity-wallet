@@ -7,6 +7,7 @@ export default class Button extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
         variant: PropTypes.oneOf(['default', 'success', 'warning', 'danger', 'info', 'extra']).isRequired,
+        to: PropTypes.string,
     };
 
     static defaultProps = {
