@@ -14,6 +14,7 @@ class SeedCopyToClipboard extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         seed: PropTypes.string,
+        showNotification: PropTypes.func.isRequired,
     };
 
     render() {
@@ -42,7 +43,7 @@ class SeedCopyToClipboard extends React.PureComponent {
                 </main>
                 <footer>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Button to="/" variant="warning">
+                        <Button to="/seed/save" variant="warning">
                             {t('button2')}
                         </Button>
                     </div>
