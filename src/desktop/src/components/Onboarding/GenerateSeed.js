@@ -47,7 +47,7 @@ class GenerateSeed extends React.PureComponent {
             seed: seed,
         });
 
-        history.push('/onboarding/seed/save');
+        history.push('/seed/save');
     };
 
     render() {
@@ -61,7 +61,7 @@ class GenerateSeed extends React.PureComponent {
                     <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
                 </main>
                 <footer>
-                    <Button to="/onboarding/wallet" variant="warning">
+                    <Button to="/wallet" variant="warning">
                         {t('button3')}
                     </Button>
                     <Button onClick={this.onRequestNext} variant="success">
