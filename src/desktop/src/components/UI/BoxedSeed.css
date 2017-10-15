@@ -1,0 +1,59 @@
+.boxedSeedContainer {
+    border-radius: 7px;
+    padding: 10px 8px;
+    &:before {
+        background-image: url(../../../../shared/images/arrow-white.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        content: '';
+        display: block;
+        height: 20px;
+    }
+}
+
+.default {
+    composes: boxedSeedContainer;
+    border: 1px solid #ffffff;
+}
+
+.white {
+    composes: boxedSeedContainer;
+    border: 1px solid #000000;
+}
+
+.arrowRight {
+    width: 100%;
+}
+
+.copyableSeed {
+    margin-top: 10px;
+
+    &:after {
+        clear: both;
+        display: block;
+        content: '';
+    }
+
+    span {
+        float: left;
+        font-size: 18px;
+        font-family: monospace;
+        font-weight: 700;
+        letter-spacing: 5px;
+        width: 25%;
+    }
+}
+
+.seedColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.seedPartials {
+    letter-spacing: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 4px;
+}
