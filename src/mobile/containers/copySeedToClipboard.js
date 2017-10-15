@@ -19,19 +19,15 @@ const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
 const dropdown = DropdownHolder.getDropDown();
 
+function clearClipboard() {
+    Clipboard.setString('');
+    const dropdown = DropdownHolder.getDropDown();
+    dropdown.alertWithType('info', 'Seed cleared', 'The seed has been cleared from the clipboard for your security.');
+}
+
 class CopySeedToClipboard extends React.Component {
     constructor(props) {
         super(props);
-    }
-
-    clearClipboard() {
-        Clipboard.setString('');
-        const dropdown = DropdownHolder.getDropDown();
-        dropdown.alertWithType(
-            'info',
-            'Seed cleared',
-            'The seed has been cleared from the clipboard for your security.',
-        );
     }
 
     /* componentWillUnmount() {
