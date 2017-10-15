@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
+import { getSelectedSeed } from 'selectors/seeds';
 import Header from './Header';
 import Button from '../UI/Button';
 
@@ -40,4 +42,8 @@ class SaveYourSeedOptions extends PureComponent {
     }
 }
 
-export default translate('saveYourSeed')(SaveYourSeedOptions);
+const mapStateToProps = state => ({
+    seed: getSelectedSeed(state).seed,
+});
+
+export default translate('saveYourSeed')(connect(mapStateToProps)(SaveYourSeedOptions));
