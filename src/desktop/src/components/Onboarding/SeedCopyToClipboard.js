@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import BoxedSeed from '../UI/BoxedSeed';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { showNotification } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
-import BoxedSeed from './BoxedSeed';
 import Header from './Header';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
@@ -15,6 +15,7 @@ class SeedCopyToClipboard extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         seed: PropTypes.string,
+        showNotification: PropTypes.func.isRequired,
     };
 
     render() {
