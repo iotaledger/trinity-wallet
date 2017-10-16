@@ -1,15 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import css from './BoxedSeed.css';
 
 class BoxedSeed extends PureComponent {
     static propTypes = {
         seed: PropTypes.string.isRequired,
-        border: PropTypes.oneOf(['default', 'black']).isRequired,
-    };
-
-    static defaultProps = {
-        border: 'default',
+        color: PropTypes.oneOf(['default', 'black']),
+        size: PropTypes.oneOf(['default', 'large']),
     };
 
     getCopyableSeed = (seed = this.props.seed) => {
@@ -29,12 +27,14 @@ class BoxedSeed extends PureComponent {
     };
 
     render() {
-        const { seed, border } = this.props;
+        const { seed, color, size } = this.props;
 
         const copyableSeed = this.getCopyableSeed(seed);
 
         return (
-            <section className={`${css.boxedSeedContainer} ${css[border]}`}>
+            <section
+                className={classNames(css.wrapper, color && css[`color--${color}`], size && css[`color--${size}`])}
+            >
                 <div className={css.copyableSeed}>{copyableSeed}</div>
             </section>
         );

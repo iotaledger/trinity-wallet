@@ -9,6 +9,7 @@ import {
     Image,
     ImageBackground,
     ScrollView,
+    StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
@@ -16,8 +17,10 @@ import { getFromKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+const dropdown = DropdownHolder.getDropDown();
 
 class Login extends React.Component {
     constructor(props) {
@@ -52,7 +55,7 @@ class Login extends React.Component {
             });
         }
         function error() {
-            this.dropdown.alertWithType(
+            dropdown.alertWithType(
                 'error',
                 'Unrecognised password',
                 'The password was not recognised. Please try again.',
@@ -76,6 +79,7 @@ class Login extends React.Component {
         let { password } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
@@ -124,7 +128,17 @@ class Login extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert ref={ref => (dropdown = ref)} errorColor="#A10702" />
+
+                <DropdownAlert
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                />
             </ImageBackground>
         );
     }
@@ -232,6 +246,32 @@ const styles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 
