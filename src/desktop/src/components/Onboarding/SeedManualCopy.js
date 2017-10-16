@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
-import BoxedSeed from './BoxedSeed';
 import Header from './Header';
+import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
 
@@ -19,19 +19,19 @@ class SeedManualCopy extends PureComponent {
 
         return (
             <div>
-                <Header title={t('title')} />
-                <Steps />
+                <Header headline={t('title')} />
+                <Steps currentStep="manual" />
                 <main>
-                    <div>
-                        <BoxedSeed t={t} seed={seed} />
-                    </div>
+                    <p>
+                        Your seed is 81 characters read from left to right. Write down your seed and checksum and triple
+                        check they are correct.
+                    </p>
+                    <BoxedSeed t={t} seed={seed} />
                 </main>
                 <footer>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Button to="/seed/save" variant="warning">
-                            {t('done')}
-                        </Button>
-                    </div>
+                    <Button to="/seed/save" variant="warning">
+                        {t('done')}
+                    </Button>
                 </footer>
             </div>
         );
