@@ -19,6 +19,7 @@ import TransactionRow from '../components/transactionRow';
 
 const { height, width } = Dimensions.get('window');
 //const dropdown = DropdownHolder.getDropDown();
+const StatusBarDefaultBarStyle = 'light-content';
 
 class Receive extends React.Component {
     constructor(props) {
@@ -97,7 +98,7 @@ class Receive extends React.Component {
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />{' '}
                 */
             </View>
