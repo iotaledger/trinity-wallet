@@ -16,7 +16,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import PropTypes from 'prop-types';
 
 const { height, width } = Dimensions.get('window');
-const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
+const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 
 class CopySeedToClipboard extends React.Component {
@@ -157,7 +157,7 @@ class CopySeedToClipboard extends React.Component {
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
             </ImageBackground>
         );

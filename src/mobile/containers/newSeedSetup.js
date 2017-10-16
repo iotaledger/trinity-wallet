@@ -23,6 +23,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 
 const { height, width } = Dimensions.get('window');
 //const dropdown = DropdownHolder.getDropDown();
+const StatusBarDefaultBarStyle = 'light-content';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -367,7 +368,7 @@ class NewSeedSetup extends Component {
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
             </ImageBackground>
         );
