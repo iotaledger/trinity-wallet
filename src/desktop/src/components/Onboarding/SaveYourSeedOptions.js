@@ -31,10 +31,10 @@ class SaveYourSeedOptions extends PureComponent {
                     </Button>
                 </main>
                 <footer>
-                    <Button to="/onboarding/seed/generate" variant="warning">
+                    <Button to="/seed/generate" variant="warning">
                         {t('button2')}
                     </Button>
-                    <Button to="/onboarding/seed/save" variant="success">
+                    <Button to="/security/intro" variant="success">
                         {t('button1')}
                     </Button>
                 </footer>
