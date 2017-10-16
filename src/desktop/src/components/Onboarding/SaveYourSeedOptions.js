@@ -20,21 +20,21 @@ class SaveYourSeedOptions extends PureComponent {
                 <Header headline={t('title')} />
                 <p>{t('text1')}</p>
                 <main className={css.main}>
-                    <Button to="/onboarding/seed/save/manual" variant="extra">
+                    <Button to="/seed/save/manual" variant="extra">
                         {t('optionA')}
                     </Button>
-                    <Button to="/onboarding/seed/save/paperwallet" variant="extra">
+                    <Button to="/seed/save/paperwallet" variant="extra">
                         {t('optionB')}
                     </Button>
-                    <Button to="/onboarding/seed/save/clipboard" variant="extra">
+                    <Button to="/seed/save/clipboard" variant="extra">
                         {t('optionC')}
                     </Button>
                 </main>
                 <footer>
-                    <Button to="/onboarding/seed/generate" variant="warning">
+                    <Button to="/seed/generate" variant="warning">
                         {t('button2')}
                     </Button>
-                    <Button to="/onboarding/seed/save" variant="success">
+                    <Button to="/security/intro" variant="success">
                         {t('button1')}
                     </Button>
                 </footer>
