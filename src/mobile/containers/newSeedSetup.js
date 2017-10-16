@@ -19,10 +19,11 @@ import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from 'react-native-dropdownalert';
-import DropdownHolder from './dropdownHolder';
+//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
-const dropdown = DropdownHolder.getDropDown();
+//const dropdown = DropdownHolder.getDropDown();
+const StatusBarDefaultBarStyle = 'light-content';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -177,7 +178,7 @@ const baseStyles = StyleSheet.create({
     dropdownMessage: {
         fontSize: 14,
         textAlign: 'left',
-        fontWeight: 'bold',
+        fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
@@ -255,7 +256,7 @@ class NewSeedSetup extends Component {
                 animated: false,
             });
         } else {
-            dropdown.alertWithType(
+            this.dropdown.alertWithType(
                 'error',
                 'Seed has not been generated',
                 'Please click the Generate New Seed button.',
@@ -360,14 +361,14 @@ class NewSeedSetup extends Component {
                     </View>
                 </View>
                 <DropdownAlert
-                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
             </ImageBackground>
         );

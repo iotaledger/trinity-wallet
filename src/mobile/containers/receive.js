@@ -19,7 +19,8 @@ import DropdownHolder from './dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 
 const { height, width } = Dimensions.get('window');
-const dropdown = DropdownHolder.getDropDown();
+//const dropdown = DropdownHolder.getDropDown();
+const StatusBarDefaultBarStyle = 'light-content';
 
 class Receive extends React.Component {
     constructor(props) {
@@ -41,9 +42,9 @@ class Receive extends React.Component {
         function generate(value) {
             props.generateNewAddress(value);
         }
-        /*  function error() {
-            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
-        } */
+        function error() {
+            this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        }
     }
 
     onAddressPress() {
@@ -90,15 +91,16 @@ class Receive extends React.Component {
                     />
                 </View>
                 <DropdownAlert
-                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
-                />
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />{' '}
+                */
             </View>
         );
     }
@@ -166,7 +168,7 @@ const styles = StyleSheet.create({
     dropdownMessage: {
         fontSize: 14,
         textAlign: 'left',
-        fontWeight: 'bold',
+        fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
