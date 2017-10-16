@@ -12,12 +12,12 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
-import DropdownHolder from './dropdownHolder';
+//import DropdownHolder from './dropdownHolder';
 import PropTypes from 'prop-types';
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
-const dropdown = DropdownHolder.getDropDown();
+//const dropdown = DropdownHolder.getDropDown();
 
 class CopySeedToClipboard extends React.Component {
     constructor(props) {
@@ -26,8 +26,8 @@ class CopySeedToClipboard extends React.Component {
 
     clearClipboard() {
         Clipboard.setString('');
-        const dropdown = DropdownHolder.getDropDown();
-        dropdown.alertWithType(
+        //  const dropdown = DropdownHolder.getDropDown();
+        this.dropdown.alertWithType(
             'info',
             'Seed cleared',
             'The seed has been cleared from the clipboard for your security.',
@@ -47,15 +47,15 @@ class CopySeedToClipboard extends React.Component {
 
     onCopyPress() {
         Clipboard.setString(this.props.iota.seed);
-        const dropdown = DropdownHolder.getDropDown();
-        dropdown.alertWithType(
+        //  const dropdown = DropdownHolder.getDropDown();
+        this.dropdown.alertWithType(
             'success',
             'Seed copied',
             'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.',
         );
         setTimeout(function() {
             Clipboard.setString('');
-            dropdown.alertWithType(
+            this.dropdown.alertWithType(
                 'info',
                 'Seed cleared',
                 'The seed has been cleared from the clipboard for your security.',
@@ -150,7 +150,7 @@ class CopySeedToClipboard extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <DropdownAlert
-                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
     dropdownMessage: {
         fontSize: 14,
         textAlign: 'left',
-        fontWeight: 'bold',
+        fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
