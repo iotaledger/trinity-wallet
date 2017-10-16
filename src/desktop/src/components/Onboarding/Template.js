@@ -10,15 +10,16 @@ export default class Template extends React.Component {
     static propTypes = {
         headline: PropTypes.string,
         children: PropTypes.node.isRequired,
+        type: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
     };
 
     static Main = Main;
     static Footer = Footer;
 
     render() {
-        const { children, headline } = this.props;
+        const { children, headline, type: Type = 'div', ...props } = this.props;
         return (
-            <div>
+            <Type {...props}>
                 <Header headline={headline} />
                 {React.Children.map(children, child => {
                     if (child.type === Main) {
@@ -30,7 +31,7 @@ export default class Template extends React.Component {
                         return child;
                     }
                 })}
-            </div>
+            </Type>
         );
     }
 }

@@ -15,10 +15,10 @@ import Receive from './receive';
 import History from './history';
 import Tools from './tools';
 import DropdownAlert from 'react-native-dropdownalert';
-import DropdownHolder from './dropdownHolder';
-
+//import DropdownHolder from './dropdownHolder';
+const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
-const dropdown = DropdownHolder.getDropDown();
+//const dropdown = DropdownHolder.getDropDown();
 
 class Home extends React.Component {
     constructor(props) {
@@ -179,14 +179,14 @@ class Home extends React.Component {
                     </TouchableWithoutFeedback>
                 </View>
                 <DropdownAlert
-                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
             </ImageBackground>
         );
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     dropdownMessage: {
         fontSize: 14,
         textAlign: 'left',
-        fontWeight: 'bold',
+        fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
