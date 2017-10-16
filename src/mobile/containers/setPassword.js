@@ -22,7 +22,7 @@ import { Keyboard } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 const MIN_PASSWORD_LENGTH = 12;
-const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
+const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 
 class SetPassword extends React.Component {
@@ -152,7 +152,7 @@ class SetPassword extends React.Component {
                             defaultTextContainer={styles.dropdownTextContainer}
                             messageStyle={styles.dropdownMessage}
                             imageStyle={styles.dropdownImage}
-                            inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                            inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                         />
                     </View>
                 </TouchableWithoutFeedback>
