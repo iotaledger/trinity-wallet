@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import marketData from './reducers/marketDataReducer';
 import iota from './reducers/iotaReducer';
 import account from './reducers/accountReducer';
+import app from './reducers/app';
 import settings from './reducers/settings';
 import seeds from './reducers/seeds';
 import notifications from './reducers/notifications';
@@ -14,6 +15,7 @@ const store = createStore(
         marketData,
         iota,
         account,
+        app,
         settings,
         seeds,
         notifications,
