@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
 import Header from './Header';
 import Button from '../UI/Button';
+import css from './SaveYourSeedOptions.css';
 
 class SaveYourSeedOptions extends PureComponent {
     static propTypes = {
@@ -18,7 +19,7 @@ class SaveYourSeedOptions extends PureComponent {
             <div>
                 <Header headline={t('title')} />
                 <p>{t('text1')}</p>
-                <main>
+                <main className={css.main}>
                     <Button to="/seed/save/manual" variant="extra">
                         {t('optionA')}
                     </Button>
@@ -30,10 +31,10 @@ class SaveYourSeedOptions extends PureComponent {
                     </Button>
                 </main>
                 <footer>
-                    <Button to="/" variant="warning">
+                    <Button to="/onboarding/seed/generate" variant="warning">
                         {t('button2')}
                     </Button>
-                    <Button to="/" variant="success">
+                    <Button to="/onboarding/seed/save" variant="success">
                         {t('button1')}
                     </Button>
                 </footer>

@@ -13,13 +13,16 @@ import {
     TouchableOpacity,
     Image,
     Platform,
+    StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from 'react-native-dropdownalert';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+const dropdown = DropdownHolder.getDropDown();
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -159,6 +162,32 @@ const baseStyles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
+    },
 });
 
 const androidStyles = StyleSheet.create({
@@ -226,7 +255,7 @@ class NewSeedSetup extends Component {
                 animated: false,
             });
         } else {
-            this.dropdown.alertWithType(
+            dropdown.alertWithType(
                 'error',
                 'Seed has not been generated',
                 'Please click the Generate New Seed button.',
@@ -270,6 +299,7 @@ class NewSeedSetup extends Component {
         const { iota: { seed } } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <View style={styles.titleContainer}>
@@ -329,7 +359,16 @@ class NewSeedSetup extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <DropdownAlert ref={ref => (this.dropdown = ref)} />
+                <DropdownAlert
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                />
             </ImageBackground>
         );
     }
