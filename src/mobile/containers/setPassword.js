@@ -21,7 +21,7 @@ import { Keyboard } from 'react-native';
 import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
-const MIN_PASSWORD_LENGTH = 11;
+const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
 const dropdown = DropdownHolder.getDropDown();
 
@@ -89,7 +89,9 @@ class SetPassword extends React.Component {
                                 An encrypted copy of your seed will be stored on your device. You will then only need to
                                 type in your password to access your wallet.
                             </Text>
-                            <Text style={styles.warningText}>Ensure you use a strong password.</Text>
+                            <Text style={styles.warningText}>
+                                Ensure you use a strong password of at least 12 characters.
+                            </Text>
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
