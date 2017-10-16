@@ -11,6 +11,8 @@ import SaveYourSeedOptions from '../Onboarding/SaveYourSeedOptions';
 import SeedManualCopy from '../Onboarding/SeedManualCopy';
 import SeedCopyToClipboard from '../Onboarding/SeedCopyToClipboard';
 import SeedPaperWallet from '../Onboarding/SeedPaperWallet';
+import SecurityIntro from '../Onboarding/SecurityIntro';
+import SecurityEnter from '../Onboarding/SecurityEnter';
 
 import css from './Onboarding.css';
 
@@ -32,20 +34,20 @@ export default class Onboarding extends React.Component {
         return (
             <div className={css.wrapper}>
                 <Switch>
-                    <Route path="/onboarding/instructions" component={Instructions} />
-                    <Route path="/onboarding/lightserver" component={LightServerSetup} />
-                    <Route path="/onboarding/wallet" component={WalletSetup} />
-                    <Route exact path="/onboarding/seed/generate" component={GenerateSeed} />
-                    <Route exact path="/onboarding/seed/save" component={SaveYourSeedOptions} />
-                    <Route path="/onboarding/seed/save/manual" component={SeedManualCopy} />
-                    <Route path="/onboarding/seed/save/clipboard" component={SeedCopyToClipboard} />
-                    <Route path="/onboarding/seed/save/paperwallet" component={SeedPaperWallet} />
-                    <Route path="/onboarding/seed/enter" component={EnterSeed} />
-                    <Route exact path="/onboarding/security/password" component={Done} />
-                    <Route path="/onboarding/security/password/set" component={Placeholder} />
-                    <Route exact path="/onboarding/security/extra" component={Placeholder} />
-                    <Route path="/onboarding/security/extra/authenticator" component={Placeholder} />
-                    <Route path="/onboarding/done" component={Placeholder} />
+                    <Route path="/instructions" component={Instructions} />
+                    <Route path="/lightserver" component={LightServerSetup} />
+                    <Route path="/wallet" component={WalletSetup} />
+                    <Route path="/seed/generate" component={GenerateSeed} />
+                    <Route exact path="/seed/save" component={SaveYourSeedOptions} />
+                    <Route path="/seed/save/manual" component={SeedManualCopy} />
+                    <Route path="/seed/save/clipboard" component={SeedCopyToClipboard} />
+                    <Route path="/seed/save/paperwallet" component={SeedPaperWallet} />
+                    <Route path="/seed/enter" component={EnterSeed} />
+                    <Route path="/security/intro" component={SecurityIntro} />
+                    <Route path="/security/set" component={SecurityEnter} />
+                    <Route exact path="/security/extra" component={Placeholder} />
+                    <Route path="/security/extra/authenticator" component={Placeholder} />
+                    <Route path="/done" component={Done} />
                     <Route path="/" component={Welcome} />
                 </Switch>
             </div>
