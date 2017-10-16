@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode';
 
@@ -42,7 +42,7 @@ class PaperWallet extends React.Component {
 
     async onPrintPress() {
         const options = {
-            html: `<html><div id="item"><img id="arrow" src="/Users/charlie/Desktop/wallet/src/shared/images/arrow-black.png" /><table id="seedBox"><tr><td>${this.props.iota.seed.substring(
+            html: `<html><div id="item"><img id="arrow" src="../../shared/images/arrow-black.png" /><table id="seedBox"><tr><td>${this.props.iota.seed.substring(
                 0,
                 3,
             )}</td><td>${this.props.iota.seed.substring(3, 6)}</td><td>${this.props.iota.seed.substring(
@@ -84,12 +84,12 @@ class PaperWallet extends React.Component {
             )}</td><td>${this.props.iota.seed.substring(75, 78)}</td><td>${this.props.iota.seed.substring(
                 78,
                 81,
-            )}</td></tr></table></div><div id="midItem"><img id="iotaLogo" src="/Users/charlie/Desktop/wallet/src/shared/images/iota-full.png"/> <p id="text" width="10"> Your seed is 81<br />characters, read<br />from left to right.</p></div><div id="item"><img src="/Users/charlie/Desktop/wallet/src/shared/images/qr.png" width="240" height="240" /></div> <style> #seedBox {margin-left: 20px; padding-left: 6px; padding-right: 6px; padding-top: 30px; padding-bottom: 10px; border: solid #000;border-width: 2px; border-radius: 20px} @font-face { font-family: "Lato"; src: "/Users/charlie/Desktop/wallet/src/shared/custom-fonts/Lato-Regular.ttf"} @font-face { font-family: "Monospace"; src: "/Users/charlie/Desktop/wallet/src/shared/custom-fonts/Inconsolata-Bold.ttf"} #text {font-family: Lato; font-size: 20px; text-align: center; padding-top: 25px} #item {float: left} #midItem {float: left; margin: 30px} #iotaLogo {width: 109.1px; height: 36.73px; position: absolute; left: 308px; top: 5px; visibility: ${this
+            )}</td></tr></table></div><div id="midItem"><img id="iotaLogo" src="../../shared/images/iota-full.png"/> <p id="text" width="10"> Your seed is 81<br />characters, read<br />from left to right.</p></div><div id="item"><img src="../../shared/images/qr.png" width="240" height="240" /></div> <style> #seedBox {margin-left: 20px; padding-left: 6px; padding-right: 6px; padding-top: 30px; padding-bottom: 10px; border: solid #000;border-width: 2px; border-radius: 20px} @font-face { font-family: "Lato"; src: "../../shared/custom-fonts/Lato-Regular.ttf"} @font-face { font-family: "Monospace"; src: "../../shared/custom-fonts/Inconsolata-Bold.ttf"} #text {font-family: Lato; font-size: 20px; text-align: center; padding-top: 25px} #item {float: left} #midItem {float: left; margin: 30px} #iotaLogo {width: 109.1px; height: 36.73px; position: absolute; left: 308px; top: 5px; visibility: ${this
                 .state
                 .iotaLogoVisibility}}  td {padding-left: 7px; padding-right: 7px; font-size: 21px; font-family: Monospace} #arrow {position: absolute; left: 45px; top: 25px; width: 200px; height: 9.68px }</style></html>`,
             fileName: 'paperWallet',
             base64: true,
-            fonts: ['src/shared/custom-fonts/Inconsolata-Bold.ttf'],
+            fonts: ['../../shared/custom-fonts/Inconsolata-Bold.ttf'],
         };
 
         try {
@@ -112,6 +112,7 @@ class PaperWallet extends React.Component {
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <View style={styles.titleContainer}>

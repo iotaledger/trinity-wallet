@@ -9,14 +9,18 @@ import {
     Image,
     ScrollView,
     ImageBackground,
+    StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/iotaActions';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
+const dropdown = DropdownHolder.getDropDown();
 
 class EnterSeed extends React.Component {
     constructor(props) {
@@ -34,7 +38,7 @@ class EnterSeed extends React.Component {
                 animated: false,
             });
         } else {
-            this.dropdown.alertWithType(
+            dropdown.alertWithType(
                 'error',
                 'Seed is too short',
                 `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
@@ -53,6 +57,7 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
@@ -132,7 +137,16 @@ class EnterSeed extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert ref={ref => (this.dropdown = ref)} errorColor="#A10702" />
+                <DropdownAlert
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                />
             </ImageBackground>
         );
     }
@@ -278,6 +292,32 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         paddingBottom: height / 90,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 

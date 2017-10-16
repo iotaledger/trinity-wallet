@@ -1,4 +1,4 @@
-.boxedSeedContainer {
+.wrapper {
     border-radius: 7px;
     padding: 10px 8px;
     &:before {
@@ -10,20 +10,25 @@
         display: block;
         height: 20px;
     }
-}
 
-.default {
-    composes: boxedSeedContainer;
-    border: 1px solid #ffffff;
-}
-
-.white {
-    composes: boxedSeedContainer;
-    border: 1px solid #000000;
+    &.color--black {
+        border: 1px solid #000000;
+        color: #000000;
+    }
+    &.color--black:before {
+        background-image: url(../../../../shared/images/arrow-black.png);
+    }
 }
 
 .arrowRight {
     width: 100%;
+}
+
+.small .copyableSeed span {
+    letter-spacing: 2px;
+    font-size: 12px;
+    padding: 2px;
+    font-weight: 600;
 }
 
 .copyableSeed {

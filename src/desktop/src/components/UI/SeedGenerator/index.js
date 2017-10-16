@@ -7,11 +7,12 @@ import css from './SeedGenerator.css';
 
 export default class SeedGenerator extends React.PureComponent {
     static propTypes = {
+        seed: PropTypes.string,
         onUpdatedSeed: PropTypes.func,
     };
 
     state = {
-        seed: createRandomSeed(),
+        seed: this.props.seed || createRandomSeed(),
         updateCounter: {},
     };
 
