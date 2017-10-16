@@ -41,7 +41,7 @@ class Receive extends React.Component {
             props.generateNewAddress(value);
         }
         function error() {
-            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+            this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
         }
     }
 
@@ -90,7 +90,7 @@ class Receive extends React.Component {
                 </View>
                 // uncomment once dropdown issues are sorted out /*{' '}
                 <DropdownAlert
-                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}

@@ -18,12 +18,12 @@ import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
-import DropdownHolder from './dropdownHolder';
+//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
-const dropdown = DropdownHolder.getDropDown();
+//const dropdown = DropdownHolder.getDropDown();
 
 class SetPassword extends React.Component {
     constructor(props) {
@@ -49,14 +49,14 @@ class SetPassword extends React.Component {
             });
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
-                dropdown.alertWithType(
+                this.dropdown.alertWithType(
                     'error',
                     'Password is too short',
                     `Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state
                         .password.length} characters long. Please try again.`,
                 );
             } else if (!(this.state.password === this.state.reentry)) {
-                dropdown.alertWithType(
+                this.dropdown.alertWithType(
                     'error',
                     'Passwords do not match',
                     'The passwords you have entered do not match. Please try again.',
@@ -145,7 +145,7 @@ class SetPassword extends React.Component {
                             </View>
                         </View>
                         <DropdownAlert
-                            ref={ref => DropdownHolder.setDropDown(ref)}
+                            ref={ref => (this.dropdown = ref)}
                             successColor="#009f3f"
                             errorColor="#A10702"
                             titleStyle={styles.dropdownTitle}
