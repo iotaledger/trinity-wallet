@@ -380,7 +380,7 @@ const styles = StyleSheet.create({
     dropdownMessage: {
         fontSize: 14,
         textAlign: 'left',
-        fontWeight: 'normal',
+        fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
