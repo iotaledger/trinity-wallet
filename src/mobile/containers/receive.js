@@ -41,7 +41,7 @@ class Receive extends React.Component {
             props.generateNewAddress(value);
         }
         function error() {
-            this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
         }
     }
 
@@ -90,7 +90,7 @@ class Receive extends React.Component {
                 </View>
                 // uncomment once dropdown issues are sorted out /*{' '}
                 <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
+                    ref={ref => DropdownHolder.setDropDown(ref)}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     dropdownMessage: {
         fontSize: 14,
         textAlign: 'left',
-        fontWeight: 'normal',
+        fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
