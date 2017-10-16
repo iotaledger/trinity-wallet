@@ -9,7 +9,7 @@ import {
     Image,
     ImageBackground,
     Platform,
-    StatusBar
+    StatusBar,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -21,24 +21,24 @@ const baseStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
     },
     topContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 4,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     bottomContainer: {
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        paddingBottom: height / 25
+        paddingBottom: height / 25,
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -46,7 +46,7 @@ const baseStyles = StyleSheet.create({
         fontSize: width / 25.3,
         textAlign: 'center',
         paddingHorizontal: width / 20,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     optionButton: {
         borderColor: '#8BD4FF',
@@ -55,20 +55,20 @@ const baseStyles = StyleSheet.create({
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: height / 35,
-        paddingBottom: height / 30
+        paddingBottom: height / 30,
     },
     title: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoText: {
         color: 'white',
@@ -78,21 +78,21 @@ const baseStyles = StyleSheet.create({
         paddingTop: height / 15,
         paddingHorizontal: width / 6,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoTextNormal: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.75,
         textAlign: 'left',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoTextBold: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 25.75,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     nextButton: {
         borderColor: '#9DFFAF',
@@ -101,13 +101,13 @@ const baseStyles = StyleSheet.create({
         width: width / 3,
         height: height / 16,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     nextText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     backButton: {
         borderColor: '#F7D002',
@@ -116,24 +116,24 @@ const baseStyles = StyleSheet.create({
         width: width / 3,
         height: height / 16,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     backText: {
         color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
-    }
+        width: width / 5,
+    },
 });
 
 const androidStyles = StyleSheet.create({
     midContainer: {
-        flex: 1
-    }
+        flex: 1,
+    },
 });
 
 class SaveYourSeed extends Component {
@@ -141,13 +141,13 @@ class SaveYourSeed extends Component {
         this.props.navigator.push({
             screen: 'setPassword',
             navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-            animated: false
+            animated: false,
         });
     }
 
     onBackPress() {
         this.props.navigator.pop({
-            animated: false
+            animated: false,
         });
     }
 
@@ -155,21 +155,21 @@ class SaveYourSeed extends Component {
         this.props.navigator.push({
             screen: 'writeSeedDown',
             navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-            animated: false
+            animated: false,
         });
     }
     onPrintClick() {
         this.props.navigator.push({
             screen: 'paperWallet',
             navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-            animated: false
+            animated: false,
         });
     }
     onCopyClick() {
         this.props.navigator.push({
             screen: 'copySeedToClipboard',
             navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-            animated: false
+            animated: false,
         });
     }
 
@@ -234,11 +234,11 @@ class SaveYourSeed extends Component {
 }
 
 const mapStateToProps = state => ({
-    iota: state.iota
+    iota: state.iota,
 });
 
 SaveYourSeed.propTypes = {
-    navigator: PropTypes.object.isRequired
+    navigator: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(SaveYourSeed);

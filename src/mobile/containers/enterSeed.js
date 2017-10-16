@@ -16,11 +16,11 @@ import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/iotaActions';
-import DropdownHolder from './dropdownHolder';
+//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
-const StatusBarDefaultBarStyle = StatusBar._defaultProps.barStyle.value;
-const dropdown = DropdownHolder.getDropDown();
+const StatusBarDefaultBarStyle = 'light-content';
+//const dropdown = DropdownHolder.getDropDown();
 
 class EnterSeed extends React.Component {
     constructor(props) {
@@ -38,7 +38,7 @@ class EnterSeed extends React.Component {
                 animated: false,
             });
         } else {
-            dropdown.alertWithType(
+            this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
                 `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
@@ -138,14 +138,14 @@ class EnterSeed extends React.Component {
                     </View>
                 </TouchableWithoutFeedback>
                 <DropdownAlert
-                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
             </ImageBackground>
         );
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
     dropdownMessage: {
         fontSize: 14,
         textAlign: 'left',
-        fontWeight: 'bold',
+        fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
