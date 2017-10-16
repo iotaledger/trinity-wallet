@@ -1,12 +1,24 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, ListView, Dimensions, TouchableOpacity, Clipboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    Image,
+    ListView,
+    Dimensions,
+    TouchableOpacity,
+    Clipboard,
+    StatusBar,
+} from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
+//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+//const dropdown = DropdownHolder.getDropDown();
 
 class Receive extends React.Component {
     constructor(props) {
@@ -29,7 +41,7 @@ class Receive extends React.Component {
             props.generateNewAddress(value);
         }
         function error() {
-            this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
         }
     }
 
@@ -44,6 +56,7 @@ class Receive extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={{ paddingBottom: height / 40 }}>
                     <TouchableOpacity onPress={event => this.onAddressPress(this.props)}>
                         <View style={styles.receiveAddressContainer}>
@@ -75,6 +88,18 @@ class Receive extends React.Component {
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>
+                // uncomment once dropdown issues are sorted out /*{' '}
+                <DropdownAlert
+                    ref={ref => DropdownHolder.setDropDown(ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBar._defaultProps.barStyle.value}
+                />{' '}
+                */
             </View>
         );
     }
@@ -126,6 +151,32 @@ const styles = StyleSheet.create({
     separator: {
         flex: 1,
         height: 15,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 
