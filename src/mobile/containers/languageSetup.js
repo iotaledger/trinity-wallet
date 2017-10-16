@@ -10,7 +10,7 @@ import {
     TouchableWithoutFeedback,
     Image,
     ImageBackground,
-    StatusBar
+    StatusBar,
 } from 'react-native';
 import Triangle from 'react-native-triangle';
 
