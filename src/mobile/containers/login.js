@@ -17,10 +17,10 @@ import { getFromKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
-//import DropdownHolder from './dropdownHolder';
+import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
-//const dropdown = DropdownHolder.getDropDown();
+const dropdown = DropdownHolder.getDropDown();
 
 class Login extends React.Component {
     constructor(props) {
@@ -31,11 +31,7 @@ class Login extends React.Component {
     }
     onDoneClick(props) {
         if (this.state.password == '') {
-            this.dropdown.alertWithType(
-                'error',
-                'Empty password',
-                'You must enter a password to log in. Please try again.',
-            );
+            dropdown.alertWithType('error', 'Empty password', 'You must enter a password to log in. Please try again.');
         } else {
             this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
@@ -59,7 +55,7 @@ class Login extends React.Component {
             });
         }
         function error() {
-            this.dropdown.alertWithType(
+            dropdown.alertWithType(
                 'error',
                 'Unrecognised password',
                 'The password was not recognised. Please try again.',
@@ -134,7 +130,7 @@ class Login extends React.Component {
                 </TouchableWithoutFeedback>
 
                 <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
+                    ref={ref => DropdownHolder.setDropDown(ref)}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
@@ -266,7 +262,7 @@ const styles = StyleSheet.create({
     dropdownMessage: {
         fontSize: 14,
         textAlign: 'left',
-        fontWeight: 'normal',
+        fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
