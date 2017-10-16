@@ -14,7 +14,7 @@ class Balance extends React.Component {
     constructor() {
         super();
         this.state = {
-            balanceIsShort: true
+            balanceIsShort: true,
         };
     }
 
@@ -67,52 +67,52 @@ class Balance extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     balanceContainer: {
         flex: 8.5,
         alignItems: 'center',
         paddingTop: height / 50,
-        paddingBottom: height / 15
+        paddingBottom: height / 15,
     },
     iotaBalance: {
         color: 'white',
         fontFamily: 'Lato-Heavy',
         fontSize: width / 9,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     fiatBalance: {
         color: 'white',
         paddingTop: 5,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     transactionsContainer: {
         flex: 16.5,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: height / 40
+        paddingVertical: height / 40,
     },
     line: {
         borderBottomColor: 'white',
         borderBottomWidth: 0.25,
-        width: width / 1.2
+        width: width / 1.2,
     },
     separator: {
         flex: 1,
-        height: 5
+        height: 5,
     },
     listView: {
         flex: 1,
-        justifyContent: 'center'
-    }
+        justifyContent: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
     iota: state.iota,
-    account: state.account
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -121,7 +121,7 @@ const mapDispatchToProps = dispatch => ({
     },
     changeTimeFrame: (currency, timeFrame) => {
         dispatch(changeTimeFrame(currency, timeFrame));
-    }
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Balance);

@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
 import Header from './Header';
-import BoxedSeed from './BoxedSeed';
+import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
 import css from './SeedPaperWallet.css';

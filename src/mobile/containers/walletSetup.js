@@ -15,9 +15,9 @@ class WalletSetup extends React.Component {
             navigatorStyle: {
                 navBarHidden: true,
                 screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36'
+                screenBackgroundColor: '#102e36',
             },
-            animated: false
+            animated: false,
         });
     }
     onNoClick() {
@@ -26,9 +26,9 @@ class WalletSetup extends React.Component {
             navigatorStyle: {
                 navBarHidden: true,
                 screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36'
+                screenBackgroundColor: '#102e36',
             },
-            animated: false
+            animated: false,
         });
     }
 
@@ -91,37 +91,37 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
     },
     topContainer: {
         flex: 1.9,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 1.1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 10
+        paddingTop: height / 10,
     },
     bottomContainer: {
         flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 14
+        paddingBottom: height / 14,
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 35
+        paddingTop: height / 35,
     },
     title: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoTextContainer: {
         borderColor: 'white',
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 60
+        paddingTop: height / 60,
     },
     infoText: {
         color: 'white',
@@ -141,36 +141,36 @@ const styles = StyleSheet.create({
         fontSize: width / 33.75,
         textAlign: 'center',
         paddingTop: height / 70,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoTextLight: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 33.75,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoTextRegular: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 33.75,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoIcon: {
         width: width / 20,
-        height: width / 20
+        height: width / 20,
     },
     greetingTextContainer: {
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: width / 4.5,
-        paddingTop: height / 13
+        paddingTop: height / 13,
     },
     greetingText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23.5,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     questionText: {
         color: 'white',
@@ -178,11 +178,11 @@ const styles = StyleSheet.create({
         fontSize: width / 23.5,
         textAlign: 'center',
         paddingTop: height / 40,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     buttonsContainer: {
         alignItems: 'center',
-        paddingBottom: height / 30
+        paddingBottom: height / 30,
     },
     yesButton: {
         borderColor: '#9DFFAF',
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         width: width / 1.65,
         height: height / 17,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     noButton: {
         borderColor: '#F7D002',
@@ -200,28 +200,28 @@ const styles = StyleSheet.create({
         width: width / 1.65,
         height: height / 17,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     yesText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     noText: {
         color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
-    }
+        width: width / 5,
+    },
 });
 
 const mapStateToProps = state => ({
-    account: state.account
+    account: state.account,
 });
 
 export default WalletSetup;
