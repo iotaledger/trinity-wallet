@@ -45,13 +45,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
-    }
+        justifyContent: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota
+    iota: state.iota,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -63,7 +63,7 @@ const mapDispatchToProps = dispatch => ({
     },
     getChartData: (currency, timeFrame) => {
         dispatch(getChartData(currency, timeFrame));
-    }
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Loading);
