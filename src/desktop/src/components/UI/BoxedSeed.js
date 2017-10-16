@@ -32,9 +32,7 @@ class BoxedSeed extends PureComponent {
         const copyableSeed = this.getCopyableSeed(seed);
 
         return (
-            <section
-                className={classNames(css.wrapper, color && css[`color--${color}`], size && css[`color--${size}`])}
-            >
+            <section className={classNames(css.wrapper, color && css[`color--${color}`], size && css[`size--${size}`])}>
                 <div className={css.copyableSeed}>{copyableSeed}</div>
             </section>
         );
