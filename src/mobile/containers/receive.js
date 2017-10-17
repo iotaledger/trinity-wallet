@@ -99,8 +99,7 @@ class Receive extends React.Component {
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />{' '}
-                */
+                />
             </View>
         );
     }
