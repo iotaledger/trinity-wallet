@@ -12,12 +12,10 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
-//import DropdownHolder from './dropdownHolder';
 import PropTypes from 'prop-types';
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
-//const dropdown = DropdownHolder.getDropDown();
 
 function clearClipboard() {
     Clipboard.setString('');
