@@ -26,7 +26,25 @@ export const formatTime = ts => {
     return formattedTime;
 };
 
+export const formatModalTime = ts => {
+    const dateToFormat = new Date(ts * 1000);
+    const minutes = `0${dateToFormat.getMinutes()}`;
+    const hours = dateToFormat.getHours();
+    const day = dateToFormat.getDate();
+    const month = dateToFormat.getMonth();
+    const year = dateToFormat.getFullYear();
+
+    const formattedTime = `${hours}:${minutes.substr(-2)} ${day}/${month}/${year}`;
+
+    return formattedTime;
+};
+
 export const formatValue = value => {
+    var negative = false;
+    if (value < 0) {
+        negative = true;
+        value = -value;
+    }
     switch (true) {
         case value < 1000:
             break;
@@ -43,7 +61,11 @@ export const formatValue = value => {
             value /= 1000000000000;
             break;
     }
-    return value;
+    if (negative == true) {
+        return -value;
+    } else {
+        return value;
+    }
 };
 
 export const formatUnit = value => {
