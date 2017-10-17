@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    ActivityIndicator,
     StyleSheet,
     View,
     Text,
@@ -27,19 +28,28 @@ class Receive extends React.Component {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
             dataSource: ds.cloneWithRows([]),
+            animating: false,
         };
     }
 
+    shouldComponentUpdate() {
+        if (!this.props.iota.addresses == []) {
+            this.setState({ animating: false });
+        }
+        return true;
+    }
+
     onGeneratePress(props) {
-        getFromKeychain(this.props.iota.password, value => {
-            if (typeof value !== 'undefined') {
-                generate(value);
+        getFromKeychain(this.props.iota.password, seed => {
+            if (typeof seed !== 'undefined') {
+                this.setState({ animating: true });
+                generate(seed);
             } else {
                 error();
             }
         });
-        function generate(value) {
-            props.generateNewAddress(value);
+        function generate(seed) {
+            props.generateNewAddress(seed);
         }
         function error() {
             this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
@@ -81,6 +91,14 @@ class Receive extends React.Component {
                         <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
                     </View>
                 </TouchableOpacity>
+                <View style={{ paddingTop: height / 20, flex: 1 }}>
+                    <ActivityIndicator
+                        animating={this.state.animating}
+                        style={styles.activityIndicator}
+                        size="large"
+                        color="#F7D002"
+                    />
+                </View>
                 <View style={{ paddingTop: height / 20 }}>
                     <ListView
                         enableEmptySections={true}
@@ -118,6 +136,12 @@ const styles = StyleSheet.create({
         width: width / 1.3,
         height: height / 10,
         justifyContent: 'center',
+    },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 80,
     },
     receiveAddressText: {
         fontFamily: 'Lato-Regular',
