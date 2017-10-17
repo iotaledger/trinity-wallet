@@ -124,11 +124,6 @@ class Home extends React.Component {
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.titleContainer}>
-                    <View style={styles.banner}>
-                        <Image style={styles.logo} source={require('../../shared/images/iota.png')} />
-                        <Text style={styles.mode}>{this.state.mode}</Text>
-                        <Text style={styles.title}>{this.state.bannerText}</Text>
-                    </View>
                     <View style={{ flex: 6 }}>{this.state.tabContent}</View>
                 </View>
                 <View style={styles.tabBar}>
