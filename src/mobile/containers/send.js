@@ -4,7 +4,6 @@ import {
     View,
     Text,
     Image,
-    TouchableWithoutFeedback,
     TouchableOpacity,
     LayoutAnimation,
     ListView,
@@ -14,7 +13,6 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import Triangle from 'react-native-triangle';
 import TransactionRow from '../components/transactionRow.js';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain } from '../../shared/libs/cryptography';
