@@ -180,10 +180,8 @@ export function generateNewAddress(seed) {
 }
 
 export function sendTransaction(seed, address, value, message) {
-    // Stringify to JSON
-    const messageStringified = JSON.stringify(message);
     // Convert to Trytes
-    const messageTrytes = iota.utils.toTrytes(messageStringified);
+    const messageTrytes = iota.utils.toTrytes(message);
     const transfer = [
         {
             address: address,
