@@ -1,14 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableWithoutFeedback, Image, Dimensions, View, ImageBackground } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    TouchableWithoutFeedback,
+    Image,
+    Dimensions,
+    View,
+    ImageBackground,
+    StatusBar,
+} from 'react-native';
 import Balance from './balance';
 import Send from './send';
 import Receive from './receive';
 import History from './history';
 import Tools from './tools';
 import DropdownAlert from 'react-native-dropdownalert';
-import DropdownHolder from './dropdownHolder';
-
+//import DropdownHolder from './dropdownHolder';
+const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
+//const dropdown = DropdownHolder.getDropDown();
 
 class Home extends React.Component {
     constructor(props) {
@@ -112,6 +122,7 @@ class Home extends React.Component {
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.titleContainer}>
                     <View style={{ flex: 6 }}>{this.state.tabContent}</View>
                 </View>
@@ -162,7 +173,16 @@ class Home extends React.Component {
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
-                <DropdownAlert ref={c => (this.dropdown = c)} errorColor="#A10702" successColor="#009f3f" />
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
             </ImageBackground>
         );
     }
@@ -221,6 +241,32 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 50.6,
         paddingTop: 5,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 

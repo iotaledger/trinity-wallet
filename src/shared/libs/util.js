@@ -69,7 +69,7 @@ export const formatValue = value => {
 };
 
 export const formatUnit = value => {
-    let unit = '';
+    const unit = '';
     switch (true) {
         case value < 1000:
             return 'i';
@@ -103,9 +103,7 @@ export const isValidServerAddress = server => {
     return true;
 };
 
-export const isValidSeed = seed => {
-    return /^[A-Z9]{81}$/.test(seed);
-};
+export const isValidSeed = seed => /^[A-Z9]{81}$/.test(seed);
 
 export const guid = () => {
     const s4 = () =>
@@ -134,3 +132,7 @@ export const createRandomSeed = (randomBytesFn, length = 81) => {
 
     return seed;
 };
+
+export const getCurrentYear = () => new Date().getFullYear();
+
+export const isValidPassword = (password = '') => password.length >= 12;
