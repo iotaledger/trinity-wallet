@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { formatTime, formatValue, formatUnit, round } from '../../shared/libs/util';
 
 const { height, width } = Dimensions.get('window');
 
-class TransactionRow extends React.Component {
+class TransactionRow extends Component {
     render() {
         const titleColour = this.props.rowData[0].transactionValue < 0 ? '#F7D002' : '#72BBE8';
         return (
@@ -18,7 +18,7 @@ class TransactionRow extends React.Component {
                                 backgroundColor: 'transparent',
                                 fontFamily: 'Lato-Regular',
                                 fontSize: width / 33.75,
-                                paddingBottom: 4
+                                paddingBottom: 4,
                             }}
                         >
                             {this.props.rowData[0].transactionValue < 0 ? 'SEND' : 'RECEIVE'}{' '}
@@ -57,33 +57,33 @@ const styles = StyleSheet.create({
         width: width / 1.2,
         height: height / 10,
         backgroundColor: 'rgba(255, 255, 255, 0.08)',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     bundleTitle: {
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5
+        fontSize: width / 40.5,
     },
     hash: {
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
-        fontSize: width / 40.5
+        fontSize: width / 40.5,
     },
     status: {
         color: '#9DFFAF',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 40.5,
-        paddingTop: 2
+        paddingTop: 2,
     },
     timestamp: {
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 40.5
-    }
+        fontSize: width / 40.5,
+    },
 });
 
-module.exports = TransactionRow;
+export default TransactionRow;
