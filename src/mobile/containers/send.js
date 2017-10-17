@@ -19,7 +19,9 @@ import TransactionRow from '../components/transactionRow.js';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
+import DropdownAlert from 'react-native-dropdownalert';
 
+const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 const CustomLayoutSpring = {
     duration: 100,
@@ -85,6 +87,13 @@ class Send extends React.Component {
         getFromKeychain(this.props.iota.password, seed => {
             if (typeof seed !== 'undefined') {
                 sendTx(seed);
+                if (!sendTransaction(seed, address, value, message)) {
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Key reuse',
+                        `The address you are trying to send to has already been used. Please try another address.`,
+                    );
+                }
             } else {
                 console.log('error');
             }
@@ -232,12 +241,16 @@ class Send extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                {/* }<ListView
-                style={{position: 'absolute', top: 250, left: 0, right: 0, bottom: 0}}
-                dataSource={this.state.dataSource}
-                renderRow={(data) => <TransactionRow rowData={data}/>}
-                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-              /> */}
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
             </ScrollView>
         );
     }
