@@ -195,25 +195,25 @@ export function sendTransaction(seed, address, value, message) {
     var outputsToCheck = transfer.map(transfer => {
         return { address: iota.utils.noChecksum(transfer.address) };
     });
-    var exptectedOutputsLength = outputsToCheck.length;
+    var expectedOutputsLength = outputsToCheck.length;
     if (!iota.valid.isTransfersArray(transfer)) {
         console.log('Error: Invalid transfer array');
         return;
     }
     // Check to make sure user is not sending to an already used address
     filterSpentAddresses(outputsToCheck).then(filtered => {
-        if (filtered.length !== exptectedOutputsLength) {
+        if (filtered.length !== expectedOutputsLength) {
             console.log('You cannot send to an already used address');
             return;
-        }
-    });
-
-    // Send transfer with depth 4 and minWeightMagnitude 18
-    iota.api.sendTransfer(seed, 4, 14, transfer, (error, success) => {
-        if (!error) {
-            console.log('SUCCESSFULLY SENT TRANSFER: ', success);
         } else {
-            console.log('SOMETHING WENT WRONG: ', error);
+            // Send transfer with depth 4 and minWeightMagnitude 18
+            iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
+                if (!error) {
+                    console.log('SUCCESSFULLY SENT TRANSFER: ', success);
+                } else {
+                    console.log('SOMETHING WENT WRONG: ', error);
+                }
+            });
         }
     });
 }
