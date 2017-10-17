@@ -49,6 +49,7 @@ class Balance extends React.Component {
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                         enableEmptySections
                         contentContainerStyle={styles.listView}
+                        scrollEnabled={false}
                     />
                 </View>
                 <View style={styles.line} />

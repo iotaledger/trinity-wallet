@@ -29,7 +29,7 @@ class SimpleTransactionRow extends React.Component {
                             backgroundColor: 'transparent',
                             padding: 5,
                             fontFamily: 'Lato-Bold',
-                            fontSize: width / 33.5
+                            fontSize: width / 29.6,
                         }}
                     >
                         {formatTime(this.props.rowData[0].timestamp)}
@@ -41,7 +41,7 @@ class SimpleTransactionRow extends React.Component {
                             color: titleColour,
                             backgroundColor: 'transparent',
                             fontFamily: 'Lato-Bold',
-                            fontSize: width / 33.5
+                            fontSize: width / 29.6,
                         }}
                     >
                         {this.props.rowData[0].transactionValue < 0 ? 'Sent' : 'Received'}
@@ -53,7 +53,7 @@ class SimpleTransactionRow extends React.Component {
                             color: titleColour,
                             backgroundColor: 'transparent',
                             fontFamily: 'Lato-Bold',
-                            fontSize: width / 33.5
+                            fontSize: width / 29.6,
                         }}
                     >
                         {sign} {round(formatValue(this.props.rowData[0].value), 1)}{' '}
@@ -70,13 +70,13 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         height: height / 40,
-        width: width / 1.8,
-        alignItems: 'center'
+        width: width / 1.5,
+        alignItems: 'center',
     },
     icon: {
-        width: width / 34,
-        height: width / 34
-    }
+        width: width / 30,
+        height: width / 30,
+    },
 });
 
 module.exports = SimpleTransactionRow;
