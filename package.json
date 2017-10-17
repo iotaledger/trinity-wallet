@@ -8,7 +8,9 @@
         "format": "prettier --write \"**/*.{js,json,css}\"",
         "precommit": "lint-staged",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "full-setup": "yarn && cd src/desktop && yarn && cd ../shared && yarn && cd ../mobile && yarn"
+        "full-setup": "yarn && cd src/desktop && yarn && cd ../shared && yarn && cd ../mobile && yarn",
+        "start:desktop": "cd src/desktop && yarn start",
+        "start:mobile": "cd src/mobile && yarn start"
     },
     "lint-staged": {
         "*.{js,json,css}": ["prettier --write", "git add"]
@@ -28,6 +30,11 @@
         "prettier": "^1.7.4"
     },
     "dependencies": {
+        "eslint": "^4.7.2",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-babel": "^4.1.2",
+        "eslint-plugin-import": "^2.7.0",
+        "eslint-plugin-react": "^7.3.0",
         "eslint-config-prettier": "^2.6.0",
         "react-native-html-to-pdf": "^0.4.0",
         "react-native-print": "^0.3.0"

@@ -28,7 +28,7 @@ export default translate('welcome1')(
                         <Button to="/" variant="warning">
                             {t('button2')}
                         </Button>
-                        <Button to="/onboarding/lightserver" variant="success">
+                        <Button to="/lightserver" variant="success">
                             {t('button1')}
                         </Button>
                     </footer>
