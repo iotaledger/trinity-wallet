@@ -10,6 +10,7 @@ import {
     ListView,
     ScrollView,
     Dimensions,
+    StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
@@ -119,6 +120,7 @@ class Send extends React.Component {
         let { amount, address, message } = this.state;
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={styles.textFieldContainer}>
@@ -362,6 +364,32 @@ const styles = StyleSheet.create({
         height: width / 50,
         width: width / 34,
         marginRight: 2,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 

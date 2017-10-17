@@ -1,42 +1,72 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, Clipboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Text,
+    TouchableOpacity,
+    Image,
+    ImageBackground,
+    Clipboard,
+    StatusBar,
+} from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
-import DropdownHolder from './dropdownHolder';
+//import DropdownHolder from './dropdownHolder';
+import PropTypes from 'prop-types';
 
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = 'light-content';
+//const dropdown = DropdownHolder.getDropDown();
 
 class CopySeedToClipboard extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    onDonePress() {
-        this.props.navigator.pop({
-            animated: false,
-        });
+    clearClipboard() {
         Clipboard.setString('');
-        const dropdown = DropdownHolder.getDropDown();
-        dropdown.alertWithType(
+        //  const dropdown = DropdownHolder.getDropDown();
+        this.dropdown.alertWithType(
             'info',
             'Seed cleared',
             'The seed has been cleared from the clipboard for your security.',
         );
     }
 
+    /* componentWillUnmount() {
+        clearClipboard();
+    }*/
+
+    onDonePress() {
+        clearClipboard();
+        this.props.navigator.pop({
+            animated: false,
+        });
+    }
+
     onCopyPress() {
         Clipboard.setString(this.props.iota.seed);
-        const dropdown = DropdownHolder.getDropDown();
-        dropdown.alertWithType(
+        //  const dropdown = DropdownHolder.getDropDown();
+        this.dropdown.alertWithType(
             'success',
             'Seed copied',
-            'The seed has been copied to the clipboard and will be cleared once you press DONE.',
+            'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.',
         );
+        setTimeout(function() {
+            Clipboard.setString('');
+            this.dropdown.alertWithType(
+                'info',
+                'Seed cleared',
+                'The seed has been cleared from the clipboard for your security.',
+            );
+        }, 60000);
     }
 
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <View style={styles.titleContainer}>
@@ -119,7 +149,16 @@ class CopySeedToClipboard extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <DropdownAlert ref={ref => DropdownHolder.setDropDown(ref)} successColor="#009f3f" />
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
             </ImageBackground>
         );
     }
@@ -320,6 +359,32 @@ const styles = StyleSheet.create({
     arrow: {
         width: width / 2,
         height: height / 80,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 
