@@ -340,7 +340,7 @@ const styles = StyleSheet.create({
     },
     maxButtonContainer: {
         alignItems: 'flex-start',
-        paddingTop: height / 150,
+        marginTop: height / 150,
     },
     maxButtonText: {
         color: 'white',

@@ -20,7 +20,7 @@ class InitialLoading extends React.Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'login',
+                screen: 'home',
                 navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
                 animated: false,
             });
