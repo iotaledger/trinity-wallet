@@ -1,92 +1,20 @@
-import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
-import { connect } from 'react-redux';
+import merge from 'lodash/merge';
+import React, { Component } from 'react';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Text,
+    TouchableOpacity,
+    Image,
+    ImageBackground,
+    StatusBar,
+    Platform,
+} from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
-class WalletSetup extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    onYesClick() {
-        this.props.navigator.push({
-            screen: 'enterSeed',
-            navigatorStyle: {
-                navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
-            },
-            animated: false,
-        });
-    }
-    onNoClick() {
-        this.props.navigator.push({
-            screen: 'newSeedSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
-            },
-            animated: false,
-        });
-    }
-
-    render() {
-        return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>WALLET SETUP</Text>
-                    </View>
-                    <View style={styles.greetingTextContainer}>
-                        <Text style={styles.greetingText}>Okay. Lets set up your wallet!</Text>
-                        <Text style={styles.questionText}>Do you already have a seed that you would like to use?</Text>
-                    </View>
-                </View>
-                <View style={styles.midContainer}>
-                    <View style={styles.infoTextContainer}>
-                        <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                        <Text style={styles.infoText}>
-                            The IOTA seed is like a username and password to your account, combined into one string of
-                            81 characters.
-                        </Text>
-                        <Text style={styles.infoText}>
-                            <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
-                            <Text style={styles.infoTextRegular}> any wallet</Text>
-                            <Text style={styles.infoTextLight}>, on</Text>
-                            <Text style={styles.infoTextRegular}> any device</Text>
-                            <Text style={styles.infoTextLight}>
-                                . But if you lose your seed, you also lose your IOTA.{' '}
-                            </Text>
-                        </Text>
-                        <Text style={styles.infoText}>Please keep your seed safe.</Text>
-                    </View>
-                </View>
-                <View style={styles.bottomContainer}>
-                    <View style={styles.buttonsContainer}>
-                        <TouchableOpacity onPress={event => this.onYesClick()}>
-                            <View style={styles.yesButton}>
-                                <Text style={styles.yesText}>YES - I have a seed</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ alignItems: 'center' }}>
-                        <TouchableOpacity onPress={event => this.onNoClick()}>
-                            <View style={styles.noButton}>
-                                <Text style={styles.noText}>NO - I need a new seed</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </ImageBackground>
-        );
-    }
-}
-
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -220,8 +148,107 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
-    account: state.account,
+const androidStyles = StyleSheet.create({
+    midContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 8,
+    },
+    greetingTextContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: width / 4.5,
+        paddingTop: height / 22,
+    },
+    bottomContainer: {
+        flex: 2.4,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 16,
+    },
 });
+
+class WalletSetup extends Component {
+    onYesClick() {
+        this.props.navigator.push({
+            screen: 'enterSeed',
+            navigatorStyle: {
+                navBarHidden: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+        });
+    }
+
+    onNoClick() {
+        this.props.navigator.push({
+            screen: 'newSeedSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+        });
+    }
+
+    render() {
+        const isAndroid = Platform.OS === 'android';
+        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
+
+        return (
+            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <View style={styles.topContainer}>
+                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>WALLET SETUP</Text>
+                    </View>
+                    <View style={styles.greetingTextContainer}>
+                        <Text style={styles.greetingText}>Okay. Lets set up your wallet!</Text>
+                        <Text style={styles.questionText}>Do you already have a seed that you would liko use?</Text>
+                    </View>
+                </View>
+                <View style={styles.midContainer}>
+                    <View style={styles.infoTextContainer}>
+                        <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                        <Text style={styles.infoText}>
+                            The IOTA seed is like a username and password to your account, combined into one string of
+                            81 characters.
+                        </Text>
+                        <Text style={styles.infoText}>
+                            <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
+                            <Text style={styles.infoTextRegular}> any wallet</Text>
+                            <Text style={styles.infoTextLight}>, on</Text>
+                            <Text style={styles.infoTextRegular}> any device</Text>
+                            <Text style={styles.infoTextLight}>
+                                . But if you lose your seed, you also lose your IOTA.{' '}
+                            </Text>
+                        </Text>
+                        <Text style={styles.infoText}>Please keep your seed safe.</Text>
+                    </View>
+                </View>
+                <View style={styles.bottomContainer}>
+                    <View style={styles.buttonsContainer}>
+                        <TouchableOpacity onPress={event => this.onYesClick()}>
+                            <View style={styles.yesButton}>
+                                <Text style={styles.yesText}>YES - I have a seed</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ alignItems: 'center' }}>
+                        <TouchableOpacity onPress={event => this.onNoClick()}>
+                            <View style={styles.noButton}>
+                                <Text style={styles.noText}>NO - I need a new seed</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </ImageBackground>
+        );
+    }
+}
 
 export default WalletSetup;
