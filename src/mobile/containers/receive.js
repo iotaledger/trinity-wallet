@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
@@ -15,13 +15,10 @@ import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
-//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
-//const dropdown = DropdownHolder.getDropDown();
-const StatusBarDefaultBarStyle = 'light-content';
 
-class Receive extends React.Component {
+class Receive extends Component {
     constructor(props) {
         super(props);
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -89,18 +86,6 @@ class Receive extends React.Component {
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>
-                // uncomment once dropdown issues are sorted out /*{' '}
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />{' '}
-                */
             </View>
         );
     }
