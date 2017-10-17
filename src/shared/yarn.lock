@@ -611,9 +611,9 @@ invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-"iota.lib.js@git+https://git@github.com/l3wi/iota.lib.js.git":
+"iota.lib.js@git+https://git@github.com/aquadestructor/iota.lib.js.git#b2cff00":
   version "0.4.1"
-  resolved "git+https://git@github.com/l3wi/iota.lib.js.git#3c340d5f0a7d65e49bf6ac64e195de7a8f8e71a0"
+  resolved "git+https://git@github.com/aquadestructor/iota.lib.js.git#b2cff00d6f5b0fdb7491d73e50957aa53ce730e1"
   dependencies:
     async "^2.5.0"
     crypto-js "^3.1.9-1"
