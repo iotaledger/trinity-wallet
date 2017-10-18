@@ -19,6 +19,7 @@ import TransactionRow from '../components/transactionRow.js';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
+import Modal from 'react-native-modal';
 
 const { height, width } = Dimensions.get('window');
 const CustomLayoutSpring = {
@@ -68,7 +69,9 @@ class Send extends React.Component {
         }
     }
 
-    onQRPress() {}
+    onQRPress() {
+        this._showModal();
+    }
 
     onMaxPress() {
         this.setState({
@@ -116,6 +119,19 @@ class Send extends React.Component {
         return multiplier;
     }
 
+    _showModal = () => this.setState({ isModalVisible: true });
+
+    _hideModal = () => this.setState({ isModalVisible: false });
+
+    _renderModalContent = () => (
+        <TouchableOpacity
+            onPress={() => this._hideModal()}
+            style={{ width: width / 1.1, height: height / 1.1, backgroundColor: 'white' }}
+        >
+            <View style={{ flex: 1, justifyContent: 'center' }} />
+        </TouchableOpacity>
+    );
+
     render() {
         let { amount, address, message } = this.state;
         return (
@@ -142,7 +158,7 @@ class Send extends React.Component {
                             />
                         </View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={this.onQRPress()}>
+                            <TouchableOpacity onPress={() => this.onQRPress()}>
                                 <View style={styles.button}>
                                     <Image
                                         source={require('../../shared/images/camera.png')}
@@ -232,6 +248,20 @@ class Send extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                <Modal
+                    animationIn={'bounceInUp'}
+                    animationOut={'bounceOut'}
+                    animationInTiming={1000}
+                    animationOutTiming={200}
+                    backdropTransitionInTiming={500}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={'#132d38'}
+                    backdropOpacity={0.6}
+                    style={{ alignItems: 'center' }}
+                    isVisible={this.state.isModalVisible}
+                >
+                    {this._renderModalContent()}
+                </Modal>
                 {/* }<ListView
                 style={{position: 'absolute', top: 250, left: 0, right: 0, bottom: 0}}
                 dataSource={this.state.dataSource}
