@@ -1,4 +1,5 @@
 import { iota } from '../libs/iota';
+import { accountUtils } from '../libs/util';
 
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
@@ -70,15 +71,10 @@ export function setAccountInfo(accountInfo) {
     };
 }
 
-function getCurrentAddresses(data) {
-    console.log('DATA', data);
-}
-
 export function getAccountInfo(seed) {
     return dispatch => {
         iota.api.getAccountData(seed, (error, success) => {
             if (!error) {
-                getCurrentAddresses(success);
                 Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
