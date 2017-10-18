@@ -4,7 +4,7 @@ export const formatTime = ts => {
     const minutes = `0${dateToFormat.getMinutes()}`;
     const hours = dateToFormat.getHours();
     const day = dateToFormat.getDate();
-    const month = dateToFormat.getMonth();
+    const month = dateToFormat.getMonth() + 1;
     const year = dateToFormat.getFullYear();
     const ampm = hours <= 12 ? 'am' : 'pm';
 
@@ -31,7 +31,7 @@ export const formatModalTime = ts => {
     const minutes = `0${dateToFormat.getMinutes()}`;
     const hours = dateToFormat.getHours();
     const day = dateToFormat.getDate();
-    const month = dateToFormat.getMonth();
+    const month = dateToFormat.getMonth() + 1;
     const year = dateToFormat.getFullYear();
 
     const formattedTime = `${hours}:${minutes.substr(-2)} ${day}/${month}/${year}`;
