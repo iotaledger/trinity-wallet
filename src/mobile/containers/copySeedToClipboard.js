@@ -17,15 +17,10 @@ import PropTypes from 'prop-types';
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 
-function clearClipboard() {
-    Clipboard.setString('');
-    const dropdown = DropdownHolder.getDropDown();
-    dropdown.alertWithType('info', 'Seed cleared', 'The seed has been cleared from the clipboard for your security.');
-}
-
 class CopySeedToClipboard extends React.Component {
     constructor(props) {
         super(props);
+        this.clearClipboard = this.clearClipboard.bind(this);
     }
 
     clearClipboard() {
@@ -38,12 +33,8 @@ class CopySeedToClipboard extends React.Component {
         );
     }
 
-    /* componentWillUnmount() {
-        clearClipboard();
-    }*/
-
     onDonePress() {
-        clearClipboard();
+        this.clearClipboard();
         this.props.navigator.pop({
             animated: false,
         });
@@ -57,14 +48,7 @@ class CopySeedToClipboard extends React.Component {
             'Seed copied',
             'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.',
         );
-        setTimeout(function() {
-            Clipboard.setString('');
-            this.dropdown.alertWithType(
-                'info',
-                'Seed cleared',
-                'The seed has been cleared from the clipboard for your security.',
-            );
-        }, 60000);
+        setTimeout(this.clearClipboard(), 60000);
     }
 
     render() {
