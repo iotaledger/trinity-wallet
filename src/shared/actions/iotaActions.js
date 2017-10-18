@@ -66,27 +66,25 @@ function filterSpentAddresses(inputs) {
                 reject(err);
             }
             txs = txs.filter(tx => tx.value < 0);
-            var bundleHashes = txs.map(tx => tx.bundle);
+            const bundleHashes = txs.map(tx => tx.bundle);
             if (txs.length > 0) {
-                var bundles = txs.map(tx => tx.bundle);
+                const bundles = txs.map(tx => tx.bundle);
                 iota.api.findTransactionObjects({ bundles: bundles }, (err, txs) => {
                     if (err) {
                         reject(err);
                     }
-                    var hashes = txs.filter(tx => tx.currentIndex === 0);
-                    var allBundleHashes = txs.map(tx => tx.bundle);
+                    let hashes = txs.filter(tx => tx.currentIndex === 0);
+                    const allBundleHashes = txs.map(tx => tx.bundle);
                     hashes = hashes.map(tx => tx.hash);
                     iota.api.getLatestInclusion(hashes, (err, states) => {
                         if (err) {
                             reject(err);
                         }
-                        var confirmedHashes = hashes.filter((hash, i) => states[i]);
-                        var unconfirmedHashes = hashes
+                        const confirmedHashes = hashes.filter((hash, i) => states[i]);
+                        const unconfirmedHashes = hashes
                             .filter(hash => confirmedHashes.indexOf(hash) === -1)
-                            .map(hash => {
-                                return { hash: hash, validate: true };
-                            });
-                        var getBundles = confirmedHashes.concat(unconfirmedHashes).map(
+                            .map(hash => ({ hash, validate: true }));
+                        const getBundles = confirmedHashes.concat(unconfirmedHashes).map(
                             hash =>
                                 new Promise((resolve, reject) => {
                                     iota.api.traverseBundle(
@@ -97,9 +95,7 @@ function filterSpentAddresses(inputs) {
                                             if (err) {
                                                 reject(err);
                                             }
-                                            resolve(
-                                                typeof hash === 'string' ? bundle : { bundle: bundle, validate: true },
-                                            );
+                                            resolve(typeof hash === 'string' ? bundle : { bundle, validate: true });
                                         },
                                     );
                                 }),
@@ -115,7 +111,7 @@ function filterSpentAddresses(inputs) {
                                             return true;
                                         })
                                         .map(bundle => (bundle.hasOwnProperty('validate') ? bundle.bundle : bundle));
-                                    var blacklist = bundles
+                                    const blacklist = bundles
                                         .reduce((a, b) => a.concat(b), [])
                                         .filter(tx => tx.value < 0)
                                         .map(tx => tx.address);
@@ -232,7 +228,7 @@ export function sendTransaction(seed, address, value, message) {
             tag: 'AAA',
         },
     ];
-    var outputsToCheck = transfer.map(transfer => {
+    const outputsToCheck = transfer.map(transfer => {
         return { address: iota.utils.noChecksum(transfer.address) };
     });
     var expectedOutputsLength = outputsToCheck.length;
@@ -240,22 +236,20 @@ export function sendTransaction(seed, address, value, message) {
         console.log('Error: Invalid transfer array');
         return;
     }
-
-    // Check to make sure user is not sending from an already used address
-    getUnspentInputs(seed, 0, amount, function(error, inputs) {
-        if (error) {
-            // Error
+    // Check to make sure user is not sending to an already used address
+    filterSpentAddresses(outputsToCheck).then(filtered => {
+        if (filtered.length !== expectedOutputsLength) {
+            console.log('You cannot send to an already used address');
             return false;
-        } else if (inputs.inputs.length == 0) {
-            // Key reuse
-            return false;
-        } else if (inputs.totalBalance < amount) {
-            if (inputs.allBalance < amount) {
-                // Not enough balance
-                return false;
-            } else {
-                // Not enough available inputs
-            }
+        } else {
+            // Send transfer with depth 4 and minWeightMagnitude 18
+            iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
+                if (!error) {
+                    console.log('SUCCESSFULLY SENT TRANSFER: ', success);
+                } else {
+                    console.log('SOMETHING WENT WRONG: ', error);
+                }
+            });
         }
         // Check to make sure user is not sending to an already used address
         filterSpentAddresses(outputsToCheck).then(filtered => {
