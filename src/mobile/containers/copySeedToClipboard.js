@@ -17,33 +17,38 @@ import PropTypes from 'prop-types';
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 
-function clearClipboard() {
-    Clipboard.setString('');
-    const dropdown = DropdownHolder.getDropDown();
-    dropdown.alertWithType('info', 'Seed cleared', 'The seed has been cleared from the clipboard for your security.');
-}
-
 class CopySeedToClipboard extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+
+        this.timeout = null;
     }
 
-    clearClipboard() {
+    generateSeedClearanceAlert() {
+        if (this.dropdown) {
+            this.dropdown.alertWithType(
+                'info',
+                'Seed cleared',
+                'The seed has been cleared from the clipboard for your security.',
+            );
+        }
+    }
+
+    componentWillUnmount() {
+        this.clearTimeout();
         Clipboard.setString('');
-        //  const dropdown = DropdownHolder.getDropDown();
-        this.dropdown.alertWithType(
-            'info',
-            'Seed cleared',
-            'The seed has been cleared from the clipboard for your security.',
-        );
     }
 
-    /* componentWillUnmount() {
-        clearClipboard();
-    }*/
+    clearTimeout() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+    }
 
     onDonePress() {
-        clearClipboard();
+        this.clearTimeout();
+        Clipboard.setString('');
+
         this.props.navigator.pop({
             animated: false,
         });
@@ -51,19 +56,15 @@ class CopySeedToClipboard extends React.Component {
 
     onCopyPress() {
         Clipboard.setString(this.props.iota.seed);
-        //  const dropdown = DropdownHolder.getDropDown();
         this.dropdown.alertWithType(
             'success',
             'Seed copied',
             'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.',
         );
-        setTimeout(function() {
+
+        this.timeout = setTimeout(() => {
             Clipboard.setString('');
-            this.dropdown.alertWithType(
-                'info',
-                'Seed cleared',
-                'The seed has been cleared from the clipboard for your security.',
-            );
+            this.generateSeedClearanceAlert();
         }, 60000);
     }
 
