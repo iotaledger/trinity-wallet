@@ -66,27 +66,25 @@ function filterSpentAddresses(inputs) {
                 reject(err);
             }
             txs = txs.filter(tx => tx.value < 0);
-            var bundleHashes = txs.map(tx => tx.bundle);
+            const bundleHashes = txs.map(tx => tx.bundle);
             if (txs.length > 0) {
-                var bundles = txs.map(tx => tx.bundle);
+                const bundles = txs.map(tx => tx.bundle);
                 iota.api.findTransactionObjects({ bundles: bundles }, (err, txs) => {
                     if (err) {
                         reject(err);
                     }
-                    var hashes = txs.filter(tx => tx.currentIndex === 0);
-                    var allBundleHashes = txs.map(tx => tx.bundle);
+                    let hashes = txs.filter(tx => tx.currentIndex === 0);
+                    const allBundleHashes = txs.map(tx => tx.bundle);
                     hashes = hashes.map(tx => tx.hash);
                     iota.api.getLatestInclusion(hashes, (err, states) => {
                         if (err) {
                             reject(err);
                         }
-                        var confirmedHashes = hashes.filter((hash, i) => states[i]);
-                        var unconfirmedHashes = hashes
+                        const confirmedHashes = hashes.filter((hash, i) => states[i]);
+                        const unconfirmedHashes = hashes
                             .filter(hash => confirmedHashes.indexOf(hash) === -1)
-                            .map(hash => {
-                                return { hash: hash, validate: true };
-                            });
-                        var getBundles = confirmedHashes.concat(unconfirmedHashes).map(
+                            .map(hash => ({ hash, validate: true }));
+                        const getBundles = confirmedHashes.concat(unconfirmedHashes).map(
                             hash =>
                                 new Promise((resolve, reject) => {
                                     iota.api.traverseBundle(
@@ -97,9 +95,7 @@ function filterSpentAddresses(inputs) {
                                             if (err) {
                                                 reject(err);
                                             }
-                                            resolve(
-                                                typeof hash === 'string' ? bundle : { bundle: bundle, validate: true },
-                                            );
+                                            resolve(typeof hash === 'string' ? bundle : { bundle, validate: true });
                                         },
                                     );
                                 }),
@@ -115,7 +111,7 @@ function filterSpentAddresses(inputs) {
                                             return true;
                                         })
                                         .map(bundle => (bundle.hasOwnProperty('validate') ? bundle.bundle : bundle));
-                                    var blacklist = bundles
+                                    const blacklist = bundles
                                         .reduce((a, b) => a.concat(b), [])
                                         .filter(tx => tx.value < 0)
                                         .map(tx => tx.address);
@@ -192,7 +188,7 @@ export function sendTransaction(seed, address, value, message) {
             tag: 'AAA',
         },
     ];
-    var outputsToCheck = transfer.map(transfer => {
+    const outputsToCheck = transfer.map(transfer => {
         return { address: iota.utils.noChecksum(transfer.address) };
     });
     var expectedOutputsLength = outputsToCheck.length;
