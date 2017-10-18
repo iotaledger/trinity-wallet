@@ -18,23 +18,37 @@ const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.clearClipboard = this.clearClipboard.bind(this);
+    constructor() {
+        super();
+
+        this.timeout = null;
     }
 
-    clearClipboard() {
+    generateSeedClearanceAlert() {
+        if (this.dropdown) {
+            this.dropdown.alertWithType(
+                'info',
+                'Seed cleared',
+                'The seed has been cleared from the clipboard for your security.',
+            );
+        }
+    }
+
+    componentWillUnmount() {
+        this.clearTimeout();
         Clipboard.setString('');
-        //  const dropdown = DropdownHolder.getDropDown();
-        this.dropdown.alertWithType(
-            'info',
-            'Seed cleared',
-            'The seed has been cleared from the clipboard for your security.',
-        );
+    }
+
+    clearTimeout() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
     }
 
     onDonePress() {
-        this.clearClipboard();
+        this.clearTimeout();
+        Clipboard.setString('');
+
         this.props.navigator.pop({
             animated: false,
         });
@@ -42,13 +56,16 @@ class CopySeedToClipboard extends React.Component {
 
     onCopyPress() {
         Clipboard.setString(this.props.iota.seed);
-        //  const dropdown = DropdownHolder.getDropDown();
         this.dropdown.alertWithType(
             'success',
             'Seed copied',
             'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.',
         );
-        setTimeout(this.clearClipboard(), 60000);
+
+        this.timeout = setTimeout(() => {
+            Clipboard.setString('');
+            this.generateSeedClearanceAlert();
+        }, 60000);
     }
 
     render() {
