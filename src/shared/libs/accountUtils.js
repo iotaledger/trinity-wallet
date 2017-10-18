@@ -13,7 +13,7 @@ import pick from 'lodash/pick';
     'balance': 0
  }
  */
-export const accountHandler = {
+export default {
     /*
         return type: string
         Returns the latest address
@@ -48,11 +48,11 @@ export const accountHandler = {
             return {
                 address: get(props, 'address'),
                 balance: get(props, 'value'),
-                time: get(props, 'time'),
+                time: get(props, 'timestamp'),
             };
         };
 
-        return map(account, normalizedTransfers);
+        return map(get(account, 'transfers'), normalizedTransfers);
     },
     /*
      return type: array
@@ -72,11 +72,11 @@ export const accountHandler = {
             return {
                 address: get(props, 'address'),
                 balance: get(props, 'value'),
-                time: get(props, 'time'),
+                time: get(props, 'timestamp'),
             };
         };
 
-        const normalized = map(account, normalizedTransfers);
+        const normalized = map(get(account, 'transfers'), normalizedTransfers);
         return filter(normalized, v => v.balance > 0);
     },
 };

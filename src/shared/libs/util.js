@@ -136,3 +136,8 @@ export const createRandomSeed = (randomBytesFn, length = 81) => {
 export const getCurrentYear = () => new Date().getFullYear();
 
 export const isValidPassword = (password = '') => password.length >= 12;
+
+/*
+    Exports for utils that reside in other files
+ */
+export accountUtils from './accountUtils';
