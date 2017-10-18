@@ -31,6 +31,7 @@ class Balance extends React.Component {
             round(formatValue(this.props.iota.balance, 1)).toFixed(1) + (this.props.iota.balance < 1000 ? '' : '+');
         return (
             <View style={styles.container}>
+                <View style={{ flex: 10 }} />
                 <StatusBar barStyle="light-content" />
                 <View style={styles.balanceContainer}>
                     <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
