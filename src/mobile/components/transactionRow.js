@@ -2,7 +2,6 @@ import React from 'react';
 import { Clipboard, TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
 import { formatTime, formatModalTime, formatValue, formatUnit, round } from '../../shared/libs/util';
 import { convertFromTrytes } from '../../shared/libs/iota';
-
 import Modal from 'react-native-modal';
 
 const { height, width } = Dimensions.get('window');
@@ -23,10 +22,6 @@ class TransactionRow extends React.Component {
 
     onAddressPress(address) {
         Clipboard.setString(address);
-    }
-
-    onValuePress(value) {
-        Clipboard.setString(value.toString());
     }
 
     _renderModalContent = titleColour => (
@@ -84,12 +79,12 @@ class TransactionRow extends React.Component {
                                         {rowData.address}
                                     </Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.onValuePress(rowData.value)} style={{ flex: 1 }}>
+                                <View style={{ flex: 1 }}>
                                     <Text style={styles.modalValue}>
                                         {' '}
                                         {round(round(formatValue(rowData.value), 1), 1)} {formatUnit(rowData.value)}
                                     </Text>
-                                </TouchableOpacity>
+                                </View>
                             </View>
                         )}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
@@ -116,7 +111,7 @@ class TransactionRow extends React.Component {
                                     justifyContent: 'space-between',
                                     backgroundColor: 'transparent',
                                     fontFamily: 'Lato-Regular',
-                                    fontSize: width / 29.6,
+                                    fontSize: width / 31.8,
                                     marginBottom: width / 100,
                                     color: titleColour,
                                 }}
