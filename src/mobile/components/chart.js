@@ -16,7 +16,7 @@ class Chart extends React.Component {
             iotaPrice: '',
             iotaVolume: '',
             currency: 'USD',
-            timeFrame: '24h'
+            timeFrame: '24h',
         };
     }
 
@@ -58,7 +58,7 @@ class Chart extends React.Component {
         const maxValue = Math.max(
             ...this.props.marketData.chartData.map(object => {
                 return object.y;
-            })
+            }),
         );
         return maxValue;
     }
@@ -67,7 +67,7 @@ class Chart extends React.Component {
         const minValue = Math.min(
             ...this.props.marketData.chartData.map(object => {
                 return object.y;
-            })
+            }),
         );
         return minValue;
     }
@@ -76,7 +76,7 @@ class Chart extends React.Component {
         const maxValue = Math.max(
             ...this.props.marketData.chartData.map(object => {
                 return object.x;
-            })
+            }),
         );
         return maxValue;
     }
@@ -89,7 +89,7 @@ class Chart extends React.Component {
             (minValue + (minValue + maxValue) / 2) / 2,
             (minValue + maxValue) / 2,
             (maxValue + (minValue + maxValue) / 2) / 2,
-            maxValue
+            maxValue,
         ];
     }
 
@@ -129,14 +129,14 @@ class Chart extends React.Component {
                             standalone={false}
                             style={{
                                 axis: { stroke: 'transparent' },
-                                tickLabels: { fill: 'white', fontSize: width / 40, fontFamily: 'Lato-Regular' }
+                                tickLabels: { fill: 'white', fontSize: width / 34.5, fontFamily: 'Lato-Regular' },
                             }}
                             height={height / 2.65}
                             gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.25 }} />}
-                            tickLabelComponent={<VictoryLabel x={-width / 50} textAnchor="start" />}
+                            tickLabelComponent={<VictoryLabel x={-width / 25} textAnchor="start" />}
                             tickValues={this.getTickValues()}
                             domain={{
-                                y: [this.getMinY(), this.getMaxY()]
+                                y: [this.getMinY(), this.getMaxY()],
                             }}
                         />
                         <VictoryLine
@@ -144,19 +144,19 @@ class Chart extends React.Component {
                             style={{
                                 data: {
                                     stroke: 'url(#gradient)',
-                                    strokeWidth: 2
-                                }
+                                    strokeWidth: 2,
+                                },
                             }}
                             domain={{
                                 x: [-1, this.getMaxX() + 1],
-                                y: [this.getMinY(), this.getMaxY()]
+                                y: [this.getMinY(), this.getMaxY()],
                             }}
                             scale={{ x: 'time', y: 'linear' }}
                             height={height / 2.65}
                             standalone={false}
                             animate={{
                                 duration: 1500,
-                                onLoad: { duration: 2000 }
+                                onLoad: { duration: 2000 },
                             }}
                         />
                     </Svg>
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingBottom: height / 40,
-        paddingTop: height / 80
+        paddingTop: height / 80,
     },
     topContainer: {
         flex: 1,
@@ -185,22 +185,22 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         zIndex: 1,
         paddingBottom: height / 25,
-        paddingHorizontal: width / 7.5
+        paddingHorizontal: width / 8.5,
     },
     priceContainer: {
         flex: 8,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     button: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     chartContainer: {
         flex: 3,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
-        paddingLeft: width / 11
+        paddingLeft: width / 11,
     },
     marketDataContainer: {
         flex: 0.6,
@@ -208,26 +208,26 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: width / 7.5
+        paddingHorizontal: width / 8.5,
     },
     buttonText: {
         color: 'white',
         fontWeight: 'bold',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 30
+        fontSize: width / 29.6,
     },
     iotaPrice: {
         color: 'white',
         fontWeight: 'bold',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 24
+        fontSize: width / 24,
     },
     marketFigure: {
         color: 'white',
         fontWeight: 'bold',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 40.5
-    }
+        fontSize: width / 37.6,
+    },
 });
 
 module.exports = Chart;
