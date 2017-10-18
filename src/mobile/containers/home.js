@@ -15,10 +15,8 @@ import Receive from './receive';
 import History from './history';
 import Tools from './tools';
 import DropdownAlert from 'react-native-dropdownalert';
-//import DropdownHolder from './dropdownHolder';
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
-//const dropdown = DropdownHolder.getDropDown();
 
 class Home extends React.Component {
     constructor(props) {
