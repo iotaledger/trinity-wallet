@@ -347,15 +347,15 @@ const styles = StyleSheet.create({
     conversionText: {
         fontFamily: 'Lato-Light',
         color: 'white',
-        opacity: 0.75,
+        opacity: 1,
         backgroundColor: 'transparent',
         position: 'absolute',
         right: width / 3.5,
-        top: height / 6,
+        top: height / 6.2,
     },
     maxButtonContainer: {
         alignItems: 'flex-start',
-        paddingTop: height / 150,
+        marginTop: height / 150,
     },
     maxButtonText: {
         color: 'white',
