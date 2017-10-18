@@ -18,12 +18,10 @@ import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
-//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = 'light-content';
-//const dropdown = DropdownHolder.getDropDown();
 
 class SetPassword extends React.Component {
     constructor(props) {

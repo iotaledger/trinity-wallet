@@ -16,11 +16,9 @@ import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/iotaActions';
-//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
-//const dropdown = DropdownHolder.getDropDown();
 
 class EnterSeed extends React.Component {
     constructor(props) {
