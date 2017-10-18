@@ -58,7 +58,7 @@ function sortTransactions(transactions) {
     });
     return sortedTransactions;
 }
-
+// Check for sending to a used address
 function filterSpentAddresses(inputs) {
     return new Promise((resolve, reject) => {
         iota.api.findTransactionObjects({ addresses: inputs.map(input => input.address) }, (err, txs) => {
@@ -132,6 +132,48 @@ function filterSpentAddresses(inputs) {
     });
 }
 
+// Check for sending from a used addresses
+function getUnspentInputs(seed, start, threshold, inputs, cb) {
+    if (arguments.length === 4) {
+        cb = arguments[3];
+        inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
+    }
+    iota.api.getInputs(seed, { start: start, threshold: threshold }, (err, res) => {
+        if (err) {
+            cb(err);
+            return;
+        }
+        inputs.allBalance += res.inputs.reduce((sum, input) => sum + input.balance, 0);
+        filterSpentAddresses(res.inputs)
+            .then(filtered => {
+                var collected = filtered.reduce((sum, input) => sum + input.balance, 0);
+                var diff = threshold - collected;
+                if (diff > 0) {
+                    var ordered = res.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
+                    var end = ordered[0].keyIndex;
+                    getUnspentInputs(
+                        seed,
+                        end + 1,
+                        diff,
+                        {
+                            inputs: inputs.inputs.concat(filtered),
+                            totalBalance: inputs.totalBalance + collected,
+                            allBalance: inputs.allBalance,
+                        },
+                        cb,
+                    );
+                } else {
+                    cb(null, {
+                        inputs: inputs.inputs.concat(filtered),
+                        totalBalance: inputs.totalBalance + collected,
+                        allBalance: inputs.allBalance,
+                    });
+                }
+            })
+            .catch(err => cb(err));
+    });
+}
+
 export function setAccountInfo(accountInfo) {
     const balance = accountInfo.balance;
     let transactions = sortTransactions(accountInfo.transfers);
@@ -198,21 +240,39 @@ export function sendTransaction(seed, address, value, message) {
         console.log('Error: Invalid transfer array');
         return;
     }
-    // Check to make sure user is not sending to an already used address
-    filterSpentAddresses(outputsToCheck).then(filtered => {
-        if (filtered.length !== expectedOutputsLength) {
-            console.log('You cannot send to an already used address');
+
+    // Check to make sure user is not sending from an already used address
+    getUnspentInputs(seed, 0, amount, function(error, inputs) {
+        if (error) {
+            // Error
             return false;
-        } else {
-            // Send transfer with depth 4 and minWeightMagnitude 18
-            iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
-                if (!error) {
-                    console.log('SUCCESSFULLY SENT TRANSFER: ', success);
-                } else {
-                    console.log('SOMETHING WENT WRONG: ', error);
-                }
-            });
+        } else if (inputs.inputs.length == 0) {
+            // Key reuse
+            return false;
+        } else if (inputs.totalBalance < amount) {
+            if (inputs.allBalance < amount) {
+                // Not enough balance
+                return false;
+            } else {
+                // Not enough available inputs
+            }
         }
+        // Check to make sure user is not sending to an already used address
+        filterSpentAddresses(outputsToCheck).then(filtered => {
+            if (filtered.length !== expectedOutputsLength) {
+                console.log('You cannot send to an already used address');
+                return false;
+            } else {
+                // Send transfer with depth 4 and minWeightMagnitude 18
+                iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
+                    if (!error) {
+                        console.log('SUCCESSFULLY SENT TRANSFER: ', success);
+                    } else {
+                        console.log('SOMETHING WENT WRONG: ', error);
+                    }
+                });
+            }
+        });
     });
 }
 
