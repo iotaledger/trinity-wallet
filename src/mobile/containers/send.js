@@ -16,12 +16,13 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import TransactionRow from '../components/transactionRow.js';
-import QRScanner from '../components/qrScanner.js';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
+import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 
+const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 const CustomLayoutSpring = {
     duration: 100,
@@ -89,6 +90,13 @@ class Send extends React.Component {
         getFromKeychain(this.props.iota.password, seed => {
             if (typeof seed !== 'undefined') {
                 sendTx(seed);
+                if (!sendTransaction(seed, address, value, message)) {
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Key reuse',
+                        `The address you are trying to send to has already been used. Please try another address.`,
+                    );
+                }
             } else {
                 console.log('error');
             }
@@ -120,19 +128,17 @@ class Send extends React.Component {
         return multiplier;
     }
 
-    onQRRead(data) {
-        this.setState({
-            address: data,
-        });
-        this._hideModal();
-    }
-
     _showModal = () => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <QRScanner onQRRead={() => this.props.onQRRead(data)} hideModal={() => this._hideModal()} />
+        <TouchableOpacity
+            onPress={() => this._hideModal()}
+            style={{ width: width / 1.1, height: height / 1.1, backgroundColor: 'white' }}
+        >
+            <View style={{ flex: 1, justifyContent: 'center' }} />
+        </TouchableOpacity>
     );
 
     render() {
@@ -251,6 +257,16 @@ class Send extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
