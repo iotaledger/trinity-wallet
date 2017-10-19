@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+import OnboardingButtons from '../components/onboardingButtons.js';
 
 const { height, width } = Dimensions.get('window');
 
@@ -9,7 +10,7 @@ class WalletSetup extends React.Component {
         super(props);
     }
 
-    onYesClick() {
+    onYesPress() {
         this.props.navigator.push({
             screen: 'enterSeed',
             navigatorStyle: {
@@ -20,7 +21,7 @@ class WalletSetup extends React.Component {
             animated: false,
         });
     }
-    onNoClick() {
+    onNoPress() {
         this.props.navigator.push({
             screen: 'newSeedSetup',
             navigatorStyle: {
@@ -66,20 +67,12 @@ class WalletSetup extends React.Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <View style={styles.buttonsContainer}>
-                        <TouchableOpacity onPress={event => this.onYesClick()}>
-                            <View style={styles.yesButton}>
-                                <Text style={styles.yesText}>YES - I have a seed</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ alignItems: 'center' }}>
-                        <TouchableOpacity onPress={event => this.onNoClick()}>
-                            <View style={styles.noButton}>
-                                <Text style={styles.noText}>NO - I need a new seed</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this.onNoPress()}
+                        onRightButtonPress={() => this.onYesPress()}
+                        leftText={'NO'}
+                        rightText={'YES'}
+                    />
                 </View>
             </ImageBackground>
         );
@@ -94,13 +87,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.9,
+        flex: 2.05,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 1.1,
+        flex: 0.95,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 10,
@@ -109,7 +102,7 @@ const styles = StyleSheet.create({
         flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 14,
+        paddingBottom: height / 20,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -127,8 +120,8 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.9,
-        height: height / 3.4,
+        width: width / 1.6,
+        height: height / 3,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
@@ -138,7 +131,7 @@ const styles = StyleSheet.create({
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 33.75,
+        fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
@@ -146,13 +139,13 @@ const styles = StyleSheet.create({
     infoTextLight: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 33.75,
+        fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 33.75,
+        fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoIcon: {
@@ -162,56 +155,58 @@ const styles = StyleSheet.create({
     greetingTextContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: width / 4.5,
+        paddingHorizontal: width / 8,
         paddingTop: height / 13,
     },
     greetingText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 23.5,
+        fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     questionText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 23.5,
+        fontSize: width / 20.7,
         textAlign: 'center',
         paddingTop: height / 40,
         backgroundColor: 'transparent',
     },
     buttonsContainer: {
-        alignItems: 'center',
-        paddingBottom: height / 30,
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        flexDirection: 'row',
     },
     yesButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
         borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    noButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
+        width: width / 3,
+        height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
     },
     yesText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
+    },
+    noButton: {
+        borderColor: '#F7D002',
+        borderWidth: 1.2,
+        borderRadius: 10,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        marginRight: width / 10,
     },
     noText: {
         color: '#F7D002',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
