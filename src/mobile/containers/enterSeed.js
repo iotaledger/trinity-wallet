@@ -17,13 +17,14 @@ import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/iotaActions';
+<<<<<<< src/mobile/containers/enterSeed.js
 import Modal from 'react-native-modal';
 
-//import DropdownHolder from './dropdownHolder';
+=======
+>>>>>>> src/mobile/containers/enterSeed.js
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
-//const dropdown = DropdownHolder.getDropDown();
 
 class EnterSeed extends React.Component {
     constructor(props) {
