@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, ImageBackground, WebView, StatusBar, Image } from 'react-native';
+import { StyleSheet, View, Dimensions, ImageBackground, WebView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketDataActions';
 import Home from './home';
@@ -26,15 +26,12 @@ class Loading extends React.Component {
         if (!this.props.iota.ready) {
             return (
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                        {/*}<WebView
+                    <StatusBar barStyle="light-content" />
+                    <View style={{ height: width / 1.75, paddingLeft: 5 }}>
+                        <WebView
                             scrollEnabled={false}
                             source={logoSpin}
                             style={{ backgroundColor: 'transparent', width: width / 1.75 }}
-                        />*/}
-                        <Image
-                            style={{ width: width / 4, height: width / 4 }}
-                            source={require('../../shared/images/iota.png')}
                         />
                     </View>
                 </ImageBackground>
