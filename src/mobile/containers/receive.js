@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     ActivityIndicator,
     StyleSheet,
@@ -16,10 +16,12 @@ import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
+import DropdownAlert from 'react-native-dropdownalert';
 
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = 'light-content';
 
-class Receive extends Component {
+class Receive extends React.Component {
     constructor(props) {
         super(props);
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -104,6 +106,16 @@ class Receive extends Component {
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
             </View>
         );
     }
