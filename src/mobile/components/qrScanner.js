@@ -5,23 +5,15 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 const { height, width } = Dimensions.get('window');
 
 class QRScanner extends React.Component {
-    onQRRead(data) {
-        this.props.onQRRead(data);
-    }
-
-    hideModal() {
-        this.props.hideModal();
-    }
-
     render() {
         return (
             <View style={styles.modalContent}>
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ alignItems: 'center' }}>
                     <View style={{ height: height / 12 }} />
                     <Text style={styles.qrInfoText}>Scan your QR Code</Text>
-                    <QRCodeScanner onRead={data => this.onQRRead(data.data)} />
+                    <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
-                        <TouchableOpacity style={styles.closeButton} onPress={() => this.hideModal()}>
+                        <TouchableOpacity style={styles.closeButton} onPress={() => this.props.hideModal()}>
                             <Text style={styles.closeButtonText}>CLOSE</Text>
                         </TouchableOpacity>
                     </View>
