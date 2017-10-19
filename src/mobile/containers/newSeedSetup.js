@@ -19,10 +19,8 @@ import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from 'react-native-dropdownalert';
-//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
-//const dropdown = DropdownHolder.getDropDown();
 const StatusBarDefaultBarStyle = 'light-content';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
