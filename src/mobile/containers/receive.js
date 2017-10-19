@@ -16,10 +16,9 @@ import { connect } from 'react-redux';
 import { generateNewAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
-//import DropdownHolder from './dropdownHolder';
+import DropdownAlert from 'react-native-dropdownalert';
 
 const { height, width } = Dimensions.get('window');
-//const dropdown = DropdownHolder.getDropDown();
 const StatusBarDefaultBarStyle = 'light-content';
 
 class Receive extends React.Component {
@@ -107,7 +106,6 @@ class Receive extends React.Component {
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>
-                // uncomment once dropdown issues are sorted out /*{' '}
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
@@ -117,8 +115,7 @@ class Receive extends React.Component {
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />{' '}
-                */
+                />
             </View>
         );
     }

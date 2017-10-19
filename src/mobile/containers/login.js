@@ -18,11 +18,9 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
-//import DropdownHolder from './dropdownHolder';
 const StatusBarDefaultBarStyle = 'light-content';
 
 const { height, width } = Dimensions.get('window');
-//const dropdown = DropdownHolder.getDropDown();
 
 class Login extends React.Component {
     constructor(props) {
@@ -33,20 +31,18 @@ class Login extends React.Component {
     }
     onDonePress(props) {
         if (this.state.password == '') {
-            {
-                /*this.dropdown.alertWithType(
+            this.dropdown.alertWithType(
                 'error',
                 'Empty password',
                 'You must enter a password to log in. Please try again.',
-            );*/
-            }
+            );
         } else {
             this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
                 if (typeof value !== 'undefined') {
                     login(value);
                 } else {
-                    //error();
+                    error();
                 }
             });
         }
@@ -63,13 +59,11 @@ class Login extends React.Component {
             });
         }
         function error() {
-            {
-                /*this.dropdown.alertWithType(
+            this.dropdown.alertWithType(
                 'error',
                 'Unrecognised password',
                 'The password was not recognised. Please try again.',
-            );*/
-            }
+            );
         }
     }
 
