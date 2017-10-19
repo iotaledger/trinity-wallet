@@ -1,42 +1,17 @@
-// TODO: replace with a localized date library (e.g. moment.js)
+import { isToday, isYesterday, formatTimeAs, formatDayAs } from './dateUtils';
+
 export const formatTime = ts => {
-    const dateToFormat = new Date(ts * 1000);
-    const minutes = `0${dateToFormat.getMinutes()}`;
-    const hours = dateToFormat.getHours();
-    const day = dateToFormat.getDate();
-    const month = dateToFormat.getMonth() + 1;
-    const year = dateToFormat.getFullYear();
-    const ampm = hours <= 12 ? 'am' : 'pm';
-
-    const todayFormat = `${hours}:${minutes.substr(-2)} ${ampm}`;
-    const beforeYesterdayFormat = `${day}/${month}/${year}`;
-
-    const tempTs = new Date();
-    const todayTs = tempTs.setHours(0, 0, 0, 0) / 1000;
-    const yesterdayTs = todayTs - 24 * 60 * 60;
-
-    let formattedTime = '';
-    if (ts > todayTs) {
-        formattedTime = todayFormat;
-    } else if (yesterdayTs < ts && ts < todayTs) {
-        formattedTime = 'Yesterday';
-    } else if (ts < yesterdayTs) {
-        formattedTime = beforeYesterdayFormat;
+    if (isToday(ts)) {
+        return formatTimeAs.twelveHours(ts);
+    } else if (isYesterday(ts)) {
+        return 'Yesterday';
     }
-    return formattedTime;
+
+    return formatDayAs.dayMonthYear(ts);
 };
 
 export const formatModalTime = ts => {
-    const dateToFormat = new Date(ts * 1000);
-    const minutes = `0${dateToFormat.getMinutes()}`;
-    const hours = dateToFormat.getHours();
-    const day = dateToFormat.getDate();
-    const month = dateToFormat.getMonth() + 1;
-    const year = dateToFormat.getFullYear();
-
-    const formattedTime = `${hours}:${minutes.substr(-2)} ${day}/${month}/${year}`;
-
-    return formattedTime;
+    return formatTimeAs.hoursMinutesDayMonthYear(ts);
 };
 
 export const formatValue = value => {
@@ -136,3 +111,8 @@ export const createRandomSeed = (randomBytesFn, length = 81) => {
 export const getCurrentYear = () => new Date().getFullYear();
 
 export const isValidPassword = (password = '') => password.length >= 12;
+
+/*
+    Exports for utils that reside in other files
+ */
+export accountUtils from './accountUtils';
