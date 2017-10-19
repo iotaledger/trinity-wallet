@@ -17,11 +17,9 @@ import { getFromKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
-//import DropdownHolder from './dropdownHolder';
 const StatusBarDefaultBarStyle = 'light-content';
 
 const { height, width } = Dimensions.get('window');
-//const dropdown = DropdownHolder.getDropDown();
 
 class Login extends React.Component {
     constructor(props) {
