@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 14,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -95,14 +94,15 @@ const styles = StyleSheet.create({
         borderWidth: 1.2,
         borderRadius: 10,
         width: width / 3,
-        height: height / 16,
+        height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
+        marginBottom: height / 20,
     },
     nextText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -110,13 +110,13 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     infoTextContainer: {
-        paddingHorizontal: width / 9,
+        paddingHorizontal: width / 8.5,
         alignItems: 'center',
     },
     infoTextLight: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25,
+        fontSize: width / 25.9,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
         textAlign: 'center',
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     infoTextRegular: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 25,
+        fontSize: width / 25.9,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
         textAlign: 'center',
