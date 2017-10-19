@@ -13,15 +13,9 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
-import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/iotaActions';
-<<<<<<< src/mobile/containers/enterSeed.js
-import Modal from 'react-native-modal';
-
-=======
->>>>>>> src/mobile/containers/enterSeed.js
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
@@ -31,10 +25,8 @@ class EnterSeed extends React.Component {
         super(props);
         this.state = {
             seed: '',
-            isModalVisible: false,
         };
     }
-
     onDoneClick() {
         if (!this.state.seed.match(/^[A-Z9]+$/)) {
             this.dropdown.alertWithType(
@@ -64,31 +56,14 @@ class EnterSeed extends React.Component {
             animated: false,
         });
     }
-    onQRClick() {
-        this._showModal();
-    }
-
-    onQRRead(data) {
-        this.setState({
-            seed: data,
-        });
-        this._hideModal();
-    }
-
-    _showModal = () => this.setState({ isModalVisible: true });
-
-    _hideModal = () => this.setState({ isModalVisible: false });
-
-    _renderModalContent = () => (
-        <QRScanner onQRRead={() => this.props.onQRRead(data)} hideModal={() => this._hideModal()} />
-    );
+    onQRClick() {}
 
     render() {
         const { seed } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
                             <View style={styles.topContainer}>
@@ -108,8 +83,8 @@ class EnterSeed extends React.Component {
                                         <TextField
                                             style={styles.textField}
                                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                            labelFontSize={width / 31.8}
-                                            fontSize={width / 20.7}
+                                            labelFontSize={height / 55}
+                                            fontSize={height / 40}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"
@@ -119,10 +94,11 @@ class EnterSeed extends React.Component {
                                             value={seed}
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
+                                            multiline
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
-                                        <TouchableOpacity onPress={() => this.onQRClick()}>
+                                        <TouchableOpacity onPress={this.onQRClick()}>
                                             <View style={styles.qrButton}>
                                                 <Image
                                                     source={require('../../shared/images/camera.png')}
@@ -133,7 +109,7 @@ class EnterSeed extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
-                                <View style={{ paddingTop: height / 17 }}>
+                                <View style={{ paddingTop: height / 100 }}>
                                     <View style={styles.infoTextContainer}>
                                         <Image
                                             source={require('../../shared/images/info.png')}
@@ -176,20 +152,6 @@ class EnterSeed extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-                <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
-                    animationInTiming={1000}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={500}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={'#132d38'}
-                    backdropOpacity={0.6}
-                    style={{ alignItems: 'center' }}
-                    isVisible={this.state.isModalVisible}
-                >
-                    {this._renderModalContent()}
-                </Modal>
             </ImageBackground>
         );
     }
@@ -236,8 +198,8 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.65,
-        height: height / 3.4,
+        width: width / 1.85,
+        height: height / 3.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 15,
@@ -247,7 +209,7 @@ const styles = StyleSheet.create({
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 29.6,
+        fontSize: width / 33.75,
         textAlign: 'center',
         paddingTop: width / 30,
         backgroundColor: 'transparent',
@@ -255,7 +217,7 @@ const styles = StyleSheet.create({
     warningText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
+        fontSize: width / 33.75,
         textAlign: 'center',
         paddingTop: height / 40,
         backgroundColor: 'transparent',
@@ -314,13 +276,13 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 8,
-        width: width / 6,
-        height: height / 16,
+        width: width / 7,
+        height: height / 20,
     },
     qrText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
+        fontSize: width / 36.8,
         backgroundColor: 'transparent',
     },
     textFieldContainer: {
@@ -335,6 +297,32 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         paddingBottom: height / 90,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 
