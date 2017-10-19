@@ -18,6 +18,7 @@ import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/iotaActions';
 import Modal from 'react-native-modal';
+import OnboardingButtons from '../components/onboardingButtons.js';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -34,7 +35,7 @@ class EnterSeed extends React.Component {
         };
     }
 
-    onDoneClick() {
+    onDonePress() {
         if (!this.state.seed.match(/^[A-Z9]+$/)) {
             this.dropdown.alertWithType(
                 'error',
@@ -58,12 +59,12 @@ class EnterSeed extends React.Component {
         }
     }
 
-    onBackClick() {
+    onBackPress() {
         this.props.navigator.pop({
             animated: false,
         });
     }
-    onQRClick() {
+    onQRPress() {
         this._showModal();
     }
 
@@ -121,7 +122,7 @@ class EnterSeed extends React.Component {
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
-                                        <TouchableOpacity onPress={() => this.onQRClick()}>
+                                        <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
                                                 <Image
                                                     source={require('../../shared/images/camera.png')}
@@ -147,20 +148,12 @@ class EnterSeed extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.bottomContainer}>
-                                <View style={styles.buttonsContainer}>
-                                    <TouchableOpacity onPress={event => this.onDoneClick()}>
-                                        <View style={styles.doneButton}>
-                                            <Text style={styles.doneText}>DONE</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={{ alignItems: 'center' }}>
-                                    <TouchableOpacity onPress={event => this.onBackClick()}>
-                                        <View style={styles.backButton}>
-                                            <Text style={styles.backText}>GO BACK</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                </View>
+                                <OnboardingButtons
+                                    onLeftButtonPress={() => this.onBackPress()}
+                                    onRightButtonPress={() => this.onDonePress()}
+                                    leftText={'BACK'}
+                                    rightText={'DONE'}
+                                />
                             </View>
                         </View>
                     </View>
@@ -213,7 +206,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 14,
+        paddingBottom: height / 20,
     },
     logoContainer: {
         justifyContent: 'center',
@@ -246,7 +239,7 @@ const styles = StyleSheet.create({
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 29.6,
+        fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: width / 30,
         backgroundColor: 'transparent',
@@ -254,43 +247,9 @@ const styles = StyleSheet.create({
     warningText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
+        fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 40,
-        backgroundColor: 'transparent',
-    },
-    buttonsContainer: {
-        alignItems: 'center',
-        paddingBottom: height / 30,
-    },
-    doneButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    backButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    doneText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
-        backgroundColor: 'transparent',
-    },
-    backText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
