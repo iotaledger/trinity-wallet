@@ -41,6 +41,7 @@
 		CB492E4F1F7A98D000DB3EA4 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB492E4E1F7A98D000DB3EA4 /* Inconsolata-Regular.ttf */; };
 		CB492E731F7A99B000DB3EA4 /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB492E721F7A99B000DB3EA4 /* Inconsolata-Bold.ttf */; };
 		CB59C8F11F56292600840103 /* libRNSensitiveInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB59C8EE1F5628FB00840103 /* libRNSensitiveInfo.a */; };
+		CB7FE43E1F979BEA00477F24 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB7FE41A1F97978300477F24 /* libRCTCamera.a */; };
 		CB87E5C01F550673009DB5ED /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB87E5BF1F55064B009DB5ED /* libReactNativeNavigation.a */; };
 		CB87E5C61F5506D0009DB5ED /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB87E5C11F5506D0009DB5ED /* Lato-Black.ttf */; };
 		CB87E5C71F5506D0009DB5ED /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB87E5C21F5506D0009DB5ED /* Lato-Bold.ttf */; };
@@ -269,6 +270,13 @@
 			remoteGlobalIDString = CB653CBD1F55932E0071E2B1;
 			remoteInfo = "RNSVG-tvOS";
 		};
+		CB7FE4191F97978300477F24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB7FE4121F97973800477F24 /* RCTCamera.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
+			remoteInfo = RCTCamera;
+		};
 		CB87E5B51F55064B009DB5ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -366,6 +374,7 @@
 		CB492E4E1F7A98D000DB3EA4 /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
 		CB492E721F7A99B000DB3EA4 /* Inconsolata-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Bold.ttf"; path = "../custom-fonts/Inconsolata-Bold.ttf"; sourceTree = "<group>"; };
 		CB59C8CA1F5628EE00840103 /* RNSensitiveInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSensitiveInfo.xcodeproj; path = "../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo.xcodeproj"; sourceTree = "<group>"; };
+		CB7FE4121F97973800477F24 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		CB87E5951F550649009DB5ED /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		CB87E5C11F5506D0009DB5ED /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "../custom-fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
 		CB87E5C21F5506D0009DB5ED /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../custom-fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -389,6 +398,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB7FE43E1F979BEA00477F24 /* libRCTCamera.a in Frameworks */,
 				CBDB98A21F8EAE1C00035DC3 /* libRNHTMLtoPDF.a in Frameworks */,
 				CBDB98A11F8EAE1500035DC3 /* libRNPrint.a in Frameworks */,
 				CB59C8F11F56292600840103 /* libRNSensitiveInfo.a in Frameworks */,
@@ -574,6 +584,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CB7FE4121F97973800477F24 /* RCTCamera.xcodeproj */,
 				CBDB98971F8EAE0200035DC3 /* RNPrint.xcodeproj */,
 				CBDB986A1F8EAD9800035DC3 /* RNHTMLtoPDF.xcodeproj */,
 				CB59C8CA1F5628EE00840103 /* RNSensitiveInfo.xcodeproj */,
@@ -657,6 +668,14 @@
 			children = (
 				CB653CE11F5593310071E2B1 /* libRNSVG.a */,
 				CB653CE31F5593310071E2B1 /* libRNSVG-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB7FE4131F97973800477F24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB7FE41A1F97978300477F24 /* libRCTCamera.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -826,6 +845,10 @@
 				{
 					ProductGroup = 5E91572E1DD0AC6500FF2AA8 /* Products */;
 					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
+				},
+				{
+					ProductGroup = CB7FE4131F97973800477F24 /* Products */;
+					ProjectRef = CB7FE4121F97973800477F24 /* RCTCamera.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -1102,6 +1125,13 @@
 			remoteRef = CB653CE21F5593310071E2B1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CB7FE41A1F97978300477F24 /* libRCTCamera.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCamera.a;
+			remoteRef = CB7FE4191F97978300477F24 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CB87E5B61F55064B009DB5ED /* libthird-party.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1367,7 +1397,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.iotaWallet;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.wallet;
 				PRODUCT_NAME = iotaWallet;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1388,7 +1418,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.iotaWallet;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.wallet;
 				PRODUCT_NAME = iotaWallet;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
