@@ -32,18 +32,20 @@ class Login extends React.Component {
     }
     onDoneClick(props) {
         if (this.state.password == '') {
-            this.dropdown.alertWithType(
+            {
+                /*this.dropdown.alertWithType(
                 'error',
                 'Empty password',
                 'You must enter a password to log in. Please try again.',
-            );
+            );*/
+            }
         } else {
             this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
                 if (typeof value !== 'undefined') {
                     login(value);
                 } else {
-                    error();
+                    //error();
                 }
             });
         }
@@ -60,11 +62,13 @@ class Login extends React.Component {
             });
         }
         function error() {
-            this.dropdown.alertWithType(
+            {
+                /*this.dropdown.alertWithType(
                 'error',
                 'Unrecognised password',
                 'The password was not recognised. Please try again.',
-            );
+            );*/
+            }
         }
     }
 
