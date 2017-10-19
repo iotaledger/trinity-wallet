@@ -16,6 +16,7 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import TransactionRow from '../components/transactionRow.js';
+import QRScanner from '../components/qrScanner.js';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
@@ -119,17 +120,19 @@ class Send extends React.Component {
         return multiplier;
     }
 
+    onQRRead(data) {
+        this.setState({
+            address: data,
+        });
+        this._hideModal();
+    }
+
     _showModal = () => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <TouchableOpacity
-            onPress={() => this._hideModal()}
-            style={{ width: width / 1.1, height: height / 1.1, backgroundColor: 'white' }}
-        >
-            <View style={{ flex: 1, justifyContent: 'center' }} />
-        </TouchableOpacity>
+        <QRScanner onQRRead={() => this.props.onQRRead(data)} hideModal={() => this._hideModal()} />
     );
 
     render() {
