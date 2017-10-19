@@ -87,13 +87,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.9,
+        flex: 2.05,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 1.1,
+        flex: 0.95,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 10,
@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.9,
-        height: height / 3.4,
+        width: width / 1.6,
+        height: height / 3,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 33.75,
+        fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
@@ -139,13 +139,13 @@ const styles = StyleSheet.create({
     infoTextLight: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 33.75,
+        fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 33.75,
+        fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoIcon: {
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     greetingTextContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: width / 4.5,
+        paddingHorizontal: width / 8,
         paddingTop: height / 13,
     },
     greetingText: {
