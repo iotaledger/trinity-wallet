@@ -15,192 +15,19 @@ import {
     Platform,
     StatusBar,
 } from 'react-native';
+import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from 'react-native-dropdownalert';
-//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
-//const dropdown = DropdownHolder.getDropDown();
 const StatusBarDefaultBarStyle = 'light-content';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable global-require */
-
-const baseStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: '#102e36',
-    },
-    topContainer: {
-        flex: 2.3,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-    },
-    midContainer: {
-        flex: 4.4,
-        paddingTop: height / 40,
-    },
-    bottomContainer: {
-        flex: 1.3,
-        justifyContent: 'flex-end',
-        paddingBottom: height / 25,
-        paddingHorizontal: width / 5,
-    },
-    squareContainer: {
-        flex: 1,
-        height: width / 1.1,
-        width: width / 1.1,
-    },
-    list: {
-        justifyContent: 'center',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-    },
-    item: {
-        backgroundColor: 'white',
-        width: width / 14,
-        height: width / 14,
-        color: '#1F4A54',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 28.9,
-        textAlign: 'center',
-        paddingTop: height / 130,
-    },
-    tile: {
-        padding: height / 150,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 35,
-        paddingBottom: height / 30,
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    generateButton: {
-        flexDirection: 'row',
-        borderColor: 'rgba(255,255,255,0.6)',
-        borderWidth: 1.5,
-        borderRadius: 8,
-        width: width / 2.5,
-        height: height / 20,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        backgroundColor: '#009f3f',
-    },
-    generateText: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
-        backgroundColor: 'transparent',
-        paddingRight: width / 50,
-    },
-    buttonsContainer: {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        flexDirection: 'row',
-    },
-    nextButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 3,
-        height: height / 16,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    nextText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
-        backgroundColor: 'transparent',
-    },
-    backButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 3,
-        height: height / 16,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    backButtonContainer: {
-        paddingRight: width / 16,
-        paddingTop: height / 60,
-    },
-    backText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
-        backgroundColor: 'transparent',
-    },
-    generateImage: {
-        height: width / 30,
-        width: width / 30,
-        paddingLeft: width / 50,
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    infoText: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 28,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
-    },
-});
-
-const androidStyles = StyleSheet.create({
-    squareContainer: {
-        height: width / 1.2,
-        width: width / 1.2,
-    },
-    midContainer: {
-        flex: 3,
-        paddingTop: height / 30,
-    },
-});
 
 class NewSeedSetup extends Component {
     constructor(props) {
@@ -306,7 +133,7 @@ class NewSeedSetup extends Component {
                     <View style={styles.titleContainer}>
                         <Text style={styles.title}>GENERATE A NEW SEED</Text>
                     </View>
-                    <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingBottom: height / 80 }}>
+                    <TouchableOpacity onPress={event => this.onGeneratePress()}>
                         <View style={styles.generateButton}>
                             <Image style={styles.generateImage} source={require('../../shared/images/plus.png')} />
                             <Text style={styles.generateText}>GENERATE NEW SEED</Text>
@@ -331,34 +158,17 @@ class NewSeedSetup extends Component {
                         style={styles.squareContainer}
                         initialListSize={81}
                         scrollEnabled={false}
+                        enableEmptySections
                     />
+                    <Text style={styles.infoText}>Press individual letters to randomise them.</Text>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <View
-                        style={{
-                            justifyContent: 'flex-end',
-                            paddingBottom: height / 150,
-                            height: this.state.infoTextContainerHeight,
-                            overflow: 'hidden',
-                        }}
-                    >
-                        <Text style={styles.infoText}>Press individual letters to randomise them.</Text>
-                        <Text style={styles.infoText}>Then click NEXT.</Text>
-                    </View>
-                    <View style={styles.buttonsContainer}>
-                        <View style={styles.backButtonContainer}>
-                            <TouchableOpacity onPress={event => this.onBackPress()}>
-                                <View style={styles.backButton}>
-                                    <Text style={styles.backText}>GO BACK</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        <TouchableOpacity onPress={event => this.onNextPress()}>
-                            <View style={styles.nextButton}>
-                                <Text style={styles.nextText}>NEXT</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this.onBackPress()}
+                        onRightButtonPress={() => this.onNextPress()}
+                        leftText={'BACK'}
+                        rightText={'NEXT'}
+                    />
                 </View>
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
@@ -381,6 +191,173 @@ NewSeedSetup.propTypes = {
     setSeed: PropTypes.func.isRequired,
     randomiseSeed: PropTypes.func.isRequired,
 };
+
+const baseStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: '#102e36',
+    },
+    topContainer: {
+        flex: 2.3,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 22,
+    },
+    midContainer: {
+        flex: 4.3,
+    },
+    bottomContainer: {
+        flex: 0.8,
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
+        paddingHorizontal: width / 5,
+    },
+    squareContainer: {
+        flex: 1,
+        height: width / 1.1,
+        width: width / 1.1,
+    },
+    list: {
+        justifyContent: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+    item: {
+        backgroundColor: 'white',
+        width: width / 14,
+        height: width / 14,
+        color: '#1F4A54',
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 28.9,
+        textAlign: 'center',
+        paddingTop: height / 130,
+    },
+    tile: {
+        padding: height / 150,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    titleContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: height / 35,
+        paddingBottom: height / 30,
+    },
+    title: {
+        color: 'white',
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 23,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    generateButton: {
+        flexDirection: 'row',
+        borderColor: 'rgba(255,255,255,0.6)',
+        borderWidth: 1.5,
+        borderRadius: 8,
+        width: width / 2.5,
+        height: height / 20,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        backgroundColor: '#009f3f',
+    },
+    generateText: {
+        color: 'white',
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 40.5,
+        backgroundColor: 'transparent',
+        paddingRight: width / 50,
+    },
+    buttonsContainer: {
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    nextButton: {
+        borderColor: '#9DFFAF',
+        borderWidth: 1.2,
+        borderRadius: 10,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    nextText: {
+        color: '#9DFFAF',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
+    },
+    backButton: {
+        borderColor: '#F7D002',
+        borderWidth: 1.2,
+        borderRadius: 10,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    backText: {
+        color: '#F7D002',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
+    },
+    generateImage: {
+        height: width / 30,
+        width: width / 30,
+        paddingLeft: width / 50,
+    },
+    iotaLogo: {
+        height: width / 5,
+        width: width / 5,
+    },
+    infoText: {
+        color: 'white',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
+    },
+});
+
+const androidStyles = StyleSheet.create({
+    squareContainer: {
+        height: width / 1.2,
+        width: width / 1.2,
+    },
+    midContainer: {
+        flex: 3,
+        paddingTop: height / 30,
+    },
+});
 
 const mapStateToProps = state => ({
     iota: state.iota,

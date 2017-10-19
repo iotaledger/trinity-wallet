@@ -246,15 +246,15 @@ const styles = StyleSheet.create({
         borderWidth: 1.2,
         borderRadius: 10,
         width: width / 3,
-        height: height / 16,
+        height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 14,
+        marginBottom: height / 20,
     },
     nextText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
