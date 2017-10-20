@@ -11,6 +11,26 @@ import Notifications from 'components/UI/Notifications';
 
 import './App.css';
 
+class ErrorBoundary extends React.Component {
+    static propTypes = {
+        children: PropTypes.node,
+    };
+
+    state = {};
+
+    componentDidCatch(error) {
+        this.setState(() => ({
+            error,
+        }));
+    }
+    render() {
+        if (this.state.error) {
+            return <p>{this.state.error.message}</p>;
+        }
+        return this.props.children;
+    }
+}
+
 class App extends React.Component {
     static propTypes = {
         settings: PropTypes.shape({
@@ -40,6 +60,12 @@ class App extends React.Component {
         }
     }
 
+    componentDidCatch(error) {
+        this.setState(() => ({
+            error,
+        }));
+    }
+
     render() {
         const { app } = this.props;
         if (this.state.initialized === false) {
@@ -48,6 +74,7 @@ class App extends React.Component {
 
         return (
             <div>
+                {this.state.error && <p>{this.state.error.message}</p>}
                 <Notifications />
                 {app.isOnboardingCompleted ? <div /> : <Onboarding />}
             </div>
