@@ -4417,6 +4417,10 @@ react-native-animatable@^1.2.3:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-camera@0.6:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.6.0.tgz#dd2760b7857d660761c78f2da575b494fdc8dcb5"
+
 react-native-clipboard@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-native-clipboard/-/react-native-clipboard-0.0.5.tgz#3e3f57f32f6785fff05453f88fbcc0a34ed47828"
