@@ -32,6 +32,7 @@
         "querystring-es3": "^0.2.1",
         "react": "16.0.0-alpha.12",
         "react-native": "0.47.2",
+        "react-native-camera": "0.6",
         "react-native-clipboard": "^0.0.5",
         "react-native-crypto": "^2.0.2",
         "react-native-dropdownalert": "^3.1.2",
