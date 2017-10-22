@@ -99,11 +99,11 @@ class EnterSeed extends React.Component {
                                     />
                                 </View>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>ENTER YOUR SEED</Text>
+                                    <Text style={styles.title}>Please enter your seed.</Text>
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
-                                <View style={{ flexDirection: 'row', width: width / 1.42 }}>
+                                <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
@@ -119,6 +119,7 @@ class EnterSeed extends React.Component {
                                             value={seed}
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
+                                            multiline
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
@@ -133,18 +134,13 @@ class EnterSeed extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
-                                <View style={{ paddingTop: height / 17 }}>
-                                    <View style={styles.infoTextContainer}>
-                                        <Image
-                                            source={require('../../shared/images/info.png')}
-                                            style={styles.infoIcon}
-                                        />
-                                        <Text style={styles.infoText}>
-                                            Seeds should be 81 characters long, and should contain capital letters A-Z,
-                                            or the number 9. You cannot use seeds longer than 81 characters.
-                                        </Text>
-                                        <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
-                                    </View>
+                                <View style={styles.infoTextContainer}>
+                                    <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                    <Text style={styles.infoText}>
+                                        Seeds should be 81 characters long, and should contain capital letters A-Z, or
+                                        the number 9. You cannot use seeds longer than 81 characters.
+                                    </Text>
+                                    <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
                                 </View>
                             </View>
                             <View style={styles.bottomContainer}>
@@ -194,16 +190,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 0.7,
+        flex: 1.2,
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 1.3,
+        flex: 4.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
+        paddingTop: height / 12,
     },
     bottomContainer: {
-        flex: 1,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -215,12 +212,12 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 35,
+        paddingTop: height / 15,
     },
     title: {
         color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -228,20 +225,22 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.65,
-        height: height / 3.4,
+        width: width / 1.6,
+        height: height / 3.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingHorizontal: width / 15,
+        paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 40,
+        paddingTop: height / 60,
+        position: 'absolute',
+        top: height / 3.3,
     },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'center',
-        paddingTop: width / 30,
+        paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     warningText: {
@@ -249,7 +248,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'center',
-        paddingTop: height / 40,
+        paddingTop: height / 70,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -283,11 +282,11 @@ const styles = StyleSheet.create({
     },
     textFieldContainer: {
         flex: 1,
-        paddingRight: width / 20,
+        paddingRight: width / 30,
     },
     textField: {
         color: 'white',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',
