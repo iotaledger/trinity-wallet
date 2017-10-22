@@ -1,10 +1,11 @@
 const initialState = {
     balance: 0,
     ready: false,
-    addresses: [],
+    receiveAddress: '',
     password: '',
     seed: '                                                                                 ',
     transactions: [],
+    isGeneratingReceiveAddress: false,
 };
 
 export default (state = initialState, action) => {
@@ -28,7 +29,23 @@ export default (state = initialState, action) => {
         case 'SET_ADDRESS':
             return {
                 ...state,
-                addresses: [...state.addresses, action.payload],
+                receiveAddress: action.payload,
+            };
+        case 'GENERATE_NEW_ADDRESS_REQUEST':
+            return {
+                ...state,
+                isGeneratingReceiveAddress: true,
+            };
+        case 'GENERATE_NEW_ADDRESS_SUCCESS':
+            return {
+                ...state,
+                isGeneratingReceiveAddress: false,
+                receiveAddress: action.payload,
+            };
+        case 'GENERATE_NEW_ADDRESS_ERROR':
+            return {
+                ...state,
+                isGeneratingReceiveAddress: false,
             };
         case 'SET_READY':
             return {
@@ -40,7 +57,7 @@ export default (state = initialState, action) => {
                 ...state,
                 balance: 0,
                 transactions: [],
-                addresses: [],
+                receiveAddress: '',
                 seed: '',
                 password: '',
                 ready: false,
