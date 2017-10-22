@@ -200,11 +200,13 @@ class LanguageSetup extends React.Component {
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity onPress={event => this.onNextPress()}>
-                    <View style={styles.nextButton}>
-                        <Text style={styles.nextText}>NEXT</Text>
-                    </View>
-                </TouchableOpacity>
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity onPress={event => this.onNextPress()}>
+                        <View style={styles.nextButton}>
+                            <Text style={styles.nextText}>NEXT</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </ImageBackground>
         );
     }
@@ -218,21 +220,25 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.8,
+        flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 3.2,
+        flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 10,
+    },
+    bottomContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 35,
+        paddingTop: height / 15,
     },
     title: {
         color: 'white',
