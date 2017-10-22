@@ -115,9 +115,6 @@ class PaperWallet extends React.Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>SAVE YOUR SEED</Text>
-                    </View>
                     <View style={styles.subtitlesContainer}>
                         <View style={styles.subtitleContainer}>
                             <Text style={styles.subtitle}>Manual Copy</Text>
@@ -248,10 +245,9 @@ const styles = StyleSheet.create({
         paddingTop: height / 7,
     },
     bottomContainer: {
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        paddingBottom: height / 25,
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -269,19 +265,6 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 35,
-        paddingBottom: height / 30,
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     currentSubtitle: {
         color: 'white',
@@ -303,7 +286,7 @@ const styles = StyleSheet.create({
     subtitlesContainer: {
         flexDirection: 'row',
         flex: 1,
-        paddingTop: height / 40,
+        paddingTop: height / 10,
     },
     subtitleContainer: {
         paddingHorizontal: width / 75,
@@ -351,14 +334,15 @@ const styles = StyleSheet.create({
         borderWidth: 1.2,
         borderRadius: 10,
         width: width / 3,
-        height: height / 16,
+        height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
+        marginBottom: height / 20,
     },
     doneText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -473,10 +457,10 @@ const styles = StyleSheet.create({
     },
     checkboxText: {
         fontFamily: 'Lato-Light',
-        fontSize: width / 30,
+        fontSize: width / 27.6,
         color: 'white',
         backgroundColor: 'transparent',
-        paddingLeft: 5,
+        paddingLeft: width / 80,
     },
 });
 
