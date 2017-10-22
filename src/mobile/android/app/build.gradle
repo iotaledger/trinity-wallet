@@ -150,6 +150,7 @@ dependencies {
 	compile project(':react-native-svg')
 	compile project(':react-native-sensitive-info')
 	compile project(':react-native-camera')
+    compile project(':react-native-fs')
 
 }
 
