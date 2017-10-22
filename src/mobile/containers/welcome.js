@@ -26,9 +26,6 @@ class Welcome extends React.Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>WELCOME</Text>
-                    </View>
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
@@ -61,33 +58,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 0.5,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 2.5,
+        flex: 2,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 10,
     },
     bottomContainer: {
-        flex: 1,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 35,
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     nextButton: {
         borderColor: '#9DFFAF',
@@ -110,13 +94,13 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     infoTextContainer: {
-        paddingHorizontal: width / 8.5,
+        paddingHorizontal: width / 15,
         alignItems: 'center',
     },
     infoTextLight: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.9,
+        fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
         textAlign: 'center',
@@ -124,7 +108,7 @@ const styles = StyleSheet.create({
     infoTextRegular: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 25.9,
+        fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
         textAlign: 'center',
