@@ -84,7 +84,10 @@ class Send extends Component {
         const props = ['error', 'Invalid Address'];
 
         if (size(address) !== 90) {
-            this.dropdown.alertWithType(...props, 'Address should be 81 characters long and should have a checksum.');
+            return this.dropdown.alertWithType(
+                ...props,
+                'Address should be 81 characters long and should have a checksum.',
+            );
         } else if (this.hasInvalidCharacters(address)) {
             return this.dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
