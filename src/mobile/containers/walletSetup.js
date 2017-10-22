@@ -39,9 +39,6 @@ class WalletSetup extends React.Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>WALLET SETUP</Text>
-                    </View>
                     <View style={styles.greetingTextContainer}>
                         <Text style={styles.greetingText}>Okay. Lets set up your wallet!</Text>
                         <Text style={styles.questionText}>Do you already have a seed that you would like to use?</Text>
@@ -87,34 +84,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 2.05,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 0.95,
+        flex: 2.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 10,
+        paddingTop: height / 8,
     },
     bottomContainer: {
-        flex: 2,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 35,
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     infoTextContainer: {
         borderColor: 'white',
@@ -133,7 +118,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'center',
-        paddingTop: height / 70,
+        paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
@@ -156,7 +141,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: width / 8,
-        paddingTop: height / 13,
+        paddingTop: height / 15,
     },
     greetingText: {
         color: 'white',

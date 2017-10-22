@@ -74,9 +74,6 @@ class CopySeedToClipboard extends React.Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>SAVE YOUR SEED</Text>
-                    </View>
                     <View style={styles.subtitlesContainer}>
                         <View style={styles.subtitleContainer}>
                             <Text style={styles.subtitle}>Manual Copy</Text>
@@ -177,14 +174,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
         paddingHorizontal: width / 20,
     },
     midContainer: {
-        flex: 3.8,
+        flex: 3.6,
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: height / 5,
@@ -193,7 +190,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        paddingBottom: height / 25,
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -211,19 +207,6 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 35,
-        paddingBottom: height / 30,
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     currentSubtitle: {
         color: 'white',
@@ -245,7 +228,7 @@ const styles = StyleSheet.create({
     subtitlesContainer: {
         flexDirection: 'row',
         flex: 1,
-        paddingTop: height / 40,
+        paddingTop: height / 10,
     },
     subtitleContainer: {
         paddingHorizontal: width / 75,
@@ -268,7 +251,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 12,
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 29,
+        fontSize: width / 27.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingHorizontal: width / 6,
@@ -276,7 +259,7 @@ const styles = StyleSheet.create({
     infoTextBold: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 29,
+        fontSize: width / 27.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingTop: height / 80,
@@ -286,14 +269,15 @@ const styles = StyleSheet.create({
         borderWidth: 1.2,
         borderRadius: 10,
         width: width / 3,
-        height: height / 16,
+        height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
+        marginBottom: height / 20,
     },
     doneText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -364,32 +348,6 @@ const styles = StyleSheet.create({
     arrow: {
         width: width / 2,
         height: height / 80,
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
     },
 });
 
