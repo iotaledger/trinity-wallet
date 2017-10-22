@@ -23,14 +23,17 @@ const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             password: '',
         };
+
+        this.onDonePress = this.onDonePress.bind(this);
     }
-    onDonePress(props) {
-        if (this.state.password == '') {
+
+    onDonePress() {
+        if (!this.state.password) {
             this.dropdown.alertWithType(
                 'error',
                 'Empty password',
@@ -46,9 +49,11 @@ class Login extends React.Component {
                 }
             });
         }
+
+        const _this = this;
         function login(value) {
-            props.getAccountInfo(value);
-            props.navigator.push({
+            _this.props.getAccountInfo(value);
+            _this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: {
                     navBarHidden: true,
@@ -58,8 +63,9 @@ class Login extends React.Component {
                 animated: false,
             });
         }
+
         function error() {
-            this.dropdown.alertWithType(
+            _this.dropdown.alertWithType(
                 'error',
                 'Unrecognised password',
                 'The password was not recognised. Please try again.',
@@ -67,7 +73,7 @@ class Login extends React.Component {
         }
     }
 
-    onUseSeedPress(props) {
+    onUseSeedPress() {
         this.props.navigator.push({
             screen: 'walletSetup',
             navigatorStyle: {
@@ -116,8 +122,8 @@ class Login extends React.Component {
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
-                                onLeftButtonPress={() => this.onUseSeedPress()}
-                                onRightButtonPress={() => this.onDonePress()}
+                                onLeftButtonPress={this.onUseSeedPress}
+                                onRightButtonPress={this.onDonePress}
                                 leftText={'USE SEED'}
                                 rightText={'DONE'}
                             />
