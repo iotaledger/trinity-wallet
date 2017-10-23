@@ -7,30 +7,26 @@
     "unknownError_text":"无法执行所需操作。请再试一次。"
   },
   "setLanguage":{
-    "title":"你好",
     "dropdown_title":"语言",
     "button1":"下一页"
   },
   "welcome1":{
-    "title":"欢迎",
     "text1":"感谢您下载IOTA钱包。",
     "text2":"接下来我们将花几分钟来设置您的钱包。",
     "reminder":"您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。",
     "button1":"下一页",
-    "button2":"返回"
+    "button2":"BACK"
   },
   "welcome2":{
-    "title":"钱包设置",
     "text1":"好，让我们来开始设置您的钱包 ！",
     "text2":"您是否希望使用一个已有的seed？",
-    "seed_explanation1":"所谓的seed就像您账户的一个管理密码。",
+    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
     "seed_explanation2":"您可以使用它来从任何的钱包，任何设备上访问您的资金。但如果您丢失了您的seed，您也会同时丢失您的IOTA",
     "reminder":"请您保管好你的seed",
-    "button1":"是的-我有seed",
-    "button2":"不-我需要一个新的seed"
+    "button1":"YES",
+    "button2":"NO"
   },
   "lightserver":{
-    "title":"轻量级服务器安装",
     "text1":"轻量级服务器是IOTA网络的网关，由社区成员或我们的合作伙伴友情提供。 ",
     "text2":"您可以从下面的网址找到服务器的更多信息： http://iotasupport.com/lightwallet.shtml",
     "text3":"请从下面的列表中选择一个服务器。",
@@ -38,19 +34,17 @@
     "custom_server_label":"其他服务器地址",
     "other":"其他",
     "button1":"下一页",
-    "button2":"返回"
+    "button2":"BACK"
   },
   "login":{
-    "title":"登录",
     "text":"请输入您的密码",
     "placeholder":"密码",
     "error_title":"密码不正确",
     "error_text":"密码不相符。请再试一次。",
     "button1":"完成",
-    "button2":"修改钱包"
+    "button2":"USE SEED"
   },
   "enterSeed":{
-    "title":"输入您的seed",
     "error_title":"seed太短",
     "error_text":"seed的长度必须至少为60个字符。请重试。",
     "invalid_seed_title":"无效seed",
@@ -61,7 +55,7 @@
     "scan_code":"扫描二维码",
     "close":"关闭",
     "button1":"完成",
-    "button2":"返回"
+    "button2":"BACK"
   },
   "newSeedSetup":{
     "title":"生成一个新的seed",
@@ -69,20 +63,18 @@
     "text1":"Press individual letters to randomise them.",
     "text2":"然后单击下一步",
     "button2":"下一步",
-    "button3":"返回"
+    "button3":"BACK"
   },
   "saveYourSeed":{
-    "title":"保存您的seed",
     "text1":"You must save your seed with at least one of the options listed below.",
     "text2":"at least one",
     "optionA":"MANUAL COPY",
     "optionB":"PRINT PAPER WALLET",
     "optionC":"COPY TO CLIPBOARD",
     "button1":"NEXT",
-    "button2":"GO BACK"
+    "button2":"BACK"
   },
   "saveYourSeed2":{
-    "title":"SAVE YOUR SEED",
     "optionA":"Manual Copy",
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
@@ -91,17 +83,15 @@
     "button":"DONE"
   },
   "saveYourSeed3":{
-    "title":"SAVE YOUR SEED",
     "optionA":"Manual Copy",
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
-    "explanation":"Click the button below to copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
     "text":"Do not store the seed in plain text.",
     "button1":"COPY TO CLIPBOARD",
     "button2":"DONE"
   },
   "saveYourSeed4":{
-    "title":"SAVE YOUR SEED",
     "optionA":"Manual Copy",
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
@@ -111,19 +101,11 @@
     "button1":"PRINT PAPER WALLET",
     "button2":"DONE"
   },
-  "securityIntro":{
-    "title":"SET UP LOCAL PASSPHRASE",
-    "text1":"To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
-    "explanation1":"The local passphrase can only be used to unlock the account on this device.",
-    "explanation2":"The IOTA seed can still be used to access your funds on any wallet on any device.",
-    "button1":"YES - set up a passphrase",
-    "button2":"NO - login with my seed"
-  },
   "setPassword":{
     "title":"PASSWORD SETUP",
-    "text":"Okay, now we need to set up a password.",
-    "explanation":"An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
-    "reminder":"Ensure you use a strong password.",
+    "text":"Now we need to set up a password.",
+    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "reminder":"Ensure you use a strong password of at least 12 characters.",
     "placeholder1":"'PASSWORD'",
     "placeholder2":"RETYPE PASSWORD",
     "error1_title":"Password is too short",
@@ -131,7 +113,7 @@
     "error2_title":"密码不相符",
     "error2_text":"您输入的密码不匹配。请再试一次。",
     "button1":"完成",
-    "button2":"返回"
+    "button2":"BACK"
   },
   "home":{
     "tab1":"结余",
@@ -142,10 +124,10 @@
     "mcap":"MCAP",
     "change":"Change",
     "volume":"成交量",
-    "address":"地址",
-    "amount":"金额",
-    "botton1":"发送IOTA",
-    "botton2":"生成新的地址",
-    "botton3":"退出"
+    "address":"Address",
+    "amount":"Amount",
+    "button1":"SEND",
+    "button2":"GENERATE NEW ADDRESS",
+    "button3":"LOG OUT"
   }
 }
