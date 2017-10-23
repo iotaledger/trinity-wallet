@@ -51,13 +51,13 @@
   },
   "enterSeed":{
     "title":"MASUKKAN BENIH ANDA",
-    "error_title":"Benih terlalu singkat",
-    "error_text":"Benih harus setidaknya 60 karakter. Silakan coba kembali.",
+    "error_title":"Seed terlalu singkat",
+    "error_text":"Seed harus setidaknya 60 karakter. Silakan coba kembali.",
     "invalid_seed_title":"Seed keliru",
     "invalid_seed_text":"Seed anda tidak sah. Seed dapat berupa huruf besar (A-Z) dan angka 9 dan jumlah total karakter antara 60 sampai dengan 81.",
-    "placeholder":"BENIH",
-    "seed_explanation":"Benih harus 81 karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan benih lebih dari 81 karakter.",
-    "reminder":"JANGAN PERNAH MEMBAGI BENIH DENGAN SIAPAPUN",
+    "placeholder":"SEED",
+    "seed_explanation":"Seed harus 81 karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan benih lebih dari 81 karakter.",
+    "reminder":"JANGAN PERNAH MEMBAGI SEED ANDA DENGAN SIAPAPUN",
     "scan_code":"Pindai kode QR",
     "close":"TUTUP",
     "button1":"SELESAI",
@@ -115,9 +115,9 @@
     "title":"MENGATUR SANDI RINGAN LOKAL",
     "text1":"Untuk mempermudah akses ke dompet ini, anda dapat membuat kata sandi ringan. Sandi ringan lokal ini hanya dapat digunakan di perangkat ini saja.",
     "explanation1":"Kata sandi lokal hanya dapat digunakan untuk mengakses akun pada perangkat ini.",
-    "explanation2":"Benih IOTA juga dapat digunakan untuk mengakses dana anda di dompet dan perangkat manapun.",
+    "explanation2":"Seed IOTA juga dapat digunakan untuk mengakses dana anda di dompet dan perangkat manapun.",
     "button1":"IYA - atur kata sandi",
-    "button2":"TIDAK - Masuk dengan Benih saya"
+    "button2":"TIDAK - Masuk dengan seed saya"
   },
   "setPassword":{
     "title":"ATUR KATA SANDI",
