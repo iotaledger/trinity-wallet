@@ -31,9 +31,9 @@
   },
   "lightserver":{
     "title":"Nastavitve \"Light\" srežnika",
-    "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
-    "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-    "text3":"Please choose a server from the list below.",
+    "text1":"Light strežnik je prehod do IOTA omrežja, ki ga prijazno zagotavljajo člani skupnosti ali naši poslovni partnerji. ",
+    "text2":"Več informacij o strežnikih lahko najdete na: http://iotasupport.com/lightwallet.shtml",
+    "text3":"Na spodnjem seznamu izberite strežnik.",
     "server_label":"Strežnik",
     "custom_server_label":"Ostali naslovi strežnika",
     "other":"Ostalo",
@@ -57,7 +57,7 @@
     "invalid_seed_text":"Vaš seed je nepravilen. Seed mora vsebovati velike črke (A-Z) in številko 9, ter mora imeti med 60-81 znakov.",
     "placeholder":"Seed",
     "seed_explanation":"Seme mora biti dolgo 81 znakov in mora vsebovati velike črke od A do Z ali številko 9. Uporaba semena daljšega od 81 znakov ni mogoča.",
-    "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
+    "reminder":"Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA",
     "scan_code":"Skeniraj QR kodo",
     "close":"Zapri",
     "button1":"Opravljeno",
@@ -66,7 +66,7 @@
   "newSeedSetup":{
     "title":"Napravi nov seed",
     "button1":"Napravi nov seed",
-    "text1":"Press individual letters to randomise them.",
+    "text1":"Pritisnite posamezne znake za jih ponaključit.",
     "text2":"Nato kliknite NAPREJ",
     "button2":"Naprej",
     "button3":"Nazaj"
@@ -86,7 +86,7 @@
     "optionA":"Ročna kopija",
     "optionB":" Papirnata denarnica",
     "optionC":"Kopiraj v clipboard",
-    "explanation":"Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+    "explanation":"Vaš seed ima 81 znakov iz leve proti desni. Shranite si vaš seed ter njegovo kontrolno vsoto in tri krat preverite, da sta pravilna.",
     "text":"tri krat preveri",
     "button":"Opravljeno"
   },
@@ -112,17 +112,17 @@
     "button2":"Opravljeno"
   },
   "securityIntro":{
-    "title":"SET UP LOCAL PASSPHRASE",
+    "title":"Nastavite lokalno geslo",
     "text1":"To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
     "explanation1":"The local passphrase can only be used to unlock the account on this device.",
     "explanation2":"The IOTA seed can still be used to access your funds on any wallet on any device.",
-    "button1":"YES - set up a passphrase",
+    "button1":"DA - nastavite geslo",
     "button2":"NE - prijava s svojim geslom"
   },
   "setPassword":{
     "title":"Nastavitve gesla",
     "text":"Ok, zdaj moramo nastaviti geslo.",
-    "explanation":"An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
+    "explanation":"Šifrirana kopija vašega seeda bo shranjena v vašem keychainu. Potem boste lahko dostopali do denarnice kar preko vašega gesla.",
     "reminder":"Zagotovite, da uporabite varno geslo.",
     "placeholder1":"'Geslo'",
     "placeholder2":"Znova vnesite geslo",
@@ -140,11 +140,11 @@
     "tab4":"Zgodovina",
     "tab5":"Orodja",
     "mcap":"MCAP",
-    "change":"Change",
+    "change":"Spremeni",
     "volume":"Volume",
     "address":"Naslov",
     "amount":"Znesek",
-    "botton1":"send IOTA",
+    "botton1":"pošlji sredstva",
     "botton2":"Ustvari nov naslov",
     "botton3":"Odjava"
   }
