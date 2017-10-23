@@ -32,9 +32,9 @@
     "text3":"Bitte wählen Sie einen Server aus der unteren Liste.",
     "server_label":"Server",
     "custom_server_label":"Andere Serveradresse",
-    "other":"Other",
+    "other":"Anderer",
     "button1":"WEITER",
-    "button2":"BACK"
+    "button2":"ZURÜCK"
   },
   "login":{
     "text":"Bitte geben Sie Ihr Passwort ein",
@@ -42,20 +42,20 @@
     "error_title":"Unbekanntes Passwort",
     "error_text":"Das Passwort wurde nicht erkannt. Bitte nochmals Versuchen.",
     "button1":"FERTIG",
-    "button2":"USE SEED"
+    "button2":"MIT SEED"
   },
   "enterSeed":{
     "error_title":"Seed ist zu kurz",
     "error_text":"Seeds müssen mindesten 60 Zeichen lang sein. Bitte versuchen Sie es erneut.",
-    "invalid_seed_title":"Invalid seed",
-    "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
+    "invalid_seed_title":"Ungültiger Seed",
+    "invalid_seed_text":"Ihr Seed ist ungültig. Ein Seed kann aus Großbuchstaben (A-Z) und die Nummer 9 bestehen und muss 60-81 Buchstaben lang sein.",
     "placeholder":"SEED",
     "seed_explanation":"Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Sie können keinen Seed benutzen der länger als 81 Zeichen ist.",
     "reminder":"TEILEN SIE IHREN SEED MIT NIEMANDEM",
-    "scan_code":"Scan QR code",
+    "scan_code":"QR Code Scannen",
     "close":"SCHLIEẞEN",
     "button1":"FERTIG",
-    "button2":"BACK"
+    "button2":"ZURÜCK"
   },
   "newSeedSetup":{
     "title":"ERZEUGE EINEN NEUEN SEED",
@@ -63,7 +63,7 @@
     "text1":"Press individual letters to randomise them.",
     "text2":"Klicken Sie anschließend WEITER",
     "button2":"WEITER",
-    "button3":"BACK"
+    "button3":"ZURÜCK"
   },
   "saveYourSeed":{
     "text1":"You must save your seed with at least one of the options listed below.",
@@ -72,14 +72,14 @@
     "optionB":"PAPIER WALLET DRUCKEN",
     "optionC":"In Zwischenablage kopieren",
     "button1":"WEITER",
-    "button2":"BACK"
+    "button2":"ZURÜCK"
   },
   "saveYourSeed2":{
     "optionA":"Niederschrift",
     "optionB":" Papier Wallet",
     "optionC":"In Zwischenablage kopieren",
     "explanation":"Ihr Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreiben Sie ihren Seed und die Prüfsumme auf und prüfen Sie dreimal ob diese Korrekt sind.",
-    "text":"triple check",
+    "text":"prüfen Sie dreimal",
     "button":"FERTIG"
   },
   "saveYourSeed3":{
@@ -96,14 +96,14 @@
     "optionB":" Papier Wallet",
     "optionC":"In Zwischenablage kopieren",
     "explanation":"Click the button below to print a paper copy of your seed.",
-    "text":"Store it safely",
+    "text":"Sicher aufbewahren",
     "check_button":"IOTA Logo",
     "button1":"PAPIER WALLET DRUCKEN",
     "button2":"FERTIG"
   },
   "setPassword":{
     "title":"PASSWORT EINRICHTEN",
-    "text":"Now we need to set up a password.",
+    "text":"Jetzt müssen wir ein Passwort einrichten.",
     "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
     "reminder":"Ensure you use a strong password of at least 12 characters.",
     "placeholder1":"\"PASSWORT\"",
@@ -113,7 +113,7 @@
     "error2_title":"Die Passwörter stimmen nicht überein",
     "error2_text":"Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
     "button1":"FERTIG",
-    "button2":"BACK"
+    "button2":"ZURÜCK"
   },
   "home":{
     "tab1":"KONTOSTAND",
@@ -124,10 +124,10 @@
     "mcap":"MKAP",
     "change":"Änderung",
     "volume":"Volumen",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
+    "address":"Adresse",
+    "amount":"Betrag",
+    "button1":"SENDEN",
+    "button2":"NEUE ADRESSE GENERIEREN",
+    "button3":"ABMELDEN"
   }
 }
