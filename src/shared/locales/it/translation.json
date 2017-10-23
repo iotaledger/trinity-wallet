@@ -7,33 +7,33 @@
     "unknownError_text":"Non è stato possibile eseguire l'azione desiderata questa volta. Si prega di riprovare."
   },
   "setLanguage":{
-    "title":"HELLO",
+    "title":"CIAO",
     "dropdown_title":"Lingua",
-    "button1":"NEXT"
+    "button1":"AVANTI"
   },
   "welcome1":{
-    "title":"WELCOME",
+    "title":"BENVENUTO",
     "text1":"Grazie per aver scaricato il portafoglio IOTA.",
     "text2":"In pochi minuti imposteremo insieme il tuo portafoglio.",
     "reminder":"Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo.",
-    "button1":"NEXT",
-    "button2":"GO BACK"
+    "button1":"AVANTI",
+    "button2":"INDIETRO"
   },
   "welcome2":{
-    "title":"WALLET SETUP",
+    "title":"IMPOSTAZIONE DEL PORTAFOGLIO",
     "text1":"Va bene. Cominciamo a impostare il tuo portafoglio!",
     "text2":"Possiedi già un seme che desideri utilizzare?",
     "seed_explanation1":"Un seme è come una master password al tuo account.",
     "seed_explanation2":"Puoi utilizzarlo per accedere ai tuoi fondi da qualsiasi portafoglio, su qualsiasi dispositivo. Ma se perdi il tuo seme, perdi anche i tuoi IOTA",
-    "reminder":"Please keep your seed safe",
-    "button1":"YES - I have seed",
-    "button2":"NO - I need a new seed"
+    "reminder":"Sei pregato di tenere il tuo seme al sicuro",
+    "button1":"Sì - possiedo un seme",
+    "button2":"NO - ho bisogno di un nuovo seme"
   },
   "lightserver":{
-    "title":"LIGHT SERVER SETUP",
-    "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
-    "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-    "text3":"Please choose a server from the list below.",
+    "title":"USA UN LIGHT SERVER",
+    "text1":"Un light server è un gateway per la rete IOTA, gentilmente fornito dai membri della Comunità o dai nostri partner aziendali. ",
+    "text2":"Puoi trovare ulteriori informazioni sui server presso: http://iotasupport.com/lightwallet.shtml",
+    "text3":"Scegli un server dalla lista qui sotto.",
     "server_label":"Server",
     "custom_server_label":"Other server address",
     "other":"Other",
