@@ -86,22 +86,22 @@
     "optionA":"Cópia manual",
     "optionB":"Carteira de papel",
     "optionC":"Copiar para a área de transferência",
-    "explanation":"Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
-    "text":"triple check",
-    "button":"DONE"
+    "explanation":"A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e confirme VÁRIAS vezes que anotou corretamente.",
+    "text":"verifique várias vezes",
+    "button":"CONCLUÍDO"
   },
   "saveYourSeed3":{
-    "title":"SAVE YOUR SEED",
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
-    "explanation":"Click the button below to copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
-    "text":"Do not store the seed in plain text.",
-    "button1":"COPY TO CLIPBOARD",
-    "button2":"DONE"
+    "title":"GRAVE A SUA SEED",
+    "optionA":"Cópia manual",
+    "optionB":" Carteira de papel",
+    "optionC":"Copiar para a Área de Transferência",
+    "explanation":"Clique no botão em baixo para copiar a sua Seed para um gestor de palavras-passe. Ficará na sua área de transferência durante 60 segundos.",
+    "text":"Não grave a sua Seed num arquivo de texto descriptografado.",
+    "button1":"COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
+    "button2":"CONCLUÍDO"
   },
   "saveYourSeed4":{
-    "title":"SAVE YOUR SEED",
+    "title":"GRAVE A SUA SEED",
     "optionA":"Manual Copy",
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
