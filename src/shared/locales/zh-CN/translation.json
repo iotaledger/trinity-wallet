@@ -141,11 +141,11 @@
     "tab5":"工具",
     "mcap":"MCAP",
     "change":"Change",
-    "volume":"Volume",
-    "address":"ADDRESS",
-    "amount":"AMOUNT",
-    "botton1":"send IOTA",
-    "botton2":"GENERATE NEW ADDRESS",
-    "botton3":"LOG OUT"
+    "volume":"成交量",
+    "address":"地址",
+    "amount":"金额",
+    "botton1":"发送IOTA",
+    "botton2":"生成新的地址",
+    "botton3":"退出"
   }
 }
