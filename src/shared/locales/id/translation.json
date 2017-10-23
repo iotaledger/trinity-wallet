@@ -4,7 +4,7 @@
     "invalidServer_title":"Server tidak sah",
     "invalidServer_text":"Alamat server yang dituju tidak sah",
     "unknownError_title":"Terjadi kesalahan yang tidak diketahui",
-    "unknownError_text":"We could not perform the desired action this time. Please try again."
+    "unknownError_text":"Kami tidak dapat melakukan tindakan yang dikehendaki saat ini. Silakan coba lagi."
   },
   "setLanguage":{
     "title":"HALO",
