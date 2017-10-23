@@ -20,11 +20,11 @@
   "welcome2":{
     "text1":"Oke. Mari menyiapkan dompet anda!",
     "text2":"Apa anda sudah memiliki benih yang ingin digunakan?",
-    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+    "seed_explanation1":"Benih di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
     "seed_explanation2":"Anda dapat mengakses dana anda dari dompet manapun dan di perangkat apapun. Tetapi jika anda lupa benih, anda akan kehilangan IOTA",
     "reminder":"Harap disimpan benih anda dengan baik",
-    "button1":"YES",
-    "button2":"NO"
+    "button1":"IYA",
+    "button2":"TIDAK"
   },
   "lightserver":{
     "text1":"Server ringan adalah pintu gerbang ke jaringan IOTA yang sudah dipersiapkan oleh komunitas dan mitra perusahaan kami.",
@@ -34,7 +34,7 @@
     "custom_server_label":"Alamat server lain",
     "other":"Lainnya",
     "button1":"LANJUT",
-    "button2":"BACK"
+    "button2":"KEMBALI"
   },
   "login":{
     "text":"Silahkan masukan kata sandi Anda",
@@ -42,7 +42,7 @@
     "error_title":"Kata sandi tidak dikenali",
     "error_text":"Kata sandi tidak dikenali. Silahkan coba kembali.",
     "button1":"SELESAI",
-    "button2":"USE SEED"
+    "button2":"GUNAKAN BENIH"
   },
   "enterSeed":{
     "error_title":"Seed terlalu singkat",
@@ -55,7 +55,7 @@
     "scan_code":"Pindai kode QR",
     "close":"TUTUP",
     "button1":"SELESAI",
-    "button2":"BACK"
+    "button2":"KEMBALI"
   },
   "newSeedSetup":{
     "title":"MEMBUAT BENIH BARU",
@@ -63,7 +63,7 @@
     "text1":"Tekan masing-masing huruf untuk mengacaknya.",
     "text2":"Kemudian klik BERIKUTNYA",
     "button2":"BERIKUTNYA",
-    "button3":"BACK"
+    "button3":"KEMBALI"
   },
   "saveYourSeed":{
     "text1":"Anda harus menyimpan seed anda dengan setidaknya satu dari pilihan yang tersedia berikut ini.",
@@ -72,7 +72,7 @@
     "optionB":"CETAK DOMPET KERTAS",
     "optionC":"SALIN KE PAPAN KLIP",
     "button1":"BERIKUTNYA",
-    "button2":"BACK"
+    "button2":"KEMBALI"
   },
   "saveYourSeed2":{
     "optionA":"Simpan Manual",
@@ -86,7 +86,7 @@
     "optionA":"Simpan Manual",
     "optionB":" Dompet Kertas",
     "optionC":"Salin ke papan klip",
-    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+    "explanation":"Tekan tombol dibawah ini dan salin benih anda ke manajer kata sandi. Benih anda akan tinggal di papan klip selama 60 detik.",
     "text":"Jangan simpan seed anda di dalam teks biasa.",
     "button1":"SALIN ke PAPAN KLIP",
     "button2":"SELESAI"
@@ -103,9 +103,9 @@
   },
   "setPassword":{
     "title":"ATUR KATA SANDI",
-    "text":"Now we need to set up a password.",
-    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
-    "reminder":"Ensure you use a strong password of at least 12 characters.",
+    "text":"Mari kita membuat kata sandi.",
+    "explanation":"Anda akan menggunakan kata sandi ini untuk mengakses dompet anda selanjutnya. Salinan dari benih yang terenkripsi akan disimpan di perangkat anda.",
+    "reminder":"Pastikan Anda menggunakan kata sandi yang kuat setidaknya 12 karakter.",
     "placeholder1":"'KATA SANDI'",
     "placeholder2":"KETIK ULANG KATA SANDI",
     "error1_title":"Kata sandi terlalu pendek",
@@ -113,7 +113,7 @@
     "error2_title":"Kata sandi tidak sama",
     "error2_text":"Kata sandi yang anda masukkan tidak sama. Silahkan coba lagi.",
     "button1":"SELESAI",
-    "button2":"BACK"
+    "button2":"KEMBALI"
   },
   "home":{
     "tab1":"SALDO",
@@ -124,10 +124,10 @@
     "mcap":"MCAP",
     "change":"Ubah",
     "volume":"Volume",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
+    "address":"Alamat",
+    "amount":"Nominal",
+    "button1":"KIRIM",
+    "button2":"BUAT ALAMAT BARU",
+    "button3":"KELUAR"
   }
 }
