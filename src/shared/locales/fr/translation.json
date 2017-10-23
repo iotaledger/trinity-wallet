@@ -15,19 +15,19 @@
     "title":"BIENVENUE",
     "text1":"Merci d’avoir téléchargé le portefeuille IOTA.",
     "text2":"Nous allons passer les prochaines minutes à paramétrer votre Wallet.",
-    "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
-    "button1":"NEXT",
-    "button2":"GO BACK"
+    "reminder":"Vous serez tenté de passer des étapes mais nous vous demandons de suivre le process complet.",
+    "button1":"SUIVANT",
+    "button2":"RETOUR"
   },
   "welcome2":{
-    "title":"WALLET SETUP",
-    "text1":"Okay. Lets set up your wallet!",
-    "text2":"Do you already have a seed that you would like to use?",
-    "seed_explanation1":"A seed is like a master password to your account.",
-    "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
-    "reminder":"Please keep your seed safe",
-    "button1":"YES - I have seed",
-    "button2":"NO - I need a new seed"
+    "title":"Paramétrage Wallet",
+    "text1":"Okay. Paramétrons votre Wallet !",
+    "text2":"Est ce que vous possédez une Seed que vous souhaitez utiliser ?",
+    "seed_explanation1":"La Seed est le mot de passe principal de votre compte.",
+    "seed_explanation2":"Vous pouvez l'utiliser pour accéder à vos fonds depuis tous les Wallets, sur tous les appareils. Mais si vous perdez votre Seed, vous perdez également vos IOTA",
+    "reminder":"Merci de garder votre Seed en sécurité",
+    "button1":"OUI - J'ai une Seed",
+    "button2":"NON - J'ai besoin d'une nouvelle Seed"
   },
   "lightserver":{
     "title":"LIGHT SERVER SETUP",
