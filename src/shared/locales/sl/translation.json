@@ -56,7 +56,7 @@
     "invalid_seed_title":"Napačen seed",
     "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
     "placeholder":"Seed",
-    "seed_explanation":"Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
+    "seed_explanation":"Seme mora biti dolgo 81 znakov in mora vsebovati velike črke od A do Z ali številko 9. Uporaba semen daljših od 81 znakov ni mogoča.",
     "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
     "scan_code":"Skeniraj QR kodo",
     "close":"Zapri",
@@ -74,7 +74,7 @@
   "saveYourSeed":{
     "title":"Shrani svoj seed",
     "text1":"You must save your seed with at least one of the options listed below.",
-    "text2":"at least one",
+    "text2":"vsaj en",
     "optionA":"Ročna kopija",
     "optionB":"PRINT PAPER WALLET",
     "optionC":"COPY TO CLIPBOARD",
@@ -82,34 +82,34 @@
     "button2":"Nazaj"
   },
   "saveYourSeed2":{
-    "title":"SAVE YOUR SEED",
+    "title":"Shrani svoj seed",
     "optionA":"Ročna kopija",
     "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
+    "optionC":"Kopiraj v clipboard",
     "explanation":"Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
-    "text":"triple check",
-    "button":"DONE"
+    "text":"tri krat preveri",
+    "button":"Opravljeno"
   },
   "saveYourSeed3":{
-    "title":"SAVE YOUR SEED",
-    "optionA":"Manual Copy",
+    "title":"Shrani svoj seed",
+    "optionA":"Ročna kopija",
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
     "explanation":"Click the button below to copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
     "text":"Do not store the seed in plain text.",
     "button1":"COPY TO CLIPBOARD",
-    "button2":"DONE"
+    "button2":"Opravljeno"
   },
   "saveYourSeed4":{
     "title":"SAVE YOUR SEED",
-    "optionA":"Manual Copy",
+    "optionA":"Ročna kopija",
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
     "explanation":"Click the button below to print a paper copy of your seed.",
     "text":"Store it safely",
     "check_button":"IOTA logo",
     "button1":"PRINT PAPER WALLET",
-    "button2":"DONE"
+    "button2":"Opravljeno"
   },
   "securityIntro":{
     "title":"SET UP LOCAL PASSPHRASE",
