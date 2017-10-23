@@ -1,29 +1,29 @@
 {
   "id":"en",
   "notifications":{
-    "invalidServer_title":"Invalid server",
-    "invalidServer_text":"The server address you entered is not valid",
-    "unknownError_title":"Unknown error occured",
-    "unknownError_text":"We could not perform the desired action this time. Please try again."
+    "invalidServer_title":"无效的服务器",
+    "invalidServer_text":"您所输入的服务器地址无效",
+    "unknownError_title":"发生未知错误",
+    "unknownError_text":"无法执行所需操作。请再试一次。"
   },
   "setLanguage":{
-    "title":"HELLO",
-    "dropdown_title":"Language",
-    "button1":"NEXT"
+    "title":"你好",
+    "dropdown_title":"语言",
+    "button1":"下一页"
   },
   "welcome1":{
-    "title":"WELCOME",
-    "text1":"Thank you for downloading the IOTA wallet.",
-    "text2":"We will spend the next few minutes setting up your wallet.",
-    "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
-    "button1":"NEXT",
-    "button2":"GO BACK"
+    "title":"欢迎",
+    "text1":"感谢您下载IOTA钱包。",
+    "text2":"接下来我们将花几分钟来设置您的钱包。",
+    "reminder":"您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。",
+    "button1":"下一页",
+    "button2":"返回"
   },
   "welcome2":{
-    "title":"WALLET SETUP",
-    "text1":"Okay. Lets set up your wallet!",
-    "text2":"Do you already have a seed that you would like to use?",
-    "seed_explanation1":"A seed is like a master password to your account.",
+    "title":"钱包设置",
+    "text1":"好，让我们来开始设置您的钱包 ！",
+    "text2":"您是否希望使用一个已有的seed？",
+    "seed_explanation1":"所谓的seed就像您账户的一个管理密码。",
     "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
     "reminder":"Please keep your seed safe",
     "button1":"YES - I have seed",
