@@ -67,12 +67,12 @@
     "title":"MEMBUAT BENIH BARU",
     "button1":"MEMBUAT SEED BARU",
     "text1":"Tekan masing-masing huruf untuk mengacaknya.",
-    "text2":"Lalu tekan LANJUT",
-    "button2":"LANJUT",
+    "text2":"Kemudian klik BERIKUTNYA",
+    "button2":"BERIKUTNYA",
     "button3":"KEMBALI"
   },
   "saveYourSeed":{
-    "title":"SIMPAN BENIH ANDA",
+    "title":"SIMPAN SEED ANDA",
     "text1":"Anda harus menyimpan seed anda dengan setidaknya satu dari pilihan yang tersedia berikut ini.",
     "text2":"setidaknya satu",
     "optionA":"SIMPAN MANUAL",
@@ -86,12 +86,12 @@
     "optionA":"Simpan Manual",
     "optionB":" Dompet Kertas",
     "optionC":"Salin ke papan klip",
-    "explanation":"Benih anda adalah 81 karakter dari kiri ke kanan. Tulis benih, checksum dan pastikan mereka sudah benar.",
+    "explanation":"Seed anda terdiri dari 81 karakter dari kiri ke kanan. Tulis seed tersebut, cek jumlah karakternya dan pastikan mereka sudah benar.",
     "text":"cek kembali",
     "button":"SELESAI"
   },
   "saveYourSeed3":{
-    "title":"SIMPAN BENIH ANDA",
+    "title":"SIMPAN SEED ANDA",
     "optionA":"Simpan Manual",
     "optionB":" Dompet Kertas",
     "optionC":"Salin ke papan klip",
@@ -107,7 +107,7 @@
     "optionC":"Salin ke papan klip",
     "explanation":"Tekan tombol di bawah ini untuk mencetak salinan dompet kertas anda.",
     "text":"Simpan dengan baik",
-    "check_button":"IOTA logo",
+    "check_button":"Logo IOTA",
     "button1":"CETAK DOMPET KERTAS",
     "button2":"SELESAI"
   },
@@ -121,8 +121,8 @@
   },
   "setPassword":{
     "title":"ATUR KATA SANDI",
-    "text":"Oke, sekarang kita harus membuat kata sandi.",
-    "explanation":"Duplikat dari benih yang dienkripsi akan disimpan di perangkat anda. Anda cukup mengetik kata sandi untuk masuk ke dompet anda.",
+    "text":"Oke, sekarang kita perlu membuat kata sandi.",
+    "explanation":"Duplikat dari seed yang dienkripsi akan disimpan di perangkat anda. Anda cukup mengetik kata sandi untuk masuk ke dompet anda.",
     "reminder":"Pastikan anda menggunakan kata sandi yang kuat.",
     "placeholder1":"'KATA SANDI'",
     "placeholder2":"KETIK ULANG KATA SANDI",
