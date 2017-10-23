@@ -30,7 +30,7 @@
     "button2":"Não. Eu preciso de uma nova Seed."
   },
   "lightserver":{
-    "title":"Configuração de Servidor Leve",
+    "title":"Configuração de Servidor Simples",
     "text1":"Um servidor leve é um acesso à rede IOTA, gentilmente providenciado por membros da comunidade ou por parceiros corporativos. ",
     "text2":"Poderá encontrar mais informações sobre os servidores em: http://iotasupport.com/lightwallet.shtml",
     "text3":"Por favor, escolha um servidor da lista abaixo.",
@@ -122,7 +122,7 @@
   "setPassword":{
     "title":"CONFIGURAR PALAVRA-PASSE",
     "text":"Ok, agora precisamos de configurar uma palavra-passe.",
-    "explanation":"An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
+    "explanation":"Um cópia criptografada da sua Seed será guardada no seu ficheiro de palavras-passe (porta-chaves). Sendo assim, só necessita de digitar a sua palavra-passe para aceder à sua carteira.",
     "reminder":"Assegure-se que usa uma palavra-passe segura.",
     "placeholder1":"`PALAVRA-PASSE´",
     "placeholder2":"DIGITE DE NOVO A PALAVRA-PASSE",
