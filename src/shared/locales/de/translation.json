@@ -20,7 +20,7 @@
     "button2":"ZURÜCK"
   },
   "welcome2":{
-    "title":"WALLET EINRICHTUNG",
+    "title":"WALLET EINRICHTEN",
     "text1":"Okay. Lets set up your wallet!",
     "text2":"Haben Sie bereits einen Seed den Sie verwenden möchten?",
     "seed_explanation1":"A seed is like a master password to your account.",
@@ -33,7 +33,7 @@
     "title":"LIGHT SERVER SETUP",
     "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
     "text2":"Mehr Informationen über die Server unter: http://iotasupport.com/lightwallet.shtml",
-    "text3":"Bitte wählen Sie einen Server aus der unteren Liste.",
+    "text3":"Bitte wählen Sie einen Server aus der unteren Liste aus.",
     "server_label":"Server",
     "custom_server_label":"Andere Serveradresse",
     "other":"Other",
@@ -59,7 +59,7 @@
     "seed_explanation":"Ihr Seed sollte 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Sie können keinen Seed benutzen der länger als 81 Zeichen ist.",
     "reminder":"TEILEN SIE IHREN SEED MIT NIEMANDEM",
     "scan_code":"Scan QR code",
-    "close":"SCHLIEßEN",
+    "close":"SCHLIEẞEN",
     "button1":"FERTIG",
     "button2":"ZURÜCK"
   },
