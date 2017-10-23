@@ -2,9 +2,9 @@
   "id":"en",
   "notifications":{
     "invalidServer_title":"Serveur Invalide",
-    "invalidServer_text":"L'adresse email que vous avez saisie est invalide",
-    "unknownError_title":"Unknown error occured",
-    "unknownError_text":"We could not perform the desired action this time. Please try again."
+    "invalidServer_text":"L'adresse serveur que vous avez saisie est invalide",
+    "unknownError_title":"Une erreur inconnue s’est produite",
+    "unknownError_text":"Nous ne pouvons pas effectuer l'action demandée. Merci d'essayer à nouveau."
   },
   "setLanguage":{
     "title":"BONJOUR",
@@ -14,7 +14,7 @@
   "welcome1":{
     "title":"BIENVENUE",
     "text1":"Merci d’avoir téléchargé le portefeuille IOTA.",
-    "text2":"We will spend the next few minutes setting up your wallet.",
+    "text2":"Nous allons passer les prochaines minutes à paramétrer votre Wallet.",
     "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
     "button1":"NEXT",
     "button2":"GO BACK"
@@ -127,7 +127,7 @@
     "placeholder1":"'PASSWORD'",
     "placeholder2":"RETYPE PASSWORD",
     "error1_title":"Password is too short",
-    "error1_text":"Your password must be at least 8 characters. Please try again.",
+    "error1_text":"Votre mot de passe doit contenir au moins caractères. Merci d'essayer à nouveau.",
     "error2_title":"Passwords do not match",
     "error2_text":"The passwords you have entered do not match. Please try again.",
     "button1":"DONE",
