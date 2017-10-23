@@ -2,7 +2,9 @@
   "id":"англ",
   "notifications":{
     "invalidServer_title":"Неверный сервер",
-    "invalidServer_text":"Введенный адрес сервера не является допустимым"
+    "invalidServer_text":"Введенный адрес сервера не является допустимым",
+    "unknownError_title":"Unknown error occured",
+    "unknownError_text":"We could not perform the desired action this time. Please try again."
   },
   "setLanguage":{
     "title":"Привет",
@@ -51,9 +53,13 @@
     "title":"ВВЕДИТЕ ВАШ КЛЮЧ",
     "error_title":"Ключ слишком короткий",
     "error_text":"Ключ должен содержать по меньшей мере 60 символов. Пожалуйста, попробуйте еще раз.",
+    "invalid_seed_title":"Invalid seed",
+    "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
     "placeholder":"КЛЮЧ",
     "seed_explanation":"Ключ должен быть длиной 81 символ и содержать только заглавные буквы A-Z и цифру 9. Более длинные ключи не допускаются.",
     "reminder":"Никому никогда не сообщайте ваш ключ",
+    "scan_code":"Scan QR code",
+    "close":"CLOSE",
     "button1":"ГОТОВО",
     "button2":"НАЗАД"
   },
@@ -93,6 +99,25 @@
     "text":"Не храните ваш ключ в виде обычного текстового файла.",
     "button1":"Копировать в буфер",
     "button2":"ГОТОВО"
+  },
+  "saveYourSeed4":{
+    "title":"SAVE YOUR SEED",
+    "optionA":"Ручное копирование",
+    "optionB":"Бумажный кошелек",
+    "optionC":"Скопировать в буфер обмена",
+    "explanation":"Click the button below to print a paper copy of your seed.",
+    "text":"Store it safely",
+    "check_button":"IOTA logo",
+    "button1":"РАСПЕЧАТАННЫЙ В БУМАЖНОМ ВИДЕ КОШЕЛЕК",
+    "button2":"ГОТОВО"
+  },
+  "securityIntro":{
+    "title":"SET UP LOCAL PASSPHRASE",
+    "text1":"To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
+    "explanation1":"The local passphrase can only be used to unlock the account on this device.",
+    "explanation2":"The IOTA seed can still be used to access your funds on any wallet on any device.",
+    "button1":"YES - set up a passphrase",
+    "button2":"NO - login with my seed"
   },
   "setPassword":{
     "title":"УСТАНОВКА ПАРОЛЯ",
