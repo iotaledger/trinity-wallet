@@ -96,7 +96,8 @@
     "optionB":" Portafoglio su carta",
     "optionC":"Copia negli appunti",
     "explanation":"Fai clic sul pulsante qui sotto per stampare una copia cartacea del tuo seme.",
-    "text":"Conservala in modo sicuro",
+    "text1":"Store it safely",
+    "text2":"Never share your seed with anyone.",
     "check_button":"Logo IOTA",
     "button1":"STAMPA IL PORTAFOGLIO SU CARTA",
     "button2":"FINE"
@@ -114,6 +115,10 @@
     "error2_text":"Le password immesse non corrispondono. Si prega di riprovare.",
     "button1":"FINE",
     "button2":"BACK"
+  },
+  "onboardingComplete":{
+    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "button":"NEXT"
   },
   "home":{
     "tab1":"SALDO",
