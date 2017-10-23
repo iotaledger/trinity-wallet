@@ -18,6 +18,7 @@ import com.facebook.soloader.SoLoader;
 import com.reactnativenavigation.NavigationApplication;
 import com.horcrux.svg.SvgPackage;
 import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage; //<- You must import this
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +41,8 @@ public class MainApplication extends NavigationApplication {
             new MainReactPackage(),
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
-            new RNSensitiveInfoPackage()
+            new RNSensitiveInfoPackage(),
+	    new RCTCameraPackage()
     );
   }
 

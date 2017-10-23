@@ -1,45 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions, Image, ImageBackground, Text } from 'react-native';
-
+import PropTypes from 'prop-types';
+import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar } from 'react-native';
+import { getCurrentYear } from '../../shared/libs/util';
 import store from '../../shared/store';
 
 const { height, width } = Dimensions.get('window');
-
-class InitialLoading extends React.Component {
-    componentDidMount() {
-        this.timeout = setTimeout(this.onLoaded.bind(this), 100);
-    }
-
-    onLoaded() {
-        const state = store.getState();
-        if (state.account.firstUse) {
-            this.props.navigator.push({
-                screen: 'languageSetup',
-                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-                animated: false,
-            });
-        } else {
-            this.props.navigator.push({
-                screen: 'login',
-                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-                animated: false,
-            });
-        }
-    }
-
-    render() {
-        return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                <View style={styles.logoContainer}>
-                    <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
-                </View>
-                <View style={styles.textContainer}>
-                    <Text style={styles.text}>IOTA Foundation © 2017</Text>
-                </View>
-            </ImageBackground>
-        );
-    }
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -69,4 +34,46 @@ const styles = StyleSheet.create({
     },
 });
 
-module.exports = InitialLoading;
+/* eslint-disable global-require */
+/* eslint-disable react/jsx-filename-extension */
+export default class InitialLoading extends Component {
+    componentDidMount() {
+        this.timeout = setTimeout(this.onLoaded.bind(this), 100);
+    }
+
+    onLoaded() {
+        const state = store.getState();
+        if (state.account.firstUse) {
+            this.props.navigator.push({
+                screen: 'languageSetup',
+                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                animated: false,
+            });
+        } else {
+            this.props.navigator.push({
+                screen: 'languageSetup',
+                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                animated: false,
+            });
+        }
+    }
+
+    render() {
+        const currentYear = getCurrentYear();
+        return (
+            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <View style={styles.logoContainer}>
+                    <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
+                </View>
+                <View style={styles.textContainer}>
+                    <Text style={styles.text}>IOTA Foundation © {currentYear}</Text>
+                </View>
+            </ImageBackground>
+        );
+    }
+}
+
+InitialLoading.propTypes = {
+    navigator: PropTypes.object.isRequired,
+};

@@ -23,7 +23,7 @@ export default translate('securityIntro')(
                         </Infobox>
                     </Main>
                     <Footer>
-                        <Button to="/seed/enter" variant="warning">
+                        <Button to="/done" variant="warning">
                             {t('button2')}
                         </Button>
                         <Button to="/security/set" variant="success">
