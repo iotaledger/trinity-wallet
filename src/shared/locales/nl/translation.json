@@ -1,20 +1,20 @@
 {
   "id":"en",
   "notifications":{
-    "invalidServer_title":"Invalid server",
-    "invalidServer_text":"The server address you entered is not valid",
-    "unknownError_title":"Unknown error occured",
-    "unknownError_text":"We could not perform the desired action this time. Please try again."
+    "invalidServer_title":"Ongeldige server",
+    "invalidServer_text":"Het opgegeven server adres is niet geldig",
+    "unknownError_title":"Er is een onbekende fout opgetreden",
+    "unknownError_text":"We kunnen de gevraagde actie niet uitvoeren. Probeer aub opnieuw."
   },
   "setLanguage":{
-    "title":"HELLO",
-    "dropdown_title":"Language",
-    "button1":"NEXT"
+    "title":"Hallo",
+    "dropdown_title":"Taal",
+    "button1":"VOLGENDE"
   },
   "welcome1":{
-    "title":"WELCOME",
-    "text1":"Thank you for downloading the IOTA wallet.",
-    "text2":"We will spend the next few minutes setting up your wallet.",
+    "title":"WELKOM",
+    "text1":"Dank u voor het downloaden van de IOTA-portefeuille.",
+    "text2":"We zullen de volgende paar minuten het opzetten van uw portemonnee doorbrengen.",
     "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
     "button1":"NEXT",
     "button2":"GO BACK"
