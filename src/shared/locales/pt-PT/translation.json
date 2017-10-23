@@ -102,9 +102,9 @@
   },
   "saveYourSeed4":{
     "title":"GRAVE A SUA SEED",
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
+    "optionA":"Cópia Manual",
+    "optionB":" Carteira de Papel",
+    "optionC":"Copiar para a Área de Transferência",
     "explanation":"Click the button below to print a paper copy of your seed.",
     "text":"Store it safely",
     "check_button":"IOTA logo",
