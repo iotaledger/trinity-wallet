@@ -1,22 +1,22 @@
 {
   "id":"en",
   "notifications":{
-    "invalidServer_title":"Invalid server",
-    "invalidServer_text":"The server address you entered is not valid",
-    "unknownError_title":"Unknown error occured",
+    "invalidServer_title":"Nepareizs serveris",
+    "invalidServer_text":"Servera adresi, kuru ievadījāt, nav pareiza",
+    "unknownError_title":"Radās nezināma kļūda",
     "unknownError_text":"We could not perform the desired action this time. Please try again."
   },
   "setLanguage":{
     "title":"HELLO",
-    "dropdown_title":"Language",
-    "button1":"NEXT"
+    "dropdown_title":"Valoda",
+    "button1":"Nākošais"
   },
   "welcome1":{
     "title":"WELCOME",
     "text1":"Thank you for downloading the IOTA wallet.",
     "text2":"We will spend the next few minutes setting up your wallet.",
     "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
-    "button1":"NEXT",
+    "button1":"Nākošais",
     "button2":"GO BACK"
   },
   "welcome2":{
@@ -130,22 +130,22 @@
     "error1_text":"Your password must be at least 8 characters. Please try again.",
     "error2_title":"Passwords do not match",
     "error2_text":"The passwords you have entered do not match. Please try again.",
-    "button1":"DONE",
-    "button2":"GO BACK"
+    "button1":"Pabeigt",
+    "button2":"Atpakaļ"
   },
   "home":{
-    "tab1":"BALANCE",
-    "tab2":"SEND",
+    "tab1":"Bilance",
+    "tab2":"Sūtīt",
     "tab3":"RECEIVE",
     "tab4":"HISTORY",
     "tab5":"TOOLS",
     "mcap":"MCAP",
-    "change":"Change",
-    "volume":"Volume",
-    "address":"ADDRESS",
-    "amount":"AMOUNT",
-    "botton1":"send IOTA",
-    "botton2":"GENERATE NEW ADDRESS",
-    "botton3":"LOG OUT"
+    "change":"Mainīt",
+    "volume":"Vērtība",
+    "address":"Adrese",
+    "amount":"Summa",
+    "botton1":"sūtīt IOTA",
+    "botton2":"Ģenerēt jaunu adresi",
+    "botton3":"Iziet"
   }
 }
