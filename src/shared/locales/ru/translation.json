@@ -96,7 +96,8 @@
     "optionB":"Бумажный кошелек",
     "optionC":"Скопировать в буфер обмена",
     "explanation":"Нажмите на кнопку ниже, чтобы напечатать бумажную копию вашего ключа.",
-    "text":"Надежно храните его",
+    "text1":"Store it safely",
+    "text2":"Never share your seed with anyone.",
     "check_button":"Логотип IOTA",
     "button1":"РАСПЕЧАТАННЫЙ В БУМАЖНОМ ВИДЕ КОШЕЛЕК",
     "button2":"ГОТОВО"
@@ -114,6 +115,10 @@
     "error2_text":"Введенные пароли не совпадают. Пожалуйста, попробуйте еще раз.",
     "button1":"ГОТОВО",
     "button2":"BACK"
+  },
+  "onboardingComplete":{
+    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "button":"NEXT"
   },
   "home":{
     "tab1":"БАЛАНС",
