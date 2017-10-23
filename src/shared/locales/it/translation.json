@@ -134,7 +134,7 @@
     "button2":"INDIETRO"
   },
   "home":{
-    "tab1":"BALANCE",
+    "tab1":"SALDO",
     "tab2":"INVIA",
     "tab3":"RICEVI",
     "tab4":"STORICO",
@@ -144,8 +144,8 @@
     "volume":"Volume",
     "address":"INDIRIZZO",
     "amount":"IMPORTO",
-    "botton1":"send IOTA",
-    "botton2":"GENERATE NEW ADDRESS",
-    "botton3":"LOG OUT"
+    "botton1":"invia IOTA",
+    "botton2":"GENERA UN NUOVO INDIRIZZO",
+    "botton3":"ESCI"
   }
 }
