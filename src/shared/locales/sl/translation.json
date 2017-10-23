@@ -13,8 +13,8 @@
   },
   "welcome1":{
     "title":"Dobrodošel",
-    "text1":"Thank you for downloading the IOTA wallet.",
-    "text2":"We will spend the next few minutes setting up your wallet.",
+    "text1":"Zahvaljujemo se vam za prenos IOTA denarnice.",
+    "text2":"Naslednjih nekaj minut bomo porabili za nastavitve vaše denarnice.",
     "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
     "button1":"NEXT",
     "button2":"Nazaj"
@@ -26,8 +26,8 @@
     "seed_explanation1":"A seed is like a master password to your account.",
     "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
     "reminder":"Please keep your seed safe",
-    "button1":"Da - imam seed",
-    "button2":"Ne - rabim nov seed"
+    "button1":"Da - imam seme",
+    "button2":"Ne - rabim novo seme"
   },
   "lightserver":{
     "title":"LIGHT SERVER SETUP",
@@ -36,26 +36,26 @@
     "text3":"Please choose a server from the list below.",
     "server_label":"Strežnik",
     "custom_server_label":"Other server address",
-    "other":"Other",
-    "button1":"NEXT",
-    "button2":"GO BACK"
+    "other":"Ostalo",
+    "button1":"Naslednji",
+    "button2":"Nazaj"
   },
   "login":{
-    "title":"Login",
-    "text":"Please enter your password",
-    "placeholder":"PASSWORD",
-    "error_title":"Unrecognised Password",
-    "error_text":"The password was not recognised. Please try again.",
-    "button1":"DONE",
-    "button2":"CHANGE WALLET"
+    "title":"Prijava",
+    "text":"Prosimo vnesite vaše geslo",
+    "placeholder":"Geslo",
+    "error_title":"Neprepoznano geslo",
+    "error_text":"Geslo ni bilo prepoznano. Prosimo, poskusite ponovno.",
+    "button1":"Opravljeno",
+    "button2":"Zamenjaj denarnico"
   },
   "enterSeed":{
-    "title":"ENTER YOUR SEED",
-    "error_title":"Seed is too short",
+    "title":"Vnesite vašo seme",
+    "error_title":"Seed je prekratek",
     "error_text":"Seeds must be at least 60 characters long. Please try again.",
-    "invalid_seed_title":"Invalid seed",
+    "invalid_seed_title":"Napačen seed",
     "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
-    "placeholder":"SEED",
+    "placeholder":"Seed",
     "seed_explanation":"Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
     "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
     "scan_code":"Scan QR code",
