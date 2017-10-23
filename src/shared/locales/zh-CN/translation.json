@@ -59,12 +59,12 @@
     "seed_explanation":"seed的长度应该有 81 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 81 个字符。",
     "reminder":"永远不要与任何人分享你的seed",
     "scan_code":"扫描二维码",
-    "close":"CLOSE",
-    "button1":"DONE",
-    "button2":"GO BACK"
+    "close":"关闭",
+    "button1":"完成",
+    "button2":"返回"
   },
   "newSeedSetup":{
-    "title":"GENERATE A NEW SEED",
+    "title":"生成一个新的seed",
     "button1":"GENERATE NEW SEED",
     "text1":"Press individual letters to randomise them.",
     "text2":"Then click NEXT",
@@ -128,17 +128,17 @@
     "placeholder2":"RETYPE PASSWORD",
     "error1_title":"Password is too short",
     "error1_text":"Your password must be at least 8 characters. Please try again.",
-    "error2_title":"Passwords do not match",
-    "error2_text":"The passwords you have entered do not match. Please try again.",
-    "button1":"DONE",
-    "button2":"GO BACK"
+    "error2_title":"密码不相符",
+    "error2_text":"您输入的密码不匹配。请再试一次。",
+    "button1":"完成",
+    "button2":"返回"
   },
   "home":{
-    "tab1":"BALANCE",
-    "tab2":"SEND",
-    "tab3":"RECEIVE",
-    "tab4":"HISTORY",
-    "tab5":"TOOLS",
+    "tab1":"结余",
+    "tab2":"发送",
+    "tab3":"接收",
+    "tab4":"历史",
+    "tab5":"工具",
     "mcap":"MCAP",
     "change":"Change",
     "volume":"Volume",
