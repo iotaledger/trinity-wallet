@@ -134,18 +134,18 @@
     "button2":"KEMBALI"
   },
   "home":{
-    "tab1":"BALANCE",
-    "tab2":"SEND",
-    "tab3":"RECEIVE",
-    "tab4":"HISTORY",
-    "tab5":"TOOLS",
+    "tab1":"SALDO",
+    "tab2":"KIRIM",
+    "tab3":"TERIMA",
+    "tab4":"RIWAYAT",
+    "tab5":"PERKAKAS",
     "mcap":"MCAP",
-    "change":"Change",
+    "change":"Ubah",
     "volume":"Volume",
-    "address":"ADDRESS",
-    "amount":"AMOUNT",
-    "botton1":"send IOTA",
-    "botton2":"GENERATE NEW ADDRESS",
-    "botton3":"LOG OUT"
+    "address":"ALAMAT",
+    "amount":"JUMLAH",
+    "botton1":"kirim IOTA",
+    "botton2":"BUAT BENIH BARU",
+    "botton3":"KELUAR"
   }
 }
