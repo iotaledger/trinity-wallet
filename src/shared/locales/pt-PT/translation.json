@@ -32,25 +32,25 @@
   "lightserver":{
     "title":"Configuração de Servidor Leve",
     "text1":"Um servidor leve é um acesso à rede IOTA, gentilmente providenciado por membros da comunidade ou por parceiros corporativos. ",
-    "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-    "text3":"Please choose a server from the list below.",
-    "server_label":"Server",
-    "custom_server_label":"Other server address",
-    "other":"Other",
-    "button1":"NEXT",
-    "button2":"GO BACK"
+    "text2":"Poderá encontrar mais informações sobre os servidores em: http://iotasupport.com/lightwallet.shtml",
+    "text3":"Por favor, escolha um servidor da lista abaixo.",
+    "server_label":"Servidor",
+    "custom_server_label":"Endereço de outro servidor",
+    "other":"Outro",
+    "button1":"Próximo",
+    "button2":"Voltar"
   },
   "login":{
-    "title":"Login",
-    "text":"Please enter your password",
-    "placeholder":"PASSWORD",
-    "error_title":"Unrecognised Password",
-    "error_text":"The password was not recognised. Please try again.",
-    "button1":"DONE",
-    "button2":"CHANGE WALLET"
+    "title":"Iniciar sessão",
+    "text":"Por favor, insira a sua palavra-passe",
+    "placeholder":"PALAVRA-PASSE",
+    "error_title":"Palavra-passe não reconhecida",
+    "error_text":"A palavra-passe não foi reconhecida. Por favor, tente novamente.",
+    "button1":"Concluído",
+    "button2":"MUDAR CARTEIRA"
   },
   "enterSeed":{
-    "title":"ENTER YOUR SEED",
+    "title":"DIGITE A SUA SEED",
     "error_title":"Seed is too short",
     "error_text":"Seeds must be at least 60 characters long. Please try again.",
     "invalid_seed_title":"Invalid seed",
