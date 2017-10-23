@@ -15,7 +15,7 @@
     "text2":"Vamos passar os próximos minutos a configurar a sua carteira.",
     "reminder":"Pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo.",
     "button1":"PRÓXIMO",
-    "button2":"BACK"
+    "button2":"Voltar"
   },
   "welcome2":{
     "text1":"Ok. Vamos configurar a sua carteira!",
@@ -27,7 +27,7 @@
     "button2":"NO"
   },
   "lightserver":{
-    "text1":"Um servidor leve é um acesso à rede IOTA, gentilmente providenciado por membros da comunidade ou por parceiros corporativos. ",
+    "text1":"Um servidor simples é um acesso à rede IOTA, gentilmente providenciado por membros da comunidade ou por parceiros corporativos. ",
     "text2":"Poderá encontrar mais informações sobre os servidores em: http://iotasupport.com/lightwallet.shtml",
     "text3":"Por favor, escolha um servidor da lista abaixo.",
     "server_label":"Servidor",
@@ -46,7 +46,7 @@
   },
   "enterSeed":{
     "error_title":"A Seed é demasiado curta",
-    "error_text":"As sementes devem ter pelo menos 60 caracteres. Por favor, tente novamente.",
+    "error_text":"As Seeds devem ter pelo menos 60 caracteres. Por favor, tente novamente.",
     "invalid_seed_title":"Seed inválida",
     "invalid_seed_text":"A sua Seed é inválida. A Seed só pode conter letras maiúsculas (A-Z) e o número 9 e, além disso, tem de ter entre 60 a 81 caracteres.",
     "placeholder":"SEED",
@@ -122,7 +122,7 @@
     "tab4":"HISTÓRICO",
     "tab5":"FERRAMENTAS",
     "mcap":"MCAP",
-    "change":"Mudar",
+    "change":"Variação",
     "volume":"Volume",
     "address":"Address",
     "amount":"Amount",
