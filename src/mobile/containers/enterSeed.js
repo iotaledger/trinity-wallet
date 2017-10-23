@@ -9,51 +9,86 @@ import {
     Image,
     ScrollView,
     ImageBackground,
+    StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
+import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/iotaActions';
+import Modal from 'react-native-modal';
+import OnboardingButtons from '../components/onboardingButtons.js';
+
+//import DropdownHolder from './dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = 'light-content';
+//const dropdown = DropdownHolder.getDropDown();
 
 class EnterSeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             seed: '',
+            isModalVisible: false,
         };
     }
-    onDoneClick() {
-        if (this.state.seed.length > 59) {
-            this.props.setSeed(this.state.seed);
-            this.props.navigator.push({
-                screen: 'setPassword',
-                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
-                animated: false,
-            });
-        } else {
+
+    onDonePress() {
+        if (!this.state.seed.match(/^[A-Z9]+$/)) {
+            this.dropdown.alertWithType(
+                'error',
+                'Seed contains invalid characters',
+                `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
+            );
+        } else if (this.state.seed.length < 60) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
                 `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
                     .seed.length} characters long. Please try again.`,
             );
+        } else if (this.state.seed.length >= 60) {
+            this.props.setSeed(this.state.seed);
+            this.props.navigator.push({
+                screen: 'setPassword',
+                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                animated: false,
+            });
         }
     }
-    onBackClick() {
+
+    onBackPress() {
         this.props.navigator.pop({
             animated: false,
         });
     }
-    onQRClick() {}
+    onQRPress() {
+        this._showModal();
+    }
+
+    onQRRead(data) {
+        this.setState({
+            seed: data,
+        });
+        this._hideModal();
+    }
+
+    _showModal = () => this.setState({ isModalVisible: true });
+
+    _hideModal = () => this.setState({ isModalVisible: false });
+
+    _renderModalContent = () => (
+        <QRScanner onQRRead={() => this.props.onQRRead(data)} hideModal={() => this._hideModal()} />
+    );
 
     render() {
         const { seed } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <StatusBar barStyle="light-content" />
+                <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
                             <View style={styles.topContainer}>
@@ -64,17 +99,17 @@ class EnterSeed extends React.Component {
                                     />
                                 </View>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>ENTER YOUR SEED</Text>
+                                    <Text style={styles.title}>Please enter your seed.</Text>
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
-                                <View style={{ flexDirection: 'row', width: width / 1.42 }}>
+                                <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
                                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                            labelFontSize={height / 55}
-                                            fontSize={height / 40}
+                                            labelFontSize={width / 31.8}
+                                            fontSize={width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"
@@ -88,7 +123,7 @@ class EnterSeed extends React.Component {
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
-                                        <TouchableOpacity onPress={this.onQRClick()}>
+                                        <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
                                                 <Image
                                                     source={require('../../shared/images/camera.png')}
@@ -99,40 +134,50 @@ class EnterSeed extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
-                                <View style={{ paddingTop: height / 100 }}>
-                                    <View style={styles.infoTextContainer}>
-                                        <Image
-                                            source={require('../../shared/images/info.png')}
-                                            style={styles.infoIcon}
-                                        />
-                                        <Text style={styles.infoText}>
-                                            Seeds should be 81 characters long, and should contain capital letters A-Z,
-                                            or the number 9. You cannot use seeds longer than 81 characters.
-                                        </Text>
-                                        <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
-                                    </View>
+                                <View style={styles.infoTextContainer}>
+                                    <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                    <Text style={styles.infoText}>
+                                        Seeds should be 81 characters long, and should contain capital letters A-Z, or
+                                        the number 9. You cannot use seeds longer than 81 characters.
+                                    </Text>
+                                    <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
                                 </View>
                             </View>
                             <View style={styles.bottomContainer}>
-                                <View style={styles.buttonsContainer}>
-                                    <TouchableOpacity onPress={event => this.onDoneClick()}>
-                                        <View style={styles.doneButton}>
-                                            <Text style={styles.doneText}>DONE</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={{ alignItems: 'center' }}>
-                                    <TouchableOpacity onPress={event => this.onBackClick()}>
-                                        <View style={styles.backButton}>
-                                            <Text style={styles.backText}>GO BACK</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                </View>
+                                <OnboardingButtons
+                                    onLeftButtonPress={() => this.onBackPress()}
+                                    onRightButtonPress={() => this.onDonePress()}
+                                    leftText={'BACK'}
+                                    rightText={'DONE'}
+                                />
                             </View>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert ref={ref => (this.dropdown = ref)} errorColor="#A10702" />
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
+                <Modal
+                    animationIn={'bounceInUp'}
+                    animationOut={'bounceOut'}
+                    animationInTiming={1000}
+                    animationOutTiming={200}
+                    backdropTransitionInTiming={500}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={'#132d38'}
+                    backdropOpacity={0.6}
+                    style={{ alignItems: 'center' }}
+                    isVisible={this.state.isModalVisible}
+                >
+                    {this._renderModalContent()}
+                </Modal>
             </ImageBackground>
         );
     }
@@ -145,19 +190,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 0.7,
+        flex: 1.2,
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 1.3,
+        flex: 4.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
+        paddingTop: height / 12,
     },
     bottomContainer: {
-        flex: 1,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 14,
+        paddingBottom: height / 20,
     },
     logoContainer: {
         justifyContent: 'center',
@@ -166,12 +212,12 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 35,
+        paddingTop: height / 15,
     },
     title: {
         color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -179,62 +225,30 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.85,
+        width: width / 1.6,
         height: height / 3.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingHorizontal: width / 15,
+        paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 40,
+        paddingTop: height / 60,
+        position: 'absolute',
+        top: height / 3.3,
     },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 33.75,
+        fontSize: width / 27.6,
         textAlign: 'center',
-        paddingTop: width / 30,
+        paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     warningText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 33.75,
+        fontSize: width / 27.6,
         textAlign: 'center',
-        paddingTop: height / 40,
-        backgroundColor: 'transparent',
-    },
-    buttonsContainer: {
-        alignItems: 'center',
-        paddingBottom: height / 30,
-    },
-    doneButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    backButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    doneText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
-        backgroundColor: 'transparent',
-    },
-    backText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
+        paddingTop: height / 70,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -257,22 +271,22 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 8,
-        width: width / 7,
-        height: height / 20,
+        width: width / 6,
+        height: height / 16,
     },
     qrText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 36.8,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
     textFieldContainer: {
         flex: 1,
-        paddingRight: width / 20,
+        paddingRight: width / 30,
     },
     textField: {
         color: 'white',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',

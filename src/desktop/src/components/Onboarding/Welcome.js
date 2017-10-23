@@ -23,7 +23,7 @@ export default translate('setLanguage')(
                         </div>
                     </Main>
                     <Footer>
-                        <Button to="/onboarding/instructions" variant="success">
+                        <Button to="/instructions" variant="success">
                             {t('button1')}
                         </Button>
                     </Footer>

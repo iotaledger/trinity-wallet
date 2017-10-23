@@ -1,7 +1,17 @@
 import IOTA from 'iota.lib.js';
 
-const defaultNode = 'http://node01.iotatoken.nl:14265';
+const defaultNode = 'https://node.tangle.works:443';
 
-export var iota = new IOTA({
-    provider: defaultNode
+export const iota = new IOTA({
+    provider: defaultNode,
 });
+
+export const convertFromTrytes = trytes => {
+    trytes = trytes.replace(/9+$/, '');
+    var message = iota.utils.fromTrytes(trytes);
+    if (trytes == '') {
+        return 'Empty';
+    } else {
+        return message;
+    }
+};

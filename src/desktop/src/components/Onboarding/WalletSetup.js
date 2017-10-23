@@ -27,12 +27,12 @@ class WalletSetup extends React.PureComponent {
                 </Main>
                 <Footer>
                     <p>
-                        <Button to="/onboarding/seed/enter" variant="success">
+                        <Button to="/seed/enter" variant="success">
                             {t('button1')}
                         </Button>
                     </p>
                     <p>
-                        <Button to="/onboarding/seed/generate" variant="warning">
+                        <Button to="/seed/generate" variant="warning">
                             {t('button2')}
                         </Button>
                     </p>
