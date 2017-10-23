@@ -96,7 +96,8 @@
     "optionB":" Papier Wallet",
     "optionC":"In Zwischenablage kopieren",
     "explanation":"Click the button below to print a paper copy of your seed.",
-    "text":"Sicher aufbewahren",
+    "text1":"Store it safely",
+    "text2":"Never share your seed with anyone.",
     "check_button":"IOTA Logo",
     "button1":"PAPIER WALLET DRUCKEN",
     "button2":"FERTIG"
@@ -114,6 +115,10 @@
     "error2_text":"Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
     "button1":"FERTIG",
     "button2":"ZURÜCK"
+  },
+  "onboardingComplete":{
+    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "button":"NEXT"
   },
   "home":{
     "tab1":"KONTOSTAND",
