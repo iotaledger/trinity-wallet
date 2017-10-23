@@ -98,7 +98,9 @@ android {
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
+        multiDexEnabled true
         versionName "1.0"
+        multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -147,7 +149,8 @@ dependencies {
 	compile project(':react-native-navigation')
 	compile project(':react-native-svg')
 	compile project(':react-native-sensitive-info')
-	
+	compile project(':react-native-camera')
+
 }
 
 // Run this once to be able to run the application with BUCK

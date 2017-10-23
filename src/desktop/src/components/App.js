@@ -11,11 +11,34 @@ import Notifications from 'components/UI/Notifications';
 
 import './App.css';
 
+class ErrorBoundary extends React.Component {
+    static propTypes = {
+        children: PropTypes.node,
+    };
+
+    state = {};
+
+    componentDidCatch(error) {
+        this.setState(() => ({
+            error,
+        }));
+    }
+    render() {
+        if (this.state.error) {
+            return <p>{this.state.error.message}</p>;
+        }
+        return this.props.children;
+    }
+}
+
 class App extends React.Component {
     static propTypes = {
         settings: PropTypes.shape({
             locale: PropTypes.string.isRequired,
             fullNode: PropTypes.string.isRequired,
+        }).isRequired,
+        app: PropTypes.shape({
+            isOnboardingCompleted: PropTypes.bool.isRequired,
         }).isRequired,
     };
 
@@ -37,15 +60,23 @@ class App extends React.Component {
         }
     }
 
+    componentDidCatch(error) {
+        this.setState(() => ({
+            error,
+        }));
+    }
+
     render() {
+        const { app } = this.props;
         if (this.state.initialized === false) {
             return <Loading />;
         }
 
         return (
             <div>
+                {this.state.error && <p>{this.state.error.message}</p>}
                 <Notifications />
-                <Onboarding />
+                {app.isOnboardingCompleted ? <div /> : <Onboarding />}
             </div>
         );
     }
@@ -53,6 +84,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
     settings: state.settings,
+    app: state.app,
 });
 
 export default withRouter(connect(mapStateToProps)(App));

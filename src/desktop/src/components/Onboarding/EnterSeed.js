@@ -71,7 +71,7 @@ class EnterSeed extends React.PureComponent {
             });
             return;
         }
-        history.push('/onboarding/security/password');
+        history.push('/security/intro');
     };
 
     render() {
@@ -95,13 +95,13 @@ class EnterSeed extends React.PureComponent {
                     {/* TODO: prettier fucks this whole part up. maybe we can find a better solution here */}
                     {!showScanner && (
                         <Button type="button" onClick={this.openScanner}>
-                            Scan QR
+                            {t('scan_code')}
                         </Button>
                     )}
                     {showScanner && (
                         <div>
                             <Button type="button" onClick={this.closeScanner}>
-                                CLOSE
+                                {t('close')}
                             </Button>
                             <QrReader
                                 delay={350}

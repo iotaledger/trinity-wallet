@@ -9,26 +9,36 @@ import {
     Image,
     ImageBackground,
     ScrollView,
+    StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
+import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
+const StatusBarDefaultBarStyle = 'light-content';
 
 const { height, width } = Dimensions.get('window');
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             password: '',
         };
+
+        this.onDonePress = this.onDonePress.bind(this);
     }
-    onDoneClick(props) {
-        if (this.state.password == '') {
-            dropdown.alertWithType('error', 'Empty password', 'You must enter a password to log in. Please try again.');
+
+    onDonePress() {
+        if (!this.state.password) {
+            this.dropdown.alertWithType(
+                'error',
+                'Empty password',
+                'You must enter a password to log in. Please try again.',
+            );
         } else {
             this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
@@ -39,9 +49,11 @@ class Login extends React.Component {
                 }
             });
         }
+
+        const _this = this;
         function login(value) {
-            props.getAccountInfo(value);
-            props.navigator.push({
+            _this.props.getAccountInfo(value);
+            _this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: {
                     navBarHidden: true,
@@ -51,8 +63,9 @@ class Login extends React.Component {
                 animated: false,
             });
         }
+
         function error() {
-            this.dropdown.alertWithType(
+            _this.dropdown.alertWithType(
                 'error',
                 'Unrecognised password',
                 'The password was not recognised. Please try again.',
@@ -60,7 +73,7 @@ class Login extends React.Component {
         }
     }
 
-    onNewSeedClick(props) {
+    onUseSeedPress() {
         this.props.navigator.push({
             screen: 'walletSetup',
             navigatorStyle: {
@@ -76,6 +89,7 @@ class Login extends React.Component {
         let { password } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
@@ -107,24 +121,26 @@ class Login extends React.Component {
                             />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <View style={styles.buttonsContainer}>
-                                <TouchableOpacity onPress={event => this.onDoneClick(this.props)}>
-                                    <View style={styles.doneButton}>
-                                        <Text style={styles.doneText}>DONE</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={{ alignItems: 'center' }}>
-                                <TouchableOpacity onPress={event => this.onNewSeedClick()}>
-                                    <View style={styles.newSeedButton}>
-                                        <Text style={styles.newSeedText}>ADD NEW WALLET</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
+                            <OnboardingButtons
+                                onLeftButtonPress={this.onUseSeedPress}
+                                onRightButtonPress={this.onDonePress}
+                                leftText={'USE SEED'}
+                                rightText={'DONE'}
+                            />
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert ref={ref => (dropdown = ref)} errorColor="#A10702" />
+
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
             </ImageBackground>
         );
     }
@@ -151,7 +167,7 @@ const styles = StyleSheet.create({
         flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 14,
+        paddingBottom: height / 20,
     },
     textContainer: {
         justifyContent: 'center',
@@ -166,20 +182,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    infoText: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33.75,
-        textAlign: 'center',
-        paddingRight: width / 4,
-        paddingLeft: width / 4,
-        paddingTop: height / 30,
-        backgroundColor: 'transparent',
-    },
     greetingText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 20.25,
+        fontSize: width / 20.7,
         textAlign: 'center',
         paddingHorizontal: width / 7,
         paddingBottom: height / 10,
@@ -195,19 +201,6 @@ const styles = StyleSheet.create({
         paddingTop: height / 25,
         backgroundColor: 'transparent',
     },
-    buttonsContainer: {
-        alignItems: 'center',
-        paddingBottom: height / 30,
-    },
-    doneButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
     newSeedButton: {
         borderColor: '#F7D002',
         borderWidth: 1.2,
@@ -216,12 +209,7 @@ const styles = StyleSheet.create({
         height: height / 17,
         alignItems: 'center',
         justifyContent: 'space-around',
-    },
-    doneText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
-        backgroundColor: 'transparent',
+        marginRight: width / 10,
     },
     newSeedText: {
         color: '#F7D002',
@@ -232,6 +220,37 @@ const styles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
+    },
+    buttonsContainer: {
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        flexDirection: 'row',
     },
 });
 

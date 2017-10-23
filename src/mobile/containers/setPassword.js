@@ -9,6 +9,7 @@ import {
     Image,
     ImageBackground,
     ScrollView,
+    StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setFirstUse } from '../../shared/actions/accountActions';
@@ -17,9 +18,11 @@ import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
+import OnboardingButtons from '../components/onboardingButtons.js';
 
 const { height, width } = Dimensions.get('window');
-const MIN_PASSWORD_LENGTH = 11;
+const MIN_PASSWORD_LENGTH = 12;
+const StatusBarDefaultBarStyle = 'light-content';
 
 class SetPassword extends React.Component {
     constructor(props) {
@@ -30,7 +33,7 @@ class SetPassword extends React.Component {
         };
     }
 
-    onDoneClick() {
+    onDonePress() {
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
             Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed)).then(setSeed(''));
             this.props.setFirstUse(false);
@@ -60,7 +63,7 @@ class SetPassword extends React.Component {
             }
         }
     }
-    onBackClick() {
+    onBackPress() {
         this.props.navigator.pop({
             animated: false,
         });
@@ -70,26 +73,32 @@ class SetPassword extends React.Component {
         let { password, reentry } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                            <View style={styles.textContainer}>
-                                <Text style={styles.title}>PASSWORD SETUP</Text>
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.greetingText}>Now we need to set up a password.</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <Text style={styles.greetingText}>Okay, now we need to set up a password.</Text>
-                            <Text style={styles.infoText}>
-                                An encrypted copy of your seed will be stored on your device. You will then only need to
-                                type in your password to access your wallet.
-                            </Text>
-                            <Text style={styles.warningText}>Ensure you use a strong password.</Text>
+                            <View style={styles.infoTextContainer}>
+                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Text style={styles.infoText}>
+                                    An encrypted copy of your seed will be stored on your device. You will use this
+                                    password to access your wallet in future.
+                                </Text>
+                                <Text style={styles.warningText}>
+                                    Ensure you use a strong password of at least 12 characters.
+                                </Text>
+                            </View>
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
+                                labelFontSize={width / 31.8}
+                                fontSize={width / 20.7}
+                                labelPadding={3}
                                 baseColor="white"
                                 label="Password"
                                 tintColor="#F7D002"
@@ -99,16 +108,16 @@ class SetPassword extends React.Component {
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
-                                    width: width / 1.65,
-                                    paddingTop: height / 40,
+                                    width: width / 1.36,
                                 }}
                                 secureTextEntry={true}
                             />
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
+                                labelFontSize={width / 31.8}
+                                fontSize={width / 20.7}
+                                labelPadding={3}
                                 baseColor="white"
                                 label="Retype Password"
                                 tintColor="#F7D002"
@@ -117,29 +126,30 @@ class SetPassword extends React.Component {
                                 enablesReturnKeyAutomatically={true}
                                 value={reentry}
                                 onChangeText={reentry => this.setState({ reentry })}
-                                containerStyle={{ width: width / 1.65 }}
+                                containerStyle={{ width: width / 1.36 }}
                                 secureTextEntry={true}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <View style={styles.buttonsContainer}>
-                                <TouchableOpacity onPress={event => this.onDoneClick()}>
-                                    <View style={styles.doneButton}>
-                                        <Text style={styles.doneText}>DONE</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={{ alignItems: 'center' }}>
-                                <TouchableOpacity onPress={event => this.onBackClick()}>
-                                    <View style={styles.backButton}>
-                                        <Text style={styles.backText}>BACK</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
+                            <OnboardingButtons
+                                onLeftButtonPress={() => this.onBackPress()}
+                                onRightButtonPress={() => this.onDonePress()}
+                                leftText={'BACK'}
+                                rightText={'DONE'}
+                            />
                         </View>
-                        <DropdownAlert ref={ref => (this.dropdown = ref)} errorColor="#A10702" />
                     </View>
                 </TouchableWithoutFeedback>
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
             </ImageBackground>
         );
     }
@@ -159,22 +169,21 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 3.5,
+        flex: 4.8,
         justifyContent: 'flex-start',
         paddingTop: height / 10,
         alignItems: 'center',
     },
     bottomContainer: {
-        flex: 2,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 14,
+        paddingBottom: height / 20,
     },
-    textContainer: {
+    titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: width / 7,
-        paddingTop: height / 35,
+        paddingTop: height / 15,
     },
     title: {
         color: 'white',
@@ -183,79 +192,84 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
+    infoTextContainer: {
+        borderColor: 'white',
+        borderWidth: 1,
+        borderRadius: 15,
+        width: width / 1.6,
+        height: height / 4.1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingHorizontal: width / 30,
+        borderStyle: 'dotted',
+        paddingTop: height / 60,
+        marginTop: height / 25,
+    },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 33.75,
+        fontSize: width / 27.6,
         textAlign: 'center',
-        paddingHorizontal: width / 6,
+        paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     warningText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 33.75,
+        fontSize: width / 27.6,
         textAlign: 'center',
-        paddingHorizontal: width / 6,
-        paddingTop: 5,
+        paddingTop: height / 70,
         backgroundColor: 'transparent',
     },
     greetingText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 22,
+        fontSize: width / 20.7,
         textAlign: 'center',
-        paddingHorizontal: width / 7,
-        paddingBottom: height / 40,
         backgroundColor: 'transparent',
     },
     questionText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 20.25,
+        fontSize: width / 20.7,
         textAlign: 'center',
-        paddingLeft: width / 7,
-        paddingRight: width / 7,
+        paddingHorizontal: width / 7,
         paddingTop: height / 25,
         backgroundColor: 'transparent',
     },
-    buttonsContainer: {
-        alignItems: 'center',
-        paddingBottom: height / 30,
-    },
-    doneButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    backButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    doneText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
-        backgroundColor: 'transparent',
-    },
-    backText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
-        backgroundColor: 'transparent',
+    infoIcon: {
+        width: width / 20,
+        height: width / 20,
     },
     iotaLogo: {
         height: width / 5,
         width: width / 5,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 
