@@ -65,14 +65,14 @@
   },
   "newSeedSetup":{
     "title":"生成一个新的seed",
-    "button1":"GENERATE NEW SEED",
+    "button1":"生成一个新的seed",
     "text1":"Press individual letters to randomise them.",
-    "text2":"Then click NEXT",
-    "button2":"NEXT",
-    "button3":"GO BACK"
+    "text2":"然后单击下一步",
+    "button2":"下一步",
+    "button3":"返回"
   },
   "saveYourSeed":{
-    "title":"SAVE YOUR SEED",
+    "title":"保存您的seed",
     "text1":"You must save your seed with at least one of the options listed below.",
     "text2":"at least one",
     "optionA":"MANUAL COPY",
