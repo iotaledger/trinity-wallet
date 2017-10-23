@@ -6,7 +6,7 @@ import { addAndSelectSeed } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import { isValidSeed } from '../../../../shared/libs/util';
-import Header from './Header';
+import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
 
@@ -54,21 +54,20 @@ class GenerateSeed extends React.PureComponent {
         const { t } = this.props;
         const { seed } = this.state;
         return (
-            <div>
-                <Header headline={t('title')} />
-                <main>
+            <Template headline={t('title')}>
+                <Main>
                     <p>{t('text1')}</p>
                     <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
-                </main>
-                <footer>
-                    <Button to="/onboarding/wallet" variant="warning">
+                </Main>
+                <Footer>
+                    <Button to="/wallet" variant="warning">
                         {t('button3')}
                     </Button>
                     <Button onClick={this.onRequestNext} variant="success">
                         {t('button2')}
                     </Button>
-                </footer>
-            </div>
+                </Footer>
+            </Template>
         );
     }
 }

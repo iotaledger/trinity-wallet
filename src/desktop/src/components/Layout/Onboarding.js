@@ -1,6 +1,7 @@
 import React from 'react';
-// import { Switch, Route } from 'react-router-dom';
-import { Switch, Route, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Welcome from '../Onboarding/Welcome';
 import Instructions from '../Onboarding/Instructions';
 import LightServerSetup from '../Onboarding/LightServerSetup';
@@ -11,44 +12,51 @@ import SaveYourSeedOptions from '../Onboarding/SaveYourSeedOptions';
 import SeedManualCopy from '../Onboarding/SeedManualCopy';
 import SeedCopyToClipboard from '../Onboarding/SeedCopyToClipboard';
 import SeedPaperWallet from '../Onboarding/SeedPaperWallet';
+import SecurityIntro from '../Onboarding/SecurityIntro';
+import SecurityEnter from '../Onboarding/SecurityEnter';
+import Done from '../Onboarding/Done';
 
 import css from './Onboarding.css';
 
-const Placeholder = () => {
-    return (
-        <div>
-            Placeholder
-            <Link to="/">Home</Link>
-        </div>
-    );
-};
+export default withRouter(
+    class Onboarding extends React.PureComponent {
+        static propTypes = {
+            location: PropTypes.object,
+        };
 
-const Done = () => {
-    return <div>Hi! Nice to meet you.</div>;
-};
-
-export default class Onboarding extends React.Component {
-    render() {
-        return (
-            <div className={css.wrapper}>
-                <Switch>
-                    <Route path="/onboarding/instructions" component={Instructions} />
-                    <Route path="/onboarding/lightserver" component={LightServerSetup} />
-                    <Route path="/onboarding/wallet" component={WalletSetup} />
-                    <Route exact path="/onboarding/seed/generate" component={GenerateSeed} />
-                    <Route exact path="/onboarding/seed/save" component={SaveYourSeedOptions} />
-                    <Route path="/onboarding/seed/save/manual" component={SeedManualCopy} />
-                    <Route path="/onboarding/seed/save/clipboard" component={SeedCopyToClipboard} />
-                    <Route path="/onboarding/seed/save/paperwallet" component={SeedPaperWallet} />
-                    <Route path="/onboarding/seed/enter" component={EnterSeed} />
-                    <Route exact path="/onboarding/security/password" component={Done} />
-                    <Route path="/onboarding/security/password/set" component={Placeholder} />
-                    <Route exact path="/onboarding/security/extra" component={Placeholder} />
-                    <Route path="/onboarding/security/extra/authenticator" component={Placeholder} />
-                    <Route path="/onboarding/done" component={Placeholder} />
-                    <Route path="/" component={Welcome} />
-                </Switch>
-            </div>
-        );
-    }
-}
+        render() {
+            const { location } = this.props;
+            return (
+                <TransitionGroup>
+                    <CSSTransition
+                        key={location.key}
+                        timeout={300}
+                        classNames={css.pageTransition}
+                        mountOnEnter={true}
+                        unmountOnExit={true}
+                    >
+                        <div className={css.wrapper}>
+                            <Switch location={location}>
+                                <Route path="/instructions" component={Instructions} />
+                                <Route path="/lightserver" component={LightServerSetup} />
+                                <Route path="/wallet" component={WalletSetup} />
+                                <Route path="/seed/generate" component={GenerateSeed} />
+                                <Route exact path="/seed/save" component={SaveYourSeedOptions} />
+                                <Route path="/seed/save/manual" component={SeedManualCopy} />
+                                <Route path="/seed/save/clipboard" component={SeedCopyToClipboard} />
+                                <Route path="/seed/save/paperwallet" component={SeedPaperWallet} />
+                                <Route path="/seed/enter" component={EnterSeed} />
+                                <Route path="/security/intro" component={SecurityIntro} />
+                                <Route path="/security/set" component={SecurityEnter} />
+                                <Route exact path="/security/extra" component={() => {}} />
+                                <Route path="/security/extra/authenticator" component={() => {}} />
+                                <Route path="/done" component={Done} />
+                                <Route path="/" component={Welcome} />
+                            </Switch>
+                        </div>
+                    </CSSTransition>
+                </TransitionGroup>
+            );
+        }
+    },
+);

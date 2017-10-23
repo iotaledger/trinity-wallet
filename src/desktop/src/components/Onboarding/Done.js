@@ -4,8 +4,8 @@ import { translate } from 'react-i18next';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 
-export default translate('welcome1')(
-    class Instruction extends React.PureComponent {
+export default translate('onboardingComplete')(
+    class Done extends React.PureComponent {
         static propTypes = {
             t: PropTypes.func.isRequired,
         };
@@ -16,16 +16,9 @@ export default translate('welcome1')(
                 <Template headline={t('title')}>
                     <Main>
                         <p>{t('text1')}</p>
-                        <p>{t('text2')}</p>
-                        <p>
-                            <strong>{t('reminder')}</strong>
-                        </p>
                     </Main>
                     <Footer>
-                        <Button to="/" variant="warning">
-                            {t('button2')}
-                        </Button>
-                        <Button to="/onboarding/lightserver" variant="success">
+                        <Button to="/" variant="success">
                             {t('button1')}
                         </Button>
                     </Footer>

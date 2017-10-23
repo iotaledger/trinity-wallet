@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
+import Infobox from '../UI/Infobox';
 
-export default translate('welcome1')(
-    class Instruction extends React.PureComponent {
+export default translate('securityIntro')(
+    class SecurityEntry extends React.PureComponent {
         static propTypes = {
             t: PropTypes.func.isRequired,
         };
@@ -16,16 +17,16 @@ export default translate('welcome1')(
                 <Template headline={t('title')}>
                     <Main>
                         <p>{t('text1')}</p>
-                        <p>{t('text2')}</p>
-                        <p>
-                            <strong>{t('reminder')}</strong>
-                        </p>
+                        <Infobox>
+                            <p>{t('explanation1')}</p>
+                            <p>{t('explanation2')}</p>
+                        </Infobox>
                     </Main>
                     <Footer>
-                        <Button to="/" variant="warning">
+                        <Button to="/seed/enter" variant="warning">
                             {t('button2')}
                         </Button>
-                        <Button to="/onboarding/lightserver" variant="success">
+                        <Button to="/security/set" variant="success">
                             {t('button1')}
                         </Button>
                     </Footer>
