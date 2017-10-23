@@ -2,7 +2,9 @@
   "id":"en",
   "notifications":{
     "invalidServer_title":"Ugyldig tjener",
-    "invalidServer_text":"Tjener-adresssen du oppgav er ikke gyldig"
+    "invalidServer_text":"Tjener-adresssen du oppgav er ikke gyldig",
+    "unknownError_title":"Unknown error occured",
+    "unknownError_text":"We could not perform the desired action this time. Please try again."
   },
   "setLanguage":{
     "title":"HALLO",
@@ -51,9 +53,13 @@
     "title":"SKRIV INN MASTERNØKKEL",
     "error_title":"Nøkkelen er for kort",
     "error_text":"Nøkkelen må være minst 60 tegn. Prøv igjen.",
+    "invalid_seed_title":"Invalid seed",
+    "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
     "placeholder":"MASTERNØKKEL",
     "seed_explanation":"Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.",
     "reminder":"OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE",
+    "scan_code":"Scan QR code",
+    "close":"CLOSE",
     "button1":"FERDIG",
     "button2":"TILBAKE"
   },
@@ -93,6 +99,25 @@
     "text":"Do not store the seed in plain text.",
     "button1":"COPY TO CLIPBOARD",
     "button2":"DONE"
+  },
+  "saveYourSeed4":{
+    "title":"SAVE YOUR SEED",
+    "optionA":"Manual Copy",
+    "optionB":" Paper Wallet",
+    "optionC":"Copy To Clipboard",
+    "explanation":"Click the button below to print a paper copy of your seed.",
+    "text":"Store it safely",
+    "check_button":"IOTA logo",
+    "button1":"PRINT PAPER WALLET",
+    "button2":"FERDIG"
+  },
+  "securityIntro":{
+    "title":"SET UP LOCAL PASSPHRASE",
+    "text1":"To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
+    "explanation1":"The local passphrase can only be used to unlock the account on this device.",
+    "explanation2":"The IOTA seed can still be used to access your funds on any wallet on any device.",
+    "button1":"YES - set up a passphrase",
+    "button2":"NO - login with my seed"
   },
   "setPassword":{
     "title":"PASSWORD SETUP",

@@ -2,7 +2,9 @@
   "id":"de",
   "notifications":{
     "invalidServer_title":"Ungültiger Server",
-    "invalidServer_text":"Die eingegebene Serveradresse is ungültig"
+    "invalidServer_text":"Die eingegebene Serveradresse is ungültig",
+    "unknownError_title":"Unknown error occured",
+    "unknownError_text":"We could not perform the desired action this time. Please try again."
   },
   "setLanguage":{
     "title":"HALLO",
@@ -51,9 +53,13 @@
     "title":"SEED EINGEBEN",
     "error_title":"Seed ist zu kurz",
     "error_text":"Ihr Seed muss mindesten 60 Zeichen lang sein. Bitte versuchen Sie es erneut.",
+    "invalid_seed_title":"Invalid seed",
+    "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
     "placeholder":"SEED",
     "seed_explanation":"Ihr Seed sollte 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Sie können keinen Seed benutzen der länger als 81 Zeichen ist.",
     "reminder":"TEILEN SIE IHREN SEED MIT NIEMANDEM",
+    "scan_code":"Scan QR code",
+    "close":"CLOSE",
     "button1":"FERTIG",
     "button2":"ZURÜCK"
   },
@@ -93,6 +99,25 @@
     "text":"Do not store the seed in plain text.",
     "button1":"In Zwischenablage kopieren",
     "button2":"FERTIG"
+  },
+  "saveYourSeed4":{
+    "title":"SAVE YOUR SEED",
+    "optionA":"Manuelle Kopie",
+    "optionB":" Paper Wallet",
+    "optionC":"In Zwischenablage kopieren",
+    "explanation":"Click the button below to print a paper copy of your seed.",
+    "text":"Store it safely",
+    "check_button":"IOTA logo",
+    "button1":"PAPER WALLET DRUCKEN",
+    "button2":"FERTIG"
+  },
+  "securityIntro":{
+    "title":"SET UP LOCAL PASSPHRASE",
+    "text1":"To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
+    "explanation1":"The local passphrase can only be used to unlock the account on this device.",
+    "explanation2":"The IOTA seed can still be used to access your funds on any wallet on any device.",
+    "button1":"YES - set up a passphrase",
+    "button2":"NO - login with my seed"
   },
   "setPassword":{
     "title":"PASSWORT EINRICHTEN",
