@@ -96,7 +96,8 @@
     "optionB":" Dompet Kertas",
     "optionC":"Salin ke papan klip",
     "explanation":"Tekan tombol di bawah ini untuk mencetak salinan dompet kertas anda.",
-    "text":"Simpan dengan baik",
+    "text1":"Store it safely",
+    "text2":"Never share your seed with anyone.",
     "check_button":"Logo IOTA",
     "button1":"CETAK DOMPET KERTAS",
     "button2":"SELESAI"
@@ -114,6 +115,10 @@
     "error2_text":"Kata sandi yang anda masukkan tidak sama. Silahkan coba lagi.",
     "button1":"SELESAI",
     "button2":"KEMBALI"
+  },
+  "onboardingComplete":{
+    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "button":"NEXT"
   },
   "home":{
     "tab1":"SALDO",
