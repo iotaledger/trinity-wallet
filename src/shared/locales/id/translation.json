@@ -7,30 +7,26 @@
     "unknownError_text":"Kami tidak dapat melakukan tindakan yang dikehendaki saat ini. Silakan coba lagi."
   },
   "setLanguage":{
-    "title":"HALO",
     "dropdown_title":"Bahasa",
     "button1":"LANJUT"
   },
   "welcome1":{
-    "title":"SELAMAT DATANG",
     "text1":"Terima kasih telah mengunduh dompet IOTA",
     "text2":"Kita akan menghabiskan beberapa menit untuk menyiapkan dompet Anda.",
     "reminder":"Kami berharap anda tidak mencoba untuk melewatkan beberapa tahap penting ini",
     "button1":"LANJUT",
-    "button2":"KEMBALI"
+    "button2":"BACK"
   },
   "welcome2":{
-    "title":"MEMPERSIAPKAN DOMPET",
     "text1":"Oke. Mari menyiapkan dompet anda!",
     "text2":"Apa anda sudah memiliki benih yang ingin digunakan?",
-    "seed_explanation1":"Benih adalah kata sandi untuk akun anda.",
+    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
     "seed_explanation2":"Anda dapat mengakses dana anda dari dompet manapun dan di perangkat apapun. Tetapi jika anda lupa benih, anda akan kehilangan IOTA",
     "reminder":"Harap disimpan benih anda dengan baik",
-    "button1":"IYA - saya punya benih",
-    "button2":"TIDAK - Saya perlu benih baru"
+    "button1":"YES",
+    "button2":"NO"
   },
   "lightserver":{
-    "title":"Menyiapkan Server ringan",
     "text1":"Server ringan adalah pintu gerbang ke jaringan IOTA yang sudah dipersiapkan oleh komunitas dan mitra perusahaan kami.",
     "text2":"Anda dapat menemukan informasi lebih lanjut tentang server di: http://iotasupport.com/lightwallet.shtml",
     "text3":"Silakan pilih server dari daftar di bawah ini.",
@@ -38,19 +34,17 @@
     "custom_server_label":"Alamat server lain",
     "other":"Lainnya",
     "button1":"LANJUT",
-    "button2":"KEMBALI"
+    "button2":"BACK"
   },
   "login":{
-    "title":"Masuk",
     "text":"Silahkan masukan kata sandi Anda",
     "placeholder":"KATA SANDI",
     "error_title":"Kata sandi tidak dikenali",
     "error_text":"Kata sandi tidak dikenali. Silahkan coba kembali.",
     "button1":"SELESAI",
-    "button2":"UBAH DOMPET"
+    "button2":"USE SEED"
   },
   "enterSeed":{
-    "title":"MASUKKAN BENIH ANDA",
     "error_title":"Seed terlalu singkat",
     "error_text":"Seed harus setidaknya 60 karakter. Silakan coba kembali.",
     "invalid_seed_title":"Seed keliru",
@@ -61,7 +55,7 @@
     "scan_code":"Pindai kode QR",
     "close":"TUTUP",
     "button1":"SELESAI",
-    "button2":"KEMBALI"
+    "button2":"BACK"
   },
   "newSeedSetup":{
     "title":"MEMBUAT BENIH BARU",
@@ -69,20 +63,18 @@
     "text1":"Tekan masing-masing huruf untuk mengacaknya.",
     "text2":"Kemudian klik BERIKUTNYA",
     "button2":"BERIKUTNYA",
-    "button3":"KEMBALI"
+    "button3":"BACK"
   },
   "saveYourSeed":{
-    "title":"SIMPAN SEED ANDA",
     "text1":"Anda harus menyimpan seed anda dengan setidaknya satu dari pilihan yang tersedia berikut ini.",
     "text2":"setidaknya satu",
     "optionA":"SIMPAN MANUAL",
     "optionB":"CETAK DOMPET KERTAS",
     "optionC":"SALIN KE PAPAN KLIP",
     "button1":"BERIKUTNYA",
-    "button2":"KEMBALI"
+    "button2":"BACK"
   },
   "saveYourSeed2":{
-    "title":"SIMPAN SEED ANDA",
     "optionA":"Simpan Manual",
     "optionB":" Dompet Kertas",
     "optionC":"Salin ke papan klip",
@@ -91,17 +83,15 @@
     "button":"SELESAI"
   },
   "saveYourSeed3":{
-    "title":"SIMPAN SEED ANDA",
     "optionA":"Simpan Manual",
     "optionB":" Dompet Kertas",
     "optionC":"Salin ke papan klip",
-    "explanation":"Klik tombol di bawah untuk menyalin seed anda ke aplikasi pengaturan kata sandi. Seed anda akan berada di papan klip selama 60 detik.",
+    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
     "text":"Jangan simpan seed anda di dalam teks biasa.",
     "button1":"SALIN ke PAPAN KLIP",
     "button2":"SELESAI"
   },
   "saveYourSeed4":{
-    "title":"SIMPAN SEED ANDA",
     "optionA":"Simpan Manual",
     "optionB":" Dompet Kertas",
     "optionC":"Salin ke papan klip",
@@ -111,19 +101,11 @@
     "button1":"CETAK DOMPET KERTAS",
     "button2":"SELESAI"
   },
-  "securityIntro":{
-    "title":"MENGATUR SANDI RINGAN LOKAL",
-    "text1":"Untuk mempermudah akses ke dompet ini, anda dapat membuat kata sandi ringan. Sandi ringan lokal ini hanya dapat digunakan di perangkat ini saja.",
-    "explanation1":"Kata sandi lokal hanya dapat digunakan untuk mengakses akun pada perangkat ini.",
-    "explanation2":"Seed IOTA juga dapat digunakan untuk mengakses dana anda di dompet dan perangkat manapun.",
-    "button1":"IYA - atur kata sandi",
-    "button2":"TIDAK - Masuk dengan seed saya"
-  },
   "setPassword":{
     "title":"ATUR KATA SANDI",
-    "text":"Oke, sekarang kita perlu membuat kata sandi.",
-    "explanation":"Duplikat dari seed yang dienkripsi akan disimpan di perangkat anda. Anda cukup mengetik kata sandi untuk masuk ke dompet anda.",
-    "reminder":"Pastikan anda menggunakan kata sandi yang kuat.",
+    "text":"Now we need to set up a password.",
+    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "reminder":"Ensure you use a strong password of at least 12 characters.",
     "placeholder1":"'KATA SANDI'",
     "placeholder2":"KETIK ULANG KATA SANDI",
     "error1_title":"Kata sandi terlalu pendek",
@@ -131,7 +113,7 @@
     "error2_title":"Kata sandi tidak sama",
     "error2_text":"Kata sandi yang anda masukkan tidak sama. Silahkan coba lagi.",
     "button1":"SELESAI",
-    "button2":"KEMBALI"
+    "button2":"BACK"
   },
   "home":{
     "tab1":"SALDO",
@@ -142,10 +124,10 @@
     "mcap":"MCAP",
     "change":"Ubah",
     "volume":"Volume",
-    "address":"ALAMAT",
-    "amount":"JUMLAH",
-    "botton1":"kirim IOTA",
-    "botton2":"BUAT SEED BARU",
-    "botton3":"KELUAR"
+    "address":"Address",
+    "amount":"Amount",
+    "button1":"SEND",
+    "button2":"GENERATE NEW ADDRESS",
+    "button3":"LOG OUT"
   }
 }
