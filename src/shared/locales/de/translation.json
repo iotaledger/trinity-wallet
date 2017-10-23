@@ -3,7 +3,7 @@
   "notifications":{
     "invalidServer_title":"Ungültiger Server",
     "invalidServer_text":"Die eingegebene Serveradresse is ungültig",
-    "unknownError_title":"Unknown error occured",
+    "unknownError_title":"Unbekannter Fehler aufgetreten",
     "unknownError_text":"We could not perform the desired action this time. Please try again."
   },
   "setLanguage":{
@@ -59,7 +59,7 @@
     "seed_explanation":"Ihr Seed sollte 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Sie können keinen Seed benutzen der länger als 81 Zeichen ist.",
     "reminder":"TEILEN SIE IHREN SEED MIT NIEMANDEM",
     "scan_code":"Scan QR code",
-    "close":"CLOSE",
+    "close":"SCHLIEßEN",
     "button1":"FERTIG",
     "button2":"ZURÜCK"
   },
@@ -107,7 +107,7 @@
     "optionC":"In Zwischenablage kopieren",
     "explanation":"Click the button below to print a paper copy of your seed.",
     "text":"Store it safely",
-    "check_button":"IOTA logo",
+    "check_button":"IOTA Logo",
     "button1":"PAPER WALLET DRUCKEN",
     "button2":"FERTIG"
   },
