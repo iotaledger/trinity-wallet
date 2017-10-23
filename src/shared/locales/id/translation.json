@@ -122,16 +122,16 @@
   "setPassword":{
     "title":"ATUR KATA SANDI",
     "text":"Oke, sekarang kita harus membuat kata sandi.",
-    "explanation":"An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
-    "reminder":"Ensure you use a strong password.",
-    "placeholder1":"'PASSWORD'",
-    "placeholder2":"RETYPE PASSWORD",
-    "error1_title":"Password is too short",
+    "explanation":"Duplikat dari benih yang dienkripsi akan disimpan di perangkat anda. Anda cukup mengetik kata sandi untuk masuk ke dompet anda.",
+    "reminder":"Pastikan anda menggunakan kata sandi yang kuat.",
+    "placeholder1":"'KATA SANDI'",
+    "placeholder2":"KETIK ULANG KATA SANDI",
+    "error1_title":"Kata sandi terlalu pendek",
     "error1_text":"Your password must be at least 8 characters. Please try again.",
-    "error2_title":"Passwords do not match",
-    "error2_text":"The passwords you have entered do not match. Please try again.",
-    "button1":"DONE",
-    "button2":"GO BACK"
+    "error2_title":"Kata sandi tidak sama",
+    "error2_text":"Kata sandi yang anda masukkan tidak sama. Silahkan dicoba lagi.",
+    "button1":"SELESAI",
+    "button2":"KEMBALI"
   },
   "home":{
     "tab1":"BALANCE",
