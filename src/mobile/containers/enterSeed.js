@@ -80,7 +80,7 @@ class EnterSeed extends React.Component {
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <QRScanner onQRRead={() => this.props.onQRRead(data)} hideModal={() => this._hideModal()} />
+        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
     );
 
     render() {
