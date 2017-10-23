@@ -105,23 +105,23 @@
     "optionA":"Cópia Manual",
     "optionB":" Carteira de Papel",
     "optionC":"Copiar para a Área de Transferência",
-    "explanation":"Click the button below to print a paper copy of your seed.",
-    "text":"Store it safely",
-    "check_button":"IOTA logo",
-    "button1":"PRINT PAPER WALLET",
-    "button2":"DONE"
+    "explanation":"Prima o botão em baixo para imprimir uma cópia em papel da sua Seed.",
+    "text":"Guarde em local seguro",
+    "check_button":"Logótipo IOTA",
+    "button1":"IMPRIMIR A CARTEIRA DE PAPEL",
+    "button2":"CONCLUÍDO"
   },
   "securityIntro":{
-    "title":"SET UP LOCAL PASSPHRASE",
-    "text1":"To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
-    "explanation1":"The local passphrase can only be used to unlock the account on this device.",
-    "explanation2":"The IOTA seed can still be used to access your funds on any wallet on any device.",
-    "button1":"YES - set up a passphrase",
-    "button2":"NO - login with my seed"
+    "title":"CONFIGURAR A FRASE-PASSE LOCAL",
+    "text1":"Para facilitar o acesso a esta carteira, agora poderá definir uma frase-passe. Esta frase-passe é local e só poderá ser usada neste dispositivo.",
+    "explanation1":"A frase-passe local só pode ser usada para desbloquear a sua conta neste dispositivo.",
+    "explanation2":"Contudo, a Seed IOTA pode ser usada para aceder aos seus fundos em qualquer carteira ou dispositivo.",
+    "button1":"Sim - configurar uma frase-passe",
+    "button2":"Não - iniciar sessão com a minha Seed"
   },
   "setPassword":{
-    "title":"PASSWORD SETUP",
-    "text":"Okay, now we need to set up a password.",
+    "title":"CONFIGURAR PALAVRA-PASSE",
+    "text":"Ok, agora precisamos de configurar uma palavra-passe.",
     "explanation":"An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
     "reminder":"Ensure you use a strong password.",
     "placeholder1":"'PASSWORD'",
