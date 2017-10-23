@@ -15,17 +15,17 @@
     "title":"Dobrodošel",
     "text1":"Zahvaljujemo se vam za prenos IOTA denarnice.",
     "text2":"Naslednjih nekaj minut bomo porabili za nastavitve vaše denarnice.",
-    "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
-    "button1":"NEXT",
+    "reminder":"Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces.",
+    "button1":"Naslednji",
     "button2":"Nazaj"
   },
   "welcome2":{
     "title":"Nastavitve denarnice",
-    "text1":"Okay. Lets set up your wallet!",
-    "text2":"Do you already have a seed that you would like to use?",
-    "seed_explanation1":"A seed is like a master password to your account.",
+    "text1":"Okei. Pa nastavimo vašo denarnico!",
+    "text2":"Ali že imate seed, ki bi ga želeli uporabiti?",
+    "seed_explanation1":"Seed je kot glavno geslo za vaš račun.",
     "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
-    "reminder":"Please keep your seed safe",
+    "reminder":"Prosimo vas, da imate seed shranjen na varnem",
     "button1":"Da - imam seme",
     "button2":"Ne - rabim novo seme"
   },
