@@ -7,30 +7,26 @@
     "unknownError_text":"Non è stato possibile eseguire l'azione desiderata questa volta. Si prega di riprovare."
   },
   "setLanguage":{
-    "title":"CIAO",
     "dropdown_title":"Lingua",
     "button1":"AVANTI"
   },
   "welcome1":{
-    "title":"BENVENUTO",
     "text1":"Grazie per aver scaricato il portafoglio IOTA.",
     "text2":"In pochi minuti imposteremo insieme il tuo portafoglio.",
     "reminder":"Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo.",
     "button1":"AVANTI",
-    "button2":"INDIETRO"
+    "button2":"BACK"
   },
   "welcome2":{
-    "title":"IMPOSTAZIONE DEL PORTAFOGLIO",
     "text1":"Va bene. Cominciamo a impostare il tuo portafoglio!",
     "text2":"Possiedi già un seme che desideri utilizzare?",
-    "seed_explanation1":"Un seme è come una master password al tuo account.",
+    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
     "seed_explanation2":"Puoi utilizzarlo per accedere ai tuoi fondi da qualsiasi portafoglio, su qualsiasi dispositivo. Ma se perdi il tuo seme, perdi anche i tuoi IOTA",
     "reminder":"Sei pregato di tenere il tuo seme al sicuro",
-    "button1":"Sì - possiedo un seme",
-    "button2":"NO - ho bisogno di un nuovo seme"
+    "button1":"YES",
+    "button2":"NO"
   },
   "lightserver":{
-    "title":"USA UN LIGHT SERVER",
     "text1":"Un light server è un gateway per la rete IOTA, gentilmente fornito dai membri della Comunità o dai nostri partner aziendali. ",
     "text2":"Puoi trovare ulteriori informazioni sui server presso: http://iotasupport.com/lightwallet.shtml",
     "text3":"Scegli un server dalla lista qui sotto.",
@@ -38,19 +34,17 @@
     "custom_server_label":"Altro server (indirizzo)",
     "other":"Altro",
     "button1":"AVANTI",
-    "button2":"INDIETRO"
+    "button2":"BACK"
   },
   "login":{
-    "title":"Accesso",
     "text":"Inserisci la tua password",
     "placeholder":"PASSWORD",
     "error_title":"Password non riconosciuta",
     "error_text":"La password non è stata riconosciuta. Si prega di riprovare.",
     "button1":"FINE",
-    "button2":"CAMBIA PORTAFOGLIO"
+    "button2":"USE SEED"
   },
   "enterSeed":{
-    "title":"INSERISCI IL TUO SEME",
     "error_title":"Il seme è troppo corto",
     "error_text":"Il seme deve essere lungo almeno 60 caratteri. Si prega di riprovare.",
     "invalid_seed_title":"Seme non valido",
@@ -61,7 +55,7 @@
     "scan_code":"Scansiona codice QR",
     "close":"CHIUDI",
     "button1":"FINE",
-    "button2":"INDIETRO"
+    "button2":"BACK"
   },
   "newSeedSetup":{
     "title":"GENERA UN NUOVO SEME",
@@ -69,20 +63,18 @@
     "text1":"Premi alcune singole lettere per renderle maggiormente casuali.",
     "text2":"Dopo fai clic su AVANTI",
     "button2":"AVANTI",
-    "button3":"INDIETRO"
+    "button3":"BACK"
   },
   "saveYourSeed":{
-    "title":"SALVA IL TUO SEME",
     "text1":"È necessario che salvi il tuo seme con almeno una delle opzioni elencate di seguito.",
     "text2":"almeno una",
     "optionA":"COPIA MANUALE",
     "optionB":"STAMPA IL PORTAFOGLIO SU CARTA",
     "optionC":"COPIA NEGLI APPUNTI",
     "button1":"AVANTI",
-    "button2":"INDIETRO"
+    "button2":"BACK"
   },
   "saveYourSeed2":{
-    "title":"SALVA IL TUO SEME",
     "optionA":"Copia manuale",
     "optionB":" Portafoglio su carta",
     "optionC":"Copia negli appunti",
@@ -91,17 +83,15 @@
     "button":"FINE"
   },
   "saveYourSeed3":{
-    "title":"SALVA IL TUO SEME",
     "optionA":"Copia manuale",
     "optionB":" Portafoglio su carta",
     "optionC":"Copia negli appunti",
-    "explanation":"Fai clic sul pulsante seguente per copiare il tuo seme su un programma di gestione di password. La copia rimarrà negli Appunti per 60 secondi.",
+    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
     "text":"Non salvare il seme in un file non crittografato.",
     "button1":"COPIA NEGLI APPUNTI",
     "button2":"FINE"
   },
   "saveYourSeed4":{
-    "title":"SALVA IL TUO SEME",
     "optionA":"Copia manuale",
     "optionB":" Portafoglio su carta",
     "optionC":"Copia negli appunti",
@@ -111,19 +101,11 @@
     "button1":"STAMPA IL PORTAFOGLIO SU CARTA",
     "button2":"FINE"
   },
-  "securityIntro":{
-    "title":"IMPOSTAZIONE PASSWORD LOCALE",
-    "text1":"Per rendere più facile il tuo accesso a questo portafoglio, è ora possibile impostare una password più breve. Questa password locale può essere utilizzata solo su questo dispositivo.",
-    "explanation1":"La password locale è utilizzabile solo per sbloccare l'account su questo dispositivo.",
-    "explanation2":"Puoi sempre utilizzare il tuo seme IOTA per accedere ai tuoi fondi da qualsiasi portafoglio su qualsiasi dispositivo.",
-    "button1":"SI - imposto una password locale",
-    "button2":"NO - accedo con il mio seme"
-  },
   "setPassword":{
     "title":"IMPOSTAZIONE DELLA PASSWORD",
-    "text":"Ok, ora abbiamo bisogno di impostare una password.",
-    "explanation":"Una copia crittografata del tuo seme sarà memorizzata nel tuo portachiavi. In seguito sarà solo necessario digitare la password per accedere al tuo portafoglio.",
-    "reminder":"Assicurati di utilizzare una password complessa.",
+    "text":"Now we need to set up a password.",
+    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "reminder":"Ensure you use a strong password of at least 12 characters.",
     "placeholder1":"'PASSWORD'",
     "placeholder2":"DIGITARE NUOVAMENTE LA PASSWORD",
     "error1_title":"La password è troppo corta",
@@ -131,7 +113,7 @@
     "error2_title":"Le password non corrispondono",
     "error2_text":"Le password immesse non corrispondono. Si prega di riprovare.",
     "button1":"FINE",
-    "button2":"INDIETRO"
+    "button2":"BACK"
   },
   "home":{
     "tab1":"SALDO",
@@ -142,10 +124,10 @@
     "mcap":"MCAP",
     "change":"Cambio",
     "volume":"Volume",
-    "address":"INDIRIZZO",
-    "amount":"IMPORTO",
-    "botton1":"invia IOTA",
-    "botton2":"GENERA UN NUOVO INDIRIZZO",
-    "botton3":"ESCI"
+    "address":"Address",
+    "amount":"Amount",
+    "button1":"SEND",
+    "button2":"GENERATE NEW ADDRESS",
+    "button3":"LOG OUT"
   }
 }
