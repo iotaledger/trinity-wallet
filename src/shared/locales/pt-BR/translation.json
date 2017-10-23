@@ -1,10 +1,10 @@
 {
   "id":"en",
   "notifications":{
-    "invalidServer_title":"Invalid server",
-    "invalidServer_text":"The server address you entered is not valid",
-    "unknownError_title":"Unknown error occured",
-    "unknownError_text":"We could not perform the desired action this time. Please try again."
+    "invalidServer_title":"Servidor inválido",
+    "invalidServer_text":"O endereço de servidor que você inseriu não é válido",
+    "unknownError_title":"Ocorreu um erro desconhecido",
+    "unknownError_text":"Não foi possível executar a ação desejada desta vez. Por favor, tente novamente."
   },
   "setLanguage":{
     "title":"HELLO",
