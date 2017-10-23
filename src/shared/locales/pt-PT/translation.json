@@ -23,15 +23,15 @@
     "title":"CONFIGURAÇÃO DA CARTEIRA",
     "text1":"Ok. Vamos configurar a sua carteira!",
     "text2":"Já possui uma Seed que gostaria de utilizar?",
-    "seed_explanation1":"A Seed é uma palavra-chave mestre para a sua conta.",
+    "seed_explanation1":"A Seed é uma palavra-passe mestre para a sua conta.",
     "seed_explanation2":"Pode usá-la para aceder aos seus fundos a partir de qualquer carteira, em qualquer dispositivo. Mas se perder a sua Seed, também perderá os seus IOTA",
     "reminder":"Por favor, mantenha a sua Seed protegida e segura",
     "button1":"Sim. Eu já tenho uma Seed.",
     "button2":"Não. Eu preciso de uma nova Seed."
   },
   "lightserver":{
-    "title":"LIGHT SERVER SETUP",
-    "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
+    "title":"Configuração de Servidor Leve",
+    "text1":"Um servidor leve é um acesso à rede IOTA, gentilmente providenciado por membros da comunidade ou por parceiros corporativos. ",
     "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
     "text3":"Please choose a server from the list below.",
     "server_label":"Server",
