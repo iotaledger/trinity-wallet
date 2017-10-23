@@ -96,7 +96,8 @@
     "optionB":" Carteira de Papel",
     "optionC":"Copiar para Área de Transferência",
     "explanation":"Clique no botão abaixo para imprimir uma cópia em papel da sua seed.",
-    "text":"Guarde em local seguro",
+    "text1":"Store it safely",
+    "text2":"Never share your seed with anyone.",
     "check_button":"Logotipo da IOTA",
     "button1":"IMPRIMIR CARTEIRA DE PAPEL",
     "button2":"CONCLUÍDO"
@@ -114,6 +115,10 @@
     "error2_text":"As senhas digitadas são diferentes. Tente novamente.",
     "button1":"CONCLUÍDO",
     "button2":"BACK"
+  },
+  "onboardingComplete":{
+    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "button":"NEXT"
   },
   "home":{
     "tab1":"SALDO",
