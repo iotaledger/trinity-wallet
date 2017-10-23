@@ -24,18 +24,18 @@
     "text1":"Okei. Pa nastavimo vašo denarnico!",
     "text2":"Ali že imate seed, ki bi ga želeli uporabiti?",
     "seed_explanation1":"Seed je kot glavno geslo za vaš račun.",
-    "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
+    "seed_explanation2":"Uporabite ga lahko za dostop do vaših sredstev iz katere koli denarnice, na kateri koli napravi. V primeru da seed izgubiste, prav tako izgubiste vaša sredstva",
     "reminder":"Prosimo vas, da imate seed shranjen na varnem",
     "button1":"Da - imam seme",
     "button2":"Ne - rabim novo seme"
   },
   "lightserver":{
-    "title":"LIGHT SERVER SETUP",
+    "title":"Nastavitve \"Light\" srežnika",
     "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
     "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
     "text3":"Please choose a server from the list below.",
     "server_label":"Strežnik",
-    "custom_server_label":"Other server address",
+    "custom_server_label":"Ostali naslovi strežnika",
     "other":"Ostalo",
     "button1":"Naslednji",
     "button2":"Nazaj"
@@ -52,7 +52,7 @@
   "enterSeed":{
     "title":"Vnesite vašo seme",
     "error_title":"Seed je prekratek",
-    "error_text":"Seeds must be at least 60 characters long. Please try again.",
+    "error_text":"Seed mora imeti vsaj 60 znakov. Prosimo, poskusite ponovno.",
     "invalid_seed_title":"Napačen seed",
     "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
     "placeholder":"Seed",
@@ -60,11 +60,11 @@
     "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
     "scan_code":"Scan QR code",
     "close":"CLOSE",
-    "button1":"DONE",
-    "button2":"GO BACK"
+    "button1":"Opravljeno",
+    "button2":"Nazaj"
   },
   "newSeedSetup":{
-    "title":"GENERATE A NEW SEED",
+    "title":"Napravi nov seed",
     "button1":"GENERATE NEW SEED",
     "text1":"Press individual letters to randomise them.",
     "text2":"Then click NEXT",
@@ -120,32 +120,32 @@
     "button2":"NO - login with my seed"
   },
   "setPassword":{
-    "title":"PASSWORD SETUP",
-    "text":"Okay, now we need to set up a password.",
+    "title":"Nastavitve gesla",
+    "text":"Ok, zdaj moramo nastaviti geslo.",
     "explanation":"An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
     "reminder":"Ensure you use a strong password.",
     "placeholder1":"'PASSWORD'",
     "placeholder2":"RETYPE PASSWORD",
-    "error1_title":"Password is too short",
+    "error1_title":"Geslo je prekratko",
     "error1_text":"Your password must be at least 8 characters. Please try again.",
-    "error2_title":"Passwords do not match",
-    "error2_text":"The passwords you have entered do not match. Please try again.",
-    "button1":"DONE",
-    "button2":"GO BACK"
+    "error2_title":"Gesli se ne ujemata",
+    "error2_text":"Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
+    "button1":"Opravljeno",
+    "button2":"Nazaj"
   },
   "home":{
     "tab1":"BALANCE",
-    "tab2":"SEND",
-    "tab3":"RECEIVE",
-    "tab4":"HISTORY",
-    "tab5":"TOOLS",
+    "tab2":"Pošlji",
+    "tab3":"Prejmi",
+    "tab4":"Zgodovina",
+    "tab5":"Orodja",
     "mcap":"MCAP",
     "change":"Change",
     "volume":"Volume",
-    "address":"ADDRESS",
-    "amount":"AMOUNT",
+    "address":"Naslov",
+    "amount":"Znesek",
     "botton1":"send IOTA",
-    "botton2":"GENERATE NEW ADDRESS",
-    "botton3":"LOG OUT"
+    "botton2":"Ustvari nov naslov",
+    "botton3":"Odjava"
   }
 }
