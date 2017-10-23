@@ -96,7 +96,8 @@
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
     "explanation":"Click the button below to print a paper copy of your seed.",
-    "text":"Store it safely",
+    "text1":"Store it safely",
+    "text2":"Never share your seed with anyone.",
     "check_button":"IOTA logo",
     "button1":"PRINT PAPER WALLET",
     "button2":"DONE"
@@ -114,6 +115,10 @@
     "error2_text":"您输入的密码不匹配。请再试一次。",
     "button1":"完成",
     "button2":"BACK"
+  },
+  "onboardingComplete":{
+    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "button":"NEXT"
   },
   "home":{
     "tab1":"结余",
