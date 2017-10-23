@@ -15,16 +15,16 @@
     "text2":"Wir werden in den nächsten Minuten Ihr neues Wallet einrichten.",
     "reminder":"Sie könnten versucht sein einige Schritte zu überspringen, aber wir bitten Sie, dem gesamten Prozess zu folgen.",
     "button1":"WEITER",
-    "button2":"BACK"
+    "button2":"ZURÜCK"
   },
   "welcome2":{
     "text1":"Okay. Let's set up your wallet!",
     "text2":"Haben Sie bereits einen Seed den Sie verwenden möchten?",
-    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-    "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
-    "reminder":"Please keep your seed safe",
-    "button1":"YES",
-    "button2":"NO"
+    "seed_explanation1":"Der IOTA Seed ist wie ein Benutzername und Passwort zu Ihrem Konto, kombiniert in einer Zeichenfolge von 81 Buchstaben.",
+    "seed_explanation2":"Mit Ihrem Seed können Sie von jeder Wallet und jedem Gerät auf Ihre IOTA zugreifen - Aber wenn Sie Ihren Seed verlieren, verlieren Sie auch alle Ihre IOTA",
+    "reminder":"Bitte bewahren Sie Ihren Seed sicher auf",
+    "button1":"JA",
+    "button2":"NEIN"
   },
   "lightserver":{
     "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
@@ -83,22 +83,22 @@
     "button":"FERTIG"
   },
   "saveYourSeed3":{
-    "optionA":"Manuelle Kopie",
+    "optionA":"Niederschrift",
     "optionB":" Paper Wallet",
     "optionC":"In Zwischenablage kopieren",
     "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
     "text":"Do not store the seed in plain text.",
-    "button1":"In Zwischenablage kopieren",
+    "button1":"IN ZWISCHENABLAGE KOPIEREN",
     "button2":"FERTIG"
   },
   "saveYourSeed4":{
-    "optionA":"Manuelle Kopie",
-    "optionB":" Paper Wallet",
+    "optionA":"Niederschrift",
+    "optionB":" Papier Wallet",
     "optionC":"In Zwischenablage kopieren",
     "explanation":"Click the button below to print a paper copy of your seed.",
     "text":"Store it safely",
     "check_button":"IOTA Logo",
-    "button1":"PAPER WALLET DRUCKEN",
+    "button1":"PAPIER WALLET DRUCKEN",
     "button2":"FERTIG"
   },
   "setPassword":{
@@ -109,7 +109,7 @@
     "placeholder1":"\"PASSWORT\"",
     "placeholder2":"PASSWORT ERNEUT EINGEBEN",
     "error1_title":"Passwort ist zu kurz",
-    "error1_text":"Ihr Passwort muss mindesten 8 Zeich lang sein. Bitte versuchen Sie es erneut.",
+    "error1_text":"Ihr Passwort muss mindesten 8 Zeich lang sein. Bitte erneut eingeben.",
     "error2_title":"Die Passwörter stimmen nicht überein",
     "error2_text":"Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
     "button1":"FERTIG",
