@@ -14,17 +14,17 @@
   "welcome1":{
     "title":"WELCOME",
     "text1":"Grazie per aver scaricato il portafoglio IOTA.",
-    "text2":"We will spend the next few minutes setting up your wallet.",
-    "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
+    "text2":"In pochi minuti imposteremo insieme il tuo portafoglio.",
+    "reminder":"Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo.",
     "button1":"NEXT",
     "button2":"GO BACK"
   },
   "welcome2":{
     "title":"WALLET SETUP",
-    "text1":"Okay. Lets set up your wallet!",
-    "text2":"Do you already have a seed that you would like to use?",
-    "seed_explanation1":"A seed is like a master password to your account.",
-    "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
+    "text1":"Va bene. Cominciamo a impostare il tuo portafoglio!",
+    "text2":"Possiedi già un seme che desideri utilizzare?",
+    "seed_explanation1":"Un seme è come una master password al tuo account.",
+    "seed_explanation2":"Puoi utilizzarlo per accedere ai tuoi fondi da qualsiasi portafoglio, su qualsiasi dispositivo. Ma se perdi il tuo seme, perdi anche i tuoi IOTA",
     "reminder":"Please keep your seed safe",
     "button1":"YES - I have seed",
     "button2":"NO - I need a new seed"
