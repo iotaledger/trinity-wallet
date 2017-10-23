@@ -1,9 +1,9 @@
 {
   "id":"en",
   "notifications":{
-    "invalidServer_title":"Invalid server",
-    "invalidServer_text":"The server address you entered is not valid",
-    "unknownError_title":"Unknown error occured",
+    "invalidServer_title":"Napačen strežnik",
+    "invalidServer_text":"Naslov strežnika, ki ste ga vnesli, ni pravilen",
+    "unknownError_title":"Prišlo je do neznane napake",
     "unknownError_text":"We could not perform the desired action this time. Please try again."
   },
   "setLanguage":{
