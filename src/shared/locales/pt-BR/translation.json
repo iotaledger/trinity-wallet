@@ -114,7 +114,7 @@
   "securityIntro":{
     "title":"CONFIGURAR SENHA LOCAL",
     "text1":"Para tornar mais fácil o login em su carteira, você poderá agora configurar uma senha mais curta. Esta senha local só poderá ser utilizada neste dispositivo.",
-    "explanation1":"The local passphrase can only be used to unlock the account on this device.",
+    "explanation1":"A senha local somente pode ser utilizada para desbloquear a conta neste dispositivo.",
     "explanation2":"The IOTA seed can still be used to access your funds on any wallet on any device.",
     "button1":"YES - set up a passphrase",
     "button2":"NO - login with my seed"
