@@ -4,37 +4,37 @@
     "invalidServer_title":"Napačen strežnik",
     "invalidServer_text":"Naslov strežnika, ki ste ga vnesli, ni pravilen",
     "unknownError_title":"Prišlo je do neznane napake",
-    "unknownError_text":"We could not perform the desired action this time. Please try again."
+    "unknownError_text":"Željenega dejanja trenutno ni možno izvesti. Prosimo poskusite kasneje."
   },
   "setLanguage":{
-    "title":"HELLO",
-    "dropdown_title":"Language",
-    "button1":"NEXT"
+    "title":"Pozdrav",
+    "dropdown_title":"Jezik",
+    "button1":"Naslednji"
   },
   "welcome1":{
-    "title":"WELCOME",
+    "title":"Dobrodošel",
     "text1":"Thank you for downloading the IOTA wallet.",
     "text2":"We will spend the next few minutes setting up your wallet.",
     "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
     "button1":"NEXT",
-    "button2":"GO BACK"
+    "button2":"Nazaj"
   },
   "welcome2":{
-    "title":"WALLET SETUP",
+    "title":"Nastavitve denarnice",
     "text1":"Okay. Lets set up your wallet!",
     "text2":"Do you already have a seed that you would like to use?",
     "seed_explanation1":"A seed is like a master password to your account.",
     "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
     "reminder":"Please keep your seed safe",
-    "button1":"YES - I have seed",
-    "button2":"NO - I need a new seed"
+    "button1":"Da - imam seed",
+    "button2":"Ne - rabim nov seed"
   },
   "lightserver":{
     "title":"LIGHT SERVER SETUP",
     "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
     "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
     "text3":"Please choose a server from the list below.",
-    "server_label":"Server",
+    "server_label":"Strežnik",
     "custom_server_label":"Other server address",
     "other":"Other",
     "button1":"NEXT",
