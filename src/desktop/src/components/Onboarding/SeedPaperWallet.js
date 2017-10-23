@@ -4,10 +4,11 @@ import QRCode from 'qrcode.react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
-import Header from './Header';
-import BoxedSeed from './BoxedSeed';
+import Template, { Main, Footer } from './Template';
+import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
+import css from './SeedPaperWallet.css';
 
 class SeedPaperWallet extends PureComponent {
     static propTypes = {
@@ -19,38 +20,33 @@ class SeedPaperWallet extends PureComponent {
         const { t, seed } = this.props;
 
         return (
-            <div>
-                <Header title={t('title')} />
-                <Steps />
-                <main>
-                    <div style={{ display: 'flex', minHeight: '200px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <BoxedSeed t={t} seed={seed} />
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    justifyContent: 'space-around',
-                                }}
-                            >
-                                <span style={{ flex: 1 }}>Logo</span>
-                                <span style={{ flex: 3 }}>
-                                    Your seed is 81 characters long. Please read from left to right.
-                                </span>
+            <Template headline={t('title')}>
+                <Main>
+                    <Steps currentStep="paper" />
+                    <p>Click the button below to print a paper copy of your seed. Store it safely.</p>
+                    <div className={css.wrapper}>
+                        <div className={css.innerWrapper}>
+                            <BoxedSeed t={t} seed={seed} color="black" size="small" />
+                            <div className={css.midWrapper}>
+                                <span>Your seed is 81 characters long. Please read from left to right.</span>
                             </div>
-                            <QRCode value={seed} />
+                            <div className={css.qrCodeWrapper}>
+                                <QRCode value={seed} />
+                            </div>
                         </div>
                     </div>
-                </main>
-                <footer>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Button to="/" variant="warning">
+                    <div className={css.printBtnWrapper}>
+                        <Button to="/" variant="success">
                             {t('button1')}
                         </Button>
                     </div>
-                </footer>
-            </div>
+                </Main>
+                <Footer>
+                    <Button to="/seed/save" variant="success">
+                        {t('button2')}
+                    </Button>
+                </Footer>
+            </Template>
         );
     }
 }

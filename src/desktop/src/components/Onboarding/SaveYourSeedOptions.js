@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
-import Header from './Header';
+import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 
 class SaveYourSeedOptions extends PureComponent {
@@ -15,11 +15,10 @@ class SaveYourSeedOptions extends PureComponent {
         const { t } = this.props;
 
         return (
-            <div>
-                <Header headline={t('title')} />
-                <p>{t('text1')}</p>
-                <main>
-                    <Button to="/onboarding/seed/save/manual" variant="extra">
+            <Template headline={t('title')}>
+                <Main className={css.main}>
+                    <p>{t('text1')}</p>
+                    <Button to="/seed/save/manual" variant="extra">
                         {t('optionA')}
                     </Button>
                     <Button to="/onboarding/seed/save/paperwallet" variant="extra">
@@ -28,16 +27,16 @@ class SaveYourSeedOptions extends PureComponent {
                     <Button to="/onboarding/seed/save/clipboard" variant="extra">
                         {t('optionC')}
                     </Button>
-                </main>
-                <footer>
-                    <Button to="/" variant="warning">
+                </Main>
+                <Footer>
+                    <Button to="/seed/generate" variant="warning">
                         {t('button2')}
                     </Button>
                     <Button to="/" variant="success">
                         {t('button1')}
                     </Button>
-                </footer>
-            </div>
+                </Footer>
+            </Template>
         );
     }
 }
