@@ -127,9 +127,9 @@
     "placeholder1":"'KATA SANDI'",
     "placeholder2":"KETIK ULANG KATA SANDI",
     "error1_title":"Kata sandi terlalu pendek",
-    "error1_text":"Your password must be at least 8 characters. Please try again.",
+    "error1_text":"Kata sandi anda paling sedikit harus 12 karakter. Silakan coba lagi.",
     "error2_title":"Kata sandi tidak sama",
-    "error2_text":"Kata sandi yang anda masukkan tidak sama. Silahkan dicoba lagi.",
+    "error2_text":"Kata sandi yang anda masukkan tidak sama. Silahkan coba lagi.",
     "button1":"SELESAI",
     "button2":"KEMBALI"
   },
@@ -145,7 +145,7 @@
     "address":"ALAMAT",
     "amount":"JUMLAH",
     "botton1":"kirim IOTA",
-    "botton2":"BUAT BENIH BARU",
+    "botton2":"BUAT SEED BARU",
     "botton3":"KELUAR"
   }
 }
