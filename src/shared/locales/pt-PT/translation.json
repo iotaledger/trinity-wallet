@@ -21,8 +21,8 @@
   },
   "welcome2":{
     "title":"CONFIGURAÇÃO DA CARTEIRA",
-    "text1":"Okay. Lets set up your wallet!",
-    "text2":"Do you already have a seed that you would like to use?",
+    "text1":"Ok. Vamos configurar a sua carteira!",
+    "text2":"Já possui uma seed que gostaria de utilizar?",
     "seed_explanation1":"A seed is like a master password to your account.",
     "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
     "reminder":"Please keep your seed safe",
