@@ -6,34 +6,6 @@ import store from '../../shared/store';
 
 const { height, width } = Dimensions.get('window');
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    logoContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 15,
-    },
-    text: {
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        color: 'white',
-        fontSize: width / 33.75,
-    },
-    textContainer: {
-        justifyContent: 'flex-end',
-        paddingBottom: height / 15,
-    },
-    logo: {
-        width: width / 4,
-        height: width / 4,
-    },
-});
-
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
 export default class InitialLoading extends Component {
@@ -73,6 +45,34 @@ export default class InitialLoading extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    logoContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: height / 15,
+    },
+    text: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        color: 'white',
+        fontSize: width / 33.75,
+    },
+    textContainer: {
+        justifyContent: 'flex-end',
+        paddingBottom: height / 15,
+    },
+    logo: {
+        width: width / 4,
+        height: width / 4,
+    },
+});
 
 InitialLoading.propTypes = {
     navigator: PropTypes.object.isRequired,
