@@ -3,8 +3,8 @@
   "notifications":{
     "invalidServer_title":"Servidor inválido",
     "invalidServer_text":"O endereço do servidor que introduziu é inválido",
-    "unknownError_title":"Unknown error occured",
-    "unknownError_text":"We could not perform the desired action this time. Please try again."
+    "unknownError_title":"Ocorreu um erro desconhecido",
+    "unknownError_text":"De momento não podemos executar a ação desejada. Por favor, tente novamente."
   },
   "setLanguage":{
     "title":"OLÁ",
@@ -14,13 +14,13 @@
   "welcome1":{
     "title":"BEM-VINDO",
     "text1":"Obrigado por descarregar a carteira IOTA.",
-    "text2":"We will spend the next few minutes setting up your wallet.",
-    "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
-    "button1":"NEXT",
-    "button2":"GO BACK"
+    "text2":"Vamos passar os próximos minutos a configurar a sua carteira.",
+    "reminder":"Pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo.",
+    "button1":"PRÓXIMO",
+    "button2":"VOLTAR"
   },
   "welcome2":{
-    "title":"WALLET SETUP",
+    "title":"CONFIGURAÇÃO DA CARTEIRA",
     "text1":"Okay. Lets set up your wallet!",
     "text2":"Do you already have a seed that you would like to use?",
     "seed_explanation1":"A seed is like a master password to your account.",
