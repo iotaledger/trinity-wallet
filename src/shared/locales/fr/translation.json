@@ -20,7 +20,7 @@
     "button2":"RETOUR"
   },
   "welcome2":{
-    "title":"Paramétrage Wallet",
+    "title":"PARAMÉTRAGE WALLET",
     "text1":"Okay. Paramétrons votre Wallet !",
     "text2":"Est ce que vous possédez une Seed que vous souhaitez utiliser ?",
     "seed_explanation1":"La Seed est le mot de passe principal de votre compte.",
@@ -34,7 +34,7 @@
     "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
     "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
     "text3":"Please choose a server from the list below.",
-    "server_label":"Server",
+    "server_label":"Serveur",
     "custom_server_label":"Other server address",
     "other":"Other",
     "button1":"NEXT",
