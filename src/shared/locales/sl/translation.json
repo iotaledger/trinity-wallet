@@ -9,14 +9,14 @@
   "setLanguage":{
     "title":"Pozdrav",
     "dropdown_title":"Jezik",
-    "button1":"Naslednji"
+    "button1":"Naprej"
   },
   "welcome1":{
     "title":"Dobrodošel",
     "text1":"Zahvaljujemo se vam za prenos IOTA denarnice.",
     "text2":"Naslednjih nekaj minut bomo porabili za nastavitve vaše denarnice.",
     "reminder":"Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces.",
-    "button1":"Naslednji",
+    "button1":"Naprej",
     "button2":"Nazaj"
   },
   "welcome2":{
@@ -37,7 +37,7 @@
     "server_label":"Strežnik",
     "custom_server_label":"Ostali naslovi strežnika",
     "other":"Ostalo",
-    "button1":"Naslednji",
+    "button1":"Naprej",
     "button2":"Nazaj"
   },
   "login":{
@@ -58,32 +58,32 @@
     "placeholder":"Seed",
     "seed_explanation":"Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
     "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
-    "scan_code":"Scan QR code",
+    "scan_code":"Skeniraj QR kodo",
     "close":"Zapri",
     "button1":"Opravljeno",
     "button2":"Nazaj"
   },
   "newSeedSetup":{
     "title":"Napravi nov seed",
-    "button1":"GENERATE NEW SEED",
+    "button1":"Napravi nov seed",
     "text1":"Press individual letters to randomise them.",
-    "text2":"Then click NEXT",
-    "button2":"NEXT",
-    "button3":"GO BACK"
+    "text2":"Nato kliknite NAPREJ",
+    "button2":"Naprej",
+    "button3":"Nazaj"
   },
   "saveYourSeed":{
-    "title":"SAVE YOUR SEED",
+    "title":"Shrani svoj seed",
     "text1":"You must save your seed with at least one of the options listed below.",
     "text2":"at least one",
-    "optionA":"MANUAL COPY",
+    "optionA":"Ročna kopija",
     "optionB":"PRINT PAPER WALLET",
     "optionC":"COPY TO CLIPBOARD",
-    "button1":"NEXT",
-    "button2":"GO BACK"
+    "button1":"Naprej",
+    "button2":"Nazaj"
   },
   "saveYourSeed2":{
     "title":"SAVE YOUR SEED",
-    "optionA":"Manual Copy",
+    "optionA":"Ročna kopija",
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
     "explanation":"Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
