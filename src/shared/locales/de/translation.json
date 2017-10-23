@@ -11,8 +11,8 @@
     "button1":"WEITER"
   },
   "welcome1":{
-    "text1":"Vielen Dank für das Herunterladen des IOTA Wallet.",
-    "text2":"Wir werden die nächsten Minuten damit verbringen Ihr Wallet einzurichten.",
+    "text1":"Vielen Dank für das Herunterladen der IOTA Wallet.",
+    "text2":"Wir werden in den nächsten Minuten Ihr neues Wallet einrichten.",
     "reminder":"Sie könnten versucht sein einige Schritte zu überspringen, aber wir bitten Sie, dem gesamten Prozess zu folgen.",
     "button1":"WEITER",
     "button2":"BACK"
@@ -46,7 +46,7 @@
   },
   "enterSeed":{
     "error_title":"Seed ist zu kurz",
-    "error_text":"Ihr Seed muss mindesten 60 Zeichen lang sein. Bitte versuchen Sie es erneut.",
+    "error_text":"Seeds müssen mindesten 60 Zeichen lang sein. Bitte versuchen Sie es erneut.",
     "invalid_seed_title":"Invalid seed",
     "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
     "placeholder":"SEED",
@@ -69,16 +69,16 @@
     "text1":"You must save your seed with at least one of the options listed below.",
     "text2":"at least one",
     "optionA":"NIEDERSCHRIFT",
-    "optionB":"PAPER WALLET DRUCKEN",
+    "optionB":"PAPIER WALLET DRUCKEN",
     "optionC":"In Zwischenablage kopieren",
     "button1":"WEITER",
     "button2":"BACK"
   },
   "saveYourSeed2":{
-    "optionA":"Manuelle Kopie",
-    "optionB":" Paper Wallet",
+    "optionA":"Niederschrift",
+    "optionB":" Papier Wallet",
     "optionC":"In Zwischenablage kopieren",
-    "explanation":"Ihr Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreiben Sie ihren Seed und die Prüfsumme auf und prüfen Sie dreimal ob dieser Korrekt ist.",
+    "explanation":"Ihr Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreiben Sie ihren Seed und die Prüfsumme auf und prüfen Sie dreimal ob diese Korrekt sind.",
     "text":"triple check",
     "button":"FERTIG"
   },
@@ -121,9 +121,9 @@
     "tab3":"EMPFANGEN",
     "tab4":"VERLAUF",
     "tab5":"WERKZEUGE",
-    "mcap":"MK",
-    "change":"Ändern",
-    "volume":"Lautstärke",
+    "mcap":"MKAP",
+    "change":"Änderung",
+    "volume":"Volumen",
     "address":"Address",
     "amount":"Amount",
     "button1":"SEND",
