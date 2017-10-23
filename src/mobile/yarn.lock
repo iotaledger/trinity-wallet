@@ -2809,9 +2809,9 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-"iota.lib.js@git+https://git@github.com/l3wi/iota.lib.js.git":
+"iota.lib.js@git+https://git@github.com/aquadestructor/iota.lib.js.git#b2cff00":
   version "0.4.1"
-  resolved "git+https://git@github.com/l3wi/iota.lib.js.git#3c340d5f0a7d65e49bf6ac64e195de7a8f8e71a0"
+  resolved "git+https://git@github.com/aquadestructor/iota.lib.js.git#b2cff00d6f5b0fdb7491d73e50957aa53ce730e1"
   dependencies:
     async "^2.5.0"
     crypto-js "^3.1.9-1"
@@ -4297,7 +4297,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.5.9:
+prop-types@15.5.10, prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.5.9:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -4411,6 +4411,18 @@ react-devtools-core@2.3.1:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-animatable@^1.2.3:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.2.4.tgz#b5fb7657e8f6edadbc26697057a327fb920b3039"
+  dependencies:
+    prop-types "^15.5.10"
+
+react-native-camera@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.10.0.tgz#5d973c9a8aab95f68aede395ba310eae0c3cecdd"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-clipboard@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-native-clipboard/-/react-native-clipboard-0.0.5.tgz#3e3f57f32f6785fff05453f88fbcc0a34ed47828"
@@ -4429,11 +4441,11 @@ react-native-crypto@^2.0.2:
     pbkdf2 "3.0.8"
     public-encrypt "^4.0.0"
 
-react-native-dropdownalert@^2.11.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/react-native-dropdownalert/-/react-native-dropdownalert-2.13.0.tgz#c2727266a0fa846078d97157b6061b36db776f9f"
+react-native-dropdownalert@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-dropdownalert/-/react-native-dropdownalert-3.1.2.tgz#784b573a335987d66908bd66075b5d48ef7b5d70"
   dependencies:
-    prop-types "^15.5.10"
+    prop-types "15.5.10"
 
 react-native-html-to-pdf@^0.4.0:
   version "0.4.0"
@@ -4459,6 +4471,13 @@ react-native-material-textfield@^0.9.0:
   dependencies:
     prop-types "^15.5.9"
 
+react-native-modal@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-4.0.0.tgz#1e11633d54ae073f42e74bb4f37ef81b5cb5a820"
+  dependencies:
+    prop-types "15.5.10"
+    react-native-animatable "^1.2.3"
+
 react-native-navigation@^1.1.205:
   version "1.1.205"
   resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.205.tgz#eb7ff639f97e7f5bde42f38d2b11b7a6ce06a2c0"
@@ -4472,6 +4491,12 @@ react-native-os@^1.0.1:
 react-native-print@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-print/-/react-native-print-0.3.0.tgz#870082cdd14cc1a064cf0fa3b7460932cb032768"
+
+react-native-qrcode-scanner@^0.0.22:
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/react-native-qrcode-scanner/-/react-native-qrcode-scanner-0.0.22.tgz#b045d6ba6413bd379008e6e5aff047e6fbaa95ae"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-qrcode@^0.2.6:
   version "0.2.6"

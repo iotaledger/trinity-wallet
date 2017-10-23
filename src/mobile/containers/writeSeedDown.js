@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 
 const { height, width } = Dimensions.get('window');
@@ -11,7 +11,7 @@ class WriteSeedDown extends React.Component {
 
     onDonePress() {
         this.props.navigator.pop({
-            animated: false
+            animated: false,
         });
         console.log('width: ' + width);
         console.log('height: ' + height);
@@ -20,11 +20,9 @@ class WriteSeedDown extends React.Component {
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>SAVE YOUR SEED</Text>
-                    </View>
                     <View style={styles.subtitlesContainer}>
                         <View style={styles.subtitleContainer}>
                             <Text style={styles.currentSubtitle}>Manual Copy</Text>
@@ -109,26 +107,24 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36'
+        backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
-        paddingHorizontal: width / 20
     },
     midContainer: {
-        flex: 4,
+        flex: 3.5,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 10
+        paddingTop: height / 10,
     },
     bottomContainer: {
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        paddingBottom: height / 25
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -136,7 +132,7 @@ const styles = StyleSheet.create({
         fontSize: width / 25.3,
         textAlign: 'center',
         paddingHorizontal: width / 20,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     optionButton: {
         borderColor: '#8BD4FF',
@@ -145,20 +141,7 @@ const styles = StyleSheet.create({
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around'
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 35,
-        paddingBottom: height / 30
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent'
+        justifyContent: 'space-around',
     },
     currentSubtitle: {
         color: 'white',
@@ -166,7 +149,7 @@ const styles = StyleSheet.create({
         fontSize: width / 33,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
     subtitle: {
         color: 'white',
@@ -175,17 +158,17 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
         flexWrap: 'wrap',
-        opacity: 0.5
+        opacity: 0.5,
     },
     subtitlesContainer: {
         flexDirection: 'row',
         flex: 1,
-        paddingTop: height / 40
+        paddingTop: height / 10,
     },
     subtitleContainer: {
         paddingHorizontal: width / 75,
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     line: {
         color: 'white',
@@ -193,54 +176,55 @@ const styles = StyleSheet.create({
         fontSize: width / 33,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        opacity: 0.5
+        opacity: 0.5,
     },
     lineContainer: {
         flex: 1.5,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 29,
+        fontSize: width / 27.6,
         textAlign: 'left',
         paddingTop: height / 12,
-        paddingHorizontal: width / 8,
+        paddingHorizontal: width / 7,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoTextNormal: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 29,
+        fontSize: width / 27.6,
         textAlign: 'left',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     infoTextBold: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 29,
+        fontSize: width / 27.6,
         textAlign: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     doneButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
         borderRadius: 10,
         width: width / 3,
-        height: height / 16,
+        height: height / 14,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        marginBottom: height / 20,
     },
     doneText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
-        backgroundColor: 'transparent'
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
-        width: width / 5
+        width: width / 5,
     },
     seedBox: {
         borderColor: 'white',
@@ -250,7 +234,7 @@ const styles = StyleSheet.create({
         height: height / 3.5,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 20
+        paddingTop: height / 20,
     },
     seedBoxTextContainer: {
         width: width / 1.65,
@@ -259,7 +243,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
         paddingTop: height / 80,
-        paddingLeft: width / 70
+        paddingLeft: width / 70,
     },
     seedBoxTextLeft: {
         color: 'white',
@@ -269,7 +253,7 @@ const styles = StyleSheet.create({
         letterSpacing: 8,
         backgroundColor: 'transparent',
         paddingRight: width / 70,
-        paddingVertical: 3
+        paddingVertical: 3,
     },
     seedBoxTextRight: {
         color: 'white',
@@ -278,16 +262,16 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         letterSpacing: 8,
         backgroundColor: 'transparent',
-        paddingVertical: 3
+        paddingVertical: 3,
     },
     arrow: {
         width: width / 2,
-        height: height / 80
-    }
+        height: height / 80,
+    },
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota
+    iota: state.iota,
 });
 
 export default connect(mapStateToProps)(WriteSeedDown);

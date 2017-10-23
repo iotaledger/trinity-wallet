@@ -47,7 +47,7 @@ class GenerateSeed extends React.PureComponent {
             seed: seed,
         });
 
-        history.push('/onboarding/seed/save');
+        history.push('/seed/save');
     };
 
     render() {

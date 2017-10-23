@@ -16,5 +16,5 @@ render(
             </Router>
         </I18nextProvider>
     </Redux>,
-    document.getElementById('root')
+    document.getElementById('root'),
 );

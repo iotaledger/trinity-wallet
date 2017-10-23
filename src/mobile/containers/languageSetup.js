@@ -10,6 +10,7 @@ import {
     TouchableWithoutFeedback,
     Image,
     ImageBackground,
+    StatusBar,
 } from 'react-native';
 import Triangle from 'react-native-triangle';
 
@@ -79,6 +80,7 @@ class LanguageSetup extends React.Component {
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <View style={styles.titleContainer}>
@@ -198,11 +200,13 @@ class LanguageSetup extends React.Component {
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity onPress={event => this.onNextPress()}>
-                    <View style={styles.nextButton}>
-                        <Text style={styles.nextText}>NEXT</Text>
-                    </View>
-                </TouchableOpacity>
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity onPress={event => this.onNextPress()}>
+                        <View style={styles.nextButton}>
+                            <Text style={styles.nextText}>NEXT</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </ImageBackground>
         );
     }
@@ -216,21 +220,25 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.8,
+        flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 3.2,
+        flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 10,
+    },
+    bottomContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
     },
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 35,
+        paddingTop: height / 15,
     },
     title: {
         color: 'white',
@@ -244,15 +252,15 @@ const styles = StyleSheet.create({
         borderWidth: 1.2,
         borderRadius: 10,
         width: width / 3,
-        height: height / 16,
+        height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 14,
+        marginBottom: height / 20,
     },
     nextText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
     iotaLogo: {

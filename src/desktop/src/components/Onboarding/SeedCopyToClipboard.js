@@ -6,14 +6,17 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { showNotification } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import Template, { Main, Footer } from './Template';
+import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
+import css from './SeedCopyToClipboard.css';
 
 // TODO: Translate component
 class SeedCopyToClipboard extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         seed: PropTypes.string,
+        showNotification: PropTypes.func.isRequired,
     };
 
     render() {

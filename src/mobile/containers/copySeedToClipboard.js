@@ -1,47 +1,79 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, Clipboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Text,
+    TouchableOpacity,
+    Image,
+    ImageBackground,
+    Clipboard,
+    StatusBar,
+} from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
-import DropdownHolder from './dropdownHolder';
+import PropTypes from 'prop-types';
 
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+
+        this.timeout = null;
+    }
+
+    generateSeedClearanceAlert() {
+        if (this.dropdown) {
+            this.dropdown.alertWithType(
+                'info',
+                'Seed cleared',
+                'The seed has been cleared from the clipboard for your security.',
+            );
+        }
+    }
+
+    componentWillUnmount() {
+        this.clearTimeout();
+        Clipboard.setString('');
+    }
+
+    clearTimeout() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
     }
 
     onDonePress() {
+        this.clearTimeout();
+        Clipboard.setString('');
+
         this.props.navigator.pop({
             animated: false,
         });
-        Clipboard.setString('');
-        const dropdown = DropdownHolder.getDropDown();
-        dropdown.alertWithType(
-            'info',
-            'Seed cleared',
-            'The seed has been cleared from the clipboard for your security.',
-        );
     }
 
     onCopyPress() {
         Clipboard.setString(this.props.iota.seed);
-        const dropdown = DropdownHolder.getDropDown();
-        dropdown.alertWithType(
+        this.dropdown.alertWithType(
             'success',
             'Seed copied',
-            'The seed has been copied to the clipboard and will be cleared once you press DONE.',
+            'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.',
         );
+
+        this.timeout = setTimeout(() => {
+            Clipboard.setString('');
+            this.generateSeedClearanceAlert();
+        }, 60000);
     }
 
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>SAVE YOUR SEED</Text>
-                    </View>
                     <View style={styles.subtitlesContainer}>
                         <View style={styles.subtitleContainer}>
                             <Text style={styles.subtitle}>Manual Copy</Text>
@@ -119,7 +151,16 @@ class CopySeedToClipboard extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <DropdownAlert ref={ref => DropdownHolder.setDropDown(ref)} successColor="#009f3f" />
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
             </ImageBackground>
         );
     }
@@ -133,14 +174,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 1.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
         paddingHorizontal: width / 20,
     },
     midContainer: {
-        flex: 3.8,
+        flex: 3.6,
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: height / 5,
@@ -149,7 +190,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        paddingBottom: height / 25,
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -167,19 +207,6 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 35,
-        paddingBottom: height / 30,
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     currentSubtitle: {
         color: 'white',
@@ -201,7 +228,7 @@ const styles = StyleSheet.create({
     subtitlesContainer: {
         flexDirection: 'row',
         flex: 1,
-        paddingTop: height / 40,
+        paddingTop: height / 10,
     },
     subtitleContainer: {
         paddingHorizontal: width / 75,
@@ -224,7 +251,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 12,
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 29,
+        fontSize: width / 27.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingHorizontal: width / 6,
@@ -232,7 +259,7 @@ const styles = StyleSheet.create({
     infoTextBold: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 29,
+        fontSize: width / 27.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingTop: height / 80,
@@ -242,14 +269,15 @@ const styles = StyleSheet.create({
         borderWidth: 1.2,
         borderRadius: 10,
         width: width / 3,
-        height: height / 16,
+        height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
+        marginBottom: height / 20,
     },
     doneText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
     iotaLogo: {

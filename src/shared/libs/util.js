@@ -1,32 +1,25 @@
-// TODO: replace with a localized date library (e.g. moment.js)
+import { isToday, isYesterday, formatTimeAs, formatDayAs } from './dateUtils';
+
 export const formatTime = ts => {
-    const dateToFormat = new Date(ts * 1000);
-    const minutes = `0${dateToFormat.getMinutes()}`;
-    const hours = dateToFormat.getHours();
-    const day = dateToFormat.getDate();
-    const month = dateToFormat.getMonth();
-    const year = dateToFormat.getFullYear();
-    const ampm = hours <= 12 ? 'am' : 'pm';
-
-    const todayFormat = `${hours}:${minutes.substr(-2)} ${ampm}`;
-    const beforeYesterdayFormat = `${day}/${month}/${year}`;
-
-    const tempTs = new Date();
-    const todayTs = tempTs.setHours(0, 0, 0, 0) / 1000;
-    const yesterdayTs = todayTs - 24 * 60 * 60;
-
-    let formattedTime = '';
-    if (ts > todayTs) {
-        formattedTime = todayFormat;
-    } else if (yesterdayTs < ts && ts < todayTs) {
-        formattedTime = 'Yesterday';
-    } else if (ts < yesterdayTs) {
-        formattedTime = beforeYesterdayFormat;
+    if (isToday(ts)) {
+        return formatTimeAs.twelveHours(ts);
+    } else if (isYesterday(ts)) {
+        return 'Yesterday';
     }
-    return formattedTime;
+
+    return formatDayAs.dayMonthYear(ts);
+};
+
+export const formatModalTime = ts => {
+    return formatTimeAs.hoursMinutesDayMonthYear(ts);
 };
 
 export const formatValue = value => {
+    var negative = false;
+    if (value < 0) {
+        negative = true;
+        value = -value;
+    }
     switch (true) {
         case value < 1000:
             break;
@@ -43,11 +36,15 @@ export const formatValue = value => {
             value /= 1000000000000;
             break;
     }
-    return value;
+    if (negative == true) {
+        return -value;
+    } else {
+        return value;
+    }
 };
 
 export const formatUnit = value => {
-    let unit = '';
+    const unit = '';
     switch (true) {
         case value < 1000:
             return 'i';
@@ -81,9 +78,7 @@ export const isValidServerAddress = server => {
     return true;
 };
 
-export const isValidSeed = seed => {
-    return /^[A-Z9]{81}$/.test(seed);
-};
+export const isValidSeed = seed => /^[A-Z9]{81}$/.test(seed);
 
 export const guid = () => {
     const s4 = () =>
@@ -112,3 +107,12 @@ export const createRandomSeed = (randomBytesFn, length = 81) => {
 
     return seed;
 };
+
+export const getCurrentYear = () => new Date().getFullYear();
+
+export const isValidPassword = (password = '') => password.length >= 12;
+
+/*
+    Exports for utils that reside in other files
+ */
+export accountUtils from './accountUtils';

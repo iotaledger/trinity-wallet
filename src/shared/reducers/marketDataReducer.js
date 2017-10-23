@@ -2,27 +2,27 @@ const marketDataReducer = (
     state = {
         currency: 'USD',
         timeFrame: '24h',
-        chartData: []
+        chartData: [],
     },
-    action
+    action,
 ) => {
     switch (action.type) {
         case 'SET_CURRENCY':
             state = {
                 ...state,
-                currency: action.payload
+                currency: action.payload,
             };
             break;
         case 'SET_TIMEFRAME':
             state = {
                 ...state,
-                timeFrame: action.payload
+                timeFrame: action.payload,
             };
             break;
         case 'SET_PRICE':
             state = {
                 ...state,
-                price: action.payload
+                price: action.payload,
             };
             break;
         case 'SET_MARKETDATA':
@@ -31,13 +31,13 @@ const marketDataReducer = (
                 usdPrice: action.usdPrice,
                 mcap: action.mcap,
                 volume: action.volume,
-                change24h: action.change24h
+                change24h: action.change24h,
             };
             break;
         case 'SET_CHARTDATA':
             state = {
                 ...state,
-                chartData: action.payload
+                chartData: action.payload,
             };
             break;
     }

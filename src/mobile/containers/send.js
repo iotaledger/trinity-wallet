@@ -4,21 +4,23 @@ import {
     View,
     Text,
     Image,
-    TouchableWithoutFeedback,
     TouchableOpacity,
     LayoutAnimation,
     ListView,
     ScrollView,
     Dimensions,
+    StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import Triangle from 'react-native-triangle';
 import TransactionRow from '../components/transactionRow.js';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
+import DropdownAlert from 'react-native-dropdownalert';
+import Modal from 'react-native-modal';
 
+const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 const CustomLayoutSpring = {
     duration: 100,
@@ -67,7 +69,9 @@ class Send extends React.Component {
         }
     }
 
-    onQRPress() {}
+    onQRPress() {
+        this._showModal();
+    }
 
     onMaxPress() {
         this.setState({
@@ -84,6 +88,13 @@ class Send extends React.Component {
         getFromKeychain(this.props.iota.password, seed => {
             if (typeof seed !== 'undefined') {
                 sendTx(seed);
+                if (!sendTransaction(seed, address, value, message)) {
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Key reuse',
+                        `The address you are trying to send to has already been used. Please try another address.`,
+                    );
+                }
             } else {
                 console.log('error');
             }
@@ -115,10 +126,24 @@ class Send extends React.Component {
         return multiplier;
     }
 
+    _showModal = () => this.setState({ isModalVisible: true });
+
+    _hideModal = () => this.setState({ isModalVisible: false });
+
+    _renderModalContent = () => (
+        <TouchableOpacity
+            onPress={() => this._hideModal()}
+            style={{ width: width / 1.1, height: height / 1.1, backgroundColor: 'white' }}
+        >
+            <View style={{ flex: 1, justifyContent: 'center' }} />
+        </TouchableOpacity>
+    );
+
     render() {
         let { amount, address, message } = this.state;
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
+                <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={styles.textFieldContainer}>
@@ -140,7 +165,7 @@ class Send extends React.Component {
                             />
                         </View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={this.onQRPress()}>
+                            <TouchableOpacity onPress={() => this.onQRPress()}>
                                 <View style={styles.button}>
                                     <Image
                                         source={require('../../shared/images/camera.png')}
@@ -230,6 +255,30 @@ class Send extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
+                <Modal
+                    animationIn={'bounceInUp'}
+                    animationOut={'bounceOut'}
+                    animationInTiming={1000}
+                    animationOutTiming={200}
+                    backdropTransitionInTiming={500}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={'#132d38'}
+                    backdropOpacity={0.6}
+                    style={{ alignItems: 'center' }}
+                    isVisible={this.state.isModalVisible}
+                >
+                    {this._renderModalContent()}
+                </Modal>
                 {/* }<ListView
                 style={{position: 'absolute', top: 250, left: 0, right: 0, bottom: 0}}
                 dataSource={this.state.dataSource}
@@ -332,15 +381,15 @@ const styles = StyleSheet.create({
     conversionText: {
         fontFamily: 'Lato-Light',
         color: 'white',
-        opacity: 0.75,
+        opacity: 1,
         backgroundColor: 'transparent',
         position: 'absolute',
         right: width / 3.5,
-        top: height / 6,
+        top: height / 6.2,
     },
     maxButtonContainer: {
         alignItems: 'flex-start',
-        paddingTop: height / 150,
+        marginTop: height / 150,
     },
     maxButtonText: {
         color: 'white',
@@ -362,6 +411,32 @@ const styles = StyleSheet.create({
         height: width / 50,
         width: width / 34,
         marginRight: 2,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 
