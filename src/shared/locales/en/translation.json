@@ -91,7 +91,7 @@
         "explanation":
             "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
         "text": "triple check",
-        "button": "DONE"
+        "button1": "DONE"
     },
     "saveYourSeed3": {
         "title": "SAVE YOUR SEED",
@@ -129,6 +129,12 @@
         "error2_text": "The passwords you have entered do not match. Please try again.",
         "button1": "DONE",
         "button2": "GO BACK"
+    },
+    "onboardingComplete": {
+        "title": "ALL DONE!",
+        "text1":
+            "The wallet is now setup and ready to use. If you need to make any changes in the future, look in the Tools men",
+        "button1": "GO TO LOGIN"
     },
     "home": {
         "tab1": "BALANCE",
