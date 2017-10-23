@@ -7,30 +7,26 @@
     "unknownError_text":"Željenega dejanja trenutno ni možno izvesti. Prosimo poskusite kasneje."
   },
   "setLanguage":{
-    "title":"Pozdrav",
     "dropdown_title":"Jezik",
     "button1":"Naprej"
   },
   "welcome1":{
-    "title":"Dobrodošel",
     "text1":"Zahvaljujemo se vam za prenos IOTA denarnice.",
     "text2":"Naslednjih nekaj minut bomo porabili za nastavitve vaše denarnice.",
     "reminder":"Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces.",
     "button1":"Naprej",
-    "button2":"Nazaj"
+    "button2":"BACK"
   },
   "welcome2":{
-    "title":"Nastavitve denarnice",
     "text1":"Okei. Pa nastavimo vašo denarnico!",
     "text2":"Ali že imate seed, ki bi ga želeli uporabiti?",
-    "seed_explanation1":"Seed je kot glavno geslo za vaš račun.",
+    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
     "seed_explanation2":"Uporabite ga lahko za dostop do vaših sredstev iz katere koli denarnice, na kateri koli napravi. V primeru da seed izgubiste, prav tako izgubiste vaša sredstva",
     "reminder":"Prosimo vas, da imate seed shranjen na varnem",
-    "button1":"Da - imam seme",
-    "button2":"Ne - rabim novo seme"
+    "button1":"YES",
+    "button2":"NO"
   },
   "lightserver":{
-    "title":"Nastavitve \"Light\" srežnika",
     "text1":"Light strežnik je prehod do IOTA omrežja, ki ga prijazno zagotavljajo člani skupnosti ali naši poslovni partnerji. ",
     "text2":"Več informacij o strežnikih lahko najdete na: http://iotasupport.com/lightwallet.shtml",
     "text3":"Na spodnjem seznamu izberite strežnik.",
@@ -38,19 +34,17 @@
     "custom_server_label":"Ostali naslovi strežnika",
     "other":"Ostalo",
     "button1":"Naprej",
-    "button2":"Nazaj"
+    "button2":"BACK"
   },
   "login":{
-    "title":"Prijava",
     "text":"Prosimo vnesite vaše geslo",
     "placeholder":"Geslo",
     "error_title":"Neprepoznano geslo",
     "error_text":"Geslo ni bilo prepoznano. Prosimo, poskusite ponovno.",
     "button1":"Opravljeno",
-    "button2":"Zamenjaj denarnico"
+    "button2":"USE SEED"
   },
   "enterSeed":{
-    "title":"Vnesite vašo seme",
     "error_title":"Seed je prekratek",
     "error_text":"Seed mora imeti vsaj 60 znakov. Prosimo, poskusite ponovno.",
     "invalid_seed_title":"Napačen seed",
@@ -61,7 +55,7 @@
     "scan_code":"Skeniraj QR kodo",
     "close":"Zapri",
     "button1":"Opravljeno",
-    "button2":"Nazaj"
+    "button2":"BACK"
   },
   "newSeedSetup":{
     "title":"Napravi nov seed",
@@ -69,20 +63,18 @@
     "text1":"Pritisnite posamezne znake za jih ponaključit.",
     "text2":"Nato kliknite NAPREJ",
     "button2":"Naprej",
-    "button3":"Nazaj"
+    "button3":"BACK"
   },
   "saveYourSeed":{
-    "title":"Shrani svoj seed",
     "text1":"Seed morate shraniti z vsaj eno izmed spodnjih možnosti.",
     "text2":"vsaj en",
     "optionA":"Ročna kopija",
     "optionB":"Printanje papirnate denarnice",
     "optionC":"Kopiraj v clipboard",
     "button1":"Naprej",
-    "button2":"Nazaj"
+    "button2":"BACK"
   },
   "saveYourSeed2":{
-    "title":"Shrani svoj seed",
     "optionA":"Ročna kopija",
     "optionB":" Papirnata denarnica",
     "optionC":"Kopiraj v clipboard",
@@ -91,17 +83,15 @@
     "button":"Opravljeno"
   },
   "saveYourSeed3":{
-    "title":"Shrani svoj seed",
     "optionA":"Ročna kopija",
     "optionB":" Papirnata denarnica",
     "optionC":"Kopiraj v clipboard",
-    "explanation":"Kliknite na spodnji gumb za kopiranje seeda v password manager. Seed bo ostal v clipbordu še 60 sekund.",
+    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
     "text":"Ne shranjujte seeda v navadnem tekstu.",
     "button1":"Kopiraj v clipboard",
     "button2":"Opravljeno"
   },
   "saveYourSeed4":{
-    "title":"Shrani svoje seme",
     "optionA":"Ročna kopija",
     "optionB":" Papirnata denarnica",
     "optionC":"Kopiraj v clipboard",
@@ -111,19 +101,11 @@
     "button1":"Printanje papirnate denarnice",
     "button2":"Opravljeno"
   },
-  "securityIntro":{
-    "title":"Nastavite lokalno geslo",
-    "text1":"Za lažjo prijavo v denarnico lahko sedaj nastavite kratko geslo. To lokalno geslo je lahko uporabljeno samo na tej napravi.",
-    "explanation1":"Lokalno geslo se lahko uporabi samo za odkleniti račun na tej napravi.",
-    "explanation2":"IOTA seed se uporablja za dostop do vaših sredstev iz katere koli denarnice, na kateri koli napravi.",
-    "button1":"DA - nastavite geslo",
-    "button2":"NE - prijava s svojim geslom"
-  },
   "setPassword":{
     "title":"Nastavitve gesla",
-    "text":"Ok, zdaj moramo nastaviti geslo.",
-    "explanation":"Šifrirana kopija vašega seeda bo shranjena v vašem keychainu. Potem boste lahko dostopali do denarnice kar preko vašega gesla.",
-    "reminder":"Zagotovite, da uporabite varno geslo.",
+    "text":"Now we need to set up a password.",
+    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "reminder":"Ensure you use a strong password of at least 12 characters.",
     "placeholder1":"'Geslo'",
     "placeholder2":"Znova vnesite geslo",
     "error1_title":"Geslo je prekratko",
@@ -131,7 +113,7 @@
     "error2_title":"Gesli se ne ujemata",
     "error2_text":"Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
     "button1":"Opravljeno",
-    "button2":"Nazaj"
+    "button2":"BACK"
   },
   "home":{
     "tab1":"Sredstva",
@@ -142,10 +124,10 @@
     "mcap":"Tržna kapitalizacija",
     "change":"Spremeni",
     "volume":"Količina transakcij",
-    "address":"Naslov",
-    "amount":"Znesek",
-    "botton1":"pošlji sredstva",
-    "botton2":"Ustvari nov naslov",
-    "botton3":"Odjava"
+    "address":"Address",
+    "amount":"Amount",
+    "button1":"SEND",
+    "button2":"GENERATE NEW ADDRESS",
+    "button3":"LOG OUT"
   }
 }
