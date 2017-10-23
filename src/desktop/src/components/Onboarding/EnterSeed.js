@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { isValidSeed } from '../../../../shared/libs/util';
 import { showError } from 'actions/notifications';
-import Header from './Header';
+import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 
@@ -78,9 +78,8 @@ class EnterSeed extends React.PureComponent {
         const { t } = this.props;
         const { seed = '', showScanner } = this.state;
         return (
-            <form onSubmit={this.onSubmit}>
-                <Header headline={t('title')} />
-                <main>
+            <Template type="form" onSubmit={this.onSubmit} headline={t('title')}>
+                <Main>
                     <div className={css.formGroup}>
                         <textarea
                             name="seed"
@@ -93,11 +92,13 @@ class EnterSeed extends React.PureComponent {
                         />
                         <p>{seed.length}/81</p>
                     </div>
-                    {(!showScanner && (
+                    {/* TODO: prettier fucks this whole part up. maybe we can find a better solution here */}
+                    {!showScanner && (
                         <Button type="button" onClick={this.openScanner}>
                             Scan QR
                         </Button>
-                    )) || (
+                    )}
+                    {showScanner && (
                         <div>
                             <Button type="button" onClick={this.closeScanner}>
                                 CLOSE
@@ -116,16 +117,16 @@ class EnterSeed extends React.PureComponent {
                             <strong>{t('reminder')}</strong>
                         </p>
                     </Infobox>
-                </main>
-                <footer>
-                    <Button to="/onboarding/wallet" variant="warning">
+                </Main>
+                <Footer>
+                    <Button to="/wallet" variant="warning">
                         {t('button2')}
                     </Button>
                     <Button type="submit" variant="success">
                         {t('button1')}
                     </Button>
-                </footer>
-            </form>
+                </Footer>
+            </Template>
         );
     }
 }
