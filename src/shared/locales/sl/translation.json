@@ -59,7 +59,7 @@
     "seed_explanation":"Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
     "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
     "scan_code":"Scan QR code",
-    "close":"CLOSE",
+    "close":"Zapri",
     "button1":"Opravljeno",
     "button2":"Nazaj"
   },
@@ -117,15 +117,15 @@
     "explanation1":"The local passphrase can only be used to unlock the account on this device.",
     "explanation2":"The IOTA seed can still be used to access your funds on any wallet on any device.",
     "button1":"YES - set up a passphrase",
-    "button2":"NO - login with my seed"
+    "button2":"NE - prijava s svojim geslom"
   },
   "setPassword":{
     "title":"Nastavitve gesla",
     "text":"Ok, zdaj moramo nastaviti geslo.",
     "explanation":"An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
-    "reminder":"Ensure you use a strong password.",
-    "placeholder1":"'PASSWORD'",
-    "placeholder2":"RETYPE PASSWORD",
+    "reminder":"Zagotovite, da uporabite varno geslo.",
+    "placeholder1":"'Geslo'",
+    "placeholder2":"Znova vnesite geslo",
     "error1_title":"Geslo je prekratko",
     "error1_text":"Your password must be at least 8 characters. Please try again.",
     "error2_title":"Gesli se ne ujemata",
@@ -134,7 +134,7 @@
     "button2":"Nazaj"
   },
   "home":{
-    "tab1":"BALANCE",
+    "tab1":"Sredstva",
     "tab2":"Pošlji",
     "tab3":"Prejmi",
     "tab4":"Zgodovina",
