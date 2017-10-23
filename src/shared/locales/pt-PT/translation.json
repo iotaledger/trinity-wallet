@@ -7,30 +7,26 @@
     "unknownError_text":"De momento não podemos executar a ação desejada. Por favor, tente novamente."
   },
   "setLanguage":{
-    "title":"OLÁ",
     "dropdown_title":"Língua",
     "button1":"SEGUINTE"
   },
   "welcome1":{
-    "title":"BEM-VINDO",
     "text1":"Obrigado por descarregar a carteira IOTA.",
     "text2":"Vamos passar os próximos minutos a configurar a sua carteira.",
     "reminder":"Pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo.",
     "button1":"PRÓXIMO",
-    "button2":"VOLTAR"
+    "button2":"BACK"
   },
   "welcome2":{
-    "title":"CONFIGURAÇÃO DA CARTEIRA",
     "text1":"Ok. Vamos configurar a sua carteira!",
     "text2":"Já possui uma Seed que gostaria de utilizar?",
-    "seed_explanation1":"A Seed é uma palavra-passe mestre para a sua conta.",
+    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
     "seed_explanation2":"Pode usá-la para aceder aos seus fundos a partir de qualquer carteira, em qualquer dispositivo. Mas se perder a sua Seed, também perderá os seus IOTA",
     "reminder":"Por favor, mantenha a sua Seed protegida e segura",
-    "button1":"Sim. Eu já tenho uma Seed.",
-    "button2":"Não. Eu preciso de uma nova Seed."
+    "button1":"YES",
+    "button2":"NO"
   },
   "lightserver":{
-    "title":"Configuração de Servidor Simples",
     "text1":"Um servidor leve é um acesso à rede IOTA, gentilmente providenciado por membros da comunidade ou por parceiros corporativos. ",
     "text2":"Poderá encontrar mais informações sobre os servidores em: http://iotasupport.com/lightwallet.shtml",
     "text3":"Por favor, escolha um servidor da lista abaixo.",
@@ -38,19 +34,17 @@
     "custom_server_label":"Endereço de outro servidor",
     "other":"Outro",
     "button1":"Próximo",
-    "button2":"Voltar"
+    "button2":"BACK"
   },
   "login":{
-    "title":"Iniciar sessão",
     "text":"Por favor, insira a sua palavra-passe",
     "placeholder":"PALAVRA-PASSE",
     "error_title":"Palavra-passe não reconhecida",
     "error_text":"A palavra-passe não foi reconhecida. Por favor, tente novamente.",
     "button1":"Concluído",
-    "button2":"MUDAR CARTEIRA"
+    "button2":"USE SEED"
   },
   "enterSeed":{
-    "title":"DIGITE A SUA SEED",
     "error_title":"A Seed é demasiado curta",
     "error_text":"As sementes devem ter pelo menos 60 caracteres. Por favor, tente novamente.",
     "invalid_seed_title":"Seed inválida",
@@ -61,7 +55,7 @@
     "scan_code":"Ler código QR",
     "close":"FECHAR",
     "button1":"Concluído",
-    "button2":"VOLTAR"
+    "button2":"BACK"
   },
   "newSeedSetup":{
     "title":"GERAR UMA NOVA SEED",
@@ -69,20 +63,18 @@
     "text1":"Digite letras individuais para tornar o processo mais aleatório.",
     "text2":"De seguida, clique em PRÓXIMO",
     "button2":"PRÓXIMO",
-    "button3":"VOLTAR"
+    "button3":"BACK"
   },
   "saveYourSeed":{
-    "title":"GRAVE A SUA SEED",
     "text1":"Deve guardar a sua Seed pelo menos numa das opções listadas em baixo.",
     "text2":"pelo menos uma",
     "optionA":"CÓPIA MANUAL",
     "optionB":"IMPRIMIR CARTEIRA DE PAPEL",
     "optionC":"COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
     "button1":"PRÓXIMO",
-    "button2":"VOLTAR"
+    "button2":"BACK"
   },
   "saveYourSeed2":{
-    "title":"GRAVE A SUA SEED",
     "optionA":"Cópia manual",
     "optionB":"Carteira de papel",
     "optionC":"Copiar para a área de transferência",
@@ -91,17 +83,15 @@
     "button":"CONCLUÍDO"
   },
   "saveYourSeed3":{
-    "title":"GRAVE A SUA SEED",
     "optionA":"Cópia manual",
     "optionB":" Carteira de papel",
     "optionC":"Copiar para a Área de Transferência",
-    "explanation":"Clique no botão em baixo para copiar a sua Seed para um gestor de palavras-passe. Ficará na sua área de transferência durante 60 segundos.",
+    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
     "text":"Não grave a sua Seed num arquivo de texto descriptografado.",
     "button1":"COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
     "button2":"CONCLUÍDO"
   },
   "saveYourSeed4":{
-    "title":"GRAVE A SUA SEED",
     "optionA":"Cópia Manual",
     "optionB":" Carteira de Papel",
     "optionC":"Copiar para a Área de Transferência",
@@ -111,19 +101,11 @@
     "button1":"IMPRIMIR A CARTEIRA DE PAPEL",
     "button2":"CONCLUÍDO"
   },
-  "securityIntro":{
-    "title":"CONFIGURAR A FRASE-PASSE LOCAL",
-    "text1":"Para facilitar o acesso a esta carteira, agora poderá definir uma frase-passe. Esta frase-passe é local e só poderá ser usada neste dispositivo.",
-    "explanation1":"A frase-passe local só pode ser usada para desbloquear a sua conta neste dispositivo.",
-    "explanation2":"Contudo, a Seed IOTA pode ser usada para aceder aos seus fundos em qualquer carteira ou dispositivo.",
-    "button1":"Sim - configurar uma frase-passe",
-    "button2":"Não - iniciar sessão com a minha Seed"
-  },
   "setPassword":{
     "title":"CONFIGURAR PALAVRA-PASSE",
-    "text":"Ok, agora precisamos de configurar uma palavra-passe.",
-    "explanation":"Um cópia criptografada da sua Seed será guardada no seu ficheiro de palavras-passe (porta-chaves). Sendo assim, só necessita de digitar a sua palavra-passe para aceder à sua carteira.",
-    "reminder":"Assegure-se que usa uma palavra-passe segura.",
+    "text":"Now we need to set up a password.",
+    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "reminder":"Ensure you use a strong password of at least 12 characters.",
     "placeholder1":"`PALAVRA-PASSE´",
     "placeholder2":"DIGITE DE NOVO A PALAVRA-PASSE",
     "error1_title":"A palavra-passe é demasiado curta",
@@ -131,7 +113,7 @@
     "error2_title":"As palavras-passe não correspondem",
     "error2_text":"As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
     "button1":"CONCLUÍDO",
-    "button2":"VOLTAR"
+    "button2":"BACK"
   },
   "home":{
     "tab1":"SALDO",
@@ -142,10 +124,10 @@
     "mcap":"MCAP",
     "change":"Mudar",
     "volume":"Volume",
-    "address":"ENDEREÇO",
-    "amount":"QUANTIDADE",
-    "botton1":"Enviar IOTA",
-    "botton2":"GERAR NOVO ENDEREÇO",
-    "botton3":"Fechar sessão"
+    "address":"Address",
+    "amount":"Amount",
+    "button1":"SEND",
+    "button2":"GENERATE NEW ADDRESS",
+    "button3":"LOG OUT"
   }
 }
