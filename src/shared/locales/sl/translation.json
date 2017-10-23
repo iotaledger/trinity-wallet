@@ -96,7 +96,8 @@
     "optionB":" Papirnata denarnica",
     "optionC":"Kopiraj v clipboard",
     "explanation":"Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
-    "text":"Shranite ga varno",
+    "text1":"Store it safely",
+    "text2":"Never share your seed with anyone.",
     "check_button":"IOTA logotip",
     "button1":"Printanje papirnate denarnice",
     "button2":"Opravljeno"
@@ -114,6 +115,10 @@
     "error2_text":"Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
     "button1":"Opravljeno",
     "button2":"BACK"
+  },
+  "onboardingComplete":{
+    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "button":"NEXT"
   },
   "home":{
     "tab1":"Sredstva",
