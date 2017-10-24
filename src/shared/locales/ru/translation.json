@@ -106,7 +106,7 @@
     "title":"УСТАНОВКА ПАРОЛЯ",
     "text":"Теперь нам нужно установить пароль.",
     "explanation":"Вы сможете использовать этот пароль для доступа к кошельку в будущем. Зашифрованная копия вашего ключа будет храниться на данном устройстве.",
-    "reminder":"Ensure you use a strong password of at least 12 characters.",
+    "reminder":"Убедитесь, что вы используете надежный пароль из по крайней мере 12 символов.",
     "placeholder1":"«ПАРОЛЬ»",
     "placeholder2":"ПОВТОРИТЕ ПАРОЛЬ",
     "error1_title":"Слишком короткий пароль",
@@ -114,11 +114,11 @@
     "error2_title":"Пароли не совпадают",
     "error2_text":"Введенные пароли не совпадают. Пожалуйста, попробуйте еще раз.",
     "button1":"ГОТОВО",
-    "button2":"BACK"
+    "button2":"НАЗАД"
   },
   "onboardingComplete":{
-    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
+    "text":"Кошелек теперь настроен и готов к использованию. Если вам понадобится в будущем внести какие-либо изменения, используйте Инструменты из меню.",
+    "button":"ДАЛЕЕ"
   },
   "home":{
     "tab1":"БАЛАНС",
@@ -129,10 +129,10 @@
     "mcap":"MCAP",
     "change":"Изменить",
     "volume":"Объем",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
+    "address":"Адрес",
+    "amount":"Сумма",
+    "button1":"ОТПРАВИТЬ",
+    "button2":"СГЕНЕРИРОВАТЬ НОВЫЙ АДРЕС",
+    "button3":"ВЫЙТИ"
   }
 }
