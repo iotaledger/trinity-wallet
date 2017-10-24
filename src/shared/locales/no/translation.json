@@ -53,9 +53,9 @@
     "seed_explanation":"Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.",
     "reminder":"OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE",
     "scan_code":"Skann QR-kode",
-    "close":"CLOSE",
+    "close":"LUKK",
     "button1":"FERDIG",
-    "button2":"BACK"
+    "button2":"TILBAKE"
   },
   "newSeedSetup":{
     "title":"FÅ NY MASTERNØKKEL",
@@ -63,76 +63,76 @@
     "text1":"Trykk enkelte tegn for å flytte de til ny tilfeldig plassering.",
     "text2":"Klikk NESTE",
     "button2":"NESTE",
-    "button3":"BACK"
+    "button3":"TILBAKE"
   },
   "saveYourSeed":{
-    "text1":"You must save your seed with at least one of the options listed below.",
-    "text2":"at least one",
-    "optionA":"MANUAL COPY",
-    "optionB":"PRINT PAPER WALLET",
-    "optionC":"COPY TO CLIPBOARD",
-    "button1":"NEXT",
-    "button2":"BACK"
+    "text1":"Du må velge minst ett av valgene nedenfor når du lagrer nøkkelen din.",
+    "text2":"minst én",
+    "optionA":"MANUELL AVSKRIFT",
+    "optionB":"SKRIV UT PAPIRLOMMEBOK",
+    "optionC":"KOPIER TIL UTKLIPPSTAVLEN",
+    "button1":"NESTE",
+    "button2":"TILBAKE"
   },
   "saveYourSeed2":{
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
-    "explanation":"Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
-    "text":"triple check",
-    "button":"DONE"
+    "optionA":"Manuell avskrift",
+    "optionB":" Papirlommebok",
+    "optionC":"Kopier til utklippstavle",
+    "explanation":"Din nøkkel er 81 tegn lest fra venstre mot høyre. Skriv den ned sammen med kontrolltegnene og trippel-sjekk at alt er korrekt nedskrevet.",
+    "text":"trippel sjekk",
+    "button":"FERDIG"
   },
   "saveYourSeed3":{
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
-    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
-    "text":"Do not store the seed in plain text.",
-    "button1":"COPY TO CLIPBOARD",
-    "button2":"DONE"
+    "optionA":"Manuell avskrift",
+    "optionB":" Papirlommebok",
+    "optionC":"Kopier til utklippstavle",
+    "explanation":"Trykk på knappen under, og kopier nøkkelen til et passord-program. Nøkkelen vil være tilgjengelig i 60 sekunder.",
+    "text":"Ikke lagre nøkkelen din som ren tekst.",
+    "button1":"KOPIER TIL UTKLIPPSTAVLEN",
+    "button2":"FERDIG"
   },
   "saveYourSeed4":{
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
-    "explanation":"Click the button below to print a paper copy of your seed.",
-    "text1":"Store it safely",
-    "text2":"Never share your seed with anyone.",
+    "optionA":"Manuell avskrift",
+    "optionB":" Papirlommebok",
+    "optionC":"Kopier til utklippstavle",
+    "explanation":"Klikk knappen nedenfor for å skrive ut en kopi av din nøkkel.",
+    "text1":"Lagre den trygt",
+    "text2":"Du må aldri dele nøkkelen din med noen.",
     "check_button":"IOTA logo",
-    "button1":"PRINT PAPER WALLET",
+    "button1":"SKRIV UT PAPIRLOMMEBOK",
     "button2":"FERDIG"
   },
   "setPassword":{
-    "title":"PASSWORD SETUP",
-    "text":"Now we need to set up a password.",
-    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
-    "reminder":"Ensure you use a strong password of at least 12 characters.",
-    "placeholder1":"'PASSWORD'",
-    "placeholder2":"RETYPE PASSWORD",
-    "error1_title":"Password is too short",
+    "title":"PASSORD OPPSETT",
+    "text":"Nå må vi sette opp et passord.",
+    "explanation":"Du bruker dette passordet for å åpne lommeboka i fremtiden. En kryptert kopi av nøkkelen din vil bli lagret på enheten.",
+    "reminder":"Sikre du bruk et sterkt passord minst 12 tegn.",
+    "placeholder1":"'PASSORD'",
+    "placeholder2":"SKRIV INN PASSORDET PÅ NYTT",
+    "error1_title":"Passordet er for kort",
     "error1_text":"Your password must be at least 8 characters. Please try again.",
-    "error2_title":"Passwords do not match",
-    "error2_text":"The passwords you have entered do not match. Please try again.",
-    "button1":"DONE",
-    "button2":"BACK"
+    "error2_title":"Passordene samsvarer ikke",
+    "error2_text":"Passordene du angav samsvarer ikke. Prøv på nytt.",
+    "button1":"FERDIG",
+    "button2":"TILBAKE"
   },
   "onboardingComplete":{
-    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
+    "text":"Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Verktøy-menyen.",
+    "button":"NESTE"
   },
   "home":{
-    "tab1":"BALANCE",
-    "tab2":"SEND",
-    "tab3":"RECEIVE",
-    "tab4":"HISTORY",
-    "tab5":"TOOLS",
+    "tab1":"SALDO",
+    "tab2":"SENDE",
+    "tab3":"MOTTA",
+    "tab4":"HISTORIKK",
+    "tab5":"VERKTØY",
     "mcap":"MCAP",
-    "change":"Change",
-    "volume":"Volume",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
+    "change":"Endre",
+    "volume":"Volum",
+    "address":"Adresse",
+    "amount":"Beløp",
+    "button1":"SENDE",
+    "button2":"FÅ NY MASTERNØKKEL",
+    "button3":"LOGG UT"
   }
 }
