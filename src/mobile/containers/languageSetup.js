@@ -36,7 +36,6 @@ class LanguageSetup extends React.Component {
             triangleDirection: 'down',
             dropdownHeight: 0,
             languageSelected: 'English (International)',
-            nextText: 'NEXT',
         };
     }
 
@@ -76,14 +75,6 @@ class LanguageSetup extends React.Component {
             triangleDirection: 'down',
             languageSelected: item,
         });
-
-        if (this.state.languageSelected == 'English (International)') {
-            this.setState({
-                nextText: 'WEITER',
-            });
-        } else {
-            nextText: 'NEXT';
-        }
     }
 
     render() {
@@ -206,7 +197,7 @@ class LanguageSetup extends React.Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onNextPress()}>
                         <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>{this.state.nextText}</Text>
+                            <Text style={styles.nextText}>NEXT</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
