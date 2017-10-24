@@ -8,14 +8,14 @@
   },
   "setLanguage":{
     "dropdown_title":"Língua",
-    "button1":"SEGUINTE"
+    "button1":"PRÓXIMO"
   },
   "welcome1":{
     "text1":"Obrigado por descarregar a carteira IOTA.",
     "text2":"Vamos passar os próximos minutos a configurar a sua carteira.",
     "reminder":"Pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo.",
     "button1":"PRÓXIMO",
-    "button2":"Voltar"
+    "button2":"VOLTAR"
   },
   "welcome2":{
     "text1":"Ok. Vamos configurar a sua carteira!",
@@ -33,15 +33,15 @@
     "server_label":"Servidor",
     "custom_server_label":"Endereço de outro servidor",
     "other":"Outro",
-    "button1":"Próximo",
-    "button2":"Voltar"
+    "button1":"PRÓXIMO",
+    "button2":"VOLTAR"
   },
   "login":{
     "text":"Por favor, insira a sua palavra-passe",
     "placeholder":"PALAVRA-PASSE",
     "error_title":"Palavra-passe não reconhecida",
     "error_text":"A palavra-passe não foi reconhecida. Por favor, tente novamente.",
-    "button1":"Concluído",
+    "button1":"CONCLUÍDO",
     "button2":"USAR A SEED"
   },
   "enterSeed":{
@@ -54,7 +54,7 @@
     "reminder":"NUNCA PARTILHE A SUA SEED COM NINGUÉM",
     "scan_code":"Ler código QR",
     "close":"FECHAR",
-    "button1":"Concluído",
+    "button1":"CONCLUÍDO",
     "button2":"VOLTAR"
   },
   "newSeedSetup":{
@@ -66,7 +66,7 @@
     "button3":"VOLTAR"
   },
   "saveYourSeed":{
-    "text1":"Deve guardar a sua Seed pelo menos numa das opções listadas em baixo.",
+    "text1":"Deve guardar a sua Seed usando, pelo menos, uma das opções listadas em baixo.",
     "text2":"pelo menos uma",
     "optionA":"CÓPIA MANUAL",
     "optionB":"IMPRIMIR CARTEIRA DE PAPEL",
@@ -77,7 +77,7 @@
   "saveYourSeed2":{
     "optionA":"Cópia manual",
     "optionB":"Carteira de papel",
-    "optionC":"Copiar para a área de transferência",
+    "optionC":"Copiar para a Área de Transferência",
     "explanation":"A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e confirme VÁRIAS vezes que anotou corretamente.",
     "text":"verifique várias vezes",
     "button":"CONCLUÍDO"
@@ -106,19 +106,19 @@
     "title":"CONFIGURAR PALAVRA-PASSE",
     "text":"Agora precisamos de criar uma palavra-passe.",
     "explanation":"No futuro, irá usar esta palavra-passe para aceder à sua carteira. Será armazenada uma cópia encriptada da sua Seed no seu dispositivo.",
-    "reminder":"Ensure you use a strong password of at least 12 characters.",
+    "reminder":"Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
     "placeholder1":"`PALAVRA-PASSE´",
     "placeholder2":"DIGITE DE NOVO A PALAVRA-PASSE",
     "error1_title":"A palavra-passe é demasiado curta",
-    "error1_text":"Your password must be at least 8 characters. Please try again.",
+    "error1_text":"A sua palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
     "error2_title":"As palavras-passe não correspondem",
     "error2_text":"As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
     "button1":"CONCLUÍDO",
-    "button2":"BACK"
+    "button2":"VOLTAR"
   },
   "onboardingComplete":{
-    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
+    "text":"Agora a sua carteira está configurada e pronta para ser usada. Se precisar de efetuar alguma alteração no futuro, aceda ao menu Ferramentas.",
+    "button":"PRÓXIMO"
   },
   "home":{
     "tab1":"SALDO",
@@ -129,10 +129,10 @@
     "mcap":"MCAP",
     "change":"Variação",
     "volume":"Volume",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
+    "address":"Endereço",
+    "amount":"Quantia",
+    "button1":"ENVIAR",
+    "button2":"GERAR NOVO ENDEREÇO",
+    "button3":"TERMINAR SESSÃO"
   }
 }
