@@ -118,7 +118,7 @@
   },
   "onboardingComplete":{
     "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
+    "button":"WEITER"
   },
   "home":{
     "tab1":"KONTOSTAND",
