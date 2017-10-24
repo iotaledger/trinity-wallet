@@ -67,25 +67,25 @@
   },
   "saveYourSeed":{
     "text1":"يجب عليك حفظ السييد الخاص بك بطريقة واحده على الأقل من الخيارات المدرجة أدناه.",
-    "text2":"at least one",
+    "text2":"بطريقة واحده على الأقل",
     "optionA":"MANUAL COPY",
-    "optionB":"PRINT PAPER WALLET",
-    "optionC":"COPY TO CLIPBOARD",
-    "button1":"NEXT",
-    "button2":"BACK"
+    "optionB":"طباعة محفظة ورقية",
+    "optionC":"نسخ إلى الحافظة",
+    "button1":"التالي",
+    "button2":"رجوع"
   },
   "saveYourSeed2":{
     "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
+    "optionB":" محفظة ورقية",
+    "optionC":"نسخ إلى الحافظة",
     "explanation":"Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
     "text":"triple check",
-    "button":"DONE"
+    "button":"تم"
   },
   "saveYourSeed3":{
     "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
+    "optionB":" محفظة ورقية",
+    "optionC":"نسخ إلى الحافظة",
     "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
     "text":"Do not store the seed in plain text.",
     "button1":"COPY TO CLIPBOARD",
@@ -113,26 +113,26 @@
     "error1_text":"Your password must be at least 8 characters. Please try again.",
     "error2_title":"Passwords do not match",
     "error2_text":"The passwords you have entered do not match. Please try again.",
-    "button1":"DONE",
-    "button2":"BACK"
+    "button1":"تم",
+    "button2":"رجوع"
   },
   "onboardingComplete":{
     "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
+    "button":"التالي"
   },
   "home":{
-    "tab1":"BALANCE",
-    "tab2":"SEND",
+    "tab1":"الرصيد",
+    "tab2":"إرسال",
     "tab3":"RECEIVE",
-    "tab4":"HISTORY",
-    "tab5":"TOOLS",
+    "tab4":"التاريخ",
+    "tab5":"أدوات",
     "mcap":"MCAP",
     "change":"تغيير",
-    "volume":"Volume",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
+    "volume":"مستوى الصوت",
+    "address":"عنوان",
+    "amount":"الكمية",
+    "button1":"إرسال",
+    "button2":"إنشاء سييد جديد",
+    "button3":"تسجيل الخروج"
   }
 }
