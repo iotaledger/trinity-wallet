@@ -69,7 +69,7 @@ class Login extends React.Component {
 
     onUseSeedPress(props) {
         this.props.navigator.push({
-            screen: 'walletSetup',
+            screen: 'useSeed',
             navigatorStyle: {
                 navBarHidden: true,
                 screenBackgroundImageName: 'bg-green.png',
