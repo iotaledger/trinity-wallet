@@ -50,23 +50,23 @@
     "invalid_seed_title":"無効なSeed",
     "invalid_seed_text":"Seedが無効です。Seedには、アルファベット大文字（A〜Z）と数字の\"9\"のみが使用でき、長さは60〜81文字である必要があります。",
     "placeholder":"Seed",
-    "seed_explanation":"Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-    "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
-    "scan_code":"Scan QR code",
-    "close":"CLOSE",
-    "button1":"DONE",
-    "button2":"BACK"
+    "seed_explanation":"Seedは81文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、81文字以上の長さにはできません。",
+    "reminder":"Seedを他の人に教えては行けません。",
+    "scan_code":"QRコード読み取り",
+    "close":"閉じる",
+    "button1":"完了",
+    "button2":"戻る"
   },
   "newSeedSetup":{
-    "title":"GENERATE A NEW SEED",
-    "button1":"GENERATE NEW SEED",
-    "text1":"Press individual letters to randomise them.",
-    "text2":"Then click NEXT",
-    "button2":"NEXT",
-    "button3":"BACK"
+    "title":"新Seed生成",
+    "button1":"生成",
+    "text1":"文字をタップしてランダムにしてください。",
+    "text2":"[次へ] をクリックします。",
+    "button2":"次へ",
+    "button3":"戻る"
   },
   "saveYourSeed":{
-    "text1":"You must save your seed with at least one of the options listed below.",
+    "text1":"下の方法から最低一つ選んでSeedを保存しましょう。",
     "text2":"at least one",
     "optionA":"MANUAL COPY",
     "optionB":"PRINT PAPER WALLET",
