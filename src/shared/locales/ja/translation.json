@@ -13,43 +13,43 @@
   "welcome1":{
     "text1":"IOTA Walletをダウンロードいただきありがとうございます。",
     "text2":"ウォレットの設定には数分かかります。",
-    "reminder":"いくつかの手順は飛ばすことも可能ではありますが、全ての手順を踏むことをお勧めします。",
+    "reminder":"いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。",
     "button1":"次へ",
     "button2":"戻る"
   },
   "welcome2":{
     "text1":"それではウォレットの設定を行いましょう。",
     "text2":"IOTAのシードはすでにお持ちでしょうか？",
-    "seed_explanation1":"IOTAのシードはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
-    "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
-    "reminder":"Please keep your seed safe",
-    "button1":"YES",
-    "button2":"NO"
+    "seed_explanation1":"IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
+    "seed_explanation2":"同じSeedを使えば、どのウォレット、デバイスからでもあなたの口座にアクセスすることができます。Seedの紛失は口座の紛失となってしまいます。",
+    "reminder":"Seedは安全に保管してください。",
+    "button1":"はい",
+    "button2":"いいえ"
   },
   "lightserver":{
-    "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
-    "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-    "text3":"Please choose a server from the list below.",
-    "server_label":"Server",
-    "custom_server_label":"Other server address",
-    "other":"Other",
-    "button1":"NEXT",
-    "button2":"BACK"
+    "text1":"ライトサーバーはIOTAネットワークへの玄関口です。それらはコミュニティ参加者や協賛企業の厚意によって開設、運営されています。 ",
+    "text2":"サーバーについての更なる情報はhttp://iotasupport.com/lightwallet.shtml をご覧下さい。",
+    "text3":"サーバーを下のリストから選択してください。",
+    "server_label":"サーバー",
+    "custom_server_label":"他のサーバーアドレス",
+    "other":"その他",
+    "button1":"次へ",
+    "button2":"戻る"
   },
   "login":{
-    "text":"Please enter your password",
-    "placeholder":"PASSWORD",
-    "error_title":"Unrecognised Password",
-    "error_text":"The password was not recognised. Please try again.",
-    "button1":"DONE",
-    "button2":"USE SEED"
+    "text":"パスワードを入力して下さい。",
+    "placeholder":"パスワード",
+    "error_title":"認識できないパスワード",
+    "error_text":"パスワードとして認識できません。もう一度入力し直してください",
+    "button1":"完了",
+    "button2":"シードでログイン"
   },
   "enterSeed":{
-    "error_title":"Seed is too short",
-    "error_text":"Seeds must be at least 60 characters long. Please try again.",
-    "invalid_seed_title":"Invalid seed",
-    "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
-    "placeholder":"SEED",
+    "error_title":"Seedが短すぎます。",
+    "error_text":"Seedは最低60文字以上必要です。もう一度やり直してください。",
+    "invalid_seed_title":"無効なSeed",
+    "invalid_seed_text":"Seedが無効です。Seedには、アルファベット大文字（A〜Z）と数字の\"9\"のみが使用でき、長さは60〜81文字である必要があります。",
+    "placeholder":"Seed",
     "seed_explanation":"Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
     "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
     "scan_code":"Scan QR code",
