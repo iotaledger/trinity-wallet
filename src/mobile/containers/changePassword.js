@@ -158,7 +158,11 @@ class ChangePassword extends Component {
     }
 
     fallbackToInitialState() {
-        ['currentPassword', 'newPassword', 'confirmedNewPassword'].forEach(s => this.setState({ [s]: '' }));
+        this.setState({
+            currentPassword: '',
+            newPassword: '',
+            confirmedNewPassword: '',
+        });
     }
 
     render() {
