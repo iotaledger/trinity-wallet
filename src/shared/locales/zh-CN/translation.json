@@ -8,13 +8,13 @@
   },
   "setLanguage":{
     "dropdown_title":"语言",
-    "button1":"下一页"
+    "button1":"下一步"
   },
   "welcome1":{
     "text1":"感谢您下载IOTA钱包。",
     "text2":"接下来我们将花几分钟来设置您的钱包。",
     "reminder":"您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。",
-    "button1":"下一页",
+    "button1":"下一步",
     "button2":"返回"
   },
   "welcome2":{
@@ -33,7 +33,7 @@
     "server_label":"服务器",
     "custom_server_label":"其他服务器地址",
     "other":"其他",
-    "button1":"下一页",
+    "button1":"下一步",
     "button2":"返回"
   },
   "login":{
@@ -71,7 +71,7 @@
     "optionA":"MANUAL COPY",
     "optionB":"PRINT PAPER WALLET",
     "optionC":"COPY TO CLIPBOARD",
-    "button1":"NEXT",
+    "button1":"下一步",
     "button2":"BACK"
   },
   "saveYourSeed2":{
@@ -118,7 +118,7 @@
   },
   "onboardingComplete":{
     "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
+    "button":"下一步"
   },
   "home":{
     "tab1":"结余",
