@@ -60,7 +60,7 @@
   "newSeedSetup":{
     "title":"生成一个新的种子",
     "button1":"生成新的种子",
-    "text1":"Press individual letters to randomise them.",
+    "text1":"通过点击各个字母来随机生成。",
     "text2":"然后单击下一步",
     "button2":"下一步",
     "button3":"返回"
@@ -105,7 +105,7 @@
   "setPassword":{
     "title":"PASSWORD SETUP",
     "text":"Now we need to set up a password.",
-    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "explanation":"此密码将用于在将来访问您的钱包。您种子的加密副本将存储在您的设备上。",
     "reminder":"Ensure you use a strong password of at least 12 characters.",
     "placeholder1":"'PASSWORD'",
     "placeholder2":"RETYPE PASSWORD",
