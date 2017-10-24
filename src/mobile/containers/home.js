@@ -8,6 +8,7 @@ import {
     View,
     ImageBackground,
     StatusBar,
+    TouchableOpacity,
 } from 'react-native';
 import Balance from './balance';
 import Send from './send';
@@ -30,14 +31,20 @@ class Home extends React.Component {
             historyOpacity: 0.6,
             settingsOpacity: 0.6,
             mode: 'STANDARD',
+            leftArrowOpacity: 0.4,
+            rightArrowOpacity: 1,
         };
     }
+
+    onLeftArrowPress() {}
+
+    onRightArrowPress() {}
 
     setTab(tabChoice) {
         let tabContent;
         switch (tabChoice) {
             case 'balance':
-                tabContent = <Balance type={tabChoice} />;
+                tabContent = <Balance style={{ flex: 1 }} type={tabChoice} />;
                 break;
             case 'send':
                 tabContent = <Send type={tabChoice} />;
@@ -115,55 +122,77 @@ class Home extends React.Component {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
-                <View style={styles.titleContainer}>
-                    <View style={{ flex: 6 }}>{this.state.tabContent}</View>
+                <View style={styles.topContainer}>
+                    <TouchableOpacity onPress={() => this.onLeftArrowPress()}>
+                        <Image
+                            style={{ width: width / 20, height: width / 20, opacity: this.state.leftArrowOpacity }}
+                            source={require('../../shared/images/arrow-left.png')}
+                        />
+                    </TouchableOpacity>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>MAIN WALLET</Text>
+                        <Text style={styles.balance}>7.8 Gi</Text>
+                    </View>
+                    <TouchableOpacity onPress={() => this.onRightArrowPress()}>
+                        <Image
+                            style={{ width: width / 20, height: width / 20, opacity: this.state.rightArrowOpacity }}
+                            source={require('../../shared/images/arrow-right.png')}
+                        />
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.tabBar}>
-                    <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
-                        <View style={styles.button}>
-                            <Image
-                                style={[styles.icon, { opacity: this.state.balanceOpacity }]}
-                                source={require('../../shared/images/balance.png')}
-                            />
-                            <Text style={[styles.iconTitle, { opacity: this.state.balanceOpacity }]}>BALANCE</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={event => this.clickSend()}>
-                        <View style={styles.button}>
-                            <Image
-                                style={[styles.icon, { opacity: this.state.sendOpacity }]}
-                                source={require('../../shared/images/send.png')}
-                            />
-                            <Text style={[styles.iconTitle, { opacity: this.state.sendOpacity }]}>SEND</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
-                        <View style={styles.button}>
-                            <Image
-                                style={[styles.icon, { opacity: this.state.receiveOpacity }]}
-                                source={require('../../shared/images/receive.png')}
-                            />
-                            <Text style={[styles.iconTitle, { opacity: this.state.receiveOpacity }]}>RECEIVE</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
-                        <View style={styles.button}>
-                            <Image
-                                style={[styles.icon, { opacity: this.state.historyOpacity }]}
-                                source={require('../../shared/images/history.png')}
-                            />
-                            <Text style={[styles.iconTitle, { opacity: this.state.historyOpacity }]}>HISTORY</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
-                        <View style={styles.button}>
-                            <Image
-                                style={[styles.icon, { opacity: this.state.settingsOpacity }]}
-                                source={require('../../shared/images/settings.png')}
-                            />
-                            <Text style={[styles.iconTitle, { opacity: this.state.settingsOpacity }]}>SETTINGS</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
+                <View style={styles.midContainer}>
+                    <View style={{ flex: 1, justifyContent: 'flex-start' }}>{this.state.tabContent}</View>
+                </View>
+                <View style={styles.bottomContainer}>
+                    <View style={styles.tabBar}>
+                        <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
+                            <View style={styles.button}>
+                                <Image
+                                    style={[styles.icon, { opacity: this.state.balanceOpacity }]}
+                                    source={require('../../shared/images/balance.png')}
+                                />
+                                <Text style={[styles.iconTitle, { opacity: this.state.balanceOpacity }]}>BALANCE</Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={event => this.clickSend()}>
+                            <View style={styles.button}>
+                                <Image
+                                    style={[styles.icon, { opacity: this.state.sendOpacity }]}
+                                    source={require('../../shared/images/send.png')}
+                                />
+                                <Text style={[styles.iconTitle, { opacity: this.state.sendOpacity }]}>SEND</Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
+                            <View style={styles.button}>
+                                <Image
+                                    style={[styles.icon, { opacity: this.state.receiveOpacity }]}
+                                    source={require('../../shared/images/receive.png')}
+                                />
+                                <Text style={[styles.iconTitle, { opacity: this.state.receiveOpacity }]}>RECEIVE</Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
+                            <View style={styles.button}>
+                                <Image
+                                    style={[styles.icon, { opacity: this.state.historyOpacity }]}
+                                    source={require('../../shared/images/history.png')}
+                                />
+                                <Text style={[styles.iconTitle, { opacity: this.state.historyOpacity }]}>HISTORY</Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
+                            <View style={styles.button}>
+                                <Image
+                                    style={[styles.icon, { opacity: this.state.settingsOpacity }]}
+                                    source={require('../../shared/images/settings.png')}
+                                />
+                                <Text style={[styles.iconTitle, { opacity: this.state.settingsOpacity }]}>
+                                    SETTINGS
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </View>
                 </View>
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
@@ -181,27 +210,46 @@ class Home extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    titleContainer: {
-        flex: 1,
+    topContainer: {
+        flex: 0.7,
+        flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'stretch',
-    },
-    banner: {
         alignItems: 'center',
-        paddingTop: 20,
-        flex: 1,
+        paddingTop: height / 30,
     },
-    logo: {
-        height: width / 10,
-        width: width / 10,
+    titleContainer: {
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingHorizontal: width / 8,
+    },
+    title: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 24.4,
+    },
+    balance: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.9,
+        paddingTop: height / 150,
+    },
+    midContainer: {
+        flex: 4.8,
+        justifyContent: 'flex-start',
+        paddingBottom: height / 50,
+    },
+    bottomContainer: {
+        flex: 0.6,
     },
     tabBar: {
-        flex: 0.12,
+        flex: 1,
         flexDirection: 'row',
         backgroundColor: 'transparent',
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingBottom: 5,
+        paddingBottom: height / 50,
     },
     button: {
         justifyContent: 'flex-end',
@@ -218,47 +266,6 @@ const styles = StyleSheet.create({
         paddingTop: height / 60,
         fontFamily: 'Lato-Regular',
         fontSize: width / 40.5,
-    },
-    title: {
-        color: 'white',
-        textAlign: 'center',
-        paddingTop: 8,
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 14.5,
-    },
-    mode: {
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 50.6,
-        paddingTop: 5,
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
     },
 });
 

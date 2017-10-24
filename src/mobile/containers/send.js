@@ -293,7 +293,7 @@ class Send extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: height / 10,
+        paddingTop: height / 25,
     },
     topContainer: {
         paddingHorizontal: width / 10,
