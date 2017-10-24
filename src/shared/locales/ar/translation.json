@@ -1,7 +1,7 @@
 {
   "id":"en",
   "notifications":{
-    "invalidServer_title":"Invalid server",
+    "invalidServer_title":"سيرفر غير صالح",
     "invalidServer_text":"السيرفر الذي قمت بإدخاله غير صالح",
     "unknownError_title":"حدث خطأ غير معروف",
     "unknownError_text":"نعتذر عن تنفيذ الإجراء المطلوب هذه المرة. الرجاء المحاولة مرة أخرى."
@@ -11,9 +11,9 @@
     "button1":"التالي"
   },
   "welcome1":{
-    "text1":"Thank you for downloading the IOTA wallet.",
-    "text2":"We will spend the next few minutes setting up your wallet.",
-    "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
+    "text1":"شكرا لك لتحميل محفظة IOTA.",
+    "text2":"سوف نقضي الدقائق القليلة القادمة في إعداد محفظتك.",
+    "reminder":"قد تميل إلى تخطي بعض الخطوات، ولكننا نحثك على اتباع العملية الكاملة.",
     "button1":"التالي",
     "button2":"رجوع"
   },
