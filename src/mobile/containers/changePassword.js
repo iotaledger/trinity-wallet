@@ -1,3 +1,4 @@
+import isUndefined from 'lodash/isUndefined';
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -17,7 +18,7 @@ import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
-import { getFromKeychain } from '../../shared/libs/cryptography';
+import { getFromKeychain, deleteForKeyChain, storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -90,9 +91,36 @@ class ChangePassword extends Component {
 
     changePassword() {
         const isValid = this.isValid();
+        const { password } = this.props;
+        const { newPassword } = this.state;
 
         if (isValid) {
-            return console.log('Valid');
+            const throwErr = () =>
+                this.dropdown.alertWithType(
+                    'error',
+                    'Oops! Something went wrong',
+                    'Looks like something wrong while updating your password. Please try again.',
+                );
+
+            const updatePassword = seed =>
+                Promise.resolve(storeInKeychain(newPassword, seed))
+                    .then(() => {
+                        deleteForKeyChain(password);
+                        this.fallbackToInitialState();
+                        // TODO:
+                        // We might need to rethink on having a global dropdown alerting system
+                        // via redux. Generally we should redirect user to the previous screen
+                        // on password update but we are kind of limited as we have to keep track
+                        // on dropdown reference inside this component.
+                        this.dropdown.alertWithType(
+                            'success',
+                            'Password updated.',
+                            'Your password has been successfully updated.',
+                        );
+                    })
+                    .catch(throwErr);
+
+            return getFromKeychain(password, value => (!isUndefined(value) ? updatePassword(value) : throwErr()));
         }
 
         return this.renderInvalidSubmissionAlerts();
@@ -127,6 +155,10 @@ class ChangePassword extends Component {
                 'You cannot use the old password as your new password. Please try again with a new password.',
             );
         }
+    }
+
+    fallbackToInitialState() {
+        ['currentPassword', 'newPassword', 'confirmedNewPassword'].forEach(s => this.setState({ [s]: '' }));
     }
 
     render() {
@@ -290,17 +322,8 @@ const mapStateToProps = state => ({
     password: state.iota.password,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setPassword: password => {
-        dispatch(setPassword(password));
-    },
-    getAccountInfo: seed => {
-        dispatch(getAccountInfo(seed));
-    },
-});
-
 ChangePassword.propTypes = {
     password: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);
+export default connect(mapStateToProps, null)(ChangePassword);
