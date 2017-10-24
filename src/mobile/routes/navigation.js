@@ -13,6 +13,7 @@ import WriteSeedDown from '../containers/writeSeedDown';
 import CopySeedToClipboard from '../containers/copySeedToClipboard';
 import PaperWallet from '../containers/paperWallet';
 import Login from '../containers/login';
+import ChangePassword from '../containers/changePassword';
 
 export function registerScreens(store, Provider) {
     Navigation.registerComponent('initialLoading', () => InitialLoading, store, Provider);
@@ -29,4 +30,5 @@ export function registerScreens(store, Provider) {
     Navigation.registerComponent('copySeedToClipboard', () => CopySeedToClipboard, store, Provider);
     Navigation.registerComponent('languageSetup', () => LanguageSetup, store, Provider);
     Navigation.registerComponent('welcome', () => Welcome, store, Provider);
+    Navigation.registerComponent('change-password', () => ChangePassword, store, Provider);
 }
