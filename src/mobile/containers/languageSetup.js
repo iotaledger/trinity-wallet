@@ -36,6 +36,7 @@ class LanguageSetup extends React.Component {
             triangleDirection: 'down',
             dropdownHeight: 0,
             languageSelected: 'English (International)',
+            nextText: 'NEXT',
         };
     }
 
@@ -75,6 +76,14 @@ class LanguageSetup extends React.Component {
             triangleDirection: 'down',
             languageSelected: item,
         });
+
+        if (this.state.languageSelected == 'English (International)') {
+            this.setState({
+                nextText: 'WEITER',
+            });
+        } else {
+            nextText: 'NEXT';
+        }
     }
 
     render() {
@@ -164,16 +173,10 @@ class LanguageSetup extends React.Component {
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Polski - Polish')}>
                                     <Text style={styles.dropdownItem}>Polski - Polish</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event =>
-                                        this.clickDropdownItem('Português (Brasil) - Portuguese (Brazil)')}
-                                >
+                                <TouchableOpacity onPress={event => this.clickDropdownItem('Português (Brasil)')}>
                                     <Text style={styles.dropdownItem}>Português (Brasil) - Portuguese (Brazil)</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event =>
-                                        this.clickDropdownItem('Português (Portugal) - Portuguese (Portugal)')}
-                                >
+                                <TouchableOpacity onPress={event => this.clickDropdownItem('Português (Portugal)')}>
                                     <Text style={styles.dropdownItem}>
                                         Português (Portugal) - Portuguese (Portugal)
                                     </Text>
@@ -203,7 +206,7 @@ class LanguageSetup extends React.Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onNextPress()}>
                         <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>NEXT</Text>
+                            <Text style={styles.nextText}>{this.state.nextText}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -280,6 +283,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         textAlign: 'left',
         paddingTop: height / 100,
+        includeFontPadding: false,
     },
     dropdownButtonContainer: {
         paddingTop: height / 100,
