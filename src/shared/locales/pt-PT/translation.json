@@ -20,11 +20,11 @@
   "welcome2":{
     "text1":"Ok. Vamos configurar a sua carteira!",
     "text2":"Já possui uma Seed que gostaria de utilizar?",
-    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+    "seed_explanation1":"A Seed IOTA representa, simultaneamente, o nome do utilizador e a palavra-passe da sua conta, combinados numa sequência de 81 caracteres.",
     "seed_explanation2":"Pode usá-la para aceder aos seus fundos a partir de qualquer carteira, em qualquer dispositivo. Mas se perder a sua Seed, também perderá os seus IOTA",
     "reminder":"Por favor, mantenha a sua Seed protegida e segura",
-    "button1":"YES",
-    "button2":"NO"
+    "button1":"SIM",
+    "button2":"NÃO"
   },
   "lightserver":{
     "text1":"Um servidor simples é um acesso à rede IOTA, gentilmente providenciado por membros da comunidade ou por parceiros corporativos. ",
@@ -34,7 +34,7 @@
     "custom_server_label":"Endereço de outro servidor",
     "other":"Outro",
     "button1":"Próximo",
-    "button2":"BACK"
+    "button2":"Voltar"
   },
   "login":{
     "text":"Por favor, insira a sua palavra-passe",
@@ -42,7 +42,7 @@
     "error_title":"Palavra-passe não reconhecida",
     "error_text":"A palavra-passe não foi reconhecida. Por favor, tente novamente.",
     "button1":"Concluído",
-    "button2":"USE SEED"
+    "button2":"USAR A SEED"
   },
   "enterSeed":{
     "error_title":"A Seed é demasiado curta",
@@ -55,7 +55,7 @@
     "scan_code":"Ler código QR",
     "close":"FECHAR",
     "button1":"Concluído",
-    "button2":"BACK"
+    "button2":"VOLTAR"
   },
   "newSeedSetup":{
     "title":"GERAR UMA NOVA SEED",
@@ -63,7 +63,7 @@
     "text1":"Digite letras individuais para tornar o processo mais aleatório.",
     "text2":"De seguida, clique em PRÓXIMO",
     "button2":"PRÓXIMO",
-    "button3":"BACK"
+    "button3":"VOLTAR"
   },
   "saveYourSeed":{
     "text1":"Deve guardar a sua Seed pelo menos numa das opções listadas em baixo.",
@@ -72,7 +72,7 @@
     "optionB":"IMPRIMIR CARTEIRA DE PAPEL",
     "optionC":"COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
     "button1":"PRÓXIMO",
-    "button2":"BACK"
+    "button2":"VOLTAR"
   },
   "saveYourSeed2":{
     "optionA":"Cópia manual",
