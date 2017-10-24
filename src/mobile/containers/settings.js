@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearIOTA } from '../../shared/actions/iotaActions';
@@ -12,6 +12,22 @@ class Settings extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    onChangeModePress() {}
+
+    onChangeThemePress() {}
+
+    onChangeLanguagePress() {}
+
+    onChangePasswordPress() {}
+
+    on2FASetupPress() {}
+
+    onAddNewSeedPress() {}
+
+    onAdvancedSettingsPress() {}
+
+    onResetWalletPress() {}
 
     onLogoutPress() {
         this.props.clearIOTA();
@@ -27,66 +43,66 @@ class Settings extends React.Component {
         });
     }
 
-    onChangePasswordPress() {}
-
-    onChangeLanguagePress() {}
-
-    onSetNodePress() {}
-
-    on2FASetupPress() {}
-
-    onAddNewSeedPress() {}
-
-    onResetWalletPress() {}
-
     render() {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <View style={styles.modulesContainer} />
-                <View style={styles.modeButtonContainer}>
-                    <View style={styles.modeButton} />
-                </View>
-                <View style={styles.toolButtonsContainer}>
-                    <View style={styles.leftToolButtons}>
-                        <TouchableOpacity onPress={event => this.onChangePasswordPress()}>
-                            <View style={styles.toolButton}>
-                                <Text style={styles.toolButtonText}>CHANGE PASSWORD</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onChangeLanguagePress()}>
-                            <View style={styles.toolButton}>
-                                <Text style={styles.toolButtonText}>CHANGE LANGUAGE</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onSetNodePress()}>
-                            <View style={styles.toolButton}>
-                                <Text style={styles.toolButtonText}>SET NODE</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View>
-                        <TouchableOpacity onPress={event => this.on2FASetupPress()}>
-                            <View style={styles.toolButton}>
-                                <Text style={styles.toolButtonText}>2FA SETUP</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
-                            <View style={styles.toolButton}>
-                                <Text style={styles.toolButtonText}>ADD NEW SEED</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onResetWalletPress()}>
-                            <View style={styles.toolButton}>
-                                <Text style={styles.toolButtonText}>RESET WALLET</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={styles.logoutButtonContainer}>
+                <View style={styles.settingsContainer}>
+                    <TouchableOpacity onPress={event => this.onChangeModePress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/mode.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Change mode</Text>
+                            <Text style={styles.settingText}>{this.props.settings.mode}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onChangeThemePress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/theme.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Change theme</Text>
+                            <Text style={styles.settingText}>{this.props.settings.theme}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onChangeLanguagePress()}>
+                        <View style={styles.dividingItem}>
+                            <Image source={require('../../shared/images/language.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Change language</Text>
+                            <Text style={styles.settingText}>{this.props.settings.language}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/add.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Add new seed</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.on2FASetupPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/2fa.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Two-factor authentication</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onChangePasswordPress()}>
+                        <View style={styles.dividingItem}>
+                            <Image source={require('../../shared/images/password.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Change password</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onAdvancedSettingsPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/advanced.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Advanced settings</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onResetWalletPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/reset.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Reset wallet</Text>
+                        </View>
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={event => this.onLogoutPress()}>
-                        <View style={styles.logoutButton}>
-                            <Text style={styles.logoutText}>LOG OUT</Text>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/logout.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Log out</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -98,61 +114,46 @@ class Settings extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        paddingBottom: height / 40,
-    },
-    logoutButtonContainer: {
-        flex: 0.7,
-        alignItems: 'center',
-    },
-    logoutButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.5,
-        borderRadius: 10,
-        width: width * 0.6,
-        height: height * 0.06,
-        alignItems: 'center',
         justifyContent: 'center',
+        paddingTop: height / 18,
     },
-    logoutText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
+    titleText: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
         backgroundColor: 'transparent',
     },
-    toolButtonText: {
-        color: '#9DFFAF',
+    settingText: {
+        color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 27.3,
+        fontSize: width / 23,
         backgroundColor: 'transparent',
+        marginLeft: width / 30,
     },
-    toolButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.5,
-        borderRadius: 10,
-        width: width / 2.3,
-        height: height / 19,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 50,
-    },
-    leftToolButtons: {
-        paddingRight: width / 30,
-    },
-    toolButtonsContainer: {
-        flex: 3,
+    dividingItem: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 0.3,
         flexDirection: 'row',
-        justifyContent: 'center',
-        paddingBottom: height / 50,
+        width: width / 1.16,
+        paddingVertical: height / 40,
         alignItems: 'center',
     },
-    modeButton: {},
-    modeButtonContainer: {
-        flex: 1.5,
+    item: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: height / 40,
+        justifyContent: 'center',
     },
-    modulesContainer: {
-        flex: 4,
+    icon: {
+        width: width / 20,
+        height: width / 20,
+        marginRight: width / 25,
+    },
+    settingsContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        paddingHorizontal: width / 15,
     },
 });
 
@@ -164,6 +165,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
     account: state.account,
+    settings: state.settings,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
