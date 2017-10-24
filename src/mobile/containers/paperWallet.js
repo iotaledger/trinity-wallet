@@ -10,7 +10,7 @@ import { iotaLogo, arrow } from '../../shared/libs/html.js';
 
 const { height, width } = Dimensions.get('window');
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
-var results = '';
+let results = '';
 
 class PaperWallet extends React.Component {
     constructor(props) {
