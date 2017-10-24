@@ -19,8 +19,8 @@
   },
   "welcome2":{
     "text1":"حسنًا. لنقم بإعداد محفظتك!",
-    "text2":"Do you already have a seed that you would like to use?",
-    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+    "text2":"هل لديك seed ترغب في استخدامه؟",
+    "seed_explanation1":"السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
     "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
     "reminder":"Please keep your seed safe",
     "button1":"YES",
