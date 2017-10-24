@@ -29,12 +29,39 @@ class ChangePassword extends Component {
     constructor() {
         super();
         this.state = {
-            password: '',
+            currentPassword: '',
+            newPassword: '',
+            confirmedNewPassword: '',
         };
     }
 
+    renderTextField(value, label, onChangeText) {
+        // This should be abstracted away as an independent component
+        // We are using almost the same field styles and props
+        // across all app
+        const props = {
+            style: styles.textField,
+            labelTextStyle: { fontFamily: Fonts.tertiary },
+            labelFontSize: height / 55,
+            fontSize: height / 40,
+            baseColor: Colors.white,
+            tintColor: Colors.orangeDark,
+            autoCapitalize: 'none',
+            autoCorrect: false,
+            enablesReturnKeyAutomatically: true,
+            containerStyle: styles.textFieldContainer,
+            secureTextEntry: true,
+            label,
+            value,
+            onChangeText,
+        };
+
+        return <TextField {...props} />;
+    }
+
     render() {
-        let { password } = this.state;
+        const { currentPassword, newPassword, confirmedNewPassword } = this.state;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -46,72 +73,24 @@ class ChangePassword extends Component {
                                 <Text style={styles.header}>{toUpper('change password')}</Text>
                             </View>
                         </View>
-                        <View style={styles.midContainer}>
-                            <View style={styles.infoTextContainer}>
+                        <View style={styles.midWrapper}>
+                            <View style={styles.infoTextWrapper}>
                                 <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                                 <Text style={styles.infoText}>
                                     Ensure you use a strong password of at least 12 characters.
                                 </Text>
                             </View>
-                            <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
-                                baseColor="white"
-                                label="Current Password"
-                                tintColor="#F7D002"
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                value={password}
-                                onChangeText={password => this.setState({ password })}
-                                containerStyle={{
-                                    width: width / 1.65,
-                                    paddingTop: height / 40,
-                                }}
-                                secureTextEntry={true}
-                            />
-                            <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
-                                baseColor="white"
-                                label="New Password"
-                                tintColor="#F7D002"
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                value={password}
-                                onChangeText={password => this.setState({ password })}
-                                containerStyle={{
-                                    width: width / 1.65,
-                                    paddingTop: height / 40,
-                                }}
-                                secureTextEntry={true}
-                            />
-                            <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
-                                baseColor="white"
-                                label="Confirm New Password"
-                                tintColor="#F7D002"
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                value={password}
-                                onChangeText={password => this.setState({ password })}
-                                containerStyle={{
-                                    width: width / 1.65,
-                                    paddingTop: height / 40,
-                                }}
-                                secureTextEntry={true}
-                            />
+                            {this.renderTextField(currentPassword, 'Current Password', currentPassword =>
+                                this.setState({ currentPassword }),
+                            )}
+                            {this.renderTextField(newPassword, 'New Password', newPassword =>
+                                this.setState({ newPassword }),
+                            )}
+                            {this.renderTextField(confirmedNewPassword, 'Confirm New Password', confirmedNewPassword =>
+                                this.setState({ confirmedNewPassword }),
+                            )}
                         </View>
-                        <View style={styles.bottomContainer}>
+                        <View style={styles.bottomWrapper}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => {}}
                                 onRightButtonPress={() => {}}
@@ -121,7 +100,6 @@ class ChangePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
@@ -150,11 +128,11 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
-    midContainer: {
-        flex: 2,
+    midWrapper: {
+        flex: 2.2,
         alignItems: 'center',
     },
-    bottomContainer: {
+    bottomWrapper: {
         flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-end',
@@ -243,7 +221,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
     },
-    infoTextContainer: {
+    infoTextWrapper: {
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 15,
@@ -267,6 +245,14 @@ const styles = StyleSheet.create({
     infoIcon: {
         width: width / 20,
         height: width / 20,
+    },
+    textField: {
+        color: Colors.white,
+        fontFamily: Fonts.tertiary,
+    },
+    textFieldContainer: {
+        width: width / 1.65,
+        paddingTop: height / 40,
     },
 });
 
