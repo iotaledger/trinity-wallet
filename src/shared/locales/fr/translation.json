@@ -11,7 +11,7 @@
     "button1":"SUIVANT"
   },
   "welcome1":{
-    "text1":"Merci d’avoir téléchargé le portefeuille IOTA.",
+    "text1":"Merci d’avoir téléchargé le Wallet IOTA.",
     "text2":"Nous allons passer les prochaines minutes à paramétrer votre Wallet.",
     "reminder":"Vous serez tenté de passer des étapes mais nous vous demandons de suivre le process complet.",
     "button1":"SUIVANT",
@@ -23,8 +23,8 @@
     "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
     "seed_explanation2":"Vous pouvez l'utiliser pour accéder à vos fonds depuis tous les Wallets, sur tous les appareils. Mais si vous perdez votre Seed, vous perdez également vos IOTA",
     "reminder":"Merci de garder votre Seed en sécurité",
-    "button1":"YES",
-    "button2":"NO"
+    "button1":"OUI",
+    "button2":"NON"
   },
   "lightserver":{
     "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
@@ -53,17 +53,17 @@
     "seed_explanation":"Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
     "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
     "scan_code":"Scan QR code",
-    "close":"CLOSE",
-    "button1":"DONE",
-    "button2":"BACK"
+    "close":"FERMER",
+    "button1":"OK",
+    "button2":"RETOUR"
   },
   "newSeedSetup":{
     "title":"GENERATE A NEW SEED",
     "button1":"GENERATE NEW SEED",
     "text1":"Press individual letters to randomise them.",
     "text2":"Then click NEXT",
-    "button2":"NEXT",
-    "button3":"BACK"
+    "button2":"SUIVANT",
+    "button3":"RETOUR"
   },
   "saveYourSeed":{
     "text1":"You must save your seed with at least one of the options listed below.",
@@ -80,7 +80,7 @@
     "optionC":"Copy To Clipboard",
     "explanation":"Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
     "text":"triple check",
-    "button":"DONE"
+    "button":"OK"
   },
   "saveYourSeed3":{
     "optionA":"Manual Copy",
@@ -89,7 +89,7 @@
     "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
     "text":"Do not store the seed in plain text.",
     "button1":"COPY TO CLIPBOARD",
-    "button2":"DONE"
+    "button2":"OK"
   },
   "saveYourSeed4":{
     "optionA":"Manual Copy",
