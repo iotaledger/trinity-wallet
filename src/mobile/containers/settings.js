@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        paddingTop: height / 18,
+        paddingTop: height / 60,
     },
     titleText: {
         color: 'white',
@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         paddingHorizontal: width / 15,
+        paddingBottom: height / 80,
     },
 });
 
