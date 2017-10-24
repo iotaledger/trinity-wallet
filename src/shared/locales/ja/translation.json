@@ -107,7 +107,7 @@
     "text":"次にパスワードの設定です。",
     "explanation":"このパスワードは次回からウォレットにアクセスする際に使われます。このパスワードは暗号化され、ご使用中のデバイスに保存されます。",
     "reminder":"破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
-    "placeholder1":"'PASSWORD'",
+    "placeholder1":"'パスワード'",
     "placeholder2":"パスワード再入力",
     "error1_title":"パスワードが短すぎます",
     "error1_text":"Your password must be at least 8 characters. Please try again.",
@@ -117,7 +117,7 @@
     "button2":"戻る"
   },
   "onboardingComplete":{
-    "text":"ウォレットの準備が整いました。設定変更はツールメニューから行えます。",
+    "text":"ウォレットの準備が整いました。設定変更は今後もメニューのツールから行えます。",
     "button":"次へ"
   },
   "home":{
