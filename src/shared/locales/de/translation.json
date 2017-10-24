@@ -105,7 +105,7 @@
   "setPassword":{
     "title":"PASSWORT EINRICHTEN",
     "text":"Jetzt müssen wir ein Passwort einrichten.",
-    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "explanation":"Mit dem Passwort können Sie in Zukunft auf Ihren Geldbeutel zugreifen. Ihr Seed wird verschlüsselt auf Ihrem Gerät gespeichert.",
     "reminder":"Stellen Sie sicher, dass Sie ein sicheres Kennwort aus mindestens 12 Zeichen verwenden.",
     "placeholder1":"\"PASSWORT\"",
     "placeholder2":"PASSWORT ERNEUT EINGEBEN",
