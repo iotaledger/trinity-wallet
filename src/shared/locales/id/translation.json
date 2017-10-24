@@ -117,8 +117,8 @@
     "button2":"KEMBALI"
   },
   "onboardingComplete":{
-    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
+    "text":"Dompet sudah dipersiapkan dan siap untuk digunakan. Silahkan cek di menu Perkakas jika Anda ingin membuat perubahan lagi.",
+    "button":"LANJUT"
   },
   "home":{
     "tab1":"SALDO",
