@@ -16,7 +16,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed } from '../../shared/actions/iotaActions';
+import { setSeed, getAccountInfo } from '../../shared/actions/iotaActions';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
@@ -26,7 +26,7 @@ const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 
-class EnterSeed extends React.Component {
+class UseSeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -52,10 +52,12 @@ class EnterSeed extends React.Component {
         } else if (this.state.seed.length >= 60) {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
-                screen: 'setPassword',
+                screen: 'loading',
                 navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
                 animated: false,
             });
+            this.props.getAccountInfo(this.state.seed);
+            this.setState({ seed: '' });
         }
     }
 
@@ -134,14 +136,6 @@ class EnterSeed extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
-                                <View style={styles.infoTextContainer}>
-                                    <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                    <Text style={styles.infoText}>
-                                        Seeds should be 81 characters long, and should contain capital letters A-Z, or
-                                        the number 9. You cannot use seeds longer than 81 characters.
-                                    </Text>
-                                    <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
-                                </View>
                             </View>
                             <View style={styles.bottomContainer}>
                                 <OnboardingButtons
@@ -197,7 +191,7 @@ const styles = StyleSheet.create({
         flex: 4.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 12,
+        paddingTop: height / 4.5,
     },
     bottomContainer: {
         flex: 0.7,
@@ -305,6 +299,9 @@ const mapDispatchToProps = dispatch => ({
     setSeed: seed => {
         dispatch(setSeed(seed));
     },
+    getAccountInfo: seed => {
+        dispatch(getAccountInfo(seed));
+    },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnterSeed);
+export default connect(mapStateToProps, mapDispatchToProps)(UseSeed);
