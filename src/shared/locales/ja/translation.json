@@ -97,42 +97,42 @@
     "optionC":"クリップボードにコピー",
     "explanation":"下のボタンから紙でSeedを印刷できます。",
     "text1":"安全に保管しましょう",
-    "text2":"Never share your seed with anyone.",
-    "check_button":"IOTA logo",
-    "button1":"PRINT PAPER WALLET",
-    "button2":"DONE"
+    "text2":"Seedを他の人に教えては行けません。",
+    "check_button":"IOTAロゴ",
+    "button1":"ペーパーウォレットを印刷",
+    "button2":"完了"
   },
   "setPassword":{
-    "title":"PASSWORD SETUP",
-    "text":"Now we need to set up a password.",
-    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
-    "reminder":"Ensure you use a strong password of at least 12 characters.",
+    "title":"パスワード設定",
+    "text":"次にパスワードの設定です。",
+    "explanation":"このパスワードは次回からウォレットにアクセスする際に使われます。このパスワードは暗号化され、ご使用中のデバイスに保存されます。",
+    "reminder":"破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
     "placeholder1":"'PASSWORD'",
-    "placeholder2":"RETYPE PASSWORD",
-    "error1_title":"Password is too short",
+    "placeholder2":"パスワード再入力",
+    "error1_title":"パスワードが短すぎます",
     "error1_text":"Your password must be at least 8 characters. Please try again.",
-    "error2_title":"Passwords do not match",
-    "error2_text":"The passwords you have entered do not match. Please try again.",
-    "button1":"DONE",
-    "button2":"BACK"
+    "error2_title":"パスワードが一致しません",
+    "error2_text":"入力した 2 つのパスワードが一致しません、もう一度やり直してください",
+    "button1":"完了",
+    "button2":"戻る"
   },
   "onboardingComplete":{
-    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
+    "text":"ウォレットの準備が整いました。設定変更はツールメニューから行えます。",
+    "button":"次へ"
   },
   "home":{
-    "tab1":"BALANCE",
-    "tab2":"SEND",
-    "tab3":"RECEIVE",
-    "tab4":"HISTORY",
-    "tab5":"TOOLS",
-    "mcap":"MCAP",
-    "change":"Change",
+    "tab1":"残高",
+    "tab2":"送金",
+    "tab3":"受け取り",
+    "tab4":"履歴",
+    "tab5":"ツール",
+    "mcap":"時価総額",
+    "change":"変動",
     "volume":"Volume",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
+    "address":"アドレス",
+    "amount":"金額",
+    "button1":"送金",
+    "button2":"アドレス生成",
+    "button3":"ログアウト"
   }
 }
