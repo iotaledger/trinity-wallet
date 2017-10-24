@@ -69,55 +69,55 @@
     "text1":"必须用至少下面列出的选项之一来保存你的种子。",
     "text2":"至少一个",
     "optionA":"手动复制",
-    "optionB":"PRINT PAPER WALLET",
-    "optionC":"COPY TO CLIPBOARD",
+    "optionB":"打印出纸版钱包",
+    "optionC":"复制到剪贴板",
     "button1":"下一步",
-    "button2":"BACK"
+    "button2":"返回"
   },
   "saveYourSeed2":{
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
+    "optionA":"手动复制",
+    "optionB":" 纸版钱包",
+    "optionC":"复制到剪贴板",
     "explanation":"您的种子从左到右一共81个字符。请填写您的种子和校验和，然后再一次检查它们是否正确。",
-    "text":"triple check",
-    "button":"DONE"
+    "text":"第三次检查",
+    "button":"完成"
   },
   "saveYourSeed3":{
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
+    "optionA":"手动复制",
+    "optionB":" 纸版钱包",
+    "optionC":"复制到剪贴板",
     "explanation":"单击下面的按钮，将你的种子复制到一个密码管理器。它会在您的剪贴板保留60秒。",
     "text":"不要将种子保存在纯文本文件中。",
-    "button1":"COPY TO CLIPBOARD",
-    "button2":"DONE"
+    "button1":"复制到剪贴板",
+    "button2":"完成"
   },
   "saveYourSeed4":{
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
+    "optionA":"手动复制",
+    "optionB":" 纸版钱包",
+    "optionC":"复制到剪贴板",
     "explanation":"请单击下面的按钮以将您的种子打印到纸上。",
-    "text1":"Store it safely",
+    "text1":"妥善保存",
     "text2":"永远不要与任何人分享您的种子。",
-    "check_button":"IOTA logo",
-    "button1":"PRINT PAPER WALLET",
-    "button2":"DONE"
+    "check_button":"IOTA标志",
+    "button1":"打印出纸版钱包",
+    "button2":"完成"
   },
   "setPassword":{
-    "title":"PASSWORD SETUP",
-    "text":"Now we need to set up a password.",
+    "title":"密码设置",
+    "text":"现在我们需要设置一个密码。",
     "explanation":"此密码将用于在将来访问您的钱包。您种子的加密副本将存储在您的设备上。",
-    "reminder":"Ensure you use a strong password of at least 12 characters.",
-    "placeholder1":"'PASSWORD'",
-    "placeholder2":"RETYPE PASSWORD",
-    "error1_title":"Password is too short",
+    "reminder":"请您确保使用至少 12 个字符的强密码。",
+    "placeholder1":"'密码'",
+    "placeholder2":"请重新键入密码",
+    "error1_title":"密码太短",
     "error1_text":"Your password must be at least 8 characters. Please try again.",
     "error2_title":"密码不相符",
     "error2_text":"您输入的密码不匹配。请再试一次。",
     "button1":"完成",
-    "button2":"BACK"
+    "button2":"返回"
   },
   "onboardingComplete":{
-    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "text":"钱包里现在已设置好并准备使用。如果您需要在将来进行任何更改，请在工具菜单中查找。",
     "button":"下一步"
   },
   "home":{
@@ -127,12 +127,12 @@
     "tab4":"历史",
     "tab5":"工具",
     "mcap":"市值",
-    "change":"Change",
+    "change":"变更",
     "volume":"成交量",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
+    "address":"地址",
+    "amount":"金额",
+    "button1":"发送",
+    "button2":"生成新的地址",
+    "button3":"退出"
   }
 }
