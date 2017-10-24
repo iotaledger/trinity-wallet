@@ -56,6 +56,8 @@ class UseSeed extends React.Component {
                 navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
                 animated: false,
             });
+            this.props.getAccountInfo(this.state.seed);
+            this.setState({ seed: '' });
         }
     }
 
