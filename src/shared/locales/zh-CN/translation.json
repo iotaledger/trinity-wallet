@@ -15,7 +15,7 @@
     "text2":"接下来我们将花几分钟来设置您的钱包。",
     "reminder":"您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。",
     "button1":"下一页",
-    "button2":"BACK"
+    "button2":"返回"
   },
   "welcome2":{
     "text1":"好，让我们来开始设置您的钱包 ！",
@@ -23,8 +23,8 @@
     "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
     "seed_explanation2":"您可以使用它来从任何的钱包，任何设备上访问您的资金。但如果您丢失了您的seed，您也会同时丢失您的IOTA",
     "reminder":"请您保管好你的seed",
-    "button1":"YES",
-    "button2":"NO"
+    "button1":"是的",
+    "button2":"没有"
   },
   "lightserver":{
     "text1":"轻量级服务器是IOTA网络的网关，由社区成员或我们的合作伙伴友情提供。 ",
@@ -34,7 +34,7 @@
     "custom_server_label":"其他服务器地址",
     "other":"其他",
     "button1":"下一页",
-    "button2":"BACK"
+    "button2":"返回"
   },
   "login":{
     "text":"请输入您的密码",
@@ -42,7 +42,7 @@
     "error_title":"密码不正确",
     "error_text":"密码不相符。请再试一次。",
     "button1":"完成",
-    "button2":"USE SEED"
+    "button2":"使用SEED"
   },
   "enterSeed":{
     "error_title":"seed太短",
@@ -55,7 +55,7 @@
     "scan_code":"扫描二维码",
     "close":"关闭",
     "button1":"完成",
-    "button2":"BACK"
+    "button2":"返回"
   },
   "newSeedSetup":{
     "title":"生成一个新的seed",
@@ -63,7 +63,7 @@
     "text1":"Press individual letters to randomise them.",
     "text2":"然后单击下一步",
     "button2":"下一步",
-    "button3":"BACK"
+    "button3":"返回"
   },
   "saveYourSeed":{
     "text1":"You must save your seed with at least one of the options listed below.",
@@ -126,7 +126,7 @@
     "tab3":"接收",
     "tab4":"历史",
     "tab5":"工具",
-    "mcap":"MCAP",
+    "mcap":"市值",
     "change":"Change",
     "volume":"成交量",
     "address":"Address",
