@@ -67,8 +67,8 @@
   },
   "saveYourSeed":{
     "text1":"必须用至少下面列出的选项之一来保存你的种子。",
-    "text2":"at least one",
-    "optionA":"MANUAL COPY",
+    "text2":"至少一个",
+    "optionA":"手动复制",
     "optionB":"PRINT PAPER WALLET",
     "optionC":"COPY TO CLIPBOARD",
     "button1":"下一步",
