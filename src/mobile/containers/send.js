@@ -315,8 +315,8 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 0.8,
         borderRadius: 8,
-        width: width / 7,
-        height: height / 20,
+        width: width / 6.5,
+        height: height / 16,
     },
     qrText: {
         color: 'white',
@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         height: width / 28,
         width: width / 28,
-        left: width / 40,
+        left: width / 36,
     },
     qrImage: {
         height: width / 28,
@@ -404,39 +404,13 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 0.8,
         borderRadius: 8,
-        width: width / 7.7,
-        height: height / 22,
+        width: width / 7,
+        height: height / 18,
     },
     maxImage: {
         height: width / 50,
         width: width / 34,
         marginRight: 2,
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
     },
 });
 
