@@ -27,9 +27,9 @@
     "button2":"لا"
   },
   "lightserver":{
-    "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
-    "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-    "text3":"Please choose a server from the list below.",
+    "text1":"السيرفر الخفيف هو بوابة لشبكة IOTA، يتم تقديمه من قبل أعضاء المجتمع أو شركائنا من الشركات. ",
+    "text2":"يمكنك معرفة المزيد من المعلومات حول السيرفرات على: http://iotasupport.com/lightwallet.shtml",
+    "text3":"يرجى اختيار سيرفر من القائمة أدناه.",
     "server_label":"سيرفر",
     "custom_server_label":"عنوان سيرفر آخر",
     "other":"اخرى",
@@ -68,31 +68,31 @@
   "saveYourSeed":{
     "text1":"يجب عليك حفظ السييد الخاص بك بطريقة واحده على الأقل من الخيارات المدرجة أدناه.",
     "text2":"بطريقة واحده على الأقل",
-    "optionA":"MANUAL COPY",
+    "optionA":"نسخة يدوية",
     "optionB":"طباعة محفظة ورقية",
     "optionC":"نسخ إلى الحافظة",
     "button1":"التالي",
     "button2":"رجوع"
   },
   "saveYourSeed2":{
-    "optionA":"Manual Copy",
+    "optionA":"نسخة يدوية",
     "optionB":" محفظة ورقية",
     "optionC":"نسخ إلى الحافظة",
-    "explanation":"Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
-    "text":"triple check",
+    "explanation":"السييد الخاص بك 81 خانة يقرأ من اليسار إلى اليمين. اكتب السيد الخاص بك ورمز التحقق وقم بمراجعتها ثلاث مرات لتتأكد من صحتها.",
+    "text":"وقم بمراجعتها ثلاث مرات",
     "button":"تم"
   },
   "saveYourSeed3":{
-    "optionA":"Manual Copy",
+    "optionA":"نسخة يدوية",
     "optionB":" محفظة ورقية",
     "optionC":"نسخ إلى الحافظة",
-    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+    "explanation":"اضغط على الزر أدناه وانسخ السييد الخاص بك إلى برنامج تخزين كلمات مرور. سوف تبقى في الحافظة لمدة 60 ثانية.",
     "text":"لا تخزن السييد الخاص بك في نص عادي.",
     "button1":"نسخ إلى الحافظة",
     "button2":"تم"
   },
   "saveYourSeed4":{
-    "optionA":"Manual Copy",
+    "optionA":"نسخة يدوية",
     "optionB":" محفظة ورقية",
     "optionC":"نسخ إلى الحافظة",
     "explanation":"اضغط الزر أدناه لطباعة نسخه ورقية من السييد الخاصة بك.",
@@ -126,7 +126,7 @@
     "tab3":"إستلام",
     "tab4":"التاريخ",
     "tab5":"أدوات",
-    "mcap":"MCAP",
+    "mcap":"القيمة السوقية",
     "change":"تغيير",
     "volume":"مستوى الصوت",
     "address":"عنوان",
