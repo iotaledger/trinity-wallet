@@ -21,7 +21,6 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
-const StatusBarDefaultBarStyle = 'light-content';
 
 const { height, width } = Dimensions.get('window');
 
@@ -102,13 +101,13 @@ class ChangePassword extends Component {
                 </TouchableWithoutFeedback>
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
+                    successColor={Colors.dropdown.success}
+                    errorColor={Colors.dropdown.error}
                     titleStyle={styles.dropdownTitle}
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                    inactiveStatusBarStyle="light-content"
                 />
             </ImageBackground>
         );
@@ -151,41 +150,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    greetingText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        paddingHorizontal: width / 7,
-        paddingBottom: height / 10,
-        backgroundColor: 'transparent',
-    },
-    questionText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.25,
-        textAlign: 'center',
-        paddingLeft: width / 7,
-        paddingRight: width / 7,
-        paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
-    newSeedButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginRight: width / 10,
-    },
-    newSeedText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
-        backgroundColor: 'transparent',
-    },
     logo: {
         height: width / 5,
         width: width / 5,
@@ -215,11 +179,6 @@ const styles = StyleSheet.create({
         width: 36,
         height: 36,
         alignSelf: 'center',
-    },
-    buttonsContainer: {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        flexDirection: 'row',
     },
     infoTextWrapper: {
         borderColor: 'white',
