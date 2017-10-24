@@ -13,11 +13,11 @@ class Settings extends React.Component {
         super(props);
     }
 
-    onChangeModePress() {}
+    onModePress() {}
 
-    onChangeThemePress() {}
+    onThemePress() {}
 
-    onChangeLanguagePress() {}
+    onLanguagePress() {}
 
     onChangePasswordPress() {}
 
@@ -48,24 +48,24 @@ class Settings extends React.Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.settingsContainer}>
-                    <TouchableOpacity onPress={event => this.onChangeModePress()}>
+                    <TouchableOpacity onPress={event => this.onModePress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/mode.png')} style={styles.icon} />
-                            <Text style={styles.titleText}>Change mode</Text>
+                            <Text style={styles.titleText}>Mode</Text>
                             <Text style={styles.settingText}>{this.props.settings.mode}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.onChangeThemePress()}>
+                    <TouchableOpacity onPress={event => this.onThemePress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/theme.png')} style={styles.icon} />
-                            <Text style={styles.titleText}>Change theme</Text>
+                            <Text style={styles.titleText}>Theme</Text>
                             <Text style={styles.settingText}>{this.props.settings.theme}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.onChangeLanguagePress()}>
+                    <TouchableOpacity onPress={event => this.onLanguagePress()}>
                         <View style={styles.dividingItem}>
                             <Image source={require('../../shared/images/language.png')} style={styles.icon} />
-                            <Text style={styles.titleText}>Change language</Text>
+                            <Text style={styles.titleText}>Language</Text>
                             <Text style={styles.settingText}>{this.props.settings.language}</Text>
                         </View>
                     </TouchableOpacity>
