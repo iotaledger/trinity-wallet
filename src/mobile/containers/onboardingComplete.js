@@ -4,10 +4,6 @@ import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackg
 const { height, width } = Dimensions.get('window');
 
 class OnboardingComplete extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     onNextPress() {
         this.props.navigator.push({
             screen: 'login',
