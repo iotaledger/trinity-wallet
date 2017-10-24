@@ -20,11 +20,11 @@
   "welcome2":{
     "text1":"Окей, давайте настроим ваш кошелек!",
     "text2":"У вас уже есть ключ (seed), который вы хотели бы использовать?",
-    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+    "seed_explanation1":"Ключ IOTA, комбинация длиной 81 символ, представляет собой одновременно и логин, и пароль к вашему счету.",
     "seed_explanation2":"Вы можете использовать его для доступа к вашим средствам из любого кошелька и с любого компьютера. Но в случае потери ключа вы потеряете ваши средства.",
     "reminder":"Пожалуйста, тщательно храните свой ключ (seed).",
-    "button1":"YES",
-    "button2":"NO"
+    "button1":"ДА",
+    "button2":"НЕТ"
   },
   "lightserver":{
     "text1":"Облегченный сервер (LIGHT SERVER) — это вход в сеть IOTA, предоставленный членами сообщества или нашими корпоративными партнерами.",
@@ -34,7 +34,7 @@
     "custom_server_label":"Другой адрес сервера",
     "other":"Другой",
     "button1":"ДАЛЕЕ",
-    "button2":"BACK"
+    "button2":"НАЗАД"
   },
   "login":{
     "text":"Пожалуйста, введите пароль",
@@ -42,7 +42,7 @@
     "error_title":"Нераспознанный пароль",
     "error_text":"Некорректный пароль. Повторите попытку.",
     "button1":"ГОТОВО",
-    "button2":"USE SEED"
+    "button2":"ИСПОЛЬЗУЙТЕ КЛЮЧ"
   },
   "enterSeed":{
     "error_title":"Ключ слишком короткий",
@@ -55,7 +55,7 @@
     "scan_code":"Сканировать QR-код",
     "close":"ЗАКРЫТЬ",
     "button1":"ГОТОВО",
-    "button2":"BACK"
+    "button2":"НАЗАД"
   },
   "newSeedSetup":{
     "title":"СГЕНЕРИРОВАТЬ НОВЫЙ КЛЮЧ",
@@ -63,7 +63,7 @@
     "text1":"Нажмите какие-нибудь клавиши на клавиатуре в случайном порядке.",
     "text2":"Затем нажмите ДАЛЕЕ",
     "button2":"ДАЛЕЕ",
-    "button3":"BACK"
+    "button3":"НАЗАД"
   },
   "saveYourSeed":{
     "text1":"Вы должны сохранить ваш ключ по крайней мере одним из предложенных ниже способов.",
@@ -72,7 +72,7 @@
     "optionB":"РАСПЕЧАТАННЫЙ В БУМАЖНОМ ВИДЕ КОШЕЛЕК",
     "optionC":"КОПИРОВАТЬ В БУФЕР ОБМЕНА",
     "button1":"ДАЛЕЕ",
-    "button2":"BACK"
+    "button2":"НАЗАД"
   },
   "saveYourSeed2":{
     "optionA":"Ручное копирование",
@@ -86,7 +86,7 @@
     "optionA":"Ручное копирование",
     "optionB":"Бумажный кошелек",
     "optionC":"Скопировать в буфер обмена",
-    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+    "explanation":"Нажмите на кнопку ниже, чтобы скопировать ваш ключ в менеджер паролей. Ключ будет оставаться в буфере обмена 60 секунд.",
     "text":"Не храните ваш ключ в виде обычного текстового файла.",
     "button1":"Копировать в буфер",
     "button2":"ГОТОВО"
@@ -96,16 +96,16 @@
     "optionB":"Бумажный кошелек",
     "optionC":"Скопировать в буфер обмена",
     "explanation":"Нажмите на кнопку ниже, чтобы напечатать бумажную копию вашего ключа.",
-    "text1":"Store it safely",
-    "text2":"Never share your seed with anyone.",
+    "text1":"Надежно храните его",
+    "text2":"Никогда не сообщайте свой ключ кому-либо.",
     "check_button":"Логотип IOTA",
     "button1":"РАСПЕЧАТАННЫЙ В БУМАЖНОМ ВИДЕ КОШЕЛЕК",
     "button2":"ГОТОВО"
   },
   "setPassword":{
     "title":"УСТАНОВКА ПАРОЛЯ",
-    "text":"Now we need to set up a password.",
-    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "text":"Теперь нам нужно установить пароль.",
+    "explanation":"Вы сможете использовать этот пароль для доступа к кошельку в будущем. Зашифрованная копия вашего ключа будет храниться на данном устройстве.",
     "reminder":"Ensure you use a strong password of at least 12 characters.",
     "placeholder1":"«ПАРОЛЬ»",
     "placeholder2":"ПОВТОРИТЕ ПАРОЛЬ",
