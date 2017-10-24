@@ -4,7 +4,7 @@
     "invalidServer_title":"سيرفر غير صالح",
     "invalidServer_text":"السيرفر الذي قمت بإدخاله غير صالح",
     "unknownError_title":"حدث خطأ غير معروف",
-    "unknownError_text":"نعتذر عن تنفيذ الإجراء المطلوب هذه المرة. الرجاء المحاولة مرة أخرى."
+    "unknownError_text":"نعتذر عن تنفيذ الإجراء المطلوب هذه المرة. يرجى المحاولة مرة أخرى."
   },
   "setLanguage":{
     "dropdown_title":"اللغة",
@@ -37,17 +37,17 @@
     "button2":"رجوع"
   },
   "login":{
-    "text":"Please enter your password",
-    "placeholder":"PASSWORD",
-    "error_title":"Unrecognised Password",
-    "error_text":"The password was not recognised. Please try again.",
-    "button1":"DONE",
-    "button2":"USE SEED"
+    "text":"الرجاء إدخال كلمة المرور",
+    "placeholder":"كلمة المرور",
+    "error_title":"كلمة مرور غير مطابقة",
+    "error_text":"كلمة المرور غير مطابقة. يرجى المحاولة مره اخرى.",
+    "button1":"تم",
+    "button2":"استخدم السييد"
   },
   "enterSeed":{
-    "error_title":"Seed is too short",
-    "error_text":"Seeds must be at least 60 characters long. Please try again.",
-    "invalid_seed_title":"Invalid seed",
+    "error_title":"السييد قصير جداً",
+    "error_text":"يجب أن يكون السييد 60 خانة على الأقل. يرجى المحاولة مرة أخرى.",
+    "invalid_seed_title":"سييد غير صالح",
     "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
     "placeholder":"SEED",
     "seed_explanation":"Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
