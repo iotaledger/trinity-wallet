@@ -19,7 +19,7 @@
   },
   "welcome2":{
     "text1":"Okay. Wir richten Ihre Wallet ein!",
-    "text2":"Haben Sie bereits einen Seed den Sie verwenden möchten?",
+    "text2":"Hast Du bereits einen Seed welchen du verwenden möchtest?",
     "seed_explanation1":"Der IOTA Seed ist wie ein Benutzername und Passwort zu Ihrem Konto, kombiniert in einer Zeichenfolge von 81 Buchstaben.",
     "seed_explanation2":"Mit Ihrem Seed können Sie von jeder Wallet und jedem Gerät auf Ihre IOTA zugreifen - Aber wenn Sie Ihren Seed verlieren, verlieren Sie auch alle Ihre IOTA",
     "reminder":"Bitte bewahren Sie Ihren Seed sicher auf",
