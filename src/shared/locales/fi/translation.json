@@ -2,7 +2,9 @@
   "id":"en",
   "notifications":{
     "invalidServer_title":"Invalid server",
-    "invalidServer_text":"The server address you entered is not valid"
+    "invalidServer_text":"The server address you entered is not valid",
+    "unknownError_title":"Unknown error occured",
+    "unknownError_text":"We could not perform the desired action this time. Please try again."
   },
   "setLanguage":{
     "title":"HELLO",
@@ -51,9 +53,13 @@
     "title":"ENTER YOUR SEED",
     "error_title":"Seed is too short",
     "error_text":"Seeds must be at least 60 characters long. Please try again.",
+    "invalid_seed_title":"Invalid seed",
+    "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
     "placeholder":"SEED",
     "seed_explanation":"Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
     "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
+    "scan_code":"Scan QR code",
+    "close":"CLOSE",
     "button1":"DONE",
     "button2":"GO BACK"
   },
@@ -94,6 +100,25 @@
     "button1":"COPY TO CLIPBOARD",
     "button2":"DONE"
   },
+  "saveYourSeed4":{
+    "title":"SAVE YOUR SEED",
+    "optionA":"Manual Copy",
+    "optionB":" Paper Wallet",
+    "optionC":"Copy To Clipboard",
+    "explanation":"Click the button below to print a paper copy of your seed.",
+    "text":"Store it safely",
+    "check_button":"IOTA logo",
+    "button1":"PRINT PAPER WALLET",
+    "button2":"DONE"
+  },
+  "securityIntro":{
+    "title":"SET UP LOCAL PASSPHRASE",
+    "text1":"To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
+    "explanation1":"The local passphrase can only be used to unlock the account on this device.",
+    "explanation2":"The IOTA seed can still be used to access your funds on any wallet on any device.",
+    "button1":"YES - set up a passphrase",
+    "button2":"NO - login with my seed"
+  },
   "setPassword":{
     "title":"PASSWORD SETUP",
     "text":"Okay, now we need to set up a password.",
@@ -102,7 +127,7 @@
     "placeholder1":"'PASSWORD'",
     "placeholder2":"RETYPE PASSWORD",
     "error1_title":"Password is too short",
-    "error1_text":"Your password must be at least 8 characters. Please try again.",
+    "error1_text":"Your password must be at least 12 characters. Please try again.",
     "error2_title":"Passwords do not match",
     "error2_text":"The passwords you have entered do not match. Please try again.",
     "button1":"DONE",
