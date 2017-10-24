@@ -2,7 +2,7 @@
   "id":"en",
   "notifications":{
     "invalidServer_title":"無効なサーバー",
-    "invalidServer_text":"入力されたアドレスは有効ではありません",
+    "invalidServer_text":"入力されたアドレスは有効ではありません。",
     "unknownError_title":"不明なエラーが発生しました。",
     "unknownError_text":"目的の操作を実行できませんでした。もう一度やり直してください。"
   },
