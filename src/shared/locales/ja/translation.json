@@ -51,7 +51,7 @@
     "invalid_seed_text":"Seedが無効です。Seedには、アルファベット大文字（A〜Z）と数字の\"9\"のみが使用でき、長さは60〜81文字である必要があります。",
     "placeholder":"Seed",
     "seed_explanation":"Seedは81文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、81文字以上の長さにはできません。",
-    "reminder":"Seedを他の人に教えては行けません。",
+    "reminder":"Seedを他の人に絶対に教えてはいけません。",
     "scan_code":"QRコード読み取り",
     "close":"閉じる",
     "button1":"完了",
