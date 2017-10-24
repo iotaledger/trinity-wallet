@@ -1,5 +1,6 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
     StyleSheet,
     View,
@@ -32,6 +33,9 @@ class ChangePassword extends Component {
             newPassword: '',
             confirmedNewPassword: '',
         };
+
+        this.goBack = this.goBack.bind(this);
+        this.changePassword = this.changePassword.bind(this);
     }
 
     renderTextField(value, label, onChangeText) {
@@ -56,6 +60,73 @@ class ChangePassword extends Component {
         };
 
         return <TextField {...props} />;
+    }
+
+    goBack() {
+        // TODO: next path should be settings
+        this.props.navigator.push({
+            screen: 'welcome',
+            navigatorStyle: {
+                navBarHidden: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: Colors.brand.primary,
+            },
+            animated: false,
+        });
+    }
+
+    isValid() {
+        const { currentPassword, newPassword, confirmedNewPassword } = this.state;
+        const { password } = this.props;
+
+        return (
+            currentPassword === password &&
+            newPassword.length >= 12 &&
+            confirmedNewPassword.length >= 12 &&
+            newPassword === confirmedNewPassword &&
+            newPassword !== currentPassword
+        );
+    }
+
+    changePassword() {
+        const isValid = this.isValid();
+
+        if (isValid) {
+            return console.log('Valid');
+        }
+
+        return this.renderInvalidSubmissionAlerts();
+    }
+
+    renderInvalidSubmissionAlerts() {
+        const { currentPassword, newPassword, confirmedNewPassword } = this.state;
+        const { password } = this.props;
+
+        if (currentPassword !== password) {
+            return this.dropdown.alertWithType(
+                'error',
+                'Incorrect password',
+                'Your current password is incorrect. Please try again.',
+            );
+        } else if (newPassword !== confirmedNewPassword) {
+            return this.dropdown.alertWithType(
+                'error',
+                'Passwords mismatch',
+                'Passwords do not match. Please try again.',
+            );
+        } else if (newPassword.length < 12 || confirmedNewPassword.length < 12) {
+            return this.dropdown.alertWithType(
+                'error',
+                'Password is too short',
+                'Your password must be at least 12 characters. Please try again.',
+            );
+        } else if (newPassword === currentPassword) {
+            return this.dropdown.alertWithType(
+                'error',
+                'Cannot set old password',
+                'You cannot use the old password as your new password. Please try again with a new password.',
+            );
+        }
     }
 
     render() {
@@ -91,10 +162,10 @@ class ChangePassword extends Component {
                         </View>
                         <View style={styles.bottomWrapper}>
                             <OnboardingButtons
-                                onLeftButtonPress={() => {}}
-                                onRightButtonPress={() => {}}
-                                leftText={'BACK'}
-                                rightText={'DONE'}
+                                onLeftButtonPress={this.goBack}
+                                onRightButtonPress={this.changePassword}
+                                leftText={toUpper('back')}
+                                rightText={toUpper('done')}
                             />
                         </View>
                     </View>
@@ -216,7 +287,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    password: state.iota.password,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -227,5 +298,9 @@ const mapDispatchToProps = dispatch => ({
         dispatch(getAccountInfo(seed));
     },
 });
+
+ChangePassword.propTypes = {
+    password: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);
