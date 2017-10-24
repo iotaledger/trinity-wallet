@@ -21,20 +21,20 @@
     "text1":"حسنًا. لنقم بإعداد محفظتك!",
     "text2":"هل لديك seed ترغب في استخدامه؟",
     "seed_explanation1":"السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
-    "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
-    "reminder":"Please keep your seed safe",
-    "button1":"YES",
-    "button2":"NO"
+    "seed_explanation2":"يمكنك استخدامه للوصول إلى أموالك من أي محفظة، على أي جهاز. ولكن إذا فقدت السييد الخاص بك، ستفقد ما به من IOTA",
+    "reminder":"يرجى الحفاظ على السييد الخاص بك في مكان آمن",
+    "button1":"نعم",
+    "button2":"لا"
   },
   "lightserver":{
     "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
     "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
     "text3":"Please choose a server from the list below.",
-    "server_label":"Server",
-    "custom_server_label":"Other server address",
-    "other":"Other",
-    "button1":"NEXT",
-    "button2":"BACK"
+    "server_label":"سيرفر",
+    "custom_server_label":"عنوان سيرفر آخر",
+    "other":"اخرى",
+    "button1":"التالي",
+    "button2":"رجوع"
   },
   "login":{
     "text":"Please enter your password",
