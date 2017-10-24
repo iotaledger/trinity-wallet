@@ -28,7 +28,6 @@ class Login extends React.Component {
         this.state = {
             password: '',
         };
-
         this.onDonePress = this.onDonePress.bind(this);
     }
 
