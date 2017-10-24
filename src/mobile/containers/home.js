@@ -13,7 +13,7 @@ import Balance from './balance';
 import Send from './send';
 import Receive from './receive';
 import History from './history';
-import Tools from './tools';
+import Settings from './settings';
 import DropdownAlert from 'react-native-dropdownalert';
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
@@ -28,8 +28,7 @@ class Home extends React.Component {
             sendOpacity: 0.6,
             receiveOpacity: 0.6,
             historyOpacity: 0.6,
-            toolsOpacity: 0.6,
-            bannerText: 'BALANCE',
+            settingsOpacity: 0.6,
             mode: 'STANDARD',
         };
     }
@@ -49,8 +48,8 @@ class Home extends React.Component {
             case 'history':
                 tabContent = <History type={tabChoice} />;
                 break;
-            case 'tools':
-                tabContent = <Tools type={tabChoice} />;
+            case 'settings':
+                tabContent = <Settings type={tabChoice} />;
                 break;
             default:
                 break;
@@ -68,8 +67,7 @@ class Home extends React.Component {
             sendOpacity: 0.6,
             receiveOpacity: 0.6,
             historyOpacity: 0.6,
-            toolsOpacity: 0.6,
-            bannerText: 'BALANCE',
+            settingsOpacity: 0.6,
         });
     }
     clickSend() {
@@ -79,8 +77,7 @@ class Home extends React.Component {
             sendOpacity: 1,
             receiveOpacity: 0.6,
             historyOpacity: 0.6,
-            toolsOpacity: 0.6,
-            bannerText: 'SEND',
+            settingsOpacity: 0.6,
         });
     }
     clickReceive() {
@@ -90,8 +87,7 @@ class Home extends React.Component {
             sendOpacity: 0.6,
             receiveOpacity: 1,
             historyOpacity: 0.6,
-            toolsOpacity: 0.6,
-            bannerText: 'RECEIVE',
+            settingsOpacity: 0.6,
         });
     }
     clickHistory() {
@@ -101,19 +97,17 @@ class Home extends React.Component {
             sendOpacity: 0.6,
             receiveOpacity: 0.6,
             historyOpacity: 1,
-            toolsOpacity: 0.6,
-            bannerText: 'HISTORY',
+            settingsOpacity: 0.6,
         });
     }
-    clickTools() {
-        this.setTab('tools');
+    clickSettings() {
+        this.setTab('settings');
         this.setState({
             balanceOpacity: 0.6,
             sendOpacity: 0.6,
             receiveOpacity: 0.6,
             historyOpacity: 0.6,
-            toolsOpacity: 1,
-            bannerText: 'TOOLS',
+            settingsOpacity: 1,
         });
     }
 
@@ -161,13 +155,13 @@ class Home extends React.Component {
                             <Text style={[styles.iconTitle, { opacity: this.state.historyOpacity }]}>HISTORY</Text>
                         </View>
                     </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={event => this.clickTools()}>
+                    <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
                         <View style={styles.button}>
                             <Image
-                                style={[styles.icon, { opacity: this.state.toolsOpacity }]}
-                                source={require('../../shared/images/tools.png')}
+                                style={[styles.icon, { opacity: this.state.settingsOpacity }]}
+                                source={require('../../shared/images/settings.png')}
                             />
-                            <Text style={[styles.iconTitle, { opacity: this.state.toolsOpacity }]}>TOOLS</Text>
+                            <Text style={[styles.iconTitle, { opacity: this.state.settingsOpacity }]}>SETTINGS</Text>
                         </View>
                     </TouchableWithoutFeedback>
                 </View>

@@ -8,7 +8,7 @@ import { persistStore } from 'redux-persist';
 
 const { height, width } = Dimensions.get('window');
 
-class Tools extends React.Component {
+class Settings extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -166,4 +166,4 @@ const mapStateToProps = state => ({
     account: state.account,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tools);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
