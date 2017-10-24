@@ -87,7 +87,7 @@
     "optionB":" محفظة ورقية",
     "optionC":"نسخ إلى الحافظة",
     "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
-    "text":"Do not store the seed in plain text.",
+    "text":"لا تخزن السييد الخاص بك في نص عادي.",
     "button1":"نسخ إلى الحافظة",
     "button2":"تم"
   },
@@ -105,8 +105,8 @@
   "setPassword":{
     "title":"إعداد كلمة المرور",
     "text":"الآن نحن بحاجة إلى إعداد كلمة مرور.",
-    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
-    "reminder":"Ensure you use a strong password of at least 12 characters.",
+    "explanation":"سوف تستخدم كلمة المرور هذه للوصول إلى محفظتك في المستقبل. سيتم تخزين نسخة مشفرة من السييد الخاص بك على جهازك.",
+    "reminder":"تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
     "placeholder1":"'كلمة المرور'",
     "placeholder2":"إعادة كلمة المرور",
     "error1_title":"كلمة المرور قصيرة جدا",
@@ -117,13 +117,13 @@
     "button2":"رجوع"
   },
   "onboardingComplete":{
-    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "text":"تم إعداد المحفظة وهي جاهزة للاستخدام. إذا احتجت إلى إجراء أية تغييرات في المستقبل، فابحث في قائمة الأدوات.",
     "button":"التالي"
   },
   "home":{
     "tab1":"الرصيد",
     "tab2":"إرسال",
-    "tab3":"RECEIVE",
+    "tab3":"إستلام",
     "tab4":"التاريخ",
     "tab5":"أدوات",
     "mcap":"MCAP",
