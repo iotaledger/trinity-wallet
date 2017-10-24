@@ -1,59 +1,68 @@
-const iotaReducer = (
-    state = {
-        balance: 0,
-        ready: false,
-        addresses: [],
-        password: '',
-        seed: '                                                                                 ',
-        transactions: [],
-    },
-    action,
-) => {
+const initialState = {
+    balance: 0,
+    ready: false,
+    receiveAddress: '',
+    password: '',
+    seed: '                                                                                 ',
+    transactions: [],
+    isGeneratingReceiveAddress: false,
+};
+
+export default (state = initialState, action) => {
     switch (action.type) {
         case 'SET_ACCOUNTINFO':
-            state = {
+            return {
                 ...state,
                 balance: action.balance,
                 transactions: action.transactions,
             };
-            break;
         case 'SET_SEED':
-            state = {
+            return {
                 ...state,
                 seed: action.payload,
             };
-            break;
         case 'SET_PASSWORD':
-            state = {
+            return {
                 ...state,
                 password: action.payload,
             };
-            break;
         case 'SET_ADDRESS':
-            state = {
+            return {
                 ...state,
-                addresses: [...state.addresses, action.payload],
+                receiveAddress: action.payload,
             };
-            break;
+        case 'GENERATE_NEW_ADDRESS_REQUEST':
+            return {
+                ...state,
+                isGeneratingReceiveAddress: true,
+            };
+        case 'GENERATE_NEW_ADDRESS_SUCCESS':
+            return {
+                ...state,
+                isGeneratingReceiveAddress: false,
+                receiveAddress: action.payload,
+            };
+        case 'GENERATE_NEW_ADDRESS_ERROR':
+            return {
+                ...state,
+                isGeneratingReceiveAddress: false,
+            };
         case 'SET_READY':
-            state = {
+            return {
                 ...state,
                 ready: action.payload,
             };
-            break;
         case 'CLEAR_IOTA':
-            state = {
+            return {
                 ...state,
                 balance: 0,
                 transactions: [],
-                addresses: [],
+                receiveAddress: '',
                 seed: '',
                 password: '',
                 ready: false,
             };
-            break;
+        default:
+            return state;
     }
-    return state;
 };
-
-export default iotaReducer;
