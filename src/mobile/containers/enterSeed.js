@@ -171,9 +171,9 @@ class EnterSeed extends React.Component {
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={'#132d38'}
-                    backdropOpacity={0.6}
-                    style={{ alignItems: 'center' }}
+                    backdropColor={'#102832'}
+                    backdropOpacity={1}
+                    style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalVisible}
                 >
                     {this._renderModalContent()}
