@@ -15,16 +15,16 @@
     "text2":"Vamos passar os próximos minutos configurando sua carteira.",
     "reminder":"Você pode se sentir tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo.",
     "button1":"SEGUINTE",
-    "button2":"BACK"
+    "button2":"VOLTAR"
   },
   "welcome2":{
     "text1":"Ok. Vamos configurar a sua carteira!",
     "text2":"Já possui uma seed que gostaria de utilizar?",
-    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+    "seed_explanation1":"A seed IOTA representa, simultaneamente, o nome do utilizador e a senha da sua conta, combinados numa sequência de 81 caracteres.",
     "seed_explanation2":"Pode usá-la para acessar seus fundos a partir de qualquer carteira, em qualquer dispositivo. Mas se perder a sua seed, também perderá as suas iotas",
     "reminder":"Por favor, mantenha a sua seed protegida e segura",
-    "button1":"YES",
-    "button2":"NO"
+    "button1":"SIM",
+    "button2":"NÃO"
   },
   "lightserver":{
     "text1":"Um servidor leve é um acesso à rede IOTA, gentilmente fornecido por membros da comunidade ou por parceiros corporativos. ",
@@ -34,7 +34,7 @@
     "custom_server_label":"Endereço de outro servidor",
     "other":"Outro",
     "button1":"SEGUINTE",
-    "button2":"BACK"
+    "button2":"VOLTAR"
   },
   "login":{
     "text":"Por favor, insira a sua senha",
@@ -42,7 +42,7 @@
     "error_title":"Senha não reconhecida",
     "error_text":"A senha não foi reconhecida. Por favor, tente novamente.",
     "button1":"CONCLUÍDO",
-    "button2":"USE SEED"
+    "button2":"USAR A SEED"
   },
   "enterSeed":{
     "error_title":"A Seed é muito curta",
@@ -55,7 +55,7 @@
     "scan_code":"Ler código QR",
     "close":"FECHAR",
     "button1":"CONCLUÍDO",
-    "button2":"BACK"
+    "button2":"VOLTAR"
   },
   "newSeedSetup":{
     "title":"GERAR UMA NOVA SEED",
@@ -63,7 +63,7 @@
     "text1":"Digite letras individuais para tornar o processo mais aleatório.",
     "text2":"Em seguida, clique em SEGUINTE",
     "button2":"SEGUINTE",
-    "button3":"BACK"
+    "button3":"VOLTAR"
   },
   "saveYourSeed":{
     "text1":"Você deve salvar a sua seed com pelo menos uma das opções listadas abaixo.",
@@ -72,7 +72,7 @@
     "optionB":"IMPRIMIR CARTEIRA DE PAPEL",
     "optionC":"COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
     "button1":"SEGUINTE",
-    "button2":"BACK"
+    "button2":"VOLTAR"
   },
   "saveYourSeed2":{
     "optionA":"Cópia manual",
@@ -86,7 +86,7 @@
     "optionA":"Cópia manual",
     "optionB":" Carteira de Papel",
     "optionC":"Copiar para Área de Transferência",
-    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+    "explanation":"Pressione o botão abaixo para copiar a sua seed para um gestor de senhas. Esta cópia ficará na sua área de transferência durante 60 segundos.",
     "text":"Não grave a seed em arquivo de texto descriptografado.",
     "button1":"COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
     "button2":"CONCLUÍDO"
@@ -96,16 +96,16 @@
     "optionB":" Carteira de Papel",
     "optionC":"Copiar para Área de Transferência",
     "explanation":"Clique no botão abaixo para imprimir uma cópia em papel da sua seed.",
-    "text1":"Store it safely",
-    "text2":"Never share your seed with anyone.",
+    "text1":"Guarde em local seguro",
+    "text2":"Nunca revele sua seed a ninguém.",
     "check_button":"Logotipo da IOTA",
     "button1":"IMPRIMIR CARTEIRA DE PAPEL",
     "button2":"CONCLUÍDO"
   },
   "setPassword":{
     "title":"CONFIGURAÇÃO DE SENHA",
-    "text":"Now we need to set up a password.",
-    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "text":"Agora precisamos criar uma senha.",
+    "explanation":"Você usará esta senha para acessar sua carteira. Será armazenada uma cópia criptografada da sua seed em seu dispositivo.",
     "reminder":"Ensure you use a strong password of at least 12 characters.",
     "placeholder1":"'SENHA'",
     "placeholder2":"DIGITE DE NOVO A SENHA",
