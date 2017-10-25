@@ -63,43 +63,43 @@
         "text1": "Press individual letters to randomise them.",
         "text2": "Następnie kliknij przycisk DALEJ",
         "button2": "DALEJ",
-        "button3": "BACK"
+        "button3": "WSTECZ"
     },
     "saveYourSeed": {
-        "text1": "You must save your seed with at least one of the options listed below.",
-        "text2": "at least one",
-        "optionA": "MANUAL COPY",
-        "optionB": "PRINT PAPER WALLET",
-        "optionC": "COPY TO CLIPBOARD",
-        "button1": "NEXT",
-        "button2": "BACK"
+        "text1": "Należy zapisać swojego seeda, z co najmniej jedną z wymienionych poniżej opcji.",
+        "text2": "co najmniej jedną",
+        "optionA": "RĘCZNA KOPIA",
+        "optionB": "WYDRUKUJ PAPIEROWY PORTFEL",
+        "optionC": "KOPIUJ DO SCHOWKA",
+        "button1": "DALEJ",
+        "button2": "WSTECZ"
     },
     "saveYourSeed2": {
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
-        "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
-        "text": "triple check",
-        "button": "DONE"
+        "optionA": "Ręczne kopiowanie",
+        "optionB": " Papierowy portfel",
+        "optionC": "Kopiuj do Schowka",
+        "explanation": "Twój seed zawiera 81 znaków czytany od lewej do prawej. Zapisz seeda oraz sumę kontrolną i sprawdź trzykrotnie czy wszystko się zgadza.",
+        "text": "sprawdź trzykrotnie",
+        "button": "GOTOWE"
     },
     "saveYourSeed3": {
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
-        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
-        "text": "Do not store the seed in plain text.",
-        "button1": "COPY TO CLIPBOARD",
-        "button2": "DONE"
+        "optionA": "Ręczna Kopia",
+        "optionB": " Papierowy Portfel",
+        "optionC": "Kopiuj do Schowka",
+        "explanation": "Kliknij przycisk poniżej i skopiuj swojego seeda do Menedżera haseł. Pozostanie w swoim schowku przez 60 sekund.",
+        "text": "Nie należy przechowywać seeda w postaci zwykłego tekstu.",
+        "button1": "KOPIUJ DO SCHOWKA",
+        "button2": "GOTOWE"
     },
     "saveYourSeed4": {
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
-        "explanation": "Click the button below to print a paper copy of your seed.",
-        "text1": "Store it safely",
-        "text2": "Never share your seed with anyone.",
-        "check_button": "IOTA logo",
-        "button1": "PRINT PAPER WALLET",
+        "optionA": "Ręczna Kopia",
+        "optionB": " Papierowy Portfel",
+        "optionC": "Kopiuj do Schowka",
+        "explanation": "Kliknij poniższy przycisk, aby wydrukować kopie twojego seeda.",
+        "text1": "Przechowuj go bezpiecznie",
+        "text2": "Nigdy nie udostępniaj nikomu swojego seeda.",
+        "check_button": "Logo IOTA",
+        "button1": "WYDRUKUJ PAPIEROWY PORTFEL",
         "button2": "GOTOWE"
     },
     "setPassword": {
@@ -118,11 +118,11 @@
     },
     "onboardingComplete": {
         "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-        "button": "NEXT"
+        "button": "DALEJ"
     },
     "home": {
-        "tab1": "BALANCE",
-        "tab2": "SEND",
+        "tab1": "SALDO",
+        "tab2": "WYŚLIJ",
         "tab3": "RECEIVE",
         "tab4": "HISTORY",
         "tab5": "TOOLS",
