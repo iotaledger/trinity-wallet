@@ -8,7 +8,7 @@
     "dependencies": {
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-stage-0": "^6.24.1",
-        "iota.lib.js": "git+https://git@github.com/aquadestructor/iota.lib.js.git#b2cff00",
+        "iota.lib.js": "git+https://github.com/l3wi/iota.lib.js.git",
         "moment": "^2.19.1",
         "redux": "^3.7.2",
         "redux-persist": "^4.10.1",
