@@ -193,6 +193,7 @@ export function setAccountInfo(accountInfo) {
     const balance = accountInfo.balance;
     let transactions = sortTransactions(accountInfo.transfers);
     transactions = addTransactionValues(transactions, accountInfo.addresses);
+    console.log(transactions);
     return {
         type: 'SET_ACCOUNTINFO',
         balance,

@@ -89,7 +89,7 @@ class Send extends React.Component {
         getFromKeychain(this.props.iota.password, seed => {
             if (typeof seed !== 'undefined') {
                 sendTx(seed);
-                if (!sendTransaction(seed, address, value, message)) {
+                if (sendTransaction(seed, address, value, message) == false) {
                     this.dropdown.alertWithType(
                         'error',
                         'Key reuse',
@@ -298,6 +298,7 @@ const styles = StyleSheet.create({
     textFieldContainer: {
         flex: 1,
         paddingRight: width / 20,
+        paddingTop: 1,
     },
     textField: {
         color: 'white',
