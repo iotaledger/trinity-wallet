@@ -1,36 +1,32 @@
 {
   "id":"en",
   "notifications":{
-    "invalidServer_title":"Invalid server",
-    "invalidServer_text":"The server address you entered is not valid",
-    "unknownError_title":"Unknown error occured",
+    "invalidServer_title":"Nepareizs serveris",
+    "invalidServer_text":"Servera adresi, kuru ievadījāt, nav pareiza",
+    "unknownError_title":"Radās nezināma kļūda",
     "unknownError_text":"We could not perform the desired action this time. Please try again."
   },
   "setLanguage":{
-    "title":"HELLO",
-    "dropdown_title":"Language",
-    "button1":"NEXT"
+    "dropdown_title":"Valoda",
+    "button1":"Nākošais"
   },
   "welcome1":{
-    "title":"WELCOME",
     "text1":"Thank you for downloading the IOTA wallet.",
     "text2":"We will spend the next few minutes setting up your wallet.",
     "reminder":"You may be tempted to skip some steps, but we urge you to follow the complete process.",
-    "button1":"NEXT",
-    "button2":"GO BACK"
+    "button1":"Nākošais",
+    "button2":"BACK"
   },
   "welcome2":{
-    "title":"WALLET SETUP",
-    "text1":"Okay. Lets set up your wallet!",
+    "text1":"Okay. Let's set up your wallet!",
     "text2":"Do you already have a seed that you would like to use?",
-    "seed_explanation1":"A seed is like a master password to your account.",
+    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
     "seed_explanation2":"You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
     "reminder":"Please keep your seed safe",
-    "button1":"YES - I have seed",
-    "button2":"NO - I need a new seed"
+    "button1":"YES",
+    "button2":"NO"
   },
   "lightserver":{
-    "title":"LIGHT SERVER SETUP",
     "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
     "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
     "text3":"Please choose a server from the list below.",
@@ -38,19 +34,17 @@
     "custom_server_label":"Other server address",
     "other":"Other",
     "button1":"NEXT",
-    "button2":"GO BACK"
+    "button2":"BACK"
   },
   "login":{
-    "title":"Login",
     "text":"Please enter your password",
     "placeholder":"PASSWORD",
     "error_title":"Unrecognised Password",
     "error_text":"The password was not recognised. Please try again.",
     "button1":"DONE",
-    "button2":"CHANGE WALLET"
+    "button2":"USE SEED"
   },
   "enterSeed":{
-    "title":"ENTER YOUR SEED",
     "error_title":"Seed is too short",
     "error_text":"Seeds must be at least 60 characters long. Please try again.",
     "invalid_seed_title":"Invalid seed",
@@ -61,7 +55,7 @@
     "scan_code":"Scan QR code",
     "close":"CLOSE",
     "button1":"DONE",
-    "button2":"GO BACK"
+    "button2":"BACK"
   },
   "newSeedSetup":{
     "title":"GENERATE A NEW SEED",
@@ -69,20 +63,18 @@
     "text1":"Press individual letters to randomise them.",
     "text2":"Then click NEXT",
     "button2":"NEXT",
-    "button3":"GO BACK"
+    "button3":"BACK"
   },
   "saveYourSeed":{
-    "title":"SAVE YOUR SEED",
     "text1":"You must save your seed with at least one of the options listed below.",
     "text2":"at least one",
     "optionA":"MANUAL COPY",
     "optionB":"PRINT PAPER WALLET",
     "optionC":"COPY TO CLIPBOARD",
     "button1":"NEXT",
-    "button2":"GO BACK"
+    "button2":"BACK"
   },
   "saveYourSeed2":{
-    "title":"SAVE YOUR SEED",
     "optionA":"Manual Copy",
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
@@ -91,61 +83,56 @@
     "button":"DONE"
   },
   "saveYourSeed3":{
-    "title":"SAVE YOUR SEED",
     "optionA":"Manual Copy",
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
-    "explanation":"Click the button below to copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
     "text":"Do not store the seed in plain text.",
     "button1":"COPY TO CLIPBOARD",
     "button2":"DONE"
   },
   "saveYourSeed4":{
-    "title":"SAVE YOUR SEED",
     "optionA":"Manual Copy",
     "optionB":" Paper Wallet",
     "optionC":"Copy To Clipboard",
     "explanation":"Click the button below to print a paper copy of your seed.",
-    "text":"Store it safely",
+    "text1":"Store it safely",
+    "text2":"Never share your seed with anyone.",
     "check_button":"IOTA logo",
     "button1":"PRINT PAPER WALLET",
     "button2":"DONE"
   },
-  "securityIntro":{
-    "title":"SET UP LOCAL PASSPHRASE",
-    "text1":"To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
-    "explanation1":"The local passphrase can only be used to unlock the account on this device.",
-    "explanation2":"The IOTA seed can still be used to access your funds on any wallet on any device.",
-    "button1":"YES - set up a passphrase",
-    "button2":"NO - login with my seed"
-  },
   "setPassword":{
     "title":"PASSWORD SETUP",
-    "text":"Okay, now we need to set up a password.",
-    "explanation":"An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
-    "reminder":"Ensure you use a strong password.",
+    "text":"Now we need to set up a password.",
+    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "reminder":"Ensure you use a strong password of at least 12 characters.",
     "placeholder1":"'PASSWORD'",
     "placeholder2":"RETYPE PASSWORD",
     "error1_title":"Password is too short",
     "error1_text":"Your password must be at least 8 characters. Please try again.",
     "error2_title":"Passwords do not match",
     "error2_text":"The passwords you have entered do not match. Please try again.",
-    "button1":"DONE",
-    "button2":"GO BACK"
+    "button1":"Pabeigt",
+    "button2":"BACK"
+  },
+  "onboardingComplete":{
+    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "button":"NEXT"
   },
   "home":{
-    "tab1":"BALANCE",
-    "tab2":"SEND",
+    "tab1":"Bilance",
+    "tab2":"Sūtīt",
     "tab3":"RECEIVE",
     "tab4":"HISTORY",
     "tab5":"TOOLS",
     "mcap":"MCAP",
-    "change":"Change",
-    "volume":"Volume",
-    "address":"ADDRESS",
-    "amount":"AMOUNT",
-    "botton1":"send IOTA",
-    "botton2":"GENERATE NEW ADDRESS",
-    "botton3":"LOG OUT"
+    "change":"Mainīt",
+    "volume":"Vērtība",
+    "address":"Address",
+    "amount":"Amount",
+    "button1":"SEND",
+    "button2":"GENERATE NEW ADDRESS",
+    "button3":"LOG OUT"
   }
 }
