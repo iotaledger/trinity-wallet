@@ -27,7 +27,7 @@
         "button2": "NIE"
     },
     "lightserver": {
-        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
+        "text1": "Light Serwer jest bramą do sieci IOTA, uprzejmie udostępnioną przez członków Wspólnoty lub naszych partnerów korporacyjnych. ",
         "text2": "Więcej informacji na temat serwerów znajdziesz na: http://iotasupport.com/lightwallet.shtml",
         "text3": "Proszę wybrać serwer z listy poniżej.",
         "server_label": "Serwer",
@@ -103,36 +103,36 @@
         "button2": "GOTOWE"
     },
     "setPassword": {
-        "title": "PASSWORD SETUP",
-        "text": "Now we need to set up a password.",
-        "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
-        "reminder": "Ensure you use a strong password of at least 12 characters.",
-        "placeholder1": "'PASSWORD'",
-        "placeholder2": "RETYPE PASSWORD",
-        "error1_title": "Password is too short",
+        "title": "USTAWIENIE HASŁA",
+        "text": "Teraz musimy ustawić hasło.",
+        "explanation": "Tego hasła będziesz używać do uzyskiwania dostępu do swojego portfela w przyszłości. Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu.",
+        "reminder": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
+        "placeholder1": "'HASŁO'",
+        "placeholder2": "POWTÓRZ HASŁO",
+        "error1_title": "Hasło jest zbyt krótkie",
         "error1_text": "Your password must be at least 8 characters. Please try again.",
-        "error2_title": "Passwords do not match",
-        "error2_text": "The passwords you have entered do not match. Please try again.",
-        "button1": "DONE",
-        "button2": "BACK"
+        "error2_title": "Hasła nie są zgodne",
+        "error2_text": "Mieć wpisane hasła nie pasują. Proszę spróbować ponownie.",
+        "button1": "GOTOWE",
+        "button2": "WSTECZ"
     },
     "onboardingComplete": {
-        "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+        "text": "Portfel jest skonfigurowany i gotowy do użycia. W przypadku konieczności wprowadzenia zmian w przyszłości, skorzystaj z menu Narzędzia.",
         "button": "DALEJ"
     },
     "home": {
         "tab1": "SALDO",
         "tab2": "WYŚLIJ",
-        "tab3": "RECEIVE",
-        "tab4": "HISTORY",
-        "tab5": "TOOLS",
+        "tab3": "ODBIERZ",
+        "tab4": "HISTORIA",
+        "tab5": "NARZĘDZIA",
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume",
-        "address": "Address",
-        "amount": "Amount",
-        "button1": "SEND",
-        "button2": "GENERATE NEW ADDRESS",
-        "button3": "LOG OUT"
+        "change": "Zmiana",
+        "volume": "Wolumen",
+        "address": "Adres",
+        "amount": "Ilość",
+        "button1": "WYŚLIJ",
+        "button2": "WYGENERUJ NOWY ADRES",
+        "button3": "WYLOGUJ"
     }
 }
