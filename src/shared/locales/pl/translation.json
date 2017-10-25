@@ -28,13 +28,13 @@
     },
     "lightserver": {
         "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
-        "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Please choose a server from the list below.",
+        "text2": "Więcej informacji na temat serwerów znajdziesz na: http://iotasupport.com/lightwallet.shtml",
+        "text3": "Proszę wybrać serwer z listy poniżej.",
         "server_label": "Serwer",
-        "custom_server_label": "Other server address",
+        "custom_server_label": "Adres innego serwera",
         "other": "Inny",
         "button1": "DALEJ",
-        "button2": "BACK"
+        "button2": "WSTECZ"
     },
     "login": {
         "text": "Wprowadź swoje hasło",
@@ -42,20 +42,20 @@
         "error_title": "Nierozpoznane hasło",
         "error_text": "Wpisano nieprawidłowe hasło. Spróbuj ponownie.",
         "button1": "GOTOWE",
-        "button2": "USE SEED"
+        "button2": "UŻYJ SEED'a"
     },
     "enterSeed": {
         "error_title": "Seed jest zbyt krótki",
-        "error_text": "Seeds must be at least 60 characters long. Please try again.",
-        "invalid_seed_title": "Invalid seed",
-        "invalid_seed_text": "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
+        "error_text": "SEED musi się składać z co najmniej 60-ciu znaków. Proszę spróbuj ponownie.",
+        "invalid_seed_title": "Niepoprawny seed",
+        "invalid_seed_text": "Twój seed jest nieprawidłowy. Seed może zawierać wielkie litery (A-Z), cyfrę 9 i musi być składać się z 60-81 znaków.",
         "placeholder": "SEED",
-        "seed_explanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "reminder": "NEVER SHARE YOUR SEED WITH ANYONE",
-        "scan_code": "Scan QR code",
-        "close": "CLOSE",
+        "seed_explanation": "Seed powinien składać się z 81 znaków i powinien zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż 81 znaków.",
+        "reminder": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA",
+        "scan_code": "Skanuj kod QR",
+        "close": "ZAMKNIJ",
         "button1": "GOTOWE",
-        "button2": "BACK"
+        "button2": "WSTECZ"
     },
     "newSeedSetup": {
         "title": "WYGENERUJ NOWEGO SEED'A",
