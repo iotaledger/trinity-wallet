@@ -1,4 +1,4 @@
-import { isToday, isYesterday, formatTimeAs, formatDayAs } from './dateUtils';
+import { isToday, isYesterday, formatTimeAs, formatDayAs, convertUnixTimeToDateObject } from './dateUtils';
 
 export const formatTime = ts => {
     if (isToday(ts)) {
@@ -6,13 +6,14 @@ export const formatTime = ts => {
     } else if (isYesterday(ts)) {
         return 'Yesterday';
     }
-
     return formatDayAs.dayMonthYear(ts);
 };
 
 export const formatModalTime = ts => {
     return formatTimeAs.hoursMinutesDayMonthYear(ts);
 };
+
+export const convertUnixTimeToJSDate = time => convertUnixTimeToDateObject(time);
 
 export const formatValue = value => {
     var negative = false;
