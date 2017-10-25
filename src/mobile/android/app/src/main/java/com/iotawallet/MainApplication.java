@@ -19,7 +19,7 @@ import com.reactnativenavigation.NavigationApplication;
 import com.horcrux.svg.SvgPackage;
 import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage; //<- You must import this
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
-
+import com.rnfs.RNFSPackage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,7 +42,8 @@ public class MainApplication extends NavigationApplication {
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
             new RNSensitiveInfoPackage(),
-	    new RCTCameraPackage()
+	    new RCTCameraPackage(),
+	    new RNFSPackage()
     );
   }
 
