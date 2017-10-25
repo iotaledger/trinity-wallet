@@ -14,6 +14,8 @@ import CopySeedToClipboard from '../containers/copySeedToClipboard';
 import PaperWallet from '../containers/paperWallet';
 import Login from '../containers/login';
 import ChangePassword from '../containers/changePassword';
+import OnboardingComplete from '../containers/onboardingComplete';
+import UseSeed from '../containers/useSeed';
 
 export function registerScreens(store, Provider) {
     Navigation.registerComponent('initialLoading', () => InitialLoading, store, Provider);
@@ -31,4 +33,6 @@ export function registerScreens(store, Provider) {
     Navigation.registerComponent('languageSetup', () => LanguageSetup, store, Provider);
     Navigation.registerComponent('welcome', () => Welcome, store, Provider);
     Navigation.registerComponent('change-password', () => ChangePassword, store, Provider);
+    Navigation.registerComponent('onboardingComplete', () => OnboardingComplete, store, Provider);
+    Navigation.registerComponent('useSeed', () => UseSeed, store, Provider);
 }
