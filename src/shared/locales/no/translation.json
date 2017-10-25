@@ -1,138 +1,149 @@
 {
-  "id":"en",
-  "notifications":{
-    "invalidServer_title":"Ugyldig tjener",
-    "invalidServer_text":"Tjener-adresssen du oppgav er ikke gyldig",
-    "unknownError_title":"Ukjent feil oppstod",
-    "unknownError_text":"Vi kan ikke utføre den ønskede handlingen denne gangen. Prøv på nytt."
+  "id": "en",
+  "notifications": {
+    "invalidServer_title": "Ugyldig tjener",
+    "invalidServer_text": "Tjener-adresssen du oppgav er ikke gyldig",
+    "unknownError_title": "Ukjent feil oppstod",
+    "unknownError_text": "Vi kan ikke utføre den ønskede handlingen denne gangen. Prøv på nytt."
   },
-  "setLanguage":{
-    "dropdown_title":"Språk",
-    "button1":"NESTE"
+  "setLanguage": {
+    "dropdown_title": "Språk",
+    "button1": "NESTE"
   },
-  "welcome1":{
-    "text1":"Takk for at du lastet ned IOTA-lommeboken.",
-    "text2":"Vi vil bruke neste minuttene til å sette opp lommeboken.",
-    "reminder":"Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen.",
-    "button1":"NESTE",
-    "button2":"TILBAKE"
+  "welcome1": {
+    "text1": "Takk for at du lastet ned IOTA-lommeboken.",
+    "text2": "Vi vil bruke neste minuttene til å sette opp lommeboken.",
+    "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen.",
+    "button1": "NESTE",
+    "button2": "TILBAKE"
   },
-  "welcome2":{
-    "text1":"OK. La oss sette opp lommeboken!",
-    "text2":"Har du allerede en masternøkkel du ønsker å bruke?",
-    "seed_explanation1":"IOTA masternøkkel er som brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
-    "seed_explanation2":"Du kan bruke den til å nå midlene fra enhver lommebok, på enhver enhet. Men hvis du mister den, vil du også miste dine IOTA",
-    "reminder":"Vennligst sikre din masternøkkel godt",
-    "button1":"JA",
-    "button2":"NEI"
+  "welcome2": {
+    "text1": "OK. La oss sette opp lommeboken!",
+    "text2": "Har du allerede en masternøkkel du ønsker å bruke?",
+    "seed_explanation1": "IOTA masternøkkel er som brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
+    "seed_explanation2": "Du kan bruke den til å nå midlene fra enhver lommebok, på enhver enhet. Men hvis du mister den, vil du også miste dine IOTA",
+    "reminder": "Vennligst sikre din masternøkkel godt",
+    "button1": "JA",
+    "button2": "NEI"
   },
-  "lightserver":{
-    "text1":"En åpen node er en node du bruker for å koble lommeboken til nettverket. Disse er stilt til rådighet av IOTA-samfunnet eller våre forretningspartnere.",
-    "text2":"Du kan finne ut mer informasjon om åpne noder på: http://iotasupport.com/lightwallet.shtml",
-    "text3":"Velg en node fra listen nedenfor.",
-    "server_label":"Node",
-    "custom_server_label":"Egendefinert node-adresse",
-    "other":"Annen",
-    "button1":"NESTE",
-    "button2":"TILBAKE"
+  "lightserver": {
+    "text1": "En åpen node er en node du bruker for å koble lommeboken til nettverket. Disse er stilt til rådighet av IOTA-samfunnet eller våre forretningspartnere.",
+    "text2": "Du kan finne ut mer informasjon om åpne noder på: http://iotasupport.com/lightwallet.shtml",
+    "text3": "Velg en node fra listen nedenfor.",
+    "server_label": "Node",
+    "custom_server_label": "Egendefinert node-adresse",
+    "other": "Annen",
+    "button1": "NESTE",
+    "button2": "TILBAKE"
   },
-  "login":{
-    "text":"Skriv inn passord",
-    "placeholder":"PASSORD",
-    "error_title":"Feil passord",
-    "error_text":"Passordet er feil. Prøv på nytt.",
-    "button1":"FERDIG",
-    "button2":"BRUK MASTERNØKKEL"
+  "login": {
+    "text": "Skriv inn passord",
+    "placeholder": "PASSORD",
+    "error_title": "Feil passord",
+    "error_text": "Passordet er feil. Prøv på nytt.",
+    "button1": "FERDIG",
+    "button2": "BRUK MASTERNØKKEL"
   },
-  "enterSeed":{
-    "error_title":"Nøkkelen er for kort",
-    "error_text":"Nøkkelen må være minst 60 tegn. Prøv igjen.",
-    "invalid_seed_title":"Ugyldig nøkkel",
-    "invalid_seed_text":"Masternøkkel er ugyldig. Den skal inneholde versaler (A-Z) og tallet 9, og skal være mellom 60 og 81 tegn lang.",
-    "placeholder":"MASTERNØKKEL",
-    "seed_explanation":"Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.",
-    "reminder":"OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE",
-    "scan_code":"Skann QR-kode",
-    "close":"LUKK",
-    "button1":"FERDIG",
-    "button2":"TILBAKE"
+  "enterSeed": {
+    "error_title": "Nøkkelen er for kort",
+    "error_text": "Nøkkelen må være minst 60 tegn. Prøv igjen.",
+    "invalid_seed_title": "Ugyldig nøkkel",
+    "invalid_seed_text": "Masternøkkel er ugyldig. Den skal inneholde versaler (A-Z) og tallet 9, og skal være mellom 60 og 81 tegn lang.",
+    "placeholder": "MASTERNØKKEL",
+    "seed_explanation": "Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.",
+    "reminder": "OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE",
+    "scan_code": "Skann QR-kode",
+    "close": "LUKK",
+    "button1": "FERDIG",
+    "button2": "TILBAKE"
   },
-  "newSeedSetup":{
-    "title":"FÅ NY MASTERNØKKEL",
-    "button1":"FÅ NY MASTERNØKKEL",
-    "text1":"Trykk enkelte tegn for å flytte de til ny tilfeldig plassering.",
-    "text2":"Klikk NESTE",
-    "button2":"NESTE",
-    "button3":"TILBAKE"
+  "newSeedSetup": {
+    "title": "FÅ NY MASTERNØKKEL",
+    "button1": "FÅ NY MASTERNØKKEL",
+    "text1": "Trykk enkelte tegn for å flytte de til ny tilfeldig plassering.",
+    "text2": "Klikk NESTE",
+    "button2": "NESTE",
+    "button3": "TILBAKE"
   },
-  "saveYourSeed":{
-    "text1":"Du må velge minst ett av valgene nedenfor når du lagrer nøkkelen din.",
-    "text2":"minst én",
-    "optionA":"MANUELL AVSKRIFT",
-    "optionB":"SKRIV UT PAPIRLOMMEBOK",
-    "optionC":"KOPIER TIL UTKLIPPSTAVLEN",
-    "button1":"NESTE",
-    "button2":"TILBAKE"
+  "saveYourSeed": {
+    "text1": "Du må velge minst ett av valgene nedenfor når du lagrer nøkkelen din.",
+    "text2": "minst én",
+    "optionA": "MANUELL AVSKRIFT",
+    "optionB": "SKRIV UT PAPIRLOMMEBOK",
+    "optionC": "KOPIER TIL UTKLIPPSTAVLEN",
+    "button1": "NESTE",
+    "button2": "TILBAKE"
   },
-  "saveYourSeed2":{
-    "optionA":"Manuell avskrift",
-    "optionB":" Papirlommebok",
-    "optionC":"Kopier til utklippstavle",
-    "explanation":"Din nøkkel er 81 tegn lest fra venstre mot høyre. Skriv den ned sammen med kontrolltegnene og trippel-sjekk at alt er korrekt nedskrevet.",
-    "text":"trippel sjekk",
-    "button":"FERDIG"
+  "saveYourSeed2": {
+    "optionA": "Manuell avskrift",
+    "optionB": " Papirlommebok",
+    "optionC": "Kopier til utklippstavle",
+    "explanation": "Din nøkkel er 81 tegn lest fra venstre mot høyre. Skriv den ned sammen med kontrolltegnene og trippel-sjekk at alt er korrekt nedskrevet.",
+    "text": "trippel sjekk",
+    "button": "FERDIG"
   },
-  "saveYourSeed3":{
-    "optionA":"Manuell avskrift",
-    "optionB":" Papirlommebok",
-    "optionC":"Kopier til utklippstavle",
-    "explanation":"Trykk på knappen under, og kopier nøkkelen til et passord-program. Nøkkelen vil være tilgjengelig i 60 sekunder.",
-    "text":"Ikke lagre nøkkelen din som ren tekst.",
-    "button1":"KOPIER TIL UTKLIPPSTAVLEN",
-    "button2":"FERDIG"
+  "saveYourSeed3": {
+    "optionA": "Manuell avskrift",
+    "optionB": " Papirlommebok",
+    "optionC": "Kopier til utklippstavle",
+    "explanation": "Trykk på knappen under, og kopier nøkkelen til et passord-program. Nøkkelen vil være tilgjengelig i 60 sekunder.",
+    "text": "Ikke lagre nøkkelen din som ren tekst.",
+    "button1": "KOPIER TIL UTKLIPPSTAVLEN",
+    "button2": "FERDIG"
   },
-  "saveYourSeed4":{
-    "optionA":"Manuell avskrift",
-    "optionB":" Papirlommebok",
-    "optionC":"Kopier til utklippstavle",
-    "explanation":"Klikk knappen nedenfor for å skrive ut en kopi av din nøkkel.",
-    "text1":"Lagre den trygt",
-    "text2":"Du må aldri dele nøkkelen din med noen.",
-    "check_button":"IOTA logo",
-    "button1":"SKRIV UT PAPIRLOMMEBOK",
-    "button2":"FERDIG"
+  "saveYourSeed4": {
+    "optionA": "Manuell avskrift",
+    "optionB": " Papirlommebok",
+    "optionC": "Kopier til utklippstavle",
+    "explanation": "Klikk knappen nedenfor for å skrive ut en kopi av din nøkkel.",
+    "text1": "Lagre den trygt",
+    "text2": "Du må aldri dele nøkkelen din med noen.",
+    "check_button": "IOTA logo",
+    "button1": "SKRIV UT PAPIRLOMMEBOK",
+    "button2": "FERDIG"
   },
-  "setPassword":{
-    "title":"PASSORD OPPSETT",
-    "text":"Nå må vi sette opp et passord.",
-    "explanation":"Du bruker dette passordet for å åpne lommeboka i fremtiden. En kryptert kopi av nøkkelen din vil bli lagret på enheten.",
-    "reminder":"Sikre du bruk et sterkt passord minst 12 tegn.",
-    "placeholder1":"'PASSORD'",
-    "placeholder2":"SKRIV INN PASSORDET PÅ NYTT",
-    "error1_title":"Passordet er for kort",
-    "error1_text":"Your password must be at least 8 characters. Please try again.",
-    "error2_title":"Passordene samsvarer ikke",
-    "error2_text":"Passordene du angav samsvarer ikke. Prøv på nytt.",
-    "button1":"FERDIG",
-    "button2":"TILBAKE"
+  "setPassword": {
+    "title": "PASSORD OPPSETT",
+    "text": "Nå må vi sette opp et passord.",
+    "explanation": "Du bruker dette passordet for å åpne lommeboka i fremtiden. En kryptert kopi av nøkkelen din vil bli lagret på enheten.",
+    "reminder": "Sikre du bruk et sterkt passord minst 12 tegn.",
+    "placeholder1": "'PASSORD'",
+    "placeholder2": "SKRIV INN PASSORDET PÅ NYTT",
+    "error1_title": "Passordet er for kort",
+    "error1_text": "Your password must be at least 8 characters. Please try again.",
+    "error2_title": "Passordene samsvarer ikke",
+    "error2_text": "Passordene du angav samsvarer ikke. Prøv på nytt.",
+    "button1": "FERDIG",
+    "button2": "TILBAKE"
   },
-  "onboardingComplete":{
-    "text":"Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Verktøy-menyen.",
-    "button":"NESTE"
+  "onboardingComplete": {
+    "text": "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Verktøy-menyen.",
+    "button": "NESTE"
   },
-  "home":{
-    "tab1":"SALDO",
-    "tab2":"SENDE",
-    "tab3":"MOTTA",
-    "tab4":"HISTORIKK",
-    "tab5":"VERKTØY",
-    "mcap":"MCAP",
-    "change":"Endre",
-    "volume":"Volum",
-    "address":"Adresse",
-    "amount":"Beløp",
-    "button1":"SENDE",
-    "button2":"FÅ NY MASTERNØKKEL",
-    "button3":"LOGG UT"
+  "home": {
+    "tab1": "SALDO",
+    "tab2": "SENDE",
+    "tab3": "MOTTA",
+    "tab4": "HISTORIKK",
+    "tab5": "VERKTØY",
+    "mcap": "MCAP",
+    "change": "Endre",
+    "volume": "Volum",
+    "address": "Adresse",
+    "amount": "Beløp",
+    "button1": "SENDE",
+    "button2": "FÅ NY MASTERNØKKEL",
+    "button3": "LOGG UT",
+    "changeMode": "Change mode",
+    "minimal": "Minimal",
+    "standard": "Standard",
+    "expert": "Expert",
+    "changeTheme": "Change theme",
+    "changeLanguage": "Change language",
+    "addNewSeed": "Add new seed",
+    "setup2fa": "2FA Setup",
+    "changePassword": "Change password",
+    "advancedSettings": "Advanced settings",
+    "logout": "Logout"
   }
 }
