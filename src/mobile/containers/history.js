@@ -34,10 +34,10 @@ class History extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: height / 20,
+        paddingTop: 2,
     },
     topContainer: {
-        flex: 1,
+        flex: 0.5,
     },
     listView: {
         flex: 14,

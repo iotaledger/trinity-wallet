@@ -16,6 +16,9 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import DropdownAlert from 'react-native-dropdownalert';
+import { round, formatValue, formatUnit } from '../../shared/libs/util';
+import { connect } from 'react-redux';
+
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 
@@ -131,7 +134,6 @@ class Home extends React.Component {
                     </TouchableOpacity>
                     <View style={styles.titleContainer}>
                         <Text style={styles.title}>MAIN WALLET</Text>
-                        <Text style={styles.balance}>7.8 Gi</Text>
                     </View>
                     <TouchableOpacity onPress={() => this.onRightArrowPress()}>
                         <Image
@@ -211,11 +213,11 @@ class Home extends React.Component {
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 0.7,
+        flex: 0.5,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 30,
+        paddingTop: height / 20,
     },
     titleContainer: {
         alignItems: 'center',
@@ -236,7 +238,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 150,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 5,
         justifyContent: 'flex-start',
         paddingBottom: height / 50,
     },
@@ -256,8 +258,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     icon: {
-        height: width / 12,
-        width: width / 12,
+        height: width / 10,
+        width: width / 10,
     },
     iconTitle: {
         color: 'white',
@@ -269,4 +271,10 @@ const styles = StyleSheet.create({
     },
 });
 
-module.exports = Home;
+const mapStateToProps = state => ({
+    iota: state.iota,
+});
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

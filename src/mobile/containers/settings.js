@@ -15,6 +15,8 @@ class Settings extends React.Component {
 
     onModePress() {}
 
+    onCurrencyPress() {}
+
     onThemePress() {}
 
     onLanguagePress() {}
@@ -60,6 +62,13 @@ class Settings extends React.Component {
                             <Image source={require('../../shared/images/theme.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Theme</Text>
                             <Text style={styles.settingText}>{this.props.settings.theme}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onCurrencyPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/currency.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Currency</Text>
+                            <Text style={styles.settingText}>{this.props.settings.currency}</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={event => this.onLanguagePress()}>
@@ -126,7 +135,7 @@ const styles = StyleSheet.create({
     settingText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 23,
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
         marginLeft: width / 30,
     },
@@ -137,12 +146,15 @@ const styles = StyleSheet.create({
         width: width / 1.16,
         paddingVertical: height / 40,
         alignItems: 'center',
+        marginHorizontal: width / 15,
     },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 40,
-        justifyContent: 'center',
+        paddingVertical: height / 50,
+        justifyContent: 'flex-start',
+        width: width,
+        paddingHorizontal: width / 15,
     },
     icon: {
         width: width / 20,
@@ -153,7 +165,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'flex-start',
-        paddingHorizontal: width / 15,
         paddingBottom: height / 80,
     },
 });
