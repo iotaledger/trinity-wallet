@@ -1,138 +1,138 @@
 {
-  "id":"en",
-  "notifications":{
-    "invalidServer_title":"Niepoprawny serwer",
-    "invalidServer_text":"Podany adres serwera nie jest prawidłowy",
-    "unknownError_title":"Unknown error occured",
-    "unknownError_text":"We could not perform the desired action this time. Please try again."
-  },
-  "setLanguage":{
-    "dropdown_title":"Język",
-    "button1":"DALEJ"
-  },
-  "welcome1":{
-    "text1":"Dziękujemy za pobranie portfela IOTA.",
-    "text2":"Kilka następnych minut spędzimy na Konfiguracji portfela.",
-    "reminder":"Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces.",
-    "button1":"DALEJ",
-    "button2":"BACK"
-  },
-  "welcome2":{
-    "text1":"W porządku. Ustawmy twój portfel!",
-    "text2":"Czy posiadasz już seed'a, którego chciałbyś użyć?",
-    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-    "seed_explanation2":"Można go używać, aby uzyskać dostęp do swoich środków z dowolnego portfela, na dowolnym urządzeniu. Jeśli stracisz swojego seed'a, stracisz swoje IOTA",
-    "reminder":"Proszę dbaj o bezpieczeństwo swojego seed'a",
-    "button1":"YES",
-    "button2":"NO"
-  },
-  "lightserver":{
-    "text1":"A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
-    "text2":"You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-    "text3":"Please choose a server from the list below.",
-    "server_label":"Serwer",
-    "custom_server_label":"Other server address",
-    "other":"Inny",
-    "button1":"DALEJ",
-    "button2":"BACK"
-  },
-  "login":{
-    "text":"Wprowadź swoje hasło",
-    "placeholder":"HASŁO",
-    "error_title":"Nierozpoznane hasło",
-    "error_text":"Wpisano nieprawidłowe hasło. Spróbuj ponownie.",
-    "button1":"GOTOWE",
-    "button2":"USE SEED"
-  },
-  "enterSeed":{
-    "error_title":"Seed jest zbyt krótki",
-    "error_text":"Seeds must be at least 60 characters long. Please try again.",
-    "invalid_seed_title":"Invalid seed",
-    "invalid_seed_text":"Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
-    "placeholder":"SEED",
-    "seed_explanation":"Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-    "reminder":"NEVER SHARE YOUR SEED WITH ANYONE",
-    "scan_code":"Scan QR code",
-    "close":"CLOSE",
-    "button1":"GOTOWE",
-    "button2":"BACK"
-  },
-  "newSeedSetup":{
-    "title":"WYGENERUJ NOWEGO SEED'A",
-    "button1":"GENERUJ NOWEGO SEED'A",
-    "text1":"Press individual letters to randomise them.",
-    "text2":"Następnie kliknij przycisk DALEJ",
-    "button2":"DALEJ",
-    "button3":"BACK"
-  },
-  "saveYourSeed":{
-    "text1":"You must save your seed with at least one of the options listed below.",
-    "text2":"at least one",
-    "optionA":"MANUAL COPY",
-    "optionB":"PRINT PAPER WALLET",
-    "optionC":"COPY TO CLIPBOARD",
-    "button1":"NEXT",
-    "button2":"BACK"
-  },
-  "saveYourSeed2":{
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
-    "explanation":"Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
-    "text":"triple check",
-    "button":"DONE"
-  },
-  "saveYourSeed3":{
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
-    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
-    "text":"Do not store the seed in plain text.",
-    "button1":"COPY TO CLIPBOARD",
-    "button2":"DONE"
-  },
-  "saveYourSeed4":{
-    "optionA":"Manual Copy",
-    "optionB":" Paper Wallet",
-    "optionC":"Copy To Clipboard",
-    "explanation":"Click the button below to print a paper copy of your seed.",
-    "text1":"Store it safely",
-    "text2":"Never share your seed with anyone.",
-    "check_button":"IOTA logo",
-    "button1":"PRINT PAPER WALLET",
-    "button2":"GOTOWE"
-  },
-  "setPassword":{
-    "title":"PASSWORD SETUP",
-    "text":"Now we need to set up a password.",
-    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
-    "reminder":"Ensure you use a strong password of at least 12 characters.",
-    "placeholder1":"'PASSWORD'",
-    "placeholder2":"RETYPE PASSWORD",
-    "error1_title":"Password is too short",
-    "error1_text":"Your password must be at least 8 characters. Please try again.",
-    "error2_title":"Passwords do not match",
-    "error2_text":"The passwords you have entered do not match. Please try again.",
-    "button1":"DONE",
-    "button2":"BACK"
-  },
-  "onboardingComplete":{
-    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
-  },
-  "home":{
-    "tab1":"BALANCE",
-    "tab2":"SEND",
-    "tab3":"RECEIVE",
-    "tab4":"HISTORY",
-    "tab5":"TOOLS",
-    "mcap":"MCAP",
-    "change":"Change",
-    "volume":"Volume",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
-  }
+    "id": "en",
+    "notifications": {
+        "invalidServer_title": "Niepoprawny serwer",
+        "invalidServer_text": "Podany adres serwera nie jest prawidłowy",
+        "unknownError_title": "Wystąpił nieznany błąd",
+        "unknownError_text": "Tym razem nie mogliśmy wykonać żądanej akcji. Proszę spróbować ponownie."
+    },
+    "setLanguage": {
+        "dropdown_title": "Język",
+        "button1": "DALEJ"
+    },
+    "welcome1": {
+        "text1": "Dziękujemy za pobranie portfela IOTA.",
+        "text2": "Kilka następnych minut spędzimy na Konfiguracji portfela.",
+        "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces.",
+        "button1": "DALEJ",
+        "button2": "WSTECZ"
+    },
+    "welcome2": {
+        "text1": "W porządku. Ustawmy twój portfel!",
+        "text2": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
+        "seed_explanation1": "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
+        "seed_explanation2": "Można go używać, aby uzyskać dostęp do swoich środków z dowolnego portfela, na dowolnym urządzeniu. Jeśli stracisz swojego seed'a, stracisz swoje IOTA",
+        "reminder": "Proszę dbaj o bezpieczeństwo swojego seed'a",
+        "button1": "TAK",
+        "button2": "NIE"
+    },
+    "lightserver": {
+        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
+        "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
+        "text3": "Please choose a server from the list below.",
+        "server_label": "Serwer",
+        "custom_server_label": "Other server address",
+        "other": "Inny",
+        "button1": "DALEJ",
+        "button2": "BACK"
+    },
+    "login": {
+        "text": "Wprowadź swoje hasło",
+        "placeholder": "HASŁO",
+        "error_title": "Nierozpoznane hasło",
+        "error_text": "Wpisano nieprawidłowe hasło. Spróbuj ponownie.",
+        "button1": "GOTOWE",
+        "button2": "USE SEED"
+    },
+    "enterSeed": {
+        "error_title": "Seed jest zbyt krótki",
+        "error_text": "Seeds must be at least 60 characters long. Please try again.",
+        "invalid_seed_title": "Invalid seed",
+        "invalid_seed_text": "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
+        "placeholder": "SEED",
+        "seed_explanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
+        "reminder": "NEVER SHARE YOUR SEED WITH ANYONE",
+        "scan_code": "Scan QR code",
+        "close": "CLOSE",
+        "button1": "GOTOWE",
+        "button2": "BACK"
+    },
+    "newSeedSetup": {
+        "title": "WYGENERUJ NOWEGO SEED'A",
+        "button1": "GENERUJ NOWEGO SEED'A",
+        "text1": "Press individual letters to randomise them.",
+        "text2": "Następnie kliknij przycisk DALEJ",
+        "button2": "DALEJ",
+        "button3": "BACK"
+    },
+    "saveYourSeed": {
+        "text1": "You must save your seed with at least one of the options listed below.",
+        "text2": "at least one",
+        "optionA": "MANUAL COPY",
+        "optionB": "PRINT PAPER WALLET",
+        "optionC": "COPY TO CLIPBOARD",
+        "button1": "NEXT",
+        "button2": "BACK"
+    },
+    "saveYourSeed2": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+        "text": "triple check",
+        "button": "DONE"
+    },
+    "saveYourSeed3": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "text": "Do not store the seed in plain text.",
+        "button1": "COPY TO CLIPBOARD",
+        "button2": "DONE"
+    },
+    "saveYourSeed4": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Click the button below to print a paper copy of your seed.",
+        "text1": "Store it safely",
+        "text2": "Never share your seed with anyone.",
+        "check_button": "IOTA logo",
+        "button1": "PRINT PAPER WALLET",
+        "button2": "GOTOWE"
+    },
+    "setPassword": {
+        "title": "PASSWORD SETUP",
+        "text": "Now we need to set up a password.",
+        "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+        "reminder": "Ensure you use a strong password of at least 12 characters.",
+        "placeholder1": "'PASSWORD'",
+        "placeholder2": "RETYPE PASSWORD",
+        "error1_title": "Password is too short",
+        "error1_text": "Your password must be at least 8 characters. Please try again.",
+        "error2_title": "Passwords do not match",
+        "error2_text": "The passwords you have entered do not match. Please try again.",
+        "button1": "DONE",
+        "button2": "BACK"
+    },
+    "onboardingComplete": {
+        "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+        "button": "NEXT"
+    },
+    "home": {
+        "tab1": "BALANCE",
+        "tab2": "SEND",
+        "tab3": "RECEIVE",
+        "tab4": "HISTORY",
+        "tab5": "TOOLS",
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume",
+        "address": "Address",
+        "amount": "Amount",
+        "button1": "SEND",
+        "button2": "GENERATE NEW ADDRESS",
+        "button3": "LOG OUT"
+    }
 }
