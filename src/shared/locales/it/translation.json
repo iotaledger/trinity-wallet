@@ -1,138 +1,149 @@
 {
-  "id":"en",
-  "notifications":{
-    "invalidServer_title":"Server non valido",
-    "invalidServer_text":"L'indirizzo del server inserito non è valido",
-    "unknownError_title":"Si è verificato un errore sconosciuto",
-    "unknownError_text":"Non è stato possibile eseguire l'azione desiderata questa volta. Si prega di riprovare."
+  "id": "en",
+  "notifications": {
+    "invalidServer_title": "Server non valido",
+    "invalidServer_text": "L'indirizzo del server inserito non è valido",
+    "unknownError_title": "Si è verificato un errore sconosciuto",
+    "unknownError_text": "Non è stato possibile eseguire l'azione desiderata questa volta. Si prega di riprovare."
   },
-  "setLanguage":{
-    "dropdown_title":"Lingua",
-    "button1":"AVANTI"
+  "setLanguage": {
+    "dropdown_title": "Lingua",
+    "button1": "AVANTI"
   },
-  "welcome1":{
-    "text1":"Grazie per aver scaricato il portafoglio IOTA.",
-    "text2":"In pochi minuti imposteremo insieme il tuo portafoglio.",
-    "reminder":"Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo.",
-    "button1":"AVANTI",
-    "button2":"BACK"
+  "welcome1": {
+    "text1": "Grazie per aver scaricato il portafoglio IOTA.",
+    "text2": "In pochi minuti imposteremo insieme il tuo portafoglio.",
+    "reminder": "Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo.",
+    "button1": "AVANTI",
+    "button2": "BACK"
   },
-  "welcome2":{
-    "text1":"Va bene. Cominciamo a impostare il tuo portafoglio!",
-    "text2":"Possiedi già un seme che desideri utilizzare?",
-    "seed_explanation1":"The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-    "seed_explanation2":"Puoi utilizzarlo per accedere ai tuoi fondi da qualsiasi portafoglio, su qualsiasi dispositivo. Ma se perdi il tuo seme, perdi anche i tuoi IOTA",
-    "reminder":"Sei pregato di tenere il tuo seme al sicuro",
-    "button1":"YES",
-    "button2":"NO"
+  "welcome2": {
+    "text1": "Va bene. Cominciamo a impostare il tuo portafoglio!",
+    "text2": "Possiedi già un seme che desideri utilizzare?",
+    "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+    "seed_explanation2": "Puoi utilizzarlo per accedere ai tuoi fondi da qualsiasi portafoglio, su qualsiasi dispositivo. Ma se perdi il tuo seme, perdi anche i tuoi IOTA",
+    "reminder": "Sei pregato di tenere il tuo seme al sicuro",
+    "button1": "YES",
+    "button2": "NO"
   },
-  "lightserver":{
-    "text1":"Un light server è un gateway per la rete IOTA, gentilmente fornito dai membri della Comunità o dai nostri partner aziendali. ",
-    "text2":"Puoi trovare ulteriori informazioni sui server presso: http://iotasupport.com/lightwallet.shtml",
-    "text3":"Scegli un server dalla lista qui sotto.",
-    "server_label":"Server",
-    "custom_server_label":"Altro server (indirizzo)",
-    "other":"Altro",
-    "button1":"AVANTI",
-    "button2":"BACK"
+  "lightserver": {
+    "text1": "Un light server è un gateway per la rete IOTA, gentilmente fornito dai membri della Comunità o dai nostri partner aziendali. ",
+    "text2": "Puoi trovare ulteriori informazioni sui server presso: http://iotasupport.com/lightwallet.shtml",
+    "text3": "Scegli un server dalla lista qui sotto.",
+    "server_label": "Server",
+    "custom_server_label": "Altro server (indirizzo)",
+    "other": "Altro",
+    "button1": "AVANTI",
+    "button2": "BACK"
   },
-  "login":{
-    "text":"Inserisci la tua password",
-    "placeholder":"PASSWORD",
-    "error_title":"Password non riconosciuta",
-    "error_text":"La password non è stata riconosciuta. Si prega di riprovare.",
-    "button1":"FINE",
-    "button2":"USE SEED"
+  "login": {
+    "text": "Inserisci la tua password",
+    "placeholder": "PASSWORD",
+    "error_title": "Password non riconosciuta",
+    "error_text": "La password non è stata riconosciuta. Si prega di riprovare.",
+    "button1": "FINE",
+    "button2": "USE SEED"
   },
-  "enterSeed":{
-    "error_title":"Il seme è troppo corto",
-    "error_text":"Il seme deve essere lungo almeno 60 caratteri. Si prega di riprovare.",
-    "invalid_seed_title":"Seme non valido",
-    "invalid_seed_text":"Il tuo seme non è valido. Un seme può contenere lettere maiuscole (A-Z) e il numero 9 e deve essere lungo da 60 a 81 caratteri.",
-    "placeholder":"SEME",
-    "seed_explanation":"I semi dovrebbero essere lunghi 81 caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.",
-    "reminder":"NON MOSTRARE MAI IL TUO SEME A NESSUNO",
-    "scan_code":"Scansiona codice QR",
-    "close":"CHIUDI",
-    "button1":"FINE",
-    "button2":"BACK"
+  "enterSeed": {
+    "error_title": "Il seme è troppo corto",
+    "error_text": "Il seme deve essere lungo almeno 60 caratteri. Si prega di riprovare.",
+    "invalid_seed_title": "Seme non valido",
+    "invalid_seed_text": "Il tuo seme non è valido. Un seme può contenere lettere maiuscole (A-Z) e il numero 9 e deve essere lungo da 60 a 81 caratteri.",
+    "placeholder": "SEME",
+    "seed_explanation": "I semi dovrebbero essere lunghi 81 caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.",
+    "reminder": "NON MOSTRARE MAI IL TUO SEME A NESSUNO",
+    "scan_code": "Scansiona codice QR",
+    "close": "CHIUDI",
+    "button1": "FINE",
+    "button2": "BACK"
   },
-  "newSeedSetup":{
-    "title":"GENERA UN NUOVO SEME",
-    "button1":"GENERAZIONE DI UN NUOVO SEME",
-    "text1":"Premi alcune singole lettere per renderle maggiormente casuali.",
-    "text2":"Dopo fai clic su AVANTI",
-    "button2":"AVANTI",
-    "button3":"BACK"
+  "newSeedSetup": {
+    "title": "GENERA UN NUOVO SEME",
+    "button1": "GENERAZIONE DI UN NUOVO SEME",
+    "text1": "Premi alcune singole lettere per renderle maggiormente casuali.",
+    "text2": "Dopo fai clic su AVANTI",
+    "button2": "AVANTI",
+    "button3": "BACK"
   },
-  "saveYourSeed":{
-    "text1":"È necessario che salvi il tuo seme con almeno una delle opzioni elencate di seguito.",
-    "text2":"almeno una",
-    "optionA":"COPIA MANUALE",
-    "optionB":"STAMPA IL PORTAFOGLIO SU CARTA",
-    "optionC":"COPIA NEGLI APPUNTI",
-    "button1":"AVANTI",
-    "button2":"BACK"
+  "saveYourSeed": {
+    "text1": "È necessario che salvi il tuo seme con almeno una delle opzioni elencate di seguito.",
+    "text2": "almeno una",
+    "optionA": "COPIA MANUALE",
+    "optionB": "STAMPA IL PORTAFOGLIO SU CARTA",
+    "optionC": "COPIA NEGLI APPUNTI",
+    "button1": "AVANTI",
+    "button2": "BACK"
   },
-  "saveYourSeed2":{
-    "optionA":"Copia manuale",
-    "optionB":" Portafoglio su carta",
-    "optionC":"Copia negli appunti",
-    "explanation":"Il tuo seme è composto da 81 caratteri letti da sinistra a destra. Annota il tuo seme e la relativa checksum, e controlla tre volte di aver scritto bene.",
-    "text":"controlla tre volte",
-    "button":"FINE"
+  "saveYourSeed2": {
+    "optionA": "Copia manuale",
+    "optionB": " Portafoglio su carta",
+    "optionC": "Copia negli appunti",
+    "explanation": "Il tuo seme è composto da 81 caratteri letti da sinistra a destra. Annota il tuo seme e la relativa checksum, e controlla tre volte di aver scritto bene.",
+    "text": "controlla tre volte",
+    "button": "FINE"
   },
-  "saveYourSeed3":{
-    "optionA":"Copia manuale",
-    "optionB":" Portafoglio su carta",
-    "optionC":"Copia negli appunti",
-    "explanation":"Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
-    "text":"Non salvare il seme in un file non crittografato.",
-    "button1":"COPIA NEGLI APPUNTI",
-    "button2":"FINE"
+  "saveYourSeed3": {
+    "optionA": "Copia manuale",
+    "optionB": " Portafoglio su carta",
+    "optionC": "Copia negli appunti",
+    "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+    "text": "Non salvare il seme in un file non crittografato.",
+    "button1": "COPIA NEGLI APPUNTI",
+    "button2": "FINE"
   },
-  "saveYourSeed4":{
-    "optionA":"Copia manuale",
-    "optionB":" Portafoglio su carta",
-    "optionC":"Copia negli appunti",
-    "explanation":"Fai clic sul pulsante qui sotto per stampare una copia cartacea del tuo seme.",
-    "text1":"Store it safely",
-    "text2":"Never share your seed with anyone.",
-    "check_button":"Logo IOTA",
-    "button1":"STAMPA IL PORTAFOGLIO SU CARTA",
-    "button2":"FINE"
+  "saveYourSeed4": {
+    "optionA": "Copia manuale",
+    "optionB": " Portafoglio su carta",
+    "optionC": "Copia negli appunti",
+    "explanation": "Fai clic sul pulsante qui sotto per stampare una copia cartacea del tuo seme.",
+    "text1": "Store it safely",
+    "text2": "Never share your seed with anyone.",
+    "check_button": "Logo IOTA",
+    "button1": "STAMPA IL PORTAFOGLIO SU CARTA",
+    "button2": "FINE"
   },
-  "setPassword":{
-    "title":"IMPOSTAZIONE DELLA PASSWORD",
-    "text":"Now we need to set up a password.",
-    "explanation":"You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
-    "reminder":"Ensure you use a strong password of at least 12 characters.",
-    "placeholder1":"'PASSWORD'",
-    "placeholder2":"DIGITARE NUOVAMENTE LA PASSWORD",
-    "error1_title":"La password è troppo corta",
-    "error1_text":"La password deve essere di almeno 12 caratteri. Riprova.",
-    "error2_title":"Le password non corrispondono",
-    "error2_text":"Le password immesse non corrispondono. Si prega di riprovare.",
-    "button1":"FINE",
-    "button2":"BACK"
+  "setPassword": {
+    "title": "IMPOSTAZIONE DELLA PASSWORD",
+    "text": "Now we need to set up a password.",
+    "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+    "reminder": "Ensure you use a strong password of at least 12 characters.",
+    "placeholder1": "'PASSWORD'",
+    "placeholder2": "DIGITARE NUOVAMENTE LA PASSWORD",
+    "error1_title": "La password è troppo corta",
+    "error1_text": "La password deve essere di almeno 12 caratteri. Riprova.",
+    "error2_title": "Le password non corrispondono",
+    "error2_text": "Le password immesse non corrispondono. Si prega di riprovare.",
+    "button1": "FINE",
+    "button2": "BACK"
   },
-  "onboardingComplete":{
-    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
+  "onboardingComplete": {
+    "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+    "button": "NEXT"
   },
-  "home":{
-    "tab1":"SALDO",
-    "tab2":"INVIA",
-    "tab3":"RICEVI",
-    "tab4":"STORICO",
-    "tab5":"STRUMENTI",
-    "mcap":"MCAP",
-    "change":"Cambio",
-    "volume":"Volume",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
+  "home": {
+    "tab1": "SALDO",
+    "tab2": "INVIA",
+    "tab3": "RICEVI",
+    "tab4": "STORICO",
+    "tab5": "STRUMENTI",
+    "mcap": "MCAP",
+    "change": "Cambio",
+    "volume": "Volume",
+    "address": "Address",
+    "amount": "Amount",
+    "button1": "SEND",
+    "button2": "GENERATE NEW ADDRESS",
+    "button3": "LOG OUT",
+    "changeMode": "Change mode",
+    "minimal": "Minimal",
+    "standard": "Standard",
+    "expert": "Expert",
+    "changeTheme": "Change theme",
+    "changeLanguage": "Change language",
+    "addNewSeed": "Add new seed",
+    "setup2fa": "2FA Setup",
+    "changePassword": "Change password",
+    "advancedSettings": "Advanced settings",
+    "logout": "Logout"
   }
 }
