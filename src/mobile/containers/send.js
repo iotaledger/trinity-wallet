@@ -19,6 +19,7 @@ import { getFromKeychain } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
+import QRScanner from '../components/qrScanner.js';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
@@ -131,12 +132,7 @@ class Send extends React.Component {
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <TouchableOpacity
-            onPress={() => this._hideModal()}
-            style={{ width: width / 1.1, height: height / 1.1, backgroundColor: 'white' }}
-        >
-            <View style={{ flex: 1, justifyContent: 'center' }} />
-        </TouchableOpacity>
+        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
     );
 
     render() {
@@ -272,8 +268,7 @@ class Send extends React.Component {
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={'#132d38'}
-                    backdropOpacity={0.6}
+                    backdropColor={'#102832'}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                 >
