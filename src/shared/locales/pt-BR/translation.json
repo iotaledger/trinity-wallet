@@ -106,7 +106,7 @@
     "title":"CONFIGURAÇÃO DE SENHA",
     "text":"Agora precisamos criar uma senha.",
     "explanation":"Você usará esta senha para acessar sua carteira. Será armazenada uma cópia criptografada da sua seed em seu dispositivo.",
-    "reminder":"Ensure you use a strong password of at least 12 characters.",
+    "reminder":"Assegure-se de que utiliza uma senha segura, com pelo menos 12 caracteres.",
     "placeholder1":"'SENHA'",
     "placeholder2":"DIGITE DE NOVO A SENHA",
     "error1_title":"A senha é muito curta",
@@ -114,11 +114,11 @@
     "error2_title":"As senhas não são iguais",
     "error2_text":"As senhas digitadas são diferentes. Tente novamente.",
     "button1":"CONCLUÍDO",
-    "button2":"BACK"
+    "button2":"VOLTAR"
   },
   "onboardingComplete":{
-    "text":"The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-    "button":"NEXT"
+    "text":"Agora a sua carteira está configurada e pronta para ser usada. Se precisar efetuar alguma alteração no futuro, vá ao menu Ferramentas.",
+    "button":"SEGUINTE"
   },
   "home":{
     "tab1":"SALDO",
@@ -129,10 +129,10 @@
     "mcap":"MCAP",
     "change":"Mudar",
     "volume":"Volume",
-    "address":"Address",
-    "amount":"Amount",
-    "button1":"SEND",
-    "button2":"GENERATE NEW ADDRESS",
-    "button3":"LOG OUT"
+    "address":"Endereço",
+    "amount":"Quantia",
+    "button1":"ENVIAR",
+    "button2":"GERAR NOVO ENDEREÇO",
+    "button3":"SAIR"
   }
 }
