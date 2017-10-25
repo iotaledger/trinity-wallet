@@ -60,7 +60,7 @@
     "newSeedSetup": {
         "title": "WYGENERUJ NOWEGO SEED'A",
         "button1": "GENERUJ NOWEGO SEED'A",
-        "text1": "Press individual letters to randomise them.",
+        "text1": "Kliknij poszczególne litery żeby dokonać losowego wyboru.",
         "text2": "Następnie kliknij przycisk DALEJ",
         "button2": "DALEJ",
         "button3": "WSTECZ"
