@@ -102,8 +102,9 @@ class Login extends React.Component {
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
+                                labelFontSize={width / 31.8}
+                                fontSize={width / 20.7}
+                                labelPadding={3}
                                 baseColor="white"
                                 label="Password"
                                 tintColor="#F7D002"
@@ -113,8 +114,7 @@ class Login extends React.Component {
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
-                                    width: width / 1.65,
-                                    paddingTop: height / 40,
+                                    width: width / 1.4,
                                 }}
                                 secureTextEntry={true}
                             />
