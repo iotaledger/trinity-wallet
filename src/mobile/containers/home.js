@@ -143,7 +143,7 @@ class Home extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 1, justifyContent: 'flex-start' }}>{this.state.tabContent}</View>
+                    <View style={{ flex: 1, justifyContent: 'flex-end' }}>{this.state.tabContent}</View>
                 </View>
                 <View style={styles.bottomContainer}>
                     <View style={styles.tabBar}>
@@ -238,12 +238,11 @@ const styles = StyleSheet.create({
         paddingTop: height / 150,
     },
     midContainer: {
-        flex: 5,
-        justifyContent: 'flex-start',
-        paddingBottom: height / 50,
+        flex: 4.7,
+        justifyContent: 'flex-end',
     },
     bottomContainer: {
-        flex: 0.6,
+        flex: 0.9,
     },
     tabBar: {
         flex: 1,
@@ -251,7 +250,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingBottom: height / 50,
     },
     button: {
         justifyContent: 'flex-end',

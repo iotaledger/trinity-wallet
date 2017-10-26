@@ -4446,6 +4446,12 @@ react-native-animatable@^1.2.3:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-blur@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-blur/-/react-native-blur-3.2.0.tgz#7a27d66c995e994611041a191b94ec290a7d99fb"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-camera@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.10.0.tgz#5d973c9a8aab95f68aede395ba310eae0c3cecdd"
