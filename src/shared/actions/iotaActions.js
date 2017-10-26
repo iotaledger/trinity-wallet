@@ -38,6 +38,13 @@ export function setReady() {
     };
 }
 
+export function setSeedName(name) {
+    return {
+        type: 'SET_SEED_NAME',
+        payload: name,
+    };
+}
+
 export function setSeed(seed) {
     return {
         type: 'SET_SEED',
