@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux';
 import { setFirstUse } from '../../shared/actions/accountActions';
 import { setSeed } from '../../shared/actions/iotaActions';
-import { storeInKeychain } from '../../shared/libs/cryptography';
+import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
@@ -35,7 +35,9 @@ class SetPassword extends React.Component {
 
     onDonePress() {
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
-            Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed)).then(setSeed(''));
+            Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed, this.props.iota.seedName)).then(
+                setSeed(''),
+            );
             this.props.setFirstUse(false);
             this.props.navigator.push({
                 screen: 'onboardingComplete',
