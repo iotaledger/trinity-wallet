@@ -3,8 +3,8 @@ const initialState = {
     ready: false,
     receiveAddress: '',
     password: '',
-    seed: 'ABCDEFG',
-    seedName: 'My seed',
+    seed: '                                                                                 ',
+    seedName: 'MAIN WALLET',
     transactions: [],
     isGeneratingReceiveAddress: false,
 };
