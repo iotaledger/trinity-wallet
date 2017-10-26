@@ -235,14 +235,15 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midWrapper: {
-        flex: 2.2,
+        flex: 2.5,
         alignItems: 'center',
     },
     bottomWrapper: {
-        flex: 2,
+        flex: 2.2,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
+        paddingTop: height / 20,
     },
     headerWrapper: {
         justifyContent: 'center',
@@ -318,7 +319,7 @@ const styles = StyleSheet.create({
     },
     textFieldContainer: {
         width: width / 1.65,
-        paddingTop: height / 40,
+        paddingTop: height / 90,
     },
 });
 
