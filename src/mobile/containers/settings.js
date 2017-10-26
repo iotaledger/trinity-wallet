@@ -5,12 +5,53 @@ import { connect } from 'react-redux';
 import { clearIOTA } from '../../shared/actions/iotaActions';
 import store from '../../shared/store';
 import { persistStore } from 'redux-persist';
+import Modal from 'react-native-modal';
+import AddNewSeedModal from '../components/addNewSeedModal';
 
 const { height, width } = Dimensions.get('window');
 
 class Settings extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isModalVisible: false,
+            selectedSetting: 'addNewSeed',
+            modalContent: <AddNewSeedModal />,
+        };
+    }
+
+    _showModal = () => this.setState({ isModalVisible: true });
+
+    _hideModal = () => this.setState({ isModalVisible: false });
+
+    _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
+
+    setModalContent(selectedSetting) {
+        let modalContent;
+        switch (selectedSetting) {
+            case 'addNewSeed':
+                modalContent = <AddNewSeedModal style={{ flex: 1 }} hideModal={() => this._hideModal()} />;
+                break;
+            case 'send':
+                modalContent = <Send type={tabChoice} />;
+                break;
+            case 'receive':
+                modalContent = <Receive type={tabChoice} />;
+                break;
+            case 'history':
+                modalContent = <History type={tabChoice} />;
+                break;
+            case 'settings':
+                modalContent = <Settings type={tabChoice} />;
+                break;
+            default:
+                break;
+        }
+        this.setState({
+            selectedSetting,
+            modalContent,
+        });
+        this._showModal();
     }
 
     onModePress() {}
@@ -78,7 +119,7 @@ class Settings extends React.Component {
                             <Text style={styles.settingText}>{this.props.settings.language}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
+                    <TouchableOpacity onPress={event => this.setModalContent('addNewSeed')}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/add.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Add new seed</Text>
@@ -115,6 +156,20 @@ class Settings extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
+                <Modal
+                    animationIn={'bounceInUp'}
+                    animationOut={'bounceOut'}
+                    animationInTiming={1000}
+                    animationOutTiming={200}
+                    backdropTransitionInTiming={500}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={'#132d38'}
+                    backdropOpacity={0.6}
+                    style={{ alignItems: 'center' }}
+                    isVisible={this.state.isModalVisible}
+                >
+                    {this._renderModalContent()}
+                </Modal>
             </View>
         );
     }
@@ -166,6 +221,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         paddingBottom: height / 80,
+    },
+    modalContent: {
+        backgroundColor: '#16313a',
+        justifyContent: 'center',
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: 'rgba(255, 255, 255, 0.8)',
     },
 });
 

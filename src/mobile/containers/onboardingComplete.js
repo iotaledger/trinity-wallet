@@ -30,7 +30,7 @@ class OnboardingComplete extends React.Component {
                             look in the Tools menu.
                         </Text>
                     </View>
-                    <Image source={require('../../shared/images/party.png')} style={styles.party} />
+                    <Image source={require('../../shared/images/balloons.png')} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onNextPress()}>
@@ -106,9 +106,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: width,
         height: width,
-        opacity: 0.03,
         position: 'absolute',
-        top: -height / 40,
+        top: -height / 10,
     },
 });
 
