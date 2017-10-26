@@ -135,15 +135,15 @@
     "button2": "СГЕНЕРИРОВАТЬ НОВЫЙ АДРЕС",
     "button3": "ВЫЙТИ",
     "changeMode": "Изменить режим",
-    "minimal": "Minimal",
-    "standard": "Standard",
-    "expert": "Expert",
-    "changeTheme": "Change theme",
-    "changeLanguage": "Change language",
-    "addNewSeed": "Add new seed",
-    "setup2fa": "2FA Setup",
-    "changePassword": "Change password",
-    "advancedSettings": "Advanced settings",
-    "logout": "Logout"
+    "minimal": "Минимальный",
+    "standard": "Стандартный",
+    "expert": "Профессиональный",
+    "changeTheme": "Изменить тему",
+    "changeLanguage": "Изменить язык",
+    "addNewSeed": "Добавить новый ключ",
+    "setup2fa": "Настройка двухфакторной аутентификации",
+    "changePassword": "Изменить пароль",
+    "advancedSettings": "Расширенные настройки",
+    "logout": "Выход"
   }
 }
