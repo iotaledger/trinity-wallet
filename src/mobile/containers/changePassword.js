@@ -66,7 +66,7 @@ class ChangePassword extends Component {
     goBack() {
         // TODO: next path should be settings
         this.props.navigator.push({
-            screen: 'settings',
+            screen: 'home',
             navigatorStyle: {
                 navBarHidden: true,
                 screenBackgroundImageName: 'bg-green.png',
