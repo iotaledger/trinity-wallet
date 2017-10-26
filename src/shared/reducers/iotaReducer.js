@@ -5,6 +5,7 @@ const initialState = {
     password: '',
     seed: '                                                                                 ',
     seedName: 'MAIN WALLET',
+    seedIndex: 0,
     transactions: [
         [
             {
@@ -242,6 +243,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ready: action.payload,
+            };
+        case 'SET_SEED_INDEX':
+            return {
+                ...state,
+                seedIndex: action.payload,
             };
         case 'CLEAR_IOTA':
             return {

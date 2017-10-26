@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
-import { getFromKeychain } from '../../shared/libs/cryptography';
+import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -42,7 +42,8 @@ class Login extends React.Component {
             this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
                 if (typeof value !== 'undefined') {
-                    login(value);
+                    var seed = getSeed(value, 0);
+                    login(seed);
                 } else {
                     error();
                 }
