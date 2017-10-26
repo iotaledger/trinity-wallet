@@ -164,7 +164,7 @@ class Settings extends React.Component {
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
                     backdropColor={'#132d38'}
-                    backdropOpacity={0.6}
+                    backdropOpacity={0.8}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                 >
@@ -225,9 +225,6 @@ const styles = StyleSheet.create({
     modalContent: {
         backgroundColor: '#16313a',
         justifyContent: 'center',
-        borderRadius: 10,
-        borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.8)',
     },
 });
 

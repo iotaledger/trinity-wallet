@@ -42,3 +42,13 @@ export function getFromKeychain(key, fn) {
         fn(value);
     });
 }
+
+export function getSeed(value, index) {
+    value = JSON.parse(value);
+    return value[index].seed;
+}
+
+export function getSeedName(value, index) {
+    value = JSON.parse(value);
+    return value[index].name;
+}

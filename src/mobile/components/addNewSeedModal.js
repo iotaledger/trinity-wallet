@@ -4,17 +4,30 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackg
 const { height, width } = Dimensions.get('window');
 
 class AddNewSeedModal extends React.Component {
-    onNewSeedPress() {}
+    constructor(props) {
+        super(props);
+    }
+    onNewSeedPress() {
+        this.props.navigator.push({
+            screen: 'newSeedSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+        });
+    }
 
     onExistingSeedPress() {}
 
     render() {
         return (
-            <View style={styles.modalContent}>
-                <TouchableOpacity style={styles.closeIconButton} onPress={() => this.props.hideModal()}>
-                    <Image style={styles.closeIcon} source={require('../../shared/images/cross.png')} />
-                </TouchableOpacity>
-                <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ alignItems: 'center' }}>
+            <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ alignItems: 'center' }}>
+                <View style={styles.modalContent}>
+                    <TouchableOpacity style={styles.closeIconButton} onPress={() => this.props.hideModal()}>
+                        <Image style={styles.closeIcon} source={require('../../shared/images/cross.png')} />
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={event => this.onNewSeedPress()}>
                         <View style={styles.newSeedButton}>
                             <Text style={styles.newSeedButtonText}>CREATE NEW SEED</Text>
@@ -25,29 +38,21 @@ class AddNewSeedModal extends React.Component {
                             <Text style={styles.existingSeedButtonText}>ADD EXISTING SEED</Text>
                         </View>
                     </TouchableOpacity>
-                </ImageBackground>
-            </View>
+                </View>
+            </ImageBackground>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    closeButton: {
-        flexDirection: 'row',
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
-        borderRadius: 8,
-        width: width / 2.5,
-        height: height / 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#009f3f',
-    },
     modalContent: {
         alignItems: 'center',
         justifyContent: 'center',
         width: width / 1.4,
         height: height / 3,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: 'rgba(255, 255, 255, 0.8)',
     },
     newSeedButton: {
         borderColor: '#9DFFAF',
