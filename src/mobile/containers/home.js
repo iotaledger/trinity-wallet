@@ -143,7 +143,7 @@ class Home extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 1, justifyContent: 'flex-end' }}>{this.state.tabContent}</View>
+                    <View style={{ flex: 1 }}>{this.state.tabContent}</View>
                 </View>
                 <View style={styles.bottomContainer}>
                     <View style={styles.tabBar}>
@@ -239,7 +239,6 @@ const styles = StyleSheet.create({
     },
     midContainer: {
         flex: 4.7,
-        justifyContent: 'flex-end',
     },
     bottomContainer: {
         flex: 0.9,

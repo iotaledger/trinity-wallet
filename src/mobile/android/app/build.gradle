@@ -135,6 +135,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-blur')
     compile project(':react-native-html-to-pdf')
     compile project(':react-native-print')
     compile project(':react-native-udp')

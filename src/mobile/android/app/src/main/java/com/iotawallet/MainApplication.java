@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.rnprint.RNPrint.RNPrintPackage;
 import com.facebook.react.ReactApplication;
+import com.cmcewen.blurview.BlurViewPackage;
 import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.tradle.react.UdpSocketsModule;
 import com.peel.react.TcpSocketsModule;
@@ -39,6 +40,7 @@ public class MainApplication extends NavigationApplication {
             new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
+            new BlurViewPackage(),
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
             new RNSensitiveInfoPackage(),
