@@ -15,15 +15,15 @@
     "text2": "In pochi minuti imposteremo insieme il tuo portafoglio.",
     "reminder": "Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo.",
     "button1": "AVANTI",
-    "button2": "BACK"
+    "button2": "INDIETRO"
   },
   "welcome2": {
     "text1": "Va bene. Cominciamo a impostare il tuo portafoglio!",
     "text2": "Possiedi già un seme che desideri utilizzare?",
-    "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+    "seed_explanation1": "Il seme IOTA è come una combinazione di utente e password per il tuo account, in un'unica stringa di 81 caratteri.",
     "seed_explanation2": "Puoi utilizzarlo per accedere ai tuoi fondi da qualsiasi portafoglio, su qualsiasi dispositivo. Ma se perdi il tuo seme, perdi anche i tuoi IOTA",
     "reminder": "Sei pregato di tenere il tuo seme al sicuro",
-    "button1": "YES",
+    "button1": "SI",
     "button2": "NO"
   },
   "lightserver": {
@@ -34,7 +34,7 @@
     "custom_server_label": "Altro server (indirizzo)",
     "other": "Altro",
     "button1": "AVANTI",
-    "button2": "BACK"
+    "button2": "INDIETRO"
   },
   "login": {
     "text": "Inserisci la tua password",
@@ -42,7 +42,7 @@
     "error_title": "Password non riconosciuta",
     "error_text": "La password non è stata riconosciuta. Si prega di riprovare.",
     "button1": "FINE",
-    "button2": "USE SEED"
+    "button2": "USA IL SEME"
   },
   "enterSeed": {
     "error_title": "Il seme è troppo corto",
@@ -55,7 +55,7 @@
     "scan_code": "Scansiona codice QR",
     "close": "CHIUDI",
     "button1": "FINE",
-    "button2": "BACK"
+    "button2": "INDIETRO"
   },
   "newSeedSetup": {
     "title": "GENERA UN NUOVO SEME",
@@ -63,7 +63,7 @@
     "text1": "Premi alcune singole lettere per renderle maggiormente casuali.",
     "text2": "Dopo fai clic su AVANTI",
     "button2": "AVANTI",
-    "button3": "BACK"
+    "button3": "INDIETRO"
   },
   "saveYourSeed": {
     "text1": "È necessario che salvi il tuo seme con almeno una delle opzioni elencate di seguito.",
@@ -72,7 +72,7 @@
     "optionB": "STAMPA IL PORTAFOGLIO SU CARTA",
     "optionC": "COPIA NEGLI APPUNTI",
     "button1": "AVANTI",
-    "button2": "BACK"
+    "button2": "INDIETRO"
   },
   "saveYourSeed2": {
     "optionA": "Copia manuale",
