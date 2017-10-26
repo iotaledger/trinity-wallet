@@ -12,6 +12,13 @@ export function setAddress(payload) {
     };
 }
 
+export function setSeedIndex(payload) {
+    return {
+        type: 'SEED_INDEX',
+        payload,
+    };
+}
+
 export function generateNewAddressRequest() {
     return {
         type: 'GENERATE_NEW_ADDRESS_REQUEST',
