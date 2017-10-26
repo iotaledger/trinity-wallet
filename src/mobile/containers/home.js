@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     StyleSheet,
     Text,
@@ -262,4 +263,8 @@ const styles = StyleSheet.create({
     },
 });
 
-module.exports = Home;
+Home.propTypes = {
+    navigator: PropTypes.object.isRequired,
+};
+
+export default Home;
