@@ -3,7 +3,8 @@ const initialState = {
     ready: false,
     receiveAddress: '',
     password: '',
-    seed: '                                                                                 ',
+    seed: 'ABCDEFG',
+    seedName: 'My seed',
     transactions: [],
     isGeneratingReceiveAddress: false,
 };
@@ -20,6 +21,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 seed: action.payload,
+            };
+        case 'SET_SEED_NAME':
+            return {
+                ...state,
+                seedName: action.payload,
             };
         case 'SET_PASSWORD':
             return {
