@@ -10,7 +10,7 @@ class Welcome extends React.Component {
 
     onNextPress() {
         this.props.navigator.push({
-            screen: 'change-password',
+            screen: 'walletSetup',
             navigatorStyle: {
                 navBarHidden: true,
                 screenBackgroundImageName: 'bg-green.png',

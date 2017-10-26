@@ -49,7 +49,7 @@ class Home extends React.Component {
                 tabContent = <History type={tabChoice} />;
                 break;
             case 'settings':
-                tabContent = <Settings type={tabChoice} />;
+                tabContent = <Settings type={tabChoice} navigator={this.props.navigator} />;
                 break;
             default:
                 break;
