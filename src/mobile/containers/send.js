@@ -15,7 +15,7 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import TransactionRow from '../components/transactionRow.js';
 import { round } from '../../shared/libs/util';
-import { getFromKeychain } from '../../shared/libs/cryptography';
+import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
@@ -86,10 +86,11 @@ class Send extends React.Component {
         var value = parseInt(this.state.amount);
         var message = this.state.message;
 
-        getFromKeychain(this.props.iota.password, seed => {
-            if (typeof seed !== 'undefined') {
+        getFromKeychain(this.props.iota.password, value => {
+            if (typeof value !== 'undefined') {
+                var seed = getSeed(value, this.props.iota.seedIndex);
                 sendTx(seed);
-                if (sendTransaction(seed, address, value, message) == false) {
+                if (sendTransaction(seed.seed, address, value, message) == false) {
                     this.dropdown.alertWithType(
                         'error',
                         'Key reuse',
