@@ -138,12 +138,12 @@
     "minimal": "Minimum",
     "standard": "Standar",
     "expert": "Ahli",
-    "changeTheme": "Ganti tema",
+    "changeTheme": "Ubah tema",
     "changeLanguage": "Ubah bahasa",
     "addNewSeed": "Tambahkan benih baru",
     "setup2fa": "Konfigurasi 2FA",
     "changePassword": "Ubah Kata Sandi",
-    "advancedSettings": "Advanced settings",
-    "logout": "Logout"
+    "advancedSettings": "Pengaturan Lanjutan",
+    "logout": "Keluar"
   }
 }
