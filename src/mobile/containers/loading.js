@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, ImageBackground, WebView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketDataActions';
@@ -7,11 +8,7 @@ import Home from './home';
 const { height, width } = Dimensions.get('window');
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
-class Loading extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+class Loading extends Component {
     componentDidMount() {
         this.getWalletData();
     }
@@ -23,7 +20,9 @@ class Loading extends React.Component {
     }
 
     render() {
-        if (!this.props.iota.ready) {
+        const { iota: { ready }, navigator } = this.props;
+
+        if (!ready) {
             return (
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
@@ -37,7 +36,8 @@ class Loading extends React.Component {
                 </ImageBackground>
             );
         }
-        return <Home />;
+
+        return <Home navigator={navigator} />;
     }
 }
 
@@ -65,5 +65,14 @@ const mapDispatchToProps = dispatch => ({
         dispatch(getChartData(currency, timeFrame));
     },
 });
+
+Loading.propTypes = {
+    marketData: PropTypes.object.isRequired,
+    iota: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired,
+    getMarketData: PropTypes.func.isRequired,
+    getPrice: PropTypes.func.isRequired,
+    getChartData: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Loading);

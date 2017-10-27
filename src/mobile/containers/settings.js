@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearIOTA } from '../../shared/actions/iotaActions';
-import store from '../../shared/store';
-import { persistStore } from 'redux-persist';
+import { logoutFromWallet } from '../../shared/actions/app';
 
 const { height, width } = Dimensions.get('window');
 
-class Settings extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+class Settings extends Component {
+    constructor() {
+        super();
 
+        this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
+    }
     onChangeModePress() {}
 
     onChangeThemePress() {}
 
     onChangeLanguagePress() {}
 
-    onChangePasswordPress() {}
+    onChangePasswordPress() {
+        this.props.navigator.push({
+            screen: 'change-password',
+            navigatorStyle: {
+                navBarHidden: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+        });
+    }
 
     on2FASetupPress() {}
 
@@ -30,7 +40,7 @@ class Settings extends React.Component {
     onResetWalletPress() {}
 
     onLogoutPress() {
-        this.props.clearIOTA();
+        this.props.logoutFromWallet();
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
@@ -81,7 +91,7 @@ class Settings extends React.Component {
                             <Text style={styles.titleText}>Two-factor authentication</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.onChangePasswordPress()}>
+                    <TouchableOpacity onPress={this.onChangePasswordPress}>
                         <View style={styles.dividingItem}>
                             <Image source={require('../../shared/images/password.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Change password</Text>
@@ -158,14 +168,19 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => ({
-    clearIOTA: () => {
-        dispatch(clearIOTA());
-    },
+    logoutFromWallet: () => dispatch(logoutFromWallet()),
 });
 
 const mapStateToProps = state => ({
     account: state.account,
     settings: state.settings,
 });
+
+Settings.propTypes = {
+    account: PropTypes.object.isRequired,
+    settings: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired,
+    logoutFromWallet: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
