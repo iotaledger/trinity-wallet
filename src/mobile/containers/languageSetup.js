@@ -164,16 +164,10 @@ class LanguageSetup extends React.Component {
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Polski - Polish')}>
                                     <Text style={styles.dropdownItem}>Polski - Polish</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event =>
-                                        this.clickDropdownItem('Português (Brasil) - Portuguese (Brazil)')}
-                                >
+                                <TouchableOpacity onPress={event => this.clickDropdownItem('Português (Brasil)')}>
                                     <Text style={styles.dropdownItem}>Português (Brasil) - Portuguese (Brazil)</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event =>
-                                        this.clickDropdownItem('Português (Portugal) - Portuguese (Portugal)')}
-                                >
+                                <TouchableOpacity onPress={event => this.clickDropdownItem('Português (Portugal)')}>
                                     <Text style={styles.dropdownItem}>
                                         Português (Portugal) - Portuguese (Portugal)
                                     </Text>
@@ -190,10 +184,14 @@ class LanguageSetup extends React.Component {
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Türkçe - Turkish')}>
                                     <Text style={styles.dropdownItem}>Türkçe - Turkish</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Chinese (Simplified)')}>
+                                <TouchableOpacity
+                                    onPress={event => this.clickDropdownItem('中文 (简体) - Chinese (Simplified)')}
+                                >
                                     <Text style={styles.dropdownItem}>中文 (简体) - Chinese (Simplified)</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Chinese (Traditional)')}>
+                                <TouchableOpacity
+                                    onPress={event => this.clickDropdownItem('中文 (繁體) - Chinese (Traditional)')}
+                                >
                                     <Text style={styles.dropdownItem}>中文 (繁體) - Chinese (Traditional)</Text>
                                 </TouchableOpacity>
                             </ScrollView>
@@ -280,6 +278,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         textAlign: 'left',
         paddingTop: height / 100,
+        includeFontPadding: false,
     },
     dropdownButtonContainer: {
         paddingTop: height / 100,
