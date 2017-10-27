@@ -1234,14 +1234,6 @@ pseudomap@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
 
-react-native-html-to-pdf@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-html-to-pdf/-/react-native-html-to-pdf-0.4.0.tgz#93a1af31db12c0e7f4ec51c569070d8e61177479"
-
-react-native-print@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-print/-/react-native-print-0.3.0.tgz#870082cdd14cc1a064cf0fa3b7460932cb032768"
-
 read-pkg-up@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-2.0.0.tgz#6b72a8048984e0c41e79510fd5e9fa99b3b549be"
