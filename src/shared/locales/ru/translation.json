@@ -3,16 +3,14 @@
     "notifications": {
         "invalidServer_title": "Неверный сервер",
         "invalidServer_text": "Введенный адрес сервера не является допустимым",
-        "unknownError_title": "Unknown error occured",
-        "unknownError_text": "We could not perform the desired action this time. Please try again."
+        "unknownError_title": "Произошла неизвестная ошибка",
+        "unknownError_text": "Мы не можем выполнить нужное действие в этот раз. Пожалуйста, попробуйте снова."
     },
     "setLanguage": {
-        "title": "Привет",
         "dropdown_title": "Язык",
         "button1": "ДАЛЕЕ"
     },
     "welcome1": {
-        "title": "ДОБРО ПОЖАЛОВАТЬ",
         "text1": "Благодарим вас за загрузку кошелька IOTA.",
         "text2": "Следующие несколько минут мы настроим ваш кошелек.",
         "reminder": "Возможно, вы захотите пропустить некоторые шаги, но мы настоятельно рекомендуем пройти их все.",
@@ -20,18 +18,17 @@
         "button2": "НАЗАД"
     },
     "welcome2": {
-        "title": "НАСТРОЙКА КОШЕЛЬКА",
         "text1": "Окей, давайте настроим ваш кошелек!",
         "text2": "У вас уже есть ключ (seed), который вы хотели бы использовать?",
-        "seed_explanation1": "Ключ (seed) — это практически мастер-пароль к вашему кошельку.",
+        "seed_explanation1":
+            "Ключ IOTA, комбинация длиной 81 символ, представляет собой одновременно и логин, и пароль к вашему счету.",
         "seed_explanation2":
             "Вы можете использовать его для доступа к вашим средствам из любого кошелька и с любого компьютера. Но в случае потери ключа вы потеряете ваши средства.",
         "reminder": "Пожалуйста, тщательно храните свой ключ (seed).",
-        "button1": "Да, у меня есть ключ (seed)",
-        "button2": "Нет, мне нужен новый ключ (seed)"
+        "button1": "ДА",
+        "button2": "НЕТ"
     },
     "lightserver": {
-        "title": "Настройка облегченного сервера (LIGHT SERVER)",
         "text1":
             "Облегченный сервер (LIGHT SERVER) — это вход в сеть IOTA, предоставленный членами сообщества или нашими корпоративными партнерами.",
         "text2": "Вы можете найти дополнительную информацию о серверах здесь: http://iotasupport.com/lightwallet.shtml",
@@ -43,27 +40,25 @@
         "button2": "НАЗАД"
     },
     "login": {
-        "title": "Имя пользователя",
         "text": "Пожалуйста, введите пароль",
         "placeholder": "ПАРОЛЬ",
         "error_title": "Нераспознанный пароль",
         "error_text": "Некорректный пароль. Повторите попытку.",
         "button1": "ГОТОВО",
-        "button2": "ИЗМЕНИТЬ КОШЕЛЕК"
+        "button2": "ИСПОЛЬЗУЙТЕ КЛЮЧ"
     },
     "enterSeed": {
-        "title": "ВВЕДИТЕ ВАШ КЛЮЧ",
         "error_title": "Ключ слишком короткий",
         "error_text": "Ключ должен содержать по меньшей мере 60 символов. Пожалуйста, попробуйте еще раз.",
-        "invalid_seed_title": "Invalid seed",
+        "invalid_seed_title": "Недопустимый ключ",
         "invalid_seed_text":
-            "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
+            "Ваш ключ неправильный. Ключи состоят из заглавных латинских букв (A-Z) и цифры 9 и должны быть длиной 60-81 символ.",
         "placeholder": "КЛЮЧ",
         "seed_explanation":
             "Ключ должен быть длиной 81 символ и содержать только заглавные буквы A-Z и цифру 9. Более длинные ключи не допускаются.",
         "reminder": "Никому никогда не сообщайте ваш ключ",
-        "scan_code": "Scan QR code",
-        "close": "CLOSE",
+        "scan_code": "Сканировать QR-код",
+        "close": "ЗАКРЫТЬ",
         "button1": "ГОТОВО",
         "button2": "НАЗАД"
     },
@@ -76,7 +71,6 @@
         "button3": "НАЗАД"
     },
     "saveYourSeed": {
-        "title": "СОХРАНИТЕ ВАШ КЛЮЧ",
         "text1": "Вы должны сохранить ваш ключ по крайней мере одним из предложенных ниже способов.",
         "text2": "по крайней мере один",
         "optionA": "РУЧНОЕ КОПИРОВАНИЕ",
@@ -86,7 +80,6 @@
         "button2": "НАЗАД"
     },
     "saveYourSeed2": {
-        "title": "СОХРАНИТЕ ВАШ КЛЮЧ",
         "optionA": "Ручное копирование",
         "optionB": "Бумажный кошелек",
         "optionC": "Скопировать в буфер обмена",
@@ -96,7 +89,6 @@
         "button": "ГОТОВО"
     },
     "saveYourSeed3": {
-        "title": "СОХРАНИТЕ ВАШ КЛЮЧ",
         "optionA": "Ручное копирование",
         "optionB": "Бумажный кошелек",
         "optionC": "Скопировать в буфер обмена",
@@ -107,31 +99,22 @@
         "button2": "ГОТОВО"
     },
     "saveYourSeed4": {
-        "title": "SAVE YOUR SEED",
         "optionA": "Ручное копирование",
         "optionB": "Бумажный кошелек",
         "optionC": "Скопировать в буфер обмена",
-        "explanation": "Click the button below to print a paper copy of your seed.",
-        "text": "Store it safely",
-        "check_button": "IOTA logo",
+        "explanation": "Нажмите на кнопку ниже, чтобы напечатать бумажную копию вашего ключа.",
+        "text1": "Надежно храните его",
+        "text2": "Никогда не сообщайте свой ключ кому-либо.",
+        "check_button": "Логотип IOTA",
         "button1": "РАСПЕЧАТАННЫЙ В БУМАЖНОМ ВИДЕ КОШЕЛЕК",
         "button2": "ГОТОВО"
     },
-    "securityIntro": {
-        "title": "SET UP LOCAL PASSPHRASE",
-        "text1":
-            "To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
-        "explanation1": "The local passphrase can only be used to unlock the account on this device.",
-        "explanation2": "The IOTA seed can still be used to access your funds on any wallet on any device.",
-        "button1": "YES - set up a passphrase",
-        "button2": "NO - login with my seed"
-    },
     "setPassword": {
         "title": "УСТАНОВКА ПАРОЛЯ",
-        "text": "Окей, теперь нам нужно установить пароль.",
+        "text": "Теперь нам нужно установить пароль.",
         "explanation":
-            "Ваш ключ в зашифрованном виде будет храниться в отдельном файле. Соответственно, \nвам нужно будет вводить свой пароль для доступа к кошельку.",
-        "reminder": "Убедитесь, что вы используете надежный пароль.",
+            "Вы сможете использовать этот пароль для доступа к кошельку в будущем. Зашифрованная копия вашего ключа будет храниться на данном устройстве.",
+        "reminder": "Убедитесь, что вы используете надежный пароль из по крайней мере 12 символов.",
         "placeholder1": "«ПАРОЛЬ»",
         "placeholder2": "ПОВТОРИТЕ ПАРОЛЬ",
         "error1_title": "Слишком короткий пароль",
@@ -140,6 +123,11 @@
         "error2_text": "Введенные пароли не совпадают. Пожалуйста, попробуйте еще раз.",
         "button1": "ГОТОВО",
         "button2": "НАЗАД"
+    },
+    "onboardingComplete": {
+        "text":
+            "Кошелек теперь настроен и готов к использованию. Если вам понадобится в будущем внести какие-либо изменения, используйте Инструменты из меню.",
+        "button": "ДАЛЕЕ"
     },
     "home": {
         "tab1": "БАЛАНС",
@@ -150,10 +138,10 @@
         "mcap": "MCAP",
         "change": "Изменить",
         "volume": "Объем",
-        "address": "АДРЕС",
-        "amount": "СУММА",
-        "botton1": "отправить IOTA",
-        "botton2": "СГЕНЕРИРОВАТЬ НОВЫЙ АДРЕС",
-        "botton3": "ВЫЙТИ"
+        "address": "Адрес",
+        "amount": "Сумма",
+        "button1": "ОТПРАВИТЬ",
+        "button2": "СГЕНЕРИРОВАТЬ НОВЫЙ АДРЕС",
+        "button3": "ВЫЙТИ"
     }
 }
