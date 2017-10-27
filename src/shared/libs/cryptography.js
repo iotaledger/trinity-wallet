@@ -1,6 +1,6 @@
 import { SInfo } from '../../mobile/exports';
 
-export function storeInKeychain(key, seed, name) {
+export function storeInKeychain(key, seed, name, callback) {
     getFromKeychain(key, value => {
         if (typeof value == 'undefined') {
             var newSeedArray = [{ name: name, seed: seed }];
@@ -9,15 +9,10 @@ export function storeInKeychain(key, seed, name) {
         } else {
             var seedArray = JSON.parse(value);
             for (var item of seedArray) {
-                if (item.name == name) {
-                    console.log('Error: Same name');
-                    return true;
+                if (item.name == name || item.seed == seed) {
+                    console.log('Error: Same name or seed');
+                    return;
                 }
-                if (item.seed == seed) {
-                    console.log('Error: Same seed');
-                    return false;
-                }
-                return;
             }
             var newSeed = { name: name, seed: seed };
             seedArray.push(newSeed);
@@ -31,6 +26,9 @@ export function storeInKeychain(key, seed, name) {
             sharedPreferencesName: 'mySharedPrefs',
             keychainService: 'myKeychain',
         });
+        if (typeof callback === 'function') {
+            callback();
+        }
     }
 }
 

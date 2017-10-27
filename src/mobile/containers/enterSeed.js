@@ -52,7 +52,7 @@ class EnterSeed extends React.Component {
         } else if (this.state.seed.length >= 60) {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
-                screen: 'setPassword',
+                screen: 'setSeedName',
                 navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
                 animated: false,
             });
