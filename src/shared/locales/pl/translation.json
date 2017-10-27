@@ -1,149 +1,149 @@
 {
-  "id": "en",
-  "notifications": {
-    "invalidServer_title": "Niepoprawny serwer",
-    "invalidServer_text": "Podany adres serwera nie jest prawidłowy",
-    "unknownError_title": "Wystąpił nieznany błąd",
-    "unknownError_text": "Tym razem nie mogliśmy wykonać żądanej akcji. Proszę spróbować ponownie."
-  },
-  "setLanguage": {
-    "dropdown_title": "Język",
-    "button1": "DALEJ"
-  },
-  "welcome1": {
-    "text1": "Dziękujemy za pobranie portfela IOTA.",
-    "text2": "Kilka następnych minut spędzimy na Konfiguracji portfela.",
-    "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces.",
-    "button1": "DALEJ",
-    "button2": "WSTECZ"
-  },
-  "welcome2": {
-    "text1": "W porządku. Ustawmy twój portfel!",
-    "text2": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
-    "seed_explanation1": "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
-    "seed_explanation2": "Można go używać, aby uzyskać dostęp do swoich środków z dowolnego portfela, na dowolnym urządzeniu. Jeśli stracisz swojego seed'a, stracisz swoje IOTA",
-    "reminder": "Proszę dbaj o bezpieczeństwo swojego seed'a",
-    "button1": "TAK",
-    "button2": "NIE"
-  },
-  "lightserver": {
-    "text1": "Light Serwer jest bramą do sieci IOTA, uprzejmie udostępnioną przez członków Wspólnoty lub naszych partnerów korporacyjnych. ",
-    "text2": "Więcej informacji na temat serwerów znajdziesz na: http://iotasupport.com/lightwallet.shtml",
-    "text3": "Proszę wybrać serwer z listy poniżej.",
-    "server_label": "Serwer",
-    "custom_server_label": "Adres innego serwera",
-    "other": "Inny",
-    "button1": "DALEJ",
-    "button2": "WSTECZ"
-  },
-  "login": {
-    "text": "Wprowadź swoje hasło",
-    "placeholder": "HASŁO",
-    "error_title": "Nierozpoznane hasło",
-    "error_text": "Wpisano nieprawidłowe hasło. Spróbuj ponownie.",
-    "button1": "GOTOWE",
-    "button2": "UŻYJ SEED'a"
-  },
-  "enterSeed": {
-    "error_title": "Seed jest zbyt krótki",
-    "error_text": "SEED musi się składać z co najmniej 60-ciu znaków. Proszę spróbuj ponownie.",
-    "invalid_seed_title": "Niepoprawny seed",
-    "invalid_seed_text": "Twój seed jest nieprawidłowy. Seed może zawierać wielkie litery (A-Z), cyfrę 9 i musi być składać się z 60-81 znaków.",
-    "placeholder": "SEED",
-    "seed_explanation": "Seed powinien składać się z 81 znaków i powinien zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż 81 znaków.",
-    "reminder": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA",
-    "scan_code": "Skanuj kod QR",
-    "close": "ZAMKNIJ",
-    "button1": "GOTOWE",
-    "button2": "WSTECZ"
-  },
-  "newSeedSetup": {
-    "title": "WYGENERUJ NOWEGO SEED'A",
-    "button1": "GENERUJ NOWEGO SEED'A",
-    "text1": "Kliknij poszczególne litery żeby dokonać losowego wyboru.",
-    "text2": "Następnie kliknij przycisk DALEJ",
-    "button2": "DALEJ",
-    "button3": "WSTECZ"
-  },
-  "saveYourSeed": {
-    "text1": "Należy zapisać swojego seeda, z co najmniej jedną z wymienionych poniżej opcji.",
-    "text2": "co najmniej jedną",
-    "optionA": "RĘCZNA KOPIA",
-    "optionB": "WYDRUKUJ PAPIEROWY PORTFEL",
-    "optionC": "KOPIUJ DO SCHOWKA",
-    "button1": "DALEJ",
-    "button2": "WSTECZ"
-  },
-  "saveYourSeed2": {
-    "optionA": "Ręczne kopiowanie",
-    "optionB": " Papierowy portfel",
-    "optionC": "Kopiuj do Schowka",
-    "explanation": "Twój seed zawiera 81 znaków czytany od lewej do prawej. Zapisz seeda oraz sumę kontrolną i sprawdź trzykrotnie czy wszystko się zgadza.",
-    "text": "sprawdź trzykrotnie",
-    "button": "GOTOWE"
-  },
-  "saveYourSeed3": {
-    "optionA": "Ręczna Kopia",
-    "optionB": " Papierowy Portfel",
-    "optionC": "Kopiuj do Schowka",
-    "explanation": "Kliknij przycisk poniżej i skopiuj swojego seeda do Menedżera haseł. Pozostanie w swoim schowku przez 60 sekund.",
-    "text": "Nie należy przechowywać seeda w postaci zwykłego tekstu.",
-    "button1": "KOPIUJ DO SCHOWKA",
-    "button2": "GOTOWE"
-  },
-  "saveYourSeed4": {
-    "optionA": "Ręczna Kopia",
-    "optionB": " Papierowy Portfel",
-    "optionC": "Kopiuj do Schowka",
-    "explanation": "Kliknij poniższy przycisk, aby wydrukować kopie twojego seeda.",
-    "text1": "Przechowuj go bezpiecznie",
-    "text2": "Nigdy nie udostępniaj nikomu swojego seeda.",
-    "check_button": "Logo IOTA",
-    "button1": "WYDRUKUJ PAPIEROWY PORTFEL",
-    "button2": "GOTOWE"
-  },
-  "setPassword": {
-    "title": "USTAWIENIE HASŁA",
-    "text": "Teraz musimy ustawić hasło.",
-    "explanation": "Tego hasła będziesz używać do uzyskiwania dostępu do swojego portfela w przyszłości. Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu.",
-    "reminder": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
-    "placeholder1": "'HASŁO'",
-    "placeholder2": "POWTÓRZ HASŁO",
-    "error1_title": "Hasło jest zbyt krótkie",
-    "error1_text": "Your password must be at least 8 characters. Please try again.",
-    "error2_title": "Hasła nie są zgodne",
-    "error2_text": "Mieć wpisane hasła nie pasują. Proszę spróbować ponownie.",
-    "button1": "GOTOWE",
-    "button2": "WSTECZ"
-  },
-  "onboardingComplete": {
-    "text": "Portfel jest skonfigurowany i gotowy do użycia. W przypadku konieczności wprowadzenia zmian w przyszłości, skorzystaj z menu Narzędzia.",
-    "button": "DALEJ"
-  },
-  "home": {
-    "tab1": "SALDO",
-    "tab2": "WYŚLIJ",
-    "tab3": "ODBIERZ",
-    "tab4": "HISTORIA",
-    "tab5": "NARZĘDZIA",
-    "mcap": "MCAP",
-    "change": "Zmiana",
-    "volume": "Wolumen",
-    "address": "Adres",
-    "amount": "Ilość",
-    "button1": "WYŚLIJ",
-    "button2": "WYGENERUJ NOWY ADRES",
-    "button3": "WYLOGUJ",
-    "changeMode": "Change mode",
-    "minimal": "Minimal",
-    "standard": "Standard",
-    "expert": "Expert",
-    "changeTheme": "Change theme",
-    "changeLanguage": "Change language",
-    "addNewSeed": "Add new seed",
-    "setup2fa": "2FA Setup",
-    "changePassword": "Change password",
-    "advancedSettings": "Advanced settings",
-    "logout": "Logout"
-  }
+    "id": "en",
+    "notifications": {
+        "invalidServer_title": "Niepoprawny serwer",
+        "invalidServer_text": "Podany adres serwera nie jest prawidłowy",
+        "unknownError_title": "Wystąpił nieznany błąd",
+        "unknownError_text": "Tym razem nie mogliśmy wykonać żądanej akcji. Proszę spróbować ponownie."
+    },
+    "setLanguage": {
+        "dropdown_title": "Język",
+        "button1": "DALEJ"
+    },
+    "welcome1": {
+        "text1": "Dziękujemy za pobranie portfela IOTA.",
+        "text2": "Kilka następnych minut spędzimy na Konfiguracji portfela.",
+        "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces.",
+        "button1": "DALEJ",
+        "button2": "WSTECZ"
+    },
+    "welcome2": {
+        "text1": "W porządku. Ustawmy twój portfel!",
+        "text2": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
+        "seed_explanation1": "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
+        "seed_explanation2": "Można go używać, aby uzyskać dostęp do swoich środków z dowolnego portfela, na dowolnym urządzeniu. Jeśli stracisz swojego seed'a, stracisz swoje IOTA",
+        "reminder": "Proszę dbaj o bezpieczeństwo swojego seed'a",
+        "button1": "TAK",
+        "button2": "NIE"
+    },
+    "lightserver": {
+        "text1": "Light Serwer jest bramą do sieci IOTA, uprzejmie udostępnioną przez członków Wspólnoty lub naszych partnerów korporacyjnych. ",
+        "text2": "Więcej informacji na temat serwerów znajdziesz na: http://iotasupport.com/lightwallet.shtml",
+        "text3": "Proszę wybrać serwer z listy poniżej.",
+        "server_label": "Serwer",
+        "custom_server_label": "Adres innego serwera",
+        "other": "Inny",
+        "button1": "DALEJ",
+        "button2": "WSTECZ"
+    },
+    "login": {
+        "text": "Wprowadź swoje hasło",
+        "placeholder": "HASŁO",
+        "error_title": "Nierozpoznane hasło",
+        "error_text": "Wpisano nieprawidłowe hasło. Spróbuj ponownie.",
+        "button1": "GOTOWE",
+        "button2": "UŻYJ SEED'a"
+    },
+    "enterSeed": {
+        "error_title": "Seed jest zbyt krótki",
+        "error_text": "SEED musi się składać z co najmniej 60-ciu znaków. Proszę spróbuj ponownie.",
+        "invalid_seed_title": "Niepoprawny seed",
+        "invalid_seed_text": "Twój seed jest nieprawidłowy. Seed może zawierać wielkie litery (A-Z), cyfrę 9 i musi być składać się z 60-81 znaków.",
+        "placeholder": "SEED",
+        "seed_explanation": "Seed powinien składać się z 81 znaków i powinien zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż 81 znaków.",
+        "reminder": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA",
+        "scan_code": "Skanuj kod QR",
+        "close": "ZAMKNIJ",
+        "button1": "GOTOWE",
+        "button2": "WSTECZ"
+    },
+    "newSeedSetup": {
+        "title": "WYGENERUJ NOWEGO SEED'A",
+        "button1": "GENERUJ NOWEGO SEED'A",
+        "text1": "Kliknij poszczególne litery żeby dokonać losowego wyboru.",
+        "text2": "Następnie kliknij przycisk DALEJ",
+        "button2": "DALEJ",
+        "button3": "WSTECZ"
+    },
+    "saveYourSeed": {
+        "text1": "Należy zapisać swojego seeda, z co najmniej jedną z wymienionych poniżej opcji.",
+        "text2": "co najmniej jedną",
+        "optionA": "RĘCZNA KOPIA",
+        "optionB": "WYDRUKUJ PAPIEROWY PORTFEL",
+        "optionC": "KOPIUJ DO SCHOWKA",
+        "button1": "DALEJ",
+        "button2": "WSTECZ"
+    },
+    "saveYourSeed2": {
+        "optionA": "Ręczne kopiowanie",
+        "optionB": " Papierowy portfel",
+        "optionC": "Kopiuj do Schowka",
+        "explanation": "Twój seed zawiera 81 znaków czytany od lewej do prawej. Zapisz seeda oraz sumę kontrolną i sprawdź trzykrotnie czy wszystko się zgadza.",
+        "text": "sprawdź trzykrotnie",
+        "button": "GOTOWE"
+    },
+    "saveYourSeed3": {
+        "optionA": "Ręczna Kopia",
+        "optionB": " Papierowy Portfel",
+        "optionC": "Kopiuj do Schowka",
+        "explanation": "Kliknij przycisk poniżej i skopiuj swojego seeda do Menedżera haseł. Pozostanie w swoim schowku przez 60 sekund.",
+        "text": "Nie należy przechowywać seeda w postaci zwykłego tekstu.",
+        "button1": "KOPIUJ DO SCHOWKA",
+        "button2": "GOTOWE"
+    },
+    "saveYourSeed4": {
+        "optionA": "Ręczna Kopia",
+        "optionB": " Papierowy Portfel",
+        "optionC": "Kopiuj do Schowka",
+        "explanation": "Kliknij poniższy przycisk, aby wydrukować kopie twojego seeda.",
+        "text1": "Przechowuj go bezpiecznie",
+        "text2": "Nigdy nie udostępniaj nikomu swojego seeda.",
+        "check_button": "Logo IOTA",
+        "button1": "WYDRUKUJ PAPIEROWY PORTFEL",
+        "button2": "GOTOWE"
+    },
+    "setPassword": {
+        "title": "USTAWIENIE HASŁA",
+        "text": "Teraz musimy ustawić hasło.",
+        "explanation": "Tego hasła będziesz używać do uzyskiwania dostępu do swojego portfela w przyszłości. Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu.",
+        "reminder": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
+        "placeholder1": "'HASŁO'",
+        "placeholder2": "POWTÓRZ HASŁO",
+        "error1_title": "Hasło jest zbyt krótkie",
+        "error1_text": "Your password must be at least 8 characters. Please try again.",
+        "error2_title": "Hasła nie są zgodne",
+        "error2_text": "Mieć wpisane hasła nie pasują. Proszę spróbować ponownie.",
+        "button1": "GOTOWE",
+        "button2": "WSTECZ"
+    },
+    "onboardingComplete": {
+        "text": "Portfel jest skonfigurowany i gotowy do użycia. W przypadku konieczności wprowadzenia zmian w przyszłości, skorzystaj z menu Narzędzia.",
+        "button": "DALEJ"
+    },
+    "home": {
+        "tab1": "SALDO",
+        "tab2": "WYŚLIJ",
+        "tab3": "ODBIERZ",
+        "tab4": "HISTORIA",
+        "tab5": "NARZĘDZIA",
+        "mcap": "MCAP",
+        "change": "Zmiana",
+        "volume": "Wolumen",
+        "address": "Adres",
+        "amount": "Ilość",
+        "button1": "WYŚLIJ",
+        "button2": "WYGENERUJ NOWY ADRES",
+        "button3": "WYLOGUJ",
+        "changeMode": "Change mode",
+        "minimal": "Minimal",
+        "standard": "Standard",
+        "expert": "Expert",
+        "changeTheme": "Change theme",
+        "changeLanguage": "Change language",
+        "addNewSeed": "Add new seed",
+        "setup2fa": "2FA Setup",
+        "changePassword": "Change password",
+        "advancedSettings": "Advanced settings",
+        "logout": "Logout"
+    }
 }
