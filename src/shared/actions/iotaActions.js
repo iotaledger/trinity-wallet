@@ -12,10 +12,15 @@ export function setAddress(payload) {
     };
 }
 
-export function setSeedIndex(payload) {
+export function incrementSeedIndex() {
     return {
-        type: 'SEED_INDEX',
-        payload,
+        type: 'INCREMENT_SEED_INDEX',
+    };
+}
+
+export function decrementSeedIndex() {
+    return {
+        type: 'DECREMENT_SEED_INDEX',
     };
 }
 
@@ -207,7 +212,6 @@ export function setAccountInfo(accountInfo) {
     const balance = accountInfo.balance;
     let transactions = sortTransactions(accountInfo.transfers);
     transactions = addTransactionValues(transactions, accountInfo.addresses);
-    console.log(transactions);
     return {
         type: 'SET_ACCOUNTINFO',
         balance,
