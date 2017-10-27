@@ -143,6 +143,17 @@
         "amount": "Amount",
         "button1": "SEND",
         "button2": "GENERATE NEW ADDRESS",
-        "button3": "LOG OUT"
+        "button3": "LOG OUT",
+        "changeMode": "Change mode",
+        "minimal": "Minimal",
+        "standard": "Standard",
+        "expert": "Expert",
+        "changeTheme": "Change theme",
+        "changeLanguage": "Change language",
+        "addNewSeed": "Add new seed",
+        "setup2fa": "2FA Setup",
+        "changePassword": "Change password",
+        "advancedSettings": "Advanced settings",
+        "logout": "Logout"
     }
 }
