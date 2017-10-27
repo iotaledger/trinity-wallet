@@ -1,149 +1,149 @@
 {
-  "id": "en",
-  "notifications": {
-    "invalidServer_title": "无效的服务器",
-    "invalidServer_text": "您所输入的服务器地址无效",
-    "unknownError_title": "发生未知错误",
-    "unknownError_text": "无法执行所需操作。请再试一次。"
-  },
-  "setLanguage": {
-    "dropdown_title": "语言",
-    "button1": "下一步"
-  },
-  "welcome1": {
-    "text1": "感谢您下载IOTA钱包。",
-    "text2": "接下来我们将花几分钟来设置您的钱包。",
-    "reminder": "您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。",
-    "button1": "下一步",
-    "button2": "返回"
-  },
-  "welcome2": {
-    "text1": "好，让我们来开始设置您的钱包 ！",
-    "text2": "您是否希望使用一个已有的种子？",
-    "seed_explanation1": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-    "seed_explanation2": "您可以使用它来从任何的钱包，任何设备上访问您的资金。但如果您丢失了您的种子，您也会同时丢失您的IOTA",
-    "reminder": "请您保管好你的种子",
-    "button1": "是的",
-    "button2": "没有"
-  },
-  "lightserver": {
-    "text1": "轻量级服务器是IOTA网络的网关，由社区成员或我们的合作伙伴友情提供。 ",
-    "text2": "您可以从下面的网址找到服务器的更多信息： http://iotasupport.com/lightwallet.shtml",
-    "text3": "请从下面的列表中选择一个服务器。",
-    "server_label": "服务器",
-    "custom_server_label": "其他服务器地址",
-    "other": "其他",
-    "button1": "下一步",
-    "button2": "返回"
-  },
-  "login": {
-    "text": "请输入您的密码",
-    "placeholder": "密码",
-    "error_title": "密码不正确",
-    "error_text": "密码不相符。请再试一次。",
-    "button1": "完成",
-    "button2": "使用种子"
-  },
-  "enterSeed": {
-    "error_title": "种子太短",
-    "error_text": "种子的长度必须至少为60个字符。请重试。",
-    "invalid_seed_title": "无效种子",
-    "invalid_seed_text": "您的种子无效。一个种子包含大写的字母 (A-Z) 和数字 9 ，并且长度必须 60-81 个字符。",
-    "placeholder": "种子",
-    "seed_explanation": "种子的长度应该有 81 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 81 个字符。",
-    "reminder": "永远不要与任何人分享你的种子",
-    "scan_code": "扫描二维码",
-    "close": "关闭",
-    "button1": "完成",
-    "button2": "返回"
-  },
-  "newSeedSetup": {
-    "title": "生成一个新的种子",
-    "button1": "生成新的种子",
-    "text1": "通过点击各个字母来随机生成。",
-    "text2": "然后单击下一步",
-    "button2": "下一步",
-    "button3": "返回"
-  },
-  "saveYourSeed": {
-    "text1": "必须用至少下面列出的选项之一来保存你的种子。",
-    "text2": "至少一个",
-    "optionA": "手动复制",
-    "optionB": "打印出纸版钱包",
-    "optionC": "复制到剪贴板",
-    "button1": "下一步",
-    "button2": "返回"
-  },
-  "saveYourSeed2": {
-    "optionA": "手动复制",
-    "optionB": " 纸版钱包",
-    "optionC": "复制到剪贴板",
-    "explanation": "您的种子从左到右一共81个字符。请填写您的种子和校验和，然后再一次检查它们是否正确。",
-    "text": "第三次检查",
-    "button": "完成"
-  },
-  "saveYourSeed3": {
-    "optionA": "手动复制",
-    "optionB": " 纸版钱包",
-    "optionC": "复制到剪贴板",
-    "explanation": "单击下面的按钮，将你的种子复制到一个密码管理器。它会在您的剪贴板保留60秒。",
-    "text": "不要将种子保存在纯文本文件中。",
-    "button1": "复制到剪贴板",
-    "button2": "完成"
-  },
-  "saveYourSeed4": {
-    "optionA": "手动复制",
-    "optionB": " 纸版钱包",
-    "optionC": "复制到剪贴板",
-    "explanation": "请单击下面的按钮以将您的种子打印到纸上。",
-    "text1": "妥善保存",
-    "text2": "永远不要与任何人分享您的种子。",
-    "check_button": "IOTA标志",
-    "button1": "打印出纸版钱包",
-    "button2": "完成"
-  },
-  "setPassword": {
-    "title": "密码设置",
-    "text": "现在我们需要设置一个密码。",
-    "explanation": "此密码将用于在将来访问您的钱包。您种子的加密副本将存储在您的设备上。",
-    "reminder": "请您确保使用至少 12 个字符的强密码。",
-    "placeholder1": "'密码'",
-    "placeholder2": "请重新键入密码",
-    "error1_title": "密码太短",
-    "error1_text": "Your password must be at least 8 characters. Please try again.",
-    "error2_title": "密码不相符",
-    "error2_text": "您输入的密码不匹配。请再试一次。",
-    "button1": "完成",
-    "button2": "返回"
-  },
-  "onboardingComplete": {
-    "text": "钱包里现在已设置好并准备使用。如果您需要在将来进行任何更改，请在工具菜单中查找。",
-    "button": "下一步"
-  },
-  "home": {
-    "tab1": "结余",
-    "tab2": "发送",
-    "tab3": "接收",
-    "tab4": "历史",
-    "tab5": "工具",
-    "mcap": "市值",
-    "change": "变更",
-    "volume": "成交量",
-    "address": "地址",
-    "amount": "金额",
-    "button1": "发送",
-    "button2": "生成新的地址",
-    "button3": "退出",
-    "changeMode": "Change mode",
-    "minimal": "Minimal",
-    "standard": "Standard",
-    "expert": "Expert",
-    "changeTheme": "Change theme",
-    "changeLanguage": "Change language",
-    "addNewSeed": "Add new seed",
-    "setup2fa": "2FA Setup",
-    "changePassword": "Change password",
-    "advancedSettings": "Advanced settings",
-    "logout": "Logout"
-  }
+    "id": "en",
+    "notifications": {
+        "invalidServer_title": "无效的服务器",
+        "invalidServer_text": "您所输入的服务器地址无效",
+        "unknownError_title": "发生未知错误",
+        "unknownError_text": "无法执行所需操作。请再试一次。"
+    },
+    "setLanguage": {
+        "dropdown_title": "语言",
+        "button1": "下一步"
+    },
+    "welcome1": {
+        "text1": "感谢您下载IOTA钱包。",
+        "text2": "接下来我们将花几分钟来设置您的钱包。",
+        "reminder": "您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。",
+        "button1": "下一步",
+        "button2": "返回"
+    },
+    "welcome2": {
+        "text1": "好，让我们来开始设置您的钱包 ！",
+        "text2": "您是否希望使用一个已有的种子？",
+        "seed_explanation1": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
+        "seed_explanation2": "您可以使用它来从任何的钱包，任何设备上访问您的资金。但如果您丢失了您的种子，您也会同时丢失您的IOTA",
+        "reminder": "请您保管好你的种子",
+        "button1": "是的",
+        "button2": "没有"
+    },
+    "lightserver": {
+        "text1": "轻量级服务器是IOTA网络的网关，由社区成员或我们的合作伙伴友情提供。 ",
+        "text2": "您可以从下面的网址找到服务器的更多信息： http://iotasupport.com/lightwallet.shtml",
+        "text3": "请从下面的列表中选择一个服务器。",
+        "server_label": "服务器",
+        "custom_server_label": "其他服务器地址",
+        "other": "其他",
+        "button1": "下一步",
+        "button2": "返回"
+    },
+    "login": {
+        "text": "请输入您的密码",
+        "placeholder": "密码",
+        "error_title": "密码不正确",
+        "error_text": "密码不相符。请再试一次。",
+        "button1": "完成",
+        "button2": "使用种子"
+    },
+    "enterSeed": {
+        "error_title": "种子太短",
+        "error_text": "种子的长度必须至少为60个字符。请重试。",
+        "invalid_seed_title": "无效种子",
+        "invalid_seed_text": "您的种子无效。一个种子包含大写的字母 (A-Z) 和数字 9 ，并且长度必须 60-81 个字符。",
+        "placeholder": "种子",
+        "seed_explanation": "种子的长度应该有 81 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 81 个字符。",
+        "reminder": "永远不要与任何人分享你的种子",
+        "scan_code": "扫描二维码",
+        "close": "关闭",
+        "button1": "完成",
+        "button2": "返回"
+    },
+    "newSeedSetup": {
+        "title": "生成一个新的种子",
+        "button1": "生成新的种子",
+        "text1": "通过点击各个字母来随机生成。",
+        "text2": "然后单击下一步",
+        "button2": "下一步",
+        "button3": "返回"
+    },
+    "saveYourSeed": {
+        "text1": "必须用至少下面列出的选项之一来保存你的种子。",
+        "text2": "至少一个",
+        "optionA": "手动复制",
+        "optionB": "打印出纸版钱包",
+        "optionC": "复制到剪贴板",
+        "button1": "下一步",
+        "button2": "返回"
+    },
+    "saveYourSeed2": {
+        "optionA": "手动复制",
+        "optionB": " 纸版钱包",
+        "optionC": "复制到剪贴板",
+        "explanation": "您的种子从左到右一共81个字符。请填写您的种子和校验和，然后再一次检查它们是否正确。",
+        "text": "第三次检查",
+        "button": "完成"
+    },
+    "saveYourSeed3": {
+        "optionA": "手动复制",
+        "optionB": " 纸版钱包",
+        "optionC": "复制到剪贴板",
+        "explanation": "单击下面的按钮，将你的种子复制到一个密码管理器。它会在您的剪贴板保留60秒。",
+        "text": "不要将种子保存在纯文本文件中。",
+        "button1": "复制到剪贴板",
+        "button2": "完成"
+    },
+    "saveYourSeed4": {
+        "optionA": "手动复制",
+        "optionB": " 纸版钱包",
+        "optionC": "复制到剪贴板",
+        "explanation": "请单击下面的按钮以将您的种子打印到纸上。",
+        "text1": "妥善保存",
+        "text2": "永远不要与任何人分享您的种子。",
+        "check_button": "IOTA标志",
+        "button1": "打印出纸版钱包",
+        "button2": "完成"
+    },
+    "setPassword": {
+        "title": "密码设置",
+        "text": "现在我们需要设置一个密码。",
+        "explanation": "此密码将用于在将来访问您的钱包。您种子的加密副本将存储在您的设备上。",
+        "reminder": "请您确保使用至少 12 个字符的强密码。",
+        "placeholder1": "'密码'",
+        "placeholder2": "请重新键入密码",
+        "error1_title": "密码太短",
+        "error1_text": "Your password must be at least 8 characters. Please try again.",
+        "error2_title": "密码不相符",
+        "error2_text": "您输入的密码不匹配。请再试一次。",
+        "button1": "完成",
+        "button2": "返回"
+    },
+    "onboardingComplete": {
+        "text": "钱包里现在已设置好并准备使用。如果您需要在将来进行任何更改，请在工具菜单中查找。",
+        "button": "下一步"
+    },
+    "home": {
+        "tab1": "结余",
+        "tab2": "发送",
+        "tab3": "接收",
+        "tab4": "历史",
+        "tab5": "工具",
+        "mcap": "市值",
+        "change": "变更",
+        "volume": "成交量",
+        "address": "地址",
+        "amount": "金额",
+        "button1": "发送",
+        "button2": "生成新的地址",
+        "button3": "退出",
+        "changeMode": "Change mode",
+        "minimal": "Minimal",
+        "standard": "Standard",
+        "expert": "Expert",
+        "changeTheme": "Change theme",
+        "changeLanguage": "Change language",
+        "addNewSeed": "Add new seed",
+        "setup2fa": "2FA Setup",
+        "changePassword": "Change password",
+        "advancedSettings": "Advanced settings",
+        "logout": "Logout"
+    }
 }
