@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-nati
 
 const { height, width } = Dimensions.get('window');
 
-class OnboardingButtons extends React.Component {
+export default class OnboardingButtons extends Component {
     render() {
         return (
             <View style={styles.buttonsContainer}>
@@ -64,5 +64,3 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
 });
-
-module.exports = OnboardingButtons;
