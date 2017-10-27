@@ -113,7 +113,7 @@ class Settings extends React.Component {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={event => this.onLanguagePress()}>
-                        <View style={styles.dividingItem}>
+                        <View style={styles.item}>
                             <Image source={require('../../shared/images/language.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Language</Text>
                             <Text style={styles.settingText}>{this.props.settings.language}</Text>
@@ -132,7 +132,7 @@ class Settings extends React.Component {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={event => this.onChangePasswordPress()}>
-                        <View style={styles.dividingItem}>
+                        <View style={styles.item}>
                             <Image source={require('../../shared/images/password.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Change password</Text>
                         </View>
@@ -155,6 +155,22 @@ class Settings extends React.Component {
                             <Text style={styles.titleText}>Log out</Text>
                         </View>
                     </TouchableOpacity>
+                </View>
+                <View
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: height / 13,
+                        zIndex: 0,
+                    }}
+                >
+                    <View style={styles.line1} />
+                    <View style={styles.line2} />
                 </View>
                 <Modal
                     animationIn={'bounceInUp'}
@@ -194,15 +210,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginLeft: width / 30,
     },
-    dividingItem: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        flexDirection: 'row',
-        width: width / 1.16,
-        paddingVertical: height / 40,
-        alignItems: 'center',
-        marginHorizontal: width / 15,
-    },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -221,10 +228,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         paddingBottom: height / 80,
+        zIndex: 1,
     },
     modalContent: {
         backgroundColor: '#16313a',
         justifyContent: 'center',
+    },
+    line1: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 0.3,
+        width: width / 1.16,
+    },
+    line2: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 0.3,
+        width: width / 1.16,
+        marginTop: height / 4.8,
     },
 });
 
