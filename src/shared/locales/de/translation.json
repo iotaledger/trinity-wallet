@@ -143,6 +143,17 @@
         "amount": "Betrag",
         "button1": "SENDEN",
         "button2": "NEUE ADRESSE GENERIEREN",
-        "button3": "ABMELDEN"
+        "button3": "ABMELDEN",
+        "changeMode": "Modus ändern",
+        "minimal": "Minimal",
+        "standard": "Standard",
+        "expert": "Experte",
+        "changeTheme": "Theme ändern",
+        "changeLanguage": "Sprache ändern",
+        "addNewSeed": "Neuen Seed hinzufügen",
+        "setup2fa": "2FA Setup",
+        "changePassword": "Passwort ändern",
+        "advancedSettings": "Erweiterte Einstellungen",
+        "logout": "Abmelden"
     }
 }
