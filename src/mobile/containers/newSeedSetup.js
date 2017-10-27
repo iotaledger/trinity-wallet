@@ -34,7 +34,7 @@ class NewSeedSetup extends Component {
         super(props);
         this.state = {
             randomised: false,
-            infoTextContainerHeight: 100,
+            infoTextHeight: height / 38,
             flashComplete: false,
         };
     }
@@ -67,12 +67,12 @@ class NewSeedSetup extends Component {
 
     flashText1() {
         this.setState({
-            infoTextContainerHeight: 0,
+            infoTextHeight: 0,
         });
     }
     flashText2() {
         this.setState({
-            infoTextContainerHeight: 100,
+            infoTextHeight: height / 38,
         });
     }
     onNextPress() {
@@ -91,6 +91,7 @@ class NewSeedSetup extends Component {
         }
     }
     onBackPress() {
+        this.props.setSeed('                                                                                 ');
         this.props.navigator.pop({
             animated: false,
         });
@@ -160,7 +161,18 @@ class NewSeedSetup extends Component {
                         scrollEnabled={false}
                         enableEmptySections
                     />
-                    <Text style={styles.infoText}>Press individual letters to randomise them.</Text>
+                    <Text
+                        style={{
+                            color: 'white',
+                            fontFamily: 'Lato-Light',
+                            textAlign: 'center',
+                            fontSize: width / 27.6,
+                            backgroundColor: 'transparent',
+                            height: this.state.infoTextHeight,
+                        }}
+                    >
+                        Press individual letters to randomise them.
+                    </Text>
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
@@ -317,34 +329,7 @@ const baseStyles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'center',
         backgroundColor: 'transparent',
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
     },
 });
 

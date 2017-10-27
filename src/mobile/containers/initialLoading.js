@@ -15,7 +15,6 @@ export default class InitialLoading extends Component {
 
     onLoaded() {
         const state = store.getState();
-        console.log(state.account.firstUse);
         if (state.account.firstUse) {
             this.props.navigator.push({
                 screen: 'languageSetup',
