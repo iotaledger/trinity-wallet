@@ -2,7 +2,7 @@ const marketDataReducer = (
     state = {
         currency: 'USD',
         timeFrame: '24h',
-        chartData: [],
+        chartData: [{ x: 0, y: 0.3572 }, { x: 1, y: 0.3627 }, { x: 2, y: 0.3599 }],
     },
     action,
 ) => {

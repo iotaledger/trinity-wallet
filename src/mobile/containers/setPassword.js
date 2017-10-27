@@ -38,7 +38,7 @@ class SetPassword extends React.Component {
             Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed)).then(setSeed(''));
             this.props.setFirstUse(false);
             this.props.navigator.push({
-                screen: 'login',
+                screen: 'onboardingComplete',
                 navigatorStyle: {
                     navBarHidden: true,
                     screenBackgroundImageName: 'bg-green.png',
