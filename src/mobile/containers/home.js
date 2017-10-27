@@ -17,7 +17,9 @@ import History from './history';
 import Settings from './settings';
 import DropdownAlert from 'react-native-dropdownalert';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
+import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/iotaActions';
 import { connect } from 'react-redux';
+import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
@@ -34,14 +36,22 @@ class Home extends React.Component {
             historyOpacity: 0.6,
             settingsOpacity: 0.6,
             mode: 'STANDARD',
-            leftArrowOpacity: 0.4,
-            rightArrowOpacity: 1,
         };
     }
 
-    onLeftArrowPress() {}
+    onLeftArrowPress() {
+        if (this.props.iota.seedIndex > 0) {
+            var seedIndex = this.props.iota.seedIndex - 1;
+            this.props.decrementSeedIndex();
+        }
+    }
 
-    onRightArrowPress() {}
+    onRightArrowPress() {
+        if (this.props.iota.seedIndex + 1 < this.props.account.seedCount) {
+            var seedIndex = this.props.iota.seedIndex + 1;
+            this.props.incrementSeedIndex();
+        }
+    }
 
     setTab(tabChoice) {
         let tabContent;
@@ -126,18 +136,32 @@ class Home extends React.Component {
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <TouchableOpacity onPress={() => this.onLeftArrowPress()}>
+                    <TouchableOpacity
+                        onPress={() => this.onLeftArrowPress()}
+                        style={{ position: 'absolute', left: width / 6, top: height / 13.1 }}
+                    >
                         <Image
-                            style={{ width: width / 20, height: width / 20, opacity: this.state.leftArrowOpacity }}
+                            style={{
+                                width: width / 20,
+                                height: width / 20,
+                                opacity: this.props.iota.seedIndex == 0 ? 0.3 : 1,
+                            }}
                             source={require('../../shared/images/arrow-left.png')}
                         />
                     </TouchableOpacity>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.title}>MAIN WALLET</Text>
+                        <Text style={styles.title}>{this.props.account.seedNames[this.props.iota.seedIndex]}</Text>
                     </View>
-                    <TouchableOpacity onPress={() => this.onRightArrowPress()}>
+                    <TouchableOpacity
+                        onPress={() => this.onRightArrowPress()}
+                        style={{ position: 'absolute', right: width / 6, top: height / 13.1 }}
+                    >
                         <Image
-                            style={{ width: width / 20, height: width / 20, opacity: this.state.rightArrowOpacity }}
+                            style={{
+                                width: width / 20,
+                                height: width / 20,
+                                opacity: this.props.iota.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
+                            }}
                             source={require('../../shared/images/arrow-right.png')}
                         />
                     </TouchableOpacity>
@@ -270,8 +294,16 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     iota: state.iota,
+    account: state.account,
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+    incrementSeedIndex: () => {
+        dispatch(incrementSeedIndex());
+    },
+    decrementSeedIndex: () => {
+        dispatch(decrementSeedIndex());
+    },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
