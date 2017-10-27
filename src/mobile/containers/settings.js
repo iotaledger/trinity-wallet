@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearIOTA } from '../../shared/actions/iotaActions';
+import { logoutFromWallet } from '../../shared/actions/app';
 
 const { height, width } = Dimensions.get('window');
 
@@ -40,7 +40,7 @@ class Settings extends Component {
     onResetWalletPress() {}
 
     onLogoutPress() {
-        this.props.clearIOTA();
+        this.props.logoutFromWallet();
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
@@ -168,9 +168,7 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => ({
-    clearIOTA: () => {
-        dispatch(clearIOTA());
-    },
+    logoutFromWallet: () => dispatch(logoutFromWallet()),
 });
 
 const mapStateToProps = state => ({
@@ -182,7 +180,7 @@ Settings.propTypes = {
     account: PropTypes.object.isRequired,
     settings: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
-    clearIOTA: PropTypes.func.isRequired,
+    logoutFromWallet: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
