@@ -8,7 +8,7 @@
 export function setTimeFrame(timeFrame) {
     return {
         type: 'SET_TIMEFRAME',
-        payload: timeFrame
+        payload: timeFrame,
     };
 }
 
@@ -17,9 +17,10 @@ function setChartData(json, timeValue) {
     for (let i = 0; i <= timeValue; i++) {
         data[i] = { x: i, y: parseFloat(json.Data[i].close) };
     }
+    console.log(data);
     return {
         type: 'SET_CHARTDATA',
-        payload: data
+        payload: data,
     };
 }
 
@@ -33,14 +34,14 @@ export function setMarketData(data) {
         volume: Math.round(data.RAW.IOT.USD.VOLUME24HOUR)
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-        change24h: parseFloat(Math.round(data.RAW.IOT.USD.CHANGEPCT24HOUR * 100) / 100).toFixed(2)
+        change24h: parseFloat(Math.round(data.RAW.IOT.USD.CHANGEPCT24HOUR * 100) / 100).toFixed(2),
     };
 }
 
 export function setCurrency(currency) {
     return {
         type: 'SET_CURRENCY',
-        payload: currency
+        payload: currency,
     };
 }
 
@@ -49,17 +50,17 @@ export function setPrice(currency, data) {
         case 'USD':
             return {
                 type: 'SET_PRICE',
-                payload: data.RAW.IOT[currency].PRICE
+                payload: data.RAW.IOT[currency].PRICE,
             };
         case 'BTC':
             return {
                 type: 'SET_PRICE',
-                payload: parseFloat(data.RAW.IOT[currency].PRICE).toFixed(6)
+                payload: parseFloat(data.RAW.IOT[currency].PRICE).toFixed(6),
             };
         case 'ETH':
             return {
                 type: 'SET_PRICE',
-                payload: parseFloat(data.RAW.IOT[currency].PRICE).toFixed(5)
+                payload: parseFloat(data.RAW.IOT[currency].PRICE).toFixed(5),
             };
     }
 }
@@ -116,7 +117,7 @@ export function getPrice(currency) {
 export function getChartData(currency, timeFrame) {
     return dispatch => {
         const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
-            timeFrame
+            timeFrame,
         )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeFrame)}`;
         return fetch(url)
             .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
