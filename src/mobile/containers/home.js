@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -10,21 +10,22 @@ import {
     ImageBackground,
     StatusBar,
 } from 'react-native';
+import { connect } from 'react-redux';
 import Balance from './balance';
 import Send from './send';
 import Receive from './receive';
 import History from './history';
 import Settings from './settings';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
 import DropdownAlert from 'react-native-dropdownalert';
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 
-class Home extends React.Component {
-    constructor(props) {
-        super(props);
+class Home extends Component {
+    constructor() {
+        super();
+
         this.state = {
-            tabChoice: 'Balance',
-            tabContent: <Balance />,
             balanceOpacity: 1,
             sendOpacity: 0.6,
             receiveOpacity: 0.6,
@@ -34,35 +35,28 @@ class Home extends React.Component {
         };
     }
 
-    setTab(tabChoice) {
-        let tabContent;
-        switch (tabChoice) {
-            case 'balance':
-                tabContent = <Balance type={tabChoice} />;
-                break;
+    renderChildren(route) {
+        const childrenProps = {
+            type: route, // TODO: type prop might be unneeded in all the children components;
+            navigator: this.props.navigator,
+        };
+
+        switch (route) {
             case 'send':
-                tabContent = <Send type={tabChoice} />;
-                break;
+                return <Send {...childrenProps} />;
             case 'receive':
-                tabContent = <Receive type={tabChoice} />;
-                break;
+                return <Receive {...childrenProps} />;
             case 'history':
-                tabContent = <History type={tabChoice} />;
-                break;
+                return <History {...childrenProps} />;
             case 'settings':
-                tabContent = <Settings type={tabChoice} navigator={this.props.navigator} />;
-                break;
+                return <Settings {...childrenProps} />;
             default:
-                break;
+                return <Balance {...childrenProps} />;
         }
-        this.setState({
-            tabChoice,
-            tabContent,
-        });
     }
 
     clickBalance() {
-        this.setTab('balance');
+        this.props.changeHomeScreenRoute('balance');
         this.setState({
             balanceOpacity: 1,
             sendOpacity: 0.6,
@@ -72,7 +66,7 @@ class Home extends React.Component {
         });
     }
     clickSend() {
-        this.setTab('send');
+        this.props.changeHomeScreenRoute('send');
         this.setState({
             balanceOpacity: 0.6,
             sendOpacity: 1,
@@ -82,7 +76,7 @@ class Home extends React.Component {
         });
     }
     clickReceive() {
-        this.setTab('receive');
+        this.props.changeHomeScreenRoute('receive');
         this.setState({
             balanceOpacity: 0.6,
             sendOpacity: 0.6,
@@ -92,7 +86,7 @@ class Home extends React.Component {
         });
     }
     clickHistory() {
-        this.setTab('history');
+        this.props.changeHomeScreenRoute('history');
         this.setState({
             balanceOpacity: 0.6,
             sendOpacity: 0.6,
@@ -102,7 +96,7 @@ class Home extends React.Component {
         });
     }
     clickSettings() {
-        this.setTab('settings');
+        this.props.changeHomeScreenRoute('settings');
         this.setState({
             balanceOpacity: 0.6,
             sendOpacity: 0.6,
@@ -113,11 +107,14 @@ class Home extends React.Component {
     }
 
     render() {
+        const { childRoute } = this.props;
+        const children = this.renderChildren(childRoute);
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.titleContainer}>
-                    <View style={{ flex: 6 }}>{this.state.tabContent}</View>
+                    <View style={{ flex: 6 }}>{children}</View>
                 </View>
                 <View style={styles.tabBar}>
                     <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
@@ -265,6 +262,16 @@ const styles = StyleSheet.create({
 
 Home.propTypes = {
     navigator: PropTypes.object.isRequired,
+    childRoute: PropTypes.string.isRequired,
+    changeHomeScreenRoute: PropTypes.func.isRequired,
 };
 
-export default Home;
+const mapStateToProps = state => ({
+    childRoute: state.home.childRoute,
+});
+
+const mapDispatchToProps = dispatch => ({
+    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
