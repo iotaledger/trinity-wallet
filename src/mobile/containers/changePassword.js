@@ -17,7 +17,7 @@ import {
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import { connect } from 'react-redux';
-import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, deleteForKeyChain, storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -64,6 +64,8 @@ class ChangePassword extends Component {
     }
 
     goBack() {
+        this.props.changeHomeScreenRoute('settings');
+
         // TODO: next path should be settings
         this.props.navigator.push({
             screen: 'home',
@@ -325,10 +327,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     password: state.iota.password,
+    changeHomeScreenRoute: PropTypes.func.isRequired,
+});
+
+const mapDispatchToProps = dispatch => ({
+    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
 });
 
 ChangePassword.propTypes = {
     password: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps, null)(ChangePassword);
+export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);
