@@ -16,7 +16,6 @@ import {
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
@@ -42,7 +41,6 @@ export default class WalletResetConfirmation extends Component {
     }
 
     goBack() {
-        this.props.changeHomeScreenRoute('settings');
         this.navigateTo('home');
     }
 
@@ -54,63 +52,31 @@ export default class WalletResetConfirmation extends Component {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>
+                <View style={styles.topWrapper}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View
-                        style={{
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            paddingHorizontal: height / 8,
-                            paddingTop: height / 45,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                color: Colors.white,
-                                fontFamily: Fonts.primary,
-                                fontSize: width / 23,
-                                textAlign: 'center',
-                                backgroundColor: 'transparent',
-                            }}
-                        >
-                            {toUpper('wallet reset')}
-                        </Text>
+                    <View style={styles.headerWrapper}>
+                        <Text style={styles.header}>{toUpper('wallet reset')}</Text>
                     </View>
-                    <View
-                        style={{
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            paddingHorizontal: width / 8,
-                            paddingTop: height / 30,
-                        }}
-                    >
-                        <Text style={styles.greetingText}>This action cannot be undone.</Text>
+                    <View style={styles.subHeaderWrapper}>
+                        <Text style={styles.subHeaderText}>{toUpper('this action cannot be undone.')}</Text>
                     </View>
                 </View>
-                <View style={styles.midContainer}>
-                    <View style={styles.infoTextContainer}>
+                <View style={styles.midWrapper}>
+                    <View style={styles.infoTextWrapper}>
                         <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
-                            <Text style={styles.infoTextLight}>All your data including your</Text>
-                            <Text style={styles.infoTextRegular}> seeds</Text>
-                            <Text style={styles.infoTextRegular}>, passwords</Text>
+                            <Text style={styles.infoTextLight}>All your wallet data including your</Text>
+                            <Text style={styles.infoTextRegular}> seeds, password</Text>
                             <Text style={styles.infoTextLight}> and</Text>
                             <Text style={styles.infoTextRegular}> other account information</Text>
                             <Text style={styles.infoTextLight}> will be lost.</Text>
                         </Text>
                     </View>
-                    <View
-                        style={{
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            paddingHorizontal: width / 8,
-                            paddingTop: height / 25,
-                        }}
-                    >
-                        <Text style={styles.questionText}>Are you sure you want to continue?</Text>
+                    <View style={styles.confirmationTextWrapper}>
+                        <Text style={styles.confirmationText}>Are you sure you want to continue?</Text>
                     </View>
                 </View>
-                <View style={styles.bottomContainer}>
+                <View style={styles.bottomWrapper}>
                     <OnboardingButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.requirePassword}
@@ -130,26 +96,52 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#102e36',
     },
-    topContainer: {
+    topWrapper: {
         flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
-    midContainer: {
+    midWrapper: {
         flex: 2.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 8,
     },
-    bottomContainer: {
+    bottomWrapper: {
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 15,
     },
-    infoTextContainer: {
-        borderColor: 'white',
+    headerWrapper: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: height / 8,
+        paddingTop: height / 45,
+    },
+    header: {
+        color: Colors.white,
+        fontFamily: Fonts.primary,
+        fontSize: width / 23,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    subHeaderWrapper: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: width / 10,
+        paddingTop: height / 30,
+    },
+    subHeaderText: {
+        color: Colors.orangeDark,
+        fontFamily: Fonts.secondary,
+        fontSize: width / 22.7,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    infoTextWrapper: {
+        borderColor: Colors.white,
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
@@ -161,22 +153,19 @@ const styles = StyleSheet.create({
         paddingTop: height / 60,
     },
     infoText: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
+        color: Colors.white,
         fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
+        fontFamily: Fonts.tertiary,
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
+        fontFamily: Colors.secondary,
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
@@ -184,61 +173,18 @@ const styles = StyleSheet.create({
         width: width / 20,
         height: width / 20,
     },
-    greetingTextContainer: {
+    confirmationTextWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: width / 8,
-        paddingTop: height / 35,
+        paddingTop: height / 25,
     },
-    greetingText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    questionText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
+    confirmationText: {
+        color: Colors.white,
+        fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         paddingTop: height / 40,
-        backgroundColor: 'transparent',
-    },
-    buttonsContainer: {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        flexDirection: 'row',
-    },
-    yesButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    yesText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
-    noButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginRight: width / 10,
-    },
-    noText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -246,3 +192,7 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
 });
+
+WalletResetConfirmation.propTypes = {
+    navigator: PropTypes.object.isRequired,
+};
