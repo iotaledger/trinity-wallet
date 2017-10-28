@@ -9,8 +9,6 @@ class OnboardingComplete extends React.Component {
             screen: 'login',
             navigatorStyle: {
                 navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
             },
             animated: false,
         });

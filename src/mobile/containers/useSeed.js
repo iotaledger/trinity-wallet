@@ -53,7 +53,7 @@ class UseSeed extends React.Component {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'loading',
-                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
             this.props.getAccountInfo(this.state.seed);
@@ -66,25 +66,6 @@ class UseSeed extends React.Component {
             animated: false,
         });
     }
-    onQRPress() {
-        this._showModal();
-    }
-
-    onQRRead(data) {
-        this.setState({
-            seed: data,
-        });
-        this._hideModal();
-    }
-
-    _showModal = () => this.setState({ isModalVisible: true });
-
-    _hideModal = () => this.setState({ isModalVisible: false });
-
-    _renderModalContent = () => (
-        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
-    );
-
     render() {
         const { seed } = this.state;
         return (
@@ -158,20 +139,6 @@ class UseSeed extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-                <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
-                    animationInTiming={1000}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={500}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={'#102832'}
-                    backdropOpacity={1}
-                    style={{ alignItems: 'center', margin: 0 }}
-                    isVisible={this.state.isModalVisible}
-                >
-                    {this._renderModalContent()}
-                </Modal>
             </ImageBackground>
         );
     }
