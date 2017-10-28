@@ -16,7 +16,7 @@ export function getFromKeychain(key, fn) {
     });
 }
 
-export function deleteFromKeyChain(
+export function deleteForKeyChain(
     key,
     options = {
         sharedPreferencesName: 'mySharedPrefs',
