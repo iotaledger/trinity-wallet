@@ -54,7 +54,7 @@ class WalletResetRequirePassword extends Component {
 
     redirectToInitialScreen() {
         this.props.navigator.push({
-            screen: 'initialLoading', // By this point store would be reset to will be redirected to language setup
+            screen: 'languageSetup',
             navigatorStyle: {
                 navBarHidden: true,
                 screenBackgroundImageName: 'bg-green.png',
