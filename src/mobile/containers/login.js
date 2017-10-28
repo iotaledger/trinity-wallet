@@ -23,12 +23,11 @@ const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 
 class Login extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             password: '',
         };
-        this.onDonePress = this.onDonePress.bind(this);
     }
 
     onDonePress() {
@@ -50,15 +49,12 @@ class Login extends React.Component {
             });
         }
 
-        const _this = this;
         function login(value) {
-            _this.props.getAccountInfo(value);
-            _this.props.navigator.push({
+            this.props.getAccountInfo(value);
+            this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: {
                     navBarHidden: true,
-                    screenBackgroundImageName: 'bg-green.png',
-                    screenBackgroundColor: '#102e36',
                 },
                 animated: false,
             });
@@ -78,8 +74,6 @@ class Login extends React.Component {
             screen: 'useSeed',
             navigatorStyle: {
                 navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
             },
             animated: false,
         });
@@ -94,12 +88,11 @@ class Login extends React.Component {
                     <View>
                         <View style={styles.topContainer}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                            <View style={styles.textContainer}>
-                                <Text style={styles.title}>LOGIN</Text>
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.title}>Please enter your password.</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <Text style={styles.greetingText}>Please enter your password.</Text>
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
@@ -122,15 +115,14 @@ class Login extends React.Component {
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
-                                onLeftButtonPress={this.onUseSeedPress}
-                                onRightButtonPress={this.onDonePress}
+                                onLeftButtonPress={() => this.onUseSeedPress()}
+                                onRightButtonPress={() => this.onDonePress()}
                                 leftText={'USE SEED'}
                                 rightText={'DONE'}
                             />
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
@@ -154,31 +146,31 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.6,
+        flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 1.6,
+        flex: 4.8,
         alignItems: 'center',
+        paddingTop: height / 4.5,
     },
     bottomContainer: {
-        flex: 2,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
-    textContainer: {
+    titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: height / 8,
-        paddingTop: height / 35,
+        paddingTop: height / 15,
     },
     title: {
         color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },

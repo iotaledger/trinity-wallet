@@ -13,8 +13,6 @@ class Welcome extends React.Component {
             screen: 'walletSetup',
             navigatorStyle: {
                 navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
             },
             animated: false,
         });

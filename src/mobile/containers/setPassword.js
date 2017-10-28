@@ -43,8 +43,6 @@ class SetPassword extends React.Component {
                 screen: 'onboardingComplete',
                 navigatorStyle: {
                     navBarHidden: true,
-                    screenBackgroundImageName: 'bg-green.png',
-                    screenBackgroundColor: '#102e36',
                 },
                 animated: false,
             });

@@ -39,7 +39,7 @@ class SetSeedName extends React.Component {
             this.props.addSeed(this.state.seedName);
             this.props.navigator.push({
                 screen: 'setPassword',
-                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
         } else {
