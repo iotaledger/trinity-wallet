@@ -79,7 +79,7 @@ class NewSeedSetup extends Component {
         if (this.state.randomised) {
             this.props.navigator.push({
                 screen: 'saveYourSeed',
-                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
         } else {
