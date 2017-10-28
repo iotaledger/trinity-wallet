@@ -1,6 +1,7 @@
 const BaseColors = {
     blueDarker: '#102E36',
     greenLight: '#009F3F',
+    greenLighter: '#9DFFAF',
     orangeDark: '#F7D002',
     red: '#A10702',
     white: '#FFFFFF',
