@@ -134,16 +134,16 @@
         "button1": "送金",
         "button2": "アドレス生成",
         "button3": "ログアウト",
-        "changeMode": "Change mode",
+        "changeMode": "モード変更",
         "minimal": "Minimal",
         "standard": "Standard",
         "expert": "Expert",
-        "changeTheme": "Change theme",
+        "changeTheme": "テーマを変更",
         "changeLanguage": "Change language",
-        "addNewSeed": "Add new seed",
+        "addNewSeed": "新しいSeedを追加",
         "setup2fa": "2FA Setup",
-        "changePassword": "Change password",
-        "advancedSettings": "Advanced settings",
+        "changePassword": "パスワード変更",
+        "advancedSettings": "詳細設定",
         "logout": "ログアウト"
     }
 }
