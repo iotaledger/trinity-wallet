@@ -22,12 +22,16 @@ import { Keyboard } from 'react-native';
 const { height, width } = Dimensions.get('window');
 
 export default class WalletResetConfirmation extends Component {
-    goBack() {
-        this.props.changeHomeScreenRoute('settings');
+    constructor() {
+        super();
 
-        // TODO: next path should be settings
+        this.goBack = this.goBack.bind(this);
+        this.requirePassword = this.requirePassword.bind(this);
+    }
+
+    navigateTo(url) {
         this.props.navigator.push({
-            screen: 'home',
+            screen: url,
             navigatorStyle: {
                 navBarHidden: true,
                 screenBackgroundImageName: 'bg-green.png',
@@ -36,6 +40,16 @@ export default class WalletResetConfirmation extends Component {
             animated: false,
         });
     }
+
+    goBack() {
+        this.props.changeHomeScreenRoute('settings');
+        this.navigateTo('home');
+    }
+
+    requirePassword() {
+        this.navigateTo('wallet-reset-require-password');
+    }
+
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
@@ -98,8 +112,8 @@ export default class WalletResetConfirmation extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
-                        onLeftButtonPress={() => this.onNoPress()}
-                        onRightButtonPress={() => this.onYesPress()}
+                        onLeftButtonPress={this.goBack}
+                        onRightButtonPress={this.requirePassword}
                         leftText={'NO'}
                         rightText={'YES'}
                     />
