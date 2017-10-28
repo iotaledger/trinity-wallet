@@ -23,7 +23,7 @@ export default class InitialLoading extends Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'home',
+                screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
                 animated: false,
             });

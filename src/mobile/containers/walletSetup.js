@@ -6,10 +6,6 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 const { height, width } = Dimensions.get('window');
 
 class WalletSetup extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     onYesPress() {
         this.props.navigator.push({
             screen: 'enterSeed',
