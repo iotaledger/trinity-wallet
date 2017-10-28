@@ -1,5 +1,8 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deleteFromKeyChain } from '../../shared/libs/cryptography';
+import { resetWallet } from '../../shared/actions/app';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -14,60 +17,125 @@ import {
     StatusBar,
 } from 'react-native';
 import Colors from '../theme/Colors';
+import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
+import DropdownAlert from 'react-native-dropdownalert';
 
 const { height, width } = Dimensions.get('window');
 
-export default class WalletResetRequirePassword extends Component {
+class WalletResetRequirePassword extends Component {
+    constructor() {
+        super();
+        this.state = {
+            password: '',
+        };
+
+        this.goBack = this.goBack.bind(this);
+        this.resetWallet = this.resetWallet.bind(this);
+    }
+
+    goBack() {
+        this.props.navigator.push({
+            screen: 'home',
+            navigatorStyle: {
+                navBarHidden: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: Colors.brand.primary,
+            },
+            animated: false,
+        });
+    }
+
+    isAuthenticated() {
+        return this.props.password === this.state.password;
+    }
+
+    redirectToInitialScreen() {
+        this.props.navigator.push({
+            screen: 'initialLoading', // By this point store would be reset to will be redirected to language setup
+            navigatorStyle: {
+                navBarHidden: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: Colors.brand.primary,
+            },
+            animated: false,
+        });
+    }
+
+    resetWallet() {
+        const isAuthenticated = this.isAuthenticated();
+        const { password, resetWallet } = this.props;
+
+        if (isAuthenticated) {
+            deleteFromKeyChain(password);
+            resetWallet();
+
+            this.redirectToInitialScreen();
+        } else {
+            this.dropdown.alertWithType(
+                'error',
+                'Unrecognised password',
+                'The password was not recognised. Please try again.',
+            );
+        }
+    }
+
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
-                        <View style={styles.topContainer}>
+                        <View style={styles.topWrapper}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                            <View style={styles.textContainer}>
-                                <Text style={styles.title}>Wallet Reset</Text>
+                            <View style={styles.headerWrapper}>
+                                <Text style={styles.header}>{toUpper('authenticate')}</Text>
                             </View>
                         </View>
-                        <View style={styles.midContainer}>
-                            <Text style={styles.greetingText}>
-                                Please enter your password to continue resetting the wallet.
+                        <View style={styles.midWrapper}>
+                            <Text style={styles.generalText}>
+                                Please enter your password to continue resetting your wallet.
                             </Text>
                             <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                style={styles.textField}
+                                labelTextStyle={styles.textFieldLabel}
                                 labelFontSize={height / 55}
                                 fontSize={height / 40}
-                                baseColor="white"
+                                baseColor={Colors.white}
                                 label="Password"
-                                tintColor="#F7D002"
-                                autoCapitalize={'none'}
+                                tintColor={Colors.orangeDark}
+                                autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
-                                value=""
+                                value={this.state.password}
                                 onChangeText={password => this.setState({ password })}
-                                containerStyle={{
-                                    width: width / 1.65,
-                                    paddingTop: height / 40,
-                                }}
+                                containerStyle={styles.textFieldContainer}
                                 secureTextEntry={true}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 style={onboardingButtonsOverride}
-                                onLeftButtonPress={this.onUseSeedPress}
-                                onRightButtonPress={this.onDonePress}
-                                leftText={'CANCEL'}
-                                rightText={'RESET'}
+                                onLeftButtonPress={this.goBack}
+                                onRightButtonPress={this.resetWallet}
+                                leftText={toUpper('cancel')}
+                                rightText={toUpper('reset')}
                             />
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor={Colors.dropdown.success}
+                    errorColor={Colors.dropdown.error}
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle="light-content"
+                />
             </ImageBackground>
         );
     }
@@ -89,13 +157,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#102e36',
     },
-    topContainer: {
+    topWrapper: {
         flex: 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
-    midContainer: {
+    midWrapper: {
         flex: 1.6,
         alignItems: 'center',
     },
@@ -105,20 +173,20 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
-    textContainer: {
+    headerWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: height / 8,
         paddingTop: height / 35,
     },
-    title: {
+    header: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    greetingText: {
+    generalText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
@@ -188,4 +256,31 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
     },
+    textFieldContainer: {
+        width: width / 1.65,
+        paddingTop: height / 40,
+    },
+    textField: {
+        color: Colors.white,
+        fontFamily: Fonts.tertiary,
+    },
+    textFieldLabel: {
+        fontFamily: Fonts.tertiary,
+    },
 });
+
+const mapStateToProps = state => ({
+    password: state.iota.password,
+});
+
+const mapDispatchToProps = dispatch => ({
+    resetWallet: () => dispatch(resetWallet()),
+});
+
+WalletResetRequirePassword.propTypes = {
+    password: PropTypes.string.isRequired,
+    navigator: PropTypes.object.isRequired,
+    resetWallet: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WalletResetRequirePassword);
