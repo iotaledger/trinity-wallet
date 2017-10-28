@@ -18,8 +18,7 @@ import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
-import { setPassword } from '../../shared/actions/iotaActions';
-import { getFromKeychain, deleteFromKeyChain, storeInKeychain } from '../../shared/libs/cryptography';
+import { getFromKeychain, deleteForKeyChain, storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -94,7 +93,7 @@ class ChangePassword extends Component {
 
     changePassword() {
         const isValid = this.isValid();
-        const { password, setPassword } = this.props;
+        const { password } = this.props;
         const { newPassword } = this.state;
 
         if (isValid) {
@@ -108,8 +107,7 @@ class ChangePassword extends Component {
             const updatePassword = seed =>
                 Promise.resolve(storeInKeychain(newPassword, seed))
                     .then(() => {
-                        deleteFromKeyChain(password);
-                        setPassword(newPassword);
+                        deleteForKeyChain(password);
                         this.fallbackToInitialState();
                         // TODO:
                         // We might need to rethink on having a global dropdown alerting system
@@ -329,18 +327,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     password: state.iota.password,
+    changeHomeScreenRoute: PropTypes.func.isRequired,
 });
 
 const mapDispatchToProps = dispatch => ({
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-    setPassword: password => dispatch(setPassword(password)),
 });
 
 ChangePassword.propTypes = {
     password: PropTypes.string.isRequired,
-    navigator: PropTypes.object.isRequired,
-    setPassword: PropTypes.func.isRequired,
-    changeHomeScreenRoute: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);
