@@ -44,8 +44,6 @@ class LanguageSetup extends React.Component {
             screen: 'welcome',
             navigatorStyle: {
                 navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
             },
             animated: false,
         });
