@@ -14,10 +14,8 @@ import {
     StatusBar,
 } from 'react-native';
 import Colors from '../theme/Colors';
-import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
@@ -36,7 +34,9 @@ export default class WalletResetRequirePassword extends Component {
                             </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <Text style={styles.greetingText}>Please enter your password.</Text>
+                            <Text style={styles.greetingText}>
+                                Please enter your password to continue resetting the wallet.
+                            </Text>
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
@@ -59,6 +59,7 @@ export default class WalletResetRequirePassword extends Component {
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
+                                style={onboardingButtonsOverride}
                                 onLeftButtonPress={this.onUseSeedPress}
                                 onRightButtonPress={this.onDonePress}
                                 leftText={'CANCEL'}
@@ -71,6 +72,15 @@ export default class WalletResetRequirePassword extends Component {
         );
     }
 }
+
+const onboardingButtonsOverride = StyleSheet.create({
+    rightButton: {
+        borderColor: Colors.redLight,
+    },
+    rightText: {
+        color: Colors.redLight,
+    },
+});
 
 const styles = StyleSheet.create({
     container: {
@@ -113,7 +123,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
-        paddingHorizontal: width / 7,
+        paddingHorizontal: width / 5,
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
     },
