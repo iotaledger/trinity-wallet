@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, ImageBackground, WebView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketDataActions';
+import { getMarketData, getChartData, getPrice, loginError } from '../../shared/actions/marketDataActions';
 import Home from './home';
+import Login from './login';
 
 const { height, width } = Dimensions.get('window');
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
@@ -20,7 +21,7 @@ class Loading extends Component {
     }
 
     render() {
-        const { iota: { ready }, navigator } = this.props;
+        const { iota: { ready, errorMessage }, navigator } = this.props;
 
         if (!ready) {
             return (
@@ -35,6 +36,9 @@ class Loading extends Component {
                     </View>
                 </ImageBackground>
             );
+        }
+        if (errorMessage != '') {
+            return <Login navigator={navigator} />;
         }
 
         return <Home navigator={navigator} />;
