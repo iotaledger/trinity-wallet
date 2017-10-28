@@ -37,17 +37,7 @@ class Settings extends Component {
 
     onAdvancedSettingsPress() {}
 
-    onResetWalletPress() {
-        this.props.navigator.push({
-            screen: 'wallet-reset-confirm',
-            navigatorStyle: {
-                navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
-            },
-            animated: false,
-        });
-    }
+    onResetWalletPress() {}
 
     onLogoutPress() {
         this.props.logoutFromWallet();
