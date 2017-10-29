@@ -133,16 +133,16 @@
         "button1": "ENVIAR",
         "button2": "GERAR NOVO ENDEREÇO",
         "button3": "TERMINAR SESSÃO",
-        "changeMode": "Change mode",
-        "minimal": "Minimal",
-        "standard": "Standard",
-        "expert": "Expert",
-        "changeTheme": "Change theme",
-        "changeLanguage": "Change language",
-        "addNewSeed": "Add new seed",
-        "setup2fa": "2FA Setup",
-        "changePassword": "Change password",
-        "advancedSettings": "Advanced settings",
-        "logout": "Logout"
+        "changeMode": "Alterar o modo",
+        "minimal": "Mínimo",
+        "standard": "Padrão",
+        "expert": "Perito",
+        "changeTheme": "Mudar o tema",
+        "changeLanguage": "Mudar o idioma",
+        "addNewSeed": "Adicionar nova Seed",
+        "setup2fa": "Configuração de 2FA",
+        "changePassword": "Alterar a palavra-passe",
+        "advancedSettings": "Configurações avançadas",
+        "logout": "Terminar Sessão"
     }
 }
