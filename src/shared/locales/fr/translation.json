@@ -50,7 +50,7 @@
         "invalid_seed_title": "Seed invalide",
         "invalid_seed_text": "Votre Seed n'est pas valide. Une Seed peut contenir des lettres en capitales (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères.",
         "placeholder": "SEED",
-        "seed_explanation": "Une Seed peut contenir des lettres en capitales (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères. Vous ne pouvez pas utiliser de Seed de plus de 81 caractères.",
+        "seed_explanation": "Une Seed doit contenir des lettres en capitales (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères. Vous ne pouvez pas utiliser de Seed de plus de 81 caractères.",
         "reminder": "NE PARTAGEZ JAMAIS VOTRE SEED",
         "scan_code": "Scanner le code QR",
         "close": "FERMER",
@@ -77,7 +77,7 @@
     "saveYourSeed2": {
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
+        "optionC": "Copier vers le Presse-papiers",
         "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
         "text": "triple check",
         "button": "OK"
