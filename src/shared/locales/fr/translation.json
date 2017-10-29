@@ -15,12 +15,12 @@
         "text2": "Nous allons passer les prochaines minutes à paramétrer votre Wallet.",
         "reminder": "Vous serez tenté de passer des étapes mais nous vous demandons de suivre le process complet.",
         "button1": "SUIVANT",
-        "button2": "BACK"
+        "button2": "RETOUR"
     },
     "welcome2": {
         "text1": "Okay. Paramétrons votre Wallet !",
         "text2": "Est ce que vous possédez une Seed que vous souhaitez utiliser ?",
-        "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seed_explanation1": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
         "seed_explanation2": "Vous pouvez l'utiliser pour accéder à vos fonds depuis tous les Wallets, sur tous les appareils. Mais si vous perdez votre Seed, vous perdez également vos IOTA",
         "reminder": "Merci de garder votre Seed en sécurité",
         "button1": "OUI",
