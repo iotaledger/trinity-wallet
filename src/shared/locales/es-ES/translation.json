@@ -78,14 +78,14 @@
         "optionA": "Copia manual",
         "optionB": " Cartera de papel",
         "optionC": "Copiar para Clipboard",
-        "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+        "explanation": "Su Seed tiene 81 caracteres leídos de izquierda a derecha. Registre su Seed, comprobándolo tres veces.",
         "text": "triple check",
-        "button": "DONE"
+        "button": "HECHO"
     },
     "saveYourSeed3": {
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
+        "optionA": "Copia manual",
+        "optionB": " Cartera de papel",
+        "optionC": "Copiar para Clipboard",
         "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
         "text": "Do not store the seed in plain text.",
         "button1": "COPY TO CLIPBOARD",
