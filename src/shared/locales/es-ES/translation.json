@@ -49,17 +49,17 @@
         "invalid_seed_title": "Seed inválida",
         "invalid_seed_text": "Tu seed es inválida. Una seed solo puede contener letras mayúsculas (A-Z) y el número 9. También debe tener entre 60 e 81 caracteres de largo.",
         "placeholder": "SEED",
-        "seed_explanation": "Se aconseja que las Seeds tengan 81 caracteres. Además, es obligatório que sean letras mayúsculas (de A a Z) e que incluyan el número 9. No se pueden utilizar Seeds con más de 81 caracteres.",
-        "reminder": "NUNCA COMPARTA SU SEED CON NADIE",
+        "seed_explanation": "Se aconseja que las seeds tengan 81 caracteres de largo. Además, deben consistir en letras mayúsculas (A-Z) e el número 9. No se puede utilizar seeds con más de 81 caracteres.",
+        "reminder": "NUNCA COMPARTAS TU SEED CON NADIE",
         "scan_code": "Escanear código QR",
         "close": "CERRAR",
-        "button1": "HECHO",
+        "button1": "LISTO",
         "button2": "VOLVER"
     },
     "newSeedSetup": {
         "title": "GENERAR UNA NUEVA SEED",
-        "button1": "GENERAR LA NUEVA SEED",
-        "text1": "Pulse letras individuales para que el proceso sea más aleatorio.",
+        "button1": "GENERAR NUEVA SEED",
+        "text1": "Haz clic en letras individuales para aleatorizarlos.",
         "text2": "Ahora pulse en SIGUIENTE",
         "button2": "SIGUIENTE",
         "button3": "VOLVER"
