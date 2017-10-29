@@ -77,7 +77,7 @@ class SecurityEnter extends React.PureComponent {
                     </div>
                 </Main>
                 <Footer>
-                    <Button to="/seed/enter" variant="warning">
+                    <Button to="/seed/name" variant="warning">
                         {t('button2')}
                     </Button>
                     <Button type="submit" variant="success">
