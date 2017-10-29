@@ -6,7 +6,6 @@ const initialState = {
     seed: '                                                                                 ',
     transactions: [],
     isGeneratingReceiveAddress: false,
-    errorMessage: '',
 };
 
 export default (state = initialState, action) => {
@@ -62,11 +61,6 @@ export default (state = initialState, action) => {
                 seed: '',
                 password: '',
                 ready: false,
-            };
-        case 'LOGIN_ERROR':
-            return {
-                ...state,
-                errorMessage: action.payload,
             };
         default:
             return state;
