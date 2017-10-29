@@ -1,6 +1,6 @@
 {
     "notifications": {
-        "invalidServer_title": "Servidor invalido",
+        "invalidServer_title": "Servidor inválido",
         "invalidServer_text": "La dirección de servidor introducida no es válida",
         "unknownError_title": "Ocurrió un error desconocido",
         "unknownError_text": "No hemos podído realizar la acción deseada. Por favor, inténtelo de nuevo."
@@ -17,9 +17,9 @@
         "button2": "VOLVER"
     },
     "welcome2": {
-        "text1": "Vale. ¡Vamos a configurar su billetera!",
-        "text2": "¿Ya tiene un Seed que le gustaría utilizar?",
-        "seed_explanation1": "La Seed de la IOTA es, simultáneamente, el nombre del usuario y la contraseña para su cuenta, combinada en una cadena de 81 caracteres.",
+        "text1": "Vale. ¡Vamos a configurar tu billetera!",
+        "text2": "¿Ya tienes un seed que te gustaría utilizar?",
+        "seed_explanation1": "La seed de IOTA es, simultáneamente, el nombre del usuario y la contraseña para tu cuenta, combinada en una cadena de 81 caracteres.",
         "seed_explanation2": "Puede utilizar su Seed para acceder a sus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierde su Seed, también pierde su IOTA",
         "reminder": "Por favor mantenga su Seed en seguridad",
         "button1": "SÍ",
@@ -68,7 +68,7 @@
         "text1": "Debe guardar su Seed usando como mínimo una de las opciones sugeridas a continuación.",
         "text2": "al menos una",
         "optionA": "COPIA MANUAL",
-        "optionB": "IMPRIMA SU CARTERA DE PAPEL",
+        "optionB": "IMPRIMA SU BILLETERA DE PAPEL",
         "optionC": "Copiar para Clipboard",
         "button1": "SIGUIENTE",
         "button2": "VOLVER"
