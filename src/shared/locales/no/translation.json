@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "Ugyldig tjener",
         "invalidServer_text": "Tjener-adresssen du oppgav er ikke gyldig",
