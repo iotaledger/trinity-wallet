@@ -4,25 +4,25 @@
         "invalidServer_title": "Servidor invalido",
         "invalidServer_text": "La dirección de servidor introducida no es válida",
         "unknownError_title": "Ocurrió un error desconocido",
-        "unknownError_text": "No podríamos realizar la acción deseada esta vez. Por favor, inténtalo de nuevo."
+        "unknownError_text": "No hemos podído realizar la acción deseada esta vez. Por favor, inténtelo de nuevo."
     },
     "setLanguage": {
         "dropdown_title": "Idioma",
-        "button1": "SEGUIR"
+        "button1": "SIGUIENTE"
     },
     "welcome1": {
         "text1": "Gracias por descargar la billetera de IOTA.",
         "text2": "Vamos a pasar los siguientes minutos configurando tu billetera.",
-        "reminder": "Puedes estar tentado a saltar algunos pasos, pero le instamos a seguir el proceso completo.",
-        "button1": "SEGUIR",
+        "reminder": "Puede estar tentado a saltar algunos pasos, pero le instamos a seguir el proceso completo.",
+        "button1": "SIGUIENTE",
         "button2": "VOLVER"
     },
     "welcome2": {
         "text1": "Vale. ¡Vamos a configurar su billetera!",
-        "text2": "¿Ya tienes un seed que le gustaría utilizar?",
+        "text2": "¿Ya tiene un Seed que le gustaría utilizar?",
         "seed_explanation1": "La Seed de la IOTA es, simultáneamente, el nombre del usuario y la contraseña para su cuenta, combinada en una cadena de 81 caracteres.",
-        "seed_explanation2": "Se puede utilizar para acceder a sus fondos desde cualquier carpeta, en cualquier dispositivo. Pero si pierde su seed, también pierdes tu IOTA",
-        "reminder": "Por favor mantenga tu seed seguro",
+        "seed_explanation2": "Puede utilizar su Seed para acceder a sus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierde su Seed, también pierde su IOTA",
+        "reminder": "Por favor mantenga su Seed en seguridad",
         "button1": "SÍ",
         "button2": "NO"
     },
