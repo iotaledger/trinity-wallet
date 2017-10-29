@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "Nepareizs serveris",
         "invalidServer_text": "Servera adresi, kuru ievadījāt, nav pareiza",
