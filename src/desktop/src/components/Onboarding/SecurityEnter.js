@@ -13,7 +13,7 @@ import Infobox from '../UI/Infobox';
 import PasswordInput from '../UI/PasswordInput';
 import css from '../Layout/Onboarding.css';
 
-class SecurityEntry extends React.PureComponent {
+class SecurityEnter extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         history: PropTypes.shape({
@@ -66,22 +66,14 @@ class SecurityEntry extends React.PureComponent {
                         <p>{t('reminder')}</p>
                     </Infobox>
                     <div className={css.formGroup}>
-                        <p>
-                            <PasswordInput
-                                placeholder={t('placeholder1')}
-                                name="password"
-                                onChange={this.changeHandler}
-                            />
-                        </p>
+                        <PasswordInput placeholder={t('placeholder1')} name="password" onChange={this.changeHandler} />
                     </div>
                     <div className={css.formGroup}>
-                        <p>
-                            <PasswordInput
-                                placeholder={t('placeholder2')}
-                                name="passwordConfirm"
-                                onChange={this.changeHandler}
-                            />
-                        </p>
+                        <PasswordInput
+                            placeholder={t('placeholder2')}
+                            name="passwordConfirm"
+                            onChange={this.changeHandler}
+                        />
                     </div>
                 </Main>
                 <Footer>
@@ -105,4 +97,4 @@ const mapDispatchToProps = {
     showError,
 };
 
-export default translate('setPassword')(connect(null, mapDispatchToProps)(SecurityEntry));
+export default translate('setPassword')(connect(null, mapDispatchToProps)(SecurityEnter));
