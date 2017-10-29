@@ -7,21 +7,21 @@
     },
     "setLanguage": {
         "dropdown_title": "Idioma",
-        "button1": "SIGUIENTE"
+        "button1": "SEGUIR"
     },
     "welcome1": {
         "text1": "Gracias por descargar la billetera de IOTA.",
         "text2": "Vamos a pasar los minutos siguientes configurando su billetera.",
         "reminder": "Puede estar tentado a saltar algunos pasos, pero le instamos a seguir el proceso completo.",
-        "button1": "SIGUIENTE",
+        "button1": "SEGUIR",
         "button2": "VOLVER"
     },
     "welcome2": {
         "text1": "Vale. ¡Vamos a configurar su billetera!",
         "text2": "¿Ya tiene un Seed que le gustaría utilizar?",
         "seed_explanation1": "La seed de la IOTA es, simultáneamente, el nombre del usuario y la contraseña para su cuenta, combinada en una cadena de 81 caracteres.",
-        "seed_explanation2": "Puede utilizar su Seed para acceder a sus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierde su Seed, también pierde su IOTA",
-        "reminder": "Por favor mantenga su Seed en seguridad",
+        "seed_explanation2": "Puede utilizarla para acceder a sus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierde su seed, también pierde su IOTA",
+        "reminder": "Por favor mantenga su seed en seguridad",
         "button1": "SÍ",
         "button2": "NO"
     },
@@ -135,13 +135,13 @@
         "button3": "CERRAR SESIÓN",
         "changeMode": "Cambiar modo",
         "minimal": "Mínimo",
-        "standard": "Estándar",
-        "expert": "Experto",
+        "standard": "Normal",
+        "expert": "Avanzado",
         "changeTheme": "Cambiar tema",
-        "changeLanguage": "Cambiar el idioma",
-        "addNewSeed": "Añadir nueva Seed",
-        "setup2fa": "Configuración 2FA",
-        "changePassword": "Cambiar la Contraseña",
+        "changeLanguage": "Cambiar idioma",
+        "addNewSeed": "Añadir nueva seed",
+        "setup2fa": "Configuración de 2FA",
+        "changePassword": "Cambiar contraseña",
         "advancedSettings": "Configuración avanzada",
         "logout": "Cerrar sesión"
     }
