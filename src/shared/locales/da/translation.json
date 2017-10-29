@@ -69,7 +69,7 @@
         "text2": "mindst én",
         "optionA": "SKRIV NED MANUELT",
         "optionB": "UDSKRIV PAPIRTEGNEBOG",
-        "optionC": "KOPIER TIL UDKLIPSHOLDER",
+        "optionC": "KOPIÉR TIL UDKLIPSHOLDER",
         "button1": "NÆSTE",
         "button2": "TILBAGE"
     },
@@ -77,18 +77,18 @@
         "optionA": "Skriv ned manuelt",
         "optionB": " Papirtegnebog",
         "optionC": "Kopiér til udklipsholder",
-        "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
-        "text": "triple check",
-        "button": "DONE"
+        "explanation": "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og trippeltjek, at de er korrekt skrevet ned.",
+        "text": "trippeltjek",
+        "button": "FÆRDIG"
     },
     "saveYourSeed3": {
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
-        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
-        "text": "Do not store the seed in plain text.",
-        "button1": "COPY TO CLIPBOARD",
-        "button2": "DONE"
+        "optionA": "Skriv ned manuelt",
+        "optionB": " Papirtegnebog",
+        "optionC": "Kopiér til udklipsholder",
+        "explanation": "Klik på knappen nedenfor og kopier dit seed til en adgangskodemanager. Den forbliver i din udklipsholder i 60 sekunder.",
+        "text": "Opbevar ikke dit seed i klartekst.",
+        "button1": "KOPIÉR TIL UDKLIPSHOLDER",
+        "button2": "FÆRDIG"
     },
     "saveYourSeed4": {
         "optionA": "Manual Copy",
