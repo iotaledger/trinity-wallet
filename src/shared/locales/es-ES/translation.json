@@ -59,15 +59,15 @@
     },
     "newSeedSetup": {
         "title": "GENERAR UNA NUEVA SEED",
-        "button1": "GENERATE NEW SEED",
-        "text1": "Press individual letters to randomise them.",
-        "text2": "Then click NEXT",
-        "button2": "NEXT",
-        "button3": "BACK"
+        "button1": "GENERAR LA NUEVA SEED",
+        "text1": "Pulse letras individuales para que el proceso sea más aleatorio.",
+        "text2": "Ahora pulse en SIGUIENTE",
+        "button2": "SIGUIENTE",
+        "button3": "VOLVER"
     },
     "saveYourSeed": {
-        "text1": "You must save your seed with at least one of the options listed below.",
-        "text2": "at least one",
+        "text1": "Debe guardar su Seed usando como mínimo una de las opciones sugeridas a continuación.",
+        "text2": "al menos una",
         "optionA": "MANUAL COPY",
         "optionB": "PRINT PAPER WALLET",
         "optionC": "COPY TO CLIPBOARD",
