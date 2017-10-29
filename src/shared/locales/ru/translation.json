@@ -1,5 +1,4 @@
 {
-    "id": "англ",
     "notifications": {
         "invalidServer_title": "Неверный сервер",
         "invalidServer_text": "Введенный адрес сервера не является допустимым",
