@@ -20,10 +20,10 @@
     "welcome2": {
         "text1": "Vale. ¡Vamos a configurar su billetera!",
         "text2": "¿Ya tienes un seed que le gustaría utilizar?",
-        "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seed_explanation1": "El Seed de la IOTA es, simultáneamente, el nombre del usuario y la contraseña para su cuenta, combinado en una cadena de 81 caracteres.",
         "seed_explanation2": "Se puede utilizar para acceder a sus fondos desde cualquier carpeta, en cualquier dispositivo. Pero si pierde su seed, también pierdes tu IOTA",
         "reminder": "Por favor mantenga tu seed seguro",
-        "button1": "YES",
+        "button1": "SÍ",
         "button2": "NO"
     },
     "lightserver": {
