@@ -49,20 +49,20 @@
         "invalid_seed_title": "Ugyldigt seed",
         "invalid_seed_text": "Dit seed er ugyldigt. Et seed må kun indeholde store bogstaver (A-Z) samt tallet 9 og skal være 60-81 tegn langt.",
         "placeholder": "SEED",
-        "seed_explanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "reminder": "NEVER SHARE YOUR SEED WITH ANYONE",
-        "scan_code": "Scan QR code",
-        "close": "CLOSE",
-        "button1": "DONE",
-        "button2": "BACK"
+        "seed_explanation": "Seeds bør være 81 tegn lange og skal indeholde bogstaverne A-Z eller tallet 9. Du kan ikke bruge seeds, som er længere end 81 tegn.",
+        "reminder": "DEL ALDRIG DIT SEED MED NOGEN",
+        "scan_code": "Skan QR-kode",
+        "close": "LUK",
+        "button1": "FÆRDIG",
+        "button2": "TILBAGE"
     },
     "newSeedSetup": {
-        "title": "GENERATE A NEW SEED",
-        "button1": "GENERATE NEW SEED",
-        "text1": "Press individual letters to randomise them.",
-        "text2": "Then click NEXT",
-        "button2": "NEXT",
-        "button3": "BACK"
+        "title": "GENERER ET NYT SEED",
+        "button1": "GENERER NYT SEED",
+        "text1": "Tryk på individuelle bogstaver for at vælge nye tilfældigt.",
+        "text2": "Klik derefter på NÆSTE",
+        "button2": "NÆSTE",
+        "button3": "TILBAGE"
     },
     "saveYourSeed": {
         "text1": "You must save your seed with at least one of the options listed below.",
