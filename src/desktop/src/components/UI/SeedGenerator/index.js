@@ -20,7 +20,18 @@ export default class SeedGenerator extends React.PureComponent {
         this.onUpdatedSeed(this.state.seed);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.seed !== this.props.seed) {
+            console.log('CWRP:', nextProps.seed);
+            this.setState(() => ({
+                seed: nextProps.seed,
+            }));
+            // return this.onUpdatedSeed(nextProps.seed, this.state.seed);
+        }
+    }
+
     componentDidUpdate(prevProps, prevState) {
+        console.log('CDU', prevState, this.state);
         if (prevState.seed !== this.state.seed) {
             return this.onUpdatedSeed(this.state.seed, prevState.seed);
         }
@@ -28,6 +39,15 @@ export default class SeedGenerator extends React.PureComponent {
 
     onUpdatedSeed = (seed = this.state.seed, previous = null) => {
         if (typeof this.props.onUpdatedSeed === 'function') {
+            const differenceCounter = (seed || '').split('').reduce((acc, v, i) => {
+                return v === (previous || '')[i] ? acc : acc + 1;
+            }, 0);
+            // we got a completely new seed, so reset the updateCounter for letters
+            if (differenceCounter > 1) {
+                this.setState(() => ({
+                    updateCounter: {},
+                }));
+            }
             return this.props.onUpdatedSeed(seed, previous);
         }
     };

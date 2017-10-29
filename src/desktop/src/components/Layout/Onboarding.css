@@ -38,17 +38,25 @@
         > header,
         > main,
         > footer {
-            flex: 1 1 auto;
             width: 100%;
             padding: 0 16px;
         }
 
+        > main {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         > header {
             max-height: 200px;
+            flex: 0 1 auto;
         }
 
         > footer {
             max-height: 150px;
+            flex: 0 1 auto;
         }
     }
 }

@@ -23,7 +23,7 @@ class SeedCopyToClipboard extends React.PureComponent {
         const { t, seed, showNotification } = this.props;
 
         return (
-            <Template headline={t('title')}>
+            <Template>
                 <Main>
                     <Steps currentStep="clipboard" />
                     <p>
@@ -34,7 +34,7 @@ class SeedCopyToClipboard extends React.PureComponent {
                     <div className={css.buttonWrapper}>
                         <CopyToClipboard text={seed}>
                             <Button
-                                variant="success"
+                                variant="cta"
                                 onClick={() =>
                                     showNotification({
                                         type: 'success',

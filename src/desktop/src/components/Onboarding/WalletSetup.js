@@ -13,7 +13,7 @@ class WalletSetup extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <Template headline={t('title')}>
+            <Template>
                 <Main>
                     <p>{t('text1')}</p>
                     <p>{t('text2')}</p>
@@ -26,16 +26,12 @@ class WalletSetup extends React.PureComponent {
                     </Infobox>
                 </Main>
                 <Footer>
-                    <p>
-                        <Button to="/seed/enter" variant="success">
-                            {t('button1')}
-                        </Button>
-                    </p>
-                    <p>
-                        <Button to="/seed/generate" variant="warning">
-                            {t('button2')}
-                        </Button>
-                    </p>
+                    <Button to="/seed/generate" variant="warning">
+                        {t('button2')}
+                    </Button>
+                    <Button to="/seed/enter" variant="success">
+                        {t('button1')}
+                    </Button>
                 </Footer>
             </Template>
         );

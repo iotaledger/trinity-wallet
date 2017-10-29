@@ -20,7 +20,7 @@ class SeedPaperWallet extends PureComponent {
         const { t, seed } = this.props;
 
         return (
-            <Template headline={t('title')}>
+            <Template>
                 <Main>
                     <Steps currentStep="paper" />
                     <p>Click the button below to print a paper copy of your seed. Store it safely.</p>
@@ -36,7 +36,7 @@ class SeedPaperWallet extends PureComponent {
                         </div>
                     </div>
                     <div className={css.printBtnWrapper}>
-                        <Button to="/" variant="success">
+                        <Button to="/" variant="cta">
                             {t('button1')}
                         </Button>
                     </div>

@@ -4,7 +4,7 @@ import Logo from '../UI/Logo';
 
 export default class Header extends React.PureComponent {
     static propTypes = {
-        headline: PropTypes.string.isRequired,
+        headline: PropTypes.string,
     };
 
     render() {
@@ -12,7 +12,7 @@ export default class Header extends React.PureComponent {
         return (
             <header>
                 <Logo width={72} />
-                <h1>{headline}</h1>
+                {headline && <h1>{headline}</h1>}
             </header>
         );
     }

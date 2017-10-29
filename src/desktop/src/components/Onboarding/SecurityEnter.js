@@ -9,6 +9,7 @@ import { showError } from 'actions/notifications';
 import { isValidPassword } from '../../../../shared/libs/util';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
+import Infobox from '../UI/Infobox';
 import PasswordInput from '../UI/PasswordInput';
 import css from '../Layout/Onboarding.css';
 
@@ -50,25 +51,41 @@ class SecurityEntry extends React.PureComponent {
             });
         }
 
-        setOnboardingCompletionStatus(true);
+        // setOnboardingCompletionStatus(true);
         history.push('/done');
     };
 
     render() {
         const { t } = this.props;
         return (
-            <Template headline={t('title')} type="form" onSubmit={this.onRequestNext}>
+            <Template type="form" onSubmit={this.onRequestNext}>
                 <Main>
-                    <p>{t('explanation')}</p>
+                    <p>{t('text')}</p>
+                    <Infobox>
+                        <p>{t('explanation')}</p>
+                        <p>{t('reminder')}</p>
+                    </Infobox>
                     <div className={css.formGroup}>
-                        <PasswordInput name="password" onChange={this.changeHandler} />
+                        <p>
+                            <PasswordInput
+                                placeholder={t('placeholder1')}
+                                name="password"
+                                onChange={this.changeHandler}
+                            />
+                        </p>
                     </div>
                     <div className={css.formGroup}>
-                        <PasswordInput name="passwordConfirm" onChange={this.changeHandler} />
+                        <p>
+                            <PasswordInput
+                                placeholder={t('placeholder2')}
+                                name="passwordConfirm"
+                                onChange={this.changeHandler}
+                            />
+                        </p>
                     </div>
                 </Main>
                 <Footer>
-                    <Button to="/security/intro" variant="warning">
+                    <Button to="/seed/enter" variant="warning">
                         {t('button2')}
                     </Button>
                     <Button type="submit" variant="success">
