@@ -49,14 +49,10 @@
             justify-content: center;
         }
 
-        > header {
-            max-height: 200px;
-            flex: 0 1 auto;
-        }
-
+        > header,
         > footer {
-            max-height: 150px;
             flex: 0 1 auto;
+            padding: 16px;
         }
     }
 }
@@ -72,8 +68,8 @@
 }
 
 .qrScanner {
-    height: 240px;
-    width: 320px;
+    width: 640px;
+    max-width: 100%;
     margin: auto;
     transform: rotateY(180deg);
     video {

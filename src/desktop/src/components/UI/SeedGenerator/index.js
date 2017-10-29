@@ -22,16 +22,13 @@ export default class SeedGenerator extends React.PureComponent {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.seed !== this.props.seed) {
-            console.log('CWRP:', nextProps.seed);
             this.setState(() => ({
                 seed: nextProps.seed,
             }));
-            // return this.onUpdatedSeed(nextProps.seed, this.state.seed);
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('CDU', prevState, this.state);
         if (prevState.seed !== this.state.seed) {
             return this.onUpdatedSeed(this.state.seed, prevState.seed);
         }
