@@ -27,27 +27,27 @@
         "button2": "NON"
     },
     "lightserver": {
-        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
-        "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Please choose a server from the list below.",
+        "text1": "Un serveur léger est un portail vers le réseau IOTA, fournit gracieusement par les membres de la communauté ou par nos partenaires corporate. ",
+        "text2": "Plus d'informations sur les serveurs : http://iotasupport.com/lightwallet.shtml",
+        "text3": "Merci de choisir un serveur dans la liste ci-dessous.",
         "server_label": "Serveur",
-        "custom_server_label": "Other server address",
-        "other": "Other",
-        "button1": "NEXT",
-        "button2": "BACK"
+        "custom_server_label": "Autre adresse serveur",
+        "other": "Autre",
+        "button1": "SUIVANT",
+        "button2": "RETOUR"
     },
     "login": {
-        "text": "Please enter your password",
-        "placeholder": "PASSWORD",
-        "error_title": "Unrecognised Password",
-        "error_text": "The password was not recognised. Please try again.",
-        "button1": "DONE",
-        "button2": "USE SEED"
+        "text": "Veuillez renseigner votre mot de passe",
+        "placeholder": "MOT DE PASSE",
+        "error_title": "Mot de passe incorrect",
+        "error_text": "Le mot de passe est incorrect. Merci d'essayer à nouveau.",
+        "button1": "OK",
+        "button2": "UTILISER LA SEED"
     },
     "enterSeed": {
-        "error_title": "Seed is too short",
-        "error_text": "Seeds must be at least 60 characters long. Please try again.",
-        "invalid_seed_title": "Invalid seed",
+        "error_title": "La Seed est trop courte",
+        "error_text": "La Seed doit comporter au moins 60 caractères. Merci d'essayer à nouveau.",
+        "invalid_seed_title": "Seed invalide",
         "invalid_seed_text": "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
         "placeholder": "SEED",
         "seed_explanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
