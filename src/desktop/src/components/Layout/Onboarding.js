@@ -7,7 +7,8 @@ import Instructions from '../Onboarding/Instructions';
 import LightServerSetup from '../Onboarding/LightServerSetup';
 import WalletSetup from '../Onboarding/WalletSetup';
 import GenerateSeed from '../Onboarding/GenerateSeed';
-import EnterSeed from '../Onboarding/EnterSeed';
+import SeedEnter from '../Onboarding/SeedEnter';
+import SeedName from '../Onboarding/SeedName';
 import SaveYourSeedOptions from '../Onboarding/SaveYourSeedOptions';
 import SeedManualCopy from '../Onboarding/SeedManualCopy';
 import SeedCopyToClipboard from '../Onboarding/SeedCopyToClipboard';
@@ -45,7 +46,8 @@ export default withRouter(
                                 <Route path="/seed/save/manual" component={SeedManualCopy} />
                                 <Route path="/seed/save/clipboard" component={SeedCopyToClipboard} />
                                 <Route path="/seed/save/paperwallet" component={SeedPaperWallet} />
-                                <Route path="/seed/enter" component={EnterSeed} />
+                                <Route path="/seed/enter" component={SeedEnter} />
+                                <Route path="/seed/name" component={SeedName} />
                                 <Route path="/security/intro" component={SecurityIntro} />
                                 <Route path="/security/enter" component={SecurityEnter} />
                                 <Route exact path="/security/extra" component={() => {}} />

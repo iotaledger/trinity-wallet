@@ -14,7 +14,7 @@ import Infobox from '../UI/Infobox';
 
 import css from '../Layout/Onboarding.css';
 
-class EnterSeed extends React.PureComponent {
+class SeedEnter extends React.PureComponent {
     static propTypes = {
         addAndSelectSeed: PropTypes.func.isRequired,
         clearSeeds: PropTypes.func.isRequired,
@@ -82,7 +82,7 @@ class EnterSeed extends React.PureComponent {
         }
         clearSeeds();
         addAndSelectSeed(seed);
-        history.push('/security/enter');
+        history.push('/seed/name');
     };
 
     render() {
@@ -157,4 +157,4 @@ const mapDispatchToProps = {
     clearSeeds,
 };
 
-export default translate('enterSeed')(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));
+export default translate('enterSeed')(connect(mapStateToProps, mapDispatchToProps)(SeedEnter));
