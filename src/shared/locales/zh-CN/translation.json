@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "无效的服务器",
         "invalidServer_text": "您所输入的服务器地址无效",
