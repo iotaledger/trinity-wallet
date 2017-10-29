@@ -49,7 +49,7 @@
         "invalid_seed_title": "Seed inválida",
         "invalid_seed_text": "A sua Seed é inválida. A Seed só pode conter letras maiúsculas (A-Z) e o número 9 e, além disso, tem de ter entre 60 a 81 caracteres.",
         "placeholder": "SEED",
-        "seed_explanation": "As SEEDs devem ter 81 caracteres e devem conter letras maiúsculas (A-Z) e o número 9. As SEEDs não podem conter mais de 81 caracteres.",
+        "seed_explanation": "As Seeds devem ter 81 caracteres e têm de ser constituídas por letras maiúsculas (A-Z) e o número 9. As Seeds não podem conter mais de 81 caracteres.",
         "reminder": "NUNCA PARTILHE A SUA SEED COM NINGUÉM",
         "scan_code": "Ler código QR",
         "close": "FECHAR",
