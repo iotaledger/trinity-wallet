@@ -104,20 +104,20 @@
     "setPassword": {
         "title": "CONFIGURACIÓN DE CONTRASEÑA",
         "text": "Ahora tenemos que configurar una contraseña.",
-        "explanation": "En el futuro, usted utilizará esta contraseña para tener acceso a su billetera. Será almacenada una copia encriptada de su Seed en su dispositivo.",
-        "reminder": "Asegúrese que utiliza una contraseña segura con un mínimo de 12 caracteres.",
+        "explanation": "Utlizarás esta contraseña para acceder a tu billetera. Una copia encriptada de tu seed será guardado en tu llavero.",
+        "reminder": "Asegúrete que utiliza una contraseña segura con al menos 12 caracteres.",
         "placeholder1": "'CONTRASEÑA'",
         "placeholder2": "VOLVER A ESCRIBIR CONTRASEÑA",
-        "error1_title": "La contraseña es muy corta",
+        "error1_title": "La contraseña es demasiado corta",
         "error1_text": "La contraseña debe tener un mínimo de 12 caracteres. Por favor, inténtelo de nuevo.",
-        "error2_title": "Las contraseñas no coinciden entre si",
-        "error2_text": "Las contraseñas introducidas no coinciden. Por favor, inténtelo de nuevo.",
-        "button1": "HECHO",
+        "error2_title": "Las contraseñas no coinciden",
+        "error2_text": "Las contraseñas introducidas no coinciden. Por favor inténtalo de nuevo.",
+        "button1": "LISTO",
         "button2": "VOLVER"
     },
     "onboardingComplete": {
-        "text": "Su billetera está configurada y lista para usar. Si usted necesita realizar cambios en el futuro, acceda al menú herramientas.",
-        "button": "SIGUIENTE"
+        "text": "La billetera está configurada y lista para usar. Si necesitas realizar cambios en el futuro, mira en el menú de Herramientas.",
+        "button": "SEGUIR"
     },
     "home": {
         "tab1": "SALDO",
