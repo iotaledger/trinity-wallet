@@ -142,6 +142,17 @@
         "amount": "Quantia",
         "button1": "ENVIAR",
         "button2": "GERAR NOVO ENDEREÇO",
-        "button3": "TERMINAR SESSÃO"
+        "button3": "TERMINAR SESSÃO",
+        "changeMode": "Change mode",
+        "minimal": "Minimal",
+        "standard": "Standard",
+        "expert": "Expert",
+        "changeTheme": "Change theme",
+        "changeLanguage": "Change language",
+        "addNewSeed": "Add new seed",
+        "setup2fa": "2FA Setup",
+        "changePassword": "Change password",
+        "advancedSettings": "Advanced settings",
+        "logout": "Logout"
     }
 }
