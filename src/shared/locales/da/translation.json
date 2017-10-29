@@ -12,18 +12,18 @@
     "welcome1": {
         "text1": "Tak fordi du downloadede IOTA-tegnebogen.",
         "text2": "Vi bruger de næste par minutter på at opsætte din tegnebog.",
-        "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer dig på det kraftigste til at følge hele processen.",
-        "button1": "NEXT",
-        "button2": "BACK"
+        "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen.",
+        "button1": "NÆSTE",
+        "button2": "TILBAGE"
     },
     "welcome2": {
-        "text1": "Okay. Let's set up your wallet!",
-        "text2": "Do you already have a seed that you would like to use?",
-        "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "seed_explanation2": "You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
-        "reminder": "Please keep your seed safe",
-        "button1": "YES",
-        "button2": "NO"
+        "text1": "Okay. Lad os opsætte din tegnebog!",
+        "text2": "Har du allerede et seed, du gerne vil bruge?",
+        "seed_explanation1": "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
+        "seed_explanation2": "Du kan bruge det til at tilgå dine penge fra enhver tegnebog på enhver enhed, men hvis du mister dit seed, mister du også dine IOTA",
+        "reminder": "Du bedes opbevare dit seed sikkert",
+        "button1": "JA",
+        "button2": "NEJ"
     },
     "lightserver": {
         "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
