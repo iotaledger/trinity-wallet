@@ -4,26 +4,26 @@ import { translate } from 'react-i18next';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 
-export default translate('onboardingComplete')(
-    class Done extends React.PureComponent {
-        static propTypes = {
-            t: PropTypes.func.isRequired,
-        };
+class Done extends React.PureComponent {
+    static propTypes = {
+        t: PropTypes.func.isRequired,
+    };
 
-        render() {
-            const { t } = this.props;
-            return (
-                <Template headline={t('title')}>
-                    <Main>
-                        <p>{t('text1')}</p>
-                    </Main>
-                    <Footer>
-                        <Button to="/" variant="success">
-                            {t('button1')}
-                        </Button>
-                    </Footer>
-                </Template>
-            );
-        }
-    },
-);
+    render() {
+        const { t } = this.props;
+        return (
+            <Template>
+                <Main>
+                    <p>{t('text')}</p>
+                </Main>
+                <Footer>
+                    <Button to="/" variant="success">
+                        {t('button')}
+                    </Button>
+                </Footer>
+            </Template>
+        );
+    }
+}
+
+export default translate('onboardingComplete')(Done);

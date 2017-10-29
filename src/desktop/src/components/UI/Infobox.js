@@ -4,7 +4,7 @@ import css from './Infobox.css';
 
 export default class Infobox extends React.PureComponent {
     static propTypes = {
-        children: PropTypes.node
+        children: PropTypes.node,
     };
 
     render() {
@@ -12,7 +12,7 @@ export default class Infobox extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                {/* TODO: INFO ICON */}
+                <span className={css.icon} />
                 {children}
             </div>
         );

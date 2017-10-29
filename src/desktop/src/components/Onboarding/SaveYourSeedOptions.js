@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
+import { clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
@@ -39,7 +40,7 @@ class SaveYourSeedOptions extends PureComponent {
                     <Button to="/seed/generate" variant="warning">
                         {t('button2')}
                     </Button>
-                    <Button to="/security/enter" variant="success">
+                    <Button to="/seed/enter" onClick={() => console.log('CLEAR SEEDS HERE')} variant="success">
                         {t('button1')}
                     </Button>
                 </Footer>
@@ -52,4 +53,8 @@ const mapStateToProps = state => ({
     seed: getSelectedSeed(state).seed,
 });
 
-export default translate('saveYourSeed')(connect(mapStateToProps)(SaveYourSeedOptions));
+const mapDispatchToProps = {
+    clearSeeds,
+};
+
+export default translate('saveYourSeed')(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeedOptions));
