@@ -26,20 +26,20 @@
         "button2": "NEJ"
     },
     "lightserver": {
-        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
-        "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Please choose a server from the list below.",
+        "text1": "En light server er en port til IOTA-netværket, der er stillet til rådighed af fællesskabets medlemmer eller vores virksomhedspartnere.",
+        "text2": "Du kan få mere information om serverne på: http://iotasupport.com/lightwallet.shtml",
+        "text3": "Vælg venligst en server fra listen nedenfor.",
         "server_label": "Server",
-        "custom_server_label": "Other server address",
-        "other": "Other",
-        "button1": "NEXT",
-        "button2": "BACK"
+        "custom_server_label": "Anden serveradresse",
+        "other": "Anden",
+        "button1": "NÆSTE",
+        "button2": "TILBAGE"
     },
     "login": {
-        "text": "Please enter your password",
-        "placeholder": "PASSWORD",
-        "error_title": "Unrecognised Password",
-        "error_text": "The password was not recognised. Please try again.",
+        "text": "Indtast venligst din adgangskode",
+        "placeholder": "ADGANGSKODE",
+        "error_title": "Ukendt adgangskode",
+        "error_text": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
         "button1": "DONE",
         "button2": "USE SEED"
     },
