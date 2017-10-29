@@ -19,7 +19,7 @@
     "welcome2": {
         "text1": "Vale. ¡Vamos a configurar su billetera!",
         "text2": "¿Ya tiene un Seed que le gustaría utilizar?",
-        "seed_explanation1": "La seed de la IOTA es, simultáneamente, el nombre del usuario y la contraseña para su cuenta, combinada en una cadena de 81 caracteres.",
+        "seed_explanation1": "La seed de IOTA es, simultáneamente, el nombre del usuario y la contraseña para su cuenta, combinada en una cadena de 81 caracteres.",
         "seed_explanation2": "Puede utilizarla para acceder a sus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierde su seed, también pierde su IOTA",
         "reminder": "Por favor mantenga su seed en seguridad",
         "button1": "SÍ",
