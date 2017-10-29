@@ -65,17 +65,17 @@
         "button3": "TILBAGE"
     },
     "saveYourSeed": {
-        "text1": "You must save your seed with at least one of the options listed below.",
-        "text2": "at least one",
-        "optionA": "MANUAL COPY",
-        "optionB": "PRINT PAPER WALLET",
-        "optionC": "COPY TO CLIPBOARD",
-        "button1": "NEXT",
-        "button2": "BACK"
+        "text1": "Du skal gemme dit seed med mindst én af valgmulighederne nedenfor.",
+        "text2": "mindst én",
+        "optionA": "SKRIV NED MANUELT",
+        "optionB": "UDSKRIV PAPIRTEGNEBOG",
+        "optionC": "KOPIER TIL UDKLIPSHOLDER",
+        "button1": "NÆSTE",
+        "button2": "TILBAGE"
     },
     "saveYourSeed2": {
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
+        "optionA": "Skriv ned manuelt",
+        "optionB": " Papirtegnebog",
         "optionC": "Copy To Clipboard",
         "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
         "text": "triple check",
