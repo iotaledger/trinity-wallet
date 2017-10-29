@@ -9,6 +9,7 @@ import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
+import Modal from '../UI/Modal';
 import Infobox from '../UI/Infobox';
 
 import css from '../Layout/Onboarding.css';
@@ -104,23 +105,28 @@ class EnterSeed extends React.PureComponent {
                     </div>
                     {/* TODO: prettier fucks this whole part up. maybe we can find a better solution here */}
                     {!showScanner && (
-                        <Button type="button" onClick={this.openScanner}>
+                        <Button type="button" onClick={this.openScanner} variant="cta">
                             {t('scan_code')}
                         </Button>
                     )}
-                    {showScanner && (
-                        <div>
-                            <Button type="button" onClick={this.closeScanner}>
-                                {t('close')}
-                            </Button>
+                    <Modal
+                        isOpen={showScanner}
+                        onStateChange={showScanner => this.setState({ showScanner })}
+                        hideCloseButton
+                    >
+                        {/* prevent qrscanner from scanning if not shown */}
+                        {showScanner && (
                             <QrReader
                                 delay={350}
                                 className={css.qrScanner}
                                 onError={this.onScanError}
                                 onScan={this.onScanEvent}
                             />
-                        </div>
-                    )}
+                        )}
+                        <Button type="button" onClick={this.closeScanner} variant="cta">
+                            {t('close')}
+                        </Button>
+                    </Modal>
                     <Infobox>
                         <p>{t('seed_explanation')}</p>
                         <p>

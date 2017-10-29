@@ -1,0 +1,27 @@
+:global(#modal) {
+    position: fixed;
+}
+
+.backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    left: 0;
+    max-height: 100%;
+    padding: 36px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: var(--z-index-modal);
+}
+
+.wrapper {
+    max-width: 640px;
+    margin: auto;
+    height: 100%;
+}
+
+.content {
+    max-width: 100%;
+    overflow: auto;
+    max-height: 100%;
+}
