@@ -45,13 +45,6 @@ export function setSeed(seed) {
     };
 }
 
-export function loginError(payload) {
-    return {
-        type: 'LOGIN_ERROR',
-        payload,
-    };
-}
-
 function addTransactionValues(transactions, addresses) {
     // Add transaction value property to each transaction object
     // FIXME: We should never mutate parameters at any level.
@@ -213,12 +206,7 @@ export function getAccountInfo(seed) {
             if (!error) {
                 Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
             } else {
-                var errorMessage;
-                errorMessage = error.toString();
-                if (errorMessage.match(/Invalid Response:/i)) {
-                    console.log('Invalid Response');
-                    dispatch(loginError('Invalid Response'));
-                }
+                console.log('SOMETHING WENT WRONG: ', error);
             }
         });
     };
