@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "Server non valido",
         "invalidServer_text": "L'indirizzo del server inserito non è valido",
