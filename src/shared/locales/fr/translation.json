@@ -83,10 +83,10 @@
         "button": "OK"
     },
     "saveYourSeed3": {
-        "optionA": "Manual Copy",
+        "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
-        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "optionC": "Copier vers le Presse-papiers",
+        "explanation": "Cliquez sur le bouton ci-dessous et copiez votre Seed vers un gestionnaire de mot de passe. Elle restera dans votre presse-papiers 60 secondes.",
         "text": "Do not store the seed in plain text.",
         "button1": "COPY TO CLIPBOARD",
         "button2": "OK"
