@@ -258,7 +258,6 @@ const styles = StyleSheet.create({
     },
     textFieldContainer: {
         width: width / 1.65,
-        paddingTop: height / 40,
     },
     textField: {
         color: Colors.white,
