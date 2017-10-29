@@ -18,15 +18,15 @@
     },
     "welcome2": {
         "text1": "Okay. Paramétrons votre Wallet !",
-        "text2": "Est ce que vous possédez une Seed que vous souhaitez utiliser ?",
+        "text2": "Est-ce que vous possédez une Seed que vous souhaitez utiliser ?",
         "seed_explanation1": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
-        "seed_explanation2": "Vous pouvez l'utiliser pour accéder à vos fonds depuis tous les Wallets, sur tous les appareils. Mais si vous perdez votre Seed, vous perdez également vos IOTA",
+        "seed_explanation2": "Vous pouvez l'utiliser pour accéder à vos fonds à partir de n'importe quel Wallet, depuis n'importe quel appareil. Mais si vous perdez votre Seed, vous perdez également vos IOTA",
         "reminder": "Merci de garder votre Seed en sécurité",
         "button1": "OUI",
         "button2": "NON"
     },
     "lightserver": {
-        "text1": "Un serveur léger est un portail vers le réseau IOTA, fournit gracieusement par les membres de la communauté ou par nos partenaires corporate. ",
+        "text1": "Un serveur léger est un portail vers le réseau IOTA, fourni gracieusement par les membres de la communauté ou par des entreprises partenaires.",
         "text2": "Plus d'informations sur les serveurs : http://iotasupport.com/lightwallet.shtml",
         "text3": "Merci de choisir un serveur dans la liste ci-dessous.",
         "server_label": "Serveur",
@@ -78,7 +78,7 @@
         "optionB": " Paper Wallet",
         "optionC": "Copier vers le Presse-papiers",
         "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
-        "text": "triple check",
+        "text": "vérifiez à plusieurs reprises",
         "button": "OK"
     },
     "saveYourSeed3": {
