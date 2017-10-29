@@ -40,14 +40,14 @@
         "placeholder": "ADGANGSKODE",
         "error_title": "Ukendt adgangskode",
         "error_text": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
-        "button1": "DONE",
-        "button2": "USE SEED"
+        "button1": "FÆRDIG",
+        "button2": "BRUG SEED"
     },
     "enterSeed": {
-        "error_title": "Seed is too short",
-        "error_text": "Seeds must be at least 60 characters long. Please try again.",
-        "invalid_seed_title": "Invalid seed",
-        "invalid_seed_text": "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
+        "error_title": "Seedet er for kort",
+        "error_text": "Seeds skal være mindst 60 tegn lange. Prøv venligst igen.",
+        "invalid_seed_title": "Ugyldigt seed",
+        "invalid_seed_text": "Dit seed er ugyldigt. Et seed må kun indeholde store bogstaver (A-Z) samt tallet 9 og skal være 60-81 tegn langt.",
         "placeholder": "SEED",
         "seed_explanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
         "reminder": "NEVER SHARE YOUR SEED WITH ANYONE",
