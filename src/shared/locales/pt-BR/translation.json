@@ -144,6 +144,17 @@
         "amount": "Quantia",
         "button1": "ENVIAR",
         "button2": "GERAR NOVO ENDEREÇO",
-        "button3": "SAIR"
+        "button3": "SAIR",
+        "changeMode": "Alternar modo",
+        "minimal": "Mínimo",
+        "standard": "Padrão",
+        "expert": "Avançado",
+        "changeTheme": "Alterar tema",
+        "changeLanguage": "Mudar idioma",
+        "addNewSeed": "Adicionar nova seed",
+        "setup2fa": "Configurar autenticação por dois fatores",
+        "changePassword": "Mudar senha",
+        "advancedSettings": "Configurações avançadas",
+        "logout": "Sair"
     }
 }
