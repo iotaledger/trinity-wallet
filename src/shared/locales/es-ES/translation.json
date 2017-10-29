@@ -78,25 +78,25 @@
         "optionB": " Billetera de Papel",
         "optionC": "Copiar al Portapapeles",
         "explanation": "Su Seed tiene 81 caracteres leídos de izquierda a derecha. Registre su Seed, comprobándola tres veces.",
-        "text": "compruebe tres veces",
+        "text": "comprobándola tres veces",
         "button": "LISTO"
     },
     "saveYourSeed3": {
         "optionA": "Copiar Manualmente",
         "optionB": " Billetera de Papel",
         "optionC": "Copiar al Portapapeles",
-        "explanation": "Pulse el botón de abajo para copiar su Seed para un gestor de contraseñas. Esta copia permanecerá en el clipboard durante 60 segundos.",
-        "text": "No almacene la Seed en un archivo de texto descripto gráfico.",
+        "explanation": "Pulse el botón de abajo para copiar su seed para un gestor de contraseñas. Esta copia permanecerá en el portapapeles durante 60 segundos.",
+        "text": "No almacene la seed en un archivo de texto sin codificación.",
         "button1": "COPIAR AL PORTAPAPELES",
-        "button2": "HECHO"
+        "button2": "LISTO"
     },
     "saveYourSeed4": {
-        "optionA": "Copia manual",
+        "optionA": "Copiar Manualmente",
         "optionB": " Billetera de Papel",
         "optionC": "Copiar al Portapapeles",
-        "explanation": "Haz clic en el botón de abajo para imprimir una copia de tu seed.",
-        "text1": "Almacena tu seed de forma segura",
-        "text2": "Nunca compartas tu seed con nadie.",
+        "explanation": "Pulse el botón de abajo para imprimir una copia de su seed.",
+        "text1": "Almacene su seed de forma segura",
+        "text2": "Nunca comparta su seed con nadie.",
         "check_button": "Logo IOTA",
         "button1": "IMPRIMIR BILLETERA DE PAPEL",
         "button2": "LISTO"
@@ -104,19 +104,19 @@
     "setPassword": {
         "title": "CONFIGURACIÓN DE CONTRASEÑA",
         "text": "Ahora tenemos que configurar una contraseña.",
-        "explanation": "Utlizarás esta contraseña para acceder a tu billetera. Una copia encriptada de tu seed será guardado en tu llavero.",
-        "reminder": "Asegúrete que utiliza una contraseña segura con al menos 12 caracteres.",
+        "explanation": "Utlizará esta contraseña para acceder a su billetera en el futuro. Una copia encriptada de su seed será guardado en su dispositivo.",
+        "reminder": "Asegúrese que utiliza una contraseña segura con al menos 12 caracteres.",
         "placeholder1": "'CONTRASEÑA'",
         "placeholder2": "VOLVER A ESCRIBIR CONTRASEÑA",
         "error1_title": "La contraseña es demasiado corta",
         "error1_text": "La contraseña debe tener un mínimo de 12 caracteres. Por favor, inténtelo de nuevo.",
         "error2_title": "Las contraseñas no coinciden",
-        "error2_text": "Las contraseñas introducidas no coinciden. Por favor inténtalo de nuevo.",
+        "error2_text": "Las contraseñas introducidas no coinciden. Por favor, inténtelo de nuevo.",
         "button1": "LISTO",
         "button2": "VOLVER"
     },
     "onboardingComplete": {
-        "text": "La billetera está configurada y lista para usar. Si necesitas realizar cambios en el futuro, mira en el menú de Herramientas.",
+        "text": "La billetera está configurada y lista para usar. Si necesita realizar cambios en el futuro, mire en el menú de Herramientas.",
         "button": "SEGUIR"
     },
     "home": {
