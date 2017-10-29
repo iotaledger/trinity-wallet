@@ -46,8 +46,8 @@
     },
     "enterSeed": {
         "error_title": "El Seed es demasiado corto",
-        "error_text": "Seeds must be at least 60 characters long. Please try again.",
-        "invalid_seed_title": "Invalid seed",
+        "error_text": "El Seed debe tener como mínimo 6 caracteres. Por favor, inténtelo de nuevo.",
+        "invalid_seed_title": "Seed invalido",
         "invalid_seed_text": "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
         "placeholder": "SEED",
         "seed_explanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
