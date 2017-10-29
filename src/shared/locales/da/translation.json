@@ -132,7 +132,7 @@
         "amount": "Beløb",
         "button1": "SEND",
         "button2": "GENERER NY ADRESSE",
-        "button3": "LOG AF",
+        "button3": "LOG UD",
         "changeMode": "Skift tilstand",
         "minimal": "Minimal",
         "standard": "Standard",
@@ -143,6 +143,6 @@
         "setup2fa": "2FA-opsætning",
         "changePassword": "Skift adgangskode",
         "advancedSettings": "Avancerede indstillinger",
-        "logout": "Log af"
+        "logout": "Log ud"
     }
 }
