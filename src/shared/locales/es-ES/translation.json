@@ -40,14 +40,14 @@
         "placeholder": "CONTRASEÑA",
         "error_title": "Contraseña no reconocida",
         "error_text": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
-        "button1": "HECHO",
-        "button2": "USE LA SEED"
+        "button1": "LISTO",
+        "button2": "USAR SEED"
     },
     "enterSeed": {
-        "error_title": "La Seed es demasiado corta",
-        "error_text": "Las Seeds deben tener como mínimo 60 caracteres. Por favor, inténtelo de nuevo.",
+        "error_title": "Seed es demasiado corta",
+        "error_text": "Seeds deben tener como mínimo 60 caracteres. Por favor, inténtalo de nuevo.",
         "invalid_seed_title": "Seed inválida",
-        "invalid_seed_text": "Su Seed es inválida. Una Seed solo puede contener letras mayúsculas (de A a Z) y el número 9. También es obligatorio tener un mínimo de 60 caracteres y máximo de 81.",
+        "invalid_seed_text": "Tu seed es inválida. Una seed solo puede contener letras mayúsculas (A-Z) y el número 9. También debe tener entre 60 e 81 caracteres de largo.",
         "placeholder": "SEED",
         "seed_explanation": "Se aconseja que las Seeds tengan 81 caracteres. Además, es obligatório que sean letras mayúsculas (de A a Z) e que incluyan el número 9. No se pueden utilizar Seeds con más de 81 caracteres.",
         "reminder": "NUNCA COMPARTA SU SEED CON NADIE",
