@@ -27,25 +27,25 @@
         "button2": "NO"
     },
     "lightserver": {
-        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
-        "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Please choose a server from the list below.",
-        "server_label": "Server",
-        "custom_server_label": "Other server address",
-        "other": "Other",
-        "button1": "NEXT",
-        "button2": "BACK"
+        "text1": "Un servidor simple es una puerta de entrada a la red IOTA, amablemente proporcionada por los miembros de la comunidad o por nuestros socios corporativos. ",
+        "text2": "Usted puede encontrar más informaciones sobre los servidores en: http://iotasupport.com/lightwallet.shtml",
+        "text3": "Por favor, seleccione un servidor de la lista de abajo.",
+        "server_label": "Servidor",
+        "custom_server_label": "Dirección de otro servidor",
+        "other": "Otro",
+        "button1": "SIGUIENTE",
+        "button2": "VOLVER"
     },
     "login": {
-        "text": "Please enter your password",
-        "placeholder": "PASSWORD",
-        "error_title": "Unrecognised Password",
-        "error_text": "The password was not recognised. Please try again.",
-        "button1": "DONE",
-        "button2": "USE SEED"
+        "text": "Por favor introduzca su contraseña",
+        "placeholder": "CONTRASEÑA",
+        "error_title": "Contraseña no reconocida",
+        "error_text": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
+        "button1": "HECHO",
+        "button2": "USE EL SEED"
     },
     "enterSeed": {
-        "error_title": "Seed is too short",
+        "error_title": "El Seed es demasiado corto",
         "error_text": "Seeds must be at least 60 characters long. Please try again.",
         "invalid_seed_title": "Invalid seed",
         "invalid_seed_text": "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
