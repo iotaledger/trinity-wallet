@@ -5,6 +5,7 @@
     border-color: inherit;
     cursor: pointer;
     display: inline-block;
+    font-size: var(--font-size-default);
     line-height: 1.15;
     margin: 4px;
     padding: 16px 32px;
@@ -39,4 +40,10 @@
 .warning {
     composes: button;
     color: var(--color-button-warning);
+}
+
+.cta {
+    composes: button;
+    background: var(--color-button-cta);
+    color: white;
 }

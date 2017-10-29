@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { addAndSelectSeed } from 'actions/seeds';
+import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import { isValidSeed } from '../../../../shared/libs/util';
+import { createRandomSeed } from 'libs/util';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
@@ -25,6 +26,13 @@ class GenerateSeed extends React.PureComponent {
         seed: this.props.seed,
     };
 
+    generateNewSeed = () => {
+        const newSeed = createRandomSeed();
+        this.setState(() => ({
+            seed: newSeed,
+        }));
+    };
+
     onUpdatedSeed = seed => {
         this.setState(() => ({
             seed,
@@ -42,11 +50,8 @@ class GenerateSeed extends React.PureComponent {
                 translate: true,
             });
         }
-
-        addAndSelectSeed({
-            seed: seed,
-        });
-
+        clearSeeds(seed);
+        addAndSelectSeed(seed);
         history.push('/seed/save');
     };
 
@@ -56,11 +61,14 @@ class GenerateSeed extends React.PureComponent {
         return (
             <Template headline={t('title')}>
                 <Main>
-                    <p>{t('text1')}</p>
+                    <Button type="button" onClick={this.generateNewSeed} variant="cta">
+                        {t('button1')}
+                    </Button>
                     <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
+                    <p>{t('text1')}</p>
                 </Main>
                 <Footer>
-                    <Button to="/wallet" variant="warning">
+                    <Button to="/wallet-setup" variant="warning">
                         {t('button3')}
                     </Button>
                     <Button onClick={this.onRequestNext} variant="success">
@@ -78,6 +86,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     addAndSelectSeed,
+    clearSeeds,
     showError,
 };
 
