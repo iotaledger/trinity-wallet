@@ -141,6 +141,17 @@
         "amount": "الكمية",
         "button1": "إرسال",
         "button2": "إنشاء سييد جديد",
-        "button3": "تسجيل الخروج"
+        "button3": "تسجيل الخروج",
+        "changeMode": "Change mode",
+        "minimal": "Minimal",
+        "standard": "Standard",
+        "expert": "Expert",
+        "changeTheme": "Change theme",
+        "changeLanguage": "Change language",
+        "addNewSeed": "Add new seed",
+        "setup2fa": "2FA Setup",
+        "changePassword": "Change password",
+        "advancedSettings": "Advanced settings",
+        "logout": "Logout"
     }
 }
