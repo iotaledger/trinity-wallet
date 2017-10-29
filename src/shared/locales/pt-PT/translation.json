@@ -74,16 +74,16 @@
         "button2": "ANTERIOR"
     },
     "saveYourSeed2": {
-        "optionA": "Cópia manual",
-        "optionB": "Carteira de papel",
+        "optionA": "Cópia Manual",
+        "optionB": " Carteira de Papel",
         "optionC": "Copiar para a Área de Transferência",
         "explanation": "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e confirme VÁRIAS vezes que anotou corretamente.",
         "text": "verifique várias vezes",
         "button": "CONCLUÍDO"
     },
     "saveYourSeed3": {
-        "optionA": "Cópia manual",
-        "optionB": " Carteira de papel",
+        "optionA": "Cópia Manual",
+        "optionB": " Carteira de Papel",
         "optionC": "Copiar para a Área de Transferência",
         "explanation": "Pressione o botão em baixo para copiar a sua Seed para um gestor de palavras-passe. Esta cópia ficará na sua área de transferência durante 60 segundos.",
         "text": "Não grave a sua Seed num arquivo de texto não cifrado.",
