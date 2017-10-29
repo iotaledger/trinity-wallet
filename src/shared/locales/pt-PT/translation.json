@@ -3,18 +3,18 @@
         "invalidServer_title": "Servidor incorreto",
         "invalidServer_text": "O endereço do servidor que introduziu tem incorrecções",
         "unknownError_title": "Ocorreu um erro desconhecido",
-        "unknownError_text": "De momento não podemos executar a ação desejada. Por favor, tente novamente."
+        "unknownError_text": "Não foi possível executar a ação. Por favor, tente novamente."
     },
     "setLanguage": {
-        "dropdown_title": "Língua",
-        "button1": "PRÓXIMO"
+        "dropdown_title": "Idioma",
+        "button1": "SEGUINTE"
     },
     "welcome1": {
         "text1": "Obrigado por descarregar a carteira IOTA.",
-        "text2": "Vamos passar os próximos minutos a configurar a sua carteira.",
+        "text2": "Os próximos minutos servirão para configurar a sua carteira.",
         "reminder": "Pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo.",
-        "button1": "PRÓXIMO",
-        "button2": "VOLTAR"
+        "button1": "SEGUINTE",
+        "button2": "ANTERIOR"
     },
     "welcome2": {
         "text1": "Ok. Vamos configurar a sua carteira!",
