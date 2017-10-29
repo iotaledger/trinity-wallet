@@ -86,7 +86,7 @@
         "optionA": "Copia manuale",
         "optionB": " Portafoglio su carta",
         "optionC": "Copia negli appunti",
-        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "explanation": "Fai clic sul pulsante sotto per copiare il tuo seme su un programma di gestione di password. La copia rimarrà negli Appunti per 60 secondi.",
         "text": "Non salvare il seme in un file non crittografato.",
         "button1": "COPIA NEGLI APPUNTI",
         "button2": "FINE"
@@ -96,7 +96,7 @@
         "optionB": " Portafoglio su carta",
         "optionC": "Copia negli appunti",
         "explanation": "Fai clic sul pulsante qui sotto per stampare una copia cartacea del tuo seme.",
-        "text1": "Store it safely",
+        "text1": "Conservala in modo sicuro",
         "text2": "Never share your seed with anyone.",
         "check_button": "Logo IOTA",
         "button1": "STAMPA IL PORTAFOGLIO SU CARTA",
