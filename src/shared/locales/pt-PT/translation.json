@@ -1,7 +1,7 @@
 {
     "notifications": {
-        "invalidServer_title": "Servidor inválido",
-        "invalidServer_text": "O endereço do servidor que introduziu é inválido",
+        "invalidServer_title": "Identificação de Servidor incorreta",
+        "invalidServer_text": "O endereço do servidor que introduziu tem erros ou partes que não são válidas",
         "unknownError_title": "Ocorreu um erro desconhecido",
         "unknownError_text": "De momento não podemos executar a ação desejada. Por favor, tente novamente."
     },
