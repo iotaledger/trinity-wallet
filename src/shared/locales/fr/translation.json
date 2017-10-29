@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "Serveur Invalide",
         "invalidServer_text": "L'adresse serveur que vous avez saisie est invalide",
