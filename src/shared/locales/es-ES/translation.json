@@ -20,7 +20,7 @@
     "welcome2": {
         "text1": "Vale. ¡Vamos a configurar su billetera!",
         "text2": "¿Ya tienes un seed que le gustaría utilizar?",
-        "seed_explanation1": "El Seed de la IOTA es, simultáneamente, el nombre del usuario y la contraseña para su cuenta, combinado en una cadena de 81 caracteres.",
+        "seed_explanation1": "La Seed de la IOTA es, simultáneamente, el nombre del usuario y la contraseña para su cuenta, combinada en una cadena de 81 caracteres.",
         "seed_explanation2": "Se puede utilizar para acceder a sus fondos desde cualquier carpeta, en cualquier dispositivo. Pero si pierde su seed, también pierdes tu IOTA",
         "reminder": "Por favor mantenga tu seed seguro",
         "button1": "SÍ",
@@ -42,13 +42,13 @@
         "error_title": "Contraseña no reconocida",
         "error_text": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
         "button1": "HECHO",
-        "button2": "USE EL SEED"
+        "button2": "USE LA SEED"
     },
     "enterSeed": {
-        "error_title": "El Seed es demasiado corto",
-        "error_text": "El Seed debe tener como mínimo 6 caracteres. Por favor, inténtelo de nuevo.",
-        "invalid_seed_title": "Seed invalido",
-        "invalid_seed_text": "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
+        "error_title": "La Seed es demasiado corta",
+        "error_text": "Las Seeds deben tener como mínimo 60 caracteres. Por favor, inténtelo de nuevo.",
+        "invalid_seed_title": "Seed inválida",
+        "invalid_seed_text": "Su Seed es inválido. Un Seed solo puede contener letras mayúsculas (de A a Z) y el número 9. También es obligatorio tener un mínimo de 60 caracteres y máximo de 81.",
         "placeholder": "SEED",
         "seed_explanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
         "reminder": "NEVER SHARE YOUR SEED WITH ANYONE",
