@@ -96,7 +96,7 @@
         "optionC": "Copiar para a Área de Transferência",
         "explanation": "Prima o botão em baixo para imprimir uma cópia em papel da sua Seed.",
         "text1": "Mantenha-a num local seguro",
-        "text2": "Nunca partilha a sua Seed com ninguém.",
+        "text2": "Nunca partilhe a sua Seed com ninguém.",
         "check_button": "Logótipo IOTA",
         "button1": "IMPRIMIR A CARTEIRA DE PAPEL",
         "button2": "CONCLUÍDO"
@@ -110,7 +110,7 @@
         "placeholder2": "DIGITE DE NOVO A PALAVRA-PASSE",
         "error1_title": "A palavra-passe é demasiado curta",
         "error1_text": "A sua palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
-        "error2_title": "As palavras-passe não correspondem",
+        "error2_title": "As palavras-passe não coincidem",
         "error2_text": "As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
         "button1": "CONCLUÍDO",
         "button2": "VOLTAR"
@@ -138,7 +138,7 @@
         "standard": "Padrão",
         "expert": "Perito",
         "changeTheme": "Mudar o tema",
-        "changeLanguage": "Mudar o idioma",
+        "changeLanguage": "Mudar a língua",
         "addNewSeed": "Adicionar nova Seed",
         "setup2fa": "Configuração de 2FA",
         "changePassword": "Alterar a palavra-passe",
