@@ -27,7 +27,7 @@ export const addAndSelectSeed = seed => {
         // if (seeds.items.find(item => item.seed === seed.seed)) {
         //     return;
         // }
-        dispatch(addSeed(seed));
+        dispatch(addSeed({ seed }));
         dispatch(selectSeed(getState().seeds.items.length - 1));
     };
 };

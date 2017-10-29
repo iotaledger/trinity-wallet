@@ -18,7 +18,7 @@ class SeedManualCopy extends PureComponent {
         const { t, seed } = this.props;
 
         return (
-            <Template headline={t('title')}>
+            <Template>
                 <Main>
                     <Steps currentStep="manual" />
                     <p>
@@ -29,7 +29,7 @@ class SeedManualCopy extends PureComponent {
                 </Main>
                 <Footer>
                     <Button to="/seed/save" variant="success">
-                        {t('button1')}
+                        {t('button')}
                     </Button>
                 </Footer>
             </Template>

@@ -3,7 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
 
-export const Main = ({ children }) => children && <main>{children}</main>;
+export const Main = ({ children }) =>
+    children && (
+        <main>
+            <div>{children}</div>
+        </main>
+    );
 export const Footer = ({ children }) => children && <footer>{children}</footer>;
 
 export default class Template extends React.Component {
