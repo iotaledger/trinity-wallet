@@ -1,24 +1,24 @@
 {
     "notifications": {
-        "invalidServer_title": "Invalid server",
-        "invalidServer_text": "The server address you entered is not valid",
-        "unknownError_title": "Unknown error occured",
-        "unknownError_text": "We could not perform the desired action this time. Please try again."
+        "invalidServer_title": "Servidor inválido",
+        "invalidServer_text": "La dirección de servidor introducida no es válida",
+        "unknownError_title": "Ocurrió un error desconocido",
+        "unknownError_text": "No hemos podído realizar la acción deseada. Por favor, inténtalo de nuevo."
     },
     "setLanguage": {
-        "dropdown_title": "Language",
-        "button1": "NEXT"
+        "dropdown_title": "Idioma",
+        "button1": "SEGUIR"
     },
     "welcome1": {
-        "text1": "Thank you for downloading the IOTA wallet.",
-        "text2": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process.",
-        "button1": "NEXT",
-        "button2": "BACK"
+        "text1": "Gracias por descargar la billetera de IOTA.",
+        "text2": "Vamos a pasar los minutos siguientes configurando tu billetera.",
+        "reminder": "Puedes estar tentado a saltar algunos pasos, pero te instamos a seguir el proceso completo.",
+        "button1": "SEGUIR",
+        "button2": "VOLVER"
     },
     "welcome2": {
-        "text1": "Okay. Let's set up your wallet!",
-        "text2": "Do you already have a seed that you would like to use?",
+        "text1": "OK. ¡Vamos a configurar tu billetera!",
+        "text2": "¿Ya tienes una seed que te gustaría utilizar?",
         "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
         "seed_explanation2": "You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
         "reminder": "Please keep your seed safe",
