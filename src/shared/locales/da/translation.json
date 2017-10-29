@@ -76,7 +76,7 @@
     "saveYourSeed2": {
         "optionA": "Skriv ned manuelt",
         "optionB": " Papirtegnebog",
-        "optionC": "Copy To Clipboard",
+        "optionC": "Kopiér til udklipsholder",
         "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
         "text": "triple check",
         "button": "DONE"
