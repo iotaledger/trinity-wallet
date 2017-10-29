@@ -46,7 +46,7 @@
     "enterSeed": {
         "error_title": "A Seed é demasiado curta",
         "error_text": "As Seeds devem ter pelo menos 60 caracteres. Por favor, tente novamente.",
-        "invalid_seed_title": "Seed incorrecta",
+        "invalid_seed_title": "Seed incorreta",
         "invalid_seed_text": "A sua Seed é inválida. A Seed só pode conter letras maiúsculas (A-Z) e o número 9 e, além disso, tem de ter entre 60 a 81 caracteres.",
         "placeholder": "SEED",
         "seed_explanation": "As Seeds devem ter 81 caracteres e têm de ser constituídas por letras maiúsculas (A-Z) e o número 9. Não podem conter mais de 81 caracteres.",
