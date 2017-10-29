@@ -32,7 +32,9 @@ class SeedName extends React.PureComponent {
 
     onRequestNext = () => {
         const { renameCurrentSeed, history } = this.props;
-        renameCurrentSeed(this.state.name);
+        if (this.state.name) {
+            renameCurrentSeed(this.state.name);
+        }
         history.push('/security/enter');
     };
 
@@ -45,7 +47,13 @@ class SeedName extends React.PureComponent {
                     <p>{t('text')}</p>
                     <div className={css.formGroup}>
                         <label>{t('label')}</label>
-                        <input type="text" name="name" value={name} onChange={this.setName} />
+                        <input
+                            type="text"
+                            name="name"
+                            value={name}
+                            placeholder={t('placeholder')}
+                            onChange={this.setName}
+                        />
                     </div>
                     <Infobox>
                         <p>{t('explanation')}</p>
