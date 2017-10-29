@@ -1,6 +1,6 @@
 import IOTA from 'iota.lib.js';
 
-const defaultNode = 'http://node.tangle.works:4434';
+const defaultNode = 'https://node.tangle.works:443';
 
 export const iota = new IOTA({
     provider: defaultNode,
