@@ -10,8 +10,8 @@
         "button1": "NÆSTE"
     },
     "welcome1": {
-        "text1": "Thank you for downloading the IOTA wallet.",
-        "text2": "We will spend the next few minutes setting up your wallet.",
+        "text1": "Tak fordi du downloadede IOTA-tegnebogen.",
+        "text2": "Vi bruger de næste par minutter på at opsætte din tegnebog.",
         "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process.",
         "button1": "NEXT",
         "button2": "BACK"
