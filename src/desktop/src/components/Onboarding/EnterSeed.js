@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { isValidSeed } from '../../../../shared/libs/util';
 import { showError } from 'actions/notifications';
+import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
+import { getSelectedSeed } from 'selectors/seeds';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
@@ -13,15 +15,20 @@ import css from '../Layout/Onboarding.css';
 
 class EnterSeed extends React.PureComponent {
     static propTypes = {
+        addAndSelectSeed: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired,
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
+        }).isRequired,
+        selectedSeed: PropTypes.shape({
+            seed: PropTypes.string,
         }).isRequired,
         showError: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     };
 
     state = {
-        seed: '',
+        seed: this.props.selectedSeed.seed,
     };
 
     onChange = e => {
@@ -63,22 +70,25 @@ class EnterSeed extends React.PureComponent {
 
     onSubmit = e => {
         e.preventDefault();
-        const { history, showError, t } = this.props;
-        if (!isValidSeed(this.state.seed)) {
+        const { addAndSelectSeed, clearSeeds, history, showError, t } = this.props;
+        const { seed } = this.state;
+        if (!isValidSeed(seed)) {
             showError({
                 title: t('invalid_seed_title'),
                 text: t('invalid_seed_text'),
             });
             return;
         }
-        history.push('/security/intro');
+        clearSeeds();
+        addAndSelectSeed(seed);
+        history.push('/security/enter');
     };
 
     render() {
         const { t } = this.props;
         const { seed = '', showScanner } = this.state;
         return (
-            <Template type="form" onSubmit={this.onSubmit} headline={t('title')}>
+            <Template type="form" onSubmit={this.onSubmit}>
                 <Main>
                     <div className={css.formGroup}>
                         <textarea
@@ -119,7 +129,7 @@ class EnterSeed extends React.PureComponent {
                     </Infobox>
                 </Main>
                 <Footer>
-                    <Button to="/wallet" variant="warning">
+                    <Button to="/wallet-setup" variant="warning">
                         {t('button2')}
                     </Button>
                     <Button type="submit" variant="success">
@@ -131,8 +141,14 @@ class EnterSeed extends React.PureComponent {
     }
 }
 
+const mapStateToProps = state => ({
+    selectedSeed: getSelectedSeed(state),
+});
+
 const mapDispatchToProps = {
     showError,
+    addAndSelectSeed,
+    clearSeeds,
 };
 
-export default translate('enterSeed')(connect(null, mapDispatchToProps)(EnterSeed));
+export default translate('enterSeed')(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));

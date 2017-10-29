@@ -13,7 +13,7 @@ export default translate('welcome1')(
         render() {
             const { t } = this.props;
             return (
-                <Template headline={t('title')}>
+                <Template>
                     <Main>
                         <p>{t('text1')}</p>
                         <p>{t('text2')}</p>
@@ -25,7 +25,7 @@ export default translate('welcome1')(
                         <Button to="/" variant="warning">
                             {t('button2')}
                         </Button>
-                        <Button to="/lightserver" variant="success">
+                        <Button to="/wallet-setup" variant="success">
                             {t('button1')}
                         </Button>
                     </Footer>

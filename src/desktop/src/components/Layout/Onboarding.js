@@ -39,7 +39,7 @@ export default withRouter(
                             <Switch location={location}>
                                 <Route path="/instructions" component={Instructions} />
                                 <Route path="/lightserver" component={LightServerSetup} />
-                                <Route path="/wallet" component={WalletSetup} />
+                                <Route path="/wallet-setup" component={WalletSetup} />
                                 <Route path="/seed/generate" component={GenerateSeed} />
                                 <Route exact path="/seed/save" component={SaveYourSeedOptions} />
                                 <Route path="/seed/save/manual" component={SeedManualCopy} />
@@ -47,7 +47,7 @@ export default withRouter(
                                 <Route path="/seed/save/paperwallet" component={SeedPaperWallet} />
                                 <Route path="/seed/enter" component={EnterSeed} />
                                 <Route path="/security/intro" component={SecurityIntro} />
-                                <Route path="/security/set" component={SecurityEnter} />
+                                <Route path="/security/enter" component={SecurityEnter} />
                                 <Route exact path="/security/extra" component={() => {}} />
                                 <Route path="/security/extra/authenticator" component={() => {}} />
                                 <Route path="/done" component={Done} />

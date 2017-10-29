@@ -16,24 +16,30 @@ class SaveYourSeedOptions extends PureComponent {
         const { t } = this.props;
 
         return (
-            <Template headline={t('title')}>
+            <Template>
                 <Main className={css.main}>
                     <p>{t('text1')}</p>
-                    <Button to="/seed/save/manual" variant="extra">
-                        {t('optionA')}
-                    </Button>
-                    <Button to="/seed/save/paperwallet" variant="extra">
-                        {t('optionB')}
-                    </Button>
-                    <Button to="/seed/save/clipboard" variant="extra">
-                        {t('optionC')}
-                    </Button>
+                    <p>
+                        <Button to="/seed/save/manual" variant="extra">
+                            {t('optionA')}
+                        </Button>
+                    </p>
+                    <p>
+                        <Button to="/seed/save/paperwallet" variant="extra">
+                            {t('optionB')}
+                        </Button>
+                    </p>
+                    <p>
+                        <Button to="/seed/save/clipboard" variant="extra">
+                            {t('optionC')}
+                        </Button>
+                    </p>
                 </Main>
                 <Footer>
                     <Button to="/seed/generate" variant="warning">
                         {t('button2')}
                     </Button>
-                    <Button to="/security/intro" variant="success">
+                    <Button to="/security/enter" variant="success">
                         {t('button1')}
                     </Button>
                 </Footer>

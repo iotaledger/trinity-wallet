@@ -1,6 +1,7 @@
 .wrapper {
-    border: 1px dashed white;
+    border: 1px dotted white;
     border-radius: 16px;
+    font-size: var(--font-size-small);
     padding: 16px;
 
     > :first-child {

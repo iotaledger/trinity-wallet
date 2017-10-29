@@ -37,14 +37,14 @@ class LightServerSetup extends React.PureComponent {
 
         if (customServer) {
             if (addCustomNode(customServer) && setFullNode(customServer)) {
-                history.push('/wallet');
+                history.push('/wallet-setup');
                 return;
             }
             return;
         }
 
         if (setFullNode(fullNode)) {
-            history.push('/wallet');
+            history.push('/wallet-setup');
             return;
         }
     };
