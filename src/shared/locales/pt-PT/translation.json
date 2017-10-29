@@ -26,14 +26,14 @@
         "button2": "NÃO"
     },
     "lightserver": {
-        "text1": "Um servidor simples é uma porta de acesso à rede IOTA, gentilmente providenciada por membros da comunidade ou por parceiros corporativos.",
+        "text1": "Um servidor é uma forma de acesso à rede IOTA, gentilmente disponibilizada por membros da comunidade ou por parceiros corporativos.",
         "text2": "Poderá encontrar mais informações sobre os servidores em: http://iotasupport.com/lightwallet.shtml",
         "text3": "Por favor, escolha um servidor da lista abaixo.",
         "server_label": "Servidor",
-        "custom_server_label": "Endereço de outro servidor",
+        "custom_server_label": "Servidor personalizado",
         "other": "Outro",
-        "button1": "PRÓXIMO",
-        "button2": "VOLTAR"
+        "button1": "SEGUINTE",
+        "button2": "ANTERIOR"
     },
     "login": {
         "text": "Por favor, insira a sua palavra-passe",
