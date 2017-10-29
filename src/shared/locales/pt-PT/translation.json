@@ -62,7 +62,7 @@
         "text1": "Digite letras individuais para tornar o processo mais aleatório.",
         "text2": "De seguida, clique em SEGUINTE",
         "button2": "SEGUINTE",
-        "button3": "VOLTAR"
+        "button3": "ANTERIOR"
     },
     "saveYourSeed": {
         "text1": "Deve guardar a sua Seed usando, pelo menos, uma das opções listadas em baixo.",
@@ -70,8 +70,8 @@
         "optionA": "CÓPIA MANUAL",
         "optionB": "IMPRIMIR CARTEIRA DE PAPEL",
         "optionC": "COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
-        "button1": "PRÓXIMO",
-        "button2": "VOLTAR"
+        "button1": "SEGUINTE",
+        "button2": "ANTERIOR"
     },
     "saveYourSeed2": {
         "optionA": "Cópia manual",
@@ -104,7 +104,7 @@
     "setPassword": {
         "title": "CONFIGURAR PALAVRA-PASSE",
         "text": "Agora precisamos de criar uma palavra-passe.",
-        "explanation": "No futuro, irá usar esta palavra-passe para aceder à sua carteira. Será armazenada uma cópia encriptada da sua Seed no seu dispositivo.",
+        "explanation": "No futuro, irá usar esta palavra-passe para aceder à sua carteira. Será armazenada uma cópia cifrada da sua Seed no seu dispositivo.",
         "reminder": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
         "placeholder1": "`PALAVRA-PASSE´",
         "placeholder2": "DIGITE DE NOVO A PALAVRA-PASSE",
@@ -113,11 +113,11 @@
         "error2_title": "As palavras-passe não coincidem",
         "error2_text": "As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
         "button1": "CONCLUÍDO",
-        "button2": "VOLTAR"
+        "button2": "ANTERIOR"
     },
     "onboardingComplete": {
         "text": "Agora a sua carteira está configurada e pronta para ser usada. Se precisar de efetuar alguma alteração no futuro, aceda ao menu Ferramentas.",
-        "button": "PRÓXIMO"
+        "button": "SEGUINTE"
     },
     "home": {
         "tab1": "SALDO",
