@@ -68,16 +68,16 @@
     "saveYourSeed": {
         "text1": "Debe guardar su Seed usando como mínimo una de las opciones sugeridas a continuación.",
         "text2": "al menos una",
-        "optionA": "MANUAL COPY",
-        "optionB": "PRINT PAPER WALLET",
-        "optionC": "COPY TO CLIPBOARD",
-        "button1": "NEXT",
-        "button2": "BACK"
+        "optionA": "COPIA MANUAL",
+        "optionB": "IMPRIMA SU CARTERA DE PAPEL",
+        "optionC": "Copiar para Clipboard",
+        "button1": "SIGUIENTE",
+        "button2": "VOLVER"
     },
     "saveYourSeed2": {
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
+        "optionA": "Copia manual",
+        "optionB": " Cartera de papel",
+        "optionC": "Copiar para Clipboard",
         "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
         "text": "triple check",
         "button": "DONE"
@@ -144,6 +144,6 @@
         "setup2fa": "2FA Setup",
         "changePassword": "Change password",
         "advancedSettings": "Advanced settings",
-        "logout": "Logout"
+        "logout": "Cerrar sesión"
     }
 }
