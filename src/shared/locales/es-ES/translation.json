@@ -77,14 +77,14 @@
         "optionA": "Copiar Manualmente",
         "optionB": " Billetera de Papel",
         "optionC": "Copiar al Portapapeles",
-        "explanation": "Su Seed tiene 81 caracteres leídos de izquierda a derecha. Registre su Seed, comprobándola tres veces.",
-        "text": "triple check",
-        "button": "HECHO"
+        "explanation": "Tu seed es de 81 caracteres leídos de izquierda a derecha. Anota tu seed e el código de verificación e compruebe tres veces que son correctas.",
+        "text": "compruebe tres veces",
+        "button": "LISTO"
     },
     "saveYourSeed3": {
-        "optionA": "Copia manual",
-        "optionB": " Billetera de papel",
-        "optionC": "Copiar para Clipboard",
+        "optionA": "Copiar Manualmente",
+        "optionB": " Billetera de Papel",
+        "optionC": "Copiar al Portapapeles",
         "explanation": "Pulse el botón de abajo para copiar su Seed para un gestor de contraseñas. Esta copia permanecerá en el clipboard durante 60 segundos.",
         "text": "No almacene la Seed en un archivo de texto descripto gráfico.",
         "button1": "Copiar para Clipboard",
@@ -92,14 +92,14 @@
     },
     "saveYourSeed4": {
         "optionA": "Copia manual",
-        "optionB": " Billetera de papel",
-        "optionC": "Copiar para Clipboard",
-        "explanation": "Pulse el botón de abajo para imprimir una copia de su Seed.",
-        "text1": "Almacene su Seed de forma segura",
-        "text2": "Nunca comparta su Seed con nadie.",
+        "optionB": " Billetera de Papel",
+        "optionC": "Copiar al Portapapeles",
+        "explanation": "Haz clic en el botón de abajo para imprimir una copia de tu seed.",
+        "text1": "Almacena tu seed de forma segura",
+        "text2": "Nunca compartas tu seed con nadie.",
         "check_button": "Logo IOTA",
-        "button1": "IMPRIMA SU BILLETERA DE PAPEL",
-        "button2": "HECHO"
+        "button1": "IMPRIMIR BILLETERA DE PAPEL",
+        "button2": "LISTO"
     },
     "setPassword": {
         "title": "CONFIGURACIÓN DE CONTRASEÑA",
