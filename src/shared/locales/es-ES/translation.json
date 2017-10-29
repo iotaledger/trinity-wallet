@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "Servidor invalido",
         "invalidServer_text": "La dirección de servidor introducida no es válida",
@@ -110,7 +109,7 @@
         "placeholder1": "'CONTRASEÑA'",
         "placeholder2": "VOLVER A ESCRIBIR CONTRASEÑA",
         "error1_title": "La contraseña es muy corta",
-        "error1_text": "La contraseña debe tener como mínimo 12 caracteres. Por favor, inténtelo de nuevo.",
+        "error1_text": "La contraseña debe tener un mínimo de 12 caracteres. Por favor, inténtelo de nuevo.",
         "error2_title": "Las contraseñas no coinciden entre si",
         "error2_text": "Las contraseñas introducidas no coinciden. Por favor, inténtelo de nuevo.",
         "button1": "HECHO",
