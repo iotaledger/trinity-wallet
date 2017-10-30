@@ -135,7 +135,11 @@ android {
 }
 
 dependencies {
+<<<<<<< HEAD
     compile project(':react-native-camera')
+=======
+    compile project(':react-native-blur')
+>>>>>>> 66ee977af529f947dee10f326249da24bd235a02
     compile project(':react-native-html-to-pdf')
     compile project(':react-native-print')
     compile project(':react-native-udp')
@@ -151,6 +155,7 @@ dependencies {
 	compile project(':react-native-svg')
 	compile project(':react-native-sensitive-info')
 	compile project(':react-native-camera')
+    compile project(':react-native-fs')
 
 }
 

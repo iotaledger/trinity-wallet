@@ -21,8 +21,12 @@ const initialState = {
         'http://5.9.118.112:14265',
         'http://176.9.3.149:14265',
         'http://mainnet.necropaz.com:14500',
-        'http://iota.bitfinex.com:80'
-    ]
+        'http://iota.bitfinex.com:80',
+    ],
+    mode: 'Standard',
+    theme: 'Standard',
+    language: 'English (International)',
+    currency: 'USD',
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -30,19 +34,19 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.LOCALE:
             return {
                 ...state,
-                locale: action.payload
+                locale: action.payload,
             };
 
         case ActionTypes.SET_LOCALE:
             return {
                 ...state,
-                locale: action.payload
+                locale: action.payload,
             };
 
         case ActionTypes.SET_FULLNODE:
             return {
                 ...state,
-                fullNode: action.payload
+                fullNode: action.payload,
             };
 
         case ActionTypes.ADD_CUSTOM_NODE:
@@ -50,7 +54,27 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 availableNodes: state.availableNodes.includes(action.payload)
                     ? state.availableNodes
-                    : [].concat(state.availableNodes, action.payload)
+                    : [].concat(state.availableNodes, action.payload),
+            };
+        case ActionTypes.SET_MODE:
+            return {
+                ...state,
+                mode: action.payload,
+            };
+        case ActionTypes.SET_THEME:
+            return {
+                ...state,
+                theme: action.payload,
+            };
+        case ActionTypes.SET_LANGUAGE:
+            return {
+                ...state,
+                language: action.payload,
+            };
+        case ActionTypes.SET_CURRENCY:
+            return {
+                ...state,
+                language: action.payload,
             };
     }
 
