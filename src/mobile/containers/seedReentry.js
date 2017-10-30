@@ -12,7 +12,7 @@ import {
     StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
