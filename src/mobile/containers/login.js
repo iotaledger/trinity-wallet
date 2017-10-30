@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
-import { getFromKeychain } from '../../shared/libs/cryptography';
+import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -28,9 +28,12 @@ class Login extends React.Component {
         this.state = {
             password: '',
         };
+
+        this.onDonePress = this.onDonePress.bind(this);
     }
-    onDonePress(props) {
-        if (this.state.password == '') {
+
+    onDonePress() {
+        if (!this.state.password) {
             this.dropdown.alertWithType(
                 'error',
                 'Empty password',
@@ -40,26 +43,28 @@ class Login extends React.Component {
             this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
                 if (typeof value !== 'undefined') {
-                    login(value);
+                    var seed = getSeed(value, 0);
+                    login(seed);
                 } else {
                     error();
                 }
             });
         }
+
+        const _this = this;
         function login(value) {
-            props.getAccountInfo(value);
-            props.navigator.push({
+            _this.props.getAccountInfo(value);
+            _this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: {
                     navBarHidden: true,
-                    screenBackgroundImageName: 'bg-green.png',
-                    screenBackgroundColor: '#102e36',
                 },
                 animated: false,
             });
         }
+
         function error() {
-            this.dropdown.alertWithType(
+            _this.dropdown.alertWithType(
                 'error',
                 'Unrecognised password',
                 'The password was not recognised. Please try again.',
@@ -67,13 +72,11 @@ class Login extends React.Component {
         }
     }
 
-    onUseSeedPress(props) {
+    onUseSeedPress() {
         this.props.navigator.push({
-            screen: 'walletSetup',
+            screen: 'useSeed',
             navigatorStyle: {
                 navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
             },
             animated: false,
         });
@@ -88,17 +91,17 @@ class Login extends React.Component {
                     <View>
                         <View style={styles.topContainer}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                            <View style={styles.textContainer}>
-                                <Text style={styles.title}>LOGIN</Text>
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.title}>Please enter your password.</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <Text style={styles.greetingText}>Please enter your password.</Text>
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
+                                labelFontSize={width / 31.8}
+                                fontSize={width / 20.7}
+                                labelPadding={3}
                                 baseColor="white"
                                 label="Password"
                                 tintColor="#F7D002"
@@ -108,8 +111,7 @@ class Login extends React.Component {
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
-                                    width: width / 1.65,
-                                    paddingTop: height / 40,
+                                    width: width / 1.4,
                                 }}
                                 secureTextEntry={true}
                             />
@@ -124,7 +126,6 @@ class Login extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
@@ -148,31 +149,31 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.6,
+        flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 1.6,
+        flex: 4.8,
         alignItems: 'center',
+        paddingTop: height / 4.5,
     },
     bottomContainer: {
-        flex: 2,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
-    textContainer: {
+    titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: height / 8,
-        paddingTop: height / 35,
+        paddingTop: height / 15,
     },
     title: {
         color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },

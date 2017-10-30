@@ -44,8 +44,6 @@ class LanguageSetup extends React.Component {
             screen: 'welcome',
             navigatorStyle: {
                 navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
             },
             animated: false,
         });
@@ -80,12 +78,11 @@ class LanguageSetup extends React.Component {
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>HELLO / SALUT / HOLA / HALLO</Text>
-                    </View>
+                    <View style={styles.titleContainer} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ alignItems: 'center' }}>
@@ -164,16 +161,10 @@ class LanguageSetup extends React.Component {
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Polski - Polish')}>
                                     <Text style={styles.dropdownItem}>Polski - Polish</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event =>
-                                        this.clickDropdownItem('Português (Brasil) - Portuguese (Brazil)')}
-                                >
+                                <TouchableOpacity onPress={event => this.clickDropdownItem('Português (Brasil)')}>
                                     <Text style={styles.dropdownItem}>Português (Brasil) - Portuguese (Brazil)</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event =>
-                                        this.clickDropdownItem('Português (Portugal) - Portuguese (Portugal)')}
-                                >
+                                <TouchableOpacity onPress={event => this.clickDropdownItem('Português (Portugal)')}>
                                     <Text style={styles.dropdownItem}>
                                         Português (Portugal) - Portuguese (Portugal)
                                     </Text>
@@ -280,6 +271,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         textAlign: 'left',
         paddingTop: height / 100,
+        includeFontPadding: false,
     },
     dropdownButtonContainer: {
         paddingTop: height / 100,
@@ -299,6 +291,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.7,
         width: width / 1.5,
         height: height / 22,
+    },
+    helloBackground: {
+        position: 'absolute',
+        width: width,
+        height: width / 0.95,
     },
 });
 

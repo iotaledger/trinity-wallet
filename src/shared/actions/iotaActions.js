@@ -5,10 +5,41 @@ import { iota } from '../libs/iota';
 
 /* eslint-disable no-console */
 
-export function setAddress(address) {
+export function setAddress(payload) {
     return {
         type: 'SET_ADDRESS',
-        payload: address,
+        payload,
+    };
+}
+
+export function incrementSeedIndex() {
+    return {
+        type: 'INCREMENT_SEED_INDEX',
+    };
+}
+
+export function decrementSeedIndex() {
+    return {
+        type: 'DECREMENT_SEED_INDEX',
+    };
+}
+
+export function generateNewAddressRequest() {
+    return {
+        type: 'GENERATE_NEW_ADDRESS_REQUEST',
+    };
+}
+
+export function generateNewAddressSuccess(payload) {
+    return {
+        type: 'GENERATE_NEW_ADDRESS_SUCCESS',
+        payload,
+    };
+}
+
+export function generateNewAddressError() {
+    return {
+        type: 'GENERATE_NEW_ADDRESS_ERROR',
     };
 }
 
@@ -16,6 +47,13 @@ export function setReady() {
     return {
         type: 'SET_READY',
         payload: true,
+    };
+}
+
+export function setSeedName(name) {
+    return {
+        type: 'SET_SEED_NAME',
+        payload: name,
     };
 }
 
@@ -207,11 +245,12 @@ export function checkNode() {
 
 export function generateNewAddress(seed) {
     return dispatch => {
-        iota.api.getNewAddress(seed, { checksum: true }, (error, success) => {
+        dispatch(generateNewAddressRequest());
+        iota.api.getNewAddress(seed, { checksum: true }, (error, address) => {
             if (!error) {
-                dispatch(setAddress(success));
+                dispatch(generateNewAddressSuccess(address));
             } else {
-                console.log('SOMETHING WENT WRONG: ', error);
+                dispatch(generateNewAddressError());
             }
         });
     };

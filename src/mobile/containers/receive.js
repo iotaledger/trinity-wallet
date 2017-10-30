@@ -1,4 +1,6 @@
-import React from 'react';
+import isUndefined from 'lodash/isUndefined';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
     ActivityIndicator,
     StyleSheet,
@@ -13,86 +15,92 @@ import {
 } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
-import { generateNewAddress } from '../../shared/actions/iotaActions';
-import { getFromKeychain } from '../../shared/libs/cryptography';
+import { generateNewAddress, setAddress } from '../../shared/actions/iotaActions';
+import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownAlert from 'react-native-dropdownalert';
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 
-class Receive extends React.Component {
-    constructor(props) {
-        super(props);
+class Receive extends Component {
+    constructor() {
+        super();
+
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
             dataSource: ds.cloneWithRows([]),
-            animating: false,
         };
+
+        this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
-    shouldComponentUpdate() {
-        if (!this.props.iota.addresses == []) {
-            this.setState({ animating: false });
+    componentWillUnmount() {
+        this.resetAddress();
+    }
+
+    resetAddress() {
+        const { iota: { receiveAddress } } = this.props;
+        if (receiveAddress) {
+            this.props.setAddress('');
         }
-        return true;
     }
 
-    onGeneratePress(props) {
-        getFromKeychain(this.props.iota.password, seed => {
-            if (typeof seed !== 'undefined') {
-                this.setState({ animating: true });
+    onGeneratePress() {
+        getFromKeychain(this.props.iota.password, value => {
+            if (!isUndefined(value)) {
+                var seed = getSeed(value, this.props.iota.seedIndex);
                 generate(seed);
             } else {
                 error();
             }
         });
-        function generate(seed) {
-            props.generateNewAddress(seed);
-        }
-        function error() {
-            this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
-        }
+
+        const generate = seed => this.props.generateNewAddress(seed);
+
+        const error = () => this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
     }
 
-    onAddressPress() {
-        if (this.props.iota.addresses.length >= 1) {
-            Clipboard.setString(this.props.iota.addresses[this.props.iota.addresses.length - 1]);
-        } else {
-            return;
+    onAddressPress(address) {
+        if (address) {
+            Clipboard.setString(address);
         }
     }
 
     render() {
+        const { iota: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={{ paddingBottom: height / 40 }}>
-                    <TouchableOpacity onPress={event => this.onAddressPress(this.props)}>
+                    <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                         <View style={styles.receiveAddressContainer}>
-                            <Text style={styles.receiveAddressText}>
-                                {this.props.iota.addresses[this.props.iota.addresses.length - 1]}
-                            </Text>
+                            <Text style={styles.receiveAddressText}>{receiveAddress}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={{ paddingBottom: height / 40 }}>
-                    <QRCode
-                        value={this.props.iota.addresses[this.props.iota.addresses.length - 1]}
-                        size={width / 2.5}
-                        bgColor="#000"
-                        fgColor="#FFF"
-                    />
+                    <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
                 </View>
-                <TouchableOpacity onPress={event => this.onGeneratePress(this.props)}>
-                    <View style={styles.generateButton}>
-                        <Image style={styles.generateImage} source={require('../../shared/images/plus.png')} />
-                        <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
-                    </View>
-                </TouchableOpacity>
+                {!receiveAddress && (
+                    <TouchableOpacity
+                        onPress={() => {
+                            // Check if there's already a network call in progress.
+                            if (!isGeneratingReceiveAddress) {
+                                this.onGeneratePress();
+                            }
+                        }}
+                    >
+                        <View style={styles.generateButton}>
+                            <Image style={styles.generateImage} source={require('../../shared/images/plus.png')} />
+                            <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
+                        </View>
+                    </TouchableOpacity>
+                )}
                 <View style={{ paddingTop: height / 20, flex: 1 }}>
                     <ActivityIndicator
-                        animating={this.state.animating}
+                        animating={isGeneratingReceiveAddress}
                         style={styles.activityIndicator}
                         size="large"
                         color="#F7D002"
@@ -209,9 +217,16 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    generateNewAddress: seed => {
-        dispatch(generateNewAddress(seed));
-    },
+    generateNewAddress: seed => dispatch(generateNewAddress(seed)),
+    setAddress: payload => dispatch(setAddress(payload)),
 });
+
+Receive.propTypes = {
+    marketData: PropTypes.object.isRequired,
+    iota: PropTypes.object.isRequired,
+    account: PropTypes.object.isRequired,
+    generateNewAddress: PropTypes.func.isRequired,
+    setAddress: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Receive);

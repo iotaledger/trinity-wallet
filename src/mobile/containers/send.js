@@ -15,10 +15,11 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import TransactionRow from '../components/transactionRow.js';
 import { round } from '../../shared/libs/util';
-import { getFromKeychain } from '../../shared/libs/cryptography';
+import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
+import QRScanner from '../components/qrScanner.js';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
@@ -85,10 +86,11 @@ class Send extends React.Component {
         var value = parseInt(this.state.amount);
         var message = this.state.message;
 
-        getFromKeychain(this.props.iota.password, seed => {
-            if (typeof seed !== 'undefined') {
+        getFromKeychain(this.props.iota.password, value => {
+            if (typeof value !== 'undefined') {
+                var seed = getSeed(value, this.props.iota.seedIndex);
                 sendTx(seed);
-                if (!sendTransaction(seed, address, value, message)) {
+                if (sendTransaction(seed.seed, address, value, message) == false) {
                     this.dropdown.alertWithType(
                         'error',
                         'Key reuse',
@@ -131,12 +133,7 @@ class Send extends React.Component {
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <TouchableOpacity
-            onPress={() => this._hideModal()}
-            style={{ width: width / 1.1, height: height / 1.1, backgroundColor: 'white' }}
-        >
-            <View style={{ flex: 1, justifyContent: 'center' }} />
-        </TouchableOpacity>
+        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
     );
 
     render() {
@@ -272,8 +269,7 @@ class Send extends React.Component {
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={'#132d38'}
-                    backdropOpacity={0.6}
+                    backdropColor={'#102832'}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                 >
@@ -293,7 +289,7 @@ class Send extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: height / 10,
+        paddingTop: height / 25,
     },
     topContainer: {
         paddingHorizontal: width / 10,
@@ -303,6 +299,7 @@ const styles = StyleSheet.create({
     textFieldContainer: {
         flex: 1,
         paddingRight: width / 20,
+        paddingTop: 1,
     },
     textField: {
         color: 'white',
@@ -315,8 +312,8 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 0.8,
         borderRadius: 8,
-        width: width / 7,
-        height: height / 20,
+        width: width / 6.5,
+        height: height / 16,
     },
     qrText: {
         color: 'white',
@@ -336,7 +333,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         height: width / 28,
         width: width / 28,
-        left: width / 40,
+        left: width / 36,
     },
     qrImage: {
         height: width / 28,
@@ -404,39 +401,13 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 0.8,
         borderRadius: 8,
-        width: width / 7.7,
-        height: height / 22,
+        width: width / 7,
+        height: height / 18,
     },
     maxImage: {
         height: width / 50,
         width: width / 34,
         marginRight: 2,
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
     },
 });
 
