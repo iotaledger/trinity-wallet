@@ -42,7 +42,7 @@ class Login extends React.Component {
         } else {
             this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
-                if (typeof value !== 'undefined') {
+                if (value) {
                     var seed = getSeed(value, 0);
                     login(seed);
                 } else {
