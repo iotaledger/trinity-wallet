@@ -19,17 +19,14 @@
     "welcome2": {
         "text1": "Okei. Pa nastavimo vašo denarnico!",
         "text2": "Ali že imate seed, ki bi ga želeli uporabiti?",
-        "seed_explanation1":
-            "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "seed_explanation2":
-            "Uporabite ga lahko za dostop do vaših sredstev iz katere koli denarnice, na kateri koli napravi. V primeru da seed izgubiste, prav tako izgubiste vaša sredstva",
+        "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seed_explanation2": "Uporabite ga lahko za dostop do vaših sredstev iz katere koli denarnice, na kateri koli napravi. V primeru da seed izgubiste, prav tako izgubiste vaša sredstva",
         "reminder": "Prosimo vas, da imate seed shranjen na varnem",
         "button1": "YES",
         "button2": "NO"
     },
     "lightserver": {
-        "text1":
-            "Light strežnik je prehod do IOTA omrežja, ki ga prijazno zagotavljajo člani skupnosti ali naši poslovni partnerji. ",
+        "text1": "Light strežnik je prehod do IOTA omrežja, ki ga prijazno zagotavljajo člani skupnosti ali naši poslovni partnerji. ",
         "text2": "Več informacij o strežnikih lahko najdete na: http://iotasupport.com/lightwallet.shtml",
         "text3": "Na spodnjem seznamu izberite strežnik.",
         "server_label": "Strežnik",
@@ -50,11 +47,9 @@
         "error_title": "Seed je prekratek",
         "error_text": "Seed mora imeti vsaj 60 znakov. Prosimo, poskusite ponovno.",
         "invalid_seed_title": "Napačen seed",
-        "invalid_seed_text":
-            "Vaš seed je nepravilen. Seed mora vsebovati velike črke (A-Z) in številko 9, ter mora imeti med 60-81 znakov.",
+        "invalid_seed_text": "Vaš seed je nepravilen. Seed mora vsebovati velike črke (A-Z) in številko 9, ter mora imeti med 60-81 znakov.",
         "placeholder": "Seed",
-        "seed_explanation":
-            "Seme mora biti dolgo 81 znakov in mora vsebovati velike črke od A do Z ali številko 9. Uporaba semena daljšega od 81 znakov ni mogoča.",
+        "seed_explanation": "Seme mora biti dolgo 81 znakov in mora vsebovati velike črke od A do Z ali številko 9. Uporaba semena daljšega od 81 znakov ni mogoča.",
         "reminder": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA",
         "scan_code": "Skeniraj QR kodo",
         "close": "Zapri",
@@ -82,8 +77,7 @@
         "optionA": "Ročna kopija",
         "optionB": " Papirnata denarnica",
         "optionC": "Kopiraj v clipboard",
-        "explanation":
-            "Vaš seed ima 81 znakov iz leve proti desni. Shranite si vaš seed ter njegovo kontrolno vsoto in tri krat preverite, da sta pravilna.",
+        "explanation": "Vaš seed ima 81 znakov iz leve proti desni. Shranite si vaš seed ter njegovo kontrolno vsoto in tri krat preverite, da sta pravilna.",
         "text": "tri krat preveri",
         "button": "Opravljeno"
     },
@@ -91,8 +85,7 @@
         "optionA": "Ročna kopija",
         "optionB": " Papirnata denarnica",
         "optionC": "Kopiraj v clipboard",
-        "explanation":
-            "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
         "text": "Ne shranjujte seeda v navadnem tekstu.",
         "button1": "Kopiraj v clipboard",
         "button2": "Opravljeno"
@@ -111,8 +104,7 @@
     "setPassword": {
         "title": "Nastavitve gesla",
         "text": "Now we need to set up a password.",
-        "explanation":
-            "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+        "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
         "reminder": "Ensure you use a strong password of at least 12 characters.",
         "placeholder1": "'Geslo'",
         "placeholder2": "Znova vnesite geslo",
@@ -124,8 +116,7 @@
         "button2": "BACK"
     },
     "onboardingComplete": {
-        "text":
-            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+        "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
         "button": "NEXT"
     },
     "home": {
