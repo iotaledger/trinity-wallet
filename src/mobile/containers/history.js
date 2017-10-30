@@ -8,6 +8,15 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const { height, width } = Dimensions.get('window');
 
 class History extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { viewRef: null };
+    }
+
+    imageLoaded() {
+        this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -24,6 +33,11 @@ class History extends React.Component {
                         )}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                         enableEmptySections
+                        ref={listview => {
+                            this.listview = listview;
+                        }}
+                        onLoadEnd={this.imageLoaded.bind(this)}
+                        snapToInterval={height / 7.515}
                     />
                 </View>
             </View>
@@ -34,10 +48,10 @@ class History extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: height / 20,
+        paddingTop: 2,
     },
     topContainer: {
-        flex: 1,
+        flex: 1.4,
     },
     listView: {
         flex: 14,
