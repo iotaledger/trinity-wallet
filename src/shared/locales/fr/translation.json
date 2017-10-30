@@ -39,13 +39,13 @@
         "text": "Veuillez renseigner votre mot de passe",
         "placeholder": "MOT DE PASSE",
         "error_title": "Mot de passe incorrect",
-        "error_text": "Le mot de passe est incorrect. Merci d'essayer à nouveau.",
+        "error_text": "Le mot de passe est incorrect. Veuillez réessayer.",
         "button1": "OK",
         "button2": "UTILISER LA SEED"
     },
     "enterSeed": {
         "error_title": "La Seed est trop courte",
-        "error_text": "La Seed doit comporter au moins 60 caractères. Merci d'essayer à nouveau.",
+        "error_text": "La Seed doit comporter au moins 60 caractères. Veuillez réessayer.",
         "invalid_seed_title": "Seed invalide",
         "invalid_seed_text": "Votre Seed n'est pas valide. Une Seed ne peut contenir que des lettres en majuscules (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères.",
         "placeholder": "SEED",
@@ -59,7 +59,7 @@
     "newSeedSetup": {
         "title": "GÉNÉRER UNE NOUVELLE SEED",
         "button1": "GÉNÉRER UNE NOUVELLE SEED",
-        "text1": "Press individual letters to randomise them.",
+        "text1": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées.",
         "text2": "Puis cliquez sur SUIVANT",
         "button2": "SUIVANT",
         "button3": "RETOUR"
@@ -77,7 +77,7 @@
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
         "optionC": "Copier vers le Presse-papiers",
-        "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+        "explanation": "Votre Seed se lit de gauche à droit et comporte 81 caractères. Notez-la, ainsi que la somme de contrôle, et vérifiez-les à plusieurs reprises.",
         "text": "vérifiez à plusieurs reprises",
         "button": "OK"
     },
