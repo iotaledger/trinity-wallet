@@ -4,6 +4,8 @@ const initialState = {
     receiveAddress: '',
     password: '',
     seed: '                                                                                 ',
+    seedName: 'MAIN WALLET',
+    seedIndex: 0,
     transactions: [],
     isGeneratingReceiveAddress: false,
 };
@@ -20,6 +22,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 seed: action.payload,
+            };
+        case 'SET_SEED_NAME':
+            return {
+                ...state,
+                seedName: action.payload,
             };
         case 'SET_PASSWORD':
             return {
@@ -51,6 +58,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ready: action.payload,
+            };
+        case 'INCREMENT_SEED_INDEX':
+            return {
+                ...state,
+                seedIndex: state.seedIndex + 1,
+            };
+        case 'DECREMENT_SEED_INDEX':
+            return {
+                ...state,
+                seedIndex: state.seedIndex - 1,
             };
         case 'CLEAR_IOTA':
             return {
