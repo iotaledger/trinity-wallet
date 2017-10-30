@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -22,6 +23,7 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		223B998F0B2E47599B0BBF46 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 009D0AF9A385401CA7316942 /* libRNSVG.a */; };
+		27BD4B9512054BA5A3B290ED /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F4464900E248AF9BF11CB9 /* libRCTCamera.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -35,7 +37,6 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* iotaWalletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* iotaWalletTests.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		64D0707D4928456DA520EE80 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54C2002E74F04698AF226645 /* libRNBlur.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		CB1C67D61F9A418D00229848 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1C67B21F9A415100229848 /* libRCTCamera.a */; };
 		CB1C68571F9CC65500229848 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1C68541F9CC62A00229848 /* libRNFS.a */; };
@@ -52,7 +53,6 @@
 		CB87E5CA1F5506D0009DB5ED /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB87E5C51F5506D0009DB5ED /* Lato-Regular.ttf */; };
 		CBDB98A11F8EAE1500035DC3 /* libRNPrint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDB989D1F8EAE0200035DC3 /* libRNPrint.a */; };
 		CBDB98A21F8EAE1C00035DC3 /* libRNHTMLtoPDF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDB988E1F8EADC300035DC3 /* libRNHTMLtoPDF.a */; };
-		27BD4B9512054BA5A3B290ED /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F4464900E248AF9BF11CB9 /* libRCTCamera.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -343,6 +343,13 @@
 			remoteGlobalIDString = 64D1BD361EEFE88700F3F219;
 			remoteInfo = "RNBlur-tvOS";
 		};
+		CBC169931FA75731002A9AEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 366A2FDA392C4BF297721326 /* RCTCamera.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
+			remoteInfo = RCTCamera;
+		};
 		CBDB988D1F8EADC300035DC3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CBDB986A1F8EAD9800035DC3 /* RNHTMLtoPDF.xcodeproj */;
@@ -394,8 +401,10 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iotaWallet/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iotaWallet/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		16F4464900E248AF9BF11CB9 /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* iotaWallet-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iotaWallet-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* iotaWallet-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iotaWallet-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		366A2FDA392C4BF297721326 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		54C2002E74F04698AF226645 /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6003E2BD1F896555008A6D52 /* iotaWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = iotaWallet.entitlements; path = iotaWallet/iotaWallet.entitlements; sourceTree = "<group>"; };
@@ -417,8 +426,6 @@
 		CB87E5C51F5506D0009DB5ED /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../custom-fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		CBDB986A1F8EAD9800035DC3 /* RNHTMLtoPDF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNHTMLtoPDF.xcodeproj; path = "../node_modules/react-native-html-to-pdf/ios/RNHTMLtoPDF.xcodeproj"; sourceTree = "<group>"; };
 		CBDB98971F8EAE0200035DC3 /* RNPrint.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNPrint.xcodeproj; path = "../node_modules/react-native-print/ios/RNPrint.xcodeproj"; sourceTree = "<group>"; };
-		366A2FDA392C4BF297721326 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; name = "RCTCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		16F4464900E248AF9BF11CB9 /* libRCTCamera.a */ = {isa = PBXFileReference; name = "libRCTCamera.a"; path = "libRCTCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,11 +461,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				223B998F0B2E47599B0BBF46 /* libRNSVG.a in Frameworks */,
-<<<<<<< HEAD
 				27BD4B9512054BA5A3B290ED /* libRCTCamera.a in Frameworks */,
-=======
-				64D0707D4928456DA520EE80 /* libRNBlur.a in Frameworks */,
->>>>>>> 66ee977af529f947dee10f326249da24bd235a02
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +615,7 @@
 			children = (
 				009D0AF9A385401CA7316942 /* libRNSVG.a */,
 				54C2002E74F04698AF226645 /* libRNBlur.a */,
+				16F4464900E248AF9BF11CB9 /* libRCTCamera.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -647,11 +651,8 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				9090DAE9334840B081B3AC44 /* RNSVG.xcodeproj */,
-<<<<<<< HEAD
 				366A2FDA392C4BF297721326 /* RCTCamera.xcodeproj */,
-=======
 				99BDA0331D484E5EA8221C5B /* RNBlur.xcodeproj */,
->>>>>>> 66ee977af529f947dee10f326249da24bd235a02
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -752,6 +753,14 @@
 			children = (
 				CB8FE58A1FA25A7A00090D5D /* libRNBlur.a */,
 				CB8FE58C1FA25A7A00090D5D /* libRNBlur.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CBC169901FA75731002A9AEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CBC169941FA75731002A9AEB /* libRCTCamera.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -870,7 +879,8 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = D6XGU8EVBS;
+						DevelopmentTeam = VG8ZVAW5U5;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -917,6 +927,10 @@
 				{
 					ProductGroup = CB1C67AB1F9A414A00229848 /* Products */;
 					ProjectRef = CB1C67AA1F9A414A00229848 /* RCTCamera.xcodeproj */;
+				},
+				{
+					ProductGroup = CBC169901FA75731002A9AEB /* Products */;
+					ProjectRef = 366A2FDA392C4BF297721326 /* RCTCamera.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -1271,6 +1285,13 @@
 			remoteRef = CB8FE58B1FA25A7A00090D5D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CBC169941FA75731002A9AEB /* libRCTCamera.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCamera.a;
+			remoteRef = CBC169931FA75731002A9AEB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CBDB988E1F8EADC300035DC3 /* libRNHTMLtoPDF.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1446,7 +1467,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-blur/ios",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1462,10 +1483,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iotaWallet.app/iotaWallet";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-camera/ios",
-				);
 			};
 			name = Debug;
 		};
@@ -1477,11 +1494,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-tcp/ios/**",
-<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
-=======
-					"$(SRCROOT)/../node_modules/react-native-blur/ios",
->>>>>>> 66ee977af529f947dee10f326249da24bd235a02
 				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1506,18 +1519,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_WARNINGS = YES;
 				CODE_SIGN_ENTITLEMENTS = iotaWallet/iotaWallet.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = D6XGU8EVBS;
+				DEVELOPMENT_TEAM = VG8ZVAW5U5;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
 					"$(SRCROOT)/../../../React/**",
-<<<<<<< HEAD
-					"$(SRCROOT)/../node_modules/react-native-camera/ios"
-=======
-					"$(SRCROOT)/../node_modules/react-native-blur/ios",
->>>>>>> 66ee977af529f947dee10f326249da24bd235a02
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -1529,6 +1540,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.wallet;
 				PRODUCT_NAME = iotaWallet;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1539,17 +1551,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_WARNINGS = YES;
 				CODE_SIGN_ENTITLEMENTS = iotaWallet/iotaWallet.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D6XGU8EVBS;
+				DEVELOPMENT_TEAM = VG8ZVAW5U5;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
 					"$(SRCROOT)/../../../React/**",
-<<<<<<< HEAD
-					"$(SRCROOT)/../node_modules/react-native-camera/ios"
-=======
-					"$(SRCROOT)/../node_modules/react-native-blur/ios",
->>>>>>> 66ee977af529f947dee10f326249da24bd235a02
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -1561,6 +1571,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.wallet;
 				PRODUCT_NAME = iotaWallet;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1579,7 +1590,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-blur/ios",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				INFOPLIST_FILE = "iotaWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1597,10 +1608,6 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-camera/ios",
-				);
 			};
 			name = Debug;
 		};
@@ -1618,7 +1625,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-blur/ios",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				INFOPLIST_FILE = "iotaWallet-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1636,10 +1643,6 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-camera/ios",
-				);
 			};
 			name = Release;
 		};

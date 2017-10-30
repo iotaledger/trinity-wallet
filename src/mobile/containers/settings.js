@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
@@ -7,6 +8,7 @@ import store from '../../shared/store';
 import { persistStore } from 'redux-persist';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
+import { logoutFromWallet } from '../../shared/actions/app';
 
 const { height, width } = Dimensions.get('window');
 
@@ -18,9 +20,12 @@ class Settings extends React.Component {
             selectedSetting: 'addNewSeed',
             modalContent: <AddNewSeedModal />,
         };
+        this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
     }
 
     _showModal = () => this.setState({ isModalVisible: true });
+
+    onChangeModePress() {}
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
@@ -47,7 +52,17 @@ class Settings extends React.Component {
 
     onLanguagePress() {}
 
-    onChangePasswordPress() {}
+    onChangePasswordPress() {
+        this.props.navigator.push({
+            screen: 'change-password',
+            navigatorStyle: {
+                navBarHidden: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+        });
+    }
 
     on2FASetupPress() {}
 
@@ -55,10 +70,20 @@ class Settings extends React.Component {
 
     onAdvancedSettingsPress() {}
 
-    onResetWalletPress() {}
+    onResetWalletPress() {
+        this.props.navigator.push({
+            screen: 'wallet-reset-confirm',
+            navigatorStyle: {
+                navBarHidden: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+        });
+    }
 
     onLogoutPress() {
-        this.props.clearIOTA();
+        this.props.logoutFromWallet();
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
@@ -233,14 +258,19 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => ({
-    clearIOTA: () => {
-        dispatch(clearIOTA());
-    },
+    logoutFromWallet: () => dispatch(logoutFromWallet()),
 });
 
 const mapStateToProps = state => ({
     account: state.account,
     settings: state.settings,
 });
+
+Settings.propTypes = {
+    account: PropTypes.object.isRequired,
+    settings: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired,
+    logoutFromWallet: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
