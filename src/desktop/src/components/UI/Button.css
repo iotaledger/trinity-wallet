@@ -2,7 +2,8 @@
     background: transparent;
     border: 1px solid;
     border-radius: 8px;
-    border-color: inherit;
+    /* usually border-color: inherit; but safari fucks this whole thing up */
+    border-color: inherit inherit;
     cursor: pointer;
     display: inline-block;
     font-size: var(--font-size-default);
