@@ -1,6 +1,13 @@
 import React from 'react';
 import { Clipboard, TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
-import { formatTime, formatModalTime, formatValue, formatUnit, round } from '../../shared/libs/util';
+import {
+    formatTime,
+    formatModalTime,
+    formatValue,
+    formatUnit,
+    round,
+    convertUnixTimeToJSDate,
+} from '../../shared/libs/util';
 import { convertFromTrytes } from '../../shared/libs/iota';
 import Modal from 'react-native-modal';
 
@@ -51,7 +58,9 @@ class TransactionRow extends React.Component {
                                     ? this.props.rowData[0].transactionValue < 0 ? 'Sent' : 'Received'
                                     : 'Pending'}
                             </Text>
-                            <Text style={styles.timestamp}>{formatModalTime(this.props.rowData[0].timestamp)}</Text>
+                            <Text style={styles.timestamp}>
+                                {formatModalTime(convertUnixTimeToJSDate(this.props.rowData[0].timestamp))}
+                            </Text>
                         </View>
                     </View>
                     <Text style={styles.messageTitle}>Bundle Hash:</Text>
@@ -131,7 +140,9 @@ class TransactionRow extends React.Component {
                                     ? this.props.rowData[0].transactionValue < 0 ? 'Sent' : 'Received'
                                     : 'Pending'}
                             </Text>
-                            <Text style={styles.timestamp}>{formatTime(this.props.rowData[0].timestamp)}</Text>
+                            <Text style={styles.timestamp}>
+                                {formatTime(convertUnixTimeToJSDate(this.props.rowData[0].timestamp))}
+                            </Text>
                         </View>
                     </View>
                     <Modal

@@ -9,6 +9,7 @@ import {
     View,
     ImageBackground,
     StatusBar,
+    TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Balance from './balance';
@@ -18,6 +19,10 @@ import History from './history';
 import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import DropdownAlert from 'react-native-dropdownalert';
+import { round, formatValue, formatUnit } from '../../shared/libs/util';
+import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/iotaActions';
+import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';
+
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 
@@ -28,6 +33,20 @@ class Home extends Component {
         this.state = {
             mode: 'STANDARD',
         };
+    }
+
+    onLeftArrowPress() {
+        if (this.props.iota.seedIndex > 0) {
+            var seedIndex = this.props.iota.seedIndex - 1;
+            this.props.decrementSeedIndex();
+        }
+    }
+
+    onRightArrowPress() {
+        if (this.props.iota.seedIndex + 1 < this.props.account.seedCount) {
+            var seedIndex = this.props.iota.seedIndex + 1;
+            this.props.incrementSeedIndex();
+        }
     }
 
     renderChildren(route) {
@@ -74,115 +93,148 @@ class Home extends Component {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
-                <View style={styles.titleContainer}>
-                    <View style={{ flex: 6 }}>{children}</View>
+                <View style={styles.topContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.onLeftArrowPress()}
+                        style={{ position: 'absolute', left: width / 6, top: height / 13.1 }}
+                    >
+                        <Image
+                            style={{
+                                width: width / 20,
+                                height: width / 20,
+                                opacity: this.props.iota.seedIndex == 0 ? 0.3 : 1,
+                            }}
+                            source={require('../../shared/images/arrow-left.png')}
+                        />
+                    </TouchableOpacity>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>{this.props.account.seedNames[this.props.iota.seedIndex]}</Text>
+                    </View>
+                    <TouchableOpacity
+                        onPress={() => this.onRightArrowPress()}
+                        style={{ position: 'absolute', right: width / 6, top: height / 13.1 }}
+                    >
+                        <Image
+                            style={{
+                                width: width / 20,
+                                height: width / 20,
+                                opacity: this.props.iota.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
+                            }}
+                            source={require('../../shared/images/arrow-right.png')}
+                        />
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.tabBar}>
-                    <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
-                        <View style={styles.button}>
-                            <Image
-                                style={
-                                    isCurrentRoute('balance')
-                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                }
-                                source={require('../../shared/images/balance.png')}
-                            />
-                            <Text
-                                style={
-                                    isCurrentRoute('balance')
-                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                }
-                            >
-                                BALANCE
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={event => this.clickSend()}>
-                        <View style={styles.button}>
-                            <Image
-                                style={
-                                    isCurrentRoute('send')
-                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                }
-                                source={require('../../shared/images/send.png')}
-                            />
-                            <Text
-                                style={
-                                    isCurrentRoute('send')
-                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                }
-                            >
-                                SEND
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
-                        <View style={styles.button}>
-                            <Image
-                                style={
-                                    isCurrentRoute('receive')
-                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                }
-                                source={require('../../shared/images/receive.png')}
-                            />
-                            <Text
-                                style={
-                                    isCurrentRoute('receive')
-                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                }
-                            >
-                                RECEIVE
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
-                        <View style={styles.button}>
-                            <Image
-                                style={
-                                    isCurrentRoute('history')
-                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                }
-                                source={require('../../shared/images/history.png')}
-                            />
-                            <Text
-                                style={
-                                    isCurrentRoute('history')
-                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                }
-                            >
-                                HISTORY
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
-                        <View style={styles.button}>
-                            <Image
-                                style={
-                                    isCurrentRoute('settings')
-                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                }
-                                source={require('../../shared/images/settings.png')}
-                            />
-                            <Text
-                                style={
-                                    isCurrentRoute('settings')
-                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                }
-                            >
-                                SETTINGS
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
+                <View style={styles.midContainer}>
+                    <View style={{ flex: 1 }}>{children}</View>
+                </View>
+                <View style={styles.bottomContainer}>
+                    <View style={styles.tabBar}>
+                        <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
+                            <View style={styles.button}>
+                                <Image
+                                    style={
+                                        isCurrentRoute('balance')
+                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                    }
+                                    source={require('../../shared/images/balance.png')}
+                                />
+                                <Text
+                                    style={
+                                        isCurrentRoute('balance')
+                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                    }
+                                >
+                                    BALANCE
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={event => this.clickSend()}>
+                            <View style={styles.button}>
+                                <Image
+                                    style={
+                                        isCurrentRoute('send')
+                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                    }
+                                    source={require('../../shared/images/send.png')}
+                                />
+                                <Text
+                                    style={
+                                        isCurrentRoute('send')
+                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                    }
+                                >
+                                    SEND
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
+                            <View style={styles.button}>
+                                <Image
+                                    style={
+                                        isCurrentRoute('receive')
+                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                    }
+                                    source={require('../../shared/images/receive.png')}
+                                />
+                                <Text
+                                    style={
+                                        isCurrentRoute('receive')
+                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                    }
+                                >
+                                    RECEIVE
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
+                            <View style={styles.button}>
+                                <Image
+                                    style={
+                                        isCurrentRoute('history')
+                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                    }
+                                    source={require('../../shared/images/history.png')}
+                                />
+                                <Text
+                                    style={
+                                        isCurrentRoute('history')
+                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                    }
+                                >
+                                    HISTORY
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
+                            <View style={styles.button}>
+                                <Image
+                                    style={
+                                        isCurrentRoute('settings')
+                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                    }
+                                    source={require('../../shared/images/settings.png')}
+                                />
+                                <Text
+                                    style={
+                                        isCurrentRoute('settings')
+                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                    }
+                                >
+                                    SETTINGS
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </View>
                 </View>
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
@@ -200,35 +252,51 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-    titleContainer: {
-        flex: 1,
+    topContainer: {
+        flex: 0.5,
+        flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'stretch',
-    },
-    banner: {
         alignItems: 'center',
-        paddingTop: 20,
-        flex: 1,
+        paddingTop: height / 20,
     },
-    logo: {
-        height: width / 10,
-        width: width / 10,
+    titleContainer: {
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingHorizontal: width / 8,
+    },
+    title: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 24.4,
+    },
+    balance: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.9,
+        paddingTop: height / 150,
+    },
+    midContainer: {
+        flex: 4.7,
+    },
+    bottomContainer: {
+        flex: 0.9,
     },
     tabBar: {
-        flex: 0.12,
+        flex: 1,
         flexDirection: 'row',
         backgroundColor: 'transparent',
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingBottom: 5,
     },
     button: {
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     icon: {
-        height: width / 12,
-        width: width / 12,
+        height: width / 10,
+        width: width / 10,
     },
     iconTitle: {
         color: 'white',
@@ -238,47 +306,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 40.5,
     },
-    title: {
-        color: 'white',
-        textAlign: 'center',
-        paddingTop: 8,
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 14.5,
-    },
-    mode: {
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 50.6,
-        paddingTop: 5,
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
-    },
     fullyOpaque: {
         opacity: 1,
     },
@@ -287,18 +314,26 @@ const styles = StyleSheet.create({
     },
 });
 
+const mapStateToProps = state => ({
+    iota: state.iota,
+    account: state.account,
+    childRoute: state.home.childRoute,
+});
+
+const mapDispatchToProps = dispatch => ({
+    incrementSeedIndex: () => {
+        dispatch(incrementSeedIndex());
+    },
+    decrementSeedIndex: () => {
+        dispatch(decrementSeedIndex());
+    },
+    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
+});
+
 Home.propTypes = {
     navigator: PropTypes.object.isRequired,
     childRoute: PropTypes.string.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
 };
-
-const mapStateToProps = state => ({
-    childRoute: state.home.childRoute,
-});
-
-const mapDispatchToProps = dispatch => ({
-    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
