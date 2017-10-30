@@ -26,7 +26,8 @@
         "button2": "NO"
     },
     "lightserver": {
-        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
+        "text1":
+            "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
         "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
         "text3": "Please choose a server from the list below.",
         "server_label": "Server",
