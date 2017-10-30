@@ -5,7 +5,6 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearIOTA } from '../../shared/actions/iotaActions';
 import store from '../../shared/store';
-import { persistStore } from 'redux-persist';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
 import { logoutFromWallet } from '../../shared/actions/app';
