@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
-import { increaseSeedCount } from '../../shared/actions/accountActions';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -33,10 +32,6 @@ class Login extends React.Component {
         this.onDonePress = this.onDonePress.bind(this);
     }
 
-    componentDidMount() {
-        this.props.increaseSeedCount();
-    }
-
     onDonePress() {
         if (!this.state.password) {
             this.dropdown.alertWithType(
@@ -47,8 +42,6 @@ class Login extends React.Component {
         } else {
             this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
-                console.log(value);
-                this.props.increaseSeedCount();
                 if (value) {
                     var seed = getSeed(value, 0);
                     login(seed);
@@ -267,7 +260,6 @@ const mapDispatchToProps = dispatch => ({
     getAccountInfo: seed => {
         dispatch(getAccountInfo(seed));
     },
-    increaseSeedCount: () => dispatch(increaseSeedCount()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
