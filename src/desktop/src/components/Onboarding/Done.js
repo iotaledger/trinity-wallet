@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
+import css from '../Layout/Onboarding.css';
 
 class Done extends React.PureComponent {
     static propTypes = {
@@ -12,7 +13,7 @@ class Done extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <Template>
+            <Template bodyClass={css.bodyDone}>
                 <Main>
                     <p>{t('text')}</p>
                 </Main>
