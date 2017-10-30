@@ -17,6 +17,13 @@ export function setLocale(locale) {
     };
 }
 
+export function setLanguage(language) {
+    return {
+        type: ActionTypes.SET_LANGUAGE,
+        payload: language,
+    };
+}
+
 export const invalidServerError = () => {
     return showError({
         title: 'invalidServer_title',
