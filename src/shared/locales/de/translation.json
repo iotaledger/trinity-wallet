@@ -1,5 +1,4 @@
 {
-    "id": "de",
     "notifications": {
         "invalidServer_title": "Ungültiger Server",
         "invalidServer_text": "Die eingegebene Serveradresse is ungültig",
@@ -30,8 +29,7 @@
         "button2": "NEIN"
     },
     "lightserver": {
-        "text1":
-            "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
+        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
         "text2": "Mehr Informationen über die Server unter: http://iotasupport.com/lightwallet.shtml",
         "text3": "Bitte wählen Sie einen Server aus der unteren Liste.",
         "server_label": "Server",
