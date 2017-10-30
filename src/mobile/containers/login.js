@@ -28,6 +28,8 @@ class Login extends React.Component {
         this.state = {
             password: '',
         };
+
+        this.onDonePress = this.onDonePress.bind(this);
     }
 
     onDonePress() {
@@ -49,9 +51,10 @@ class Login extends React.Component {
             });
         }
 
+        const _this = this;
         function login(value) {
-            this.props.getAccountInfo(value);
-            this.props.navigator.push({
+            _this.props.getAccountInfo(value);
+            _this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: {
                     navBarHidden: true,
