@@ -69,14 +69,14 @@
         "text2": "au moins une",
         "optionA": "COPIE MANUELLE",
         "optionB": "IMPRIMER LE PAPER WALLET",
-        "optionC": "COPIER VERS LE PRESSE-PAPIERS",
+        "optionC": "COPIER DANS LE PRESSE-PAPIERS",
         "button1": "SUIVANT",
         "button2": "RETOUR"
     },
     "saveYourSeed2": {
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
-        "optionC": "Copier vers le Presse-papiers",
+        "optionC": "Copier dans le Presse-papiers",
         "explanation": "Votre Seed se lit de gauche à droit et comporte 81 caractères. Notez-la, ainsi que la somme de contrôle, et vérifiez-les à plusieurs reprises.",
         "text": "vérifiez à plusieurs reprises",
         "button": "OK"
@@ -84,7 +84,7 @@
     "saveYourSeed3": {
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
-        "optionC": "Copier vers le Presse-papiers",
+        "optionC": "Copier dans le Presse-papiers",
         "explanation": "Cliquez sur le bouton ci-dessous et copiez votre Seed vers un gestionnaire de mot de passe. Elle restera dans votre presse-papiers 60 secondes.",
         "text": "Ne stockez pas votre seed en texte en clair.",
         "button1": "COPIER DANS LE PRESSE-PAPIERS",
