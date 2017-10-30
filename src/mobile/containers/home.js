@@ -125,7 +125,7 @@ class Home extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 1 }}>{this.state.tabContent}</View>
+                    <View style={{ flex: 1 }}>{children}</View>
                 </View>
                 <View style={styles.bottomContainer}>
                     <View style={styles.tabBar}>
@@ -306,6 +306,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 40.5,
     },
+    fullyOpaque: {
+        opacity: 1,
+    },
+    partiallyOpaque: {
+        opacity: 0.6,
+    },
 });
 
 const mapStateToProps = state => ({
@@ -320,12 +326,6 @@ const mapDispatchToProps = dispatch => ({
     },
     decrementSeedIndex: () => {
         dispatch(decrementSeedIndex());
-    },
-    fullyOpaque: {
-        opacity: 1,
-    },
-    partiallyOpaque: {
-        opacity: 0.6,
     },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
 });
