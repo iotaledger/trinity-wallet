@@ -57,6 +57,18 @@
     }
 }
 
+.body-home {
+    background-image: url(../../../../shared/images/hello-back.png), url(../../../../shared/images/bg-green.jpg);
+    background-size: contain, 100% 100%;
+    background-position: center;
+}
+
+.body-done {
+    background-image: url(../../../../shared/images/balloons.png), url(../../../../shared/images/bg-green.jpg);
+    background-size: contain, 100% 100%;
+    background-position: center;
+}
+
 .formGroup {
     text-align: left;
     margin: 0 0 16px 0;

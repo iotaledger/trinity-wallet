@@ -17,7 +17,7 @@ class Welcome extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <Template headline="Hello / Salut / Hola / Hallo">
+            <Template bodyClass={css.bodyHome}>
                 <Main>
                     <div className={css.formGroup}>
                         <label>{t('dropdown_title')}</label>
