@@ -12,25 +12,21 @@
     "welcome1": {
         "text1": "Takk for at du lastet ned IOTA-lommeboken.",
         "text2": "Vi vil bruke neste minuttene til å sette opp lommeboken.",
-        "reminder":
-            "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen.",
+        "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen.",
         "button1": "NESTE",
         "button2": "TILBAKE"
     },
     "welcome2": {
         "text1": "OK. La oss sette opp lommeboken!",
         "text2": "Har du allerede en masternøkkel du ønsker å bruke?",
-        "seed_explanation1":
-            "IOTA masternøkkel er som brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
-        "seed_explanation2":
-            "Du kan bruke den til å nå midlene fra enhver lommebok, på enhver enhet. Men hvis du mister den, vil du også miste dine IOTA",
+        "seed_explanation1": "IOTA masternøkkel er som brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
+        "seed_explanation2": "Du kan bruke den til å nå midlene fra enhver lommebok, på enhver enhet. Men hvis du mister den, vil du også miste dine IOTA",
         "reminder": "Vennligst sikre din masternøkkel godt",
         "button1": "JA",
         "button2": "NEI"
     },
     "lightserver": {
-        "text1":
-            "En åpen node er en node du bruker for å koble lommeboken til nettverket. Disse er stilt til rådighet av IOTA-samfunnet eller våre forretningspartnere.",
+        "text1": "En åpen node er en node du bruker for å koble lommeboken til nettverket. Disse er stilt til rådighet av IOTA-samfunnet eller våre forretningspartnere.",
         "text2": "Du kan finne ut mer informasjon om åpne noder på: http://iotasupport.com/lightwallet.shtml",
         "text3": "Velg en node fra listen nedenfor.",
         "server_label": "Node",
@@ -51,11 +47,9 @@
         "error_title": "Nøkkelen er for kort",
         "error_text": "Nøkkelen må være minst 60 tegn. Prøv igjen.",
         "invalid_seed_title": "Ugyldig nøkkel",
-        "invalid_seed_text":
-            "Masternøkkel er ugyldig. Den skal inneholde versaler (A-Z) og tallet 9, og skal være mellom 60 og 81 tegn lang.",
+        "invalid_seed_text": "Masternøkkel er ugyldig. Den skal inneholde versaler (A-Z) og tallet 9, og skal være mellom 60 og 81 tegn lang.",
         "placeholder": "MASTERNØKKEL",
-        "seed_explanation":
-            "Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.",
+        "seed_explanation": "Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.",
         "reminder": "OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE",
         "scan_code": "Skann QR-kode",
         "close": "LUKK",
@@ -83,8 +77,7 @@
         "optionA": "Manuell avskrift",
         "optionB": " Papirlommebok",
         "optionC": "Kopier til utklippstavle",
-        "explanation":
-            "Din nøkkel er 81 tegn lest fra venstre mot høyre. Skriv den ned sammen med kontrolltegnene og trippel-sjekk at alt er korrekt nedskrevet.",
+        "explanation": "Din nøkkel er 81 tegn lest fra venstre mot høyre. Skriv den ned sammen med kontrolltegnene og trippel-sjekk at alt er korrekt nedskrevet.",
         "text": "trippel sjekk",
         "button": "FERDIG"
     },
@@ -92,8 +85,7 @@
         "optionA": "Manuell avskrift",
         "optionB": " Papirlommebok",
         "optionC": "Kopier til utklippstavle",
-        "explanation":
-            "Trykk på knappen under, og kopier nøkkelen til et passord-program. Nøkkelen vil være tilgjengelig i 60 sekunder.",
+        "explanation": "Trykk på knappen under, og kopier nøkkelen til et passord-program. Nøkkelen vil være tilgjengelig i 60 sekunder.",
         "text": "Ikke lagre nøkkelen din som ren tekst.",
         "button1": "KOPIER TIL UTKLIPPSTAVLEN",
         "button2": "FERDIG"
@@ -112,8 +104,7 @@
     "setPassword": {
         "title": "PASSORD OPPSETT",
         "text": "Nå må vi sette opp et passord.",
-        "explanation":
-            "Du bruker dette passordet for å åpne lommeboka i fremtiden. En kryptert kopi av nøkkelen din vil bli lagret på enheten.",
+        "explanation": "Du bruker dette passordet for å åpne lommeboka i fremtiden. En kryptert kopi av nøkkelen din vil bli lagret på enheten.",
         "reminder": "Sikre du bruk et sterkt passord minst 12 tegn.",
         "placeholder1": "'PASSORD'",
         "placeholder2": "SKRIV INN PASSORDET PÅ NYTT",
@@ -125,8 +116,7 @@
         "button2": "TILBAKE"
     },
     "onboardingComplete": {
-        "text":
-            "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Verktøy-menyen.",
+        "text": "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Verktøy-menyen.",
         "button": "NESTE"
     },
     "home": {
