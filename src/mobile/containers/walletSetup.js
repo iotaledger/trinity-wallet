@@ -15,8 +15,6 @@ class WalletSetup extends React.Component {
             screen: 'enterSeed',
             navigatorStyle: {
                 navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
             },
             animated: false,
         });
@@ -26,8 +24,6 @@ class WalletSetup extends React.Component {
             screen: 'newSeedSetup',
             navigatorStyle: {
                 navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
             },
             animated: false,
         });

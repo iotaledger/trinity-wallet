@@ -174,7 +174,6 @@ class Chart extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingBottom: height / 40,
         paddingTop: height / 80,
     },
     topContainer: {
