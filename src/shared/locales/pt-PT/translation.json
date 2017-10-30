@@ -77,7 +77,8 @@
         "optionA": "Cópia Manual",
         "optionB": " Carteira de Papel",
         "optionC": "Copiar para a Área de Transferência",
-        "explanation": "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e confirme VÁRIAS vezes que anotou corretamente.",
+        "explanation":
+            "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e confirme VÁRIAS vezes que anotou corretamente.",
         "text": "verifique várias vezes",
         "button": "CONCLUÍDO"
     },
