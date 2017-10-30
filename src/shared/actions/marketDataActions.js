@@ -17,7 +17,6 @@ function setChartData(json, timeValue) {
     for (let i = 0; i <= timeValue; i++) {
         data[i] = { x: i, y: parseFloat(json.Data[i].close) };
     }
-    console.log(data);
     return {
         type: 'SET_CHARTDATA',
         payload: data,
