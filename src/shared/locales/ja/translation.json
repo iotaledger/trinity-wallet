@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "無効なサーバー",
         "invalidServer_text": "入力されたアドレスは有効ではありません。",

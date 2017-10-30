@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "Ongeldige server",
         "invalidServer_text": "Het opgegeven server adres is niet geldig",
