@@ -91,7 +91,8 @@
         "optionA": "Copia manuale",
         "optionB": " Portafoglio su carta",
         "optionC": "Copia negli appunti",
-        "explanation": "Fai clic sul pulsante sotto per copiare il tuo seme su un programma di gestione di password. La copia rimarrà negli Appunti per 60 secondi.",
+        "explanation":
+            "Fai clic sul pulsante sotto per copiare il tuo seme su un programma di gestione di password. La copia rimarrà negli Appunti per 60 secondi.",
         "text": "Non salvare il seme in un file non crittografato.",
         "button1": "COPIA NEGLI APPUNTI",
         "button2": "FINE"
@@ -110,7 +111,8 @@
     "setPassword": {
         "title": "IMPOSTAZIONE DELLA PASSWORD",
         "text": "Ora abbiamo bisogno di impostare una password.",
-        "explanation": "Usando questa password potrai accedere in futuro al tuo portafoglio. Una copia crittografata del tuo seme sarà memorizzata sul tuo dispositivo.",
+        "explanation":
+            "Usando questa password potrai accedere in futuro al tuo portafoglio. Una copia crittografata del tuo seme sarà memorizzata sul tuo dispositivo.",
         "reminder": "Assicurati di utilizzare una password complessa di almeno 12 caratteri.",
         "placeholder1": "'PASSWORD'",
         "placeholder2": "DIGITARE NUOVAMENTE LA PASSWORD",
@@ -122,7 +124,8 @@
         "button2": "INDIETRO"
     },
     "onboardingComplete": {
-        "text": "Il portafoglio è ora configurato e pronto all'uso. Se in futuro avrai bisogno di apportare modifiche, guarda nel menu Strumenti.",
+        "text":
+            "Il portafoglio è ora configurato e pronto all'uso. Se in futuro avrai bisogno di apportare modifiche, guarda nel menu Strumenti.",
         "button": "AVANTI"
     },
     "home": {
