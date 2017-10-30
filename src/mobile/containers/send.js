@@ -1,4 +1,7 @@
-import React from 'react';
+import isUndefined from 'lodash/isUndefined';
+import size from 'lodash/size';
+import React, { Component } from 'react';
+import { iota } from '../../shared/libs/iota';
 import {
     StyleSheet,
     View,
@@ -13,7 +16,6 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import TransactionRow from '../components/transactionRow.js';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
@@ -23,22 +25,10 @@ import QRScanner from '../components/qrScanner.js';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
-const CustomLayoutSpring = {
-    duration: 100,
-    create: {
-        type: LayoutAnimation.Types.spring,
-        property: LayoutAnimation.Properties.scaleXY,
-        springDamping: 0.7,
-    },
-    update: {
-        type: LayoutAnimation.Types.spring,
-        springDamping: 0.7,
-    },
-};
 
-class Send extends React.Component {
-    constructor(props) {
-        super(props);
+class Send extends Component {
+    constructor() {
+        super();
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
         this.state = {
@@ -81,26 +71,56 @@ class Send extends React.Component {
         });
     }
 
-    sendTransaction() {
-        var address = this.state.address;
-        var value = parseInt(this.state.amount);
-        var message = this.state.message;
+    hasInvalidCharacters(value) {
+        // Currently just checks for white spaces
+        const testAgainst = /\s/;
+        return testAgainst.test(value);
+    }
 
-        getFromKeychain(this.props.iota.password, value => {
-            if (typeof value !== 'undefined') {
-                var seed = getSeed(value, this.props.iota.seedIndex);
-                sendTx(seed);
-                if (sendTransaction(seed.seed, address, value, message) == false) {
-                    this.dropdown.alertWithType(
-                        'error',
-                        'Key reuse',
-                        `The address you are trying to send to has already been used. Please try another address.`,
-                    );
+    isValidAddress(address) {
+        return size(address) === 90 && iota.utils.isValidChecksum(address) && !this.hasInvalidCharacters(address);
+    }
+
+    renderInvalidAddressErrors(address) {
+        const props = ['error', 'Invalid Address'];
+
+        if (size(address) !== 90) {
+            return this.dropdown.alertWithType(
+                ...props,
+                'Address should be 81 characters long and should have a checksum.',
+            );
+        } else if (this.hasInvalidCharacters(address)) {
+            return this.dropdown.alertWithType(...props, 'Address contains invalid characters.');
+        }
+
+        return this.dropdown.alertWithType(...props, 'Address contains invalid checksum');
+    }
+
+    sendTransaction() {
+        const address = this.state.address;
+        const value = parseInt(this.state.amount);
+        const message = this.state.message;
+        const isValid = this.isValidAddress(address);
+
+        if (isValid) {
+            getFromKeychain(this.props.iota.password, value => {
+                if (typeof value !== 'undefined') {
+                    var seed = getSeed(value, this.props.iota.seedIndex);
+                    sendTx(seed);
+                    if (sendTransaction(seed.seed, address, value, message) == false) {
+                        this.dropdown.alertWithType(
+                            'error',
+                            'Key reuse',
+                            `The address you are trying to send to has already been used. Please try another address.`,
+                        );
+                    }
+                } else {
+                    console.log('error');
                 }
-            } else {
-                console.log('error');
-            }
-        });
+            });
+        } else {
+            this.renderInvalidAddressErrors(address);
+        }
 
         function sendTx(seed) {
             sendTransaction(seed, address, value, message);
@@ -108,7 +128,7 @@ class Send extends React.Component {
     }
 
     getUnitMultiplier() {
-        var multiplier = 1;
+        let multiplier = 1;
         switch (this.state.denomination) {
             case 'i':
                 break;
@@ -275,12 +295,6 @@ class Send extends React.Component {
                 >
                     {this._renderModalContent()}
                 </Modal>
-                {/* }<ListView
-                style={{position: 'absolute', top: 250, left: 0, right: 0, bottom: 0}}
-                dataSource={this.state.dataSource}
-                renderRow={(data) => <TransactionRow rowData={data}/>}
-                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-              /> */}
             </ScrollView>
         );
     }

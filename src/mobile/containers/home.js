@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
     StyleSheet,
     Text,
@@ -10,31 +11,26 @@ import {
     StatusBar,
     TouchableOpacity,
 } from 'react-native';
+import { connect } from 'react-redux';
 import Balance from './balance';
 import Send from './send';
 import Receive from './receive';
 import History from './history';
 import Settings from './settings';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
 import DropdownAlert from 'react-native-dropdownalert';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
 import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/iotaActions';
-import { connect } from 'react-redux';
 import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 
-class Home extends React.Component {
-    constructor(props) {
-        super(props);
+class Home extends Component {
+    constructor() {
+        super();
+
         this.state = {
-            tabChoice: 'Balance',
-            tabContent: <Balance />,
-            balanceOpacity: 1,
-            sendOpacity: 0.6,
-            receiveOpacity: 0.6,
-            historyOpacity: 0.6,
-            settingsOpacity: 0.6,
             mode: 'STANDARD',
         };
     }
@@ -53,85 +49,47 @@ class Home extends React.Component {
         }
     }
 
-    setTab(tabChoice) {
-        let tabContent;
-        switch (tabChoice) {
-            case 'balance':
-                tabContent = <Balance style={{ flex: 1 }} type={tabChoice} />;
-                break;
+    renderChildren(route) {
+        const childrenProps = {
+            type: route, // TODO: type prop might be unneeded in all the children components;
+            navigator: this.props.navigator,
+        };
+
+        switch (route) {
             case 'send':
-                tabContent = <Send type={tabChoice} />;
-                break;
+                return <Send {...childrenProps} />;
             case 'receive':
-                tabContent = <Receive type={tabChoice} />;
-                break;
+                return <Receive {...childrenProps} />;
             case 'history':
-                tabContent = <History type={tabChoice} />;
-                break;
+                return <History {...childrenProps} />;
             case 'settings':
-                tabContent = <Settings type={tabChoice} />;
-                break;
+                return <Settings {...childrenProps} />;
             default:
-                break;
+                return <Balance {...childrenProps} />;
         }
-        this.setState({
-            tabChoice,
-            tabContent,
-        });
     }
 
     clickBalance() {
-        this.setTab('balance');
-        this.setState({
-            balanceOpacity: 1,
-            sendOpacity: 0.6,
-            receiveOpacity: 0.6,
-            historyOpacity: 0.6,
-            settingsOpacity: 0.6,
-        });
+        this.props.changeHomeScreenRoute('balance');
     }
     clickSend() {
-        this.setTab('send');
-        this.setState({
-            balanceOpacity: 0.6,
-            sendOpacity: 1,
-            receiveOpacity: 0.6,
-            historyOpacity: 0.6,
-            settingsOpacity: 0.6,
-        });
+        this.props.changeHomeScreenRoute('send');
     }
     clickReceive() {
-        this.setTab('receive');
-        this.setState({
-            balanceOpacity: 0.6,
-            sendOpacity: 0.6,
-            receiveOpacity: 1,
-            historyOpacity: 0.6,
-            settingsOpacity: 0.6,
-        });
+        this.props.changeHomeScreenRoute('receive');
     }
     clickHistory() {
-        this.setTab('history');
-        this.setState({
-            balanceOpacity: 0.6,
-            sendOpacity: 0.6,
-            receiveOpacity: 0.6,
-            historyOpacity: 1,
-            settingsOpacity: 0.6,
-        });
+        this.props.changeHomeScreenRoute('history');
     }
     clickSettings() {
-        this.setTab('settings');
-        this.setState({
-            balanceOpacity: 0.6,
-            sendOpacity: 0.6,
-            receiveOpacity: 0.6,
-            historyOpacity: 0.6,
-            settingsOpacity: 1,
-        });
+        this.props.changeHomeScreenRoute('settings');
     }
 
     render() {
+        const { childRoute } = this.props;
+        const children = this.renderChildren(childRoute);
+        const isCurrentRoute = route => route === childRoute;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
@@ -174,46 +132,104 @@ class Home extends React.Component {
                         <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
                             <View style={styles.button}>
                                 <Image
-                                    style={[styles.icon, { opacity: this.state.balanceOpacity }]}
+                                    style={
+                                        isCurrentRoute('balance')
+                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                    }
                                     source={require('../../shared/images/balance.png')}
                                 />
-                                <Text style={[styles.iconTitle, { opacity: this.state.balanceOpacity }]}>BALANCE</Text>
+                                <Text
+                                    style={
+                                        isCurrentRoute('balance')
+                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                    }
+                                >
+                                    BALANCE
+                                </Text>
                             </View>
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback onPress={event => this.clickSend()}>
                             <View style={styles.button}>
                                 <Image
-                                    style={[styles.icon, { opacity: this.state.sendOpacity }]}
+                                    style={
+                                        isCurrentRoute('send')
+                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                    }
                                     source={require('../../shared/images/send.png')}
                                 />
-                                <Text style={[styles.iconTitle, { opacity: this.state.sendOpacity }]}>SEND</Text>
+                                <Text
+                                    style={
+                                        isCurrentRoute('send')
+                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                    }
+                                >
+                                    SEND
+                                </Text>
                             </View>
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
                             <View style={styles.button}>
                                 <Image
-                                    style={[styles.icon, { opacity: this.state.receiveOpacity }]}
+                                    style={
+                                        isCurrentRoute('receive')
+                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                    }
                                     source={require('../../shared/images/receive.png')}
                                 />
-                                <Text style={[styles.iconTitle, { opacity: this.state.receiveOpacity }]}>RECEIVE</Text>
+                                <Text
+                                    style={
+                                        isCurrentRoute('receive')
+                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                    }
+                                >
+                                    RECEIVE
+                                </Text>
                             </View>
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
                             <View style={styles.button}>
                                 <Image
-                                    style={[styles.icon, { opacity: this.state.historyOpacity }]}
+                                    style={
+                                        isCurrentRoute('history')
+                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                    }
                                     source={require('../../shared/images/history.png')}
                                 />
-                                <Text style={[styles.iconTitle, { opacity: this.state.historyOpacity }]}>HISTORY</Text>
+                                <Text
+                                    style={
+                                        isCurrentRoute('history')
+                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                    }
+                                >
+                                    HISTORY
+                                </Text>
                             </View>
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
                             <View style={styles.button}>
                                 <Image
-                                    style={[styles.icon, { opacity: this.state.settingsOpacity }]}
+                                    style={
+                                        isCurrentRoute('settings')
+                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                    }
                                     source={require('../../shared/images/settings.png')}
                                 />
-                                <Text style={[styles.iconTitle, { opacity: this.state.settingsOpacity }]}>
+                                <Text
+                                    style={
+                                        isCurrentRoute('settings')
+                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                    }
+                                >
                                     SETTINGS
                                 </Text>
                             </View>
@@ -295,6 +311,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     iota: state.iota,
     account: state.account,
+    childRoute: state.home.childRoute,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -304,6 +321,19 @@ const mapDispatchToProps = dispatch => ({
     decrementSeedIndex: () => {
         dispatch(decrementSeedIndex());
     },
+    fullyOpaque: {
+        opacity: 1,
+    },
+    partiallyOpaque: {
+        opacity: 0.6,
+    },
+    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
 });
+
+Home.propTypes = {
+    navigator: PropTypes.object.isRequired,
+    childRoute: PropTypes.string.isRequired,
+    changeHomeScreenRoute: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

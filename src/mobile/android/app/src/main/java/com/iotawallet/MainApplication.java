@@ -4,11 +4,7 @@ import android.app.Application;
 
 import com.rnprint.RNPrint.RNPrintPackage;
 import com.facebook.react.ReactApplication;
-<<<<<<< HEAD
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
-=======
-import com.cmcewen.blurview.BlurViewPackage;
->>>>>>> 66ee977af529f947dee10f326249da24bd235a02
 import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.tradle.react.UdpSocketsModule;
 import com.peel.react.TcpSocketsModule;
@@ -44,11 +40,7 @@ public class MainApplication extends NavigationApplication {
             new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
-<<<<<<< HEAD
             new RCTCameraPackage(),
-=======
-            new BlurViewPackage(),
->>>>>>> 66ee977af529f947dee10f326249da24bd235a02
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
             new RNSensitiveInfoPackage(),
