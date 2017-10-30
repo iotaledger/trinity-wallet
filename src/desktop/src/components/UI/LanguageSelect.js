@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import i18next from 'libs/i18next';
-import { setLocale } from 'actions/settings';
+import { setLocale } from '../../../../shared/actions/settings';
 
 class LanguageSelect extends React.PureComponent {
     static propTypes = {
@@ -12,7 +12,7 @@ class LanguageSelect extends React.PureComponent {
 
     static languages = {
         en: 'English',
-        'es-ES': 'Espanol',
+        'es-ES': 'Español',
         de: 'Deutsch',
     };
 
