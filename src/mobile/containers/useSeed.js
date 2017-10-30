@@ -16,9 +16,10 @@ import DropdownAlert from 'react-native-dropdownalert';
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed, getAccountInfo } from '../../shared/actions/iotaActions';
+import { setPassword, setSeed, getAccountInfo, setUsedSeedToLogin } from '../../shared/actions/iotaActions';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import { storeInKeychain } from '../../shared/libs/cryptography';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -50,13 +51,15 @@ class UseSeed extends React.Component {
                     .seed.length} characters long. Please try again.`,
             );
         } else if (this.state.seed.length >= 60) {
-            this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
             this.props.getAccountInfo(this.state.seed);
+            this.props.setUsedSeedToLogin();
+            this.props.setPassword('dummy');
+            Promise.resolve(storeInKeychain(this.props.iota.password, this.state.seed, 'temp')).then(setSeed(''));
             this.setState({ seed: '' });
         }
     }
@@ -287,6 +290,32 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: height / 90,
     },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
@@ -301,6 +330,12 @@ const mapDispatchToProps = dispatch => ({
     },
     getAccountInfo: seed => {
         dispatch(getAccountInfo(seed));
+    },
+    setUsedSeedToLogin: () => {
+        dispatch(setUsedSeedToLogin());
+    },
+    setPassword: password => {
+        dispatch(setPassword(password));
     },
 });
 
