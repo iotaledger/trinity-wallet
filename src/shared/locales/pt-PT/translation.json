@@ -1,159 +1,157 @@
 {
-    "id": "en",
     "notifications": {
-        "invalidServer_title": "Servidor inválido",
-        "invalidServer_text": "O endereço do servidor que introduziu é inválido",
-        "unknownError_title": "Unknown error occured",
-        "unknownError_text": "We could not perform the desired action this time. Please try again."
+        "invalidServer_title": "Servidor incorreto",
+        "invalidServer_text": "O endereço do servidor que introduziu tem incorrecções",
+        "unknownError_title": "Ocorreu um erro desconhecido",
+        "unknownError_text": "Não foi possível executar a ação. Por favor, tente novamente."
     },
     "setLanguage": {
-        "title": "OLÁ",
-        "dropdown_title": "Língua",
+        "dropdown_title": "Idioma",
         "button1": "SEGUINTE"
     },
     "welcome1": {
-        "title": "BEM-VINDO",
         "text1": "Obrigado por descarregar a carteira IOTA.",
-        "text2": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process.",
-        "button1": "NEXT",
-        "button2": "GO BACK"
+        "text2": "Os próximos minutos servirão para configurar a sua carteira.",
+        "reminder": "Pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo.",
+        "button1": "SEGUINTE",
+        "button2": "ANTERIOR"
     },
     "welcome2": {
-        "title": "WALLET SETUP",
-        "text1": "Okay. Lets set up your wallet!",
-        "text2": "Do you already have a seed that you would like to use?",
-        "seed_explanation1": "A seed is like a master password to your account.",
+        "text1": "Ok. Vamos configurar a sua carteira!",
+        "text2": "Já possui uma Seed que gostaria de utilizar?",
+        "seed_explanation1":
+            "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
         "seed_explanation2":
-            "You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
-        "reminder": "Please keep your seed safe",
-        "button1": "YES - I have seed",
-        "button2": "NO - I need a new seed"
+            "Dá acesso aos seus fundos a partir de qualquer carteira, em qualquer dispositivo. Se a perder, não é recuperável, perde tudo o que lá tem",
+        "reminder": "Por favor, mantenha a sua Seed protegida e segura",
+        "button1": "SIM",
+        "button2": "NÃO"
     },
     "lightserver": {
-        "title": "LIGHT SERVER SETUP",
         "text1":
-            "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
-        "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Please choose a server from the list below.",
-        "server_label": "Server",
-        "custom_server_label": "Other server address",
-        "other": "Other",
-        "button1": "NEXT",
-        "button2": "GO BACK"
+            "Um servidor é uma forma de acesso à rede IOTA, gentilmente disponibilizada por membros da comunidade ou por parceiros corporativos.",
+        "text2": "Poderá encontrar mais informações sobre os servidores em: http://iotasupport.com/lightwallet.shtml",
+        "text3": "Por favor, escolha um servidor da lista abaixo.",
+        "server_label": "Servidor",
+        "custom_server_label": "Servidor personalizado",
+        "other": "Outro",
+        "button1": "SEGUINTE",
+        "button2": "ANTERIOR"
     },
     "login": {
-        "title": "Login",
-        "text": "Please enter your password",
-        "placeholder": "PASSWORD",
-        "error_title": "Unrecognised Password",
-        "error_text": "The password was not recognised. Please try again.",
-        "button1": "DONE",
-        "button2": "CHANGE WALLET"
+        "text": "Por favor, insira a sua palavra-passe",
+        "placeholder": "PALAVRA-PASSE",
+        "error_title": "Palavra-passe não reconhecida",
+        "error_text": "A palavra-passe não foi reconhecida. Por favor, tente novamente.",
+        "button1": "CONCLUÍDO",
+        "button2": "USAR A SEED"
     },
     "enterSeed": {
-        "title": "ENTER YOUR SEED",
-        "error_title": "Seed is too short",
-        "error_text": "Seeds must be at least 60 characters long. Please try again.",
-        "invalid_seed_title": "Invalid seed",
+        "error_title": "A Seed é demasiado curta",
+        "error_text": "As Seeds devem ter pelo menos 60 caracteres. Por favor, tente novamente.",
+        "invalid_seed_title": "Seed incorreta",
         "invalid_seed_text":
-            "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
+            "A sua Seed é inválida. A Seed só pode conter letras maiúsculas (A-Z) e o número 9 e, além disso, tem de ter entre 60 a 81 caracteres.",
         "placeholder": "SEED",
         "seed_explanation":
-            "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "reminder": "NEVER SHARE YOUR SEED WITH ANYONE",
-        "scan_code": "Scan QR code",
-        "close": "CLOSE",
-        "button1": "DONE",
-        "button2": "GO BACK"
+            "As Seeds devem ter 81 caracteres e têm de ser constituídas por letras maiúsculas (A-Z) e o número 9. Não podem conter mais de 81 caracteres.",
+        "reminder": "NUNCA PARTILHE A SUA SEED COM NINGUÉM",
+        "scan_code": "Ler código QR",
+        "close": "FECHAR",
+        "button1": "CONCLUÍDO",
+        "button2": "ANTERIOR"
     },
     "newSeedSetup": {
-        "title": "GENERATE A NEW SEED",
-        "button1": "GENERATE NEW SEED",
-        "text1": "Press individual letters to randomise them.",
-        "text2": "Then click NEXT",
-        "button2": "NEXT",
-        "button3": "GO BACK"
+        "title": "GERAR UMA NOVA SEED",
+        "button1": "GERAR NOVA SEED",
+        "text1": "Digite letras individuais para tornar o processo mais aleatório.",
+        "text2": "De seguida, clique em SEGUINTE",
+        "button2": "SEGUINTE",
+        "button3": "ANTERIOR"
     },
     "saveYourSeed": {
-        "title": "SAVE YOUR SEED",
-        "text1": "You must save your seed with at least one of the options listed below.",
-        "text2": "at least one",
-        "optionA": "MANUAL COPY",
-        "optionB": "PRINT PAPER WALLET",
-        "optionC": "COPY TO CLIPBOARD",
-        "button1": "NEXT",
-        "button2": "GO BACK"
+        "text1": "Deve guardar a sua Seed usando, pelo menos, uma das opções listadas em baixo.",
+        "text2": "pelo menos uma",
+        "optionA": "CÓPIA MANUAL",
+        "optionB": "IMPRIMIR CARTEIRA DE PAPEL",
+        "optionC": "COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
+        "button1": "SEGUINTE",
+        "button2": "ANTERIOR"
     },
     "saveYourSeed2": {
-        "title": "SAVE YOUR SEED",
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
+        "optionA": "Cópia Manual",
+        "optionB": " Carteira de Papel",
+        "optionC": "Copiar para a Área de Transferência",
         "explanation":
-            "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
-        "text": "triple check",
-        "button": "DONE"
+            "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e confirme VÁRIAS vezes que anotou corretamente.",
+        "text": "verifique várias vezes",
+        "button": "CONCLUÍDO"
     },
     "saveYourSeed3": {
-        "title": "SAVE YOUR SEED",
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
+        "optionA": "Cópia Manual",
+        "optionB": " Carteira de Papel",
+        "optionC": "Copiar para a Área de Transferência",
         "explanation":
-            "Click the button below to copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
-        "text": "Do not store the seed in plain text.",
-        "button1": "COPY TO CLIPBOARD",
-        "button2": "DONE"
+            "Pressione o botão em baixo para copiar a sua Seed para um gestor de palavras-passe. Esta cópia ficará na sua área de transferência durante 60 segundos.",
+        "text": "Não grave a sua Seed num arquivo de texto não cifrado.",
+        "button1": "COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
+        "button2": "CONCLUÍDO"
     },
     "saveYourSeed4": {
-        "title": "SAVE YOUR SEED",
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
-        "explanation": "Click the button below to print a paper copy of your seed.",
-        "text": "Store it safely",
-        "check_button": "IOTA logo",
-        "button1": "PRINT PAPER WALLET",
-        "button2": "DONE"
-    },
-    "securityIntro": {
-        "title": "SET UP LOCAL PASSPHRASE",
-        "text1":
-            "To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
-        "explanation1": "The local passphrase can only be used to unlock the account on this device.",
-        "explanation2": "The IOTA seed can still be used to access your funds on any wallet on any device.",
-        "button1": "YES - set up a passphrase",
-        "button2": "NO - login with my seed"
+        "optionA": "Cópia Manual",
+        "optionB": " Carteira de Papel",
+        "optionC": "Copiar para a Área de Transferência",
+        "explanation": "Prima o botão em baixo para imprimir uma cópia em papel da sua Seed.",
+        "text1": "Mantenha-a num local seguro",
+        "text2": "Nunca partilhe a sua Seed com ninguém.",
+        "check_button": "Logótipo IOTA",
+        "button1": "IMPRIMIR A CARTEIRA DE PAPEL",
+        "button2": "CONCLUÍDO"
     },
     "setPassword": {
-        "title": "PASSWORD SETUP",
-        "text": "Okay, now we need to set up a password.",
+        "title": "CONFIGURAR PALAVRA-PASSE",
+        "text": "Agora precisamos de criar uma palavra-passe.",
         "explanation":
-            "An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
-        "reminder": "Ensure you use a strong password.",
-        "placeholder1": "'PASSWORD'",
-        "placeholder2": "RETYPE PASSWORD",
-        "error1_title": "Password is too short",
-        "error1_text": "Your password must be at least 8 characters. Please try again.",
-        "error2_title": "Passwords do not match",
-        "error2_text": "The passwords you have entered do not match. Please try again.",
-        "button1": "DONE",
-        "button2": "GO BACK"
+            "No futuro, irá usar esta palavra-passe para aceder à sua carteira. Será armazenada uma cópia cifrada da sua Seed no seu dispositivo.",
+        "reminder": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
+        "placeholder1": "`PALAVRA-PASSE´",
+        "placeholder2": "DIGITE DE NOVO A PALAVRA-PASSE",
+        "error1_title": "A palavra-passe é demasiado curta",
+        "error1_text": "A sua palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
+        "error2_title": "As palavras-passe não coincidem",
+        "error2_text": "As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
+        "button1": "CONCLUÍDO",
+        "button2": "ANTERIOR"
+    },
+    "onboardingComplete": {
+        "text":
+            "Agora a sua carteira está configurada e pronta para ser usada. Se precisar de efetuar alguma alteração no futuro, aceda ao menu Ferramentas.",
+        "button": "SEGUINTE"
     },
     "home": {
-        "tab1": "BALANCE",
-        "tab2": "SEND",
-        "tab3": "RECEIVE",
-        "tab4": "HISTORY",
-        "tab5": "TOOLS",
+        "tab1": "SALDO",
+        "tab2": "ENVIAR",
+        "tab3": "RECEBER",
+        "tab4": "HISTÓRICO",
+        "tab5": "FERRAMENTAS",
         "mcap": "MCAP",
-        "change": "Mudar",
+        "change": "Variação",
         "volume": "Volume",
-        "address": "ENDEREÇO",
-        "amount": "QUANTIDADE",
-        "botton1": "Enviar IOTA",
-        "botton2": "GERAR NOVO ENDEREÇO",
-        "botton3": "Fechar sessão"
+        "address": "Endereço",
+        "amount": "Quantia",
+        "button1": "ENVIAR",
+        "button2": "GERAR NOVO ENDEREÇO",
+        "button3": "TERMINAR SESSÃO",
+        "changeMode": "Alterar o modo",
+        "minimal": "Simples",
+        "standard": "Padrão",
+        "expert": "Avançado",
+        "changeTheme": "Mudar o tema",
+        "changeLanguage": "Mudar o idioma",
+        "addNewSeed": "Adicionar nova Seed",
+        "setup2fa": "Configuração de 2FA",
+        "changePassword": "Alterar a palavra-passe",
+        "advancedSettings": "Configurações avançadas",
+        "logout": "Terminar Sessão"
     }
 }

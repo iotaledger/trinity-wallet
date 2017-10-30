@@ -1,92 +1,79 @@
 {
-    "id": "en",
     "notifications": {
-        "invalidServer_title": "Invalid server",
-        "invalidServer_text": "The server address you entered is not valid",
-        "unknownError_title": "Unknown error occured",
-        "unknownError_text": "We could not perform the desired action this time. Please try again."
+        "invalidServer_title": "알 수 없는 서버입니다.",
+        "invalidServer_text": "입력한 서버 주소는 유효하지 않습니다.",
+        "unknownError_title": "알 수 없는 오류",
+        "unknownError_text": "현재 이 작업을 수행할 수 없습니다. 다시 시도하십시오."
     },
     "setLanguage": {
-        "title": "HELLO",
-        "dropdown_title": "Language",
-        "button1": "NEXT"
+        "dropdown_title": "언어",
+        "button1": "다음"
     },
     "welcome1": {
-        "title": "WELCOME",
-        "text1": "Thank you for downloading the IOTA wallet.",
-        "text2": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process.",
-        "button1": "NEXT",
-        "button2": "GO BACK"
+        "text1": "IOTA 지갑을 다운로드 해주셔서 감사합니다.",
+        "text2": "귀하의 지갑을 만드는 데 몇 분 소모될 예정입니다.",
+        "reminder": "몇 가지 단계를 건너 뛰길 원하시더라도, 모든 프로세스를 완벽히 따르길 권장합니다.",
+        "button1": "다음",
+        "button2": "뒤로"
     },
     "welcome2": {
-        "title": "WALLET SETUP",
-        "text1": "Okay. Lets set up your wallet!",
-        "text2": "Do you already have a seed that you would like to use?",
-        "seed_explanation1": "A seed is like a master password to your account.",
-        "seed_explanation2":
-            "You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
-        "reminder": "Please keep your seed safe",
-        "button1": "YES - I have seed",
-        "button2": "NO - I need a new seed"
+        "text1": "좋습니다. 이제 귀하의 지갑을 만듭시다!",
+        "text2": "이미 당신이 사용하고 싶은 씨드가 있습니까?",
+        "seed_explanation1": "81자로 이루어진 IOTA 씨드는 귀하의 계정에 아이디 및 비밀번호와 같습니다.",
+        "seed_explanation2": "어떠한 지갑에서든 당신의 펀드에 접근하는 데 사용될 수 있습니다. 하지만 만약 당신이 씨드를 잃는다면, IOTA 또한 잃습니다.",
+        "reminder": "귀하의 씨드를 반드시 안전히 보관하십시오.",
+        "button1": "예",
+        "button2": "아니오"
     },
     "lightserver": {
-        "title": "LIGHT SERVER SETUP",
-        "text1":
-            "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
-        "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Please choose a server from the list below.",
-        "server_label": "Server",
-        "custom_server_label": "Other server address",
-        "other": "Other",
-        "button1": "NEXT",
-        "button2": "GO BACK"
+        "text1": "라이트 서버는 IOTA 커뮤니티 멤버나 기업 파트너가 제공한 IOTA 네트워크의 게이트웨이입니다. ",
+        "text2": "서버에 대한 자세한 정보는 여기서 참조하십시오: http://iotasupport.com/lightwallet.shtml",
+        "text3": "아래 목록에서 서버를 선택하십시오.",
+        "server_label": "서버",
+        "custom_server_label": "다른 서버 주소",
+        "other": "기타",
+        "button1": "다음",
+        "button2": "뒤로"
     },
     "login": {
-        "title": "Login",
-        "text": "Please enter your password",
-        "placeholder": "PASSWORD",
-        "error_title": "Unrecognised Password",
-        "error_text": "The password was not recognised. Please try again.",
-        "button1": "DONE",
-        "button2": "CHANGE WALLET"
+        "text": "비밀번호를 입력 해주십시오",
+        "placeholder": "비밀번호",
+        "error_title": "잘못된 비밀번호",
+        "error_text": "비밀번호가 옳지 않습니다. 재시도 해주십시오.",
+        "button1": "완료",
+        "button2": "씨드 사용하기"
     },
     "enterSeed": {
-        "title": "ENTER YOUR SEED",
-        "error_title": "Seed is too short",
-        "error_text": "Seeds must be at least 60 characters long. Please try again.",
-        "invalid_seed_title": "Invalid seed",
-        "invalid_seed_text":
-            "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
-        "placeholder": "SEED",
-        "seed_explanation":
-            "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "reminder": "NEVER SHARE YOUR SEED WITH ANYONE",
-        "scan_code": "Scan QR code",
-        "close": "CLOSE",
-        "button1": "DONE",
-        "button2": "GO BACK"
+        "error_title": "씨드가 너무 짧습니다.",
+        "error_text": "씨드는 최소 60자여야 합니다. 다시 시도하십시오.",
+        "invalid_seed_title": "잘못된 씨드",
+        "invalid_seed_text": "씨드가 옳지 않습니다. 씨드는 대문자(A부터 Z) 와 숫자 9를 포함할 수 있고 반드시 60-81자 사이여야 합니다.",
+        "placeholder": "씨드",
+        "seed_explanation": "씨드는 81자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. 81자 이상의 씨드는 사용할 수 없습니다.",
+        "reminder": "다른 이와 절대로 씨드를 공유하지 마십시오.",
+        "scan_code": "QR 코드 스캔",
+        "close": "닫기",
+        "button1": "완료",
+        "button2": "뒤로"
     },
     "newSeedSetup": {
-        "title": "GENERATE A NEW SEED",
-        "button1": "GENERATE NEW SEED",
-        "text1": "Press individual letters to randomise them.",
-        "text2": "Then click NEXT",
-        "button2": "NEXT",
-        "button3": "GO BACK"
+        "title": "새 씨드 생성하기",
+        "button1": "새 씨드 생성하기",
+        "text1": "임의로 순서를 정하기 위해 개별 글자를 눌러주세요.",
+        "text2": "그리고 다음을 클릭해주세요.",
+        "button2": "다음",
+        "button3": "뒤로"
     },
     "saveYourSeed": {
-        "title": "SAVE YOUR SEED",
-        "text1": "You must save your seed with at least one of the options listed below.",
+        "text1": "반드시 아래 나열된 옵션 중 하나의 방법으로 씨드를 저장해야 합니다.",
         "text2": "at least one",
         "optionA": "MANUAL COPY",
         "optionB": "PRINT PAPER WALLET",
         "optionC": "COPY TO CLIPBOARD",
         "button1": "NEXT",
-        "button2": "GO BACK"
+        "button2": "BACK"
     },
     "saveYourSeed2": {
-        "title": "SAVE YOUR SEED",
         "optionA": "Manual Copy",
         "optionB": " Paper Wallet",
         "optionC": "Copy To Clipboard",
@@ -96,42 +83,32 @@
         "button": "DONE"
     },
     "saveYourSeed3": {
-        "title": "SAVE YOUR SEED",
         "optionA": "Manual Copy",
         "optionB": " Paper Wallet",
         "optionC": "Copy To Clipboard",
         "explanation":
-            "Click the button below to copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+            "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
         "text": "Do not store the seed in plain text.",
         "button1": "COPY TO CLIPBOARD",
         "button2": "DONE"
     },
     "saveYourSeed4": {
-        "title": "SAVE YOUR SEED",
         "optionA": "Manual Copy",
         "optionB": " Paper Wallet",
         "optionC": "Copy To Clipboard",
         "explanation": "Click the button below to print a paper copy of your seed.",
-        "text": "Store it safely",
+        "text1": "Store it safely",
+        "text2": "Never share your seed with anyone.",
         "check_button": "IOTA logo",
         "button1": "PRINT PAPER WALLET",
         "button2": "DONE"
     },
-    "securityIntro": {
-        "title": "SET UP LOCAL PASSPHRASE",
-        "text1":
-            "To make it easier to log into this wallet, you can now set up a shorter passphrase. This local passphrase can only be used on this device.",
-        "explanation1": "The local passphrase can only be used to unlock the account on this device.",
-        "explanation2": "The IOTA seed can still be used to access your funds on any wallet on any device.",
-        "button1": "YES - set up a passphrase",
-        "button2": "NO - login with my seed"
-    },
     "setPassword": {
         "title": "PASSWORD SETUP",
-        "text": "Okay, now we need to set up a password.",
+        "text": "Now we need to set up a password.",
         "explanation":
-            "An encrypted copy of your seed will be stored in your keychain. You will then only need to type in your password to access your wallet.",
-        "reminder": "Ensure you use a strong password.",
+            "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+        "reminder": "Ensure you use a strong password of at least 12 characters.",
         "placeholder1": "'PASSWORD'",
         "placeholder2": "RETYPE PASSWORD",
         "error1_title": "Password is too short",
@@ -139,7 +116,12 @@
         "error2_title": "Passwords do not match",
         "error2_text": "The passwords you have entered do not match. Please try again.",
         "button1": "DONE",
-        "button2": "GO BACK"
+        "button2": "BACK"
+    },
+    "onboardingComplete": {
+        "text":
+            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+        "button": "NEXT"
     },
     "home": {
         "tab1": "BALANCE",
@@ -150,10 +132,21 @@
         "mcap": "MCAP",
         "change": "Change",
         "volume": "Volume",
-        "address": "ADDRESS",
-        "amount": "AMOUNT",
-        "botton1": "send IOTA",
-        "botton2": "GENERATE NEW ADDRESS",
-        "botton3": "LOG OUT"
+        "address": "Address",
+        "amount": "금액",
+        "button1": "보내기",
+        "button2": "새 씨드 생성하기",
+        "button3": "로그아웃",
+        "changeMode": "모드 변경",
+        "minimal": "최소",
+        "standard": "표준",
+        "expert": "엑스퍼트",
+        "changeTheme": "테마 변경",
+        "changeLanguage": "언어 변경",
+        "addNewSeed": "새 씨드 추가하기",
+        "setup2fa": "2FA 설정",
+        "changePassword": "비밀번호 변경하기",
+        "advancedSettings": "고급 설정",
+        "logout": "로그아웃"
     }
 }
