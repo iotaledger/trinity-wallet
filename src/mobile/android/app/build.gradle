@@ -135,6 +135,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-camera')
     compile project(':react-native-html-to-pdf')
     compile project(':react-native-print')
     compile project(':react-native-udp')
@@ -143,13 +144,13 @@ dependencies {
     compile project(':react-native-sensitive-info')
     compile project(':react-native-randombytes')
     compile project(':react-native-navigation')
-	compile fileTree(dir: "libs", include: ["*.jar"])
-	compile "com.android.support:appcompat-v7:23.0.1"
-	compile "com.facebook.react:react-native:+"
-	compile project(':react-native-navigation')
-	compile project(':react-native-svg')
-	compile project(':react-native-sensitive-info')
-	compile project(':react-native-camera')
+  	compile fileTree(dir: "libs", include: ["*.jar"])
+  	compile "com.android.support:appcompat-v7:23.0.1"
+  	compile "com.facebook.react:react-native:+"
+  	compile project(':react-native-navigation')
+  	compile project(':react-native-svg')
+  	compile project(':react-native-sensitive-info')
+  	compile project(':react-native-camera')
     compile project(':react-native-fs')
 
 }

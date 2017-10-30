@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
-import { formatTime, round, formatValue, formatUnit } from '../../shared/libs/util';
+import { formatTime, round, formatValue, formatUnit, convertUnixTimeToJSDate } from '../../shared/libs/util';
 
 const { height, width } = Dimensions.get('window');
 
@@ -32,7 +32,7 @@ class SimpleTransactionRow extends React.Component {
                             fontSize: width / 29.6,
                         }}
                     >
-                        {formatTime(this.props.rowData[0].timestamp)}
+                        {formatTime(convertUnixTimeToJSDate(this.props.rowData[0].timestamp))}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>

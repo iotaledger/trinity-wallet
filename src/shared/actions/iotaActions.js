@@ -12,6 +12,18 @@ export function setAddress(payload) {
     };
 }
 
+export function incrementSeedIndex() {
+    return {
+        type: 'INCREMENT_SEED_INDEX',
+    };
+}
+
+export function decrementSeedIndex() {
+    return {
+        type: 'DECREMENT_SEED_INDEX',
+    };
+}
+
 export function generateNewAddressRequest() {
     return {
         type: 'GENERATE_NEW_ADDRESS_REQUEST',
@@ -35,6 +47,13 @@ export function setReady() {
     return {
         type: 'SET_READY',
         payload: true,
+    };
+}
+
+export function setSeedName(name) {
+    return {
+        type: 'SET_SEED_NAME',
+        payload: name,
     };
 }
 
