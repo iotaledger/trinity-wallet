@@ -31,21 +31,6 @@ class Settings extends React.Component {
         switch (selectedSetting) {
             case 'addNewSeed':
                 modalContent = <AddNewSeedModal style={{ flex: 1 }} hideModal={() => this._hideModal()} />;
-                break;
-            case 'send':
-                modalContent = <Send type={tabChoice} />;
-                break;
-            case 'receive':
-                modalContent = <Receive type={tabChoice} />;
-                break;
-            case 'history':
-                modalContent = <History type={tabChoice} />;
-                break;
-            case 'settings':
-                modalContent = <Settings type={tabChoice} />;
-                break;
-            default:
-                break;
         }
         this.setState({
             selectedSetting,
