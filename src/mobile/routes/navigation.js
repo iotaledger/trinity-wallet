@@ -13,6 +13,10 @@ import WriteSeedDown from '../containers/writeSeedDown';
 import CopySeedToClipboard from '../containers/copySeedToClipboard';
 import PaperWallet from '../containers/paperWallet';
 import Login from '../containers/login';
+import OnboardingComplete from '../containers/onboardingComplete';
+import SetSeedName from '../containers/setSeedName';
+import UseSeed from '../containers/useSeed';
+import SeedReentry from '../containers/seedReentry';
 
 export function registerScreens(store, Provider) {
     Navigation.registerComponent('initialLoading', () => InitialLoading, store, Provider);
@@ -29,4 +33,8 @@ export function registerScreens(store, Provider) {
     Navigation.registerComponent('copySeedToClipboard', () => CopySeedToClipboard, store, Provider);
     Navigation.registerComponent('languageSetup', () => LanguageSetup, store, Provider);
     Navigation.registerComponent('welcome', () => Welcome, store, Provider);
+    Navigation.registerComponent('onboardingComplete', () => OnboardingComplete, store, Provider);
+    Navigation.registerComponent('useSeed', () => UseSeed, store, Provider);
+    Navigation.registerComponent('setSeedName', () => SetSeedName, store, Provider);
+    Navigation.registerComponent('seedReentry', () => SeedReentry, store, Provider);
 }

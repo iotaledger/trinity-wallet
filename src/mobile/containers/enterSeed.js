@@ -52,8 +52,8 @@ class EnterSeed extends React.Component {
         } else if (this.state.seed.length >= 60) {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
-                screen: 'setPassword',
-                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                screen: 'setSeedName',
+                navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
         }
@@ -80,7 +80,7 @@ class EnterSeed extends React.Component {
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <QRScanner onQRRead={() => this.props.onQRRead(data)} hideModal={() => this._hideModal()} />
+        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
     );
 
     render() {
@@ -171,9 +171,9 @@ class EnterSeed extends React.Component {
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={'#132d38'}
-                    backdropOpacity={0.6}
-                    style={{ alignItems: 'center' }}
+                    backdropColor={'#102832'}
+                    backdropOpacity={1}
+                    style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalVisible}
                 >
                     {this._renderModalContent()}

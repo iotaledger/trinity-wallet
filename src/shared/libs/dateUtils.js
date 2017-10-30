@@ -11,8 +11,9 @@ export const formatDayAs = {
 
 export const isToday = day => moment().isSame(moment(day), 'day');
 
+export const convertUnixTimeToDateObject = time => moment.unix(time);
+
 export const isYesterday = day => {
     const yesterday = moment().subtract(1, 'day');
-
     return moment(day).isSame(yesterday, 'day');
 };
