@@ -15,3 +15,13 @@ export function getFromKeychain(key, fn) {
         fn(value);
     });
 }
+
+export function deleteFromKeyChain(
+    key,
+    options = {
+        sharedPreferencesName: 'mySharedPrefs',
+        keychainService: 'myKeychain',
+    },
+) {
+    return SInfo.deleteItem(key, options);
+}
