@@ -43,7 +43,7 @@ class LanguageSelect extends React.PureComponent {
                 <option value="it">Italiano - Italian</option>
                 <option value="ja">日本語 - Japanese</option>
                 <option value="ko">한국어 - Korean</option>
-                <option value="lv">Latvian</option>
+                <option value="lv">Latviešu - Latvian</option>
                 <option value="nl">Nederlands - Dutch</option>
                 <option value="no">Norsk - Norwegian</option>
                 <option value="pl">Polski - Polish</option>
@@ -51,10 +51,10 @@ class LanguageSelect extends React.PureComponent {
                 <option value="pt_PT">Português (Portugal) - Portuguese (Portugal)</option>
                 <option value="ro">Română - Romanian</option>
                 <option value="ru">Pусский - Russian</option>
-                <option value="sl">Slovenian</option>
+                <option value="sl">Slovenščina - Slovenian</option>
                 <option value="sv_SE">Svenska - Swedish</option>
                 <option value="tr">Türkçe - Turkish</option>
-                <option value="ur">Urdu</option>
+                <option value="ur">اردو - Urdu</option>
                 <option value="zh_CN">中文 (简体) - Chinese (Simplified)</option>
                 <option value="zh_TW">中文 (繁體) - Chinese (Traditional)</option>
             </select>
