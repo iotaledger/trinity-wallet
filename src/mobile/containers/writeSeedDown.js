@@ -13,8 +13,6 @@ class WriteSeedDown extends React.Component {
         this.props.navigator.pop({
             animated: false,
         });
-        console.log('width: ' + width);
-        console.log('height: ' + height);
     }
 
     render() {

@@ -12,6 +12,13 @@ export function setAddress(payload) {
     };
 }
 
+export function setUsedSeedToLogin() {
+    return {
+        type: 'SET_USED_SEED_TO_LOGIN',
+        payload: true,
+    };
+}
+
 export function incrementSeedIndex() {
     return {
         type: 'INCREMENT_SEED_INDEX',
