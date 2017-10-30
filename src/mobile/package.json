@@ -45,6 +45,7 @@
     "react-native-os": "^1.0.1",
     "react-native-print": "^0.3.0",
     "react-native-qrcode": "^0.2.6",
+    "react-native-qrcode-svg": "^5.0.3",
     "react-native-qrcode-scanner": "^0.0.22",
     "react-native-randombytes": "^2.3.0",
     "react-native-sensitive-info": "^5.1.0",
