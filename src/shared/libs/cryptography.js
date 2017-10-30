@@ -50,3 +50,13 @@ export function getSeedName(value, index) {
     value = JSON.parse(value);
     return value[index].name;
 }
+
+export function deleteFromKeyChain(
+    key,
+    options = {
+        sharedPreferencesName: 'mySharedPrefs',
+        keychainService: 'myKeychain',
+    },
+) {
+    return SInfo.deleteItem(key, options);
+}

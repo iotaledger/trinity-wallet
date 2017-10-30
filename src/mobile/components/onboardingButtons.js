@@ -1,20 +1,22 @@
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
-class OnboardingButtons extends React.Component {
+export default class OnboardingButtons extends Component {
     render() {
+        const { style } = this.props;
         return (
             <View style={styles.buttonsContainer}>
                 <TouchableOpacity onPress={event => this.props.onLeftButtonPress()}>
-                    <View style={styles.leftButton}>
-                        <Text style={styles.leftText}>{this.props.leftText}</Text>
+                    <View style={[styles.leftButton, get(style, 'leftButton')]}>
+                        <Text style={[styles.leftText, get(style, 'leftText')]}>{this.props.leftText}</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={event => this.props.onRightButtonPress()}>
-                    <View style={styles.rightButton}>
-                        <Text style={styles.rightText}>{this.props.rightText}</Text>
+                    <View style={[styles.rightButton, get(style, 'rightButton')]}>
+                        <Text style={[styles.rightText, get(style, 'rightText')]}>{this.props.rightText}</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -64,5 +66,3 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
 });
-
-module.exports = OnboardingButtons;
