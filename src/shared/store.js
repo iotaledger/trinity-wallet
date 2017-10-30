@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { autoRehydrate } from 'redux-persist';
+import { autoRehydrate, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import marketData from './reducers/marketDataReducer';
 import iota from './reducers/iotaReducer';
@@ -22,6 +22,7 @@ const reducers = combineReducers({
 });
 
 const rootReducer = (state, action) => {
+    console.log(state);
     /* eslint-disable no-param-reassign */
     // FIXME: For some reason cannot resolve path to shared/actions/app/ActionTypes
     // Should rather be using LOGOUT type imported from actions
@@ -41,5 +42,7 @@ const store = createStore(
         typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
     ),
 );
+
+export const persistState = (state, config) => persistStore(state, config);
 
 export default store;
