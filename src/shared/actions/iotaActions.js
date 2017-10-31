@@ -320,7 +320,6 @@ export function randomiseSeed(randomBytesFn) {
     return dispatch => {
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
         let seed = '';
-
         // uncomment for synchronous API, uses SJCL
         // var rand = randomBytes(1)
 
@@ -328,13 +327,12 @@ export function randomiseSeed(randomBytesFn) {
         randomBytesFn(100, (error, bytes) => {
             if (!error) {
                 Object.keys(bytes).forEach(key => {
-                    if (bytes[key] < 243 && seed.length < 81) {
+                    if (bytes[key] < 243) {
                         const randomNumber = bytes[key] % 27;
                         const randomLetter = charset.charAt(randomNumber);
                         seed += randomLetter;
                     }
                 });
-
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);

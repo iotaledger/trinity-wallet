@@ -17,7 +17,7 @@ export default class InitialLoading extends Component {
         const state = store.getState();
         if (state.account.firstUse) {
             this.props.navigator.push({
-                screen: 'login',
+                screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
