@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -54,6 +55,7 @@ class Login extends React.Component {
         const _this = this;
         function login(value) {
             _this.props.getAccountInfo(value);
+            _this.props.changeHomeScreenRoute('balance');
             _this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: {
@@ -259,6 +261,9 @@ const mapDispatchToProps = dispatch => ({
     },
     getAccountInfo: seed => {
         dispatch(getAccountInfo(seed));
+    },
+    changeHomeScreenRoute: tab => {
+        dispatch(changeHomeScreenRoute(tab));
     },
 });
 

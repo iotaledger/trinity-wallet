@@ -12,7 +12,7 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeed, setFirstUse } from '../../shared/actions/accountActions';
+import { increaseSeedCount, addSeed, setOnboardingComplete } from '../../shared/actions/accountActions';
 import { setSeed } from '../../shared/actions/iotaActions';
 import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
@@ -38,7 +38,7 @@ class SetPassword extends React.Component {
             Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed, this.props.iota.seedName)).then(
                 setSeed(''),
             );
-            this.props.setFirstUse(false);
+            this.props.setOnboardingComplete(true);
             this.props.navigator.push({
                 screen: 'onboardingComplete',
                 navigatorStyle: {
@@ -278,8 +278,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setFirstUse: boolean => {
-        dispatch(setFirstUse(boolean));
+    setOnboardingComplete: boolean => {
+        dispatch(setOnboardingComplete(boolean));
     },
     storeInKeychain: password => {
         dispatch(storeInKeychain(password));
