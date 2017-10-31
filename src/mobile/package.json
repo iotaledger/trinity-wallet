@@ -36,6 +36,7 @@
     "react-native-clipboard": "^0.0.5",
     "react-native-crypto": "^2.0.2",
     "react-native-dropdownalert": "git+https://git@github.com/rajivshah3/react-native-dropdownalert",
+    "react-native-fs": "^2.8.1",
     "react-native-html-to-pdf": "^0.4.0",
     "react-native-http": "github:tradle/react-native-http#834492d",
     "react-native-level-fs": "^3.0.0",
