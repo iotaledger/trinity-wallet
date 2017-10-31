@@ -327,7 +327,7 @@ export function randomiseSeed(randomBytesFn) {
         randomBytesFn(100, (error, bytes) => {
             if (!error) {
                 Object.keys(bytes).forEach(key => {
-                    if (bytes[key] < 243) {
+                    if (bytes[key] < 243 && seed.length < 81) {
                         const randomNumber = bytes[key] % 27;
                         const randomLetter = charset.charAt(randomNumber);
                         seed += randomLetter;
