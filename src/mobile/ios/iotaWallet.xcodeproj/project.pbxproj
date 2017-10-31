@@ -55,14 +55,8 @@
 		CB87E5CA1F5506D0009DB5ED /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB87E5C51F5506D0009DB5ED /* Lato-Regular.ttf */; };
 		CBDB98A11F8EAE1500035DC3 /* libRNPrint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDB989D1F8EAE0200035DC3 /* libRNPrint.a */; };
 		CBDB98A21F8EAE1C00035DC3 /* libRNHTMLtoPDF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDB988E1F8EADC300035DC3 /* libRNHTMLtoPDF.a */; };
-<<<<<<< HEAD
 		D7142B2117C64C45A8B6DE2F /* libTcpSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1667E8D24FE4CFAA1B4DDFE /* libTcpSockets.a */; };
-=======
-		1D701418C7A44ECB8830F44F /* libRNClipboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AFC13E342AA484C8D576C9C /* libRNClipboard.a */; };
-		36C633BBFD4945B3B9CBA39F /* libRNOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 501C862F7B72413B9E48CB7C /* libRNOS.a */; };
-		D7142B2117C64C45A8B6DE2F /* libTcpSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1667E8D24FE4CFAA1B4DDFE /* libTcpSockets.a */; };
-		B475351CDBF24D858D9890E9 /* libUdpSockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2709C96398D4B2FB6B50E53 /* libUdpSockets.a */; };
->>>>>>> cc4159ea76b7ef51c3315dd4cf27e0c254c9f5c5
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
