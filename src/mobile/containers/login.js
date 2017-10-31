@@ -29,10 +29,10 @@ class Login extends React.Component {
             password: '',
         };
 
-        this.onDonePress = this.onDonePress.bind(this);
+        this.onLoginPress = this.onLoginPress.bind(this);
     }
 
-    onDonePress() {
+    onLoginPress() {
         if (!this.state.password) {
             this.dropdown.alertWithType(
                 'error',
@@ -119,9 +119,9 @@ class Login extends React.Component {
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onUseSeedPress()}
-                                onRightButtonPress={() => this.onDonePress()}
+                                onRightButtonPress={() => this.onLoginPress()}
                                 leftText={'USE SEED'}
-                                rightText={'DONE'}
+                                rightText={'LOG IN'}
                             />
                         </View>
                     </View>
