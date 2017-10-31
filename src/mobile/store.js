@@ -1,10 +1,9 @@
-import { persistStore } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
-import store from '../shared/store';
+import store, { persistState } from '../shared/store';
 
-persistStore(store, {
+persistState(store, {
     storage: AsyncStorage,
-    blacklist: ['iota']
+    blacklist: ['iota'],
 });
 
 export default store;
