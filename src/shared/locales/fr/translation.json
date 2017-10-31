@@ -42,13 +42,13 @@
         "text": "Veuillez renseigner votre mot de passe",
         "placeholder": "MOT DE PASSE",
         "error_title": "Mot de passe incorrect",
-        "error_text": "Le mot de passe est incorrect. Merci d'essayer à nouveau.",
+        "error_text": "Le mot de passe est incorrect. Veuillez réessayer.",
         "button1": "OK",
         "button2": "UTILISER LA SEED"
     },
     "enterSeed": {
         "error_title": "La Seed est trop courte",
-        "error_text": "La Seed doit comporter au moins 60 caractères. Merci d'essayer à nouveau.",
+        "error_text": "La Seed doit comporter au moins 60 caractères. Veuillez réessayer.",
         "invalid_seed_title": "Seed invalide",
         "invalid_seed_text":
             "Votre Seed n'est pas valide. Une Seed ne peut contenir que des lettres en majuscules (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères.",
@@ -64,7 +64,7 @@
     "newSeedSetup": {
         "title": "GÉNÉRER UNE NOUVELLE SEED",
         "button1": "GÉNÉRER UNE NOUVELLE SEED",
-        "text1": "Press individual letters to randomise them.",
+        "text1": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées.",
         "text2": "Puis cliquez sur SUIVANT",
         "button2": "SUIVANT",
         "button3": "RETOUR"
@@ -74,36 +74,36 @@
         "text2": "au moins une",
         "optionA": "COPIE MANUELLE",
         "optionB": "IMPRIMER LE PAPER WALLET",
-        "optionC": "COPIER VERS LE PRESSE-PAPIERS",
+        "optionC": "COPIER DANS LE PRESSE-PAPIERS",
         "button1": "SUIVANT",
         "button2": "RETOUR"
     },
     "saveYourSeed2": {
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
-        "optionC": "Copier vers le Presse-papiers",
+        "optionC": "Copier dans le Presse-papiers",
         "explanation":
-            "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+            "Votre Seed se lit de gauche à droit et comporte 81 caractères. Notez-la, ainsi que la somme de contrôle, et vérifiez-les à plusieurs reprises.",
         "text": "vérifiez à plusieurs reprises",
         "button": "OK"
     },
     "saveYourSeed3": {
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
-        "optionC": "Copier vers le Presse-papiers",
+        "optionC": "Copier dans le Presse-papiers",
         "explanation":
             "Cliquez sur le bouton ci-dessous et copiez votre Seed vers un gestionnaire de mot de passe. Elle restera dans votre presse-papiers 60 secondes.",
-        "text": "Ne stockez pas votre seed en texte simple.",
-        "button1": "COPIER VERS LE PRESSE-PAPIERS",
+        "text": "Ne stockez pas votre seed en texte en clair.",
+        "button1": "COPIER DANS LE PRESSE-PAPIERS",
         "button2": "OK"
     },
     "saveYourSeed4": {
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
-        "optionC": "Copier vers le Presse-papiers",
+        "optionC": "Copier dans le Presse-papiers",
         "explanation": "Cliquez sur le bouton ci-dessous pour imprimer une copie papier de votre seed.",
         "text1": "Conservez-la en lieu sûr",
-        "text2": "Ne jamais partager votre Seed avec personne.",
+        "text2": "Ne communiquez votre Seed à personne.",
         "check_button": "logo IOTA",
         "button1": "IMPRIMER LE PAPER WALLET",
         "button2": "OK"
@@ -112,14 +112,14 @@
         "title": "GESTION DU MOT DE PASSE",
         "text": "Maintenant nous devons paramétrer un mot de passe.",
         "explanation":
-            "Vous utliserez ce mot de passe pour accéder à votre wallet à l'avenir. Une copie encryptée de votre seed sera stockée sur votre appareil.",
+            "Vous utiliserez ce mot de passe pour accéder à votre wallet à l'avenir. Une copie chiffrée de votre seed sera stockée sur votre appareil.",
         "reminder": "Soyez certain d'utiliser un mot de passe fort d'au moins 12 caractères.",
         "placeholder1": "'MOT DE PASSE'",
         "placeholder2": "RETAPER LE MOT DE PASSE",
         "error1_title": "Le mot de passe est trop court",
-        "error1_text": "Votre mot de passe doit contenir au moins 12 caractères. Merci d'essayer à nouveau.",
+        "error1_text": "Votre mot de passe doit contenir au moins 12 caractères. Veuillez réessayer.",
         "error2_title": "Les mots de passe ne correspondent pas",
-        "error2_text": "Les mots de passe que vous avez saisis ne correspondent pas. Merci d'essayer à nouveau.",
+        "error2_text": "Les mots de passe que vous avez saisis ne correspondent pas. Veuillez réessayer.",
         "button1": "OK",
         "button2": "RETOUR"
     },
