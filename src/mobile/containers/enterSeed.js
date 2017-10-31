@@ -36,7 +36,7 @@ class EnterSeed extends React.Component {
     }
 
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/)) {
+        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
@@ -292,6 +292,32 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         paddingBottom: height / 90,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 
