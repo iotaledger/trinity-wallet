@@ -8,7 +8,6 @@ import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
 import { logoutFromWallet } from '../../shared/actions/app';
-import { clearIOTA } from '../../shared/actions/iotaActions';
 
 const { height, width } = Dimensions.get('window');
 
