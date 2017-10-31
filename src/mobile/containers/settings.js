@@ -8,6 +8,7 @@ import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
 import { logoutFromWallet } from '../../shared/actions/app';
+import { clearIOTA } from '../../shared/actions/iotaActions';
 
 const { height, width } = Dimensions.get('window');
 
@@ -82,7 +83,10 @@ class Settings extends React.Component {
     }
 
     onLogoutPress() {
-        this.props.logoutFromWallet();
+        {
+            /* this.props.logoutFromWallet() */
+        }
+        this.props.clearIOTA();
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
@@ -258,6 +262,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
+    clearIOTA: () => dispatch(clearIOTA),
 });
 
 const mapStateToProps = state => ({
