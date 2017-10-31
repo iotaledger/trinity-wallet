@@ -20,7 +20,6 @@ class History extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.topContainer} />
                 <View style={styles.listView}>
                     <ListView
                         dataSource={ds.cloneWithRows(this.props.iota.transactions)}
@@ -37,7 +36,7 @@ class History extends React.Component {
                             this.listview = listview;
                         }}
                         onLoadEnd={this.imageLoaded.bind(this)}
-                        snapToInterval={height / 7.515}
+                        snapToInterval={height / 7.4453}
                     />
                 </View>
             </View>
@@ -48,17 +47,14 @@ class History extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 2,
-    },
-    topContainer: {
-        flex: 1.4,
+        justifyContent: 'flex-end',
     },
     listView: {
-        flex: 14,
+        height: height / 1.49,
     },
     separator: {
         flex: 1,
-        height: 11,
+        height: height / 60,
     },
 });
 

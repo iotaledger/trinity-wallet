@@ -82,7 +82,8 @@
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
         "optionC": "Copier dans le Presse-papiers",
-        "explanation": "Votre Seed se lit de gauche à droit et comporte 81 caractères. Notez-la, ainsi que la somme de contrôle, et vérifiez-les à plusieurs reprises.",
+        "explanation":
+            "Votre Seed se lit de gauche à droit et comporte 81 caractères. Notez-la, ainsi que la somme de contrôle, et vérifiez-les à plusieurs reprises.",
         "text": "vérifiez à plusieurs reprises",
         "button": "OK"
     },
@@ -90,7 +91,8 @@
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
         "optionC": "Copier dans le Presse-papiers",
-        "explanation": "Cliquez sur le bouton ci-dessous et copiez votre Seed vers un gestionnaire de mot de passe. Elle restera dans votre presse-papiers 60 secondes.",
+        "explanation":
+            "Cliquez sur le bouton ci-dessous et copiez votre Seed vers un gestionnaire de mot de passe. Elle restera dans votre presse-papiers 60 secondes.",
         "text": "Ne stockez pas votre seed en texte en clair.",
         "button1": "COPIER DANS LE PRESSE-PAPIERS",
         "button2": "OK"
@@ -109,7 +111,8 @@
     "setPassword": {
         "title": "GESTION DU MOT DE PASSE",
         "text": "Maintenant nous devons paramétrer un mot de passe.",
-        "explanation": "Vous utiliserez ce mot de passe pour accéder à votre wallet à l'avenir. Une copie chiffrée de votre seed sera stockée sur votre appareil.",
+        "explanation":
+            "Vous utiliserez ce mot de passe pour accéder à votre wallet à l'avenir. Une copie chiffrée de votre seed sera stockée sur votre appareil.",
         "reminder": "Soyez certain d'utiliser un mot de passe fort d'au moins 12 caractères.",
         "placeholder1": "'MOT DE PASSE'",
         "placeholder2": "RETAPER LE MOT DE PASSE",
