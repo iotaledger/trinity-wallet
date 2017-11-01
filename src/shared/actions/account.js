@@ -23,6 +23,15 @@ export function increaseSeedCount() {
 export function addSeed(seedName) {
     return {
         type: 'ADD_SEED',
-        payload: seedName,
+        seedName: seedName,
+        addresses: addresses,
+    };
+}
+
+export function addAddresses(seedName, addresses) {
+    return {
+        type: 'ADD_ADDRESSES',
+        seedName: seedName,
+        addresses: addresses,
     };
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearIOTA } from '../../shared/actions/iotaActions';
+import { clearIOTA } from '../../shared/actions/tempAccount';
 import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';

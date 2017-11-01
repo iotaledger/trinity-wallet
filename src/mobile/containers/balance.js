@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, ListView, Dimensions, StatusBar } from 'react-native';
 
 import { connect } from 'react-redux';
-import { changeCurrency, changeTimeFrame } from '../../shared/actions/marketDataActions';
+import { changeCurrency, changeTimeFrame } from '../../shared/actions/marketData';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';

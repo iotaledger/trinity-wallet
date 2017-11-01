@@ -18,7 +18,7 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import { sendTransaction } from '../../shared/actions/iotaActions';
+import { sendTransaction } from '../../shared/actions/tempAccount';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';

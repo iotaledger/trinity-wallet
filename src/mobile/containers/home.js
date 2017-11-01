@@ -20,7 +20,7 @@ import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import DropdownAlert from 'react-native-dropdownalert';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
-import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/iotaActions';
+import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/tempAccount';
 import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';
 
 const StatusBarDefaultBarStyle = 'light-content';

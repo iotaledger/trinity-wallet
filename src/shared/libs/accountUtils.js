@@ -80,3 +80,8 @@ export default {
         return filter(normalized, v => v.balance > 0);
     },
 };
+
+export const formatAddressBalances = (addresses, balances) => {
+    var addressesWithBalance = Object.assign({}, ...addresses.map((n, index) => ({ [n]: balances[index] })));
+    return addressesWithBalance;
+};

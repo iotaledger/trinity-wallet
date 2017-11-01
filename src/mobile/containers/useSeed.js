@@ -16,7 +16,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, setSeed, getAccountInfo, setUsedSeedToLogin } from '../../shared/actions/iotaActions';
+import { setPassword, setSeed, getAccountInfo, setUsedSeedToLogin } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeInKeychain } from '../../shared/libs/cryptography';
