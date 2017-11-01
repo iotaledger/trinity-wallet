@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 4.8,
         alignItems: 'center',
-        paddingTop: height / 4.5,
+        paddingTop: height / 4.2,
     },
     bottomContainer: {
         flex: 0.7,
