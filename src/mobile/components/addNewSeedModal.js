@@ -3,7 +3,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackg
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography';
-import { increaseSeedCount, addSeed } from '../../shared/actions/account';
+import { increaseSeedCount, addSeedName } from '../../shared/actions/account';
 
 const { height, width } = Dimensions.get('window');
 
@@ -16,9 +16,9 @@ class AddNewSeedModal extends React.Component {
         };
     }
     onNewSeedPress() {
-        storeInKeychain(this.props.iota.password, this.state.seed, this.state.seedName, () => {
+        storeInKeychain(this.props.tempAccount.password, this.state.seed, this.state.seedName, () => {
             this.props.increaseSeedCount();
-            this.props.addSeed(this.state.seedName);
+            this.props.addSeedName(this.state.seedName);
         });
 
         {
@@ -35,7 +35,7 @@ class AddNewSeedModal extends React.Component {
     }
 
     onExistingSeedPress() {
-        getFromKeychain(this.props.iota.password, value => {
+        getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value !== 'undefined') {
                 console.log(value);
             } else {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
 });
 
@@ -164,8 +164,8 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    addSeed: newSeed => {
-        dispatch(addSeed(newSeed));
+    addSeedName: newSeed => {
+        dispatch(addSeedName(newSeed));
     },
 });
 

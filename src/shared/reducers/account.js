@@ -9,6 +9,12 @@ const account = (
     action,
 ) => {
     switch (action.type) {
+        case 'SET_ACCOUNTINFO':
+            return {
+                ...state,
+                balance: action.balance,
+                transactions: action.transactions,
+            };
         case 'SET_FIRST_USE':
             return {
                 ...state,
@@ -24,7 +30,7 @@ const account = (
                 ...state,
                 seedCount: state.seedCount + 1,
             };
-        case 'ADD_SEED':
+        case 'ADD_SEED_NAME':
             return {
                 ...state,
                 seedNames: [...state.seedNames, action.seedName],

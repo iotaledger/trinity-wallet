@@ -66,7 +66,7 @@ class Send extends Component {
 
     onMaxPress() {
         this.setState({
-            amount: (this.props.iota.balance / 1000000).toString(),
+            amount: (this.props.tempAccount.balance / 1000000).toString(),
             denomination: 'Mi',
         });
     }
@@ -103,9 +103,9 @@ class Send extends Component {
         const isValid = this.isValidAddress(address);
 
         if (isValid) {
-            getFromKeychain(this.props.iota.password, value => {
+            getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value !== 'undefined') {
-                    var seed = getSeed(value, this.props.iota.seedIndex);
+                    var seed = getSeed(value, this.props.tempAccount.seedIndex);
                     sendTx(seed);
                     if (sendTransaction(seed.seed, address, value, message) == false) {
                         this.dropdown.alertWithType(
@@ -453,7 +453,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = dispatch => ({

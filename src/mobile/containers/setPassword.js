@@ -12,7 +12,7 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeed, setOnboardingComplete } from '../../shared/actions/account';
+import { increaseSeedCount, addSeedName, setOnboardingComplete } from '../../shared/actions/account';
 import { setSeed } from '../../shared/actions/tempAccount';
 import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
@@ -35,10 +35,11 @@ class SetPassword extends React.Component {
 
     onDonePress() {
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
-            Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed, this.props.iota.seedName)).then(
-                setSeed(''),
-            );
+            Promise.resolve(
+                storeInKeychain(this.state.password, this.props.tempAccount.seed, this.props.tempAccount.seedName),
+            ).then(setSeed(''));
             this.props.setOnboardingComplete(true);
+            this.props.addSeedName(this.props.tempAccount.seedName);
             this.props.navigator.push({
                 screen: 'onboardingComplete',
                 navigatorStyle: {
@@ -274,7 +275,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -290,8 +291,8 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    addSeed: newSeed => {
-        dispatch(addSeed(newSeed));
+    addSeedName: newSeed => {
+        dispatch(addSeedName(newSeed));
     },
 });
 
