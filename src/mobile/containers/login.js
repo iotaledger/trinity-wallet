@@ -12,7 +12,8 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, getAccountInfo, getAccountInfoFirstUse } from '../../shared/actions/tempAccount';
+import { setPassword } from '../../shared/actions/tempAccount';
+import { getAccountInfo, getAccountInfoFirstUse } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { formatAddressBalances } from '../../shared/libs/accountUtils';
@@ -261,7 +262,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
 });
 

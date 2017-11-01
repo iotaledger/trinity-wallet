@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    password: state.iota.password,
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = dispatch => ({

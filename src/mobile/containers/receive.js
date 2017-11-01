@@ -40,16 +40,16 @@ class Receive extends Component {
     }
 
     resetAddress() {
-        const { iota: { receiveAddress } } = this.props;
+        const { tempAccount: { receiveAddress } } = this.props;
         if (receiveAddress) {
             this.props.setReceiveAddress('');
         }
     }
 
     onGeneratePress() {
-        getFromKeychain(this.props.iota.password, value => {
+        getFromKeychain(this.props.tempAccount.password, value => {
             if (!isUndefined(value)) {
-                var seed = getSeed(value, this.props.iota.seedIndex);
+                var seed = getSeed(value, this.props.tempAccount.seedIndex);
                 generate(seed);
             } else {
                 error();
@@ -68,7 +68,7 @@ class Receive extends Component {
     }
 
     render() {
-        const { iota: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
+        const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
 
         return (
             <View style={styles.container}>
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
 });
 
@@ -223,7 +223,7 @@ const mapDispatchToProps = dispatch => ({
 
 Receive.propTypes = {
     marketData: PropTypes.object.isRequired,
-    iota: PropTypes.object.isRequired,
+    tempAccount: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     generateNewAddress: PropTypes.func.isRequired,
     setReceiveAddress: PropTypes.func.isRequired,

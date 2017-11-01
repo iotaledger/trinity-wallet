@@ -1,54 +1,7 @@
-import { iota } from '../libs/iota';
-import { setFirstUse, addAddresses } from './account';
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
 
 /* eslint-disable no-console */
-
-export function getAccountInfoFirstUse(seed) {
-    return dispatch => {
-        iota.api.getAccountData(seed, (error, success) => {
-            if (!error) {
-                Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
-            } else {
-                console.log('SOMETHING WENT WRONG: ', error);
-            }
-        });
-    };
-}
-
-export function getAccountInfo(seed) {
-    return dispatch => {
-        iota.api.getAccountData(seed, (error, success) => {
-            if (!error) {
-                Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
-            } else {
-                console.log('SOMETHING WENT WRONG: ', error);
-            }
-        });
-    };
-}
-
-export function setAccountInfo(accountInfo) {
-    const balance = accountInfo.balance;
-    let transactions = sortTransactions(accountInfo.transfers);
-    transactions = addTransactionValues(transactions, accountInfo.addresses);
-    return {
-        type: 'SET_ACCOUNTINFO',
-        balance,
-        transactions,
-    };
-}
-
-export function getBalances(addresses) {
-    iota.api.getBalances(addresses, 1, (error, success) => {
-        if (!error) {
-            console.log(success);
-        } else {
-            console.log(error);
-        }
-    });
-}
 
 export function setReceiveAddress(payload) {
     return {
@@ -102,13 +55,6 @@ export function setReady() {
     };
 }
 
-export function setSeedName(name) {
-    return {
-        type: 'SET_SEED_NAME',
-        payload: name,
-    };
-}
-
 export function setSeed(seed) {
     return {
         type: 'SET_SEED',
@@ -116,38 +62,6 @@ export function setSeed(seed) {
     };
 }
 
-function addTransactionValues(transactions, addresses) {
-    // Add transaction value property to each transaction object
-    // FIXME: We should never mutate parameters at any level.
-    return transactions.map(arr => {
-        /* eslint-disable no-param-reassign */
-        arr[0].transactionValue = 0;
-        arr.map(obj => {
-            if (addresses.includes(obj.address)) {
-                arr[0].transactionValue += obj.value;
-            }
-
-            /* eslint-enable no-param-reassign */
-            return obj;
-        });
-
-        return arr;
-    });
-}
-
-function sortTransactions(transactions) {
-    // Order transactions from oldest to newest
-    const sortedTransactions = transactions.sort((a, b) => {
-        if (a[0].timestamp > b[0].timestamp) {
-            return -1;
-        }
-        if (a[0].timestamp < b[0].timestamp) {
-            return 1;
-        }
-        return 0;
-    });
-    return sortedTransactions;
-}
 // Check for sending to a used address
 function filterSpentAddresses(inputs) {
     return new Promise((resolve, reject) => {
@@ -321,22 +235,6 @@ export function sendTransaction(seed, address, value, message) {
                 }
             });
         }
-        // Check to make sure user is not sending to an already used address
-        filterSpentAddresses(outputsToCheck).then(filtered => {
-            if (filtered.length !== expectedOutputsLength) {
-                console.log('You cannot send to an already used address');
-                return false;
-            } else {
-                // Send transfer with depth 4 and minWeightMagnitude 18
-                iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
-                    if (!error) {
-                        console.log('SUCCESSFULLY SENT TRANSFER: ', success);
-                    } else {
-                        console.log('SOMETHING WENT WRONG: ', error);
-                    }
-                });
-            }
-        });
     });
 }
 
@@ -365,9 +263,9 @@ export function randomiseSeed(randomBytesFn) {
     };
 }
 
-export function clearIOTA() {
+export function clearTempData() {
     return {
-        type: 'CLEAR_IOTA',
+        type: 'CLEAR_TEMP_DATA',
     };
 }
 
@@ -375,5 +273,12 @@ export function setPassword(password) {
     return {
         type: 'SET_PASSWORD',
         payload: password,
+    };
+}
+
+export function setSeedName(seedName) {
+    return {
+        type: 'SET_SEED_NAME',
+        payload: seedName,
     };
 }
