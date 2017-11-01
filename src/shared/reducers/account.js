@@ -1,9 +1,10 @@
-const accountReducer = (
+const account = (
     state = {
         seedCount: 0,
         seedNames: [],
         firstUse: true,
         onboardingComplete: false,
+        addresses: {},
     },
     action,
 ) => {
@@ -26,11 +27,16 @@ const accountReducer = (
         case 'ADD_SEED':
             return {
                 ...state,
-                seedNames: [...state.seedNames, action.payload],
+                seedNames: [...state.seedNames, action.seedName],
+            };
+        case 'ADD_ADDRESSES':
+            return {
+                ...state,
+                addresses: { ...state.addresses, [action.seedName]: action.addresses },
             };
         default:
             return state;
     }
 };
 
-export default accountReducer;
+export default account;

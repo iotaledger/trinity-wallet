@@ -12,8 +12,8 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeed, setOnboardingComplete } from '../../shared/actions/accountActions';
-import { setSeed } from '../../shared/actions/iotaActions';
+import { increaseSeedCount, addSeed, setOnboardingComplete } from '../../shared/actions/account';
+import { setSeed } from '../../shared/actions/tempAccount';
 import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';

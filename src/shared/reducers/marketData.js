@@ -1,4 +1,4 @@
-const marketDataReducer = (
+const marketData = (
     state = {
         currency: 'USD',
         timeFrame: '24h',
@@ -44,4 +44,4 @@ const marketDataReducer = (
     return state;
 };
 
-export default marketDataReducer;
+export default marketData;

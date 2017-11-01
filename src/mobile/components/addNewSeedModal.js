@@ -3,7 +3,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackg
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography';
-import { increaseSeedCount, addSeed } from '../../shared/actions/accountActions';
+import { increaseSeedCount, addSeed } from '../../shared/actions/account';
 
 const { height, width } = Dimensions.get('window');
 

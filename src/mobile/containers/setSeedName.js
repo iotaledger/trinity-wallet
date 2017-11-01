@@ -12,7 +12,7 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeed } from '../../shared/actions/accountActions';
+import { increaseSeedCount, addSeed } from '../../shared/actions/account';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
 import { Keyboard } from 'react-native';

@@ -18,7 +18,7 @@ import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
-import { setPassword } from '../../shared/actions/iotaActions';
+import { setPassword } from '../../shared/actions/tempAccount';
 import { getFromKeychain, deleteFromKeyChain, storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
