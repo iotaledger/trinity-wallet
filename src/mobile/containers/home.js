@@ -18,7 +18,7 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
 import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/iotaActions';
 import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';

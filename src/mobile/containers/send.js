@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 
