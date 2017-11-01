@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
-import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
+import { randomiseSeed, setSeed } from '../../shared/actions/tempAccount';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from 'react-native-dropdownalert';
 

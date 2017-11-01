@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
-import { generateNewAddress, setAddress } from '../../shared/actions/iotaActions';
+import { generateNewAddress, setReceiveAddress } from '../../shared/actions/tempAccount';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -42,7 +42,7 @@ class Receive extends Component {
     resetAddress() {
         const { iota: { receiveAddress } } = this.props;
         if (receiveAddress) {
-            this.props.setAddress('');
+            this.props.setReceiveAddress('');
         }
     }
 
@@ -218,7 +218,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     generateNewAddress: seed => dispatch(generateNewAddress(seed)),
-    setAddress: payload => dispatch(setAddress(payload)),
+    setReceiveAddress: payload => dispatch(setReceiveAddress(payload)),
 });
 
 Receive.propTypes = {
@@ -226,7 +226,7 @@ Receive.propTypes = {
     iota: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     generateNewAddress: PropTypes.func.isRequired,
-    setAddress: PropTypes.func.isRequired,
+    setReceiveAddress: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Receive);

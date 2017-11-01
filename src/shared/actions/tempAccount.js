@@ -1,13 +1,58 @@
 import { iota } from '../libs/iota';
-
+import { setFirstUse, addAddresses } from './account';
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
 
 /* eslint-disable no-console */
 
-export function setAddress(payload) {
+export function getAccountInfoFirstUse(seed) {
+    return dispatch => {
+        iota.api.getAccountData(seed, (error, success) => {
+            if (!error) {
+                Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
+            } else {
+                console.log('SOMETHING WENT WRONG: ', error);
+            }
+        });
+    };
+}
+
+export function getAccountInfo(seed) {
+    return dispatch => {
+        iota.api.getAccountData(seed, (error, success) => {
+            if (!error) {
+                Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
+            } else {
+                console.log('SOMETHING WENT WRONG: ', error);
+            }
+        });
+    };
+}
+
+export function setAccountInfo(accountInfo) {
+    const balance = accountInfo.balance;
+    let transactions = sortTransactions(accountInfo.transfers);
+    transactions = addTransactionValues(transactions, accountInfo.addresses);
     return {
-        type: 'SET_ADDRESS',
+        type: 'SET_ACCOUNTINFO',
+        balance,
+        transactions,
+    };
+}
+
+export function getBalances(addresses) {
+    iota.api.getBalances(addresses, 1, (error, success) => {
+        if (!error) {
+            console.log(success);
+        } else {
+            console.log(error);
+        }
+    });
+}
+
+export function setReceiveAddress(payload) {
+    return {
+        type: 'SET_RECEIVE_ADDRESS',
         payload,
     };
 }
@@ -215,29 +260,6 @@ function getUnspentInputs(seed, start, threshold, inputs, cb) {
     });
 }
 
-export function setAccountInfo(accountInfo) {
-    const balance = accountInfo.balance;
-    let transactions = sortTransactions(accountInfo.transfers);
-    transactions = addTransactionValues(transactions, accountInfo.addresses);
-    return {
-        type: 'SET_ACCOUNTINFO',
-        balance,
-        transactions,
-    };
-}
-
-export function getAccountInfo(seed) {
-    return dispatch => {
-        iota.api.getAccountData(seed, (error, success) => {
-            if (!error) {
-                Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
-            } else {
-                console.log('SOMETHING WENT WRONG: ', error);
-            }
-        });
-    };
-}
-
 export function checkNode() {
     return dispatch => {
         iota.api.getNodeInfo(error => {
@@ -266,20 +288,22 @@ export function generateNewAddress(seed) {
 export function sendTransaction(seed, address, value, message) {
     // Convert to Trytes
     const messageTrytes = iota.utils.toTrytes(message);
+    const tag = iota.utils.toTrytes('test');
+
     const transfer = [
         {
             address: address,
             value: value,
             message: messageTrytes,
-            tag: 'AAA',
+            tag: tag,
         },
     ];
+
     const outputsToCheck = transfer.map(transfer => {
         return { address: iota.utils.noChecksum(transfer.address) };
     });
     var expectedOutputsLength = outputsToCheck.length;
     if (!iota.valid.isTransfersArray(transfer)) {
-        console.log('Error: Invalid transfer array');
         return;
     }
     // Check to make sure user is not sending to an already used address

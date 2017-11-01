@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
                 ...state,
                 password: action.payload,
             };
-        case 'SET_ADDRESS':
+        case 'SET_RECEIVE_ADDRESS':
             return {
                 ...state,
                 receiveAddress: action.payload,
