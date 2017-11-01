@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearIOTA } from '../../shared/actions/tempAccount';
+import { clearTempData } from '../../shared/actions/tempAccount';
 import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
@@ -85,7 +85,7 @@ class Settings extends React.Component {
         {
             /* this.props.logoutFromWallet() */
         }
-        this.props.clearIOTA();
+        this.props.clearTempData();
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
-    clearIOTA: () => dispatch(clearIOTA),
+    clearTempData: () => dispatch(clearTempData),
 });
 
 const mapStateToProps = state => ({

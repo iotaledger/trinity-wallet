@@ -36,15 +36,15 @@ class Home extends Component {
     }
 
     onLeftArrowPress() {
-        if (this.props.iota.seedIndex > 0) {
-            var seedIndex = this.props.iota.seedIndex - 1;
+        if (this.props.tempAccount.seedIndex > 0) {
+            var seedIndex = this.props.tempAccount.seedIndex - 1;
             this.props.decrementSeedIndex();
         }
     }
 
     onRightArrowPress() {
-        if (this.props.iota.seedIndex + 1 < this.props.account.seedCount) {
-            var seedIndex = this.props.iota.seedIndex + 1;
+        if (this.props.tempAccount.seedIndex + 1 < this.props.account.seedCount) {
+            var seedIndex = this.props.tempAccount.seedIndex + 1;
             this.props.incrementSeedIndex();
         }
     }
@@ -86,7 +86,7 @@ class Home extends Component {
     }
 
     _renderTitlebar() {
-        if (this.props.iota.usedSeedToLogin == false) {
+        if (this.props.tempAccount.usedSeedToLogin == false) {
             return (
                 <View style={styles.titlebarContainer}>
                     <TouchableOpacity
@@ -97,13 +97,15 @@ class Home extends Component {
                             style={{
                                 width: width / 20,
                                 height: width / 20,
-                                opacity: this.props.iota.seedIndex == 0 ? 0.3 : 1,
+                                opacity: this.props.tempAccount.seedIndex == 0 ? 0.3 : 1,
                             }}
                             source={require('../../shared/images/arrow-left.png')}
                         />
                     </TouchableOpacity>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.title}>{this.props.account.seedNames[this.props.iota.seedIndex]}</Text>
+                        <Text style={styles.title}>
+                            {this.props.account.seedNames[this.props.tempAccount.seedIndex]}
+                        </Text>
                     </View>
                     <TouchableOpacity
                         onPress={() => this.onRightArrowPress()}
@@ -113,7 +115,7 @@ class Home extends Component {
                             style={{
                                 width: width / 20,
                                 height: width / 20,
-                                opacity: this.props.iota.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
+                                opacity: this.props.tempAccount.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
                             }}
                             source={require('../../shared/images/arrow-right.png')}
                         />
@@ -329,7 +331,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
     childRoute: state.home.childRoute,
 });

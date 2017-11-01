@@ -20,7 +20,7 @@ class Loading extends Component {
     }
 
     render() {
-        const { iota: { ready }, navigator } = this.props;
+        const { tempAccount: { ready }, navigator } = this.props;
 
         if (!ready) {
             return (
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -68,7 +68,7 @@ const mapDispatchToProps = dispatch => ({
 
 Loading.propTypes = {
     marketData: PropTypes.object.isRequired,
-    iota: PropTypes.object.isRequired,
+    tempAccount: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     getMarketData: PropTypes.func.isRequired,
     getPrice: PropTypes.func.isRequired,
