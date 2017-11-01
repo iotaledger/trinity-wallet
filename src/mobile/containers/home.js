@@ -18,7 +18,7 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
 import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/iotaActions';
 import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';
@@ -85,15 +85,10 @@ class Home extends Component {
         this.props.changeHomeScreenRoute('settings');
     }
 
-    render() {
-        const { childRoute } = this.props;
-        const children = this.renderChildren(childRoute);
-        const isCurrentRoute = route => route === childRoute;
-
-        return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>
+    _renderTitlebar() {
+        if (this.props.iota.usedSeedToLogin == false) {
+            return (
+                <View style={styles.titlebarContainer}>
                     <TouchableOpacity
                         onPress={() => this.onLeftArrowPress()}
                         style={{ position: 'absolute', left: width / 6, top: height / 13.1 }}
@@ -124,6 +119,21 @@ class Home extends Component {
                         />
                     </TouchableOpacity>
                 </View>
+            );
+        } else {
+            return <View style={styles.titlebarContainer} />;
+        }
+    }
+
+    render() {
+        const { childRoute } = this.props;
+        const children = this.renderChildren(childRoute);
+        const isCurrentRoute = route => route === childRoute;
+
+        return (
+            <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
+                <StatusBar barStyle="light-content" />
+                <View style={styles.topContainer}>{this._renderTitlebar()}</View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }}>{children}</View>
                 </View>
@@ -253,11 +263,15 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 0.5,
+        flex: 0.8,
+        justifyContent: 'center',
+    },
+    titlebarContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: height / 20,
+        flex: 1,
     },
     titleContainer: {
         alignItems: 'center',

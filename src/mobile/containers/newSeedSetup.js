@@ -19,7 +19,7 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
 import { randomBytes } from 'react-native-randombytes';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
@@ -330,6 +330,32 @@ const baseStyles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 
