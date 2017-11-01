@@ -8,6 +8,7 @@ const initialState = {
     seedIndex: 0,
     transactions: [],
     isGeneratingReceiveAddress: false,
+    usedSeedToLogin: false,
 };
 
 export default (state = initialState, action) => {
@@ -69,6 +70,11 @@ export default (state = initialState, action) => {
                 ...state,
                 seedIndex: state.seedIndex - 1,
             };
+        case 'SET_USED_SEED_TO_LOGIN':
+            return {
+                ...state,
+                usedSeedToLogin: action.payload,
+            };
         case 'CLEAR_IOTA':
             return {
                 ...state,
@@ -78,6 +84,7 @@ export default (state = initialState, action) => {
                 seed: '',
                 password: '',
                 ready: false,
+                usedSeedToLogin: false,
             };
         default:
             return state;
