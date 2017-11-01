@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 import { generateNewAddress, setAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';

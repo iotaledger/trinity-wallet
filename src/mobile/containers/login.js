@@ -16,7 +16,7 @@ import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -29,10 +29,10 @@ class Login extends React.Component {
             password: '',
         };
 
-        this.onDonePress = this.onDonePress.bind(this);
+        this.onLoginPress = this.onLoginPress.bind(this);
     }
 
-    onDonePress() {
+    onLoginPress() {
         if (!this.state.password) {
             this.dropdown.alertWithType(
                 'error',
@@ -42,7 +42,7 @@ class Login extends React.Component {
         } else {
             this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
-                if (typeof value !== 'undefined') {
+                if (value) {
                     var seed = getSeed(value, 0);
                     login(seed);
                 } else {
@@ -119,9 +119,9 @@ class Login extends React.Component {
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onUseSeedPress()}
-                                onRightButtonPress={() => this.onDonePress()}
+                                onRightButtonPress={() => this.onLoginPress()}
                                 leftText={'USE SEED'}
-                                rightText={'DONE'}
+                                rightText={'LOG IN'}
                             />
                         </View>
                     </View>
