@@ -12,6 +12,13 @@ export function setAddress(payload) {
     };
 }
 
+export function setUsedSeedToLogin() {
+    return {
+        type: 'SET_USED_SEED_TO_LOGIN',
+        payload: true,
+    };
+}
+
 export function incrementSeedIndex() {
     return {
         type: 'INCREMENT_SEED_INDEX',
@@ -313,7 +320,6 @@ export function randomiseSeed(randomBytesFn) {
     return dispatch => {
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
         let seed = '';
-
         // uncomment for synchronous API, uses SJCL
         // var rand = randomBytes(1)
 
@@ -327,7 +333,6 @@ export function randomiseSeed(randomBytesFn) {
                         seed += randomLetter;
                     }
                 });
-
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);

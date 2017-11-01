@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 
@@ -422,6 +422,32 @@ const styles = StyleSheet.create({
         height: width / 50,
         width: width / 34,
         marginRight: 2,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 
