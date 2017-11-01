@@ -16,7 +16,7 @@ import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 const StatusBarDefaultBarStyle = 'light-content';
 
