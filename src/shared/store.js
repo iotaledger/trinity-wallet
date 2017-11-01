@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import marketData from './reducers/marketData';
-import iota from './reducers/tempAccount';
+import tempAccount from './reducers/tempAccount';
 import account from './reducers/account';
 import app from './reducers/app';
 import settings from './reducers/settings';
@@ -12,7 +12,7 @@ import home from './reducers/home';
 
 const reducers = combineReducers({
     marketData,
-    iota,
+    tempAccount,
     account,
     app,
     settings,

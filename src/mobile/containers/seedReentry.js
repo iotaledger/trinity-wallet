@@ -33,7 +33,7 @@ class SeedReentry extends React.Component {
     }
 
     onDonePress() {
-        if (this.state.seed == this.props.iota.seed) {
+        if (this.state.seed == this.props.tempAccount.seed) {
             this.props.navigator.push({
                 screen: 'setSeedName',
                 navigatorStyle: { navBarHidden: true },
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
 });
 

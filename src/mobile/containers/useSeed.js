@@ -59,7 +59,9 @@ class UseSeed extends React.Component {
             this.props.getAccountInfo(this.state.seed);
             this.props.setUsedSeedToLogin();
             this.props.setPassword('dummy');
-            Promise.resolve(storeInKeychain(this.props.iota.password, this.state.seed, 'temp')).then(setSeed(''));
+            Promise.resolve(storeInKeychain(this.props.tempAccount.password, this.state.seed, 'temp')).then(
+                setSeed(''),
+            );
             this.setState({ seed: '' });
         }
     }
@@ -320,7 +322,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
 });
 

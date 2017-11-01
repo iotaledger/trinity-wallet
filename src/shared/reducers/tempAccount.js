@@ -13,12 +13,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_ACCOUNTINFO':
-            return {
-                ...state,
-                balance: action.balance,
-                transactions: action.transactions,
-            };
         case 'SET_SEED':
             return {
                 ...state,
@@ -27,7 +21,7 @@ export default (state = initialState, action) => {
         case 'SET_SEED_NAME':
             return {
                 ...state,
-                seedName: action.payload,
+                seed: action.payload,
             };
         case 'SET_PASSWORD':
             return {
@@ -75,7 +69,7 @@ export default (state = initialState, action) => {
                 ...state,
                 usedSeedToLogin: action.payload,
             };
-        case 'CLEAR_IOTA':
+        case 'CLEAR_TEMP_DATA':
             return {
                 ...state,
                 balance: 0,
