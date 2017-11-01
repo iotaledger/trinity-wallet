@@ -290,22 +290,6 @@ export function sendTransaction(seed, address, value, message) {
                 }
             });
         }
-        // Check to make sure user is not sending to an already used address
-        filterSpentAddresses(outputsToCheck).then(filtered => {
-            if (filtered.length !== expectedOutputsLength) {
-                console.log('You cannot send to an already used address');
-                return false;
-            } else {
-                // Send transfer with depth 4 and minWeightMagnitude 18
-                iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
-                    if (!error) {
-                        console.log('SUCCESSFULLY SENT TRANSFER: ', success);
-                    } else {
-                        console.log('SOMETHING WENT WRONG: ', error);
-                    }
-                });
-            }
-        });
     });
 }
 
