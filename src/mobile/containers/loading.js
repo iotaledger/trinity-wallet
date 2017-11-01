@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, ImageBackground, WebView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketDataActions';
+import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import Home from './home';
 
 const { height, width } = Dimensions.get('window');
