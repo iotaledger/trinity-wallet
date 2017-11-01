@@ -4470,9 +4470,9 @@ react-native-crypto@^2.0.2:
     pbkdf2 "3.0.8"
     public-encrypt "^4.0.0"
 
-react-native-dropdownalert@^3.1.2:
+"react-native-dropdownalert@git+https://git@github.com/rajivshah3/react-native-dropdownalert":
   version "3.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-dropdownalert/-/react-native-dropdownalert-3.1.2.tgz#784b573a335987d66908bd66075b5d48ef7b5d70"
+  resolved "git+https://git@github.com/rajivshah3/react-native-dropdownalert#4e6355398d74b64210acac23cd69a2aace3e1bfd"
   dependencies:
     prop-types "15.5.10"
 
