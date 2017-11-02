@@ -22,7 +22,7 @@ class History extends React.Component {
             <View style={styles.container}>
                 <View style={styles.listView}>
                     <ListView
-                        dataSource={ds.cloneWithRows(this.props.tempAccount.transactions)}
+                        dataSource={ds.cloneWithRows(this.props.account.transfers)}
                         renderRow={dataSource => (
                             <TransactionRow
                                 rowData={dataSource}
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 export default connect(mapStateToProps)(History);

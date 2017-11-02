@@ -28,19 +28,18 @@ class Balance extends React.Component {
 
     render() {
         const shortenedBalance =
-            round(formatValue(this.props.tempAccount.balance, 1)).toFixed(1) +
-            (this.props.tempAccount.balance < 1000 ? '' : '+');
+            round(formatValue(this.props.account.balance, 1)).toFixed(1) +
+            (this.props.account.balance < 1000 ? '' : '+');
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.balanceContainer}>
                     <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
-                        {this.state.balanceIsShort ? shortenedBalance : this.props.tempAccount.balance}{' '}
-                        {formatUnit(this.props.tempAccount.balance)}
+                        {this.state.balanceIsShort ? shortenedBalance : this.props.account.balance}{' '}
+                        {formatUnit(this.props.account.balance)}
                     </Text>
                     <Text style={styles.fiatBalance}>
-                        ${' '}
-                        {round(this.props.tempAccount.balance * this.props.marketData.usdPrice / 1000000, 2).toFixed(
+                        $ {round(this.props.account.balance * this.props.marketData.usdPrice / 1000000, 2).toFixed(
                             2,
                         )}{' '}
                     </Text>
@@ -48,7 +47,7 @@ class Balance extends React.Component {
                 <View style={styles.line} />
                 <View style={styles.transactionsContainer}>
                     <ListView
-                        dataSource={ds.cloneWithRows(this.props.tempAccount.transactions.slice(0, 4))}
+                        dataSource={ds.cloneWithRows(this.props.account.transfers.slice(0, 4))}
                         renderRow={dataSource => <SimpleTransactionRow rowData={dataSource} />}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                         enableEmptySections
@@ -117,7 +116,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    tempAccount: state.tempAccount,
     account: state.account,
 });
 
