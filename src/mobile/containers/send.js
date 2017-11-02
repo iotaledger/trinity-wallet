@@ -83,7 +83,7 @@ class Send extends Component {
     }
 
     isValidTag(tag) {
-        if (tag.match(/^[A-Z9]+$/) != false && tag.length <= 27) {
+        if (tag.match(/^[A-Z9]+$/) == false && tag.length <= 27) {
             return true;
         } else {
             return false;
@@ -109,6 +109,18 @@ class Send extends Component {
         return this.dropdown.alertWithType(...props, 'Address contains invalid checksum');
     }
 
+    renderInvalidTagErrors(tag) {
+        const props = ['error', 'Invalid Tag'];
+
+        if (tag.length > 27) {
+            return this.dropdown.alertWithType(...props, 'Tags cannot be longer than 27 characters.');
+        } else if (tag.match(/^[A-Z9]+$/) == false) {
+            return this.dropdown.alertWithType(...props, 'Tag contains invalid characters.');
+        }
+
+        return this.dropdown.alertWithType(...props, 'Tag is invalid.');
+    }
+
     sendTransaction() {
         const address = this.state.address;
         const value = parseInt(this.state.amount);
@@ -123,7 +135,7 @@ class Send extends Component {
                 if (typeof value !== 'undefined') {
                     var seed = getSeed(value, this.props.iota.seedIndex);
                     sendTx(seed);
-                    if (sendTransaction(seed.seed, address, value, message) == false) {
+                    if (sendTransaction(seed.seed, address, value, tag, message) == false) {
                         this.dropdown.alertWithType(
                             'error',
                             'Key reuse',
@@ -134,8 +146,12 @@ class Send extends Component {
                     console.log('error');
                 }
             });
-        } else {
+        }
+        if (addressIsValid == false) {
             this.renderInvalidAddressErrors(address);
+        }
+        if (tagIsValid == false) {
+            this.renderInvalidTagErrors(tag);
         }
 
         function sendTx(seed) {
@@ -261,6 +277,21 @@ class Send extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
+                    <TextField
+                        style={styles.textField}
+                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                        labelFontSize={height / 55}
+                        fontSize={height / 40}
+                        height={height / 24}
+                        labelPadding={2}
+                        baseColor="white"
+                        enablesReturnKeyAutomatically={true}
+                        label="Optional Tag"
+                        tintColor="#F7D002"
+                        autoCorrect={false}
+                        value={message}
+                        onChangeText={tag => this.setState({ tag })}
+                    />
                     <TextField
                         style={styles.textField}
                         labelTextStyle={{ fontFamily: 'Lato-Light' }}
