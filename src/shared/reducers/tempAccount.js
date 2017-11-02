@@ -1,12 +1,10 @@
 const initialState = {
-    balance: 0,
     ready: false,
     receiveAddress: '',
     password: '',
     seed: '                                                                                 ',
     seedName: 'MAIN WALLET',
     seedIndex: 0,
-    transactions: [],
     isGeneratingReceiveAddress: false,
     usedSeedToLogin: false,
 };
@@ -21,7 +19,7 @@ export default (state = initialState, action) => {
         case 'SET_SEED_NAME':
             return {
                 ...state,
-                seed: action.payload,
+                seedName: action.payload,
             };
         case 'SET_PASSWORD':
             return {

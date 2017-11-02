@@ -5,15 +5,31 @@ const account = (
         firstUse: true,
         onboardingComplete: false,
         addresses: {},
+        balance: 0,
+        transfers: [],
     },
     action,
 ) => {
     switch (action.type) {
-        case 'SET_ACCOUNTINFO':
+        case 'SET_ACCOUNT_INFO':
             return {
                 ...state,
                 balance: action.balance,
-                transactions: action.transactions,
+                accountInfo: {
+                    [action.seedName]: {
+                        addresses: action.addresses,
+                        transfers: action.transfers,
+                    },
+                },
+            };
+        case 'UPDATE_ACCOUNT_INFO':
+            return {
+                ...state,
+                balance: action.balance,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.seedName]: ((['addresses']: action.addresses), (['transfers']: action.transfers)),
+                },
             };
         case 'SET_FIRST_USE':
             return {
@@ -34,11 +50,6 @@ const account = (
             return {
                 ...state,
                 seedNames: [...state.seedNames, action.seedName],
-            };
-        case 'ADD_ADDRESSES':
-            return {
-                ...state,
-                addresses: { ...state.addresses, [action.seedName]: action.addresses },
             };
         default:
             return state;

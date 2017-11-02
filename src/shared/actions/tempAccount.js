@@ -49,6 +49,7 @@ export function generateNewAddressError() {
 }
 
 export function setReady() {
+    console.log('Successfully set ready');
     return {
         type: 'SET_READY',
         payload: true,
