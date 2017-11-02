@@ -321,9 +321,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    marketData: state.marketData,
     tempAccount: state.tempAccount,
-    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({

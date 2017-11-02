@@ -211,9 +211,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    marketData: state.marketData,
     tempAccount: state.tempAccount,
-    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -222,9 +220,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Receive.propTypes = {
-    marketData: PropTypes.object.isRequired,
     tempAccount: PropTypes.object.isRequired,
-    account: PropTypes.object.isRequired,
     generateNewAddress: PropTypes.func.isRequired,
     setReceiveAddress: PropTypes.func.isRequired,
 };

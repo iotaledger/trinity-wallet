@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword } from '../../shared/actions/tempAccount';
-import { getAccountInfo, getAccountInfoFirstUse } from '../../shared/actions/account';
+import { getAccountInfo, getAccountInfoFirstUse, formatAddressBalancesFirstUse } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { formatAddressBalances } from '../../shared/libs/accountUtils';
@@ -31,7 +31,6 @@ class Login extends React.Component {
         this.state = {
             password: '',
         };
-
         this.onLoginPress = this.onLoginPress.bind(this);
     }
 
@@ -57,13 +56,9 @@ class Login extends React.Component {
         const _this = this;
         function login(value) {
             if (_this.props.account.firstUse) {
-                _this.props.getAccountInfoFirstUse(value);
-
-                {
-                    /*formatAddressBalances(addresses, balances.balances);*/
-                }
+                _this.props.getAccountInfoFirstUse(value, _this.props.tempAccount.seedName);
             } else {
-                _this.props.getAccountInfo(value);
+                _this.props.getAccountInfoFirstUse(value, _this.props.tempAccount.seedName);
             }
             _this.props.changeHomeScreenRoute('balance');
             _this.props.navigator.push({

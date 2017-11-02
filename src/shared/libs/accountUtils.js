@@ -85,3 +85,53 @@ export const formatAddressBalances = (addresses, balances) => {
     var addressesWithBalance = Object.assign({}, ...addresses.map((n, index) => ({ [n]: balances[index] })));
     return addressesWithBalance;
 };
+
+export const formatAddressBalancesFirstUse = data => {
+    var addresses = data.addresses;
+    var addressesWithBalance = Object.assign({}, ...addresses.map(n => ({ [n]: 0 })));
+    for (var i = 0; i < data.inputs.length; i++) {
+        addressesWithBalance[data.inputs[i].address] = data.inputs[i].balance;
+    }
+    return addressesWithBalance;
+};
+
+export const addTransferValues = (transfers, addresses) => {
+    // Add transaction value property to each transaction object
+    // FIXME: We should never mutate parameters at any level.
+    return transfers.map(arr => {
+        /* eslint-disable no-param-reassign */
+        arr[0].transferValue = 0;
+        arr.map(obj => {
+            if (addresses.includes(obj.address)) {
+                arr[0].transferValue += obj.value;
+            }
+
+            /* eslint-enable no-param-reassign */
+            return obj;
+        });
+
+        return arr;
+    });
+};
+
+export const sortTransfers = data => {
+    // Order transactions from oldest to newest
+    const transfers = data.transfers;
+    const addresses = data.addresses;
+    let sortedTransfers = transfers.sort((a, b) => {
+        if (a[0].timestamp > b[0].timestamp) {
+            return -1;
+        }
+        if (a[0].timestamp < b[0].timestamp) {
+            return 1;
+        }
+        return 0;
+    });
+    sortedTransfers = addTransferValues(sortedTransfers, addresses);
+    return sortedTransfers;
+};
+
+export const calculateBalance = data => {
+    const balance = Object.values(data).reduce((a, b) => a + b);
+    return balance;
+};

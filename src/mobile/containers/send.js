@@ -66,7 +66,7 @@ class Send extends Component {
 
     onMaxPress() {
         this.setState({
-            amount: (this.props.tempAccount.balance / 1000000).toString(),
+            amount: (this.props.account.balance / 1000000).toString(),
             denomination: 'Mi',
         });
     }
@@ -98,7 +98,7 @@ class Send extends Component {
 
     sendTransaction() {
         const address = this.state.address;
-        const value = parseInt(this.state.amount);
+        const value = parseInt(this.state.amount) * this.getUnitMultiplier();
         const message = this.state.message;
         const isValid = this.isValidAddress(address);
 
@@ -454,6 +454,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     marketData: state.marketData,
     tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
