@@ -35,6 +35,7 @@ class Send extends Component {
             denomination: 'Mi',
             amount: '',
             address: '',
+            tag: '',
             message: '',
             dataSource: ds.cloneWithRows([]),
         };
@@ -81,6 +82,18 @@ class Send extends Component {
         return size(address) === 90 && iota.utils.isValidChecksum(address) && !this.hasInvalidCharacters(address);
     }
 
+    isValidTag(tag) {
+        if (tag.match(/^[A-Z9]+$/) != false && tag.length <= 27) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    isValidMessage(message) {
+        return this.state.message.match(/^[A-Z9]+$/);
+    }
+
     renderInvalidAddressErrors(address) {
         const props = ['error', 'Invalid Address'];
 
@@ -99,10 +112,13 @@ class Send extends Component {
     sendTransaction() {
         const address = this.state.address;
         const value = parseInt(this.state.amount);
+        const tag = this.state.tag;
         const message = this.state.message;
-        const isValid = this.isValidAddress(address);
+        const addressIsValid = this.isValidAddress(address);
+        const tagIsValid = this.isValidTag(tag);
+        const messageIsValid = this.isValidMessage(message);
 
-        if (isValid) {
+        if (addressIsValid && tagIsValid && messageIsValid) {
             getFromKeychain(this.props.iota.password, value => {
                 if (typeof value !== 'undefined') {
                     var seed = getSeed(value, this.props.iota.seedIndex);
@@ -123,7 +139,7 @@ class Send extends Component {
         }
 
         function sendTx(seed) {
-            sendTransaction(seed, address, value, message);
+            sendTransaction(seed, address, value, tag, message);
         }
     }
 
@@ -457,8 +473,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, address, value, message) => {
-        dispatch(sendTransaction(seed, address, value, message));
+    sendTransaction: (seed, address, value, tag, message) => {
+        dispatch(sendTransaction(seed, address, value, tag, message));
     },
 });
 
