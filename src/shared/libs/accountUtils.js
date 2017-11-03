@@ -132,7 +132,10 @@ export const sortTransfers = data => {
 };
 
 export const calculateBalance = data => {
-    const balance = Object.values(data).reduce((a, b) => a + b);
+    let balance = 0;
+    if (Object.keys(data).length > 0) {
+        balance = Object.values(data).reduce((a, b) => a + b);
+    }
     return balance;
 };
 

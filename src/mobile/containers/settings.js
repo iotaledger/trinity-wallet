@@ -34,7 +34,13 @@ class Settings extends React.Component {
         let modalContent;
         switch (selectedSetting) {
             case 'addNewSeed':
-                modalContent = <AddNewSeedModal style={{ flex: 1 }} hideModal={() => this._hideModal()} />;
+                modalContent = (
+                    <AddNewSeedModal
+                        style={{ flex: 1 }}
+                        hideModal={() => this._hideModal()}
+                        navigate={() => this.navigateToNewSeed()}
+                    />
+                );
         }
         this.setState({
             selectedSetting,
@@ -95,6 +101,17 @@ class Settings extends React.Component {
                     screenBackgroundColor: '#102e36',
                 },
             },
+        });
+    }
+
+    navigateToNewSeed() {
+        this._hideModal();
+        this.props.navigator.push({
+            screen: 'addAdditionalSeed',
+            navigatorStyle: {
+                navBarHidden: true,
+            },
+            animated: false,
         });
     }
 
