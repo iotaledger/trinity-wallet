@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "Invalid server",
         "invalidServer_text": "The server address you entered is not valid",
@@ -30,7 +29,7 @@
     },
     "lightserver": {
         "text1":
-            "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
+            "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
         "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
         "text3": "Please choose a server from the list below.",
         "server_label": "Server",
@@ -118,7 +117,7 @@
         "placeholder1": "'PASSWORD'",
         "placeholder2": "RETYPE PASSWORD",
         "error1_title": "Password is too short",
-        "error1_text": "Your password must be at least 8 characters. Please try again.",
+        "error1_text": "Your password must be at least 12 characters. Please try again.",
         "error2_title": "Passwords do not match",
         "error2_text": "The passwords you have entered do not match. Please try again.",
         "button1": "DONE",

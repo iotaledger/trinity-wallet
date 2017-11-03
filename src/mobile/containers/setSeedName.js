@@ -12,55 +12,38 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeed, setFirstUse } from '../../shared/actions/accountActions';
-import { setSeed } from '../../shared/actions/iotaActions';
-import { storeInKeychain } from '../../shared/libs/cryptography';
+import { increaseSeedCount, addSeed } from '../../shared/actions/accountActions';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
 const { height, width } = Dimensions.get('window');
-const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = 'light-content';
 
-class SetPassword extends React.Component {
+class SetSeedName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            password: '',
-            reentry: '',
+            seedName: 'MAIN WALLET',
         };
     }
 
+    componentDidMount() {
+        this.nameInput.focus();
+    }
+
     onDonePress() {
-        if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
-            Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed, this.props.iota.seedName)).then(
-                setSeed(''),
-            );
-            this.props.setFirstUse(false);
+        if (this.state.seedName != '') {
+            this.props.increaseSeedCount();
+            this.props.addSeed(this.state.seedName);
             this.props.navigator.push({
-                screen: 'onboardingComplete',
-                navigatorStyle: {
-                    navBarHidden: true,
-                },
+                screen: 'setPassword',
+                navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
         } else {
-            if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
-                this.dropdown.alertWithType(
-                    'error',
-                    'Password is too short',
-                    `Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state
-                        .password.length} characters long. Please try again.`,
-                );
-            } else if (!(this.state.password === this.state.reentry)) {
-                this.dropdown.alertWithType(
-                    'error',
-                    'Passwords do not match',
-                    'The passwords you have entered do not match. Please try again.',
-                );
-            }
+            this.dropdown.alertWithType('error', 'No nickname entered.', `Please enter a nickname for your seed.`);
         }
     }
     onBackPress() {
@@ -70,7 +53,7 @@ class SetPassword extends React.Component {
     }
 
     render() {
-        let { password, reentry } = this.state;
+        let { seedName } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -79,20 +62,10 @@ class SetPassword extends React.Component {
                         <View style={styles.topContainer}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.greetingText}>Now we need to set up a password.</Text>
+                                <Text style={styles.greetingText}>Enter a nickname for your seed.</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={styles.infoTextContainer}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                <Text style={styles.infoText}>
-                                    An encrypted copy of your seed will be stored on your device. You will use this
-                                    password to access your wallet in future.
-                                </Text>
-                                <Text style={styles.warningText}>
-                                    Ensure you use a strong password of at least 12 characters.
-                                </Text>
-                            </View>
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
@@ -100,35 +73,27 @@ class SetPassword extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Password"
+                                label="Seed nickname"
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
-                                value={password}
-                                onChangeText={password => this.setState({ password })}
+                                value={seedName}
+                                onChangeText={seedName => this.setState({ seedName })}
                                 containerStyle={{
                                     width: width / 1.36,
                                 }}
-                                secureTextEntry={true}
+                                ref={input => {
+                                    this.nameInput = input;
+                                }}
                             />
-                            <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor="white"
-                                label="Retype Password"
-                                tintColor="#F7D002"
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                value={reentry}
-                                onChangeText={reentry => this.setState({ reentry })}
-                                containerStyle={{ width: width / 1.36 }}
-                                secureTextEntry={true}
-                            />
+                            <View style={styles.infoTextContainer}>
+                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Text style={styles.infoText}>
+                                    You can use multiple seeds with this wallet. Each seed requires a nickname.
+                                </Text>
+                                <Text style={styles.infoText}>You can add more seeds in the Settings menu.</Text>
+                            </View>
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
@@ -171,7 +136,7 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 4.8,
         justifyContent: 'flex-start',
-        paddingTop: height / 10,
+        paddingTop: height / 8,
         alignItems: 'center',
     },
     bottomContainer: {
@@ -197,13 +162,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 4.1,
+        height: height / 4.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
         paddingTop: height / 60,
-        marginTop: height / 25,
+        marginTop: height / 15,
     },
     infoText: {
         color: 'white',
@@ -278,15 +243,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setFirstUse: boolean => {
-        dispatch(setFirstUse(boolean));
-    },
-    storeInKeychain: password => {
-        dispatch(storeInKeychain(password));
-    },
-    setSeed: seed => {
-        dispatch(setSeed(seed));
-    },
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
@@ -295,4 +251,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SetPassword);
+export default connect(mapStateToProps, mapDispatchToProps)(SetSeedName);

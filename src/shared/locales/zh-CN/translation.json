@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "无效的服务器",
         "invalidServer_text": "您所输入的服务器地址无效",
@@ -134,16 +133,16 @@
         "button1": "发送",
         "button2": "生成新的地址",
         "button3": "退出",
-        "changeMode": "Change mode",
-        "minimal": "Minimal",
-        "standard": "Standard",
-        "expert": "Expert",
-        "changeTheme": "Change theme",
-        "changeLanguage": "Change language",
-        "addNewSeed": "Add new seed",
-        "setup2fa": "2FA Setup",
-        "changePassword": "Change password",
-        "advancedSettings": "Advanced settings",
-        "logout": "Logout"
+        "changeMode": "更改模式",
+        "minimal": "极简",
+        "standard": "标准",
+        "expert": "专家",
+        "changeTheme": "更改主题",
+        "changeLanguage": "更改语言",
+        "addNewSeed": "添加新种子",
+        "setup2fa": "双因子验证设置",
+        "changePassword": "更改密码",
+        "advancedSettings": "高级设置",
+        "logout": "退出"
     }
 }

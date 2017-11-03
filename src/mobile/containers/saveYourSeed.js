@@ -20,7 +20,7 @@ const { height, width } = Dimensions.get('window');
 class SaveYourSeed extends Component {
     onDonePress() {
         this.props.navigator.push({
-            screen: 'setPassword',
+            screen: 'seedReentry',
             navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
         });
