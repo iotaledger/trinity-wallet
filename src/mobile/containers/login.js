@@ -13,7 +13,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword } from '../../shared/actions/tempAccount';
-import { getAccountInfo, getAccountInfoFirstUse, formatAddressBalancesFirstUse } from '../../shared/actions/account';
+import { getAccountInfo, getAccountInfoNewSeed, formatAddressBalancesNewSeed } from '../../shared/actions/account';
+import { setFirstUse } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { formatAddressBalances } from '../../shared/libs/accountUtils';
@@ -33,6 +34,7 @@ class Login extends React.Component {
         };
         this.onLoginPress = this.onLoginPress.bind(this);
     }
+    s;
 
     onLoginPress() {
         if (!this.state.password) {
@@ -54,11 +56,16 @@ class Login extends React.Component {
         }
 
         const _this = this;
+        const seedIndex = _this.props.tempAccount.seedIndex;
+        const seedName = _this.props.account.seedNames[seedIndex];
         function login(value) {
             if (_this.props.account.firstUse) {
-                _this.props.getAccountInfoFirstUse(value, _this.props.tempAccount.seedName);
+                Promise.resolve(_this.props.getAccountInfoNewSeed(value, seedName)).then(
+                    _this.props.setFirstUse(false),
+                );
             } else {
-                _this.props.getAccountInfoFirstUse(value, _this.props.tempAccount.seedName);
+                const accountInfo = _this.props.account.accountInfo;
+                _this.props.getAccountInfo(value, seedName, seedIndex, accountInfo);
             }
             _this.props.changeHomeScreenRoute('balance');
             _this.props.navigator.push({
@@ -265,11 +272,14 @@ const mapDispatchToProps = dispatch => ({
     setPassword: password => {
         dispatch(setPassword(password));
     },
-    getAccountInfo: seed => {
-        dispatch(getAccountInfo(seed));
+    setFirstUse: boolean => {
+        dispatch(setFirstUse(boolean));
     },
-    getAccountInfoFirstUse: seed => {
-        dispatch(getAccountInfoFirstUse(seed));
+    getAccountInfo: (seed, seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seed, seedName, seedIndex, accountInfo));
+    },
+    getAccountInfoNewSeed: (seed, seedName) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName));
     },
     changeHomeScreenRoute: tab => {
         dispatch(changeHomeScreenRoute(tab));
