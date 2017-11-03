@@ -1,13 +1,30 @@
-const accountReducer = (state = {}, action) => {
+const accountReducer = (
+    state = {
+        seedCount: 0,
+        seedNames: [],
+        firstUse: true,
+    },
+    action,
+) => {
     switch (action.type) {
         case 'SET_FIRSTUSE':
-            state = {
+            return {
                 ...state,
                 firstUse: action.payload,
             };
-            break;
+        case 'INCREASE_SEEDCOUNT':
+            return {
+                ...state,
+                seedCount: state.seedCount + 1,
+            };
+        case 'ADD_SEED':
+            return {
+                ...state,
+                seedNames: [...state.seedNames, action.payload],
+            };
+        default:
+            return state;
     }
-    return state;
 };
 
 export default accountReducer;

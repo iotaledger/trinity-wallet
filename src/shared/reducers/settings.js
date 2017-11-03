@@ -26,6 +26,7 @@ const initialState = {
     mode: 'Standard',
     theme: 'Standard',
     language: 'English (International)',
+    currency: 'USD',
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -66,6 +67,11 @@ const settingsReducer = (state = initialState, action) => {
                 theme: action.payload,
             };
         case ActionTypes.SET_LANGUAGE:
+            return {
+                ...state,
+                language: action.payload,
+            };
+        case ActionTypes.SET_CURRENCY:
             return {
                 ...state,
                 language: action.payload,

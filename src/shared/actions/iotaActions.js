@@ -12,6 +12,25 @@ export function setAddress(payload) {
     };
 }
 
+export function setUsedSeedToLogin() {
+    return {
+        type: 'SET_USED_SEED_TO_LOGIN',
+        payload: true,
+    };
+}
+
+export function incrementSeedIndex() {
+    return {
+        type: 'INCREMENT_SEED_INDEX',
+    };
+}
+
+export function decrementSeedIndex() {
+    return {
+        type: 'DECREMENT_SEED_INDEX',
+    };
+}
+
 export function generateNewAddressRequest() {
     return {
         type: 'GENERATE_NEW_ADDRESS_REQUEST',
@@ -38,17 +57,17 @@ export function setReady() {
     };
 }
 
+export function setSeedName(name) {
+    return {
+        type: 'SET_SEED_NAME',
+        payload: name,
+    };
+}
+
 export function setSeed(seed) {
     return {
         type: 'SET_SEED',
         payload: seed,
-    };
-}
-
-export function loginError(payload) {
-    return {
-        type: 'LOGIN_ERROR',
-        payload,
     };
 }
 
@@ -213,12 +232,7 @@ export function getAccountInfo(seed) {
             if (!error) {
                 Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
             } else {
-                var errorMessage;
-                errorMessage = error.toString();
-                if (errorMessage.match(/Invalid Response:/i)) {
-                    console.log('Invalid Response');
-                    dispatch(loginError('Invalid Response'));
-                }
+                console.log('SOMETHING WENT WRONG: ', error);
             }
         });
     };
@@ -283,22 +297,6 @@ export function sendTransaction(seed, address, value, message) {
                 }
             });
         }
-        // Check to make sure user is not sending to an already used address
-        filterSpentAddresses(outputsToCheck).then(filtered => {
-            if (filtered.length !== expectedOutputsLength) {
-                console.log('You cannot send to an already used address');
-                return false;
-            } else {
-                // Send transfer with depth 4 and minWeightMagnitude 18
-                iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
-                    if (!error) {
-                        console.log('SUCCESSFULLY SENT TRANSFER: ', success);
-                    } else {
-                        console.log('SOMETHING WENT WRONG: ', error);
-                    }
-                });
-            }
-        });
     });
 }
 
@@ -306,7 +304,6 @@ export function randomiseSeed(randomBytesFn) {
     return dispatch => {
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
         let seed = '';
-
         // uncomment for synchronous API, uses SJCL
         // var rand = randomBytes(1)
 
@@ -320,7 +317,6 @@ export function randomiseSeed(randomBytesFn) {
                         seed += randomLetter;
                     }
                 });
-
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);

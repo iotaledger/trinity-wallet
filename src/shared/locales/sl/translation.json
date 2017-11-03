@@ -1,5 +1,4 @@
 {
-    "id": "en",
     "notifications": {
         "invalidServer_title": "Napačen strežnik",
         "invalidServer_text": "Naslov strežnika, ki ste ga vnesli, ni pravilen",
