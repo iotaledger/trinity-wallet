@@ -83,7 +83,7 @@ class Send extends Component {
     }
 
     isValidTag(tag) {
-        if (tag.match(/^[A-Z9]+$/) == false && tag.length <= 27) {
+        if (tag.match(/^[A-Z9]+$/) != false && tag.length <= 27) {
             return true;
         } else {
             return false;
