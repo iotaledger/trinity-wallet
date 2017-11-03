@@ -31,7 +31,6 @@ class Balance extends React.Component {
             round(formatValue(this.props.iota.balance, 1)).toFixed(1) + (this.props.iota.balance < 1000 ? '' : '+');
         return (
             <View style={styles.container}>
-                <View style={{ flex: 10 }} />
                 <StatusBar barStyle="light-content" />
                 <View style={styles.balanceContainer}>
                     <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
@@ -54,7 +53,7 @@ class Balance extends React.Component {
                     />
                 </View>
                 <View style={styles.line} />
-                <View style={{ flex: 52 }}>
+                <View style={{ flex: 50 }}>
                     <Chart
                         marketData={this.props.marketData}
                         changeCurrency={(currency, timeFrame) => this.props.changeCurrency(currency, timeFrame)}
@@ -70,6 +69,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'flex-end',
     },
     balanceContainer: {
         flex: 8.5,

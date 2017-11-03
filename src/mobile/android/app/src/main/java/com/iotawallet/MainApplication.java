@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.rnprint.RNPrint.RNPrintPackage;
 import com.facebook.react.ReactApplication;
+import com.peel.react.rnos.RNOSModule;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.tradle.react.UdpSocketsModule;
 import com.peel.react.TcpSocketsModule;
@@ -17,8 +19,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.reactnativenavigation.NavigationApplication;
 import com.horcrux.svg.SvgPackage;
-import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage; //<- You must import this
-import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.rnfs.RNFSPackage;
 import java.util.Arrays;
 import java.util.List;
@@ -39,11 +40,12 @@ public class MainApplication extends NavigationApplication {
             new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
+            new RNOSModule(),
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
             new RNSensitiveInfoPackage(),
-	    new RCTCameraPackage(),
-	    new RNFSPackage()
+	        new RCTCameraPackage(),
+	        new RNFSPackage()
     );
   }
 

@@ -16,9 +16,9 @@ import {
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
 import { generateNewAddress, setAddress } from '../../shared/actions/iotaActions';
-import { getFromKeychain } from '../../shared/libs/cryptography';
+import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
@@ -47,8 +47,9 @@ class Receive extends Component {
     }
 
     onGeneratePress() {
-        getFromKeychain(this.props.iota.password, seed => {
-            if (!isUndefined(seed)) {
+        getFromKeychain(this.props.iota.password, value => {
+            if (!isUndefined(value)) {
+                var seed = getSeed(value, this.props.iota.seedIndex);
                 generate(seed);
             } else {
                 error();

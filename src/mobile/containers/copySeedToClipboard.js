@@ -11,7 +11,7 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
 
 const { height, width } = Dimensions.get('window');

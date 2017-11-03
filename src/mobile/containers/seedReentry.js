@@ -13,13 +13,10 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, setSeed, getAccountInfo, setUsedSeedToLogin } from '../../shared/actions/iotaActions';
-import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeInKeychain } from '../../shared/libs/cryptography';
+import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -27,40 +24,27 @@ const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 
-class UseSeed extends React.Component {
+class SeedReentry extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             seed: '',
-            isModalVisible: false,
         };
     }
 
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed contains invalid characters',
-                `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
-            );
-        } else if (this.state.seed.length < 60) {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed is too short',
-                `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
-                    .seed.length} characters long. Please try again.`,
-            );
-        } else if (this.state.seed.length >= 60) {
+        if (this.state.seed == this.props.iota.seed) {
             this.props.navigator.push({
-                screen: 'loading',
+                screen: 'setSeedName',
                 navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
-            this.props.getAccountInfo(this.state.seed);
-            this.props.setUsedSeedToLogin();
-            this.props.setPassword('dummy');
-            Promise.resolve(storeInKeychain(this.props.iota.password, this.state.seed, 'temp')).then(setSeed(''));
-            this.setState({ seed: '' });
+        } else {
+            this.dropdown.alertWithType(
+                'error',
+                'Incorrect seed.',
+                `The seed you entered is incorrect. Please try again.`,
+            );
         }
     }
 
@@ -69,24 +53,6 @@ class UseSeed extends React.Component {
             animated: false,
         });
     }
-    onQRPress() {
-        this._showModal();
-    }
-
-    onQRRead(data) {
-        this.setState({
-            seed: data,
-        });
-        this._hideModal();
-    }
-
-    _showModal = () => this.setState({ isModalVisible: true });
-
-    _hideModal = () => this.setState({ isModalVisible: false });
-
-    _renderModalContent = () => (
-        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
-    );
 
     render() {
         const { seed } = this.state;
@@ -108,36 +74,34 @@ class UseSeed extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <View style={styles.textFieldContainer}>
-                                        <TextField
-                                            style={styles.textField}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                            labelFontSize={width / 31.8}
-                                            fontSize={width / 20.7}
-                                            labelPadding={3}
-                                            baseColor="white"
-                                            tintColor="#F7D002"
-                                            enablesReturnKeyAutomatically={true}
-                                            label="Seed"
-                                            autoCorrect={false}
-                                            value={seed}
-                                            maxLength={81}
-                                            onChangeText={seed => this.setState({ seed })}
-                                            multiline
-                                        />
-                                    </View>
-                                    <View style={styles.qrButtonContainer}>
-                                        <TouchableOpacity onPress={() => this.onQRPress()}>
-                                            <View style={styles.qrButton}>
-                                                <Image
-                                                    source={require('../../shared/images/camera.png')}
-                                                    style={styles.qrImage}
-                                                />
-                                                <Text style={styles.qrText}> QR </Text>
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
+                                <TextField
+                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={width / 31.8}
+                                    fontSize={width / 20.7}
+                                    labelPadding={3}
+                                    baseColor="white"
+                                    label="Seed"
+                                    tintColor="#F7D002"
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically={true}
+                                    value={seed}
+                                    onChangeText={seed => this.setState({ seed })}
+                                    containerStyle={{
+                                        width: width / 1.4,
+                                    }}
+                                    secureTextEntry={true}
+                                />
+                                <View style={styles.infoTextContainer}>
+                                    <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                    <Text style={styles.infoText}>
+                                        This is a check to make sure you saved your seed.
+                                    </Text>
+                                    <Text style={styles.infoText}>
+                                        If you have not saved your seed, please go back to the previous screen and do
+                                        so.
+                                    </Text>
                                 </View>
                             </View>
                             <View style={styles.bottomContainer}>
@@ -161,20 +125,6 @@ class UseSeed extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-                <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
-                    animationInTiming={1000}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={500}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={'#102832'}
-                    backdropOpacity={1}
-                    style={{ alignItems: 'center', margin: 0 }}
-                    isVisible={this.state.isModalVisible}
-                >
-                    {this._renderModalContent()}
-                </Modal>
             </ImageBackground>
         );
     }
@@ -194,7 +144,7 @@ const styles = StyleSheet.create({
         flex: 4.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 4.5,
+        paddingTop: height / 12,
     },
     bottomContainer: {
         flex: 0.7,
@@ -223,7 +173,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 3.7,
+        height: height / 4.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
@@ -324,19 +274,4 @@ const mapStateToProps = state => ({
     account: state.account,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setSeed: seed => {
-        dispatch(setSeed(seed));
-    },
-    getAccountInfo: seed => {
-        dispatch(getAccountInfo(seed));
-    },
-    setUsedSeedToLogin: () => {
-        dispatch(setUsedSeedToLogin());
-    },
-    setPassword: password => {
-        dispatch(setPassword(password));
-    },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UseSeed);
+export default connect(mapStateToProps)(SeedReentry);

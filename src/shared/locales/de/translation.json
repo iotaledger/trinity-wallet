@@ -1,5 +1,4 @@
 {
-    "id": "de",
     "notifications": {
         "invalidServer_title": "Ungültiger Server",
         "invalidServer_text": "Die eingegebene Serveradresse is ungültig",
@@ -19,7 +18,7 @@
         "button2": "ZURÜCK"
     },
     "welcome2": {
-        "text1": "Okay. Wir richten Ihre Wallet ein!",
+        "text1": "Okay. Lass uns Deine Wallet einrichten!",
         "text2": "Hast Du bereits einen Seed welchen du verwenden möchtest?",
         "seed_explanation1":
             "Der IOTA Seed ist wie ein Benutzername und Passwort zu Ihrem Konto, kombiniert in einer Zeichenfolge von 81 Buchstaben.",
@@ -31,7 +30,7 @@
     },
     "lightserver": {
         "text1":
-            "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners. ",
+            "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
         "text2": "Mehr Informationen über die Server unter: http://iotasupport.com/lightwallet.shtml",
         "text3": "Bitte wählen Sie einen Server aus der unteren Liste.",
         "server_label": "Server",
@@ -72,7 +71,7 @@
         "button3": "ZURÜCK"
     },
     "saveYourSeed": {
-        "text1": "You must save your seed with at least one of the options listed below.",
+        "text1": "Du musst Deinen Seed mit mindestens einer der unten aufgeführten Optionen speichern.",
         "text2": "at least one",
         "optionA": "NIEDERSCHREIBEN",
         "optionB": "PAPIER WALLET DRUCKEN",
