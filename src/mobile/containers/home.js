@@ -20,7 +20,8 @@ import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import DropdownAlert from 'react-native-dropdownalert';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
-import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/tempAccount';
+import { incrementSeedIndex, decrementSeedIndex, setReceiveAddress } from '../../shared/actions/tempAccount';
+import { getAccountInfo, setBalance } from '../../shared/actions/account';
 import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';
 
 const StatusBarDefaultBarStyle = 'light-content';
@@ -35,17 +36,32 @@ class Home extends Component {
         };
     }
 
+    componentWillMount() {
+        const accountInfo = this.props.account.accountInfo;
+        if (typeof accountInfo !== 'undefined') {
+            this.props.setBalance(accountInfo[Object.keys(accountInfo)[0]].addresses);
+        }
+    }
+
     onLeftArrowPress() {
         if (this.props.tempAccount.seedIndex > 0) {
-            var seedIndex = this.props.tempAccount.seedIndex - 1;
+            const seedIndex = this.props.tempAccount.seedIndex - 1;
+            const seedName = this.props.account.seedNames[seedIndex];
+            const accountInfo = this.props.account.accountInfo;
             this.props.decrementSeedIndex();
+            this.props.getAccountInfo('test', seedName, seedIndex, accountInfo);
+            this.props.setReceiveAddress('');
         }
     }
 
     onRightArrowPress() {
         if (this.props.tempAccount.seedIndex + 1 < this.props.account.seedCount) {
-            var seedIndex = this.props.tempAccount.seedIndex + 1;
+            const seedIndex = this.props.tempAccount.seedIndex + 1;
+            const seedName = this.props.account.seedNames[seedIndex];
+            const accountInfo = this.props.account.accountInfo;
             this.props.incrementSeedIndex();
+            this.props.getAccountInfo('test', seedName, seedIndex, accountInfo);
+            this.props.setReceiveAddress('');
         }
     }
 
@@ -266,18 +282,18 @@ class Home extends Component {
 const styles = StyleSheet.create({
     topContainer: {
         flex: 0.8,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
     },
     titlebarContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 20,
+        alignItems: 'flex-end',
+        paddingBottom: height / 50,
         flex: 1,
     },
     titleContainer: {
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
         paddingHorizontal: width / 8,
     },
     title: {
@@ -342,6 +358,15 @@ const mapDispatchToProps = dispatch => ({
     },
     decrementSeedIndex: () => {
         dispatch(decrementSeedIndex());
+    },
+    getAccountInfo: (seed, seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seed, seedName, seedIndex, accountInfo));
+    },
+    setReceiveAddress: string => {
+        dispatch(setReceiveAddress(string));
+    },
+    setBalance: addressesWithBalance => {
+        dispatch(setBalance(addressesWithBalance));
     },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
 });

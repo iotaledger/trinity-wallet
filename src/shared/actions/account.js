@@ -59,13 +59,21 @@ export function getAccountInfoNewSeed(seed, seedName) {
                 // Sort tranfers and add transfer values
                 const transfers = sortTransfers(success);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
-                Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance)))
+                Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers)))
                     .then(dispatch(setFirstUse(false)))
                     .then(dispatch(setReady()));
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
             }
         });
+    };
+}
+
+export function setBalance(addressesWithBalance) {
+    const balance = calculateBalance(addressesWithBalance);
+    return {
+        type: 'SET_BALANCE',
+        payload: balance,
     };
 }
 
