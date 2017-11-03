@@ -44,7 +44,7 @@ class SetSeedName extends React.Component {
                 animated: false,
             });
         } else {
-            this.dropdown.alertWithType('error', 'No nickname entered.', `Please enter a nickname for your seed.`);
+            this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
         }
     }
     onBackPress() {

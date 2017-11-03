@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, ImageBackground, WebView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
+import { setBalance } from '../../shared/actions/account';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
 import Home from './home';
 
 const { height, width } = Dimensions.get('window');
@@ -11,6 +13,7 @@ const logoSpin = require('../logo-spin/logo-spin-glow.html');
 class Loading extends Component {
     componentDidMount() {
         this.getWalletData();
+        this.props.changeHomeScreenRoute('balance');
     }
 
     async getWalletData() {
@@ -52,6 +55,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     marketData: state.marketData,
     tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -64,6 +68,10 @@ const mapDispatchToProps = dispatch => ({
     getChartData: (currency, timeFrame) => {
         dispatch(getChartData(currency, timeFrame));
     },
+    setBalance: addressesWithBalance => {
+        dispatch(setBalance(addressesWithBalance));
+    },
+    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
 });
 
 Loading.propTypes = {

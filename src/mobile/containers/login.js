@@ -13,11 +13,10 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setPassword } from '../../shared/actions/tempAccount';
-import { getAccountInfo, getAccountInfoNewSeed, formatAddressBalancesNewSeed } from '../../shared/actions/account';
+import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
 import { setFirstUse } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import { formatAddressBalances } from '../../shared/libs/accountUtils';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -60,9 +59,7 @@ class Login extends React.Component {
         const seedName = _this.props.account.seedNames[seedIndex];
         function login(value) {
             if (_this.props.account.firstUse) {
-                Promise.resolve(_this.props.getAccountInfoNewSeed(value, seedName)).then(
-                    _this.props.setFirstUse(false),
-                );
+                _this.props.getAccountInfoNewSeed(value, seedName);
             } else {
                 const accountInfo = _this.props.account.accountInfo;
                 _this.props.getAccountInfo(value, seedName, seedIndex, accountInfo);
