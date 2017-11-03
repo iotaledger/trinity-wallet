@@ -26,7 +26,7 @@
         "button2": "NEIN"
     },
     "lightserver": {
-        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
+        "text1": "Ein light server ist ein Zugang zum IOTA Netzwerk, freundlicherweise bereitgestellt von Mitgliedern der Gemeinschaft oder unseren Partnerunternehmen.",
         "text2": "Mehr Informationen über die Server unter: http://iotasupport.com/lightwallet.shtml",
         "text3": "Bitte wählen Sie einen Server aus der unteren Liste.",
         "server_label": "Server",
@@ -59,14 +59,14 @@
     "newSeedSetup": {
         "title": "ERZEUGE EINEN NEUEN SEED",
         "button1": "NEUEN SEED ERZEUGEN",
-        "text1": "Press individual letters to randomise them.",
+        "text1": "Drücke einzelne Buchstaben um diese mit einem beliebigen Buchstaben auszutauschen.",
         "text2": "Klicken Sie anschließend WEITER",
         "button2": "WEITER",
         "button3": "ZURÜCK"
     },
     "saveYourSeed": {
         "text1": "Du musst Deinen Seed mit mindestens einer der unten aufgeführten Optionen speichern.",
-        "text2": "at least one",
+        "text2": "mindestens einer",
         "optionA": "NIEDERSCHREIBEN",
         "optionB": "PAPIER WALLET DRUCKEN",
         "optionC": "IN ZWISCHENABLAGE KOPIEREN",
@@ -85,7 +85,7 @@
         "optionA": "Niederschrift",
         "optionB": " Paper Wallet",
         "optionC": "In Zwischenablage kopieren",
-        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "explanation": "Klicke den Knopf unten um Deinen Seed in einen Passwort-Manager zu kopieren. Dein Seed wird für 60 Sekunden in deiner Zwischenablage bleiben.",
         "text": "Speichere den Seed nicht als Klartext.",
         "button1": "IN ZWISCHENABLAGE KOPIEREN",
         "button2": "FERTIG"
