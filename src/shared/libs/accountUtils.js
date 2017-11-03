@@ -86,7 +86,7 @@ export const formatAddressBalances = (addresses, balances) => {
     return addressesWithBalance;
 };
 
-export const formatAddressBalancesFirstUse = data => {
+export const formatAddressBalancesNewSeed = data => {
     var addresses = data.addresses;
     var addressesWithBalance = Object.assign({}, ...addresses.map(n => ({ [n]: 0 })));
     for (var i = 0; i < data.inputs.length; i++) {
@@ -134,4 +134,14 @@ export const sortTransfers = data => {
 export const calculateBalance = data => {
     const balance = Object.values(data).reduce((a, b) => a + b);
     return balance;
+};
+
+export const getIndexesWithBalanceChange = (a, b) => {
+    let indexes = [];
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] != b[i]) {
+            indexes.push(i);
+        }
+    }
+    return indexes;
 };
