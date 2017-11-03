@@ -61,10 +61,6 @@ class SecurityEnter extends React.PureComponent {
             <Template type="form" onSubmit={this.onRequestNext}>
                 <Main>
                     <p>{t('text')}</p>
-                    <Infobox>
-                        <p>{t('explanation')}</p>
-                        <p>{t('reminder')}</p>
-                    </Infobox>
                     <div className={css.formGroup}>
                         <PasswordInput placeholder={t('placeholder1')} name="password" onChange={this.changeHandler} />
                     </div>
@@ -75,6 +71,10 @@ class SecurityEnter extends React.PureComponent {
                             onChange={this.changeHandler}
                         />
                     </div>
+                    <Infobox>
+                        <p>{t('explanation')}</p>
+                        <p>{t('reminder')}</p>
+                    </Infobox>
                 </Main>
                 <Footer>
                     <Button to="/seed/name" variant="warning">
