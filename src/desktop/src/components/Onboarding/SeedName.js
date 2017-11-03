@@ -31,9 +31,11 @@ class SeedName extends React.PureComponent {
     };
 
     onRequestNext = () => {
-        const { renameCurrentSeed, history } = this.props;
+        const { renameCurrentSeed, history, t } = this.props;
         if (this.state.name) {
             renameCurrentSeed(this.state.name);
+        } else {
+            renameCurrentSeed(t('placeholder'));
         }
         history.push('/security/enter');
     };
@@ -80,4 +82,4 @@ const mapDispatchToProps = {
     renameCurrentSeed,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate('seedName')(SeedName));
+export default connect(mapStateToProps, mapDispatchToProps)(translate('nameYourSeed')(SeedName));
