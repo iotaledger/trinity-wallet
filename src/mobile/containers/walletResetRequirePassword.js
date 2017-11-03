@@ -21,7 +21,7 @@ import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
-import DropdownAlert from 'react-native-dropdownalert';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
 const { height, width } = Dimensions.get('window');
 
@@ -258,7 +258,6 @@ const styles = StyleSheet.create({
     },
     textFieldContainer: {
         width: width / 1.65,
-        paddingTop: height / 40,
     },
     textField: {
         color: Colors.white,

@@ -8,12 +8,20 @@ export const ActionTypes = {
     SET_MODE: 'IOTA/SETTINGS/SET_MODE',
     SET_THEME: 'IOTA/SETTINGS/SET_THEME',
     SET_LANGUAGE: 'IOTA/SETTINGS/SET_LANGUAGE',
+    SET_CURRENCY: 'IOTA/SETTINGS/SET_CURRENCY',
 };
 
 export function setLocale(locale) {
     return {
         type: ActionTypes.SET_LOCALE,
         payload: locale,
+    };
+}
+
+export function setLanguage(language) {
+    return {
+        type: ActionTypes.SET_LANGUAGE,
+        payload: language,
     };
 }
 

@@ -18,13 +18,13 @@ export default class InitialLoading extends Component {
         if (state.account.firstUse) {
             this.props.navigator.push({
                 screen: 'languageSetup',
-                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
         } else {
             this.props.navigator.push({
-                screen: 'languageSetup',
-                navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+                screen: 'login',
+                navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
         }

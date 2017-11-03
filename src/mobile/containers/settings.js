@@ -3,21 +3,54 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
+import { clearIOTA } from '../../shared/actions/iotaActions';
+import store from '../../shared/store';
+import Modal from 'react-native-modal';
+import AddNewSeedModal from '../components/addNewSeedModal';
 import { logoutFromWallet } from '../../shared/actions/app';
+//import { clearIOTA } from '../../shared/actions/iotaActions';
 
 const { height, width } = Dimensions.get('window');
 
-class Settings extends Component {
-    constructor() {
-        super();
-
+class Settings extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isModalVisible: false,
+            selectedSetting: 'addNewSeed',
+            modalContent: <AddNewSeedModal />,
+        };
         this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
     }
+
+    _showModal = () => this.setState({ isModalVisible: true });
+
     onChangeModePress() {}
 
-    onChangeThemePress() {}
+    _hideModal = () => this.setState({ isModalVisible: false });
 
-    onChangeLanguagePress() {}
+    _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
+
+    setModalContent(selectedSetting) {
+        let modalContent;
+        switch (selectedSetting) {
+            case 'addNewSeed':
+                modalContent = <AddNewSeedModal style={{ flex: 1 }} hideModal={() => this._hideModal()} />;
+        }
+        this.setState({
+            selectedSetting,
+            modalContent,
+        });
+        this._showModal();
+    }
+
+    onModePress() {}
+
+    onCurrencyPress() {}
+
+    onThemePress() {}
+
+    onLanguagePress() {}
 
     onChangePasswordPress() {
         this.props.navigator.push({
@@ -50,7 +83,10 @@ class Settings extends Component {
     }
 
     onLogoutPress() {
-        this.props.logoutFromWallet();
+        {
+            /* this.props.logoutFromWallet() */
+        }
+        this.props.clearIOTA();
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
@@ -68,28 +104,35 @@ class Settings extends Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.settingsContainer}>
-                    <TouchableOpacity onPress={event => this.onChangeModePress()}>
+                    <TouchableOpacity onPress={event => this.onModePress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/mode.png')} style={styles.icon} />
-                            <Text style={styles.titleText}>Change mode</Text>
+                            <Text style={styles.titleText}>Mode</Text>
                             <Text style={styles.settingText}>{this.props.settings.mode}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.onChangeThemePress()}>
+                    <TouchableOpacity onPress={event => this.onThemePress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/theme.png')} style={styles.icon} />
-                            <Text style={styles.titleText}>Change theme</Text>
+                            <Text style={styles.titleText}>Theme</Text>
                             <Text style={styles.settingText}>{this.props.settings.theme}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.onChangeLanguagePress()}>
-                        <View style={styles.dividingItem}>
+                    <TouchableOpacity onPress={event => this.onCurrencyPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/currency.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Currency</Text>
+                            <Text style={styles.settingText}>{this.props.settings.currency}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onLanguagePress()}>
+                        <View style={styles.item}>
                             <Image source={require('../../shared/images/language.png')} style={styles.icon} />
-                            <Text style={styles.titleText}>Change language</Text>
+                            <Text style={styles.titleText}>Language</Text>
                             <Text style={styles.settingText}>{this.props.settings.language}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
+                    <TouchableOpacity onPress={event => this.setModalContent('addNewSeed')}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/add.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Add new seed</Text>
@@ -101,8 +144,8 @@ class Settings extends Component {
                             <Text style={styles.titleText}>Two-factor authentication</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={this.onChangePasswordPress}>
-                        <View style={styles.dividingItem}>
+                    <TouchableOpacity onPress={event => this.onChangePasswordPress()}>
+                        <View style={styles.item}>
                             <Image source={require('../../shared/images/password.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Change password</Text>
                         </View>
@@ -126,6 +169,36 @@ class Settings extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
+                <View
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: height / 13,
+                        zIndex: 0,
+                    }}
+                >
+                    <View style={styles.line1} />
+                    <View style={styles.line2} />
+                </View>
+                <Modal
+                    animationIn={'bounceInUp'}
+                    animationOut={'bounceOut'}
+                    animationInTiming={1000}
+                    animationOutTiming={200}
+                    backdropTransitionInTiming={500}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={'#132d38'}
+                    backdropOpacity={0.8}
+                    style={{ alignItems: 'center' }}
+                    isVisible={this.state.isModalVisible}
+                >
+                    {this._renderModalContent()}
+                </Modal>
             </View>
         );
     }
@@ -135,7 +208,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        paddingTop: height / 18,
+        paddingTop: height / 60,
     },
     titleText: {
         color: 'white',
@@ -146,23 +219,17 @@ const styles = StyleSheet.create({
     settingText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 23,
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
         marginLeft: width / 30,
-    },
-    dividingItem: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        flexDirection: 'row',
-        width: width / 1.16,
-        paddingVertical: height / 40,
-        alignItems: 'center',
     },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 40,
-        justifyContent: 'center',
+        paddingVertical: height / 50,
+        justifyContent: 'flex-start',
+        width: width,
+        paddingHorizontal: width / 15,
     },
     icon: {
         width: width / 20,
@@ -173,12 +240,29 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'flex-start',
-        paddingHorizontal: width / 15,
+        paddingBottom: height / 80,
+        zIndex: 1,
+    },
+    modalContent: {
+        backgroundColor: '#16313a',
+        justifyContent: 'center',
+    },
+    line1: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 0.3,
+        width: width / 1.16,
+    },
+    line2: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 0.3,
+        width: width / 1.16,
+        marginTop: height / 4.8,
     },
 });
 
 const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
+    clearIOTA: () => dispatch(clearIOTA),
 });
 
 const mapStateToProps = state => ({
