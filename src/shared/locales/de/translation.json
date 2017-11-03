@@ -115,7 +115,7 @@
         "explanation":
             "Mit dem Passwort können Sie in Zukunft auf Ihren Geldbeutel zugreifen. Ihr Seed wird verschlüsselt auf Ihrem Gerät gespeichert.",
         "reminder": "Stellen Sie sicher, dass Sie ein sicheres Kennwort aus mindestens 12 Zeichen verwenden.",
-        "placeholder1": "\"PASSWORT\"",
+        "placeholder1": "PASSWORT",
         "placeholder2": "PASSWORT ERNEUT EINGEBEN",
         "error1_title": "Passwort ist zu kurz",
         "error1_text": "Ihr Passwort muss mindesten 8 Zeich lang sein. Bitte erneut eingeben.",
