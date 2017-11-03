@@ -1,3 +1,4 @@
+import { iota } from '../libs/iota';
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
 
@@ -49,7 +50,6 @@ export function generateNewAddressError() {
 }
 
 export function setReady() {
-    console.log('Successfully set ready');
     return {
         type: 'SET_READY',
         payload: true,

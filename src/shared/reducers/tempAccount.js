@@ -77,6 +77,7 @@ export default (state = initialState, action) => {
                 password: '',
                 ready: false,
                 usedSeedToLogin: false,
+                seedIndex: 0,
             };
         default:
             return state;

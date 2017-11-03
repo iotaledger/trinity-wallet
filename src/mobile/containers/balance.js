@@ -27,6 +27,8 @@ class Balance extends React.Component {
     }
 
     render() {
+        const accountInfo = this.props.account.accountInfo;
+        const seedIndex = this.props.tempAccount.seedIndex;
         const shortenedBalance =
             round(formatValue(this.props.account.balance, 1)).toFixed(1) +
             (this.props.account.balance < 1000 ? '' : '+');
@@ -47,7 +49,9 @@ class Balance extends React.Component {
                 <View style={styles.line} />
                 <View style={styles.transactionsContainer}>
                     <ListView
-                        dataSource={ds.cloneWithRows(this.props.account.transfers.slice(0, 4))}
+                        dataSource={ds.cloneWithRows(
+                            accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
+                        )}
                         renderRow={dataSource => <SimpleTransactionRow rowData={dataSource} />}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                         enableEmptySections
@@ -117,6 +121,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     marketData: state.marketData,
     account: state.account,
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = dispatch => ({
