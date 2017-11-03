@@ -189,7 +189,7 @@ class Send extends Component {
     );
 
     render() {
-        let { amount, address, message } = this.state;
+        let { amount, address, tag, message } = this.state;
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -277,36 +277,40 @@ class Send extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TextField
-                        style={styles.textField}
-                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                        labelFontSize={height / 55}
-                        fontSize={height / 40}
-                        height={height / 24}
-                        labelPadding={2}
-                        baseColor="white"
-                        enablesReturnKeyAutomatically={true}
-                        label="Optional Tag"
-                        tintColor="#F7D002"
-                        autoCorrect={false}
-                        value={message}
-                        onChangeText={tag => this.setState({ tag })}
-                    />
-                    <TextField
-                        style={styles.textField}
-                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                        labelFontSize={height / 55}
-                        fontSize={height / 40}
-                        height={height / 24}
-                        labelPadding={2}
-                        baseColor="white"
-                        enablesReturnKeyAutomatically={true}
-                        label="Message"
-                        tintColor="#F7D002"
-                        autoCorrect={false}
-                        value={message}
-                        onChangeText={message => this.setState({ message })}
-                    />
+                    <View style={styles.textFieldContainer}>
+                        <TextField
+                            style={styles.textField}
+                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                            labelFontSize={height / 55}
+                            fontSize={height / 40}
+                            height={height / 24}
+                            labelPadding={2}
+                            baseColor="white"
+                            enablesReturnKeyAutomatically={true}
+                            label="Optional Tag"
+                            tintColor="#F7D002"
+                            autoCorrect={false}
+                            value={tag}
+                            onChangeText={tag => this.setState({ tag })}
+                        />
+                    </View>
+                    <View style={styles.textFieldContainer}>
+                        <TextField
+                            style={styles.textField}
+                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                            labelFontSize={height / 55}
+                            fontSize={height / 40}
+                            height={height / 24}
+                            labelPadding={2}
+                            baseColor="white"
+                            enablesReturnKeyAutomatically={true}
+                            label="Message"
+                            tintColor="#F7D002"
+                            autoCorrect={false}
+                            value={message}
+                            onChangeText={message => this.setState({ message })}
+                        />
+                    </View>
                     <View style={styles.sendIOTAButtonContainer}>
                         <TouchableOpacity onPress={event => this.sendTransaction()}>
                             <View style={styles.sendIOTAButton}>
