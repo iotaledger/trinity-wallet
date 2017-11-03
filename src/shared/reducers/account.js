@@ -16,19 +16,11 @@ const account = (
                 ...state,
                 balance: action.balance,
                 accountInfo: {
+                    ...state.accountInfo,
                     [action.seedName]: {
                         addresses: action.addresses,
                         transfers: action.transfers,
                     },
-                },
-            };
-        case 'UPDATE_ACCOUNT_INFO':
-            return {
-                ...state,
-                balance: action.balance,
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.seedName]: ((['addresses']: action.addresses), (['transfers']: action.transfers)),
                 },
             };
         case 'SET_FIRST_USE':

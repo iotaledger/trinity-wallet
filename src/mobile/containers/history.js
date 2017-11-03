@@ -18,11 +18,13 @@ class History extends React.Component {
     }
 
     render() {
+        const accountInfo = this.props.account.accountInfo;
+        const seedIndex = this.props.tempAccount.seedIndex;
         return (
             <View style={styles.container}>
                 <View style={styles.listView}>
                     <ListView
-                        dataSource={ds.cloneWithRows(this.props.account.transfers)}
+                        dataSource={ds.cloneWithRows(accountInfo[Object.keys(accountInfo)[seedIndex]].transfers)}
                         renderRow={dataSource => (
                             <TransactionRow
                                 rowData={dataSource}
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     account: state.account,
+    tempAccount: state.tempAccount,
 });
 
 export default connect(mapStateToProps)(History);
