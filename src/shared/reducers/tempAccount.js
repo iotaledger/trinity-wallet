@@ -70,8 +70,6 @@ export default (state = initialState, action) => {
         case 'CLEAR_TEMP_DATA':
             return {
                 ...state,
-                balance: 0,
-                transactions: [],
                 receiveAddress: '',
                 seed: '',
                 password: '',

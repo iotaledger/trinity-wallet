@@ -28,6 +28,11 @@ const account = (
                 ...state,
                 firstUse: action.payload,
             };
+        case 'SET_BALANCE':
+            return {
+                ...state,
+                balance: action.payload,
+            };
         case 'SET_ONBOARDING_COMPLETE':
             return {
                 ...state,

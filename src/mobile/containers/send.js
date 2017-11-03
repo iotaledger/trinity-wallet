@@ -22,6 +22,7 @@ import { sendTransaction } from '../../shared/actions/tempAccount';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
+import { getAccountInfo } from '../../shared/actions/account';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
@@ -101,12 +102,15 @@ class Send extends Component {
         const value = parseInt(this.state.amount) * this.getUnitMultiplier();
         const message = this.state.message;
         const isValid = this.isValidAddress(address);
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const seedName = this.props.account.seedNames[seedIndex];
+        const accountInfo = this.props.account.accountInfo;
 
         if (isValid) {
             getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value !== 'undefined') {
                     var seed = getSeed(value, this.props.tempAccount.seedIndex);
-                    sendTx(seed);
+                    Promise.resolve(sendTx(seed)).then(getAccountInfo('test', seedName, seedIndex, accountInfo));
                     if (sendTransaction(seed.seed, address, value, message) == false) {
                         this.dropdown.alertWithType(
                             'error',
@@ -460,6 +464,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     sendTransaction: (seed, address, value, message) => {
         dispatch(sendTransaction(seed, address, value, message));
+    },
+    getAccountInfo: (seed, seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seed, seedName, seedIndex, accountInfo));
     },
 });
 

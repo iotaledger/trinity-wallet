@@ -57,7 +57,6 @@ class Receive extends Component {
         });
 
         const generate = seed => this.props.generateNewAddress(seed);
-
         const error = () => this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
     }
 
