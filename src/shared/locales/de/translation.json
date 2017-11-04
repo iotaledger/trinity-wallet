@@ -12,7 +12,7 @@
     "welcome1": {
         "text1": "Vielen Dank für das Herunterladen der IOTA Wallet.",
         "text2": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
-        "reminder": "Sie könnten versucht sein einige Schritte zu überspringen, aber wir bitten Sie, dem gesamten Prozess zu folgen.",
+        "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen.",
         "button1": "WEITER",
         "button2": "ZURÜCK"
     },
@@ -45,14 +45,14 @@
     },
     "enterSeed": {
         "error_title": "Seed ist zu kurz",
-        "error_text": "Seeds müssen mindesten 60 Zeichen lang sein. Bitte versuchen Sie es erneut.",
+        "error_text": "Seeds müssen mindestens 60 Zeichen lang sein. Bitte versuche es erneut.",
         "invalid_seed_title": "Ungültiger Seed",
         "invalid_seed_text": "Dein Seed ist ungültig. Ein Seed kann aus Großbuchstaben (A-Z) und die Nummer 9 bestehen und muss 60-81 Zeichen lang sein.",
         "placeholder": "SEED",
-        "seed_explanation": "Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Sie können keinen Seed benutzen der länger als 81 Zeichen ist.",
+        "seed_explanation": "Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als 81 Zeichen ist.",
         "reminder": "TEILE DEINEN SEED MIT NIEMANDEM",
         "scan_code": "QR Code scannen",
-        "close": "SCHLIEẞEN",
+        "close": "SCHLIESSEN",
         "button1": "FERTIG",
         "button2": "ZURÜCK"
     },
@@ -74,29 +74,29 @@
         "button2": "ZURÜCK"
     },
     "saveYourSeed2": {
-        "optionA": "Niederschrift",
-        "optionB": " Papier Wallet",
+        "optionA": "Manuelle Kopie",
+        "optionB": " Paper Wallet",
         "optionC": "In die Zwischenablage kopieren",
         "explanation": "Ihr Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreiben Sie ihren Seed und die Prüfsumme auf und prüfen Sie dreimal ob diese Korrekt sind.",
         "text": "prüfe dreimal",
         "button": "FERTIG"
     },
     "saveYourSeed3": {
-        "optionA": "Niederschrift",
+        "optionA": "Manuelle Kopie",
         "optionB": " Paper Wallet",
         "optionC": "In die Zwischenablage kopieren",
-        "explanation": "Klicke den Knopf unten um Deinen Seed in einen Passwort-Manager zu kopieren. Dein Seed wird für 60 Sekunden in deiner Zwischenablage bleiben.",
+        "explanation": "Klicke um deinen Seed in einen Passwort-Manager zu kopieren. Er wird für 60 Sekunden in deiner Zwischenablage bleiben.",
         "text": "Speichere den Seed nicht als Klartext.",
         "button1": "IN ZWISCHENABLAGE KOPIEREN",
         "button2": "FERTIG"
     },
     "saveYourSeed4": {
-        "optionA": "Niederschrift",
+        "optionA": "Manuelle Kopie",
         "optionB": " Papier Wallet",
         "optionC": "In die Zwischenablage kopieren",
-        "explanation": "Klick die Schaltfläche unten, um eine Paper Wallet von deinem Seed auszudrucken.",
-        "text1": "Sicher aufbewahren",
-        "text2": "Teilen Sie niemals Ihren Seed.",
+        "explanation": "Klicke die Schaltfläche unten, um eine Paper Wallet von deinem Seed auszudrucken.",
+        "text1": "Bewahre es sicher auf",
+        "text2": "Teile niemals deinen Seed.",
         "check_button": "IOTA Logo",
         "button1": "PAPIER WALLET DRUCKEN",
         "button2": "FERTIG"
@@ -104,19 +104,19 @@
     "setPassword": {
         "title": "PASSWORT EINRICHTEN",
         "text": "Jetzt müssen wir ein Passwort einrichten.",
-        "explanation": "Mit dem Passwort kannst Du in Zukunft auf Deinen Geldbeutel zugreifen. Eine verschlüsselte Kopie deines Seed wird auf deinem Gerät gespeichert.",
-        "reminder": "Stellen Sie sicher, dass Sie ein sicheres Kennwort aus mindestens 12 Zeichen verwenden.",
+        "explanation": "Mit dem Passwort kannst du in Zukunft auf deine Wallet zugreifen. Eine verschlüsselte Kopie deines Seed wird auf deinem Gerät gespeichert.",
+        "reminder": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
         "placeholder1": "\"PASSWORT\"",
         "placeholder2": "PASSWORT ERNEUT EINGEBEN",
         "error1_title": "Passwort ist zu kurz",
-        "error1_text": "Ihr Passwort muss mindesten 8 Zeich lang sein. Bitte erneut eingeben.",
+        "error1_text": "Dein Passwort muss mindestens 12 Zeichen lang sein. Bitte erneut eingeben.",
         "error2_title": "Die Passwörter stimmen nicht überein",
         "error2_text": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
         "button1": "FERTIG",
         "button2": "ZURÜCK"
     },
     "onboardingComplete": {
-        "text": "Die Wallet ist jetzt eingerichtet und bereit. Möchten Sie Änderungen in der Zukunft machen, schauen Sie in das Menü \"Werkzeuge\".",
+        "text": "Die Wallet ist jetzt eingerichtet und bereit. Änderungen kannst du im Menü unter \"Tools\" vornehmen.",
         "button": "WEITER"
     },
     "home": {
@@ -124,8 +124,8 @@
         "tab2": "SENDEN",
         "tab3": "EMPFANGEN",
         "tab4": "VERLAUF",
-        "tab5": "WERKZEUGE",
-        "mcap": "MKAP",
+        "tab5": "TOOLS",
+        "mcap": "MCAP",
         "change": "Änderung",
         "volume": "Volumen",
         "address": "Adresse",
@@ -134,7 +134,7 @@
         "button2": "NEUE ADRESSE GENERIEREN",
         "button3": "ABMELDEN",
         "changeMode": "Modus ändern",
-        "minimal": "Minimal",
+        "minimal": "Minimalistisch",
         "standard": "Standard",
         "expert": "Experte",
         "changeTheme": "Theme ändern",
