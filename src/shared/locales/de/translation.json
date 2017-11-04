@@ -19,14 +19,14 @@
     "welcome2": {
         "text1": "Okay. Lass uns Dein Wallet einrichten!",
         "text2": "Hast Du bereits einen Seed welchen du verwenden möchtest?",
-        "seed_explanation1": "Der IOTA seed ist wie ein Nutzername und Passwort zu Deinem Konto, kombiniert in eine Zeichenfolge von 81 Zeichen.",
-        "seed_explanation2": "Mit Ihrem Seed können Sie von jeder Wallet und jedem Gerät auf Ihre IOTA zugreifen - Aber wenn Sie Ihren Seed verlieren, verlieren Sie auch alle Ihre IOTA",
-        "reminder": "Bitte bewahren Deinen Seed sicher auf",
+        "seed_explanation1": "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
+        "seed_explanation2": "Mit deinem Seed kannst du von jeder Wallet und jedem Gerät auf deine IOTA zugreifen - Aber wenn du deinen Seed verlierst, verlierst du auch dein gesamtes IOTA Guthaben.",
+        "reminder": "Bewahre Deinen Seed sicher auf",
         "button1": "JA",
         "button2": "NEIN"
     },
     "lightserver": {
-        "text1": "Ein light server ist ein Zugang zum IOTA Netzwerk, freundlicherweise bereitgestellt von Mitgliedern der Gemeinschaft oder unseren Partnerunternehmen.",
+        "text1": "Ein Light Server ist ein Zugang zum IOTA Netzwerk, bereitgestellt von Mitgliedern der Gemeinschaft oder unseren Partnern.",
         "text2": "Mehr Informationen über die Server unter: http://iotasupport.com/lightwallet.shtml",
         "text3": "Bitte wähle einen Server aus der Liste unten.",
         "server_label": "Server",
@@ -51,7 +51,7 @@
         "placeholder": "SEED",
         "seed_explanation": "Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Sie können keinen Seed benutzen der länger als 81 Zeichen ist.",
         "reminder": "TEILE DEINEN SEED MIT NIEMANDEM",
-        "scan_code": "QR Code Scannen",
+        "scan_code": "QR Code scannen",
         "close": "SCHLIEẞEN",
         "button1": "FERTIG",
         "button2": "ZURÜCK"
@@ -59,8 +59,8 @@
     "newSeedSetup": {
         "title": "ERZEUGE EINEN NEUEN SEED",
         "button1": "NEUEN SEED ERZEUGEN",
-        "text1": "Drücke einzelne Buchstaben um diese mit einem beliebigen Buchstaben auszutauschen.",
-        "text2": "Klicken Sie anschließend WEITER",
+        "text1": "Drücke beliebige Buchstaben um sie zufällig zu verteilen.",
+        "text2": "Klicke anschließend auf WEITER",
         "button2": "WEITER",
         "button3": "ZURÜCK"
     },
