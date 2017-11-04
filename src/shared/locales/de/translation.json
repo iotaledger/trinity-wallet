@@ -11,7 +11,7 @@
     },
     "welcome1": {
         "text1": "Vielen Dank für das Herunterladen der IOTA Wallet.",
-        "text2": "Wir werden die nächsten Minuten damit verbringen dein Wallet einrichten.",
+        "text2": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
         "reminder": "Sie könnten versucht sein einige Schritte zu überspringen, aber wir bitten Sie, dem gesamten Prozess zu folgen.",
         "button1": "WEITER",
         "button2": "ZURÜCK"
@@ -28,7 +28,7 @@
     "lightserver": {
         "text1": "Ein light server ist ein Zugang zum IOTA Netzwerk, freundlicherweise bereitgestellt von Mitgliedern der Gemeinschaft oder unseren Partnerunternehmen.",
         "text2": "Mehr Informationen über die Server unter: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Bitte wählen Sie einen Server aus der unteren Liste.",
+        "text3": "Bitte wähle einen Server aus der Liste unten.",
         "server_label": "Server",
         "custom_server_label": "Andere Serveradresse",
         "other": "Anderer",
@@ -36,7 +36,7 @@
         "button2": "ZURÜCK"
     },
     "login": {
-        "text": "Bitte geben Sie Ihr Passwort ein",
+        "text": "Bitte gib dein Passwort ein",
         "placeholder": "PASSWORT",
         "error_title": "Unbekanntes Passwort",
         "error_text": "Das Passwort wurde nicht erkannt. Bitte nochmals Versuchen.",
@@ -50,7 +50,7 @@
         "invalid_seed_text": "Dein Seed ist ungültig. Ein Seed kann aus Großbuchstaben (A-Z) und die Nummer 9 bestehen und muss 60-81 Zeichen lang sein.",
         "placeholder": "SEED",
         "seed_explanation": "Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Sie können keinen Seed benutzen der länger als 81 Zeichen ist.",
-        "reminder": "TEILEN SIE IHREN SEED MIT NIEMANDEM",
+        "reminder": "TEILE DEINEN SEED MIT NIEMANDEM",
         "scan_code": "QR Code Scannen",
         "close": "SCHLIEẞEN",
         "button1": "FERTIG",
@@ -76,7 +76,7 @@
     "saveYourSeed2": {
         "optionA": "Niederschrift",
         "optionB": " Papier Wallet",
-        "optionC": "In Zwischenablage kopieren",
+        "optionC": "In die Zwischenablage kopieren",
         "explanation": "Ihr Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreiben Sie ihren Seed und die Prüfsumme auf und prüfen Sie dreimal ob diese Korrekt sind.",
         "text": "prüfe dreimal",
         "button": "FERTIG"
@@ -84,7 +84,7 @@
     "saveYourSeed3": {
         "optionA": "Niederschrift",
         "optionB": " Paper Wallet",
-        "optionC": "In Zwischenablage kopieren",
+        "optionC": "In die Zwischenablage kopieren",
         "explanation": "Klicke den Knopf unten um Deinen Seed in einen Passwort-Manager zu kopieren. Dein Seed wird für 60 Sekunden in deiner Zwischenablage bleiben.",
         "text": "Speichere den Seed nicht als Klartext.",
         "button1": "IN ZWISCHENABLAGE KOPIEREN",
@@ -93,7 +93,7 @@
     "saveYourSeed4": {
         "optionA": "Niederschrift",
         "optionB": " Papier Wallet",
-        "optionC": "In Zwischenablage kopieren",
+        "optionC": "In die Zwischenablage kopieren",
         "explanation": "Klick die Schaltfläche unten, um eine Paper Wallet von deinem Seed auszudrucken.",
         "text1": "Sicher aufbewahren",
         "text2": "Teilen Sie niemals Ihren Seed.",
