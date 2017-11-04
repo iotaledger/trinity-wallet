@@ -83,11 +83,7 @@ class Send extends Component {
     }
 
     isValidTag(tag) {
-        if (tag.match(/^[A-Z9]+$/) != false && tag.length <= 27) {
-            return true;
-        } else {
-            return false;
-        }
+        return tag.match(/^[A-Z9]+$/) && tag.length <= 27;
     }
 
     isValidMessage(message) {
@@ -147,10 +143,10 @@ class Send extends Component {
                 }
             });
         }
-        if (addressIsValid == false) {
+        if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
         }
-        if (tagIsValid == false) {
+        if (!tagIsValid) {
             this.renderInvalidTagErrors(tag);
         }
 
