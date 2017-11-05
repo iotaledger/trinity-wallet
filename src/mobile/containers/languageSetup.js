@@ -29,6 +29,8 @@ const CustomLayoutSpring = {
     },
 };
 
+var HockeyApp = require('react-native-hockeyapp');
+
 class LanguageSetup extends React.Component {
     constructor(props) {
         super(props);
@@ -37,6 +39,19 @@ class LanguageSetup extends React.Component {
             dropdownHeight: 0,
             languageSelected: 'English (International)',
         };
+    }
+
+    componentWillMount() {
+        HockeyApp.configure(
+            (HockeyAppId: '61847e74428144ceb0c3baee06c24c33'),
+            (autoSendCrashReports: true),
+            (authenticationType: AuthenticationType.EmailPassword),
+        );
+    }
+
+    componentDidMount() {
+        HockeyApp.start();
+        HockeyApp.checkForUpdate(); // optional
     }
 
     onNextPress() {
