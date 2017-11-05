@@ -11,7 +11,6 @@ import {
     Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
-
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import { RNPrint } from 'NativeModules';
 import QRCode from 'react-native-qrcode-svg';
@@ -24,8 +23,8 @@ const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 let results = '';
 
 class PaperWallet extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             checkboxImage: require('../../shared/images/checkbox-checked.png'),
             showIotaLogo: true,
@@ -35,22 +34,26 @@ class PaperWallet extends React.Component {
     }
 
     onDonePress() {
-        this.props.navigator.pop({
-            animated: false,
-        });
+        this.props.navigator.pop({ animated: false });
+
         if (this.state.pressedPrint) {
             RNFS.unlink(RNFS.DocumentDirectoryPath + '/qr.png');
-            // Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then(item =>
-            //     item.forEach(item => RNFS.unlink(item.path)),
-            // );
+
+            // Doesn't convert to PDF for android.
+            if (Platform.OS === 'ios') {
+                Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then(item =>
+                    item.forEach(item => RNFS.unlink(item.path)),
+                );
+            }
         }
     }
 
     async onPrintPress() {
         this.getDataURL();
-        this.setState({
-            pressedPrint: true,
-        });
+        this.setState({ pressedPrint: true });
+        const isAndroid = Platform.OS === 'android';
+        const qrPathOverride = isAndroid ? `file://${qrPath}` : qrPath;
+
         const options = {
             html: `
         <html>
@@ -105,7 +108,7 @@ class PaperWallet extends React.Component {
             <p id="text">Never share your<br />seed with anyone.</p>
         </div>
         <div id="item">
-            <img src="file://${qrPath}" width="215" height="215" />
+            <img src="${qrPathOverride}" width="235" height="235" />
         </div> 
         <style> 
             #seedBox {
@@ -127,11 +130,11 @@ class PaperWallet extends React.Component {
                 padding-top: 37px
             } 
             #item {
-                float: left
+                float: left;
             } 
             #midItem {
                 float: left;
-                margin: 30px
+                margin: 25px
             } 
             #iotaLogo {
                 width: 109.1px;
@@ -161,7 +164,7 @@ class PaperWallet extends React.Component {
         };
 
         try {
-            if (Platform.OS === 'android') {
+            if (isAndroid) {
                 await RNPrint.printhtml(options.html);
             } else {
                 results = await RNHTMLtoPDF.convert(options);
