@@ -19,10 +19,8 @@ import History from './history';
 import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import { round, formatValue, formatUnit } from '../../shared/libs/util';
 import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/iotaActions';
-import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';
-
+import DropdownHolder from '../components/dropdownHolder';
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 
@@ -247,7 +245,7 @@ class Home extends Component {
                     </View>
                 </View>
                 <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
+                    ref={ref => DropdownHolder.setDropdown(ref)}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
