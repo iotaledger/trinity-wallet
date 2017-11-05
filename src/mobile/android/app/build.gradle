@@ -153,7 +153,7 @@ dependencies {
   	compile project(':react-native-sensitive-info')
   	compile project(':react-native-camera')
     compile project(':react-native-fs')
-
+compile project(":react-native-hockeyapp")
 }
 
 // Run this once to be able to run the application with BUCK
