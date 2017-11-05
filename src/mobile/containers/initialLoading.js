@@ -23,7 +23,7 @@ export default class InitialLoading extends Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'login',
+                screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
