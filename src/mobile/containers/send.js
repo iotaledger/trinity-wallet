@@ -105,14 +105,15 @@ class Send extends Component {
 
     renderInvalidTagErrors(tag) {
         const props = ['error', 'Invalid Tag'];
+        const dropdown = DropdownHolder.getDropdown();
 
         if (tag.length > 27) {
-            return this.dropdown.alertWithType(...props, 'Tags cannot be longer than 27 characters.');
+            return dropdown.alertWithType(...props, 'Tags cannot be longer than 27 characters.');
         } else if (tag.match(/^[A-Z9]+$/) == false) {
-            return this.dropdown.alertWithType(...props, 'Tag contains invalid characters.');
+            return dropdown.alertWithType(...props, 'Tag contains invalid characters.');
         }
 
-        return this.dropdown.alertWithType(...props, 'Tag is invalid.');
+        return dropdown.alertWithType(...props, 'Tag is invalid.');
     }
 
     sendTransaction() {
