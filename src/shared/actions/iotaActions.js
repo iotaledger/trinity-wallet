@@ -263,7 +263,7 @@ export function generateNewAddress(seed) {
     };
 }
 
-export function sendTransaction(seed, address, value, message) {
+export function sendTransaction(seed, address, value, tag, message) {
     // Convert to Trytes
     const messageTrytes = iota.utils.toTrytes(message);
     const transfer = [
@@ -271,7 +271,7 @@ export function sendTransaction(seed, address, value, message) {
             address: address,
             value: value,
             message: messageTrytes,
-            tag: 'AAA',
+            tag: tag,
         },
     ];
     const outputsToCheck = transfer.map(transfer => {
@@ -288,7 +288,7 @@ export function sendTransaction(seed, address, value, message) {
             console.log('You cannot send to an already used address');
             return false;
         } else {
-            // Send transfer with depth 4 and minWeightMagnitude 18
+            // Send transfer with depth 4 and minWeightMagnitude 14
             iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
                 if (!error) {
                     console.log('SUCCESSFULLY SENT TRANSFER: ', success);
