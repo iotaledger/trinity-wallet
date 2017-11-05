@@ -18,8 +18,7 @@ import { connect } from 'react-redux';
 import { generateNewAddress, setAddress } from '../../shared/actions/iotaActions';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-
+import DropdownHolder from '../components/dropdownHolder';
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -47,6 +46,7 @@ class Receive extends Component {
     }
 
     onGeneratePress() {
+        const dropdown = DropdownHolder.getDropdown();
         getFromKeychain(this.props.iota.password, value => {
             if (!isUndefined(value)) {
                 var seed = getSeed(value, this.props.iota.seedIndex);
@@ -58,7 +58,7 @@ class Receive extends Component {
 
         const generate = seed => this.props.generateNewAddress(seed);
 
-        const error = () => this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        const error = () => dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
     }
 
     onAddressPress(address) {
@@ -114,16 +114,6 @@ class Receive extends Component {
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
             </View>
         );
     }
@@ -181,32 +171,6 @@ const styles = StyleSheet.create({
     separator: {
         flex: 1,
         height: 15,
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
     },
 });
 

@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { sendTransaction } from '../../shared/actions/iotaActions';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import DropdownHolder from '../components/dropdownHolder';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 
@@ -92,29 +92,28 @@ class Send extends Component {
 
     renderInvalidAddressErrors(address) {
         const props = ['error', 'Invalid Address'];
+        const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
-            return this.dropdown.alertWithType(
-                ...props,
-                'Address should be 81 characters long and should have a checksum.',
-            );
+            return dropdown.alertWithType(...props, 'Address should be 81 characters long and should have a checksum.');
         } else if (this.hasInvalidCharacters(address)) {
-            return this.dropdown.alertWithType(...props, 'Address contains invalid characters.');
+            return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
 
-        return this.dropdown.alertWithType(...props, 'Address contains invalid checksum');
+        return dropdown.alertWithType(...props, 'Address contains invalid checksum');
     }
 
     renderInvalidTagErrors(tag) {
         const props = ['error', 'Invalid Tag'];
+        const dropdown = DropdownHolder.getDropdown();
 
         if (tag.length > 27) {
-            return this.dropdown.alertWithType(...props, 'Tags cannot be longer than 27 characters.');
+            return dropdown.alertWithType(...props, 'Tags cannot be longer than 27 characters.');
         } else if (tag.match(/^[A-Z9]+$/) == false) {
-            return this.dropdown.alertWithType(...props, 'Tag contains invalid characters.');
+            return dropdown.alertWithType(...props, 'Tag contains invalid characters.');
         }
 
-        return this.dropdown.alertWithType(...props, 'Tag is invalid.');
+        return dropdown.alertWithType(...props, 'Tag is invalid.');
     }
 
     sendTransaction() {
@@ -122,6 +121,7 @@ class Send extends Component {
         const value = parseInt(this.state.amount);
         const tag = this.state.tag;
         const message = this.state.message;
+        const dropdown = DropdownHolder.getDropdown();
         const addressIsValid = this.isValidAddress(address);
         const tagIsValid = this.isValidTag(tag);
         const messageIsValid = this.isValidMessage(message);
@@ -131,8 +131,8 @@ class Send extends Component {
                 if (typeof value !== 'undefined') {
                     var seed = getSeed(value, this.props.iota.seedIndex);
                     sendTx(seed);
-                    if (sendTransaction(seed.seed, address, value, tag, message) == false) {
-                        this.dropdown.alertWithType(
+                    if (sendTransaction(seed.seed, address, value, message) == false) {
+                        dropdown.alertWithType(
                             'error',
                             'Key reuse',
                             `The address you are trying to send to has already been used. Please try another address.`,
@@ -319,16 +319,6 @@ class Send extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -469,32 +459,6 @@ const styles = StyleSheet.create({
         height: width / 50,
         width: width / 34,
         marginRight: 2,
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
     },
 });
 
