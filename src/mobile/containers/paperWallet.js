@@ -161,6 +161,7 @@ class PaperWallet extends React.Component {
         </html>`,
             fileName: 'paperWallet',
             base64: true,
+            fonts: ['../../shared/custom-fonts/Inconsolata-Bold.ttf'],
         };
 
         try {
@@ -204,8 +205,6 @@ class PaperWallet extends React.Component {
     }
 
     callback(dataURL) {
-        console.log(dataURL);
-        console.log(qrPath);
         RNFS.writeFile(qrPath, dataURL, 'base64');
     }
 
