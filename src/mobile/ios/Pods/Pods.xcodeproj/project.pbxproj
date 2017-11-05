@@ -7,67 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0169BAD88ABCF39CD8691EB167F86A32 /* buttonRoundedRegularHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B429E4EEB53382F9BD2E33DFA2838 /* buttonRoundedRegularHighlighted.png */; };
 		01E6C0547D782AE52790DCDAED2DCB52 /* Pods-iotaWallet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46690F73410509C835368C77C3CA395C /* Pods-iotaWallet-dummy.m */; };
-		034F6BF87B11EFC7171144FD31993C02 /* feedbackActivity~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FFC6D1BE3A4537F2C334DBA36FF434 /* feedbackActivity~ipad.png */; };
-		0A9ED6AAA5EE93F76F69579EEE1BF2FE /* Rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FFD04CEA394C33CF54F2733FA70638E /* Rectangle@2x.png */; };
-		0C7B08590B13FDCB31E05F09C69D02E8 /* iconCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = E77D53D85E78FF0653E58616A54A3F0A /* iconCamera.png */; };
-		0CA78AC46C03FD0677D2BD70F763AA5D /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 4DCE79D60E344080641848EBB84E3C1C /* pt.lproj */; };
-		18C8FE31C992810CC728A5AFEDAA7F13 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 00DF82C5D029910007CE7802FA226D29 /* es.lproj */; };
-		1A2180E0DC0BA0B0C7B5CE3ACD2A6768 /* iconCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D572C90659CFD1A7BBCCE771CBE837 /* iconCamera@2x.png */; };
-		1A434D26CCA5BDDFD62A1C92FF4CE93C /* buttonRoundedRegularHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F19BFA2EF7CDDACEB191C66E86F9CF26 /* buttonRoundedRegularHighlighted@2x.png */; };
-		21AF0368D2A74AE7CACCDF04BDD015FF /* authorize_denied@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 855630EF79AD9AA5A58F9DABD6246854 /* authorize_denied@3x.png */; };
-		2893823E9CB1E5776F122C091C03B4F7 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2AAD4A5D2673408637D7279995299734 /* de.lproj */; };
-		298A8CF1F92121EE8975416E1B42DA96 /* buttonRoundedRegularHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = F34EF800CB0ED548AAFD0625AB059C9C /* buttonRoundedRegularHighlighted.png */; };
-		2B196B950858F08FF975A2246D64C9F7 /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = B19A7B2D7DCA6B664B58E10CEE0C9203 /* Cancel.png */; };
-		2F5E6CBD401998573AD5FE0E464262B1 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6FEA5B6E51FB32F0B015225BCF624092 /* ja.lproj */; };
-		3D8D9920EE3EF913B602FFEEB8C0A695 /* buttonRoundedRegular@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 454864B1857715D2C51536420F4FFB21 /* buttonRoundedRegular@2x.png */; };
-		3D9524F690E8C682CA151F6A071BC937 /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 05D3CBF2D23FA12DF52B88D63391B1A6 /* zh-Hans.lproj */; };
-		44A7EACB545AABDD70E670102CF8C17C /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1342E40D99357D2BE79A0FADC7F943C2 /* Arrow.png */; };
-		491750401A9EFDFD245721E7BE4627C6 /* Blur.png in Resources */ = {isa = PBXBuildFile; fileRef = 734F4335334F6982656494A53CB8A789 /* Blur.png */; };
-		4CCBA4C92CA1EEF80DB166BBEE0E0920 /* feedbackActivity@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655C08E7824601202493C28BBB3C3439 /* feedbackActivity@3x.png */; };
+		03F9E6CC9D330A9439A168B85DB80016 /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5038917CEA3E0505BB8D683830837ADA /* Cancel.png */; };
+		049DC27A120D8C64D604EE458AF41DB7 /* Cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD16EE0085A4BD00DDD2AC1475C7AE30 /* Cancel@3x.png */; };
+		28DEAC650483E15A5602394CE175AD84 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 591F6A2A6ABF8B30915537C7111EE30F /* ja.lproj */; };
+		2DC4ABBB56462C2DE42224B60BD5F84D /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = B6C82444601983CA2B5833E7C4D824FF /* fr.lproj */; };
+		33D030DF61B65C5537D08546640B90A2 /* Blur.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF08ABA807999CFEEDE6F6C0BD55642 /* Blur.png */; };
+		3489571CA89142FDC6B3C8AF2554924A /* FeedbackPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C253C72F9157132ED46F3D0B9611BA92 /* FeedbackPlaceholder.png */; };
+		3A624FBA699DEA2F5BA1095F016C7389 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 459D8801F400416CD414D12EA14CD43A /* pt.lproj */; };
+		3F4EE4E013A4285A452231E7001A59D3 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 656C2FA4BE959F48B7D3E1108AB75139 /* Arrow@2x.png */; };
+		40F50C320E441CA6832A1903FC423C3B /* pt-PT.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F8DA137F055628AB0272C6940AE95F4A /* pt-PT.lproj */; };
+		43346BB4720B201DF61B419AD168C8CC /* IconGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = D0256E3D7150C0468C93EFCD2C51601D /* IconGradient.png */; };
+		4358E71B5410586455C8B158367E2881 /* Rectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 09D44E5B0310D519415FA4953B84D983 /* Rectangle.png */; };
+		4876037C91809E9395FBC6DA1263D7A0 /* iconCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB9E812D3C5C445DBD4431184BADF7F /* iconCamera.png */; };
+		49A9CF505C50A2439636F3B7662D5E10 /* Blur@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F97438140ED109BFA5583F9F2AE15524 /* Blur@3x.png */; };
 		4EB5F5F718C1386C24F000BFF44BE511 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 572DBE63D5360AB71E5F80F979738FD0 /* Foundation.framework */; };
-		4F72D084AB1AB0385AFA896BD39BE97D /* Ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F09F3D22619B07601EFB8E2BFA17F9 /* Ok.png */; };
-		546C2C92080EDDC0E0991C5D93D85C8C /* Ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6594698FEE8A4E0CEA4B2A4419F0E1D0 /* Ok@2x.png */; };
-		62B3B2FF935934D79D6A3F98DD9A3310 /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 8C126DE54DD41BEBE09D1136F041813D /* nb.lproj */; };
+		507B27E488D80AFBF7E60509D4B6FAFB /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DF3C7B00A36FF1A520E111666ECEA3ED /* ru.lproj */; };
+		5115D6363C75F1CFED742D78CBA9331C /* buttonRoundedDeleteHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 4968069F7E838111A4EFEAD475FEF3B9 /* buttonRoundedDeleteHighlighted.png */; };
+		58B208AEE306DDB0814DA9F469D56AF3 /* Rectangle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC8D7512657910F9C45BC553E5679F51 /* Rectangle@3x.png */; };
+		5C072A354CF2E5C1E28796462F1EE5D1 /* authorize_denied@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F8A12E547C1A66E9077A99D3847BD96 /* authorize_denied@3x.png */; };
+		61623C6B3CAB656828E4E8E21DBA3B51 /* AppIconPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = A7FF5100D7B0256CA8AF7449747A8F71 /* AppIconPlaceHolder.png */; };
+		62EBE29FCD3236D8A4CEAE2A55AD8C9C /* Blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8161954480B0B29C060924731CA53F69 /* Blur@2x.png */; };
 		631248093AC7ABAF32DE898B1F2FEED1 /* Pods-iotaWalletTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33423EBDD2099E869C192311141EE /* Pods-iotaWalletTests-dummy.m */; };
-		67CD82782BD1B0E3D61179A03E1D551C /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E121C0B8695259AF55A57A7D6A2D44F1 /* it.lproj */; };
-		6F35985538D059073ADF34294A4CD93C /* IconGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = E5104F3C80BA8C7528592D006E0E82A5 /* IconGradient.png */; };
-		6FEEAB6B0BF65AD3A4B262D249393BB5 /* Ok@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5740B6EEAEB479021FDC7C73B5E2B01 /* Ok@3x.png */; };
+		635FEA3A17E0368486B6EBB951113919 /* IconGradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD9002836FE14052FADE32A6695C6AC6 /* IconGradient@2x.png */; };
+		63E45E69AE22E5EC53274CB00FF9CC11 /* feedbackActivity@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 809A848DE920AABC294026C7F3CBFFEA /* feedbackActivity@2x~ipad.png */; };
+		6FE15250DA0FAFDD7740E391A3981205 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 4233A565CC212AA91201EBDBBB2FA7A6 /* de.lproj */; };
 		700921C87A9AC08DE903A42F9B0EEE2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 572DBE63D5360AB71E5F80F979738FD0 /* Foundation.framework */; };
 		72CEBFA4399BA55D6AAB8E01A7C079AC /* Pods-iotaWallet-tvOSTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B74197A7CC07D888A2ADE7ADF7E25177 /* Pods-iotaWallet-tvOSTests-dummy.m */; };
-		7C074DD39BC70B9C2FEA1DDC557D1E51 /* authorize_denied@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C695F7EC0B9E548F5A12D46A2BA223C /* authorize_denied@2x.png */; };
-		7F5F10E74ED8034D89B93DFEB5CFD539 /* Cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5778BA291821FA85A1A6C95694FBFBA /* Cancel@3x.png */; };
-		8055D3FC20CCE9BC4F44626203C81745 /* feedbackActivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6CF435D8A85D06A5F1EB7F73CD014C8 /* feedbackActivity@2x.png */; };
-		8092BB02C170FE0923AD7E7A3640FB24 /* buttonRoundedDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962E8C1951575EBDD4A9EE4F9D73466 /* buttonRoundedDelete.png */; };
-		82A484029E7E614526A7FD2C1366AC39 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = CC8DCCBAEF1A3B82295C7C2B3D810159 /* en.lproj */; };
-		83AA80C4C4288E95D1ED250B7A53B1DB /* authorize_denied.png in Resources */ = {isa = PBXBuildFile; fileRef = B42D67B4B83B28AEFFD2047759BED21E /* authorize_denied.png */; };
-		84004D40E25E334F16B4D70D53BF149F /* buttonRoundedDeleteHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = AC5807FD57A37BA38071A2156EB5F393 /* buttonRoundedDeleteHighlighted.png */; };
-		87CFB536A253F968FED77C5A75DC8847 /* Blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E450709799F7F2F920A3898DCB6C570E /* Blur@2x.png */; };
-		8C115D2276DEB53520730E0B8791BE0F /* pt-PT.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9042C73619F7E1FA2D314D9909585AB1 /* pt-PT.lproj */; };
+		74188F838D216E12DACBAEA65FE68A47 /* Ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2753CCC441A1C0862C1879C06B25D4 /* Ok@2x.png */; };
+		77C8A6E286C4017355A3504DE7224672 /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 86D6241B2D52D7C424BD3BE247398BBD /* it.lproj */; };
+		7953B9FC0310262E2C693A3D1E5E5219 /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6369025C159D448330508D6F6734D302 /* nb.lproj */; };
+		86954DB3FF1C5EDF65479FAD9FC1434F /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 00B9CBA013C6808BF36B542FA4F7040B /* es.lproj */; };
+		89226F9F79E9BB2F2219E70A6BFCDED4 /* authorize_denied@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15086782A3600CDD6A777B6141C0C43B /* authorize_denied@2x.png */; };
+		8AE77ECF56D527473E2A071BFAF62243 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A34D7CAB3EA9E976E2994C9CD47A158A /* en.lproj */; };
+		8DF93789021A18DC6066C6C544637F90 /* feedbackActivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0D6B0599B30DD19A2D3D0B74D04DAA /* feedbackActivity@2x.png */; };
+		907E2F103EB6057B52422FCB26A8721B /* Cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40523582A329C08A3984A22B1DCD7CFC /* Cancel@2x.png */; };
 		909B555C0A8D89705758D033A11DACC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D154F4805B9715F0E6D79B0363CE280 /* Foundation.framework */; };
-		90C28D94DAD18307A25CF195A78B18DF /* FeedbackPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 13871F6C20D3710290C817BD8DBD93B8 /* FeedbackPlaceholder.png */; };
-		927F2545D650AD499F0114FC9E7C6341 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 8AA92B6EEB1857CA15FF54D41BB00F32 /* fr.lproj */; };
-		947E44184B30403F13924C59A1E3B3EE /* hu.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 223FB3F1860D20CE0AEE3705DB3A75C1 /* hu.lproj */; };
-		9BC767136A627318026727B775DC290F /* Rectangle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DBFD566A4DFBDF77984A70082E5BD7C /* Rectangle@3x.png */; };
-		9F1E42A64A0982335FB22EA98BADA1CF /* feedbackActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B1F65454D341983D231215C057F689A /* feedbackActivity.png */; };
-		A18DD09A116B5BFA895E52DBB9E05B4A /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EA99ADC684120A6F9DC266CAD014C1 /* Arrow@2x.png */; };
+		91C4BA98435286267215EB6915BEF20D /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2CE103232A320D24AE72597BF8DA8915 /* zh-Hans.lproj */; };
+		96146C16D76EE2FCCC0D735CDDEAB236 /* buttonRoundedDelete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B35E1F2681E586A64E81834175C37EF /* buttonRoundedDelete@2x.png */; };
+		98607B164CD8C94FC4997C23B8676D62 /* buttonRoundedRegular@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E202C35437C19327712354AD6BF9F32 /* buttonRoundedRegular@2x.png */; };
+		99EDE96EE366DEE42CA68F3527CD2ECB /* authorize_denied.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4DEB980C13E06EFE62F5B3686E3F5 /* authorize_denied.png */; };
+		9BFF5F7C39DD6384DBB7A137EBBE6209 /* buttonRoundedRegularHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F98B13D578AFF25EF0FE063F54CEF4 /* buttonRoundedRegularHighlighted@2x.png */; };
+		9E10DDC85EE5213720EEFBA655FA3F0E /* feedbackActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CFAF89D7061E637463CFC4A981AC386 /* feedbackActivity.png */; };
+		A010F6E013E49F89AD9814ABEEF6A5ED /* iconCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F6B212DE213D7F79B1146874582666 /* iconCamera@2x.png */; };
+		A48255B69BC546E153BAC32062805A26 /* Rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CF92202109FF0DE98529E2B9E2353ACA /* Rectangle@2x.png */; };
+		A695DB65C9820EF89C7DF501778092E3 /* buttonRoundedDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = 940DA2805302B8352BBC428B7D08DFB8 /* buttonRoundedDelete.png */; };
+		A7D8B3C3F26205FEC2CEEF050A4B1B8C /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = AF9D647E07F981E165B72FD87B5FB1B0 /* nl.lproj */; };
 		A9FA529A46B90EA7523CB4E30CC0F9B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D154F4805B9715F0E6D79B0363CE280 /* Foundation.framework */; };
-		ACE32A0A30642056880DC51F9EBDCDDD /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A90193780E25F1F078067899728402BC /* ru.lproj */; };
-		AF756DF0D4B06480BBEA3BBF81A81D13 /* buttonRoundedDeleteHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5483A24D2B9F7917191DE8A85829B605 /* buttonRoundedDeleteHighlighted@2x.png */; };
-		B9EDCE6E451154EB487F04EF2F4EF2A9 /* AppIconPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = A018F84C1ABFC5C5DCE138A1C4618D17 /* AppIconPlaceHolder.png */; };
-		C6E03FE266AC3767805DE30EC71059C1 /* Blur@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8779048BC02896DAB37AF583C63133D3 /* Blur@3x.png */; };
-		C6E9DDF394B9D50179A07335F0AB5863 /* hr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D3B30CD4C77547FB4D25EBE7BFC21FDF /* hr.lproj */; };
-		CC5FD2D069557A5B89BC1879996276D7 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 811CDE77AA0C808A2C5A09125B32EDBC /* nl.lproj */; };
-		CD9FB0D75EDC3673AAA051DED29F9490 /* buttonRoundedDelete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3712C6D928841683464E623E20C61434 /* buttonRoundedDelete@2x.png */; };
-		D04B99BD1CFCF232405B6F90B87D5E53 /* fa.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 238C67997324F051DCA0754D74A5FC01 /* fa.lproj */; };
-		D34E43E323C6A19985196C4D8F0A61D8 /* buttonRoundedRegular.png in Resources */ = {isa = PBXBuildFile; fileRef = 8290E8E1B3B06086211DC0FF6D788DD3 /* buttonRoundedRegular.png */; };
-		DFDE46266B9D8D56D4656A33A14309B0 /* Rectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B2DE10AF1A636C515581AD6851ACCF1 /* Rectangle.png */; };
-		F2852A28C22BF89F8787A33932048DB9 /* IconGradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5198B09B443AE419A5310064FCD8D9 /* IconGradient@2x.png */; };
+		AEDE07BAC2BF8283698040A6FCB0656E /* hu.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 730FB1217B0DE7065D38AF7B798DECCC /* hu.lproj */; };
+		B6FEDE99E79B79C5333FAAF1E3447488 /* fa.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 139A08BA6AABC0DB1A88279C8B0F4B54 /* fa.lproj */; };
+		CEE5B95F1FDD7706D183F8EC7B1FCD22 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C0909A07C0DA4B8F228F3B9A82805511 /* Arrow.png */; };
+		D7D77BFDA1A81D4F861D434327D3071E /* feedbackActivity~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB361F9C25501C9D521192C545D3BFA /* feedbackActivity~ipad.png */; };
+		D8D7470358FC1267D87352CD4ED27F42 /* feedbackActivity@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AC609F70585FFC592D24030C643E488 /* feedbackActivity@3x.png */; };
+		DA8C9A3AE256F3EE5A85FE500551F7CC /* Ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F6FEDAAF7CC673A8FD8A1340211B525 /* Ok.png */; };
+		DAA687DB1294E121F74001C76286EFF7 /* buttonRoundedDeleteHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD43DF160CE96B8450031726CCBFEBB4 /* buttonRoundedDeleteHighlighted@2x.png */; };
+		DE73828B7FFC6D94C6423C84005E62FC /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C66CC0EA7F987E2C4052C2DC308A7E1 /* bg.png */; };
+		E0EF08B5093705A6C20FAB5CD6000679 /* Arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED2113C175F75FB1F732E77914575C5 /* Arrow@3x.png */; };
+		E27BB7E54AB24234BCBFCCDD46BEA397 /* hr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = CBFE2F56C66E4856AE02644D65DCF170 /* hr.lproj */; };
+		E6A201A0681FF512C08B945B5CBC11AF /* Ok@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC5FAEB5132B67573B1A81C75DC9F25 /* Ok@3x.png */; };
 		F2FF658FDDD82E70D435994A9376E950 /* Pods-iotaWallet-tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCC31954952E8ED3563C87838794915 /* Pods-iotaWallet-tvOS-dummy.m */; };
-		F5A90570C26448C498D553B5042EC63F /* Cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89B70C12C89D36DABC6BE480EE95EE2D /* Cancel@2x.png */; };
-		F7832D722DC20EA1887B494B5E50969F /* feedbackActivity@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA236FE8FC9DB68974F48AF03537D50 /* feedbackActivity@2x~ipad.png */; };
-		F93D762E66C4C543A0BB8B71CEB9CBE8 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E10DA5B8441DEB7A7C1A5F8384474A99 /* bg.png */; };
-		FB6510577C9EB0624EDF73879DC61B45 /* Arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C85E928DC95E520B24883DE149BEC62 /* Arrow@3x.png */; };
+		F96D7C9233936972F698F568E02E78BE /* buttonRoundedRegular.png in Resources */ = {isa = PBXBuildFile; fileRef = FBB3D56761AA41CAFF1181D7F46F0FE4 /* buttonRoundedRegular.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,97 +81,97 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00DF82C5D029910007CE7802FA226D29 /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/es.lproj"; sourceTree = "<group>"; };
+		00B9CBA013C6808BF36B542FA4F7040B /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/es.lproj"; sourceTree = "<group>"; };
 		02D04D8B66FF852CA9CE5AE62B6E4762 /* Pods-iotaWallet-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		03F39BCC68D5BBF0307BC6CA2C742E76 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework"; sourceTree = "<group>"; };
-		05D3CBF2D23FA12DF52B88D63391B1A6 /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hans.lproj"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/zh-Hans.lproj"; sourceTree = "<group>"; };
-		0C695F7EC0B9E548F5A12D46A2BA223C /* authorize_denied@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "authorize_denied@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/authorize_denied@2x.png"; sourceTree = "<group>"; };
-		0FA236FE8FC9DB68974F48AF03537D50 /* feedbackActivity@2x~ipad.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity@2x~ipad.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity@2x~ipad.png"; sourceTree = "<group>"; };
-		1342E40D99357D2BE79A0FADC7F943C2 /* Arrow.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Arrow.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Arrow.png"; sourceTree = "<group>"; };
-		13871F6C20D3710290C817BD8DBD93B8 /* FeedbackPlaceholder.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = FeedbackPlaceholder.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/FeedbackPlaceholder.png"; sourceTree = "<group>"; };
-		223FB3F1860D20CE0AEE3705DB3A75C1 /* hu.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = hu.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/hu.lproj"; sourceTree = "<group>"; };
-		237ABABDC84C54B7BB1CFA07DBE47C5A /* ResourceBundle-HockeySDKResources-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-HockeySDKResources-Info.plist"; sourceTree = "<group>"; };
-		238C67997324F051DCA0754D74A5FC01 /* fa.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fa.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/fa.lproj"; sourceTree = "<group>"; };
+		09D44E5B0310D519415FA4953B84D983 /* Rectangle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Rectangle.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Rectangle.png"; sourceTree = "<group>"; };
+		139A08BA6AABC0DB1A88279C8B0F4B54 /* fa.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fa.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/fa.lproj"; sourceTree = "<group>"; };
+		15086782A3600CDD6A777B6141C0C43B /* authorize_denied@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "authorize_denied@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/authorize_denied@2x.png"; sourceTree = "<group>"; };
 		2452C58A28D59B9655A135C45AEE7D6D /* libPods-iotaWallet-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWallet-tvOSTests.a"; path = "libPods-iotaWallet-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24AF74A9654A4D746C45BF4703B59C32 /* libPods-iotaWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWallet.a"; path = "libPods-iotaWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2962E8C1951575EBDD4A9EE4F9D73466 /* buttonRoundedDelete.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedDelete.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDelete.png"; sourceTree = "<group>"; };
-		2AAD4A5D2673408637D7279995299734 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/de.lproj"; sourceTree = "<group>"; };
+		2CE103232A320D24AE72597BF8DA8915 /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hans.lproj"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/zh-Hans.lproj"; sourceTree = "<group>"; };
+		2CFAF89D7061E637463CFC4A981AC386 /* feedbackActivity.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = feedbackActivity.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity.png"; sourceTree = "<group>"; };
 		2D154F4805B9715F0E6D79B0363CE280 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		2F2753CCC441A1C0862C1879C06B25D4 /* Ok@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Ok@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Ok@2x.png"; sourceTree = "<group>"; };
 		2F8F35C01093637129DAAFCD8541B1F9 /* Pods-iotaWallet-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-resources.sh"; sourceTree = "<group>"; };
-		3712C6D928841683464E623E20C61434 /* buttonRoundedDelete@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedDelete@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDelete@2x.png"; sourceTree = "<group>"; };
 		38762C35886DC4ECF10EFED95A572966 /* Pods-iotaWallet-tvOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-tvOS-frameworks.sh"; sourceTree = "<group>"; };
-		3DBFD566A4DFBDF77984A70082E5BD7C /* Rectangle@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Rectangle@3x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Rectangle@3x.png"; sourceTree = "<group>"; };
-		454864B1857715D2C51536420F4FFB21 /* buttonRoundedRegular@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedRegular@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegular@2x.png"; sourceTree = "<group>"; };
+		3BB9E812D3C5C445DBD4431184BADF7F /* iconCamera.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = iconCamera.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/iconCamera.png"; sourceTree = "<group>"; };
+		3BC5FAEB5132B67573B1A81C75DC9F25 /* Ok@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Ok@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Ok@3x.png"; sourceTree = "<group>"; };
+		40523582A329C08A3984A22B1DCD7CFC /* Cancel@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Cancel@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Cancel@2x.png"; sourceTree = "<group>"; };
+		4054B79D99EE8FA46A8A2B8F58C62064 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDK.framework"; sourceTree = "<group>"; };
+		4233A565CC212AA91201EBDBBB2FA7A6 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/de.lproj"; sourceTree = "<group>"; };
+		459D8801F400416CD414D12EA14CD43A /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pt.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/pt.lproj"; sourceTree = "<group>"; };
 		46690F73410509C835368C77C3CA395C /* Pods-iotaWallet-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iotaWallet-dummy.m"; sourceTree = "<group>"; };
-		46EA99ADC684120A6F9DC266CAD014C1 /* Arrow@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Arrow@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Arrow@2x.png"; sourceTree = "<group>"; };
 		4769217EB460C36D3C9BBA6B7ADB63EF /* HockeySDKResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = HockeySDKResources.bundle; path = HockeySDKResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		4DCE79D60E344080641848EBB84E3C1C /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pt.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/pt.lproj"; sourceTree = "<group>"; };
-		50F09F3D22619B07601EFB8E2BFA17F9 /* Ok.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Ok.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Ok.png"; sourceTree = "<group>"; };
+		4968069F7E838111A4EFEAD475FEF3B9 /* buttonRoundedDeleteHighlighted.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedDeleteHighlighted.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDeleteHighlighted.png"; sourceTree = "<group>"; };
+		4F6FEDAAF7CC673A8FD8A1340211B525 /* Ok.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Ok.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Ok.png"; sourceTree = "<group>"; };
+		5038917CEA3E0505BB8D683830837ADA /* Cancel.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Cancel.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Cancel.png"; sourceTree = "<group>"; };
 		5182FC9A9CB742002F3ADBCB340656BC /* Pods-iotaWallet-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iotaWallet-acknowledgements.plist"; sourceTree = "<group>"; };
-		5483A24D2B9F7917191DE8A85829B605 /* buttonRoundedDeleteHighlighted@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedDeleteHighlighted@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDeleteHighlighted@2x.png"; sourceTree = "<group>"; };
+		52D4DEB980C13E06EFE62F5B3686E3F5 /* authorize_denied.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = authorize_denied.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/authorize_denied.png"; sourceTree = "<group>"; };
 		572DBE63D5360AB71E5F80F979738FD0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		5FFD04CEA394C33CF54F2733FA70638E /* Rectangle@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Rectangle@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Rectangle@2x.png"; sourceTree = "<group>"; };
-		655C08E7824601202493C28BBB3C3439 /* feedbackActivity@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity@3x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity@3x.png"; sourceTree = "<group>"; };
-		6594698FEE8A4E0CEA4B2A4419F0E1D0 /* Ok@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Ok@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Ok@2x.png"; sourceTree = "<group>"; };
-		6B2DE10AF1A636C515581AD6851ACCF1 /* Rectangle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Rectangle.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Rectangle.png"; sourceTree = "<group>"; };
+		591F6A2A6ABF8B30915537C7111EE30F /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/ja.lproj"; sourceTree = "<group>"; };
+		5AC609F70585FFC592D24030C643E488 /* feedbackActivity@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity@3x.png"; sourceTree = "<group>"; };
+		5C66CC0EA7F987E2C4052C2DC308A7E1 /* bg.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = bg.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/bg.png"; sourceTree = "<group>"; };
+		5ED2113C175F75FB1F732E77914575C5 /* Arrow@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Arrow@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Arrow@3x.png"; sourceTree = "<group>"; };
+		6369025C159D448330508D6F6734D302 /* nb.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nb.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/nb.lproj"; sourceTree = "<group>"; };
+		656C2FA4BE959F48B7D3E1108AB75139 /* Arrow@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Arrow@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Arrow@2x.png"; sourceTree = "<group>"; };
+		66F6B212DE213D7F79B1146874582666 /* iconCamera@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "iconCamera@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/iconCamera@2x.png"; sourceTree = "<group>"; };
 		6C6EE5A123BD1C07FA0F7C1E19C4AFE8 /* Pods-iotaWalletTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iotaWalletTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		6FEA5B6E51FB32F0B015225BCF624092 /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/ja.lproj"; sourceTree = "<group>"; };
-		734F4335334F6982656494A53CB8A789 /* Blur.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Blur.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Blur.png"; sourceTree = "<group>"; };
+		730FB1217B0DE7065D38AF7B798DECCC /* hu.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = hu.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/hu.lproj"; sourceTree = "<group>"; };
+		745EF1D29A90E9D4BCA73D5CE8E5672E /* ResourceBundle-HockeySDKResources-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-HockeySDKResources-Info.plist"; sourceTree = "<group>"; };
 		74691848F9069BE50F4CE1B75F698D0A /* Pods-iotaWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWalletTests.release.xcconfig"; sourceTree = "<group>"; };
 		78044F1342E5585676B8B8C2D1907A6F /* libPods-iotaWalletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWalletTests.a"; path = "libPods-iotaWalletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB33423EBDD2099E869C192311141EE /* Pods-iotaWalletTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iotaWalletTests-dummy.m"; sourceTree = "<group>"; };
-		7E5198B09B443AE419A5310064FCD8D9 /* IconGradient@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "IconGradient@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/IconGradient@2x.png"; sourceTree = "<group>"; };
-		811CDE77AA0C808A2C5A09125B32EDBC /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nl.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/nl.lproj"; sourceTree = "<group>"; };
-		8290E8E1B3B06086211DC0FF6D788DD3 /* buttonRoundedRegular.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedRegular.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegular.png"; sourceTree = "<group>"; };
-		855630EF79AD9AA5A58F9DABD6246854 /* authorize_denied@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "authorize_denied@3x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/authorize_denied@3x.png"; sourceTree = "<group>"; };
-		8779048BC02896DAB37AF583C63133D3 /* Blur@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Blur@3x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Blur@3x.png"; sourceTree = "<group>"; };
-		89B70C12C89D36DABC6BE480EE95EE2D /* Cancel@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Cancel@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Cancel@2x.png"; sourceTree = "<group>"; };
-		8AA92B6EEB1857CA15FF54D41BB00F32 /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/fr.lproj"; sourceTree = "<group>"; };
+		7E202C35437C19327712354AD6BF9F32 /* buttonRoundedRegular@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedRegular@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegular@2x.png"; sourceTree = "<group>"; };
+		809A848DE920AABC294026C7F3CBFFEA /* feedbackActivity@2x~ipad.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity@2x~ipad.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity@2x~ipad.png"; sourceTree = "<group>"; };
+		8161954480B0B29C060924731CA53F69 /* Blur@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Blur@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Blur@2x.png"; sourceTree = "<group>"; };
+		86D6241B2D52D7C424BD3BE247398BBD /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = it.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/it.lproj"; sourceTree = "<group>"; };
 		8B2F91B005C9479831574677EF9520B9 /* Pods-iotaWallet-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		8C126DE54DD41BEBE09D1136F041813D /* nb.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nb.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/nb.lproj"; sourceTree = "<group>"; };
+		8B35E1F2681E586A64E81834175C37EF /* buttonRoundedDelete@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedDelete@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDelete@2x.png"; sourceTree = "<group>"; };
 		8CC930F313BD512D7F2C8EF4E10045BB /* Pods-iotaWallet-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-frameworks.sh"; sourceTree = "<group>"; };
-		9042C73619F7E1FA2D314D9909585AB1 /* pt-PT.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "pt-PT.lproj"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/pt-PT.lproj"; sourceTree = "<group>"; };
+		8E0D6B0599B30DD19A2D3D0B74D04DAA /* feedbackActivity@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity@2x.png"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		94FFC6D1BE3A4537F2C334DBA36FF434 /* feedbackActivity~ipad.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity~ipad.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity~ipad.png"; sourceTree = "<group>"; };
+		940DA2805302B8352BBC428B7D08DFB8 /* buttonRoundedDelete.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedDelete.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDelete.png"; sourceTree = "<group>"; };
 		974D494D07541D960F62A30D15B0B1D2 /* Pods-iotaWallet-tvOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-tvOSTests-resources.sh"; sourceTree = "<group>"; };
-		9B1F65454D341983D231215C057F689A /* feedbackActivity.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = feedbackActivity.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity.png"; sourceTree = "<group>"; };
-		9C85E928DC95E520B24883DE149BEC62 /* Arrow@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Arrow@3x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Arrow@3x.png"; sourceTree = "<group>"; };
+		9C9B429E4EEB53382F9BD2E33DFA2838 /* buttonRoundedRegularHighlighted.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedRegularHighlighted.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegularHighlighted.png"; sourceTree = "<group>"; };
+		9F8A12E547C1A66E9077A99D3847BD96 /* authorize_denied@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "authorize_denied@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/authorize_denied@3x.png"; sourceTree = "<group>"; };
 		9FAA3B4F5E935E052059841186E4D11E /* Pods-iotaWalletTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWalletTests-resources.sh"; sourceTree = "<group>"; };
 		9FC12C99CBF3DBF6CAB9BA5B2C7EB4E0 /* Pods-iotaWalletTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWalletTests-frameworks.sh"; sourceTree = "<group>"; };
-		A018F84C1ABFC5C5DCE138A1C4618D17 /* AppIconPlaceHolder.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = AppIconPlaceHolder.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/AppIconPlaceHolder.png"; sourceTree = "<group>"; };
-		A90193780E25F1F078067899728402BC /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/ru.lproj"; sourceTree = "<group>"; };
+		A34D7CAB3EA9E976E2994C9CD47A158A /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/en.lproj"; sourceTree = "<group>"; };
+		A7FF5100D7B0256CA8AF7449747A8F71 /* AppIconPlaceHolder.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = AppIconPlaceHolder.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/AppIconPlaceHolder.png"; sourceTree = "<group>"; };
 		A9621886576F406B16E7E70C7178CBFB /* Pods-iotaWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet.release.xcconfig"; sourceTree = "<group>"; };
-		AC5807FD57A37BA38071A2156EB5F393 /* buttonRoundedDeleteHighlighted.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedDeleteHighlighted.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDeleteHighlighted.png"; sourceTree = "<group>"; };
+		ACF08ABA807999CFEEDE6F6C0BD55642 /* Blur.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Blur.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Blur.png"; sourceTree = "<group>"; };
+		AD16EE0085A4BD00DDD2AC1475C7AE30 /* Cancel@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Cancel@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Cancel@3x.png"; sourceTree = "<group>"; };
+		AF9D647E07F981E165B72FD87B5FB1B0 /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nl.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/nl.lproj"; sourceTree = "<group>"; };
 		AFBBDCB2421DD57E906357604CA8979D /* Pods-iotaWallet-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		B19A7B2D7DCA6B664B58E10CEE0C9203 /* Cancel.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Cancel.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Cancel.png"; sourceTree = "<group>"; };
-		B42D67B4B83B28AEFFD2047759BED21E /* authorize_denied.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = authorize_denied.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/authorize_denied.png"; sourceTree = "<group>"; };
 		B4FBFBA96647FC39F8128DD0230FC699 /* Pods-iotaWallet-tvOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iotaWallet-tvOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B6CF435D8A85D06A5F1EB7F73CD014C8 /* feedbackActivity@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity@2x.png"; sourceTree = "<group>"; };
+		B6C82444601983CA2B5833E7C4D824FF /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/fr.lproj"; sourceTree = "<group>"; };
 		B74197A7CC07D888A2ADE7ADF7E25177 /* Pods-iotaWallet-tvOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iotaWallet-tvOSTests-dummy.m"; sourceTree = "<group>"; };
 		BDCC31954952E8ED3563C87838794915 /* Pods-iotaWallet-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iotaWallet-tvOS-dummy.m"; sourceTree = "<group>"; };
-		C5778BA291821FA85A1A6C95694FBFBA /* Cancel@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Cancel@3x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Cancel@3x.png"; sourceTree = "<group>"; };
+		C0909A07C0DA4B8F228F3B9A82805511 /* Arrow.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Arrow.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Arrow.png"; sourceTree = "<group>"; };
+		C1F98B13D578AFF25EF0FE063F54CEF4 /* buttonRoundedRegularHighlighted@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedRegularHighlighted@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegularHighlighted@2x.png"; sourceTree = "<group>"; };
+		C253C72F9157132ED46F3D0B9611BA92 /* FeedbackPlaceholder.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = FeedbackPlaceholder.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/FeedbackPlaceholder.png"; sourceTree = "<group>"; };
 		C784DF16C1694C7F62509A92CB7D188B /* Pods-iotaWallet-tvOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-tvOSTests-frameworks.sh"; sourceTree = "<group>"; };
-		CC8DCCBAEF1A3B82295C7C2B3D810159 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/en.lproj"; sourceTree = "<group>"; };
-		D3B30CD4C77547FB4D25EBE7BFC21FDF /* hr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = hr.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/hr.lproj"; sourceTree = "<group>"; };
+		CBFE2F56C66E4856AE02644D65DCF170 /* hr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = hr.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/hr.lproj"; sourceTree = "<group>"; };
+		CC8D7512657910F9C45BC553E5679F51 /* Rectangle@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Rectangle@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Rectangle@3x.png"; sourceTree = "<group>"; };
+		CF92202109FF0DE98529E2B9E2353ACA /* Rectangle@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Rectangle@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Rectangle@2x.png"; sourceTree = "<group>"; };
+		D0256E3D7150C0468C93EFCD2C51601D /* IconGradient.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = IconGradient.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/IconGradient.png"; sourceTree = "<group>"; };
 		D7A30FABAEA4BFE286B9D32198E6B500 /* Pods-iotaWallet-tvOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iotaWallet-tvOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E10DA5B8441DEB7A7C1A5F8384474A99 /* bg.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = bg.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/bg.png"; sourceTree = "<group>"; };
-		E121C0B8695259AF55A57A7D6A2D44F1 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = it.lproj; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/it.lproj"; sourceTree = "<group>"; };
-		E450709799F7F2F920A3898DCB6C570E /* Blur@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Blur@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Blur@2x.png"; sourceTree = "<group>"; };
+		DF3C7B00A36FF1A520E111666ECEA3ED /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/ru.lproj"; sourceTree = "<group>"; };
 		E4C28A69E5FBC75217AF472B2B67087B /* Pods-iotaWallet-tvOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iotaWallet-tvOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		E5104F3C80BA8C7528592D006E0E82A5 /* IconGradient.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = IconGradient.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/IconGradient.png"; sourceTree = "<group>"; };
-		E77D53D85E78FF0653E58616A54A3F0A /* iconCamera.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = iconCamera.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/iconCamera.png"; sourceTree = "<group>"; };
 		E8DBC02D58ADE8B11883C3E7B279F5ED /* Pods-iotaWallet-tvOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iotaWallet-tvOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		E8F1BFA01DEBD3D8E4D9EC1BADE47E1E /* Pods-iotaWallet-tvOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-tvOS-resources.sh"; sourceTree = "<group>"; };
 		EC5DFF337743EB6772DBD5B727C8A917 /* Pods-iotaWallet-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iotaWallet-acknowledgements.markdown"; sourceTree = "<group>"; };
 		ECCC535276D27E7685186E1CF4AF827F /* Pods-iotaWalletTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iotaWalletTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EDB361F9C25501C9D521192C545D3BFA /* feedbackActivity~ipad.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity~ipad.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity~ipad.png"; sourceTree = "<group>"; };
 		EE5C4A062A371FDFC2719FB31DAB66A0 /* libPods-iotaWallet-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWallet-tvOS.a"; path = "libPods-iotaWallet-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F101ED25099A77B091E0EA8EAE577ADE /* Pods-iotaWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F19BFA2EF7CDDACEB191C66E86F9CF26 /* buttonRoundedRegularHighlighted@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedRegularHighlighted@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegularHighlighted@2x.png"; sourceTree = "<group>"; };
-		F34EF800CB0ED548AAFD0625AB059C9C /* buttonRoundedRegularHighlighted.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedRegularHighlighted.png; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegularHighlighted.png"; sourceTree = "<group>"; };
 		F35488199EC3C6B14E3DFCB66286FA14 /* Pods-iotaWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		F3BDCAB3D4022B0DF458D8ECED4A1772 /* Pods-iotaWallet-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		F4D572C90659CFD1A7BBCCE771CBE837 /* iconCamera@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "iconCamera@2x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/iconCamera@2x.png"; sourceTree = "<group>"; };
-		F5740B6EEAEB479021FDC7C73B5E2B01 /* Ok@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Ok@3x.png"; path = "HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDKResources.bundle/Ok@3x.png"; sourceTree = "<group>"; };
+		F8DA137F055628AB0272C6940AE95F4A /* pt-PT.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "pt-PT.lproj"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/pt-PT.lproj"; sourceTree = "<group>"; };
+		F97438140ED109BFA5583F9F2AE15524 /* Blur@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Blur@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Blur@3x.png"; sourceTree = "<group>"; };
+		FBB3D56761AA41CAFF1181D7F46F0FE4 /* buttonRoundedRegular.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedRegular.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegular.png"; sourceTree = "<group>"; };
+		FD43DF160CE96B8450031726CCBFEBB4 /* buttonRoundedDeleteHighlighted@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedDeleteHighlighted@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDeleteHighlighted@2x.png"; sourceTree = "<group>"; };
+		FD9002836FE14052FADE32A6695C6AC6 /* IconGradient@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "IconGradient@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/IconGradient@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +228,14 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		08834D3D5F56F00CFF1A0C1E87212923 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4054B79D99EE8FA46A8A2B8F58C62064 /* HockeySDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		20F731AE46C73F232AF0C168DC383CF9 /* tvOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,64 +244,13 @@
 			name = tvOS;
 			sourceTree = "<group>";
 		};
-		2B5A4C6AE5DC495A83706C7C21AE1036 /* Resources */ = {
+		30ACF2BD6FB5CCD6C9C860E71BC969AC /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				A018F84C1ABFC5C5DCE138A1C4618D17 /* AppIconPlaceHolder.png */,
-				1342E40D99357D2BE79A0FADC7F943C2 /* Arrow.png */,
-				46EA99ADC684120A6F9DC266CAD014C1 /* Arrow@2x.png */,
-				9C85E928DC95E520B24883DE149BEC62 /* Arrow@3x.png */,
-				B42D67B4B83B28AEFFD2047759BED21E /* authorize_denied.png */,
-				0C695F7EC0B9E548F5A12D46A2BA223C /* authorize_denied@2x.png */,
-				855630EF79AD9AA5A58F9DABD6246854 /* authorize_denied@3x.png */,
-				E10DA5B8441DEB7A7C1A5F8384474A99 /* bg.png */,
-				734F4335334F6982656494A53CB8A789 /* Blur.png */,
-				E450709799F7F2F920A3898DCB6C570E /* Blur@2x.png */,
-				8779048BC02896DAB37AF583C63133D3 /* Blur@3x.png */,
-				2962E8C1951575EBDD4A9EE4F9D73466 /* buttonRoundedDelete.png */,
-				3712C6D928841683464E623E20C61434 /* buttonRoundedDelete@2x.png */,
-				AC5807FD57A37BA38071A2156EB5F393 /* buttonRoundedDeleteHighlighted.png */,
-				5483A24D2B9F7917191DE8A85829B605 /* buttonRoundedDeleteHighlighted@2x.png */,
-				8290E8E1B3B06086211DC0FF6D788DD3 /* buttonRoundedRegular.png */,
-				454864B1857715D2C51536420F4FFB21 /* buttonRoundedRegular@2x.png */,
-				F34EF800CB0ED548AAFD0625AB059C9C /* buttonRoundedRegularHighlighted.png */,
-				F19BFA2EF7CDDACEB191C66E86F9CF26 /* buttonRoundedRegularHighlighted@2x.png */,
-				B19A7B2D7DCA6B664B58E10CEE0C9203 /* Cancel.png */,
-				89B70C12C89D36DABC6BE480EE95EE2D /* Cancel@2x.png */,
-				C5778BA291821FA85A1A6C95694FBFBA /* Cancel@3x.png */,
-				2AAD4A5D2673408637D7279995299734 /* de.lproj */,
-				CC8DCCBAEF1A3B82295C7C2B3D810159 /* en.lproj */,
-				00DF82C5D029910007CE7802FA226D29 /* es.lproj */,
-				238C67997324F051DCA0754D74A5FC01 /* fa.lproj */,
-				9B1F65454D341983D231215C057F689A /* feedbackActivity.png */,
-				B6CF435D8A85D06A5F1EB7F73CD014C8 /* feedbackActivity@2x.png */,
-				0FA236FE8FC9DB68974F48AF03537D50 /* feedbackActivity@2x~ipad.png */,
-				655C08E7824601202493C28BBB3C3439 /* feedbackActivity@3x.png */,
-				94FFC6D1BE3A4537F2C334DBA36FF434 /* feedbackActivity~ipad.png */,
-				13871F6C20D3710290C817BD8DBD93B8 /* FeedbackPlaceholder.png */,
-				8AA92B6EEB1857CA15FF54D41BB00F32 /* fr.lproj */,
-				D3B30CD4C77547FB4D25EBE7BFC21FDF /* hr.lproj */,
-				223FB3F1860D20CE0AEE3705DB3A75C1 /* hu.lproj */,
-				E77D53D85E78FF0653E58616A54A3F0A /* iconCamera.png */,
-				F4D572C90659CFD1A7BBCCE771CBE837 /* iconCamera@2x.png */,
-				E5104F3C80BA8C7528592D006E0E82A5 /* IconGradient.png */,
-				7E5198B09B443AE419A5310064FCD8D9 /* IconGradient@2x.png */,
-				E121C0B8695259AF55A57A7D6A2D44F1 /* it.lproj */,
-				6FEA5B6E51FB32F0B015225BCF624092 /* ja.lproj */,
-				8C126DE54DD41BEBE09D1136F041813D /* nb.lproj */,
-				811CDE77AA0C808A2C5A09125B32EDBC /* nl.lproj */,
-				50F09F3D22619B07601EFB8E2BFA17F9 /* Ok.png */,
-				6594698FEE8A4E0CEA4B2A4419F0E1D0 /* Ok@2x.png */,
-				F5740B6EEAEB479021FDC7C73B5E2B01 /* Ok@3x.png */,
-				4DCE79D60E344080641848EBB84E3C1C /* pt.lproj */,
-				9042C73619F7E1FA2D314D9909585AB1 /* pt-PT.lproj */,
-				6B2DE10AF1A636C515581AD6851ACCF1 /* Rectangle.png */,
-				5FFD04CEA394C33CF54F2733FA70638E /* Rectangle@2x.png */,
-				3DBFD566A4DFBDF77984A70082E5BD7C /* Rectangle@3x.png */,
-				A90193780E25F1F078067899728402BC /* ru.lproj */,
-				05D3CBF2D23FA12DF52B88D63391B1A6 /* zh-Hans.lproj */,
+				745EF1D29A90E9D4BCA73D5CE8E5672E /* ResourceBundle-HockeySDKResources-Info.plist */,
 			);
-			name = Resources;
+			name = "Support Files";
+			path = "../Target Support Files/HockeySDK";
 			sourceTree = "<group>";
 		};
 		44F33DF6BC0E65BC2B8AD42F1E598D8D /* Products */ = {
@@ -357,6 +314,16 @@
 			);
 			sourceTree = "<group>";
 		};
+		99162B9FD2370262679E82D0D4B65901 /* HockeySDK */ = {
+			isa = PBXGroup;
+			children = (
+				B746652616AB258BE73C259EEBB71E66 /* AllFeaturesLib */,
+				30ACF2BD6FB5CCD6C9C860E71BC969AC /* Support Files */,
+			);
+			name = HockeySDK;
+			path = HockeySDK;
+			sourceTree = "<group>";
+		};
 		A42F72DC1D780481325DD00969B19BB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,31 +348,73 @@
 			path = "Target Support Files/Pods-iotaWallet-tvOS";
 			sourceTree = "<group>";
 		};
-		B5F6774BCBF24BBC1F1EABBC731E7427 /* HockeySDK */ = {
+		B746652616AB258BE73C259EEBB71E66 /* AllFeaturesLib */ = {
 			isa = PBXGroup;
 			children = (
-				E819A6A2E32FD780F797FBBB9E00DB35 /* DefaultLib */,
-				FA514FCADF3C6B78FF02E4D8CCDD570C /* Support Files */,
+				08834D3D5F56F00CFF1A0C1E87212923 /* Frameworks */,
+				BF2FB46A0BA9AAB6F3430FBA59798E41 /* Resources */,
 			);
-			name = HockeySDK;
-			path = HockeySDK;
+			name = AllFeaturesLib;
 			sourceTree = "<group>";
 		};
-		C3106111035BA440F5C66F0E8A42760F /* Frameworks */ = {
+		BF2FB46A0BA9AAB6F3430FBA59798E41 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				03F39BCC68D5BBF0307BC6CA2C742E76 /* HockeySDK.framework */,
+				A7FF5100D7B0256CA8AF7449747A8F71 /* AppIconPlaceHolder.png */,
+				C0909A07C0DA4B8F228F3B9A82805511 /* Arrow.png */,
+				656C2FA4BE959F48B7D3E1108AB75139 /* Arrow@2x.png */,
+				5ED2113C175F75FB1F732E77914575C5 /* Arrow@3x.png */,
+				52D4DEB980C13E06EFE62F5B3686E3F5 /* authorize_denied.png */,
+				15086782A3600CDD6A777B6141C0C43B /* authorize_denied@2x.png */,
+				9F8A12E547C1A66E9077A99D3847BD96 /* authorize_denied@3x.png */,
+				5C66CC0EA7F987E2C4052C2DC308A7E1 /* bg.png */,
+				ACF08ABA807999CFEEDE6F6C0BD55642 /* Blur.png */,
+				8161954480B0B29C060924731CA53F69 /* Blur@2x.png */,
+				F97438140ED109BFA5583F9F2AE15524 /* Blur@3x.png */,
+				940DA2805302B8352BBC428B7D08DFB8 /* buttonRoundedDelete.png */,
+				8B35E1F2681E586A64E81834175C37EF /* buttonRoundedDelete@2x.png */,
+				4968069F7E838111A4EFEAD475FEF3B9 /* buttonRoundedDeleteHighlighted.png */,
+				FD43DF160CE96B8450031726CCBFEBB4 /* buttonRoundedDeleteHighlighted@2x.png */,
+				FBB3D56761AA41CAFF1181D7F46F0FE4 /* buttonRoundedRegular.png */,
+				7E202C35437C19327712354AD6BF9F32 /* buttonRoundedRegular@2x.png */,
+				9C9B429E4EEB53382F9BD2E33DFA2838 /* buttonRoundedRegularHighlighted.png */,
+				C1F98B13D578AFF25EF0FE063F54CEF4 /* buttonRoundedRegularHighlighted@2x.png */,
+				5038917CEA3E0505BB8D683830837ADA /* Cancel.png */,
+				40523582A329C08A3984A22B1DCD7CFC /* Cancel@2x.png */,
+				AD16EE0085A4BD00DDD2AC1475C7AE30 /* Cancel@3x.png */,
+				4233A565CC212AA91201EBDBBB2FA7A6 /* de.lproj */,
+				A34D7CAB3EA9E976E2994C9CD47A158A /* en.lproj */,
+				00B9CBA013C6808BF36B542FA4F7040B /* es.lproj */,
+				139A08BA6AABC0DB1A88279C8B0F4B54 /* fa.lproj */,
+				2CFAF89D7061E637463CFC4A981AC386 /* feedbackActivity.png */,
+				8E0D6B0599B30DD19A2D3D0B74D04DAA /* feedbackActivity@2x.png */,
+				809A848DE920AABC294026C7F3CBFFEA /* feedbackActivity@2x~ipad.png */,
+				5AC609F70585FFC592D24030C643E488 /* feedbackActivity@3x.png */,
+				EDB361F9C25501C9D521192C545D3BFA /* feedbackActivity~ipad.png */,
+				C253C72F9157132ED46F3D0B9611BA92 /* FeedbackPlaceholder.png */,
+				B6C82444601983CA2B5833E7C4D824FF /* fr.lproj */,
+				CBFE2F56C66E4856AE02644D65DCF170 /* hr.lproj */,
+				730FB1217B0DE7065D38AF7B798DECCC /* hu.lproj */,
+				3BB9E812D3C5C445DBD4431184BADF7F /* iconCamera.png */,
+				66F6B212DE213D7F79B1146874582666 /* iconCamera@2x.png */,
+				D0256E3D7150C0468C93EFCD2C51601D /* IconGradient.png */,
+				FD9002836FE14052FADE32A6695C6AC6 /* IconGradient@2x.png */,
+				86D6241B2D52D7C424BD3BE247398BBD /* it.lproj */,
+				591F6A2A6ABF8B30915537C7111EE30F /* ja.lproj */,
+				6369025C159D448330508D6F6734D302 /* nb.lproj */,
+				AF9D647E07F981E165B72FD87B5FB1B0 /* nl.lproj */,
+				4F6FEDAAF7CC673A8FD8A1340211B525 /* Ok.png */,
+				2F2753CCC441A1C0862C1879C06B25D4 /* Ok@2x.png */,
+				3BC5FAEB5132B67573B1A81C75DC9F25 /* Ok@3x.png */,
+				459D8801F400416CD414D12EA14CD43A /* pt.lproj */,
+				F8DA137F055628AB0272C6940AE95F4A /* pt-PT.lproj */,
+				09D44E5B0310D519415FA4953B84D983 /* Rectangle.png */,
+				CF92202109FF0DE98529E2B9E2353ACA /* Rectangle@2x.png */,
+				CC8D7512657910F9C45BC553E5679F51 /* Rectangle@3x.png */,
+				DF3C7B00A36FF1A520E111666ECEA3ED /* ru.lproj */,
+				2CE103232A320D24AE72597BF8DA8915 /* zh-Hans.lproj */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E819A6A2E32FD780F797FBBB9E00DB35 /* DefaultLib */ = {
-			isa = PBXGroup;
-			children = (
-				C3106111035BA440F5C66F0E8A42760F /* Frameworks */,
-				2B5A4C6AE5DC495A83706C7C21AE1036 /* Resources */,
-			);
-			name = DefaultLib;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		E92223F6889B1D89CE21951DC5B5CE31 /* Pods-iotaWallet-tvOSTests */ = {
@@ -426,18 +435,9 @@
 		EC4CB44E075E7F0F33D6C84131440F2A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B5F6774BCBF24BBC1F1EABBC731E7427 /* HockeySDK */,
+				99162B9FD2370262679E82D0D4B65901 /* HockeySDK */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		FA514FCADF3C6B78FF02E4D8CCDD570C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				237ABABDC84C54B7BB1CFA07DBE47C5A /* ResourceBundle-HockeySDKResources-Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/HockeySDK";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -560,59 +560,59 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9EDCE6E451154EB487F04EF2F4EF2A9 /* AppIconPlaceHolder.png in Resources */,
-				44A7EACB545AABDD70E670102CF8C17C /* Arrow.png in Resources */,
-				A18DD09A116B5BFA895E52DBB9E05B4A /* Arrow@2x.png in Resources */,
-				FB6510577C9EB0624EDF73879DC61B45 /* Arrow@3x.png in Resources */,
-				83AA80C4C4288E95D1ED250B7A53B1DB /* authorize_denied.png in Resources */,
-				7C074DD39BC70B9C2FEA1DDC557D1E51 /* authorize_denied@2x.png in Resources */,
-				21AF0368D2A74AE7CACCDF04BDD015FF /* authorize_denied@3x.png in Resources */,
-				F93D762E66C4C543A0BB8B71CEB9CBE8 /* bg.png in Resources */,
-				491750401A9EFDFD245721E7BE4627C6 /* Blur.png in Resources */,
-				87CFB536A253F968FED77C5A75DC8847 /* Blur@2x.png in Resources */,
-				C6E03FE266AC3767805DE30EC71059C1 /* Blur@3x.png in Resources */,
-				8092BB02C170FE0923AD7E7A3640FB24 /* buttonRoundedDelete.png in Resources */,
-				CD9FB0D75EDC3673AAA051DED29F9490 /* buttonRoundedDelete@2x.png in Resources */,
-				84004D40E25E334F16B4D70D53BF149F /* buttonRoundedDeleteHighlighted.png in Resources */,
-				AF756DF0D4B06480BBEA3BBF81A81D13 /* buttonRoundedDeleteHighlighted@2x.png in Resources */,
-				D34E43E323C6A19985196C4D8F0A61D8 /* buttonRoundedRegular.png in Resources */,
-				3D8D9920EE3EF913B602FFEEB8C0A695 /* buttonRoundedRegular@2x.png in Resources */,
-				298A8CF1F92121EE8975416E1B42DA96 /* buttonRoundedRegularHighlighted.png in Resources */,
-				1A434D26CCA5BDDFD62A1C92FF4CE93C /* buttonRoundedRegularHighlighted@2x.png in Resources */,
-				2B196B950858F08FF975A2246D64C9F7 /* Cancel.png in Resources */,
-				F5A90570C26448C498D553B5042EC63F /* Cancel@2x.png in Resources */,
-				7F5F10E74ED8034D89B93DFEB5CFD539 /* Cancel@3x.png in Resources */,
-				2893823E9CB1E5776F122C091C03B4F7 /* de.lproj in Resources */,
-				82A484029E7E614526A7FD2C1366AC39 /* en.lproj in Resources */,
-				18C8FE31C992810CC728A5AFEDAA7F13 /* es.lproj in Resources */,
-				D04B99BD1CFCF232405B6F90B87D5E53 /* fa.lproj in Resources */,
-				9F1E42A64A0982335FB22EA98BADA1CF /* feedbackActivity.png in Resources */,
-				8055D3FC20CCE9BC4F44626203C81745 /* feedbackActivity@2x.png in Resources */,
-				F7832D722DC20EA1887B494B5E50969F /* feedbackActivity@2x~ipad.png in Resources */,
-				4CCBA4C92CA1EEF80DB166BBEE0E0920 /* feedbackActivity@3x.png in Resources */,
-				034F6BF87B11EFC7171144FD31993C02 /* feedbackActivity~ipad.png in Resources */,
-				90C28D94DAD18307A25CF195A78B18DF /* FeedbackPlaceholder.png in Resources */,
-				927F2545D650AD499F0114FC9E7C6341 /* fr.lproj in Resources */,
-				C6E9DDF394B9D50179A07335F0AB5863 /* hr.lproj in Resources */,
-				947E44184B30403F13924C59A1E3B3EE /* hu.lproj in Resources */,
-				0C7B08590B13FDCB31E05F09C69D02E8 /* iconCamera.png in Resources */,
-				1A2180E0DC0BA0B0C7B5CE3ACD2A6768 /* iconCamera@2x.png in Resources */,
-				6F35985538D059073ADF34294A4CD93C /* IconGradient.png in Resources */,
-				F2852A28C22BF89F8787A33932048DB9 /* IconGradient@2x.png in Resources */,
-				67CD82782BD1B0E3D61179A03E1D551C /* it.lproj in Resources */,
-				2F5E6CBD401998573AD5FE0E464262B1 /* ja.lproj in Resources */,
-				62B3B2FF935934D79D6A3F98DD9A3310 /* nb.lproj in Resources */,
-				CC5FD2D069557A5B89BC1879996276D7 /* nl.lproj in Resources */,
-				4F72D084AB1AB0385AFA896BD39BE97D /* Ok.png in Resources */,
-				546C2C92080EDDC0E0991C5D93D85C8C /* Ok@2x.png in Resources */,
-				6FEEAB6B0BF65AD3A4B262D249393BB5 /* Ok@3x.png in Resources */,
-				8C115D2276DEB53520730E0B8791BE0F /* pt-PT.lproj in Resources */,
-				0CA78AC46C03FD0677D2BD70F763AA5D /* pt.lproj in Resources */,
-				DFDE46266B9D8D56D4656A33A14309B0 /* Rectangle.png in Resources */,
-				0A9ED6AAA5EE93F76F69579EEE1BF2FE /* Rectangle@2x.png in Resources */,
-				9BC767136A627318026727B775DC290F /* Rectangle@3x.png in Resources */,
-				ACE32A0A30642056880DC51F9EBDCDDD /* ru.lproj in Resources */,
-				3D9524F690E8C682CA151F6A071BC937 /* zh-Hans.lproj in Resources */,
+				61623C6B3CAB656828E4E8E21DBA3B51 /* AppIconPlaceHolder.png in Resources */,
+				CEE5B95F1FDD7706D183F8EC7B1FCD22 /* Arrow.png in Resources */,
+				3F4EE4E013A4285A452231E7001A59D3 /* Arrow@2x.png in Resources */,
+				E0EF08B5093705A6C20FAB5CD6000679 /* Arrow@3x.png in Resources */,
+				99EDE96EE366DEE42CA68F3527CD2ECB /* authorize_denied.png in Resources */,
+				89226F9F79E9BB2F2219E70A6BFCDED4 /* authorize_denied@2x.png in Resources */,
+				5C072A354CF2E5C1E28796462F1EE5D1 /* authorize_denied@3x.png in Resources */,
+				DE73828B7FFC6D94C6423C84005E62FC /* bg.png in Resources */,
+				33D030DF61B65C5537D08546640B90A2 /* Blur.png in Resources */,
+				62EBE29FCD3236D8A4CEAE2A55AD8C9C /* Blur@2x.png in Resources */,
+				49A9CF505C50A2439636F3B7662D5E10 /* Blur@3x.png in Resources */,
+				A695DB65C9820EF89C7DF501778092E3 /* buttonRoundedDelete.png in Resources */,
+				96146C16D76EE2FCCC0D735CDDEAB236 /* buttonRoundedDelete@2x.png in Resources */,
+				5115D6363C75F1CFED742D78CBA9331C /* buttonRoundedDeleteHighlighted.png in Resources */,
+				DAA687DB1294E121F74001C76286EFF7 /* buttonRoundedDeleteHighlighted@2x.png in Resources */,
+				F96D7C9233936972F698F568E02E78BE /* buttonRoundedRegular.png in Resources */,
+				98607B164CD8C94FC4997C23B8676D62 /* buttonRoundedRegular@2x.png in Resources */,
+				0169BAD88ABCF39CD8691EB167F86A32 /* buttonRoundedRegularHighlighted.png in Resources */,
+				9BFF5F7C39DD6384DBB7A137EBBE6209 /* buttonRoundedRegularHighlighted@2x.png in Resources */,
+				03F9E6CC9D330A9439A168B85DB80016 /* Cancel.png in Resources */,
+				907E2F103EB6057B52422FCB26A8721B /* Cancel@2x.png in Resources */,
+				049DC27A120D8C64D604EE458AF41DB7 /* Cancel@3x.png in Resources */,
+				6FE15250DA0FAFDD7740E391A3981205 /* de.lproj in Resources */,
+				8AE77ECF56D527473E2A071BFAF62243 /* en.lproj in Resources */,
+				86954DB3FF1C5EDF65479FAD9FC1434F /* es.lproj in Resources */,
+				B6FEDE99E79B79C5333FAAF1E3447488 /* fa.lproj in Resources */,
+				9E10DDC85EE5213720EEFBA655FA3F0E /* feedbackActivity.png in Resources */,
+				8DF93789021A18DC6066C6C544637F90 /* feedbackActivity@2x.png in Resources */,
+				63E45E69AE22E5EC53274CB00FF9CC11 /* feedbackActivity@2x~ipad.png in Resources */,
+				D8D7470358FC1267D87352CD4ED27F42 /* feedbackActivity@3x.png in Resources */,
+				D7D77BFDA1A81D4F861D434327D3071E /* feedbackActivity~ipad.png in Resources */,
+				3489571CA89142FDC6B3C8AF2554924A /* FeedbackPlaceholder.png in Resources */,
+				2DC4ABBB56462C2DE42224B60BD5F84D /* fr.lproj in Resources */,
+				E27BB7E54AB24234BCBFCCDD46BEA397 /* hr.lproj in Resources */,
+				AEDE07BAC2BF8283698040A6FCB0656E /* hu.lproj in Resources */,
+				4876037C91809E9395FBC6DA1263D7A0 /* iconCamera.png in Resources */,
+				A010F6E013E49F89AD9814ABEEF6A5ED /* iconCamera@2x.png in Resources */,
+				43346BB4720B201DF61B419AD168C8CC /* IconGradient.png in Resources */,
+				635FEA3A17E0368486B6EBB951113919 /* IconGradient@2x.png in Resources */,
+				77C8A6E286C4017355A3504DE7224672 /* it.lproj in Resources */,
+				28DEAC650483E15A5602394CE175AD84 /* ja.lproj in Resources */,
+				7953B9FC0310262E2C693A3D1E5E5219 /* nb.lproj in Resources */,
+				A7D8B3C3F26205FEC2CEEF050A4B1B8C /* nl.lproj in Resources */,
+				DA8C9A3AE256F3EE5A85FE500551F7CC /* Ok.png in Resources */,
+				74188F838D216E12DACBAEA65FE68A47 /* Ok@2x.png in Resources */,
+				E6A201A0681FF512C08B945B5CBC11AF /* Ok@3x.png in Resources */,
+				40F50C320E441CA6832A1903FC423C3B /* pt-PT.lproj in Resources */,
+				3A624FBA699DEA2F5BA1095F016C7389 /* pt.lproj in Resources */,
+				4358E71B5410586455C8B158367E2881 /* Rectangle.png in Resources */,
+				A48255B69BC546E153BAC32062805A26 /* Rectangle@2x.png in Resources */,
+				58B208AEE306DDB0814DA9F469D56AF3 /* Rectangle@3x.png in Resources */,
+				507B27E488D80AFBF7E60509D4B6FAFB /* ru.lproj in Resources */,
+				91C4BA98435286267215EB6915BEF20D /* zh-Hans.lproj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
