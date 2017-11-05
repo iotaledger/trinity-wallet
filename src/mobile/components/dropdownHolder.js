@@ -2,7 +2,7 @@ export default class DropdownHolder {
     static dropdown;
 
     static setDropdown(ref) {
-        this.dropDown = ref;
+        this.dropdown = ref;
     }
 
     static getDropdown() {
