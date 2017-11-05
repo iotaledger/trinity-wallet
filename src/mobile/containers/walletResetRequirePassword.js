@@ -21,7 +21,7 @@ import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import DropdownHolder from '../components/dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 
@@ -67,6 +67,7 @@ class WalletResetRequirePassword extends Component {
     resetWallet() {
         const isAuthenticated = this.isAuthenticated();
         const { password, resetWallet } = this.props;
+        const dropdown = DropdownHolder.getDropdown();
 
         if (isAuthenticated) {
             deleteFromKeyChain(password);
@@ -74,7 +75,7 @@ class WalletResetRequirePassword extends Component {
 
             this.redirectToInitialScreen();
         } else {
-            this.dropdown.alertWithType(
+            dropdown.alertWithType(
                 'error',
                 'Unrecognised password',
                 'The password was not recognised. Please try again.',
@@ -126,16 +127,6 @@ class WalletResetRequirePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor={Colors.dropdown.success}
-                    errorColor={Colors.dropdown.error}
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle="light-content"
-                />
             </ImageBackground>
         );
     }
@@ -224,32 +215,6 @@ const styles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
     },
     buttonsContainer: {
         alignItems: 'flex-end',
