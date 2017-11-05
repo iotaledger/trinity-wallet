@@ -35,6 +35,7 @@ class Send extends Component {
             denomination: 'Mi',
             amount: '',
             address: '',
+            tag: '',
             message: '',
             dataSource: ds.cloneWithRows([]),
         };
@@ -81,6 +82,14 @@ class Send extends Component {
         return size(address) === 90 && iota.utils.isValidChecksum(address) && !this.hasInvalidCharacters(address);
     }
 
+    isValidTag(tag) {
+        return tag.match(/^[A-Z9]+$/) && tag.length <= 27;
+    }
+
+    isValidMessage(message) {
+        return this.state.message.match(/^[A-Z9]+$/);
+    }
+
     renderInvalidAddressErrors(address) {
         const props = ['error', 'Invalid Address'];
         const dropdown = DropdownHolder.getDropdown();
@@ -94,14 +103,29 @@ class Send extends Component {
         return dropdown.alertWithType(...props, 'Address contains invalid checksum');
     }
 
+    renderInvalidTagErrors(tag) {
+        const props = ['error', 'Invalid Tag'];
+
+        if (tag.length > 27) {
+            return this.dropdown.alertWithType(...props, 'Tags cannot be longer than 27 characters.');
+        } else if (tag.match(/^[A-Z9]+$/) == false) {
+            return this.dropdown.alertWithType(...props, 'Tag contains invalid characters.');
+        }
+
+        return this.dropdown.alertWithType(...props, 'Tag is invalid.');
+    }
+
     sendTransaction() {
         const address = this.state.address;
         const value = parseInt(this.state.amount);
+        const tag = this.state.tag;
         const message = this.state.message;
-        const isValid = this.isValidAddress(address);
         const dropdown = DropdownHolder.getDropdown();
+        const addressIsValid = this.isValidAddress(address);
+        const tagIsValid = this.isValidTag(tag);
+        const messageIsValid = this.isValidMessage(message);
 
-        if (isValid) {
+        if (addressIsValid && tagIsValid && messageIsValid) {
             getFromKeychain(this.props.iota.password, value => {
                 if (typeof value !== 'undefined') {
                     var seed = getSeed(value, this.props.iota.seedIndex);
@@ -117,12 +141,16 @@ class Send extends Component {
                     console.log('error');
                 }
             });
-        } else {
+        }
+        if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
+        }
+        if (!tagIsValid) {
+            this.renderInvalidTagErrors(tag);
         }
 
         function sendTx(seed) {
-            sendTransaction(seed, address, value, message);
+            sendTransaction(seed, address, value, tag, message);
         }
     }
 
@@ -156,7 +184,7 @@ class Send extends Component {
     );
 
     render() {
-        let { amount, address, message } = this.state;
+        let { amount, address, tag, message } = this.state;
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -244,21 +272,40 @@ class Send extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TextField
-                        style={styles.textField}
-                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                        labelFontSize={height / 55}
-                        fontSize={height / 40}
-                        height={height / 24}
-                        labelPadding={2}
-                        baseColor="white"
-                        enablesReturnKeyAutomatically={true}
-                        label="Message"
-                        tintColor="#F7D002"
-                        autoCorrect={false}
-                        value={message}
-                        onChangeText={message => this.setState({ message })}
-                    />
+                    <View style={styles.textFieldContainer}>
+                        <TextField
+                            style={styles.textField}
+                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                            labelFontSize={height / 55}
+                            fontSize={height / 40}
+                            height={height / 24}
+                            labelPadding={2}
+                            baseColor="white"
+                            enablesReturnKeyAutomatically={true}
+                            label="Optional Tag"
+                            tintColor="#F7D002"
+                            autoCorrect={false}
+                            value={tag}
+                            onChangeText={tag => this.setState({ tag })}
+                        />
+                    </View>
+                    <View style={styles.textFieldContainer}>
+                        <TextField
+                            style={styles.textField}
+                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                            labelFontSize={height / 55}
+                            fontSize={height / 40}
+                            height={height / 24}
+                            labelPadding={2}
+                            baseColor="white"
+                            enablesReturnKeyAutomatically={true}
+                            label="Message"
+                            tintColor="#F7D002"
+                            autoCorrect={false}
+                            value={message}
+                            onChangeText={message => this.setState({ message })}
+                        />
+                    </View>
                     <View style={styles.sendIOTAButtonContainer}>
                         <TouchableOpacity onPress={event => this.sendTransaction()}>
                             <View style={styles.sendIOTAButton}>
@@ -420,8 +467,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, address, value, message) => {
-        dispatch(sendTransaction(seed, address, value, message));
+    sendTransaction: (seed, address, value, tag, message) => {
+        dispatch(sendTransaction(seed, address, value, tag, message));
     },
 });
 
