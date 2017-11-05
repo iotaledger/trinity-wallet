@@ -1,1 +1,1 @@
-../../../../HockeySDK/HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Headers/HockeySDKEnums.h
+../../../../HockeySDK/HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDK.framework/Headers/HockeySDKEnums.h

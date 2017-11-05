@@ -1,1 +1,1 @@
-../../../../HockeySDK/HockeySDK-iOS/HockeySDK.embeddedframework/HockeySDK.framework/Headers/BITCrashAttachment.h
+../../../../HockeySDK/HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDK.framework/Headers/BITCrashAttachment.h

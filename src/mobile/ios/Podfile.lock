@@ -1,14 +1,12 @@
 PODS:
-  - HockeySDK (5.0.0):
-    - HockeySDK/DefaultLib (= 5.0.0)
-  - HockeySDK/DefaultLib (5.0.0)
+  - HockeySDK/AllFeaturesLib (5.0.0)
 
 DEPENDENCIES:
-  - HockeySDK
+  - HockeySDK/AllFeaturesLib
 
 SPEC CHECKSUMS:
   HockeySDK: 82bf8dcbe1af3c87c24dc98924fcf2e2ba5be8c4
 
-PODFILE CHECKSUM: 42a2b3f37dd4baeedc68f5b2dc8f6c0e4d12e185
+PODFILE CHECKSUM: a1b6d7f7187466d29ee9574a4e843019b0401522
 
 COCOAPODS: 1.3.1
