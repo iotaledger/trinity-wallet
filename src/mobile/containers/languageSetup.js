@@ -45,7 +45,7 @@ class LanguageSetup extends React.Component {
         HockeyApp.configure(
             '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
             true, //Auto send crash reports
-            AuthenticationType.EmailPassword, //Authentication type
+            3, //Authentication type
         );
     }
 

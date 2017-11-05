@@ -6,7 +6,7 @@ target 'iotaWallet' do
   # use_frameworks!
 
   # Pods for iotaWallet
-pod 'HockeySDK'
+pod 'HockeySDK', :subspecs => ['AllFeaturesLib']
 
   target 'iotaWalletTests' do
     inherit! :search_paths
