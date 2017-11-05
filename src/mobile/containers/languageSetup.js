@@ -41,6 +41,8 @@ class LanguageSetup extends React.Component {
         };
     }
 
+    // Commented out until we get Apple Developer Program membership
+    /*
     componentWillMount() {
         HockeyApp.configure(
             '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
@@ -53,6 +55,7 @@ class LanguageSetup extends React.Component {
         HockeyApp.start();
         HockeyApp.checkForUpdate(); // optional
     }
+    */
 
     onNextPress() {
         this.props.navigator.push({
