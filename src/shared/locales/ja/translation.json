@@ -140,7 +140,7 @@
         "changeTheme": "テーマ変更",
         "changeLanguage": "言語変更",
         "addNewSeed": "新しいSeedを追加",
-        "setup2fa": "2要素承認の設定",
+        "setup2fa": "2要素認証の設定",
         "changePassword": "パスワード変更",
         "advancedSettings": "詳細設定",
         "logout": "ログアウト"
