@@ -22,12 +22,15 @@ export default class ReAttacher extends Component {
 
     autoReAttach() {
         const { reAttachAfter, attachments } = this.props;
-        console.log('ATTACHMENTs', attachments);
+
         this.timer = isNull(this.timer) && clearTimeout(this.timer);
         this.timer = setTimeout(() => {
             // Check if there are transactions
-            if (size(attachments)) {
-                console.log(attachments);
+            const totalAttachments = size(attachments);
+            if (totalAttachments) {
+                for (let i = totalAttachments; i--; ) {
+                    this.props.attach(attachments[i]);
+                }
             }
             this.timer = null;
             this.autoReAttach(reAttachAfter);
@@ -46,4 +49,5 @@ ReAttacher.defaultProps = {
 ReAttacher.propTypes = {
     reAttachAfter: PropTypes.number,
     attachments: PropTypes.array.isRequired,
+    attach: PropTypes.func.isRequired,
 };

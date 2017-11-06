@@ -273,7 +273,7 @@ export const getTailTransactionHashesForPendingTransactions = (transfers, addres
     if (size(transfers)) {
         const normalize = (res, val) => {
             each(val, v => {
-                if (!v.persistence && !v.currentIndex) {
+                if (!v.persistence && v.currentIndex === 0) {
                     res.push(v.hash);
                 }
             });
@@ -282,7 +282,7 @@ export const getTailTransactionHashesForPendingTransactions = (transfers, addres
         };
 
         const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
-        const sentTransfers = get(categorizedTransfers, 'received');
+        const sentTransfers = get(categorizedTransfers, 'sent');
 
         return reduce(sentTransfers, normalize, []);
     }
