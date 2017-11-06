@@ -45,7 +45,7 @@ const store = createStore(
 export const getTailTransactionHashesForPendingTransactions = state => {
     return fromIota.getTailTransactionHashesForPendingTransactions(
         state.iota.transactions,
-        ['PBIWEDQONHCTPTEJDRWLGPBTUHFVXDUXVRBUISTG9ZAM9GLIMJCWFAJIOUMTTF9QXQWGQLNIWHFTEHBPY'], // should be state.iota.addresses
+        state.iota.addresses || [], // should be state.iota.addresses // TODO: OR is unnecessary
     );
 };
 
