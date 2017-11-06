@@ -19,7 +19,7 @@ import History from './history';
 import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/iotaActions';
+import { incrementSeedIndex, decrementSeedIndex, replayBundle } from '../../shared/actions/iotaActions';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
 import DropdownHolder from '../components/dropdownHolder';
 import ReAttacher from './reAttacher';
@@ -246,7 +246,10 @@ class Home extends Component {
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
-                <ReAttacher attachments={tailTransactionHashesForPendingTransactions} />
+                <ReAttacher
+                    attachments={tailTransactionHashesForPendingTransactions}
+                    attach={this.props.replayBundle}
+                />
                 <DropdownAlert
                     ref={ref => DropdownHolder.setDropdown(ref)}
                     successColor="#009f3f"
@@ -344,6 +347,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(decrementSeedIndex());
     },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
+    replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
 });
 
 Home.propTypes = {
