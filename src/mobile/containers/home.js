@@ -20,6 +20,7 @@ import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/iotaActions';
+import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
 import DropdownHolder from '../components/dropdownHolder';
 import ReAttacher from './reAttacher';
 const StatusBarDefaultBarStyle = 'light-content';
@@ -125,7 +126,7 @@ class Home extends Component {
     }
 
     render() {
-        const { childRoute } = this.props;
+        const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
 
@@ -245,38 +246,7 @@ class Home extends Component {
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
-                <ReAttacher
-                    transfers={[
-                        [
-                            {
-                                hash:
-                                    '9RCLSHF9MMZPAVUUDADKPYRIEG9ENM9HUCBQBG9G9DSKMZQOAJVMXNEYCBKDXYVELMPVXE9VZVHG99999',
-                                signatureMessageFragment:
-                                    '999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999',
-                                address:
-                                    'PBIWEDQONHCTPTEJDRWLGPBTUHFVXDUXVRBUISTG9ZAM9GLIMJCWFAJIOUMTTF9QXQWGQLNIWHFTEHBPY',
-                                value: 0,
-                                obsoleteTag: 'ZC9999999999999999999999999',
-                                timestamp: 1509985380,
-                                currentIndex: 0,
-                                lastIndex: 0,
-                                bundle:
-                                    'LXBYRFT9LR9FRJAPGWBIIRXKJCLXAPFXLZPN9ZRFVIXIDJLFVF9G9SDREDZSOCCGAWCDKQADYHGHIPDJB',
-                                trunkTransaction:
-                                    'UZBVZQEBZPPKICQEVDMSCRTHXNCVKYRBQSMWXSPOUUKXZPVJBATWSXLYQNEK9GCNAJEKXKSFVIAN99999',
-                                branchTransaction:
-                                    'QONLLQJENVKIVACEALNTYLMKSXCQFMFCG9BY9APPDLCZNTZXLIQKHDDZJSH9Y9AJRCBHR9VZNBHIZ9999',
-                                tag: '999999999999999999999999999',
-                                attachmentTimestamp: 1509985383051,
-                                attachmentTimestampLowerBound: 0,
-                                attachmentTimestampUpperBound: 3812798742493,
-                                nonce: 'WA999RZC9999999999999999999',
-                                persistence: false,
-                            },
-                        ],
-                    ]}
-                    addresses={['PBIWEDQONHCTPTEJDRWLGPBTUHFVXDUXVRBUISTG9ZAM9GLIMJCWFAJIOUMTTF9QXQWGQLNIWHFTEHBPY']}
-                />
+                <ReAttacher attachments={tailTransactionHashesForPendingTransactions} />
                 <DropdownAlert
                     ref={ref => DropdownHolder.setDropdown(ref)}
                     successColor="#009f3f"
@@ -361,6 +331,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     iota: state.iota,
+    tailTransactionHashesForPendingTransactions: getTailTransactionHashesForPendingTransactions(state),
     account: state.account,
     childRoute: state.home.childRoute,
 });
@@ -379,6 +350,7 @@ Home.propTypes = {
     navigator: PropTypes.object.isRequired,
     childRoute: PropTypes.string.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
+    tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
