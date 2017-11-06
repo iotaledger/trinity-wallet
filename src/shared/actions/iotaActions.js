@@ -173,6 +173,17 @@ function filterSpentAddresses(inputs) {
     });
 }
 
+export function replayBundle(transaction, depth = 3, minWeightMagnitude = 14) {
+    return dispatch => {
+        // Should be fire and forget
+        return iota.api.replayBundle(transaction, depth, minWeightMagnitude, err => {
+            if (err) {
+                console.log(err);
+            }
+        });
+    };
+}
+
 // Check for sending from a used addresses
 function getUnspentInputs(seed, start, threshold, inputs, cb) {
     if (arguments.length === 4) {
