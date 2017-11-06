@@ -47,16 +47,20 @@ class Receive extends Component {
     }
 
     onGeneratePress() {
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const seedName = this.props.account.seedNames[seedIndex];
+        const accountInfo = this.props.account.accountInfo;
+        const addresses = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         getFromKeychain(this.props.tempAccount.password, value => {
             if (!isUndefined(value)) {
-                var seed = getSeed(value, this.props.tempAccount.seedIndex);
-                generate(seed);
+                const seed = getSeed(value, seedIndex);
+                generate(seed, seedName, addresses);
             } else {
                 error();
             }
         });
 
-        const generate = seed => this.props.generateNewAddress(seed);
+        const generate = (seed, seedName, addresses) => this.props.generateNewAddress(seed, seedName, addresses);
         const error = () => this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
     }
 
@@ -209,10 +213,11 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
-    generateNewAddress: seed => dispatch(generateNewAddress(seed)),
+    generateNewAddress: (seed, seedName, addresses) => dispatch(generateNewAddress(seed, seedName, addresses)),
     setReceiveAddress: payload => dispatch(setReceiveAddress(payload)),
 });
 

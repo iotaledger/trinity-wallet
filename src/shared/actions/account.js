@@ -128,11 +128,19 @@ export function getAccountInfo(seed, seedName, seedIndex, accountInfo) {
     };
 }
 
-export function updateTransfers(seedName, addresses, transfers, balance) {
+export function updateTransfers(seedName, transfers) {
     return {
         type: 'UPDATE_TRANFERS',
         seedName,
         transfers,
+    };
+}
+
+export function updateAddresses(seedName, addresses) {
+    return {
+        type: 'UPDATE_ADDRESSES',
+        seedName,
+        addresses,
     };
 }
 
