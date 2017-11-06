@@ -23,6 +23,28 @@ const account = (
                     },
                 },
             };
+        case 'UPDATE_ADDRESSES':
+            return {
+                ...state,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.seedName]: {
+                        ...state.accountInfo[action.seedName],
+                        addresses: action.addresses,
+                    },
+                },
+            };
+        case 'UPDATE_TRANSFERS':
+            return {
+                ...state,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.seedName]: {
+                        ...state.accountInfo[action.seedName],
+                        transfers: action.transfers,
+                    },
+                },
+            };
         case 'SET_FIRST_USE':
             return {
                 ...state,
