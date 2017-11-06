@@ -190,14 +190,13 @@ export function checkNode() {
 
 export function generateNewAddress(seed, seedName, addresses) {
     return dispatch => {
-        dispatch(generateNewAddressRequest());
         iota.api.getNewAddress(seed, { checksum: true }, (error, address) => {
             if (!error) {
                 if (!(address in addresses)) {
                     addresses[address] = 0;
                 }
-                dispatch(generateNewAddressSuccess(address));
                 dispatch(updateAddresses(seedName, addresses));
+                dispatch(generateNewAddressSuccess(address));
             } else {
                 dispatch(generateNewAddressError());
             }
