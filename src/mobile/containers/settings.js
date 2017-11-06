@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
-    clearTempData: () => dispatch(clearTempData),
+    clearTempData: () => dispatch(clearTempData()),
 });
 
 const mapStateToProps = state => ({
