@@ -43,7 +43,7 @@ export default class ReAttacher extends Component {
 }
 
 ReAttacher.defaultProps = {
-    reAttachAfter: 60000,
+    reAttachAfter: 900000,
 };
 
 ReAttacher.propTypes = {
