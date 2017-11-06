@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import marketData from './reducers/marketDataReducer';
-import iota from './reducers/iotaReducer';
+import iota, * as fromIota from './reducers/iotaReducer';
 import account from './reducers/accountReducer';
 import app from './reducers/app';
 import settings from './reducers/settings';
@@ -41,6 +41,13 @@ const store = createStore(
         typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
     ),
 );
+
+export const getTailTransactionHashesForPendingTransactions = state => {
+    return fromIota.getTailTransactionHashesForPendingTransactions(
+        state.iota.transactions,
+        ['PBIWEDQONHCTPTEJDRWLGPBTUHFVXDUXVRBUISTG9ZAM9GLIMJCWFAJIOUMTTF9QXQWGQLNIWHFTEHBPY'], // should be state.iota.addresses
+    );
+};
 
 export const persistState = (state, config) => persistStore(state, config);
 
