@@ -78,6 +78,7 @@ class SetSeedName extends React.Component {
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="done"
                                 value={seedName}
                                 onChangeText={seedName => this.setState({ seedName })}
                                 containerStyle={{

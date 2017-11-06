@@ -54,6 +54,7 @@ class ChangePassword extends Component {
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,
+            returnKeyType: 'next',
             containerStyle: styles.textFieldContainer,
             secureTextEntry: true,
             label,
