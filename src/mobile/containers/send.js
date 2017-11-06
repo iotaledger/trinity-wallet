@@ -267,10 +267,6 @@ class Send extends Component {
                     <View style={styles.sendIOTAButtonContainer}>
                         <TouchableOpacity onPress={event => this.sendTransaction()}>
                             <View style={styles.sendIOTAButton}>
-                                <Image
-                                    style={styles.sendIOTAImage}
-                                    source={require('../../shared/images/sendIota.png')}
-                                />
                                 <Text style={styles.sendIOTAText}>SEND IOTA</Text>
                             </View>
                         </TouchableOpacity>
@@ -336,14 +332,14 @@ const styles = StyleSheet.create({
     qrText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 39.8,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     buttonText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 36.8,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -364,12 +360,11 @@ const styles = StyleSheet.create({
         paddingBottom: height / 90,
     },
     sendIOTAButton: {
-        flexDirection: 'row',
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 3,
-        height: height / 20,
+        height: height / 16,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
@@ -377,7 +372,7 @@ const styles = StyleSheet.create({
     sendIOTAText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
         paddingLeft: 10,
     },
@@ -409,7 +404,7 @@ const styles = StyleSheet.create({
     maxButtonText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 45.8,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
     maxButton: {
@@ -419,8 +414,8 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 0.8,
         borderRadius: 8,
-        width: width / 7,
-        height: height / 18,
+        width: width / 6,
+        height: height / 16,
     },
     maxImage: {
         height: width / 50,
