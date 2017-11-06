@@ -2,7 +2,6 @@ import isNull from 'lodash/isNull';
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { iota } from '../../shared/libs/iota';
 
 export default class ReAttacher extends Component {
     constructor() {
@@ -22,13 +21,13 @@ export default class ReAttacher extends Component {
     }
 
     autoReAttach() {
-        const { reAttachAfter, transfers, addresses } = this.props;
+        const { reAttachAfter, attachments } = this.props;
+        console.log('ATTACHMENTs', attachments);
         this.timer = isNull(this.timer) && clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-            // Check if there are transfers
-            if (size(transfers)) {
-                const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
-                const sent = get(categorizedTransfers, 'sent');
+            // Check if there are transactions
+            if (size(attachments)) {
+                console.log(attachments);
             }
             this.timer = null;
             this.autoReAttach(reAttachAfter);
@@ -46,6 +45,5 @@ ReAttacher.defaultProps = {
 
 ReAttacher.propTypes = {
     reAttachAfter: PropTypes.number,
-    transfers: PropTypes.array.isRequired,
-    addresses: PropTypes.array.isRequired,
+    attachments: PropTypes.array.isRequired,
 };
