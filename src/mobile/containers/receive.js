@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
-import { generateNewAddress, setReceiveAddress } from '../../shared/actions/tempAccount';
+import { generateNewAddress, setReceiveAddress, generateNewAddressRequest } from '../../shared/actions/tempAccount';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -47,6 +47,7 @@ class Receive extends Component {
     }
 
     onGeneratePress() {
+        this.props.generateNewAddressRequest();
         const seedIndex = this.props.tempAccount.seedIndex;
         const seedName = this.props.account.seedNames[seedIndex];
         const accountInfo = this.props.account.accountInfo;
@@ -219,6 +220,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     generateNewAddress: (seed, seedName, addresses) => dispatch(generateNewAddress(seed, seedName, addresses)),
     setReceiveAddress: payload => dispatch(setReceiveAddress(payload)),
+    generateNewAddressRequest: () => dispatch(generateNewAddressRequest()),
 });
 
 Receive.propTypes = {

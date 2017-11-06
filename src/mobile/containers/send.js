@@ -392,6 +392,7 @@ const styles = StyleSheet.create({
         color: 'white',
         opacity: 1,
         backgroundColor: 'transparent',
+        position: 'absolute',
         right: width / 3.5,
         top: height / 6.2,
     },
