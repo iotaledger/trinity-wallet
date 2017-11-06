@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 balance: action.balance,
-                transactions: [],
+                transactions: action.transactions,
             };
         case 'SET_SEED':
             return {
