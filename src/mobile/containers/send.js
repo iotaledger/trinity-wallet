@@ -390,11 +390,10 @@ const styles = StyleSheet.create({
     conversionText: {
         fontFamily: 'Lato-Light',
         color: 'white',
-        opacity: 1,
         backgroundColor: 'transparent',
         position: 'absolute',
+        bottom: height / 3.05,
         right: width / 3.5,
-        top: height / 6.2,
     },
     maxButtonContainer: {
         alignItems: 'flex-start',
