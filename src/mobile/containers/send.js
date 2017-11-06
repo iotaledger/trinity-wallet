@@ -374,7 +374,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingLeft: 10,
     },
     sendIOTAImage: {
         height: width / 35,
@@ -393,7 +392,6 @@ const styles = StyleSheet.create({
         color: 'white',
         opacity: 1,
         backgroundColor: 'transparent',
-        position: 'absolute',
         right: width / 3.5,
         top: height / 6.2,
     },

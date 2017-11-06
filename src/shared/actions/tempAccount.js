@@ -1,4 +1,5 @@
 import { iota } from '../libs/iota';
+import { updateAddresses } from '../actions/account';
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
 
@@ -187,12 +188,16 @@ export function checkNode() {
     };
 }
 
-export function generateNewAddress(seed) {
+export function generateNewAddress(seed, seedName, addresses) {
     return dispatch => {
         dispatch(generateNewAddressRequest());
         iota.api.getNewAddress(seed, { checksum: true }, (error, address) => {
             if (!error) {
+                if (!(address in addresses)) {
+                    addresses[address] = 0;
+                }
                 dispatch(generateNewAddressSuccess(address));
+                dispatch(updateAddresses(seedName, addresses));
             } else {
                 dispatch(generateNewAddressError());
             }
