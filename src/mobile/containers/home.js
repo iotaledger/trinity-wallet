@@ -39,7 +39,7 @@ class Home extends Component {
     componentWillMount() {
         const accountInfo = this.props.account.accountInfo;
         if (typeof accountInfo !== 'undefined') {
-            this.props.setBalance(accountInfo[Object.keys(accountInfo)[0]].addresses);
+            this.props.setBalance(accountInfo[Object.keys(accountInfo)[this.props.tempAccount.seedIndex]].addresses);
         }
     }
 

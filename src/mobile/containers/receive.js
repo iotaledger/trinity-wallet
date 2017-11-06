@@ -92,7 +92,6 @@ class Receive extends Component {
                         }}
                     >
                         <View style={styles.generateButton}>
-                            <Image style={styles.generateImage} source={require('../../shared/images/plus.png')} />
                             <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
                         </View>
                     </TouchableOpacity>
@@ -156,12 +155,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     generateButton: {
-        flexDirection: 'row',
         borderColor: 'rgba(255,255,255,0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 2,
-        height: height / 20,
+        height: height / 16,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#009f3f',
@@ -169,7 +167,7 @@ const styles = StyleSheet.create({
     generateText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
         paddingLeft: 6,
     },
