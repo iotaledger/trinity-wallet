@@ -70,12 +70,13 @@ export default (state = initialState, action) => {
         case 'CLEAR_TEMP_DATA':
             return {
                 ...state,
+                ready: false,
                 receiveAddress: '',
                 seed: '',
                 password: '',
-                ready: false,
                 usedSeedToLogin: false,
                 seedIndex: 0,
+                isGeneratingReceiveAddress: false,
             };
         default:
             return state;
