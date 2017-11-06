@@ -6,7 +6,7 @@ import { getMarketData, getChartData, getPrice } from '../../shared/actions/mark
 import { setBalance } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import Home from './home';
-
+import IotaSpin from '../components/iotaSpin';
 const { height, width } = Dimensions.get('window');
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
@@ -29,13 +29,7 @@ class Loading extends Component {
             return (
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
-                    <View style={{ height: width / 1.75, paddingLeft: 5 }}>
-                        <WebView
-                            scrollEnabled={false}
-                            source={logoSpin}
-                            style={{ backgroundColor: 'transparent', width: width / 1.75 }}
-                        />
-                    </View>
+                    <IotaSpin duration={3000} />
                 </ImageBackground>
             );
         }

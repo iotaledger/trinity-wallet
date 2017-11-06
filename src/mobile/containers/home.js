@@ -48,8 +48,9 @@ class Home extends Component {
             const seedIndex = this.props.tempAccount.seedIndex - 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
-            this.props.decrementSeedIndex();
-            this.props.getAccountInfo('test', seedName, seedIndex, accountInfo);
+            Promise.resolve(this.props.decrementSeedIndex()).then(
+                this.props.getAccountInfo('test', seedName, seedIndex, accountInfo),
+            );
             this.props.setReceiveAddress('');
         }
     }
@@ -59,8 +60,9 @@ class Home extends Component {
             const seedIndex = this.props.tempAccount.seedIndex + 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
-            this.props.incrementSeedIndex();
-            this.props.getAccountInfo('test', seedName, seedIndex, accountInfo);
+            Promise.resolve(this.props.incrementSeedIndex()).then(
+                this.props.getAccountInfo('test', seedName, seedIndex, accountInfo),
+            );
             this.props.setReceiveAddress('');
         }
     }
