@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearIOTA } from '../../shared/actions/iotaActions';
+import { clearTempData } from '../../shared/actions/tempAccount';
 import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
 import { logoutFromWallet } from '../../shared/actions/app';
-//import { clearIOTA } from '../../shared/actions/iotaActions';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import DropdownHolder from '../components/dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 
@@ -25,8 +26,6 @@ class Settings extends React.Component {
 
     _showModal = () => this.setState({ isModalVisible: true });
 
-    onChangeModePress() {}
-
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
@@ -35,7 +34,13 @@ class Settings extends React.Component {
         let modalContent;
         switch (selectedSetting) {
             case 'addNewSeed':
-                modalContent = <AddNewSeedModal style={{ flex: 1 }} hideModal={() => this._hideModal()} />;
+                modalContent = (
+                    <AddNewSeedModal
+                        style={{ flex: 1 }}
+                        hideModal={() => this._hideModal()}
+                        navigate={() => this.navigateToNewSeed()}
+                    />
+                );
         }
         this.setState({
             selectedSetting,
@@ -44,11 +49,17 @@ class Settings extends React.Component {
         this._showModal();
     }
 
-    onModePress() {}
+    onModePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onCurrencyPress() {}
 
-    onThemePress() {}
+    onThemePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onLanguagePress() {}
 
@@ -64,11 +75,15 @@ class Settings extends React.Component {
         });
     }
 
-    on2FASetupPress() {}
+    on2FASetupPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
-    onAddNewSeedPress() {}
-
-    onAdvancedSettingsPress() {}
+    onAdvancedSettingsPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onResetWalletPress() {
         this.props.navigator.push({
@@ -86,7 +101,7 @@ class Settings extends React.Component {
         {
             /* this.props.logoutFromWallet() */
         }
-        this.props.clearIOTA();
+        this.props.clearTempData();
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
@@ -96,6 +111,17 @@ class Settings extends React.Component {
                     screenBackgroundColor: '#102e36',
                 },
             },
+        });
+    }
+
+    navigateToNewSeed() {
+        this._hideModal();
+        this.props.navigator.push({
+            screen: 'addAdditionalSeed',
+            navigatorStyle: {
+                navBarHidden: true,
+            },
+            animated: false,
         });
     }
 
@@ -258,11 +284,37 @@ const styles = StyleSheet.create({
         width: width / 1.16,
         marginTop: height / 4.8,
     },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
+    },
 });
 
 const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
-    clearIOTA: () => dispatch(clearIOTA),
+    clearTempData: () => dispatch(clearTempData()),
 });
 
 const mapStateToProps = state => ({
