@@ -15,11 +15,10 @@ import {
 } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
-import { generateNewAddress, setAddress } from '../../shared/actions/iotaActions';
+import { generateNewAddress, setReceiveAddress, generateNewAddressRequest } from '../../shared/actions/tempAccount';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-
+import DropdownHolder from '../components/dropdownHolder';
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -40,24 +39,29 @@ class Receive extends Component {
     }
 
     resetAddress() {
-        const { iota: { receiveAddress } } = this.props;
+        const { tempAccount: { receiveAddress } } = this.props;
         if (receiveAddress) {
-            this.props.setAddress('');
+            this.props.setReceiveAddress('');
         }
     }
 
     onGeneratePress() {
-        getFromKeychain(this.props.iota.password, value => {
+        this.props.generateNewAddressRequest();
+        const dropdown = DropdownHolder.getDropdown();
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const seedName = this.props.account.seedNames[seedIndex];
+        const accountInfo = this.props.account.accountInfo;
+        const addresses = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        getFromKeychain(this.props.tempAccount.password, value => {
             if (!isUndefined(value)) {
-                var seed = getSeed(value, this.props.iota.seedIndex);
-                generate(seed);
+                const seed = getSeed(value, seedIndex);
+                generate(seed, seedName, addresses);
             } else {
                 error();
             }
         });
 
-        const generate = seed => this.props.generateNewAddress(seed);
-
+        const generate = (seed, seedName, addresses) => this.props.generateNewAddress(seed, seedName, addresses);
         const error = () => this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
     }
 
@@ -68,7 +72,7 @@ class Receive extends Component {
     }
 
     render() {
-        const { iota: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
+        const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
 
         return (
             <View style={styles.container}>
@@ -93,7 +97,6 @@ class Receive extends Component {
                         }}
                     >
                         <View style={styles.generateButton}>
-                            <Image style={styles.generateImage} source={require('../../shared/images/plus.png')} />
                             <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
                         </View>
                     </TouchableOpacity>
@@ -114,16 +117,6 @@ class Receive extends Component {
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                     />
                 </View>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
             </View>
         );
     }
@@ -146,7 +139,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 80,
+        height: height / 5,
     },
     receiveAddressText: {
         fontFamily: 'Lato-Regular',
@@ -157,12 +150,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     generateButton: {
-        flexDirection: 'row',
         borderColor: 'rgba(255,255,255,0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 2,
-        height: height / 20,
+        height: height / 16,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#009f3f',
@@ -170,7 +162,7 @@ const styles = StyleSheet.create({
     generateText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
         paddingLeft: 6,
     },
@@ -182,51 +174,23 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 15,
     },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
-    },
 });
 
 const mapStateToProps = state => ({
-    marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
-    generateNewAddress: seed => dispatch(generateNewAddress(seed)),
-    setAddress: payload => dispatch(setAddress(payload)),
+    generateNewAddress: (seed, seedName, addresses) => dispatch(generateNewAddress(seed, seedName, addresses)),
+    setReceiveAddress: payload => dispatch(setReceiveAddress(payload)),
+    generateNewAddressRequest: () => dispatch(generateNewAddressRequest()),
 });
 
 Receive.propTypes = {
-    marketData: PropTypes.object.isRequired,
-    iota: PropTypes.object.isRequired,
-    account: PropTypes.object.isRequired,
+    tempAccount: PropTypes.object.isRequired,
     generateNewAddress: PropTypes.func.isRequired,
-    setAddress: PropTypes.func.isRequired,
+    setReceiveAddress: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Receive);
