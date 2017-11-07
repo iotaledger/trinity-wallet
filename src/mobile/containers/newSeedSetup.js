@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
-import { randomiseSeed, setSeed } from '../../shared/actions/iotaActions';
+import { randomiseSeed, setSeed } from '../../shared/actions/tempAccount';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
@@ -102,7 +102,7 @@ class NewSeedSetup extends Component {
         randomBytes(5, (error, bytes) => {
             if (!error) {
                 let i = 0;
-                let seed = this.props.iota.seed;
+                let seed = this.props.tempAccount.seed;
                 Object.keys(bytes).map((key, index) => {
                     if (bytes[key] < 243 && i < 1) {
                         const randomNumber = bytes[key] % 27;
@@ -125,7 +125,7 @@ class NewSeedSetup extends Component {
         const isAndroid = Platform.OS === 'android';
         const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
 
-        const { iota: { seed } } = this.props;
+        const { tempAccount: { seed } } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -199,7 +199,7 @@ class NewSeedSetup extends Component {
 
 NewSeedSetup.propTypes = {
     navigator: PropTypes.object.isRequired,
-    iota: PropTypes.object.isRequired,
+    tempAccount: PropTypes.object.isRequired,
     setSeed: PropTypes.func.isRequired,
     randomiseSeed: PropTypes.func.isRequired,
 };
@@ -371,7 +371,7 @@ const androidStyles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = dispatch => ({
