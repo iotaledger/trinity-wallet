@@ -23,6 +23,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import { getAccountInfo } from '../../shared/actions/account';
+import DropdownHolder from '../components/dropdownHolder';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
