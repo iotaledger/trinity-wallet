@@ -50,6 +50,26 @@ export function generateNewAddressError() {
     };
 }
 
+export function sendTransferRequest() {
+    return {
+        type: 'SEND_TRANSFER_REQUEST',
+    };
+}
+
+export function sendTransferSuccess(address, value) {
+    return {
+        type: 'SEND_TRANSFER_SUCCESS',
+        address,
+        value,
+    };
+}
+
+export function sendTransferError() {
+    return {
+        type: 'SEND_TRANSFER_ERROR',
+    };
+}
+
 export function setReady() {
     return {
         type: 'SET_READY',
@@ -204,44 +224,59 @@ export function generateNewAddress(seed, seedName, addresses) {
     };
 }
 
-export function sendTransaction(seed, address, value, message) {
-    // Convert to Trytes
-    const messageTrytes = iota.utils.toTrytes(message);
-    const tag = iota.utils.toTrytes('IOTA');
-    const transfer = [
-        {
-            address: address,
-            value: value,
-            message: messageTrytes,
-            tag: tag,
-        },
-    ];
-
-    const outputsToCheck = transfer.map(transfer => {
-        return { address: iota.utils.noChecksum(transfer.address) };
-    });
-    var expectedOutputsLength = outputsToCheck.length;
-    if (!iota.valid.isTransfersArray(transfer)) {
-        console.log('Invalid transfer array');
-        return;
-    }
-    // Check to make sure user is not sending to an already used address
-    filterSpentAddresses(outputsToCheck).then(filtered => {
-        if (filtered.length !== expectedOutputsLength) {
-            console.log('You cannot send to an already used address');
-            return false;
-        } else {
-            // Send transfer with depth 4 and minWeightMagnitude 18
-            console.log('Successfully get to send');
-            iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
-                if (!error) {
-                    console.log('SUCCESSFULLY SENT TRANSFER: ', success);
-                } else {
-                    console.log('SOMETHING WENT WRONG: ', error);
-                }
-            });
+export function sendTransaction(seed, addressesWithBalance, seedName, address, value, message) {
+    return dispatch => {
+        // Convert to Trytes
+        const messageTrytes = iota.utils.toTrytes(message);
+        const tag = iota.utils.toTrytes('IOTA');
+        const transfer = [
+            {
+                address: address,
+                value: value,
+                message: messageTrytes,
+                tag: tag,
+            },
+        ];
+        const outputsToCheck = transfer.map(transfer => {
+            return { address: iota.utils.noChecksum(transfer.address) };
+        });
+        var expectedOutputsLength = outputsToCheck.length;
+        if (!iota.valid.isTransfersArray(transfer)) {
+            console.log('Invalid transfer array');
+            return;
         }
-    });
+        // Check to make sure user is not sending to an already used address
+        filterSpentAddresses(outputsToCheck).then(filtered => {
+            if (filtered.length !== expectedOutputsLength) {
+                console.log('You cannot send to an already used address');
+                return false;
+            } else {
+                // Send transfer with depth 4 and minWeightMagnitude 18
+                iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
+                    if (!error) {
+                        dispatch(checkForNewAddress(seedName, addressesWithBalance, success));
+                        dispatch(sendTransferSuccess(address, value));
+                        console.log('SENT');
+                    } else {
+                        dispatch(sendTransferError(error));
+                        console.log('SOMETHING WENT WRONG: ', error);
+                    }
+                });
+            }
+        });
+    };
+}
+
+export function checkForNewAddress(seedName, addressesWithBalance, txArray) {
+    return dispatch => {
+        const changeAddress = txArray[txArray.length - 1].address;
+        const addresses = Object.keys(addressesWithBalance);
+        // If current addresses does not include change address, add new address and balance
+        if (!addresses.includes(changeAddress)) {
+            addressesWithBalance[changeAddress] = 0;
+        }
+        dispatch(updateAddresses(seedName, addressesWithBalance));
+    };
 }
 
 export function randomiseSeed(randomBytesFn) {

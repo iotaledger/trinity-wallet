@@ -159,7 +159,7 @@ class TransactionRow extends React.Component {
                                 }}
                             >
                                 <Text style={styles.messageTitle}>Message:</Text>
-                                <Text style={styles.message} numberOfLines={2}>
+                                <Text style={styles.message} numberOfLines={1}>
                                     {convertFromTrytes(this.props.rowData[0].signatureMessageFragment)}
                                 </Text>
                             </View>
