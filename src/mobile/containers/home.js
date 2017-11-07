@@ -18,8 +18,11 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import { incrementSeedIndex, decrementSeedIndex } from '../../shared/actions/iotaActions';
+import DropdownAlert from 'react-native-dropdownalert';
+import { round, formatValue, formatUnit } from '../../shared/libs/util';
+import { incrementSeedIndex, decrementSeedIndex, setReceiveAddress } from '../../shared/actions/tempAccount';
+import { getAccountInfo, setBalance } from '../../shared/actions/account';
+import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
@@ -33,17 +36,34 @@ class Home extends Component {
         };
     }
 
+    componentWillMount() {
+        const accountInfo = this.props.account.accountInfo;
+        if (typeof accountInfo !== 'undefined') {
+            this.props.setBalance(accountInfo[Object.keys(accountInfo)[this.props.tempAccount.seedIndex]].addresses);
+        }
+    }
+
     onLeftArrowPress() {
-        if (this.props.iota.seedIndex > 0) {
-            var seedIndex = this.props.iota.seedIndex - 1;
+        if (this.props.tempAccount.seedIndex > 0) {
+            const seedIndex = this.props.tempAccount.seedIndex - 1;
+            const seedName = this.props.account.seedNames[seedIndex];
+            const accountInfo = this.props.account.accountInfo;
             this.props.decrementSeedIndex();
+            this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
+            this.props.setReceiveAddress('');
+            this.props.getAccountInfo('test', seedName, seedIndex, accountInfo);
         }
     }
 
     onRightArrowPress() {
-        if (this.props.iota.seedIndex + 1 < this.props.account.seedCount) {
-            var seedIndex = this.props.iota.seedIndex + 1;
+        if (this.props.tempAccount.seedIndex + 1 < this.props.account.seedCount) {
+            const seedIndex = this.props.tempAccount.seedIndex + 1;
+            const seedName = this.props.account.seedNames[seedIndex];
+            const accountInfo = this.props.account.accountInfo;
             this.props.incrementSeedIndex();
+            this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
+            this.props.setReceiveAddress('');
+            this.props.getAccountInfo('test', seedName, seedIndex, accountInfo);
         }
     }
 
@@ -84,7 +104,7 @@ class Home extends Component {
     }
 
     _renderTitlebar() {
-        if (this.props.iota.usedSeedToLogin == false) {
+        if (this.props.tempAccount.usedSeedToLogin == false) {
             return (
                 <View style={styles.titlebarContainer}>
                     <TouchableOpacity
@@ -95,13 +115,15 @@ class Home extends Component {
                             style={{
                                 width: width / 20,
                                 height: width / 20,
-                                opacity: this.props.iota.seedIndex == 0 ? 0.3 : 1,
+                                opacity: this.props.tempAccount.seedIndex == 0 ? 0.3 : 1,
                             }}
                             source={require('../../shared/images/arrow-left.png')}
                         />
                     </TouchableOpacity>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.title}>{this.props.account.seedNames[this.props.iota.seedIndex]}</Text>
+                        <Text style={styles.title}>
+                            {this.props.account.seedNames[this.props.tempAccount.seedIndex]}
+                        </Text>
                     </View>
                     <TouchableOpacity
                         onPress={() => this.onRightArrowPress()}
@@ -111,7 +133,7 @@ class Home extends Component {
                             style={{
                                 width: width / 20,
                                 height: width / 20,
-                                opacity: this.props.iota.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
+                                opacity: this.props.tempAccount.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
                             }}
                             source={require('../../shared/images/arrow-right.png')}
                         />
@@ -262,18 +284,18 @@ class Home extends Component {
 const styles = StyleSheet.create({
     topContainer: {
         flex: 0.8,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
     },
     titlebarContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 20,
+        alignItems: 'flex-end',
+        paddingBottom: height / 50,
         flex: 1,
     },
     titleContainer: {
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
         paddingHorizontal: width / 8,
     },
     title: {
@@ -327,7 +349,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
     childRoute: state.home.childRoute,
 });
@@ -338,6 +360,15 @@ const mapDispatchToProps = dispatch => ({
     },
     decrementSeedIndex: () => {
         dispatch(decrementSeedIndex());
+    },
+    getAccountInfo: (seed, seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seed, seedName, seedIndex, accountInfo));
+    },
+    setReceiveAddress: string => {
+        dispatch(setReceiveAddress(string));
+    },
+    setBalance: addressesWithBalance => {
+        dispatch(setBalance(addressesWithBalance));
     },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
 });
