@@ -60,13 +60,6 @@ class Home extends Component {
         }, 30000);
     }
 
-    testClick() {
-        let seedIndex = this.props.tempAccount.seedIndex;
-        let seedName = this.props.account.seedNames[seedIndex];
-        let accountInfo = this.props.account.accountInfo;
-        this.props.getAccountInfo(seedName, seedIndex, accountInfo);
-    }
-
     componentWillMount() {
         const accountInfo = this.props.account.accountInfo;
         if (typeof accountInfo !== 'undefined') {
@@ -232,7 +225,7 @@ class Home extends Component {
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback onPress={event => this.testClick()}>
+                        <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
                             <View style={styles.button}>
                                 <Image
                                     style={
