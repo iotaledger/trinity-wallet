@@ -110,13 +110,15 @@ class Send extends Component {
             getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value !== 'undefined') {
                     var seed = getSeed(value, this.props.tempAccount.seedIndex);
-                    Promise.resolve(sendTx(seed)).then(getAccountInfo('test', seedName, seedIndex, accountInfo));
-                    if (sendTransaction(seed.seed, address, value, message) == false) {
+                    sendTx(seed);
+                    {
+                        /*if (sendTransaction(seed.seed, address, value, message) == false) {
                         this.dropdown.alertWithType(
                             'error',
                             'Key reuse',
                             `The address you are trying to send to has already been used. Please try another address.`,
                         );
+                    }*/
                     }
                 } else {
                     console.log('error');
