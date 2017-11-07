@@ -192,6 +192,13 @@ class Send extends Component {
         <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
     );
 
+    onQRRead(data) {
+        this.setState({
+            address: data,
+        });
+        this._hideModal();
+    }
+
     render() {
         let { amount, address, message } = this.state;
         return (
