@@ -63,7 +63,7 @@ class Login extends React.Component {
                 _this.props.setFirstUse(false);
             } else {
                 const accountInfo = _this.props.account.accountInfo;
-                _this.props.getAccountInfo(value, seedName, seedIndex, accountInfo);
+                _this.props.getAccountInfo(seedName, seedIndex, accountInfo);
             }
             _this.props.changeHomeScreenRoute('balance');
             _this.props.navigator.push({
@@ -276,8 +276,8 @@ const mapDispatchToProps = dispatch => ({
     setFirstUse: boolean => {
         dispatch(setFirstUse(boolean));
     },
-    getAccountInfo: (seed, seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seed, seedName, seedIndex, accountInfo));
+    getAccountInfo: (seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
     },
     getAccountInfoNewSeed: (seed, seedName) => {
         dispatch(getAccountInfoNewSeed(seed, seedName));

@@ -3,6 +3,7 @@ import size from 'lodash/size';
 import React, { Component } from 'react';
 import { iota } from '../../shared/libs/iota';
 import {
+    ActivityIndicator,
     StyleSheet,
     View,
     Text,
@@ -18,15 +19,16 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import { sendTransaction } from '../../shared/actions/tempAccount';
+import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempAccount';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import { getAccountInfo } from '../../shared/actions/account';
 import DropdownHolder from '../components/dropdownHolder';
-
-const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = 'light-content';
+
+let sentDenomination = '';
 
 class Send extends Component {
     constructor() {
@@ -40,6 +42,18 @@ class Send extends Component {
             message: '',
             dataSource: ds.cloneWithRows([]),
         };
+    }
+
+    componentDidMount() {
+        if (this.props.tempAccount.triggerSentDropdown) {
+            const dropdown = DropdownHolder.getDropdown();
+            dropdown.alertWithType(
+                'success',
+                'Transaction sent successfully',
+                `You have sent ${this.props.tempAccount.lastTxValue} ${sentDenomination} to address ${this.props
+                    .tempAccount.lastTxAddress}.`,
+            );
+        }
     }
 
     onDenominationPress() {
@@ -84,7 +98,8 @@ class Send extends Component {
     }
 
     isValidMessage(message) {
-        return this.state.message.match(/^[A-Z9]+$/);
+        //return this.state.message.match(/^[A-Z9]+$/);
+        return true;
     }
 
     renderInvalidAddressErrors(address) {
@@ -101,17 +116,22 @@ class Send extends Component {
     }
 
     sendTransaction() {
+        const dropdown = DropdownHolder.getDropdown();
+        sentDenomination = this.state.denomination;
+
+        const accountInfo = this.props.account.accountInfo;
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const seedName = this.props.account.seedNames[seedIndex];
+        const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+
         const address = this.state.address;
         const value = parseInt(this.state.amount) * this.getUnitMultiplier();
         const message = this.state.message;
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const seedName = this.props.account.seedNames[seedIndex];
-        const accountInfo = this.props.account.accountInfo;
-        const dropdown = DropdownHolder.getDropdown();
         const addressIsValid = this.isValidAddress(address);
         const messageIsValid = this.isValidMessage(message);
 
         if (addressIsValid && messageIsValid) {
+            this.props.sendTransferRequest();
             getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value !== 'undefined') {
                     var seed = getSeed(value, this.props.tempAccount.seedIndex);
@@ -134,8 +154,12 @@ class Send extends Component {
             this.renderInvalidAddressErrors(address);
         }
 
+        if (!messageIsValid) {
+            console.log('invalid message');
+        }
+        const _this = this;
         function sendTx(seed) {
-            sendTransaction(seed, address, value, message);
+            _this.props.sendTransaction(seed, addressesWithBalance, seedName, address, value, message);
         }
     }
 
@@ -280,6 +304,14 @@ class Send extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
+                    <View style={{ flex: 1 }}>
+                        <ActivityIndicator
+                            animating={this.props.tempAccount.isSendingTransfer}
+                            style={styles.activityIndicator}
+                            size="large"
+                            color="#F7D002"
+                        />
+                    </View>
                 </View>
                 <Modal
                     animationIn={'bounceInUp'}
@@ -303,6 +335,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: height / 25,
+    },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: height / 5,
     },
     topContainer: {
         paddingHorizontal: width / 10,
@@ -423,12 +461,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, address, value, message) => {
-        dispatch(sendTransaction(seed, address, value, message));
+    sendTransaction: (seed, addressesWithBalance, seedName, address, value, message) => {
+        dispatch(sendTransaction(seed, addressesWithBalance, seedName, address, value, message));
     },
-    getAccountInfo: (seed, seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seed, seedName, seedIndex, accountInfo));
+    getAccountInfo: (seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
     },
+    sendTransferRequest: () => dispatch(sendTransferRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Send);

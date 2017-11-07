@@ -78,7 +78,7 @@ export function setBalance(addressesWithBalance) {
     };
 }
 
-export function getAccountInfo(seed, seedName, seedIndex, accountInfo) {
+export function getAccountInfo(seedName, seedIndex, accountInfo) {
     return dispatch => {
         // Current addresses and ther balances
         let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -104,7 +104,7 @@ export function getAccountInfo(seed, seedName, seedIndex, accountInfo) {
                 {
                     /* TODO: Only check check addresses where balance has changed */
                 }
-                if (indexesWithBalanceChange.length > 0) {
+                if (true) {
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
                         dispatch(getTransfers(seedName, addresses)),
                     );
@@ -172,7 +172,7 @@ export function getTransfers(seedName, addresses) {
 
 export function updateTransfers(seedName, transfers) {
     return {
-        type: 'UPDATE_TRANFERS',
+        type: 'UPDATE_TRANSFERS',
         seedName,
         transfers,
     };
