@@ -207,7 +207,7 @@ export function generateNewAddress(seed, seedName, addresses) {
 export function sendTransaction(seed, address, value, message) {
     // Convert to Trytes
     const messageTrytes = iota.utils.toTrytes(message);
-    const tag = iota.utils.toTrytes('test');
+    const tag = iota.utils.toTrytes('IOTA');
     const transfer = [
         {
             address: address,

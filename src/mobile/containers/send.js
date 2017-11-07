@@ -37,7 +37,6 @@ class Send extends Component {
             denomination: 'Mi',
             amount: '',
             address: '',
-            tag: '',
             message: '',
             dataSource: ds.cloneWithRows([]),
         };
@@ -84,10 +83,6 @@ class Send extends Component {
         return size(address) === 90 && iota.utils.isValidChecksum(address) && !this.hasInvalidCharacters(address);
     }
 
-    isValidTag(tag) {
-        return tag.match(/^[A-Z9]+$/) && tag.length <= 27;
-    }
-
     isValidMessage(message) {
         return this.state.message.match(/^[A-Z9]+$/);
     }
@@ -105,33 +100,18 @@ class Send extends Component {
         return dropdown.alertWithType(...props, 'Address contains invalid checksum');
     }
 
-    renderInvalidTagErrors(tag) {
-        const props = ['error', 'Invalid Tag'];
-        const dropdown = DropdownHolder.getDropdown();
-
-        if (tag.length > 27) {
-            return dropdown.alertWithType(...props, 'Tags cannot be longer than 27 characters.');
-        } else if (tag.match(/^[A-Z9]+$/) == false) {
-            return dropdown.alertWithType(...props, 'Tag contains invalid characters.');
-        }
-
-        return dropdown.alertWithType(...props, 'Tag is invalid.');
-    }
-
     sendTransaction() {
         const address = this.state.address;
         const value = parseInt(this.state.amount) * this.getUnitMultiplier();
-        const tag = this.state.tag;
         const message = this.state.message;
         const seedIndex = this.props.tempAccount.seedIndex;
         const seedName = this.props.account.seedNames[seedIndex];
         const accountInfo = this.props.account.accountInfo;
         const dropdown = DropdownHolder.getDropdown();
         const addressIsValid = this.isValidAddress(address);
-        const tagIsValid = this.isValidTag(tag);
         const messageIsValid = this.isValidMessage(message);
 
-        if (addressIsValid && tagIsValid && messageIsValid) {
+        if (addressIsValid && messageIsValid) {
             getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value !== 'undefined') {
                     var seed = getSeed(value, this.props.tempAccount.seedIndex);
@@ -153,12 +133,9 @@ class Send extends Component {
         if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
         }
-        if (!tagIsValid) {
-            this.renderInvalidTagErrors(tag);
-        }
 
         function sendTx(seed) {
-            sendTransaction(seed, address, value, tag, message);
+            sendTransaction(seed, address, value, message);
         }
     }
 
@@ -192,7 +169,7 @@ class Send extends Component {
     );
 
     render() {
-        let { amount, address, tag, message } = this.state;
+        let { amount, address, message } = this.state;
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -247,6 +224,17 @@ class Send extends Component {
                                 onChangeText={amount => this.setState({ amount })}
                             />
                         </View>
+                        <Text style={styles.conversionText}>
+                            {' '}
+                            = ${' '}
+                            {round(
+                                parseInt(this.state.amount == '' ? 0 : this.state.amount) *
+                                    this.props.marketData.usdPrice /
+                                    1000000 *
+                                    this.getUnitMultiplier(),
+                                2,
+                            ).toFixed(2)}{' '}
+                        </Text>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
                                 <View style={styles.button}>
@@ -259,17 +247,6 @@ class Send extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={styles.conversionText}>
-                        {' '}
-                        = ${' '}
-                        {round(
-                            parseInt(this.state.amount == '' ? 0 : this.state.amount) *
-                                this.props.marketData.usdPrice /
-                                1000000 *
-                                this.getUnitMultiplier(),
-                            2,
-                        ).toFixed(2)}{' '}
-                    </Text>
                     <View style={styles.maxButtonContainer}>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={event => this.onMaxPress()}>
@@ -279,23 +256,6 @@ class Send extends Component {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                    </View>
-                    <View style={styles.textFieldContainer}>
-                        <TextField
-                            style={styles.textField}
-                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                            labelFontSize={height / 55}
-                            fontSize={height / 40}
-                            height={height / 24}
-                            labelPadding={2}
-                            baseColor="white"
-                            enablesReturnKeyAutomatically={true}
-                            label="Optional Tag"
-                            tintColor="#F7D002"
-                            autoCorrect={false}
-                            value={tag}
-                            onChangeText={tag => this.setState({ tag })}
-                        />
                     </View>
                     <View style={styles.textFieldContainer}>
                         <TextField
@@ -432,8 +392,8 @@ const styles = StyleSheet.create({
         color: 'white',
         backgroundColor: 'transparent',
         position: 'absolute',
-        bottom: height / 3.05,
-        right: width / 3.5,
+        bottom: height / 45,
+        right: width / 4.6,
     },
     maxButtonContainer: {
         alignItems: 'flex-start',
@@ -469,8 +429,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, address, value, tag, message) => {
-        dispatch(sendTransaction(seed, address, value, tag, message));
+    sendTransaction: (seed, address, value, message) => {
+        dispatch(sendTransaction(seed, address, value, message));
     },
     getAccountInfo: (seed, seedName, seedIndex, accountInfo) => {
         dispatch(getAccountInfo(seed, seedName, seedIndex, accountInfo));
