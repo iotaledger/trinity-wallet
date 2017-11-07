@@ -136,7 +136,7 @@ export const groupTransfersByBundle = transfers => {
     });
     return groupedTransfers;
 };
-export const sortTransfers = (transfers, addresses) => {
+export const formatTransfers = (transfers, addresses) => {
     // Order transfers from oldest to newest
     let sortedTransfers = transfers.sort((a, b) => {
         if (a[0].timestamp > b[0].timestamp) {
