@@ -72,6 +72,7 @@ class App extends React.Component {
 
     render() {
         const { app } = this.props;
+
         if (this.state.initialized === false) {
             return <Loading />;
         }
