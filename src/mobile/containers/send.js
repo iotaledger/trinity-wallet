@@ -251,7 +251,6 @@ class Send extends Component {
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={event => this.onMaxPress()}>
                                 <View style={styles.maxButton}>
-                                    <Image source={require('../../shared/images/max.png')} style={styles.maxImage} />
                                     <Text style={styles.maxButtonText}> MAX </Text>
                                 </View>
                             </TouchableOpacity>
@@ -414,11 +413,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         width: width / 6,
         height: height / 16,
-    },
-    maxImage: {
-        height: width / 50,
-        width: width / 34,
-        marginRight: 2,
     },
 });
 
