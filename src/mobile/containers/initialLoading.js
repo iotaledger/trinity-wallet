@@ -17,13 +17,13 @@ export default class InitialLoading extends Component {
         const state = store.getState();
         if (!state.account.onboardingComplete) {
             this.props.navigator.push({
-                screen: 'home',
+                screen: 'login',
                 navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
         } else {
             this.props.navigator.push({
-                screen: 'home',
+                screen: 'login',
                 navigatorStyle: { navBarHidden: true },
                 animated: false,
             });

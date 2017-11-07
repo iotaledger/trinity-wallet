@@ -1,7 +1,9 @@
+import isEmpty from 'lodash/isEmpty';
 import get from 'lodash/get';
 import reduce from 'lodash/reduce';
+import map from 'lodash/map';
 import each from 'lodash/each';
-import size from 'lodash/size';
+import keys from 'lodash/keys';
 import { iota } from '../libs/iota';
 
 const account = (
@@ -10,7 +12,6 @@ const account = (
         seedNames: [],
         firstUse: true,
         onboardingComplete: false,
-        addresses: {},
         balance: 0,
         transfers: [],
     },
@@ -83,8 +84,8 @@ const account = (
 
 export default account;
 
-export const getTailTransactionHashesForPendingTransactions = (transfers, addresses) => {
-    if (size(transfers)) {
+export const getTailTransactionHashesForPendingTransactions = (transfers, accountInfo, currentIndex) => {
+    if (!isEmpty(transfers) && !isEmpty(accountInfo)) {
         const normalize = (res, val) => {
             each(val, v => {
                 if (!v.persistence && v.currentIndex === 0) {
@@ -94,6 +95,10 @@ export const getTailTransactionHashesForPendingTransactions = (transfers, addres
 
             return res;
         };
+
+        const propKeys = keys(accountInfo);
+        const currentSeedAccountInfo = get(propKeys, `[${currentIndex}]`);
+        const addresses = map(get(currentSeedAccountInfo, 'addresses'), (v, k) => k);
 
         const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
         const sentTransfers = get(categorizedTransfers, 'sent');
