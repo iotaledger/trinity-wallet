@@ -11,11 +11,11 @@ class SimpleTransactionRow extends React.Component {
 
     render() {
         const icon =
-            this.props.rowData[0].transactionValue < 0
+            this.props.rowData[0].transferValue < 0
                 ? require('../../shared/images/send.png')
                 : require('../../shared/images/receive.png');
-        const sign = this.props.rowData[0].transactionValue < 0 ? '-' : '+';
-        const titleColour = this.props.rowData[0].transactionValue < 0 ? '#F7D002' : '#72BBE8';
+        const sign = this.props.rowData[0].transferValue < 0 ? '-' : '+';
+        const titleColour = this.props.rowData[0].transferValue < 0 ? '#F7D002' : '#72BBE8';
 
         return (
             <View style={styles.container}>
@@ -44,7 +44,9 @@ class SimpleTransactionRow extends React.Component {
                             fontSize: width / 29.6,
                         }}
                     >
-                        {this.props.rowData[0].transactionValue < 0 ? 'Sent' : 'Received'}
+                        {this.props.rowData[0].transferValue < 0
+                            ? this.props.rowData[0].persistence ? 'Sent' : 'Sending'
+                            : this.props.rowData[0].persistence ? 'Received' : 'Receiving'}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>

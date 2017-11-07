@@ -1,24 +1,19 @@
 const initialState = {
-    balance: 0,
     ready: false,
     receiveAddress: '',
     password: '',
     seed: '                                                                                 ',
     seedName: 'MAIN WALLET',
     seedIndex: 0,
-    transactions: [],
     isGeneratingReceiveAddress: false,
     usedSeedToLogin: false,
+    lastTxAddress: '',
+    lastTxValue: 0,
+    isSendingTransfer: false,
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_ACCOUNTINFO':
-            return {
-                ...state,
-                balance: action.balance,
-                transactions: action.transactions,
-            };
         case 'SET_SEED':
             return {
                 ...state,
@@ -34,7 +29,7 @@ export default (state = initialState, action) => {
                 ...state,
                 password: action.payload,
             };
-        case 'SET_ADDRESS':
+        case 'SET_RECEIVE_ADDRESS':
             return {
                 ...state,
                 receiveAddress: action.payload,
@@ -54,6 +49,23 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isGeneratingReceiveAddress: false,
+            };
+        case 'SEND_TRANSFER_REQUEST':
+            return {
+                ...state,
+                isSendingTransfer: true,
+            };
+        case 'SEND_TRANSFER_SUCCESS':
+            return {
+                ...state,
+                isSendingTransfer: false,
+                lastTxAddress: action.address,
+                lastTxValue: action.value,
+            };
+        case 'SEND_TRANSFER_ERROR':
+            return {
+                ...state,
+                isSendingTransfer: false,
             };
         case 'SET_READY':
             return {
@@ -75,16 +87,20 @@ export default (state = initialState, action) => {
                 ...state,
                 usedSeedToLogin: action.payload,
             };
-        case 'CLEAR_IOTA':
+        case 'CLEAR_TEMP_DATA':
             return {
                 ...state,
-                balance: 0,
-                transactions: [],
+                ready: false,
                 receiveAddress: '',
                 seed: '',
                 password: '',
-                ready: false,
                 usedSeedToLogin: false,
+                seedIndex: 0,
+                isGeneratingReceiveAddress: false,
+                isSendingTransfer: false,
+                lastTxAddress: '',
+                lastTxValue: 0,
+                triggerSentDropdown: false,
             };
         default:
             return state;

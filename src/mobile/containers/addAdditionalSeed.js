@@ -12,13 +12,17 @@ import {
     StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import DropdownAlert from 'react-native-dropdownalert';
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography';
+import { increaseSeedCount, addSeedName } from '../../shared/actions/account';
+import { incrementSeedIndex, clearTempData } from '../../shared/actions/tempAccount';
+import { getAccountInfoNewSeed } from '../../shared/actions/account';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -26,11 +30,12 @@ const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 
-class EnterSeed extends React.Component {
+class AddAdditionalSeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             seed: '',
+            seedName: '',
             isModalVisible: false,
         };
     }
@@ -50,12 +55,24 @@ class EnterSeed extends React.Component {
                     .seed.length} characters long. Please try again.`,
             );
         } else if (this.state.seed.length >= 60) {
-            this.props.setSeed(this.state.seed);
-            this.props.navigator.push({
-                screen: 'setSeedName',
-                navigatorStyle: { navBarHidden: true },
-                animated: false,
-            });
+            if (this.state.seedName.length > 0) {
+                storeInKeychain(this.props.tempAccount.password, this.state.seed, this.state.seedName, () => {
+                    this.props.clearTempData();
+                    this.props.increaseSeedCount();
+                    this.props.addSeedName(this.state.seedName);
+                    Promise.resolve(this.props.getAccountInfoNewSeed(this.state.seed, this.state.seedName)).then(
+                        this.props.navigator.push({
+                            screen: 'loading',
+                            navigatorStyle: {
+                                navBarHidden: true,
+                            },
+                            animated: false,
+                        }),
+                    );
+                });
+            } else {
+                this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
+            }
         }
     }
 
@@ -84,7 +101,7 @@ class EnterSeed extends React.Component {
     );
 
     render() {
-        const { seed } = this.state;
+        const { seed, seedName } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -134,13 +151,25 @@ class EnterSeed extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
-                                <View style={styles.infoTextContainer}>
-                                    <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                    <Text style={styles.infoText}>
-                                        Seeds should be 81 characters long, and should contain capital letters A-Z, or
-                                        the number 9. You cannot use seeds longer than 81 characters.
-                                    </Text>
-                                    <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
+                                <View style={styles.seedNickNameContainer}>
+                                    <View style={styles.subtitleContainer}>
+                                        <Text style={styles.title}>Enter a seed nickname.</Text>
+                                    </View>
+                                    <TextField
+                                        style={styles.textField}
+                                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                        labelFontSize={width / 31.8}
+                                        fontSize={width / 20.7}
+                                        labelPadding={3}
+                                        baseColor="white"
+                                        tintColor="#F7D002"
+                                        enablesReturnKeyAutomatically={true}
+                                        label="Seed name"
+                                        autoCorrect={false}
+                                        value={seedName}
+                                        containerStyle={{ width: width / 1.36 }}
+                                        onChangeText={seedName => this.setState({ seedName })}
+                                    />
                                 </View>
                             </View>
                             <View style={styles.bottomContainer}>
@@ -213,6 +242,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: height / 15,
+        paddingBottom: height / 30,
+    },
+    subtitleContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingBottom: height / 30,
     },
     title: {
         color: 'white',
@@ -319,6 +354,10 @@ const styles = StyleSheet.create({
         height: 36,
         alignSelf: 'center',
     },
+    seedNickNameContainer: {
+        position: 'absolute',
+        top: height / 3,
+    },
 });
 
 const mapStateToProps = state => ({
@@ -328,9 +367,21 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setSeed: seed => {
-        dispatch(setSeed(seed));
+    increaseSeedCount: () => {
+        dispatch(increaseSeedCount());
+    },
+    incrementSeedIndex: () => {
+        dispatch(incrementSeedIndex());
+    },
+    clearTempData: () => {
+        dispatch(clearTempData());
+    },
+    addSeedName: newSeed => {
+        dispatch(addSeedName(newSeed));
+    },
+    getAccountInfoNewSeed: (seed, seedName) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName));
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnterSeed);
+export default connect(mapStateToProps, mapDispatchToProps)(AddAdditionalSeed);
