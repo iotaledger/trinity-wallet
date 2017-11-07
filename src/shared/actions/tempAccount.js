@@ -257,7 +257,7 @@ export function sendTransaction(seed, address, value, message) {
                 console.log('Successfully get to send');
                 iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
                     if (!error) {
-                        dispatch(generateAlert('success', 'Transfer Successful', `Successfully sent transfer`));
+                        dispatch(generateAlert('success', 'Transfer Successful', `Transfer completed!`));
                     } else {
                         console.log('SOMETHING WENT WRONG: ', error);
                     }
