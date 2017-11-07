@@ -3,6 +3,7 @@ import size from 'lodash/size';
 import React, { Component } from 'react';
 import { iota } from '../../shared/libs/iota';
 import {
+    ActivityIndicator,
     StyleSheet,
     View,
     Text,
@@ -18,13 +19,16 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import { sendTransaction } from '../../shared/actions/iotaActions';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempAccount';
+import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
-
-const StatusBarDefaultBarStyle = 'light-content';
+import { getAccountInfo } from '../../shared/actions/account';
+import DropdownHolder from '../components/dropdownHolder';
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = 'light-content';
+
+let sentDenomination = '';
 
 class Send extends Component {
     constructor() {
@@ -38,6 +42,18 @@ class Send extends Component {
             message: '',
             dataSource: ds.cloneWithRows([]),
         };
+    }
+
+    componentDidMount() {
+        if (this.props.tempAccount.triggerSentDropdown) {
+            const dropdown = DropdownHolder.getDropdown();
+            dropdown.alertWithType(
+                'success',
+                'Transaction sent successfully',
+                `You have sent ${this.props.tempAccount.lastTxValue} ${sentDenomination} to address ${this.props
+                    .tempAccount.lastTxAddress}.`,
+            );
+        }
     }
 
     onDenominationPress() {
@@ -66,7 +82,7 @@ class Send extends Component {
 
     onMaxPress() {
         this.setState({
-            amount: (this.props.iota.balance / 1000000).toString(),
+            amount: (this.props.account.balance / 1000000).toString(),
             denomination: 'Mi',
         });
     }
@@ -81,49 +97,69 @@ class Send extends Component {
         return size(address) === 90 && iota.utils.isValidChecksum(address) && !this.hasInvalidCharacters(address);
     }
 
+    isValidMessage(message) {
+        //return this.state.message.match(/^[A-Z9]+$/);
+        return true;
+    }
+
     renderInvalidAddressErrors(address) {
         const props = ['error', 'Invalid Address'];
+        const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
-            return this.dropdown.alertWithType(
-                ...props,
-                'Address should be 81 characters long and should have a checksum.',
-            );
+            return dropdown.alertWithType(...props, 'Address should be 81 characters long and should have a checksum.');
         } else if (this.hasInvalidCharacters(address)) {
-            return this.dropdown.alertWithType(...props, 'Address contains invalid characters.');
+            return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
 
-        return this.dropdown.alertWithType(...props, 'Address contains invalid checksum');
+        return dropdown.alertWithType(...props, 'Address contains invalid checksum');
     }
 
     sendTransaction() {
-        const address = this.state.address;
-        const value = parseInt(this.state.amount);
-        const message = this.state.message;
-        const isValid = this.isValidAddress(address);
+        const dropdown = DropdownHolder.getDropdown();
+        sentDenomination = this.state.denomination;
 
-        if (isValid) {
-            getFromKeychain(this.props.iota.password, value => {
+        const accountInfo = this.props.account.accountInfo;
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const seedName = this.props.account.seedNames[seedIndex];
+        const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+
+        const address = this.state.address;
+        const value = parseInt(this.state.amount) * this.getUnitMultiplier();
+        const message = this.state.message;
+        const addressIsValid = this.isValidAddress(address);
+        const messageIsValid = this.isValidMessage(message);
+
+        if (addressIsValid && messageIsValid) {
+            this.props.sendTransferRequest();
+            getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value !== 'undefined') {
-                    var seed = getSeed(value, this.props.iota.seedIndex);
+                    var seed = getSeed(value, this.props.tempAccount.seedIndex);
                     sendTx(seed);
-                    if (sendTransaction(seed.seed, address, value, message) == false) {
+                    {
+                        /*if (sendTransaction(seed.seed, address, value, message) == false) {
                         this.dropdown.alertWithType(
                             'error',
                             'Key reuse',
                             `The address you are trying to send to has already been used. Please try another address.`,
                         );
+                    }*/
                     }
                 } else {
                     console.log('error');
                 }
             });
-        } else {
+        }
+        if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
         }
 
+        if (!messageIsValid) {
+            console.log('invalid message');
+        }
+        const _this = this;
         function sendTx(seed) {
-            sendTransaction(seed, address, value, message);
+            _this.props.sendTransaction(seed, addressesWithBalance, seedName, address, value, message);
         }
     }
 
@@ -212,6 +248,17 @@ class Send extends Component {
                                 onChangeText={amount => this.setState({ amount })}
                             />
                         </View>
+                        <Text style={styles.conversionText}>
+                            {' '}
+                            = ${' '}
+                            {round(
+                                parseInt(this.state.amount == '' ? 0 : this.state.amount) *
+                                    this.props.marketData.usdPrice /
+                                    1000000 *
+                                    this.getUnitMultiplier(),
+                                2,
+                            ).toFixed(2)}{' '}
+                        </Text>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
                                 <View style={styles.button}>
@@ -224,64 +271,48 @@ class Send extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={styles.conversionText}>
-                        {' '}
-                        = ${' '}
-                        {round(
-                            parseInt(this.state.amount == '' ? 0 : this.state.amount) *
-                                this.props.marketData.usdPrice /
-                                1000000 *
-                                this.getUnitMultiplier(),
-                            2,
-                        ).toFixed(2)}{' '}
-                    </Text>
                     <View style={styles.maxButtonContainer}>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={event => this.onMaxPress()}>
                                 <View style={styles.maxButton}>
-                                    <Image source={require('../../shared/images/max.png')} style={styles.maxImage} />
                                     <Text style={styles.maxButtonText}> MAX </Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TextField
-                        style={styles.textField}
-                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                        labelFontSize={height / 55}
-                        fontSize={height / 40}
-                        height={height / 24}
-                        labelPadding={2}
-                        baseColor="white"
-                        enablesReturnKeyAutomatically={true}
-                        label="Message"
-                        tintColor="#F7D002"
-                        autoCorrect={false}
-                        value={message}
-                        onChangeText={message => this.setState({ message })}
-                    />
+                    <View style={styles.textFieldContainer}>
+                        <TextField
+                            style={styles.textField}
+                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                            labelFontSize={height / 55}
+                            fontSize={height / 40}
+                            height={height / 24}
+                            labelPadding={2}
+                            baseColor="white"
+                            enablesReturnKeyAutomatically={true}
+                            label="Message"
+                            tintColor="#F7D002"
+                            autoCorrect={false}
+                            value={message}
+                            onChangeText={message => this.setState({ message })}
+                        />
+                    </View>
                     <View style={styles.sendIOTAButtonContainer}>
                         <TouchableOpacity onPress={event => this.sendTransaction()}>
                             <View style={styles.sendIOTAButton}>
-                                <Image
-                                    style={styles.sendIOTAImage}
-                                    source={require('../../shared/images/sendIota.png')}
-                                />
                                 <Text style={styles.sendIOTAText}>SEND IOTA</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
+                    <View style={{ flex: 1 }}>
+                        <ActivityIndicator
+                            animating={this.props.tempAccount.isSendingTransfer}
+                            style={styles.activityIndicator}
+                            size="large"
+                            color="#F7D002"
+                        />
+                    </View>
                 </View>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -304,6 +335,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: height / 25,
+    },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: height / 5,
     },
     topContainer: {
         paddingHorizontal: width / 10,
@@ -332,14 +369,14 @@ const styles = StyleSheet.create({
     qrText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 39.8,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     buttonText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 36.8,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -360,12 +397,11 @@ const styles = StyleSheet.create({
         paddingBottom: height / 90,
     },
     sendIOTAButton: {
-        flexDirection: 'row',
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 3,
-        height: height / 20,
+        height: height / 16,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
@@ -373,9 +409,8 @@ const styles = StyleSheet.create({
     sendIOTAText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingLeft: 10,
     },
     sendIOTAImage: {
         height: width / 35,
@@ -392,11 +427,10 @@ const styles = StyleSheet.create({
     conversionText: {
         fontFamily: 'Lato-Light',
         color: 'white',
-        opacity: 1,
         backgroundColor: 'transparent',
         position: 'absolute',
-        right: width / 3.5,
-        top: height / 6.2,
+        bottom: height / 45,
+        right: width / 4.6,
     },
     maxButtonContainer: {
         alignItems: 'flex-start',
@@ -405,7 +439,7 @@ const styles = StyleSheet.create({
     maxButtonText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 45.8,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
     maxButton: {
@@ -415,51 +449,25 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 0.8,
         borderRadius: 8,
-        width: width / 7,
-        height: height / 18,
-    },
-    maxImage: {
-        height: width / 50,
-        width: width / 34,
-        marginRight: 2,
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
+        width: width / 6,
+        height: height / 16,
     },
 });
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, address, value, message) => {
-        dispatch(sendTransaction(seed, address, value, message));
+    sendTransaction: (seed, addressesWithBalance, seedName, address, value, message) => {
+        dispatch(sendTransaction(seed, addressesWithBalance, seedName, address, value, message));
     },
+    getAccountInfo: (seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
+    },
+    sendTransferRequest: () => dispatch(sendTransferRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Send);

@@ -12,7 +12,10 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
+import { setPassword } from '../../shared/actions/tempAccount';
+import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
+import { setFirstUse } from '../../shared/actions/account';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -28,9 +31,9 @@ class Login extends React.Component {
         this.state = {
             password: '',
         };
-
         this.onLoginPress = this.onLoginPress.bind(this);
     }
+    s;
 
     onLoginPress() {
         if (!this.state.password) {
@@ -52,8 +55,17 @@ class Login extends React.Component {
         }
 
         const _this = this;
+        const seedIndex = _this.props.tempAccount.seedIndex;
+        const seedName = _this.props.account.seedNames[seedIndex];
         function login(value) {
-            _this.props.getAccountInfo(value);
+            if (_this.props.account.firstUse) {
+                _this.props.getAccountInfoNewSeed(value, seedName);
+                _this.props.setFirstUse(false);
+            } else {
+                const accountInfo = _this.props.account.accountInfo;
+                _this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            }
+            _this.props.changeHomeScreenRoute('balance');
             _this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: {
@@ -73,13 +85,16 @@ class Login extends React.Component {
     }
 
     onUseSeedPress() {
-        this.props.navigator.push({
+        this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        {
+            /*this.props.navigator.push({
             screen: 'useSeed',
             navigatorStyle: {
                 navBarHidden: true,
             },
             animated: false,
-        });
+        });*/
+        }
     }
 
     render() {
@@ -157,7 +172,7 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 4.8,
         alignItems: 'center',
-        paddingTop: height / 4.5,
+        paddingTop: height / 4.2,
     },
     bottomContainer: {
         flex: 0.7,
@@ -250,15 +265,25 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
     setPassword: password => {
         dispatch(setPassword(password));
     },
-    getAccountInfo: seed => {
-        dispatch(getAccountInfo(seed));
+    setFirstUse: boolean => {
+        dispatch(setFirstUse(boolean));
+    },
+    getAccountInfo: (seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
+    },
+    getAccountInfoNewSeed: (seed, seedName) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName));
+    },
+    changeHomeScreenRoute: tab => {
+        dispatch(changeHomeScreenRoute(tab));
     },
 });
 
