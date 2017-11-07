@@ -208,7 +208,6 @@ export function sendTransaction(seed, address, value, message) {
     // Convert to Trytes
     const messageTrytes = iota.utils.toTrytes(message);
     const tag = iota.utils.toTrytes('test');
-
     const transfer = [
         {
             address: address,
@@ -223,6 +222,7 @@ export function sendTransaction(seed, address, value, message) {
     });
     var expectedOutputsLength = outputsToCheck.length;
     if (!iota.valid.isTransfersArray(transfer)) {
+        console.log('Invalid transfer array');
         return;
     }
     // Check to make sure user is not sending to an already used address
@@ -232,6 +232,7 @@ export function sendTransaction(seed, address, value, message) {
             return false;
         } else {
             // Send transfer with depth 4 and minWeightMagnitude 18
+            console.log('Successfully get to send');
             iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
                 if (!error) {
                     console.log('SUCCESSFULLY SENT TRANSFER: ', success);

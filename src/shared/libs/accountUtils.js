@@ -114,10 +114,30 @@ export const addTransferValues = (transfers, addresses) => {
     });
 };
 
-export const sortTransfers = data => {
-    // Order transactions from oldest to newest
-    const transfers = data.transfers;
-    const addresses = data.addresses;
+export const groupTransfersByBundle = transfers => {
+    let groupedTransfers = [];
+    transfers.forEach(tx => {
+        if (!groupedTransfers.length) {
+            groupedTransfers.push([tx]);
+        } else {
+            const i = groupedTransfers.findIndex(bundle => bundle[0].bundle === tx.bundle);
+            if (i !== -1) {
+                groupedTransfers[i].push(tx);
+            } else {
+                groupedTransfers.push([tx]);
+            }
+        }
+    });
+    // Order arrays of transfer object(s) by currentIndex
+    groupedTransfers.forEach(arr => {
+        arr.sort(function(a, b) {
+            return a.currentIndex - b.currentIndex;
+        });
+    });
+    return groupedTransfers;
+};
+export const sortTransfers = (transfers, addresses) => {
+    // Order transfers from oldest to newest
     let sortedTransfers = transfers.sort((a, b) => {
         if (a[0].timestamp > b[0].timestamp) {
             return -1;
@@ -127,6 +147,7 @@ export const sortTransfers = data => {
         }
         return 0;
     });
+    // add transaction values to transactions
     sortedTransfers = addTransferValues(sortedTransfers, addresses);
     return sortedTransfers;
 };
