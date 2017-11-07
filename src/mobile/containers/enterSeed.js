@@ -16,7 +16,7 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed } from '../../shared/actions/iotaActions';
+import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
 });
 

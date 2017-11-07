@@ -2,7 +2,7 @@
 import store from '../../shared/store';
 
 // persistStore(store, {
-//     blacklist: ['iota']
+//     blacklist: ['tempAccount']
 // });
 
 export default store;

@@ -196,7 +196,7 @@ const androidStyles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
 });
 
 SaveYourSeed.propTypes = {

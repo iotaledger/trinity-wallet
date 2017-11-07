@@ -1,30 +1,16 @@
-import get from 'lodash/get';
-import reduce from 'lodash/reduce';
-import each from 'lodash/each';
-import size from 'lodash/size';
-import { iota } from '../libs/iota';
-
 const initialState = {
-    balance: 0,
     ready: false,
     receiveAddress: '',
     password: '',
     seed: '                                                                                 ',
     seedName: 'MAIN WALLET',
     seedIndex: 0,
-    transactions: [],
     isGeneratingReceiveAddress: false,
     usedSeedToLogin: false,
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_ACCOUNTINFO':
-            return {
-                ...state,
-                balance: action.balance,
-                transactions: action.transactions,
-            };
         case 'SET_SEED':
             return {
                 ...state,
@@ -40,7 +26,7 @@ export default (state = initialState, action) => {
                 ...state,
                 password: action.payload,
             };
-        case 'SET_ADDRESS':
+        case 'SET_RECEIVE_ADDRESS':
             return {
                 ...state,
                 receiveAddress: action.payload,
@@ -81,39 +67,18 @@ export default (state = initialState, action) => {
                 ...state,
                 usedSeedToLogin: action.payload,
             };
-        case 'CLEAR_IOTA':
+        case 'CLEAR_TEMP_DATA':
             return {
                 ...state,
-                balance: 0,
-                transactions: [],
+                ready: false,
                 receiveAddress: '',
                 seed: '',
                 password: '',
-                ready: false,
                 usedSeedToLogin: false,
+                seedIndex: 0,
+                isGeneratingReceiveAddress: false,
             };
         default:
             return state;
     }
-};
-
-export const getTailTransactionHashesForPendingTransactions = (transfers, addresses) => {
-    if (size(transfers)) {
-        const normalize = (res, val) => {
-            each(val, v => {
-                if (!v.persistence && v.currentIndex === 0) {
-                    res.push(v.hash);
-                }
-            });
-
-            return res;
-        };
-
-        const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
-        const sentTransfers = get(categorizedTransfers, 'sent');
-
-        return reduce(sentTransfers, normalize, []);
-    }
-
-    return [];
 };

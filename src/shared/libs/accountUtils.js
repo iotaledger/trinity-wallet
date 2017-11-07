@@ -80,3 +80,92 @@ export default {
         return filter(normalized, v => v.balance > 0);
     },
 };
+
+export const formatAddressBalances = (addresses, balances) => {
+    var addressesWithBalance = Object.assign({}, ...addresses.map((n, index) => ({ [n]: balances[index] })));
+    return addressesWithBalance;
+};
+
+export const formatAddressBalancesNewSeed = data => {
+    var addresses = data.addresses;
+    var addressesWithBalance = Object.assign({}, ...addresses.map(n => ({ [n]: 0 })));
+    for (var i = 0; i < data.inputs.length; i++) {
+        addressesWithBalance[data.inputs[i].address] = data.inputs[i].balance;
+    }
+    return addressesWithBalance;
+};
+
+export const addTransferValues = (transfers, addresses) => {
+    // Add transaction value property to each transaction object
+    // FIXME: We should never mutate parameters at any level.
+    return transfers.map(arr => {
+        /* eslint-disable no-param-reassign */
+        arr[0].transferValue = 0;
+        arr.map(obj => {
+            if (addresses.includes(obj.address)) {
+                arr[0].transferValue += obj.value;
+            }
+
+            /* eslint-enable no-param-reassign */
+            return obj;
+        });
+
+        return arr;
+    });
+};
+
+export const groupTransfersByBundle = transfers => {
+    let groupedTransfers = [];
+    transfers.forEach(tx => {
+        if (!groupedTransfers.length) {
+            groupedTransfers.push([tx]);
+        } else {
+            const i = groupedTransfers.findIndex(bundle => bundle[0].bundle === tx.bundle);
+            if (i !== -1) {
+                groupedTransfers[i].push(tx);
+            } else {
+                groupedTransfers.push([tx]);
+            }
+        }
+    });
+    // Order arrays of transfer object(s) by currentIndex
+    groupedTransfers.forEach(arr => {
+        arr.sort(function(a, b) {
+            return a.currentIndex - b.currentIndex;
+        });
+    });
+    return groupedTransfers;
+};
+export const sortTransfers = (transfers, addresses) => {
+    // Order transfers from oldest to newest
+    let sortedTransfers = transfers.sort((a, b) => {
+        if (a[0].timestamp > b[0].timestamp) {
+            return -1;
+        }
+        if (a[0].timestamp < b[0].timestamp) {
+            return 1;
+        }
+        return 0;
+    });
+    // add transaction values to transactions
+    sortedTransfers = addTransferValues(sortedTransfers, addresses);
+    return sortedTransfers;
+};
+
+export const calculateBalance = data => {
+    let balance = 0;
+    if (Object.keys(data).length > 0) {
+        balance = Object.values(data).reduce((a, b) => a + b);
+    }
+    return balance;
+};
+
+export const getIndexesWithBalanceChange = (a, b) => {
+    let indexes = [];
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] != b[i]) {
+            indexes.push(i);
+        }
+    }
+    return indexes;
+};
