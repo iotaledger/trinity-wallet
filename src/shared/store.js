@@ -44,8 +44,9 @@ const store = createStore(
 
 export const getTailTransactionHashesForPendingTransactions = state => {
     return fromAccount.getTailTransactionHashesForPendingTransactions(
-        state.account.transactions,
-        state.account.addresses || [], // should be state.iota.addresses // TODO: OR is unnecessary
+        state.account.transfers,
+        state.account.accountInfo,
+        state.tempAccount.seedIndex,
     );
 };
 

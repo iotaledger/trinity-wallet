@@ -19,7 +19,6 @@ import History from './history';
 import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
-import { round, formatValue, formatUnit } from '../../shared/libs/util';
 import {
     incrementSeedIndex,
     decrementSeedIndex,
@@ -27,8 +26,8 @@ import {
     replayBundle,
 } from '../../shared/actions/tempAccount';
 import { getAccountInfo, setBalance } from '../../shared/actions/account';
-import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
+import DropdownAlert from 'react-native-dropdownalert';
 import ReAttacher from './reAttacher';
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
