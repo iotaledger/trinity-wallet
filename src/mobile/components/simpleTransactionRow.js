@@ -44,7 +44,9 @@ class SimpleTransactionRow extends React.Component {
                             fontSize: width / 29.6,
                         }}
                     >
-                        {this.props.rowData[0].transferValue < 0 ? 'Sent' : 'Received'}
+                        {this.props.rowData[0].transferValue < 0
+                            ? this.props.rowData[0].persistence ? 'Sent' : 'Sending'
+                            : this.props.rowData[0].persistence ? 'Received' : 'Receiving'}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
