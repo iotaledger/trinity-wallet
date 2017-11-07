@@ -60,6 +60,7 @@ class Login extends React.Component {
         function login(value) {
             if (_this.props.account.firstUse) {
                 _this.props.getAccountInfoNewSeed(value, seedName);
+                _this.props.setFirstUse(false);
             } else {
                 const accountInfo = _this.props.account.accountInfo;
                 _this.props.getAccountInfo(value, seedName, seedIndex, accountInfo);
@@ -84,13 +85,16 @@ class Login extends React.Component {
     }
 
     onUseSeedPress() {
-        this.props.navigator.push({
+        this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        {
+            /*this.props.navigator.push({
             screen: 'useSeed',
             navigatorStyle: {
                 navBarHidden: true,
             },
             animated: false,
-        });
+        });*/
+        }
     }
 
     render() {
