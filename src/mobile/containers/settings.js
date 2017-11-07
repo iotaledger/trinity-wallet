@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearIOTA } from '../../shared/actions/iotaActions';
+import { clearTempData } from '../../shared/actions/tempAccount';
 import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
 import { logoutFromWallet } from '../../shared/actions/app';
-//import { clearIOTA } from '../../shared/actions/iotaActions';
 
 const { height, width } = Dimensions.get('window');
 
@@ -35,7 +34,13 @@ class Settings extends React.Component {
         let modalContent;
         switch (selectedSetting) {
             case 'addNewSeed':
-                modalContent = <AddNewSeedModal style={{ flex: 1 }} hideModal={() => this._hideModal()} />;
+                modalContent = (
+                    <AddNewSeedModal
+                        style={{ flex: 1 }}
+                        hideModal={() => this._hideModal()}
+                        navigate={() => this.navigateToNewSeed()}
+                    />
+                );
         }
         this.setState({
             selectedSetting,
@@ -86,7 +91,7 @@ class Settings extends React.Component {
         {
             /* this.props.logoutFromWallet() */
         }
-        this.props.clearIOTA();
+        this.props.clearTempData();
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
@@ -96,6 +101,17 @@ class Settings extends React.Component {
                     screenBackgroundColor: '#102e36',
                 },
             },
+        });
+    }
+
+    navigateToNewSeed() {
+        this._hideModal();
+        this.props.navigator.push({
+            screen: 'addAdditionalSeed',
+            navigatorStyle: {
+                navBarHidden: true,
+            },
+            animated: false,
         });
     }
 
@@ -262,7 +278,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
-    clearIOTA: () => dispatch(clearIOTA),
+    clearTempData: () => dispatch(clearTempData()),
 });
 
 const mapStateToProps = state => ({
