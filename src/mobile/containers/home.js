@@ -56,7 +56,7 @@ class Home extends Component {
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
             this.props.getAccountInfo(seedName, seedIndex, accountInfo);
-            console.log('Updating acount info');
+            console.log('Updating account info');
         }, 30000);
     }
 
