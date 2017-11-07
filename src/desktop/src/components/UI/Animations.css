@@ -1,3 +1,21 @@
+/*@keyframes :global(slide-in-left-20) {
+    from {
+        transform: translate3d(20px, 0px, 0px);
+    }
+    to {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}*/
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+    to {
+        transform: rotate(1800deg) scale(0.75);
+    }
+}
+
 @keyframes slide-in-left-20 {
     from {
         transform: translate3d(20px, 0px, 0px);
@@ -48,6 +66,12 @@
     animation-name: fade-out;
 }
 
-.test {
-    color: green;
+.logo-spin {
+    composes: standard-animation;
+    animation-iteration-count: infinite;
+    animation-duration: 2.5s;
+    animation-direction: alternate;
+    /*animation-timing-function: ease-in-out;*/
+    animation-timing-function: cubic-bezier(1, 0, 0.15, 1);
+    animation-name: logo-spin;
 }
