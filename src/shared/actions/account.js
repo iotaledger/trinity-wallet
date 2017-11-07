@@ -6,6 +6,7 @@ import {
     formatAddressBalancesNewSeed,
     calculateBalance,
     getIndexesWithBalanceChange,
+    groupTransfersByBundle,
 } from '../libs/accountUtils';
 import { setReady } from './tempAccount';
 /* eslint-disable import/prefer-default-export */
@@ -57,7 +58,7 @@ export function getAccountInfoNewSeed(seed, seedName) {
                 // Calculate balance
                 const balance = calculateBalance(addressesWithBalance);
                 // Sort tranfers and add transfer values
-                const transfers = sortTransfers(success);
+                const transfers = sortTransfers(success.transfers, success.addresses);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
                 Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers)))
                     .then(dispatch(setFirstUse(false)))
@@ -95,17 +96,21 @@ export function getAccountInfo(seed, seedName, seedIndex, accountInfo) {
                 newBalances = newBalances.map(Number);
                 // Get address indexes where balance has changed
                 const indexesWithBalanceChange = getIndexesWithBalanceChange(newBalances, oldBalances);
-                // If balance has changed for any addresses, get new transfers
-                if (indexesWithBalanceChange.length > 0) {
-                    iota.api.findTransactionObjects({ addresses: addresses }, (error, success) => {
-                        dispatch(updateTransfers(success));
-                    });
-                }
                 // Pair new balances to addresses to add to store
                 addressesWithBalance = formatAddressBalances(addresses, newBalances);
                 // Calculate balance
                 const balance = calculateBalance(addressesWithBalance);
-
+                // If balance has changed for any addresses, get updated transaction objects
+                if (indexesWithBalanceChange.length > 0) {
+                    Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
+                        dispatch(getTransfers(seedName, addresses)),
+                    );
+                } else {
+                    // Set account info, then finish loading
+                    Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
+                        dispatch(setReady()),
+                    );
+                }
                 // Additional check in case user has account activity in another wallet
                 {
                     /*var index = addressesWithBalance.length;
@@ -117,10 +122,44 @@ export function getAccountInfo(seed, seedName, seedIndex, accountInfo) {
                     }
                 })*/
                 }
+            } else {
+                console.log('SOMETHING WENT WRONG: ', error);
+            }
+        });
+    };
+}
 
-                Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
-                    dispatch(setReady()),
-                );
+export function getTransfers(seedName, addresses) {
+    return dispatch => {
+        iota.api.findTransactionObjects({ addresses: addresses }, (error, success) => {
+            if (!error) {
+                // Get full bundles
+                var bundles = [...new Set(success.map(tx => tx.bundle))];
+                iota.api.findTransactionObjects({ bundles: bundles }, (error, success) => {
+                    if (!error) {
+                        // Add persistence to transaction objects
+                        iota.api.getLatestInclusion(success.map(tx => tx.hash), (error, inclusionStates) => {
+                            if (!error) {
+                                success.map((tx, i) => {
+                                    tx.persistence = inclusionStates[i];
+                                    return tx;
+                                });
+                                // Group transfers into bundles
+                                let transfers = groupTransfersByBundle(success);
+                                // Sort transfers and add transfer value
+                                transfers = sortTransfers(transfers, addresses);
+                                // Update transfers then set ready
+                                Promise.resolve(dispatch(updateTransfers(seedName, transfers))).then(
+                                    dispatch(setReady()),
+                                );
+                            } else {
+                                console.log('SOMETHING WENT WRONG: ', error);
+                            }
+                        });
+                    } else {
+                        console.log('SOMETHING WENT WRONG: ', error);
+                    }
+                });
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
             }
