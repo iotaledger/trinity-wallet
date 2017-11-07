@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, ListView, Dimensions, StatusBar } from 'react-native';
 
 import { connect } from 'react-redux';
-import { changeCurrency, changeTimeFrame } from '../../shared/actions/marketDataActions';
+import { changeCurrency, changeTimeFrame } from '../../shared/actions/marketData';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
@@ -27,24 +27,31 @@ class Balance extends React.Component {
     }
 
     render() {
+        const accountInfo = this.props.account.accountInfo;
+        const seedIndex = this.props.tempAccount.seedIndex;
         const shortenedBalance =
-            round(formatValue(this.props.iota.balance, 1)).toFixed(1) + (this.props.iota.balance < 1000 ? '' : '+');
+            round(formatValue(this.props.account.balance, 1)).toFixed(1) +
+            (this.props.account.balance < 1000 ? '' : '+');
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.balanceContainer}>
                     <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
-                        {this.state.balanceIsShort ? shortenedBalance : this.props.iota.balance}{' '}
-                        {formatUnit(this.props.iota.balance)}
+                        {this.state.balanceIsShort ? shortenedBalance : this.props.account.balance}{' '}
+                        {formatUnit(this.props.account.balance)}
                     </Text>
                     <Text style={styles.fiatBalance}>
-                        $ {round(this.props.iota.balance * this.props.marketData.usdPrice / 1000000, 2).toFixed(2)}{' '}
+                        $ {round(this.props.account.balance * this.props.marketData.usdPrice / 1000000, 2).toFixed(
+                            2,
+                        )}{' '}
                     </Text>
                 </View>
                 <View style={styles.line} />
                 <View style={styles.transactionsContainer}>
                     <ListView
-                        dataSource={ds.cloneWithRows(this.props.iota.transactions.slice(0, 4))}
+                        dataSource={ds.cloneWithRows(
+                            accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
+                        )}
                         renderRow={dataSource => <SimpleTransactionRow rowData={dataSource} />}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                         enableEmptySections
@@ -113,8 +120,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
     account: state.account,
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = dispatch => ({

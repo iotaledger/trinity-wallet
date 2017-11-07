@@ -15,3 +15,13 @@ export const convertFromTrytes = trytes => {
         return message;
     }
 };
+
+export const getBalances = addresses => {
+    iota.api.getBalances(addresses, 1, (error, success) => {
+        if (!error) {
+            console.log(success);
+        } else {
+            console.log(error);
+        }
+    });
+};

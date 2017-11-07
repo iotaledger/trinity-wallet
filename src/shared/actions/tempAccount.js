@@ -1,13 +1,13 @@
 import { iota } from '../libs/iota';
-
+import { updateAddresses } from '../actions/account';
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
 
 /* eslint-disable no-console */
 
-export function setAddress(payload) {
+export function setReceiveAddress(payload) {
     return {
-        type: 'SET_ADDRESS',
+        type: 'SET_RECEIVE_ADDRESS',
         payload,
     };
 }
@@ -57,13 +57,6 @@ export function setReady() {
     };
 }
 
-export function setSeedName(name) {
-    return {
-        type: 'SET_SEED_NAME',
-        payload: name,
-    };
-}
-
 export function setSeed(seed) {
     return {
         type: 'SET_SEED',
@@ -71,38 +64,6 @@ export function setSeed(seed) {
     };
 }
 
-function addTransactionValues(transactions, addresses) {
-    // Add transaction value property to each transaction object
-    // FIXME: We should never mutate parameters at any level.
-    return transactions.map(arr => {
-        /* eslint-disable no-param-reassign */
-        arr[0].transactionValue = 0;
-        arr.map(obj => {
-            if (addresses.includes(obj.address)) {
-                arr[0].transactionValue += obj.value;
-            }
-
-            /* eslint-enable no-param-reassign */
-            return obj;
-        });
-
-        return arr;
-    });
-}
-
-function sortTransactions(transactions) {
-    // Order transactions from oldest to newest
-    const sortedTransactions = transactions.sort((a, b) => {
-        if (a[0].timestamp > b[0].timestamp) {
-            return -1;
-        }
-        if (a[0].timestamp < b[0].timestamp) {
-            return 1;
-        }
-        return 0;
-    });
-    return sortedTransactions;
-}
 // Check for sending to a used address
 function filterSpentAddresses(inputs) {
     return new Promise((resolve, reject) => {
@@ -226,29 +187,6 @@ function getUnspentInputs(seed, start, threshold, inputs, cb) {
     });
 }
 
-export function setAccountInfo(accountInfo) {
-    const balance = accountInfo.balance;
-    let transactions = sortTransactions(accountInfo.transfers);
-    transactions = addTransactionValues(transactions, accountInfo.addresses);
-    return {
-        type: 'SET_ACCOUNTINFO',
-        balance,
-        transactions,
-    };
-}
-
-export function getAccountInfo(seed) {
-    return dispatch => {
-        iota.api.getAccountData(seed, (error, success) => {
-            if (!error) {
-                Promise.resolve(dispatch(setAccountInfo(success))).then(dispatch(setReady()));
-            } else {
-                console.log('SOMETHING WENT WRONG: ', error);
-            }
-        });
-    };
-}
-
 export function checkNode() {
     return dispatch => {
         iota.api.getNodeInfo(error => {
@@ -261,11 +199,14 @@ export function checkNode() {
     };
 }
 
-export function generateNewAddress(seed) {
+export function generateNewAddress(seed, seedName, addresses) {
     return dispatch => {
-        dispatch(generateNewAddressRequest());
         iota.api.getNewAddress(seed, { checksum: true }, (error, address) => {
             if (!error) {
+                if (!(address in addresses)) {
+                    addresses[address] = 0;
+                }
+                dispatch(updateAddresses(seedName, addresses));
                 dispatch(generateNewAddressSuccess(address));
             } else {
                 dispatch(generateNewAddressError());
@@ -274,9 +215,10 @@ export function generateNewAddress(seed) {
     };
 }
 
-export function sendTransaction(seed, address, value, tag, message) {
+export function sendTransaction(seed, address, value, message) {
     // Convert to Trytes
     const messageTrytes = iota.utils.toTrytes(message);
+    const tag = iota.utils.toTrytes('test');
     const transfer = [
         {
             address: address,
@@ -285,12 +227,13 @@ export function sendTransaction(seed, address, value, tag, message) {
             tag: tag,
         },
     ];
+
     const outputsToCheck = transfer.map(transfer => {
         return { address: iota.utils.noChecksum(transfer.address) };
     });
     var expectedOutputsLength = outputsToCheck.length;
     if (!iota.valid.isTransfersArray(transfer)) {
-        console.log('Error: Invalid transfer array');
+        console.log('Invalid transfer array');
         return;
     }
     // Check to make sure user is not sending to an already used address
@@ -299,7 +242,8 @@ export function sendTransaction(seed, address, value, tag, message) {
             console.log('You cannot send to an already used address');
             return false;
         } else {
-            // Send transfer with depth 4 and minWeightMagnitude 14
+            // Send transfer with depth 4 and minWeightMagnitude 18
+            console.log('Successfully get to send');
             iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
                 if (!error) {
                     console.log('SUCCESSFULLY SENT TRANSFER: ', success);
@@ -336,9 +280,9 @@ export function randomiseSeed(randomBytesFn) {
     };
 }
 
-export function clearIOTA() {
+export function clearTempData() {
     return {
-        type: 'CLEAR_IOTA',
+        type: 'CLEAR_TEMP_DATA',
     };
 }
 
@@ -346,5 +290,12 @@ export function setPassword(password) {
     return {
         type: 'SET_PASSWORD',
         payload: password,
+    };
+}
+
+export function setSeedName(seedName) {
+    return {
+        type: 'SET_SEED_NAME',
+        payload: seedName,
     };
 }

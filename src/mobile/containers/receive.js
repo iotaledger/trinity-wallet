@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
-import { generateNewAddress, setAddress } from '../../shared/actions/iotaActions';
+import { generateNewAddress, setReceiveAddress, generateNewAddressRequest } from '../../shared/actions/tempAccount';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
@@ -39,26 +39,30 @@ class Receive extends Component {
     }
 
     resetAddress() {
-        const { iota: { receiveAddress } } = this.props;
+        const { tempAccount: { receiveAddress } } = this.props;
         if (receiveAddress) {
-            this.props.setAddress('');
+            this.props.setReceiveAddress('');
         }
     }
 
     onGeneratePress() {
+        this.props.generateNewAddressRequest();
         const dropdown = DropdownHolder.getDropdown();
-        getFromKeychain(this.props.iota.password, value => {
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const seedName = this.props.account.seedNames[seedIndex];
+        const accountInfo = this.props.account.accountInfo;
+        const addresses = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        getFromKeychain(this.props.tempAccount.password, value => {
             if (!isUndefined(value)) {
-                var seed = getSeed(value, this.props.iota.seedIndex);
-                generate(seed);
+                const seed = getSeed(value, seedIndex);
+                generate(seed, seedName, addresses);
             } else {
                 error();
             }
         });
 
-        const generate = seed => this.props.generateNewAddress(seed);
-
-        const error = () => dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        const generate = (seed, seedName, addresses) => this.props.generateNewAddress(seed, seedName, addresses);
+        const error = () => this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
     }
 
     onAddressPress(address) {
@@ -68,7 +72,7 @@ class Receive extends Component {
     }
 
     render() {
-        const { iota: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
+        const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
 
         return (
             <View style={styles.container}>
@@ -93,7 +97,6 @@ class Receive extends Component {
                         }}
                     >
                         <View style={styles.generateButton}>
-                            <Image style={styles.generateImage} source={require('../../shared/images/plus.png')} />
                             <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
                         </View>
                     </TouchableOpacity>
@@ -147,12 +150,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     generateButton: {
-        flexDirection: 'row',
         borderColor: 'rgba(255,255,255,0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 2,
-        height: height / 20,
+        height: height / 16,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#009f3f',
@@ -160,7 +162,7 @@ const styles = StyleSheet.create({
     generateText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
         paddingLeft: 6,
     },
@@ -175,22 +177,20 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
-    generateNewAddress: seed => dispatch(generateNewAddress(seed)),
-    setAddress: payload => dispatch(setAddress(payload)),
+    generateNewAddress: (seed, seedName, addresses) => dispatch(generateNewAddress(seed, seedName, addresses)),
+    setReceiveAddress: payload => dispatch(setReceiveAddress(payload)),
+    generateNewAddressRequest: () => dispatch(generateNewAddressRequest()),
 });
 
 Receive.propTypes = {
-    marketData: PropTypes.object.isRequired,
-    iota: PropTypes.object.isRequired,
-    account: PropTypes.object.isRequired,
+    tempAccount: PropTypes.object.isRequired,
     generateNewAddress: PropTypes.func.isRequired,
-    setAddress: PropTypes.func.isRequired,
+    setReceiveAddress: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Receive);
