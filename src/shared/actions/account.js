@@ -101,6 +101,9 @@ export function getAccountInfo(seed, seedName, seedIndex, accountInfo) {
                 // Calculate balance
                 const balance = calculateBalance(addressesWithBalance);
                 // If balance has changed for any addresses, get updated transaction objects
+                {
+                    /* TODO: Only check check addresses where balance has changed */
+                }
                 if (indexesWithBalanceChange.length > 0) {
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
                         dispatch(getTransfers(seedName, addresses)),
