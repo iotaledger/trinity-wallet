@@ -25,12 +25,10 @@ const StatusBarDefaultBarStyle = 'light-content';
 class Receive extends Component {
     constructor() {
         super();
-
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
             dataSource: ds.cloneWithRows([]),
         };
-
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
@@ -60,9 +58,9 @@ class Receive extends Component {
                 error();
             }
         });
-
-        const generate = (seed, seedName, addresses) => this.props.generateNewAddress(seed, seedName, addresses);
-        const error = () => this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        const _this = this;
+        const generate = (seed, seedName, addresses) => _this.props.generateNewAddress(seed, seedName, addresses);
+        const error = () => _this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
     }
 
     onAddressPress(address) {
