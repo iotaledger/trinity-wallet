@@ -61,56 +61,56 @@ class PaperWallet extends React.Component {
         <img id="arrow" src="${arrow}" />
         <table id="seedBox">
             <tr>
-                <td>${this.props.iota.seed.substring(0, 3)}</td>
-                <td>${this.props.iota.seed.substring(3, 6)}</td>
-                <td>${this.props.iota.seed.substring(6, 9)}</td>
-                <td>${this.props.iota.seed.substring(9, 12)}</td>
+                <td>${this.props.tempAccount.seed.substring(0, 3)}</td>
+                <td>${this.props.tempAccount.seed.substring(3, 6)}</td>
+                <td>${this.props.tempAccount.seed.substring(6, 9)}</td>
+                <td>${this.props.tempAccount.seed.substring(9, 12)}</td>
             </tr>
             <tr>
-                <td>${this.props.iota.seed.substring(12, 15)}</td>
-                <td>${this.props.iota.seed.substring(15, 18)}</td>
-                <td>${this.props.iota.seed.substring(18, 21)}</td>
-                <td>${this.props.iota.seed.substring(21, 24)}</td>
+                <td>${this.props.tempAccount.seed.substring(12, 15)}</td>
+                <td>${this.props.tempAccount.seed.substring(15, 18)}</td>
+                <td>${this.props.tempAccount.seed.substring(18, 21)}</td>
+                <td>${this.props.tempAccount.seed.substring(21, 24)}</td>
             </tr>
             <tr>
-                <td>${this.props.iota.seed.substring(24, 27)}</td>
-                <td>${this.props.iota.seed.substring(27, 30)}</td>
-                <td>${this.props.iota.seed.substring(30, 33)}</td>
-                <td>${this.props.iota.seed.substring(33, 36)}</td>
+                <td>${this.props.tempAccount.seed.substring(24, 27)}</td>
+                <td>${this.props.tempAccount.seed.substring(27, 30)}</td>
+                <td>${this.props.tempAccount.seed.substring(30, 33)}</td>
+                <td>${this.props.tempAccount.seed.substring(33, 36)}</td>
             </tr>
             <tr>
-                <td>${this.props.iota.seed.substring(36, 39)}</td>
-                <td>${this.props.iota.seed.substring(39, 42)}</td>
-                <td>${this.props.iota.seed.substring(42, 45)}</td>
-                <td>${this.props.iota.seed.substring(45, 48)}</td>
+                <td>${this.props.tempAccount.seed.substring(36, 39)}</td>
+                <td>${this.props.tempAccount.seed.substring(39, 42)}</td>
+                <td>${this.props.tempAccount.seed.substring(42, 45)}</td>
+                <td>${this.props.tempAccount.seed.substring(45, 48)}</td>
             </tr>
             <tr>
-                <td>${this.props.iota.seed.substring(48, 51)}</td>
-                <td>${this.props.iota.seed.substring(51, 54)}</td>
-                <td>${this.props.iota.seed.substring(54, 57)}</td>
-                <td>${this.props.iota.seed.substring(57, 60)}</td>
+                <td>${this.props.tempAccount.seed.substring(48, 51)}</td>
+                <td>${this.props.tempAccount.seed.substring(51, 54)}</td>
+                <td>${this.props.tempAccount.seed.substring(54, 57)}</td>
+                <td>${this.props.tempAccount.seed.substring(57, 60)}</td>
             </tr>
             <tr>
-                <td>${this.props.iota.seed.substring(60, 63)}</td>
-                <td>${this.props.iota.seed.substring(63, 66)}</td>
-                <td>${this.props.iota.seed.substring(66, 69)}</td>
-                <td>${this.props.iota.seed.substring(69, 72)}</td>
+                <td>${this.props.tempAccount.seed.substring(60, 63)}</td>
+                <td>${this.props.tempAccount.seed.substring(63, 66)}</td>
+                <td>${this.props.tempAccount.seed.substring(66, 69)}</td>
+                <td>${this.props.tempAccount.seed.substring(69, 72)}</td>
             </tr>
             <tr>
-                <td>${this.props.iota.seed.substring(72, 75)}</td>
-                <td>${this.props.iota.seed.substring(75, 78)}</td>
-                <td>${this.props.iota.seed.substring(78, 81)}</td>
+                <td>${this.props.tempAccount.seed.substring(72, 75)}</td>
+                <td>${this.props.tempAccount.seed.substring(75, 78)}</td>
+                <td>${this.props.tempAccount.seed.substring(78, 81)}</td>
             </tr>
         </table>
         </div>
         <div id="midItem">
-            <img id="iotaLogo" src="${iotaLogo}" /> 
+            <img id="iotaLogo" src="${iotaLogo}" />
             <p id="text">Never share your<br />seed with anyone.</p>
         </div>
         <div id="item">
             <img src="${qrPathOverride}" width="235" height="235" />
-        </div> 
-        <style> 
+        </div>
+        <style>
             #seedBox {
                 margin-left: 20px;
                 padding-left: 6px;
@@ -120,28 +120,28 @@ class PaperWallet extends React.Component {
                 border: solid #000;
                 border-width: 2px;
                 border-radius: 20px
-            } 
-            @font-face { font-family: "Lato"; src: "../../shared/custom-fonts/Lato-Regular.ttf" } 
+            }
+            @font-face { font-family: "Lato"; src: "../../shared/custom-fonts/Lato-Regular.ttf" }
             @font-face { font-family: "Monospace"; src: "../../shared/custom-fonts/Inconsolata-Bold.ttf" }
-            #text { 
+            #text {
                 font-family: "Lato";
                 font-size: 20px;
                 text-align: center;
                 padding-top: 37px
-            } 
+            }
             #item {
                 float: left;
-            } 
+            }
             #midItem {
                 float: left;
                 margin: 25px
-            } 
+            }
             #iotaLogo {
                 width: 109.1px;
                 height: 36.73px;
                 position: absolute;
                 left: 315px;
-                top: 5px; 
+                top: 5px;
                 visibility: ${this.state.iotaLogoVisibility}
             }
             td {
@@ -149,7 +149,7 @@ class PaperWallet extends React.Component {
                 padding-right: 7px;
                 font-size: 21px;
                 font-family: Monospace
-            } 
+            }
             #arrow {
                 position: absolute;
                 left: 45px;
@@ -244,48 +244,92 @@ class PaperWallet extends React.Component {
                             <Image source={require('../../shared/images/arrow-black.png')} style={styles.arrow} />
                             <View style={styles.seedBoxTextContainer}>
                                 <View>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(0, 3)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(12, 15)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(24, 27)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(36, 39)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(48, 51)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(60, 63)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(72, 75)}</Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(0, 3)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(12, 15)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(24, 27)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(36, 39)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(48, 51)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(60, 63)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(72, 75)}
+                                    </Text>
                                 </View>
                                 <View>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(3, 6)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(15, 18)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(27, 30)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(39, 42)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(51, 54)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(63, 66)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(75, 78)}</Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(3, 6)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(15, 18)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(27, 30)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(39, 42)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(51, 54)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(63, 66)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(75, 78)}
+                                    </Text>
                                 </View>
                                 <View>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(6, 9)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(18, 21)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(30, 33)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(42, 45)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(54, 57)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(66, 69)}</Text>
-                                    <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(78, 81)}</Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(6, 9)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(18, 21)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(30, 33)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(42, 45)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(54, 57)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(66, 69)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextLeft}>
+                                        {this.props.tempAccount.seed.substring(78, 81)}
+                                    </Text>
                                 </View>
                                 <View>
-                                    <Text style={styles.seedBoxTextRight}>{this.props.iota.seed.substring(9, 12)}</Text>
                                     <Text style={styles.seedBoxTextRight}>
-                                        {this.props.iota.seed.substring(21, 24)}
+                                        {this.props.tempAccount.seed.substring(9, 12)}
                                     </Text>
                                     <Text style={styles.seedBoxTextRight}>
-                                        {this.props.iota.seed.substring(33, 36)}
+                                        {this.props.tempAccount.seed.substring(21, 24)}
                                     </Text>
                                     <Text style={styles.seedBoxTextRight}>
-                                        {this.props.iota.seed.substring(45, 48)}
+                                        {this.props.tempAccount.seed.substring(33, 36)}
                                     </Text>
                                     <Text style={styles.seedBoxTextRight}>
-                                        {this.props.iota.seed.substring(57, 60)}
+                                        {this.props.tempAccount.seed.substring(45, 48)}
                                     </Text>
                                     <Text style={styles.seedBoxTextRight}>
-                                        {this.props.iota.seed.substring(69, 72)}
+                                        {this.props.tempAccount.seed.substring(57, 60)}
+                                    </Text>
+                                    <Text style={styles.seedBoxTextRight}>
+                                        {this.props.tempAccount.seed.substring(69, 72)}
                                     </Text>
                                 </View>
                             </View>
@@ -294,7 +338,7 @@ class PaperWallet extends React.Component {
                             {this._renderIotaLogo()}
                             <Text style={styles.paperWalletText}>Never share your seed with anyone.</Text>
                         </View>
-                        <QRCode value={this.props.iota.seed} getRef={c => (this.svg = c)} size={width / 3.5} />
+                        <QRCode value={this.props.tempAccount.seed} getRef={c => (this.svg = c)} size={width / 3.5} />
                     </View>
                     <TouchableOpacity style={styles.checkboxContainer} onPress={event => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
@@ -562,7 +606,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
 });
 
 export default connect(mapStateToProps)(PaperWallet);
