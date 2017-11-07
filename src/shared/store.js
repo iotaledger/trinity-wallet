@@ -8,9 +8,11 @@ import app from './reducers/app';
 import settings from './reducers/settings';
 import seeds from './reducers/seeds';
 import notifications from './reducers/notifications';
+import alerts from './reducers/alerts';
 import home from './reducers/home';
 
 const reducers = combineReducers({
+    alerts,
     marketData,
     tempAccount,
     account,
