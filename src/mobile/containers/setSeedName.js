@@ -12,7 +12,8 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeed } from '../../shared/actions/accountActions';
+import { increaseSeedCount } from '../../shared/actions/account';
+import { setSeedName } from '../../shared/actions/tempAccount';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
@@ -36,14 +37,14 @@ class SetSeedName extends React.Component {
     onDonePress() {
         if (this.state.seedName != '') {
             this.props.increaseSeedCount();
-            this.props.addSeed(this.state.seedName);
+            this.props.setSeedName(this.state.seedName);
             this.props.navigator.push({
                 screen: 'setPassword',
                 navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
         } else {
-            this.dropdown.alertWithType('error', 'No nickname entered.', `Please enter a nickname for your seed.`);
+            this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
         }
     }
     onBackPress() {
@@ -239,15 +240,15 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    addSeed: newSeed => {
-        dispatch(addSeed(newSeed));
+    setSeedName: seedName => {
+        dispatch(setSeedName(seedName));
     },
 });
 

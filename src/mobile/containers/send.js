@@ -18,10 +18,12 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import { sendTransaction } from '../../shared/actions/iotaActions';
-import DropdownHolder from '../components/dropdownHolder';
+import { sendTransaction } from '../../shared/actions/tempAccount';
+import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
+import { getAccountInfo } from '../../shared/actions/account';
+import DropdownHolder from '../components/dropdownHolder';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
@@ -67,7 +69,7 @@ class Send extends Component {
 
     onMaxPress() {
         this.setState({
-            amount: (this.props.iota.balance / 1000000).toString(),
+            amount: (this.props.account.balance / 1000000).toString(),
             denomination: 'Mi',
         });
     }
@@ -118,25 +120,30 @@ class Send extends Component {
 
     sendTransaction() {
         const address = this.state.address;
-        const value = parseInt(this.state.amount);
+        const value = parseInt(this.state.amount) * this.getUnitMultiplier();
         const tag = this.state.tag;
         const message = this.state.message;
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const seedName = this.props.account.seedNames[seedIndex];
+        const accountInfo = this.props.account.accountInfo;
         const dropdown = DropdownHolder.getDropdown();
         const addressIsValid = this.isValidAddress(address);
         const tagIsValid = this.isValidTag(tag);
         const messageIsValid = this.isValidMessage(message);
 
         if (addressIsValid && tagIsValid && messageIsValid) {
-            getFromKeychain(this.props.iota.password, value => {
+            getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value !== 'undefined') {
-                    var seed = getSeed(value, this.props.iota.seedIndex);
+                    var seed = getSeed(value, this.props.tempAccount.seedIndex);
                     sendTx(seed);
-                    if (sendTransaction(seed.seed, address, value, message) == false) {
-                        dropdown.alertWithType(
+                    {
+                        /*if (sendTransaction(seed.seed, address, value, message) == false) {
+                        this.dropdown.alertWithType(
                             'error',
                             'Key reuse',
                             `The address you are trying to send to has already been used. Please try another address.`,
                         );
+                    }*/
                     }
                 } else {
                     console.log('error');
@@ -310,10 +317,6 @@ class Send extends Component {
                     <View style={styles.sendIOTAButtonContainer}>
                         <TouchableOpacity onPress={event => this.sendTransaction()}>
                             <View style={styles.sendIOTAButton}>
-                                <Image
-                                    style={styles.sendIOTAImage}
-                                    source={require('../../shared/images/sendIota.png')}
-                                />
                                 <Text style={styles.sendIOTAText}>SEND IOTA</Text>
                             </View>
                         </TouchableOpacity>
@@ -369,14 +372,14 @@ const styles = StyleSheet.create({
     qrText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 39.8,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     buttonText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 36.8,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -397,12 +400,11 @@ const styles = StyleSheet.create({
         paddingBottom: height / 90,
     },
     sendIOTAButton: {
-        flexDirection: 'row',
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 3,
-        height: height / 20,
+        height: height / 16,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
@@ -410,9 +412,8 @@ const styles = StyleSheet.create({
     sendIOTAText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingLeft: 10,
     },
     sendIOTAImage: {
         height: width / 35,
@@ -429,11 +430,10 @@ const styles = StyleSheet.create({
     conversionText: {
         fontFamily: 'Lato-Light',
         color: 'white',
-        opacity: 1,
         backgroundColor: 'transparent',
         position: 'absolute',
+        bottom: height / 3.05,
         right: width / 3.5,
-        top: height / 6.2,
     },
     maxButtonContainer: {
         alignItems: 'flex-start',
@@ -442,7 +442,7 @@ const styles = StyleSheet.create({
     maxButtonText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 45.8,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
     maxButton: {
@@ -452,8 +452,8 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 0.8,
         borderRadius: 8,
-        width: width / 7,
-        height: height / 18,
+        width: width / 6,
+        height: height / 16,
     },
     maxImage: {
         height: width / 50,
@@ -464,12 +464,16 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
     sendTransaction: (seed, address, value, tag, message) => {
         dispatch(sendTransaction(seed, address, value, tag, message));
+    },
+    getAccountInfo: (seed, seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seed, seedName, seedIndex, accountInfo));
     },
 });
 

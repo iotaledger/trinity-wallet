@@ -192,8 +192,4 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
-    account: state.account,
-});
-
 export default WalletSetup;

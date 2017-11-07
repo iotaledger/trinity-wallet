@@ -47,7 +47,7 @@ class TransactionRow extends React.Component {
                                     color: titleColour,
                                 }}
                             >
-                                {this.props.rowData[0].transactionValue < 0 ? 'SEND' : 'RECEIVE'}{' '}
+                                {this.props.rowData[0].transferValue < 0 ? 'SEND' : 'RECEIVE'}{' '}
                                 {round(formatValue(this.props.rowData[0].value), 1)}{' '}
                                 {formatUnit(this.props.rowData[0].value)}
                             </Text>
@@ -55,7 +55,7 @@ class TransactionRow extends React.Component {
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={styles.modalStatus}>
                                 {this.props.rowData[0].persistence
-                                    ? this.props.rowData[0].transactionValue < 0 ? 'Sent' : 'Received'
+                                    ? this.props.rowData[0].transferValue < 0 ? 'Sent' : 'Received'
                                     : 'Pending'}
                             </Text>
                             <Text style={styles.timestamp}>
@@ -109,7 +109,7 @@ class TransactionRow extends React.Component {
     );
 
     render() {
-        const titleColour = this.props.rowData[0].transactionValue < 0 ? '#F7D002' : '#72BBE8';
+        const titleColour = this.props.rowData[0].transferValue < 0 ? '#F7D002' : '#72BBE8';
         return (
             <TouchableOpacity onPress={() => this._showModal()}>
                 <View style={{ flex: 1, alignItems: 'center' }}>
@@ -125,7 +125,7 @@ class TransactionRow extends React.Component {
                                     color: titleColour,
                                 }}
                             >
-                                {this.props.rowData[0].transactionValue < 0 ? 'SEND' : 'RECEIVE'}{' '}
+                                {this.props.rowData[0].transferValue < 0 ? 'SEND' : 'RECEIVE'}{' '}
                                 {round(formatValue(this.props.rowData[0].value), 1)}{' '}
                                 {formatUnit(this.props.rowData[0].value)}
                             </Text>
@@ -137,7 +137,7 @@ class TransactionRow extends React.Component {
                         <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'space-between' }}>
                             <Text style={styles.status}>
                                 {this.props.rowData[0].persistence
-                                    ? this.props.rowData[0].transactionValue < 0 ? 'Sent' : 'Received'
+                                    ? this.props.rowData[0].transferValue < 0 ? 'Sent' : 'Received'
                                     : 'Pending'}
                             </Text>
                             <Text style={styles.timestamp}>
