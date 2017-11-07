@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, ImageBackground, WebView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketDataActions';
+import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
+import { setBalance } from '../../shared/actions/account';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
 import Home from './home';
-
+import IotaSpin from '../components/iotaSpin';
 const { height, width } = Dimensions.get('window');
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
 class Loading extends Component {
     componentDidMount() {
         this.getWalletData();
+        this.props.changeHomeScreenRoute('balance');
     }
 
     async getWalletData() {
@@ -20,19 +23,13 @@ class Loading extends Component {
     }
 
     render() {
-        const { iota: { ready }, navigator } = this.props;
+        const { tempAccount: { ready }, navigator } = this.props;
 
         if (!ready) {
             return (
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
-                    <View style={{ height: width / 1.75, paddingLeft: 5 }}>
-                        <WebView
-                            scrollEnabled={false}
-                            source={logoSpin}
-                            style={{ backgroundColor: 'transparent', width: width / 1.75 }}
-                        />
-                    </View>
+                    <IotaSpin duration={3000} />
                 </ImageBackground>
             );
         }
@@ -51,7 +48,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -64,11 +62,15 @@ const mapDispatchToProps = dispatch => ({
     getChartData: (currency, timeFrame) => {
         dispatch(getChartData(currency, timeFrame));
     },
+    setBalance: addressesWithBalance => {
+        dispatch(setBalance(addressesWithBalance));
+    },
+    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
 });
 
 Loading.propTypes = {
     marketData: PropTypes.object.isRequired,
-    iota: PropTypes.object.isRequired,
+    tempAccount: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     getMarketData: PropTypes.func.isRequired,
     getPrice: PropTypes.func.isRequired,

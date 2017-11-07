@@ -12,14 +12,17 @@ import {
     StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import DropdownAlert from 'react-native-dropdownalert';
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, setSeed, getAccountInfo, setUsedSeedToLogin } from '../../shared/actions/tempAccount';
+import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeInKeychain } from '../../shared/libs/cryptography';
+import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography';
+import { increaseSeedCount, addSeedName } from '../../shared/actions/account';
+import { incrementSeedIndex, clearTempData } from '../../shared/actions/tempAccount';
+import { getAccountInfoNewSeed } from '../../shared/actions/account';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -27,11 +30,12 @@ const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 
-class UseSeed extends React.Component {
+class AddAdditionalSeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             seed: '',
+            seedName: '',
             isModalVisible: false,
         };
     }
@@ -51,18 +55,24 @@ class UseSeed extends React.Component {
                     .seed.length} characters long. Please try again.`,
             );
         } else if (this.state.seed.length >= 60) {
-            this.props.navigator.push({
-                screen: 'loading',
-                navigatorStyle: { navBarHidden: true },
-                animated: false,
-            });
-            this.props.getAccountInfo(this.state.seed);
-            this.props.setUsedSeedToLogin();
-            this.props.setPassword('dummy');
-            Promise.resolve(storeInKeychain(this.props.tempAccount.password, this.state.seed, 'temp')).then(
-                setSeed(''),
-            );
-            this.setState({ seed: '' });
+            if (this.state.seedName.length > 0) {
+                storeInKeychain(this.props.tempAccount.password, this.state.seed, this.state.seedName, () => {
+                    this.props.clearTempData();
+                    this.props.increaseSeedCount();
+                    this.props.addSeedName(this.state.seedName);
+                    Promise.resolve(this.props.getAccountInfoNewSeed(this.state.seed, this.state.seedName)).then(
+                        this.props.navigator.push({
+                            screen: 'loading',
+                            navigatorStyle: {
+                                navBarHidden: true,
+                            },
+                            animated: false,
+                        }),
+                    );
+                });
+            } else {
+                this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
+            }
         }
     }
 
@@ -91,7 +101,7 @@ class UseSeed extends React.Component {
     );
 
     render() {
-        const { seed } = this.state;
+        const { seed, seedName } = this.state;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -140,6 +150,26 @@ class UseSeed extends React.Component {
                                             </View>
                                         </TouchableOpacity>
                                     </View>
+                                </View>
+                                <View style={styles.seedNickNameContainer}>
+                                    <View style={styles.subtitleContainer}>
+                                        <Text style={styles.title}>Enter a seed nickname.</Text>
+                                    </View>
+                                    <TextField
+                                        style={styles.textField}
+                                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                        labelFontSize={width / 31.8}
+                                        fontSize={width / 20.7}
+                                        labelPadding={3}
+                                        baseColor="white"
+                                        tintColor="#F7D002"
+                                        enablesReturnKeyAutomatically={true}
+                                        label="Seed name"
+                                        autoCorrect={false}
+                                        value={seedName}
+                                        containerStyle={{ width: width / 1.36 }}
+                                        onChangeText={seedName => this.setState({ seedName })}
+                                    />
                                 </View>
                             </View>
                             <View style={styles.bottomContainer}>
@@ -196,7 +226,7 @@ const styles = StyleSheet.create({
         flex: 4.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 4.5,
+        paddingTop: height / 12,
     },
     bottomContainer: {
         flex: 0.7,
@@ -212,6 +242,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: height / 15,
+        paddingBottom: height / 30,
+    },
+    subtitleContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingBottom: height / 30,
     },
     title: {
         color: 'white',
@@ -318,25 +354,34 @@ const styles = StyleSheet.create({
         height: 36,
         alignSelf: 'center',
     },
+    seedNickNameContainer: {
+        position: 'absolute',
+        top: height / 3,
+    },
 });
 
 const mapStateToProps = state => ({
+    marketData: state.marketData,
     tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
-    setSeed: seed => {
-        dispatch(setSeed(seed));
+    increaseSeedCount: () => {
+        dispatch(increaseSeedCount());
     },
-    getAccountInfo: seed => {
-        dispatch(getAccountInfo(seed));
+    incrementSeedIndex: () => {
+        dispatch(incrementSeedIndex());
     },
-    setUsedSeedToLogin: () => {
-        dispatch(setUsedSeedToLogin());
+    clearTempData: () => {
+        dispatch(clearTempData());
     },
-    setPassword: password => {
-        dispatch(setPassword(password));
+    addSeedName: newSeed => {
+        dispatch(addSeedName(newSeed));
+    },
+    getAccountInfoNewSeed: (seed, seedName) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName));
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UseSeed);
+export default connect(mapStateToProps, mapDispatchToProps)(AddAdditionalSeed);

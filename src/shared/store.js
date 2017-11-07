@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
-import marketData from './reducers/marketDataReducer';
-import iota, * as fromIota from './reducers/iotaReducer';
-import account from './reducers/accountReducer';
+import marketData from './reducers/marketData';
+import tempAccount from './reducers/tempAccount';
+import account, * as fromAccount from './reducers/account';
 import app from './reducers/app';
 import settings from './reducers/settings';
 import seeds from './reducers/seeds';
@@ -12,7 +12,7 @@ import home from './reducers/home';
 
 const reducers = combineReducers({
     marketData,
-    iota,
+    tempAccount,
     account,
     app,
     settings,
@@ -43,9 +43,9 @@ const store = createStore(
 );
 
 export const getTailTransactionHashesForPendingTransactions = state => {
-    return fromIota.getTailTransactionHashesForPendingTransactions(
-        state.iota.transactions,
-        state.iota.addresses || [], // should be state.iota.addresses // TODO: OR is unnecessary
+    return fromAccount.getTailTransactionHashesForPendingTransactions(
+        state.account.transactions,
+        state.account.addresses || [], // should be state.iota.addresses // TODO: OR is unnecessary
     );
 };
 
