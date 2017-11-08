@@ -36,10 +36,33 @@ const { height, width } = Dimensions.get('window');
 class Home extends Component {
     constructor() {
         super();
-
         this.state = {
             mode: 'STANDARD',
         };
+        var polling;
+    }
+
+    componentDidMount() {
+        this.startPolling();
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.tempAccount.isSendingTransfer && !this.props.tempAccount.isSendingTransfer) {
+            clearInterval(polling);
+        }
+        if (!newProps.tempAccount.isSendingTransfer && this.props.tempAccount.isSendingTransfer) {
+            this.startPolling();
+        }
+    }
+
+    startPolling() {
+        polling = setInterval(() => {
+            const seedIndex = this.props.tempAccount.seedIndex;
+            const seedName = this.props.account.seedNames[seedIndex];
+            const accountInfo = this.props.account.accountInfo;
+            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            console.log('Updating account info');
+        }, 30000);
     }
 
     componentWillMount() {
@@ -69,7 +92,7 @@ class Home extends Component {
             this.props.decrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
-            this.props.getAccountInfo('test', seedName, seedIndex, accountInfo);
+            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
         }
     }
 
@@ -81,7 +104,7 @@ class Home extends Component {
             this.props.incrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
-            this.props.getAccountInfo('test', seedName, seedIndex, accountInfo);
+            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
         }
     }
 
@@ -387,8 +410,8 @@ const mapDispatchToProps = dispatch => ({
     decrementSeedIndex: () => {
         dispatch(decrementSeedIndex());
     },
-    getAccountInfo: (seed, seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seed, seedName, seedIndex, accountInfo));
+    getAccountInfo: (seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
     },
     setReceiveAddress: string => {
         dispatch(setReceiveAddress(string));

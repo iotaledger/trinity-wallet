@@ -3,6 +3,7 @@ import size from 'lodash/size';
 import React, { Component } from 'react';
 import { iota } from '../../shared/libs/iota';
 import {
+    ActivityIndicator,
     StyleSheet,
     View,
     Text,
@@ -18,15 +19,16 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import { sendTransaction } from '../../shared/actions/tempAccount';
+import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempAccount';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import { getAccountInfo } from '../../shared/actions/account';
 import DropdownHolder from '../components/dropdownHolder';
-
-const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
+const StatusBarDefaultBarStyle = 'light-content';
+
+let sentDenomination = '';
 
 class Send extends Component {
     constructor() {
@@ -37,10 +39,21 @@ class Send extends Component {
             denomination: 'Mi',
             amount: '',
             address: '',
-            tag: '',
             message: '',
             dataSource: ds.cloneWithRows([]),
         };
+    }
+
+    componentDidMount() {
+        if (this.props.tempAccount.triggerSentDropdown) {
+            const dropdown = DropdownHolder.getDropdown();
+            dropdown.alertWithType(
+                'success',
+                'Transaction sent successfully',
+                `You have sent ${this.props.tempAccount.lastTxValue} ${sentDenomination} to address ${this.props
+                    .tempAccount.lastTxAddress}.`,
+            );
+        }
     }
 
     onDenominationPress() {
@@ -84,12 +97,9 @@ class Send extends Component {
         return size(address) === 90 && iota.utils.isValidChecksum(address) && !this.hasInvalidCharacters(address);
     }
 
-    isValidTag(tag) {
-        return tag.match(/^[A-Z9]+$/) && tag.length <= 27;
-    }
-
     isValidMessage(message) {
-        return this.state.message.match(/^[A-Z9]+$/);
+        //return this.state.message.match(/^[A-Z9]+$/);
+        return true;
     }
 
     renderInvalidAddressErrors(address) {
@@ -105,33 +115,23 @@ class Send extends Component {
         return dropdown.alertWithType(...props, 'Address contains invalid checksum');
     }
 
-    renderInvalidTagErrors(tag) {
-        const props = ['error', 'Invalid Tag'];
-        const dropdown = DropdownHolder.getDropdown();
-
-        if (tag.length > 27) {
-            return dropdown.alertWithType(...props, 'Tags cannot be longer than 27 characters.');
-        } else if (tag.match(/^[A-Z9]+$/) == false) {
-            return dropdown.alertWithType(...props, 'Tag contains invalid characters.');
-        }
-
-        return dropdown.alertWithType(...props, 'Tag is invalid.');
-    }
-
     sendTransaction() {
-        const address = this.state.address;
-        const value = parseInt(this.state.amount) * this.getUnitMultiplier();
-        const tag = this.state.tag;
-        const message = this.state.message;
+        const dropdown = DropdownHolder.getDropdown();
+        sentDenomination = this.state.denomination;
+
+        const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const seedName = this.props.account.seedNames[seedIndex];
-        const accountInfo = this.props.account.accountInfo;
-        const dropdown = DropdownHolder.getDropdown();
+        const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+
+        const address = this.state.address;
+        const value = parseInt(this.state.amount) * this.getUnitMultiplier();
+        const message = this.state.message;
         const addressIsValid = this.isValidAddress(address);
-        const tagIsValid = this.isValidTag(tag);
         const messageIsValid = this.isValidMessage(message);
 
-        if (addressIsValid && tagIsValid && messageIsValid) {
+        if (addressIsValid && messageIsValid) {
+            this.props.sendTransferRequest();
             getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value !== 'undefined') {
                     var seed = getSeed(value, this.props.tempAccount.seedIndex);
@@ -153,12 +153,13 @@ class Send extends Component {
         if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
         }
-        if (!tagIsValid) {
-            this.renderInvalidTagErrors(tag);
-        }
 
+        if (!messageIsValid) {
+            console.log('invalid message');
+        }
+        const _this = this;
         function sendTx(seed) {
-            sendTransaction(seed, address, value, tag, message);
+            _this.props.sendTransaction(seed, addressesWithBalance, seedName, address, value, message);
         }
     }
 
@@ -192,7 +193,7 @@ class Send extends Component {
     );
 
     render() {
-        let { amount, address, tag, message } = this.state;
+        let { amount, address, message } = this.state;
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -247,6 +248,17 @@ class Send extends Component {
                                 onChangeText={amount => this.setState({ amount })}
                             />
                         </View>
+                        <Text style={styles.conversionText}>
+                            {' '}
+                            = ${' '}
+                            {round(
+                                parseInt(this.state.amount == '' ? 0 : this.state.amount) *
+                                    this.props.marketData.usdPrice /
+                                    1000000 *
+                                    this.getUnitMultiplier(),
+                                2,
+                            ).toFixed(2)}{' '}
+                        </Text>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
                                 <View style={styles.button}>
@@ -259,43 +271,14 @@ class Send extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={styles.conversionText}>
-                        {' '}
-                        = ${' '}
-                        {round(
-                            parseInt(this.state.amount == '' ? 0 : this.state.amount) *
-                                this.props.marketData.usdPrice /
-                                1000000 *
-                                this.getUnitMultiplier(),
-                            2,
-                        ).toFixed(2)}{' '}
-                    </Text>
                     <View style={styles.maxButtonContainer}>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={event => this.onMaxPress()}>
                                 <View style={styles.maxButton}>
-                                    <Image source={require('../../shared/images/max.png')} style={styles.maxImage} />
                                     <Text style={styles.maxButtonText}> MAX </Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
-                    </View>
-                    <View style={styles.textFieldContainer}>
-                        <TextField
-                            style={styles.textField}
-                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                            labelFontSize={height / 55}
-                            fontSize={height / 40}
-                            height={height / 24}
-                            labelPadding={2}
-                            baseColor="white"
-                            enablesReturnKeyAutomatically={true}
-                            label="Optional Tag"
-                            tintColor="#F7D002"
-                            autoCorrect={false}
-                            value={tag}
-                            onChangeText={tag => this.setState({ tag })}
-                        />
                     </View>
                     <View style={styles.textFieldContainer}>
                         <TextField
@@ -321,6 +304,14 @@ class Send extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
+                    <View style={{ flex: 1 }}>
+                        <ActivityIndicator
+                            animating={this.props.tempAccount.isSendingTransfer}
+                            style={styles.activityIndicator}
+                            size="large"
+                            color="#F7D002"
+                        />
+                    </View>
                 </View>
                 <Modal
                     animationIn={'bounceInUp'}
@@ -344,6 +335,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: height / 25,
+    },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: height / 5,
     },
     topContainer: {
         paddingHorizontal: width / 10,
@@ -432,8 +429,8 @@ const styles = StyleSheet.create({
         color: 'white',
         backgroundColor: 'transparent',
         position: 'absolute',
-        bottom: height / 3.05,
-        right: width / 3.5,
+        bottom: height / 45,
+        right: width / 4.6,
     },
     maxButtonContainer: {
         alignItems: 'flex-start',
@@ -455,11 +452,6 @@ const styles = StyleSheet.create({
         width: width / 6,
         height: height / 16,
     },
-    maxImage: {
-        height: width / 50,
-        width: width / 34,
-        marginRight: 2,
-    },
 });
 
 const mapStateToProps = state => ({
@@ -469,12 +461,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, address, value, tag, message) => {
-        dispatch(sendTransaction(seed, address, value, tag, message));
+    sendTransaction: (seed, addressesWithBalance, seedName, address, value, message) => {
+        dispatch(sendTransaction(seed, addressesWithBalance, seedName, address, value, message));
     },
-    getAccountInfo: (seed, seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seed, seedName, seedIndex, accountInfo));
+    getAccountInfo: (seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
     },
+    sendTransferRequest: () => dispatch(sendTransferRequest()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Send);

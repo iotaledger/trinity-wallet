@@ -95,25 +95,6 @@ export const formatAddressBalancesNewSeed = data => {
     return addressesWithBalance;
 };
 
-export const addTransferValues = (transfers, addresses) => {
-    // Add transaction value property to each transaction object
-    // FIXME: We should never mutate parameters at any level.
-    return transfers.map(arr => {
-        /* eslint-disable no-param-reassign */
-        arr[0].transferValue = 0;
-        arr.map(obj => {
-            if (addresses.includes(obj.address)) {
-                arr[0].transferValue += obj.value;
-            }
-
-            /* eslint-enable no-param-reassign */
-            return obj;
-        });
-
-        return arr;
-    });
-};
-
 export const groupTransfersByBundle = transfers => {
     let groupedTransfers = [];
     transfers.forEach(tx => {
@@ -136,7 +117,7 @@ export const groupTransfersByBundle = transfers => {
     });
     return groupedTransfers;
 };
-export const sortTransfers = (transfers, addresses) => {
+export const formatTransfers = (transfers, addresses) => {
     // Order transfers from oldest to newest
     let sortedTransfers = transfers.sort((a, b) => {
         if (a[0].timestamp > b[0].timestamp) {
@@ -147,9 +128,29 @@ export const sortTransfers = (transfers, addresses) => {
         }
         return 0;
     });
+
     // add transaction values to transactions
     sortedTransfers = addTransferValues(sortedTransfers, addresses);
     return sortedTransfers;
+};
+
+export const addTransferValues = (transfers, addresses) => {
+    // Add transaction value property to each transaction object
+    // FIXME: We should never mutate parameters at any level.
+    return transfers.map(arr => {
+        /* eslint-disable no-param-reassign */
+        arr[0].transferValue = 0;
+        arr.map(obj => {
+            if (addresses.includes(obj.address)) {
+                arr[0].transferValue += obj.value;
+            }
+
+            /* eslint-enable no-param-reassign */
+            return obj;
+        });
+
+        return arr;
+    });
 };
 
 export const calculateBalance = data => {

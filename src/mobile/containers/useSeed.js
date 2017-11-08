@@ -16,7 +16,8 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, setSeed, getAccountInfo, setUsedSeedToLogin } from '../../shared/actions/tempAccount';
+import { setPassword, setUsedSeedToLogin } from '../../shared/actions/tempAccount';
+import { getAccountInfo } from '../../shared/actions/account';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeInKeychain } from '../../shared/libs/cryptography';
@@ -51,17 +52,15 @@ class UseSeed extends React.Component {
                     .seed.length} characters long. Please try again.`,
             );
         } else if (this.state.seed.length >= 60) {
+            this.props.getAccountInfoNewSeed(this.state.seed, 'usedSeed');
             this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
-            this.props.getAccountInfo(this.state.seed);
             this.props.setUsedSeedToLogin();
             this.props.setPassword('dummy');
-            Promise.resolve(storeInKeychain(this.props.tempAccount.password, this.state.seed, 'temp')).then(
-                setSeed(''),
-            );
+            storeInKeychain(this.props.tempAccount.password, this.state.seed, 'temp');
             this.setState({ seed: '' });
         }
     }
@@ -325,9 +324,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setSeed: seed => {
-        dispatch(setSeed(seed));
-    },
     getAccountInfo: seed => {
         dispatch(getAccountInfo(seed));
     },
