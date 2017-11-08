@@ -8,6 +8,8 @@ import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
 import { logoutFromWallet } from '../../shared/actions/app';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import DropdownHolder from '../components/dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 
@@ -23,8 +25,6 @@ class Settings extends React.Component {
     }
 
     _showModal = () => this.setState({ isModalVisible: true });
-
-    onChangeModePress() {}
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
@@ -49,11 +49,17 @@ class Settings extends React.Component {
         this._showModal();
     }
 
-    onModePress() {}
+    onModePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onCurrencyPress() {}
 
-    onThemePress() {}
+    onThemePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onLanguagePress() {}
 
@@ -69,11 +75,15 @@ class Settings extends React.Component {
         });
     }
 
-    on2FASetupPress() {}
+    on2FASetupPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
-    onAddNewSeedPress() {}
-
-    onAdvancedSettingsPress() {}
+    onAdvancedSettingsPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onResetWalletPress() {
         this.props.navigator.push({
@@ -273,6 +283,32 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.3,
         width: width / 1.16,
         marginTop: height / 4.8,
+    },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
     },
 });
 

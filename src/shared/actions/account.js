@@ -1,7 +1,7 @@
 import { iota } from '../libs/iota';
 import {
     addTransferValues,
-    sortTransfers,
+    formatTransfers,
     formatAddressBalances,
     formatAddressBalancesNewSeed,
     calculateBalance,
@@ -58,11 +58,11 @@ export function getAccountInfoNewSeed(seed, seedName) {
                 // Calculate balance
                 const balance = calculateBalance(addressesWithBalance);
                 // Sort tranfers and add transfer values
-                const transfers = sortTransfers(success.transfers, success.addresses);
+                const transfers = formatTransfers(success.transfers, success.addresses);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
-                Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers)))
-                    .then(dispatch(setFirstUse(false)))
-                    .then(dispatch(setReady()));
+                Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers))).then(
+                    dispatch(setReady()),
+                );
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
             }
@@ -78,7 +78,7 @@ export function setBalance(addressesWithBalance) {
     };
 }
 
-export function getAccountInfo(seed, seedName, seedIndex, accountInfo) {
+export function getAccountInfo(seedName, seedIndex, accountInfo) {
     return dispatch => {
         // Current addresses and ther balances
         let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -104,7 +104,7 @@ export function getAccountInfo(seed, seedName, seedIndex, accountInfo) {
                 {
                     /* TODO: Only check check addresses where balance has changed */
                 }
-                if (indexesWithBalanceChange.length > 0) {
+                if (true) {
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
                         dispatch(getTransfers(seedName, addresses)),
                     );
@@ -150,7 +150,7 @@ export function getTransfers(seedName, addresses) {
                                 // Group transfers into bundles
                                 let transfers = groupTransfersByBundle(success);
                                 // Sort transfers and add transfer value
-                                transfers = sortTransfers(transfers, addresses);
+                                transfers = formatTransfers(transfers, addresses);
                                 // Update transfers then set ready
                                 Promise.resolve(dispatch(updateTransfers(seedName, transfers))).then(
                                     dispatch(setReady()),
@@ -172,7 +172,7 @@ export function getTransfers(seedName, addresses) {
 
 export function updateTransfers(seedName, transfers) {
     return {
-        type: 'UPDATE_TRANFERS',
+        type: 'UPDATE_TRANSFERS',
         seedName,
         transfers,
     };
