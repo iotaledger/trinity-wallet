@@ -12,6 +12,7 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import { setPassword } from '../../shared/actions/tempAccount';
 import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
 import { setFirstUse } from '../../shared/actions/account';
@@ -33,7 +34,11 @@ class Login extends React.Component {
         };
         this.onLoginPress = this.onLoginPress.bind(this);
     }
-    s;
+    getWalletData() {
+        this.props.getChartData('USD', '24h');
+        this.props.getPrice('USD');
+        this.props.getMarketData();
+    }
 
     onLoginPress() {
         if (!this.state.password) {
@@ -59,11 +64,13 @@ class Login extends React.Component {
         const seedName = _this.props.account.seedNames[seedIndex];
         function login(value) {
             if (_this.props.account.firstUse) {
-                _this.props.getAccountInfoNewSeed(value, seedName);
+                Promise.resolve(_this.getWalletData()).then(_this.props.getAccountInfoNewSeed(value, seedName));
                 _this.props.setFirstUse(false);
             } else {
                 const accountInfo = _this.props.account.accountInfo;
-                _this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+                Promise.resolve(_this.getWalletData()).then(
+                    _this.props.getAccountInfo(seedName, seedIndex, accountInfo),
+                );
             }
             _this.props.changeHomeScreenRoute('balance');
             _this.props.navigator.push({
@@ -284,6 +291,15 @@ const mapDispatchToProps = dispatch => ({
     },
     changeHomeScreenRoute: tab => {
         dispatch(changeHomeScreenRoute(tab));
+    },
+    getMarketData: () => {
+        dispatch(getMarketData());
+    },
+    getPrice: currency => {
+        dispatch(getPrice(currency));
+    },
+    getChartData: (currency, timeFrame) => {
+        dispatch(getChartData(currency, timeFrame));
     },
 });
 

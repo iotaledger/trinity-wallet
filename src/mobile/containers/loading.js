@@ -12,7 +12,7 @@ const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
 class Loading extends Component {
     componentDidMount() {
-        this.getWalletData();
+        //this.getWalletData();
         this.props.changeHomeScreenRoute('balance');
     }
 
@@ -25,14 +25,7 @@ class Loading extends Component {
     render() {
         const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
 
-        if (!ready && firstUse) {
-            return (
-                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                    <StatusBar barStyle="light-content" />
-                    <IotaSpin duration={3000} />
-                </ImageBackground>
-            );
-        } else if (!ready && !firstUse) {
+        if (!ready) {
             return (
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
