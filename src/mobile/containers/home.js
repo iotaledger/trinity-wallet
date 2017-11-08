@@ -50,6 +50,10 @@ class Home extends Component {
         }
     }
 
+    stopPolling() {
+        clearInterval(polling);
+    }
+
     startPolling() {
         polling = setInterval(() => {
             const seedIndex = this.props.tempAccount.seedIndex;
@@ -72,10 +76,13 @@ class Home extends Component {
             const seedIndex = this.props.tempAccount.seedIndex - 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
+
+            this.stopPolling();
             this.props.decrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
             this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            this.startPolling();
         }
     }
 
@@ -84,10 +91,13 @@ class Home extends Component {
             const seedIndex = this.props.tempAccount.seedIndex + 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
+
+            this.stopPolling();
             this.props.incrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
             this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            this.startPolling();
         }
     }
 
