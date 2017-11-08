@@ -9,7 +9,7 @@ import {
     changeCurrency,
     changeTimeFrame,
 } from '../../shared/actions/marketData';
-import { round, formatValue, formatUnit } from '../../shared/libs/util';
+import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
@@ -36,14 +36,13 @@ class Balance extends React.Component {
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const shortenedBalance =
-            round(formatValue(this.props.account.balance, 1)).toFixed(1) +
-            (this.props.account.balance < 1000 ? '' : '+');
+            roundDown(formatValue(this.props.account.balance), 1) + (this.props.account.balance < 1000 ? '' : '+');
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.balanceContainer}>
                     <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
-                        {this.state.balanceIsShort ? shortenedBalance : this.props.account.balance}{' '}
+                        {this.state.balanceIsShort ? shortenedBalance : formatValue(this.props.account.balance)}{' '}
                         {formatUnit(this.props.account.balance)}
                     </Text>
                     <Text style={styles.fiatBalance}>
