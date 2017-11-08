@@ -1,13 +1,7 @@
 import React from 'react';
 import { Clipboard, TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
-import {
-    formatTime,
-    formatModalTime,
-    formatValue,
-    formatUnit,
-    round,
-    convertUnixTimeToJSDate,
-} from '../../shared/libs/util';
+import { formatValue, formatUnit, round } from '../../shared/libs/util';
+import { formatTime, formatModalTime, convertUnixTimeToJSDate } from '../../shared/libs/dateUtils';
 import { convertFromTrytes } from '../../shared/libs/iota';
 import Modal from 'react-native-modal';
 
