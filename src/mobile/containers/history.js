@@ -38,7 +38,7 @@ class History extends React.Component {
                             this.listview = listview;
                         }}
                         onLoadEnd={this.imageLoaded.bind(this)}
-                        snapToInterval={height / 7.4453}
+                        snapToInterval={height * 0.7 / 6}
                     />
                 </View>
             </View>
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     listView: {
-        height: height / 1.49,
+        height: height * 0.7,
+        justifyContent: 'flex-end',
     },
     separator: {
         flex: 1,

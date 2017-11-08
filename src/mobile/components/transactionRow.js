@@ -281,10 +281,6 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'right',
     },
-    separator: {
-        flex: 1,
-        height: 11,
-    },
 });
 
 module.exports = TransactionRow;
