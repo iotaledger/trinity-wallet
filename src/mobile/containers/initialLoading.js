@@ -23,7 +23,7 @@ export default class InitialLoading extends Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'login',
+                screen: 'change-password',
                 navigatorStyle: { navBarHidden: true },
                 animated: false,
             });

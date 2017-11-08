@@ -229,13 +229,13 @@ const styles = StyleSheet.create({
     midWrapper: {
         flex: 2.5,
         alignItems: 'center',
+        paddingTop: height / 15,
     },
     bottomWrapper: {
         flex: 2.2,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-        paddingTop: height / 20,
     },
     headerWrapper: {
         justifyContent: 'center',
@@ -259,13 +259,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 6.1,
+        height: height / 6.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 40,
         borderStyle: 'dotted',
         paddingTop: height / 60,
-        marginTop: height / 50,
     },
     infoText: {
         color: Colors.white,

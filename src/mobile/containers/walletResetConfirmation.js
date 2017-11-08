@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 15,
+        paddingBottom: height / 20,
     },
     headerWrapper: {
         justifyContent: 'center',
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: width / 10,
-        paddingTop: height / 30,
+        paddingTop: height / 15,
     },
     subHeaderText: {
         color: Colors.orangeDark,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 5.5,
+        height: height / 5.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
