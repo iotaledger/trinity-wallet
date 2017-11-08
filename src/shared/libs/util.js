@@ -71,6 +71,10 @@ export function round(value, precision) {
     const multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
 }
+export function roundDown(number, decimals) {
+    decimals = decimals || 0;
+    return Math.floor(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
+}
 
 export const isValidServerAddress = server => {
     if (!server.startsWith('http://') && !server.startsWith('https://')) {
