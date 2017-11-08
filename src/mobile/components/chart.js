@@ -20,6 +20,14 @@ class Chart extends React.Component {
         };
     }
 
+    componentDidMount() {
+        polling = setInterval(() => {
+            this.props.getMarketData();
+            this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
+            this.props.getPrice(this.props.marketData.currency);
+        }, 90000);
+    }
+
     onCurrencyClick() {
         switch (this.props.marketData.currency) {
             case 'USD':

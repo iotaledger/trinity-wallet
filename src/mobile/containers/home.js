@@ -38,7 +38,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.startPolling();
+        //this.startPolling();
     }
 
     componentWillReceiveProps(newProps) {
@@ -91,11 +91,9 @@ class Home extends Component {
             const seedIndex = this.props.tempAccount.seedIndex + 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
-            //console.log(seedIndex)
+
             this.stopPolling();
             this.props.incrementSeedIndex();
-            //console.log(seedIndex)
-            //console.log(accountInfo[Object.keys(accountInfo)[seedIndex]])
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
             this.props.getAccountInfo(seedName, seedIndex, accountInfo);
