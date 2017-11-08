@@ -307,7 +307,7 @@ class Send extends Component {
                     <View style={styles.sendIOTAButtonContainer}>
                         <TouchableOpacity onPress={event => this.sendTransaction()}>
                             <View style={styles.sendIOTAButton}>
-                                <Text style={styles.sendIOTAText}>SEND IOTA</Text>
+                                <Text style={styles.sendIOTAText}>SEND</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
