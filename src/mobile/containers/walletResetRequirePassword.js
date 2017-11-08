@@ -96,23 +96,24 @@ class WalletResetRequirePassword extends Component {
                             </View>
                         </View>
                         <View style={styles.midWrapper}>
-                            <Text style={styles.generalText}>
-                                Please enter your password to continue resetting your wallet.
-                            </Text>
+                            <Text style={styles.generalText}>Enter password to reset your wallet.</Text>
                             <TextField
-                                style={styles.textField}
-                                labelTextStyle={styles.textFieldLabel}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
-                                baseColor={Colors.white}
+                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                labelFontSize={width / 31.8}
+                                fontSize={width / 20.7}
+                                labelPadding={3}
+                                baseColor="white"
                                 label="Password"
-                                tintColor={Colors.orangeDark}
-                                autoCapitalize="none"
+                                tintColor="#F7D002"
+                                autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
                                 value={this.state.password}
                                 onChangeText={password => this.setState({ password })}
-                                containerStyle={styles.textFieldContainer}
+                                containerStyle={{
+                                    width: width / 1.4,
+                                }}
                                 secureTextEntry={true}
                             />
                         </View>
@@ -134,10 +135,11 @@ class WalletResetRequirePassword extends Component {
 
 const onboardingButtonsOverride = StyleSheet.create({
     rightButton: {
-        borderColor: Colors.redLight,
+        borderColor: Colors.red,
     },
     rightText: {
-        color: Colors.redLight,
+        color: Colors.red,
+        fontFamily: Fonts.secondary,
     },
 });
 
@@ -182,7 +184,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
-        paddingHorizontal: width / 5,
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
     },

@@ -304,9 +304,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'white',
-        borderWidth: 1,
+        borderWidth: 0.8,
         borderRadius: 8,
-        width: width / 6,
+        width: width / 6.5,
         height: height / 16,
     },
     qrText: {

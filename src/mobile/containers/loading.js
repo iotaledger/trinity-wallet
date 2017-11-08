@@ -23,18 +23,25 @@ class Loading extends Component {
     }
 
     render() {
-        const { tempAccount: { ready }, navigator } = this.props;
+        const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
 
-        if (!ready) {
+        if (!ready && firstUse) {
             return (
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <IotaSpin duration={3000} />
                 </ImageBackground>
             );
+        } else if (!ready && !firstUse) {
+            return (
+                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                    <StatusBar barStyle="light-content" />
+                    <IotaSpin duration={3000} />
+                </ImageBackground>
+            );
+        } else {
+            return <Home navigator={navigator} />;
         }
-
-        return <Home navigator={navigator} />;
     }
 }
 
@@ -71,6 +78,7 @@ const mapDispatchToProps = dispatch => ({
 Loading.propTypes = {
     marketData: PropTypes.object.isRequired,
     tempAccount: PropTypes.object.isRequired,
+    account: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     getMarketData: PropTypes.func.isRequired,
     getPrice: PropTypes.func.isRequired,

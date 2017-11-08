@@ -2,7 +2,13 @@ import React from 'react';
 import { StyleSheet, View, Text, ListView, Dimensions, StatusBar } from 'react-native';
 
 import { connect } from 'react-redux';
-import { changeCurrency, changeTimeFrame } from '../../shared/actions/marketData';
+import {
+    getMarketData,
+    getChartData,
+    getPrice,
+    changeCurrency,
+    changeTimeFrame,
+} from '../../shared/actions/marketData';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
@@ -63,6 +69,9 @@ class Balance extends React.Component {
                 <View style={{ flex: 50 }}>
                     <Chart
                         marketData={this.props.marketData}
+                        getPrice={currency => this.props.getPrice(currency)}
+                        getChartData={(currency, timeFrame) => this.props.getChartData(currency, timeFrame)}
+                        getMarketData={() => this.props.getMarketData()}
                         changeCurrency={(currency, timeFrame) => this.props.changeCurrency(currency, timeFrame)}
                         changeTimeFrame={(currency, timeFrame) => this.props.changeTimeFrame(currency, timeFrame)}
                     />
@@ -130,6 +139,15 @@ const mapDispatchToProps = dispatch => ({
     },
     changeTimeFrame: (currency, timeFrame) => {
         dispatch(changeTimeFrame(currency, timeFrame));
+    },
+    getMarketData: () => {
+        dispatch(getMarketData());
+    },
+    getPrice: currency => {
+        dispatch(getPrice(currency));
+    },
+    getChartData: (currency, timeFrame) => {
+        dispatch(getChartData(currency, timeFrame));
     },
 });
 
