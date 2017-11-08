@@ -7,6 +7,9 @@ const initialState = {
     seedIndex: 0,
     isGeneratingReceiveAddress: false,
     usedSeedToLogin: false,
+    lastTxAddress: '',
+    lastTxValue: 0,
+    isSendingTransfer: false,
 };
 
 export default (state = initialState, action) => {
@@ -47,6 +50,23 @@ export default (state = initialState, action) => {
                 ...state,
                 isGeneratingReceiveAddress: false,
             };
+        case 'SEND_TRANSFER_REQUEST':
+            return {
+                ...state,
+                isSendingTransfer: true,
+            };
+        case 'SEND_TRANSFER_SUCCESS':
+            return {
+                ...state,
+                isSendingTransfer: false,
+                lastTxAddress: action.address,
+                lastTxValue: action.value,
+            };
+        case 'SEND_TRANSFER_ERROR':
+            return {
+                ...state,
+                isSendingTransfer: false,
+            };
         case 'SET_READY':
             return {
                 ...state,
@@ -77,6 +97,10 @@ export default (state = initialState, action) => {
                 usedSeedToLogin: false,
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
+                isSendingTransfer: false,
+                lastTxAddress: '',
+                lastTxValue: 0,
+                triggerSentDropdown: false,
             };
         default:
             return state;

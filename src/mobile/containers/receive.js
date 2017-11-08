@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 80,
+        height: height / 5,
     },
     receiveAddressText: {
         fontFamily: 'Lato-Regular',
