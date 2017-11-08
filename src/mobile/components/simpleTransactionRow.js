@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
-import { formatTime, round, formatValue, formatUnit, convertUnixTimeToJSDate } from '../../shared/libs/util';
+import { round, formatValue, formatUnit } from '../../shared/libs/util';
+import { formatTime, convertUnixTimeToJSDate } from '../../shared/libs/dateUtils';
 
 const { height, width } = Dimensions.get('window');
 
