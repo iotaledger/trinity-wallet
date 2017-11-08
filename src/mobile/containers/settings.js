@@ -82,7 +82,7 @@ class Settings extends React.Component {
 
     onAdvancedSettingsPress() {
         const dropdown = DropdownHolder.getDropdown();
-        this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
     onResetWalletPress() {
