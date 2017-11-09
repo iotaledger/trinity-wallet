@@ -18,13 +18,18 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
-import DropdownAlert from 'react-native-dropdownalert';
-import { round, formatValue, formatUnit } from '../../shared/libs/util';
-import { incrementSeedIndex, decrementSeedIndex, setReceiveAddress } from '../../shared/actions/tempAccount';
+import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
+import {
+    incrementSeedIndex,
+    decrementSeedIndex,
+    setReceiveAddress,
+    replayBundle,
+} from '../../shared/actions/tempAccount';
 import { getAccountInfo, setBalance } from '../../shared/actions/account';
-import { getSeedName, getFromKeychain } from '../../shared/libs/cryptography';
+import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
-
+import DropdownAlert from 'react-native-dropdownalert';
+import ReAttacher from './reAttacher';
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 
@@ -64,6 +69,18 @@ class Home extends Component {
         const accountInfo = this.props.account.accountInfo;
         if (typeof accountInfo !== 'undefined') {
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[this.props.tempAccount.seedIndex]].addresses);
+        }
+    }
+
+    componentWillReceiveProps(newProps) {
+        const didNotHaveAlertPreviously =
+            !this.props.alerts.category && !this.props.alerts.title && !this.props.alerts.message;
+        const hasANewAlert = newProps.alerts.category && newProps.alerts.title & newProps.alerts.message;
+        const shouldGenerateAlert = hasANewAlert && didNotHaveAlertPreviously;
+
+        if (shouldGenerateAlert) {
+            const dropdown = DropdownHolder.getDropdown();
+            dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
         }
     }
 
@@ -170,7 +187,7 @@ class Home extends Component {
     }
 
     render() {
-        const { childRoute } = this.props;
+        const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
 
@@ -290,6 +307,10 @@ class Home extends Component {
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
+                <ReAttacher
+                    attachments={tailTransactionHashesForPendingTransactions}
+                    attach={this.props.replayBundle}
+                />
                 <DropdownAlert
                     ref={ref => DropdownHolder.setDropdown(ref)}
                     successColor="#009f3f"
@@ -299,6 +320,8 @@ class Home extends Component {
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                    onCancel={this.props.disposeOffAlert}
+                    onClose={this.props.disposeOffAlert}
                 />
             </ImageBackground>
         );
@@ -373,7 +396,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+    alerts: state.alerts,
     tempAccount: state.tempAccount,
+    tailTransactionHashesForPendingTransactions: getTailTransactionHashesForPendingTransactions(state),
     account: state.account,
     childRoute: state.home.childRoute,
 });
@@ -395,12 +420,19 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setBalance(addressesWithBalance));
     },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
+    replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
+    generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
+    disposeOffAlert: () => dispatch(disposeOffAlert()),
 });
 
 Home.propTypes = {
+    alerts: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     childRoute: PropTypes.string.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
+    tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
+    generateAlert: PropTypes.func.isRequired,
+    disposeOffAlert: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
