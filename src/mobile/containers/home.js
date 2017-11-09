@@ -43,42 +43,27 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        const accountInfo = this.props.account.accountInfo;
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        if (typeof accountInfo !== 'undefined') {
+            this.props.setBalance(addressesWithBalance);
+        }
         this.startPolling();
     }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.tempAccount.isSendingTransfer && !this.props.tempAccount.isSendingTransfer) {
-            this.stopPolling();
-        }
-        if (!newProps.tempAccount.isSendingTransfer && this.props.tempAccount.isSendingTransfer) {
-            this.stopPolling();
-            this.startPolling();
-        }
-        if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
-            this.stopPolling();
-            this.startPolling();
-        }
-    }
-
     stopPolling() {
-        clearInterval(polling);
+        for (var i = 1; i < 99999; i++) window.clearInterval(i);
     }
-
     startPolling() {
         polling = setInterval(() => {
-            console.log('Updating account info');
-            const seedIndex = this.props.tempAccount.seedIndex;
-            const seedName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
-        }, 30000);
-    }
-
-    componentWillMount() {
-        const accountInfo = this.props.account.accountInfo;
-        if (typeof accountInfo !== 'undefined') {
-            this.props.setBalance(accountInfo[Object.keys(accountInfo)[this.props.tempAccount.seedIndex]].addresses);
-        }
+            if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
+                const seedIndex = this.props.tempAccount.seedIndex;
+                const seedName = this.props.account.seedNames[seedIndex];
+                const accountInfo = this.props.account.accountInfo;
+                this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            }
+        }, 10000);
     }
 
     componentWillReceiveProps(newProps) {
@@ -99,11 +84,13 @@ class Home extends Component {
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
 
-            this.stopPolling();
             this.props.decrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
-            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            // Get new account info if not sending or getting transfers
+            if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
+                this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            }
         }
     }
 
@@ -113,11 +100,14 @@ class Home extends Component {
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
 
-            this.stopPolling();
             this.props.incrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
-            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+
+            // Get new account info if not sending or getting transfers
+            if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
+                this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            }
         }
     }
 

@@ -8,7 +8,7 @@ import {
     getIndexesWithBalanceChange,
     groupTransfersByBundle,
 } from '../libs/accountUtils';
-import { setReady } from './tempAccount';
+import { setReady, getTransfersRequest, getTransfersSuccess } from './tempAccount';
 /* eslint-disable import/prefer-default-export */
 
 export function setFirstUse(boolean) {
@@ -60,6 +60,7 @@ export function getAccountInfoNewSeed(seed, seedName) {
                 // Sort tranfers and add transfer values
                 const transfers = formatTransfers(success.transfers, success.addresses);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
+                console.log('success');
                 Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers))).then(
                     dispatch(setReady()),
                 );
@@ -107,6 +108,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo) {
                     /* TODO: Only check check addresses where balance has changed */
                 }
                 if (indexesWithBalanceChange.length > 0) {
+                    dispatch(getTransfersRequest());
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
                         dispatch(getTransfers(seedName, addresses)),
                     );
@@ -157,6 +159,7 @@ export function getTransfers(seedName, addresses) {
                                 Promise.resolve(dispatch(updateTransfers(seedName, transfers))).then(
                                     dispatch(setReady()),
                                 );
+                                dispatch(getTransfersSuccess());
                             } else {
                                 console.log('SOMETHING WENT WRONG: ', error);
                             }
