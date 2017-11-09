@@ -120,6 +120,7 @@ class UseSeed extends React.Component {
                                             baseColor="white"
                                             tintColor="#F7D002"
                                             enablesReturnKeyAutomatically={true}
+                                            returnKeyType="done"
                                             label="Seed"
                                             autoCorrect={false}
                                             value={seed}

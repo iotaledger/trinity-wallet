@@ -123,6 +123,7 @@ class Login extends React.Component {
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="done"
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
