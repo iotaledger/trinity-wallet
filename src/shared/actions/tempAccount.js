@@ -7,6 +7,18 @@ import { generateAlert } from '../actions/alerts';
 
 /* eslint-disable no-console */
 
+export function getTransfersRequest() {
+    return {
+        type: 'GET_TRANSFERS_REQUEST',
+    };
+}
+
+export function getTransfersSuccess() {
+    return {
+        type: 'GET_TRANSFERS_SUCCESS',
+    };
+}
+
 export function setReceiveAddress(payload) {
     return {
         type: 'SET_RECEIVE_ADDRESS',
@@ -166,7 +178,7 @@ export function replayBundle(transactionHash, depth = 3, minWeightMagnitude = 14
                 dispatch(
                     generateAlert(
                         'success',
-                        'Replaying Bundle',
+                        'Autoreattaching to Tangle',
                         `Reattaching transaction with hash ${transactionHash}`,
                     ),
                 );
