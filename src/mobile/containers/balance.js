@@ -24,6 +24,12 @@ class Balance extends React.Component {
         };
     }
 
+    componentWillReceiveProps(newProps) {
+        if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
+            this.setState({ balanceIsShort: true });
+        }
+    }
+
     onBalanceClick() {
         if (this.state.balanceIsShort) {
             this.setState({ balanceIsShort: false });
