@@ -23,7 +23,7 @@ import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography
 import { increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { incrementSeedIndex, clearTempData } from '../../shared/actions/tempAccount';
-import { getAccountInfoNewSeed, getAccountInfo } from '../../shared/actions/account';
+import { getAccountInfoNewSeed, getAccountInfo, setFirstUse } from '../../shared/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -69,6 +69,7 @@ class AddAdditionalSeed extends React.Component {
                 this.state.seedName,
                 () => {
                     this.stopPolling();
+                    this.props.setFirstUse(true);
                     this.props.clearTempData();
                     this.props.increaseSeedCount();
                     this.props.addSeedName(this.state.seedName);
@@ -404,6 +405,9 @@ const mapDispatchToProps = dispatch => ({
     },
     generateAlert: (error, title, message) => {
         dispatch(generateAlert(error, title, message));
+    },
+    setFirstUse: boolean => {
+        dispatch(setFirstUse(boolean));
     },
 });
 
