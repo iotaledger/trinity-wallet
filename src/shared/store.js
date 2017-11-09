@@ -3,14 +3,16 @@ import { autoRehydrate, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import marketData from './reducers/marketData';
 import tempAccount from './reducers/tempAccount';
-import account from './reducers/account';
+import account, * as fromAccount from './reducers/account';
 import app from './reducers/app';
 import settings from './reducers/settings';
 import seeds from './reducers/seeds';
 import notifications from './reducers/notifications';
+import alerts from './reducers/alerts';
 import home from './reducers/home';
 
 const reducers = combineReducers({
+    alerts,
     marketData,
     tempAccount,
     account,
@@ -41,6 +43,14 @@ const store = createStore(
         typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
     ),
 );
+
+export const getTailTransactionHashesForPendingTransactions = state => {
+    return fromAccount.getTailTransactionHashesForPendingTransactions(
+        state.account.transfers,
+        state.account.accountInfo,
+        state.tempAccount.seedIndex,
+    );
+};
 
 export const persistState = (state, config) => persistStore(state, config);
 
