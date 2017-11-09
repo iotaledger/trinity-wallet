@@ -38,7 +38,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        //this.startPolling();
+        this.startPolling();
     }
 
     componentWillReceiveProps(newProps) {
@@ -46,6 +46,11 @@ class Home extends Component {
             this.stopPolling();
         }
         if (!newProps.tempAccount.isSendingTransfer && this.props.tempAccount.isSendingTransfer) {
+            this.stopPolling();
+            this.startPolling();
+        }
+        if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
+            this.stopPolling();
             this.startPolling();
         }
     }
@@ -82,7 +87,6 @@ class Home extends Component {
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
             this.props.getAccountInfo(seedName, seedIndex, accountInfo);
-            this.startPolling();
         }
     }
 
@@ -97,7 +101,6 @@ class Home extends Component {
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
             this.props.getAccountInfo(seedName, seedIndex, accountInfo);
-            this.startPolling();
         }
     }
 
