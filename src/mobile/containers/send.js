@@ -102,6 +102,14 @@ class Send extends Component {
         return true;
     }
 
+    enoughBalance() {
+        if (parseFloat(this.state.amount) * this.getUnitMultiplier() > this.props.account.balance) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     renderInvalidAddressErrors(address) {
         const props = ['error', 'Invalid Address'];
         const dropdown = DropdownHolder.getDropdown();
@@ -125,12 +133,13 @@ class Send extends Component {
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
 
         const address = this.state.address;
-        const value = parseInt(this.state.amount) * this.getUnitMultiplier();
+        const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
         const message = this.state.message;
         const addressIsValid = this.isValidAddress(address);
         const messageIsValid = this.isValidMessage(message);
+        const enoughBalance = this.enoughBalance();
 
-        if (addressIsValid && messageIsValid) {
+        if (addressIsValid && messageIsValid && enoughBalance) {
             this.props.sendTransferRequest();
             getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value !== 'undefined') {
@@ -149,6 +158,15 @@ class Send extends Component {
                     console.log('error');
                 }
             });
+        }
+
+        if (!enoughBalance) {
+            const dropdown = DropdownHolder.getDropdown();
+            return dropdown.alertWithType(
+                'error',
+                'Not enough cash',
+                'You do not have enough IOTA to complete this transfer.',
+            );
         }
         if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
