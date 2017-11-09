@@ -34,21 +34,18 @@ class Login extends React.Component {
         this.onLoginPress = this.onLoginPress.bind(this);
     }
 
-    // Commented out until we get Apple Developer Program membership
-    /*
-        componentWillMount() {
-            HockeyApp.configure(
-                '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
-                true, //Auto send crash reports
-                3, //Authentication type
-            );
-        }
+    componentWillMount() {
+        HockeyApp.configure(
+            '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
+            true, //Auto send crash reports
+            0, //Authentication type
+        );
+    }
 
-        componentDidMount() {
-            HockeyApp.start();
-            HockeyApp.checkForUpdate(); // optional
-        }
-        */
+    componentDidMount() {
+        HockeyApp.start();
+        HockeyApp.checkForUpdate(); // optional
+    }
 
     onLoginPress() {
         if (!this.state.password) {
