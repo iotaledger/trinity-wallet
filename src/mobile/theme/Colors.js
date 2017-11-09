@@ -3,7 +3,7 @@ const BaseColors = {
     greenLight: '#009F3F',
     greenLighter: '#9DFFAF',
     orangeDark: '#F7D002',
-    red: '#A10702',
+    red: '#FF220C',
     redLight: '#B21C17',
     white: '#FFFFFF',
 };
