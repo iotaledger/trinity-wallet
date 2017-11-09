@@ -15,7 +15,12 @@ import {
 } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
-import { generateNewAddress, setReceiveAddress, generateNewAddressRequest } from '../../shared/actions/tempAccount';
+import {
+    generateNewAddress,
+    setReceiveAddress,
+    generateNewAddressRequest,
+    generateNewAddressError,
+} from '../../shared/actions/tempAccount';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
@@ -60,7 +65,10 @@ class Receive extends Component {
         });
         const _this = this;
         const generate = (seed, seedName, addresses) => _this.props.generateNewAddress(seed, seedName, addresses);
-        const error = () => _this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        const error = () => {
+            this.props.generateNewAddressError();
+            _this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        };
     }
 
     onAddressPress(address) {
@@ -85,20 +93,21 @@ class Receive extends Component {
                 <View style={{ paddingBottom: height / 40 }}>
                     <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
                 </View>
-                {!receiveAddress && (
-                    <TouchableOpacity
-                        onPress={() => {
-                            // Check if there's already a network call in progress.
-                            if (!isGeneratingReceiveAddress) {
-                                this.onGeneratePress();
-                            }
-                        }}
-                    >
-                        <View style={styles.generateButton}>
-                            <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
-                        </View>
-                    </TouchableOpacity>
-                )}
+                {!receiveAddress &&
+                    !isGeneratingReceiveAddress && (
+                        <TouchableOpacity
+                            onPress={() => {
+                                // Check if there's already a network call in progress.
+                                if (!isGeneratingReceiveAddress) {
+                                    this.onGeneratePress();
+                                }
+                            }}
+                        >
+                            <View style={styles.generateButton}>
+                                <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
                 <View style={{ paddingTop: height / 20, flex: 1 }}>
                     <ActivityIndicator
                         animating={isGeneratingReceiveAddress}
@@ -183,6 +192,7 @@ const mapDispatchToProps = dispatch => ({
     generateNewAddress: (seed, seedName, addresses) => dispatch(generateNewAddress(seed, seedName, addresses)),
     setReceiveAddress: payload => dispatch(setReceiveAddress(payload)),
     generateNewAddressRequest: () => dispatch(generateNewAddressRequest()),
+    generateNewAddressError: () => dispatch(generateNewAddressError()),
 });
 
 Receive.propTypes = {
