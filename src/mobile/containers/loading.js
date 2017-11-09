@@ -12,29 +12,29 @@ const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
 class Loading extends Component {
     componentDidMount() {
-        this.getWalletData();
         this.props.changeHomeScreenRoute('balance');
     }
 
-    async getWalletData() {
-        await this.props.getPrice('USD');
-        await this.props.getMarketData();
-        await this.props.getChartData('USD', '24h');
-    }
-
     render() {
-        const { tempAccount: { ready }, navigator } = this.props;
+        const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
 
-        if (!ready) {
+        if (!ready && !firstUse) {
             return (
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <IotaSpin duration={3000} />
                 </ImageBackground>
             );
+        } else if (!ready && firstUse) {
+            return (
+                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                    <StatusBar barStyle="light-content" />
+                    <IotaSpin duration={3000} />
+                </ImageBackground>
+            );
+        } else {
+            return <Home navigator={navigator} />;
         }
-
-        return <Home navigator={navigator} />;
     }
 }
 
@@ -71,6 +71,7 @@ const mapDispatchToProps = dispatch => ({
 Loading.propTypes = {
     marketData: PropTypes.object.isRequired,
     tempAccount: PropTypes.object.isRequired,
+    account: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     getMarketData: PropTypes.func.isRequired,
     getPrice: PropTypes.func.isRequired,
