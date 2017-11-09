@@ -21,14 +21,14 @@ import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography';
 import { increaseSeedCount, addSeedName } from '../../shared/actions/account';
+import { generateAlert } from '../../shared/actions/alerts';
 import { incrementSeedIndex, clearTempData } from '../../shared/actions/tempAccount';
-import { getAccountInfoNewSeed } from '../../shared/actions/account';
+import { getAccountInfoNewSeed, getAccountInfo } from '../../shared/actions/account';
 
-//import DropdownHolder from './dropdownHolder';
+import DropdownHolder from '../components/dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
-//const dropdown = DropdownHolder.getDropDown();
 
 class AddAdditionalSeed extends React.Component {
     constructor(props) {
@@ -54,9 +54,21 @@ class AddAdditionalSeed extends React.Component {
                 `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
                     .seed.length} characters long. Please try again.`,
             );
-        } else if (this.state.seed.length >= 60) {
-            if (this.state.seedName.length > 0) {
-                storeInKeychain(this.props.tempAccount.password, this.state.seed, this.state.seedName, () => {
+        } else if (!(this.state.seedName.length > 0)) {
+            this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
+        } else if (this.props.account.seedNames.includes(this.state.seedName)) {
+            this.dropdown.alertWithType(
+                'error',
+                'Nickname already in use',
+                `Please use a unique nickname for your seed.`,
+            );
+        } else {
+            storeInKeychain(
+                this.props.tempAccount.password,
+                this.state.seed,
+                this.state.seedName,
+                () => {
+                    this.stopPolling();
                     this.props.clearTempData();
                     this.props.increaseSeedCount();
                     this.props.addSeedName(this.state.seedName);
@@ -69,10 +81,9 @@ class AddAdditionalSeed extends React.Component {
                             animated: false,
                         }),
                     );
-                });
-            } else {
-                this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
-            }
+                },
+                (type, title, message) => this.dropdown.alertWithType(type, title, message),
+            );
         }
     }
 
@@ -83,6 +94,10 @@ class AddAdditionalSeed extends React.Component {
     }
     onQRPress() {
         this._showModal();
+    }
+
+    stopPolling() {
+        for (var i = 1; i < 99999; i++) window.clearInterval(i);
     }
 
     onQRRead(data) {
@@ -132,6 +147,7 @@ class AddAdditionalSeed extends React.Component {
                                             tintColor="#F7D002"
                                             enablesReturnKeyAutomatically={true}
                                             label="Seed"
+                                            autoCapitalize="characters"
                                             autoCorrect={false}
                                             value={seed}
                                             maxLength={81}
@@ -165,6 +181,7 @@ class AddAdditionalSeed extends React.Component {
                                         tintColor="#F7D002"
                                         enablesReturnKeyAutomatically={true}
                                         label="Seed name"
+                                        autoCapitalize="characters"
                                         autoCorrect={false}
                                         value={seedName}
                                         containerStyle={{ width: width / 1.36 }}
@@ -381,6 +398,12 @@ const mapDispatchToProps = dispatch => ({
     },
     getAccountInfoNewSeed: (seed, seedName) => {
         dispatch(getAccountInfoNewSeed(seed, seedName));
+    },
+    getAccountInfo: (seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
+    },
+    generateAlert: (error, title, message) => {
+        dispatch(generateAlert(error, title, message));
     },
 });
 
