@@ -359,13 +359,15 @@ class Send extends Component {
                             onChangeText={message => this.setState({ message })}
                         />
                     </View>
-                    <View style={styles.sendIOTAButtonContainer}>
-                        <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
-                            <View style={styles.sendIOTAButton}>
-                                <Text style={styles.sendIOTAText}>SEND</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                    {!this.props.tempAccount.isSendingTransfer && (
+                        <View style={styles.sendIOTAButtonContainer}>
+                            <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
+                                <View style={styles.sendIOTAButton}>
+                                    <Text style={styles.sendIOTAText}>SEND</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    )}
                     <View style={{ flex: 1 }}>
                         <ActivityIndicator
                             animating={this.props.tempAccount.isSendingTransfer}
