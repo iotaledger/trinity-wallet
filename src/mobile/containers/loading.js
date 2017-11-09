@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Dimensions, ImageBackground, WebView, StatusBar } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    ImageBackground,
+    WebView,
+    StatusBar,
+    Text,
+    ActivityIndicator,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import { setBalance } from '../../shared/actions/account';
@@ -29,7 +38,21 @@ class Loading extends Component {
             return (
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
-                    <IotaSpin duration={3000} />
+                    <View style={{ flex: 1 }} />
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={styles.infoText}>
+                            {' '}
+                            Loading seed for the first time. This may take a while. You may notice your device slowing
+                            down.
+                        </Text>
+                        <ActivityIndicator
+                            animating={true}
+                            style={styles.activityIndicator}
+                            size="large"
+                            color="#F7D002"
+                        />
+                    </View>
+                    <View style={{ flex: 1 }} />
                 </ImageBackground>
             );
         } else {
@@ -43,6 +66,20 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    infoText: {
+        color: 'white',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        textAlign: 'center',
+        paddingHorizontal: width / 9,
+        backgroundColor: 'transparent',
+        paddingTop: height / 10,
+    },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 
