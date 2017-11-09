@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
                 ...state,
                 category: action.category,
                 title: action.title,
-                message: action.message(),
+                message: action.message,
             };
 
         case ActionTypes.HIDE:
