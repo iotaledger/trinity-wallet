@@ -41,6 +41,7 @@ class Settings extends React.Component {
                         navigate={() => this.navigateToNewSeed()}
                     />
                 );
+                break;
         }
         this.setState({
             selectedSetting,
