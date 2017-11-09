@@ -48,20 +48,29 @@ class Home extends Component {
 
     componentWillReceiveProps(newProps) {
         if (newProps.tempAccount.isSendingTransfer && !this.props.tempAccount.isSendingTransfer) {
-            clearInterval(polling);
+            this.stopPolling();
         }
         if (!newProps.tempAccount.isSendingTransfer && this.props.tempAccount.isSendingTransfer) {
+            this.stopPolling();
+            this.startPolling();
+        }
+        if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
+            this.stopPolling();
             this.startPolling();
         }
     }
 
+    stopPolling() {
+        clearInterval(polling);
+    }
+
     startPolling() {
         polling = setInterval(() => {
+            console.log('Updating account info');
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
             this.props.getAccountInfo(seedName, seedIndex, accountInfo);
-            console.log('Updating account info');
         }, 30000);
     }
 
@@ -89,6 +98,8 @@ class Home extends Component {
             const seedIndex = this.props.tempAccount.seedIndex - 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
+
+            this.stopPolling();
             this.props.decrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
@@ -101,6 +112,8 @@ class Home extends Component {
             const seedIndex = this.props.tempAccount.seedIndex + 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
+
+            this.stopPolling();
             this.props.incrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
@@ -150,7 +163,7 @@ class Home extends Component {
                 <View style={styles.titlebarContainer}>
                     <TouchableOpacity
                         onPress={() => this.onLeftArrowPress()}
-                        style={{ position: 'absolute', left: width / 6, top: height / 13.1 }}
+                        hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                     >
                         <Image
                             style={{
@@ -168,7 +181,7 @@ class Home extends Component {
                     </View>
                     <TouchableOpacity
                         onPress={() => this.onRightArrowPress()}
-                        style={{ position: 'absolute', right: width / 6, top: height / 13.1 }}
+                        hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                     >
                         <Image
                             style={{
@@ -335,10 +348,10 @@ const styles = StyleSheet.create({
     },
     titlebarContainer: {
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
+        alignItems: 'center',
         paddingBottom: height / 50,
-        flex: 1,
+        justifyContent: 'space-between',
+        paddingHorizontal: width / 6.5,
     },
     titleContainer: {
         alignItems: 'center',

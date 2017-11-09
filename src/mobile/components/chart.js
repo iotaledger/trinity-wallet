@@ -20,6 +20,14 @@ class Chart extends React.Component {
         };
     }
 
+    componentDidMount() {
+        polling = setInterval(() => {
+            this.props.getMarketData();
+            this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
+            this.props.getPrice(this.props.marketData.currency);
+        }, 90000);
+    }
+
     onCurrencyClick() {
         switch (this.props.marketData.currency) {
             case 'USD':
@@ -98,7 +106,10 @@ class Chart extends React.Component {
             <View style={styles.container}>
                 <View style={styles.topContainer}>
                     <View style={{ flex: 1 }}>
-                        <TouchableWithoutFeedback onPress={event => this.onCurrencyClick()}>
+                        <TouchableWithoutFeedback
+                            onPress={event => this.onCurrencyClick()}
+                            hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                        >
                             <View style={styles.button}>
                                 <Text style={styles.buttonText}>{this.props.marketData.currency}</Text>
                             </View>
@@ -108,7 +119,10 @@ class Chart extends React.Component {
                         <Text style={styles.iotaPrice}>{this.props.marketData.price} / Mi</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <TouchableWithoutFeedback onPress={event => this.onTimeFrameClick()}>
+                        <TouchableWithoutFeedback
+                            onPress={event => this.onTimeFrameClick()}
+                            hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                        >
                             <View style={styles.button}>
                                 <Text style={styles.buttonText}>{this.props.marketData.timeFrame}</Text>
                             </View>

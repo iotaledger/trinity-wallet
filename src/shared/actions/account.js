@@ -98,13 +98,15 @@ export function getAccountInfo(seedName, seedIndex, accountInfo) {
                 const indexesWithBalanceChange = getIndexesWithBalanceChange(newBalances, oldBalances);
                 // Pair new balances to addresses to add to store
                 addressesWithBalance = formatAddressBalances(addresses, newBalances);
+
                 // Calculate balance
                 const balance = calculateBalance(addressesWithBalance);
+                console.log(indexesWithBalanceChange);
                 // If balance has changed for any addresses, get updated transaction objects
                 {
                     /* TODO: Only check check addresses where balance has changed */
                 }
-                if (true) {
+                if (indexesWithBalanceChange.length > 0) {
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
                         dispatch(getTransfers(seedName, addresses)),
                     );
