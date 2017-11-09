@@ -1,5 +1,7 @@
 import { iota } from '../libs/iota';
 import { updateAddresses } from '../actions/account';
+import { generateAlert } from '../actions/alerts';
+
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
 
@@ -154,6 +156,25 @@ function filterSpentAddresses(inputs) {
     });
 }
 
+export function replayBundle(transactionHash, depth = 3, minWeightMagnitude = 14) {
+    return dispatch => {
+        // Should be fire and forget
+        return iota.api.replayBundle(transactionHash, depth, minWeightMagnitude, err => {
+            if (err) {
+                console.log(err);
+            } else {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        'Replaying Bundle',
+                        `Reattaching transaction with hash ${transactionHash}`,
+                    ),
+                );
+            }
+        });
+    };
+}
+
 // Check for sending from a used addresses
 function getUnspentInputs(seed, start, threshold, inputs, cb) {
     if (arguments.length === 4) {
@@ -256,7 +277,7 @@ export function sendTransaction(seed, addressesWithBalance, seedName, address, v
                     if (!error) {
                         dispatch(checkForNewAddress(seedName, addressesWithBalance, success));
                         dispatch(sendTransferSuccess(address, value));
-                        console.log('SENT');
+                        dispatch(generateAlert('success', 'Transfer completed', 'Transfer completed successfully.'));
                     } else {
                         dispatch(sendTransferError(error));
                         console.log('SOMETHING WENT WRONG: ', error);
