@@ -86,6 +86,7 @@ class SeedReentry extends React.Component {
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically={true}
+                                    returnKeyType="done"
                                     value={seed}
                                     onChangeText={seed => this.setState({ seed })}
                                     containerStyle={{

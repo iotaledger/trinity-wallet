@@ -35,6 +35,12 @@ class EnterSeed extends React.Component {
         };
     }
 
+    handleKeyPress = event => {
+        if (event.key == 'Enter') {
+            Keyboard.dismiss();
+        }
+    };
+
     onDonePress() {
         if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
             this.dropdown.alertWithType(
@@ -114,6 +120,9 @@ class EnterSeed extends React.Component {
                                             baseColor="white"
                                             tintColor="#F7D002"
                                             enablesReturnKeyAutomatically={true}
+                                            returnKeyType="done"
+                                            blurOnSubmit={true} //Dismisses keyboard upon pressing Done
+                                            autoCapitalize="characters"
                                             label="Seed"
                                             autoCorrect={false}
                                             value={seed}
