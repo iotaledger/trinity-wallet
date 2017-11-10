@@ -4483,6 +4483,10 @@ react-native-fs@^2.8.1:
     base-64 "^0.1.0"
     utf8 "^2.1.1"
 
+react-native-hockeyapp@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-hockeyapp/-/react-native-hockeyapp-0.5.1.tgz#409fddd7f0252feeb9ca5546a916aa51a06c5fca"
+
 react-native-html-to-pdf@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/react-native-html-to-pdf/-/react-native-html-to-pdf-0.4.0.tgz#93a1af31db12c0e7f4ec51c569070d8e61177479"
