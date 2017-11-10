@@ -263,7 +263,7 @@ class Send extends Component {
                     <View style={{ flexDirection: 'row' }}>
                         <View style={styles.textFieldContainer}>
                             <TextField
-                                keyboardType={'numeric'}
+                                autoCapitalize="characters"
                                 style={styles.textField}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}

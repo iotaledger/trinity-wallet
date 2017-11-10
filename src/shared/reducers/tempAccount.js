@@ -101,7 +101,6 @@ export default (state = initialState, action) => {
                 isSendingTransfer: false,
                 lastTxAddress: '',
                 lastTxValue: 0,
-                triggerSentDropdown: false,
             };
         case 'GET_TRANSFERS_REQUEST':
             return {

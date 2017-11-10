@@ -60,9 +60,8 @@ export function getAccountInfoNewSeed(seed, seedName) {
                 // Sort tranfers and add transfer values
                 const transfers = formatTransfers(success.transfers, success.addresses);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
-                console.log('success');
                 Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers))).then(
-                    dispatch(setReady()),
+                    dispatch(setReady(true)),
                 );
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
@@ -115,7 +114,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo) {
                 } else {
                     // Set account info, then finish loading
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
-                        dispatch(setReady()),
+                        dispatch(setReady(true)),
                     );
                 }
                 // Additional check in case user has account activity in another wallet
@@ -157,7 +156,7 @@ export function getTransfers(seedName, addresses) {
                                 transfers = formatTransfers(transfers, addresses);
                                 // Update transfers then set ready
                                 Promise.resolve(dispatch(updateTransfers(seedName, transfers))).then(
-                                    dispatch(setReady()),
+                                    dispatch(setReady(true)),
                                 );
                                 dispatch(getTransfersSuccess());
                             } else {
