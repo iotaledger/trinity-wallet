@@ -23,14 +23,15 @@ const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 let results = '';
 
 class PaperWallet extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             checkboxImage: require('../../shared/images/checkbox-checked.png'),
             showIotaLogo: true,
             iotaLogoVisibility: 'visible',
             pressedPrint: false,
         };
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
     onDonePress() {
@@ -45,6 +46,14 @@ class PaperWallet extends React.Component {
                     item.forEach(item => RNFS.unlink(item.path)),
                 );
             }
+        }
+    }
+
+    onNavigatorEvent(event) {
+        if (event.id === 'willAppear') {
+            this.props.navigator.toggleNavBar({
+                to: 'hidden',
+            });
         }
     }
 
@@ -163,6 +172,10 @@ class PaperWallet extends React.Component {
             base64: true,
             fonts: ['../../shared/custom-fonts/Inconsolata-Bold.ttf'],
         };
+
+        this.props.navigator.toggleNavBar({
+            to: 'shown',
+        });
 
         try {
             if (isAndroid) {
