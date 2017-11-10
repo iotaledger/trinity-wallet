@@ -46,7 +46,8 @@ class Login extends React.Component {
         HockeyApp.configure(
             '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
             true, //Auto send crash reports
-            0, //Authentication type
+            1, //Authentication type
+            'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
         );
     }
 

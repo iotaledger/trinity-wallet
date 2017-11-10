@@ -41,13 +41,13 @@ class LanguageSetup extends React.Component {
         };
     }
 
-    // Commented out until we get Apple Developer Program membership
-
+    /*
     componentWillMount() {
         HockeyApp.configure(
             '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
             true, //Auto send crash reports
-            0, //Authentication type
+            1, //Authentication type
+            'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
         );
     }
 
@@ -56,6 +56,7 @@ class LanguageSetup extends React.Component {
         HockeyApp.checkForUpdate(); // optional
         //  setTimeout(function(){HockeyApp.generateTestCrash();}, 2000);
     }
+    */
 
     onNextPress() {
         this.props.navigator.push({
