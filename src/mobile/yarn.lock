@@ -1103,6 +1103,10 @@ big-integer@^1.6.7:
   version "1.6.24"
   resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.24.tgz#1ed84d018ac3c1c72b307e7f7d94008e8ee20311"
 
+bignumber.js@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-4.1.0.tgz#db6f14067c140bd46624815a7916c92d9b6c24b1"
+
 bl@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/bl/-/bl-0.8.2.tgz#c9b6bca08d1bc2ea00fc8afb4f1a5fd1e1c66e4e"
@@ -2821,11 +2825,12 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-"iota.lib.js@git+https://git@github.com/aquadestructor/iota.lib.js.git#b2cff00":
-  version "0.4.1"
-  resolved "git+https://git@github.com/aquadestructor/iota.lib.js.git#b2cff00d6f5b0fdb7491d73e50957aa53ce730e1"
+"iota.lib.js@git+https://github.com/l3wi/iota.lib.js.git":
+  version "0.4.4"
+  resolved "git+https://github.com/l3wi/iota.lib.js.git#374fdffb907682a0ed7962b8c2b901a8b054fe60"
   dependencies:
     async "^2.5.0"
+    bignumber.js "^4.1.0"
     crypto-js "^3.1.9-1"
     xmlhttprequest "^1.8.0"
 
