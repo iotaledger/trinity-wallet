@@ -24,8 +24,10 @@ import {
     decrementSeedIndex,
     setReceiveAddress,
     replayBundle,
+    setReady,
+    clearTempData,
 } from '../../shared/actions/tempAccount';
-import { getAccountInfo, setBalance } from '../../shared/actions/account';
+import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
 import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -43,6 +45,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        this.props.setFirstUse(false);
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -50,6 +53,10 @@ class Home extends Component {
             this.props.setBalance(addressesWithBalance);
         }
         this.startPolling();
+    }
+
+    componentWillUnmount() {
+        this.stopPolling();
     }
 
     stopPolling() {
@@ -79,7 +86,7 @@ class Home extends Component {
     }
 
     onLeftArrowPress() {
-        if (this.props.tempAccount.seedIndex > 0) {
+        if (this.props.tempAccount.seedIndex > 0 && !this.props.tempAccount.isGeneratingReceiveAddress) {
             const seedIndex = this.props.tempAccount.seedIndex - 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
@@ -95,7 +102,10 @@ class Home extends Component {
     }
 
     onRightArrowPress() {
-        if (this.props.tempAccount.seedIndex + 1 < this.props.account.seedCount) {
+        if (
+            this.props.tempAccount.seedIndex + 1 < this.props.account.seedCount &&
+            !this.props.tempAccount.isGeneratingReceiveAddress
+        ) {
             const seedIndex = this.props.tempAccount.seedIndex + 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
@@ -159,7 +169,9 @@ class Home extends Component {
                             style={{
                                 width: width / 20,
                                 height: width / 20,
-                                opacity: this.props.tempAccount.seedIndex == 0 ? 0.3 : 1,
+                                opacity: this.props.tempAccount.isGeneratingReceiveAddress
+                                    ? 0.3
+                                    : this.props.tempAccount.seedIndex == 0 ? 0.3 : 1,
                             }}
                             source={require('../../shared/images/arrow-left.png')}
                         />
@@ -177,7 +189,9 @@ class Home extends Component {
                             style={{
                                 width: width / 20,
                                 height: width / 20,
-                                opacity: this.props.tempAccount.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
+                                opacity: this.props.tempAccount.isGeneratingReceiveAddress
+                                    ? 0.3
+                                    : this.props.tempAccount.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
                             }}
                             source={require('../../shared/images/arrow-right.png')}
                         />
@@ -396,6 +410,35 @@ const styles = StyleSheet.create({
     partiallyOpaque: {
         opacity: 0.6,
     },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
+    },
+    dropdownImage: {
+        marginLeft: width / 25,
+        width: width / 10,
+        height: width / 10,
+        alignSelf: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
@@ -426,6 +469,9 @@ const mapDispatchToProps = dispatch => ({
     replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
     generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
     disposeOffAlert: () => dispatch(disposeOffAlert()),
+    setFirstUse: boolean => dispatch(setFirstUse(boolean)),
+    setReady: boolean => dispatch(setReady(boolean)),
+    clearTempData: () => dispatch(clearTempData()),
 });
 
 Home.propTypes = {
