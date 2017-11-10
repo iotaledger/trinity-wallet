@@ -2,7 +2,7 @@ import { SInfo } from '../../mobile/exports';
 
 export function storeInKeychain(key, seed, name, callback) {
     getFromKeychain(key, value => {
-        if (typeof value == 'undefined') {
+        if (typeof value == 'undefined' || value === null) {
             var newSeedArray = [{ name: name, seed: seed }];
             newSeedArray = JSON.stringify(newSeedArray);
             store(newSeedArray);
