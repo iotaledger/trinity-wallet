@@ -2825,9 +2825,9 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-"iota.lib.js@git+https://github.com/l3wi/iota.lib.js.git":
+"iota.lib.js@git+https://github.com/aquadestructor/iota.lib.js.git#269197a":
   version "0.4.4"
-  resolved "git+https://github.com/l3wi/iota.lib.js.git#374fdffb907682a0ed7962b8c2b901a8b054fe60"
+  resolved "git+https://github.com/aquadestructor/iota.lib.js.git#269197a64f24ad6c32a83919949123d06afa6299"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
