@@ -63,14 +63,16 @@ class AddAdditionalSeed extends React.Component {
                 `Please use a unique nickname for your seed.`,
             );
         } else {
+            console.log('Password: ' + this.props.tempAccount.password);
+
             storeInKeychain(
                 this.props.tempAccount.password,
                 this.state.seed,
                 this.state.seedName,
                 () => {
                     this.stopPolling();
-                    this.props.setFirstUse(true);
                     this.props.clearTempData();
+                    this.props.setFirstUse(true);
                     this.props.increaseSeedCount();
                     this.props.addSeedName(this.state.seedName);
                     Promise.resolve(this.props.getAccountInfoNewSeed(this.state.seed, this.state.seedName)).then(
@@ -98,7 +100,9 @@ class AddAdditionalSeed extends React.Component {
     }
 
     stopPolling() {
-        for (var i = 1; i < 99999; i++) window.clearInterval(i);
+        for (var i = 1; i < 99999; i++) {
+            window.clearInterval(i);
+        }
     }
 
     onQRRead(data) {

@@ -347,7 +347,6 @@ class PaperWallet extends React.Component {
                     <View style={{ paddingTop: height / 20 }}>
                         <TouchableOpacity onPress={event => this.onPrintPress()}>
                             <View style={styles.printButton}>
-                                <Image style={styles.printImage} source={require('../../shared/images/print.png')} />
                                 <Text style={styles.printText}>PRINT PAPER WALLET</Text>
                             </View>
                         </TouchableOpacity>
@@ -491,27 +490,20 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     printButton: {
-        flexDirection: 'row',
-        borderColor: 'rgba(255,255,255,0.6)',
+        borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 2.5,
-        height: height / 20,
+        height: height / 16,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'space-around',
         backgroundColor: '#009f3f',
     },
     printText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingRight: width / 50,
-    },
-    printImage: {
-        height: width / 27,
-        width: width / 27,
-        paddingLeft: width / 50,
     },
     paperWalletContainer: {
         width: width / 1.1,

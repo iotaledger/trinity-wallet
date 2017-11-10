@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteFromKeyChain } from '../../shared/libs/cryptography';
 import { resetWallet } from '../../shared/actions/app';
+import { setFirstUse, setOnboardingComplete } from '../../shared/actions/account';
+import { clearTempData } from '../../shared/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -72,7 +74,9 @@ class WalletResetRequirePassword extends Component {
         if (isAuthenticated) {
             deleteFromKeyChain(password);
             resetWallet();
-
+            this.props.setOnboardingComplete(false);
+            this.props.setFirstUse(true);
+            this.props.clearTempData();
             this.redirectToInitialScreen();
         } else {
             dropdown.alertWithType(
@@ -91,9 +95,6 @@ class WalletResetRequirePassword extends Component {
                     <View>
                         <View style={styles.topWrapper}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                            <View style={styles.headerWrapper}>
-                                <Text style={styles.header}>{toUpper('authenticate')}</Text>
-                            </View>
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={styles.generalText}>Enter password to reset your wallet.</Text>
@@ -241,6 +242,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     resetWallet: () => dispatch(resetWallet()),
+    setFirstUse: boolean => dispatch(setFirstUse(boolean)),
+    setOnboardingComplete: boolean => dispatch(setOnboardingComplete(boolean)),
+    clearTempData: () => dispatch(clearTempData()),
 });
 
 WalletResetRequirePassword.propTypes = {

@@ -2,7 +2,7 @@ const marketData = (
     state = {
         currency: 'USD',
         timeFrame: '24h',
-        chartData: [{ x: 0, y: 0 }, { x: 0, y: 0 }],
+        chartData: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
     },
     action,
 ) => {

@@ -54,9 +54,10 @@ class Receive extends Component {
         const seedIndex = this.props.tempAccount.seedIndex;
         const seedName = this.props.account.seedNames[seedIndex];
         const accountInfo = this.props.account.accountInfo;
-        const addresses = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+        const addresses = currentSeedAccountInfo.addresses;
         getFromKeychain(this.props.tempAccount.password, value => {
-            if (!isUndefined(value)) {
+            if (typeof value != 'undefined' && value != null) {
                 const seed = getSeed(value, seedIndex);
                 generate(seed, seedName, addresses);
             } else {

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
-import { setBalance } from '../../shared/actions/account';
+import { setBalance, setFirstUse } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
@@ -27,24 +27,15 @@ class Loading extends Component {
     render() {
         const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
 
-        if (!ready && !firstUse) {
-            return (
-                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                    <StatusBar barStyle="light-content" />
-                    <IotaSpin duration={3000} />
-                </ImageBackground>
-            );
-        } else if (!ready && firstUse) {
+        if (!ready && this.props.account.firstUse) {
             return (
                 <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={styles.infoText}>
-                            {' '}
-                            Loading seed for the first time. This may take a while. You may notice your device slowing
-                            down.
-                        </Text>
+                        <Text style={styles.infoText}>Loading seed for the first time.</Text>
+                        <Text style={styles.infoText}>This may take a while.</Text>
+                        <Text style={styles.infoText}>You may notice your device slowing down.</Text>
                         <ActivityIndicator
                             animating={true}
                             style={styles.activityIndicator}
@@ -53,6 +44,13 @@ class Loading extends Component {
                         />
                     </View>
                     <View style={{ flex: 1 }} />
+                </ImageBackground>
+            );
+        } else if (!ready && !this.props.account.firstUse) {
+            return (
+                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                    <StatusBar barStyle="light-content" />
+                    <IotaSpin duration={3000} />
                 </ImageBackground>
             );
         } else {
@@ -70,16 +68,16 @@ const styles = StyleSheet.create({
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 27.6,
-        textAlign: 'center',
-        paddingHorizontal: width / 9,
+        fontSize: width / 23,
         backgroundColor: 'transparent',
-        paddingTop: height / 10,
+        paddingTop: height / 30,
+        textAlign: 'center',
     },
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: height / 40,
     },
 });
 
@@ -101,6 +99,9 @@ const mapDispatchToProps = dispatch => ({
     },
     setBalance: addressesWithBalance => {
         dispatch(setBalance(addressesWithBalance));
+    },
+    setFirstUse: boolean => {
+        dispatch(setFirstUse(boolean));
     },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
 });

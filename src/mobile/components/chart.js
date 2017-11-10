@@ -5,7 +5,7 @@ import { VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 
 const { height, width } = Dimensions.get('window');
 
-const viewbox = `0 0 ${width / 1.035} ${width / 1.29375}`;
+const viewbox = `${width / 4.7} ${height / 61.3} ${width / 3.45} ${height / 3.555}`;
 
 class Chart extends React.Component {
     constructor() {
@@ -130,7 +130,7 @@ class Chart extends React.Component {
                     </View>
                 </View>
                 <View style={styles.chartContainer}>
-                    <Svg height={height / 2.65} width={width} viewBox={viewbox}>
+                    <Svg height={height / 3.2} width={width / 1.2} viewBox={viewbox}>
                         <Defs>
                             <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
                                 <Stop stopColor="#FFA25B" stopOpacity="1" offset="100%" />
@@ -143,11 +143,12 @@ class Chart extends React.Component {
                             standalone={false}
                             style={{
                                 axis: { stroke: 'transparent' },
-                                tickLabels: { fill: 'white', fontSize: width / 34.5, fontFamily: 'Lato-Regular' },
+                                tickLabels: { fill: 'white', fontSize: width / 44, fontFamily: 'Lato-Regular' },
                             }}
-                            height={height / 2.65}
+                            height={height / 3.2}
+                            width={width / 1.2}
                             gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.25 }} />}
-                            tickLabelComponent={<VictoryLabel x={-width / 25} textAnchor="start" />}
+                            tickLabelComponent={<VictoryLabel x={0} textAnchor="start" />}
                             tickValues={this.getTickValues()}
                             domain={{
                                 y: [this.getMinY(), this.getMaxY()],
@@ -166,7 +167,8 @@ class Chart extends React.Component {
                                 y: [this.getMinY(), this.getMaxY()],
                             }}
                             scale={{ x: 'time', y: 'linear' }}
-                            height={height / 2.65}
+                            height={height / 3.2}
+                            width={width / 1.2}
                             standalone={false}
                             animate={{
                                 duration: 1500,
@@ -191,14 +193,12 @@ const styles = StyleSheet.create({
         paddingTop: height / 80,
     },
     topContainer: {
-        flex: 1,
+        flex: 0.7,
         flexDirection: 'row',
         backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent: 'space-between',
         zIndex: 1,
-        paddingBottom: height / 25,
-        paddingHorizontal: width / 8.5,
     },
     priceContainer: {
         flex: 8,
@@ -209,11 +209,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     chartContainer: {
-        flex: 3,
+        flex: 3.3,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
-        paddingLeft: width / 11,
     },
     marketDataContainer: {
         flex: 0.6,
@@ -221,7 +220,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: width / 8.5,
     },
     buttonText: {
         color: 'white',
