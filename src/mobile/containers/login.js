@@ -26,6 +26,8 @@ const StatusBarDefaultBarStyle = 'light-content';
 
 const { height, width } = Dimensions.get('window');
 
+var HockeyApp = require('react-native-hockeyapp');
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -38,6 +40,19 @@ class Login extends React.Component {
         this.props.getChartData('USD', '24h');
         this.props.getPrice('USD');
         this.props.getMarketData();
+    }
+
+    componentWillMount() {
+        HockeyApp.configure(
+            '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
+            true, //Auto send crash reports
+            0, //Authentication type
+        );
+    }
+
+    componentDidMount() {
+        HockeyApp.start();
+        HockeyApp.checkForUpdate(); // optional
     }
 
     onLoginPress() {
