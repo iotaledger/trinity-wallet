@@ -79,22 +79,30 @@ export function setCurrency(currency) {
     };
 }
 
-export function setPrice(currency, data) {
-    switch (currency) {
+export function setPrice(selectedCurrency, data) {
+    const priceData = get(data, `RAW.IOT[${selectedCurrency}]`);
+    const price = get(priceData, 'PRICE') || 0;
+
+    switch (selectedCurrency) {
         case 'USD':
             return {
                 type: ActionTypes.SET_PRICE,
-                payload: data.RAW.IOT[currency].PRICE,
+                payload: price,
             };
         case 'BTC':
             return {
                 type: ActionTypes.SET_PRICE,
-                payload: parseFloat(data.RAW.IOT[currency].PRICE).toFixed(6),
+                payload: price ? parseFloat(price).toFixed(6) : price,
             };
         case 'ETH':
             return {
                 type: ActionTypes.SET_PRICE,
-                payload: parseFloat(data.RAW.IOT[currency].PRICE).toFixed(5),
+                payload: price ? parseFloat(price).toFixed(5) : price,
+            };
+        default:
+            return {
+                type: ActionTypes.SET_PRICE,
+                payload: price,
             };
     }
 }
