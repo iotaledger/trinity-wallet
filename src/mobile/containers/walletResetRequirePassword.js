@@ -91,9 +91,6 @@ class WalletResetRequirePassword extends Component {
                     <View>
                         <View style={styles.topWrapper}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                            <View style={styles.headerWrapper}>
-                                <Text style={styles.header}>{toUpper('authenticate')}</Text>
-                            </View>
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={styles.generalText}>Enter password to reset your wallet.</Text>
@@ -152,7 +149,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topWrapper: {
-        flex: 1.6,
+        flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
@@ -166,19 +163,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-    },
-    headerWrapper: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: height / 8,
-        paddingTop: height / 35,
-    },
-    header: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     generalText: {
         color: 'white',
