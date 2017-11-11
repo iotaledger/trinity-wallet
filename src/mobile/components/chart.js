@@ -13,7 +13,6 @@ class Chart extends React.Component {
             this.props.getMarketData();
             this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
             this.props.getPrice(this.props.marketData.currency);
-            console.log('Updating chart');
         }, 90000);
     }
 

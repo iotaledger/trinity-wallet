@@ -159,7 +159,7 @@ class Send extends Component {
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const seedName = this.props.account.seedNames[seedIndex];
-        const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
 
         const address = this.state.address;
         const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
@@ -186,7 +186,7 @@ class Send extends Component {
 
         const _this = this;
         function sendTx(seed) {
-            _this.props.sendTransaction(seed, addressesWithBalance, seedName, address, value, message);
+            _this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
         }
     }
 
@@ -525,8 +525,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, addressesWithBalance, seedName, address, value, message) => {
-        dispatch(sendTransaction(seed, addressesWithBalance, seedName, address, value, message));
+    sendTransaction: (seed, currentSeedAccountInfo, seedName, address, value, message) => {
+        dispatch(sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message));
     },
     getAccountInfo: (seedName, seedIndex, accountInfo) => {
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo));

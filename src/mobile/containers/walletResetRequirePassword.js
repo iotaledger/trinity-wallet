@@ -5,7 +5,7 @@ import { deleteFromKeyChain } from '../../shared/libs/cryptography';
 import { resetWallet } from '../../shared/actions/app';
 import { setFirstUse, setOnboardingComplete } from '../../shared/actions/account';
 import { Navigation } from 'react-native-navigation';
-import { clearTempData } from '../../shared/actions/tempAccount';
+import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -79,6 +79,7 @@ class WalletResetRequirePassword extends Component {
             this.props.setOnboardingComplete(false);
             this.props.setFirstUse(true);
             this.props.clearTempData();
+            this.props.setPassword('');
             this.redirectToInitialScreen();
         } else {
             dropdown.alertWithType(
@@ -247,6 +248,7 @@ const mapDispatchToProps = dispatch => ({
     setFirstUse: boolean => dispatch(setFirstUse(boolean)),
     setOnboardingComplete: boolean => dispatch(setOnboardingComplete(boolean)),
     clearTempData: () => dispatch(clearTempData()),
+    setPassword: password => dispatch(setPassword(password)),
 });
 
 WalletResetRequirePassword.propTypes = {

@@ -94,7 +94,6 @@ export default (state = initialState, action) => {
                 ready: false,
                 receiveAddress: '',
                 seed: '',
-                password: '',
                 usedSeedToLogin: false,
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
