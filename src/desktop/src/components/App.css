@@ -13,6 +13,8 @@
     --color-red: #ff6c69;
     --color-green: #9dffaf;
     --color-darkgreen: green;
+    --color-pale-darkgreen: #203c43;
+    --color-primary: #04a997;
 
     --color-label: var(--color-yellow);
     --color-button-warning: var(--color-yellow);
@@ -21,6 +23,11 @@
     --color-button-extra: var(--color-blue);
     --color-button-cta: var(--color-darkgreen);
     --color-button-default: white;
+
+    --color-sidenav-text: #9eaaad;
+    --color-sidenav-text-active: white;
+    --color-sidenav-underline: transparent;
+    --color-sidenav-underline-active: var(--color-primary);
 
     /*--font-size-default: 1.8vh;*/
     --font-size-default: 14px;
