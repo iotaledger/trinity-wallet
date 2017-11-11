@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import css from './SaveYourSeedOptions.css';
 
@@ -18,7 +18,7 @@ class SaveYourSeedOptions extends PureComponent {
 
         return (
             <Template>
-                <Main className={css.main}>
+                <Content className={css.main}>
                     <p>{t('text1')}</p>
                     <p>
                         <Button to="/seed/save/manual" variant="extra">
@@ -35,7 +35,7 @@ class SaveYourSeedOptions extends PureComponent {
                             {t('optionC')}
                         </Button>
                     </p>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/seed/generate" variant="warning">
                         {t('button2')}
