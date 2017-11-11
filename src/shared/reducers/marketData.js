@@ -1,47 +1,42 @@
-const marketData = (
-    state = {
-        currency: 'USD',
-        timeFrame: '24h',
-        chartData: [{ x: 0, y: 0 }, { x: 0, y: 0 }],
-    },
-    action,
-) => {
+const initialState = {
+    currency: 'USD',
+    timeFrame: '24h',
+    chartData: [{ x: 0, y: 0 }, { x: 0, y: 0 }],
+};
+
+const marketData = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_CURRENCY':
-            state = {
+            return {
                 ...state,
                 currency: action.payload,
             };
-            break;
         case 'SET_TIMEFRAME':
-            state = {
+            return {
                 ...state,
                 timeFrame: action.payload,
             };
-            break;
         case 'SET_PRICE':
-            state = {
+            return {
                 ...state,
                 price: action.payload,
             };
-            break;
         case 'SET_MARKETDATA':
-            state = {
+            return {
                 ...state,
                 usdPrice: action.usdPrice,
                 mcap: action.mcap,
                 volume: action.volume,
                 change24h: action.change24h,
             };
-            break;
         case 'SET_CHARTDATA':
-            state = {
+            return {
                 ...state,
                 chartData: action.payload,
             };
-            break;
+        default:
+            return state;
     }
-    return state;
 };
 
 export default marketData;
