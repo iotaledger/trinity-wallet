@@ -1,3 +1,5 @@
+import cloneDeep from 'lodash/cloneDeep';
+import size from 'lodash/size';
 import { iota } from '../libs/iota';
 import { updateAddresses, addPendingTransfer } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
@@ -244,13 +246,19 @@ export function checkNode() {
 
 export function generateNewAddress(seed, seedName, addresses) {
     return dispatch => {
-        iota.api.getNewAddress(seed, { checksum: true }, (error, address) => {
+        const index = size(addresses);
+        const options = { checksum: true, index };
+
+        iota.api.getNewAddress(seed, options, (error, address) => {
             if (!error) {
+                const updatedAddresses = cloneDeep(addresses);
                 const addressNoChecksum = address.substring(0, 81);
+                // In case the newly created address is not part of the addresses object
+                // We'll just add that as a key with a 0 balance.
                 if (!(addressNoChecksum in addresses)) {
-                    addresses[addressNoChecksum] = 0;
+                    updatedAddresses[addressNoChecksum] = 0;
                 }
-                dispatch(updateAddresses(seedName, addresses));
+                dispatch(updateAddresses(seedName, updatedAddresses));
                 dispatch(generateNewAddressSuccess(address));
             } else {
                 dispatch(generateNewAddressError());

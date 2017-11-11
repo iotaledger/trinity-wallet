@@ -178,9 +178,6 @@ class ChangePassword extends Component {
                     <View>
                         <View style={styles.topWrapper}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.logo} />
-                            <View style={styles.headerWrapper}>
-                                <Text style={styles.header}>{toUpper('change password')}</Text>
-                            </View>
                         </View>
                         <View style={styles.midWrapper}>
                             <View style={styles.infoTextWrapper}>
@@ -222,7 +219,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.brand.primary,
     },
     topWrapper: {
-        flex: 1.3,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
@@ -237,19 +234,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-    },
-    headerWrapper: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: height / 8,
-        paddingTop: height / 35,
-    },
-    header: {
-        color: Colors.white,
-        fontFamily: Fonts.primary,
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     logo: {
         height: width / 5,
