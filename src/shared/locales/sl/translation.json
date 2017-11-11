@@ -85,7 +85,7 @@
         "optionA": "Ročna kopija",
         "optionB": " Papirnata denarnica",
         "optionC": "Kopiraj v clipboard",
-        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "explanation": "Kliknite na spodnji gumb za kopiranje seeda v password manager. Seed bo ostal v clipbordu še 60 sekund.",
         "text": "Ne shranjujte seeda v navadnem tekstu.",
         "button1": "Kopiraj v clipboard",
         "button2": "Opravljeno"
@@ -95,15 +95,15 @@
         "optionB": " Papirnata denarnica",
         "optionC": "Kopiraj v clipboard",
         "explanation": "Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
-        "text1": "Store it safely",
-        "text2": "Never share your seed with anyone.",
+        "text1": "Shranite ga varno",
+        "text2": "Nikoli z nikomer ne delite svojega seeda.",
         "check_button": "IOTA logotip",
         "button1": "Printanje papirnate denarnice",
         "button2": "Opravljeno"
     },
     "setPassword": {
         "title": "Nastavitve gesla",
-        "text": "Now we need to set up a password.",
+        "text": "Ok, zdaj moramo nastaviti geslo.",
         "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
         "reminder": "Ensure you use a strong password of at least 12 characters.",
         "placeholder1": "'Geslo'",
