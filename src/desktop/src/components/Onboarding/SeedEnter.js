@@ -7,7 +7,7 @@ import { isValidSeed } from '../../../../shared/libs/util';
 import { showError } from 'actions/notifications';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
 import Infobox from '../UI/Infobox';
@@ -90,7 +90,7 @@ class SeedEnter extends React.PureComponent {
         const { seed = '', showScanner } = this.state;
         return (
             <Template type="form" onSubmit={this.onSubmit}>
-                <Main>
+                <Content>
                     <div className={css.formGroup}>
                         <textarea
                             name="seed"
@@ -133,7 +133,7 @@ class SeedEnter extends React.PureComponent {
                             <strong>{t('reminder')}</strong>
                         </p>
                     </Infobox>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/wallet-setup" variant="warning">
                         {t('button2')}

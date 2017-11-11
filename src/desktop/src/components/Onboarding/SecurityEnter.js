@@ -7,7 +7,7 @@ import { setOnboardingCompletionStatus } from 'actions/app';
 import { showError } from 'actions/notifications';
 // import { getSelectedSeed } from 'selectors/seeds';
 import { isValidPassword } from '../../../../shared/libs/util';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 import PasswordInput from '../UI/PasswordInput';
@@ -59,7 +59,7 @@ class SecurityEnter extends React.PureComponent {
         const { t } = this.props;
         return (
             <Template type="form" onSubmit={this.onRequestNext}>
-                <Main>
+                <Content>
                     <p>{t('text')}</p>
                     <div className={css.formGroup}>
                         <PasswordInput placeholder={t('placeholder1')} name="password" onChange={this.changeHandler} />
@@ -75,7 +75,7 @@ class SecurityEnter extends React.PureComponent {
                         <p>{t('explanation')}</p>
                         <p>{t('reminder')}</p>
                     </Infobox>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/seed/name" variant="warning">
                         {t('button2')}
