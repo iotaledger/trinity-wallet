@@ -171,6 +171,16 @@ export function getTransfers(seedName, addresses) {
     };
 }
 
+export function addPendingTransfer(seedName, transfers, success) {
+    return dispatch => {
+        success[0].transferValue = -success[0].value;
+        success[0].persistence = false;
+        // Add pending transfer at front of transfers array
+        transfers.unshift(success);
+        dispatch(updateTransfers(seedName, transfers));
+    };
+}
+
 export function updateTransfers(seedName, transfers) {
     return {
         type: 'UPDATE_TRANSFERS',
