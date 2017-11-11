@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import Template, { Content } from './Template';
-import Loading from '../UI/Loading';
-import css from '../Layout/Main.css';
+// import Loading from '../UI/Loading';
+// import css from '../Layout/Main.css';
 
 class Balance extends React.Component {
     static propTypes = {
-        t: PropTypes.func.isRequired,
+        // t: PropTypes.func.isRequired,
     };
 
     render() {
@@ -16,7 +16,8 @@ class Balance extends React.Component {
         return (
             <Template>
                 <Content>
-                    <Loading />
+                    {/* <Loading /> */}
+                    test
                 </Content>
             </Template>
         );
