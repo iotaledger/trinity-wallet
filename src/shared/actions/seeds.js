@@ -1,8 +1,11 @@
 // @flow
+import { seedsSelector, getSelectedIndex } from 'selectors/seeds';
+
 export const ActionTypes = {
     ADD_SEED: 'IOTA/SEEDS/ADD_SEED',
     SELECT_SEED: 'IOTA/SEEDS/SELECT_SEED',
     REMOVE_SEED: 'IOTA/SEEDS/REMOVE_SEED',
+    PATCH_SEED: 'IOTA/SEEDS/PATCH_SEED',
     CLEAR: 'IOTA/SEEDS/CLEAR',
 };
 
@@ -27,8 +30,25 @@ export const addAndSelectSeed = seed => {
         // if (seeds.items.find(item => item.seed === seed.seed)) {
         //     return;
         // }
-        dispatch(addSeed(seed));
-        dispatch(selectSeed(getState().seeds.items.length - 1));
+        dispatch(addSeed({ seed }));
+        dispatch(selectSeed(seedsSelector(getState()).items.length - 1));
+    };
+};
+
+export const renameCurrentSeed = name => {
+    return (dispatch, getState) => {
+        const index = getSelectedIndex(getState());
+        dispatch(patchSeed(index, { name }));
+    };
+};
+
+export const patchSeed = (index, values) => {
+    return {
+        type: ActionTypes.PATCH_SEED,
+        payload: {
+            index,
+            values,
+        },
     };
 };
 
