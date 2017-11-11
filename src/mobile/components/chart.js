@@ -8,23 +8,12 @@ const { height, width } = Dimensions.get('window');
 const viewbox = `${width / 4.7} ${height / 61.3} ${width / 3.45} ${height / 3.555}`;
 
 class Chart extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            data: [],
-            iotaMCAP: '',
-            iotaPrice: '',
-            iotaVolume: '',
-            currency: 'USD',
-            timeFrame: '24h',
-        };
-    }
-
     componentDidMount() {
         polling = setInterval(() => {
             this.props.getMarketData();
             this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
             this.props.getPrice(this.props.marketData.currency);
+            console.log('Updating chart');
         }, 90000);
     }
 
