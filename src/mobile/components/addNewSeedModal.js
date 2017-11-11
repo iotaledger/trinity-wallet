@@ -16,6 +16,7 @@ class AddNewSeedModal extends React.Component {
     onNewSeedPress() {}
 
     onExistingSeedPress() {
+        clearInterval(polling);
         this.props.navigate();
     }
 
