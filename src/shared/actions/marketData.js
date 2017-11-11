@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import size from 'lodash/size';
+
 // FIXME: Hacking no-console linting.
 // FIXME: Get rid of the unnecessary break statements.
 // FIXME: Add a default case for all the switch statements
@@ -5,27 +9,50 @@
 
 /* eslint-disable no-console */
 
+export const ActionTypes = {
+    SET_TIME_FRAME: 'IOTA/MARKET_DATA/SET_TIME_FRAME',
+    SET_CHART_DATA: 'IOTA/MARKET_DATA/SET_CHART_DATA',
+    SET_STATISTICS: 'IOTA/MARKET_DATA/SET_STATISTICS',
+    SET_CURRENCY: 'IOTA/MARKET_DATA/SET_CURRENCY',
+    SET_PRICE: 'IOTA/MARKET_DATA/SET_PRICE',
+};
+
 export function setTimeFrame(timeFrame) {
     return {
-        type: 'SET_TIMEFRAME',
+        type: ActionTypes.SET_TIME_FRAME,
         payload: timeFrame,
     };
 }
 
 function setChartData(json, timeValue) {
-    const data = [];
-    for (let i = 0; i <= timeValue; i++) {
-        data[i] = { x: i, y: parseFloat(json.Data[i].close) };
+    const response = get({}, 'Data');
+    const hasDataPoints = size(response);
+
+    if (response && isArray(response) && hasDataPoints) {
+        const data = [];
+        for (let i = 0; i <= timeValue; i++) {
+            const y = get(response, `[${i}].close`);
+            data[i] = {
+                x: i,
+                y: parseFloat(y),
+            };
+        }
+
+        return {
+            type: ActionTypes.SET_CHART_DATA,
+            payload: data,
+        };
     }
+
     return {
-        type: 'SET_CHARTDATA',
-        payload: data,
+        type: ActionTypes.SET_CHART_DATA,
+        payload: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
     };
 }
 
 export function setMarketData(data) {
     return {
-        type: 'SET_MARKETDATA',
+        type: ActionTypes.SET_STATISTICS,
         usdPrice: data.RAW.IOT.USD.PRICE,
         mcap: Math.round(data.RAW.IOT.USD.PRICE * 2779530283)
             .toString()
@@ -39,7 +66,7 @@ export function setMarketData(data) {
 
 export function setCurrency(currency) {
     return {
-        type: 'SET_CURRENCY',
+        type: ActionTypes.SET_CURRENCY,
         payload: currency,
     };
 }
@@ -48,17 +75,17 @@ export function setPrice(currency, data) {
     switch (currency) {
         case 'USD':
             return {
-                type: 'SET_PRICE',
+                type: ActionTypes.SET_PRICE,
                 payload: data.RAW.IOT[currency].PRICE,
             };
         case 'BTC':
             return {
-                type: 'SET_PRICE',
+                type: ActionTypes.SET_PRICE,
                 payload: parseFloat(data.RAW.IOT[currency].PRICE).toFixed(6),
             };
         case 'ETH':
             return {
-                type: 'SET_PRICE',
+                type: ActionTypes.SET_PRICE,
                 payload: parseFloat(data.RAW.IOT[currency].PRICE).toFixed(5),
             };
     }
