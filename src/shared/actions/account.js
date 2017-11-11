@@ -98,7 +98,6 @@ export function getAccountInfo(seedName, seedIndex, accountInfo) {
 
                 // Calculate balance
                 const balance = calculateBalance(addressesWithBalance);
-                console.log(indexesWithBalanceChange);
                 // If balance has changed for any addresses, get updated transaction objects
                 {
                     /* TODO: Only check check addresses where balance has changed */
