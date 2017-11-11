@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
-// import Modal from '../UI/Modal';
 import LanguageSelect from '../UI/LanguageSelect';
 import css from '../Layout/Onboarding.css';
 
