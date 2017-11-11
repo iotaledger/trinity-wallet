@@ -12,22 +12,22 @@
     "welcome1": {
         "text1": "Gracias por descargar la billetera de IOTA.",
         "text2": "Vamos a pasar unos pocos minutos configurando tu billetera.",
-        "reminder": "Puede estar tentado a saltar algunos pasos, pero le instamos a seguir el proceso completo.",
-        "button1": "SEGUIR",
-        "button2": "VOLVER"
+        "reminder": "Puede tentarte saltar algunos pasos, pero te sugerimos seguir el proceso completo.",
+        "button1": "SIGUIENTE",
+        "button2": "ATRÁS"
     },
     "welcome2": {
-        "text1": "Vale. ¡Vamos a configurar su billetera!",
-        "text2": "¿Ya tiene un Seed que le gustaría utilizar?",
-        "seed_explanation1": "La seed de IOTA es, simultáneamente, el nombre del usuario y la contraseña para su cuenta, combinada en una cadena de 81 caracteres.",
-        "seed_explanation2": "Puede utilizarla para acceder a sus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierde su seed, también pierde su IOTA",
-        "reminder": "Por favor mantenga su seed en seguridad",
+        "text1": "OK. ¡Vamos a configurar tu billetera!",
+        "text2": "¿Ya tienes un seed que te gustaría usar?",
+        "seed_explanation1": "Una seed de IOTA funciona simultáneamente como nombre del usuario y contraseña para tu cuenta, combinados en una cadena de 81 caracteres.",
+        "seed_explanation2": "Puedes usarla para acceder a tus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierdes tu seed, también pierdes tus IOTAs",
+        "reminder": "Por favor guarda tu seed de manera segura",
         "button1": "SÍ",
         "button2": "NO"
     },
     "lightserver": {
-        "text1": "Un servidor simple es una puerta de entrada a la red IOTA, amablemente proporcionada por los miembros de la comunidad o por nuestros socios corporativos. ",
-        "text2": "Usted puede encontrar más informaciones sobre los servidores en: http://iotasupport.com/lightwallet.shtml",
+        "text1": "Un servidor liviano es una puerta de entrada a la red IOTA, amablemente proporcionada por miembros de la comunidad o por nuestros socios corporativos.",
+        "text2": "Puedes encontrar mas información sobre estos servidores en: http://iotasupport.com/lightwallet.shtml",
         "text3": "Por favor, seleccione un servidor de la lista de abajo.",
         "server_label": "Servidor",
         "custom_server_label": "Dirección de otro servidor",
@@ -51,7 +51,7 @@
         "placeholder": "SEED",
         "seed_explanation": "Se aconseja que las seeds tengan 81 caracteres. Además, es obligatório que sean letras mayúsculas (de A a Z) e que incluyan el número 9. No se pueden utilizar seeds con más de 81 caracteres.",
         "reminder": "NUNCA COMPARTA SU SEED CON NADIE",
-        "scan_code": "Escanear código QR",
+        "scan_code": "Escanea el código QR",
         "close": "CERRAR",
         "button1": "LISTO",
         "button2": "VOLVER"
@@ -70,7 +70,7 @@
         "optionA": "COPIAR MANUALMENTE",
         "optionB": "IMPRIMIR BILLETERA DE PAPEL",
         "optionC": "COPIAR AL PORTAPAPELES",
-        "button1": "SEGUIR",
+        "button1": "CONTINUAR",
         "button2": "VOLVER"
     },
     "saveYourSeed2": {
@@ -105,9 +105,9 @@
         "text": "Aquí puedes ingresar un nombre para tu seed.",
         "label": "Nombre del seed",
         "placeholder": "Billetera principal",
-        "explanation": "Enter a name for your seed to make them easier to differentiate.",
-        "button1": "DONE",
-        "button2": "GO BACK"
+        "explanation": "Ingrese un nombre para la seed para poder distinguirlas fácilmente.",
+        "button1": "LISTO",
+        "button2": "VOLVER"
     },
     "setPassword": {
         "title": "CONFIGURACIÓN DE CONTRASEÑA",
