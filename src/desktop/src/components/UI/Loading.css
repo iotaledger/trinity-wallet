@@ -3,6 +3,7 @@
     flex-direction: column;
     height: 100vh;
     justify-content: center;
+    max-height: 100%;
     text-align: center;
 }
 
