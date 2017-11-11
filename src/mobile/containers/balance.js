@@ -39,7 +39,6 @@ class Balance extends React.Component {
     }
 
     render() {
-        console.log(this.props.marketData);
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const shortenedBalance =
