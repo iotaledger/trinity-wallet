@@ -9,11 +9,14 @@ const { height, width } = Dimensions.get('window');
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class TransactionRow extends React.Component {
-    state = {
-        isModalVisible: false,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            isModalVisible: false,
+        };
+    }
 
-    _showModal = () => this.setState({ isModalVisible: true });
+    _showModal = data => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
@@ -25,7 +28,7 @@ class TransactionRow extends React.Component {
         Clipboard.setString(address);
     }
 
-    _renderModalContent = titleColour => (
+    _renderModalContent = (titleColour, sendOrReceive) => (
         <TouchableOpacity onPress={() => this._hideModal()}>
             <View style={{ flex: 1, justifyContent: 'center', width: width / 1.1 }}>
                 <View style={styles.modalContent}>
@@ -39,15 +42,12 @@ class TransactionRow extends React.Component {
                                 color: titleColour,
                             }}
                         >
-                            {this.props.rowData[0].transferValue < 0 ? 'SEND' : 'RECEIVE'}{' '}
-                            {round(formatValue(this.props.rowData[0].value), 1)}{' '}
+                            {sendOrReceive ? 'RECEIVE' : 'SEND'} {round(formatValue(this.props.rowData[0].value), 1)}{' '}
                             {formatUnit(this.props.rowData[0].value)}
                         </Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={styles.modalStatus}>
-                                {this.props.rowData[0].persistence
-                                    ? this.props.rowData[0].transferValue < 0 ? 'Sent' : 'Received'
-                                    : 'Pending'}
+                                {this.props.rowData[0].persistence ? (sendOrReceive ? 'Received' : 'Sent') : 'Pending'}
                             </Text>
                             <Text style={styles.modalTimestamp}>
                                 {formatModalTime(convertUnixTimeToJSDate(this.props.rowData[0].timestamp))}
@@ -100,9 +100,10 @@ class TransactionRow extends React.Component {
     );
 
     render() {
-        const titleColour = this.props.rowData[0].transferValue < 0 ? '#F7D002' : '#72BBE8';
+        const sendOrReceive = this.props.addresses.includes(this.props.rowData[0].address);
+        const titleColour = sendOrReceive ? '#72BBE8' : '#F7D002';
         return (
-            <TouchableOpacity onPress={() => this._showModal()}>
+            <TouchableOpacity onPress={() => this._showModal(this.props.rowData[0])}>
                 <View style={{ flex: 1, alignItems: 'center' }}>
                     <View style={styles.container}>
                         <View
@@ -123,14 +124,12 @@ class TransactionRow extends React.Component {
                                     color: titleColour,
                                 }}
                             >
-                                {this.props.rowData[0].transferValue < 0 ? 'SEND' : 'RECEIVE'}{' '}
+                                {sendOrReceive ? 'RECEIVE' : 'SEND'}{' '}
                                 {round(formatValue(this.props.rowData[0].value), 1)}{' '}
                                 {formatUnit(this.props.rowData[0].value)}
                             </Text>
                             <Text style={styles.status}>
-                                {this.props.rowData[0].persistence
-                                    ? this.props.rowData[0].transferValue < 0 ? 'Sent' : 'Received'
-                                    : 'Pending'}
+                                {this.props.rowData[0].persistence ? (sendOrReceive ? 'Received' : 'Sent') : 'Pending'}
                             </Text>
                         </View>
                         <View
@@ -174,7 +173,7 @@ class TransactionRow extends React.Component {
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                 >
-                    {this._renderModalContent(titleColour)}
+                    {this._renderModalContent(titleColour, sendOrReceive)}
                 </Modal>
             </TouchableOpacity>
         );
