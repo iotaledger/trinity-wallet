@@ -40,6 +40,7 @@ class SaveYourSeedOptions extends PureComponent {
                     <Button to="/seed/generate" variant="warning">
                         {t('button2')}
                     </Button>
+                    {/* TODO: Remove the console log and think of a solution when to actually clear the seeds */}
                     <Button to="/seed/enter" onClick={() => console.log('CLEAR SEEDS HERE')} variant="success">
                         {t('button1')}
                     </Button>
