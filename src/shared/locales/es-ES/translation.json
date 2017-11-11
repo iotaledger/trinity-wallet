@@ -102,9 +102,9 @@
         "button2": "LISTO"
     },
     "nameYourSeed": {
-        "text": "Here you can enter an name for your seed.",
-        "label": "Seed name",
-        "placeholder": "Main Wallet",
+        "text": "Aquí puedes ingresar un nombre para tu seed.",
+        "label": "Nombre del seed",
+        "placeholder": "Billetera principal",
         "explanation": "Enter a name for your seed to make them easier to differentiate.",
         "button1": "DONE",
         "button2": "GO BACK"
