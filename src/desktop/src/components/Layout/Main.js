@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 // import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Balance from '../Main/Balance';
 import Login from '../Main/Login';
@@ -20,11 +20,12 @@ export default withRouter(
             return (
                 <Switch location={location}>
                     <Route path="/done" component={Done} />
-                    <Route exact path="/" component={Login} />
+                    <Route path="/login" component={Login} />
                     <Route path="/balance" component={Balance} />
                     <Route path="/send" component={Balance} />
                     <Route path="/receive" component={Balance} />
                     <Route path="/settings" component={Balance} />
+                    <Redirect from="/" to="/login" />
                 </Switch>
             );
         }
