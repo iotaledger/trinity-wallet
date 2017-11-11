@@ -159,6 +159,7 @@ class Settings extends React.Component {
                             <Text style={styles.settingText}>{this.props.settings.language}</Text>
                         </View>
                     </TouchableOpacity>
+                    <View style={styles.separator} />
                     <TouchableOpacity onPress={event => this.setModalContent('addNewSeed')}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/add.png')} style={styles.icon} />
@@ -177,6 +178,7 @@ class Settings extends React.Component {
                             <Text style={styles.titleText}>Change password</Text>
                         </View>
                     </TouchableOpacity>
+                    <View style={styles.separator} />
                     <TouchableOpacity onPress={event => this.onAdvancedSettingsPress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/advanced.png')} style={styles.icon} />
@@ -293,6 +295,12 @@ const styles = StyleSheet.create({
         padding: 8,
         width: 36,
         height: 36,
+        alignSelf: 'center',
+    },
+    separator: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 0.3,
+        width: width / 1.16,
         alignSelf: 'center',
     },
 });
