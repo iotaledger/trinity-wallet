@@ -19,14 +19,17 @@
     "welcome2": {
         "text1": "Okay. Lass uns Dein Wallet einrichten!",
         "text2": "Hast Du bereits einen Seed welchen du verwenden möchtest?",
-        "seed_explanation1": "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
-        "seed_explanation2": "Mit deinem Seed kannst du von jeder Wallet und jedem Gerät auf deine IOTA zugreifen - Aber wenn du deinen Seed verlierst, verlierst du auch dein gesamtes IOTA Guthaben.",
+        "seed_explanation1":
+            "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
+        "seed_explanation2":
+            "Mit deinem Seed kannst du von jeder Wallet und jedem Gerät auf deine IOTA zugreifen - Aber wenn du deinen Seed verlierst, verlierst du auch dein gesamtes IOTA Guthaben.",
         "reminder": "Bewahre Deinen Seed sicher auf",
         "button1": "JA",
         "button2": "NEIN"
     },
     "lightserver": {
-        "text1": "Ein Light Server ist ein Zugang zum IOTA Netzwerk, bereitgestellt von Mitgliedern der Gemeinschaft oder unseren Partnern.",
+        "text1":
+            "Ein Light Server ist ein Zugang zum IOTA Netzwerk, bereitgestellt von Mitgliedern der Gemeinschaft oder unseren Partnern.",
         "text2": "Mehr Informationen über die Server unter: http://iotasupport.com/lightwallet.shtml",
         "text3": "Bitte wähle einen Server aus der Liste unten.",
         "server_label": "Server",
@@ -47,9 +50,11 @@
         "error_title": "Seed ist zu kurz",
         "error_text": "Seeds müssen mindestens 60 Zeichen lang sein. Bitte versuche es erneut.",
         "invalid_seed_title": "Ungültiger Seed",
-        "invalid_seed_text": "Dein Seed ist ungültig. Ein Seed kann aus Großbuchstaben (A-Z) und die Nummer 9 bestehen und muss 60-81 Zeichen lang sein.",
+        "invalid_seed_text":
+            "Dein Seed ist ungültig. Ein Seed kann aus Großbuchstaben (A-Z) und die Nummer 9 bestehen und muss 60-81 Zeichen lang sein.",
         "placeholder": "SEED",
-        "seed_explanation": "Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als 81 Zeichen ist.",
+        "seed_explanation":
+            "Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als 81 Zeichen ist.",
         "reminder": "TEILE DEINEN SEED MIT NIEMANDEM",
         "scan_code": "QR Code scannen",
         "close": "SCHLIESSEN",
@@ -77,7 +82,8 @@
         "optionA": "Manuelle Kopie",
         "optionB": " Paper Wallet",
         "optionC": "In die Zwischenablage kopieren",
-        "explanation": "Ihr Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreiben Sie ihren Seed und die Prüfsumme auf und prüfen Sie dreimal ob diese Korrekt sind.",
+        "explanation":
+            "Ihr Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreiben Sie ihren Seed und die Prüfsumme auf und prüfen Sie dreimal ob diese Korrekt sind.",
         "text": "prüfe dreimal",
         "button": "FERTIG"
     },
@@ -85,7 +91,8 @@
         "optionA": "Manuelle Kopie",
         "optionB": " Paper Wallet",
         "optionC": "In die Zwischenablage kopieren",
-        "explanation": "Klicke um deinen Seed in einen Passwort-Manager zu kopieren. Er wird für 60 Sekunden in deiner Zwischenablage bleiben.",
+        "explanation":
+            "Klicke um deinen Seed in einen Passwort-Manager zu kopieren. Er wird für 60 Sekunden in deiner Zwischenablage bleiben.",
         "text": "Speichere den Seed nicht als Klartext.",
         "button1": "IN ZWISCHENABLAGE KOPIEREN",
         "button2": "FERTIG"
@@ -104,7 +111,8 @@
     "setPassword": {
         "title": "PASSWORT EINRICHTEN",
         "text": "Jetzt müssen wir ein Passwort einrichten.",
-        "explanation": "Mit dem Passwort kannst du in Zukunft auf deine Wallet zugreifen. Eine verschlüsselte Kopie deines Seed wird auf deinem Gerät gespeichert.",
+        "explanation":
+            "Mit dem Passwort kannst du in Zukunft auf deine Wallet zugreifen. Eine verschlüsselte Kopie deines Seed wird auf deinem Gerät gespeichert.",
         "reminder": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
         "placeholder1": "\"PASSWORT\"",
         "placeholder2": "PASSWORT ERNEUT EINGEBEN",

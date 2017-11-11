@@ -38,19 +38,35 @@
         > header,
         > main,
         > footer {
-            flex: 1 1 auto;
             width: 100%;
             padding: 0 16px;
         }
 
-        > header {
-            max-height: 200px;
+        > main {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            justify-content: center;
         }
 
+        > header,
         > footer {
-            max-height: 150px;
+            flex: 0 1 auto;
+            padding: 16px;
         }
     }
+}
+
+.body-home {
+    background-image: url(../../../../shared/images/hello-back.png), url(../../../../shared/images/bg-green.jpg);
+    background-size: contain, 100% 100%;
+    background-position: center;
+}
+
+.body-done {
+    background-image: url(../../../../shared/images/balloons.png), url(../../../../shared/images/bg-green.jpg);
+    background-size: contain, 100% 100%;
+    background-position: center;
 }
 
 .formGroup {
@@ -64,8 +80,8 @@
 }
 
 .qrScanner {
-    height: 240px;
-    width: 320px;
+    width: 640px;
+    max-width: 100%;
     margin: auto;
     transform: rotateY(180deg);
     video {
