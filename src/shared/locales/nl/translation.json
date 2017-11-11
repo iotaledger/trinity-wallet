@@ -12,8 +12,7 @@
     "welcome1": {
         "text1": "Dank u voor het downloaden van de IOTA-portefeuille.",
         "text2": "We zullen de volgende paar minuten het opzetten van uw portemonnee doorbrengen.",
-        "reminder":
-            "U kan worden verleid om sommige stappen over te slaan, maar wij verzoeken u om het volledige proces te volgen.",
+        "reminder": "U kan worden verleid om sommige stappen over te slaan, maar wij verzoeken u om het volledige proces te volgen.",
         "button1": "VOLGENDE",
         "button2": "Terug"
     },
@@ -27,8 +26,7 @@
         "button2": "Nee"
     },
     "lightserver": {
-        "text1":
-            "Een minimale server is een gateway naar de IOTA netwerk, vriendelijk aangeboden door de leden van de Gemeenschap of van onze zakelijke partners. ",
+        "text1": "Een minimale server is een gateway naar de IOTA netwerk, vriendelijk aangeboden door de leden van de Gemeenschap of van onze zakelijke partners. ",
         "text2": "U vindt meer informatie over de servers op: http://iotasupport.com/lightwallet.shtml",
         "text3": "Kies een server uit de lijst hieronder.",
         "server_label": "Server",
@@ -49,11 +47,9 @@
         "error_title": "Seed is te kort",
         "error_text": "Seeds dienen ten minste 60 karakters lang te zijn. Probeer het opnieuw.",
         "invalid_seed_title": "Ongeldige Seed",
-        "invalid_seed_text":
-            "Uw seed is ongeldig. Een seed kan de hoofdletters (A-Z) en het getal 9 bevatten en moet 60-81 tekens lang zijn.",
+        "invalid_seed_text": "Uw seed is ongeldig. Een seed kan de hoofdletters (A-Z) en het getal 9 bevatten en moet 60-81 tekens lang zijn.",
         "placeholder": "SEED",
-        "seed_explanation":
-            "Seedx moeten 81 tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met m meer dan 81 tekens.",
+        "seed_explanation": "Seedx moeten 81 tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met m meer dan 81 tekens.",
         "reminder": "DEEL NOOIT JE SEED MET IEMAND",
         "scan_code": "QR-code scannen",
         "close": "SLUITEN",
@@ -81,8 +77,7 @@
         "optionA": "Handmatig kopiëren",
         "optionB": " Portemonnee van papier",
         "optionC": "Naar klembord kopiëren",
-        "explanation":
-            "Uw zaad is 81 tekens die van links naar rechts wordt gelezen. Noteer uw zaad en checksum en verifieer nogmaals of ze kloppen.",
+        "explanation": "Uw zaad is 81 tekens die van links naar rechts wordt gelezen. Noteer uw zaad en checksum en verifieer nogmaals of ze kloppen.",
         "text": "drievoudige controle",
         "button": "GEREED"
     },
