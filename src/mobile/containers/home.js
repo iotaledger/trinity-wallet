@@ -24,14 +24,17 @@ import {
     decrementSeedIndex,
     setReceiveAddress,
     replayBundle,
+    setReady,
+    clearTempData,
 } from '../../shared/actions/tempAccount';
-import { getAccountInfo, setBalance } from '../../shared/actions/account';
+import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
 import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import ReAttacher from './reAttacher';
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
+const timer = require('react-native-timer');
 
 class Home extends Component {
     constructor() {
@@ -43,41 +46,27 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        this.props.setFirstUse(false);
         this.startPolling();
+        const accountInfo = this.props.account.accountInfo;
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        if (typeof accountInfo !== 'undefined') {
+            this.props.setBalance(addressesWithBalance);
+        }
+        timer.setInterval('polling', () => this.startPolling(), 30000);
     }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.tempAccount.isSendingTransfer && !this.props.tempAccount.isSendingTransfer) {
-            this.stopPolling();
-        }
-        if (!newProps.tempAccount.isSendingTransfer && this.props.tempAccount.isSendingTransfer) {
-            this.stopPolling();
-            this.startPolling();
-        }
-        if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
-            this.stopPolling();
-            this.startPolling();
-        }
-    }
-
-    stopPolling() {
-        clearInterval(polling);
+    componentWillUnmount() {
+        timer.clearInterval('polling');
     }
 
     startPolling() {
-        polling = setInterval(() => {
-            console.log('Updating account info');
+        if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
             this.props.getAccountInfo(seedName, seedIndex, accountInfo);
-        }, 30000);
-    }
-
-    componentWillMount() {
-        const accountInfo = this.props.account.accountInfo;
-        if (typeof accountInfo !== 'undefined') {
-            this.props.setBalance(accountInfo[Object.keys(accountInfo)[this.props.tempAccount.seedIndex]].addresses);
         }
     }
 
@@ -94,30 +83,38 @@ class Home extends Component {
     }
 
     onLeftArrowPress() {
-        if (this.props.tempAccount.seedIndex > 0) {
+        if (this.props.tempAccount.seedIndex > 0 && !this.props.tempAccount.isGeneratingReceiveAddress) {
             const seedIndex = this.props.tempAccount.seedIndex - 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
 
-            this.stopPolling();
             this.props.decrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
-            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            // Get new account info if not sending or getting transfers
+            if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
+                this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            }
         }
     }
 
     onRightArrowPress() {
-        if (this.props.tempAccount.seedIndex + 1 < this.props.account.seedCount) {
+        if (
+            this.props.tempAccount.seedIndex + 1 < this.props.account.seedCount &&
+            !this.props.tempAccount.isGeneratingReceiveAddress
+        ) {
             const seedIndex = this.props.tempAccount.seedIndex + 1;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
 
-            this.stopPolling();
             this.props.incrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
             this.props.setReceiveAddress('');
-            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+
+            // Get new account info if not sending or getting transfers
+            if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
+                this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            }
         }
     }
 
@@ -169,7 +166,9 @@ class Home extends Component {
                             style={{
                                 width: width / 20,
                                 height: width / 20,
-                                opacity: this.props.tempAccount.seedIndex == 0 ? 0.3 : 1,
+                                opacity: this.props.tempAccount.isGeneratingReceiveAddress
+                                    ? 0.3
+                                    : this.props.tempAccount.seedIndex == 0 ? 0.3 : 1,
                             }}
                             source={require('../../shared/images/arrow-left.png')}
                         />
@@ -187,7 +186,9 @@ class Home extends Component {
                             style={{
                                 width: width / 20,
                                 height: width / 20,
-                                opacity: this.props.tempAccount.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
+                                opacity: this.props.tempAccount.isGeneratingReceiveAddress
+                                    ? 0.3
+                                    : this.props.tempAccount.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
                             }}
                             source={require('../../shared/images/arrow-right.png')}
                         />
@@ -406,6 +407,35 @@ const styles = StyleSheet.create({
     partiallyOpaque: {
         opacity: 0.6,
     },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
+    },
+    dropdownImage: {
+        marginLeft: width / 25,
+        width: width / 10,
+        height: width / 10,
+        alignSelf: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
@@ -436,6 +466,9 @@ const mapDispatchToProps = dispatch => ({
     replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
     generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
     disposeOffAlert: () => dispatch(disposeOffAlert()),
+    setFirstUse: boolean => dispatch(setFirstUse(boolean)),
+    setReady: boolean => dispatch(setReady(boolean)),
+    clearTempData: () => dispatch(clearTempData()),
 });
 
 Home.propTypes = {

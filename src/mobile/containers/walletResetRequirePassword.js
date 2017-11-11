@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteFromKeyChain } from '../../shared/libs/cryptography';
 import { resetWallet } from '../../shared/actions/app';
+import { setFirstUse, setOnboardingComplete } from '../../shared/actions/account';
+import { Navigation } from 'react-native-navigation';
+import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -53,14 +56,15 @@ class WalletResetRequirePassword extends Component {
     }
 
     redirectToInitialScreen() {
-        this.props.navigator.push({
-            screen: 'languageSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: Colors.brand.primary,
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'languageSetup',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    screenBackgroundImageName: 'bg-green.png',
+                    screenBackgroundColor: '#102e36',
+                },
             },
-            animated: false,
         });
     }
 
@@ -71,7 +75,10 @@ class WalletResetRequirePassword extends Component {
         if (isAuthenticated) {
             deleteFromKeyChain(password);
             resetWallet();
-
+            this.props.setOnboardingComplete(false);
+            this.props.setFirstUse(true);
+            this.props.clearTempData();
+            this.props.setPassword('');
             this.redirectToInitialScreen();
         } else {
             this.dropdown.alertWithType(
@@ -260,6 +267,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     resetWallet: () => dispatch(resetWallet()),
+    setFirstUse: boolean => dispatch(setFirstUse(boolean)),
+    setOnboardingComplete: boolean => dispatch(setOnboardingComplete(boolean)),
+    clearTempData: () => dispatch(clearTempData()),
+    setPassword: password => dispatch(setPassword(password)),
 });
 
 WalletResetRequirePassword.propTypes = {
