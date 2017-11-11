@@ -13,7 +13,10 @@ class Login extends React.Component {
         // const { t } = this.props;
         return (
             <Template>
-                <Content>Test</Content>
+                <Content>
+                    <p>Seed: ....</p>
+                    <p>Password: ...</p>
+                </Content>
             </Template>
         );
     }

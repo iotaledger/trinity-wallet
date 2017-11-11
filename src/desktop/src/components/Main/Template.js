@@ -2,8 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import Header from './Header';
-import Logo from '../UI/Logo';
-import Sidebar from '../Main/Sidebar';
+import Header from './Header';
+import Sidebar from './Sidebar';
 import css from '../Layout/Main.css';
 
 export const Content = ({ children }) =>
@@ -47,10 +47,7 @@ export default class Template extends React.Component {
         // delete props.bodyClass;
         return (
             <section className={css.wrapper}>
-                <header>
-                    <Logo width={72} />
-                    {/* Seeds */}
-                </header>
+                <Header />
                 <main>
                     <Sidebar />
                     {React.Children.map(children, child => {
