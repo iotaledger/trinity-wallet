@@ -19,7 +19,6 @@ const account = (
 ) => {
     switch (action.type) {
         case 'SET_ACCOUNT_INFO':
-            console.log(action.seedName);
             return {
                 ...state,
                 balance: action.balance,

@@ -27,25 +27,22 @@ class TransactionRow extends React.Component {
 
     _renderModalContent = titleColour => (
         <TouchableOpacity onPress={() => this._hideModal()}>
-            <View style={{ flex: 1, justifyContent: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center', width: width / 1.1 }}>
                 <View style={styles.modalContent}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <View style={{ marginRight: width / 5 }}>
-                            <Text
-                                style={{
-                                    justifyContent: 'space-between',
-                                    backgroundColor: 'transparent',
-                                    fontFamily: 'Lato-Regular',
-                                    fontSize: width / 29.6,
-                                    marginBottom: 4,
-                                    color: titleColour,
-                                }}
-                            >
-                                {this.props.rowData[0].transferValue < 0 ? 'SEND' : 'RECEIVE'}{' '}
-                                {round(formatValue(this.props.rowData[0].value), 1)}{' '}
-                                {formatUnit(this.props.rowData[0].value)}
-                            </Text>
-                        </View>
+                        <Text
+                            style={{
+                                justifyContent: 'space-between',
+                                backgroundColor: 'transparent',
+                                fontFamily: 'Lato-Regular',
+                                fontSize: width / 29.6,
+                                color: titleColour,
+                            }}
+                        >
+                            {this.props.rowData[0].transferValue < 0 ? 'SEND' : 'RECEIVE'}{' '}
+                            {round(formatValue(this.props.rowData[0].value), 1)}{' '}
+                            {formatUnit(this.props.rowData[0].value)}
+                        </Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={styles.modalStatus}>
                                 {this.props.rowData[0].persistence
@@ -63,7 +60,7 @@ class TransactionRow extends React.Component {
                             onPress={() => this.onBundleHashPress(this.props.rowData[0].bundle)}
                             style={{ flex: 7 }}
                         >
-                            <Text style={styles.hash} numberOfLines={2}>
+                            <Text style={styles.bundleHash} numberOfLines={2}>
                                 {this.props.rowData[0].bundle}
                             </Text>
                             <View style={{ flex: 1 }} />
@@ -73,19 +70,19 @@ class TransactionRow extends React.Component {
                     <ListView
                         dataSource={ds.cloneWithRows(this.props.rowData)}
                         renderRow={(rowData, sectionId) => (
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 2 }}>
                                 <TouchableOpacity
                                     onPress={() => this.onAddressPress(rowData.address)}
-                                    style={{ flex: 7 }}
+                                    style={{ flex: 5.1 }}
                                 >
                                     <Text style={styles.hash} numberOfLines={2}>
                                         {rowData.address}
                                     </Text>
                                 </TouchableOpacity>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.modalValue}>
+                                <View style={{ flex: 0.9 }}>
+                                    <Text style={styles.modalValue} numberOfLines={1}>
                                         {' '}
-                                        {round(round(formatValue(rowData.value), 1), 1)} {formatUnit(rowData.value)}
+                                        {round(formatValue(rowData.value), 1)} {formatUnit(rowData.value)}
                                     </Text>
                                 </View>
                             </View>
@@ -234,6 +231,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 31.8,
+    },
+    bundleHash: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 31.8,
+        marginTop: 2,
     },
     status: {
         color: '#9DFFAF',

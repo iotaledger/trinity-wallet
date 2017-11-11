@@ -84,10 +84,10 @@ export function sendTransferError() {
     };
 }
 
-export function setReady(boolean) {
+export function setReady() {
     return {
         type: 'SET_READY',
-        payload: boolean,
+        payload: true,
     };
 }
 

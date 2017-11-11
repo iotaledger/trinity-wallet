@@ -36,9 +36,6 @@ export function addSeedName(seedName) {
         type: 'ADD_SEED_NAME',
         seedName: seedName,
     };
-    {
-        /*addresses: addresses*/
-    }
 }
 
 export function addAddresses(seedName, addresses) {
@@ -61,7 +58,7 @@ export function getAccountInfoNewSeed(seed, seedName) {
                 const transfers = formatTransfers(success.transfers, success.addresses);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
                 Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers))).then(
-                    dispatch(setReady(true)),
+                    dispatch(setReady()),
                 );
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
@@ -114,7 +111,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo) {
                 } else {
                     // Set account info, then finish loading
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
-                        dispatch(setReady(true)),
+                        dispatch(setReady()),
                     );
                 }
                 // Additional check in case user has account activity in another wallet
@@ -156,7 +153,7 @@ export function getTransfers(seedName, addresses) {
                                 transfers = formatTransfers(transfers, addresses);
                                 // Update transfers then set ready
                                 Promise.resolve(dispatch(updateTransfers(seedName, transfers))).then(
-                                    dispatch(setReady(true)),
+                                    dispatch(setReady()),
                                 );
                                 dispatch(getTransfersSuccess());
                             } else {
