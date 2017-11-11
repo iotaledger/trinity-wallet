@@ -73,7 +73,7 @@ class Home extends Component {
     componentWillReceiveProps(newProps) {
         const didNotHaveAlertPreviously =
             !this.props.alerts.category && !this.props.alerts.title && !this.props.alerts.message;
-        const hasANewAlert = newProps.alerts.category && newProps.alerts.title & newProps.alerts.message;
+        const hasANewAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
         const shouldGenerateAlert = hasANewAlert && didNotHaveAlertPreviously;
 
         if (shouldGenerateAlert) {
