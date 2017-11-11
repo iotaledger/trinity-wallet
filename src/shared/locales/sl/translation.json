@@ -14,29 +14,26 @@
         "text2": "Naslednjih nekaj minut bomo porabili za nastavitve vaše denarnice.",
         "reminder": "Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces.",
         "button1": "Naprej",
-        "button2": "BACK"
+        "button2": "NAZAJ"
     },
     "welcome2": {
         "text1": "Okei. Pa nastavimo vašo denarnico!",
         "text2": "Ali že imate seed, ki bi ga želeli uporabiti?",
-        "seed_explanation1":
-            "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "seed_explanation2":
-            "Uporabite ga lahko za dostop do vaših sredstev iz katere koli denarnice, na kateri koli napravi. V primeru da seed izgubiste, prav tako izgubiste vaša sredstva",
+        "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seed_explanation2": "Uporabite ga lahko za dostop do vaših sredstev iz katere koli denarnice, na kateri koli napravi. V primeru da seed izgubiste, prav tako izgubiste vaša sredstva",
         "reminder": "Prosimo vas, da imate seed shranjen na varnem",
-        "button1": "YES",
-        "button2": "NO"
+        "button1": "DA",
+        "button2": "NE"
     },
     "lightserver": {
-        "text1":
-            "Light strežnik je prehod do IOTA omrežja, ki ga prijazno zagotavljajo člani skupnosti ali naši poslovni partnerji. ",
+        "text1": "Light strežnik je prehod do IOTA omrežja, ki ga prijazno zagotavljajo člani skupnosti ali naši poslovni partnerji. ",
         "text2": "Več informacij o strežnikih lahko najdete na: http://iotasupport.com/lightwallet.shtml",
         "text3": "Na spodnjem seznamu izberite strežnik.",
         "server_label": "Strežnik",
         "custom_server_label": "Ostali naslovi strežnika",
         "other": "Ostalo",
         "button1": "Naprej",
-        "button2": "BACK"
+        "button2": "NAZAJ"
     },
     "login": {
         "text": "Prosimo vnesite vaše geslo",
@@ -44,22 +41,20 @@
         "error_title": "Neprepoznano geslo",
         "error_text": "Geslo ni bilo prepoznano. Prosimo, poskusite ponovno.",
         "button1": "Opravljeno",
-        "button2": "USE SEED"
+        "button2": "UPORABA SEEDA"
     },
     "enterSeed": {
         "error_title": "Seed je prekratek",
         "error_text": "Seed mora imeti vsaj 60 znakov. Prosimo, poskusite ponovno.",
         "invalid_seed_title": "Napačen seed",
-        "invalid_seed_text":
-            "Vaš seed je nepravilen. Seed mora vsebovati velike črke (A-Z) in številko 9, ter mora imeti med 60-81 znakov.",
+        "invalid_seed_text": "Vaš seed je nepravilen. Seed mora vsebovati velike črke (A-Z) in številko 9, ter mora imeti med 60-81 znakov.",
         "placeholder": "Seed",
-        "seed_explanation":
-            "Seme mora biti dolgo 81 znakov in mora vsebovati velike črke od A do Z ali številko 9. Uporaba semena daljšega od 81 znakov ni mogoča.",
+        "seed_explanation": "Seme mora biti dolgo 81 znakov in mora vsebovati velike črke od A do Z ali številko 9. Uporaba semena daljšega od 81 znakov ni mogoča.",
         "reminder": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA",
         "scan_code": "Skeniraj QR kodo",
         "close": "Zapri",
         "button1": "Opravljeno",
-        "button2": "BACK"
+        "button2": "NAZAJ"
     },
     "newSeedSetup": {
         "title": "Napravi nov seed",
@@ -67,7 +62,7 @@
         "text1": "Pritisnite posamezne znake za jih ponaključit.",
         "text2": "Nato kliknite NAPREJ",
         "button2": "Naprej",
-        "button3": "BACK"
+        "button3": "NAZAJ"
     },
     "saveYourSeed": {
         "text1": "Seed morate shraniti z vsaj eno izmed spodnjih možnosti.",
@@ -76,14 +71,13 @@
         "optionB": "Printanje papirnate denarnice",
         "optionC": "Kopiraj v clipboard",
         "button1": "Naprej",
-        "button2": "BACK"
+        "button2": "NAZAJ"
     },
     "saveYourSeed2": {
         "optionA": "Ročna kopija",
         "optionB": " Papirnata denarnica",
         "optionC": "Kopiraj v clipboard",
-        "explanation":
-            "Vaš seed ima 81 znakov iz leve proti desni. Shranite si vaš seed ter njegovo kontrolno vsoto in tri krat preverite, da sta pravilna.",
+        "explanation": "Vaš seed ima 81 znakov iz leve proti desni. Shranite si vaš seed ter njegovo kontrolno vsoto in tri krat preverite, da sta pravilna.",
         "text": "tri krat preveri",
         "button": "Opravljeno"
     },
@@ -91,8 +85,7 @@
         "optionA": "Ročna kopija",
         "optionB": " Papirnata denarnica",
         "optionC": "Kopiraj v clipboard",
-        "explanation":
-            "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
         "text": "Ne shranjujte seeda v navadnem tekstu.",
         "button1": "Kopiraj v clipboard",
         "button2": "Opravljeno"
@@ -111,8 +104,7 @@
     "setPassword": {
         "title": "Nastavitve gesla",
         "text": "Now we need to set up a password.",
-        "explanation":
-            "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+        "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
         "reminder": "Ensure you use a strong password of at least 12 characters.",
         "placeholder1": "'Geslo'",
         "placeholder2": "Znova vnesite geslo",
@@ -121,12 +113,11 @@
         "error2_title": "Gesli se ne ujemata",
         "error2_text": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
         "button1": "Opravljeno",
-        "button2": "BACK"
+        "button2": "NAZAJ"
     },
     "onboardingComplete": {
-        "text":
-            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-        "button": "NEXT"
+        "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+        "button": "Naprej"
     },
     "home": {
         "tab1": "Sredstva",
@@ -137,21 +128,21 @@
         "mcap": "Tržna kapitalizacija",
         "change": "Spremeni",
         "volume": "Količina transakcij",
-        "address": "Address",
-        "amount": "Amount",
-        "button1": "SEND",
-        "button2": "GENERATE NEW ADDRESS",
-        "button3": "LOG OUT",
-        "changeMode": "Change mode",
+        "address": "Naslov",
+        "amount": "Količina",
+        "button1": "Pošlji",
+        "button2": "Ustvari nov naslov",
+        "button3": "Odjava",
+        "changeMode": "Spremeni način",
         "minimal": "Minimal",
         "standard": "Standard",
-        "expert": "Expert",
-        "changeTheme": "Change theme",
-        "changeLanguage": "Change language",
-        "addNewSeed": "Add new seed",
-        "setup2fa": "2FA Setup",
-        "changePassword": "Change password",
-        "advancedSettings": "Advanced settings",
-        "logout": "Logout"
+        "expert": "Strokovnjak",
+        "changeTheme": "Spremeni temo",
+        "changeLanguage": "Menjava jezika",
+        "addNewSeed": "Dodaj nov seed",
+        "setup2fa": "2FA nastavitev",
+        "changePassword": "Zamenjaj geslo",
+        "advancedSettings": "Napredne nastavitve",
+        "logout": "Odjava"
     }
 }
