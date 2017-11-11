@@ -15,10 +15,9 @@ export default (state = initialState, action) => {
                 title: action.title,
                 message: action.message,
             };
-
         case ActionTypes.HIDE:
             return initialState;
+        default:
+            return state;
     }
-
-    return state;
 };
