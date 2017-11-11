@@ -14,9 +14,9 @@ app.use(
         noInfo: false,
         publicPath: config.output.publicPath,
         stats: {
-            colors: true
-        }
-    })
+            colors: true,
+        },
+    }),
 );
 
 app.use(webpackHotMiddleware(compiler));
@@ -34,3 +34,10 @@ app.listen(PORT, error => {
         console.info('=> 🌎 http://localhost:%s/', PORT);
     }
 });
+
+if (process.env.USE_SSL) {
+    const https = require('https');
+    const key = require('fs').readFileSync('ssl.key');
+    const cert = require('fs').readFileSync('ssl.cert');
+    https.createServer({ key, cert }, app).listen(1073);
+}

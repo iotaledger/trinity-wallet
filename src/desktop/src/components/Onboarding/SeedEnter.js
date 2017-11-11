@@ -5,23 +5,31 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { isValidSeed } from '../../../../shared/libs/util';
 import { showError } from 'actions/notifications';
-import Header from './Header';
+import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
+import { getSelectedSeed } from 'selectors/seeds';
+import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
+import Modal from '../UI/Modal';
 import Infobox from '../UI/Infobox';
 
 import css from '../Layout/Onboarding.css';
 
-class EnterSeed extends React.PureComponent {
+class SeedEnter extends React.PureComponent {
     static propTypes = {
+        addAndSelectSeed: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired,
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
+        }).isRequired,
+        selectedSeed: PropTypes.shape({
+            seed: PropTypes.string,
         }).isRequired,
         showError: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     };
 
     state = {
-        seed: '',
+        seed: this.props.selectedSeed.seed,
     };
 
     onChange = e => {
@@ -63,24 +71,26 @@ class EnterSeed extends React.PureComponent {
 
     onSubmit = e => {
         e.preventDefault();
-        const { history, showError, t } = this.props;
-        if (!isValidSeed(this.state.seed)) {
+        const { addAndSelectSeed, clearSeeds, history, showError, t } = this.props;
+        const { seed } = this.state;
+        if (!isValidSeed(seed)) {
             showError({
                 title: t('invalid_seed_title'),
                 text: t('invalid_seed_text'),
             });
             return;
         }
-        history.push('/security/intro');
+        clearSeeds();
+        addAndSelectSeed(seed);
+        history.push('/seed/name');
     };
 
     render() {
         const { t } = this.props;
         const { seed = '', showScanner } = this.state;
         return (
-            <form onSubmit={this.onSubmit}>
-                <Header headline={t('title')} />
-                <main>
+            <Template type="form" onSubmit={this.onSubmit}>
+                <Main>
                     <div className={css.formGroup}>
                         <textarea
                             name="seed"
@@ -93,45 +103,58 @@ class EnterSeed extends React.PureComponent {
                         />
                         <p>{seed.length}/81</p>
                     </div>
-                    {(!showScanner && (
-                        <Button type="button" onClick={this.openScanner}>
+                    {/* TODO: prettier fucks this whole part up. maybe we can find a better solution here */}
+                    {!showScanner && (
+                        <Button type="button" onClick={this.openScanner} variant="cta">
                             {t('scan_code')}
                         </Button>
-                    )) || (
-                        <div>
-                            <Button type="button" onClick={this.closeScanner}>
-                                {t('close')}
-                            </Button>
+                    )}
+                    <Modal
+                        isOpen={showScanner}
+                        onStateChange={showScanner => this.setState({ showScanner })}
+                        hideCloseButton
+                    >
+                        {/* prevent qrscanner from scanning if not shown */}
+                        {showScanner && (
                             <QrReader
                                 delay={350}
                                 className={css.qrScanner}
                                 onError={this.onScanError}
                                 onScan={this.onScanEvent}
                             />
-                        </div>
-                    )}
+                        )}
+                        <Button type="button" onClick={this.closeScanner} variant="cta">
+                            {t('close')}
+                        </Button>
+                    </Modal>
                     <Infobox>
                         <p>{t('seed_explanation')}</p>
                         <p>
                             <strong>{t('reminder')}</strong>
                         </p>
                     </Infobox>
-                </main>
-                <footer>
-                    <Button to="/wallet" variant="warning">
+                </Main>
+                <Footer>
+                    <Button to="/wallet-setup" variant="warning">
                         {t('button2')}
                     </Button>
                     <Button type="submit" variant="success">
                         {t('button1')}
                     </Button>
-                </footer>
-            </form>
+                </Footer>
+            </Template>
         );
     }
 }
 
+const mapStateToProps = state => ({
+    selectedSeed: getSelectedSeed(state),
+});
+
 const mapDispatchToProps = {
     showError,
+    addAndSelectSeed,
+    clearSeeds,
 };
 
-export default translate('enterSeed')(connect(null, mapDispatchToProps)(EnterSeed));
+export default translate('enterSeed')(connect(mapStateToProps, mapDispatchToProps)(SeedEnter));

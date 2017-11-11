@@ -3,29 +3,23 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
-import LanguageSelect from '../UI/LanguageSelect';
 import css from '../Layout/Onboarding.css';
 
-class Welcome extends React.PureComponent {
+class Done extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
     };
 
-    state = { modalOpen: false };
-
     render() {
         const { t } = this.props;
         return (
-            <Template bodyClass={css.bodyHome}>
+            <Template bodyClass={css.bodyDone}>
                 <Main>
-                    <div className={css.formGroup}>
-                        <label>{t('dropdown_title')}</label>
-                        <LanguageSelect />
-                    </div>
+                    <p>{t('text')}</p>
                 </Main>
                 <Footer>
-                    <Button to="/instructions" variant="success">
-                        {t('button1')}
+                    <Button to="/" variant="success">
+                        {t('button')}
                     </Button>
                 </Footer>
             </Template>
@@ -33,4 +27,4 @@ class Welcome extends React.PureComponent {
     }
 }
 
-export default translate('setLanguage')(Welcome);
+export default translate('onboardingComplete')(Done);
