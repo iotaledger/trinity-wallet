@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { addCustomNode, setFullNode } from 'actions/settings';
-import Header from './Header';
+import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 import ServerSelect from '../UI/ServerSelect';
 
@@ -37,14 +37,14 @@ class LightServerSetup extends React.PureComponent {
 
         if (customServer) {
             if (addCustomNode(customServer) && setFullNode(customServer)) {
-                history.push('/wallet');
+                history.push('/wallet-setup');
                 return;
             }
             return;
         }
 
         if (setFullNode(fullNode)) {
-            history.push('/wallet');
+            history.push('/wallet-setup');
             return;
         }
     };
@@ -60,9 +60,8 @@ class LightServerSetup extends React.PureComponent {
         const { t } = this.props;
         const { fullNode } = this.state;
         return (
-            <div>
-                <Header headline={t('title')} />
-                <main>
+            <Template headline={t('title')}>
+                <Main>
                     <p>{t('text1')}</p>
                     <p>{t('text2')}</p>
                     <p>{t('text3')}</p>
@@ -76,16 +75,16 @@ class LightServerSetup extends React.PureComponent {
                             <input type="text" name="customServer" onChange={this.onCustomServerChange} autoFocus />
                         </div>
                     )}
-                </main>
-                <footer>
+                </Main>
+                <Footer>
                     <Button to="/instructions" variant="warning">
                         {t('button2')}
                     </Button>
                     <Button onClick={this.onRequestNext} variant="success">
                         {t('button1')}
                     </Button>
-                </footer>
-            </div>
+                </Footer>
+            </Template>
         );
     }
 }
