@@ -19,7 +19,7 @@
     "welcome2": {
         "text1": "Okei. Pa nastavimo vašo denarnico!",
         "text2": "Ali že imate seed, ki bi ga želeli uporabiti?",
-        "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seed_explanation1": "IOTA seed je kot uporabniško ime in geslo za vaš račun, združeni v enoten niz 81 znakov.",
         "seed_explanation2": "Uporabite ga lahko za dostop do vaših sredstev iz katere koli denarnice, na kateri koli napravi. V primeru da seed izgubiste, prav tako izgubiste vaša sredstva",
         "reminder": "Prosimo vas, da imate seed shranjen na varnem",
         "button1": "DA",
