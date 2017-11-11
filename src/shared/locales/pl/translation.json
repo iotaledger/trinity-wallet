@@ -101,6 +101,14 @@
         "button1": "WYDRUKUJ PAPIEROWY PORTFEL",
         "button2": "GOTOWE"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "USTAWIENIE HASŁA",
         "text": "Teraz musimy ustawić hasło.",
