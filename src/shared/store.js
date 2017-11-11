@@ -27,8 +27,9 @@ const rootReducer = (state, action) => {
     /* eslint-disable no-param-reassign */
     // FIXME: For some reason cannot resolve path to shared/actions/app/ActionTypes
     // Should rather be using LOGOUT type imported from actions
+    console.log(state);
 
-    if (action.type === 'IOTA/APP/WALLET/LOGOUT' || action.type === 'IOTA/APP/WALLET/RESET') {
+    if (action.type === 'IOTA/APP/WALLET/RESET') {
         state = undefined;
     }
     /* eslint-enable no-param-reassign */
