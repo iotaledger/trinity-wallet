@@ -104,7 +104,7 @@
     "setPassword": {
         "title": "Nastavitve gesla",
         "text": "Ok, zdaj moramo nastaviti geslo.",
-        "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+        "explanation": "To geslo boste v prihodnosti uporabili za dostop do vaše denarnice. Šifrirana kopija vašega seeda bo shranjena na vaši napravi.",
         "reminder": "Ensure you use a strong password of at least 12 characters.",
         "placeholder1": "'Geslo'",
         "placeholder2": "Znova vnesite geslo",
