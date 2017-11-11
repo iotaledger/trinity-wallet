@@ -10,6 +10,7 @@ const initialState = {
     lastTxAddress: '',
     lastTxValue: 0,
     isSendingTransfer: false,
+    isGettingTransfers: false,
 };
 
 export default (state = initialState, action) => {
@@ -93,14 +94,22 @@ export default (state = initialState, action) => {
                 ready: false,
                 receiveAddress: '',
                 seed: '',
-                password: '',
                 usedSeedToLogin: false,
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 isSendingTransfer: false,
                 lastTxAddress: '',
                 lastTxValue: 0,
-                triggerSentDropdown: false,
+            };
+        case 'GET_TRANSFERS_REQUEST':
+            return {
+                ...state,
+                isGettingTransfers: true,
+            };
+        case 'GET_TRANSFERS_SUCCESS':
+            return {
+                ...state,
+                isGettingTransfers: false,
             };
         default:
             return state;

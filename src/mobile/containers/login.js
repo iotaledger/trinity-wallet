@@ -13,9 +13,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
-import { setPassword } from '../../shared/actions/tempAccount';
+import { setPassword, clearTempData } from '../../shared/actions/tempAccount';
 import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
-import { setFirstUse } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
@@ -63,8 +62,8 @@ class Login extends React.Component {
                 'You must enter a password to log in. Please try again.',
             );
         } else {
-            this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
+                this.props.setPassword(this.state.password);
                 if (value) {
                     var seed = getSeed(value, 0);
                     login(seed);
@@ -80,7 +79,6 @@ class Login extends React.Component {
         function login(value) {
             if (_this.props.account.firstUse) {
                 Promise.resolve(_this.getWalletData()).then(_this.props.getAccountInfoNewSeed(value, seedName));
-                _this.props.setFirstUse(false);
             } else {
                 const accountInfo = _this.props.account.accountInfo;
                 Promise.resolve(_this.getWalletData()).then(
@@ -296,9 +294,6 @@ const mapDispatchToProps = dispatch => ({
     setPassword: password => {
         dispatch(setPassword(password));
     },
-    setFirstUse: boolean => {
-        dispatch(setFirstUse(boolean));
-    },
     getAccountInfo: (seedName, seedIndex, accountInfo) => {
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
     },
@@ -317,6 +312,7 @@ const mapDispatchToProps = dispatch => ({
     getChartData: (currency, timeFrame) => {
         dispatch(getChartData(currency, timeFrame));
     },
+    clearTempData: () => dispatch(clearTempData()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
