@@ -6,8 +6,8 @@ let mainWindow;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 1280,
-        height: 768
+        width: 1024,
+        height: 768,
     });
 
     mainWindow.loadURL('http://localhost:1074/');

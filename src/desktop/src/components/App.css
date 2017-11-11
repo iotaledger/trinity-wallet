@@ -1,6 +1,6 @@
 @import-normalize;
 
-@custom-media --xs (min-width: 0px);
+@custom-media --xs (min-width: 0px); /* default */
 @custom-media --sm (max-width: 480px);
 @custom-media --md (max-width: 768px);
 @custom-media --lg (max-width: 1024px);
@@ -12,24 +12,25 @@
     --color-blue: #8bd4ff;
     --color-red: #ff6c69;
     --color-green: #9dffaf;
+    --color-darkgreen: green;
 
     --color-label: var(--color-yellow);
     --color-button-warning: var(--color-yellow);
     --color-button-danger: var(--color-red);
     --color-button-success: var(--color-green);
     --color-button-extra: var(--color-blue);
+    --color-button-cta: var(--color-darkgreen);
     --color-button-default: white;
 
+    /*--font-size-default: 1.8vh;*/
     --font-size-default: 14px;
-}
+    --font-size-small: 12px;
+    --font-size-title: 20px;
 
-@keyframes :global(slide-in-left-20) {
-    from {
-        transform: translate3d(20px, 0px, 0px);
-    }
-    to {
-        transform: translate3d(0px, 0px, 0px);
-    }
+    --z-index-modal: 2048;
+    --z-index-overlay: 1024;
+    --z-index-dropdown: 512;
+    --z-index-elevated: 1;
 }
 
 * {
@@ -56,6 +57,10 @@ body {
     font-family: arial;
     font-size: var(--font-size-default);
     line-height: 1.5;
+}
+
+h1 {
+    font-size: var(--font-size-title);
 }
 
 label {
