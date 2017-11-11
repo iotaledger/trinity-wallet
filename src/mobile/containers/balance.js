@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     line: {
         borderBottomColor: 'white',
         borderBottomWidth: 0.25,
-        width: width / 1.2,
+        width: width / 1.15,
     },
     separator: {
         flex: 1,
