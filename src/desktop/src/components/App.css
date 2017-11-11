@@ -30,9 +30,10 @@
     --color-sidenav-underline-active: var(--color-primary);
 
     /*--font-size-default: 1.8vh;*/
-    --font-size-default: 14px;
+    --font-size-medium: 14px;
     --font-size-small: 12px;
     --font-size-title: 20px;
+    --font-size-default: var(--font-size-medium);
 
     --z-index-modal: 2048;
     --z-index-overlay: 1024;

@@ -7,6 +7,7 @@ body {
 
 .wrapper {
     --header-height: 80px;
+    --sidebar-width: 80px;
 
     display: flex;
     flex-direction: column;
@@ -14,11 +15,17 @@ body {
 
     > header {
         background: rgba(0, 0, 0, 0.2);
+        display: flex;
         height: var(--header-height);
         position: fixed;
         width: 100%;
-        > img {
-            margin: 16px;
+
+        .logo {
+            align-items: center;
+            display: flex;
+            flex: 1 1 var(--sidebar-width);
+            justify-content: center;
+            min-width: var(--sidebar-width);
         }
     }
 
@@ -29,16 +36,16 @@ body {
     }
 
     .content {
-        flex: 1 1 calc(100% - var(--header-height));
+        flex: 1 1 calc(100% - var(--sidebar-width));
         position: relative;
     }
 
-    .sidebar {
+    /*.sidebar {
         background: rgba(0, 0, 0, 0.2);
-        flex: 1 1 var(--header-height);
+        flex: 1 1 var(--sidebar-width);
         height: calc(100vh - var(--header-height));
         overflow: auto;
-    }
+    }*/
 
     .inner {
         height: calc(100vh - var(--header-height));
@@ -48,6 +55,10 @@ body {
 }
 
 .sidebar {
+    background: rgba(0, 0, 0, 0.2);
+    flex: 1 1 var(--sidebar-width);
+    height: calc(100vh - var(--header-height));
+    overflow: auto;
     text-align: center;
 
     ul {
@@ -80,6 +91,53 @@ body {
             border-bottom: 1px solid var(--color-sidenav-underline-active);
             color: var(--color-sidenav-text-active);
         }
+    }
+}
+
+.seedsList {
+    flex: 1 1 calc(100% - var(--sidebar-width));
+    display: flex;
+
+    ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        align-items: center;
+        border-bottom: 1px solid transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 16px;
+        text-align: center;
+    }
+
+    li.active,
+    li:hover {
+        background: var(--color-pale-darkgreen);
+        border-bottom: 1px solid var(--color-sidenav-underline-active);
+        color: var(--color-sidenav-text-active);
+    }
+
+    h1,
+    h2 {
+        margin: 0;
+        font-weight: 400;
+    }
+
+    h1 {
+        font-size: var(--font-size-medium);
+        margin-bottom: 2px;
+    }
+
+    h2 {
+        font-size: var(--font-size-small);
+    }
+
+    .active {
     }
 }
 
