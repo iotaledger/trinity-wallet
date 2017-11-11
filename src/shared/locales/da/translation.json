@@ -101,6 +101,14 @@
         "button1": "UDSKRIV PAPIRTEGNEBOG",
         "button2": "FÆRDIG"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "OPSÆTNING AF ADGANGSKODE",
         "text": "Nu skal vi opsætte en adgangskode.",
