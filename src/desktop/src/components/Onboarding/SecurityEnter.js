@@ -51,7 +51,7 @@ class SecurityEnter extends React.PureComponent {
             });
         }
 
-        // setOnboardingCompletionStatus(true);
+        setOnboardingCompletionStatus(true);
         history.push('/done');
     };
 

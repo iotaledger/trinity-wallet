@@ -1,0 +1,111 @@
+.transitionGroupWrapper {
+}
+
+.wrapper {
+    --header-height: 80px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    > header {
+        background: rgba(0, 0, 0, 0.2);
+        height: var(--header-height);
+        position: fixed;
+        width: 100%;
+    }
+
+    > main {
+        display: flex;
+        min-height: 100vh;
+        padding-top: var(--header-height);
+    }
+
+    .content {
+        flex: 1 1 calc(100% - var(--header-height));
+        position: relative;
+    }
+
+    .sidebar {
+        background: rgba(0, 0, 0, 0.2);
+        flex: 1 1 var(--header-height);
+    }
+
+    .inner {
+        height: 100%;
+        overflow: auto;
+        padding: 24px;
+    }
+}
+
+.sidebar {
+    text-align: center;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    img {
+        display: block;
+        margin: auto;
+        margin-bottom: 4px;
+        width: 20px;
+        height: 20px;
+    }
+
+    a {
+        border-bottom: 1px solid var(--color-sidenav-underline);
+        color: var(--color-sidenav-text);
+        display: block;
+        font-size: var(--font-size-small);
+        padding: 20px 0;
+        height: 80px;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        &:global(.nav-active),
+        &:hover {
+            background: var(--color-pale-darkgreen);
+            border-bottom: 1px solid var(--color-sidenav-underline-active);
+            color: var(--color-sidenav-text-active);
+        }
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.pageTransition {
+    opacity: 1;
+    &-enter {
+        animation-name: fade-in;
+        animation-duration: 0.3s;
+        animation-fill-mode: both;
+        animation-timing-function: ease;
+        z-index: 1;
+    }
+
+    &-exit {
+        animation-name: fade-out;
+        animation-duration: 0.3s;
+        animation-fill-mode: both;
+        animation-timing-function: ease;
+    }
+}
