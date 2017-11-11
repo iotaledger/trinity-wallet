@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
 import size from 'lodash/size';
 
 // FIXME: Hacking no-console linting.
@@ -25,7 +26,7 @@ export function setTimeFrame(timeFrame) {
 }
 
 function setChartData(json, timeValue) {
-    const response = get({}, 'Data');
+    const response = get(json, 'Data');
     const hasDataPoints = size(response);
 
     if (response && isArray(response) && hasDataPoints) {
@@ -51,16 +52,23 @@ function setChartData(json, timeValue) {
 }
 
 export function setMarketData(data) {
+    const usdPrice = get(data, 'RAW.IOT.USD.PRICE') || 0;
+    const volume24Hours = get(data, 'RAW.IOT.USD.VOLUME24HOUR') || 0;
+    const changePct24Hours = get(data, 'RAW.IOT.USD.CHANGEPCT24HOUR') || 0;
+    const mcap = Math.round(usdPrice * 2779530283)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const volume = Math.round(volume24Hours)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const change24h = parseFloat(Math.round(changePct24Hours * 100) / 100).toFixed(2);
+
     return {
         type: ActionTypes.SET_STATISTICS,
-        usdPrice: data.RAW.IOT.USD.PRICE,
-        mcap: Math.round(data.RAW.IOT.USD.PRICE * 2779530283)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-        volume: Math.round(data.RAW.IOT.USD.VOLUME24HOUR)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-        change24h: parseFloat(Math.round(data.RAW.IOT.USD.CHANGEPCT24HOUR * 100) / 100).toFixed(2),
+        usdPrice,
+        mcap,
+        volume,
+        change24h,
     };
 }
 
