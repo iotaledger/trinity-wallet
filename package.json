@@ -34,9 +34,10 @@
     },
     "dependencies": {
         "eslint": "^4.7.2",
-        "eslint-config-prettier": "^2.6.0",
+        "eslint-config-prettier": "^2.7.0",
         "eslint-plugin-babel": "^4.1.2",
         "eslint-plugin-import": "^2.7.0",
-        "eslint-plugin-react": "^7.3.0"
+        "eslint-plugin-react": "^7.3.0",
+        "keytar": "^4.0.5"
     }
 }
