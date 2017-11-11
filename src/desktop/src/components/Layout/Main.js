@@ -1,15 +1,15 @@
 import React from 'react';
 // import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Switch, Route, withRouter } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import Welcome from '../Onboarding/Welcome';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+// import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Balance from '../Main/Balance';
 import Done from '../Onboarding/Done';
 
-import css from './Onboarding.css';
+// import css from './Main.css';
 
 export default withRouter(
-    class Onboarding extends React.PureComponent {
+    class Main extends React.PureComponent {
         static propTypes = {
             location: PropTypes.object,
         };
@@ -17,22 +17,14 @@ export default withRouter(
         render() {
             const { location } = this.props;
             return (
-                <TransitionGroup>
-                    <CSSTransition
-                        key={location.key}
-                        timeout={300}
-                        classNames={css.pageTransition}
-                        mountOnEnter={true}
-                        unmountOnExit={true}
-                    >
-                        <div className={css.wrapper}>
-                            <Switch location={location}>
-                                <Route path="/done" component={Done} />
-                                <Route path="/" component={Welcome} />
-                            </Switch>
-                        </div>
-                    </CSSTransition>
-                </TransitionGroup>
+                <Switch location={location}>
+                    <Route path="/done" component={Done} />
+                    <Route path="/balance" component={Balance} />
+                    <Route path="/send" component={Balance} />
+                    <Route path="/receive" component={Balance} />
+                    <Route path="/settings" component={Balance} />
+                    <Redirect from="/" to="/balance" />
+                </Switch>
             );
         }
     },

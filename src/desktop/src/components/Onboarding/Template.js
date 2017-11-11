@@ -16,6 +16,7 @@ export default class Template extends React.Component {
     static propTypes = {
         bodyClass: PropTypes.string,
         children: PropTypes.node.isRequired,
+        // TODO: rename headline to title
         headline: PropTypes.string,
         type: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
     };

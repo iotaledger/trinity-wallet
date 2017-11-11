@@ -334,9 +334,9 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-eslint-config-prettier@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.6.0.tgz#f21db0ebb438ad678fb98946097c4bb198befccc"
+eslint-config-prettier@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.7.0.tgz#7bbfef66ad783277836f4ea556e68b9bcc9da4d0"
   dependencies:
     get-stdin "^5.0.1"
 
@@ -848,6 +848,12 @@ jsx-ast-utils@^2.0.0:
   dependencies:
     array-includes "^3.0.3"
 
+keytar@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/keytar/-/keytar-4.0.5.tgz#cc1255ef06eeea1a12440b773f7d4a375b048729"
+  dependencies:
+    nan "2.5.1"
+
 leven@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-2.1.0.tgz#c2e7a9f772094dee9d34202ae8acce4687875580"
@@ -1012,6 +1018,10 @@ ms@2.0.0:
 mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
+
+nan@2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.5.1.tgz#d5b01691253326a97a2bbee9e61c55d8d60351e2"
 
 natural-compare@^1.4.0:
   version "1.4.0"
