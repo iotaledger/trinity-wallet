@@ -8,6 +8,7 @@ const initialState = {
     mcap: '0',
     volume: '0',
     change24h: '0.00',
+    price: 0,
 };
 
 const marketData = (state = initialState, action) => {
