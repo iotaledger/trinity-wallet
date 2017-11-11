@@ -32,7 +32,6 @@ export const addAndSelectSeed = seed => {
         // }
         dispatch(addSeed({ seed }));
         dispatch(selectSeed(seedsSelector(getState()).items.length - 1));
-        // dispatch(selectSeed(getState().seeds.items.length - 1));
     };
 };
 
