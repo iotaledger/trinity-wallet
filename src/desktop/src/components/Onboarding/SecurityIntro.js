@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 
@@ -15,13 +15,13 @@ export default translate('securityIntro')(
             const { t } = this.props;
             return (
                 <Template headline={t('title')}>
-                    <Main>
+                    <Content>
                         <p>{t('text1')}</p>
                         <Infobox>
                             <p>{t('explanation1')}</p>
                             <p>{t('explanation2')}</p>
                         </Infobox>
-                    </Main>
+                    </Content>
                     <Footer>
                         <Button to="/done" variant="warning">
                             {t('button2')}

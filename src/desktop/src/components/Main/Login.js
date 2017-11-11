@@ -31,4 +31,4 @@ const mapDispatchToProps = {
     // setFullNode,
 };
 
-export default translate('balance')(connect(mapStateToProps, mapDispatchToProps)(Balance));
+export default translate('balance')(connect(mapStateToProps, mapDispatchToProps)(Login));

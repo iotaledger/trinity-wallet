@@ -21,8 +21,6 @@ export default class Template extends React.Component {
     static propTypes = {
         bodyClass: PropTypes.string,
         children: PropTypes.node.isRequired,
-        // headline: PropTypes.string,
-        // type: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
     };
 
     static Content = Content;
