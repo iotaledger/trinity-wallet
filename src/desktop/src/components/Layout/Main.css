@@ -13,6 +13,9 @@
         height: var(--header-height);
         position: fixed;
         width: 100%;
+        > img {
+            margin: 16px;
+        }
     }
 
     > main {
