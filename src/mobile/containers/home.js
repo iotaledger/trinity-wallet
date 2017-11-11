@@ -34,6 +34,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import ReAttacher from './reAttacher';
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
+const timer = require('react-native-timer');
 
 class Home extends Component {
     constructor() {
@@ -46,31 +47,27 @@ class Home extends Component {
 
     componentDidMount() {
         this.props.setFirstUse(false);
+        this.startPolling();
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         if (typeof accountInfo !== 'undefined') {
             this.props.setBalance(addressesWithBalance);
         }
-        this.startPolling();
+        timer.setInterval('polling', () => this.startPolling(), 30000);
     }
 
     componentWillUnmount() {
-        this.stopPolling();
+        timer.clearInterval('polling');
     }
 
-    stopPolling() {
-        for (var i = 1; i < 99999; i++) window.clearInterval(i);
-    }
     startPolling() {
-        polling = setInterval(() => {
-            if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
-                const seedIndex = this.props.tempAccount.seedIndex;
-                const seedName = this.props.account.seedNames[seedIndex];
-                const accountInfo = this.props.account.accountInfo;
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo);
-            }
-        }, 10000);
+        if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
+            const seedIndex = this.props.tempAccount.seedIndex;
+            const seedName = this.props.account.seedNames[seedIndex];
+            const accountInfo = this.props.account.accountInfo;
+            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+        }
     }
 
     componentWillReceiveProps(newProps) {

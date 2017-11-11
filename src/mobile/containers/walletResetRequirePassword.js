@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { deleteFromKeyChain } from '../../shared/libs/cryptography';
 import { resetWallet } from '../../shared/actions/app';
 import { setFirstUse, setOnboardingComplete } from '../../shared/actions/account';
+import { Navigation } from 'react-native-navigation';
 import { clearTempData } from '../../shared/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
@@ -55,14 +56,15 @@ class WalletResetRequirePassword extends Component {
     }
 
     redirectToInitialScreen() {
-        this.props.navigator.push({
-            screen: 'languageSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: Colors.brand.primary,
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'languageSetup',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    screenBackgroundImageName: 'bg-green.png',
+                    screenBackgroundColor: '#102e36',
+                },
             },
-            animated: false,
         });
     }
 
