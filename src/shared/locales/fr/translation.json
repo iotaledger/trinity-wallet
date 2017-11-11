@@ -85,8 +85,7 @@
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
         "optionC": "Copier dans le Presse-papiers",
-        "explanation":
-            "Cliquez sur le bouton ci-dessous et copiez votre Seed vers un gestionnaire de mot de passe. Elle restera dans votre presse-papiers 60 secondes.",
+        "explanation": "Cliquez sur le bouton ci-dessous et copiez votre Seed vers un gestionnaire de mot de passe. Elle restera dans votre presse-papiers 60 secondes.",
         "text": "Ne stockez pas votre seed en texte en clair.",
         "button1": "COPIER DANS LE PRESSE-PAPIERS",
         "button2": "OK"
