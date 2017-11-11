@@ -101,6 +101,14 @@
         "button1": "طباعة محفظة ورقية",
         "button2": "تم"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "إعداد كلمة المرور",
         "text": "الآن نحن بحاجة إلى إعداد كلمة مرور.",
