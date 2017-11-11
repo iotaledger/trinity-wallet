@@ -1,27 +1,29 @@
+import { ActionTypes } from '../actions/marketData';
+
 const initialState = {
     currency: 'USD',
     timeFrame: '24h',
-    chartData: [{ x: 0, y: 0 }, { x: 0, y: 0 }],
+    chartData: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
 };
 
 const marketData = (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_CURRENCY':
+        case ActionTypes.SET_CURRENCY:
             return {
                 ...state,
                 currency: action.payload,
             };
-        case 'SET_TIMEFRAME':
+        case ActionTypes.SET_TIME_FRAME:
             return {
                 ...state,
                 timeFrame: action.payload,
             };
-        case 'SET_PRICE':
+        case ActionTypes.SET_PRICE:
             return {
                 ...state,
                 price: action.payload,
             };
-        case 'SET_MARKETDATA':
+        case ActionTypes.SET_STATISTICS:
             return {
                 ...state,
                 usdPrice: action.usdPrice,
@@ -29,7 +31,7 @@ const marketData = (state = initialState, action) => {
                 volume: action.volume,
                 change24h: action.change24h,
             };
-        case 'SET_CHARTDATA':
+        case ActionTypes.SET_CHART_DATA:
             return {
                 ...state,
                 chartData: action.payload,
