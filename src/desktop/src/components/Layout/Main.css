@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 .transitionGroupWrapper {
 }
 
@@ -32,10 +36,12 @@
     .sidebar {
         background: rgba(0, 0, 0, 0.2);
         flex: 1 1 var(--header-height);
+        height: calc(100vh - var(--header-height));
+        overflow: auto;
     }
 
     .inner {
-        height: 100%;
+        height: calc(100vh - var(--header-height));
         overflow: auto;
         padding: 24px;
     }
@@ -111,4 +117,15 @@
         animation-fill-mode: both;
         animation-timing-function: ease;
     }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:window-inactive,
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
 }
