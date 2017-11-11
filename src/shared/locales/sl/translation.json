@@ -105,7 +105,7 @@
         "title": "Nastavitve gesla",
         "text": "Ok, zdaj moramo nastaviti geslo.",
         "explanation": "To geslo boste v prihodnosti uporabili za dostop do vaše denarnice. Šifrirana kopija vašega seeda bo shranjena na vaši napravi.",
-        "reminder": "Ensure you use a strong password of at least 12 characters.",
+        "reminder": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
         "placeholder1": "'Geslo'",
         "placeholder2": "Znova vnesite geslo",
         "error1_title": "Geslo je prekratko",
@@ -116,7 +116,7 @@
         "button2": "NAZAJ"
     },
     "onboardingComplete": {
-        "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+        "text": "Denarnica je sedaj nastavljena in pripravljena za uporabo. Če želite v karkoli spremeniti v prihodnosti, poglejte v menu z orodji.",
         "button": "Naprej"
     },
     "home": {
