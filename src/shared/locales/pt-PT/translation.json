@@ -19,17 +19,14 @@
     "welcome2": {
         "text1": "Ok. Vamos configurar a sua carteira!",
         "text2": "Já possui uma Seed que gostaria de utilizar?",
-        "seed_explanation1":
-            "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
-        "seed_explanation2":
-            "Dá acesso aos seus fundos a partir de qualquer carteira, em qualquer dispositivo. Se a perder, não é recuperável, perde tudo o que lá tem",
+        "seed_explanation1": "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
+        "seed_explanation2": "Dá acesso aos seus fundos a partir de qualquer carteira, em qualquer dispositivo. Se a perder, não é recuperável, perde tudo o que lá tem",
         "reminder": "Por favor, mantenha a sua Seed protegida e segura",
         "button1": "SIM",
         "button2": "NÃO"
     },
     "lightserver": {
-        "text1":
-            "Um servidor é uma forma de acesso à rede IOTA, gentilmente disponibilizada por membros da comunidade ou por parceiros corporativos.",
+        "text1": "Um servidor é uma forma de acesso à rede IOTA, gentilmente disponibilizada por membros da comunidade ou por parceiros corporativos.",
         "text2": "Poderá encontrar mais informações sobre os servidores em: http://iotasupport.com/lightwallet.shtml",
         "text3": "Por favor, escolha um servidor da lista abaixo.",
         "server_label": "Servidor",
@@ -50,11 +47,9 @@
         "error_title": "A Seed é demasiado curta",
         "error_text": "As Seeds devem ter pelo menos 60 caracteres. Por favor, tente novamente.",
         "invalid_seed_title": "Seed incorreta",
-        "invalid_seed_text":
-            "A sua Seed é inválida. A Seed só pode conter letras maiúsculas (A-Z) e o número 9 e, além disso, tem de ter entre 60 a 81 caracteres.",
+        "invalid_seed_text": "A sua Seed é inválida. A Seed só pode conter letras maiúsculas (A-Z) e o número 9 e, além disso, tem de ter entre 60 a 81 caracteres.",
         "placeholder": "SEED",
-        "seed_explanation":
-            "As Seeds devem ter 81 caracteres e têm de ser constituídas por letras maiúsculas (A-Z) e o número 9. Não podem conter mais de 81 caracteres.",
+        "seed_explanation": "As Seeds devem ter 81 caracteres e têm de ser constituídas por letras maiúsculas (A-Z) e o número 9. Não podem conter mais de 81 caracteres.",
         "reminder": "NUNCA PARTILHE A SUA SEED COM NINGUÉM",
         "scan_code": "Ler código QR",
         "close": "FECHAR",
@@ -82,8 +77,7 @@
         "optionA": "Cópia Manual",
         "optionB": " Carteira de Papel",
         "optionC": "Copiar para a Área de Transferência",
-        "explanation":
-            "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e confirme VÁRIAS vezes que anotou corretamente.",
+        "explanation": "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e confirme VÁRIAS vezes que anotou corretamente.",
         "text": "verifique várias vezes",
         "button": "CONCLUÍDO"
     },
@@ -91,8 +85,7 @@
         "optionA": "Cópia Manual",
         "optionB": " Carteira de Papel",
         "optionC": "Copiar para a Área de Transferência",
-        "explanation":
-            "Pressione o botão em baixo para copiar a sua Seed para um gestor de palavras-passe. Esta cópia ficará na sua área de transferência durante 60 segundos.",
+        "explanation": "Pressione o botão em baixo para copiar a sua Seed para um gestor de palavras-passe. Esta cópia ficará na sua área de transferência durante 60 segundos.",
         "text": "Não grave a sua Seed num arquivo de texto não cifrado.",
         "button1": "COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
         "button2": "CONCLUÍDO"
@@ -111,8 +104,7 @@
     "setPassword": {
         "title": "CONFIGURAR PALAVRA-PASSE",
         "text": "Agora precisamos de criar uma palavra-passe.",
-        "explanation":
-            "No futuro, irá usar esta palavra-passe para aceder à sua carteira. Será armazenada uma cópia cifrada da sua Seed no seu dispositivo.",
+        "explanation": "No futuro, irá usar esta palavra-passe para aceder à sua carteira. Será armazenada uma cópia cifrada da sua Seed no seu dispositivo.",
         "reminder": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
         "placeholder1": "`PALAVRA-PASSE´",
         "placeholder2": "DIGITE DE NOVO A PALAVRA-PASSE",
@@ -124,8 +116,7 @@
         "button2": "ANTERIOR"
     },
     "onboardingComplete": {
-        "text":
-            "Agora a sua carteira está configurada e pronta para ser usada. Se precisar de efetuar alguma alteração no futuro, aceda ao menu Ferramentas.",
+        "text": "Agora a sua carteira está configurada e pronta para ser usada. Se precisar de efetuar alguma alteração no futuro, aceda ao menu Ferramentas.",
         "button": "SEGUINTE"
     },
     "home": {
