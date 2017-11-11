@@ -10,7 +10,7 @@
         "button1": "WEITER"
     },
     "welcome1": {
-        "text1": "Vielen Dank für das Herunterladen der IOTA Wallet.",
+        "text1": "Vielen Dank für das Herunterladen des IOTA Wallets.",
         "text2": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
         "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen.",
         "button1": "WEITER",
@@ -20,7 +20,7 @@
         "text1": "Okay. Lass uns Dein Wallet einrichten!",
         "text2": "Hast Du bereits einen Seed welchen du verwenden möchtest?",
         "seed_explanation1": "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
-        "seed_explanation2": "Mit deinem Seed kannst du von jeder Wallet und jedem Gerät auf deine IOTA zugreifen - Aber wenn du deinen Seed verlierst, verlierst du auch dein gesamtes IOTA Guthaben",
+        "seed_explanation2": "Mit Deinem Seed kannst du von jeder Wallet und jedem Gerät auf Deine IOTA zugreifen – Aber wenn du Deinen Seed verlierst, verlierst du auch Dein gesamtes IOTA Guthaben",
         "reminder": "Bewahre Deinen Seed sicher auf",
         "button1": "JA",
         "button2": "NEIN"
@@ -67,8 +67,8 @@
     "saveYourSeed": {
         "text1": "Du musst Deinen Seed mit mindestens einer der unten aufgeführten Optionen speichern.",
         "text2": "mindestens einer",
-        "optionA": "NIEDERSCHREIBEN",
-        "optionB": "PAPIER WALLET DRUCKEN",
+        "optionA": "MANUELLE KOPIE",
+        "optionB": "PAPER WALLET DRUCKEN",
         "optionC": "IN ZWISCHENABLAGE KOPIEREN",
         "button1": "WEITER",
         "button2": "ZURÜCK"
@@ -77,7 +77,7 @@
         "optionA": "Manuelle Kopie",
         "optionB": " Paper Wallet",
         "optionC": "In die Zwischenablage kopieren",
-        "explanation": "Ihr Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreiben Sie ihren Seed und die Prüfsumme auf und prüfen Sie dreimal ob diese Korrekt sind.",
+        "explanation": "Dein Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreibe Deinen Seed und die Prüfsumme auf und prüfe dreimal ob diese Korrekt sind.",
         "text": "prüfe dreimal",
         "button": "FERTIG"
     },
@@ -92,19 +92,19 @@
     },
     "saveYourSeed4": {
         "optionA": "Manuelle Kopie",
-        "optionB": " Papier Wallet",
+        "optionB": " Paper Wallet",
         "optionC": "In die Zwischenablage kopieren",
-        "explanation": "Klicke die Schaltfläche unten, um eine Paper Wallet von deinem Seed auszudrucken.",
+        "explanation": "Klicke die Schaltfläche unten, um eine Paper Wallet von Deinem Seed auszudrucken.",
         "text1": "Bewahre es sicher auf",
         "text2": "Teile niemals deinen Seed.",
         "check_button": "IOTA Logo",
-        "button1": "PAPIER WALLET DRUCKEN",
+        "button1": "PAPER WALLET DRUCKEN",
         "button2": "FERTIG"
     },
     "setPassword": {
         "title": "PASSWORT EINRICHTEN",
         "text": "Jetzt müssen wir ein Passwort einrichten.",
-        "explanation": "Mit dem Passwort kannst du in Zukunft auf deine Wallet zugreifen. Eine verschlüsselte Kopie deines Seed wird auf deinem Gerät gespeichert.",
+        "explanation": "Mit dem Passwort kannst Du in Zukunft auf Deine Wallet zugreifen. Eine verschlüsselte Kopie Deines Seed wird auf Deinem Gerät gespeichert.",
         "reminder": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
         "placeholder1": "\"PASSWORT\"",
         "placeholder2": "PASSWORT ERNEUT EINGEBEN",
