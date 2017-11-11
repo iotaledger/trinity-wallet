@@ -246,9 +246,9 @@ export function generateNewAddress(seed, seedName, addresses) {
     return dispatch => {
         iota.api.getNewAddress(seed, { checksum: true }, (error, address) => {
             if (!error) {
-                const addressMinusChecksum = address.substring(0, 81);
-                if (!(addressMinusChecksum in addresses)) {
-                    addresses[addressMinusChecksum] = 0;
+                const addressNoChecksum = address.substring(0, 81);
+                if (!(addressNoChecksum in addresses)) {
+                    addresses[addressNoChecksum] = 0;
                 }
                 dispatch(updateAddresses(seedName, addresses));
                 dispatch(generateNewAddressSuccess(address));
@@ -278,10 +278,13 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
             return { address: iota.utils.noChecksum(transfer.address) };
         });
         var expectedOutputsLength = outputsToCheck.length;
-        if (!iota.valid.isTransfersArray(transfer)) {
+
+        /* TODO: iota.valid.isTransfersArray returns false if message contains ' or " characters, but a tx message can contain these characters. Need to fix. */
+
+        /*if (!iota.valid.isTransfersArray(transfer)) {
             console.log('Invalid transfer array');
             return;
-        }
+        }*/
         // Check to make sure user is not sending to an already used address
         filterSpentAddresses(outputsToCheck).then(filtered => {
             if (filtered.length !== expectedOutputsLength) {
@@ -291,6 +294,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                 // Send transfer with depth 4 and minWeightMagnitude 18
                 iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
                     if (!error) {
+                        console.log(success);
                         dispatch(checkForNewAddress(seedName, addressesWithBalance, success));
                         dispatch(addPendingTransfer(seedName, transfers, success));
                         dispatch(
@@ -309,13 +313,18 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
 
 export function checkForNewAddress(seedName, addressesWithBalance, txArray) {
     return dispatch => {
-        const changeAddress = txArray[txArray.length - 1].address;
-        const addresses = Object.keys(addressesWithBalance);
-        // If current addresses does not include change address, add new address and balance
-        if (!addresses.includes(changeAddress)) {
-            addressesWithBalance[changeAddress] = 0;
+        // Check if 0 value transfer
+        if (txArray[0].value != 0) {
+            const changeAddress = txArray[txArray.length - 1].address;
+            const addresses = Object.keys(addressesWithBalance);
+            // Remove checksum
+            const addressNoChecksum = changeAddress.substring(0, 81);
+            // If current addresses does not include change address, add new address and balance
+            if (!addresses.includes(addressNoChecksum)) {
+                addressesWithBalance[addressNoChecksum] = 0;
+            }
+            dispatch(updateAddresses(seedName, addressesWithBalance));
         }
-        dispatch(updateAddresses(seedName, addressesWithBalance));
     };
 }
 
