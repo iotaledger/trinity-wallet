@@ -4,6 +4,10 @@ const initialState = {
     currency: 'USD',
     timeFrame: '24h',
     chartData: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+    usdPrice: 0,
+    mcap: '0',
+    volume: '0',
+    change24h: '0.00',
 };
 
 const marketData = (state = initialState, action) => {
