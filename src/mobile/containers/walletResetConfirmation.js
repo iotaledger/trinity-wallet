@@ -54,9 +54,6 @@ export default class WalletResetConfirmation extends Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topWrapper}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.headerWrapper}>
-                        <Text style={styles.header}>{toUpper('wallet reset')}</Text>
-                    </View>
                     <View style={styles.subHeaderWrapper}>
                         <Text style={styles.subHeaderText}>{toUpper('this action cannot be undone.')}</Text>
                     </View>
@@ -113,19 +110,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-    },
-    headerWrapper: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: height / 8,
-        paddingTop: height / 45,
-    },
-    header: {
-        color: Colors.white,
-        fontFamily: Fonts.primary,
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     subHeaderWrapper: {
         alignItems: 'center',
