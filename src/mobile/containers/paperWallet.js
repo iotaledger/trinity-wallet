@@ -23,14 +23,15 @@ const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 let results = '';
 
 class PaperWallet extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             checkboxImage: require('../../shared/images/checkbox-checked.png'),
             showIotaLogo: true,
             iotaLogoVisibility: 'visible',
             pressedPrint: false,
         };
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
     onDonePress() {
@@ -45,6 +46,14 @@ class PaperWallet extends React.Component {
                     item.forEach(item => RNFS.unlink(item.path)),
                 );
             }
+        }
+    }
+
+    onNavigatorEvent(event) {
+        if (event.id === 'willAppear') {
+            this.props.navigator.toggleNavBar({
+                to: 'hidden',
+            });
         }
     }
 
@@ -163,6 +172,10 @@ class PaperWallet extends React.Component {
             base64: true,
             fonts: ['../../shared/custom-fonts/Inconsolata-Bold.ttf'],
         };
+
+        this.props.navigator.toggleNavBar({
+            to: 'shown',
+        });
 
         try {
             if (isAndroid) {
@@ -347,7 +360,6 @@ class PaperWallet extends React.Component {
                     <View style={{ paddingTop: height / 20 }}>
                         <TouchableOpacity onPress={event => this.onPrintPress()}>
                             <View style={styles.printButton}>
-                                <Image style={styles.printImage} source={require('../../shared/images/print.png')} />
                                 <Text style={styles.printText}>PRINT PAPER WALLET</Text>
                             </View>
                         </TouchableOpacity>
@@ -491,27 +503,20 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     printButton: {
-        flexDirection: 'row',
-        borderColor: 'rgba(255,255,255,0.6)',
+        borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 2.5,
-        height: height / 20,
+        height: height / 16,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'space-around',
         backgroundColor: '#009f3f',
     },
     printText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingRight: width / 50,
-    },
-    printImage: {
-        height: width / 27,
-        width: width / 27,
-        paddingLeft: width / 50,
     },
     paperWalletContainer: {
         width: width / 1.1,
