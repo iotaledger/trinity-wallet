@@ -101,6 +101,14 @@
         "button1": "SKRIV UT PAPIRLOMMEBOK",
         "button2": "FERDIG"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "PASSORD OPPSETT",
         "text": "Nå må vi sette opp et passord.",
