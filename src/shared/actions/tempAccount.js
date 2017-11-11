@@ -294,7 +294,6 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                 // Send transfer with depth 4 and minWeightMagnitude 18
                 iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
                     if (!error) {
-                        console.log(success);
                         dispatch(checkForNewAddress(seedName, addressesWithBalance, success));
                         dispatch(addPendingTransfer(seedName, transfers, success));
                         dispatch(
