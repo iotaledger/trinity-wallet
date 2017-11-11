@@ -101,6 +101,14 @@
         "button1": "Printanje papirnate denarnice",
         "button2": "Opravljeno"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "Nastavitve gesla",
         "text": "Ok, zdaj moramo nastaviti geslo.",
