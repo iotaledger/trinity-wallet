@@ -87,7 +87,9 @@ class Receive extends Component {
                 <View style={{ paddingBottom: height / 40 }}>
                     <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                         <View style={styles.receiveAddressContainer}>
-                            <Text style={styles.receiveAddressText}>{receiveAddress}</Text>
+                            <Text style={styles.receiveAddressText} numberOfLines={3}>
+                                {receiveAddress}
+                            </Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
         fontSize: width / 33.7,
         color: 'white',
         backgroundColor: 'transparent',
-        paddingHorizontal: width / 14,
+        paddingHorizontal: width / 15,
         textAlign: 'center',
     },
     generateButton: {
