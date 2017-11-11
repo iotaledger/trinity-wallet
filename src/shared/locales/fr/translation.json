@@ -19,14 +19,17 @@
     "welcome2": {
         "text1": "Okay. Paramétrons votre Wallet !",
         "text2": "Est-ce que vous possédez une Seed que vous souhaitez utiliser ?",
-        "seed_explanation1": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
-        "seed_explanation2": "Vous pouvez l'utiliser pour accéder à vos fonds à partir de n'importe quel Wallet, depuis n'importe quel appareil. Mais si vous perdez votre Seed, vous perdez également vos IOTA",
+        "seed_explanation1":
+            "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
+        "seed_explanation2":
+            "Vous pouvez l'utiliser pour accéder à vos fonds à partir de n'importe quel Wallet, depuis n'importe quel appareil. Mais si vous perdez votre Seed, vous perdez également vos IOTA",
         "reminder": "Merci de garder votre Seed en sécurité",
         "button1": "OUI",
         "button2": "NON"
     },
     "lightserver": {
-        "text1": "Un serveur léger est un portail vers le réseau IOTA, fourni gracieusement par les membres de la communauté ou par des entreprises partenaires.",
+        "text1":
+            "Un serveur léger est un portail vers le réseau IOTA, fourni gracieusement par les membres de la communauté ou par des entreprises partenaires.",
         "text2": "Plus d'informations sur les serveurs : http://iotasupport.com/lightwallet.shtml",
         "text3": "Merci de choisir un serveur dans la liste ci-dessous.",
         "server_label": "Serveur",
@@ -47,9 +50,11 @@
         "error_title": "La Seed est trop courte",
         "error_text": "La Seed doit comporter au moins 60 caractères. Veuillez réessayer.",
         "invalid_seed_title": "Seed invalide",
-        "invalid_seed_text": "Votre Seed n'est pas valide. Une Seed ne peut contenir que des lettres en majuscules (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères.",
+        "invalid_seed_text":
+            "Votre Seed n'est pas valide. Une Seed ne peut contenir que des lettres en majuscules (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères.",
         "placeholder": "SEED",
-        "seed_explanation": "Une Seed doit contenir des lettres en majuscules (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères. Vous ne pouvez pas utiliser de Seed de plus de 81 caractères.",
+        "seed_explanation":
+            "Une Seed doit contenir des lettres en majuscules (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères. Vous ne pouvez pas utiliser de Seed de plus de 81 caractères.",
         "reminder": "NE PARTAGEZ JAMAIS VOTRE SEED",
         "scan_code": "Scanner le code QR",
         "close": "FERMER",
@@ -77,7 +82,8 @@
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
         "optionC": "Copier dans le Presse-papiers",
-        "explanation": "Votre Seed se lit de gauche à droite et comporte 81 caractères. Notez-la, ainsi que la somme de contrôle, et vérifiez-les à plusieurs reprises.",
+        "explanation":
+            "Votre Seed se lit de gauche à droite et comporte 81 caractères. Notez-la, ainsi que la somme de contrôle, et vérifiez-les à plusieurs reprises.",
         "text": "vérifiez à plusieurs reprises",
         "button": "OK"
     },
@@ -105,7 +111,8 @@
     "setPassword": {
         "title": "GESTION DU MOT DE PASSE",
         "text": "Maintenant nous devons paramétrer un mot de passe.",
-        "explanation": "Vous utiliserez ce mot de passe pour accéder à votre wallet à l'avenir. Une copie chiffrée de votre seed sera stockée sur votre appareil.",
+        "explanation":
+            "Vous utiliserez ce mot de passe pour accéder à votre wallet à l'avenir. Une copie chiffrée de votre seed sera stockée sur votre appareil.",
         "reminder": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "placeholder1": "'MOT DE PASSE'",
         "placeholder2": "RETAPER LE MOT DE PASSE",
@@ -117,7 +124,8 @@
         "button2": "RETOUR"
     },
     "onboardingComplete": {
-        "text": "Le wallet est maintenant paramétré et prêt à être utilisé. Si vous souhaitez effectuer des changements à l'avenir, rendez vous dans le menu Outils.",
+        "text":
+            "Le wallet est maintenant paramétré et prêt à être utilisé. Si vous souhaitez effectuer des changements à l'avenir, rendez vous dans le menu Outils.",
         "button": "SUIVANT"
     },
     "home": {

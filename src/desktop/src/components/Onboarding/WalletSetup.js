@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Header from './Header';
+import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 
@@ -13,9 +13,8 @@ class WalletSetup extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <div>
-                <Header headline={t('title')} />
-                <main>
+            <Template>
+                <Main>
                     <p>{t('text1')}</p>
                     <p>{t('text2')}</p>
                     <Infobox>
@@ -25,20 +24,16 @@ class WalletSetup extends React.PureComponent {
                             <strong>{t('reminder')}</strong>
                         </p>
                     </Infobox>
-                </main>
-                <footer>
-                    <p>
-                        <Button to="/seed/enter" variant="success">
-                            {t('button1')}
-                        </Button>
-                    </p>
-                    <p>
-                        <Button to="/seed/generate" variant="warning">
-                            {t('button2')}
-                        </Button>
-                    </p>
-                </footer>
-            </div>
+                </Main>
+                <Footer>
+                    <Button to="/seed/generate" variant="warning">
+                        {t('button2')}
+                    </Button>
+                    <Button to="/seed/enter" variant="success">
+                        {t('button1')}
+                    </Button>
+                </Footer>
+            </Template>
         );
     }
 }
