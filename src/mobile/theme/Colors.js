@@ -5,6 +5,7 @@ const BaseColors = {
     orangeDark: '#F7D002',
     red: '#FF220C',
     redLight: '#B21C17',
+    redDark: '#A10702',
     white: '#FFFFFF',
 };
 
@@ -15,6 +16,6 @@ export default {
     },
     dropdown: {
         success: BaseColors.greenLight,
-        error: BaseColors.red,
+        error: BaseColors.redDark,
     },
 };
