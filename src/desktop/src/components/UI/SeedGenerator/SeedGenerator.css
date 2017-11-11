@@ -16,14 +16,15 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     display: block;
+    flex: 1 0;
     float: left;
     margin: 0;
+    min-width: 11.111%;
     max-width: 50px;
     padding: 0;
     position: relative;
+    transition: 0.3s all ease;
     vertical-align: middle;
-    flex: 1 0;
-    min-width: 11.111%;
 
     &:after {
         content: '';
