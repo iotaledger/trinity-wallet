@@ -5,7 +5,7 @@ import { VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 
 const { height, width } = Dimensions.get('window');
 
-const viewbox = `${width / 4.7} ${height / 61.3} ${width / 3.45} ${height / 3.555}`;
+const viewbox = `${width / 3.95} ${height / 50} ${width / 4} ${height / 3.7}`;
 
 class Chart extends React.Component {
     componentDidMount() {
@@ -97,6 +97,7 @@ class Chart extends React.Component {
                         <TouchableWithoutFeedback
                             onPress={event => this.onCurrencyClick()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                            style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
                                 <Text style={styles.buttonText}>{this.props.marketData.currency}</Text>
@@ -110,6 +111,7 @@ class Chart extends React.Component {
                         <TouchableWithoutFeedback
                             onPress={event => this.onTimeFrameClick()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                            style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
                                 <Text style={styles.buttonText}>{this.props.marketData.timeFrame}</Text>
@@ -118,7 +120,7 @@ class Chart extends React.Component {
                     </View>
                 </View>
                 <View style={styles.chartContainer}>
-                    <Svg height={height / 3.2} width={width / 1.2} viewBox={viewbox}>
+                    <Svg height={height / 3.2} width={width / 1.15} viewBox={viewbox}>
                         <Defs>
                             <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
                                 <Stop stopColor="#FFA25B" stopOpacity="1" offset="100%" />
@@ -134,9 +136,9 @@ class Chart extends React.Component {
                                 tickLabels: { fill: 'white', fontSize: width / 44, fontFamily: 'Lato-Regular' },
                             }}
                             height={height / 3.2}
-                            width={width / 1.2}
+                            width={width / 1.15}
                             gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.25 }} />}
-                            tickLabelComponent={<VictoryLabel x={0} textAnchor="start" />}
+                            tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
                             tickValues={this.getTickValues()}
                             domain={{
                                 y: [this.getMinY(), this.getMaxY()],
@@ -156,7 +158,7 @@ class Chart extends React.Component {
                             }}
                             scale={{ x: 'time', y: 'linear' }}
                             height={height / 3.2}
-                            width={width / 1.2}
+                            width={width / 1.15}
                             standalone={false}
                             animate={{
                                 duration: 1500,
