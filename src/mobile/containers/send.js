@@ -47,18 +47,6 @@ class Send extends Component {
         };
     }
 
-    componentDidMount() {
-        {
-            /*    const dropdown = DropdownHolder.getDropdown();
-            dropdown.alertWithType(
-                'success',
-                'Transaction sent successfully',
-                `You have sent ${this.props.tempAccount.lastTxValue} ${sentDenomination} to address ${this.props
-                    .tempAccount.lastTxAddress}.`,
-            );*/
-        }
-    }
-
     onDenominationPress() {
         switch (this.state.denomination) {
             case 'Mi':
@@ -169,15 +157,12 @@ class Send extends Component {
         getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value !== 'undefined') {
                 var seed = getSeed(value, this.props.tempAccount.seedIndex);
-                sendTx(seed);
-                {
-                    /*if (sendTransaction(seed.seed, address, value, message) == false) {
+                if (sendTx(seed) == false) {
                     this.dropdown.alertWithType(
                         'error',
                         'Key reuse',
                         `The address you are trying to send to has already been used. Please try another address.`,
                     );
-                }*/
                 }
             } else {
                 console.log('error');
