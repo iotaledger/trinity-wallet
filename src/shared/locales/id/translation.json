@@ -19,19 +19,15 @@
     "welcome2": {
         "text1": "Oke. Mari menyiapkan dompet anda!",
         "text2": "Apa anda sudah memiliki benih yang ingin digunakan?",
-        "seed_explanation1":
-            "Benih di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
-        "seed_explanation2":
-            "Anda dapat mengakses dana anda dari dompet manapun dan di perangkat apapun. Tetapi jika anda lupa benih, anda akan kehilangan IOTA",
+        "seed_explanation1": "Benih di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
+        "seed_explanation2": "Anda dapat mengakses dana anda dari dompet manapun dan di perangkat apapun. Tetapi jika anda lupa benih, anda akan kehilangan IOTA",
         "reminder": "Harap disimpan benih anda dengan baik",
         "button1": "IYA",
         "button2": "TIDAK"
     },
     "lightserver": {
-        "text1":
-            "Server ringan adalah pintu gerbang ke jaringan IOTA yang sudah dipersiapkan oleh komunitas dan mitra perusahaan kami.",
-        "text2":
-            "Anda dapat menemukan informasi lebih lanjut tentang server di: http://iotasupport.com/lightwallet.shtml",
+        "text1": "Server ringan adalah pintu gerbang ke jaringan IOTA yang sudah dipersiapkan oleh komunitas dan mitra perusahaan kami.",
+        "text2": "Anda dapat menemukan informasi lebih lanjut tentang server di: http://iotasupport.com/lightwallet.shtml",
         "text3": "Silakan pilih server dari daftar di bawah ini.",
         "server_label": "Server",
         "custom_server_label": "Alamat server lain",
@@ -51,11 +47,9 @@
         "error_title": "Seed terlalu singkat",
         "error_text": "Seed harus setidaknya 60 karakter. Silakan coba kembali.",
         "invalid_seed_title": "Seed keliru",
-        "invalid_seed_text":
-            "Seed anda tidak sah. Seed dapat berupa huruf besar (A-Z) dan angka 9 dan jumlah total karakter antara 60 sampai dengan 81.",
+        "invalid_seed_text": "Seed anda tidak sah. Seed dapat berupa huruf besar (A-Z) dan angka 9 dan jumlah total karakter antara 60 sampai dengan 81.",
         "placeholder": "SEED",
-        "seed_explanation":
-            "Seed harus 81 karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan benih lebih dari 81 karakter.",
+        "seed_explanation": "Seed harus 81 karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan benih lebih dari 81 karakter.",
         "reminder": "JANGAN PERNAH MEMBAGI SEED ANDA DENGAN SIAPAPUN",
         "scan_code": "Pindai kode QR",
         "close": "TUTUP",
@@ -83,8 +77,7 @@
         "optionA": "Simpan Manual",
         "optionB": " Dompet Kertas",
         "optionC": "Salin ke papan klip",
-        "explanation":
-            "Seed anda terdiri dari 81 karakter dari kiri ke kanan. Tulis seed tersebut, cek jumlah karakternya dan pastikan mereka sudah benar.",
+        "explanation": "Seed anda terdiri dari 81 karakter dari kiri ke kanan. Tulis seed tersebut, cek jumlah karakternya dan pastikan mereka sudah benar.",
         "text": "cek kembali",
         "button": "SELESAI"
     },
@@ -92,8 +85,7 @@
         "optionA": "Simpan Manual",
         "optionB": " Dompet Kertas",
         "optionC": "Salin ke papan klip",
-        "explanation":
-            "Tekan tombol dibawah ini dan salin benih anda ke manajer kata sandi. Benih anda akan tinggal di papan klip selama 60 detik.",
+        "explanation": "Tekan tombol dibawah ini dan salin benih anda ke manajer kata sandi. Benih anda akan tinggal di papan klip selama 60 detik.",
         "text": "Jangan simpan seed anda di dalam teks biasa.",
         "button1": "SALIN ke PAPAN KLIP",
         "button2": "SELESAI"
@@ -112,8 +104,7 @@
     "setPassword": {
         "title": "ATUR KATA SANDI",
         "text": "Mari kita membuat kata sandi.",
-        "explanation":
-            "Anda akan menggunakan kata sandi ini untuk mengakses dompet anda selanjutnya. Salinan dari benih yang terenkripsi akan disimpan di perangkat anda.",
+        "explanation": "Anda akan menggunakan kata sandi ini untuk mengakses dompet anda selanjutnya. Salinan dari benih yang terenkripsi akan disimpan di perangkat anda.",
         "reminder": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 12 karakter.",
         "placeholder1": "'KATA SANDI'",
         "placeholder2": "KETIK ULANG KATA SANDI",
@@ -125,8 +116,7 @@
         "button2": "KEMBALI"
     },
     "onboardingComplete": {
-        "text":
-            "Dompet sudah dipersiapkan dan siap untuk digunakan. Silahkan cek di menu Perkakas jika Anda ingin membuat perubahan lagi.",
+        "text": "Dompet sudah dipersiapkan dan siap untuk digunakan. Silahkan cek di menu Perkakas jika Anda ingin membuat perubahan lagi.",
         "button": "LANJUT"
     },
     "home": {
