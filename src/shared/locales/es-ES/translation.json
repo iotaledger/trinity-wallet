@@ -3,15 +3,15 @@
         "invalidServer_title": "Servidor inválido",
         "invalidServer_text": "La dirección de servidor introducida no es válida",
         "unknownError_title": "Ocurrió un error desconocido",
-        "unknownError_text": "No hemos podído realizar la acción deseada. Por favor, inténtelo de nuevo."
+        "unknownError_text": "No hemos podido realizar la acción deseada. Por favor, inténtelo de nuevo."
     },
     "setLanguage": {
         "dropdown_title": "Idioma",
-        "button1": "SEGUIR"
+        "button1": "SIGUIENTE"
     },
     "welcome1": {
         "text1": "Gracias por descargar la billetera de IOTA.",
-        "text2": "Vamos a pasar los minutos siguientes configurando su billetera.",
+        "text2": "Vamos a pasar unos pocos minutos configurando tu billetera.",
         "reminder": "Puede estar tentado a saltar algunos pasos, pero le instamos a seguir el proceso completo.",
         "button1": "SEGUIR",
         "button2": "VOLVER"
