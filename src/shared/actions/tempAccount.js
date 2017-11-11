@@ -1,6 +1,7 @@
 import { iota } from '../libs/iota';
-import { updateAddresses } from '../actions/account';
+import { updateAddresses, addPendingTransfer } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
+import { formatSentTransaction } from '../libs/accountUtils';
 
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
@@ -245,8 +246,9 @@ export function generateNewAddress(seed, seedName, addresses) {
     return dispatch => {
         iota.api.getNewAddress(seed, { checksum: true }, (error, address) => {
             if (!error) {
-                if (!(address in addresses)) {
-                    addresses[address] = 0;
+                const addressMinusChecksum = address.substring(0, 81);
+                if (!(addressMinusChecksum in addresses)) {
+                    addresses[addressMinusChecksum] = 0;
                 }
                 dispatch(updateAddresses(seedName, addresses));
                 dispatch(generateNewAddressSuccess(address));
@@ -257,9 +259,11 @@ export function generateNewAddress(seed, seedName, addresses) {
     };
 }
 
-export function sendTransaction(seed, addressesWithBalance, seedName, address, value, message) {
+export function sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message) {
     return dispatch => {
         // Convert to Trytes
+        const addressesWithBalance = currentSeedAccountInfo.addresses;
+        const transfers = currentSeedAccountInfo.transfers;
         const messageTrytes = iota.utils.toTrytes(message);
         const tag = iota.utils.toTrytes('IOTA');
         const transfer = [
@@ -288,8 +292,11 @@ export function sendTransaction(seed, addressesWithBalance, seedName, address, v
                 iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
                     if (!error) {
                         dispatch(checkForNewAddress(seedName, addressesWithBalance, success));
+                        dispatch(addPendingTransfer(seedName, transfers, success));
+                        dispatch(
+                            generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'),
+                        );
                         dispatch(sendTransferSuccess(address, value));
-                        dispatch(generateAlert('success', 'Transfer completed', 'Transfer completed successfully.'));
                     } else {
                         dispatch(sendTransferError(error));
                         console.log('SOMETHING WENT WRONG: ', error);
