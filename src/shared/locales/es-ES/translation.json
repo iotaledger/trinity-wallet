@@ -28,29 +28,29 @@
     "lightserver": {
         "text1": "Un servidor liviano es una puerta de entrada a la red IOTA, amablemente proporcionada por miembros de la comunidad o por nuestros socios corporativos.",
         "text2": "Puedes encontrar mas información sobre estos servidores en: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Por favor, seleccione un servidor de la lista de abajo.",
+        "text3": "Por favor, seleccione un servidor de la lista abajo.",
         "server_label": "Servidor",
         "custom_server_label": "Dirección de otro servidor",
         "other": "Otro",
-        "button1": "SEGUIR",
+        "button1": "SIGUIENTE",
         "button2": "VOLVER"
     },
     "login": {
         "text": "Por favor introduzca su contraseña",
         "placeholder": "CONTRASEÑA",
         "error_title": "Contraseña no reconocida",
-        "error_text": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
+        "error_text": "La contraseña no fue reconocida. Por favor, inténtalo de nuevo.",
         "button1": "LISTO",
         "button2": "USAR SEED"
     },
     "enterSeed": {
-        "error_title": "Seed es demasiado corta",
-        "error_text": "Las Seeds deben tener como mínimo 60 caracteres. Por favor, inténtelo de nuevo.",
+        "error_title": "La seed es demasiado corta",
+        "error_text": "Las seeds deben tener como mínimo 60 caracteres. Por favor, inténtelo de nuevo.",
         "invalid_seed_title": "Seed inválida",
-        "invalid_seed_text": "Su seed es inválida. Una seed solo puede contener letras mayúsculas (de A a Z) y el número 9. También es obligatorio tener un mínimo de 60 caracteres e máximo de 81.",
+        "invalid_seed_text": "Tu seed es inválida. Una seed sólo puede contener letras mayúsculas (de A a Z) y el número 9, y debe tener entre 60 y 81 caracteres.",
         "placeholder": "SEED",
-        "seed_explanation": "Se aconseja que las seeds tengan 81 caracteres. Además, es obligatório que sean letras mayúsculas (de A a Z) e que incluyan el número 9. No se pueden utilizar seeds con más de 81 caracteres.",
-        "reminder": "NUNCA COMPARTA SU SEED CON NADIE",
+        "seed_explanation": "Las seeds deben ser de 81 caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar seeds de más de 81 caracteres.",
+        "reminder": "NUNCA COMPARTAS TU SEED CON NADIE",
         "scan_code": "Escanea el código QR",
         "close": "CERRAR",
         "button1": "LISTO",
@@ -59,9 +59,9 @@
     "newSeedSetup": {
         "title": "GENERAR UNA NUEVA SEED",
         "button1": "GENERAR NUEVA SEED",
-        "text1": "Pulse letras individuales para que el proceso sea más aleatorio.",
-        "text2": "Luego pulse en SEGUIR",
-        "button2": "SEGUIR",
+        "text1": "Pulsa letras individuales para que el proceso sea aleatorio.",
+        "text2": "Luego pulse SIGUIENTE",
+        "button2": "SIGUIENTE",
         "button3": "VOLVER"
     },
     "saveYourSeed": {
