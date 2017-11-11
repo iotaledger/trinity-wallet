@@ -101,6 +101,14 @@
         "button1": "IMPRIMER LE PAPER WALLET",
         "button2": "OK"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "GESTION DU MOT DE PASSE",
         "text": "Maintenant nous devons paramétrer un mot de passe.",
