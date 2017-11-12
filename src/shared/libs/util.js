@@ -28,6 +28,9 @@ export const formatValue = value => {
 };
 
 export const formatUnit = value => {
+    if (value < 0) {
+        value = -value;
+    }
     const unit = '';
     switch (true) {
         case value < 1000:

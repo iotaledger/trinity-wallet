@@ -10,8 +10,14 @@ const { height, width } = Dimensions.get('window');
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
 export default class InitialLoading extends Component {
+    constructor() {
+        super();
+
+        console.ignoredYellowBox = ['Setting a timer'];
+    }
+
     componentDidMount() {
-        this.timeout = setTimeout(this.onLoaded.bind(this), 100);
+        this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
     }
 
     componentWillMount() {
