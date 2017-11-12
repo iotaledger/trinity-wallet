@@ -25,7 +25,7 @@ class OnboardingComplete extends React.Component {
                     <View style={styles.infoTextContainer}>
                         <Text style={styles.infoText}>
                             The wallet is now set up and ready to use. If you need to make any changes in the future,
-                            look in the Tools menu.
+                            look in the Settings menu.
                         </Text>
                     </View>
                     <Image source={require('../../shared/images/balloons.png')} style={styles.party} />

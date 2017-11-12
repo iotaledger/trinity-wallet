@@ -55,7 +55,7 @@ class CopySeedToClipboard extends React.Component {
     }
 
     onCopyPress() {
-        Clipboard.setString(this.props.iota.seed);
+        Clipboard.setString(this.props.tempAccount.seed);
         this.dropdown.alertWithType(
             'success',
             'Seed copied',
@@ -101,45 +101,98 @@ class CopySeedToClipboard extends React.Component {
                         <Image source={require('../../shared/images/arrow-white.png')} style={styles.arrow} />
                         <View style={styles.seedBoxTextContainer}>
                             <View>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(0, 3)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(12, 15)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(24, 27)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(36, 39)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(48, 51)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(60, 63)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(72, 75)}</Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(0, 3)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(12, 15)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(24, 27)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(36, 39)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(48, 51)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(60, 63)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(72, 75)}
+                                </Text>
                             </View>
                             <View>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(3, 6)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(15, 18)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(27, 30)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(39, 42)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(51, 54)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(63, 66)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(75, 78)}</Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(3, 6)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(15, 18)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(27, 30)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(39, 42)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(51, 54)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(63, 66)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(75, 78)}
+                                </Text>
                             </View>
                             <View>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(6, 9)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(18, 21)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(30, 33)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(42, 45)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(54, 57)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(66, 69)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.props.iota.seed.substring(78, 81)}</Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(6, 9)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(18, 21)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(30, 33)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(42, 45)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(54, 57)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(66, 69)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(78, 81)}
+                                </Text>
                             </View>
                             <View>
-                                <Text style={styles.seedBoxTextRight}>{this.props.iota.seed.substring(9, 12)}</Text>
-                                <Text style={styles.seedBoxTextRight}>{this.props.iota.seed.substring(21, 24)}</Text>
-                                <Text style={styles.seedBoxTextRight}>{this.props.iota.seed.substring(33, 36)}</Text>
-                                <Text style={styles.seedBoxTextRight}>{this.props.iota.seed.substring(45, 48)}</Text>
-                                <Text style={styles.seedBoxTextRight}>{this.props.iota.seed.substring(57, 60)}</Text>
-                                <Text style={styles.seedBoxTextRight}>{this.props.iota.seed.substring(69, 72)}</Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(9, 12)}
+                                </Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(21, 24)}
+                                </Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(33, 36)}
+                                </Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(45, 48)}
+                                </Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(57, 60)}
+                                </Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(69, 72)}
+                                </Text>
                             </View>
                         </View>
                     </View>
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.copyButton}>
-                            <Image style={styles.copyImage} source={require('../../shared/images/clipboard.png')} />
                             <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
                         </View>
                     </TouchableOpacity>
@@ -184,7 +237,7 @@ const styles = StyleSheet.create({
         flex: 3.6,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 5,
+        paddingTop: height / 4.75,
     },
     bottomContainer: {
         justifyContent: 'center',
@@ -285,27 +338,20 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     copyButton: {
-        flexDirection: 'row',
-        borderColor: 'rgba(255,255,255,0.6)',
+        borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 2.5,
-        height: height / 20,
+        height: height / 16,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'space-around',
         backgroundColor: '#009f3f',
     },
     copyText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingRight: width / 50,
-    },
-    copyImage: {
-        height: width / 27,
-        width: width / 27,
-        paddingLeft: width / 50,
     },
     seedBox: {
         borderColor: 'white',
@@ -352,7 +398,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
 });
 
 export default connect(mapStateToProps)(CopySeedToClipboard);

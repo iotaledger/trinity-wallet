@@ -12,8 +12,8 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeed, setFirstUse } from '../../shared/actions/accountActions';
-import { setSeed } from '../../shared/actions/iotaActions';
+import { increaseSeedCount, addSeedName, setOnboardingComplete } from '../../shared/actions/account';
+import { setSeed } from '../../shared/actions/tempAccount';
 import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
@@ -35,10 +35,11 @@ class SetPassword extends React.Component {
 
     onDonePress() {
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
-            Promise.resolve(storeInKeychain(this.state.password, this.props.iota.seed, this.props.iota.seedName)).then(
-                setSeed(''),
-            );
-            this.props.setFirstUse(false);
+            Promise.resolve(
+                storeInKeychain(this.state.password, this.props.tempAccount.seed, this.props.tempAccount.seedName),
+            ).then(setSeed(''));
+            this.props.setOnboardingComplete(true);
+            this.props.addSeedName(this.props.tempAccount.seedName);
             this.props.navigator.push({
                 screen: 'onboardingComplete',
                 navigatorStyle: {
@@ -105,14 +106,19 @@ class SetPassword extends React.Component {
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="next"
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
+                                onSubmitEditing={event => {
+                                    this.refs.reentry.focus();
+                                }}
                                 containerStyle={{
                                     width: width / 1.36,
                                 }}
                                 secureTextEntry={true}
                             />
                             <TextField
+                                ref="reentry"
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={width / 31.8}
@@ -124,6 +130,7 @@ class SetPassword extends React.Component {
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="done"
                                 value={reentry}
                                 onChangeText={reentry => this.setState({ reentry })}
                                 containerStyle={{ width: width / 1.36 }}
@@ -274,12 +281,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = dispatch => ({
-    setFirstUse: boolean => {
-        dispatch(setFirstUse(boolean));
+    setOnboardingComplete: boolean => {
+        dispatch(setOnboardingComplete(boolean));
     },
     storeInKeychain: password => {
         dispatch(storeInKeychain(password));
@@ -290,8 +297,8 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    addSeed: newSeed => {
-        dispatch(addSeed(newSeed));
+    addSeedName: newSeed => {
+        dispatch(addSeedName(newSeed));
     },
 });
 

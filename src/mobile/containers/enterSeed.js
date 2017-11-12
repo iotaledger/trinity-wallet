@@ -1,9 +1,11 @@
+import merge from 'lodash/merge';
 import React from 'react';
 import {
     StyleSheet,
     View,
     Dimensions,
     Text,
+    Platform,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
@@ -16,7 +18,7 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed } from '../../shared/actions/iotaActions';
+import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
@@ -34,6 +36,12 @@ class EnterSeed extends React.Component {
             isModalVisible: false,
         };
     }
+
+    handleKeyPress = event => {
+        if (event.key == 'Enter') {
+            Keyboard.dismiss();
+        }
+    };
 
     onDonePress() {
         if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
@@ -85,6 +93,8 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
+        const isAndroid = Platform.OS === 'android';
+        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -114,6 +124,9 @@ class EnterSeed extends React.Component {
                                             baseColor="white"
                                             tintColor="#F7D002"
                                             enablesReturnKeyAutomatically={true}
+                                            returnKeyType="done"
+                                            blurOnSubmit={true} //Dismisses keyboard upon pressing Done
+                                            autoCapitalize="characters"
                                             label="Seed"
                                             autoCorrect={false}
                                             value={seed}
@@ -183,7 +196,7 @@ class EnterSeed extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -269,9 +282,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'white',
-        borderWidth: 1,
+        borderWidth: 0.8,
         borderRadius: 8,
-        width: width / 6,
+        width: width / 6.5,
         height: height / 16,
     },
     qrText: {
@@ -321,9 +334,28 @@ const styles = StyleSheet.create({
     },
 });
 
+const androidStyles = StyleSheet.create({
+    topContainer: {
+        flex: 1.2,
+        paddingTop: height / 22,
+    },
+    midContainer: {
+        flex: 4.7,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 10,
+    },
+    bottomContainer: {
+        flex: 0.7,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
+    },
+});
+
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
+    tempAccount: state.tempAccount,
     account: state.account,
 });
 

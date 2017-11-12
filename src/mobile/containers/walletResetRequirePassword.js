@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteFromKeyChain } from '../../shared/libs/cryptography';
 import { resetWallet } from '../../shared/actions/app';
+import { setFirstUse, setOnboardingComplete } from '../../shared/actions/account';
+import { Navigation } from 'react-native-navigation';
+import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -21,7 +24,7 @@ import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import DropdownAlert from 'react-native-dropdownalert';
 
 const { height, width } = Dimensions.get('window');
 
@@ -53,14 +56,15 @@ class WalletResetRequirePassword extends Component {
     }
 
     redirectToInitialScreen() {
-        this.props.navigator.push({
-            screen: 'languageSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: Colors.brand.primary,
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'languageSetup',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    screenBackgroundImageName: 'bg-green.png',
+                    screenBackgroundColor: '#102e36',
+                },
             },
-            animated: false,
         });
     }
 
@@ -71,7 +75,10 @@ class WalletResetRequirePassword extends Component {
         if (isAuthenticated) {
             deleteFromKeyChain(password);
             resetWallet();
-
+            this.props.setOnboardingComplete(false);
+            this.props.setFirstUse(true);
+            this.props.clearTempData();
+            this.props.setPassword('');
             this.redirectToInitialScreen();
         } else {
             this.dropdown.alertWithType(
@@ -90,28 +97,27 @@ class WalletResetRequirePassword extends Component {
                     <View>
                         <View style={styles.topWrapper}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                            <View style={styles.headerWrapper}>
-                                <Text style={styles.header}>{toUpper('authenticate')}</Text>
-                            </View>
                         </View>
                         <View style={styles.midWrapper}>
-                            <Text style={styles.generalText}>
-                                Please enter your password to continue resetting your wallet.
-                            </Text>
+                            <Text style={styles.generalText}>Enter password to reset your wallet.</Text>
                             <TextField
-                                style={styles.textField}
-                                labelTextStyle={styles.textFieldLabel}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
-                                baseColor={Colors.white}
+                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                labelFontSize={width / 31.8}
+                                fontSize={width / 20.7}
+                                labelPadding={3}
+                                baseColor="white"
                                 label="Password"
-                                tintColor={Colors.orangeDark}
-                                autoCapitalize="none"
+                                tintColor="#F7D002"
+                                autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="done"
                                 value={this.state.password}
                                 onChangeText={password => this.setState({ password })}
-                                containerStyle={styles.textFieldContainer}
+                                containerStyle={{
+                                    width: width / 1.4,
+                                }}
                                 secureTextEntry={true}
                             />
                         </View>
@@ -143,10 +149,11 @@ class WalletResetRequirePassword extends Component {
 
 const onboardingButtonsOverride = StyleSheet.create({
     rightButton: {
-        borderColor: Colors.redLight,
+        borderColor: Colors.red,
     },
     rightText: {
-        color: Colors.redLight,
+        color: Colors.red,
+        fontFamily: Fonts.secondary,
     },
 });
 
@@ -155,10 +162,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: Colors.brand.primary,
     },
     topWrapper: {
-        flex: 1.6,
+        flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
@@ -173,31 +180,17 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
-    headerWrapper: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: height / 8,
-        paddingTop: height / 35,
-    },
-    header: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
     generalText: {
         color: 'white',
-        fontFamily: 'Lato-Regular',
+        fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
-        paddingHorizontal: width / 5,
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
     },
     questionText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
+        color: Colors.white,
+        fontFamily: Fonts.secondary,
         fontSize: width / 20.25,
         textAlign: 'center',
         paddingLeft: width / 7,
@@ -206,7 +199,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     newSeedButton: {
-        borderColor: '#F7D002',
+        borderColor: Colors.orangeDark,
         borderWidth: 1.2,
         borderRadius: 10,
         width: width / 1.65,
@@ -216,40 +209,14 @@ const styles = StyleSheet.create({
         marginRight: width / 10,
     },
     newSeedText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
+        color: Colors.orangeDark,
+        fontFamily: Fonts.tertiary,
         fontSize: width / 25.3,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
         width: width / 5,
-    },
-    dropdownTitle: {
-        fontSize: 16,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        padding: 15,
-    },
-    dropdownMessage: {
-        fontSize: 14,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
-        alignSelf: 'center',
     },
     buttonsContainer: {
         alignItems: 'flex-end',
@@ -266,14 +233,44 @@ const styles = StyleSheet.create({
     textFieldLabel: {
         fontFamily: Fonts.tertiary,
     },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: Colors.white,
+        backgroundColor: 'transparent',
+        fontFamily: Fonts.secondary,
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: Colors.white,
+        backgroundColor: 'transparent',
+        fontFamily: Fonts.secondary,
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
-    password: state.iota.password,
+    password: state.tempAccount.password,
 });
 
 const mapDispatchToProps = dispatch => ({
     resetWallet: () => dispatch(resetWallet()),
+    setFirstUse: boolean => dispatch(setFirstUse(boolean)),
+    setOnboardingComplete: boolean => dispatch(setOnboardingComplete(boolean)),
+    clearTempData: () => dispatch(clearTempData()),
+    setPassword: password => dispatch(setPassword(password)),
 });
 
 WalletResetRequirePassword.propTypes = {

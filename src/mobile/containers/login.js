@@ -12,7 +12,10 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, getAccountInfo } from '../../shared/actions/iotaActions';
+import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
+import { setPassword, clearTempData } from '../../shared/actions/tempAccount';
+import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -22,14 +25,33 @@ const StatusBarDefaultBarStyle = 'light-content';
 
 const { height, width } = Dimensions.get('window');
 
+var HockeyApp = require('react-native-hockeyapp');
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             password: '',
         };
-
         this.onLoginPress = this.onLoginPress.bind(this);
+    }
+    getWalletData() {
+        this.props.getChartData('USD', '24h');
+        this.props.getPrice('USD');
+        this.props.getMarketData();
+    }
+
+    componentWillMount() {
+        HockeyApp.configure(
+            '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
+            true, //Auto send crash reports
+            0, //Authentication type
+        );
+    }
+
+    componentDidMount() {
+        HockeyApp.start();
+        HockeyApp.checkForUpdate(); // optional
     }
 
     onLoginPress() {
@@ -40,8 +62,8 @@ class Login extends React.Component {
                 'You must enter a password to log in. Please try again.',
             );
         } else {
-            this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
+                this.props.setPassword(this.state.password);
                 if (value) {
                     var seed = getSeed(value, 0);
                     login(seed);
@@ -52,8 +74,18 @@ class Login extends React.Component {
         }
 
         const _this = this;
+        const seedIndex = _this.props.tempAccount.seedIndex;
+        const seedName = _this.props.account.seedNames[seedIndex];
         function login(value) {
-            _this.props.getAccountInfo(value);
+            if (_this.props.account.firstUse) {
+                Promise.resolve(_this.getWalletData()).then(_this.props.getAccountInfoNewSeed(value, seedName));
+            } else {
+                const accountInfo = _this.props.account.accountInfo;
+                Promise.resolve(_this.getWalletData()).then(
+                    _this.props.getAccountInfo(seedName, seedIndex, accountInfo),
+                );
+            }
+            _this.props.changeHomeScreenRoute('balance');
             _this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: {
@@ -73,13 +105,16 @@ class Login extends React.Component {
     }
 
     onUseSeedPress() {
-        this.props.navigator.push({
+        this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        {
+            /*this.props.navigator.push({
             screen: 'useSeed',
             navigatorStyle: {
                 navBarHidden: true,
             },
             animated: false,
-        });
+        });*/
+        }
     }
 
     render() {
@@ -108,6 +143,7 @@ class Login extends React.Component {
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="done"
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
@@ -157,7 +193,7 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 4.8,
         alignItems: 'center',
-        paddingTop: height / 4.5,
+        paddingTop: height / 4.2,
     },
     bottomContainer: {
         flex: 0.7,
@@ -250,16 +286,33 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    iota: state.iota,
+    tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
     setPassword: password => {
         dispatch(setPassword(password));
     },
-    getAccountInfo: seed => {
-        dispatch(getAccountInfo(seed));
+    getAccountInfo: (seedName, seedIndex, accountInfo) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
     },
+    getAccountInfoNewSeed: (seed, seedName) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName));
+    },
+    changeHomeScreenRoute: tab => {
+        dispatch(changeHomeScreenRoute(tab));
+    },
+    getMarketData: () => {
+        dispatch(getMarketData());
+    },
+    getPrice: currency => {
+        dispatch(getPrice(currency));
+    },
+    getChartData: (currency, timeFrame) => {
+        dispatch(getChartData(currency, timeFrame));
+    },
+    clearTempData: () => dispatch(clearTempData()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
