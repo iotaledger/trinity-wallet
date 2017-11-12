@@ -17,6 +17,7 @@ import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -30,6 +31,16 @@ class SeedReentry extends React.Component {
         this.state = {
             seed: '',
         };
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     onDonePress() {

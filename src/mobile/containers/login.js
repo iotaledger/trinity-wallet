@@ -21,6 +21,7 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 const StatusBarDefaultBarStyle = 'light-content';
 
 const { height, width } = Dimensions.get('window');
@@ -45,13 +46,16 @@ class Login extends React.Component {
         HockeyApp.configure(
             '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
             true, //Auto send crash reports
-            0, //Authentication type
+            1, //Authentication type
+            'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
         );
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
     }
 
-    componentDidMount() {
-        HockeyApp.start();
-        HockeyApp.checkForUpdate(); // optional
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     onLoginPress() {
