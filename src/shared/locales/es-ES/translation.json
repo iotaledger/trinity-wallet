@@ -3,61 +3,55 @@
         "invalidServer_title": "Servidor inválido",
         "invalidServer_text": "La dirección de servidor introducida no es válida",
         "unknownError_title": "Ocurrió un error desconocido",
-        "unknownError_text": "No hemos podído realizar la acción deseada. Por favor, inténtelo de nuevo."
+        "unknownError_text": "No hemos podido realizar la acción deseada. Por favor, inténtelo de nuevo."
     },
     "setLanguage": {
         "dropdown_title": "Idioma",
-        "button1": "SEGUIR"
+        "button1": "SIGUIENTE"
     },
     "welcome1": {
         "text1": "Gracias por descargar la billetera de IOTA.",
-        "text2": "Vamos a pasar los minutos siguientes configurando su billetera.",
-        "reminder": "Puede estar tentado a saltar algunos pasos, pero le instamos a seguir el proceso completo.",
-        "button1": "SEGUIR",
-        "button2": "VOLVER"
+        "text2": "Vamos a pasar unos pocos minutos configurando tu billetera.",
+        "reminder": "Puede tentarte saltar algunos pasos, pero te sugerimos seguir el proceso completo.",
+        "button1": "SIGUIENTE",
+        "button2": "ATRÁS"
     },
     "welcome2": {
-        "text1": "Vale. ¡Vamos a configurar su billetera!",
-        "text2": "¿Ya tiene un Seed que le gustaría utilizar?",
-        "seed_explanation1":
-            "La seed de IOTA es, simultáneamente, el nombre del usuario y la contraseña para su cuenta, combinada en una cadena de 81 caracteres.",
-        "seed_explanation2":
-            "Puede utilizarla para acceder a sus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierde su seed, también pierde su IOTA",
-        "reminder": "Por favor mantenga su seed en seguridad",
+        "text1": "OK. ¡Vamos a configurar tu billetera!",
+        "text2": "¿Ya tienes un seed que te gustaría usar?",
+        "seed_explanation1": "Una seed de IOTA funciona simultáneamente como nombre del usuario y contraseña para tu cuenta, combinados en una cadena de 81 caracteres.",
+        "seed_explanation2": "Puedes usarla para acceder a tus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierdes tu seed, también pierdes tus IOTAs",
+        "reminder": "Por favor guarda tu seed de manera segura",
         "button1": "SÍ",
         "button2": "NO"
     },
     "lightserver": {
-        "text1":
-            "Un servidor simple es una puerta de entrada a la red IOTA, amablemente proporcionada por los miembros de la comunidad o por nuestros socios corporativos. ",
-        "text2":
-            "Usted puede encontrar más informaciones sobre los servidores en: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Por favor, seleccione un servidor de la lista de abajo.",
+        "text1": "Un servidor liviano es una puerta de entrada a la red IOTA, amablemente proporcionada por miembros de la comunidad o por nuestros socios corporativos.",
+        "text2": "Puedes encontrar mas información sobre estos servidores en: http://iotasupport.com/lightwallet.shtml",
+        "text3": "Por favor, seleccione un servidor de la lista abajo.",
         "server_label": "Servidor",
         "custom_server_label": "Dirección de otro servidor",
         "other": "Otro",
-        "button1": "SEGUIR",
+        "button1": "SIGUIENTE",
         "button2": "VOLVER"
     },
     "login": {
         "text": "Por favor introduzca su contraseña",
         "placeholder": "CONTRASEÑA",
         "error_title": "Contraseña no reconocida",
-        "error_text": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
+        "error_text": "La contraseña no fue reconocida. Por favor, inténtalo de nuevo.",
         "button1": "LISTO",
         "button2": "USAR SEED"
     },
     "enterSeed": {
-        "error_title": "Seed es demasiado corta",
-        "error_text": "Las Seeds deben tener como mínimo 60 caracteres. Por favor, inténtelo de nuevo.",
+        "error_title": "La seed es demasiado corta",
+        "error_text": "Las seeds deben tener como mínimo 60 caracteres. Por favor, inténtelo de nuevo.",
         "invalid_seed_title": "Seed inválida",
-        "invalid_seed_text":
-            "Su seed es inválida. Una seed solo puede contener letras mayúsculas (de A a Z) y el número 9. También es obligatorio tener un mínimo de 60 caracteres e máximo de 81.",
+        "invalid_seed_text": "Tu seed es inválida. Una seed sólo puede contener letras mayúsculas (de A a Z) y el número 9, y debe tener entre 60 y 81 caracteres.",
         "placeholder": "SEED",
-        "seed_explanation":
-            "Se aconseja que las seeds tengan 81 caracteres. Además, es obligatório que sean letras mayúsculas (de A a Z) e que incluyan el número 9. No se pueden utilizar seeds con más de 81 caracteres.",
-        "reminder": "NUNCA COMPARTA SU SEED CON NADIE",
-        "scan_code": "Escanear código QR",
+        "seed_explanation": "Las seeds deben ser de 81 caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar seeds de más de 81 caracteres.",
+        "reminder": "NUNCA COMPARTAS TU SEED CON NADIE",
+        "scan_code": "Escanea el código QR",
         "close": "CERRAR",
         "button1": "LISTO",
         "button2": "VOLVER"
@@ -65,36 +59,34 @@
     "newSeedSetup": {
         "title": "GENERAR UNA NUEVA SEED",
         "button1": "GENERAR NUEVA SEED",
-        "text1": "Pulse letras individuales para que el proceso sea más aleatorio.",
-        "text2": "Luego pulse en SEGUIR",
-        "button2": "SEGUIR",
+        "text1": "Pulsa letras individuales para que el proceso sea aleatorio.",
+        "text2": "Luego pulse SIGUIENTE",
+        "button2": "SIGUIENTE",
         "button3": "VOLVER"
     },
     "saveYourSeed": {
-        "text1": "Debe guardar su seed usando como mínimo una de las opciones sugeridas a continuación.",
-        "text2": "como mínimo una",
+        "text1": "Debes guardar tu seed como mínimo con una de las opciones a continuación.",
+        "text2": "como mínimo con una",
         "optionA": "COPIAR MANUALMENTE",
         "optionB": "IMPRIMIR BILLETERA DE PAPEL",
         "optionC": "COPIAR AL PORTAPAPELES",
-        "button1": "SEGUIR",
+        "button1": "SIGUIENTE",
         "button2": "VOLVER"
     },
     "saveYourSeed2": {
         "optionA": "Copiar Manualmente",
         "optionB": " Billetera de Papel",
         "optionC": "Copiar al Portapapeles",
-        "explanation":
-            "Su Seed tiene 81 caracteres leídos de izquierda a derecha. Registre su Seed, comprobándola tres veces.",
-        "text": "comprobándola tres veces",
+        "explanation": "Tu Seed tiene 81 caracteres leídos de izquierda a derecha. Anota tu seed y letras de comprobación y comprueba tres veces que sean correctas.",
+        "text": "comprueba tres veces",
         "button": "LISTO"
     },
     "saveYourSeed3": {
         "optionA": "Copiar Manualmente",
         "optionB": " Billetera de Papel",
         "optionC": "Copiar al Portapapeles",
-        "explanation":
-            "Pulse el botón de abajo para copiar su seed para un gestor de contraseñas. Esta copia permanecerá en el portapapeles durante 60 segundos.",
-        "text": "No almacene la seed en un archivo de texto sin codificación.",
+        "explanation": "Pulsa el botón de abajo para copiar tu seed a un gestor de contraseñas. Esta copia permanecerá en el portapapeles durante 60 segundos.",
+        "text": "No guardes la seed en un archivo de texto sin encriptar.",
         "button1": "COPIAR AL PORTAPAPELES",
         "button2": "LISTO"
     },
@@ -102,32 +94,38 @@
         "optionA": "Copiar Manualmente",
         "optionB": " Billetera de Papel",
         "optionC": "Copiar al Portapapeles",
-        "explanation": "Pulse el botón de abajo para imprimir una copia de su seed.",
-        "text1": "Almacene su seed de forma segura",
-        "text2": "Nunca comparta su seed con nadie.",
+        "explanation": "Pulsa el botón de abajo para imprimir una copia de tu seed.",
+        "text1": "Almacena tu seed de forma segura",
+        "text2": "Nunca compartas tu seed con nadie.",
         "check_button": "Logo IOTA",
         "button1": "IMPRIMIR BILLETERA DE PAPEL",
         "button2": "LISTO"
     },
+    "nameYourSeed": {
+        "text": "Aquí puedes ingresar un nombre para tu seed.",
+        "label": "Nombre del seed",
+        "placeholder": "Billetera principal",
+        "explanation": "Ingresa un nombre para la seed para poder distinguirlas fácilmente.",
+        "button1": "LISTO",
+        "button2": "ATRÁS"
+    },
     "setPassword": {
         "title": "CONFIGURACIÓN DE CONTRASEÑA",
         "text": "Ahora tenemos que configurar una contraseña.",
-        "explanation":
-            "Utlizará esta contraseña para acceder a su billetera en el futuro. Una copia encriptada de su seed será guardado en su dispositivo.",
-        "reminder": "Asegúrese que utiliza una contraseña segura con al menos 12 caracteres.",
+        "explanation": "Utlizaras esta contraseña para acceder a tu billetera en el futuro. Una copia encriptada de tu seed será guardada en tu dispositivo.",
+        "reminder": "Asegúrate de utilizar una contraseña segura con al menos 12 caracteres.",
         "placeholder1": "'CONTRASEÑA'",
-        "placeholder2": "VOLVER A ESCRIBIR CONTRASEÑA",
+        "placeholder2": "REESCRIBIR CONTRASEÑA",
         "error1_title": "La contraseña es demasiado corta",
-        "error1_text": "La contraseña debe tener un mínimo de 12 caracteres. Por favor, inténtelo de nuevo.",
+        "error1_text": "La contraseña debe tener al menos 12 caracteres. Por favor, inténtalo de nuevo.",
         "error2_title": "Las contraseñas no coinciden",
-        "error2_text": "Las contraseñas introducidas no coinciden. Por favor, inténtelo de nuevo.",
+        "error2_text": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
         "button1": "LISTO",
         "button2": "VOLVER"
     },
     "onboardingComplete": {
-        "text":
-            "La billetera está configurada y lista para usar. Si necesita realizar cambios en el futuro, mire en el menú de Herramientas.",
-        "button": "SEGUIR"
+        "text": "La billetera está configurada y lista para usar. Si necesitas hacer cambios en el futuro, busca en el menú de Herramientas.",
+        "button": "SIGUIENTE"
     },
     "home": {
         "tab1": "SALDO",
@@ -146,11 +144,11 @@
         "changeMode": "Cambiar modo",
         "minimal": "Mínimo",
         "standard": "Normal",
-        "expert": "Avanzado",
+        "expert": "Experto",
         "changeTheme": "Cambiar tema",
         "changeLanguage": "Cambiar idioma",
         "addNewSeed": "Añadir nueva seed",
-        "setup2fa": "Configuración de 2FA",
+        "setup2fa": "Configuración 2FA",
         "changePassword": "Cambiar contraseña",
         "advancedSettings": "Configuración avanzada",
         "logout": "Cerrar sesión"

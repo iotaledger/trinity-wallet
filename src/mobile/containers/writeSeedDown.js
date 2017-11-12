@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.65,
-        height: height / 3.5,
+        height: height / 3.4,
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: height / 20,
@@ -306,6 +306,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'center',
         paddingTop: height / 80,
+        paddingBottom: height / 80,
         paddingLeft: width / 70,
     },
     seedBoxTextLeft: {

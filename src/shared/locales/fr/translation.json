@@ -91,8 +91,7 @@
         "optionA": "Copie Manuelle",
         "optionB": " Paper Wallet",
         "optionC": "Copier dans le Presse-papiers",
-        "explanation":
-            "Cliquez sur le bouton ci-dessous et copiez votre Seed vers un gestionnaire de mot de passe. Elle restera dans votre presse-papiers 60 secondes.",
+        "explanation": "Cliquez sur le bouton ci-dessous et copiez votre Seed vers un gestionnaire de mot de passe. Elle restera dans votre presse-papiers 60 secondes.",
         "text": "Ne stockez pas votre seed en texte en clair.",
         "button1": "COPIER DANS LE PRESSE-PAPIERS",
         "button2": "OK"
@@ -107,6 +106,14 @@
         "check_button": "logo IOTA",
         "button1": "IMPRIMER LE PAPER WALLET",
         "button2": "OK"
+    },
+    "nameYourSeed": {
+        "text": "Vous pouvez entrer un nom pour votre seed ici.",
+        "label": "Nom de la Seed",
+        "placeholder": "Wallet Principal",
+        "explanation": "Entrez un nom pour votre Seed afin de les différencier plus facilement.",
+        "button1": "OK",
+        "button2": "RETOUR"
     },
     "setPassword": {
         "title": "GESTION DU MOT DE PASSE",

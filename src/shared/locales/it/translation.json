@@ -19,17 +19,14 @@
     "welcome2": {
         "text1": "Va bene. Cominciamo a impostare il tuo portafoglio!",
         "text2": "Possiedi già un seme che desideri utilizzare?",
-        "seed_explanation1":
-            "Il seme IOTA è come una combinazione di utente e password per il tuo account, in un'unica stringa di 81 caratteri.",
-        "seed_explanation2":
-            "Puoi utilizzarlo per accedere ai tuoi fondi da qualsiasi portafoglio, su qualsiasi dispositivo. Ma se perdi il tuo seme, perdi anche i tuoi IOTA",
+        "seed_explanation1": "Il seme IOTA è come una combinazione di utente e password per il tuo account, in un'unica stringa di 81 caratteri.",
+        "seed_explanation2": "Puoi utilizzarlo per accedere ai tuoi fondi da qualsiasi portafoglio, su qualsiasi dispositivo. Ma se perdi il tuo seme, perdi anche i tuoi IOTA",
         "reminder": "Sei pregato di tenere il tuo seme al sicuro",
         "button1": "SI",
         "button2": "NO"
     },
     "lightserver": {
-        "text1":
-            "Un light server è un gateway per la rete IOTA, gentilmente fornito dai membri della Comunità o dai nostri partner aziendali. ",
+        "text1": "Un light server è un gateway per la rete IOTA, gentilmente fornito dai membri della Comunità o dai nostri partner aziendali. ",
         "text2": "Puoi trovare ulteriori informazioni sui server presso: http://iotasupport.com/lightwallet.shtml",
         "text3": "Scegli un server dalla lista qui sotto.",
         "server_label": "Server",
@@ -50,11 +47,9 @@
         "error_title": "Il seme è troppo corto",
         "error_text": "Il seme deve essere lungo almeno 60 caratteri. Si prega di riprovare.",
         "invalid_seed_title": "Seme non valido",
-        "invalid_seed_text":
-            "Il tuo seme non è valido. Un seme può contenere lettere maiuscole (A-Z) e il numero 9 e deve essere lungo da 60 a 81 caratteri.",
+        "invalid_seed_text": "Il tuo seme non è valido. Un seme può contenere lettere maiuscole (A-Z) e il numero 9 e deve essere lungo da 60 a 81 caratteri.",
         "placeholder": "SEME",
-        "seed_explanation":
-            "I semi dovrebbero essere lunghi 81 caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.",
+        "seed_explanation": "I semi dovrebbero essere lunghi 81 caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.",
         "reminder": "NON MOSTRARE MAI IL TUO SEME A NESSUNO",
         "scan_code": "Scansiona codice QR",
         "close": "CHIUDI",
@@ -82,8 +77,7 @@
         "optionA": "Copia manuale",
         "optionB": " Portafoglio su carta",
         "optionC": "Copia negli appunti",
-        "explanation":
-            "Il tuo seme è composto da 81 caratteri letti da sinistra a destra. Annota il tuo seme e la relativa checksum, e controlla tre volte di aver scritto bene.",
+        "explanation": "Il tuo seme è composto da 81 caratteri letti da sinistra a destra. Annota il tuo seme e la relativa checksum, e controlla tre volte di aver scritto bene.",
         "text": "controlla tre volte",
         "button": "FINE"
     },
@@ -91,8 +85,7 @@
         "optionA": "Copia manuale",
         "optionB": " Portafoglio su carta",
         "optionC": "Copia negli appunti",
-        "explanation":
-            "Fai clic sul pulsante sotto per copiare il tuo seme su un programma di gestione di password. La copia rimarrà negli Appunti per 60 secondi.",
+        "explanation": "Fai clic sul pulsante sotto per copiare il tuo seme su un programma di gestione di password. La copia rimarrà negli Appunti per 60 secondi.",
         "text": "Non salvare il seme in un file non crittografato.",
         "button1": "COPIA NEGLI APPUNTI",
         "button2": "FINE"
@@ -108,11 +101,18 @@
         "button1": "STAMPA IL PORTAFOGLIO SU CARTA",
         "button2": "FINE"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "IMPOSTAZIONE DELLA PASSWORD",
         "text": "Ora abbiamo bisogno di impostare una password.",
-        "explanation":
-            "Usando questa password potrai accedere in futuro al tuo portafoglio. Una copia crittografata del tuo seme sarà memorizzata sul tuo dispositivo.",
+        "explanation": "Usando questa password potrai accedere in futuro al tuo portafoglio. Una copia crittografata del tuo seme sarà memorizzata sul tuo dispositivo.",
         "reminder": "Assicurati di utilizzare una password complessa di almeno 12 caratteri.",
         "placeholder1": "'PASSWORD'",
         "placeholder2": "DIGITARE NUOVAMENTE LA PASSWORD",
@@ -124,8 +124,7 @@
         "button2": "INDIETRO"
     },
     "onboardingComplete": {
-        "text":
-            "Il portafoglio è ora configurato e pronto all'uso. Se in futuro avrai bisogno di apportare modifiche, guarda nel menu Strumenti.",
+        "text": "Il portafoglio è ora configurato e pronto all'uso. Se in futuro avrai bisogno di apportare modifiche, guarda nel menu Strumenti.",
         "button": "AVANTI"
     },
     "home": {

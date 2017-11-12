@@ -12,25 +12,21 @@
     "welcome1": {
         "text1": "Tak fordi du downloadede IOTA-tegnebogen.",
         "text2": "Vi bruger de næste par minutter på at opsætte din tegnebog.",
-        "reminder":
-            "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen.",
+        "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen.",
         "button1": "NÆSTE",
         "button2": "TILBAGE"
     },
     "welcome2": {
         "text1": "Okay. Lad os opsætte din tegnebog!",
         "text2": "Har du allerede et seed, du gerne vil bruge?",
-        "seed_explanation1":
-            "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
-        "seed_explanation2":
-            "Du kan bruge det til at tilgå dine penge fra enhver tegnebog på enhver enhed, men hvis du mister dit seed, mister du også dine IOTA",
+        "seed_explanation1": "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
+        "seed_explanation2": "Du kan bruge det til at tilgå dine penge fra enhver tegnebog på enhver enhed, men hvis du mister dit seed, mister du også dine IOTA",
         "reminder": "Du bedes opbevare dit seed sikkert",
         "button1": "JA",
         "button2": "NEJ"
     },
     "lightserver": {
-        "text1":
-            "En light server er en port til IOTA-netværket, der er stillet til rådighed af fællesskabets medlemmer eller vores virksomhedspartnere.",
+        "text1": "En light server er en port til IOTA-netværket, der er stillet til rådighed af fællesskabets medlemmer eller vores virksomhedspartnere.",
         "text2": "Du kan få mere information om serverne på: http://iotasupport.com/lightwallet.shtml",
         "text3": "Vælg venligst en server fra listen nedenfor.",
         "server_label": "Server",
@@ -51,11 +47,9 @@
         "error_title": "Seedet er for kort",
         "error_text": "Seeds skal være mindst 60 tegn lange. Prøv venligst igen.",
         "invalid_seed_title": "Ugyldigt seed",
-        "invalid_seed_text":
-            "Dit seed er ugyldigt. Et seed må kun indeholde store bogstaver (A-Z) samt tallet 9 og skal være 60-81 tegn langt.",
+        "invalid_seed_text": "Dit seed er ugyldigt. Et seed må kun indeholde store bogstaver (A-Z) samt tallet 9 og skal være 60-81 tegn langt.",
         "placeholder": "SEED",
-        "seed_explanation":
-            "Seeds bør være 81 tegn lange og skal indeholde bogstaverne A-Z eller tallet 9. Du kan ikke bruge seeds, som er længere end 81 tegn.",
+        "seed_explanation": "Seeds bør være 81 tegn lange og skal indeholde bogstaverne A-Z eller tallet 9. Du kan ikke bruge seeds, som er længere end 81 tegn.",
         "reminder": "DEL ALDRIG DIT SEED MED NOGEN",
         "scan_code": "Skan QR-kode",
         "close": "LUK",
@@ -83,8 +77,7 @@
         "optionA": "Skriv ned manuelt",
         "optionB": " Papirtegnebog",
         "optionC": "Kopiér til udklipsholder",
-        "explanation":
-            "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og trippeltjek, at de er korrekt skrevet ned.",
+        "explanation": "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og trippeltjek, at de er korrekt skrevet ned.",
         "text": "trippeltjek",
         "button": "FÆRDIG"
     },
@@ -92,8 +85,7 @@
         "optionA": "Skriv ned manuelt",
         "optionB": " Papirtegnebog",
         "optionC": "Kopiér til udklipsholder",
-        "explanation":
-            "Klik på knappen nedenfor og kopier dit seed til en adgangskodemanager. Den forbliver i din udklipsholder i 60 sekunder.",
+        "explanation": "Klik på knappen nedenfor og kopier dit seed til en adgangskodemanager. Den forbliver i din udklipsholder i 60 sekunder.",
         "text": "Opbevar ikke dit seed i klartekst.",
         "button1": "KOPIÉR TIL UDKLIPSHOLDER",
         "button2": "FÆRDIG"
@@ -109,11 +101,18 @@
         "button1": "UDSKRIV PAPIRTEGNEBOG",
         "button2": "FÆRDIG"
     },
+    "nameYourSeed": {
+        "text": "Her kan du indtaste et navn på dit seed.",
+        "label": "Seed-navn",
+        "placeholder": "Primær tegnebog",
+        "explanation": "Indtast et navn på dit seed for at gøre dem lettere at skelne.",
+        "button1": "FÆRDIG",
+        "button2": "GÅ TILBAGE"
+    },
     "setPassword": {
         "title": "OPSÆTNING AF ADGANGSKODE",
         "text": "Nu skal vi opsætte en adgangskode.",
-        "explanation":
-            "Du skal bruge denne adgangskode til at tilgå din tegnebog fremover. Der opbevares en krypteret kopi af dit seed på din enhed.",
+        "explanation": "Du skal bruge denne adgangskode til at tilgå din tegnebog fremover. Der opbevares en krypteret kopi af dit seed på din enhed.",
         "reminder": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
         "placeholder1": "\"ADGANGSKODE\"",
         "placeholder2": "GENTAG ADGANGSKODE",
@@ -125,8 +124,7 @@
         "button2": "TILBAGE"
     },
     "onboardingComplete": {
-        "text":
-            "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Værktøjer\".",
+        "text": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Værktøjer\".",
         "button": "NÆSTE"
     },
     "home": {
