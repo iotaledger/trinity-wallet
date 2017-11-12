@@ -41,6 +41,16 @@ class ChangePassword extends Component {
         this.changePassword = this.changePassword.bind(this);
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     renderTextField(value, label, onChangeText) {
         // This should be abstracted away as an independent component
         // We are using almost the same field styles and props

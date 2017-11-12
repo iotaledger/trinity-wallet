@@ -37,6 +37,16 @@ class WalletResetRequirePassword extends Component {
         this.resetWallet = this.resetWallet.bind(this);
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     goBack() {
         this.props.navigator.push({
             screen: 'home',

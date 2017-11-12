@@ -33,6 +33,16 @@ class SeedReentry extends React.Component {
         };
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onDonePress() {
         if (this.state.seed == this.props.tempAccount.seed) {
             this.props.navigator.push({

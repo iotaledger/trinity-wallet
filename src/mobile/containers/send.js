@@ -49,6 +49,16 @@ class Send extends Component {
         };
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     componentDidMount() {
         {
             /*    const dropdown = DropdownHolder.getDropdown();

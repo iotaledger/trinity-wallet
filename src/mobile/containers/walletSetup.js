@@ -7,6 +7,16 @@ import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug report
 const { height, width } = Dimensions.get('window');
 
 class WalletSetup extends React.Component {
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onYesPress() {
         this.props.navigator.push({
             screen: 'enterSeed',

@@ -17,6 +17,16 @@ class Loading extends Component {
         this.props.changeHomeScreenRoute('balance');
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     render() {
         const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
 
