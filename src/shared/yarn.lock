@@ -627,9 +627,9 @@ invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-"iota.lib.js@git+https://github.com/l3wi/iota.lib.js.git":
-  version "0.4.2"
-  resolved "git+https://github.com/l3wi/iota.lib.js.git#119f2abfed389d253eceaf25b78423993a6270ee"
+"iota.lib.js@git+https://github.com/aquadestructor/iota.lib.js.git#269197a":
+  version "0.4.4"
+  resolved "git+https://github.com/aquadestructor/iota.lib.js.git#269197a64f24ad6c32a83919949123d06afa6299"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
