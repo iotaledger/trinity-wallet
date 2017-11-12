@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import BoxedSeed from '../UI/BoxedSeed';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { showNotification } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
-import Header from './Header';
+import Template, { Main, Footer } from './Template';
+import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
 import css from './SeedCopyToClipboard.css';
 
+// TODO: Translate component
 class SeedCopyToClipboard extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
@@ -19,13 +20,12 @@ class SeedCopyToClipboard extends React.PureComponent {
     };
 
     render() {
-        const { t, seed } = this.props;
+        const { t, seed, showNotification } = this.props;
 
         return (
-            <div>
-                <Header headline={t('title')} />
-                <Steps currentStep="clipboard" />
-                <main>
+            <Template>
+                <Main>
+                    <Steps currentStep="clipboard" />
                     <p>
                         Click the button below to copy your seed to a password manager. It will stay in your clipboard
                         until you continue to your next screen.
@@ -34,9 +34,9 @@ class SeedCopyToClipboard extends React.PureComponent {
                     <div className={css.buttonWrapper}>
                         <CopyToClipboard text={seed}>
                             <Button
-                                variant="success"
+                                variant="cta"
                                 onClick={() =>
-                                    this.props.showNotification({
+                                    showNotification({
                                         type: 'success',
                                         title: 'Seed copied to clipboard!',
                                     })}
@@ -45,13 +45,13 @@ class SeedCopyToClipboard extends React.PureComponent {
                             </Button>
                         </CopyToClipboard>
                     </div>
-                </main>
-                <footer>
-                    <Button to="/seed/save" variant="warning">
+                </Main>
+                <Footer>
+                    <Button to="/seed/save" variant="success">
                         {t('button2')}
                     </Button>
-                </footer>
-            </div>
+                </Footer>
+            </Template>
         );
     }
 }

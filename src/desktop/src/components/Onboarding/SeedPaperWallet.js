@@ -4,7 +4,7 @@ import QRCode from 'qrcode.react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
-import Header from './Header';
+import Template, { Main, Footer } from './Template';
 import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
@@ -20,10 +20,9 @@ class SeedPaperWallet extends PureComponent {
         const { t, seed } = this.props;
 
         return (
-            <div>
-                <Header headline={t('title')} />
-                <Steps currentStep="paper" />
-                <main>
+            <Template>
+                <Main>
+                    <Steps currentStep="paper" />
                     <p>Click the button below to print a paper copy of your seed. Store it safely.</p>
                     <div className={css.wrapper}>
                         <div className={css.innerWrapper}>
@@ -37,17 +36,17 @@ class SeedPaperWallet extends PureComponent {
                         </div>
                     </div>
                     <div className={css.printBtnWrapper}>
-                        <Button to="/" variant="success">
+                        <Button to="/" variant="cta">
                             {t('button1')}
                         </Button>
                     </div>
-                </main>
-                <footer>
+                </Main>
+                <Footer>
                     <Button to="/seed/save" variant="success">
                         {t('button2')}
                     </Button>
-                </footer>
-            </div>
+                </Footer>
+            </Template>
         );
     }
 }
