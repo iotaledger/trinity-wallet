@@ -1,4 +1,5 @@
 import React from 'react';
+import i18next from 'i18next';
 import {
     StyleSheet,
     View,
@@ -41,19 +42,19 @@ class LanguageSetup extends React.Component {
         };
     }
 
-    componentWillMount() {
-        HockeyApp.configure(
-            '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
-            true, //Auto send crash reports
-            1, //Authentication type
-            'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
-        );
-    }
-
-    componentDidMount() {
-        HockeyApp.start();
-        HockeyApp.checkForUpdate(); // optional
-    }
+    // componentWillMount() {
+    //     HockeyApp.configure(
+    //         '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
+    //         true, //Auto send crash reports
+    //         1, //Authentication type
+    //         'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
+    //     );
+    // }
+    //
+    // componentDidMount() {
+    //     HockeyApp.start();
+    //     HockeyApp.checkForUpdate(); // optional
+    // }
 
     onNextPress() {
         this.props.navigator.push({
@@ -83,12 +84,14 @@ class LanguageSetup extends React.Component {
         }
     }
 
-    clickDropdownItem(item) {
+    clickDropdownItem(item, translationResource) {
         this.setState({
             dropdownHeight: 0,
             triangleDirection: 'down',
             languageSelected: item,
         });
+
+        i18next.changeLanguage(translationResource || 'en'); // TODO: Remove || when passed appropriate strings for each resource
     }
 
     render() {
@@ -132,7 +135,7 @@ class LanguageSetup extends React.Component {
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('English (International)')}>
                                     <Text style={styles.dropdownItem}>English (International)</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('عربى - Arabic')}>
+                                <TouchableOpacity onPress={event => this.clickDropdownItem('عربى - Arabic', 'ar')}>
                                     <Text style={styles.dropdownItem}>عربى - Arabic</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Dansk - Danish')}>
