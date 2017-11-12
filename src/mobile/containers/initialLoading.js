@@ -14,6 +14,16 @@ export default class InitialLoading extends Component {
         this.timeout = setTimeout(this.onLoaded.bind(this), 100);
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onLoaded() {
         const state = store.getState();
         if (!state.account.onboardingComplete) {

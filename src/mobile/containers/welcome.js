@@ -9,6 +9,16 @@ class Welcome extends React.Component {
         super(props);
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onNextPress() {
         this.props.navigator.push({
             screen: 'walletSetup',

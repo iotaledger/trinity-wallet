@@ -31,6 +31,16 @@ class Balance extends React.Component {
         }
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onBalanceClick() {
         if (this.state.balanceIsShort) {
             this.setState({ balanceIsShort: false });

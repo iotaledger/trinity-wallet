@@ -35,7 +35,14 @@ class CopySeedToClipboard extends React.Component {
         }
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
     componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
         this.clearTimeout();
         Clipboard.setString('');
     }

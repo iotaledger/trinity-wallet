@@ -18,6 +18,16 @@ class History extends React.Component {
         this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     render() {
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;

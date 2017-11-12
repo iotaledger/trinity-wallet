@@ -39,7 +39,14 @@ class Receive extends Component {
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
     componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
         this.resetAddress();
     }
 
