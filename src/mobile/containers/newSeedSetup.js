@@ -41,6 +41,16 @@ class NewSeedSetup extends Component {
         };
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onGeneratePress() {
         this.props.randomiseSeed(randomBytes);
         this.setState({

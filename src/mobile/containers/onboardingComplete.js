@@ -15,6 +15,16 @@ class OnboardingComplete extends React.Component {
         });
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>

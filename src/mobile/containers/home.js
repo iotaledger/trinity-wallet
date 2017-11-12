@@ -62,6 +62,16 @@ class Home extends Component {
         }
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     stopPolling() {
         clearInterval(polling);
     }

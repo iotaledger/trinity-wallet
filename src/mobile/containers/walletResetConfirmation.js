@@ -30,6 +30,16 @@ export default class WalletResetConfirmation extends Component {
         this.requirePassword = this.requirePassword.bind(this);
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     navigateTo(url) {
         this.props.navigator.push({
             screen: url,

@@ -25,6 +25,16 @@ class Settings extends React.Component {
         this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     _showModal = () => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });

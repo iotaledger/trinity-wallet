@@ -35,6 +35,16 @@ class SetSeedName extends React.Component {
         this.nameInput.focus();
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onDonePress() {
         if (this.state.seedName != '') {
             this.props.increaseSeedCount();
