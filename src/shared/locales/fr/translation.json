@@ -104,7 +104,7 @@
     "nameYourSeed": {
         "text": "Vous pouvez entrer un nom pour votre seed ici.",
         "label": "Nom de la Seed",
-        "placeholder": "Wallet principal",
+        "placeholder": "Wallet Principal",
         "explanation": "Entrez un nom pour votre Seed afin de les différencier plus facilement.",
         "button1": "OK",
         "button2": "RETOUR"
