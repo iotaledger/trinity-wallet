@@ -51,7 +51,3 @@ function(err, t) {
         console.error(err);
     }
 });
-
-function changeLng(lng) {
-    i18next.changeLanguage(lng);
-}
