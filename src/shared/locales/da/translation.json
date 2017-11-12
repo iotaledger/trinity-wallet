@@ -105,9 +105,9 @@
         "text": "Her kan du indtaste et navn på dit seed.",
         "label": "Seed-navn",
         "placeholder": "Primær tegnebog",
-        "explanation": "Enter a name for your seed to make them easier to differentiate.",
-        "button1": "DONE",
-        "button2": "GO BACK"
+        "explanation": "Indtast et navn på dit seed for at gøre dem lettere at skelne.",
+        "button1": "FÆRDIG",
+        "button2": "GÅ TILBAGE"
     },
     "setPassword": {
         "title": "OPSÆTNING AF ADGANGSKODE",
