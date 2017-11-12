@@ -1,4 +1,3 @@
-import merge from 'lodash/merge';
 import split from 'lodash/split';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -12,7 +11,6 @@ import {
     ListView,
     TouchableOpacity,
     Image,
-    Platform,
     StatusBar,
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -122,9 +120,6 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const isAndroid = Platform.OS === 'android';
-        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
-
         const { tempAccount: { seed } } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
@@ -201,7 +196,7 @@ NewSeedSetup.propTypes = {
     randomiseSeed: PropTypes.func.isRequired,
 };
 
-const baseStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
@@ -349,17 +344,6 @@ const baseStyles = StyleSheet.create({
         width: 36,
         height: 36,
         alignSelf: 'center',
-    },
-});
-
-const androidStyles = StyleSheet.create({
-    squareContainer: {
-        height: width / 1.2,
-        width: width / 1.2,
-    },
-    midContainer: {
-        flex: 3,
-        paddingTop: height / 30,
     },
 });
 
