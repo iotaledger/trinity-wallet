@@ -171,7 +171,7 @@ class Send extends Component {
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const seedName = this.props.account.seedNames[seedIndex];
-        const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
 
         const address = this.state.address;
         const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
@@ -181,15 +181,12 @@ class Send extends Component {
         getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value !== 'undefined') {
                 var seed = getSeed(value, this.props.tempAccount.seedIndex);
-                sendTx(seed);
-                {
-                    /*if (sendTransaction(seed.seed, address, value, message) == false) {
+                if (sendTx(seed) == false) {
                     this.dropdown.alertWithType(
                         'error',
                         'Key reuse',
                         `The address you are trying to send to has already been used. Please try another address.`,
                     );
-                }*/
                 }
             } else {
                 console.log('error');
@@ -198,7 +195,7 @@ class Send extends Component {
 
         const _this = this;
         function sendTx(seed) {
-            _this.props.sendTransaction(seed, addressesWithBalance, seedName, address, value, message);
+            _this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
         }
     }
 
@@ -275,7 +272,7 @@ class Send extends Component {
                     <View style={{ flexDirection: 'row' }}>
                         <View style={styles.textFieldContainer}>
                             <TextField
-                                keyboardType={'numeric'}
+                                autoCapitalize="characters"
                                 style={styles.textField}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
@@ -537,8 +534,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, addressesWithBalance, seedName, address, value, message) => {
-        dispatch(sendTransaction(seed, addressesWithBalance, seedName, address, value, message));
+    sendTransaction: (seed, currentSeedAccountInfo, seedName, address, value, message) => {
+        dispatch(sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message));
     },
     getAccountInfo: (seedName, seedIndex, accountInfo) => {
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo));

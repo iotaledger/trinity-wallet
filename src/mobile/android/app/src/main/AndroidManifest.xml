@@ -32,9 +32,7 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      <activity android:name="net.hockeyapp.android.UpdateActivity" />
+      <activity android:name="net.hockeyapp.android.FeedbackActivity" />
     </application>
-<application ..>
-    <activity android:name="net.hockeyapp.android.UpdateActivity" />
-    <activity android:name="net.hockeyapp.android.FeedbackActivity" />
-</application>
 </manifest>

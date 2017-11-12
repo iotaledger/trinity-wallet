@@ -143,12 +143,8 @@ class NewSeedSetup extends Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>GENERATE A NEW SEED</Text>
-                    </View>
-                    <TouchableOpacity onPress={event => this.onGeneratePress()}>
+                    <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.generateButton}>
-                            <Image style={styles.generateImage} source={require('../../shared/images/plus.png')} />
                             <Text style={styles.generateText}>GENERATE NEW SEED</Text>
                         </View>
                     </TouchableOpacity>
@@ -168,11 +164,13 @@ class NewSeedSetup extends Component {
                                 </View>
                             </TouchableHighlight>
                         )}
-                        style={styles.squareContainer}
+                        style={styles.gridContainer}
                         initialListSize={81}
                         scrollEnabled={false}
                         enableEmptySections
                     />
+                </View>
+                <View style={styles.bottomContainer}>
                     <Text
                         style={{
                             color: 'white',
@@ -181,12 +179,11 @@ class NewSeedSetup extends Component {
                             fontSize: width / 27.6,
                             backgroundColor: 'transparent',
                             height: this.state.infoTextHeight,
+                            marginBottom: height / 25,
                         }}
                     >
                         Press individual letters to randomise them.
                     </Text>
-                </View>
-                <View style={styles.bottomContainer}>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
@@ -223,29 +220,32 @@ const baseStyles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 2.3,
+        flex: 2.1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.3,
+        flex: 4.5,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 0.8,
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-        paddingHorizontal: width / 5,
-    },
-    squareContainer: {
-        flex: 1,
-        height: width / 1.1,
-        width: width / 1.1,
     },
     list: {
         justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap',
+        height: width / 1.1,
+        width: width / 1.1,
+        flex: 1,
+    },
+    gridContainer: {
+        height: width / 1.1,
+        width: width / 1.1,
     },
     item: {
         backgroundColor: 'white',
@@ -276,22 +276,20 @@ const baseStyles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     generateButton: {
-        flexDirection: 'row',
-        borderColor: 'rgba(255,255,255,0.6)',
+        borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 2.5,
-        height: height / 20,
+        height: height / 16,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'space-around',
         backgroundColor: '#009f3f',
     },
     generateText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingRight: width / 50,
     },
     buttonsContainer: {
         alignItems: 'flex-end',
@@ -327,11 +325,6 @@ const baseStyles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
-    },
-    generateImage: {
-        height: width / 30,
-        width: width / 30,
-        paddingLeft: width / 50,
     },
     iotaLogo: {
         height: width / 5,

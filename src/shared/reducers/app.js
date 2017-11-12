@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
         case ActionTypes.SET_ONBOARDING_COMPLETED:
             return {
                 ...state,
-                isOnboardingCompleted: true,
+                isOnboardingCompleted: action.payload,
             };
     }
 
