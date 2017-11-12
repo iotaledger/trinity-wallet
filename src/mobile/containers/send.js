@@ -59,18 +59,6 @@ class Send extends Component {
         RNShakeEvent.removeEventListener('shake');
     }
 
-    componentDidMount() {
-        {
-            /*    const dropdown = DropdownHolder.getDropdown();
-            dropdown.alertWithType(
-                'success',
-                'Transaction sent successfully',
-                `You have sent ${this.props.tempAccount.lastTxValue} ${sentDenomination} to address ${this.props
-                    .tempAccount.lastTxAddress}.`,
-            );*/
-        }
-    }
-
     onDenominationPress() {
         switch (this.state.denomination) {
             case 'Mi':
