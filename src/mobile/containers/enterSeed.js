@@ -36,6 +36,16 @@ class EnterSeed extends React.Component {
         };
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     handleKeyPress = event => {
         if (event.key == 'Enter') {
             Keyboard.dismiss();

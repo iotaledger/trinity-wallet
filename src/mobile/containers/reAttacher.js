@@ -21,6 +21,16 @@ export default class ReAttacher extends Component {
         }
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     autoReAttach() {
         const { reAttachAfter, attachments } = this.props;
 

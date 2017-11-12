@@ -41,6 +41,16 @@ class AddAdditionalSeed extends React.Component {
         };
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onDonePress() {
         if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
             this.dropdown.alertWithType(

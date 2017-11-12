@@ -34,6 +34,16 @@ class PaperWallet extends React.Component {
         };
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onDonePress() {
         this.props.navigator.pop({ animated: false });
 
