@@ -2,6 +2,7 @@ import isNull from 'lodash/isNull';
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 export default class ReAttacher extends Component {
     constructor() {
@@ -18,6 +19,16 @@ export default class ReAttacher extends Component {
         if (this.timer) {
             clearTimeout(this.timer);
         }
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     autoReAttach() {
