@@ -23,6 +23,7 @@ import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography
 import { increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { incrementSeedIndex, clearTempData } from '../../shared/actions/tempAccount';
 import { getAccountInfoNewSeed } from '../../shared/actions/account';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 //import DropdownHolder from './dropdownHolder';
 

@@ -14,6 +14,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const { height, width } = Dimensions.get('window');
 
