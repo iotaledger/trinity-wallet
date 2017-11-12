@@ -23,6 +23,7 @@ import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography
 import { increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { incrementSeedIndex, clearTempData } from '../../shared/actions/tempAccount';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import { getAccountInfoNewSeed, getAccountInfo, setFirstUse } from '../../shared/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
@@ -38,6 +39,16 @@ class AddAdditionalSeed extends React.Component {
             seedName: '',
             isModalVisible: false,
         };
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     onDonePress() {
