@@ -17,3 +17,20 @@ export const isYesterday = day => {
     const yesterday = moment().subtract(1, 'day');
     return moment(day).isSame(yesterday, 'day');
 };
+
+export const getCurrentYear = () => new Date().getFullYear();
+
+export const formatTime = ts => {
+    if (isToday(ts)) {
+        return formatTimeAs.twelveHours(ts);
+    } else if (isYesterday(ts)) {
+        return 'Yesterday';
+    }
+    return formatDayAs.dayMonthYear(ts);
+};
+
+export const formatModalTime = ts => {
+    return formatTimeAs.hoursMinutesDayMonthYear(ts);
+};
+
+export const convertUnixTimeToJSDate = time => convertUnixTimeToDateObject(time);

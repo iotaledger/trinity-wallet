@@ -15,7 +15,12 @@ import {
 } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { connect } from 'react-redux';
-import { generateNewAddress, setReceiveAddress, generateNewAddressRequest } from '../../shared/actions/tempAccount';
+import {
+    generateNewAddress,
+    setReceiveAddress,
+    generateNewAddressRequest,
+    generateNewAddressError,
+} from '../../shared/actions/tempAccount';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
@@ -25,12 +30,10 @@ const StatusBarDefaultBarStyle = 'light-content';
 class Receive extends Component {
     constructor() {
         super();
-
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
             dataSource: ds.cloneWithRows([]),
         };
-
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
@@ -51,9 +54,10 @@ class Receive extends Component {
         const seedIndex = this.props.tempAccount.seedIndex;
         const seedName = this.props.account.seedNames[seedIndex];
         const accountInfo = this.props.account.accountInfo;
-        const addresses = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+        const addresses = currentSeedAccountInfo.addresses;
         getFromKeychain(this.props.tempAccount.password, value => {
-            if (!isUndefined(value)) {
+            if (typeof value != 'undefined' && value != null) {
                 const seed = getSeed(value, seedIndex);
                 generate(seed, seedName, addresses);
             } else {
@@ -62,7 +66,10 @@ class Receive extends Component {
         });
 
         const generate = (seed, seedName, addresses) => this.props.generateNewAddress(seed, seedName, addresses);
-        const error = () => this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        const error = () => {
+            this.props.generateNewAddressError();
+            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        };
     }
 
     onAddressPress(address) {
@@ -80,27 +87,30 @@ class Receive extends Component {
                 <View style={{ paddingBottom: height / 40 }}>
                     <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                         <View style={styles.receiveAddressContainer}>
-                            <Text style={styles.receiveAddressText}>{receiveAddress}</Text>
+                            <Text style={styles.receiveAddressText} numberOfLines={3}>
+                                {receiveAddress}
+                            </Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={{ paddingBottom: height / 40 }}>
                     <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
                 </View>
-                {!receiveAddress && (
-                    <TouchableOpacity
-                        onPress={() => {
-                            // Check if there's already a network call in progress.
-                            if (!isGeneratingReceiveAddress) {
-                                this.onGeneratePress();
-                            }
-                        }}
-                    >
-                        <View style={styles.generateButton}>
-                            <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
-                        </View>
-                    </TouchableOpacity>
-                )}
+                {!receiveAddress &&
+                    !isGeneratingReceiveAddress && (
+                        <TouchableOpacity
+                            onPress={() => {
+                                // Check if there's already a network call in progress.
+                                if (!isGeneratingReceiveAddress) {
+                                    this.onGeneratePress();
+                                }
+                            }}
+                        >
+                            <View style={styles.generateButton}>
+                                <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
                 <View style={{ paddingTop: height / 20, flex: 1 }}>
                     <ActivityIndicator
                         animating={isGeneratingReceiveAddress}
@@ -146,7 +156,7 @@ const styles = StyleSheet.create({
         fontSize: width / 33.7,
         color: 'white',
         backgroundColor: 'transparent',
-        paddingHorizontal: width / 14,
+        paddingHorizontal: width / 15,
         textAlign: 'center',
     },
     generateButton: {
@@ -185,6 +195,7 @@ const mapDispatchToProps = dispatch => ({
     generateNewAddress: (seed, seedName, addresses) => dispatch(generateNewAddress(seed, seedName, addresses)),
     setReceiveAddress: payload => dispatch(setReceiveAddress(payload)),
     generateNewAddressRequest: () => dispatch(generateNewAddressRequest()),
+    generateNewAddressError: () => dispatch(generateNewAddressError()),
 });
 
 Receive.propTypes = {

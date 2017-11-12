@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar } from 'react-native';
-import { getCurrentYear } from '../../shared/libs/util';
+import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
 
 const { height, width } = Dimensions.get('window');
@@ -9,15 +9,21 @@ const { height, width } = Dimensions.get('window');
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
 export default class InitialLoading extends Component {
+    constructor() {
+        super();
+
+        console.ignoredYellowBox = ['Setting a timer'];
+    }
+
     componentDidMount() {
-        this.timeout = setTimeout(this.onLoaded.bind(this), 100);
+        this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
     }
 
     onLoaded() {
         const state = store.getState();
         if (!state.account.onboardingComplete) {
             this.props.navigator.push({
-                screen: 'languageSetup',
+                screen: 'welcome',
                 navigatorStyle: { navBarHidden: true },
                 animated: false,
             });
