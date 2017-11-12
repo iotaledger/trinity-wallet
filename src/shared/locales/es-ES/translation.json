@@ -65,20 +65,20 @@
         "button3": "VOLVER"
     },
     "saveYourSeed": {
-        "text1": "Debe guardar su seed usando como mínimo una de las opciones sugeridas a continuación.",
-        "text2": "como mínimo una",
+        "text1": "Debes guardar tu seed como mínimo con una de las opciones a continuación.",
+        "text2": "como mínimo con una",
         "optionA": "COPIAR MANUALMENTE",
         "optionB": "IMPRIMIR BILLETERA DE PAPEL",
         "optionC": "COPIAR AL PORTAPAPELES",
-        "button1": "CONTINUAR",
+        "button1": "SIGUIENTE",
         "button2": "VOLVER"
     },
     "saveYourSeed2": {
         "optionA": "Copiar Manualmente",
         "optionB": " Billetera de Papel",
         "optionC": "Copiar al Portapapeles",
-        "explanation": "Su Seed tiene 81 caracteres leídos de izquierda a derecha. Registre su Seed, comprobándola tres veces.",
-        "text": "comprobándola tres veces",
+        "explanation": "Tu Seed tiene 81 caracteres leídos de izquierda a derecha. Anota tu seed y letras de comprobación y comprueba tres veces que sean correctas.",
+        "text": "comprueba tres veces",
         "button": "LISTO"
     },
     "saveYourSeed3": {
