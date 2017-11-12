@@ -70,10 +70,6 @@ class Home extends Component {
         timer.clearInterval('polling');
     }
 
-    stopPolling() {
-        clearInterval(polling);
-    }
-
     startPolling() {
         if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
             const seedIndex = this.props.tempAccount.seedIndex;
