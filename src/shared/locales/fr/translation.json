@@ -102,12 +102,12 @@
         "button2": "OK"
     },
     "nameYourSeed": {
-        "text": "Here you can enter an name for your seed.",
-        "label": "Seed name",
-        "placeholder": "Main Wallet",
-        "explanation": "Enter a name for your seed to make them easier to differentiate.",
-        "button1": "DONE",
-        "button2": "GO BACK"
+        "text": "Vous pouvez entrer un nom pour votre seed ici.",
+        "label": "Nom de la Seed",
+        "placeholder": "Wallet principal",
+        "explanation": "Entrez un nom pour votre Seed afin de les différencier plus facilement.",
+        "button1": "OK",
+        "button2": "RETOUR"
     },
     "setPassword": {
         "title": "GESTION DU MOT DE PASSE",
