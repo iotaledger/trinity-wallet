@@ -2,6 +2,7 @@ import isNull from 'lodash/isNull';
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 export default class ReAttacher extends Component {
     constructor() {

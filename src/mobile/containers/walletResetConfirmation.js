@@ -16,6 +16,8 @@ import {
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+
 import { Keyboard } from 'react-native';
 
 const { height, width } = Dimensions.get('window');

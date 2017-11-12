@@ -30,6 +30,8 @@ import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import ReAttacher from './reAttacher';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 
