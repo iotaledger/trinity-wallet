@@ -10,6 +10,7 @@ import { createRandomSeed } from 'libs/util';
 import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
+import css from '../Layout/Onboarding.css';
 
 class GenerateSeed extends React.PureComponent {
     static propTypes = {
@@ -64,7 +65,9 @@ class GenerateSeed extends React.PureComponent {
                     <Button type="button" onClick={this.generateNewSeed} variant="cta">
                         {t('button1')}
                     </Button>
-                    <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
+                    <div className={css.seedGenerator}>
+                        <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
+                    </div>
                     <p>{t('text1')}</p>
                 </Content>
                 <Footer>
