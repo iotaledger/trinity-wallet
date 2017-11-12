@@ -2,6 +2,7 @@
     position: fixed;
     right: 0;
     top: 0;
+    z-index: var(--z-index-overlay);
 }
 
 .notification {
@@ -49,7 +50,7 @@
     &--extra {
         composes: notification;
         background-color: var(--color-button-extra);
-        color: black;
+        color: white;
     }
 
     &--warning {

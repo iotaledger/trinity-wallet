@@ -2,8 +2,14 @@ import React from 'react';
 import { StyleSheet, View, Text, ListView, Dimensions, StatusBar } from 'react-native';
 
 import { connect } from 'react-redux';
-import { changeCurrency, changeTimeFrame } from '../../shared/actions/marketDataActions';
-import { round, formatValue, formatUnit } from '../../shared/libs/util';
+import {
+    getMarketData,
+    getChartData,
+    getPrice,
+    changeCurrency,
+    changeTimeFrame,
+} from '../../shared/actions/marketData';
+import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
@@ -18,6 +24,12 @@ class Balance extends React.Component {
         };
     }
 
+    componentWillReceiveProps(newProps) {
+        if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
+            this.setState({ balanceIsShort: true });
+        }
+    }
+
     onBalanceClick() {
         if (this.state.balanceIsShort) {
             this.setState({ balanceIsShort: false });
@@ -27,25 +39,33 @@ class Balance extends React.Component {
     }
 
     render() {
+        const accountInfo = this.props.account.accountInfo;
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+        const addresses = Object.keys(currentSeedAccountInfo.addresses);
         const shortenedBalance =
-            round(formatValue(this.props.iota.balance, 1)).toFixed(1) + (this.props.iota.balance < 1000 ? '' : '+');
+            roundDown(formatValue(this.props.account.balance), 1) + (this.props.account.balance < 1000 ? '' : '+');
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.balanceContainer}>
                     <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
-                        {this.state.balanceIsShort ? shortenedBalance : this.props.iota.balance}{' '}
-                        {formatUnit(this.props.iota.balance)}
+                        {this.state.balanceIsShort ? shortenedBalance : formatValue(this.props.account.balance)}{' '}
+                        {formatUnit(this.props.account.balance)}
                     </Text>
                     <Text style={styles.fiatBalance}>
-                        $ {round(this.props.iota.balance * this.props.marketData.usdPrice / 1000000, 2).toFixed(2)}{' '}
+                        $ {round(this.props.account.balance * this.props.marketData.usdPrice / 1000000, 2).toFixed(
+                            2,
+                        )}{' '}
                     </Text>
                 </View>
                 <View style={styles.line} />
                 <View style={styles.transactionsContainer}>
                     <ListView
-                        dataSource={ds.cloneWithRows(this.props.iota.transactions.slice(0, 4))}
-                        renderRow={dataSource => <SimpleTransactionRow rowData={dataSource} />}
+                        dataSource={ds.cloneWithRows(
+                            accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
+                        )}
+                        renderRow={dataSource => <SimpleTransactionRow addresses={addresses} rowData={dataSource} />}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                         enableEmptySections
                         contentContainerStyle={styles.listView}
@@ -56,6 +76,9 @@ class Balance extends React.Component {
                 <View style={{ flex: 50 }}>
                     <Chart
                         marketData={this.props.marketData}
+                        getPrice={currency => this.props.getPrice(currency)}
+                        getChartData={(currency, timeFrame) => this.props.getChartData(currency, timeFrame)}
+                        getMarketData={() => this.props.getMarketData()}
                         changeCurrency={(currency, timeFrame) => this.props.changeCurrency(currency, timeFrame)}
                         changeTimeFrame={(currency, timeFrame) => this.props.changeTimeFrame(currency, timeFrame)}
                     />
@@ -99,7 +122,7 @@ const styles = StyleSheet.create({
     line: {
         borderBottomColor: 'white',
         borderBottomWidth: 0.25,
-        width: width / 1.2,
+        width: width / 1.15,
     },
     separator: {
         flex: 1,
@@ -113,8 +136,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
-    iota: state.iota,
     account: state.account,
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -123,6 +146,15 @@ const mapDispatchToProps = dispatch => ({
     },
     changeTimeFrame: (currency, timeFrame) => {
         dispatch(changeTimeFrame(currency, timeFrame));
+    },
+    getMarketData: () => {
+        dispatch(getMarketData());
+    },
+    getPrice: currency => {
+        dispatch(getPrice(currency));
+    },
+    getChartData: (currency, timeFrame) => {
+        dispatch(getChartData(currency, timeFrame));
     },
 });
 

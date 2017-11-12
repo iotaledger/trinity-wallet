@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearIOTA } from '../../shared/actions/iotaActions';
+import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
 import { logoutFromWallet } from '../../shared/actions/app';
-import { clearIOTA } from '../../shared/actions/iotaActions';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import DropdownHolder from '../components/dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
 
@@ -25,8 +26,6 @@ class Settings extends React.Component {
 
     _showModal = () => this.setState({ isModalVisible: true });
 
-    onChangeModePress() {}
-
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
@@ -35,7 +34,14 @@ class Settings extends React.Component {
         let modalContent;
         switch (selectedSetting) {
             case 'addNewSeed':
-                modalContent = <AddNewSeedModal style={{ flex: 1 }} hideModal={() => this._hideModal()} />;
+                modalContent = (
+                    <AddNewSeedModal
+                        style={{ flex: 1 }}
+                        hideModal={() => this._hideModal()}
+                        navigate={() => this.navigateToNewSeed()}
+                    />
+                );
+                break;
         }
         this.setState({
             selectedSetting,
@@ -44,11 +50,17 @@ class Settings extends React.Component {
         this._showModal();
     }
 
-    onModePress() {}
+    onModePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onCurrencyPress() {}
 
-    onThemePress() {}
+    onThemePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onLanguagePress() {}
 
@@ -64,11 +76,15 @@ class Settings extends React.Component {
         });
     }
 
-    on2FASetupPress() {}
+    on2FASetupPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
-    onAddNewSeedPress() {}
-
-    onAdvancedSettingsPress() {}
+    onAdvancedSettingsPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onResetWalletPress() {
         this.props.navigator.push({
@@ -86,7 +102,8 @@ class Settings extends React.Component {
         {
             /* this.props.logoutFromWallet() */
         }
-        this.props.clearIOTA();
+        this.props.clearTempData();
+        this.props.setPassword('');
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
@@ -97,6 +114,32 @@ class Settings extends React.Component {
                 },
             },
         });
+    }
+
+    navigateToNewSeed() {
+        this._hideModal();
+        this.props.navigator.push({
+            screen: 'addAdditionalSeed',
+            navigatorStyle: {
+                navBarHidden: true,
+            },
+            animated: false,
+        });
+    }
+
+    onAddNewSeedPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        if (this.props.tempAccount.isSendingTransfer) {
+            dropdown.alertWithType('error', 'Transfer sending', 'Please wait until your transfer has been sent.');
+        } else if (this.props.tempAccount.isGeneratingReceiveAddress) {
+            dropdown.alertWithType(
+                'error',
+                'Generating receive address',
+                'Please wait until your address has been generated.',
+            );
+        } else {
+            this.setModalContent('addNewSeed');
+        }
     }
 
     render() {
@@ -132,7 +175,8 @@ class Settings extends React.Component {
                             <Text style={styles.settingText}>{this.props.settings.language}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.setModalContent('addNewSeed')}>
+                    <View style={styles.separator} />
+                    <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/add.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Add new seed</Text>
@@ -150,6 +194,7 @@ class Settings extends React.Component {
                             <Text style={styles.titleText}>Change password</Text>
                         </View>
                     </TouchableOpacity>
+                    <View style={styles.separator} />
                     <TouchableOpacity onPress={event => this.onAdvancedSettingsPress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/advanced.png')} style={styles.icon} />
@@ -168,22 +213,6 @@ class Settings extends React.Component {
                             <Text style={styles.titleText}>Log out</Text>
                         </View>
                     </TouchableOpacity>
-                </View>
-                <View
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginTop: height / 13,
-                        zIndex: 0,
-                    }}
-                >
-                    <View style={styles.line1} />
-                    <View style={styles.line2} />
                 </View>
                 <Modal
                     animationIn={'bounceInUp'}
@@ -258,16 +287,50 @@ const styles = StyleSheet.create({
         width: width / 1.16,
         marginTop: height / 4.8,
     },
+    dropdownTitle: {
+        fontSize: 16,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        padding: 15,
+    },
+    dropdownMessage: {
+        fontSize: 14,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownImage: {
+        padding: 8,
+        width: 36,
+        height: 36,
+        alignSelf: 'center',
+    },
+    separator: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 0.3,
+        width: width / 1.16,
+        alignSelf: 'center',
+    },
 });
 
 const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
-    clearIOTA: () => dispatch(clearIOTA),
+    clearTempData: () => dispatch(clearTempData()),
+    setPassword: password => dispatch(setPassword(password)),
 });
 
 const mapStateToProps = state => ({
     account: state.account,
     settings: state.settings,
+    tempAccount: state.tempAccount,
 });
 
 Settings.propTypes = {
