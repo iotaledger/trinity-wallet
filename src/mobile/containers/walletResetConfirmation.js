@@ -54,9 +54,6 @@ export default class WalletResetConfirmation extends Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topWrapper}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.headerWrapper}>
-                        <Text style={styles.header}>{toUpper('wallet reset')}</Text>
-                    </View>
                     <View style={styles.subHeaderWrapper}>
                         <Text style={styles.subHeaderText}>{toUpper('this action cannot be undone.')}</Text>
                     </View>
@@ -112,26 +109,13 @@ const styles = StyleSheet.create({
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 15,
-    },
-    headerWrapper: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: height / 8,
-        paddingTop: height / 45,
-    },
-    header: {
-        color: Colors.white,
-        fontFamily: Fonts.primary,
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
+        paddingBottom: height / 20,
     },
     subHeaderWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: width / 10,
-        paddingTop: height / 30,
+        paddingTop: height / 15,
     },
     subHeaderText: {
         color: Colors.orangeDark,
@@ -144,13 +128,15 @@ const styles = StyleSheet.create({
         borderColor: Colors.white,
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.6,
-        height: height / 5.5,
+        minWidth: width / 1.6,
+        maxWidth: width / 1.7,
+        minHeight: height / 5,
+        maxHeight: height / 4.9,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
+        paddingVertical: height / 80,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
     },
     infoText: {
         color: Colors.white,

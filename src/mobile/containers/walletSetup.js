@@ -1,6 +1,16 @@
+import merge from 'lodash/merge';
 import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
-import { connect } from 'react-redux';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Text,
+    TouchableOpacity,
+    Image,
+    ImageBackground,
+    StatusBar,
+    Platform,
+} from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
 const { height, width } = Dimensions.get('window');
@@ -26,6 +36,8 @@ class WalletSetup extends React.Component {
     }
 
     render() {
+        const isAndroid = Platform.OS === 'android';
+        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -68,7 +80,7 @@ class WalletSetup extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -192,8 +204,43 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
-    account: state.account,
+const androidStyles = StyleSheet.create({
+    topContainer: {
+        flex: 1.5,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 22,
+    },
+    midContainer: {
+        flex: 1.6,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    bottomContainer: {
+        flex: 0.5,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 40,
+    },
+    greetingTextContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: width / 8,
+        paddingTop: height / 45,
+    },
+    infoTextContainer: {
+        borderColor: 'white',
+        borderWidth: 1,
+        borderRadius: 15,
+        width: width / 1.6,
+        minHeight: height / 3,
+        maxHeight: height / 2.3,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingHorizontal: width / 30,
+        borderStyle: 'dotted',
+        paddingVertical: height / 60,
+    },
 });
 
 export default WalletSetup;

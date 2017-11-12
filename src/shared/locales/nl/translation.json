@@ -19,8 +19,10 @@
     "welcome2": {
         "text1": "Oke. Laat we uw portemonnee instellen!",
         "text2": "Heb je al een zaad dat u zou willen gebruiken?",
-        "seed_explanation1": "De IOTA seed is zoals een gebruikersnaam en wachtwoord om toegang te verkrijgen tot je account, dit samengevoegd tot een tekenreeks van 81 karakters.",
-        "seed_explanation2": "U kan deze gebruiken om toegang te verkrijgen tot uw fondsen vanaf elke portemonnee en vanop elk apparaat. Maar als u uw seed verliest, verliest u ook uw IOTA",
+        "seed_explanation1":
+            "De IOTA seed is zoals een gebruikersnaam en wachtwoord om toegang te verkrijgen tot je account, dit samengevoegd tot een tekenreeks van 81 karakters.",
+        "seed_explanation2":
+            "U kan deze gebruiken om toegang te verkrijgen tot uw fondsen vanaf elke portemonnee en vanop elk apparaat. Maar als u uw seed verliest, verliest u ook uw IOTA",
         "reminder": "Houd uw seed veilig",
         "button1": "JA",
         "button2": "Nee"
@@ -85,7 +87,8 @@
         "optionA": "Handmatig kopiëren",
         "optionB": " Portemonnee van papier",
         "optionC": "Naar klembord kopiëren",
-        "explanation": "Klik op de onderstaande knop om uw seed te kopiëren naar een wachtwoordmanager. Het blijft in uw klembord gedurende 60 seconden.",
+        "explanation":
+            "Klik op de onderstaande knop om uw seed te kopiëren naar een wachtwoordmanager. Het blijft in uw klembord gedurende 60 seconden.",
         "text": "Bewaar je seed niet als tekst.",
         "button1": "Naar klembord kopiëren",
         "button2": "GEREED"
@@ -112,7 +115,8 @@
     "setPassword": {
         "title": "WACHTWOORD SETUP",
         "text": "Oke, nu moeten we een wachtwoord instellen.",
-        "explanation": "U gebruikt dit wachtwoord voor toegang tot uw portefeuille in de toekomst. Een gecodeerde kopie van uw Seed zal worden opgeslagen op uw apparaat.",
+        "explanation":
+            "U gebruikt dit wachtwoord voor toegang tot uw portefeuille in de toekomst. Een gecodeerde kopie van uw Seed zal worden opgeslagen op uw apparaat.",
         "reminder": "Zorg ervoor u een sterk wachtwoord gebruikt van ten minste 12 karakters.",
         "placeholder1": "'WACHTWOORD'",
         "placeholder2": "NOGMAALS WACHTWOORD",
@@ -124,7 +128,8 @@
         "button2": "Terug"
     },
     "onboardingComplete": {
-        "text": "De portefeuille is nu ingesteld en klaar voor gebruik. Als je wijzigingen wil aanbrengen in de toekomst, kijk in het menu Extra.",
+        "text":
+            "De portefeuille is nu ingesteld en klaar voor gebruik. Als je wijzigingen wil aanbrengen in de toekomst, kijk in het menu Extra.",
         "button": "VOLGENDE"
     },
     "home": {

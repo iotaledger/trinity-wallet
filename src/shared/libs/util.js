@@ -1,20 +1,3 @@
-import { isToday, isYesterday, formatTimeAs, formatDayAs, convertUnixTimeToDateObject } from './dateUtils';
-
-export const formatTime = ts => {
-    if (isToday(ts)) {
-        return formatTimeAs.twelveHours(ts);
-    } else if (isYesterday(ts)) {
-        return 'Yesterday';
-    }
-    return formatDayAs.dayMonthYear(ts);
-};
-
-export const formatModalTime = ts => {
-    return formatTimeAs.hoursMinutesDayMonthYear(ts);
-};
-
-export const convertUnixTimeToJSDate = time => convertUnixTimeToDateObject(time);
-
 export const formatValue = value => {
     var negative = false;
     if (value < 0) {
@@ -45,6 +28,9 @@ export const formatValue = value => {
 };
 
 export const formatUnit = value => {
+    if (value < 0) {
+        value = -value;
+    }
     const unit = '';
     switch (true) {
         case value < 1000:
@@ -70,6 +56,10 @@ export function formatIota(value) {
 export function round(value, precision) {
     const multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
+}
+export function roundDown(number, decimals) {
+    decimals = decimals || 0;
+    return Math.floor(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
 
 export const isValidServerAddress = server => {
@@ -109,11 +99,4 @@ export const createRandomSeed = (randomBytesFn, length = 81) => {
     return seed;
 };
 
-export const getCurrentYear = () => new Date().getFullYear();
-
 export const isValidPassword = (password = '') => password.length >= 12;
-
-/*
-    Exports for utils that reside in other files
- */
-export accountUtils from './accountUtils';

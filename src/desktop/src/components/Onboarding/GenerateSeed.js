@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { addAndSelectSeed } from 'actions/seeds';
+import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import { isValidSeed } from '../../../../shared/libs/util';
-import Header from './Header';
+import { createRandomSeed } from 'libs/util';
+import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
 
@@ -23,6 +24,13 @@ class GenerateSeed extends React.PureComponent {
 
     state = {
         seed: this.props.seed,
+    };
+
+    generateNewSeed = () => {
+        const newSeed = createRandomSeed();
+        this.setState(() => ({
+            seed: newSeed,
+        }));
     };
 
     onUpdatedSeed = seed => {
@@ -42,11 +50,8 @@ class GenerateSeed extends React.PureComponent {
                 translate: true,
             });
         }
-
-        addAndSelectSeed({
-            seed: seed,
-        });
-
+        clearSeeds(seed);
+        addAndSelectSeed(seed);
         history.push('/seed/save');
     };
 
@@ -54,21 +59,23 @@ class GenerateSeed extends React.PureComponent {
         const { t } = this.props;
         const { seed } = this.state;
         return (
-            <div>
-                <Header headline={t('title')} />
-                <main>
-                    <p>{t('text1')}</p>
+            <Template headline={t('title')}>
+                <Main>
+                    <Button type="button" onClick={this.generateNewSeed} variant="cta">
+                        {t('button1')}
+                    </Button>
                     <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
-                </main>
-                <footer>
-                    <Button to="/wallet" variant="warning">
+                    <p>{t('text1')}</p>
+                </Main>
+                <Footer>
+                    <Button to="/wallet-setup" variant="warning">
                         {t('button3')}
                     </Button>
                     <Button onClick={this.onRequestNext} variant="success">
                         {t('button2')}
                     </Button>
-                </footer>
-            </div>
+                </Footer>
+            </Template>
         );
     }
 }
@@ -79,6 +86,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     addAndSelectSeed,
+    clearSeeds,
     showError,
 };
 
