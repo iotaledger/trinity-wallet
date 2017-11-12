@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
@@ -30,6 +31,7 @@ class Welcome extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -42,9 +44,7 @@ class Welcome extends React.Component {
                         <Text style={styles.infoTextLight}>
                             We will spend the next few minutes setting up your wallet.
                         </Text>
-                        <Text style={styles.infoTextRegular}>
-                            You may be tempted to skip some steps, but we urge you to follow the complete process.
-                        </Text>
+                        <Text style={styles.infoTextRegular}>{t('reminder')}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
@@ -124,4 +124,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Welcome;
+export default translate('welcome1')(Welcome);
