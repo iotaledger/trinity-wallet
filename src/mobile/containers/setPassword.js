@@ -106,14 +106,19 @@ class SetPassword extends React.Component {
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="next"
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
+                                onSubmitEditing={event => {
+                                    this.refs.reentry.focus();
+                                }}
                                 containerStyle={{
                                     width: width / 1.36,
                                 }}
                                 secureTextEntry={true}
                             />
                             <TextField
+                                ref="reentry"
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={width / 31.8}
@@ -125,6 +130,7 @@ class SetPassword extends React.Component {
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="done"
                                 value={reentry}
                                 onChangeText={reentry => this.setState({ reentry })}
                                 containerStyle={{ width: width / 1.36 }}

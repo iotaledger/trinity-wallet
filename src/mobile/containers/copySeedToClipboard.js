@@ -193,7 +193,6 @@ class CopySeedToClipboard extends React.Component {
                     </View>
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.copyButton}>
-                            <Image style={styles.copyImage} source={require('../../shared/images/clipboard.png')} />
                             <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
                         </View>
                     </TouchableOpacity>
@@ -339,27 +338,20 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     copyButton: {
-        flexDirection: 'row',
-        borderColor: 'rgba(255,255,255,0.6)',
+        borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 2.5,
-        height: height / 20,
+        height: height / 16,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'space-around',
         backgroundColor: '#009f3f',
     },
     copyText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingRight: width / 50,
-    },
-    copyImage: {
-        height: width / 27,
-        width: width / 27,
-        paddingLeft: width / 50,
     },
     seedBox: {
         borderColor: 'white',

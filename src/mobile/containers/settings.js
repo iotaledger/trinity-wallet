@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearTempData } from '../../shared/actions/tempAccount';
+import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
@@ -41,6 +41,7 @@ class Settings extends React.Component {
                         navigate={() => this.navigateToNewSeed()}
                     />
                 );
+                break;
         }
         this.setState({
             selectedSetting,
@@ -82,7 +83,7 @@ class Settings extends React.Component {
 
     onAdvancedSettingsPress() {
         const dropdown = DropdownHolder.getDropdown();
-        this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
     onResetWalletPress() {
@@ -102,6 +103,7 @@ class Settings extends React.Component {
             /* this.props.logoutFromWallet() */
         }
         this.props.clearTempData();
+        this.props.setPassword('');
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'login',
@@ -123,6 +125,21 @@ class Settings extends React.Component {
             },
             animated: false,
         });
+    }
+
+    onAddNewSeedPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        if (this.props.tempAccount.isSendingTransfer) {
+            dropdown.alertWithType('error', 'Transfer sending', 'Please wait until your transfer has been sent.');
+        } else if (this.props.tempAccount.isGeneratingReceiveAddress) {
+            dropdown.alertWithType(
+                'error',
+                'Generating receive address',
+                'Please wait until your address has been generated.',
+            );
+        } else {
+            this.setModalContent('addNewSeed');
+        }
     }
 
     render() {
@@ -158,7 +175,7 @@ class Settings extends React.Component {
                             <Text style={styles.settingText}>{this.props.settings.language}</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.setModalContent('addNewSeed')}>
+                    <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/add.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Add new seed</Text>
@@ -315,11 +332,13 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
     clearTempData: () => dispatch(clearTempData()),
+    setPassword: password => dispatch(setPassword(password)),
 });
 
 const mapStateToProps = state => ({
     account: state.account,
     settings: state.settings,
+    tempAccount: state.tempAccount,
 });
 
 Settings.propTypes = {
