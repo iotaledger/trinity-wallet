@@ -21,6 +21,7 @@ import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -35,6 +36,16 @@ class EnterSeed extends React.Component {
             seed: '',
             isModalVisible: false,
         };
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     handleKeyPress = event => {
