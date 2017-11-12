@@ -19,6 +19,8 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/tempAccount';
 import { randomBytes } from 'react-native-randombytes';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
 const { height, width } = Dimensions.get('window');

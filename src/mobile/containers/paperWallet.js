@@ -16,6 +16,7 @@ import { RNPrint } from 'NativeModules';
 import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from '../../shared/libs/html.js';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const { height, width } = Dimensions.get('window');
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
