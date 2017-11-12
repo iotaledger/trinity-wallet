@@ -1,6 +1,8 @@
 .wrapper {
-    border: 1px dashed white;
+    border: 1px dotted white;
     border-radius: 16px;
+    font-size: var(--font-size-small);
+    margin: 16px 0;
     padding: 16px;
 
     > :first-child {
@@ -10,4 +12,12 @@
     > :last-child {
         margin-bottom: 0;
     }
+}
+
+.icon {
+    background: url(../../../../shared/images/info.png) no-repeat;
+    background-size: contain;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
 }

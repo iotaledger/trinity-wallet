@@ -63,20 +63,21 @@ class Receive extends Component {
         const seedIndex = this.props.tempAccount.seedIndex;
         const seedName = this.props.account.seedNames[seedIndex];
         const accountInfo = this.props.account.accountInfo;
-        const addresses = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+        const addresses = currentSeedAccountInfo.addresses;
         getFromKeychain(this.props.tempAccount.password, value => {
-            if (!isUndefined(value)) {
+            if (typeof value != 'undefined' && value != null) {
                 const seed = getSeed(value, seedIndex);
                 generate(seed, seedName, addresses);
             } else {
                 error();
             }
         });
-        const _this = this;
-        const generate = (seed, seedName, addresses) => _this.props.generateNewAddress(seed, seedName, addresses);
+
+        const generate = (seed, seedName, addresses) => this.props.generateNewAddress(seed, seedName, addresses);
         const error = () => {
             this.props.generateNewAddressError();
-            _this.dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
         };
     }
 
@@ -95,7 +96,9 @@ class Receive extends Component {
                 <View style={{ paddingBottom: height / 40 }}>
                     <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                         <View style={styles.receiveAddressContainer}>
-                            <Text style={styles.receiveAddressText}>{receiveAddress}</Text>
+                            <Text style={styles.receiveAddressText} numberOfLines={3}>
+                                {receiveAddress}
+                            </Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -162,7 +165,7 @@ const styles = StyleSheet.create({
         fontSize: width / 33.7,
         color: 'white',
         backgroundColor: 'transparent',
-        paddingHorizontal: width / 14,
+        paddingHorizontal: width / 15,
         textAlign: 'center',
     },
     generateButton: {

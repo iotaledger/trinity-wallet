@@ -48,9 +48,13 @@ class App extends React.Component {
 
     componentWillMount() {
         persistStore(store, { blacklist: ['tempAccount', 'notifications', 'seeds'] }, () => {
-            this.setState(() => ({
-                initialized: true,
-            }));
+            setTimeout(
+                () =>
+                    this.setState(() => ({
+                        initialized: true,
+                    })),
+                2500,
+            );
         });
     }
 
@@ -68,6 +72,7 @@ class App extends React.Component {
 
     render() {
         const { app } = this.props;
+
         if (this.state.initialized === false) {
             return <Loading />;
         }
