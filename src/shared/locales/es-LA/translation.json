@@ -19,17 +19,14 @@
     "welcome2": {
         "text1": "OK. ¡Vamos a configurar tu billetera!",
         "text2": "¿Ya tienes una seed que te gustaría utilizar?",
-        "seed_explanation1":
-            "La seed de IOTA es, simultáneamente, el nombre del usuario y la contraseña para tu cuenta, combinada en una cadena de 81 caracteres.",
-        "seed_explanation2":
-            "Puedes utilizarla para acceder a tus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierdes tu seed, también pierdes tu IOTA",
+        "seed_explanation1": "La seed de IOTA es, simultáneamente, el nombre del usuario y la contraseña para tu cuenta, combinada en una cadena de 81 caracteres.",
+        "seed_explanation2": "Puedes utilizarla para acceder a tus fondos desde cualquier billetera, en cualquier dispositivo. Pero si pierdes tu seed, también pierdes tu IOTA",
         "reminder": "Por favor mantén tu seed en seguridad",
         "button1": "SÍ",
         "button2": "NO"
     },
     "lightserver": {
-        "text1":
-            "Un servidor simple es una puerta de entrada a la red IOTA, amablemente proporcionada por los miembros de la comunidad o por nuestros socios corporativos.",
+        "text1": "Un servidor simple es una puerta de entrada a la red IOTA, amablemente proporcionada por los miembros de la comunidad o por nuestros socios corporativos.",
         "text2": "Puedes encontrar más informacion sobre los servidores en: http://iotasupport.com/lightwallet.shtml",
         "text3": "Por favor elige un servidor de la lista de abajo.",
         "server_label": "Servidor",
@@ -50,11 +47,9 @@
         "error_title": "Seed es demasiado corta",
         "error_text": "Las seeds deben tener como mínimo 60 caracteres. Por favor, inténtalo de nuevo.",
         "invalid_seed_title": "Seed inválida",
-        "invalid_seed_text":
-            "Tu seed es inválida. Una seed solo puede contener letras mayúsculas (A-Z) y el número 9, y debe tener 60-81 caracteres en largo.",
+        "invalid_seed_text": "Tu seed es inválida. Una seed solo puede contener letras mayúsculas (A-Z) y el número 9, y debe tener 60-81 caracteres en largo.",
         "placeholder": "SEED",
-        "seed_explanation":
-            "Se aconseja que las seeds tengan 81 caracteres. Además, es obligatório que sean letras mayúsculas (A-Z) y el número 9. No se puede utilizar seeds con más de 81 caracteres en largo.",
+        "seed_explanation": "Se aconseja que las seeds tengan 81 caracteres. Además, es obligatório que sean letras mayúsculas (A-Z) y el número 9. No se puede utilizar seeds con más de 81 caracteres en largo.",
         "reminder": "NUNCA COMPARTAS TU SEED CON NADIE",
         "scan_code": "Escanear código QR",
         "close": "CERRAR",
@@ -82,8 +77,7 @@
         "optionA": "Copiar Manualmente",
         "optionB": " Billetera de Papel",
         "optionC": "Copiar al Portapapeles",
-        "explanation":
-            "Tu seed tiene 81 caracteres leídos de izquierda a derecha. Anote su seed y código de verificación, comprobándolas tres veces.",
+        "explanation": "Tu seed tiene 81 caracteres leídos de izquierda a derecha. Anote su seed y código de verificación, comprobándolas tres veces.",
         "text": "comprobándolas tres veces",
         "button": "LISTO"
     },
@@ -91,8 +85,7 @@
         "optionA": "Copiar Manualmente",
         "optionB": " Billetera de Papel",
         "optionC": "Copiar al Portapapeles",
-        "explanation":
-            "Haz clic en el botón de abajo para copiar tu seed para un gestor de contraseñas. Esta copia permanecerá en el portapapeles durante 60 segundos.",
+        "explanation": "Haz clic en el botón de abajo para copiar tu seed para un gestor de contraseñas. Esta copia permanecerá en el portapapeles durante 60 segundos.",
         "text": "No almacenes la seed en un archivo de texto sin codificación.",
         "button1": "COPIAR AL PORTAPAPELES",
         "button2": "LISTO"
@@ -108,11 +101,18 @@
         "button1": "IMPRIMIR BILLETERA DE PAPEL",
         "button2": "LISTO"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "CONFIGURACIÓN DE CONTRASEÑA",
         "text": "Ahora tenemos que configurar una contraseña.",
-        "explanation":
-            "Utlizarás esta contraseña para acceder a tu billetera en el futuro. Una copia encriptada de tu seed será guardado en tu dispositivo.",
+        "explanation": "Utlizarás esta contraseña para acceder a tu billetera en el futuro. Una copia encriptada de tu seed será guardado en tu dispositivo.",
         "reminder": "Asegúrete que utilizas una contraseña segura con al menos 12 caracteres.",
         "placeholder1": "'CONTRASEÑA'",
         "placeholder2": "VOLVER A ESCRIBIR CONTRASEÑA",
@@ -124,8 +124,7 @@
         "button2": "VOLVER"
     },
     "onboardingComplete": {
-        "text":
-            "La billetera está configurada y lista para usar. Si necesitas realizar cambios en el futuro, mira en el menú de Herramientas.",
+        "text": "La billetera está configurada y lista para usar. Si necesitas realizar cambios en el futuro, mira en el menú de Herramientas.",
         "button": "SEGUIR"
     },
     "home": {

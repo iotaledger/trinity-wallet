@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
         flex: 3.6,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 5,
+        paddingTop: height / 4.75,
     },
     bottomContainer: {
         justifyContent: 'center',
