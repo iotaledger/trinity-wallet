@@ -1,3 +1,4 @@
+import merge from 'lodash/merge';
 import React from 'react';
 import {
     StyleSheet,
@@ -7,6 +8,7 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
+    Platform,
     ImageBackground,
     ScrollView,
     StatusBar,
@@ -66,6 +68,9 @@ class SetSeedName extends React.Component {
 
     render() {
         let { seedName } = this.state;
+        const isAndroid = Platform.OS === 'android';
+        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -133,7 +138,7 @@ class SetSeedName extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -248,6 +253,42 @@ const styles = StyleSheet.create({
         width: 36,
         height: 36,
         alignSelf: 'center',
+    },
+});
+
+const androidStyles = StyleSheet.create({
+    topContainer: {
+        flex: 1.2,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 22,
+    },
+    midContainer: {
+        flex: 4.8,
+        justifyContent: 'flex-start',
+        paddingTop: height / 6,
+        alignItems: 'center',
+    },
+    bottomContainer: {
+        flex: 0.6,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
+    },
+    infoTextContainer: {
+        borderColor: 'white',
+        borderWidth: 1,
+        borderRadius: 15,
+        width: width / 1.6,
+        minHeight: height / 4.5,
+        maxHeight: height / 4.2,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingHorizontal: width / 30,
+        paddingVertical: height / 50,
+        borderStyle: 'dotted',
+        paddingTop: height / 60,
+        marginTop: height / 15,
     },
 });
 

@@ -1,9 +1,11 @@
+import merge from 'lodash/merge';
 import React from 'react';
 import {
     StyleSheet,
     View,
     Dimensions,
     Text,
+    Platform,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
@@ -102,6 +104,8 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
+        const isAndroid = Platform.OS === 'android';
+        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -203,7 +207,7 @@ class EnterSeed extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -338,6 +342,25 @@ const styles = StyleSheet.create({
         width: 36,
         height: 36,
         alignSelf: 'center',
+    },
+});
+
+const androidStyles = StyleSheet.create({
+    topContainer: {
+        flex: 1.2,
+        paddingTop: height / 22,
+    },
+    midContainer: {
+        flex: 4.7,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 10,
+    },
+    bottomContainer: {
+        flex: 0.7,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
     },
 });
 
