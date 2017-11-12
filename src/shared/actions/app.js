@@ -4,9 +4,10 @@ export const ActionTypes = {
     WALLET_RESET: 'IOTA/APP/WALLET/RESET',
 };
 
-export function setOnboardingCompleted() {
+export function setOnboardingCompletionStatus(isCompleted = false) {
     return {
         type: ActionTypes.SET_ONBOARDING_COMPLETED,
+        payload: isCompleted,
     };
 }
 

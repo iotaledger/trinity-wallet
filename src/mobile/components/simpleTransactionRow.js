@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
@@ -16,7 +17,9 @@ class SimpleTransactionRow extends React.Component {
                 ? require('../../shared/images/send.png')
                 : require('../../shared/images/receive.png');
         const sign = this.props.rowData[0].transferValue < 0 ? '-' : '+';
-        const titleColour = this.props.rowData[0].transferValue < 0 ? '#F7D002' : '#72BBE8';
+        const address = get(this.props.rowData, '[0].address');
+        const sendOrReceive = this.props.addresses.includes(address);
+        const titleColour = sendOrReceive ? '#72BBE8' : '#F7D002';
 
         return (
             <View style={styles.container}>
@@ -45,9 +48,9 @@ class SimpleTransactionRow extends React.Component {
                             fontSize: width / 29.6,
                         }}
                     >
-                        {this.props.rowData[0].transferValue < 0
-                            ? this.props.rowData[0].persistence ? 'Sent' : 'Sending'
-                            : this.props.rowData[0].persistence ? 'Received' : 'Receiving'}
+                        {sendOrReceive
+                            ? this.props.rowData[0].persistence ? 'Received' : 'Receiving'
+                            : this.props.rowData[0].persistence ? 'Sent' : 'Sending'}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
