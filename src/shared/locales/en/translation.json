@@ -70,6 +70,7 @@
         "button3": "BACK"
     },
     "saveYourSeed": {
+        "title": "SAVE YOUR SEED",
         "text1": "You must save your seed with at least one of the options listed below.",
         "text2": "at least one",
         "optionA": "MANUAL COPY",
