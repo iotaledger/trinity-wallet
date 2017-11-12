@@ -10,28 +10,24 @@
         "button1": "LANJUT"
     },
     "welcome1": {
-        "text1": "Terima kasih telah mengunduh dompet IOTA",
-        "text2": "Kita akan menghabiskan beberapa menit untuk menyiapkan dompet Anda.",
-        "reminder": "Kami berharap anda tidak mencoba untuk melewatkan beberapa tahap penting ini",
+        "text1": "Terima kasih telah mengunduh dompet IOTA.",
+        "text2": "Kita akan menghabiskan beberapa menit kedepan untuk menyiapkan dompet Anda.",
+        "reminder": "Kami berharap anda tidak mencoba untuk melewatkan beberapa tahap penting ini.",
         "button1": "LANJUT",
         "button2": "KEMBALI"
     },
     "welcome2": {
         "text1": "Oke. Mari menyiapkan dompet anda!",
-        "text2": "Apa anda sudah memiliki benih yang ingin digunakan?",
-        "seed_explanation1":
-            "Benih di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
-        "seed_explanation2":
-            "Anda dapat mengakses dana anda dari dompet manapun dan di perangkat apapun. Tetapi jika anda lupa benih, anda akan kehilangan IOTA",
-        "reminder": "Harap disimpan benih anda dengan baik",
+        "text2": "Apa anda sudah memiliki Seed yang ingin digunakan?",
+        "seed_explanation1": "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
+        "seed_explanation2": "Anda dapat mengakses dana anda dari dompet manapun dan di perangkat apapun. Tetapi jika anda lupa Seed, anda akan kehilangan IOTA",
+        "reminder": "Harap disimpan Seed anda dengan baik",
         "button1": "IYA",
         "button2": "TIDAK"
     },
     "lightserver": {
-        "text1":
-            "Server ringan adalah pintu gerbang ke jaringan IOTA yang sudah dipersiapkan oleh komunitas dan mitra perusahaan kami.",
-        "text2":
-            "Anda dapat menemukan informasi lebih lanjut tentang server di: http://iotasupport.com/lightwallet.shtml",
+        "text1": "Server ringan adalah pintu gerbang ke jaringan IOTA yang sudah dipersiapkan oleh komunitas dan mitra perusahaan kami.",
+        "text2": "Anda dapat menemukan informasi lebih lanjut tentang server di: http://iotasupport.com/lightwallet.shtml",
         "text3": "Silakan pilih server dari daftar di bawah ini.",
         "server_label": "Server",
         "custom_server_label": "Alamat server lain",
@@ -45,46 +41,43 @@
         "error_title": "Kata sandi tidak dikenali",
         "error_text": "Kata sandi tidak dikenali. Silahkan coba kembali.",
         "button1": "SELESAI",
-        "button2": "GUNAKAN BENIH"
+        "button2": "GUNAKAN SEED"
     },
     "enterSeed": {
         "error_title": "Seed terlalu singkat",
         "error_text": "Seed harus setidaknya 60 karakter. Silakan coba kembali.",
         "invalid_seed_title": "Seed keliru",
-        "invalid_seed_text":
-            "Seed anda tidak sah. Seed dapat berupa huruf besar (A-Z) dan angka 9 dan jumlah total karakter antara 60 sampai dengan 81.",
+        "invalid_seed_text": "Seed anda tidak sah. Seed dapat berupa huruf besar (A-Z) dan angka 9 dengan jumlah total 60-81 karakter.",
         "placeholder": "SEED",
-        "seed_explanation":
-            "Seed harus 81 karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan benih lebih dari 81 karakter.",
-        "reminder": "JANGAN PERNAH MEMBAGI SEED ANDA DENGAN SIAPAPUN",
+        "seed_explanation": "Seed harus 81 karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari 81 karakter.",
+        "reminder": "JANGAN PERNAH MEMBERITAHUKAN SEED ANDA DENGAN SIAPAPUN",
         "scan_code": "Pindai kode QR",
         "close": "TUTUP",
         "button1": "SELESAI",
         "button2": "KEMBALI"
     },
     "newSeedSetup": {
-        "title": "MEMBUAT BENIH BARU",
+        "title": "MEMBUAT SEED BARU",
         "button1": "MEMBUAT SEED BARU",
         "text1": "Tekan masing-masing huruf untuk mengacaknya.",
-        "text2": "Kemudian klik BERIKUTNYA",
+        "text2": "Kemudian klik LANJUT",
         "button2": "BERIKUTNYA",
         "button3": "KEMBALI"
     },
     "saveYourSeed": {
-        "text1": "Anda harus menyimpan seed anda dengan setidaknya satu dari pilihan yang tersedia berikut ini.",
+        "text1": "Anda harus menyimpan Seed Anda setidaknya dengan satu dari beberapa opsi berikut ini.",
         "text2": "setidaknya satu",
         "optionA": "SIMPAN MANUAL",
         "optionB": "CETAK DOMPET KERTAS",
         "optionC": "SALIN KE PAPAN KLIP",
-        "button1": "BERIKUTNYA",
+        "button1": "LANJUT",
         "button2": "KEMBALI"
     },
     "saveYourSeed2": {
         "optionA": "Simpan Manual",
         "optionB": " Dompet Kertas",
         "optionC": "Salin ke papan klip",
-        "explanation":
-            "Seed anda terdiri dari 81 karakter dari kiri ke kanan. Tulis seed tersebut, cek jumlah karakternya dan pastikan mereka sudah benar.",
+        "explanation": "Seed anda terdiri dari 81 karakter dari kiri ke kanan. Tulis Seed tersebut, cek jumlah karakternya dan pastikan mereka sudah benar.",
         "text": "cek kembali",
         "button": "SELESAI"
     },
@@ -92,41 +85,46 @@
         "optionA": "Simpan Manual",
         "optionB": " Dompet Kertas",
         "optionC": "Salin ke papan klip",
-        "explanation":
-            "Tekan tombol dibawah ini dan salin benih anda ke manajer kata sandi. Benih anda akan tinggal di papan klip selama 60 detik.",
-        "text": "Jangan simpan seed anda di dalam teks biasa.",
-        "button1": "SALIN ke PAPAN KLIP",
+        "explanation": "Tekan tombol dibawah ini dan salin Seed anda ke manajer kata sandi. Seed anda akan tinggal di papan klip selama 60 detik.",
+        "text": "Jangan simpan Seed Anda di dalam teks biasa.",
+        "button1": "SALIN KE PAPAN KLIP",
         "button2": "SELESAI"
     },
     "saveYourSeed4": {
         "optionA": "Simpan Manual",
         "optionB": " Dompet Kertas",
-        "optionC": "Salin ke papan klip",
+        "optionC": "Salin Ke Papan Klip",
         "explanation": "Tekan tombol di bawah ini untuk mencetak salinan dompet kertas anda.",
         "text1": "Simpan dengan baik",
-        "text2": "Jangan pernah berbagi benih Anda dengan siapa pun.",
+        "text2": "Jangan pernah memberitahukan Seed Anda dengan siapa pun.",
         "check_button": "Logo IOTA",
         "button1": "CETAK DOMPET KERTAS",
         "button2": "SELESAI"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "ATUR KATA SANDI",
         "text": "Mari kita membuat kata sandi.",
-        "explanation":
-            "Anda akan menggunakan kata sandi ini untuk mengakses dompet anda selanjutnya. Salinan dari benih yang terenkripsi akan disimpan di perangkat anda.",
+        "explanation": "Anda akan menggunakan kata sandi ini untuk mengakses dompet anda selanjutnya. Salinan dari Seed yang terenkripsi akan disimpan di perangkat anda.",
         "reminder": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 12 karakter.",
         "placeholder1": "'KATA SANDI'",
         "placeholder2": "KETIK ULANG KATA SANDI",
-        "error1_title": "Kata sandi terlalu pendek",
-        "error1_text": "Kata sandi anda paling sedikit harus 12 karakter. Silakan coba lagi.",
+        "error1_title": "Kata sandi terlalu singkat",
+        "error1_text": "Kata sandi Anda paling sedikit harus 12 karakter. Silakan coba lagi.",
         "error2_title": "Kata sandi tidak sama",
-        "error2_text": "Kata sandi yang anda masukkan tidak sama. Silahkan coba lagi.",
+        "error2_text": "Kata sandi yang Anda masukkan tidak sama. Silahkan coba lagi.",
         "button1": "SELESAI",
         "button2": "KEMBALI"
     },
     "onboardingComplete": {
-        "text":
-            "Dompet sudah dipersiapkan dan siap untuk digunakan. Silahkan cek di menu Perkakas jika Anda ingin membuat perubahan lagi.",
+        "text": "Dompet sudah dipersiapkan dan siap untuk digunakan. Silahkan cek di menu Perkakas jika Anda ingin membuat perubahan lagi.",
         "button": "LANJUT"
     },
     "home": {
@@ -149,7 +147,7 @@
         "expert": "Ahli",
         "changeTheme": "Ubah tema",
         "changeLanguage": "Ubah bahasa",
-        "addNewSeed": "Tambahkan benih baru",
+        "addNewSeed": "Tambahkan Seed baru",
         "setup2fa": "Konfigurasi 2FA",
         "changePassword": "Ubah Kata Sandi",
         "advancedSettings": "Pengaturan Lanjutan",
