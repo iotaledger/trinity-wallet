@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.rnprint.RNPrint.RNPrintPackage;
 import com.facebook.react.ReactApplication;
+import com.jadsonlourenco.RNShakeEvent.RNShakeEventPackage;
 import com.peel.react.rnos.RNOSModule;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
@@ -43,6 +44,7 @@ public class MainApplication extends NavigationApplication {
             new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
+            new RNShakeEventPackage(),
             new RNOSModule(),
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
