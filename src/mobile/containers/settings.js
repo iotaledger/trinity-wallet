@@ -175,6 +175,7 @@ class Settings extends React.Component {
                             <Text style={styles.settingText}>{this.props.settings.language}</Text>
                         </View>
                     </TouchableOpacity>
+                    <View style={styles.separator} />
                     <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/add.png')} style={styles.icon} />
@@ -193,6 +194,7 @@ class Settings extends React.Component {
                             <Text style={styles.titleText}>Change password</Text>
                         </View>
                     </TouchableOpacity>
+                    <View style={styles.separator} />
                     <TouchableOpacity onPress={event => this.onAdvancedSettingsPress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/advanced.png')} style={styles.icon} />
@@ -211,22 +213,6 @@ class Settings extends React.Component {
                             <Text style={styles.titleText}>Log out</Text>
                         </View>
                     </TouchableOpacity>
-                </View>
-                <View
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginTop: height / 13,
-                        zIndex: 0,
-                    }}
-                >
-                    <View style={styles.line1} />
-                    <View style={styles.line2} />
                 </View>
                 <Modal
                     animationIn={'bounceInUp'}
@@ -325,6 +311,12 @@ const styles = StyleSheet.create({
         padding: 8,
         width: 36,
         height: 36,
+        alignSelf: 'center',
+    },
+    separator: {
+        borderBottomColor: 'white',
+        borderBottomWidth: 0.3,
+        width: width / 1.16,
         alignSelf: 'center',
     },
 });
