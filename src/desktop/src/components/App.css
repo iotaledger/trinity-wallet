@@ -41,6 +41,21 @@
     --z-index-elevated: 1;
 }
 
+@media print {
+    body {
+        color: black !important;
+        background: none !important;
+    }
+
+    :global(.printHidden) {
+        display: none;
+    }
+
+    button {
+        display: none;
+    }
+}
+
 * {
     &,
     &:before,

@@ -5,7 +5,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
     entry: ['./src/index.js'],
-    target: 'electron',
+    // target: 'electron',
     output: {
         path: path.join(__dirname, '..', 'dist'),
         pathinfo: true,
