@@ -36,9 +36,9 @@ class SaveYourSeed extends PureComponent {
         const { seed, showNotification, t } = this.props;
 
         return (
-            <Template className={css.saveYourSeed}>
+            <Template className={css.saveYourSeed} headline={t('title')}>
                 <Content>
-                    <p>{t('saveYourSeed2:explanation')}</p>
+                    <p>{t('text1')}</p>
                     <div className={css.seedWrapper}>
                         <div className={css.seed}>
                             <BoxedSeed t={t} seed={seed} color="black" size="small" />
@@ -47,6 +47,7 @@ class SaveYourSeed extends PureComponent {
                             <QRCode size={192} value={seed} />
                         </div>
                     </div>
+                    <p>{t('saveYourSeed2:explanation')}</p>
                     <div className="printHidden">
                         <CopyToClipboard text={seed}>
                             <Button
@@ -55,6 +56,8 @@ class SaveYourSeed extends PureComponent {
                                     showNotification({
                                         type: 'success',
                                         title: 'Seed copied to clipboard!',
+                                        text:
+                                            'Copy your seed to a password manager and do not store the seed in plain text. The seed will stay in your clipboard for 60 seconds',
                                     })}
                             >
                                 {t('optionC')}
