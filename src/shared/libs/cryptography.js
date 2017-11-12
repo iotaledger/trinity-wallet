@@ -1,8 +1,8 @@
 import { SInfo } from '../../mobile/exports';
 
-export function storeInKeychain(key, seed, name, callback) {
+export function storeInKeychain(key, seed, name, callback, alertFn) {
     getFromKeychain(key, value => {
-        if (typeof value == 'undefined') {
+        if (typeof value == 'undefined' || value === null) {
             var newSeedArray = [{ name: name, seed: seed }];
             newSeedArray = JSON.stringify(newSeedArray);
             store(newSeedArray);
@@ -10,6 +10,11 @@ export function storeInKeychain(key, seed, name, callback) {
             var seedArray = JSON.parse(value);
             for (var item of seedArray) {
                 if (item.name == name || item.seed == seed) {
+                    alertFn(
+                        'error',
+                        'Seed already in use',
+                        'This seed is already linked to your wallet. Please use a different one.',
+                    );
                     console.log('Error: Same name or seed');
                     return;
                 }
