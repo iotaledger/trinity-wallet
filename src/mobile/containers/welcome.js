@@ -40,17 +40,15 @@ class Welcome extends React.Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Text style={styles.infoTextLight}>Thank you for downloading the IOTA wallet.</Text>
-                        <Text style={styles.infoTextLight}>
-                            We will spend the next few minutes setting up your wallet.
-                        </Text>
+                        <Text style={styles.infoTextLight}>{t('text1')}</Text>
+                        <Text style={styles.infoTextLight}>{t('text2')}</Text>
                         <Text style={styles.infoTextRegular}>{t('reminder')}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onNextPress()}>
                         <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>NEXT</Text>
+                            <Text style={styles.nextText}>{t('button1')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
