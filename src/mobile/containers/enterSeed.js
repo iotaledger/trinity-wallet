@@ -65,7 +65,7 @@ class EnterSeed extends React.Component {
         } else if (this.state.seed.length < 60) {
             this.dropdown.alertWithType(
                 'error',
-                'Seed is too short',
+                t('error_title'), // TODO: change string name to error_title1
                 `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
                     .seed.length} characters long. Please try again.`, // TODO: add new string
             );
@@ -155,17 +155,14 @@ class EnterSeed extends React.Component {
                                                     source={require('../../shared/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
-                                                <Text style={styles.qrText}> QR </Text>
+                                                <Text style={styles.qrText}> QR </Text> // TODO: New string
                                             </View>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                    <Text style={styles.infoText}>
-                                        Seeds should be 81 characters long, and should contain capital letters A-Z, or
-                                        the number 9. You cannot use seeds longer than 81 characters.
-                                    </Text>
+                                    <Text style={styles.infoText}>{t('seed_explanation')}</Text>
                                     <Text style={styles.warningText}>{t('reminder')}</Text>
                                 </View>
                             </View>
@@ -173,8 +170,8 @@ class EnterSeed extends React.Component {
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
-                                    leftText={'BACK'}
-                                    rightText={'DONE'}
+                                    leftText={t('button2')}
+                                    rightText={t('button1')}
                                 />
                             </View>
                         </View>

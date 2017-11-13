@@ -86,25 +86,25 @@ class CopySeedToClipboard extends React.Component {
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <View style={styles.subtitlesContainer}>
                         <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Manual Copy</Text>
+                            <Text style={styles.subtitle}>{t('optionA')}</Text>
                         </View>
                         <View style={styles.lineContainer}>
                             <Text style={styles.line}>────────</Text>
                         </View>
                         <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Paper Wallet</Text>
+                            <Text style={styles.subtitle}>{t('optionB')}</Text>
                         </View>
                         <View style={styles.lineContainer}>
                             <Text style={styles.line}>────────</Text>
                         </View>
                         <View style={styles.subtitleContainer}>
-                            <Text style={styles.currentSubtitle}>Copy To Clipboard</Text>
+                            <Text style={styles.currentSubtitle}>{t('optionC')}</Text>
                         </View>
                     </View>
                     <Text style={styles.infoTextNormal}>
                         Click the button below and copy your seed to a password manager.
                     </Text>
-                    <Text style={styles.infoTextBold}> Do not store the seed in plain text.</Text>
+                    <Text style={styles.infoTextBold}>{t('text')}</Text>
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.seedBox}>
@@ -203,14 +203,14 @@ class CopySeedToClipboard extends React.Component {
                     </View>
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.copyButton}>
-                            <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
+                            <Text style={styles.copyText}>{t('button1')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>DONE</Text>
+                            <Text style={styles.doneText}>{t('button2')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -411,4 +411,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default connect(mapStateToProps)(CopySeedToClipboard);
+export default translate('saveYourSeed3')(connect(mapStateToProps)(CopySeedToClipboard));
