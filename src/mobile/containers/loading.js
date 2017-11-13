@@ -10,6 +10,7 @@ import {
     Text,
     ActivityIndicator,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import { setBalance, setFirstUse } from '../../shared/actions/account';
