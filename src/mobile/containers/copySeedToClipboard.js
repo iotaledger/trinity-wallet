@@ -44,7 +44,7 @@ class CopySeedToClipboard extends React.Component {
     componentWillUnmount() {
         RNShakeEvent.removeEventListener('shake');
         this.clearTimeout();
-        Clipboard.setString('');
+        //Clipboard.setString('');
     }
 
     clearTimeout() {
@@ -55,7 +55,7 @@ class CopySeedToClipboard extends React.Component {
 
     onDonePress() {
         this.clearTimeout();
-        Clipboard.setString('');
+        //Clipboard.setString('');
 
         this.props.navigator.pop({
             animated: false,

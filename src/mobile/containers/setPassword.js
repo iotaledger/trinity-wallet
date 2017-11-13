@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { increaseSeedCount, addSeedName, setOnboardingComplete } from '../../shared/actions/account';
-import { setSeed } from '../../shared/actions/tempAccount';
+import { clearTempData } from '../../shared/actions/tempAccount';
 import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
@@ -48,7 +48,7 @@ class SetPassword extends React.Component {
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
             Promise.resolve(
                 storeInKeychain(this.state.password, this.props.tempAccount.seed, this.props.tempAccount.seedName),
-            ).then(setSeed(''));
+            ).then(this.props.clearTempData());
             this.props.setOnboardingComplete(true);
             this.props.addSeedName(this.props.tempAccount.seedName);
             this.props.navigator.push({
@@ -302,8 +302,8 @@ const mapDispatchToProps = dispatch => ({
     storeInKeychain: password => {
         dispatch(storeInKeychain(password));
     },
-    setSeed: seed => {
-        dispatch(setSeed(seed));
+    clearTempData: () => {
+        dispatch(clearTempData());
     },
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());

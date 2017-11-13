@@ -31,7 +31,7 @@ import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/ac
 import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
-import ReAttacher from './reAttacher';
+import Reattacher from './reattacher';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const StatusBarDefaultBarStyle = 'light-content';
@@ -56,7 +56,7 @@ class Home extends Component {
         if (typeof accountInfo !== 'undefined') {
             this.props.setBalance(addressesWithBalance);
         }
-        timer.setInterval('polling', () => this.startPolling(), 30000);
+        timer.setInterval('polling', () => this.startPolling(), 10000);
     }
 
     componentWillMount() {
@@ -99,7 +99,7 @@ class Home extends Component {
 
             this.props.decrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
-            this.props.setReceiveAddress('');
+            this.props.setReceiveAddress(' ');
             // Get new account info if not sending or getting transfers
             if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
                 this.props.getAccountInfo(seedName, seedIndex, accountInfo);
@@ -118,7 +118,7 @@ class Home extends Component {
 
             this.props.incrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
-            this.props.setReceiveAddress('');
+            this.props.setReceiveAddress(' ');
 
             // Get new account info if not sending or getting transfers
             if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
@@ -330,7 +330,7 @@ class Home extends Component {
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
-                <ReAttacher
+                <Reattacher
                     attachments={tailTransactionHashesForPendingTransactions}
                     attach={this.props.replayBundle}
                 />
