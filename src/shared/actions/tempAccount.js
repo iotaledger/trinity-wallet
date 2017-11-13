@@ -177,6 +177,7 @@ export function replayBundle(transactionHash, depth = 3, minWeightMagnitude = 14
         return iota.api.replayBundle(transactionHash, depth, minWeightMagnitude, err => {
             if (err) {
                 console.log(err);
+                dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
             } else {
                 dispatch(
                     generateAlert(
@@ -297,6 +298,13 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
         filterSpentAddresses(outputsToCheck).then(filtered => {
             if (filtered.length !== expectedOutputsLength) {
                 console.log('You cannot send to an already used address');
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Key reuse',
+                        `You cannot send to an address that has already been spent from.`,
+                    ),
+                );
                 return false;
             } else {
                 // Send transfer with depth 4 and minWeightMagnitude 18
@@ -310,6 +318,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                         dispatch(sendTransferSuccess(address, value));
                     } else {
                         dispatch(sendTransferError(error));
+                        dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
                         console.log('SOMETHING WENT WRONG: ', error);
                     }
                 });
@@ -355,6 +364,7 @@ export function randomiseSeed(randomBytesFn) {
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);
+                dispatch(generateAlert('error', 'Something went wrong', `Please restart the app.`));
             }
         });
     };
