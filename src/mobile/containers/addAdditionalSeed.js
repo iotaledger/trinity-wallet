@@ -26,7 +26,7 @@ import { generateAlert } from '../../shared/actions/alerts';
 import { incrementSeedIndex, clearTempData } from '../../shared/actions/tempAccount';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import { getAccountInfoNewSeed, getAccountInfo, setFirstUse } from '../../shared/actions/account';
-
+// TODO: make namespace for this file
 import DropdownHolder from '../components/dropdownHolder';
 
 const { height, width } = Dimensions.get('window');
