@@ -1,6 +1,7 @@
 import isUndefined from 'lodash/isUndefined';
 import size from 'lodash/size';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import { iota } from '../../shared/libs/iota';
 import {
     ActivityIndicator,

@@ -11,6 +11,7 @@ import {
     ScrollView,
     StatusBar,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import { setPassword, clearTempData } from '../../shared/actions/tempAccount';

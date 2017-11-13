@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, ListView, Dimensions, StatusBar } from 'react-native';
 
 import { connect } from 'react-redux';
