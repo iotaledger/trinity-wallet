@@ -69,6 +69,7 @@ class SaveYourSeed extends Component {
     render() {
         const isAndroid = Platform.OS === 'android';
         const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
+        const { t } = this.props;
 
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>

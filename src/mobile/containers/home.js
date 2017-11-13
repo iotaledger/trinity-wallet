@@ -165,6 +165,7 @@ class Home extends Component {
     }
 
     _renderTitlebar() {
+        const { t } = this.props;
         if (this.props.tempAccount.usedSeedToLogin == false) {
             return (
                 <View style={styles.titlebarContainer}>
@@ -211,6 +212,7 @@ class Home extends Component {
     }
 
     render() {
+        const { t } = this.props;
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;

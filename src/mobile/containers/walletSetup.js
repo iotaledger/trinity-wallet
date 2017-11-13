@@ -48,6 +48,8 @@ class WalletSetup extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
+
         const isAndroid = Platform.OS === 'android';
         const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
         return (

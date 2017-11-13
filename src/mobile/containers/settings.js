@@ -155,6 +155,8 @@ class Settings extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />

@@ -89,7 +89,7 @@ class Receive extends Component {
     }
 
     render() {
-        const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
+        const { tempAccount: { receiveAddress, isGeneratingReceiveAddress }, t } = this.props;
 
         return (
             <View style={styles.container}>

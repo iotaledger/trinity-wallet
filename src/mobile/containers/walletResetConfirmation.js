@@ -62,6 +62,8 @@ export default class WalletResetConfirmation extends Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
