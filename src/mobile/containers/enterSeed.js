@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,

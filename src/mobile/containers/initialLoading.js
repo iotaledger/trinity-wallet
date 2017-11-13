@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar } from 'react-native';
 import { getCurrentYear } from '../../shared/libs/dateUtils';

@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { TouchableOpacity, StyleSheet, View, ListView, Dimensions, Text } from 'react-native';
 import { connect } from 'react-redux';
 import TransactionRow from '../components/transactionRow';

@@ -1,6 +1,7 @@
 import isUndefined from 'lodash/isUndefined';
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
