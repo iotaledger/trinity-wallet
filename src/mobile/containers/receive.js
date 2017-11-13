@@ -87,6 +87,15 @@ class Receive extends Component {
         }
     }
 
+    getQROpacity() {
+        const { tempAccount: { receiveAddress } } = this.props;
+        if (receiveAddress == ' ') {
+            return 0.1;
+        } else {
+            return 1;
+        }
+    }
+
     render() {
         const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
 
@@ -102,7 +111,7 @@ class Receive extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ paddingBottom: height / 40 }}>
+                <View style={{ paddingBottom: height / 40, opacity: this.getQROpacity() }}>
                     <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
                 </View>
                 {receiveAddress === ' ' &&

@@ -417,7 +417,7 @@ const styles = StyleSheet.create({
         opacity: 0.6,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -431,7 +431,7 @@ const styles = StyleSheet.create({
         paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
@@ -441,8 +441,8 @@ const styles = StyleSheet.create({
     },
     dropdownImage: {
         marginLeft: width / 25,
-        width: width / 10,
-        height: width / 10,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
     },
 });
