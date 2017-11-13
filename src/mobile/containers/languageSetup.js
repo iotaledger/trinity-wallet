@@ -1,5 +1,6 @@
 import React from 'react';
 import i18next from 'i18next';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -95,6 +96,7 @@ class LanguageSetup extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
@@ -106,7 +108,7 @@ class LanguageSetup extends React.Component {
                 <View style={styles.midContainer}>
                     <View style={{ alignItems: 'center' }}>
                         <View>
-                            <Text style={styles.dropdownTitle}>Language</Text>
+                            <Text style={styles.dropdownTitle}>{t('dropdown_title')}</Text>
                             <View style={styles.dropdownButtonContainer}>
                                 <TouchableWithoutFeedback onPress={event => this.clickLanguage()}>
                                     <View style={styles.dropdownButton}>
@@ -256,7 +258,7 @@ class LanguageSetup extends React.Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onNextPress()}>
                         <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>NEXT</Text>
+                            <Text style={styles.nextText}>{t('button1')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -361,4 +363,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LanguageSetup;
+export default translate('setLanguage')(LanguageSetup);

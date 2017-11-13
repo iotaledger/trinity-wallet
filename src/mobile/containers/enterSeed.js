@@ -61,13 +61,13 @@ class EnterSeed extends React.Component {
                 'error',
                 'Seed contains invalid characters',
                 `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
-            );
+            ); // TODO: add new string
         } else if (this.state.seed.length < 60) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
                 `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
-                    .seed.length} characters long. Please try again.`,
+                    .seed.length} characters long. Please try again.`, // TODO: add new string
             );
         } else if (this.state.seed.length >= 60) {
             this.props.setSeed(this.state.seed);
@@ -122,7 +122,7 @@ class EnterSeed extends React.Component {
                                     />
                                 </View>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text>
+                                    <Text style={styles.title}>Please enter your seed.</Text> //TODO: add new string
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
@@ -140,7 +140,7 @@ class EnterSeed extends React.Component {
                                             returnKeyType="done"
                                             blurOnSubmit={true} //Dismisses keyboard upon pressing Done
                                             autoCapitalize="characters"
-                                            label="Seed"
+                                            label={t('placeholder')}
                                             autoCorrect={false}
                                             value={seed}
                                             maxLength={81}
@@ -166,7 +166,7 @@ class EnterSeed extends React.Component {
                                         Seeds should be 81 characters long, and should contain capital letters A-Z, or
                                         the number 9. You cannot use seeds longer than 81 characters.
                                     </Text>
-                                    <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
+                                    <Text style={styles.warningText}>{t('reminder')}</Text>
                                 </View>
                             </View>
                             <View style={styles.bottomContainer}>
@@ -378,4 +378,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnterSeed);
+export default translate('enterSeed')(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));
