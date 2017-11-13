@@ -178,6 +178,11 @@ class LanguageSetup extends React.Component {
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('हिंदी - Hindi', 'hi')}>
                                     <Text style={styles.dropdownItem}>हिंदी - Hindi</Text>
                                 </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={event => this.clickDropdownItem('Bahasa Indonesia - Indonesian', 'id')}
+                                >
+                                    <Text style={styles.dropdownItem}>Bahasa Indonesia - Indonesian</Text>
+                                </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Italiano - Italian', 'it')}>
                                     <Text style={styles.dropdownItem}>Italiano - Italian</Text>
                                 </TouchableOpacity>
@@ -186,6 +191,9 @@ class LanguageSetup extends React.Component {
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('한국어 - Korean', 'ko')}>
                                     <Text style={styles.dropdownItem}>한국어 - Korean</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={event => this.clickDropdownItem('Latviešu - Latvian', 'lv')}>
+                                    <Text style={styles.dropdownItem}>Latviešu - Latvian</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Nederlands - Dutch', 'nl')}>
                                     <Text style={styles.dropdownItem}>Nederlands - Dutch</Text>
@@ -215,12 +223,20 @@ class LanguageSetup extends React.Component {
                                     <Text style={styles.dropdownItem}>Pусский - Russian</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
+                                    onPress={event => this.clickDropdownItem('Slovenščina - Slovenian', 'sl')}
+                                >
+                                    <Text style={styles.dropdownItem}>Slovenščina - Slovenian</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
                                     onPress={event => this.clickDropdownItem('Svenska - Swedish', 'sv_SE')}
                                 >
                                     <Text style={styles.dropdownItem}>Svenska - Swedish</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Türkçe - Turkish', 'tr')}>
                                     <Text style={styles.dropdownItem}>Türkçe - Turkish</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={event => this.clickDropdownItem('اردو - Urdu', 'ur')}>
+                                    <Text style={styles.dropdownItem}>اردو - Urdu</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     onPress={event => this.clickDropdownItem('中文 (简体) - Chinese (Simplified)', 'zh_CN')}
