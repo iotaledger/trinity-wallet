@@ -49,7 +49,8 @@ class Settings extends React.Component {
                     <AddNewSeedModal
                         style={{ flex: 1 }}
                         hideModal={() => this._hideModal()}
-                        navigate={() => this.navigateToNewSeed()}
+                        navigateNewSeed={() => this.navigateNewSeed()}
+                        navigateExistingSeed={() => this.navigateExistingSeed()}
                     />
                 );
                 break;
@@ -127,7 +128,18 @@ class Settings extends React.Component {
         });
     }
 
-    navigateToNewSeed() {
+    navigateNewSeed() {
+        this._hideModal();
+        this.props.navigator.push({
+            screen: 'newSeedSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+            },
+            animated: false,
+        });
+    }
+
+    navigateExistingSeed() {
         this._hideModal();
         this.props.navigator.push({
             screen: 'addAdditionalSeed',

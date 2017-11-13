@@ -37,8 +37,8 @@ class Login extends React.Component {
         this.onLoginPress = this.onLoginPress.bind(this);
     }
     getWalletData() {
-        this.props.getChartData('USD', '24h');
-        this.props.getPrice('USD');
+        this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
+        this.props.getPrice(this.props.marketData.currency);
         this.props.getMarketData();
     }
 
@@ -292,6 +292,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
+    marketData: state.marketData,
 });
 
 const mapDispatchToProps = dispatch => ({

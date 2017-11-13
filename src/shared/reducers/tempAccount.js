@@ -1,6 +1,6 @@
 const initialState = {
     ready: false,
-    receiveAddress: '',
+    receiveAddress: ' ',
     password: '',
     seed: '                                                                                 ',
     seedName: 'MAIN WALLET',
@@ -92,8 +92,8 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ready: false,
-                receiveAddress: '',
-                seed: '',
+                receiveAddress: ' ',
+                seed: '                                                                                 ',
                 usedSeedToLogin: false,
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,

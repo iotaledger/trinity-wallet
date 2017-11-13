@@ -14,14 +14,15 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount } from '../../shared/actions/account';
-import { setSeedName } from '../../shared/actions/tempAccount';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
-
+import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography';
+import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
+import { generateAlert } from '../../shared/actions/alerts';
+import { clearTempData, setSeedName } from '../../shared/actions/tempAccount';
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -29,8 +30,26 @@ class SetSeedName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            seedName: 'MAIN WALLET',
+            seedName: this.getDefaultSeedName(),
         };
+    }
+
+    getDefaultSeedName() {
+        if (this.props.account.seedCount == 0) {
+            return 'MAIN WALLET';
+        } else if (this.props.account.seedCount == 1) {
+            return 'SECOND WALLET';
+        } else if (this.props.account.seedCount == 2) {
+            return 'THIRD WALLET';
+        } else if (this.props.account.seedCount == 3) {
+            return 'FOURTH WALLET';
+        } else if (this.props.account.seedCount == 4) {
+            return 'FIFTH WALLET';
+        } else if (this.props.account.seedCount == 5) {
+            return 'SIXTH WALLET';
+        } else if (this.props.account.seedCount == 6) {
+            return 'OTHER WALLET';
+        }
     }
 
     componentDidMount() {
@@ -49,13 +68,39 @@ class SetSeedName extends React.Component {
 
     onDonePress() {
         if (this.state.seedName != '') {
-            this.props.increaseSeedCount();
-            this.props.setSeedName(this.state.seedName);
-            this.props.navigator.push({
-                screen: 'setPassword',
-                navigatorStyle: { navBarHidden: true },
-                animated: false,
-            });
+            if (!this.props.account.onboardingComplete) {
+                this.props.increaseSeedCount();
+                this.props.setSeedName(this.state.seedName);
+                this.props.navigator.push({
+                    screen: 'setPassword',
+                    navigatorStyle: { navBarHidden: true },
+                    animated: false,
+                });
+            } else {
+                this.props.setFirstUse(true);
+                this.props.increaseSeedCount();
+                this.props.addSeedName(this.state.seedName);
+                storeInKeychain(
+                    this.props.tempAccount.password,
+                    this.props.tempAccount.seed,
+                    this.state.seedName,
+                    () => {
+                        Promise.resolve(
+                            this.props.getAccountInfoNewSeed(this.props.tempAccount.seed, this.state.seedName),
+                        ).then(
+                            this.props.navigator.push({
+                                screen: 'loading',
+                                navigatorStyle: {
+                                    navBarHidden: true,
+                                },
+                                animated: false,
+                            }),
+                        );
+                        this.props.clearTempData();
+                    },
+                    (type, title, message) => this.dropdown.alertWithType(type, title, message),
+                );
+            }
         } else {
             this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
         }
@@ -92,7 +137,7 @@ class SetSeedName extends React.Component {
                                 baseColor="white"
                                 label="Seed nickname"
                                 tintColor="#F7D002"
-                                autoCapitalize={'none'}
+                                autoCapitalize="characters"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="done"
@@ -294,6 +339,7 @@ const androidStyles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -302,6 +348,21 @@ const mapDispatchToProps = dispatch => ({
     },
     setSeedName: seedName => {
         dispatch(setSeedName(seedName));
+    },
+    generateAlert: (error, title, message) => {
+        dispatch(generateAlert(error, title, message));
+    },
+    setFirstUse: boolean => {
+        dispatch(setFirstUse(boolean));
+    },
+    clearTempData: () => {
+        dispatch(clearTempData());
+    },
+    addSeedName: newSeed => {
+        dispatch(addSeedName(newSeed));
+    },
+    getAccountInfoNewSeed: (seed, seedName) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName));
     },
 });
 

@@ -20,11 +20,10 @@ import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography';
-import { increaseSeedCount, addSeedName } from '../../shared/actions/account';
+import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
-import { incrementSeedIndex, clearTempData } from '../../shared/actions/tempAccount';
+import { clearTempData } from '../../shared/actions/tempAccount';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
-import { getAccountInfoNewSeed, getAccountInfo, setFirstUse } from '../../shared/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -36,9 +35,27 @@ class AddAdditionalSeed extends React.Component {
         super(props);
         this.state = {
             seed: '',
-            seedName: '',
+            seedName: this.getDefaultSeedName(),
             isModalVisible: false,
         };
+    }
+
+    getDefaultSeedName() {
+        if (this.props.account.seedCount == 0) {
+            return 'MAIN WALLET';
+        } else if (this.props.account.seedCount == 1) {
+            return 'SECOND WALLET';
+        } else if (this.props.account.seedCount == 2) {
+            return 'THIRD WALLET';
+        } else if (this.props.account.seedCount == 3) {
+            return 'FOURTH WALLET';
+        } else if (this.props.account.seedCount == 4) {
+            return 'FIFTH WALLET';
+        } else if (this.props.account.seedCount == 5) {
+            return 'SIXTH WALLET';
+        } else if (this.props.account.seedCount == 6) {
+            return 'OTHER WALLET';
+        }
     }
 
     componentWillMount() {
@@ -394,9 +411,6 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    incrementSeedIndex: () => {
-        dispatch(incrementSeedIndex());
-    },
     clearTempData: () => {
         dispatch(clearTempData());
     },
@@ -405,9 +419,6 @@ const mapDispatchToProps = dispatch => ({
     },
     getAccountInfoNewSeed: (seed, seedName) => {
         dispatch(getAccountInfoNewSeed(seed, seedName));
-    },
-    getAccountInfo: (seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
     },
     generateAlert: (error, title, message) => {
         dispatch(generateAlert(error, title, message));

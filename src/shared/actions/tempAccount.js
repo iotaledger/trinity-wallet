@@ -254,7 +254,7 @@ export function generateNewAddress(seed, seedName, addresses) {
                 const updatedAddresses = cloneDeep(addresses);
                 const addressNoChecksum = address.substring(0, 81);
                 // In case the newly created address is not part of the addresses object
-                // We'll just add that as a key with a 0 balance.
+                // Add that as a key with a 0 balance.
                 if (!(addressNoChecksum in addresses)) {
                     updatedAddresses[addressNoChecksum] = 0;
                 }
