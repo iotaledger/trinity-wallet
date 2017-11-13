@@ -9,6 +9,7 @@ import {
     groupTransfersByBundle,
 } from '../libs/accountUtils';
 import { setReady, getTransfersRequest, getTransfersSuccess } from './tempAccount';
+import { generateAlert } from '../actions/alerts';
 /* eslint-disable import/prefer-default-export */
 
 export function setFirstUse(boolean) {
@@ -46,7 +47,7 @@ export function addAddresses(seedName, addresses) {
     };
 }
 
-export function getAccountInfoNewSeed(seed, seedName) {
+export function getAccountInfoNewSeed(seed, seedName, errorCb) {
     return dispatch => {
         iota.api.getAccountData(seed, (error, success) => {
             if (!error) {
@@ -62,6 +63,8 @@ export function getAccountInfoNewSeed(seed, seedName) {
                 );
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
+                errorCb();
+                dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
             }
         });
     };
@@ -75,7 +78,7 @@ export function setBalance(addressesWithBalance) {
     };
 }
 
-export function getAccountInfo(seedName, seedIndex, accountInfo) {
+export function getAccountInfo(seedName, seedIndex, accountInfo, errorCb) {
     return dispatch => {
         // Current addresses and ther balances
         let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -126,6 +129,8 @@ export function getAccountInfo(seedName, seedIndex, accountInfo) {
                 }
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
+                errorCb();
+                dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
             }
         });
     };
@@ -157,14 +162,23 @@ export function getTransfers(seedName, addresses) {
                                 dispatch(getTransfersSuccess());
                             } else {
                                 console.log('SOMETHING WENT WRONG: ', error);
+                                dispatch(
+                                    generateAlert(
+                                        'error',
+                                        'Invalid Response',
+                                        `The node returned an invalid response.`,
+                                    ),
+                                );
                             }
                         });
                     } else {
                         console.log('SOMETHING WENT WRONG: ', error);
+                        dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
                     }
                 });
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
+                dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
             }
         });
     };
