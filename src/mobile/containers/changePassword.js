@@ -26,7 +26,7 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
-
+// TODO: make namespace for this file
 const { height, width } = Dimensions.get('window');
 
 class ChangePassword extends Component {
