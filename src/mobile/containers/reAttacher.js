@@ -44,7 +44,7 @@ export default class ReAttacher extends Component {
                 }
             }
             this.timer = null;
-            this.autoReAttach(reAttachAfter);
+            this.autoReAttach();
         }, reAttachAfter);
     }
 
