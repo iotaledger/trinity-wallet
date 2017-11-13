@@ -94,7 +94,7 @@ class ChangePassword extends Component {
 
     isValid() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { password } = this.props;
+        const { password, t } = this.props;
 
         return (
             currentPassword === password &&

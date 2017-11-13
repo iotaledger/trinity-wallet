@@ -124,6 +124,7 @@ class Login extends React.Component {
 
     render() {
         let { password } = this.state;
+        const { t } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />

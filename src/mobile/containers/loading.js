@@ -38,7 +38,7 @@ class Loading extends Component {
     }
 
     render() {
-        const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
+        const { tempAccount: { ready }, account: { firstUse }, navigator, t } = this.props;
 
         if (!ready && this.props.account.firstUse) {
             return (
