@@ -133,7 +133,7 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { tempAccount: { seed } } = this.props;
+        const { tempAccount: { seed }, t } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />

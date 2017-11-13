@@ -103,6 +103,8 @@ class UseSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
+        const { t } = this.props;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />

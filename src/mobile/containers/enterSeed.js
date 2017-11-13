@@ -105,6 +105,7 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
+        const { t } = this.props;
         const isAndroid = Platform.OS === 'android';
         const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
         return (
