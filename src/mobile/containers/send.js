@@ -254,6 +254,8 @@ class Send extends Component {
 
     render() {
         let { amount, address, message } = this.state;
+        const { t } = this.props;
+
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
                 <StatusBar barStyle="light-content" />
