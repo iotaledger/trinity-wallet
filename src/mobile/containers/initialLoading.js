@@ -49,7 +49,6 @@ export default class InitialLoading extends Component {
     }
 
     render() {
-        const { t } = this.props;
         const currentYear = getCurrentYear();
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
