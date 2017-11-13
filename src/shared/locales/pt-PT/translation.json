@@ -105,7 +105,7 @@
         "text": "Aqui pode inserir um nome para a sua Sedd.",
         "label": "Nome da Seed",
         "placeholder": "Carteira Principal",
-        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "explanation": "Insira um nome para a sua Seed para ser mais fácil diferenciá-las.",
         "button1": "CONCLUÍDO",
         "button2": "VOLTAR"
     },
