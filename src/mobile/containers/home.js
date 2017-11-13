@@ -243,7 +243,7 @@ class Home extends Component {
                                             : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                     }
                                 >
-                                    BALANCE
+                                    {t('tab1')}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -264,7 +264,7 @@ class Home extends Component {
                                             : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                     }
                                 >
-                                    SEND
+                                    {t('tab2')}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -285,7 +285,7 @@ class Home extends Component {
                                             : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                     }
                                 >
-                                    RECEIVE
+                                    {t('tab3')}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -306,7 +306,7 @@ class Home extends Component {
                                             : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                     }
                                 >
-                                    HISTORY
+                                    {t('tab4')}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -327,7 +327,7 @@ class Home extends Component {
                                             : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                     }
                                 >
-                                    SETTINGS
+                                    {t('tab5')}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -493,4 +493,4 @@ Home.propTypes = {
     disposeOffAlert: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default translate('home')(connect(mapStateToProps, mapDispatchToProps)(Home));
