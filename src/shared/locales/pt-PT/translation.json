@@ -108,6 +108,14 @@
         "button1": "IMPRIMIR A CARTEIRA DE PAPEL",
         "button2": "CONCLUÍDO"
     },
+    "nameYourSeed": {
+        "text": "Aqui pode inserir um nome para a sua Sedd.",
+        "label": "Nome da Seed",
+        "placeholder": "Carteira Principal",
+        "explanation": "Insira um nome para a sua Seed para ser mais fácil diferenciá-las.",
+        "button1": "CONCLUÍDO",
+        "button2": "VOLTAR"
+    },
     "setPassword": {
         "title": "CONFIGURAR PALAVRA-PASSE",
         "text": "Agora precisamos de criar uma palavra-passe.",

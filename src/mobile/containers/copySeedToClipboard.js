@@ -13,6 +13,7 @@ import {
 import { connect } from 'react-redux';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
@@ -34,7 +35,14 @@ class CopySeedToClipboard extends React.Component {
         }
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
     componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
         this.clearTimeout();
         Clipboard.setString('');
     }
@@ -237,7 +245,7 @@ const styles = StyleSheet.create({
         flex: 3.6,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 5,
+        paddingTop: height / 4.75,
     },
     bottomContainer: {
         justifyContent: 'center',
@@ -394,6 +402,35 @@ const styles = StyleSheet.create({
     arrow: {
         width: width / 2,
         height: height / 80,
+    },
+    dropdownTitle: {
+        fontSize: width / 25.9,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
+    },
+    dropdownMessage: {
+        fontSize: width / 29.6,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
+    },
+    dropdownImage: {
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
+        alignSelf: 'center',
     },
 });
 

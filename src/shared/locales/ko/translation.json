@@ -77,8 +77,7 @@
         "optionA": "Manual Copy",
         "optionB": " Paper Wallet",
         "optionC": "Copy To Clipboard",
-        "explanation":
-            "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+        "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
         "text": "triple check",
         "button": "DONE"
     },
@@ -86,8 +85,7 @@
         "optionA": "Manual Copy",
         "optionB": " Paper Wallet",
         "optionC": "Copy To Clipboard",
-        "explanation":
-            "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
         "text": "Do not store the seed in plain text.",
         "button1": "COPY TO CLIPBOARD",
         "button2": "DONE"
@@ -103,11 +101,18 @@
         "button1": "PRINT PAPER WALLET",
         "button2": "DONE"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "PASSWORD SETUP",
         "text": "Now we need to set up a password.",
-        "explanation":
-            "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+        "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
         "reminder": "Ensure you use a strong password of at least 12 characters.",
         "placeholder1": "'PASSWORD'",
         "placeholder2": "RETYPE PASSWORD",
@@ -119,8 +124,7 @@
         "button2": "BACK"
     },
     "onboardingComplete": {
-        "text":
-            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+        "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
         "button": "NEXT"
     },
     "home": {

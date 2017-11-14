@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar } from 'react-native';
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const { height, width } = Dimensions.get('window');
 
@@ -17,6 +18,16 @@ export default class InitialLoading extends Component {
 
     componentDidMount() {
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     onLoaded() {
