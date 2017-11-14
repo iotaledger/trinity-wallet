@@ -1,6 +1,6 @@
 import IOTA from 'iota.lib.js';
 
-const defaultNode = 'https://node.tangle.works:443';
+const defaultNode = 'https://www.veriti.io:443';
 
 export const iota = new IOTA({
     provider: defaultNode,

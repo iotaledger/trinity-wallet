@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
-        padding: width / 7,
+        padding: width / 8,
     },
     newSeedButton: {
         borderColor: '#9DFFAF',
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         height: height / 12,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginTop: height / 60,
+        marginTop: height / 37,
     },
     newSeedButtonText: {
         color: '#9DFFAF',
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         height: height / 12,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginTop: height / 30,
+        marginTop: height / 22,
     },
     existingSeedButtonText: {
         color: '#F7D002',
