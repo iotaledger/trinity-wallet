@@ -47,7 +47,7 @@ export function addAddresses(seedName, addresses) {
     };
 }
 
-export function getAccountInfoNewSeed(seed, seedName, errorCb) {
+export function getAccountInfoNewSeed(seed, seedName, cb) {
     return dispatch => {
         iota.api.getAccountData(seed, (error, success) => {
             if (!error) {
@@ -61,10 +61,9 @@ export function getAccountInfoNewSeed(seed, seedName, errorCb) {
                 Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers))).then(
                     dispatch(setReady()),
                 );
+                cb(null, success);
             } else {
-                console.log('SOMETHING WENT WRONG: ', error);
-                errorCb();
-                dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
+                cb(error);
             }
         });
     };
@@ -78,7 +77,7 @@ export function setBalance(addressesWithBalance) {
     };
 }
 
-export function getAccountInfo(seedName, seedIndex, accountInfo, errorCb) {
+export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
     return dispatch => {
         // Current addresses and ther balances
         let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -111,6 +110,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, errorCb) {
                         dispatch(getTransfers(seedName, addresses)),
                     );
                 } else {
+                    cb(null, success);
                     // Set account info, then finish loading
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
                         dispatch(setReady()),
@@ -128,9 +128,15 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, errorCb) {
                 })*/
                 }
             } else {
+                cb(error);
                 console.log('SOMETHING WENT WRONG: ', error);
-                errorCb();
-                dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Invalid Response',
+                        `The node returned an invalid response while getting balance.`,
+                    ),
+                );
             }
         });
     };
@@ -166,19 +172,31 @@ export function getTransfers(seedName, addresses) {
                                     generateAlert(
                                         'error',
                                         'Invalid Response',
-                                        `The node returned an invalid response.`,
+                                        `The node returned an invalid response while getting transfers.`,
                                     ),
                                 );
                             }
                         });
                     } else {
                         console.log('SOMETHING WENT WRONG: ', error);
-                        dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
+                        dispatch(
+                            generateAlert(
+                                'error',
+                                'Invalid Response',
+                                `The node returned an invalid response while getting transfers.`,
+                            ),
+                        );
                     }
                 });
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
-                dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Invalid Response',
+                        `The node returned an invalid response while getting transfers.`,
+                    ),
+                );
             }
         });
     };

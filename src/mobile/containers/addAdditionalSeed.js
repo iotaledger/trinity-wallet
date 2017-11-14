@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography';
+import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData } from '../../shared/actions/tempAccount';
@@ -91,32 +91,59 @@ class AddAdditionalSeed extends React.Component {
                 `Please use a unique nickname for your seed.`,
             );
         } else {
-            this.props.setFirstUse(true);
-            this.props.increaseSeedCount();
-            this.props.addSeedName(this.state.seedName);
+            this.props.clearTempData();
             storeInKeychain(
                 this.props.tempAccount.password,
                 this.state.seed,
                 this.state.seedName,
-                () => {
-                    this.props.clearTempData();
-                    Promise.resolve(this.props.getAccountInfoNewSeed(this.state.seed, this.state.seedName)).then(
-                        this.props.navigator.push({
-                            screen: 'loading',
-                            navigatorStyle: {
-                                navBarHidden: true,
-                            },
-                            animated: false,
-                        }),
-                    );
-                },
                 (type, title, message) => this.dropdown.alertWithType(type, title, message),
+                () => {
+                    this.props.setFirstUse(true);
+                    this.props.getAccountInfoNewSeed(this.state.seed, this.state.seedName, (error, success) => {
+                        if (error) {
+                            this.onNodeError();
+                        } else {
+                            this.onNodeSuccess();
+                        }
+                    });
+                    this.props.navigator.push({
+                        screen: 'loading',
+                        navigatorStyle: {
+                            navBarHidden: true,
+                        },
+                        animated: false,
+                    });
+                },
             );
         }
     }
 
-    onBackPress() {
+    onNodeError() {
+        getFromKeychain(this.props.tempAccount.password, value => {
+            if (typeof value != 'undefined' && value != null) {
+                removeLastSeed(value, this.props.tempAccount.password);
+            } else {
+                error();
+            }
+        });
         this.props.navigator.pop({
+            animated: false,
+        });
+        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        this.props.setFirstUse(false);
+    }
+
+    onNodeSuccess() {
+        this.props.increaseSeedCount();
+        this.props.addSeedName(this.state.seedName);
+    }
+
+    onBackPress() {
+        this.props.navigator.push({
+            screen: 'home',
+            navigatorStyle: {
+                navBarHidden: true,
+            },
             animated: false,
         });
     }
@@ -420,8 +447,8 @@ const mapDispatchToProps = dispatch => ({
     addSeedName: newSeed => {
         dispatch(addSeedName(newSeed));
     },
-    getAccountInfoNewSeed: (seed, seedName) => {
-        dispatch(getAccountInfoNewSeed(seed, seedName));
+    getAccountInfoNewSeed: (seed, seedName, cb) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName, cb));
     },
     generateAlert: (error, title, message) => {
         dispatch(generateAlert(error, title, message));

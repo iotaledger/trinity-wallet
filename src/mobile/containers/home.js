@@ -75,8 +75,20 @@ class Home extends Component {
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
-            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                if (error) this.onNodeErrorPolling();
+            });
         }
+    }
+
+    onNodeErrorPolling() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response while polling.`);
+    }
+
+    onNodeError() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
     }
 
     componentWillReceiveProps(newProps) {
@@ -102,7 +114,9 @@ class Home extends Component {
             this.props.setReceiveAddress(' ');
             // Get new account info if not sending or getting transfers
             if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                    if (error) this.onNodeError();
+                });
             }
         }
     }
@@ -122,7 +136,9 @@ class Home extends Component {
 
             // Get new account info if not sending or getting transfers
             if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                    if (error) this.onNodeError();
+                });
             }
         }
     }
@@ -462,8 +478,8 @@ const mapDispatchToProps = dispatch => ({
     decrementSeedIndex: () => {
         dispatch(decrementSeedIndex());
     },
-    getAccountInfo: (seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
+    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },
     setReceiveAddress: string => {
         dispatch(setReceiveAddress(string));
