@@ -67,14 +67,20 @@ class Settings extends React.Component {
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
-    onCurrencyPress() {}
+    onCurrencyPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onThemePress() {
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
-    onLanguagePress() {}
+    onLanguagePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onChangePasswordPress() {
         this.props.navigator.push({
