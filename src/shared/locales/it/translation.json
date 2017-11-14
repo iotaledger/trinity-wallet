@@ -108,6 +108,14 @@
         "button1": "STAMPA IL PORTAFOGLIO SU CARTA",
         "button2": "FINE"
     },
+    "nameYourSeed": {
+        "text": "Qui è possibile immettere un nome per il tuo seme.",
+        "label": "Nome del seme",
+        "placeholder": "Portafoglio principale",
+        "explanation": "Immetti un nome per il tuo seme per facilitarne l'individuazione.",
+        "button1": "FINE",
+        "button2": "INDIETRO"
+    },
     "setPassword": {
         "title": "IMPOSTAZIONE DELLA PASSWORD",
         "text": "Ora abbiamo bisogno di impostare una password.",

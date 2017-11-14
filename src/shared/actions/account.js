@@ -9,6 +9,7 @@ import {
     groupTransfersByBundle,
 } from '../libs/accountUtils';
 import { setReady, getTransfersRequest, getTransfersSuccess } from './tempAccount';
+import { generateAlert } from '../actions/alerts';
 /* eslint-disable import/prefer-default-export */
 
 export function setFirstUse(boolean) {
@@ -46,7 +47,7 @@ export function addAddresses(seedName, addresses) {
     };
 }
 
-export function getAccountInfoNewSeed(seed, seedName) {
+export function getAccountInfoNewSeed(seed, seedName, cb) {
     return dispatch => {
         iota.api.getAccountData(seed, (error, success) => {
             if (!error) {
@@ -60,8 +61,9 @@ export function getAccountInfoNewSeed(seed, seedName) {
                 Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers))).then(
                     dispatch(setReady()),
                 );
+                cb(null, success);
             } else {
-                console.log('SOMETHING WENT WRONG: ', error);
+                cb(error);
             }
         });
     };
@@ -75,7 +77,7 @@ export function setBalance(addressesWithBalance) {
     };
 }
 
-export function getAccountInfo(seedName, seedIndex, accountInfo) {
+export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
     return dispatch => {
         // Current addresses and ther balances
         let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -108,6 +110,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo) {
                         dispatch(getTransfers(seedName, addresses)),
                     );
                 } else {
+                    cb(null, success);
                     // Set account info, then finish loading
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
                         dispatch(setReady()),
@@ -125,7 +128,15 @@ export function getAccountInfo(seedName, seedIndex, accountInfo) {
                 })*/
                 }
             } else {
+                cb(error);
                 console.log('SOMETHING WENT WRONG: ', error);
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Invalid Response',
+                        `The node returned an invalid response while getting balance.`,
+                    ),
+                );
             }
         });
     };
@@ -157,14 +168,35 @@ export function getTransfers(seedName, addresses) {
                                 dispatch(getTransfersSuccess());
                             } else {
                                 console.log('SOMETHING WENT WRONG: ', error);
+                                dispatch(
+                                    generateAlert(
+                                        'error',
+                                        'Invalid Response',
+                                        `The node returned an invalid response while getting transfers.`,
+                                    ),
+                                );
                             }
                         });
                     } else {
                         console.log('SOMETHING WENT WRONG: ', error);
+                        dispatch(
+                            generateAlert(
+                                'error',
+                                'Invalid Response',
+                                `The node returned an invalid response while getting transfers.`,
+                            ),
+                        );
                     }
                 });
             } else {
                 console.log('SOMETHING WENT WRONG: ', error);
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Invalid Response',
+                        `The node returned an invalid response while getting transfers.`,
+                    ),
+                );
             }
         });
     };

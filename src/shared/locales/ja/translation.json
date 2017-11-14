@@ -101,6 +101,14 @@
         "button1": "ペーパーウォレットを印刷",
         "button2": "完了"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "完了",
+        "button2": "戻る"
+    },
     "setPassword": {
         "title": "パスワード設定",
         "text": "次にパスワードの設定です。",
