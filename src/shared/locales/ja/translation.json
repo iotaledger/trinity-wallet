@@ -107,7 +107,7 @@
         "placeholder": "Main Wallet",
         "explanation": "Enter a name for your seed to make them easier to differentiate.",
         "button1": "DONE",
-        "button2": "GO BACK"
+        "button2": "戻る"
     },
     "setPassword": {
         "title": "パスワード設定",
