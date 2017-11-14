@@ -101,6 +101,13 @@ export function setSeed(seed) {
     };
 }
 
+export function clearSeed() {
+    return {
+        type: 'CLEAR_SEED',
+        payload: '                                                                                 ',
+    };
+}
+
 // Check for sending to a used address
 function filterSpentAddresses(inputs) {
     return new Promise((resolve, reject) => {
@@ -177,7 +184,13 @@ export function replayBundle(transactionHash, depth = 3, minWeightMagnitude = 14
         return iota.api.replayBundle(transactionHash, depth, minWeightMagnitude, err => {
             if (err) {
                 console.log(err);
-                dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Invalid Response',
+                        `The node returned an invalid response while auto-reattaching.`,
+                    ),
+                );
             } else {
                 dispatch(
                     generateAlert(
@@ -318,7 +331,13 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                         dispatch(sendTransferSuccess(address, value));
                     } else {
                         dispatch(sendTransferError(error));
-                        dispatch(generateAlert('error', 'Invalid Response', `The node returned an invalid response.`));
+                        dispatch(
+                            generateAlert(
+                                'error',
+                                'Invalid Response',
+                                `The node returned an invalid response while sending transfer.`,
+                            ),
+                        );
                         console.log('SOMETHING WENT WRONG: ', error);
                     }
                 });

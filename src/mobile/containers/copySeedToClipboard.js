@@ -44,7 +44,7 @@ class CopySeedToClipboard extends React.Component {
     componentWillUnmount() {
         RNShakeEvent.removeEventListener('shake');
         this.clearTimeout();
-        //Clipboard.setString('');
+        Clipboard.setString('');
     }
 
     clearTimeout() {
@@ -55,7 +55,7 @@ class CopySeedToClipboard extends React.Component {
 
     onDonePress() {
         this.clearTimeout();
-        //Clipboard.setString('');
+        Clipboard.setString('');
 
         this.props.navigator.pop({
             animated: false,
@@ -402,6 +402,35 @@ const styles = StyleSheet.create({
     arrow: {
         width: width / 2,
         height: height / 80,
+    },
+    dropdownTitle: {
+        fontSize: width / 25.9,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
+    },
+    dropdownMessage: {
+        fontSize: width / 29.6,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
+    },
+    dropdownImage: {
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
+        alignSelf: 'center',
     },
 });
 

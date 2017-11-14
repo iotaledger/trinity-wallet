@@ -93,7 +93,6 @@ export default (state = initialState, action) => {
                 ...state,
                 ready: false,
                 receiveAddress: ' ',
-                seed: '                                                                                 ',
                 usedSeedToLogin: false,
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
@@ -110,6 +109,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isGettingTransfers: false,
+            };
+        case 'CLEAR_SEED':
+            return {
+                ...state,
+                seed: action.payload,
             };
         default:
             return state;
