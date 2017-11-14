@@ -45,7 +45,6 @@ const store = createStore(
 
 export const getTailTransactionHashesForPendingTransactions = state => {
     return fromAccount.getTailTransactionHashesForPendingTransactions(
-        state.account.transfers,
         state.account.accountInfo,
         state.tempAccount.seedIndex,
     );
