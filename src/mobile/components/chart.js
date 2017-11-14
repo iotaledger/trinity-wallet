@@ -89,6 +89,19 @@ class Chart extends React.Component {
         ];
     }
 
+    getTickFormat(x) {
+        if (this.props.marketData.currency == 'USD') {
+            x = x.toFixed(2);
+            return x;
+        } else if (this.props.marketData.currency == 'BTC') {
+            x = x.toFixed(6);
+            return x;
+        } else {
+            x = x.toFixed(5);
+            return x;
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -130,6 +143,7 @@ class Chart extends React.Component {
 
                         <VictoryAxis
                             dependentAxis
+                            tickFormat={x => this.getTickFormat(x)}
                             standalone={false}
                             style={{
                                 axis: { stroke: 'transparent' },
