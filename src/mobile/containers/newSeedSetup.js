@@ -37,6 +37,12 @@ class NewSeedSetup extends Component {
             infoTextHeight: height / 38,
             flashComplete: false,
         };
+
+        this.bind(['flashText1', 'flashText2']);
+    }
+
+    bind(methods) {
+        methods.forEach(method => (this[method] = this[method].bind(this)));
     }
 
     componentWillMount() {
@@ -47,31 +53,31 @@ class NewSeedSetup extends Component {
 
     componentWillUnmount() {
         RNShakeEvent.removeEventListener('shake');
+
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
     }
 
     onGeneratePress() {
         this.props.randomiseSeed(randomBytes);
-        this.setState({
-            randomised: true,
-        });
+        this.setState({ randomised: true });
         if (!this.state.flashComplete) {
-            this.timeout = setTimeout(this.flashText1.bind(this), 1000);
-            this.timeout = setTimeout(this.flashText2.bind(this), 1250);
-            this.timeout = setTimeout(this.flashText1.bind(this), 1400);
-            this.timeout = setTimeout(this.flashText2.bind(this), 1650);
+            this.timeout = setTimeout(this.flashText1, 1000);
+            this.timeout = setTimeout(this.flashText2, 1250);
+            this.timeout = setTimeout(this.flashText1, 1400);
+            this.timeout = setTimeout(this.flashText2, 1650);
 
-            this.timeout = setTimeout(this.flashText1.bind(this), 2400);
-            this.timeout = setTimeout(this.flashText2.bind(this), 2650);
-            this.timeout = setTimeout(this.flashText1.bind(this), 2800);
-            this.timeout = setTimeout(this.flashText2.bind(this), 3050);
+            this.timeout = setTimeout(this.flashText1, 2400);
+            this.timeout = setTimeout(this.flashText2, 2650);
+            this.timeout = setTimeout(this.flashText1, 2800);
+            this.timeout = setTimeout(this.flashText2, 3050);
 
-            this.timeout = setTimeout(this.flashText1.bind(this), 3800);
-            this.timeout = setTimeout(this.flashText2.bind(this), 4050);
-            this.timeout = setTimeout(this.flashText1.bind(this), 4200);
-            this.timeout = setTimeout(this.flashText2.bind(this), 4450);
-            this.setState({
-                flashComplete: true,
-            });
+            this.timeout = setTimeout(this.flashText1, 3800);
+            this.timeout = setTimeout(this.flashText2, 4050);
+            this.timeout = setTimeout(this.flashText1, 4200);
+            this.timeout = setTimeout(this.flashText2, 4450);
+            this.setState({ flashComplete: true });
         }
     }
 
@@ -100,9 +106,14 @@ class NewSeedSetup extends Component {
             );
         }
     }
+
     onBackPress() {
         this.props.setSeed('                                                                                 ');
-        this.props.navigator.pop({
+        this.props.navigator.push({
+            screen: 'walletSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+            },
             animated: false,
         });
     }
