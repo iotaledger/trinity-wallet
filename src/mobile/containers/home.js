@@ -31,7 +31,7 @@ import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/ac
 import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
-import Reattacher from './reattacher';
+import Reattacher from './reAttacher';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const StatusBarDefaultBarStyle = 'light-content';
