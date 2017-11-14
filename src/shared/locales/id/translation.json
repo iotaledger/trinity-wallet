@@ -11,14 +11,14 @@
     },
     "welcome1": {
         "text1": "Terima kasih telah mengunduh dompet IOTA.",
-        "text2": "Kita akan menghabiskan beberapa menit kedepan untuk menyiapkan dompet Anda.",
+        "text2": "Kita akan meluangkan waktu beberapa menit kedepan untuk menyiapkan dompet Anda.",
         "reminder": "Kami berharap anda tidak mencoba untuk melewatkan beberapa tahap penting ini.",
         "button1": "LANJUT",
         "button2": "KEMBALI"
     },
     "welcome2": {
         "text1": "Oke. Mari menyiapkan dompet anda!",
-        "text2": "Apa anda sudah memiliki Seed yang ingin digunakan?",
+        "text2": "Apakah anda sudah memiliki Seed yang ingin digunakan?",
         "seed_explanation1": "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
         "seed_explanation2": "Anda dapat mengakses dana anda dari dompet manapun dan di perangkat apapun. Tetapi jika anda lupa Seed, anda akan kehilangan IOTA",
         "reminder": "Harap disimpan Seed anda dengan baik",
@@ -102,12 +102,12 @@
         "button2": "SELESAI"
     },
     "nameYourSeed": {
-        "text": "Here you can enter an name for your seed.",
-        "label": "Seed name",
-        "placeholder": "Main Wallet",
-        "explanation": "Enter a name for your seed to make them easier to differentiate.",
-        "button1": "DONE",
-        "button2": "GO BACK"
+        "text": "Di sini anda bisa memberikan nama untuk seed anda.",
+        "label": "Nama seed",
+        "placeholder": "Dompet Utama",
+        "explanation": "Masukan nama untuk seed anda untuk memudahkan dalam mengingatnya.",
+        "button1": "SELESAI",
+        "button2": "KEMBALI"
     },
     "setPassword": {
         "title": "ATUR KATA SANDI",

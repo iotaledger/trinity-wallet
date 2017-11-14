@@ -102,12 +102,12 @@
         "button2": "CONCLUÍDO"
     },
     "nameYourSeed": {
-        "text": "Here you can enter an name for your seed.",
-        "label": "Seed name",
-        "placeholder": "Main Wallet",
-        "explanation": "Enter a name for your seed to make them easier to differentiate.",
-        "button1": "DONE",
-        "button2": "GO BACK"
+        "text": "Aqui pode inserir um nome para a sua Sedd.",
+        "label": "Nome da Seed",
+        "placeholder": "Carteira Principal",
+        "explanation": "Insira um nome para a sua Seed para ser mais fácil diferenciá-las.",
+        "button1": "CONCLUÍDO",
+        "button2": "VOLTAR"
     },
     "setPassword": {
         "title": "CONFIGURAR PALAVRA-PASSE",
