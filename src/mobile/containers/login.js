@@ -83,15 +83,18 @@ class Login extends React.Component {
         const seedIndex = _this.props.tempAccount.seedIndex;
         const seedName = _this.props.account.seedNames[seedIndex];
         function login(value) {
+            _this.getWalletData();
             if (_this.props.account.firstUse) {
-                Promise.resolve(_this.getWalletData()).then(_this.props.getAccountInfoNewSeed(value, seedName), () =>
-                    _this.onNodeError(),
-                );
+                _this.props.getAccountInfoNewSeed(value, seedName, (error, success) => {
+                    if (error) _this.onNodeError();
+                });
             } else {
                 const accountInfo = _this.props.account.accountInfo;
-                Promise.resolve(_this.getWalletData()).then(
-                    _this.props.getAccountInfo(seedName, seedIndex, accountInfo, () => _this.onNodeError()),
-                );
+                _this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                    if (error) {
+                        _this.onNodeError();
+                    }
+                });
             }
             _this.props.changeHomeScreenRoute('balance');
             _this.props.navigator.push({
@@ -313,11 +316,11 @@ const mapDispatchToProps = dispatch => ({
     setPassword: password => {
         dispatch(setPassword(password));
     },
-    getAccountInfo: (seedName, seedIndex, accountInfo, errorCb) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, errorCb));
+    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },
-    getAccountInfoNewSeed: (seed, seedName, errorCb) => {
-        dispatch(getAccountInfoNewSeed(seed, seedName, errorCb));
+    getAccountInfoNewSeed: (seed, seedName, cb) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName, cb));
     },
     changeHomeScreenRoute: tab => {
         dispatch(changeHomeScreenRoute(tab));
