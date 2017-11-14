@@ -31,8 +31,9 @@ export default class Reattacher extends Component {
         RNShakeEvent.removeEventListener('shake');
     }
 
-    autoReattach() {
-        const { reattachAfter, attachments } = this.props;
+    autoReAttach() {
+        const { reAttachAfter, attachments } = this.props;
+
         this.timer = isNull(this.timer) && clearTimeout(this.timer);
         this.timer = setTimeout(() => {
             // Check if there are transactions
@@ -43,8 +44,8 @@ export default class Reattacher extends Component {
                 }
             }
             this.timer = null;
-            this.autoReattach(reattachAfter);
-        }, reattachAfter);
+            this.autoReAttach();
+        }, reAttachAfter);
     }
 
     render() {
