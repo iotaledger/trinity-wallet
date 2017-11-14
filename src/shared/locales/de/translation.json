@@ -10,7 +10,7 @@
         "button1": "WEITER"
     },
     "welcome1": {
-        "text1": "Vielen Dank für das Herunterladen der IOTA Wallet.",
+        "text1": "Vielen Dank für das Herunterladen des IOTA Wallets.",
         "text2": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
         "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen.",
         "button1": "WEITER",
@@ -18,18 +18,15 @@
     },
     "welcome2": {
         "text1": "Okay. Lass uns Dein Wallet einrichten!",
-        "text2": "Hast Du bereits einen Seed welchen du verwenden möchtest?",
-        "seed_explanation1":
-            "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
-        "seed_explanation2":
-            "Mit deinem Seed kannst du von jeder Wallet und jedem Gerät auf deine IOTA zugreifen - Aber wenn du deinen Seed verlierst, verlierst du auch dein gesamtes IOTA Guthaben.",
+        "text2": "Hast du bereits einen Seed den du verwenden möchtest?",
+        "seed_explanation1": "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
+        "seed_explanation2": "Mit deinem Seed kannst du von jeder Wallet und jedem Gerät auf deine IOTA zugreifen – Aber wenn du deinen Seed verlierst, verlierst du auch dein gesamtes IOTA Guthaben",
         "reminder": "Bewahre Deinen Seed sicher auf",
         "button1": "JA",
         "button2": "NEIN"
     },
     "lightserver": {
-        "text1":
-            "Ein Light Server ist ein Zugang zum IOTA Netzwerk, bereitgestellt von Mitgliedern der Gemeinschaft oder unseren Partnern.",
+        "text1": "Ein Light Server ist ein Zugang zum IOTA Netzwerk, bereitgestellt von Mitgliedern der Gemeinschaft oder unseren Partnern.",
         "text2": "Mehr Informationen über die Server unter: http://iotasupport.com/lightwallet.shtml",
         "text3": "Bitte wähle einen Server aus der Liste unten.",
         "server_label": "Server",
@@ -50,19 +47,17 @@
         "error_title": "Seed ist zu kurz",
         "error_text": "Seeds müssen mindestens 60 Zeichen lang sein. Bitte versuche es erneut.",
         "invalid_seed_title": "Ungültiger Seed",
-        "invalid_seed_text":
-            "Dein Seed ist ungültig. Ein Seed kann aus Großbuchstaben (A-Z) und die Nummer 9 bestehen und muss 60-81 Zeichen lang sein.",
+        "invalid_seed_text": "Dein Seed ist ungültig. Ein Seed kann aus Großbuchstaben (A-Z) und der Zahl 9 bestehen und muss 60-81 Zeichen lang sein.",
         "placeholder": "SEED",
-        "seed_explanation":
-            "Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als 81 Zeichen ist.",
+        "seed_explanation": "Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als 81 Zeichen ist.",
         "reminder": "TEILE DEINEN SEED MIT NIEMANDEM",
         "scan_code": "QR Code scannen",
-        "close": "SCHLIESSEN",
+        "close": "SCHLIEẞEN",
         "button1": "FERTIG",
         "button2": "ZURÜCK"
     },
     "newSeedSetup": {
-        "title": "ERZEUGE EINEN NEUEN SEED",
+        "title": "NEUEN SEED ERZEUGEN",
         "button1": "NEUEN SEED ERZEUGEN",
         "text1": "Drücke beliebige Buchstaben um sie zufällig zu verteilen.",
         "text2": "Klicke anschließend auf WEITER",
@@ -70,10 +65,10 @@
         "button3": "ZURÜCK"
     },
     "saveYourSeed": {
-        "text1": "Du musst Deinen Seed mit mindestens einer der unten aufgeführten Optionen speichern.",
+        "text1": "Du musst deinen Seed mit mindestens einer der unten aufgeführten Optionen speichern.",
         "text2": "mindestens einer",
-        "optionA": "NIEDERSCHREIBEN",
-        "optionB": "PAPIER WALLET DRUCKEN",
+        "optionA": "MANUELLE KOPIE",
+        "optionB": "PAPER WALLET DRUCKEN",
         "optionC": "IN ZWISCHENABLAGE KOPIEREN",
         "button1": "WEITER",
         "button2": "ZURÜCK"
@@ -82,8 +77,7 @@
         "optionA": "Manuelle Kopie",
         "optionB": " Paper Wallet",
         "optionC": "In die Zwischenablage kopieren",
-        "explanation":
-            "Ihr Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreiben Sie ihren Seed und die Prüfsumme auf und prüfen Sie dreimal ob diese Korrekt sind.",
+        "explanation": "Dein Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreibe deinen Seed und die Prüfsumme auf und prüfe dreimal ob diese Korrekt sind.",
         "text": "prüfe dreimal",
         "button": "FERTIG"
     },
@@ -91,28 +85,34 @@
         "optionA": "Manuelle Kopie",
         "optionB": " Paper Wallet",
         "optionC": "In die Zwischenablage kopieren",
-        "explanation":
-            "Klicke um deinen Seed in einen Passwort-Manager zu kopieren. Er wird für 60 Sekunden in deiner Zwischenablage bleiben.",
+        "explanation": "Klicke um deinen Seed in einen Passwort-Manager zu kopieren. Er wird für 60 Sekunden in deiner Zwischenablage bleiben.",
         "text": "Speichere den Seed nicht als Klartext.",
         "button1": "IN ZWISCHENABLAGE KOPIEREN",
         "button2": "FERTIG"
     },
     "saveYourSeed4": {
         "optionA": "Manuelle Kopie",
-        "optionB": " Papier Wallet",
+        "optionB": " Paper Wallet",
         "optionC": "In die Zwischenablage kopieren",
-        "explanation": "Klicke die Schaltfläche unten, um eine Paper Wallet von deinem Seed auszudrucken.",
+        "explanation": "Klicke die Schaltfläche unten, um eine Paper Wallet von Deinem Seed auszudrucken.",
         "text1": "Bewahre es sicher auf",
         "text2": "Teile niemals deinen Seed.",
         "check_button": "IOTA Logo",
-        "button1": "PAPIER WALLET DRUCKEN",
+        "button1": "PAPER WALLET DRUCKEN",
         "button2": "FERTIG"
+    },
+    "nameYourSeed": {
+        "text": "Hier kannst einen Namen für deinen Seed eingeben.",
+        "label": "Seedname",
+        "placeholder": "Main Wallet",
+        "explanation": "Gib eine Namen für deinen Seed ein um ihn leichter zu Unterscheiden.",
+        "button1": "FERTIG",
+        "button2": "ZURÜCK"
     },
     "setPassword": {
         "title": "PASSWORT EINRICHTEN",
         "text": "Jetzt müssen wir ein Passwort einrichten.",
-        "explanation":
-            "Mit dem Passwort kannst du in Zukunft auf deine Wallet zugreifen. Eine verschlüsselte Kopie deines Seed wird auf deinem Gerät gespeichert.",
+        "explanation": "Mit dem Passwort kannst Du in Zukunft auf Deine Wallet zugreifen. Eine verschlüsselte Kopie Deines Seed wird auf Deinem Gerät gespeichert.",
         "reminder": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
         "placeholder1": "\"PASSWORT\"",
         "placeholder2": "PASSWORT ERNEUT EINGEBEN",

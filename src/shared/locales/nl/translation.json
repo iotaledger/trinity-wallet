@@ -109,6 +109,14 @@
         "button1": "PORTEMONNEE VAN PAPIER AFDRUKKEN",
         "button2": "GEREED"
     },
+    "nameYourSeed": {
+        "text": "Hie kan u uw seed benamen.",
+        "label": "Seed naam",
+        "placeholder": "Hoofd portefeuille",
+        "explanation": "Kies een naam voor uw seed.",
+        "button1": "GEREED",
+        "button2": "Ga Terug"
+    },
     "setPassword": {
         "title": "WACHTWOORD SETUP",
         "text": "Oke, nu moeten we een wachtwoord instellen.",

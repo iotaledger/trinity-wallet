@@ -1,3 +1,4 @@
+import merge from 'lodash/merge';
 import React from 'react';
 import {
     StyleSheet,
@@ -7,18 +8,21 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
+    Platform,
     ImageBackground,
     ScrollView,
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount } from '../../shared/actions/account';
-import { setSeedName } from '../../shared/actions/tempAccount';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
+import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
+import { generateAlert } from '../../shared/actions/alerts';
+import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -26,27 +30,108 @@ class SetSeedName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            seedName: 'MAIN WALLET',
+            seedName: this.getDefaultSeedName(),
         };
+    }
+
+    getDefaultSeedName() {
+        if (this.props.account.seedCount == 0) {
+            return 'MAIN WALLET';
+        } else if (this.props.account.seedCount == 1) {
+            return 'SECOND WALLET';
+        } else if (this.props.account.seedCount == 2) {
+            return 'THIRD WALLET';
+        } else if (this.props.account.seedCount == 3) {
+            return 'FOURTH WALLET';
+        } else if (this.props.account.seedCount == 4) {
+            return 'FIFTH WALLET';
+        } else if (this.props.account.seedCount == 5) {
+            return 'SIXTH WALLET';
+        } else if (this.props.account.seedCount == 6) {
+            return 'OTHER WALLET';
+        }
     }
 
     componentDidMount() {
         this.nameInput.focus();
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onDonePress() {
         if (this.state.seedName != '') {
-            this.props.increaseSeedCount();
-            this.props.setSeedName(this.state.seedName);
-            this.props.navigator.push({
-                screen: 'setPassword',
-                navigatorStyle: { navBarHidden: true },
-                animated: false,
-            });
+            if (!this.props.account.onboardingComplete) {
+                this.props.increaseSeedCount();
+                this.props.setSeedName(this.state.seedName);
+                this.props.navigator.push({
+                    screen: 'setPassword',
+                    navigatorStyle: { navBarHidden: true },
+                    animated: false,
+                });
+            } else {
+                this.props.clearTempData();
+                storeInKeychain(
+                    this.props.tempAccount.password,
+                    this.props.tempAccount.seed,
+                    this.state.seedName,
+                    (type, title, message) => this.dropdown.alertWithType(type, title, message),
+                    () => {
+                        this.props.setFirstUse(true);
+                        this.props.navigator.push({
+                            screen: 'loading',
+                            navigatorStyle: {
+                                navBarHidden: true,
+                            },
+                            animated: false,
+                        });
+                        this.props.getAccountInfoNewSeed(
+                            this.props.tempAccount.seed,
+                            this.state.seedName,
+                            (error, success) => {
+                                if (error) {
+                                    this.onNodeError();
+                                } else {
+                                    this.onNodeSuccess();
+                                }
+                            },
+                        );
+                    },
+                );
+            }
         } else {
             this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
         }
     }
+
+    onNodeError() {
+        getFromKeychain(this.props.tempAccount.password, value => {
+            if (typeof value != 'undefined' && value != null) {
+                removeLastSeed(value, this.props.tempAccount.password);
+            } else {
+                error();
+            }
+        });
+        this.props.navigator.pop({
+            animated: false,
+        });
+        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        this.props.setFirstUse(false);
+    }
+
+    onNodeSuccess() {
+        this.props.increaseSeedCount();
+        this.props.addSeedName(this.state.seedName);
+        this.props.clearSeed();
+    }
+
     onBackPress() {
         this.props.navigator.pop({
             animated: false,
@@ -55,6 +140,9 @@ class SetSeedName extends React.Component {
 
     render() {
         let { seedName } = this.state;
+        const isAndroid = Platform.OS === 'android';
+        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -76,7 +164,7 @@ class SetSeedName extends React.Component {
                                 baseColor="white"
                                 label="Seed nickname"
                                 tintColor="#F7D002"
-                                autoCapitalize={'none'}
+                                autoCapitalize="characters"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="done"
@@ -122,7 +210,7 @@ class SetSeedName extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -213,7 +301,7 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -222,26 +310,66 @@ const styles = StyleSheet.create({
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
+    },
+});
+
+const androidStyles = StyleSheet.create({
+    topContainer: {
+        flex: 1.2,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 22,
+    },
+    midContainer: {
+        flex: 4.8,
+        justifyContent: 'flex-start',
+        paddingTop: height / 6,
+        alignItems: 'center',
+    },
+    bottomContainer: {
+        flex: 0.6,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
+    },
+    infoTextContainer: {
+        borderColor: 'white',
+        borderWidth: 1,
+        borderRadius: 15,
+        width: width / 1.6,
+        minHeight: height / 4.5,
+        maxHeight: height / 4.2,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingHorizontal: width / 30,
+        paddingVertical: height / 50,
+        borderStyle: 'dotted',
+        paddingTop: height / 60,
+        marginTop: height / 15,
     },
 });
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    account: state.account,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -250,6 +378,24 @@ const mapDispatchToProps = dispatch => ({
     },
     setSeedName: seedName => {
         dispatch(setSeedName(seedName));
+    },
+    clearSeed: () => {
+        dispatch(clearSeed());
+    },
+    generateAlert: (error, title, message) => {
+        dispatch(generateAlert(error, title, message));
+    },
+    setFirstUse: boolean => {
+        dispatch(setFirstUse(boolean));
+    },
+    clearTempData: () => {
+        dispatch(clearTempData());
+    },
+    addSeedName: newSeed => {
+        dispatch(addSeedName(newSeed));
+    },
+    getAccountInfoNewSeed: (seed, seedName, cb) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName, cb));
     },
 });
 

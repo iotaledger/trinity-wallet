@@ -16,6 +16,8 @@ import {
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+
 import { Keyboard } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
@@ -26,6 +28,16 @@ export default class WalletResetConfirmation extends Component {
 
         this.goBack = this.goBack.bind(this);
         this.requirePassword = this.requirePassword.bind(this);
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     navigateTo(url) {
@@ -128,13 +140,15 @@ const styles = StyleSheet.create({
         borderColor: Colors.white,
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.6,
-        height: height / 5.8,
+        minWidth: width / 1.6,
+        maxWidth: width / 1.7,
+        minHeight: height / 5,
+        maxHeight: height / 4.9,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
+        paddingVertical: height / 80,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
     },
     infoText: {
         color: Colors.white,

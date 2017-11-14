@@ -12,6 +12,7 @@ import {
 import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const { height, width } = Dimensions.get('window');
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -28,6 +29,16 @@ class Balance extends React.Component {
         if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
             this.setState({ balanceIsShort: true });
         }
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     onBalanceClick() {

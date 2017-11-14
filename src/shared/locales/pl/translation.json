@@ -19,17 +19,14 @@
     "welcome2": {
         "text1": "W porządku. Ustawmy twój portfel!",
         "text2": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
-        "seed_explanation1":
-            "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
-        "seed_explanation2":
-            "Można go używać, aby uzyskać dostęp do swoich środków z dowolnego portfela, na dowolnym urządzeniu. Jeśli stracisz swojego seed'a, stracisz swoje IOTA",
+        "seed_explanation1": "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
+        "seed_explanation2": "Można go używać, aby uzyskać dostęp do swoich środków z dowolnego portfela, na dowolnym urządzeniu. Jeśli stracisz swojego seed'a, stracisz swoje IOTA",
         "reminder": "Proszę dbaj o bezpieczeństwo swojego seed'a",
         "button1": "TAK",
         "button2": "NIE"
     },
     "lightserver": {
-        "text1":
-            "Light Serwer jest bramą do sieci IOTA, uprzejmie udostępnioną przez członków Wspólnoty lub naszych partnerów korporacyjnych. ",
+        "text1": "Light Serwer jest bramą do sieci IOTA, uprzejmie udostępnioną przez członków Wspólnoty lub naszych partnerów korporacyjnych. ",
         "text2": "Więcej informacji na temat serwerów znajdziesz na: http://iotasupport.com/lightwallet.shtml",
         "text3": "Proszę wybrać serwer z listy poniżej.",
         "server_label": "Serwer",
@@ -50,11 +47,9 @@
         "error_title": "Seed jest zbyt krótki",
         "error_text": "SEED musi się składać z co najmniej 60-ciu znaków. Proszę spróbuj ponownie.",
         "invalid_seed_title": "Niepoprawny seed",
-        "invalid_seed_text":
-            "Twój seed jest nieprawidłowy. Seed może zawierać wielkie litery (A-Z), cyfrę 9 i musi być składać się z 60-81 znaków.",
+        "invalid_seed_text": "Twój seed jest nieprawidłowy. Seed może zawierać wielkie litery (A-Z), cyfrę 9 i musi być składać się z 60-81 znaków.",
         "placeholder": "SEED",
-        "seed_explanation":
-            "Seed powinien składać się z 81 znaków i powinien zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż 81 znaków.",
+        "seed_explanation": "Seed powinien składać się z 81 znaków i powinien zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż 81 znaków.",
         "reminder": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA",
         "scan_code": "Skanuj kod QR",
         "close": "ZAMKNIJ",
@@ -82,8 +77,7 @@
         "optionA": "Ręczne kopiowanie",
         "optionB": " Papierowy portfel",
         "optionC": "Kopiuj do Schowka",
-        "explanation":
-            "Twój seed zawiera 81 znaków czytany od lewej do prawej. Zapisz seeda oraz sumę kontrolną i sprawdź trzykrotnie czy wszystko się zgadza.",
+        "explanation": "Twój seed zawiera 81 znaków czytany od lewej do prawej. Zapisz seeda oraz sumę kontrolną i sprawdź trzykrotnie czy wszystko się zgadza.",
         "text": "sprawdź trzykrotnie",
         "button": "GOTOWE"
     },
@@ -91,8 +85,7 @@
         "optionA": "Ręczna Kopia",
         "optionB": " Papierowy Portfel",
         "optionC": "Kopiuj do Schowka",
-        "explanation":
-            "Kliknij przycisk poniżej i skopiuj swojego seeda do Menedżera haseł. Pozostanie w swoim schowku przez 60 sekund.",
+        "explanation": "Kliknij przycisk poniżej i skopiuj swojego seeda do Menedżera haseł. Pozostanie w swoim schowku przez 60 sekund.",
         "text": "Nie należy przechowywać seeda w postaci zwykłego tekstu.",
         "button1": "KOPIUJ DO SCHOWKA",
         "button2": "GOTOWE"
@@ -108,11 +101,18 @@
         "button1": "WYDRUKUJ PAPIEROWY PORTFEL",
         "button2": "GOTOWE"
     },
+    "nameYourSeed": {
+        "text": "Tutaj możesz wprowadzić nazwę swojego Seed'a.",
+        "label": "Nazwa Seed'a",
+        "placeholder": "Portfel Główny",
+        "explanation": "Nadaj nazwę dla twojego Seed'a tak aby go łatwiej odróżnić.",
+        "button1": "GOTOWE",
+        "button2": "WSTECZ"
+    },
     "setPassword": {
         "title": "USTAWIENIE HASŁA",
         "text": "Teraz musimy ustawić hasło.",
-        "explanation":
-            "Tego hasła będziesz używać do uzyskiwania dostępu do swojego portfela w przyszłości. Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu.",
+        "explanation": "Tego hasła będziesz używać do uzyskiwania dostępu do swojego portfela w przyszłości. Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu.",
         "reminder": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "placeholder1": "'HASŁO'",
         "placeholder2": "POWTÓRZ HASŁO",
@@ -124,8 +124,7 @@
         "button2": "WSTECZ"
     },
     "onboardingComplete": {
-        "text":
-            "Portfel jest skonfigurowany i gotowy do użycia. W przypadku konieczności wprowadzenia zmian w przyszłości, skorzystaj z menu Narzędzia.",
+        "text": "Portfel jest skonfigurowany i gotowy do użycia. W przypadku konieczności wprowadzenia zmian w przyszłości, skorzystaj z menu Narzędzia.",
         "button": "DALEJ"
     },
     "home": {

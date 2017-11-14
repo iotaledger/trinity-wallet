@@ -13,11 +13,12 @@ class AddNewSeedModal extends React.Component {
             seedName: '',
         };
     }
-    onNewSeedPress() {}
+    onNewSeedPress() {
+        this.props.navigateNewSeed();
+    }
 
     onExistingSeedPress() {
-        clearInterval(polling);
-        this.props.navigate();
+        this.props.navigateExistingSeed();
     }
 
     render() {
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
-        padding: width / 10,
+        padding: width / 7,
     },
     newSeedButton: {
         borderColor: '#9DFFAF',
