@@ -64,6 +64,7 @@ export function getAccountInfoNewSeed(seed, seedName, cb) {
                 cb(null, success);
             } else {
                 cb(error);
+                console.log(error);
             }
         });
     };
@@ -129,7 +130,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                 }
             } else {
                 cb(error);
-                console.log('SOMETHING WENT WRONG: ', error);
+                console.log(error);
                 dispatch(
                     generateAlert(
                         'error',

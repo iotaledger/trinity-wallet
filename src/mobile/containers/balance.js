@@ -55,7 +55,8 @@ class Balance extends React.Component {
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
         const addresses = Object.keys(currentSeedAccountInfo.addresses);
         const shortenedBalance =
-            roundDown(formatValue(this.props.account.balance), 1) + (this.props.account.balance < 1000 ? '' : '+');
+            roundDown(formatValue(this.props.account.balance), 1) +
+            (this.props.account.balance < 1000 || Number.isInteger(formatValue(this.props.account.balance)) ? '' : '+');
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
