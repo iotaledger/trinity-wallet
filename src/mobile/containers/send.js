@@ -25,6 +25,8 @@ import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import { getAccountInfo } from '../../shared/actions/account';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+
 import DropdownHolder from '../components/dropdownHolder';
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
@@ -45,6 +47,16 @@ class Send extends Component {
             selectedSetting: '',
             modalContent: '',
         };
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     onDenominationPress() {

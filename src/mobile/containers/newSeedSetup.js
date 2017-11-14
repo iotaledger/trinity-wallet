@@ -1,4 +1,3 @@
-import merge from 'lodash/merge';
 import split from 'lodash/split';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -12,13 +11,14 @@ import {
     ListView,
     TouchableOpacity,
     Image,
-    Platform,
     StatusBar,
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed } from '../../shared/actions/tempAccount';
 import { randomBytes } from 'react-native-randombytes';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
 const { height, width } = Dimensions.get('window');
@@ -37,31 +37,47 @@ class NewSeedSetup extends Component {
             infoTextHeight: height / 38,
             flashComplete: false,
         };
+
+        this.bind(['flashText1', 'flashText2']);
+    }
+
+    bind(methods) {
+        methods.forEach(method => (this[method] = this[method].bind(this)));
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
     }
 
     onGeneratePress() {
         this.props.randomiseSeed(randomBytes);
-        this.setState({
-            randomised: true,
-        });
+        this.setState({ randomised: true });
         if (!this.state.flashComplete) {
-            this.timeout = setTimeout(this.flashText1.bind(this), 1000);
-            this.timeout = setTimeout(this.flashText2.bind(this), 1250);
-            this.timeout = setTimeout(this.flashText1.bind(this), 1400);
-            this.timeout = setTimeout(this.flashText2.bind(this), 1650);
+            this.timeout = setTimeout(this.flashText1, 1000);
+            this.timeout = setTimeout(this.flashText2, 1250);
+            this.timeout = setTimeout(this.flashText1, 1400);
+            this.timeout = setTimeout(this.flashText2, 1650);
 
-            this.timeout = setTimeout(this.flashText1.bind(this), 2400);
-            this.timeout = setTimeout(this.flashText2.bind(this), 2650);
-            this.timeout = setTimeout(this.flashText1.bind(this), 2800);
-            this.timeout = setTimeout(this.flashText2.bind(this), 3050);
+            this.timeout = setTimeout(this.flashText1, 2400);
+            this.timeout = setTimeout(this.flashText2, 2650);
+            this.timeout = setTimeout(this.flashText1, 2800);
+            this.timeout = setTimeout(this.flashText2, 3050);
 
-            this.timeout = setTimeout(this.flashText1.bind(this), 3800);
-            this.timeout = setTimeout(this.flashText2.bind(this), 4050);
-            this.timeout = setTimeout(this.flashText1.bind(this), 4200);
-            this.timeout = setTimeout(this.flashText2.bind(this), 4450);
-            this.setState({
-                flashComplete: true,
-            });
+            this.timeout = setTimeout(this.flashText1, 3800);
+            this.timeout = setTimeout(this.flashText2, 4050);
+            this.timeout = setTimeout(this.flashText1, 4200);
+            this.timeout = setTimeout(this.flashText2, 4450);
+            this.setState({ flashComplete: true });
         }
     }
 
@@ -90,9 +106,14 @@ class NewSeedSetup extends Component {
             );
         }
     }
+
     onBackPress() {
         this.props.setSeed('                                                                                 ');
-        this.props.navigator.pop({
+        this.props.navigator.push({
+            screen: 'walletSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+            },
             animated: false,
         });
     }
@@ -122,9 +143,6 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const isAndroid = Platform.OS === 'android';
-        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
-
         const { tempAccount: { seed } } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
@@ -201,7 +219,7 @@ NewSeedSetup.propTypes = {
     randomiseSeed: PropTypes.func.isRequired,
 };
 
-const baseStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
@@ -325,7 +343,7 @@ const baseStyles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -334,32 +352,24 @@ const baseStyles = StyleSheet.create({
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
-    },
-});
-
-const androidStyles = StyleSheet.create({
-    squareContainer: {
-        height: width / 1.2,
-        width: width / 1.2,
-    },
-    midContainer: {
-        flex: 3,
-        paddingTop: height / 30,
     },
 });
 

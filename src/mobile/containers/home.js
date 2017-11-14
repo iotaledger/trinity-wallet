@@ -31,7 +31,9 @@ import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/ac
 import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
-import ReAttacher from './reAttacher';
+import Reattacher from './reAttacher';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
 const timer = require('react-native-timer');
@@ -54,10 +56,17 @@ class Home extends Component {
         if (typeof accountInfo !== 'undefined') {
             this.props.setBalance(addressesWithBalance);
         }
-        timer.setInterval('polling', () => this.startPolling(), 30000);
+        timer.setInterval('polling', () => this.startPolling(), 10000);
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
     }
 
     componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
         timer.clearInterval('polling');
     }
 
@@ -66,8 +75,20 @@ class Home extends Component {
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
-            this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+            this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                if (error) this.onNodeErrorPolling();
+            });
         }
+    }
+
+    onNodeErrorPolling() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response while polling.`);
+    }
+
+    onNodeError() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
     }
 
     componentWillReceiveProps(newProps) {
@@ -90,10 +111,12 @@ class Home extends Component {
 
             this.props.decrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
-            this.props.setReceiveAddress('');
+            this.props.setReceiveAddress(' ');
             // Get new account info if not sending or getting transfers
             if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                    if (error) this.onNodeError();
+                });
             }
         }
     }
@@ -109,11 +132,13 @@ class Home extends Component {
 
             this.props.incrementSeedIndex();
             this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
-            this.props.setReceiveAddress('');
+            this.props.setReceiveAddress(' ');
 
             // Get new account info if not sending or getting transfers
             if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                    if (error) this.onNodeError();
+                });
             }
         }
     }
@@ -321,7 +346,7 @@ class Home extends Component {
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
-                <ReAttacher
+                <Reattacher
                     attachments={tailTransactionHashesForPendingTransactions}
                     attach={this.props.replayBundle}
                 />
@@ -408,7 +433,7 @@ const styles = StyleSheet.create({
         opacity: 0.6,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -422,7 +447,7 @@ const styles = StyleSheet.create({
         paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
@@ -432,8 +457,8 @@ const styles = StyleSheet.create({
     },
     dropdownImage: {
         marginLeft: width / 25,
-        width: width / 10,
-        height: width / 10,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
     },
 });
@@ -453,8 +478,8 @@ const mapDispatchToProps = dispatch => ({
     decrementSeedIndex: () => {
         dispatch(decrementSeedIndex());
     },
-    getAccountInfo: (seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
+    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },
     setReceiveAddress: string => {
         dispatch(setReceiveAddress(string));

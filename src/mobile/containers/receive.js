@@ -13,7 +13,7 @@ import {
     Clipboard,
     StatusBar,
 } from 'react-native';
-import QRCode from 'react-native-qrcode';
+import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
 import {
     generateNewAddress,
@@ -24,6 +24,8 @@ import {
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -37,14 +39,21 @@ class Receive extends Component {
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
     componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
         this.resetAddress();
     }
 
     resetAddress() {
         const { tempAccount: { receiveAddress } } = this.props;
         if (receiveAddress) {
-            this.props.setReceiveAddress('');
+            this.props.setReceiveAddress(' ');
         }
     }
 
@@ -78,6 +87,15 @@ class Receive extends Component {
         }
     }
 
+    getQROpacity() {
+        const { tempAccount: { receiveAddress } } = this.props;
+        if (receiveAddress == ' ') {
+            return 0.1;
+        } else {
+            return 1;
+        }
+    }
+
     render() {
         const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
 
@@ -93,10 +111,10 @@ class Receive extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ paddingBottom: height / 40 }}>
+                <View style={{ paddingBottom: height / 40, opacity: this.getQROpacity() }}>
                     <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
                 </View>
-                {!receiveAddress &&
+                {receiveAddress === ' ' &&
                     !isGeneratingReceiveAddress && (
                         <TouchableOpacity
                             onPress={() => {
