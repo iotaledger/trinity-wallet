@@ -103,7 +103,7 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
         const isAndroid = Platform.OS === 'android';
         const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
-        const textFieldFontSize = isAndroid ? width / 23 : width / 20.7;
+        const textFieldFontSize = isAndroid ? width / 22.7 : width / 20.7;
 
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
@@ -363,10 +363,6 @@ const androidStyles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: height / 70,
     },
-    textFieldContainer: {
-        flex: 1,
-        paddingRight: width / 30,
-    },
     bottomContainer: {
         flex: 0.7,
         alignItems: 'center',
@@ -385,10 +381,6 @@ const androidStyles = StyleSheet.create({
         justifyContent: 'space-around',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-    },
-    infoIcon: {
-        width: width / 20,
-        height: width / 20,
     },
     warningText: {
         color: 'white',
