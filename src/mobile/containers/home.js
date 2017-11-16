@@ -406,17 +406,18 @@ const styles = StyleSheet.create({
     tabBar: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: 'transparent',
+        backgroundColor: 'rgba(0, 0, 0, 0.5);',
         justifyContent: 'space-around',
         alignItems: 'center',
+        opacity: 0.7,
     },
     button: {
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     icon: {
-        height: width / 10,
-        width: width / 10,
+        height: width / 15,
+        width: width / 15,
     },
     iconTitle: {
         color: 'white',
