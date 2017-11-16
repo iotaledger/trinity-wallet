@@ -6,7 +6,8 @@ import Modal from 'react-native-modal';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 class History extends React.Component {
     constructor(props) {

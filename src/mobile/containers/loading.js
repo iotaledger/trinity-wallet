@@ -18,7 +18,8 @@ import Home from './home';
 import IotaSpin from '../components/iotaSpin';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
 class Loading extends Component {

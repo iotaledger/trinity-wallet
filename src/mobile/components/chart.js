@@ -3,7 +3,8 @@ import { StyleSheet, View, Text, Dimensions, TouchableWithoutFeedback } from 're
 import { Svg, LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 const viewbox = `${width / 3.95} ${height / 50} ${width / 3.93} ${height / 3.7}`;
 
@@ -13,7 +14,7 @@ class Chart extends React.Component {
             this.props.getMarketData();
             this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
             this.props.getPrice(this.props.marketData.currency);
-        }, 90000);
+        }, 101000);
     }
 
     onCurrencyClick() {

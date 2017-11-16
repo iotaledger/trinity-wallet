@@ -28,7 +28,8 @@ import { getAccountInfo } from '../../shared/actions/account';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 import DropdownHolder from '../components/dropdownHolder';
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 let sentDenomination = '';
@@ -382,7 +383,7 @@ class Send extends Component {
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
                     backdropColor={'#102832'}
-                    style={{ alignItems: 'center' }}
+                    style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalVisible}
                 >
                     {this._renderModalContent()}

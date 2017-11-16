@@ -21,7 +21,8 @@ import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -57,6 +58,7 @@ class SetPassword extends React.Component {
                 screen: 'onboardingComplete',
                 navigatorStyle: {
                     navBarHidden: true,
+                    navBarTransparent: true,
                 },
                 animated: false,
             });
@@ -217,12 +219,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 4.1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
+        paddingVertical: height / 60,
         marginTop: height / 25,
     },
     infoText: {
