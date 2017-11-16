@@ -1,6 +1,6 @@
 const initialState = {
     ready: false,
-    receiveAddress: '',
+    receiveAddress: ' ',
     password: '',
     seed: '                                                                                 ',
     seedName: 'MAIN WALLET',
@@ -92,8 +92,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ready: false,
-                receiveAddress: '',
-                seed: '',
+                receiveAddress: ' ',
                 usedSeedToLogin: false,
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
@@ -110,6 +109,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isGettingTransfers: false,
+            };
+        case 'CLEAR_SEED':
+            return {
+                ...state,
+                seed: action.payload,
             };
         default:
             return state;

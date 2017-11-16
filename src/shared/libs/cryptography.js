@@ -1,6 +1,6 @@
 import { SInfo } from '../../mobile/exports';
 
-export function storeInKeychain(key, seed, name, callback, alertFn) {
+export function storeInKeychain(key, seed, name, alertFn, callback) {
     getFromKeychain(key, value => {
         if (typeof value == 'undefined' || value === null) {
             var newSeedArray = [{ name: name, seed: seed }];
@@ -9,13 +9,19 @@ export function storeInKeychain(key, seed, name, callback, alertFn) {
         } else {
             var seedArray = JSON.parse(value);
             for (var item of seedArray) {
-                if (item.name == name || item.seed == seed) {
+                if (item.name == name) {
+                    alertFn(
+                        'error',
+                        'Seedname already in use',
+                        'This seed nickname is already linked to your wallet. Please use a different one.',
+                    );
+                    return;
+                } else if (item.seed == seed) {
                     alertFn(
                         'error',
                         'Seed already in use',
                         'This seed is already linked to your wallet. Please use a different one.',
                     );
-                    console.log('Error: Same name or seed');
                     return;
                 }
             }
@@ -49,6 +55,17 @@ export function getFromKeychain(key, fn) {
 export function getSeed(value, index) {
     value = JSON.parse(value);
     return value[index].seed;
+}
+
+export function removeLastSeed(value, password) {
+    deleteFromKeyChain(password);
+    let seeds = JSON.parse(value);
+    seeds.splice(-1, 1);
+    seeds = JSON.stringify(seeds);
+    SInfo.setItem(password, seeds, {
+        sharedPreferencesName: 'mySharedPrefs',
+        keychainService: 'myKeychain',
+    });
 }
 
 export function getSeedName(value, index) {

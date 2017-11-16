@@ -50,7 +50,8 @@ class Settings extends React.Component {
                     <AddNewSeedModal
                         style={{ flex: 1 }}
                         hideModal={() => this._hideModal()}
-                        navigate={() => this.navigateToNewSeed()}
+                        navigateNewSeed={() => this.navigateNewSeed()}
+                        navigateExistingSeed={() => this.navigateExistingSeed()}
                     />
                 );
                 break;
@@ -67,14 +68,20 @@ class Settings extends React.Component {
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
-    onCurrencyPress() {}
+    onCurrencyPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onThemePress() {
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
-    onLanguagePress() {}
+    onLanguagePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
 
     onChangePasswordPress() {
         this.props.navigator.push({
@@ -128,7 +135,18 @@ class Settings extends React.Component {
         });
     }
 
-    navigateToNewSeed() {
+    navigateNewSeed() {
+        this._hideModal();
+        this.props.navigator.push({
+            screen: 'newSeedSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+            },
+            animated: false,
+        });
+    }
+
+    navigateExistingSeed() {
         this._hideModal();
         this.props.navigator.push({
             screen: 'addAdditionalSeed',

@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 90,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -265,20 +265,23 @@ const styles = StyleSheet.create({
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
     },
 });
