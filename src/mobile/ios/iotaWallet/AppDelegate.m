@@ -8,6 +8,9 @@
  */
 
 #import "AppDelegate.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 #import <React/RCTBundleURLProvider.h>
 #import "RCCManager.h"
@@ -25,7 +28,19 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.backgroundColor = [UIColor whiteColor];
   [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
+  [Fabric with:@[[Crashlytics class]]];
+  // TODO: Move this to where you establish a user session
+  [self logUser];
   return YES;
 }
+
+- (void) logUser {
+  // TODO: Use the current user's information
+  // You can call any combination of these three methods
+  [CrashlyticsKit setUserIdentifier:@"12345"];
+  [CrashlyticsKit setUserEmail:@"user@fabric.io"];
+  [CrashlyticsKit setUserName:@"Test User"];
+}
+
 
 @end
