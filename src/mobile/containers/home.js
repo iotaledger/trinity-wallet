@@ -17,6 +17,7 @@ import Send from './send';
 import Receive from './receive';
 import History from './history';
 import Settings from './settings';
+import TopBar from '../components/topBar';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
 import {
@@ -233,7 +234,9 @@ class Home extends Component {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>{this._renderTitlebar()}</View>
+                <View style={styles.topContainer}>
+                    <TopBar />
+                </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }}>{children}</View>
                 </View>
@@ -369,8 +372,7 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 0.8,
-        justifyContent: 'flex-end',
+        flex: 0.4,
     },
     titlebarContainer: {
         flexDirection: 'row',
