@@ -913,6 +913,7 @@
 				3412DBB43D37457A4C8295F1 /* [CP] Embed Pods Frameworks */,
 				693A9AEA67E453FFFB11AE7D /* [CP] Copy Pods Resources */,
 				6083B2D61FB55CE400DF3681 /* ShellScript */,
+				60ACCF241FBD29BB001BC01F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -980,7 +981,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = D6XGU8EVBS;
+						DevelopmentTeam = VG8ZVAW5U5;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1581,6 +1582,19 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CONFIGURATION\" == \"Release\" ]\nthen /usr/bin/perl -pe 's/(BUILD_NUMBER = )(\\d+)/$1.($2+1)/eg' -i buildnumber.xcconfig\nfi";
 		};
+		60ACCF241FBD29BB001BC01F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" e741ca311eddc2a22fa56c2dad19b440babbddbc 981a9d74e52679b4082c8d7d4ea90916fa27524671f2378ebca21f44939dcb5b";
+		};
 		693A9AEA67E453FFFB11AE7D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1858,7 +1872,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = D6XGU8EVBS;
+				DEVELOPMENT_TEAM = VG8ZVAW5U5;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
@@ -1872,7 +1886,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.wallet;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.iotawallet;
 				PRODUCT_NAME = iotaWallet;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1889,7 +1903,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D6XGU8EVBS;
+				DEVELOPMENT_TEAM = VG8ZVAW5U5;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
@@ -1903,7 +1917,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.wallet;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.iotawallet;
 				PRODUCT_NAME = iotaWallet;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
