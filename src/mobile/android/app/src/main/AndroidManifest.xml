@@ -22,7 +22,12 @@
       android:allowBackup="true"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
-      android:theme="@style/AppTheme">
+      android:theme="@style/AppTheme"
+    >
+    <meta-data
+        android:name="io.fabric.ApiKey"
+        android:value="e741ca311eddc2a22fa56c2dad19b440babbddbc"
+    />
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
@@ -36,6 +41,5 @@
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
       <activity android:name="net.hockeyapp.android.UpdateActivity" />
       <activity android:name="net.hockeyapp.android.FeedbackActivity" />
-      <activity android:screenOrientation="portrait" />
     </application>
 </manifest>
