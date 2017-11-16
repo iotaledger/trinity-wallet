@@ -21,6 +21,7 @@ import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import DropdownHolder from '../components/dropdownHolder';
 import { Keyboard } from 'react-native';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 const StatusBarDefaultBarStyle = 'light-content';
@@ -36,10 +37,11 @@ class Login extends React.Component {
             password: '',
         };
         this.onLoginPress = this.onLoginPress.bind(this);
+        this.onNodeError = this.onNodeError.bind(this);
     }
     getWalletData() {
-        this.props.getChartData('USD', '24h');
-        this.props.getPrice('USD');
+        this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
+        this.props.getPrice(this.props.marketData.currency);
         this.props.getMarketData();
     }
 
@@ -82,13 +84,18 @@ class Login extends React.Component {
         const seedIndex = _this.props.tempAccount.seedIndex;
         const seedName = _this.props.account.seedNames[seedIndex];
         function login(value) {
+            _this.getWalletData();
             if (_this.props.account.firstUse) {
-                Promise.resolve(_this.getWalletData()).then(_this.props.getAccountInfoNewSeed(value, seedName));
+                _this.props.getAccountInfoNewSeed(value, seedName, (error, success) => {
+                    if (error) _this.onNodeError();
+                });
             } else {
                 const accountInfo = _this.props.account.accountInfo;
-                Promise.resolve(_this.getWalletData()).then(
-                    _this.props.getAccountInfo(seedName, seedIndex, accountInfo),
-                );
+                _this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                    if (error) {
+                        _this.onNodeError();
+                    }
+                });
             }
             _this.props.changeHomeScreenRoute('balance');
             _this.props.navigator.push({
@@ -107,6 +114,13 @@ class Login extends React.Component {
                 'The password was not recognised. Please try again.',
             );
         }
+    }
+
+    onNodeError() {
+        this.props.navigator.pop({
+            animated: false,
+        });
+        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
     }
 
     onUseSeedPress() {
@@ -259,7 +273,7 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -268,20 +282,23 @@ const styles = StyleSheet.create({
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
     },
     buttonsContainer: {
@@ -294,17 +311,18 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
+    marketData: state.marketData,
 });
 
 const mapDispatchToProps = dispatch => ({
     setPassword: password => {
         dispatch(setPassword(password));
     },
-    getAccountInfo: (seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
+    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },
-    getAccountInfoNewSeed: (seed, seedName) => {
-        dispatch(getAccountInfoNewSeed(seed, seedName));
+    getAccountInfoNewSeed: (seed, seedName, cb) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName, cb));
     },
     changeHomeScreenRoute: tab => {
         dispatch(changeHomeScreenRoute(tab));
