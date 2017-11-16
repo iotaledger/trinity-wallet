@@ -101,6 +101,13 @@ export function setSeed(seed) {
     };
 }
 
+export function clearSeed() {
+    return {
+        type: 'CLEAR_SEED',
+        payload: '                                                                                 ',
+    };
+}
+
 // Check for sending to a used address
 function filterSpentAddresses(inputs) {
     return new Promise((resolve, reject) => {
@@ -177,6 +184,13 @@ export function replayBundle(transactionHash, depth = 3, minWeightMagnitude = 14
         return iota.api.replayBundle(transactionHash, depth, minWeightMagnitude, err => {
             if (err) {
                 console.log(err);
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Invalid Response',
+                        `The node returned an invalid response while auto-reattaching.`,
+                    ),
+                );
             } else {
                 dispatch(
                     generateAlert(
@@ -254,7 +268,7 @@ export function generateNewAddress(seed, seedName, addresses) {
                 const updatedAddresses = cloneDeep(addresses);
                 const addressNoChecksum = address.substring(0, 81);
                 // In case the newly created address is not part of the addresses object
-                // We'll just add that as a key with a 0 balance.
+                // Add that as a key with a 0 balance.
                 if (!(addressNoChecksum in addresses)) {
                     updatedAddresses[addressNoChecksum] = 0;
                 }
@@ -297,6 +311,13 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
         filterSpentAddresses(outputsToCheck).then(filtered => {
             if (filtered.length !== expectedOutputsLength) {
                 console.log('You cannot send to an already used address');
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Key reuse',
+                        `You cannot send to an address that has already been spent from.`,
+                    ),
+                );
                 return false;
             } else {
                 // Send transfer with depth 4 and minWeightMagnitude 18
@@ -310,6 +331,13 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                         dispatch(sendTransferSuccess(address, value));
                     } else {
                         dispatch(sendTransferError(error));
+                        dispatch(
+                            generateAlert(
+                                'error',
+                                'Invalid Response',
+                                `The node returned an invalid response while sending transfer.`,
+                            ),
+                        );
                         console.log('SOMETHING WENT WRONG: ', error);
                     }
                 });
@@ -355,6 +383,7 @@ export function randomiseSeed(randomBytesFn) {
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);
+                dispatch(generateAlert('error', 'Something went wrong', `Please restart the app.`));
             }
         });
     };

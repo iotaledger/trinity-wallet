@@ -23,7 +23,7 @@ export default class InitialLoading extends Component {
 
     componentWillMount() {
         RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
+    //        HockeyApp.feedback(); //Could possibly cause a crash
         });
     }
 
