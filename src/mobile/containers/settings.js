@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar, ScrollView } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
@@ -175,7 +175,7 @@ class Settings extends React.Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <View style={styles.settingsContainer}>
+                <ScrollView style={styles.settingsContainer} contentContainerStyle={styles.contentContainer}>
                     <TouchableOpacity onPress={event => this.onModePress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/mode.png')} style={styles.icon} />
@@ -242,7 +242,7 @@ class Settings extends React.Component {
                             <Text style={styles.titleText}>Log out</Text>
                         </View>
                     </TouchableOpacity>
-                </View>
+                </ScrollView>
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -290,31 +290,19 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
     },
     icon: {
-        width: width / 20,
-        height: width / 20,
+        width: width / 25,
+        height: width / 25,
         marginRight: width / 25,
     },
     settingsContainer: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        paddingBottom: height / 80,
-        zIndex: 1,
+    },
+    contentContainer: {
+        paddingVertical: height / 90,
     },
     modalContent: {
         backgroundColor: '#16313a',
         justifyContent: 'center',
-    },
-    line1: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        width: width / 1.16,
-    },
-    line2: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        width: width / 1.16,
-        marginTop: height / 4.8,
     },
     dropdownTitle: {
         fontSize: 16,
