@@ -90,13 +90,12 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 26
 
     defaultConfig {
         applicationId "com.iotawallet"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 1
         multiDexEnabled true
         versionName "1.0"
@@ -135,6 +134,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-extra-dimensions-android')
+    compile project(':react-native-detect-navbar-android')
     compile project(':react-native-os')
     compile project(':react-native-camera')
     compile project(':react-native-html-to-pdf')
@@ -153,7 +154,7 @@ dependencies {
   	compile project(':react-native-sensitive-info')
   	compile project(':react-native-camera')
     compile project(':react-native-fs')
-compile project(":react-native-hockeyapp")
+    compile project(":react-native-hockeyapp")
 }
 
 // Run this once to be able to run the application with BUCK

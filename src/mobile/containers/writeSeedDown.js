@@ -3,7 +3,8 @@ import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackg
 import { connect } from 'react-redux';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 class WriteSeedDown extends React.Component {
     constructor(props) {

@@ -23,9 +23,12 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import DropdownHolder from '../components/dropdownHolder';
 import { Keyboard } from 'react-native';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+import ExtraDimensions from 'react-native-extra-dimensions-android';
+
 const StatusBarDefaultBarStyle = 'light-content';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 var HockeyApp = require('react-native-hockeyapp');
 
@@ -101,6 +104,7 @@ class Login extends React.Component {
                 screen: 'loading',
                 navigatorStyle: {
                     navBarHidden: true,
+                    navBarTransparent: true
                 },
                 animated: false,
             });
