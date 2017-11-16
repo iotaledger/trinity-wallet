@@ -15,7 +15,8 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import PropTypes from 'prop-types';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {

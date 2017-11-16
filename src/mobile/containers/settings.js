@@ -12,7 +12,8 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import DropdownHolder from '../components/dropdownHolder';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 class Settings extends React.Component {
     constructor(props) {
@@ -87,6 +88,7 @@ class Settings extends React.Component {
             screen: 'change-password',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
                 screenBackgroundImageName: 'bg-green.png',
                 screenBackgroundColor: '#102e36',
             },
@@ -109,6 +111,7 @@ class Settings extends React.Component {
             screen: 'wallet-reset-confirm',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
                 screenBackgroundImageName: 'bg-green.png',
                 screenBackgroundColor: '#102e36',
             },
@@ -127,6 +130,7 @@ class Settings extends React.Component {
                 screen: 'login',
                 navigatorStyle: {
                     navBarHidden: true,
+                    navBarTransparent: true,
                     screenBackgroundImageName: 'bg-green.png',
                     screenBackgroundColor: '#102e36',
                 },
@@ -140,6 +144,7 @@ class Settings extends React.Component {
             screen: 'newSeedSetup',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true
             },
             animated: false,
         });
@@ -151,6 +156,7 @@ class Settings extends React.Component {
             screen: 'addAdditionalSeed',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true
             },
             animated: false,
         });
@@ -290,8 +296,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
     },
     icon: {
-        width: width / 20,
-        height: width / 20,
+        width: width / 22,
+        height: width / 22,
         marginRight: width / 25,
     },
     settingsContainer: {

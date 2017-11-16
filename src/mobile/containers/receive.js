@@ -26,7 +26,8 @@ import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 class Receive extends Component {

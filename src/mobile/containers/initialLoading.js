@@ -4,8 +4,12 @@ import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar }
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+import { DetectNavbar } from '../theme/androidSoftKeys'
+import ExtraDimensions from 'react-native-extra-dimensions-android';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+let height = Dimensions.get('window').height;
+global.height = DetectNavbar.hasSoftKeys() ? height -= ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT') : Dimensions.get('window').height;
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
@@ -35,13 +39,13 @@ export default class InitialLoading extends Component {
         if (!state.account.onboardingComplete) {
             this.props.navigator.push({
                 screen: 'languageSetup',
-                navigatorStyle: { navBarHidden: true },
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true},
                 animated: false,
             });
         } else {
             this.props.navigator.push({
                 screen: 'login',
-                navigatorStyle: { navBarHidden: true },
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
             });
         }
@@ -56,7 +60,7 @@ export default class InitialLoading extends Component {
                     <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>IOTA Foundation © {currentYear}</Text>
+                    <Text style={styles.text}>IOTA Alpha Wallet {currentYear}</Text>
                 </View>
             </ImageBackground>
         );
