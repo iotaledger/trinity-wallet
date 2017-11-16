@@ -5,15 +5,15 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-export default class ReAttacher extends Component {
+export default class Reattacher extends Component {
     constructor() {
         super();
 
-        this.autoReAttach = this.autoReAttach.bind(this);
+        this.autoReattach = this.autoReattach.bind(this);
     }
 
     componentDidMount() {
-        this.autoReAttach();
+        this.autoReattach();
     }
 
     componentWillUnmount() {
@@ -32,8 +32,8 @@ export default class ReAttacher extends Component {
         RNShakeEvent.removeEventListener('shake');
     }
 
-    autoReAttach() {
-        const { reAttachAfter, attachments } = this.props;
+    autoReattach() {
+        const { reattachAfter, attachments } = this.props;
 
         this.timer = isNull(this.timer) && clearTimeout(this.timer);
         this.timer = setTimeout(() => {
@@ -45,8 +45,8 @@ export default class ReAttacher extends Component {
                 }
             }
             this.timer = null;
-            this.autoReAttach(reAttachAfter);
-        }, reAttachAfter);
+            this.autoReattach();
+        }, reattachAfter);
     }
 
     render() {
@@ -54,12 +54,12 @@ export default class ReAttacher extends Component {
     }
 }
 
-ReAttacher.defaultProps = {
-    reAttachAfter: 600000,
+Reattacher.defaultProps = {
+    reattachAfter: 600000,
 };
 
-ReAttacher.propTypes = {
-    reAttachAfter: PropTypes.number,
+Reattacher.propTypes = {
+    reattachAfter: PropTypes.number,
     attachments: PropTypes.array.isRequired,
     attach: PropTypes.func.isRequired,
 };

@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
-import { randomiseSeed, setSeed } from '../../shared/actions/tempAccount';
+import { randomiseSeed, setSeed, clearSeed } from '../../shared/actions/tempAccount';
 import { randomBytes } from 'react-native-randombytes';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
@@ -35,9 +35,15 @@ class NewSeedSetup extends Component {
         super(props);
         this.state = {
             randomised: false,
-            infoTextHeight: height / 38,
+            infoTextHeight: 0,
             flashComplete: false,
         };
+
+        this.bind(['flashText1', 'flashText2']);
+    }
+
+    bind(methods) {
+        methods.forEach(method => (this[method] = this[method].bind(this)));
     }
 
     componentWillMount() {
@@ -48,31 +54,31 @@ class NewSeedSetup extends Component {
 
     componentWillUnmount() {
         RNShakeEvent.removeEventListener('shake');
+
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
     }
 
     onGeneratePress() {
         this.props.randomiseSeed(randomBytes);
-        this.setState({
-            randomised: true,
-        });
+        this.setState({ randomised: true });
         if (!this.state.flashComplete) {
-            this.timeout = setTimeout(this.flashText1.bind(this), 1000);
-            this.timeout = setTimeout(this.flashText2.bind(this), 1250);
-            this.timeout = setTimeout(this.flashText1.bind(this), 1400);
-            this.timeout = setTimeout(this.flashText2.bind(this), 1650);
+            this.timeout = setTimeout(this.flashText1, 1000);
+            this.timeout = setTimeout(this.flashText2, 1250);
+            this.timeout = setTimeout(this.flashText1, 1400);
+            this.timeout = setTimeout(this.flashText2, 1650);
 
-            this.timeout = setTimeout(this.flashText1.bind(this), 2400);
-            this.timeout = setTimeout(this.flashText2.bind(this), 2650);
-            this.timeout = setTimeout(this.flashText1.bind(this), 2800);
-            this.timeout = setTimeout(this.flashText2.bind(this), 3050);
+            this.timeout = setTimeout(this.flashText1, 2400);
+            this.timeout = setTimeout(this.flashText2, 2650);
+            this.timeout = setTimeout(this.flashText1, 2800);
+            this.timeout = setTimeout(this.flashText2, 3050);
 
-            this.timeout = setTimeout(this.flashText1.bind(this), 3800);
-            this.timeout = setTimeout(this.flashText2.bind(this), 4050);
-            this.timeout = setTimeout(this.flashText1.bind(this), 4200);
-            this.timeout = setTimeout(this.flashText2.bind(this), 4450);
-            this.setState({
-                flashComplete: true,
-            });
+            this.timeout = setTimeout(this.flashText1, 3800);
+            this.timeout = setTimeout(this.flashText2, 4050);
+            this.timeout = setTimeout(this.flashText1, 4200);
+            this.timeout = setTimeout(this.flashText2, 4450);
+            this.setState({ flashComplete: true });
         }
     }
 
@@ -101,35 +107,42 @@ class NewSeedSetup extends Component {
             );
         }
     }
+
     onBackPress() {
-        this.props.setSeed('                                                                                 ');
-        this.props.navigator.pop({
+        this.props.clearSeed();
+        this.props.navigator.push({
+            screen: 'walletSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+            },
             animated: false,
         });
     }
 
     onItemPress(sectionID) {
-        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-        randomBytes(5, (error, bytes) => {
-            if (!error) {
-                let i = 0;
-                let seed = this.props.tempAccount.seed;
-                Object.keys(bytes).map((key, index) => {
-                    if (bytes[key] < 243 && i < 1) {
-                        const randomNumber = bytes[key] % 27;
-                        const randomLetter = charset.charAt(randomNumber);
-                        const substr1 = seed.substr(0, sectionID);
-                        sectionID++;
-                        const substr2 = seed.substr(sectionID, 80);
-                        seed = substr1 + randomLetter + substr2;
-                        i++;
-                    }
-                });
-                this.props.setSeed(seed);
-            } else {
-                console.log(error);
-            }
-        });
+        if (this.state.randomised) {
+            const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
+            randomBytes(5, (error, bytes) => {
+                if (!error) {
+                    let i = 0;
+                    let seed = this.props.tempAccount.seed;
+                    Object.keys(bytes).map((key, index) => {
+                        if (bytes[key] < 243 && i < 1) {
+                            const randomNumber = bytes[key] % 27;
+                            const randomLetter = charset.charAt(randomNumber);
+                            const substr1 = seed.substr(0, sectionID);
+                            sectionID++;
+                            const substr2 = seed.substr(sectionID, 80);
+                            seed = substr1 + randomLetter + substr2;
+                            i++;
+                        }
+                    });
+                    this.props.setSeed(seed);
+                } else {
+                    console.log(error);
+                }
+            });
+        }
     }
 
     render() {
@@ -141,7 +154,7 @@ class NewSeedSetup extends Component {
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.generateButton}>
-                            <Text style={styles.generateText}>GENERATE NEW SEED</Text>
+                            <Text style={styles.generateText}>PRESS FOR NEW SEED</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -156,7 +169,21 @@ class NewSeedSetup extends Component {
                                 underlayColor="#F7D002"
                             >
                                 <View style={styles.tile}>
-                                    <Text style={styles.item}>{rowData}</Text>
+                                    <Text
+                                        style={{
+                                            backgroundColor: 'white',
+                                            width: width / 14,
+                                            height: width / 14,
+                                            color: '#1F4A54',
+                                            fontFamily: 'Lato-Bold',
+                                            fontSize: width / 28.9,
+                                            textAlign: 'center',
+                                            paddingTop: height / 130,
+                                            opacity: this.state.randomised ? 1 : 0.1,
+                                        }}
+                                    >
+                                        {rowData}
+                                    </Text>
                                 </View>
                             </TouchableHighlight>
                         )}
@@ -180,12 +207,29 @@ class NewSeedSetup extends Component {
                     >
                         Press individual letters to randomise them.
                     </Text>
-                    <OnboardingButtons
-                        onLeftButtonPress={() => this.onBackPress()}
-                        onRightButtonPress={() => this.onNextPress()}
-                        leftText={'BACK'}
-                        rightText={'NEXT'}
-                    />
+                    <View style={styles.buttonsContainer}>
+                        <TouchableOpacity onPress={event => this.onBackPress()}>
+                            <View style={styles.leftButton}>
+                                <Text style={styles.leftText}>Back</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={event => this.onNextPress()}>
+                            <View
+                                style={{
+                                    borderColor: '#9DFFAF',
+                                    borderWidth: 1.2,
+                                    borderRadius: 10,
+                                    width: width / 3,
+                                    height: height / 14,
+                                    alignItems: 'center',
+                                    justifyContent: 'space-around',
+                                    opacity: this.state.randomised ? 1 : 0.3,
+                                }}
+                            >
+                                <Text style={styles.rightText}>Next</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
@@ -243,16 +287,6 @@ const styles = StyleSheet.create({
         height: width / 1.1,
         width: width / 1.1,
     },
-    item: {
-        backgroundColor: 'white',
-        width: width / 14,
-        height: width / 14,
-        color: '#1F4A54',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 28.9,
-        textAlign: 'center',
-        paddingTop: height / 130,
-    },
     tile: {
         padding: height / 150,
         justifyContent: 'center',
@@ -275,7 +309,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
-        width: width / 2.5,
+        width: width / 2.2,
         height: height / 16,
         justifyContent: 'center',
         alignItems: 'center',
@@ -292,22 +326,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
     },
-    nextButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    nextText: {
+    rightText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
-    backButton: {
+    leftButton: {
         borderColor: '#F7D002',
         borderWidth: 1.2,
         borderRadius: 10,
@@ -315,8 +340,9 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
+        marginRight: width / 14,
     },
-    backText: {
+    leftText: {
         color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
@@ -333,7 +359,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -342,20 +368,23 @@ const styles = StyleSheet.create({
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
     },
 });
@@ -367,6 +396,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     setSeed: seed => {
         dispatch(setSeed(seed));
+    },
+    clearSeed: () => {
+        dispatch(clearSeed());
     },
     randomiseSeed: randomBytes => {
         dispatch(randomiseSeed(randomBytes));

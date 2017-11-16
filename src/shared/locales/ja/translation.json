@@ -102,12 +102,12 @@
         "button2": "完了"
     },
     "nameYourSeed": {
-        "text": "Here you can enter an name for your seed.",
-        "label": "Seed name",
-        "placeholder": "Main Wallet",
-        "explanation": "Enter a name for your seed to make them easier to differentiate.",
-        "button1": "DONE",
-        "button2": "GO BACK"
+        "text": "ここにSeed名を入力することもできます。",
+        "label": "Seed名",
+        "placeholder": "マインウォレット",
+        "explanation": "Seedを区別し易くするためのSeed名を入力して下さい。",
+        "button1": "完了",
+        "button2": "戻る"
     },
     "setPassword": {
         "title": "パスワード設定",
