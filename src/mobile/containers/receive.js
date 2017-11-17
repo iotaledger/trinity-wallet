@@ -106,16 +106,18 @@ class Receive extends Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={{ paddingBottom: height / 40, opacity: this.getOpacity() }}>
+                    <View style= {styles.qrContainer}>
+                        <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
+                    </View>
+                </View>
+                <View style={{ paddingBottom: height / 40, opacity: this.getOpacity() }}>
                     <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                         <View style={styles.receiveAddressContainer}>
-                            <Text style={styles.receiveAddressText} numberOfLines={3}>
+                            <Text style={styles.receiveAddressText}>
                                 {receiveAddress}
                             </Text>
                         </View>
                     </TouchableOpacity>
-                </View>
-                <View style={{ paddingBottom: height / 40, opacity: this.getOpacity() }}>
-                    <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
                 </View>
                 {receiveAddress === ' ' &&
                     !isGeneratingReceiveAddress && (
@@ -162,8 +164,8 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 8,
-        width: width / 1.3,
-        height: height / 10,
+        width: width / 2.14,
+        height: width / 4.2,
         justifyContent: 'center',
     },
     activityIndicator: {
@@ -173,11 +175,11 @@ const styles = StyleSheet.create({
         height: height / 5,
     },
     receiveAddressText: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 33.7,
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 31.8,
         color: 'white',
         backgroundColor: 'transparent',
-        paddingHorizontal: width / 15,
+        padding: width / 25,
         textAlign: 'center',
     },
     generateButton: {
@@ -205,6 +207,11 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 15,
     },
+    qrContainer: {
+      backgroundColor: 'white',
+      borderRadius: 15,
+      padding: width / 30
+    }
 });
 
 const mapStateToProps = state => ({
