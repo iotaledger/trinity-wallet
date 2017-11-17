@@ -233,7 +233,7 @@ class AddAdditionalSeed extends React.Component {
                                         baseColor="white"
                                         tintColor="#F7D002"
                                         enablesReturnKeyAutomatically={true}
-                                        label="Seed name"
+                                        label="Seed nickname"
                                         autoCapitalize="characters"
                                         autoCorrect={false}
                                         value={seedName}
