@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import filter from 'lodash/filter';
 import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -38,7 +39,6 @@ import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import { roundDown, formatValue, formatUnit } from '../../shared/libs/util';
-import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
@@ -211,6 +211,7 @@ class Home extends Component {
         } = this.props;
         const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = this.humanizeBalance(balance);
+
         const withSubtitles = (title, index) => ({ title, subtitle: '0 i', index });
         const titles = map(seedNames, withSubtitles);
 
@@ -218,10 +219,12 @@ class Home extends Component {
             active: isTopBarActive,
             selectedTitle,
             selectedSubtitle,
+            currentSeedIndex: seedIndex,
             titles,
             toggle: this.props.toggleTopBarDisplay,
             onChange: newSeedIdx => {
-                if (seedIndex + 1 < seedCount && !isGeneratingReceiveAddress) {
+                console.log(newSeedIdx);
+                if (!isGeneratingReceiveAddress) {
                     const seedName = seedNames[newSeedIdx];
 
                     this.props.setSeedIndex(newSeedIdx);
@@ -297,9 +300,7 @@ class Home extends Component {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>
-                    <TopBar {...topBarProps} />
-                </View>
+                <View style={styles.topContainer} />
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }}>{children}</View>
                 </View>
@@ -416,6 +417,7 @@ class Home extends Component {
                     attachments={tailTransactionHashesForPendingTransactions}
                     attach={this.props.replayBundle}
                 />
+                <TopBar {...topBarProps} />
                 <DropdownAlert
                     ref={ref => DropdownHolder.setDropdown(ref)}
                     elevation={120}
