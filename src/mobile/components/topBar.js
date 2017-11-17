@@ -26,18 +26,31 @@ export default class TopBar extends Component {
         };
     }
 
+    renderTitles(isActive, selectedTitle, selectedSubtitle) {
+        if (!isActive) {
+            return (
+                <View style={styles.titleWrapper}>
+                    <Text style={styles.mainTitle}>{selectedTitle}</Text>
+                    <Text style={styles.subtitle}>{selectedSubtitle}</Text>
+                </View>
+            );
+        }
+    }
+
     render() {
-        const { active, toggle } = this.props;
+        const { active, selectedTitle, selectedSubtitle, toggle } = this.props;
         const iconProps = TopBar.getIconPath(active);
 
+        const children = this.renderTitles(active, selectedTitle, selectedSubtitle);
         return (
             <View style={styles.container}>
                 <ScrollView style={{ maxHeight: height / 3.5 }}>
-                    <View style={styles.titleWrapper}>
-                        <Text style={styles.mainTitle}>MAIN WALLET</Text>
-                        <Text style={styles.subtitle}>7.9+ Gi</Text>
-                        {/*<Text style={styles.separator} />*/}
-                    </View>
+                    {children}
+                    {/*<View style={styles.titleWrapper}>*/}
+                    {/*<Text style={styles.mainTitle}>MAIN WALLET</Text>*/}
+                    {/*<Text style={styles.subtitle}>7.9+ Gi</Text>*/}
+                    {/*/!*<Text style={styles.separator} />*!/*/}
+                    {/*</View>*/}
                     {/*<View style={styles.titleWrapper}>*/}
                     {/*<Text style={styles.mainTitle}>SECOND WALLET</Text>*/}
                     {/*<Text style={styles.subtitle}>7.9+ Gi</Text>*/}
@@ -81,13 +94,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     mainTitle: {
-        fontFamily: 'Lato-Heavy',
+        fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         color: '#ffffff',
     },
     subtitle: {
-        fontFamily: 'Lato-Heavy',
-        fontSize: width / 32.7,
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 22.7,
         color: '#d3d3d3',
     },
     chevronWrapper: {
