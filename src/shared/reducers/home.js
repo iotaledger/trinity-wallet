@@ -2,6 +2,7 @@ import { ActionTypes } from '../actions/home';
 
 const initialState = {
     childRoute: 'balance', // left most tab
+    isTopBarActive: false,
 };
 
 export default (state = initialState, action) => {
