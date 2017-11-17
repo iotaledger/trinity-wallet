@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -34,6 +35,7 @@ import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+import { roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
@@ -180,6 +182,36 @@ class Home extends Component {
         this.props.changeHomeScreenRoute('settings');
     }
 
+    humanizeBalance(balance) {
+        const decimalPlaces = n => {
+            const s = '' + +n;
+            const match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
+            if (!match) {
+                return 0;
+            }
+
+            return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
+        };
+
+        const formatted = formatValue(balance);
+        const former = roundDown(formatted, 1);
+        const latter = balance < 1000 || decimalPlaces(formatted) <= 1 ? '' : '+';
+
+        return `${former + latter} ${formatUnit(balance)}`;
+    }
+
+    getTopBarProps() {
+        const { account: { seedNames, balance }, tempAccount: { seedIndex }, isTopBarActive } = this.props;
+        const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
+        const subtitle = this.humanizeBalance(balance);
+
+        return {
+            active: isTopBarActive,
+            selectedTitle,
+            subtitle,
+        };
+    }
+
     _renderTitlebar() {
         if (this.props.tempAccount.usedSeedToLogin == false) {
             return (
@@ -230,12 +262,13 @@ class Home extends Component {
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
+        const topBarProps = this.getTopBarProps();
 
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <TopBar />
+                    <TopBar {...topBarProps} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }}>{children}</View>
@@ -472,6 +505,7 @@ const mapStateToProps = state => ({
     tailTransactionHashesForPendingTransactions: getTailTransactionHashesForPendingTransactions(state),
     account: state.account,
     childRoute: state.home.childRoute,
+    isTopBarActive: state.home.isTopBarActive,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -503,6 +537,7 @@ Home.propTypes = {
     alerts: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     childRoute: PropTypes.string.isRequired,
+    isTopBarActive: PropTypes.bool.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
     tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
     generateAlert: PropTypes.func.isRequired,
