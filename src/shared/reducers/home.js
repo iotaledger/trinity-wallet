@@ -12,6 +12,11 @@ export default (state = initialState, action) => {
                 ...state,
                 childRoute: action.payload,
             };
+        case ActionTypes.TOGGLE_TOP_BAR_DISPLAY:
+            return {
+                ...state,
+                isTopBarActive: !state.isTopBarActive,
+            };
         default:
             return state;
     }

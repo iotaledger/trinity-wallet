@@ -19,7 +19,7 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import TopBar from '../components/topBar';
-import { changeHomeScreenRoute } from '../../shared/actions/home';
+import { changeHomeScreenRoute, toggleTopBarDisplay } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
 import {
     incrementSeedIndex,
@@ -209,6 +209,7 @@ class Home extends Component {
             active: isTopBarActive,
             selectedTitle,
             subtitle,
+            toggle: this.props.toggleTopBarDisplay,
         };
     }
 
@@ -525,6 +526,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setBalance(addressesWithBalance));
     },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
+    toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
     replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
     generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
     disposeOffAlert: () => dispatch(disposeOffAlert()),
@@ -542,6 +544,7 @@ Home.propTypes = {
     tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
     generateAlert: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
+    toggleTopBarDisplay: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
