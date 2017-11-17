@@ -5,8 +5,8 @@ import {
     getMarketData,
     getChartData,
     getPrice,
-    changeCurrency,
-    changeTimeFrame,
+    setCurrency,
+    setTimeframe
 } from '../../shared/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
@@ -100,11 +100,11 @@ class Balance extends React.Component {
                 <View style={{ flex: 5 }}>
                     <Chart
                         marketData={this.props.marketData}
-                        getPrice={currency => this.props.getPrice(currency)}
-                        getChartData={(currency, timeFrame) => this.props.getChartData(currency, timeFrame)}
+                        getPrice={() => this.props.getPrice()}
+                        getChartData={() => this.props.getChartData()}
                         getMarketData={() => this.props.getMarketData()}
-                        changeCurrency={(currency, timeFrame) => this.props.changeCurrency(currency, timeFrame)}
-                        changeTimeFrame={(currency, timeFrame) => this.props.changeTimeFrame(currency, timeFrame)}
+                        setCurrency={(currency) => this.props.setCurrency(currency)}
+                        setTimeframe={(timeframe) => this.props.setTimeframe(timeframe)}
                     />
                 </View>
             </View>
@@ -166,20 +166,20 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    changeCurrency: (currency, timeFrame) => {
-        dispatch(changeCurrency(currency, timeFrame));
-    },
-    changeTimeFrame: (currency, timeFrame) => {
-        dispatch(changeTimeFrame(currency, timeFrame));
-    },
     getMarketData: () => {
         dispatch(getMarketData());
     },
-    getPrice: currency => {
-        dispatch(getPrice(currency));
+    getPrice: () => {
+        dispatch(getPrice());
     },
-    getChartData: (currency, timeFrame) => {
-        dispatch(getChartData(currency, timeFrame));
+    getChartData: () => {
+        dispatch(getChartData());
+    },
+    setCurrency: (currency) => {
+        dispatch(setCurrency(currency));
+    },
+    setTimeframe: (timeframe) => {
+        dispatch(setTimeframe(timeframe));
     },
 });
 
