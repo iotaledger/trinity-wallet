@@ -132,7 +132,7 @@ class ChangePassword extends Component {
                         // on dropdown reference inside this component.
                         dropdown.alertWithType(
                             'success',
-                            'Password updated.',
+                            'Password updated',
                             'Your password has been successfully updated.',
                         );
                     })
@@ -156,7 +156,11 @@ class ChangePassword extends Component {
                 'Your current password is incorrect. Please try again.',
             );
         } else if (newPassword !== confirmedNewPassword) {
-            return dropdown.alertWithType('error', 'Passwords mismatch', 'Passwords do not match. Please try again.');
+            return dropdown.alertWithType(
+                'error',
+                'Passwords do not match',
+                'Passwords do not match. Please try again.',
+            );
         } else if (newPassword.length < 12 || confirmedNewPassword.length < 12) {
             return dropdown.alertWithType(
                 'error',
