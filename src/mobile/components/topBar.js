@@ -27,7 +27,7 @@ export default class TopBar extends Component {
     }
 
     render() {
-        const { active } = this.props;
+        const { active, toggle } = this.props;
         const iconProps = TopBar.getIconPath(active);
 
         return (
@@ -54,7 +54,7 @@ export default class TopBar extends Component {
                     {/*</View>*/}
                 </ScrollView>
                 <View style={styles.chevronWrapper}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={toggle}>
                         <Image style={styles.chevron} {...iconProps} />
                     </TouchableOpacity>
                 </View>
