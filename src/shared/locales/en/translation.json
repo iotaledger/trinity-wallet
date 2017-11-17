@@ -8,7 +8,8 @@
         "next": "NEXT",
         "manualCopy": "Manual Copy",
         "paperWallet": "Paper Wallet",
-        "copyToClipboard": "Copy to Clipboard"
+        "copyToClipboard": "Copy to Clipboard",
+        "qr": "QR"
     },
     "addAdditionalSeed": {
         "mainWallet": "MAIN WALLET",
@@ -27,7 +28,6 @@
         "nicknameInUse": "Nickname already in use",
         "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
         "enterSeed": "Please enter your seed.",
-        "qr": "QR",
         "enterSeedNickname": "Enter a seed nickname.",
         "seedNickname": "Seed nickname"
     },
@@ -49,5 +49,25 @@
         "currentPassword": "Current Password",
         "newPassword": "New Password",
         "confirmPassword": "Confirm New Password"
+    },
+    "copyToClipboard": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCopied": "Seed copied",
+        "seedCopiedExplanation":
+            "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
+        "clickToCopy": "Click the button below and copy your seed to a password manager."
+    },
+    "enterSeed": {
+        "invalidCharacters": "Seed contains invalid characters",
+        "invalidCharactersExplanation":
+            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedTooShort": "Seed is too short",
+        "seedTooShortExplanation":
+            "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "pleaseEnterSeed": "Please enter your seed.",
+        "seedExplanation":
+            "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.\",",
+        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
     }
 }
