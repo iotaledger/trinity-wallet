@@ -38,7 +38,7 @@ export default class InitialLoading extends Component {
         const state = store.getState();
         if (!state.account.onboardingComplete) {
             this.props.navigator.push({
-                screen: 'languageSetup',
+                screen: 'newSeedSetup',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true},
                 animated: false,
             });
