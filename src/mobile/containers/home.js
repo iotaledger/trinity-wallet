@@ -203,12 +203,12 @@ class Home extends Component {
     getTopBarProps() {
         const { account: { seedNames, balance }, tempAccount: { seedIndex }, isTopBarActive } = this.props;
         const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
-        const subtitle = this.humanizeBalance(balance);
+        const selectedSubtitle = this.humanizeBalance(balance);
 
         return {
             active: isTopBarActive,
             selectedTitle,
-            subtitle,
+            selectedSubtitle,
             toggle: this.props.toggleTopBarDisplay,
         };
     }
@@ -437,7 +437,7 @@ const styles = StyleSheet.create({
         flex: 4.7,
     },
     bottomContainer: {
-        flex: 0.9,
+        flex: 0.6,
     },
     tabBar: {
         flex: 1,
@@ -445,21 +445,22 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5);',
         justifyContent: 'space-around',
         alignItems: 'center',
-        opacity: 0.7,
+        opacity: 0.8,
     },
     button: {
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     icon: {
-        height: width / 15,
-        width: width / 15,
+        paddingTop: height / 60,
+        height: width / 19,
+        width: width / 19,
     },
     iconTitle: {
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
-        paddingTop: height / 60,
+        paddingTop: height / 80,
         fontFamily: 'Lato-Regular',
         fontSize: width / 40.5,
     },
