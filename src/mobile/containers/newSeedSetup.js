@@ -113,14 +113,18 @@ class NewSeedSetup extends Component {
 
     onBackPress() {
         this.props.clearSeed();
-        this.props.navigator.push({
-            screen: 'walletSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-            },
-            animated: false,
-        });
+        if(!this.props.account.onboardingComplete){
+            this.props.navigator.push({
+                screen: 'walletSetup',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                },
+                animated: false,
+            });
+        } else {
+            this.props.navigator.pop({ animated: false });
+        }
     }
 
     onItemPress(sectionID) {
