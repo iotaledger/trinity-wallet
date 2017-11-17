@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -24,6 +25,7 @@ import { getTailTransactionHashesForPendingTransactions } from '../../shared/sto
 import {
     incrementSeedIndex,
     decrementSeedIndex,
+    setSeedIndex,
     setReceiveAddress,
     replayBundle,
     setReady,
@@ -36,6 +38,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import { roundDown, formatValue, formatUnit } from '../../shared/libs/util';
+import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const { height, width } = Dimensions.get('window');
@@ -201,15 +204,41 @@ class Home extends Component {
     }
 
     getTopBarProps() {
-        const { account: { seedNames, balance }, tempAccount: { seedIndex }, isTopBarActive } = this.props;
+        const {
+            account: { seedNames, balance, seedCount, accountInfo },
+            tempAccount: { seedIndex, isGeneratingReceiveAddress, isSendingTransfer, isGettingTransfers },
+            isTopBarActive,
+        } = this.props;
         const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = this.humanizeBalance(balance);
+        const withSubtitles = (title, index) => ({ title, subtitle: '0 i', index });
+        const titles = map(seedNames, withSubtitles);
 
         return {
             active: isTopBarActive,
             selectedTitle,
             selectedSubtitle,
+            titles,
             toggle: this.props.toggleTopBarDisplay,
+            onChange: newSeedIdx => {
+                if (seedIndex + 1 < seedCount && !isGeneratingReceiveAddress) {
+                    const seedName = seedNames[newSeedIdx];
+
+                    this.props.setSeedIndex(newSeedIdx);
+                    const seedStrings = Object.keys(accountInfo);
+                    this.props.setBalance(accountInfo[seedStrings[newSeedIdx]].addresses); // Dangerous
+                    this.props.setReceiveAddress(' ');
+
+                    // Get new account info if not sending or getting transfers
+                    if (!isSendingTransfer && !isGettingTransfers) {
+                        this.props.getAccountInfo(seedName, newSeedIdx, accountInfo, error => {
+                            if (error) {
+                                this.onNodeError();
+                            }
+                        });
+                    }
+                }
+            },
         };
     }
 
@@ -389,6 +418,7 @@ class Home extends Component {
                 />
                 <DropdownAlert
                     ref={ref => DropdownHolder.setDropdown(ref)}
+                    elevation={120}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
@@ -435,9 +465,10 @@ const styles = StyleSheet.create({
     },
     midContainer: {
         flex: 4.7,
+        zIndex: 0,
     },
     bottomContainer: {
-        flex: 0.6,
+        flex: 0.7,
     },
     tabBar: {
         flex: 1,
@@ -526,6 +557,7 @@ const mapDispatchToProps = dispatch => ({
     setBalance: addressesWithBalance => {
         dispatch(setBalance(addressesWithBalance));
     },
+    setSeedIndex: index => dispatch(setSeedIndex(index)),
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
     toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
     replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
@@ -546,6 +578,7 @@ Home.propTypes = {
     generateAlert: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
     toggleTopBarDisplay: PropTypes.func.isRequired,
+    setSeedIndex: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
