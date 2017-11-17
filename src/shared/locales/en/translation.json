@@ -27,5 +27,24 @@
         "qr": "QR",
         "enterSeedNickname": "Enter a seed nickname.",
         "seedNickname": "Seed nickname"
+    },
+    "changePassword": {
+        "oops": "Oops! Something went wrong",
+        "oopsExplanation": "Looks like something wrong while updating your password. Please try again.",
+        "passwordUpdated": "Password updated",
+        "passwordUpdatedExplanation": "Your password has been successfully updated.",
+        "incorrectPassword": "Incorrect password",
+        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "passwordsDoNotMatch": "Passwords do not match",
+        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordTooShort": "Password is too short",
+        "passwordTooShortExplanation": "Your password must be at least 12 characters. Please try again.",
+        "oldPassword": "Cannot set old password",
+        "oldPasswordExplanation":
+            "You cannot use the old password as your new password. Please try again with a new password.",
+        "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password"
     }
 }
