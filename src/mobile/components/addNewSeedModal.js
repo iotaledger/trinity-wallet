@@ -97,10 +97,6 @@ const styles = StyleSheet.create({
         top: 0,
         margin: width / 40,
     },
-    textField: {
-        color: 'white',
-        fontFamily: 'Inconsolata-Bold',
-    },
 });
 
 export default AddNewSeedModal;
