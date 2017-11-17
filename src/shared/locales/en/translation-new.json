@@ -1,0 +1,25 @@
+{
+    "global": {
+        "invalidResponse": "Invalid response",
+        "invalidResponseExplanation": "The node returned an invalid response.",
+        "seed": "Seed"
+    },
+    "addAdditionalSeed": {
+        "mainWallet": "MAIN WALLET",
+        "secondWallet": "SECOND WALLET",
+        "thirdWallet": "THIRD WALLET",
+        "fourthWallet": "FOURTH WALLET",
+        "fifthWallet": "FIFTH WALLET",
+        "sixthWallet": "SIXTH WALLET",
+        "otherWallet": "OTHER WALLET",
+        "seedInvalidChars": "Seed contains invalid characters",
+        "seedInvalidCharsExplanation":
+            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedTooShort": "Seed is too short",
+        "seedTooShortExplanation":
+            "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "nicknameInUse": "Nickname already in use",
+        "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
+        "enterSeed": "Please enter your seed."
+    }
+}
