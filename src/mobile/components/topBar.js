@@ -14,33 +14,48 @@ import {
 const { height, width } = Dimensions.get('window');
 
 export default class TopBar extends Component {
+    static getIconPath(isActive) {
+        if (isActive) {
+            return {
+                source: require('../../shared/images/chevron-up.png'),
+            };
+        }
+
+        return {
+            source: require('../../shared/images/chevron-down.png'),
+        };
+    }
+
     render() {
+        const { active } = this.props;
+        const iconProps = TopBar.getIconPath(active);
+
         return (
             <View style={styles.container}>
                 <ScrollView style={{ maxHeight: height / 3.5 }}>
                     <View style={styles.titleWrapper}>
                         <Text style={styles.mainTitle}>MAIN WALLET</Text>
-                        <Text style={styles.subTitle}>7.9+ Gi</Text>
+                        <Text style={styles.subtitle}>7.9+ Gi</Text>
                         {/*<Text style={styles.separator} />*/}
                     </View>
                     {/*<View style={styles.titleWrapper}>*/}
                     {/*<Text style={styles.mainTitle}>SECOND WALLET</Text>*/}
-                    {/*<Text style={styles.subTitle}>7.9+ Gi</Text>*/}
+                    {/*<Text style={styles.subtitle}>7.9+ Gi</Text>*/}
                     {/*<Text style={styles.separator} />*/}
                     {/*</View>*/}
                     {/*<View style={styles.titleWrapper}>*/}
                     {/*<Text style={styles.mainTitle}>THIRD WALLET</Text>*/}
-                    {/*<Text style={styles.subTitle}>7.9+ Gi</Text>*/}
+                    {/*<Text style={styles.subtitle}>7.9+ Gi</Text>*/}
                     {/*<Text style={styles.separator} />*/}
                     {/*</View>*/}
                     {/*<View style={styles.titleWrapper}>*/}
                     {/*<Text style={styles.mainTitle}>FOURTH WALLET</Text>*/}
-                    {/*<Text style={styles.subTitle}>7.9+ Gi</Text>*/}
+                    {/*<Text style={styles.subtitle}>7.9+ Gi</Text>*/}
                     {/*</View>*/}
                 </ScrollView>
                 <View style={styles.chevronWrapper}>
                     <TouchableOpacity>
-                        <Image style={styles.chevron} source={require('../../shared/images/chevron-up.png')} />
+                        <Image style={styles.chevron} {...iconProps} />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -70,7 +85,7 @@ const styles = StyleSheet.create({
         fontSize: width / 20.7,
         color: '#ffffff',
     },
-    subTitle: {
+    subtitle: {
         fontFamily: 'Lato-Heavy',
         fontSize: width / 32.7,
         color: '#d3d3d3',
