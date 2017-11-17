@@ -1,18 +1,8 @@
 import map from 'lodash/map';
-import each from 'lodash/each';
+import filter from 'lodash/filter';
 import size from 'lodash/size';
 import React, { Component } from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    Modal,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Dimensions,
-    ScrollView,
-} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
@@ -45,46 +35,38 @@ export default class TopBar extends Component {
             return baseContent;
         }
 
-        const restContent = [];
-        each(titles, (t, idx) => {
-            const isNotCurrentlySelectedSeed = idx !== currentSeedIndex;
-            const isLast = idx === size(titles) - 1;
+        const withoutSelectedTitle = filter(titles, (t, i) => i !== currentSeedIndex);
+        const restContent = map(withoutSelectedTitle, (t, idx) => {
+            const isLast = idx === size(withoutSelectedTitle) - 1;
+            const children = (
+                <TouchableOpacity
+                    onPress={() => {
+                        toggle(); // Close
+                        onChange(t.index);
+                    }}
+                    key={idx}
+                >
+                    <Text style={styles.mainTitle}>{t.title}</Text>
+                    <Text style={styles.subtitle}>{t.subtitle}</Text>
+                </TouchableOpacity>
+            );
 
-            if (isNotCurrentlySelectedSeed && isLast) {
-                restContent.push(
-                    <TouchableOpacity
-                        key={idx}
-                        onPress={() => {
-                            toggle(); // CLose
-                            onChange(t.index);
-                        }}
-                    >
-                        <Text style={styles.mainTitle}>{t.title}</Text>
-                        <Text style={styles.subtitle}>{t.subtitle}</Text>
-                    </TouchableOpacity>,
-                );
-            } else if (isNotCurrentlySelectedSeed && !isLast) {
-                restContent.push(
-                    <View key={idx}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                toggle(); // CLose
-                                onChange(t.index);
-                            }}
-                        >
-                            <Text style={styles.mainTitle}>{t.title}</Text>
-                            <Text style={styles.subtitle}>{t.subtitle}</Text>
-                        </TouchableOpacity>
-                        <Text style={styles.separator} />
-                    </View>,
-                );
+            if (isLast) {
+                return children;
             }
+
+            return (
+                <View key={idx}>
+                    {children}
+                    <Text style={styles.separator}>---------------------------</Text>
+                </View>
+            );
         });
 
         return (
             <View style={styles.titleWrapper}>
                 {baseContent}
-                <Text style={styles.separator} />
+                <Text style={styles.separator}>---------------------------</Text>
                 {restContent}
             </View>
         );
@@ -97,7 +79,7 @@ export default class TopBar extends Component {
         const children = this.renderTitles();
         return (
             <View style={styles.container}>
-                <ScrollView style={{ maxHeight: height / 3.5 }}>{children}</ScrollView>
+                <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                 <View style={styles.chevronWrapper}>
                     <TouchableOpacity onPress={toggle}>
                         <Image style={styles.chevron} {...iconProps} />
@@ -146,11 +128,12 @@ const styles = StyleSheet.create({
         width: width / 20,
     },
     separator: {
-        borderBottomColor: '#ffffff',
-        borderBottomWidth: 0.4,
-        borderStyle: 'dotted',
-        width: width / 3,
+        color: '#ffffff',
+        textAlign: 'center',
         marginTop: width / 60,
         marginBottom: width / 50,
+    },
+    scrollViewContainer: {
+        maxHeight: height / 3.5,
     },
 });
