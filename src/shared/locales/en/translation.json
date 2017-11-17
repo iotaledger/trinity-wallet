@@ -5,7 +5,10 @@
         "seed": "Seed",
         "back": "BACK",
         "done": "DONE",
-        "next": "NEXT"
+        "next": "NEXT",
+        "manualCopy": "Manual Copy",
+        "paperWallet": "Paper Wallet",
+        "copyToClipboard": "Copy to Clipboard"
     },
     "addAdditionalSeed": {
         "mainWallet": "MAIN WALLET",
