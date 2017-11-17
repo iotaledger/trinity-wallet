@@ -101,15 +101,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getMarketData: () => {
-        dispatch(getMarketData());
-    },
-    getPrice: currency => {
-        dispatch(getPrice(currency));
-    },
-    getChartData: (currency, timeFrame) => {
-        dispatch(getChartData(currency, timeFrame));
-    },
     setBalance: addressesWithBalance => {
         dispatch(setBalance(addressesWithBalance));
     },
@@ -124,9 +115,6 @@ Loading.propTypes = {
     tempAccount: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
-    getMarketData: PropTypes.func.isRequired,
-    getPrice: PropTypes.func.isRequired,
-    getChartData: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Loading);

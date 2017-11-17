@@ -42,8 +42,8 @@ class Login extends React.Component {
         this.onNodeError = this.onNodeError.bind(this);
     }
     getWalletData() {
-        this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
-        this.props.getPrice(this.props.marketData.currency);
+        this.props.getChartData();
+        this.props.getPrice();
         this.props.getMarketData();
     }
 
@@ -332,11 +332,11 @@ const mapDispatchToProps = dispatch => ({
     getMarketData: () => {
         dispatch(getMarketData());
     },
-    getPrice: currency => {
-        dispatch(getPrice(currency));
+    getPrice: () => {
+        dispatch(getPrice());
     },
-    getChartData: (currency, timeFrame) => {
-        dispatch(getChartData(currency, timeFrame));
+    getChartData: () => {
+        dispatch(getChartData());
     },
     clearTempData: () => dispatch(clearTempData()),
 });
