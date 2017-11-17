@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import each from 'lodash/each';
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import {
@@ -29,23 +30,30 @@ export default class TopBar extends Component {
     }
 
     renderTitles() {
-        const { active, selectedTitle, selectedSubtitle, titles, onChange, toggle } = this.props;
+        const { active, selectedTitle, selectedSubtitle, currentSeedIndex, titles, onChange, toggle } = this.props;
 
-        console.log(titles);
-        if (active) {
-            return (
-                <View style={styles.titleWrapper}>
+        const baseContent = (
+            <View style={styles.titleWrapper}>
+                <TouchableOpacity>
                     <Text style={styles.mainTitle}>{selectedTitle}</Text>
                     <Text style={styles.subtitle}>{selectedSubtitle}</Text>
-                </View>
-            );
+                </TouchableOpacity>
+            </View>
+        );
+
+        if (active) {
+            return baseContent;
         }
 
-        return map(titles, (t, idx) => {
-            const isLastTitle = idx === size(titles) - 1;
-            return (
-                <View style={styles.titleWrapper} key={idx}>
+        const restContent = [];
+        each(titles, (t, idx) => {
+            const isNotCurrentlySelectedSeed = idx !== currentSeedIndex;
+            const isLast = idx === size(titles) - 1;
+
+            if (isNotCurrentlySelectedSeed && isLast) {
+                restContent.push(
                     <TouchableOpacity
+                        key={idx}
                         onPress={() => {
                             toggle(); // CLose
                             onChange(t.index);
@@ -53,11 +61,33 @@ export default class TopBar extends Component {
                     >
                         <Text style={styles.mainTitle}>{t.title}</Text>
                         <Text style={styles.subtitle}>{t.subtitle}</Text>
-                    </TouchableOpacity>
-                    {!isLastTitle && <Text style={styles.separator} />}
-                </View>
-            );
+                    </TouchableOpacity>,
+                );
+            } else if (isNotCurrentlySelectedSeed && !isLast) {
+                restContent.push(
+                    <View key={idx}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                toggle(); // CLose
+                                onChange(t.index);
+                            }}
+                        >
+                            <Text style={styles.mainTitle}>{t.title}</Text>
+                            <Text style={styles.subtitle}>{t.subtitle}</Text>
+                        </TouchableOpacity>
+                        <Text style={styles.separator} />
+                    </View>,
+                );
+            }
         });
+
+        return (
+            <View style={styles.titleWrapper}>
+                {baseContent}
+                <Text style={styles.separator} />
+                {restContent}
+            </View>
+        );
     }
 
     render() {
@@ -82,12 +112,12 @@ const styles = StyleSheet.create({
     container: {
         position: 'absolute',
         width,
-        zIndex: 1,
+        elevation: 100,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         paddingVertical: height / 80,
-        opacity: 0.9,
+        opacity: 0.7,
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     titleWrapper: {
@@ -101,6 +131,7 @@ const styles = StyleSheet.create({
         color: '#ffffff',
     },
     subtitle: {
+        textAlign: 'center',
         fontFamily: 'Lato-Regular',
         fontSize: width / 22.7,
         color: '#d3d3d3',
