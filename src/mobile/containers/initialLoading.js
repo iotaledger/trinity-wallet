@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar } from 'react-native';
+import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
@@ -22,6 +22,15 @@ export default class InitialLoading extends Component {
 
     componentDidMount() {
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
+    handleBackButton() {
+      return true;
     }
 
     componentWillMount() {
@@ -38,7 +47,7 @@ export default class InitialLoading extends Component {
         const state = store.getState();
         if (!state.account.onboardingComplete) {
             this.props.navigator.push({
-                screen: 'newSeedSetup',
+                screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true},
                 animated: false,
             });

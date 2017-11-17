@@ -48,7 +48,6 @@ class PaperWallet extends React.Component {
 
     onDonePress() {
         this.props.navigator.pop({ animated: false });
-
         if (this.state.pressedPrint) {
             RNFS.unlink(RNFS.DocumentDirectoryPath + '/qr.png');
 
@@ -187,12 +186,12 @@ class PaperWallet extends React.Component {
 
 
         try {
+            this.props.navigator.toggleNavBar({
+                to: 'shown',
+            });
             if (isAndroid) {
                 await RNPrint.printhtml(options.html);
             } else {
-                this.props.navigator.toggleNavBar({
-                    to: 'shown',
-                });
                 results = await RNHTMLtoPDF.convert(options);
                 jobName = await RNPrint.print(results.filePath);
             }
