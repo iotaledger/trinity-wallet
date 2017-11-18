@@ -1,5 +1,5 @@
-// @flow
-import { seedsSelector, getSelectedIndex } from '../selectors/seeds';
+import { seedsSelector, getSelectedIndex, getSeedItems, getMostRecentSeedIndex } from '../selectors/seeds';
+import { securelyPersistSeeds, getSecurelyPersistedSeeds } from '../libs/util';
 
 export const ActionTypes = {
     ADD_SEED: 'IOTA/SEEDS/ADD_SEED',
@@ -7,8 +7,23 @@ export const ActionTypes = {
     REMOVE_SEED: 'IOTA/SEEDS/REMOVE_SEED',
     PATCH_SEED: 'IOTA/SEEDS/PATCH_SEED',
     CLEAR: 'IOTA/SEEDS/CLEAR',
+    LOAD_SEEDS: 'IOTA/SEEDS/LOAD_SEEDS',
 };
 
+export const loadSeeds = seeds => {
+    return {
+        type: ActionTypes.LOAD_SEEDS,
+        payload: seeds,
+    };
+};
+
+// TODO: Add flow here
+/*
+type SeedT = {
+    name?: string,
+    seed: string
+};
+*/
 export const addSeed = seed => {
     return {
         type: ActionTypes.ADD_SEED,
@@ -25,13 +40,15 @@ export const selectSeed = index => {
 
 export const addAndSelectSeed = seed => {
     return (dispatch, getState) => {
-        // TODO: don't add seed if already in store
-        // const { seeds } = getState();
-        // if (seeds.items.find(item => item.seed === seed.seed)) {
-        //     return;
-        // }
+        const seeds = getSeedItems(getState());
+        const index = seeds.findIndex(item => item.seed === seed.seed);
+        if (index !== -1) {
+            dispatch(selectSeed(index));
+            return;
+        }
+
         dispatch(addSeed({ seed }));
-        dispatch(selectSeed(seedsSelector(getState()).items.length - 1));
+        dispatch(selectSeed(getMostRecentSeedIndex(getState())));
     };
 };
 
@@ -62,5 +79,19 @@ export const removeSeed = seed => {
 export const clearSeeds = () => {
     return {
         type: ActionTypes.CLEAR,
+    };
+};
+
+export const persistSeeds = password => {
+    return (dispatch, getState) => {
+        const seeds = seedsSelector(getState);
+        securelyPersistSeeds(password, seeds);
+    };
+};
+
+export const restorePersistedSeeds = password => {
+    return dispatch => {
+        const seeds = getSecurelyPersistedSeeds(password);
+        dispatch(loadSeeds(seeds));
     };
 };
