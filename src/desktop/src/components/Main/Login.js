@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
+import { getSecurelyPersistedSeeds } from 'libs/util';
+import { showError } from 'actions/notifications';
 import Template, { Content, Footer } from '../Onboarding/Template';
 import PasswordInput from 'components/UI/PasswordInput';
 import Button from 'components/UI/Button';
@@ -12,10 +14,32 @@ class Login extends React.Component {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
+        showError: PropTypes.func.isRequired,
     };
 
-    handleSubmit = () => {
-        this.props.history.push('/balance');
+    changeHandler = e => {
+        const { target: { name, value } } = e;
+        this.setState(() => ({
+            [name]: value,
+        }));
+    };
+
+    handleSubmit = e => {
+        e.preventDefault();
+        const { password } = this.state;
+        const { showError } = this.props;
+        try {
+            const seeds = getSecurelyPersistedSeeds(password);
+            console.log('SEEDS:', seeds);
+            // if (seeds) {
+            // }
+            this.props.history.push('/balance');
+        } catch (err) {
+            showError({
+                title: 'Wrong PW',
+                text: 'Your password was wrong',
+            });
+        }
     };
 
     render() {
@@ -26,7 +50,7 @@ class Login extends React.Component {
                     <Content>
                         <p>
                             <label>Password:</label>
-                            <PasswordInput name="password" />
+                            <PasswordInput name="password" onChange={this.changeHandler} />
                         </p>
                     </Content>
                     <Footer>
@@ -46,6 +70,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+    showError,
     // addCustomNode,
     // setFullNode,
 };
