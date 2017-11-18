@@ -83,6 +83,11 @@ export default (state = initialState, action) => {
                 ...state,
                 seedIndex: state.seedIndex - 1,
             };
+        case 'SET_SEED_INDEX':
+            return {
+                ...state,
+                seedIndex: action.payload,
+            };
         case 'SET_USED_SEED_TO_LOGIN':
             return {
                 ...state,

@@ -1,15 +1,8 @@
-import get from 'lodash/get';
+import map from 'lodash/map';
+import filter from 'lodash/filter';
+import size from 'lodash/size';
 import React, { Component } from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Dimensions,
-    ScrollView,
-} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
@@ -26,46 +19,67 @@ export default class TopBar extends Component {
         };
     }
 
-    renderTitles(isActive, selectedTitle, selectedSubtitle) {
-        if (!isActive) {
-            return (
-                <View style={styles.titleWrapper}>
+    renderTitles() {
+        const { active, selectedTitle, selectedSubtitle, currentSeedIndex, titles, onChange, toggle } = this.props;
+
+        const baseContent = (
+            <View style={styles.titleWrapper}>
+                <TouchableOpacity>
                     <Text style={styles.mainTitle}>{selectedTitle}</Text>
                     <Text style={styles.subtitle}>{selectedSubtitle}</Text>
+                </TouchableOpacity>
+            </View>
+        );
+
+        if (active) {
+            return baseContent;
+        }
+
+        const withoutSelectedTitle = filter(titles, (t, i) => i !== currentSeedIndex);
+        const restContent = map(withoutSelectedTitle, (t, idx) => {
+            const isLast = idx === size(withoutSelectedTitle) - 1;
+            const children = (
+                <TouchableOpacity
+                    onPress={() => {
+                        toggle(); // Close
+                        onChange(t.index);
+                    }}
+                    key={idx}
+                >
+                    <Text style={styles.mainTitle}>{t.title}</Text>
+                    <Text style={styles.subtitle}>{t.subtitle}</Text>
+                </TouchableOpacity>
+            );
+
+            if (isLast) {
+                return children;
+            }
+
+            return (
+                <View key={idx}>
+                    {children}
+                    <Text style={styles.separator}>---------------------------</Text>
                 </View>
             );
-        }
+        });
+
+        return (
+            <View style={styles.titleWrapper}>
+                {baseContent}
+                <Text style={styles.separator}>---------------------------</Text>
+                {restContent}
+            </View>
+        );
     }
 
     render() {
-        const { active, selectedTitle, selectedSubtitle, toggle } = this.props;
+        const { active, toggle } = this.props;
         const iconProps = TopBar.getIconPath(active);
 
-        const children = this.renderTitles(active, selectedTitle, selectedSubtitle);
+        const children = this.renderTitles();
         return (
             <View style={styles.container}>
-                <ScrollView style={{ maxHeight: height / 3.5 }}>
-                    {children}
-                    {/*<View style={styles.titleWrapper}>*/}
-                    {/*<Text style={styles.mainTitle}>MAIN WALLET</Text>*/}
-                    {/*<Text style={styles.subtitle}>7.9+ Gi</Text>*/}
-                    {/*/!*<Text style={styles.separator} />*!/*/}
-                    {/*</View>*/}
-                    {/*<View style={styles.titleWrapper}>*/}
-                    {/*<Text style={styles.mainTitle}>SECOND WALLET</Text>*/}
-                    {/*<Text style={styles.subtitle}>7.9+ Gi</Text>*/}
-                    {/*<Text style={styles.separator} />*/}
-                    {/*</View>*/}
-                    {/*<View style={styles.titleWrapper}>*/}
-                    {/*<Text style={styles.mainTitle}>THIRD WALLET</Text>*/}
-                    {/*<Text style={styles.subtitle}>7.9+ Gi</Text>*/}
-                    {/*<Text style={styles.separator} />*/}
-                    {/*</View>*/}
-                    {/*<View style={styles.titleWrapper}>*/}
-                    {/*<Text style={styles.mainTitle}>FOURTH WALLET</Text>*/}
-                    {/*<Text style={styles.subtitle}>7.9+ Gi</Text>*/}
-                    {/*</View>*/}
-                </ScrollView>
+                <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                 <View style={styles.chevronWrapper}>
                     <TouchableOpacity onPress={toggle}>
                         <Image style={styles.chevron} {...iconProps} />
@@ -85,7 +99,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingVertical: height / 80,
-        opacity: 0.9,
+        opacity: 0.7,
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     titleWrapper: {
@@ -99,6 +113,7 @@ const styles = StyleSheet.create({
         color: '#ffffff',
     },
     subtitle: {
+        textAlign: 'center',
         fontFamily: 'Lato-Regular',
         fontSize: width / 22.7,
         color: '#d3d3d3',
@@ -113,11 +128,12 @@ const styles = StyleSheet.create({
         width: width / 20,
     },
     separator: {
-        borderBottomColor: '#ffffff',
-        borderBottomWidth: 0.4,
-        borderStyle: 'dotted',
-        width: width / 3,
+        color: '#ffffff',
+        textAlign: 'center',
         marginTop: width / 60,
         marginBottom: width / 50,
+    },
+    scrollViewContainer: {
+        maxHeight: height / 3.5,
     },
 });
