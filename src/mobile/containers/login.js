@@ -12,18 +12,22 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword } from '../../shared/actions/tempAccount';
+import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
+import { setPassword, clearTempData } from '../../shared/actions/tempAccount';
 import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
-import { setFirstUse } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import DropdownHolder from '../components/dropdownHolder';
 import { Keyboard } from 'react-native';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 const StatusBarDefaultBarStyle = 'light-content';
 
 const { height, width } = Dimensions.get('window');
+
+var HockeyApp = require('react-native-hockeyapp');
 
 class Login extends React.Component {
     constructor(props) {
@@ -32,8 +36,29 @@ class Login extends React.Component {
             password: '',
         };
         this.onLoginPress = this.onLoginPress.bind(this);
+        this.onNodeError = this.onNodeError.bind(this);
     }
-    s;
+    getWalletData() {
+        this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
+        this.props.getPrice(this.props.marketData.currency);
+        this.props.getMarketData();
+    }
+
+    componentWillMount() {
+        HockeyApp.configure(
+            '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
+            true, //Auto send crash reports
+            1, //Authentication type
+            'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
+        );
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
 
     onLoginPress() {
         if (!this.state.password) {
@@ -43,8 +68,8 @@ class Login extends React.Component {
                 'You must enter a password to log in. Please try again.',
             );
         } else {
-            this.props.setPassword(this.state.password);
             getFromKeychain(this.state.password, value => {
+                this.props.setPassword(this.state.password);
                 if (value) {
                     var seed = getSeed(value, 0);
                     login(seed);
@@ -58,12 +83,18 @@ class Login extends React.Component {
         const seedIndex = _this.props.tempAccount.seedIndex;
         const seedName = _this.props.account.seedNames[seedIndex];
         function login(value) {
+            _this.getWalletData();
             if (_this.props.account.firstUse) {
-                _this.props.getAccountInfoNewSeed(value, seedName);
-                _this.props.setFirstUse(false);
+                _this.props.getAccountInfoNewSeed(value, seedName, (error, success) => {
+                    if (error) _this.onNodeError();
+                });
             } else {
                 const accountInfo = _this.props.account.accountInfo;
-                _this.props.getAccountInfo(seedName, seedIndex, accountInfo);
+                _this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                    if (error) {
+                        _this.onNodeError();
+                    }
+                });
             }
             _this.props.changeHomeScreenRoute('balance');
             _this.props.navigator.push({
@@ -82,6 +113,13 @@ class Login extends React.Component {
                 'The password was not recognised. Please try again.',
             );
         }
+    }
+
+    onNodeError() {
+        this.props.navigator.pop({
+            animated: false,
+        });
+        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
     }
 
     onUseSeedPress() {
@@ -123,6 +161,7 @@ class Login extends React.Component {
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="done"
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
@@ -232,7 +271,7 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -241,20 +280,23 @@ const styles = StyleSheet.create({
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
     },
     buttonsContainer: {
@@ -267,24 +309,32 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
+    marketData: state.marketData,
 });
 
 const mapDispatchToProps = dispatch => ({
     setPassword: password => {
         dispatch(setPassword(password));
     },
-    setFirstUse: boolean => {
-        dispatch(setFirstUse(boolean));
+    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },
-    getAccountInfo: (seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
-    },
-    getAccountInfoNewSeed: (seed, seedName) => {
-        dispatch(getAccountInfoNewSeed(seed, seedName));
+    getAccountInfoNewSeed: (seed, seedName, cb) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName, cb));
     },
     changeHomeScreenRoute: tab => {
         dispatch(changeHomeScreenRoute(tab));
     },
+    getMarketData: () => {
+        dispatch(getMarketData());
+    },
+    getPrice: currency => {
+        dispatch(getPrice(currency));
+    },
+    getChartData: (currency, timeFrame) => {
+        dispatch(getChartData(currency, timeFrame));
+    },
+    clearTempData: () => dispatch(clearTempData()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

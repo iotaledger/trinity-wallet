@@ -1,9 +1,26 @@
+import cloneDeep from 'lodash/cloneDeep';
+import size from 'lodash/size';
 import { iota } from '../libs/iota';
-import { updateAddresses } from '../actions/account';
+import { updateAddresses, addPendingTransfer } from '../actions/account';
+import { generateAlert } from '../actions/alerts';
+import { formatSentTransaction } from '../libs/accountUtils';
+
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
 
 /* eslint-disable no-console */
+
+export function getTransfersRequest() {
+    return {
+        type: 'GET_TRANSFERS_REQUEST',
+    };
+}
+
+export function getTransfersSuccess() {
+    return {
+        type: 'GET_TRANSFERS_SUCCESS',
+    };
+}
 
 export function setReceiveAddress(payload) {
     return {
@@ -84,6 +101,13 @@ export function setSeed(seed) {
     };
 }
 
+export function clearSeed() {
+    return {
+        type: 'CLEAR_SEED',
+        payload: '                                                                                 ',
+    };
+}
+
 // Check for sending to a used address
 function filterSpentAddresses(inputs) {
     return new Promise((resolve, reject) => {
@@ -154,6 +178,32 @@ function filterSpentAddresses(inputs) {
     });
 }
 
+export function replayBundle(transactionHash, depth = 3, minWeightMagnitude = 14) {
+    return dispatch => {
+        // Should be fire and forget
+        return iota.api.replayBundle(transactionHash, depth, minWeightMagnitude, err => {
+            if (err) {
+                console.log(err);
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Invalid Response',
+                        `The node returned an invalid response while auto-reattaching.`,
+                    ),
+                );
+            } else {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        'Autoreattaching to Tangle',
+                        `Reattaching transaction with hash ${transactionHash}`,
+                    ),
+                );
+            }
+        });
+    };
+}
+
 // Check for sending from a used addresses
 function getUnspentInputs(seed, start, threshold, inputs, cb) {
     if (arguments.length === 4) {
@@ -210,12 +260,19 @@ export function checkNode() {
 
 export function generateNewAddress(seed, seedName, addresses) {
     return dispatch => {
-        iota.api.getNewAddress(seed, { checksum: true }, (error, address) => {
+        const index = size(addresses);
+        const options = { checksum: true, index };
+
+        iota.api.getNewAddress(seed, options, (error, address) => {
             if (!error) {
-                if (!(address in addresses)) {
-                    addresses[address] = 0;
+                const updatedAddresses = cloneDeep(addresses);
+                const addressNoChecksum = address.substring(0, 81);
+                // In case the newly created address is not part of the addresses object
+                // Add that as a key with a 0 balance.
+                if (!(addressNoChecksum in addresses)) {
+                    updatedAddresses[addressNoChecksum] = 0;
                 }
-                dispatch(updateAddresses(seedName, addresses));
+                dispatch(updateAddresses(seedName, updatedAddresses));
                 dispatch(generateNewAddressSuccess(address));
             } else {
                 dispatch(generateNewAddressError());
@@ -224,9 +281,11 @@ export function generateNewAddress(seed, seedName, addresses) {
     };
 }
 
-export function sendTransaction(seed, addressesWithBalance, seedName, address, value, message) {
+export function sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message) {
     return dispatch => {
         // Convert to Trytes
+        const addressesWithBalance = currentSeedAccountInfo.addresses;
+        const transfers = currentSeedAccountInfo.transfers;
         const messageTrytes = iota.utils.toTrytes(message);
         const tag = iota.utils.toTrytes('IOTA');
         const transfer = [
@@ -241,24 +300,44 @@ export function sendTransaction(seed, addressesWithBalance, seedName, address, v
             return { address: iota.utils.noChecksum(transfer.address) };
         });
         var expectedOutputsLength = outputsToCheck.length;
-        if (!iota.valid.isTransfersArray(transfer)) {
+
+        /* TODO: iota.valid.isTransfersArray returns false if message contains ' or " characters, but a tx message can contain these characters. Need to fix. */
+
+        /*if (!iota.valid.isTransfersArray(transfer)) {
             console.log('Invalid transfer array');
             return;
-        }
+        }*/
         // Check to make sure user is not sending to an already used address
         filterSpentAddresses(outputsToCheck).then(filtered => {
             if (filtered.length !== expectedOutputsLength) {
                 console.log('You cannot send to an already used address');
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Key reuse',
+                        `You cannot send to an address that has already been spent from.`,
+                    ),
+                );
                 return false;
             } else {
                 // Send transfer with depth 4 and minWeightMagnitude 18
                 iota.api.sendTransfer(seed, 4, 14, transfer, function(error, success) {
                     if (!error) {
                         dispatch(checkForNewAddress(seedName, addressesWithBalance, success));
+                        dispatch(addPendingTransfer(seedName, transfers, success));
+                        dispatch(
+                            generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'),
+                        );
                         dispatch(sendTransferSuccess(address, value));
-                        console.log('SENT');
                     } else {
                         dispatch(sendTransferError(error));
+                        dispatch(
+                            generateAlert(
+                                'error',
+                                'Invalid Response',
+                                `The node returned an invalid response while sending transfer.`,
+                            ),
+                        );
                         console.log('SOMETHING WENT WRONG: ', error);
                     }
                 });
@@ -269,13 +348,18 @@ export function sendTransaction(seed, addressesWithBalance, seedName, address, v
 
 export function checkForNewAddress(seedName, addressesWithBalance, txArray) {
     return dispatch => {
-        const changeAddress = txArray[txArray.length - 1].address;
-        const addresses = Object.keys(addressesWithBalance);
-        // If current addresses does not include change address, add new address and balance
-        if (!addresses.includes(changeAddress)) {
-            addressesWithBalance[changeAddress] = 0;
+        // Check if 0 value transfer
+        if (txArray[0].value != 0) {
+            const changeAddress = txArray[txArray.length - 1].address;
+            const addresses = Object.keys(addressesWithBalance);
+            // Remove checksum
+            const addressNoChecksum = changeAddress.substring(0, 81);
+            // If current addresses does not include change address, add new address and balance
+            if (!addresses.includes(addressNoChecksum)) {
+                addressesWithBalance[addressNoChecksum] = 0;
+            }
+            dispatch(updateAddresses(seedName, addressesWithBalance));
         }
-        dispatch(updateAddresses(seedName, addressesWithBalance));
     };
 }
 
@@ -299,6 +383,7 @@ export function randomiseSeed(randomBytesFn) {
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);
+                dispatch(generateAlert('error', 'Something went wrong', `Please restart the app.`));
             }
         });
     };

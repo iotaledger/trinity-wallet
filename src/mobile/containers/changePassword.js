@@ -24,6 +24,7 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const { height, width } = Dimensions.get('window');
 
@@ -40,6 +41,16 @@ class ChangePassword extends Component {
         this.changePassword = this.changePassword.bind(this);
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     renderTextField(value, label, onChangeText) {
         // This should be abstracted away as an independent component
         // We are using almost the same field styles and props
@@ -54,6 +65,7 @@ class ChangePassword extends Component {
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,
+            returnKeyType: 'next',
             containerStyle: styles.textFieldContainer,
             secureTextEntry: true,
             label,
@@ -177,9 +189,6 @@ class ChangePassword extends Component {
                     <View>
                         <View style={styles.topWrapper}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.logo} />
-                            <View style={styles.headerWrapper}>
-                                <Text style={styles.header}>{toUpper('change password')}</Text>
-                            </View>
                         </View>
                         <View style={styles.midWrapper}>
                             <View style={styles.infoTextWrapper}>
@@ -221,7 +230,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.brand.primary,
     },
     topWrapper: {
-        flex: 1.3,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
@@ -229,26 +238,13 @@ const styles = StyleSheet.create({
     midWrapper: {
         flex: 2.5,
         alignItems: 'center',
+        paddingTop: height / 15,
     },
     bottomWrapper: {
         flex: 2.2,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-        paddingTop: height / 20,
-    },
-    headerWrapper: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: height / 8,
-        paddingTop: height / 35,
-    },
-    header: {
-        color: Colors.white,
-        fontFamily: Fonts.primary,
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     logo: {
         height: width / 5,
@@ -259,13 +255,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 6.1,
+        height: height / 6.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 40,
         borderStyle: 'dotted',
         paddingTop: height / 60,
-        marginTop: height / 50,
     },
     infoText: {
         color: Colors.white,

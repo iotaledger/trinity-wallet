@@ -13,6 +13,7 @@ import {
 import { connect } from 'react-redux';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
@@ -34,7 +35,14 @@ class CopySeedToClipboard extends React.Component {
         }
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
     componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
         this.clearTimeout();
         Clipboard.setString('');
     }
@@ -193,7 +201,6 @@ class CopySeedToClipboard extends React.Component {
                     </View>
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.copyButton}>
-                            <Image style={styles.copyImage} source={require('../../shared/images/clipboard.png')} />
                             <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
                         </View>
                     </TouchableOpacity>
@@ -238,7 +245,7 @@ const styles = StyleSheet.create({
         flex: 3.6,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 5,
+        paddingTop: height / 4.75,
     },
     bottomContainer: {
         justifyContent: 'center',
@@ -339,27 +346,20 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     copyButton: {
-        flexDirection: 'row',
-        borderColor: 'rgba(255,255,255,0.6)',
+        borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
         width: width / 2.5,
-        height: height / 20,
+        height: height / 16,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'space-around',
         backgroundColor: '#009f3f',
     },
     copyText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 40.5,
+        fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingRight: width / 50,
-    },
-    copyImage: {
-        height: width / 27,
-        width: width / 27,
-        paddingLeft: width / 50,
     },
     seedBox: {
         borderColor: 'white',
@@ -402,6 +402,35 @@ const styles = StyleSheet.create({
     arrow: {
         width: width / 2,
         height: height / 80,
+    },
+    dropdownTitle: {
+        fontSize: width / 25.9,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
+    },
+    dropdownMessage: {
+        fontSize: width / 29.6,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
+    },
+    dropdownImage: {
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
+        alignSelf: 'center',
     },
 });
 

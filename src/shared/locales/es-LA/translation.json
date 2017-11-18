@@ -108,6 +108,14 @@
         "button1": "IMPRIMIR BILLETERA DE PAPEL",
         "button2": "LISTO"
     },
+    "nameYourSeed": {
+        "text": "Aquí puedes ingresar un nombre para tu seed.",
+        "label": "Nombre del seed",
+        "placeholder": "Billetera principal",
+        "explanation": "Ingresa un nombre para la seed para poder distinguirlas fácilmente.",
+        "button1": "LISTO",
+        "button2": "VOLVER"
+    },
     "setPassword": {
         "title": "CONFIGURACIÓN DE CONTRASEÑA",
         "text": "Ahora tenemos que configurar una contraseña.",

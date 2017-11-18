@@ -1,9 +1,11 @@
+import merge from 'lodash/merge';
 import React from 'react';
 import {
     StyleSheet,
     View,
     Dimensions,
     Text,
+    Platform,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
@@ -19,12 +21,10 @@ import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-
-//import DropdownHolder from './dropdownHolder';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
-//const dropdown = DropdownHolder.getDropDown();
 
 class EnterSeed extends React.Component {
     constructor(props) {
@@ -34,6 +34,22 @@ class EnterSeed extends React.Component {
             isModalVisible: false,
         };
     }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
+    handleKeyPress = event => {
+        if (event.key == 'Enter') {
+            Keyboard.dismiss();
+        }
+    };
 
     onDonePress() {
         if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
@@ -85,6 +101,10 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
+        const isAndroid = Platform.OS === 'android';
+        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
+        const textFieldFontSize = isAndroid ? width / 22.7 : width / 20.7;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -109,11 +129,14 @@ class EnterSeed extends React.Component {
                                             style={styles.textField}
                                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                             labelFontSize={width / 31.8}
-                                            fontSize={width / 20.7}
+                                            fontSize={textFieldFontSize}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"
                                             enablesReturnKeyAutomatically={true}
+                                            returnKeyType="done"
+                                            blurOnSubmit={true} //Dismisses keyboard upon pressing Done
+                                            autoCapitalize="characters"
                                             label="Seed"
                                             autoCorrect={false}
                                             value={seed}
@@ -183,7 +206,7 @@ class EnterSeed extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -269,9 +292,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'white',
-        borderWidth: 1,
+        borderWidth: 0.8,
         borderRadius: 8,
-        width: width / 6,
+        width: width / 6.5,
         height: height / 16,
     },
     qrText: {
@@ -294,7 +317,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 90,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -303,21 +326,75 @@ const styles = StyleSheet.create({
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
+    },
+});
+
+const androidStyles = StyleSheet.create({
+    topContainer: {
+        flex: 1.2,
+        paddingTop: height / 22,
+    },
+    midContainer: {
+        flex: 4.8,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        paddingTop: height / 17,
+    },
+    titleContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: height / 70,
+    },
+    bottomContainer: {
+        flex: 0.7,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: height / 20,
+    },
+    infoTextContainer: {
+        borderColor: 'white',
+        borderWidth: 1,
+        borderRadius: 15,
+        width: width / 1.6,
+        minHeight: height / 3.4,
+        height: height / 3.3,
+        maxHeight: height / 3.2,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        paddingHorizontal: width / 30,
+        borderStyle: 'dotted',
+    },
+    warningText: {
+        color: 'white',
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 27.6,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    infoText: {
+        color: 'white',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
     },
 });
 
