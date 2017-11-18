@@ -94,18 +94,18 @@
         "optionA": "수동 복사",
         "optionB": " 종이 지갑",
         "optionC": "클립보드에 복사",
-        "explanation": "Click the button below to print a paper copy of your seed.",
-        "text1": "Store it safely",
-        "text2": "Never share your seed with anyone.",
-        "check_button": "IOTA logo",
-        "button1": "PRINT PAPER WALLET",
-        "button2": "DONE"
+        "explanation": "씨드를 인쇄하려면 아래 버튼을 클릭하십시오.",
+        "text1": "안전하게 저장하십시오.",
+        "text2": "절대 다른 이와 당신의 씨드를 공유하지 마십시오.",
+        "check_button": "IOTA 로고",
+        "button1": "종이 지갑 인쇄하기",
+        "button2": "완료"
     },
     "nameYourSeed": {
-        "text": "Here you can enter an name for your seed.",
-        "label": "Seed name",
-        "placeholder": "Main Wallet",
-        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "text": "여기 당신의 씨드를 위한 이름을 입력할 수 있습니다.",
+        "label": "씨드 이름",
+        "placeholder": "메인 지갑",
+        "explanation": "구별하기 쉽게하기 위해 씨드를 위한 이름을 입력하십시오.",
         "button1": "DONE",
         "button2": "GO BACK"
     },
