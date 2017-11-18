@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar, ScrollView } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
@@ -175,9 +175,9 @@ class Settings extends React.Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <ScrollView style={styles.settingsContainer} contentContainerStyle={styles.contentContainer}>
-                    <TouchableOpacity onPress={event => this.onModePress()} activeOpacity={0.95}>
-                        <View style={styles.item} pointerEvents="none">
+                <View style={styles.settingsContainer}>
+                    <TouchableOpacity onPress={event => this.onModePress()}>
+                        <View style={styles.item}>
                             <Image source={require('../../shared/images/mode.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Mode</Text>
                             <Text style={styles.settingText}>{this.props.settings.mode}</Text>
@@ -242,7 +242,7 @@ class Settings extends React.Component {
                             <Text style={styles.titleText}>Log out</Text>
                         </View>
                     </TouchableOpacity>
-                </ScrollView>
+                </View>
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -296,9 +296,6 @@ const styles = StyleSheet.create({
     },
     settingsContainer: {
         flex: 1,
-    },
-    contentContainer: {
-        paddingVertical: height / 90,
     },
     modalContent: {
         backgroundColor: '#16313a',
