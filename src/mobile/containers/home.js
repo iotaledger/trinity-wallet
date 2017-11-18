@@ -404,24 +404,25 @@ const styles = StyleSheet.create({
         zIndex: 0,
     },
     bottomContainer: {
-        flex: 0.7,
+        flex: 0.6,
     },
     tabBar: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: 'rgba(0, 0, 0, 0.5);',
+        backgroundColor: '#000000',
         justifyContent: 'space-around',
         alignItems: 'center',
-        opacity: 0.8,
+        opacity: 0.7,
+        elevation: 4,
     },
     button: {
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     icon: {
-        paddingTop: height / 60,
-        height: width / 19,
-        width: width / 19,
+        paddingTop: height / 40,
+        height: width / 18,
+        width: width / 18,
     },
     iconTitle: {
         color: 'white',

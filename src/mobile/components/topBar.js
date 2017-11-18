@@ -121,13 +121,13 @@ const styles = StyleSheet.create({
     container: {
         position: 'absolute',
         width,
-        elevation: 100,
+        elevation: 4,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         paddingVertical: height / 80,
         opacity: 0.7,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: '#000000',
     },
     titleWrapper: {
         paddingHorizontal: width / 40,
