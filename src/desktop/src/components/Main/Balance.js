@@ -14,10 +14,10 @@ class Balance extends React.Component {
         // t: PropTypes.func.isRequired,
     };
 
-    componentDidMount() {
-        const seed = 'QAPGQWR9USSAWPAKUDDLWCXQHIVTPYQPOYLATEYHUNAVDNDQSUPFDBJZRMSCNRL9VCALJOLLXTWAUBLDK';
-        this.props.getAccountInfoNewSeedAsync(seed);
-    }
+    // componentDidMount() {
+    //     const seed = 'QAPGQWR9USSAWPAKUDDLWCXQHIVTPYQPOYLATEYHUNAVDNDQSUPFDBJZRMSCNRL9VCALJOLLXTWAUBLDK';
+    //     this.props.getAccountInfoNewSeedAsync(seed);
+    // }
 
     render() {
         // const { t } = this.props;
