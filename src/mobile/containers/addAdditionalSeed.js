@@ -10,6 +10,7 @@ import {
     ScrollView,
     ImageBackground,
     StatusBar,
+    Platform
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -27,8 +28,10 @@ import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug report
 
 import DropdownHolder from '../components/dropdownHolder';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
+const isAndroid = Platform.OS === 'android';
 
 class AddAdditionalSeed extends React.Component {
     constructor(props) {
@@ -110,6 +113,7 @@ class AddAdditionalSeed extends React.Component {
                         screen: 'loading',
                         navigatorStyle: {
                             navBarHidden: true,
+                            navBarTransparent: true,
                         },
                         animated: false,
                     });
@@ -143,6 +147,7 @@ class AddAdditionalSeed extends React.Component {
             screen: 'home',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
             },
             animated: false,
         });
@@ -192,7 +197,7 @@ class AddAdditionalSeed extends React.Component {
                                             style={styles.textField}
                                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                             labelFontSize={width / 31.8}
-                                            fontSize={width / 20.7}
+                                            fontSize={isAndroid? width / 27.6 : width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"

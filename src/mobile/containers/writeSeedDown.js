@@ -3,7 +3,8 @@ import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackg
 import { connect } from 'react-redux';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 class WriteSeedDown extends React.Component {
     constructor(props) {
@@ -294,19 +295,17 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.65,
-        height: height / 3.4,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 20,
+        paddingVertical: height / 80,
+        marginTop: height / 60
     },
     seedBoxTextContainer: {
         width: width / 1.65,
-        height: height / 3.5,
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingTop: height / 80,
-        paddingBottom: height / 80,
+        paddingTop: height / 160,
         paddingLeft: width / 70,
     },
     seedBoxTextLeft: {
@@ -317,7 +316,7 @@ const styles = StyleSheet.create({
         letterSpacing: 8,
         backgroundColor: 'transparent',
         paddingRight: width / 70,
-        paddingVertical: 3,
+        paddingVertical: 2,
     },
     seedBoxTextRight: {
         color: 'white',
@@ -326,7 +325,7 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         letterSpacing: 8,
         backgroundColor: 'transparent',
-        paddingVertical: 3,
+        paddingVertical: 2,
     },
     arrow: {
         width: width / 2,
