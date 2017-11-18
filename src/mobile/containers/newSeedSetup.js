@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
-import { randomiseSeed, setSeed } from '../../shared/actions/tempAccount';
+import { randomiseSeed, setSeed, clearSeed } from '../../shared/actions/tempAccount';
 import { randomBytes } from 'react-native-randombytes';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
@@ -34,7 +34,7 @@ class NewSeedSetup extends Component {
         super(props);
         this.state = {
             randomised: false,
-            infoTextHeight: height / 38,
+            infoTextHeight: 0,
             flashComplete: false,
         };
 
@@ -108,7 +108,7 @@ class NewSeedSetup extends Component {
     }
 
     onBackPress() {
-        this.props.setSeed('                                                                                 ');
+        this.props.clearSeed();
         this.props.navigator.push({
             screen: 'walletSetup',
             navigatorStyle: {
@@ -119,27 +119,29 @@ class NewSeedSetup extends Component {
     }
 
     onItemPress(sectionID) {
-        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-        randomBytes(5, (error, bytes) => {
-            if (!error) {
-                let i = 0;
-                let seed = this.props.tempAccount.seed;
-                Object.keys(bytes).map((key, index) => {
-                    if (bytes[key] < 243 && i < 1) {
-                        const randomNumber = bytes[key] % 27;
-                        const randomLetter = charset.charAt(randomNumber);
-                        const substr1 = seed.substr(0, sectionID);
-                        sectionID++;
-                        const substr2 = seed.substr(sectionID, 80);
-                        seed = substr1 + randomLetter + substr2;
-                        i++;
-                    }
-                });
-                this.props.setSeed(seed);
-            } else {
-                console.log(error);
-            }
-        });
+        if (this.state.randomised) {
+            const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
+            randomBytes(5, (error, bytes) => {
+                if (!error) {
+                    let i = 0;
+                    let seed = this.props.tempAccount.seed;
+                    Object.keys(bytes).map((key, index) => {
+                        if (bytes[key] < 243 && i < 1) {
+                            const randomNumber = bytes[key] % 27;
+                            const randomLetter = charset.charAt(randomNumber);
+                            const substr1 = seed.substr(0, sectionID);
+                            sectionID++;
+                            const substr2 = seed.substr(sectionID, 80);
+                            seed = substr1 + randomLetter + substr2;
+                            i++;
+                        }
+                    });
+                    this.props.setSeed(seed);
+                } else {
+                    console.log(error);
+                }
+            });
+        }
     }
 
     render() {
@@ -151,7 +153,7 @@ class NewSeedSetup extends Component {
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.generateButton}>
-                            <Text style={styles.generateText}>GENERATE NEW SEED</Text>
+                            <Text style={styles.generateText}>PRESS FOR NEW SEED</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -166,7 +168,21 @@ class NewSeedSetup extends Component {
                                 underlayColor="#F7D002"
                             >
                                 <View style={styles.tile}>
-                                    <Text style={styles.item}>{rowData}</Text>
+                                    <Text
+                                        style={{
+                                            backgroundColor: 'white',
+                                            width: width / 14,
+                                            height: width / 14,
+                                            color: '#1F4A54',
+                                            fontFamily: 'Lato-Bold',
+                                            fontSize: width / 28.9,
+                                            textAlign: 'center',
+                                            paddingTop: height / 130,
+                                            opacity: this.state.randomised ? 1 : 0.1,
+                                        }}
+                                    >
+                                        {rowData}
+                                    </Text>
                                 </View>
                             </TouchableHighlight>
                         )}
@@ -190,12 +206,29 @@ class NewSeedSetup extends Component {
                     >
                         Press individual letters to randomise them.
                     </Text>
-                    <OnboardingButtons
-                        onLeftButtonPress={() => this.onBackPress()}
-                        onRightButtonPress={() => this.onNextPress()}
-                        leftText={'BACK'}
-                        rightText={'NEXT'}
-                    />
+                    <View style={styles.buttonsContainer}>
+                        <TouchableOpacity onPress={event => this.onBackPress()}>
+                            <View style={styles.leftButton}>
+                                <Text style={styles.leftText}>Back</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={event => this.onNextPress()}>
+                            <View
+                                style={{
+                                    borderColor: '#9DFFAF',
+                                    borderWidth: 1.2,
+                                    borderRadius: 10,
+                                    width: width / 3,
+                                    height: height / 14,
+                                    alignItems: 'center',
+                                    justifyContent: 'space-around',
+                                    opacity: this.state.randomised ? 1 : 0.3,
+                                }}
+                            >
+                                <Text style={styles.rightText}>Next</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
@@ -253,16 +286,6 @@ const styles = StyleSheet.create({
         height: width / 1.1,
         width: width / 1.1,
     },
-    item: {
-        backgroundColor: 'white',
-        width: width / 14,
-        height: width / 14,
-        color: '#1F4A54',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 28.9,
-        textAlign: 'center',
-        paddingTop: height / 130,
-    },
     tile: {
         padding: height / 150,
         justifyContent: 'center',
@@ -285,7 +308,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
-        width: width / 2.5,
+        width: width / 2.2,
         height: height / 16,
         justifyContent: 'center',
         alignItems: 'center',
@@ -302,22 +325,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
     },
-    nextButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    nextText: {
+    rightText: {
         color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
-    backButton: {
+    leftButton: {
         borderColor: '#F7D002',
         borderWidth: 1.2,
         borderRadius: 10,
@@ -325,8 +339,9 @@ const styles = StyleSheet.create({
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
+        marginRight: width / 14,
     },
-    backText: {
+    leftText: {
         color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
@@ -380,6 +395,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     setSeed: seed => {
         dispatch(setSeed(seed));
+    },
+    clearSeed: () => {
+        dispatch(clearSeed());
     },
     randomiseSeed: randomBytes => {
         dispatch(randomiseSeed(randomBytes));

@@ -61,8 +61,4 @@ const styles = StyleSheet.create({
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
 });
