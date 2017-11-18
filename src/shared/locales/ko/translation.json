@@ -120,23 +120,23 @@
         "error1_text": "Your password must be at least 8 characters. Please try again.",
         "error2_title": "비밀번호가 일치하지 않습니다.",
         "error2_text": "입력한 비밀번호가 일치하지 않습니다. 다시 입력해주십시오.",
-        "button1": "DONE",
-        "button2": "BACK"
+        "button1": "완료",
+        "button2": "뒤로"
     },
     "onboardingComplete": {
-        "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-        "button": "NEXT"
+        "text": "지갑 설정이 완료되었습니다. 추후에 변경하려면 메뉴에 도구를 확인하십시오.",
+        "button": "다음"
     },
     "home": {
-        "tab1": "BALANCE",
-        "tab2": "SEND",
-        "tab3": "RECEIVE",
-        "tab4": "HISTORY",
-        "tab5": "TOOLS",
-        "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume",
-        "address": "Address",
+        "tab1": "잔액",
+        "tab2": "보내기",
+        "tab3": "받기",
+        "tab4": "히스토리",
+        "tab5": "도구",
+        "mcap": "시가총액",
+        "change": "변경하기",
+        "volume": "거래량",
+        "address": "주소",
         "amount": "금액",
         "button1": "보내기",
         "button2": "새 씨드 생성하기",
