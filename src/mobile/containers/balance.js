@@ -96,6 +96,16 @@ class Balance extends React.Component {
                     />
                 </View>
                 <View style={styles.line} />
+                <View style={{ flex: 50 }}>
+                    <Chart
+                        marketData={this.props.marketData}
+                        getPrice={currency => this.props.getPrice(currency)}
+                        getChartData={(currency, timeFrame) => this.props.getChartData(currency, timeFrame)}
+                        getMarketData={() => this.props.getMarketData()}
+                        changeCurrency={(currency, timeFrame) => this.props.changeCurrency(currency, timeFrame)}
+                        changeTimeFrame={(currency, timeFrame) => this.props.changeTimeFrame(currency, timeFrame)}
+                    />
+                </View>
             </View>
         );
     }
