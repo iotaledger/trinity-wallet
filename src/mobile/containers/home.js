@@ -1,5 +1,6 @@
 import get from 'lodash/get';
-import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
+import reduce from 'lodash/reduce';
 import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -109,46 +110,6 @@ class Home extends Component {
         }
     }
 
-    onLeftArrowPress() {
-        if (this.props.tempAccount.seedIndex > 0 && !this.props.tempAccount.isGeneratingReceiveAddress) {
-            const seedIndex = this.props.tempAccount.seedIndex - 1;
-            const seedName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-
-            this.props.decrementSeedIndex();
-            this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
-            this.props.setReceiveAddress(' ');
-            // Get new account info if not sending or getting transfers
-            if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                    if (error) this.onNodeError();
-                });
-            }
-        }
-    }
-
-    onRightArrowPress() {
-        if (
-            this.props.tempAccount.seedIndex + 1 < this.props.account.seedCount &&
-            !this.props.tempAccount.isGeneratingReceiveAddress
-        ) {
-            const seedIndex = this.props.tempAccount.seedIndex + 1;
-            const seedName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-
-            this.props.incrementSeedIndex();
-            this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
-            this.props.setReceiveAddress(' ');
-
-            // Get new account info if not sending or getting transfers
-            if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                    if (error) this.onNodeError();
-                });
-            }
-        }
-    }
-
     renderChildren(route) {
         const childrenProps = {
             type: route, // TODO: type prop might be unneeded in all the children components;
@@ -205,14 +166,33 @@ class Home extends Component {
 
     getTopBarProps() {
         const {
-            account: { seedNames, balance, seedCount, accountInfo },
+            account: { seedNames, balance, accountInfo },
             tempAccount: { seedIndex, isGeneratingReceiveAddress, isSendingTransfer, isGettingTransfers },
             isTopBarActive,
+            childRoute,
         } = this.props;
         const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = this.humanizeBalance(balance);
 
-        const withSubtitles = (title, index) => ({ title, subtitle: '0 i', index });
+        const getBalance = currentIdx => {
+            const seedStrings = Object.keys(accountInfo);
+            const data = accountInfo[seedStrings[currentIdx]].addresses;
+
+            if (isEmpty(data)) {
+                return 0; // no addresses
+            }
+
+            const calc = (res, value) => {
+                res += value;
+
+                return res;
+            };
+
+            const balance = reduce(data, calc, 0);
+            return this.humanizeBalance(balance);
+        };
+
+        const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
         const titles = map(seedNames, withSubtitles);
 
         return {
@@ -221,9 +201,9 @@ class Home extends Component {
             selectedSubtitle,
             currentSeedIndex: seedIndex,
             titles,
+            currentRoute: childRoute,
             toggle: this.props.toggleTopBarDisplay,
             onChange: newSeedIdx => {
-                console.log(newSeedIdx);
                 if (!isGeneratingReceiveAddress) {
                     const seedName = seedNames[newSeedIdx];
 
@@ -243,52 +223,6 @@ class Home extends Component {
                 }
             },
         };
-    }
-
-    _renderTitlebar() {
-        if (this.props.tempAccount.usedSeedToLogin == false) {
-            return (
-                <View style={styles.titlebarContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.onLeftArrowPress()}
-                        hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
-                    >
-                        <Image
-                            style={{
-                                width: width / 20,
-                                height: width / 20,
-                                opacity: this.props.tempAccount.isGeneratingReceiveAddress
-                                    ? 0.3
-                                    : this.props.tempAccount.seedIndex == 0 ? 0.3 : 1,
-                            }}
-                            source={require('../../shared/images/arrow-left.png')}
-                        />
-                    </TouchableOpacity>
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>
-                            {this.props.account.seedNames[this.props.tempAccount.seedIndex]}
-                        </Text>
-                    </View>
-                    <TouchableOpacity
-                        onPress={() => this.onRightArrowPress()}
-                        hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
-                    >
-                        <Image
-                            style={{
-                                width: width / 20,
-                                height: width / 20,
-                                opacity: this.props.tempAccount.isGeneratingReceiveAddress
-                                    ? 0.3
-                                    : this.props.tempAccount.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
-                            }}
-                            source={require('../../shared/images/arrow-right.png')}
-                        />
-                    </TouchableOpacity>
-                </View>
-            );
-        } else {
-            return <View style={styles.titlebarContainer} />;
-        }
     }
 
     render() {
