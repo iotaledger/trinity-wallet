@@ -3,11 +3,16 @@
     "version": "0.0.0",
     "description": "",
     "keywords": [],
-    "author": "Manuel Bieh <node@manuelbieh.de> (https://github.com/manuelbieh)",
+    "author": "IOTA Foundation",
+    "contributors": [
+      "Manuel Bieh <info@manuelbieh.de>",
+      "Umair Safraz"
+    ],
     "license": "MIT",
     "dependencies": {
         "babel-preset-es2015": "^6.24.1",
-        "babel-preset-stage-0": "^6.24.1",
+        "babel-preset-stage-2": "^6.24.1",
+        "bluebird": "^3.5.1",
         "iota.lib.js": "git+https://github.com/aquadestructor/iota.lib.js.git#269197a",
         "lodash": "^4.17.4",
         "moment": "^2.19.1",
