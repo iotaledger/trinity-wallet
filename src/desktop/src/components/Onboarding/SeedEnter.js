@@ -21,15 +21,15 @@ class SeedEnter extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        selectedSeed: PropTypes.shape({
-            seed: PropTypes.string,
-        }).isRequired,
+        // selectedSeed: PropTypes.shape({
+        //     seed: PropTypes.string,
+        // }).isRequired,
         showError: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     };
 
     state = {
-        seed: this.props.selectedSeed.seed,
+        seed: '',
     };
 
     onChange = e => {
