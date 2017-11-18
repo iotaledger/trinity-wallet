@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { addAndSelectSeed } from 'actions/seeds';
+import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { setOnboardingCompletionStatus } from 'actions/app';
 import { showError } from 'actions/notifications';
-// import { getSelectedSeed } from 'selectors/seeds';
+import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from '../../../../shared/libs/util';
 import Template, { Content, Footer } from './Template';
+import { securelyPersistSeeds } from 'libs/util';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 import PasswordInput from '../UI/PasswordInput';
@@ -15,12 +16,14 @@ import css from '../Layout/Onboarding.css';
 
 class SecurityEnter extends React.PureComponent {
     static propTypes = {
-        t: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired,
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
+        seeds: PropTypes.object,
         showError: PropTypes.func.isRequired,
         setOnboardingCompletionStatus: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     state = {};
@@ -34,7 +37,7 @@ class SecurityEnter extends React.PureComponent {
 
     onRequestNext = e => {
         e.preventDefault();
-        const { history, setOnboardingCompletionStatus, showError, t } = this.props;
+        const { clearSeeds, history, seeds, setOnboardingCompletionStatus, showError, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
         if (password !== passwordConfirm) {
@@ -51,6 +54,8 @@ class SecurityEnter extends React.PureComponent {
             });
         }
 
+        securelyPersistSeeds(password, seeds);
+        clearSeeds();
         setOnboardingCompletionStatus(true);
         history.push('/done');
     };
@@ -73,7 +78,9 @@ class SecurityEnter extends React.PureComponent {
                     </div>
                     <Infobox>
                         <p>{t('explanation')}</p>
-                        <p>{t('reminder')}</p>
+                        <p>
+                            <strong>{t('reminder')}</strong>
+                        </p>
                     </Infobox>
                 </Content>
                 <Footer>
@@ -89,12 +96,15 @@ class SecurityEnter extends React.PureComponent {
     }
 }
 
-// const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+    seeds: seedsSelector(state),
+});
 
 const mapDispatchToProps = {
     setOnboardingCompletionStatus,
     addAndSelectSeed,
+    clearSeeds,
     showError,
 };
 
-export default translate('setPassword')(connect(null, mapDispatchToProps)(SecurityEnter));
+export default translate('setPassword')(connect(mapStateToProps, mapDispatchToProps)(SecurityEnter));
