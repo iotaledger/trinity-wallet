@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import size from 'lodash/size';
+
 // FIXME: Hacking no-console linting.
 // FIXME: Get rid of the unnecessary break statements.
 // FIXME: Add a default case for all the switch statements
@@ -5,61 +10,99 @@
 
 /* eslint-disable no-console */
 
+export const ActionTypes = {
+    SET_TIME_FRAME: 'IOTA/MARKET_DATA/SET_TIME_FRAME',
+    SET_CHART_DATA: 'IOTA/MARKET_DATA/SET_CHART_DATA',
+    SET_STATISTICS: 'IOTA/MARKET_DATA/SET_STATISTICS',
+    SET_CURRENCY: 'IOTA/MARKET_DATA/SET_CURRENCY',
+    SET_PRICE: 'IOTA/MARKET_DATA/SET_PRICE',
+};
+
 export function setTimeFrame(timeFrame) {
     return {
-        type: 'SET_TIMEFRAME',
+        type: ActionTypes.SET_TIME_FRAME,
         payload: timeFrame,
     };
 }
 
 function setChartData(json, timeValue) {
-    const data = [];
-    for (let i = 0; i <= timeValue; i++) {
-        data[i] = { x: i, y: parseFloat(json.Data[i].close) };
+    const response = get(json, 'Data');
+    const hasDataPoints = size(response);
+
+    if (response && isArray(response) && hasDataPoints) {
+        const data = [];
+        for (let i = 0; i <= timeValue; i++) {
+            const y = get(response, `[${i}].close`);
+            data[i] = {
+                x: i,
+                y: parseFloat(y),
+            };
+        }
+
+        return {
+            type: ActionTypes.SET_CHART_DATA,
+            payload: data,
+        };
     }
+
     return {
-        type: 'SET_CHARTDATA',
-        payload: data,
+        type: ActionTypes.SET_CHART_DATA,
+        payload: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
     };
 }
 
 export function setMarketData(data) {
+    const usdPrice = get(data, 'RAW.IOT.USD.PRICE') || 0;
+    const volume24Hours = get(data, 'RAW.IOT.USD.VOLUME24HOUR') || 0;
+    const changePct24Hours = get(data, 'RAW.IOT.USD.CHANGEPCT24HOUR') || 0;
+    const mcap = Math.round(usdPrice * 2779530283)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const volume = Math.round(volume24Hours)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const change24h = parseFloat(Math.round(changePct24Hours * 100) / 100).toFixed(2);
+
     return {
-        type: 'SET_MARKETDATA',
-        usdPrice: data.RAW.IOT.USD.PRICE,
-        mcap: Math.round(data.RAW.IOT.USD.PRICE * 2779530283)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-        volume: Math.round(data.RAW.IOT.USD.VOLUME24HOUR)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-        change24h: parseFloat(Math.round(data.RAW.IOT.USD.CHANGEPCT24HOUR * 100) / 100).toFixed(2),
+        type: ActionTypes.SET_STATISTICS,
+        usdPrice,
+        mcap,
+        volume,
+        change24h,
     };
 }
 
 export function setCurrency(currency) {
     return {
-        type: 'SET_CURRENCY',
+        type: ActionTypes.SET_CURRENCY,
         payload: currency,
     };
 }
 
-export function setPrice(currency, data) {
-    switch (currency) {
+export function setPrice(selectedCurrency, data) {
+    const priceData = get(data, `RAW.IOT[${selectedCurrency}]`);
+    const price = get(priceData, 'PRICE') || 0;
+
+    switch (selectedCurrency) {
         case 'USD':
             return {
-                type: 'SET_PRICE',
-                payload: data.RAW.IOT[currency].PRICE,
+                type: ActionTypes.SET_PRICE,
+                payload: price,
             };
         case 'BTC':
             return {
-                type: 'SET_PRICE',
-                payload: parseFloat(data.RAW.IOT[currency].PRICE).toFixed(6),
+                type: ActionTypes.SET_PRICE,
+                payload: price ? parseFloat(price).toFixed(6) : price,
             };
         case 'ETH':
             return {
-                type: 'SET_PRICE',
-                payload: parseFloat(data.RAW.IOT[currency].PRICE).toFixed(5),
+                type: ActionTypes.SET_PRICE,
+                payload: price ? parseFloat(price).toFixed(5) : price,
+            };
+        default:
+            return {
+                type: ActionTypes.SET_PRICE,
+                payload: price,
             };
     }
 }

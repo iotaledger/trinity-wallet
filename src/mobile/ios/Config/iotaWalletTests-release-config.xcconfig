@@ -1,0 +1,9 @@
+//
+//  iotaWalletTests-release-config.xcconfig
+//  iotaWalletTests
+//
+//  Created by Rajiv Shah on 11/9/17.
+//  Copyright © 2017 Facebook. All rights reserved.
+//
+#include "buildnumber.xcconfig"
+#include "../Pods/Target Support Files/Pods-iotaWalletTests/Pods-iotaWalletTests.release.xcconfig"

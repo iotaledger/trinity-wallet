@@ -23,7 +23,10 @@ import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempA
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
+import TransferConfirmationModal from '../components/transferConfirmationModal';
 import { getAccountInfo } from '../../shared/actions/account';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+
 import DropdownHolder from '../components/dropdownHolder';
 const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
@@ -36,24 +39,24 @@ class Send extends Component {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
         this.state = {
-            denomination: 'Mi',
+            denomination: 'i',
             amount: '',
             address: '',
             message: '',
             dataSource: ds.cloneWithRows([]),
+            selectedSetting: '',
+            modalContent: '',
         };
     }
 
-    componentDidMount() {
-        if (this.props.tempAccount.triggerSentDropdown) {
-            const dropdown = DropdownHolder.getDropdown();
-            dropdown.alertWithType(
-                'success',
-                'Transaction sent successfully',
-                `You have sent ${this.props.tempAccount.lastTxValue} ${sentDenomination} to address ${this.props
-                    .tempAccount.lastTxAddress}.`,
-            );
-        }
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     onDenominationPress() {
@@ -74,10 +77,6 @@ class Send extends Component {
                 this.setState({ denomination: 'Mi' });
                 break;
         }
-    }
-
-    onQRPress() {
-        this._showModal();
     }
 
     onMaxPress() {
@@ -102,6 +101,14 @@ class Send extends Component {
         return true;
     }
 
+    enoughBalance() {
+        if (parseFloat(this.state.amount) * this.getUnitMultiplier() > this.props.account.balance) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     renderInvalidAddressErrors(address) {
         const props = ['error', 'Invalid Address'];
         const dropdown = DropdownHolder.getDropdown();
@@ -115,40 +122,27 @@ class Send extends Component {
         return dropdown.alertWithType(...props, 'Address contains invalid checksum');
     }
 
-    sendTransaction() {
-        const dropdown = DropdownHolder.getDropdown();
-        sentDenomination = this.state.denomination;
-
-        const accountInfo = this.props.account.accountInfo;
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const seedName = this.props.account.seedNames[seedIndex];
-        const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
-
+    onSendPress() {
         const address = this.state.address;
-        const value = parseInt(this.state.amount) * this.getUnitMultiplier();
+        const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
         const message = this.state.message;
+
+        const dropdown = DropdownHolder.getDropdown();
         const addressIsValid = this.isValidAddress(address);
         const messageIsValid = this.isValidMessage(message);
+        const enoughBalance = this.enoughBalance();
 
-        if (addressIsValid && messageIsValid) {
-            this.props.sendTransferRequest();
-            getFromKeychain(this.props.tempAccount.password, value => {
-                if (typeof value !== 'undefined') {
-                    var seed = getSeed(value, this.props.tempAccount.seedIndex);
-                    sendTx(seed);
-                    {
-                        /*if (sendTransaction(seed.seed, address, value, message) == false) {
-                        this.dropdown.alertWithType(
-                            'error',
-                            'Key reuse',
-                            `The address you are trying to send to has already been used. Please try another address.`,
-                        );
-                    }*/
-                    }
-                } else {
-                    console.log('error');
-                }
-            });
+        if (addressIsValid && messageIsValid && enoughBalance) {
+            this._showModal();
+        }
+
+        if (!enoughBalance) {
+            const dropdown = DropdownHolder.getDropdown();
+            return dropdown.alertWithType(
+                'error',
+                'Not enough cash',
+                'You do not have enough IOTA to complete this transfer.',
+            );
         }
         if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
@@ -157,9 +151,39 @@ class Send extends Component {
         if (!messageIsValid) {
             console.log('invalid message');
         }
+    }
+
+    sendTransfer() {
+        sentDenomination = this.state.denomination;
+
+        const accountInfo = this.props.account.accountInfo;
+        const seedIndex = this.props.tempAccount.seedIndex;
+        const seedName = this.props.account.seedNames[seedIndex];
+        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+
+        const address = this.state.address;
+        const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
+        const message = this.state.message;
+
+        this.props.sendTransferRequest();
+        getFromKeychain(this.props.tempAccount.password, value => {
+            if (typeof value !== 'undefined') {
+                var seed = getSeed(value, this.props.tempAccount.seedIndex);
+                if (sendTx(seed) == false) {
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Key reuse',
+                        `The address you are trying to send to has already been used. Please try another address.`,
+                    );
+                }
+            } else {
+                console.log('error');
+            }
+        });
+
         const _this = this;
         function sendTx(seed) {
-            _this.props.sendTransaction(seed, addressesWithBalance, seedName, address, value, message);
+            _this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
         }
     }
 
@@ -188,9 +212,44 @@ class Send extends Component {
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
-    _renderModalContent = () => (
-        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
-    );
+    _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
+
+    setModalContent(selectedSetting) {
+        let modalContent;
+        switch (selectedSetting) {
+            case 'qrScanner':
+                modalContent = <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />;
+                this.setState({
+                    selectedSetting,
+                    modalContent,
+                });
+                this._showModal();
+                break;
+            case 'transferConfirmation':
+                modalContent = (
+                    <TransferConfirmationModal
+                        amount={this.state.amount}
+                        denomination={this.state.denomination}
+                        address={this.state.address}
+                        sendTransfer={() => this.sendTransfer()}
+                        hideModal={() => this._hideModal()}
+                    />
+                );
+                this.setState({
+                    selectedSetting,
+                    modalContent,
+                });
+                this.onSendPress();
+                break;
+        }
+    }
+
+    onQRRead(data) {
+        this.setState({
+            address: data,
+        });
+        this._hideModal();
+    }
 
     render() {
         let { amount, address, message } = this.state;
@@ -201,7 +260,7 @@ class Send extends Component {
                     <View style={{ flexDirection: 'row' }}>
                         <View style={styles.textFieldContainer}>
                             <TextField
-                                keyboardType={'numeric'}
+                                autoCapitalize="characters"
                                 style={styles.textField}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
@@ -218,7 +277,7 @@ class Send extends Component {
                             />
                         </View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => this.onQRPress()}>
+                            <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
                                 <View style={styles.button}>
                                     <Image
                                         source={require('../../shared/images/camera.png')}
@@ -297,13 +356,15 @@ class Send extends Component {
                             onChangeText={message => this.setState({ message })}
                         />
                     </View>
-                    <View style={styles.sendIOTAButtonContainer}>
-                        <TouchableOpacity onPress={event => this.sendTransaction()}>
-                            <View style={styles.sendIOTAButton}>
-                                <Text style={styles.sendIOTAText}>SEND IOTA</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                    {!this.props.tempAccount.isSendingTransfer && (
+                        <View style={styles.sendIOTAButtonContainer}>
+                            <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
+                                <View style={styles.sendIOTAButton}>
+                                    <Text style={styles.sendIOTAText}>SEND</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    )}
                     <View style={{ flex: 1 }}>
                         <ActivityIndicator
                             animating={this.props.tempAccount.isSendingTransfer}
@@ -461,8 +522,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, addressesWithBalance, seedName, address, value, message) => {
-        dispatch(sendTransaction(seed, addressesWithBalance, seedName, address, value, message));
+    sendTransaction: (seed, currentSeedAccountInfo, seedName, address, value, message) => {
+        dispatch(sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message));
     },
     getAccountInfo: (seedName, seedIndex, accountInfo) => {
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo));

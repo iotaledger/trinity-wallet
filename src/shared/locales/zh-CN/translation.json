@@ -101,6 +101,14 @@
         "button1": "打印出纸版钱包",
         "button2": "完成"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "密码设置",
         "text": "现在我们需要设置一个密码。",
