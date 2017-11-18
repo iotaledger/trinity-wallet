@@ -76,24 +76,24 @@
     "saveYourSeed2": {
         "optionA": "수동 복사",
         "optionB": " 종이 지갑",
-        "optionC": "클립 보드에 복사",
+        "optionC": "클립보드에 복사",
         "explanation": "당신의 씨드는 왼쪽에서 오른쪽으로 읽히는 81글자입니다. 당신의 씨드 및 체크섬을 적어 놓고 정확한지 여러 번 확인하시길 바랍니다.",
         "text": "triple check",
-        "button": "DONE"
+        "button": "완료"
     },
     "saveYourSeed3": {
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
-        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
-        "text": "Do not store the seed in plain text.",
-        "button1": "COPY TO CLIPBOARD",
-        "button2": "DONE"
+        "optionA": "수동 복사",
+        "optionB": " 종이 지갑",
+        "optionC": "클립 보드에 복사",
+        "explanation": "아래 버튼을 클릭하여 비밀번호 관리자에 씨드를 복사합니다. 씨드는 60초동안 클립보드에 저장될 것입니다.",
+        "text": "씨드를 일반 텍스트로 저장하지 마십시오.",
+        "button1": "클립보드에 복사",
+        "button2": "완료"
     },
     "saveYourSeed4": {
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
+        "optionA": "수동 복사",
+        "optionB": " 종이 지갑",
+        "optionC": "클립보드에 복사",
         "explanation": "Click the button below to print a paper copy of your seed.",
         "text1": "Store it safely",
         "text2": "Never share your seed with anyone.",
