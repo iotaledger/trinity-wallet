@@ -1,4 +1,5 @@
-import IOTA from 'iota.lib.js';
+// import IOTA from 'iota.lib.js';
+import IOTA from './iota.lib.promisified';
 
 const defaultNode = 'http://titan.iota.community:14442';
 
@@ -8,12 +9,11 @@ export const iota = new IOTA({
 
 export const convertFromTrytes = trytes => {
     trytes = trytes.replace(/9+$/, '');
-    var message = iota.utils.fromTrytes(trytes);
-    if (trytes == '') {
+    const message = iota.utils.fromTrytes(trytes);
+    if (trytes === '') {
         return 'Empty';
-    } else {
-        return message;
     }
+    return message;
 };
 
 export const getBalances = addresses => {

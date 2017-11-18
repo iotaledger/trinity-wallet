@@ -13,7 +13,7 @@ class Send extends React.Component {
         // const { t } = this.props;
         return (
             <Template>
-                <Content>Test</Content>
+                <Content>Send</Content>
             </Template>
         );
     }
