@@ -101,6 +101,14 @@
         "button1": "ペーパーウォレットを印刷",
         "button2": "完了"
     },
+    "nameYourSeed": {
+        "text": "ここにSeed名を入力することもできます。",
+        "label": "Seed名",
+        "placeholder": "マインウォレット",
+        "explanation": "Seedを区別し易くするためのSeed名を入力して下さい。",
+        "button1": "完了",
+        "button2": "戻る"
+    },
     "setPassword": {
         "title": "パスワード設定",
         "text": "次にパスワードの設定です。",

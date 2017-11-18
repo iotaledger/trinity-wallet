@@ -1,16 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar } from 'react-native';
-import { getCurrentYear } from '../../shared/libs/util';
+import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const { height, width } = Dimensions.get('window');
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
 export default class InitialLoading extends Component {
+    constructor() {
+        super();
+
+        console.ignoredYellowBox = ['Setting a timer'];
+    }
+
     componentDidMount() {
-        this.timeout = setTimeout(this.onLoaded.bind(this), 100);
+        this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            //        HockeyApp.feedback(); //Could possibly cause a crash
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     onLoaded() {

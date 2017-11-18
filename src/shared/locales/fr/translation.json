@@ -83,7 +83,7 @@
         "optionB": " Paper Wallet",
         "optionC": "Copier dans le Presse-papiers",
         "explanation":
-            "Votre Seed se lit de gauche à droite et comporte 81 caractères. Notez-la, ainsi que la somme de contrôle, et vérifiez-les à plusieurs reprises.",
+            "Votre Seed se lit de gauche à droite et comporte 81 caractères. Notez-la, ainsi que le code de vérification, et vérifiez-les à plusieurs reprises.",
         "text": "vérifiez à plusieurs reprises",
         "button": "OK"
     },
@@ -107,6 +107,14 @@
         "check_button": "logo IOTA",
         "button1": "IMPRIMER LE PAPER WALLET",
         "button2": "OK"
+    },
+    "nameYourSeed": {
+        "text": "Vous pouvez entrer un nom pour votre seed ici.",
+        "label": "Nom de la Seed",
+        "placeholder": "Wallet Principal",
+        "explanation": "Entrez un nom pour votre Seed afin de les différencier plus facilement.",
+        "button1": "OK",
+        "button2": "RETOUR"
     },
     "setPassword": {
         "title": "GESTION DU MOT DE PASSE",

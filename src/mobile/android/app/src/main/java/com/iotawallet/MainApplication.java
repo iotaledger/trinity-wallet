@@ -23,6 +23,8 @@ import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.rnfs.RNFSPackage;
 import java.util.Arrays;
 import java.util.List;
+import com.slowpath.hockeyapp.RNHockeyAppModule;
+import com.slowpath.hockeyapp.RNHockeyAppPackage;
 
 public class MainApplication extends NavigationApplication {
 
@@ -37,6 +39,7 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
+	new RNHockeyAppPackage(MainApplication.this),
             new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
