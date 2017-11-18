@@ -176,8 +176,8 @@ class Settings extends React.Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <ScrollView style={styles.settingsContainer} contentContainerStyle={styles.contentContainer}>
-                    <TouchableOpacity onPress={event => this.onModePress()}>
-                        <View style={styles.item}>
+                    <TouchableOpacity onPress={event => this.onModePress()} activeOpacity={0.95}>
+                        <View style={styles.item} pointerEvents="none">
                             <Image source={require('../../shared/images/mode.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Mode</Text>
                             <Text style={styles.settingText}>{this.props.settings.mode}</Text>
