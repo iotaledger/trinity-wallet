@@ -2,6 +2,7 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
@@ -17,6 +18,27 @@ export default class TopBar extends Component {
         return {
             source: require('../../shared/images/chevron-down.png'),
         };
+    }
+
+    static propTypes = {
+        active: PropTypes.bool.isRequired,
+        selectedTitle: PropTypes.string.isRequired,
+        selectedSubtitle: PropTypes.string.isRequired,
+        currentSeedIndex: PropTypes.number.isRequired,
+        titles: PropTypes.array.isRequired,
+        currentRoute: PropTypes.string.isRequired,
+        toggle: PropTypes.func.isRequired,
+        onChange: PropTypes.func.isRequired,
+    };
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.currentRoute !== newProps.currentRoute) {
+            // Detects if navigating across screens
+            if (this.props.active) {
+                // In case the dropdown is active
+                this.props.toggle();
+            }
+        }
     }
 
     filterSeedTitles(seedNames, currentSeedIndex) {
@@ -35,7 +57,7 @@ export default class TopBar extends Component {
             </View>
         );
 
-        if (active) {
+        if (!active) {
             return baseContent;
         }
 
