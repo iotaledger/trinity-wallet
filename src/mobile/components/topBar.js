@@ -19,6 +19,10 @@ export default class TopBar extends Component {
         };
     }
 
+    filterSeedTitles(seedNames, currentSeedIndex) {
+        return filter(seedNames, (t, i) => i !== currentSeedIndex);
+    }
+
     renderTitles() {
         const { active, selectedTitle, selectedSubtitle, currentSeedIndex, titles, onChange, toggle } = this.props;
 
@@ -35,7 +39,7 @@ export default class TopBar extends Component {
             return baseContent;
         }
 
-        const withoutSelectedTitle = filter(titles, (t, i) => i !== currentSeedIndex);
+        const withoutSelectedTitle = this.filterSeedTitles(titles, currentSeedIndex);
         const restContent = map(withoutSelectedTitle, (t, idx) => {
             const isLast = idx === size(withoutSelectedTitle) - 1;
             const children = (
@@ -66,23 +70,24 @@ export default class TopBar extends Component {
         return (
             <View style={styles.titleWrapper}>
                 {baseContent}
-                <Text style={styles.separator}>---------------------------</Text>
+                {size(withoutSelectedTitle) ? <Text style={styles.separator}>---------------------------</Text> : null}
                 {restContent}
             </View>
         );
     }
 
     render() {
-        const { active, toggle } = this.props;
+        const { titles, currentSeedIndex, active, toggle } = this.props;
         const iconProps = TopBar.getIconPath(active);
-
         const children = this.renderTitles();
+        const hasMultipleSeeds = size(this.filterSeedTitles(titles, currentSeedIndex));
+
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                 <View style={styles.chevronWrapper}>
                     <TouchableOpacity onPress={toggle}>
-                        <Image style={styles.chevron} {...iconProps} />
+                        {hasMultipleSeeds ? <Image style={styles.chevron} {...iconProps} /> : null}
                     </TouchableOpacity>
                 </View>
             </View>
