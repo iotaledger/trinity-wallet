@@ -5,8 +5,8 @@
     "keywords": [],
     "author": "IOTA Foundation",
     "contributors": [
-      "Manuel Bieh <info@manuelbieh.de>",
-      "Umair Safraz"
+        "Manuel Bieh <info@manuelbieh.de>",
+        "Umair Safraz"
     ],
     "license": "MIT",
     "dependencies": {

@@ -115,6 +115,7 @@
         }
     },
     "dependencies": {
+        "babel-polyfill": "^6.26.0",
         "electron-rebuild": "^1.6.0"
     }
 }
