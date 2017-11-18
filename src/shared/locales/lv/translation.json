@@ -108,6 +108,14 @@
         "button1": "PRINT PAPER WALLET",
         "button2": "DONE"
     },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
     "setPassword": {
         "title": "PASSWORD SETUP",
         "text": "Now we need to set up a password.",

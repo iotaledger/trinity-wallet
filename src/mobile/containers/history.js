@@ -3,6 +3,7 @@ import { TouchableOpacity, StyleSheet, View, ListView, Dimensions, Text } from '
 import { connect } from 'react-redux';
 import TransactionRow from '../components/transactionRow';
 import Modal from 'react-native-modal';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const { height, width } = Dimensions.get('window');
@@ -17,9 +18,21 @@ class History extends React.Component {
         this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     render() {
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
+        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+        const addresses = Object.keys(currentSeedAccountInfo.addresses);
         return (
             <View style={styles.container}>
                 <View style={styles.listView}>
@@ -27,6 +40,7 @@ class History extends React.Component {
                         dataSource={ds.cloneWithRows(accountInfo[Object.keys(accountInfo)[seedIndex]].transfers)}
                         renderRow={dataSource => (
                             <TransactionRow
+                                addresses={addresses}
                                 rowData={dataSource}
                                 titleColor="#F8FFA6"
                                 onPress={event => this._showModal()}
@@ -38,7 +52,7 @@ class History extends React.Component {
                             this.listview = listview;
                         }}
                         onLoadEnd={this.imageLoaded.bind(this)}
-                        snapToInterval={height / 7.4453}
+                        snapToInterval={height * 0.7 / 6}
                     />
                 </View>
             </View>
@@ -52,7 +66,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     listView: {
-        height: height / 1.49,
+        height: height * 0.7,
+        justifyContent: 'flex-end',
     },
     separator: {
         flex: 1,
