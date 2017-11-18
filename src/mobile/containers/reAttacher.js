@@ -31,8 +31,8 @@ export default class Reattacher extends Component {
         RNShakeEvent.removeEventListener('shake');
     }
 
-    autoReAttach() {
-        const { reAttachAfter, attachments } = this.props;
+    autoReattach() {
+        const { reattachAfter, attachments } = this.props;
 
         this.timer = isNull(this.timer) && clearTimeout(this.timer);
         this.timer = setTimeout(() => {
@@ -44,8 +44,8 @@ export default class Reattacher extends Component {
                 }
             }
             this.timer = null;
-            this.autoReAttach();
-        }, reAttachAfter);
+            this.autoReattach();
+        }, reattachAfter);
     }
 
     render() {
@@ -54,7 +54,7 @@ export default class Reattacher extends Component {
 }
 
 Reattacher.defaultProps = {
-    reattachAfter: 30000,
+    reattachAfter: 600000,
 };
 
 Reattacher.propTypes = {

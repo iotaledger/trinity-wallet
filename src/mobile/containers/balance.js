@@ -49,13 +49,25 @@ class Balance extends React.Component {
         }
     }
 
+    getDecimalPlaces(n) {
+        var s = '' + +n;
+        var match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
+        if (!match) {
+            return 0;
+        }
+        return Math.max(0, (match[1] == '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
+    }
+
     render() {
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
         const addresses = Object.keys(currentSeedAccountInfo.addresses);
         const shortenedBalance =
-            roundDown(formatValue(this.props.account.balance), 1) + (this.props.account.balance < 1000 ? '' : '+');
+            roundDown(formatValue(this.props.account.balance), 1) +
+            (this.props.account.balance < 1000 || this.getDecimalPlaces(formatValue(this.props.account.balance)) <= 1
+                ? ''
+                : '+');
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />

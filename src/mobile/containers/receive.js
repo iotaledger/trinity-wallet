@@ -82,12 +82,14 @@ class Receive extends Component {
     }
 
     onAddressPress(address) {
+        const dropdown = DropdownHolder.getDropdown();
         if (address) {
             Clipboard.setString(address);
+            dropdown.alertWithType('success', 'Address copied', 'Your address has been copied to the clipboard.');
         }
     }
 
-    getQROpacity() {
+    getOpacity() {
         const { tempAccount: { receiveAddress } } = this.props;
         if (receiveAddress == ' ') {
             return 0.1;
@@ -102,7 +104,7 @@ class Receive extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <View style={{ paddingBottom: height / 40 }}>
+                <View style={{ paddingBottom: height / 40, opacity: this.getOpacity() }}>
                     <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                         <View style={styles.receiveAddressContainer}>
                             <Text style={styles.receiveAddressText} numberOfLines={3}>
@@ -111,7 +113,7 @@ class Receive extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ paddingBottom: height / 40, opacity: this.getQROpacity() }}>
+                <View style={{ paddingBottom: height / 40, opacity: this.getOpacity() }}>
                     <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
                 </View>
                 {receiveAddress === ' ' &&
