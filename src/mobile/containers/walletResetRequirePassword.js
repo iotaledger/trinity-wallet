@@ -70,7 +70,7 @@ class WalletResetRequirePassword extends Component {
     redirectToInitialScreen() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'languageSetup',
+                screen: 'welcome',
                 navigatorStyle: {
                     navBarHidden: true,
                     screenBackgroundImageName: 'bg-green.png',
