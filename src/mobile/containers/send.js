@@ -28,7 +28,8 @@ import { getAccountInfo } from '../../shared/actions/account';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 import DropdownHolder from '../components/dropdownHolder';
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 let sentDenomination = '';
@@ -253,6 +254,13 @@ class Send extends Component {
 
     render() {
         let { amount, address, message } = this.state;
+        const conversion = round(
+            parseInt(this.state.amount == '' ? 0 : this.state.amount) *
+                this.props.marketData.usdPrice /
+                1000000 *
+                this.getUnitMultiplier(),
+            10,
+        );
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -279,10 +287,6 @@ class Send extends Component {
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
                                 <View style={styles.button}>
-                                    <Image
-                                        source={require('../../shared/images/camera.png')}
-                                        style={styles.buttonImage}
-                                    />
                                     <Text style={styles.qrText}> QR </Text>
                                 </View>
                             </TouchableOpacity>
@@ -309,22 +313,11 @@ class Send extends Component {
                         </View>
                         <Text style={styles.conversionText}>
                             {' '}
-                            = ${' '}
-                            {round(
-                                parseInt(this.state.amount == '' ? 0 : this.state.amount) *
-                                    this.props.marketData.usdPrice /
-                                    1000000 *
-                                    this.getUnitMultiplier(),
-                                2,
-                            ).toFixed(2)}{' '}
+                             {conversion == 0 ? '' : conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2)}{' '}
                         </Text>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
                                 <View style={styles.button}>
-                                    <Image
-                                        source={require('../../shared/images/iota.png')}
-                                        style={styles.buttonImage}
-                                    />
                                     <Text style={styles.buttonText}> {this.state.denomination} </Text>
                                 </View>
                             </TouchableOpacity>
@@ -382,7 +375,7 @@ class Send extends Component {
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
                     backdropColor={'#102832'}
-                    style={{ alignItems: 'center' }}
+                    style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalVisible}
                 >
                     {this._renderModalContent()}
@@ -430,27 +423,14 @@ const styles = StyleSheet.create({
     qrText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
+        fontSize: width / 29.6,
         backgroundColor: 'transparent',
-        marginLeft: width / 20,
     },
     buttonText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
+        fontSize: width / 29.6,
         backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    buttonImage: {
-        position: 'absolute',
-        height: width / 28,
-        width: width / 28,
-        left: width / 36,
-    },
-    qrImage: {
-        height: width / 28,
-        width: width / 28,
-        marginRight: width / 100,
     },
     buttonContainer: {
         justifyContent: 'flex-end',
@@ -460,9 +440,9 @@ const styles = StyleSheet.create({
     sendIOTAButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
-        width: width / 3,
-        height: height / 16,
+        borderRadius: 15,
+        width: width / 2,
+        height: height / 13,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
@@ -470,7 +450,7 @@ const styles = StyleSheet.create({
     sendIOTAText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
+        fontSize: width / 25.9,
         backgroundColor: 'transparent',
     },
     sendIOTAImage: {
@@ -479,7 +459,7 @@ const styles = StyleSheet.create({
     },
     sendIOTAButtonContainer: {
         alignItems: 'center',
-        paddingTop: height / 20,
+        paddingTop: height / 16,
     },
     separator: {
         flex: 1,
@@ -494,15 +474,17 @@ const styles = StyleSheet.create({
         right: width / 4.6,
     },
     maxButtonContainer: {
-        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
         marginTop: height / 150,
+        flexDirection: 'row',
     },
     maxButtonText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 34.5,
+        fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
+    maxWarningText: {},
     maxButton: {
         flexDirection: 'row',
         alignItems: 'center',

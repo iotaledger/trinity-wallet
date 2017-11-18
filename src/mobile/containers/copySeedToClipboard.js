@@ -15,7 +15,8 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import PropTypes from 'prop-types';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {
@@ -199,7 +200,7 @@ class CopySeedToClipboard extends React.Component {
                             </View>
                         </View>
                     </View>
-                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 30 }}>
+                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 55 }}>
                         <View style={styles.copyButton}>
                             <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
                         </View>
@@ -366,18 +367,17 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.65,
-        height: height / 3.5,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 20,
+        paddingVertical: height / 80,
+        marginTop: height / 60,
     },
     seedBoxTextContainer: {
         width: width / 1.65,
-        height: height / 3.5,
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingTop: height / 80,
+        paddingTop: height / 160,
         paddingLeft: width / 70,
     },
     seedBoxTextLeft: {
@@ -388,7 +388,7 @@ const styles = StyleSheet.create({
         letterSpacing: 8,
         backgroundColor: 'transparent',
         paddingRight: width / 70,
-        paddingVertical: 3,
+        paddingVertical: 2,
     },
     seedBoxTextRight: {
         color: 'white',
@@ -397,7 +397,7 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         letterSpacing: 8,
         backgroundColor: 'transparent',
-        paddingVertical: 3,
+        paddingVertical: 2,
     },
     arrow: {
         width: width / 2,
