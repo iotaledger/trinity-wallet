@@ -3,7 +3,8 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackg
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 class AddNewSeedModal extends React.Component {
     constructor(props) {
@@ -95,10 +96,6 @@ const styles = StyleSheet.create({
         right: 0,
         top: 0,
         margin: width / 40,
-    },
-    textField: {
-        color: 'white',
-        fontFamily: 'Inconsolata-Bold',
     },
 });
 
