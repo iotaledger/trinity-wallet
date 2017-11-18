@@ -66,18 +66,18 @@
     },
     "saveYourSeed": {
         "text1": "반드시 아래 나열된 옵션 중 하나의 방법으로 씨드를 저장해야 합니다.",
-        "text2": "at least one",
-        "optionA": "MANUAL COPY",
-        "optionB": "PRINT PAPER WALLET",
-        "optionC": "COPY TO CLIPBOARD",
-        "button1": "NEXT",
-        "button2": "BACK"
+        "text2": "하나 이상",
+        "optionA": "수동 복사",
+        "optionB": "종이 지갑 인쇄하기",
+        "optionC": "클립보드에 복사",
+        "button1": "다음",
+        "button2": "뒤로"
     },
     "saveYourSeed2": {
-        "optionA": "Manual Copy",
-        "optionB": " Paper Wallet",
-        "optionC": "Copy To Clipboard",
-        "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+        "optionA": "수동 복사",
+        "optionB": " 종이 지갑",
+        "optionC": "클립 보드에 복사",
+        "explanation": "당신의 씨드는 왼쪽에서 오른쪽으로 읽히는 81글자입니다. 당신의 씨드 및 체크섬을 적어 놓고 정확한지 여러 번 확인하시길 바랍니다.",
         "text": "triple check",
         "button": "DONE"
     },
