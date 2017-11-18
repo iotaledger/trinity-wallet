@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
-    entry: ['./src/index.js'],
+    entry: ['babel-polyfill', './src/index.js'],
     // target: 'electron',
     output: {
         path: path.join(__dirname, '..', 'dist'),
