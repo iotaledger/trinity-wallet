@@ -41,7 +41,7 @@ class SaveYourSeed extends PureComponent {
                     <p>{t('text1')}</p>
                     <div className={css.seedWrapper}>
                         <div className={css.seed}>
-                            <BoxedSeed t={t} seed={seed} color="black" size="small" />
+                            <BoxedSeed t={t} seed={seed} color="black" size="default" />
                         </div>
                         <div className={css.qr}>
                             <QRCode size={192} value={seed} />
