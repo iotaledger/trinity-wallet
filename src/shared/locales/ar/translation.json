@@ -2,6 +2,7 @@
     "global": {
         "invalidResponse": "Invalid response",
         "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "سييد",
         "back": "رجوع",
         "done": "تم",
@@ -31,7 +32,7 @@
     },
     "changePassword": {
         "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something wrong while updating your password. Please try again.",
+        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
         "passwordUpdated": "Password updated",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
         "incorrectPassword": "Incorrect password",
@@ -62,5 +63,15 @@
         "pleaseEnterSeed": "Please enter your seed.",
         "seedExplanation": "يجب أن يكون طول السييد 81 خانة ويجب أن يحتوي على أحرف إنجليزية كبيرة A-Z أو الرقم 9. لا يمكنك استخدام سييد أطول من 81 خانة.\",",
         "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص"
+    },
+    "home": {
+        "balance": "الرصيد",
+        "send": "إرسال",
+        "receive": "إستلام",
+        "history": "التاريخ",
+        "settings": "SETTINGS"
+    },
+    "languageSetup": {
+        "language": "اللغة"
     }
 }
