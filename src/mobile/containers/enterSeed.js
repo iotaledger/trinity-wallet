@@ -21,12 +21,13 @@ import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-//import DropdownHolder from './dropdownHolder';
+const width = Dimensions.get('window').width
+const height = global.height;
+const isAndroid = Platform.OS === 'android';
 
-const { height, width } = Dimensions.get('window');
 const StatusBarDefaultBarStyle = 'light-content';
-//const dropdown = DropdownHolder.getDropDown();
 
 class EnterSeed extends React.Component {
     constructor(props) {
@@ -35,6 +36,16 @@ class EnterSeed extends React.Component {
             seed: '',
             isModalVisible: false,
         };
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     handleKeyPress = event => {
@@ -61,7 +72,7 @@ class EnterSeed extends React.Component {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
-                navigatorStyle: { navBarHidden: true },
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
             });
         }
@@ -93,8 +104,7 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
-        const isAndroid = Platform.OS === 'android';
-        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -117,9 +127,9 @@ class EnterSeed extends React.Component {
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                            labelTextStyle={{ fontFamily: 'Lato-Light', fontSize: width / 20.7 }}
                                             labelFontSize={width / 31.8}
-                                            fontSize={width / 20.7}
+                                            fontSize={isAndroid? width / 27.6 : width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"
@@ -147,6 +157,8 @@ class EnterSeed extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
+                            </View>
+                            <View style={styles.bottomContainer}>
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                                     <Text style={styles.infoText}>
@@ -155,8 +167,6 @@ class EnterSeed extends React.Component {
                                     </Text>
                                     <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
                                 </View>
-                            </View>
-                            <View style={styles.bottomContainer}>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
@@ -196,7 +206,7 @@ class EnterSeed extends React.Component {
     }
 }
 
-const baseStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -207,13 +217,13 @@ const baseStyles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 2.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 12,
     },
     bottomContainer: {
-        flex: 0.7,
+        flex: 2.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -239,14 +249,12 @@ const baseStyles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 3.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
-        position: 'absolute',
-        top: height / 3.3,
+        paddingVertical: height / 60,
+        marginBottom: height / 17
     },
     infoText: {
         color: 'white',
@@ -307,7 +315,7 @@ const baseStyles = StyleSheet.create({
         paddingBottom: height / 90,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -316,40 +324,24 @@ const baseStyles = StyleSheet.create({
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
-    },
-});
-
-const androidStyles = StyleSheet.create({
-    topContainer: {
-        flex: 1.2,
-        paddingTop: height / 22,
-    },
-    midContainer: {
-        flex: 4.7,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 10,
-    },
-    bottomContainer: {
-        flex: 0.7,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
 });
 

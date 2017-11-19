@@ -2,7 +2,8 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 export default class OnboardingButtons extends Component {
     render() {
@@ -60,9 +61,5 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
     },
 });

@@ -13,7 +13,6 @@ const account = (
         firstUse: true,
         onboardingComplete: false,
         balance: 0,
-        transfers: [],
     },
     action,
 ) => {
@@ -84,8 +83,14 @@ const account = (
 
 export default account;
 
-export const getTailTransactionHashesForPendingTransactions = (transfers, accountInfo, currentIndex) => {
-    if (!isEmpty(transfers) && !isEmpty(accountInfo)) {
+export const getTailTransactionHashesForPendingTransactions = (accountInfo, currentIndex) => {
+    const propKeys = keys(accountInfo);
+    const seedName = get(propKeys, `[${currentIndex}]`);
+    const currentSeedAccountInfo = get(accountInfo, seedName);
+    const addressesAsDict = get(currentSeedAccountInfo, 'addresses');
+    const transfers = get(currentSeedAccountInfo, 'transfers');
+
+    if (!isEmpty(transfers) && !isEmpty(addressesAsDict)) {
         const normalize = (res, val) => {
             each(val, v => {
                 if (!v.persistence && v.currentIndex === 0) {
@@ -96,9 +101,7 @@ export const getTailTransactionHashesForPendingTransactions = (transfers, accoun
             return res;
         };
 
-        const propKeys = keys(accountInfo);
-        const currentSeedAccountInfo = get(propKeys, `[${currentIndex}]`);
-        const addresses = map(get(currentSeedAccountInfo, 'addresses'), (v, k) => k);
+        const addresses = map(addressesAsDict, (v, k) => k);
 
         const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
         const sentTransfers = get(categorizedTransfers, 'sent');

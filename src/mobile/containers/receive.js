@@ -13,7 +13,7 @@ import {
     Clipboard,
     StatusBar,
 } from 'react-native';
-import QRCode from 'react-native-qrcode';
+import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
 import {
     generateNewAddress,
@@ -24,7 +24,10 @@ import {
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
-const { height, width } = Dimensions.get('window');
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+
+const width = Dimensions.get('window').width
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 class Receive extends Component {
@@ -37,14 +40,21 @@ class Receive extends Component {
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
     componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
         this.resetAddress();
     }
 
     resetAddress() {
         const { tempAccount: { receiveAddress } } = this.props;
         if (receiveAddress) {
-            this.props.setReceiveAddress('');
+            this.props.setReceiveAddress(' ');
         }
     }
 
@@ -73,8 +83,19 @@ class Receive extends Component {
     }
 
     onAddressPress(address) {
+        const dropdown = DropdownHolder.getDropdown();
         if (address) {
             Clipboard.setString(address);
+            dropdown.alertWithType('success', 'Address copied', 'Your address has been copied to the clipboard.');
+        }
+    }
+
+    getOpacity() {
+        const { tempAccount: { receiveAddress } } = this.props;
+        if (receiveAddress == ' ') {
+            return 0.1;
+        } else {
+            return 1;
         }
     }
 
@@ -84,19 +105,21 @@ class Receive extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <View style={{ paddingBottom: height / 40 }}>
+                <View style={{ paddingBottom: height / 40, opacity: this.getOpacity() }}>
+                    <View style= {styles.qrContainer}>
+                        <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
+                    </View>
+                </View>
+                <View style={{ paddingBottom: height / 40, opacity: this.getOpacity() }}>
                     <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                         <View style={styles.receiveAddressContainer}>
-                            <Text style={styles.receiveAddressText} numberOfLines={3}>
+                            <Text style={styles.receiveAddressText}>
                                 {receiveAddress}
                             </Text>
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ paddingBottom: height / 40 }}>
-                    <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
-                </View>
-                {!receiveAddress &&
+                {receiveAddress === ' ' &&
                     !isGeneratingReceiveAddress && (
                         <TouchableOpacity
                             onPress={() => {
@@ -141,8 +164,8 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 8,
-        width: width / 1.3,
-        height: height / 10,
+        width: width / 2.14,
+        height: width / 4.2,
         justifyContent: 'center',
     },
     activityIndicator: {
@@ -152,11 +175,11 @@ const styles = StyleSheet.create({
         height: height / 5,
     },
     receiveAddressText: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 33.7,
+        fontFamily: 'Inconsolata-Bold',
+        fontSize: width / 31.8,
         color: 'white',
         backgroundColor: 'transparent',
-        paddingHorizontal: width / 15,
+        padding: width / 25,
         textAlign: 'center',
     },
     generateButton: {
@@ -184,6 +207,11 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 15,
     },
+    qrContainer: {
+      backgroundColor: 'white',
+      borderRadius: 15,
+      padding: width / 30
+    }
 });
 
 const mapStateToProps = state => ({

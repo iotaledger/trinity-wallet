@@ -1,5 +1,5 @@
 // @flow
-import { seedsSelector, getSelectedIndex } from 'selectors/seeds';
+import { seedsSelector, getSelectedIndex } from '../selectors/seeds';
 
 export const ActionTypes = {
     ADD_SEED: 'IOTA/SEEDS/ADD_SEED',
