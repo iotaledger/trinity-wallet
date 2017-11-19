@@ -117,7 +117,7 @@ class ChangePassword extends Component {
                 this.dropdown.alertWithType(
                     'error',
                     'Oops! Something went wrong',
-                    'Looks like something wrong while updating your password. Please try again.',
+                    'Looks like something went wrong while updating your password. Please try again.',
                 );
 
             const updatePassword = seed =>
