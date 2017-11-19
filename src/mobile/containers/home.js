@@ -180,7 +180,7 @@ class Home extends Component {
             const data = accountInfo[seedStrings[currentIdx]].addresses;
 
             if (isEmpty(data)) {
-                return 0; // no addresses
+                return this.humanizeBalance(0); // no addresses
             }
 
             const calc = (res, value) => {
@@ -374,6 +374,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
     topContainer: {
         flex: 0.4,
+        marginBottom: height / 100,
     },
     titlebarContainer: {
         flexDirection: 'row',
