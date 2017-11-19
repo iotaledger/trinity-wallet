@@ -26,7 +26,8 @@ import java.util.Arrays;
 import java.util.List;
 import com.slowpath.hockeyapp.RNHockeyAppModule;
 import com.slowpath.hockeyapp.RNHockeyAppPackage;
-
+import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
+import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 public class MainApplication extends NavigationApplication {
 
   @Override
@@ -50,7 +51,9 @@ public class MainApplication extends NavigationApplication {
             new RNPrintPackage(),
             new RNSensitiveInfoPackage(),
 	        new RCTCameraPackage(),
-	        new RNFSPackage()
+	        new RNFSPackage(),
+            new ExtraDimensionsPackage(),
+            new RNDetectNavbarAndroidPackage()
     );
   }
 
