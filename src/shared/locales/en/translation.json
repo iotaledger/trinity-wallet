@@ -2,6 +2,7 @@
     "global": {
         "invalidResponse": "Invalid response",
         "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seed",
         "back": "BACK",
         "done": "DONE",
@@ -69,5 +70,15 @@
         "seedExplanation":
             "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.\",",
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+    },
+    "home": {
+      "balance": "BALANCE",
+      "send": "SEND",
+      "receive": "RECEIVE",
+      "history": "HISTORY",
+      "settings": "SETTINGS"
+    },
+    "languageSetup": {
+      "language": "Language"
     }
 }
