@@ -2,6 +2,7 @@
     "global": {
         "invalidResponse": "Invalid response",
         "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Hovednøkkel",
         "back": "TILBAKE",
         "done": "FERDIG",
@@ -31,7 +32,7 @@
     },
     "changePassword": {
         "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something wrong while updating your password. Please try again.",
+        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
         "passwordUpdated": "Password updated",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
         "incorrectPassword": "Incorrect password",
@@ -62,5 +63,15 @@
         "pleaseEnterSeed": "Please enter your seed.",
         "seedExplanation": "Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.\",",
         "neverShare": "OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE"
+    },
+    "home": {
+        "balance": "SALDO",
+        "send": "SENDE",
+        "receive": "MOTTA",
+        "history": "HISTORIKK",
+        "settings": "SETTINGS"
+    },
+    "languageSetup": {
+        "language": "Språk"
     }
 }
