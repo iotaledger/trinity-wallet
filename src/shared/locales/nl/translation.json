@@ -2,6 +2,7 @@
     "global": {
         "invalidResponse": "Invalid response",
         "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Zaad",
         "back": "Terug",
         "done": "GEREED",
@@ -31,7 +32,7 @@
     },
     "changePassword": {
         "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something wrong while updating your password. Please try again.",
+        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
         "passwordUpdated": "Password updated",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
         "incorrectPassword": "Incorrect password",
@@ -62,5 +63,15 @@
         "pleaseEnterSeed": "Please enter your seed.",
         "seedExplanation": "Seedx moeten 81 tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met m meer dan 81 tekens.\",",
         "neverShare": "DEEL NOOIT JE SEED MET IEMAND"
+    },
+    "home": {
+        "balance": "SALDO",
+        "send": "Verstuur",
+        "receive": "ONTVANG",
+        "history": "GESCHIEDENIS",
+        "settings": "SETTINGS"
+    },
+    "languageSetup": {
+        "language": "Taal"
     }
 }
