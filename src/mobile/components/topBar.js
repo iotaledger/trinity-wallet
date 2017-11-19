@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     container: {
         position: 'absolute',
         width,
-        elevation: 4,
+        elevation: 7,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
