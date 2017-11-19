@@ -218,7 +218,7 @@ class NewSeedSetup extends Component {
                     <View style={styles.buttonsContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.leftButton}>
-                                <Text style={styles.leftText}>Back</Text>
+                                <Text style={styles.leftText}>BACK</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={event => this.onNextPress()}>
@@ -234,7 +234,7 @@ class NewSeedSetup extends Component {
                                     opacity: this.state.randomised ? 1 : 0.3,
                                 }}
                             >
-                                <Text style={styles.rightText}>Next</Text>
+                                <Text style={styles.rightText}>NEXT</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

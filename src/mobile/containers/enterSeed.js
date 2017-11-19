@@ -142,7 +142,6 @@ class EnterSeed extends React.Component {
                                             value={seed}
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
-                                            multiline
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
@@ -307,7 +306,7 @@ const styles = StyleSheet.create({
     },
     textField: {
         color: 'white',
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'Lato-Light',
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',
