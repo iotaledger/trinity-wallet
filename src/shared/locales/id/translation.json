@@ -2,6 +2,7 @@
     "global": {
         "invalidResponse": "Invalid response",
         "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Benih",
         "back": "KEMBALI",
         "done": "SELESAI",
@@ -31,7 +32,7 @@
     },
     "changePassword": {
         "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something wrong while updating your password. Please try again.",
+        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
         "passwordUpdated": "Password updated",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
         "incorrectPassword": "Incorrect password",
@@ -62,5 +63,15 @@
         "pleaseEnterSeed": "Please enter your seed.",
         "seedExplanation": "Seed harus 81 karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari 81 karakter.\",",
         "neverShare": "JANGAN PERNAH MEMBERITAHUKAN SEED ANDA DENGAN SIAPAPUN"
+    },
+    "home": {
+        "balance": "SALDO",
+        "send": "KIRIM",
+        "receive": "TERIMA",
+        "history": "RIWAYAT",
+        "settings": "SETTINGS"
+    },
+    "languageSetup": {
+        "language": "Bahasa"
     }
 }
