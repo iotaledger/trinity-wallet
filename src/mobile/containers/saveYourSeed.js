@@ -14,14 +14,26 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 class SaveYourSeed extends Component {
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onDonePress() {
         this.props.navigator.push({
             screen: 'seedReentry',
-            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
         });
     }
@@ -35,29 +47,26 @@ class SaveYourSeed extends Component {
     onWriteClick() {
         this.props.navigator.push({
             screen: 'writeSeedDown',
-            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
         });
     }
     onPrintClick() {
         this.props.navigator.push({
             screen: 'paperWallet',
-            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
         });
     }
     onCopyClick() {
         this.props.navigator.push({
             screen: 'copySeedToClipboard',
-            navigatorStyle: { navBarHidden: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
         });
     }
 
     render() {
-        const isAndroid = Platform.OS === 'android';
-        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
-
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -105,7 +114,7 @@ class SaveYourSeed extends Component {
     }
 }
 
-const baseStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -186,12 +195,6 @@ const baseStyles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
-    },
-});
-
-const androidStyles = StyleSheet.create({
-    midContainer: {
-        flex: 1,
     },
 });
 

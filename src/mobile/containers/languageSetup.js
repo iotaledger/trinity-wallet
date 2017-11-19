@@ -14,7 +14,8 @@ import {
 } from 'react-native';
 import Triangle from 'react-native-triangle';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 const CustomLayoutSpring = {
     duration: 100,
@@ -41,20 +42,18 @@ class LanguageSetup extends React.Component {
         };
     }
 
-    // Commented out until we get Apple Developer Program membership
-
     componentWillMount() {
         HockeyApp.configure(
             '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
             true, //Auto send crash reports
-            0, //Authentication type
+            1, //Authentication type
+            'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
         );
     }
 
     componentDidMount() {
         HockeyApp.start();
         HockeyApp.checkForUpdate(); // optional
-        //  setTimeout(function(){HockeyApp.generateTestCrash();}, 2000);
     }
 
     onNextPress() {
@@ -62,6 +61,7 @@ class LanguageSetup extends React.Component {
             screen: 'welcome',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
             },
             animated: false,
         });
