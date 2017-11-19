@@ -5,7 +5,8 @@ import { formatTime, formatModalTime, convertUnixTimeToJSDate } from '../../shar
 import { convertFromTrytes } from '../../shared/libs/iota';
 import Modal from 'react-native-modal';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class TransactionRow extends React.Component {
