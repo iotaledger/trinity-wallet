@@ -1238,6 +1238,10 @@ react-native-extra-dimensions-android@^0.21.0:
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/react-native-extra-dimensions-android/-/react-native-extra-dimensions-android-0.21.0.tgz#2992384a90df738cf678a452cadbf251052ce7bc"
 
+react-native-shadow@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-shadow/-/react-native-shadow-1.2.1.tgz#cff9295363097f534c32c2b43c753261334cb43a"
+
 read-pkg-up@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-2.0.0.tgz#6b72a8048984e0c41e79510fd5e9fa99b3b549be"
