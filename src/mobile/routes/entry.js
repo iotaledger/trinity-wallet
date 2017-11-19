@@ -14,6 +14,7 @@ Navigation.startSingleScreenApp({
         screen: 'initialLoading',
         navigatorStyle: {
             navBarHidden: true,
+            navBarTransparent: true,
             screenBackgroundImageName: 'bg-green.png',
             screenBackgroundColor: '#102e36',
         },

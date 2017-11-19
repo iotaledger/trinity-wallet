@@ -22,7 +22,8 @@ import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug report
 
 //import DropdownHolder from './dropdownHolder';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 
@@ -48,7 +49,7 @@ class SeedReentry extends React.Component {
         if (this.state.seed == this.props.tempAccount.seed) {
             this.props.navigator.push({
                 screen: 'setSeedName',
-                navigatorStyle: { navBarHidden: true },
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
             });
         } else {
@@ -106,7 +107,6 @@ class SeedReentry extends React.Component {
                                     containerStyle={{
                                         width: width / 1.4,
                                     }}
-                                    secureTextEntry={true}
                                 />
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
@@ -156,13 +156,13 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 3.8,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         paddingTop: height / 12,
     },
     bottomContainer: {
-        flex: 0.7,
+        flex: 1.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -188,14 +188,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 4.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
-        position: 'absolute',
-        top: height / 3.3,
+        paddingVertical: height / 60,
     },
     infoText: {
         color: 'white',

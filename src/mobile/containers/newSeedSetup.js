@@ -19,10 +19,14 @@ import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from '../../shared/actions/tempAccount';
 import { randomBytes } from 'react-native-randombytes';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
-
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
-const { height, width } = Dimensions.get('window');
+import ExtraDimensions from 'react-native-extra-dimensions-android';
+import { DetectNavbar } from '../theme/androidSoftKeys'
+
+const width = Dimensions.get('window').width;
+const height = global.height
+
 const StatusBarDefaultBarStyle = 'light-content';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -96,7 +100,7 @@ class NewSeedSetup extends Component {
         if (this.state.randomised) {
             this.props.navigator.push({
                 screen: 'saveYourSeed',
-                navigatorStyle: { navBarHidden: true },
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true,},
                 animated: false,
             });
         } else {
@@ -110,13 +114,18 @@ class NewSeedSetup extends Component {
 
     onBackPress() {
         this.props.clearSeed();
-        this.props.navigator.push({
-            screen: 'walletSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-            },
-            animated: false,
-        });
+        if(!this.props.account.onboardingComplete){
+            this.props.navigator.push({
+                screen: 'walletSetup',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                },
+                animated: false,
+            });
+        } else {
+            this.props.navigator.pop({ animated: false });
+        }
     }
 
     onItemPress(sectionID) {
@@ -172,8 +181,8 @@ class NewSeedSetup extends Component {
                                     <Text
                                         style={{
                                             backgroundColor: 'white',
-                                            width: width / 14,
-                                            height: width / 14,
+                                            width: width / 14.5,
+                                            height: width / 14.5,
                                             color: '#1F4A54',
                                             fontFamily: 'Lato-Bold',
                                             fontSize: width / 28.9,
@@ -202,7 +211,7 @@ class NewSeedSetup extends Component {
                             fontSize: width / 27.6,
                             backgroundColor: 'transparent',
                             height: this.state.infoTextHeight,
-                            marginBottom: height / 25,
+                            marginBottom: height / 23,
                         }}
                     >
                         Press individual letters to randomise them.
@@ -266,12 +275,12 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.5,
+        flex: 4.8,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
     },
     bottomContainer: {
-        flex: 0.8,
+        flex: 0.5,
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
@@ -279,13 +288,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        height: width / 1.1,
-        width: width / 1.1,
+        height: width / 1.15,
+        width: width / 1.15,
         flex: 1,
     },
     gridContainer: {
-        height: width / 1.1,
-        width: width / 1.1,
+        height: width / 1.15,
+        width: width / 1.15,
     },
     tile: {
         padding: height / 150,
@@ -391,6 +400,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    account: state.account
 });
 
 const mapDispatchToProps = dispatch => ({

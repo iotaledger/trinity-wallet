@@ -24,10 +24,11 @@ import { getFromKeychain, deleteFromKeyChain, storeInKeychain } from '../../shar
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
-import DropdownHolder from '../components/dropdownHolder';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
-// TODO: make namespace for this file
-const { height, width } = Dimensions.get('window');
+
+const width = Dimensions.get('window').width
+const height = global.height;
 
 class ChangePassword extends Component {
     constructor() {
@@ -85,6 +86,7 @@ class ChangePassword extends Component {
             screen: 'home',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
                 screenBackgroundImageName: 'bg-green.png',
                 screenBackgroundColor: Colors.brand.primary,
             },
@@ -109,11 +111,10 @@ class ChangePassword extends Component {
         const isValid = this.isValid();
         const { password, setPassword } = this.props;
         const { newPassword } = this.state;
-        const dropdown = DropdownHolder.getDropdown();
 
         if (isValid) {
             const throwErr = () =>
-                dropdown.alertWithType(
+                this.dropdown.alertWithType(
                     'error',
                     'Oops! Something went wrong',
                     'Looks like something wrong while updating your password. Please try again.',
@@ -130,7 +131,7 @@ class ChangePassword extends Component {
                         // via redux. Generally we should redirect user to the previous screen
                         // on password update but we are kind of limited as we have to keep track
                         // on dropdown reference inside this component.
-                        dropdown.alertWithType(
+                        this.dropdown.alertWithType(
                             'success',
                             'Password updated',
                             'Your password has been successfully updated.',
@@ -147,28 +148,23 @@ class ChangePassword extends Component {
     renderInvalidSubmissionAlerts() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
         const { password } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
 
         if (currentPassword !== password) {
-            return dropdown.alertWithType(
+            return this.dropdown.alertWithType(
                 'error',
                 'Incorrect password',
                 'Your current password is incorrect. Please try again.',
             );
         } else if (newPassword !== confirmedNewPassword) {
-            return dropdown.alertWithType(
-                'error',
-                'Passwords do not match',
-                'Passwords do not match. Please try again.',
-            );
+            return this.dropdown.alertWithType('error', 'Password mismatch', 'Passwords do not match. Please try again.');
         } else if (newPassword.length < 12 || confirmedNewPassword.length < 12) {
-            return dropdown.alertWithType(
+            return this.dropdown.alertWithType(
                 'error',
                 'Password is too short',
                 'Your password must be at least 12 characters. Please try again.',
             );
         } else if (newPassword === currentPassword) {
-            return dropdown.alertWithType(
+            return this.dropdown.alertWithType(
                 'error',
                 'Cannot set old password',
                 'You cannot use the old password as your new password. Please try again with a new password.',
@@ -222,6 +218,15 @@ class ChangePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                />
             </ImageBackground>
         );
     }
@@ -284,8 +289,37 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.tertiary,
     },
     textFieldContainer: {
-        width: width / 1.65,
+        width: width / 1.36,
         paddingTop: height / 90,
+    },
+    dropdownTitle: {
+        fontSize: width / 25.9,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
+    },
+    dropdownMessage: {
+        fontSize: width / 29.6,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
+    },
+    dropdownImage: {
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
+        alignSelf: 'center',
     },
 });
 
