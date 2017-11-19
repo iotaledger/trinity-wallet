@@ -161,12 +161,9 @@ dependencies {
   	compile project(':react-native-camera')
     compile project(':react-native-fs')
     compile project(":react-native-hockeyapp")
-<<<<<<< HEAD
     compile("com.crashlytics.sdk.android:crashlytics:2.6.4@aar") {
             transitive = true;
     }
-=======
->>>>>>> develop
 }
 
 // Run this once to be able to run the application with BUCK
