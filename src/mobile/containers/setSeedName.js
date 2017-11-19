@@ -23,7 +23,8 @@ import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/l
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 class SetSeedName extends React.Component {
@@ -73,7 +74,7 @@ class SetSeedName extends React.Component {
                 this.props.setSeedName(this.state.seedName);
                 this.props.navigator.push({
                     screen: 'setPassword',
-                    navigatorStyle: { navBarHidden: true },
+                    navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                     animated: false,
                 });
             } else {
@@ -89,6 +90,7 @@ class SetSeedName extends React.Component {
                             screen: 'loading',
                             navigatorStyle: {
                                 navBarHidden: true,
+                                navBarTransparent: true,
                             },
                             animated: false,
                         });
@@ -140,8 +142,6 @@ class SetSeedName extends React.Component {
 
     render() {
         let { seedName } = this.state;
-        const isAndroid = Platform.OS === 'android';
-        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
 
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
@@ -210,7 +210,7 @@ class SetSeedName extends React.Component {
     }
 }
 
-const baseStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -252,12 +252,11 @@ const baseStyles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 4.5,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
+        paddingVertical: height / 60,
         marginTop: height / 15,
     },
     infoText: {
@@ -328,42 +327,6 @@ const baseStyles = StyleSheet.create({
         width: width / 12,
         height: width / 12,
         alignSelf: 'center',
-    },
-});
-
-const androidStyles = StyleSheet.create({
-    topContainer: {
-        flex: 1.2,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-    },
-    midContainer: {
-        flex: 4.8,
-        justifyContent: 'flex-start',
-        paddingTop: height / 6,
-        alignItems: 'center',
-    },
-    bottomContainer: {
-        flex: 0.6,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
-    },
-    infoTextContainer: {
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 15,
-        width: width / 1.6,
-        minHeight: height / 4.5,
-        maxHeight: height / 4.2,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingHorizontal: width / 30,
-        paddingVertical: height / 50,
-        borderStyle: 'dotted',
-        paddingTop: height / 60,
-        marginTop: height / 15,
     },
 });
 
