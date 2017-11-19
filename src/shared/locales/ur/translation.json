@@ -2,6 +2,7 @@
     "global": {
         "invalidResponse": "Invalid response",
         "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "بیج",
         "back": "BACK",
         "done": "DONE",
@@ -31,7 +32,7 @@
     },
     "changePassword": {
         "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something wrong while updating your password. Please try again.",
+        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
         "passwordUpdated": "Password updated",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
         "incorrectPassword": "Incorrect password",
@@ -62,5 +63,15 @@
         "pleaseEnterSeed": "Please enter your seed.",
         "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.\",",
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+    },
+    "home": {
+        "balance": "BALANCE",
+        "send": "SEND",
+        "receive": "RECEIVE",
+        "history": "HISTORY",
+        "settings": "SETTINGS"
+    },
+    "languageSetup": {
+        "language": "Language"
     }
 }
