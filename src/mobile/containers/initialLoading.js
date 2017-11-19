@@ -4,6 +4,7 @@ import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar }
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+import { getAllItems, deleteItem } from 'react-native-sensitive-info';
 
 const { height, width } = Dimensions.get('window');
 
@@ -22,7 +23,7 @@ export default class InitialLoading extends Component {
 
     componentWillMount() {
         RNShakeEvent.addEventListener('shake', () => {
-    //        HockeyApp.feedback(); //Could possibly cause a crash
+            //        HockeyApp.feedback(); //Could possibly cause a crash
         });
     }
 
@@ -30,9 +31,37 @@ export default class InitialLoading extends Component {
         RNShakeEvent.removeEventListener('shake');
     }
 
+    clearKeychain() {
+        var keysToDelete = [];
+        getAllItems({
+            sharedPreferencesName: 'mySharedPrefs',
+            keychainService: 'myKeychain',
+        }).then(keys => {
+            if (keys[0].length == 0) {
+                return;
+            } else {
+                var key = '';
+                for (i = 0; i < keys[0].length; i++) {
+                    key = keys[0][i].key;
+                    keysToDelete.push(key);
+                }
+
+                for (i = 0; i < keysToDelete.length; i++) {
+                    var keyToDelete = keysToDelete[i];
+                    deleteItem(keyToDelete, {
+                        sharedPreferencesName: 'mySharedPrefs',
+                        keychainService: 'myKeychain',
+                    });
+                }
+                console.log('Keychain cleared successfully');
+            }
+        });
+    }
+
     onLoaded() {
         const state = store.getState();
         if (!state.account.onboardingComplete) {
+            this.clearKeychain();
             this.props.navigator.push({
                 screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true },
