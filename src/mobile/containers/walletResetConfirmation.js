@@ -21,7 +21,8 @@ import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug report
 
 import { Keyboard } from 'react-native';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 export default class WalletResetConfirmation extends Component {
     constructor() {
@@ -46,6 +47,7 @@ export default class WalletResetConfirmation extends Component {
             screen: url,
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
                 screenBackgroundImageName: 'bg-green.png',
                 screenBackgroundColor: Colors.brand.primary,
             },

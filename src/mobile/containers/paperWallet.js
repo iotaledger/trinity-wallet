@@ -18,8 +18,9 @@ import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from '../../shared/libs/html.js';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
-
-const { height, width } = Dimensions.get('window');
+const isAndroid = Platform.OS === 'android';
+const width = Dimensions.get('window').width
+const height = global.height;
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
 let results = '';
@@ -48,7 +49,6 @@ class PaperWallet extends React.Component {
 
     onDonePress() {
         this.props.navigator.pop({ animated: false });
-
         if (this.state.pressedPrint) {
             RNFS.unlink(RNFS.DocumentDirectoryPath + '/qr.png');
 
@@ -72,7 +72,6 @@ class PaperWallet extends React.Component {
     async onPrintPress() {
         this.getDataURL();
         this.setState({ pressedPrint: true });
-        const isAndroid = Platform.OS === 'android';
         const qrPathOverride = isAndroid ? `file://${qrPath}` : qrPath;
 
         const options = {
@@ -185,11 +184,12 @@ class PaperWallet extends React.Component {
             fonts: ['../../shared/custom-fonts/Inconsolata-Bold.ttf'],
         };
 
-        this.props.navigator.toggleNavBar({
-            to: 'shown',
-        });
+
 
         try {
+            this.props.navigator.toggleNavBar({
+                to: 'shown',
+            });
             if (isAndroid) {
                 await RNPrint.printhtml(options.html);
             } else {
@@ -268,96 +268,98 @@ class PaperWallet extends React.Component {
                 <View style={styles.midContainer}>
                     <View style={styles.paperWalletContainer}>
                         <View style={styles.seedBox}>
-                            <Image source={require('../../shared/images/arrow-black.png')} style={styles.arrow} />
-                            <View style={styles.seedBoxTextContainer}>
-                                <View>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(0, 3)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(12, 15)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(24, 27)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(36, 39)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(48, 51)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(60, 63)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(72, 75)}
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(3, 6)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(15, 18)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(27, 30)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(39, 42)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(51, 54)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(63, 66)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(75, 78)}
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(6, 9)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(18, 21)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(30, 33)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(42, 45)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(54, 57)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(66, 69)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextLeft}>
-                                        {this.props.tempAccount.seed.substring(78, 81)}
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Text style={styles.seedBoxTextRight}>
-                                        {this.props.tempAccount.seed.substring(9, 12)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextRight}>
-                                        {this.props.tempAccount.seed.substring(21, 24)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextRight}>
-                                        {this.props.tempAccount.seed.substring(33, 36)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextRight}>
-                                        {this.props.tempAccount.seed.substring(45, 48)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextRight}>
-                                        {this.props.tempAccount.seed.substring(57, 60)}
-                                    </Text>
-                                    <Text style={styles.seedBoxTextRight}>
-                                        {this.props.tempAccount.seed.substring(69, 72)}
-                                    </Text>
+                            <View style={{paddingVertical: height / 80, alignItems: 'center', justifyContent: 'center'}}>
+                                <Image source={require('../../shared/images/arrow-black.png')} style={styles.arrow} />
+                                <View style={styles.seedBoxTextContainer}>
+                                    <View>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(0, 3)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(12, 15)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(24, 27)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(36, 39)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(48, 51)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(60, 63)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(72, 75)}
+                                        </Text>
+                                    </View>
+                                    <View>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(3, 6)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(15, 18)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(27, 30)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(39, 42)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(51, 54)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(63, 66)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(75, 78)}
+                                        </Text>
+                                    </View>
+                                    <View>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(6, 9)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(18, 21)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(30, 33)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(42, 45)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(54, 57)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(66, 69)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextLeft}>
+                                            {this.props.tempAccount.seed.substring(78, 81)}
+                                        </Text>
+                                    </View>
+                                    <View>
+                                        <Text style={styles.seedBoxTextRight}>
+                                            {this.props.tempAccount.seed.substring(9, 12)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextRight}>
+                                            {this.props.tempAccount.seed.substring(21, 24)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextRight}>
+                                            {this.props.tempAccount.seed.substring(33, 36)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextRight}>
+                                            {this.props.tempAccount.seed.substring(45, 48)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextRight}>
+                                            {this.props.tempAccount.seed.substring(57, 60)}
+                                        </Text>
+                                        <Text style={styles.seedBoxTextRight}>
+                                            {this.props.tempAccount.seed.substring(69, 72)}
+                                        </Text>
+                                    </View>
                                 </View>
                             </View>
                         </View>
@@ -371,7 +373,7 @@ class PaperWallet extends React.Component {
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
                         <Text style={styles.checkboxText}>IOTA logo</Text>
                     </TouchableOpacity>
-                    <View style={{ paddingTop: height / 20 }}>
+                    <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onPrintPress()}>
                             <View style={styles.printButton}>
                                 <Text style={styles.printText}>PRINT PAPER WALLET</Text>
@@ -534,30 +536,28 @@ const styles = StyleSheet.create({
     },
     paperWalletContainer: {
         width: width / 1.1,
-        height: height / 5,
+        height: height / 4.3,
         backgroundColor: 'white',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
         paddingHorizontal: width / 30,
+        paddingVertical: height / 50
     },
     seedBox: {
         borderColor: 'black',
         borderWidth: 1,
         borderRadius: 15,
         width: width / 3.4,
-        height: height / 6.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 100,
     },
     seedBoxTextContainer: {
         width: width / 1.65,
-        height: height / 3.5,
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingTop: height / 200,
+        paddingTop: height / 100
     },
     seedBoxTextLeft: {
         color: 'black',

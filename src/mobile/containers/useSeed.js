@@ -26,7 +26,8 @@ import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug report
 
 //import DropdownHolder from './dropdownHolder';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 
@@ -67,7 +68,7 @@ class UseSeed extends React.Component {
             this.props.getAccountInfoNewSeed(this.state.seed, 'usedSeed');
             this.props.navigator.push({
                 screen: 'loading',
-                navigatorStyle: { navBarHidden: true },
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
             });
             this.props.setUsedSeedToLogin();

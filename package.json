@@ -38,6 +38,6 @@
         "eslint-plugin-babel": "^4.1.2",
         "eslint-plugin-import": "^2.7.0",
         "eslint-plugin-react": "^7.3.0",
-        "i18n-webpack-plugin-generate-json": "^1.1.0"
+        "react-native-extra-dimensions-android": "^0.21.0"
     }
 }

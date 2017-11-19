@@ -36,7 +36,8 @@ import Reattacher from './reAttacher';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const StatusBarDefaultBarStyle = 'light-content';
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const timer = require('react-native-timer');
 
 class Home extends Component {
@@ -57,7 +58,7 @@ class Home extends Component {
         if (typeof accountInfo !== 'undefined') {
             this.props.setBalance(addressesWithBalance);
         }
-        timer.setInterval('polling', () => this.startPolling(), 10000);
+        timer.setInterval('polling', () => this.startPolling(), 47000);
     }
 
     componentWillMount() {

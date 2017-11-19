@@ -16,7 +16,8 @@ import {
 } from 'react-native';
 import Triangle from 'react-native-triangle';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 const CustomLayoutSpring = {
     duration: 100,
@@ -62,6 +63,7 @@ class LanguageSetup extends React.Component {
             screen: 'welcome',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
             },
             animated: false,
         });
