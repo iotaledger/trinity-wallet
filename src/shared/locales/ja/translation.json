@@ -2,6 +2,7 @@
     "global": {
         "invalidResponse": "Invalid response",
         "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seed",
         "back": "戻る",
         "done": "完了",
@@ -31,7 +32,7 @@
     },
     "changePassword": {
         "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something wrong while updating your password. Please try again.",
+        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
         "passwordUpdated": "Password updated",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
         "incorrectPassword": "Incorrect password",
@@ -62,5 +63,15 @@
         "pleaseEnterSeed": "Please enter your seed.",
         "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.\",",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
+    },
+    "home": {
+        "balance": "残高",
+        "send": "送金",
+        "receive": "受け取り",
+        "history": "履歴",
+        "settings": "SETTINGS"
+    },
+    "languageSetup": {
+        "language": "言語"
     }
 }
