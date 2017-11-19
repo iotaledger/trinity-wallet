@@ -78,7 +78,7 @@ class Balance extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.transactionsContainer}>
-                    <View style={styles.line} />
+                    <Text style={styles.line} />
                     <ListView
                         dataSource={ds.cloneWithRows(
                             accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
@@ -89,7 +89,7 @@ class Balance extends React.Component {
                         contentContainerStyle={styles.listView}
                         scrollEnabled={false}
                     />
-                    <View style={styles.line} />
+                    <Text style={styles.line} />
                 </View>
                 <View style={{ flex: 5 }}>
                     <Chart
@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
     },
     fiatBalance: {
         color: 'white',
-        paddingTop: 5,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
