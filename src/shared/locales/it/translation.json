@@ -2,6 +2,7 @@
     "global": {
         "invalidResponse": "Invalid response",
         "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seme",
         "back": "INDIETRO",
         "done": "FINE",
@@ -31,7 +32,7 @@
     },
     "changePassword": {
         "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something wrong while updating your password. Please try again.",
+        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
         "passwordUpdated": "Password updated",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
         "incorrectPassword": "Incorrect password",
@@ -62,5 +63,15 @@
         "pleaseEnterSeed": "Please enter your seed.",
         "seedExplanation": "I semi dovrebbero essere lunghi 81 caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.\",",
         "neverShare": "NON MOSTRARE MAI IL TUO SEME A NESSUNO"
+    },
+    "home": {
+        "balance": "SALDO",
+        "send": "INVIA",
+        "receive": "RICEVI",
+        "history": "STORICO",
+        "settings": "SETTINGS"
+    },
+    "languageSetup": {
+        "language": "Lingua"
     }
 }
