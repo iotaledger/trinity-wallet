@@ -10,6 +10,7 @@ import {
     ScrollView,
     ImageBackground,
     StatusBar,
+    Platform
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -19,25 +20,55 @@ import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeInKeychain, getFromKeychain } from '../../shared/libs/cryptography';
-import { increaseSeedCount, addSeedName } from '../../shared/actions/account';
+import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
+import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
-import { incrementSeedIndex, clearTempData } from '../../shared/actions/tempAccount';
-import { getAccountInfoNewSeed, getAccountInfo, setFirstUse } from '../../shared/actions/account';
+import { clearTempData } from '../../shared/actions/tempAccount';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 import DropdownHolder from '../components/dropdownHolder';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
+const isAndroid = Platform.OS === 'android';
 
 class AddAdditionalSeed extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             seed: '',
-            seedName: '',
+            seedName: this.getDefaultSeedName(),
             isModalVisible: false,
         };
+    }
+
+    getDefaultSeedName() {
+        if (this.props.account.seedCount == 0) {
+            return 'MAIN WALLET';
+        } else if (this.props.account.seedCount == 1) {
+            return 'SECOND WALLET';
+        } else if (this.props.account.seedCount == 2) {
+            return 'THIRD WALLET';
+        } else if (this.props.account.seedCount == 3) {
+            return 'FOURTH WALLET';
+        } else if (this.props.account.seedCount == 4) {
+            return 'FIFTH WALLET';
+        } else if (this.props.account.seedCount == 5) {
+            return 'SIXTH WALLET';
+        } else if (this.props.account.seedCount == 6) {
+            return 'OTHER WALLET';
+        }
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     onDonePress() {
@@ -63,32 +94,61 @@ class AddAdditionalSeed extends React.Component {
                 `Please use a unique nickname for your seed.`,
             );
         } else {
-            this.props.setFirstUse(true);
-            this.props.increaseSeedCount();
-            this.props.addSeedName(this.state.seedName);
+            this.props.clearTempData();
             storeInKeychain(
                 this.props.tempAccount.password,
                 this.state.seed,
                 this.state.seedName,
-                () => {
-                    this.props.clearTempData();
-                    Promise.resolve(this.props.getAccountInfoNewSeed(this.state.seed, this.state.seedName)).then(
-                        this.props.navigator.push({
-                            screen: 'loading',
-                            navigatorStyle: {
-                                navBarHidden: true,
-                            },
-                            animated: false,
-                        }),
-                    );
-                },
                 (type, title, message) => this.dropdown.alertWithType(type, title, message),
+                () => {
+                    this.props.setFirstUse(true);
+                    this.props.getAccountInfoNewSeed(this.state.seed, this.state.seedName, (error, success) => {
+                        if (error) {
+                            this.onNodeError();
+                        } else {
+                            this.onNodeSuccess();
+                        }
+                    });
+                    this.props.navigator.push({
+                        screen: 'loading',
+                        navigatorStyle: {
+                            navBarHidden: true,
+                            navBarTransparent: true,
+                        },
+                        animated: false,
+                    });
+                },
             );
         }
     }
 
-    onBackPress() {
+    onNodeError() {
+        getFromKeychain(this.props.tempAccount.password, value => {
+            if (typeof value != 'undefined' && value != null) {
+                removeLastSeed(value, this.props.tempAccount.password);
+            } else {
+                error();
+            }
+        });
         this.props.navigator.pop({
+            animated: false,
+        });
+        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        this.props.setFirstUse(false);
+    }
+
+    onNodeSuccess() {
+        this.props.increaseSeedCount();
+        this.props.addSeedName(this.state.seedName);
+    }
+
+    onBackPress() {
+        this.props.navigator.push({
+            screen: 'home',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
             animated: false,
         });
     }
@@ -137,7 +197,7 @@ class AddAdditionalSeed extends React.Component {
                                             style={styles.textField}
                                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                             labelFontSize={width / 31.8}
-                                            fontSize={width / 20.7}
+                                            fontSize={isAndroid? width / 27.6 : width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"
@@ -342,7 +402,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 90,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -351,20 +411,23 @@ const styles = StyleSheet.create({
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
     },
     seedNickNameContainer: {
@@ -383,20 +446,14 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    incrementSeedIndex: () => {
-        dispatch(incrementSeedIndex());
-    },
     clearTempData: () => {
         dispatch(clearTempData());
     },
     addSeedName: newSeed => {
         dispatch(addSeedName(newSeed));
     },
-    getAccountInfoNewSeed: (seed, seedName) => {
-        dispatch(getAccountInfoNewSeed(seed, seedName));
-    },
-    getAccountInfo: (seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
+    getAccountInfoNewSeed: (seed, seedName, cb) => {
+        dispatch(getAccountInfoNewSeed(seed, seedName, cb));
     },
     generateAlert: (error, title, message) => {
         dispatch(generateAlert(error, title, message));

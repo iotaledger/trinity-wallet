@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 export const formatTimeAs = {
-    twelveHours: time => moment(time).format('hh:mm a'),
+    twelveHours: time => moment(time).format('h:mm a'),
     hoursMinutesDayMonthYear: time => moment(time).format('hh:mm DD/MM/YYYY'),
 };
 

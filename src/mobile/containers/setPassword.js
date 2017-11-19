@@ -13,14 +13,16 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { increaseSeedCount, addSeedName, setOnboardingComplete } from '../../shared/actions/account';
-import { setSeed } from '../../shared/actions/tempAccount';
+import { clearTempData, clearSeed } from '../../shared/actions/tempAccount';
 import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -33,17 +35,30 @@ class SetPassword extends React.Component {
         };
     }
 
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
+    }
+
     onDonePress() {
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
             Promise.resolve(
                 storeInKeychain(this.state.password, this.props.tempAccount.seed, this.props.tempAccount.seedName),
-            ).then(setSeed(''));
+            )
+                .then(this.props.clearTempData())
+                .then(this.props.clearSeed());
             this.props.setOnboardingComplete(true);
             this.props.addSeedName(this.props.tempAccount.seedName);
             this.props.navigator.push({
                 screen: 'onboardingComplete',
                 navigatorStyle: {
                     navBarHidden: true,
+                    navBarTransparent: true,
                 },
                 animated: false,
             });
@@ -204,12 +219,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 4.1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
+        paddingVertical: height / 60,
         marginTop: height / 25,
     },
     infoText: {
@@ -253,7 +267,7 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -262,20 +276,23 @@ const styles = StyleSheet.create({
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
     },
 });
@@ -291,8 +308,11 @@ const mapDispatchToProps = dispatch => ({
     storeInKeychain: password => {
         dispatch(storeInKeychain(password));
     },
-    setSeed: seed => {
-        dispatch(setSeed(seed));
+    clearTempData: () => {
+        dispatch(clearTempData());
+    },
+    clearSeed: () => {
+        dispatch(clearSeed());
     },
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
