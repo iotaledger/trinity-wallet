@@ -7,12 +7,14 @@ import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewSeedModal from '../components/addNewSeedModal';
+import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import { logoutFromWallet } from '../../shared/actions/app';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 
 class Settings extends React.Component {
     constructor(props) {
@@ -21,6 +23,7 @@ class Settings extends React.Component {
             isModalVisible: false,
             selectedSetting: 'addNewSeed',
             modalContent: <AddNewSeedModal />,
+            settings: true,
         };
         this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
     }
@@ -41,141 +44,10 @@ class Settings extends React.Component {
 
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
 
-    setModalContent(selectedSetting) {
-        let modalContent;
-        switch (selectedSetting) {
-            case 'addNewSeed':
-                modalContent = (
-                    <AddNewSeedModal
-                        style={{ flex: 1 }}
-                        hideModal={() => this._hideModal()}
-                        navigateNewSeed={() => this.navigateNewSeed()}
-                        navigateExistingSeed={() => this.navigateExistingSeed()}
-                    />
-                );
-                break;
-        }
-        this.setState({
-            selectedSetting,
-            modalContent,
-        });
-        this._showModal();
-    }
-
-    onModePress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onCurrencyPress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onThemePress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onLanguagePress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onChangePasswordPress() {
-        this.props.navigator.push({
-            screen: 'change-password',
-            navigatorStyle: {
-                navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
-            },
-            animated: false,
-        });
-    }
-
-    on2FASetupPress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onAdvancedSettingsPress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onResetWalletPress() {
-        this.props.navigator.push({
-            screen: 'wallet-reset-confirm',
-            navigatorStyle: {
-                navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
-            },
-            animated: false,
-        });
-    }
-
-    onLogoutPress() {
-        {
-            /* this.props.logoutFromWallet() */
-        }
-        this.props.clearTempData();
-        this.props.setPassword('');
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    screenBackgroundImageName: 'bg-green.png',
-                    screenBackgroundColor: '#102e36',
-                },
-            },
-        });
-    }
-
-    navigateNewSeed() {
-        this._hideModal();
-        this.props.navigator.push({
-            screen: 'newSeedSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-            },
-            animated: false,
-        });
-    }
-
-    navigateExistingSeed() {
-        this._hideModal();
-        this.props.navigator.push({
-            screen: 'addAdditionalSeed',
-            navigatorStyle: {
-                navBarHidden: true,
-            },
-            animated: false,
-        });
-    }
-
-    onAddNewSeedPress() {
-        const dropdown = DropdownHolder.getDropdown();
-        if (this.props.tempAccount.isSendingTransfer) {
-            dropdown.alertWithType('error', 'Transfer sending', 'Please wait until your transfer has been sent.');
-        } else if (this.props.tempAccount.isGeneratingReceiveAddress) {
-            dropdown.alertWithType(
-                'error',
-                'Generating receive address',
-                'Please wait until your address has been generated.',
-            );
-        } else {
-            this.setModalContent('addNewSeed');
-        }
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.settingsContainer}>
+    _renderSettingsContent = boolean => {
+        if (boolean) {
+            return (
+                <View>
                     <TouchableOpacity onPress={event => this.onModePress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/mode.png')} style={styles.icon} />
@@ -230,19 +102,186 @@ class Settings extends React.Component {
                             <Text style={styles.titleText}>Advanced settings</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.onResetWalletPress()}>
-                        <View style={styles.item}>
-                            <Image source={require('../../shared/images/reset.png')} style={styles.icon} />
-                            <Text style={styles.titleText}>Reset wallet</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.onLogoutPress()}>
+                    <TouchableOpacity onPress={event => this.setModalContent('logoutConfirmation')}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/logout.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Log out</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
+            );
+        } else {
+            return (
+                <View style={styles.advancedSettingsContainer}>
+                    <TouchableOpacity onPress={event => this.onResetWalletPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/reset.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Reset Wallet</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onBackPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Back</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            );
+        }
+    };
+
+    setModalContent(selectedSetting) {
+        let modalContent;
+        switch (selectedSetting) {
+            case 'addNewSeed':
+                modalContent = (
+                    <AddNewSeedModal
+                        style={{ flex: 1 }}
+                        hideModal={() => this._hideModal()}
+                        navigateNewSeed={() => this.navigateNewSeed()}
+                        navigateExistingSeed={() => this.navigateExistingSeed()}
+                    />
+                );
+                break;
+            case 'logoutConfirmation':
+                modalContent = (
+                    <LogoutConfirmationModal
+                        style={{ flex: 1 }}
+                        hideModal={() => this._hideModal()}
+                        logout={() => this.logout()}
+                    />
+                );
+                break;
+        }
+        this.setState({
+            selectedSetting,
+            modalContent,
+        });
+        this._showModal();
+    }
+
+    onModePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
+
+    onCurrencyPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
+
+    onThemePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
+
+    onLanguagePress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
+
+    onChangePasswordPress() {
+        this.props.navigator.push({
+            screen: 'change-password',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+        });
+    }
+
+    on2FASetupPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+    }
+
+    onAdvancedSettingsPress() {
+        this.setState({ settings: false });
+    }
+
+    onResetWalletPress() {
+        this.props.navigator.push({
+            screen: 'wallet-reset-confirm',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+        });
+    }
+
+    onBackPress() {
+        this.setState({ settings: true });
+    }
+
+    logout() {
+        {
+            /* this.props.logoutFromWallet() */
+        }
+        this.props.clearTempData();
+        this.props.setPassword('');
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'login',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundImageName: 'bg-green.png',
+                    screenBackgroundColor: '#102e36',
+                },
+            },
+        });
+    }
+
+    navigateNewSeed() {
+        this._hideModal();
+        this.props.navigator.push({
+            screen: 'newSeedSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            animated: false,
+        });
+    }
+
+    navigateExistingSeed() {
+        this._hideModal();
+        this.props.navigator.push({
+            screen: 'addAdditionalSeed',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            animated: false,
+        });
+    }
+
+    onAddNewSeedPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        if (this.props.tempAccount.isSendingTransfer) {
+            dropdown.alertWithType('error', 'Transfer sending', 'Please wait until your transfer has been sent.');
+        } else if (this.props.tempAccount.isGeneratingReceiveAddress) {
+            dropdown.alertWithType(
+                'error',
+                'Generating receive address',
+                'Please wait until your address has been generated.',
+            );
+        } else {
+            this.setModalContent('addNewSeed');
+        }
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <View style={styles.settingsContainer}>{this._renderSettingsContent(this.state.settings)}</View>
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -290,16 +329,21 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
     },
     icon: {
-        width: width / 20,
-        height: width / 20,
+        width: width / 22,
+        height: width / 22,
         marginRight: width / 25,
     },
     settingsContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'flex-start',
-        paddingBottom: height / 80,
+        paddingVertical: height / 22,
         zIndex: 1,
+    },
+    advancedSettingsContainer: {
+        flex: 1,
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
     },
     modalContent: {
         backgroundColor: '#16313a',
