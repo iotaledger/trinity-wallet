@@ -3,7 +3,8 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackg
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 class TransferConfirmationModal extends React.Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class TransferConfirmationModal extends React.Component {
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ alignItems: 'center' }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
-                        <Text style={styles.regularText}>
+                        <Text style={styles.text}>
                             <Text style={styles.regularText}>You are about to send </Text>
                             <Text style={styles.iotaText}>
                                 {' '}
@@ -53,8 +54,15 @@ const styles = StyleSheet.create({
         paddingBottom: width / 20,
     },
     textContainer: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
+    },
+    text: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 31.8,
+        paddingLeft: width / 80,
     },
     regularText: {
         color: 'white',

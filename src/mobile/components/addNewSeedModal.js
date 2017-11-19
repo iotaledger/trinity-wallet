@@ -3,7 +3,8 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackg
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 class AddNewSeedModal extends React.Component {
     constructor(props) {
@@ -13,11 +14,12 @@ class AddNewSeedModal extends React.Component {
             seedName: '',
         };
     }
-    onNewSeedPress() {}
+    onNewSeedPress() {
+        this.props.navigateNewSeed();
+    }
 
     onExistingSeedPress() {
-        clearInterval(polling);
-        this.props.navigate();
+        this.props.navigateExistingSeed();
     }
 
     render() {
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
-        padding: width / 10,
+        padding: width / 8,
     },
     newSeedButton: {
         borderColor: '#9DFFAF',
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
         height: height / 12,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginTop: height / 60,
+        marginTop: height / 37,
     },
     newSeedButtonText: {
         color: '#9DFFAF',
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
         height: height / 12,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginTop: height / 30,
+        marginTop: height / 22,
     },
     existingSeedButtonText: {
         color: '#F7D002',
@@ -94,10 +96,6 @@ const styles = StyleSheet.create({
         right: 0,
         top: 0,
         margin: width / 40,
-    },
-    textField: {
-        color: 'white',
-        fontFamily: 'Inconsolata-Bold',
     },
 });
 

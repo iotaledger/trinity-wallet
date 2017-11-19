@@ -1,11 +1,23 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width
+const height = global.height;
 
 class Welcome extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount() {
+        RNShakeEvent.addEventListener('shake', () => {
+            HockeyApp.feedback();
+        });
+    }
+
+    componentWillUnmount() {
+        RNShakeEvent.removeEventListener('shake');
     }
 
     onNextPress() {
@@ -13,6 +25,7 @@ class Welcome extends React.Component {
             screen: 'walletSetup',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
             },
             animated: false,
         });
