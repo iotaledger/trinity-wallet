@@ -92,6 +92,6 @@
         "individualLetters": "文字をタップしてランダムにしてください。"
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "ウォレットの準備が整いました。設定の変更は今後も設定メニューから行えます。"
     }
 }
