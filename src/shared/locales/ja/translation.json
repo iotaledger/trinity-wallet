@@ -54,8 +54,8 @@
         "seedCleared": "Seedを消去しました。",
         "seedClearedExplanation": "安全のために、Seedをクリップボードから消去しました。",
         "seedCopied": "Seedをコピーしました。",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "seedCopiedExplanation": "Seedをクリップボードにコピーしました。「完了」を押すか60秒が経過するとSeedは消去されます。",
+        "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。"
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
@@ -77,17 +77,17 @@
         "language": "言語"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "unrecognisedPassword": "Unrecognised password",
+        "emptyPassword": "パスワードの入力なし",
+        "emptyPasswordExplanation": "ログインするにはパスワードを入力する必要があります。もう一度やり直して下さい。",
+        "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
-        "enterPassword": "Please enter your password.",
+        "enterPassword": "パスワードを入力して下さい。",
         "useSeed": "Seedでログイン",
-        "login": "LOG IN"
+        "login": "ログイン"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "seedNotGenerated": "Seedが生成されていません。",
+        "seedNotGeneratedExplanation": "「新しいSeedを生成する。」ボタンをクリックして下さい。",
         "pressForNewSeed": "PRESS FOR NEW SEED",
         "individualLetters": "文字をタップしてランダムにしてください。"
     }
