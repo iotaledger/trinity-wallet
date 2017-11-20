@@ -10,7 +10,9 @@
         "manualCopy": "Niederschrift",
         "paperWallet": "Papier Wallet",
         "copyToClipboard": "In die Zwischenablage kopieren",
-        "qr": "QR"
+        "qr": "QR",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
         "mainWallet": "Hauptwallet",
@@ -61,7 +63,7 @@
         "seedTooShort": "Seed ist zu kurz",
         "seedTooShortExplanation": "Seeds müssen mindestens 60 Zeichen lang sein (idealerweise 81 Zeichen). Dein Seed ist im Moment {seed.length} Zeichen lang. Bitte versuche es erneut.",
         "pleaseEnterSeed": "Bitte gib deinen Seed ein.",
-        "seedExplanation": "Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als 81 Zeichen ist.\",",
+        "seedExplanation": "Seeds sollten 81 Zeichen lang sein und aus den Großbuchstaben A-Z oder der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als 81 Zeichen ist.",
         "neverShare": "TEILE DEINEN SEED MIT NIEMANDEM"
     },
     "home": {
@@ -73,5 +75,23 @@
     },
     "languageSetup": {
         "language": "Sprache"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte nochmals Versuchen.",
+        "enterPassword": "Bitte gib dein Passwort ein.",
+        "useSeed": "SEED BENUTZEN",
+        "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "Drücke beliebige Buchstaben um sie zufällig zu verteilen."
+    },
+    "onboardingComplete": {
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }
