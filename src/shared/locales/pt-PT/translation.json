@@ -1,6 +1,6 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
+        "invalidResponse": "Resposta inválida",
         "invalidResponseExplanation": "The node returned an invalid response.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seed",
@@ -9,15 +9,15 @@
         "next": "PRÓXIMO",
         "manualCopy": "Cópia Manual",
         "paperWallet": "Carteira de Papel",
-        "copyToClipboard": "Copy to Clipboard",
+        "copyToClipboard": "Copiar para a Área de Transferência",
         "qr": "QR"
     },
     "addAdditionalSeed": {
-        "mainWallet": "MAIN WALLET",
-        "secondWallet": "SECOND WALLET",
-        "thirdWallet": "THIRD WALLET",
-        "fourthWallet": "FOURTH WALLET",
-        "fifthWallet": "FIFTH WALLET",
+        "mainWallet": "Carteira Principal",
+        "secondWallet": "SEGUNDA CARTEIRA",
+        "thirdWallet": "TERCEIRA CARTEIRA",
+        "fourthWallet": "QUARTA CARTEIRA",
+        "fifthWallet": "QUINTA CARTEIRA",
         "sixthWallet": "SIXTH WALLET",
         "otherWallet": "OTHER WALLET",
         "seedInvalidChars": "Seed contains invalid characters",
