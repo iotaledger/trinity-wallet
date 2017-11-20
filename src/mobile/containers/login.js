@@ -90,6 +90,7 @@ class Login extends React.Component {
                     navBarTransparent: true
                 },
                 animated: false,
+                overrideBackPress: true
             });
         }
 
@@ -118,6 +119,7 @@ class Login extends React.Component {
                 navBarHidden: true,
             },
             animated: false,
+            overrideBackPress: true
         });*/
         }
     }

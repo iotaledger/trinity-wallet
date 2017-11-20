@@ -25,6 +25,7 @@ class SaveYourSeed extends Component {
             screen: 'seedReentry',
             navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
+            overrideBackPress: true
         });
     }
 
@@ -39,6 +40,7 @@ class SaveYourSeed extends Component {
             screen: 'writeSeedDown',
             navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
+            overrideBackPress: true
         });
     }
     onPrintClick() {
@@ -46,6 +48,7 @@ class SaveYourSeed extends Component {
             screen: 'paperWallet',
             navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
+            overrideBackPress: true
         });
     }
     onCopyClick() {
@@ -53,6 +56,7 @@ class SaveYourSeed extends Component {
             screen: 'copySeedToClipboard',
             navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
+            overrideBackPress: true
         });
     }
 

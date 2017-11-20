@@ -105,6 +105,7 @@ class AddAdditionalSeed extends React.Component {
                             navBarTransparent: true,
                         },
                         animated: false,
+                        overrideBackPress: true
                     });
                 },
             );
@@ -139,6 +140,7 @@ class AddAdditionalSeed extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true
         });
     }
     onQRPress() {

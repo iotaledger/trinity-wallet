@@ -39,6 +39,7 @@ class SeedReentry extends React.Component {
                 screen: 'setSeedName',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true
             });
         } else {
             this.dropdown.alertWithType(

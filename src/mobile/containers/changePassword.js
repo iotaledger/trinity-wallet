@@ -79,6 +79,7 @@ class ChangePassword extends Component {
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
+            overrideBackPress: true
         });
     }
 

@@ -58,6 +58,7 @@ class UseSeed extends React.Component {
                 screen: 'loading',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true
             });
             this.props.setUsedSeedToLogin();
             this.props.setPassword('dummy');
