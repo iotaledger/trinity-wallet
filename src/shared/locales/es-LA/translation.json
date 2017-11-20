@@ -10,7 +10,9 @@
         "manualCopy": "Copiar Manualmente",
         "paperWallet": "Billetera de Papel",
         "copyToClipboard": "Copy to Clipboard",
-        "qr": "QR"
+        "qr": "QR",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
         "mainWallet": "MAIN WALLET",
@@ -61,7 +63,7 @@
         "seedTooShort": "Seed es demasiado corta",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "pleaseEnterSeed": "Please enter your seed.",
-        "seedExplanation": "Se aconseja que las seeds tengan 81 caracteres. Además, es obligatório que sean letras mayúsculas (A-Z) y el número 9. No se puede utilizar seeds con más de 81 caracteres en largo.\",",
+        "seedExplanation": "Se aconseja que las seeds tengan 81 caracteres. Además, es obligatório que sean letras mayúsculas (A-Z) y el número 9. No se puede utilizar seeds con más de 81 caracteres en largo.",
         "neverShare": "NUNCA COMPARTAS TU SEED CON NADIE"
     },
     "home": {
@@ -69,9 +71,24 @@
         "send": "ENVIAR",
         "receive": "RECIBIR",
         "history": "HISTORIAL",
-        "settings": "SETTINGS"
+        "settings": "AJUSTES"
     },
     "languageSetup": {
         "language": "Idioma"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtalo de nuevo.",
+        "enterPassword": "Por favor introduce tu contraseña.",
+        "useSeed": "USAR SEED",
+        "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "Haz clic en letras individuales para aleatorizarlas."
     }
 }
