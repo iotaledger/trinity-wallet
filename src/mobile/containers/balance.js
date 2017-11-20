@@ -83,6 +83,8 @@ class Balance extends React.Component {
                             enableEmptySections
                             contentContainerStyle={styles.listView}
                             scrollEnabled={false}
+                            style={{flex: 1}}
+                            centerContent
                         />
                     <View style={styles.line} />
                 </View>
@@ -130,7 +132,6 @@ const styles = StyleSheet.create({
         flex: 2.5,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: height / 80,
     },
     line: {
         borderBottomColor: 'white',
@@ -138,13 +139,11 @@ const styles = StyleSheet.create({
         width: width / 1.15,
     },
     separator: {
-        flex: 1,
-        height: 5,
+        height: height / 90,
     },
     listView: {
-        flex: 1,
         justifyContent: 'center',
-        paddingVertical: height / 40
+        paddingTop: height / 90
     },
 });
 
