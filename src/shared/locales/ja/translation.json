@@ -23,9 +23,9 @@
         "sixthWallet": "6つ目のウォレット",
         "otherWallet": "その他のウォレット",
         "seedInvalidChars": "無効な文字を含んだSeedです。",
-        "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度お願いします。",
+        "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度お願いします。",
+        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
         "nicknameInUse": "この名前はすでに使われています。",
         "nicknameInUseExplanation": "あなたのSeedに唯一の名前を付けてください。",
         "enterSeed": "Seedを入力して下さい。",
@@ -33,17 +33,17 @@
         "seedNickname": "Seedの名前"
     },
     "changePassword": {
-        "oops": "何かが間違っています。",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
-        "incorrectPassword": "Incorrect password",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "oops": "おっと、何かが間違っています。",
+        "oopsExplanation": "パスワードを更新するときに何かミスをしているようです。もう一度やり直して下さい。",
+        "passwordUpdated": "パスワードを更新しました。",
+        "passwordUpdatedExplanation": "パスワードは正しく更新されました。",
+        "incorrectPassword": "パスワードが正しくありません。",
+        "incorrectPasswordExplanation": "先ほどのパスワードは正しくありません。もう一度やり直して下さい。",
         "passwordsDoNotMatch": "パスワードが一致しません。",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordsDoNotMatchExplanation": "パスワードが一致しません。もう一度やり直して下さい。",
         "passwordTooShort": "パスワードが短すぎます。",
         "passwordTooShortExplanation": "パスワードは最低12文字で設定しましょう。もう一度やり直してください。",
-        "oldPassword": "Cannot set old password",
+        "oldPassword": "古いパスワードは使えません。",
         "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
         "currentPassword": "Current Password",
@@ -58,12 +58,12 @@
         "clickToCopy": "Click the button below and copy your seed to a password manager."
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharacters": "無効な文字を含んだSeedです。",
+        "invalidCharactersExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度お願いします。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "pleaseEnterSeed": "Please enter your seed.",
-        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.\",",
+        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度お願いします。",
+        "pleaseEnterSeed": "Seedを入力して下さい。",
+        "seedExplanation": "Seedは81文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、81文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -80,15 +80,15 @@
         "emptyPassword": "Empty password",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
         "unrecognisedPassword": "Unrecognised password",
-        "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
+        "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
         "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
+        "useSeed": "Seedでログイン",
         "login": "LOG IN"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
         "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "individualLetters": "文字をタップしてランダムにしてください。"
     }
 }
