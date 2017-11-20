@@ -40,6 +40,7 @@ export default class WalletResetConfirmation extends Component {
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
+            overrideBackPress: true
         });
     }
 

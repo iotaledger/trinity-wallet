@@ -50,6 +50,7 @@ class SetPassword extends React.Component {
                     navBarTransparent: true,
                 },
                 animated: false,
+                overrideBackPress: true
             });
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
