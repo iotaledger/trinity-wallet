@@ -10,7 +10,9 @@
         "manualCopy": "手書き",
         "paperWallet": "ペーパーウォレット",
         "copyToClipboard": "クリップボードにコピー",
-        "qr": "QRコード"
+        "qr": "QRコード",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
         "mainWallet": "メインウォレット",
@@ -23,15 +25,15 @@
         "seedInvalidChars": "無効な文字を含んだSeedです。",
         "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度お願いします。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "nicknameInUse": "Nickname already in use",
-        "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
-        "enterSeed": "Please enter your seed.",
-        "enterSeedNickname": "Enter a seed nickname.",
-        "seedNickname": "Seed nickname"
+        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度お願いします。",
+        "nicknameInUse": "この名前はすでに使われています。",
+        "nicknameInUseExplanation": "あなたのSeedに唯一の名前を付けてください。",
+        "enterSeed": "Seedを入力して下さい。",
+        "enterSeedNickname": "Seedの名前を入力して下さい。",
+        "seedNickname": "Seedの名前"
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
+        "oops": "何かが間違っています。",
         "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
         "passwordUpdated": "Password updated",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
@@ -73,5 +75,20 @@
     },
     "languageSetup": {
         "language": "言語"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
+        "enterPassword": "Please enter your password.",
+        "useSeed": "USE SEED",
+        "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "Press individual letters to randomise them."
     }
 }
