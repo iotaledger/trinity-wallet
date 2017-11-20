@@ -77,17 +77,17 @@
         "language": "Lingua"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "unrecognisedPassword": "Unrecognised password",
+        "emptyPassword": "Password vuota",
+        "emptyPasswordExplanation": "È necessario immettere una password per il login. Si prega di riprovare.",
+        "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
         "enterPassword": "Inserisci la tua password.",
         "useSeed": "USA IL SEME",
-        "login": "LOG IN"
+        "login": "ACCEDI"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "seedNotGenerated": "Il seme non è stato generato",
+        "seedNotGeneratedExplanation": "Fare clic sul pulsante \"Genera nuovo seme\".",
         "pressForNewSeed": "PRESS FOR NEW SEED",
         "individualLetters": "Premi alcune singole lettere per renderle maggiormente casuali."
     },
