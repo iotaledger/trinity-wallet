@@ -13,7 +13,7 @@
         "qr": "QR"
     },
     "addAdditionalSeed": {
-        "mainWallet": "Carteira Principal",
+        "mainWallet": "CARTEIRA PRINCIPAL",
         "secondWallet": "SEGUNDA CARTEIRA",
         "thirdWallet": "TERCEIRA CARTEIRA",
         "fourthWallet": "QUARTA CARTEIRA",
@@ -38,15 +38,15 @@
         "incorrectPassword": "Palavra-passe incorreta",
         "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
         "passwordsDoNotMatch": "As palavras-passe não coincidem",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordsDoNotMatchExplanation": "As palavras-passe não coincidem. Por favor, tente de novo.",
         "passwordTooShort": "A palavra-passe é demasiado curta",
         "passwordTooShortExplanation": "A sua palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
         "oldPassword": "Cannot set old password",
         "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "Palavra-passe atual",
+        "newPassword": "Nova Palavra-Passe",
+        "confirmPassword": "Confirme a Nova Palavra-Passe"
     },
     "copyToClipboard": {
         "seedCleared": "Seed cleared",
@@ -60,7 +60,7 @@
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "A Seed é demasiado curta",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "pleaseEnterSeed": "Please enter your seed.",
+        "pleaseEnterSeed": "Por favor, entre a sua Seed.",
         "seedExplanation": "As Seeds devem ter 81 caracteres e têm de ser constituídas por letras maiúsculas (A-Z) e o número 9. Não podem conter mais de 81 caracteres.\",",
         "neverShare": "NUNCA PARTILHE A SUA SEED COM NINGUÉM"
     },
@@ -69,7 +69,7 @@
         "send": "ENVIAR",
         "receive": "RECEBER",
         "history": "HISTÓRICO",
-        "settings": "SETTINGS"
+        "settings": "CONFIGURAÇÕES"
     },
     "languageSetup": {
         "language": "Idioma"
