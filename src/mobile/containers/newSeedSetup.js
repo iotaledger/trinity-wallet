@@ -92,6 +92,7 @@ class NewSeedSetup extends Component {
                 screen: 'saveYourSeed',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true,},
                 animated: false,
+                overrideBackPress: true
             });
         } else {
             this.dropdown.alertWithType(
@@ -112,6 +113,7 @@ class NewSeedSetup extends Component {
                     navBarTransparent: true,
                 },
                 animated: false,
+                overrideBackPress: true
             });
         } else {
             this.props.navigator.pop({ animated: false });

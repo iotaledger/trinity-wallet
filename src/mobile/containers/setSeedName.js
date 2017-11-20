@@ -65,6 +65,7 @@ class SetSeedName extends React.Component {
                     screen: 'setPassword',
                     navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                     animated: false,
+                    overrideBackPress: true
                 });
             } else {
                 this.props.clearTempData();
@@ -82,6 +83,7 @@ class SetSeedName extends React.Component {
                                 navBarTransparent: true
                             },
                             animated: false,
+                            overrideBackPress: true
                         });
                         this.props.getAccountInfoNewSeed(
                             this.props.tempAccount.seed,

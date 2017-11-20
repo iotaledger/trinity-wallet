@@ -28,6 +28,7 @@ class Welcome extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true
         });
     }
 
