@@ -93,6 +93,7 @@ class SeedReentry extends React.Component {
                                     containerStyle={{
                                         width: width / 1.4,
                                     }}
+                                    secureTextEntry={true}
                                 />
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
