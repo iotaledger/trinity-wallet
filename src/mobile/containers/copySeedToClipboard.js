@@ -75,31 +75,14 @@ class CopySeedToClipboard extends React.Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.subtitlesContainer}>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Manual Copy</Text>
-                        </View>
-                        <View style={styles.lineContainer}>
-                            <Text style={styles.line}>────────</Text>
-                        </View>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Paper Wallet</Text>
-                        </View>
-                        <View style={styles.lineContainer}>
-                            <Text style={styles.line}>────────</Text>
-                        </View>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.currentSubtitle}>Copy To Clipboard</Text>
-                        </View>
-                    </View>
+                </View>
+                <View style={styles.midContainer}>
                     <Text style={styles.infoTextNormal}>
                         Click the button below and copy your seed to a password manager.
                     </Text>
                     <Text style={styles.infoTextBold}> Do not store the seed in plain text.</Text>
-                </View>
-                <View style={styles.midContainer}>
                     <Seedbox seed={this.props.tempAccount.seed} />
-                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 55 }}>
+                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 22 }}>
                         <View style={styles.copyButton}>
                             <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
                         </View>
@@ -135,17 +118,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.4,
+        flex: 0.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
         paddingHorizontal: width / 20,
     },
     midContainer: {
-        flex: 3.6,
+        flex: 4.6,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 4.75,
     },
     bottomContainer: {
         justifyContent: 'center',
@@ -169,45 +151,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
-    currentSubtitle: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        flexWrap: 'wrap',
-    },
-    subtitle: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        flexWrap: 'wrap',
-        opacity: 0.5,
-    },
-    subtitlesContainer: {
-        flexDirection: 'row',
-        flex: 1,
-        paddingTop: height / 10,
-    },
-    subtitleContainer: {
-        paddingHorizontal: width / 75,
-        flex: 1,
-        justifyContent: 'center',
-    },
-    line: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        opacity: 0.5,
-    },
-    lineContainer: {
-        flex: 1.5,
-        justifyContent: 'center',
-    },
     infoTextNormal: {
         paddingTop: height / 12,
         color: 'white',
@@ -224,6 +167,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingTop: height / 80,
+        paddingBottom: height / 40
     },
     doneButton: {
         borderColor: '#9DFFAF',

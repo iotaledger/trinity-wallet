@@ -22,32 +22,15 @@ class WriteSeedDown extends React.Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.subtitlesContainer}>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.currentSubtitle}>Manual Copy</Text>
-                        </View>
-                        <View style={styles.lineContainer}>
-                            <Text style={styles.line}>────────</Text>
-                        </View>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Paper Wallet</Text>
-                        </View>
-                        <View style={styles.lineContainer}>
-                            <Text style={styles.line}>────────</Text>
-                        </View>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Copy To Clipboard</Text>
-                        </View>
-                    </View>
-                    <Text style={styles.infoText}>
-                        <Text style={styles.infoTextNormal}>
-                            Your seed is 81 characters read from left to right. Write down your seed and checksum and
-                        </Text>
-                        <Text style={styles.infoTextBold}> triple check </Text>
-                        <Text style={styles.infoTextNormal}>they are correct.</Text>
-                    </Text>
                 </View>
                 <View style={styles.midContainer}>
+                  <Text style={styles.infoText}>
+                      <Text style={styles.infoTextNormal}>
+                          Your seed is 81 characters read from left to right. Write down your seed and checksum and
+                      </Text>
+                      <Text style={styles.infoTextBold}> triple check </Text>
+                      <Text style={styles.infoTextNormal}>they are correct.</Text>
+                  </Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
                 </View>
                 <View style={styles.bottomContainer}>
@@ -70,16 +53,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.5,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 3.5,
+        flex: 4.5,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 10,
     },
     bottomContainer: {
         justifyContent: 'flex-end',
@@ -103,51 +85,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
-    currentSubtitle: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        flexWrap: 'wrap',
-    },
-    subtitle: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        flexWrap: 'wrap',
-        opacity: 0.5,
-    },
-    subtitlesContainer: {
-        flexDirection: 'row',
-        flex: 1,
-        paddingTop: height / 10,
-    },
-    subtitleContainer: {
-        paddingHorizontal: width / 75,
-        flex: 1,
-        justifyContent: 'center',
-    },
-    line: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        opacity: 0.5,
-    },
-    lineContainer: {
-        flex: 1.5,
-        justifyContent: 'center',
-    },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'left',
-        paddingTop: height / 12,
+        paddingTop: height / 25,
+        paddingBottom: height / 40,
         paddingHorizontal: width / 7,
         textAlign: 'center',
         backgroundColor: 'transparent',
