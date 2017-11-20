@@ -55,7 +55,7 @@
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
         "seedCopied": "Seme copiato",
         "seedCopiedExplanation": "Il seme è stato copiato negli Appunti e verrà cancellato una volta che si preme \"FINE\" o al massimo tra 60 secondi.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password."
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
@@ -71,7 +71,7 @@
         "send": "INVIA",
         "receive": "RICEVI",
         "history": "STORICO",
-        "settings": "SETTINGS"
+        "settings": "IMPOSTAZIONI"
     },
     "languageSetup": {
         "language": "Lingua"
