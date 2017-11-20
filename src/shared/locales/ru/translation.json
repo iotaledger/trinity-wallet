@@ -1,7 +1,7 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponse": "Неправильный отклик",
+        "invalidResponseExplanation": "Узел вернул недопустимый отклик.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Ключ",
         "back": "НАЗАД",
