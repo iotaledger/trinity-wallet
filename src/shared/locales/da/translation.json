@@ -1,7 +1,7 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponse": "Ugyldigt svar",
+        "invalidResponseExplanation": "Noden returnerede et ugyldigt svar.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seed",
         "back": "TILBAGE",
@@ -92,6 +92,6 @@
         "individualLetters": "Tryk på individuelle bogstaver for at vælge nye tilfældigt."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
     }
 }
