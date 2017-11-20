@@ -10,7 +10,9 @@
         "manualCopy": "수동 복사",
         "paperWallet": "종이 지갑",
         "copyToClipboard": "Copy to Clipboard",
-        "qr": "QR"
+        "qr": "QR",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
         "mainWallet": "MAIN WALLET",
@@ -61,7 +63,7 @@
         "seedTooShort": "씨드가 너무 짧습니다.",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "pleaseEnterSeed": "Please enter your seed.",
-        "seedExplanation": "씨드는 81자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. 81자 이상의 씨드는 사용할 수 없습니다.\",",
+        "seedExplanation": "씨드는 81자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. 81자 이상의 씨드는 사용할 수 없습니다.",
         "neverShare": "다른 이와 절대로 씨드를 공유하지 마십시오."
     },
     "home": {
@@ -73,5 +75,23 @@
     },
     "languageSetup": {
         "language": "언어"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "비밀번호가 옳지 않습니다. 재시도 해주십시오.",
+        "enterPassword": "비밀번호를 입력 해주십시오.",
+        "useSeed": "씨드 사용하기",
+        "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "임의로 순서를 정하기 위해 개별 글자를 눌러주세요."
+    },
+    "onboardingComplete": {
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }

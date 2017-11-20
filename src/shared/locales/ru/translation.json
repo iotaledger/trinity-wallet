@@ -10,7 +10,9 @@
         "manualCopy": "Ручное копирование",
         "paperWallet": "Paper Wallet",
         "copyToClipboard": "Copy to Clipboard",
-        "qr": "QR-код"
+        "qr": "QR-код",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
         "mainWallet": "MAIN WALLET",
@@ -61,7 +63,7 @@
         "seedTooShort": "Ключ слишком короткий",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "pleaseEnterSeed": "Please enter your seed.",
-        "seedExplanation": "Ключ должен быть длиной 81 символ и содержать только заглавные буквы A-Z и цифру 9. Более длинные ключи не допускаются.\",",
+        "seedExplanation": "Ключ должен быть длиной 81 символ и содержать только заглавные буквы A-Z и цифру 9. Более длинные ключи не допускаются.",
         "neverShare": "Никому никогда не сообщайте ваш ключ"
     },
     "home": {
@@ -73,5 +75,23 @@
     },
     "languageSetup": {
         "language": "Язык"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "Некорректный пароль. Повторите попытку.",
+        "enterPassword": "Пожалуйста, введите пароль.",
+        "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
+        "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "Нажмите какие-нибудь клавиши на клавиатуре в случайном порядке."
+    },
+    "onboardingComplete": {
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }
