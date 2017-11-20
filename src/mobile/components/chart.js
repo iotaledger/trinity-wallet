@@ -23,7 +23,11 @@ class Chart extends React.Component {
         }, 101000);
     }
 
-    onCurrencyClick() {
+    componentWillMount(){
+        this.changeCurrency(this.props.marketData.currency)
+    }
+
+    changeCurrency() {
         switch (this.props.marketData.currency) {
             case 'USD':
                 this.props.setCurrency('BTC');
@@ -40,7 +44,7 @@ class Chart extends React.Component {
         }
     }
 
-    onTimeframeClick() {
+    changeTimeframe() {
         switch (this.props.marketData.timeframe) {
             case '24h':
                 this.props.setTimeframe('7d');
@@ -99,19 +103,6 @@ class Chart extends React.Component {
         ];
     }
 
-    getTickFormat(x) {
-        if (this.props.marketData.currency == 'USD') {
-            x = x.toFixed(3);
-            return x;
-        } else if (this.props.marketData.currency == 'BTC') {
-            x = x.toFixed(6);
-            return x;
-        } else {
-            x = x.toFixed(5);
-            return x;
-        }
-    }
-
     getPriceFormat(x) {
         if (this.props.marketData.currency == 'USD') {
             x = x.toFixed(3);
@@ -133,7 +124,7 @@ class Chart extends React.Component {
                 <View style={styles.topContainer}>
                     <View style={{ flex: 1 }}>
                         <TouchableWithoutFeedback
-                            onPress={event => this.onCurrencyClick()}
+                            onPress={event => this.changeCurrency()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -143,11 +134,11 @@ class Chart extends React.Component {
                         </TouchableWithoutFeedback>
                     </View>
                     <View style={styles.priceContainer}>
-                        <Text style={styles.iotaPrice}>{this.state.price} / Mi</Text>
+                        <Text style={styles.iotaPrice}>{this.getPriceFormat(this.state.price)} / Mi</Text>
                     </View>
                     <View style={{ flex: 1 }}>
                         <TouchableWithoutFeedback
-                            onPress={event => this.onTimeframeClick()}
+                            onPress={event => this.changeTimeframe()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -168,7 +159,7 @@ class Chart extends React.Component {
 
                         <VictoryAxis
                             dependentAxis
-                            tickFormat={x => this.getTickFormat(x)}
+                            tickFormat={x => this.getPriceFormat(x)}
                             standalone={false}
                             style={{
                                 axis: { stroke: 'transparent' },
