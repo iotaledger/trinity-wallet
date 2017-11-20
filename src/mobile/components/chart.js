@@ -101,7 +101,20 @@ class Chart extends React.Component {
 
     getTickFormat(x) {
         if (this.props.marketData.currency == 'USD') {
-            x = x.toFixed(2);
+            x = x.toFixed(3);
+            return x;
+        } else if (this.props.marketData.currency == 'BTC') {
+            x = x.toFixed(6);
+            return x;
+        } else {
+            x = x.toFixed(5);
+            return x;
+        }
+    }
+
+    getPriceFormat(x) {
+        if (this.props.marketData.currency == 'USD') {
+            x = x.toFixed(3);
             return x;
         } else if (this.props.marketData.currency == 'BTC') {
             x = x.toFixed(6);
