@@ -28,11 +28,11 @@
         "seedTooShort": "Seed is too short",
         "seedTooShortExplanation":
             "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "nicknameInUse": "Nickname already in use",
-        "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
+        "nameInUse": "Account name already in use",
+        "nameInUseExplanation": "Please use a unique account name for your seed.",
         "enterSeed": "Please enter your seed.",
-        "enterSeedNickname": "Enter a seed nickname.",
-        "seedNickname": "Seed nickname"
+        "enterAccountName": "Enter an account name.",
+        "accountName": "Account name"
     },
     "changePassword": {
         "oops": "Oops! Something went wrong",
