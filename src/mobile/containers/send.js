@@ -277,6 +277,7 @@ class Send extends Component {
                                 style={styles.textField}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
+                                maxLength={90}
                                 fontSize={height / 40}
                                 height={height / 24}
                                 labelPadding={2}
