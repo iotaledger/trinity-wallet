@@ -74,18 +74,17 @@ class Balance extends React.Component {
                 </View>
                 <View style={styles.transactionsContainer}>
                     <View style={styles.line} />
-                        <ListView
-                            dataSource={ds.cloneWithRows(
-                                accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
-                            )}
-                            renderRow={dataSource => <SimpleTransactionRow addresses={addresses} rowData={dataSource} />}
-                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                            enableEmptySections
-                            contentContainerStyle={styles.listView}
-                            scrollEnabled={false}
-                            style={{flex: 1}}
-                            centerContent
-                        />
+                            <ListView
+                                dataSource={ds.cloneWithRows(
+                                    accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
+                                )}
+                                renderRow={dataSource => <SimpleTransactionRow addresses={addresses} rowData={dataSource} />}
+                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                                enableEmptySections
+                                contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
+                                scrollEnabled={false}
+                                centerContent
+                            />
                     <View style={styles.line} />
                 </View>
                 <View style={{ flex: 5 }}>
@@ -132,6 +131,7 @@ const styles = StyleSheet.create({
         flex: 2.5,
         justifyContent: 'space-between',
         alignItems: 'center',
+        paddingVertical: height / 150
     },
     line: {
         borderBottomColor: 'white',
@@ -140,11 +140,15 @@ const styles = StyleSheet.create({
     },
     separator: {
         height: height / 90,
+        flex: 1,
     },
-    listView: {
-        justifyContent: 'center',
-        paddingTop: height / 90
+    listViewAndroid: {
+        flex : 1,
+        paddingVertical: height / 70,
     },
+    listViewIos: {
+        paddingTop: height / 90,
+    }
 });
 
 const mapStateToProps = state => ({
