@@ -51,9 +51,9 @@
         "confirmPassword": "新しいパスワードを承認"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Seed copied",
+        "seedCleared": "Seedを消去しました。",
+        "seedClearedExplanation": "安全のために、Seedをクリップボードから消去しました。",
+        "seedCopied": "Seedをコピーしました。",
         "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
         "clickToCopy": "Click the button below and copy your seed to a password manager."
     },
