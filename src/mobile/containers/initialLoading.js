@@ -21,15 +21,13 @@ export default class InitialLoading extends Component {
 
     componentDidMount() {
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     }
 
     componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
     }
 
     handleBackButton() {
-      return true;
+      return false;
     }
 
     onLoaded() {
@@ -39,12 +37,14 @@ export default class InitialLoading extends Component {
                 screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true},
                 animated: false,
+                overrideBackPress: true
             });
         } else {
             this.props.navigator.push({
                 screen: 'login',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true
             });
         }
     }

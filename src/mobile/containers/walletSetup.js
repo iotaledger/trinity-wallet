@@ -26,6 +26,7 @@ class WalletSetup extends React.Component {
                 navBarTransparent: true
             },
             animated: false,
+            overrideBackPress: true
         });
     }
     onNoPress() {
@@ -36,6 +37,7 @@ class WalletSetup extends React.Component {
                 navBarTransparent: true
             },
             animated: false,
+            overrideBackPress: true
         });
     }
 

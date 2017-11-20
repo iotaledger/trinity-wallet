@@ -181,6 +181,7 @@ class Settings extends React.Component {
                 screenBackgroundColor: '#102e36',
             },
             animated: false,
+            overrideBackPress: true
         });
     }
 
@@ -203,6 +204,7 @@ class Settings extends React.Component {
                 screenBackgroundColor: '#102e36',
             },
             animated: false,
+            overrideBackPress: true
         });
     }
 
@@ -225,6 +227,7 @@ class Settings extends React.Component {
                     screenBackgroundImageName: 'bg-green.png',
                     screenBackgroundColor: '#102e36',
                 },
+                overrideBackPress: true
             },
         });
     }
@@ -238,6 +241,7 @@ class Settings extends React.Component {
                 navBarTransparent: true
             },
             animated: false,
+            overrideBackPress: true
         });
     }
 
@@ -250,6 +254,7 @@ class Settings extends React.Component {
                 navBarTransparent: true
             },
             animated: false,
+            overrideBackPress: true
         });
     }
 
