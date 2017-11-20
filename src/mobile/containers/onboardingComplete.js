@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width
 const height = global.height;
@@ -15,16 +14,6 @@ class OnboardingComplete extends React.Component {
             },
             animated: false,
         });
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     render() {
