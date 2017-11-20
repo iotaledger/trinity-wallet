@@ -132,6 +132,7 @@ class EnterSeed extends React.Component {
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
                                             multiline
+                                            secureTextEntry={true}
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
