@@ -21,7 +21,6 @@ import { getAccountInfo } from '../../shared/actions/account';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeInKeychain } from '../../shared/libs/cryptography';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -37,16 +36,6 @@ class UseSeed extends React.Component {
             seed: '',
             isModalVisible: false,
         };
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onDonePress() {

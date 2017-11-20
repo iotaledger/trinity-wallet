@@ -16,7 +16,6 @@ import { RNPrint } from 'NativeModules';
 import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from '../../shared/libs/html.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 const isAndroid = Platform.OS === 'android';
 const width = Dimensions.get('window').width
 const height = global.height;
@@ -34,16 +33,6 @@ class PaperWallet extends React.Component {
             pressedPrint: false,
         };
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onDonePress() {
