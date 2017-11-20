@@ -1,8 +1,8 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "invalidResponse": "無効な応答",
+        "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
+        "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
         "seed": "Seed",
         "back": "戻る",
         "done": "完了",
