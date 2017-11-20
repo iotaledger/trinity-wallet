@@ -76,7 +76,7 @@ class Receive extends Component {
 
     onAddressPress(address) {
         const dropdown = DropdownHolder.getDropdown();
-        if (address) {
+        if (address !== ' ') {
             Clipboard.setString(address);
             dropdown.alertWithType('success', 'Address copied', 'Your address has been copied to the clipboard.');
         }
