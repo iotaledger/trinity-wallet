@@ -59,9 +59,9 @@
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
-        "invalidCharactersExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "invalidCharactersExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度お願いします。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
+        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度お願いします。",
         "pleaseEnterSeed": "Seedを入力して下さい。",
         "seedExplanation": "Seedは81文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、81文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
