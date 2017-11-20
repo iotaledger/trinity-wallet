@@ -91,5 +91,11 @@
         "enterPassword": "Please enter your password.",
         "useSeed": "USE SEED",
         "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "Press individual letters to randomise them."
     }
 }
