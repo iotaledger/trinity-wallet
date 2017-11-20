@@ -90,5 +90,8 @@
         "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
         "individualLetters": "임의로 순서를 정하기 위해 개별 글자를 눌러주세요."
+    },
+    "onboardingComplete": {
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }
