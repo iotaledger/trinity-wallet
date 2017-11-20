@@ -11,8 +11,8 @@
         "paperWallet": "Papier Wallet",
         "copyToClipboard": "In die Zwischenablage kopieren",
         "qr": "QR",
-        "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage."
+        "notAvailable": "Dieser Inhalt ist nicht verfügbar",
+        "notAvailableExplanation": "Es wird zu einem späteren Zeitpunkt hinzugefügt werden."
     },
     "addAdditionalSeed": {
         "mainWallet": "Hauptwallet",
@@ -77,21 +77,21 @@
         "language": "Sprache"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "unrecognisedPassword": "Unrecognised password",
+        "emptyPassword": "Leeres Passwort",
+        "emptyPasswordExplanation": "Du musst ein Passwort eingeben um dich anzumelden. Bitte versuche es verneut.",
+        "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte nochmals Versuchen.",
         "enterPassword": "Bitte gib dein Passwort ein.",
         "useSeed": "SEED BENUTZEN",
-        "login": "LOG IN"
+        "login": "ANMELDEN"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGenerated": "Der Seed wurde nicht erstellt",
+        "seedNotGeneratedExplanation": "Bitte klicke die \"Neuen Seed erzeugen\" Schaltfläche.",
+        "pressForNewSeed": "DRÜCKE FÜR NEUEN SEED",
         "individualLetters": "Drücke beliebige Buchstaben um sie zufällig zu verteilen."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Die Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, schau das Einstellungsmenü."
     }
 }
