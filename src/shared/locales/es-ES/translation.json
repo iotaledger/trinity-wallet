@@ -63,7 +63,7 @@
         "seedTooShort": "La seed es demasiado corta",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "pleaseEnterSeed": "Please enter your seed.",
-        "seedExplanation": "Las seeds deben ser de 81 caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar seeds de más de 81 caracteres.\",",
+        "seedExplanation": "Las seeds deben ser de 81 caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar seeds de más de 81 caracteres.",
         "neverShare": "NUNCA COMPARTAS TU SEED CON NADIE"
     },
     "home": {
@@ -80,15 +80,15 @@
         "emptyPassword": "Empty password",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
         "unrecognisedPassword": "Unrecognised password",
-        "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
-        "login": "LOG IN"
+        "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtalo de nuevo.",
+        "enterPassword": "Por favor introduzca su contraseña.",
+        "useSeed": "USAR SEED",
+        "login": "INICIAR SESIÓN"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
         "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio."
     }
 }
