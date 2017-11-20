@@ -69,7 +69,7 @@
     "home": {
         "balance": "残高",
         "send": "送金",
-        "receive": "受け取り",
+        "receive": "受取",
         "history": "履歴",
         "settings": "設定"
     },
