@@ -227,23 +227,6 @@ class PaperWallet extends React.Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.subtitlesContainer}>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Manual Copy</Text>
-                        </View>
-                        <View style={styles.lineContainer}>
-                            <Text style={styles.line}>────────</Text>
-                        </View>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.currentSubtitle}>Paper Wallet</Text>
-                        </View>
-                        <View style={styles.lineContainer}>
-                            <Text style={styles.line}>────────</Text>
-                        </View>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Copy To Clipboard</Text>
-                        </View>
-                    </View>
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>
                             Click the button below to print a paper copy of your seed.
@@ -387,17 +370,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.4,
+        flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
         paddingHorizontal: width / 20,
     },
     midContainer: {
-        flex: 3.6,
+        flex: 3.8,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 7,
+        paddingTop: height / 14,
     },
     bottomContainer: {
         justifyContent: 'flex-end',
@@ -421,51 +404,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
-    currentSubtitle: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        flexWrap: 'wrap',
-    },
-    subtitle: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        flexWrap: 'wrap',
-        opacity: 0.5,
-    },
-    subtitlesContainer: {
-        flexDirection: 'row',
-        flex: 1,
-        paddingTop: height / 10,
-    },
-    subtitleContainer: {
-        paddingHorizontal: width / 75,
-        flex: 1,
-        justifyContent: 'center',
-    },
-    line: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        opacity: 0.5,
-    },
-    lineContainer: {
-        flex: 1.5,
-        justifyContent: 'center',
-    },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 29,
         textAlign: 'left',
-        paddingTop: height / 11,
+        paddingTop: height / 8,
         paddingHorizontal: width / 8,
         textAlign: 'center',
         backgroundColor: 'transparent',
