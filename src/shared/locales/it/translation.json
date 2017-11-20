@@ -10,7 +10,9 @@
         "manualCopy": "Copia manuale",
         "paperWallet": "Portafoglio su carta",
         "copyToClipboard": "Copy to Clipboard",
-        "qr": "QR"
+        "qr": "QR",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
         "mainWallet": "MAIN WALLET",
@@ -61,7 +63,7 @@
         "seedTooShort": "Il seme è troppo corto",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "pleaseEnterSeed": "Please enter your seed.",
-        "seedExplanation": "I semi dovrebbero essere lunghi 81 caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.\",",
+        "seedExplanation": "I semi dovrebbero essere lunghi 81 caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.",
         "neverShare": "NON MOSTRARE MAI IL TUO SEME A NESSUNO"
     },
     "home": {
@@ -73,5 +75,23 @@
     },
     "languageSetup": {
         "language": "Lingua"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
+        "enterPassword": "Inserisci la tua password.",
+        "useSeed": "USA IL SEME",
+        "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "Premi alcune singole lettere per renderle maggiormente casuali."
+    },
+    "onboardingComplete": {
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }
