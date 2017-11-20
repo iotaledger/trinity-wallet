@@ -38,31 +38,31 @@
         "passwordUpdated": "Пароль обновлён",
         "passwordUpdatedExplanation": "Ваш пароль был успешно обновлен.",
         "incorrectPassword": "Неправильный пароль",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "incorrectPasswordExplanation": "Неверный пароль. Пожалуйста, попробуйте снова.",
         "passwordsDoNotMatch": "Пароли не совпадают",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordsDoNotMatchExplanation": "Пароли не совпадают. Пожалуйста, попробуйте еще раз.",
         "passwordTooShort": "Слишком короткий пароль",
         "passwordTooShortExplanation": "Ваш пароль должен быть длиной по крайней мере 8 символов. Пожалуйста, попробуйте еще раз.",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPassword": "Не удается установить старый пароль",
+        "oldPasswordExplanation": "Вы не можете использовать ваш старый пароль в качестве нового. Пожалуйста, попробуйте еще раз с новым паролем.",
         "ensureStrongPassword": "Убедитесь, что вы используете надежный пароль из по крайней мере 12 символов.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "Текущий пароль",
+        "newPassword": "Новый пароль",
+        "confirmPassword": "Подтвердите новый пароль"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Seed copied",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "seedCleared": "Ключ очищен",
+        "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
+        "seedCopied": "Ключ скопирован",
+        "seedCopiedExplanation": "Ключ будет скопирован в буфер обмена на 60 секунд. По прошествии этого времени (или после нажатия \"ГОТОВО\") буфер обмена будет очищен.",
+        "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей."
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharacters": "Ключ содержит недопустимые символы",
+        "invalidCharactersExplanation": "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
         "seedTooShort": "Ключ слишком короткий",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "pleaseEnterSeed": "Please enter your seed.",
+        "seedTooShortExplanation": "Ключ должен быть длиной, как минимум, 61 символ (идеально 81 символ). Ваш текущий ключ имеет длину {seed.length}. Пожалуйста, попробуйте снова.",
+        "pleaseEnterSeed": "Пожалуйста, введите ваш ключ.",
         "seedExplanation": "Ключ должен быть длиной 81 символ и содержать только заглавные буквы A-Z и цифру 9. Более длинные ключи не допускаются.",
         "neverShare": "Никому никогда не сообщайте ваш ключ"
     },
@@ -71,27 +71,27 @@
         "send": "ОТПРАВИТЬ",
         "receive": "ПОЛУЧИТЬ",
         "history": "ИСТОРИЯ",
-        "settings": "SETTINGS"
+        "settings": "НАСТРОЙКИ"
     },
     "languageSetup": {
         "language": "Язык"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "unrecognisedPassword": "Unrecognised password",
+        "emptyPassword": "Пустой пароль",
+        "emptyPasswordExplanation": "Вам необходимо ввести пароль для входа. Пожалуйста, попробуйте еще раз.",
+        "unrecognisedPassword": "Пароль не распознан",
         "unrecognisedPasswordExplanation": "Некорректный пароль. Повторите попытку.",
         "enterPassword": "Пожалуйста, введите пароль.",
         "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
-        "login": "LOG IN"
+        "login": "ВОЙТИ"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGenerated": "Ключ не был сгенерирован",
+        "seedNotGeneratedExplanation": "Пожалуйста, нажмите на кнопку \"Сгенерировать новый ключ\".",
+        "pressForNewSeed": "Нажмите для нового ключа",
         "individualLetters": "Нажмите какие-нибудь клавиши на клавиатуре в случайном порядке."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Кошелек настроен и готов к использованию. Если вам понадобится в будущем внести какие-либо изменения, используйте НАСТРОЙКИ из меню."
     }
 }
