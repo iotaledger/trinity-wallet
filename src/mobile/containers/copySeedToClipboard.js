@@ -13,7 +13,7 @@ import {
 import { connect } from 'react-redux';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
-
+import Seedbox from '../components/seedBox.js'
 const width = Dimensions.get('window').width
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -98,100 +98,7 @@ class CopySeedToClipboard extends React.Component {
                     <Text style={styles.infoTextBold}> Do not store the seed in plain text.</Text>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={styles.seedBox}>
-                        <Image source={require('../../shared/images/arrow-white.png')} style={styles.arrow} />
-                        <View style={styles.seedBoxTextContainer}>
-                            <View>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(0, 3)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(12, 15)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(24, 27)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(36, 39)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(48, 51)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(60, 63)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(72, 75)}
-                                </Text>
-                            </View>
-                            <View>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(3, 6)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(15, 18)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(27, 30)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(39, 42)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(51, 54)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(63, 66)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(75, 78)}
-                                </Text>
-                            </View>
-                            <View>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(6, 9)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(18, 21)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(30, 33)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(42, 45)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(54, 57)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(66, 69)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(78, 81)}
-                                </Text>
-                            </View>
-                            <View>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(9, 12)}
-                                </Text>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(21, 24)}
-                                </Text>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(33, 36)}
-                                </Text>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(45, 48)}
-                                </Text>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(57, 60)}
-                                </Text>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(69, 72)}
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
+                    <Seedbox seed={this.props.tempAccount.seed} />
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 55 }}>
                         <View style={styles.copyButton}>
                             <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
@@ -353,47 +260,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
-    },
-    seedBox: {
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 15,
-        width: width / 1.65,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: height / 80,
-        marginTop: height / 60
-    },
-    seedBoxTextContainer: {
-        width: width / 1.65,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        paddingTop: height / 160,
-        paddingLeft: width / 70,
-    },
-    seedBoxTextLeft: {
-        color: 'white',
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 25,
-        textAlign: 'justify',
-        letterSpacing: 8,
-        backgroundColor: 'transparent',
-        paddingRight: width / 70,
-        paddingVertical: 2,
-    },
-    seedBoxTextRight: {
-        color: 'white',
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 25,
-        textAlign: 'justify',
-        letterSpacing: 8,
-        backgroundColor: 'transparent',
-        paddingVertical: 2,
-    },
-    arrow: {
-        width: width / 2,
-        height: height / 80,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
