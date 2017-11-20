@@ -1,6 +1,6 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
+        "invalidResponse": "Réponse non valide",
         "invalidResponseExplanation": "The node returned an invalid response.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seed",
@@ -9,36 +9,36 @@
         "next": "SUIVANT",
         "manualCopy": "Copie Manuelle",
         "paperWallet": "Paper Wallet",
-        "copyToClipboard": "Copy to Clipboard",
+        "copyToClipboard": "Copier dans le Presse-papiers",
         "qr": "QR",
-        "notAvailable": "This function is not available",
+        "notAvailable": "Cette fonction n’est pas disponible",
         "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
         "mainWallet": "MAIN WALLET",
-        "secondWallet": "SECOND WALLET",
-        "thirdWallet": "THIRD WALLET",
-        "fourthWallet": "FOURTH WALLET",
-        "fifthWallet": "FIFTH WALLET",
-        "sixthWallet": "SIXTH WALLET",
-        "otherWallet": "OTHER WALLET",
+        "secondWallet": "DEUXIÈME WALLET",
+        "thirdWallet": "TROISIÈME WALLET",
+        "fourthWallet": "QUATRIÈME WALLET",
+        "fifthWallet": "CINQUIÈME WALLET",
+        "sixthWallet": "SIXIÈME WALLET",
+        "otherWallet": "AUTRE WALLET",
         "seedInvalidChars": "Seed contains invalid characters",
         "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "La Seed est trop courte",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "nicknameInUse": "Nickname already in use",
+        "nicknameInUse": "Cet identifiant est déjà utilisé",
         "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
-        "enterSeed": "Please enter your seed.",
+        "enterSeed": "Veuillez entrer votre seed.",
         "enterSeedNickname": "Enter a seed nickname.",
         "seedNickname": "Seed nickname"
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
+        "oops": "Oups. Une erreur est survenue",
         "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
-        "incorrectPassword": "Incorrect password",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "passwordUpdated": "Mot de passe mis à jour",
+        "passwordUpdatedExplanation": "Votre mot de passe a été modifié avec succès.",
+        "incorrectPassword": "Mot de passe incorrect",
+        "incorrectPasswordExplanation": "Mot de passe incorrect. Veuillez réessayer.",
         "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
         "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
         "passwordTooShort": "Le mot de passe est trop court",
@@ -47,13 +47,13 @@
         "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "newPassword": "Nouveau Mot de passe",
+        "confirmPassword": "Confirmer le Nouveau Mot de passe"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Seed copied",
+        "seedCleared": "Seed effacée",
+        "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
+        "seedCopied": "Seed copiée",
         "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
         "clickToCopy": "Click the button below and copy your seed to a password manager."
     },
@@ -62,7 +62,7 @@
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "La Seed est trop courte",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "pleaseEnterSeed": "Please enter your seed.",
+        "pleaseEnterSeed": "Veuillez entrer votre seed.",
         "seedExplanation": "Une Seed doit contenir des lettres en majuscules (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères. Vous ne pouvez pas utiliser de Seed de plus de 81 caractères.",
         "neverShare": "NE PARTAGEZ JAMAIS VOTRE SEED"
     },
@@ -71,22 +71,22 @@
         "send": "ENVOYER",
         "receive": "RECEVOIR",
         "history": "HISTORIQUE",
-        "settings": "SETTINGS"
+        "settings": "RÉGLAGES"
     },
     "languageSetup": {
         "language": "Langue"
     },
     "login": {
-        "emptyPassword": "Empty password",
+        "emptyPassword": "Mot de passe vide",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
         "enterPassword": "Veuillez renseigner votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
         "login": "LOG IN"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGenerated": "La Seed n'a pas été générée",
         "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
