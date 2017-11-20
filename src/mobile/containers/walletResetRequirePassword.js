@@ -25,7 +25,6 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import DropdownAlert from 'react-native-dropdownalert';
 
 const width = Dimensions.get('window').width
@@ -40,16 +39,6 @@ class WalletResetRequirePassword extends Component {
 
         this.goBack = this.goBack.bind(this);
         this.resetWallet = this.resetWallet.bind(this);
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     goBack() {

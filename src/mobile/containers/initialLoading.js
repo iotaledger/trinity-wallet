@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import { DetectNavbar } from '../theme/androidSoftKeys'
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 
@@ -31,16 +30,6 @@ export default class InitialLoading extends Component {
 
     handleBackButton() {
       return true;
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-    //        HockeyApp.feedback(); //Could possibly cause a crash
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onLoaded() {

@@ -17,7 +17,6 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from '../../shared/actions/tempAccount';
 import { randomBytes } from 'react-native-randombytes';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
 import ExtraDimensions from 'react-native-extra-dimensions-android';
@@ -49,15 +48,7 @@ class NewSeedSetup extends Component {
         methods.forEach(method => (this[method] = this[method].bind(this)));
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
     componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
