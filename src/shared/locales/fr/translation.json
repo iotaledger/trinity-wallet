@@ -22,7 +22,7 @@
         "fifthWallet": "CINQUIÈME WALLET",
         "sixthWallet": "SIXIÈME WALLET",
         "otherWallet": "AUTRE WALLET",
-        "seedInvalidChars": "Seed contains invalid characters",
+        "seedInvalidChars": "La Seed contient des caractères invalides",
         "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "La Seed est trop courte",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
@@ -40,13 +40,13 @@
         "incorrectPassword": "Mot de passe incorrect",
         "incorrectPasswordExplanation": "Mot de passe incorrect. Veuillez réessayer.",
         "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordsDoNotMatchExplanation": "Les mots de passe ne correspondent pas. Veuillez réessayer.",
         "passwordTooShort": "Le mot de passe est trop court",
         "passwordTooShortExplanation": "Votre mot de passe doit contenir au moins 12 caractères. Veuillez réessayer.",
         "oldPassword": "Cannot set old password",
         "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
-        "currentPassword": "Current Password",
+        "currentPassword": "Mot de passe Actuel",
         "newPassword": "Nouveau Mot de passe",
         "confirmPassword": "Confirmer le Nouveau Mot de passe"
     },
@@ -58,7 +58,7 @@
         "clickToCopy": "Click the button below and copy your seed to a password manager."
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
+        "invalidCharacters": "La Seed contient des caractères invalides",
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "La Seed est trop courte",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
@@ -78,7 +78,7 @@
     },
     "login": {
         "emptyPassword": "Mot de passe vide",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "emptyPasswordExplanation": "Un mot de passe est requis pour la connexion. Veuillez réessayer.",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
         "enterPassword": "Veuillez renseigner votre mot de passe.",
@@ -87,7 +87,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "La Seed n'a pas été générée",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "seedNotGeneratedExplanation": "Cliquez sur le bouton \"Générer une Nouvelle Seed\".",
         "pressForNewSeed": "PRESS FOR NEW SEED",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
     },
