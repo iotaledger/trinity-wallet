@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import OnboardingButtons from '../components/onboardingButtons.js';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width
@@ -18,6 +19,16 @@ class Welcome extends React.Component {
 
     componentWillUnmount() {
         RNShakeEvent.removeEventListener('shake');
+    }
+
+    onBackPress() {
+        this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            animated: false,
+        });
     }
 
     onNextPress() {
@@ -50,11 +61,12 @@ class Welcome extends React.Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={event => this.onNextPress()}>
-                        <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>NEXT</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this.onBackPress()}
+                        onRightButtonPress={() => this.onNextPress()}
+                        leftText={'BACK'}
+                        rightText={'NEXT'}
+                    />
                 </View>
             </ImageBackground>
         );
@@ -83,6 +95,7 @@ const styles = StyleSheet.create({
         flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
+        paddingBottom: height / 20
     },
     nextButton: {
         borderColor: '#9DFFAF',
