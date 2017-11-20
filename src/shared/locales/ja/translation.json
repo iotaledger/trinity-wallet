@@ -11,8 +11,8 @@
         "paperWallet": "ペーパーウォレット",
         "copyToClipboard": "クリップボードにコピー",
         "qr": "QRコード",
-        "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage."
+        "notAvailable": "この機能は使えません。",
+        "notAvailableExplanation": "この機能は次の段階で追加されます。"
     },
     "addAdditionalSeed": {
         "mainWallet": "メインウォレット",
@@ -44,11 +44,11 @@
         "passwordTooShort": "パスワードが短すぎます。",
         "passwordTooShortExplanation": "パスワードは最低12文字で設定しましょう。もう一度やり直してください。",
         "oldPassword": "古いパスワードは使えません。",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPasswordExplanation": "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直して下さい。",
         "ensureStrongPassword": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "現在のパスワード",
+        "newPassword": "新しいパスワード",
+        "confirmPassword": "新しいパスワードを承認"
     },
     "copyToClipboard": {
         "seedCleared": "Seed cleared",
