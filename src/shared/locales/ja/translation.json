@@ -1,67 +1,69 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "invalidResponse": "無効な応答",
+        "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
+        "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
         "seed": "Seed",
         "back": "戻る",
         "done": "完了",
         "next": "次へ",
         "manualCopy": "手書き",
         "paperWallet": "ペーパーウォレット",
-        "copyToClipboard": "Copy to Clipboard",
-        "qr": "QRコード"
+        "copyToClipboard": "クリップボードにコピー",
+        "qr": "QRコード",
+        "notAvailable": "この機能は使えません。",
+        "notAvailableExplanation": "この機能は次の段階で追加されます。"
     },
     "addAdditionalSeed": {
-        "mainWallet": "MAIN WALLET",
-        "secondWallet": "SECOND WALLET",
-        "thirdWallet": "THIRD WALLET",
-        "fourthWallet": "FOURTH WALLET",
-        "fifthWallet": "FIFTH WALLET",
-        "sixthWallet": "SIXTH WALLET",
-        "otherWallet": "OTHER WALLET",
-        "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "mainWallet": "メインウォレット",
+        "secondWallet": "2つ目のウォレット",
+        "thirdWallet": "3つ目のウォレット",
+        "fourthWallet": "4つ目のウォレット",
+        "fifthWallet": "5つ目のウォレット",
+        "sixthWallet": "6つ目のウォレット",
+        "otherWallet": "その他のウォレット",
+        "seedInvalidChars": "無効な文字を含んだSeedです。",
+        "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "nicknameInUse": "Nickname already in use",
-        "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
-        "enterSeed": "Please enter your seed.",
-        "enterSeedNickname": "Enter a seed nickname.",
-        "seedNickname": "Seed nickname"
+        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
+        "nicknameInUse": "この名前はすでに使われています。",
+        "nicknameInUseExplanation": "あなたのSeedに唯一の名前を付けてください。",
+        "enterSeed": "Seedを入力して下さい。",
+        "enterSeedNickname": "Seedの名前を入力して下さい。",
+        "seedNickname": "Seedの名前"
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
-        "incorrectPassword": "Incorrect password",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "oops": "おっと、何かが間違っています。",
+        "oopsExplanation": "パスワードを更新するときに何かミスをしているようです。もう一度やり直して下さい。",
+        "passwordUpdated": "パスワードを更新しました。",
+        "passwordUpdatedExplanation": "パスワードは正しく更新されました。",
+        "incorrectPassword": "パスワードが正しくありません。",
+        "incorrectPasswordExplanation": "先ほどのパスワードは正しくありません。もう一度やり直して下さい。",
         "passwordsDoNotMatch": "パスワードが一致しません。",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordsDoNotMatchExplanation": "パスワードが一致しません。もう一度やり直して下さい。",
         "passwordTooShort": "パスワードが短すぎます。",
         "passwordTooShortExplanation": "パスワードは最低12文字で設定しましょう。もう一度やり直してください。",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPassword": "古いパスワードは使えません。",
+        "oldPasswordExplanation": "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直して下さい。",
         "ensureStrongPassword": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "現在のパスワード",
+        "newPassword": "新しいパスワード",
+        "confirmPassword": "新しいパスワードを承認"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Seed copied",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "seedCleared": "Seedを消去しました。",
+        "seedClearedExplanation": "安全のために、Seedをクリップボードから消去しました。",
+        "seedCopied": "Seedをコピーしました。",
+        "seedCopiedExplanation": "Seedをクリップボードにコピーしました。「完了」を押すか60秒が経過するとSeedは消去されます。",
+        "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharacters": "無効な文字を含んだSeedです。",
+        "invalidCharactersExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "pleaseEnterSeed": "Please enter your seed.",
-        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.\",",
+        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
+        "pleaseEnterSeed": "Seedを入力して下さい。",
+        "seedExplanation": "Seedは81文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、81文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -69,9 +71,27 @@
         "send": "送金",
         "receive": "受け取り",
         "history": "履歴",
-        "settings": "SETTINGS"
+        "settings": "設定"
     },
     "languageSetup": {
         "language": "言語"
+    },
+    "login": {
+        "emptyPassword": "パスワードの入力なし",
+        "emptyPasswordExplanation": "ログインするにはパスワードを入力する必要があります。もう一度やり直して下さい。",
+        "unrecognisedPassword": "有効でないパスワードです。",
+        "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
+        "enterPassword": "パスワードを入力して下さい。",
+        "useSeed": "Seedでログイン",
+        "login": "ログイン"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seedが生成されていません。",
+        "seedNotGeneratedExplanation": "「新しいSeedを生成する。」ボタンをクリックして下さい。",
+        "pressForNewSeed": "新しいSeedの複製",
+        "individualLetters": "文字をタップしてランダムにしてください。"
+    },
+    "onboardingComplete": {
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }

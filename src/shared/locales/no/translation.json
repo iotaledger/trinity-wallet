@@ -10,7 +10,9 @@
         "manualCopy": "Manuell avskrift",
         "paperWallet": "Papirlommebok",
         "copyToClipboard": "Kopier til utklippstavle",
-        "qr": "QR"
+        "qr": "QR",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
         "mainWallet": "HOVED KONTO",
@@ -61,7 +63,7 @@
         "seedTooShort": "Nøkkelen er for kort",
         "seedTooShortExplanation": "Nøkkelen må være minst 60 tegn (ideelt 81 tegn). Din nøkkel er {seed.length} tegn. Prøv på nytt.",
         "pleaseEnterSeed": "Skriv inn din nøkkel.",
-        "seedExplanation": "Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.\",",
+        "seedExplanation": "Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.",
         "neverShare": "OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE"
     },
     "home": {
@@ -73,5 +75,23 @@
     },
     "languageSetup": {
         "language": "Språk"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
+        "enterPassword": "Skriv inn passord.",
+        "useSeed": "BRUK MASTERNØKKEL",
+        "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "Trykk enkelte tegn for å flytte de til ny tilfeldig plassering."
+    },
+    "onboardingComplete": {
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }

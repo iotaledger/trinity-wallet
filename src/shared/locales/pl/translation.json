@@ -10,7 +10,9 @@
         "manualCopy": "Ręczne kopiowanie",
         "paperWallet": "Papierowy portfel",
         "copyToClipboard": "Copy to Clipboard",
-        "qr": "Kod QR"
+        "qr": "Kod QR",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
         "mainWallet": "MAIN WALLET",
@@ -61,7 +63,7 @@
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "pleaseEnterSeed": "Please enter your seed.",
-        "seedExplanation": "Seed powinien składać się z 81 znaków i powinien zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż 81 znaków.\",",
+        "seedExplanation": "Seed powinien składać się z 81 znaków i powinien zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż 81 znaków.",
         "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA"
     },
     "home": {
@@ -73,5 +75,23 @@
     },
     "languageSetup": {
         "language": "Język"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "Wpisano nieprawidłowe hasło. Spróbuj ponownie.",
+        "enterPassword": "Wprowadź swoje hasło.",
+        "useSeed": "UŻYJ SEED'a",
+        "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "Kliknij poszczególne litery żeby dokonać losowego wyboru."
+    },
+    "onboardingComplete": {
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }

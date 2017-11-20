@@ -1,6 +1,6 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
+        "invalidResponse": "Resposta inválida",
         "invalidResponseExplanation": "The node returned an invalid response.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seed",
@@ -9,69 +9,89 @@
         "next": "SEGUINTE",
         "manualCopy": "Cópia manual",
         "paperWallet": "Carteira de Papel",
-        "copyToClipboard": "Copy to Clipboard",
-        "qr": "QR"
+        "copyToClipboard": "Copiar para a Área de Transferência",
+        "qr": "QR",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
-        "mainWallet": "MAIN WALLET",
-        "secondWallet": "SECOND WALLET",
-        "thirdWallet": "THIRD WALLET",
-        "fourthWallet": "FOURTH WALLET",
-        "fifthWallet": "FIFTH WALLET",
-        "sixthWallet": "SIXTH WALLET",
-        "otherWallet": "OTHER WALLET",
-        "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "mainWallet": "CARTEIRA PRINCIPAL",
+        "secondWallet": "SEGUNDA CARTEIRA",
+        "thirdWallet": "TERCEIRA CARTEIRA",
+        "fourthWallet": "QUARTA CARTEIRA",
+        "fifthWallet": "QUINTA CARTEIRA",
+        "sixthWallet": "SEXTA CARTEIRA",
+        "otherWallet": "OUTRA CARTEIRA",
+        "seedInvalidChars": "A Seed contém carateres inválidos",
+        "seedInvalidCharsExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é muito curta",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). De momento, a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
         "nicknameInUse": "Nickname already in use",
         "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
-        "enterSeed": "Please enter your seed.",
+        "enterSeed": "Por favor, digite a sua Seed.",
         "enterSeedNickname": "Enter a seed nickname.",
         "seedNickname": "Seed nickname"
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
+        "oops": "Uups! Aconteceu algum problema",
         "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
-        "incorrectPassword": "Incorrect password",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "passwordUpdated": "Palavra-passe atualizada",
+        "passwordUpdatedExplanation": "A sua palavra-passe foi atualizada.",
+        "incorrectPassword": "Palavra-passe incorreta",
+        "incorrectPasswordExplanation": "A sua palavra-passe está incorreta. Por favor, tente de novo.",
         "passwordsDoNotMatch": "As senhas não são iguais",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordsDoNotMatchExplanation": "As palavras-passe não coincidem. Por favor, tente de novo.",
         "passwordTooShort": "A senha é muito curta",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Cannot set old password",
         "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "Assegure-se de que utiliza uma senha segura, com pelo menos 12 caracteres.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "Palavra-passe atual",
+        "newPassword": "Nova Palavra-Passe",
+        "confirmPassword": "Confirme a Nova Palavra-Passe"
     },
     "copyToClipboard": {
         "seedCleared": "Seed cleared",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Seed copied",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "seedCopied": "Seed copiada",
+        "seedCopiedExplanation": "A Seed foi copiada para a área de transferência e será ????? quando pressionar \"CONCLUÍDO\" ou decorridos 60 segundos (o que se verificar primeiro). ",
+        "clickToCopy": "Clique no botão em baixo e copie a sua Seed para o gestor de palavras-passe."
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "A Seed é muito curta",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "pleaseEnterSeed": "Please enter your seed.",
-        "seedExplanation": "A seed deve ter 81 caracteres e deve conter letras maiúsculas A-Z e o número 9. A seed não pode conter mais que 81 caracteres.\",",
-        "neverShare": "NUNCA REVELE A SUA SEED PARA NINGUÉM"
+        "invalidCharacters": "A Seed contém carateres inválidos",
+        "invalidCharactersExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
+        "seedTooShort": "A Seed é demasiado curta",
+        "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). Atualmente a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
+        "pleaseEnterSeed": "Por favor, entre a sua Seed.",
+        "seedExplanation": "A seed deve ter 81 caracteres e deve conter letras maiúsculas A-Z e o número 9. A seed não pode conter mais que 81 caracteres.",
+        "neverShare": "NUNCA PARTILHE A SUA SEED COM NINGUÉM"
     },
     "home": {
         "balance": "SALDO",
         "send": "ENVIAR",
         "receive": "RECEBER",
         "history": "HISTÓRICO",
-        "settings": "SETTINGS"
+        "settings": "CONFIGURAÇÕES"
     },
     "languageSetup": {
         "language": "Idioma"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
+        "enterPassword": "Por favor, insira a sua senha.",
+        "useSeed": "USAR A SEED",
+        "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "Digite letras individuais para tornar o processo mais aleatório."
+    },
+    "onboardingComplete": {
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }
