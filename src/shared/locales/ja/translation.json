@@ -88,7 +88,7 @@
     "newSeedSetup": {
         "seedNotGenerated": "Seedが生成されていません。",
         "seedNotGeneratedExplanation": "「新しいSeedを生成する。」ボタンをクリックして下さい。",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "pressForNewSeed": "新しいSeedの複製",
         "individualLetters": "文字をタップしてランダムにしてください。"
     }
 }
