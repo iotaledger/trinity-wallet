@@ -10,7 +10,9 @@
         "manualCopy": "Manual Copy",
         "paperWallet": "Paper Wallet",
         "copyToClipboard": "Copy to Clipboard",
-        "qr": "QR"
+        "qr": "QR",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage."
     },
     "addAdditionalSeed": {
         "mainWallet": "MAIN WALLET",
@@ -72,13 +74,22 @@
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
     },
     "home": {
-      "balance": "BALANCE",
-      "send": "SEND",
-      "receive": "RECEIVE",
-      "history": "HISTORY",
-      "settings": "SETTINGS"
+        "balance": "BALANCE",
+        "send": "SEND",
+        "receive": "RECEIVE",
+        "history": "HISTORY",
+        "settings": "SETTINGS"
     },
     "languageSetup": {
-      "language": "Language"
+        "language": "Language"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
+        "enterPassword": "Please enter your password.",
+        "useSeed": "USE SEED",
+        "login": "LOG IN"
     }
 }
