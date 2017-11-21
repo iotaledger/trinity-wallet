@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     balanceContainer: {
         flex: 1,
         alignItems: 'center',
-        paddingTop: height / 50,
+        paddingTop: isAndroid ? height / 15 : height / 25,
         paddingBottom: isAndroid ? height / 10 : height / 20,
     },
     iotaBalance: {

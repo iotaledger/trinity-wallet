@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingVertical: height / 80,
-        opacity: 0.7,
+        opacity: 0.9,
         backgroundColor: '#1A1A1A',
     },
     titleWrapper: {
