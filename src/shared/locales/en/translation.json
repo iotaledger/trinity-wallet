@@ -108,5 +108,17 @@
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
         "printWallet": "PRINT PAPER WALLET"
+    },
+    "receive": {
+        "somethingWentWrong": "Something went wrong",
+        "somethingWentWrongExplanation": "Please restart the app.",
+        "addressCopied": "Address copied",
+        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "generateNewAddress": "GENERATE NEW ADDRESS"
+    },
+    "saveYourSeed": {
+        "mustSaveYourSeed": "You must save your seed with",
+        "atLeastOne": "at least one",
+        "ofTheOptions": "of the options listed below."
     }
 }
