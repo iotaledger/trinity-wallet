@@ -29,7 +29,7 @@ import { getAccountInfo } from '../../shared/actions/account';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 import DropdownHolder from '../components/dropdownHolder';
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -112,7 +112,7 @@ class Send extends Component {
     }
 
     renderInvalidAddressErrors(address) {
-        const props = ['error', 'Invalid Address'];
+        const props = ['error', 'Invalid address'];
         const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
@@ -121,7 +121,7 @@ class Send extends Component {
             return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
 
-        return dropdown.alertWithType(...props, 'Address contains invalid checksum');
+        return dropdown.alertWithType(...props, 'Address contains an invalid checksum');
     }
 
     onSendPress() {
@@ -142,7 +142,7 @@ class Send extends Component {
             const dropdown = DropdownHolder.getDropdown();
             return dropdown.alertWithType(
                 'error',
-                'Not enough cash',
+                'Not enough funds',
                 'You do not have enough IOTA to complete this transfer.',
             );
         }
@@ -261,7 +261,7 @@ class Send extends Component {
                 1000000 *
                 this.getUnitMultiplier(),
             10,
-        )
+        );
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -314,8 +314,7 @@ class Send extends Component {
                         </View>
                         <Text style={styles.conversionText}>
                             {' '}
-                            {' '}
-                            { conversion == 0 ? '' : (conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2))}{' '}
+                             {conversion == 0 ? '' : conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2)}{' '}
                         </Text>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
@@ -478,7 +477,7 @@ const styles = StyleSheet.create({
     maxButtonContainer: {
         justifyContent: 'flex-start',
         marginTop: height / 150,
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     maxButtonText: {
         color: 'white',
@@ -486,9 +485,7 @@ const styles = StyleSheet.create({
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
-    maxWarningText: {
-
-    },
+    maxWarningText: {},
     maxButton: {
         flexDirection: 'row',
         alignItems: 'center',
