@@ -78,7 +78,7 @@ class Balance extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.transactionsContainer}>
-                    <Text style={styles.line} />
+                    <View style={styles.line} />
                     <ListView
                         dataSource={ds.cloneWithRows(
                             accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
@@ -89,7 +89,7 @@ class Balance extends React.Component {
                         contentContainerStyle={styles.listView}
                         scrollEnabled={false}
                     />
-                    <Text style={styles.line} />
+                    <View style={styles.line} />
                 </View>
                 <View style={{ flex: 5 }}>
                     <Chart
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     balanceContainer: {
         flex: 1,
         alignItems: 'center',
-        paddingTop: isAndroid ? height / 15 : height / 25,
+        paddingTop: height / 50,
         paddingBottom: isAndroid ? height / 10 : height / 20,
     },
     iotaBalance: {
