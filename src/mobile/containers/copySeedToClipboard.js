@@ -9,7 +9,6 @@ import {
     ImageBackground,
     Clipboard,
     StatusBar,
-    Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
@@ -78,18 +77,6 @@ class CopySeedToClipboard extends React.Component {
         }, 60000);
     }
 
-    addCustomSpacing(string, spacing = 1) {
-        return string.split('').join('\u200A'.repeat(spacing));
-    }
-
-    renderSeedSubstring(from, to) {
-        const isAndroid = Platform.OS === 'android';
-        const { tempAccount: { seed } } = this.props;
-        const substring = seed.substring(from, to);
-
-        return isAndroid ? this.addCustomSpacing(substring) : substring;
-    }
-
     render() {
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
@@ -123,39 +110,93 @@ class CopySeedToClipboard extends React.Component {
                         <Image source={require('../../shared/images/arrow-white.png')} style={styles.arrow} />
                         <View style={styles.seedBoxTextContainer}>
                             <View>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(0, 3)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(12, 15)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(24, 27)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(36, 39)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(48, 51)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(60, 63)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(72, 75)}</Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(0, 3)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(12, 15)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(24, 27)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(36, 39)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(48, 51)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(60, 63)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(72, 75)}
+                                </Text>
                             </View>
                             <View>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(3, 6)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(15, 18)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(27, 30)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(39, 42)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(51, 54)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(63, 66)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(75, 78)}</Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(3, 6)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(15, 18)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(27, 30)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(39, 42)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(51, 54)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(63, 66)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(75, 78)}
+                                </Text>
                             </View>
                             <View>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(6, 9)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(18, 21)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(30, 33)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(42, 45)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(54, 57)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(66, 69)}</Text>
-                                <Text style={styles.seedBoxTextLeft}>{this.renderSeedSubstring(78, 81)}</Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(6, 9)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(18, 21)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(30, 33)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(42, 45)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(54, 57)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(66, 69)}
+                                </Text>
+                                <Text style={styles.seedBoxTextLeft}>
+                                    {this.props.tempAccount.seed.substring(78, 81)}
+                                </Text>
                             </View>
                             <View>
-                                <Text style={styles.seedBoxTextRight}>{this.renderSeedSubstring(9, 12)}</Text>
-                                <Text style={styles.seedBoxTextRight}>{this.renderSeedSubstring(21, 24)}</Text>
-                                <Text style={styles.seedBoxTextRight}>{this.renderSeedSubstring(33, 36)}</Text>
-                                <Text style={styles.seedBoxTextRight}>{this.renderSeedSubstring(45, 48)}</Text>
-                                <Text style={styles.seedBoxTextRight}>{this.renderSeedSubstring(57, 60)}</Text>
-                                <Text style={styles.seedBoxTextRight}>{this.renderSeedSubstring(69, 72)}</Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(9, 12)}
+                                </Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(21, 24)}
+                                </Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(33, 36)}
+                                </Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(45, 48)}
+                                </Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(57, 60)}
+                                </Text>
+                                <Text style={styles.seedBoxTextRight}>
+                                    {this.props.tempAccount.seed.substring(69, 72)}
+                                </Text>
                             </View>
                         </View>
                     </View>
@@ -335,7 +376,7 @@ const styles = StyleSheet.create({
         width: width / 1.65,
         flexDirection: 'row',
         alignItems: 'flex-start',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         paddingTop: height / 160,
         paddingLeft: width / 70,
     },
