@@ -3,7 +3,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackg
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class TransferConfirmationModal extends React.Component {

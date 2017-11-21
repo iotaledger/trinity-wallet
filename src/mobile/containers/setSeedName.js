@@ -18,12 +18,11 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -57,16 +56,6 @@ class SetSeedName extends React.Component {
         this.nameInput.focus();
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     onDonePress() {
         if (this.state.seedName != '') {
             if (!this.props.account.onboardingComplete) {
@@ -76,6 +65,7 @@ class SetSeedName extends React.Component {
                     screen: 'setPassword',
                     navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                     animated: false,
+                    overrideBackPress: true,
                 });
             } else {
                 this.props.clearTempData();
@@ -90,9 +80,10 @@ class SetSeedName extends React.Component {
                             screen: 'loading',
                             navigatorStyle: {
                                 navBarHidden: true,
-                                navBarTransparent: true
+                                navBarTransparent: true,
                             },
                             animated: false,
+                            overrideBackPress: true,
                         });
                         this.props.getAccountInfoNewSeed(
                             this.props.tempAccount.seed,

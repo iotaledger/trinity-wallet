@@ -63,9 +63,8 @@ export function setPrice(data) {
         type: ActionTypes.SET_PRICE,
         usd: usdPrice,
         btc: btcPrice,
-        eth: ethPrice
+        eth: ethPrice,
     };
-
 }
 
 function getUrlTimeFormat(timeframe) {
@@ -113,7 +112,6 @@ export function getPrice() {
 
 export function getChartData() {
     return dispatch => {
-
         const currencies = ['USD', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
 
@@ -125,9 +123,9 @@ export function getChartData() {
                 return fetch(url)
                     .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
                     .then(json => dispatch(setChartData(json, currency, timeframe)));
-                });
-            })
-        }
+            });
+        });
+    };
 }
 
 function setChartData(json, currency, timeframe) {
@@ -149,7 +147,7 @@ function setChartData(json, currency, timeframe) {
             type: ActionTypes.SET_CHART_DATA,
             data: data,
             currency: currency,
-            timeframe: timeframe
+            timeframe: timeframe,
         };
     }
 
@@ -157,7 +155,7 @@ function setChartData(json, currency, timeframe) {
         type: ActionTypes.SET_CHART_DATA,
         data: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
         currency: currency,
-        timeframe: timeframe
+        timeframe: timeframe,
     };
 }
 
