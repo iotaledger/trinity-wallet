@@ -635,10 +635,6 @@ husky@^0.14.3:
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
 
-i18n-webpack-plugin-generate-json@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/i18n-webpack-plugin-generate-json/-/i18n-webpack-plugin-generate-json-1.1.0.tgz#8858d3fa0f1908304841844a3f480eb498ecdef5"
-
 iconv-lite@^0.4.17, iconv-lite@~0.4.13:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
