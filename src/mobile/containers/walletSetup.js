@@ -12,22 +12,11 @@ import {
     Platform,
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width;
 const height = global.height;
 
 class WalletSetup extends React.Component {
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     onYesPress() {
         this.props.navigator.push({
             screen: 'enterSeed',
@@ -36,6 +25,7 @@ class WalletSetup extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
     onNoPress() {
@@ -46,6 +36,7 @@ class WalletSetup extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
