@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { TouchableOpacity, StyleSheet, View, ListView, Dimensions, Text } from 'react-native';
 import { connect } from 'react-redux';
 import TransactionRow from '../components/transactionRow';
@@ -19,6 +20,7 @@ class History extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];

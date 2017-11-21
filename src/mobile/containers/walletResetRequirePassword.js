@@ -1,5 +1,6 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { deleteFromKeyChain } from '../../shared/libs/cryptography';
 import { resetWallet } from '../../shared/actions/app';
@@ -96,6 +97,8 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />

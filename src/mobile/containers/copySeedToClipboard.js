@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -70,6 +71,7 @@ class CopySeedToClipboard extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -84,14 +86,14 @@ class CopySeedToClipboard extends React.Component {
                     <Seedbox seed={this.props.tempAccount.seed} />
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 22 }}>
                         <View style={styles.copyButton}>
-                            <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
+                            <Text style={styles.copyText}>{t('button1')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>DONE</Text>
+                            <Text style={styles.doneText}>{t('button2')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -240,4 +242,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default connect(mapStateToProps)(CopySeedToClipboard);
+export default translate('saveYourSeed3')(connect(mapStateToProps)(CopySeedToClipboard));

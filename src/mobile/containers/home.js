@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import map from 'lodash/map';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -215,6 +216,7 @@ class Home extends Component {
     }
 
     render() {
+        const { t } = this.props;
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
@@ -246,7 +248,7 @@ class Home extends Component {
                                             : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                     }
                                 >
-                                    BALANCE
+                                    {t('tab1')}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -267,7 +269,7 @@ class Home extends Component {
                                             : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                     }
                                 >
-                                    SEND
+                                    {t('tab2')}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -288,7 +290,7 @@ class Home extends Component {
                                             : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                     }
                                 >
-                                    RECEIVE
+                                    {t('tab3')}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -309,7 +311,7 @@ class Home extends Component {
                                             : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                     }
                                 >
-                                    HISTORY
+                                    {t('tab4')}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -330,7 +332,7 @@ class Home extends Component {
                                             : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                     }
                                 >
-                                    SETTINGS
+                                    {t('tab5')}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -508,4 +510,4 @@ Home.propTypes = {
     setSeedIndex: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default translate('home')(connect(mapStateToProps, mapDispatchToProps)(Home));
