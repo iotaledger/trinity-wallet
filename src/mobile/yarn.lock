@@ -2755,9 +2755,9 @@ https-browserify@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-0.0.1.tgz#3f91365cabe60b77ed0ebba24b454e3e09d95a82"
 
-i18next@^10.0.7:
-  version "10.0.7"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.0.7.tgz#4a4aac2aa21804b8ca1d19b15726bee10fbda6b4"
+i18next@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.1.0.tgz#41b19eb8fa011ea602163e524cf84a5de6777047"
 
 iconv-lite@0.4.11:
   version "0.4.11"
@@ -4459,9 +4459,9 @@ react-devtools-core@2.3.1:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-react-i18next@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-6.1.0.tgz#6bc6fca03c9d1dc42e8f9c5b1c3e781b68773271"
+react-i18next@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-6.2.0.tgz#08be7fa1e1e05b990a6058e73227500dcb89c8a6"
   dependencies:
     hoist-non-react-statics "2.3.1"
     html-parse-stringify2 "2.0.1"
