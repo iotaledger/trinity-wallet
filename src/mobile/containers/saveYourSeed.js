@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class SaveYourSeed extends Component {
@@ -74,8 +74,7 @@ class SaveYourSeed extends Component {
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <Text style={styles.infoText}>
-                        <Text style={styles.infoTextNormal}>You must save your seed with</Text> // TODO: Figure out
-                        solution to split string
+                        <Text style={styles.infoTextNormal}>You must save your seed with</Text>
                         <Text style={styles.infoTextBold}>{t('text2')}</Text>
                         <Text style={styles.infoTextNormal}>of the options listed below.</Text>
                     </Text>
