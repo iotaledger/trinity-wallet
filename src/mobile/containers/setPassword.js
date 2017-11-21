@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -77,6 +78,8 @@ class SetPassword extends React.Component {
 
     render() {
         let { password, reentry } = this.state;
+        const { t } = this.props;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />

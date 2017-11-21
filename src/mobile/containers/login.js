@@ -11,6 +11,7 @@ import {
     ScrollView,
     StatusBar,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import { setPassword, clearTempData } from '../../shared/actions/tempAccount';
@@ -126,6 +127,7 @@ class Login extends React.Component {
 
     render() {
         let { password } = this.state;
+        const { t } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />

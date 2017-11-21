@@ -1,6 +1,7 @@
 import isUndefined from 'lodash/isUndefined';
 import size from 'lodash/size';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import { iota } from '../../shared/libs/iota';
 import {
     ActivityIndicator,
@@ -104,7 +105,7 @@ class Send extends Component {
     }
 
     renderInvalidAddressErrors(address) {
-        const props = ['error', 'Invalid Address'];
+        const props = ['error', 'Invalid address'];
         const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
@@ -113,7 +114,7 @@ class Send extends Component {
             return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
 
-        return dropdown.alertWithType(...props, 'Address contains invalid checksum');
+        return dropdown.alertWithType(...props, 'Address contains an invalid checksum');
     }
 
     onSendPress() {
@@ -136,7 +137,7 @@ class Send extends Component {
             const dropdown = DropdownHolder.getDropdown();
             return dropdown.alertWithType(
                 'error',
-                'Not enough cash',
+                'Not enough funds',
                 'You do not have enough IOTA to complete this transfer.',
             );
         }

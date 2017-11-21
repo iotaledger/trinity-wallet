@@ -1,5 +1,6 @@
 import isUndefined from 'lodash/isUndefined';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     ActivityIndicator,
@@ -92,7 +93,7 @@ class Receive extends Component {
     }
 
     render() {
-        const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
+        const { tempAccount: { receiveAddress, isGeneratingReceiveAddress }, t } = this.props;
 
         return (
             <View style={styles.container}>

@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -109,7 +110,7 @@ class EnterSeed extends React.Component {
                                     />
                                 </View>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text>
+                                    <Text style={styles.title}>Please enter your seed.</Text> //TODO: add new string
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
@@ -127,7 +128,7 @@ class EnterSeed extends React.Component {
                                             returnKeyType="done"
                                             blurOnSubmit={true} //Dismisses keyboard upon pressing Done
                                             autoCapitalize="characters"
-                                            label="Seed"
+                                            label={t('placeholder')}
                                             autoCorrect={false}
                                             value={seed}
                                             maxLength={81}
@@ -142,7 +143,7 @@ class EnterSeed extends React.Component {
                                                     source={require('../../shared/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
-                                                <Text style={styles.qrText}> QR </Text>
+                                                <Text style={styles.qrText}> QR </Text> // TODO: New string
                                             </View>
                                         </TouchableOpacity>
                                     </View>
@@ -151,17 +152,14 @@ class EnterSeed extends React.Component {
                             <View style={styles.bottomContainer}>
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                    <Text style={styles.infoText}>
-                                        Seeds should be 81 characters long, and should contain capital letters A-Z, or
-                                        the number 9. You cannot use seeds longer than 81 characters.
-                                    </Text>
-                                    <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
+                                    <Text style={styles.infoText}>{t('seed_explanation')}</Text>
+                                    <Text style={styles.warningText}>{t('reminder')}</Text>
                                 </View>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
-                                    leftText={'BACK'}
-                                    rightText={'DONE'}
+                                    leftText={t('button2')}
+                                    rightText={t('button1')}
                                 />
                             </View>
                         </View>
@@ -347,4 +345,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnterSeed);
+export default translate('enterSeed')(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));

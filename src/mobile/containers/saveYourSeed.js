@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -67,7 +68,7 @@ class SaveYourSeed extends Component {
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>You must save your seed with</Text>
-                        <Text style={styles.infoTextBold}> at least one </Text>
+                        <Text style={styles.infoTextBold}>{t('text2')}</Text>
                         <Text style={styles.infoTextNormal}>of the options listed below.</Text>
                     </Text>
                 </View>
@@ -75,21 +76,21 @@ class SaveYourSeed extends Component {
                     <View style={{ paddingTop: height / 20 }}>
                         <TouchableOpacity onPress={event => this.onWriteClick()}>
                             <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>MANUAL COPY</Text>
+                                <Text style={styles.optionButtonText}>{t('optionA')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onPrintClick()}>
                             <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>PRINT PAPER WALLET</Text>
+                                <Text style={styles.optionButtonText}>{t('optionB')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onCopyClick()}>
                             <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>COPY TO CLIPBOARD</Text>
+                                <Text style={styles.optionButtonText}>{t('optionC')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -98,7 +99,7 @@ class SaveYourSeed extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onDonePress()}
-                        leftText={'BACK'}
+                        leftText={t('button2')}
                         rightText={'DONE'}
                     />
                 </View>
