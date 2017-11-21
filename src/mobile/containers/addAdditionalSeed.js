@@ -10,7 +10,7 @@ import {
     ScrollView,
     ImageBackground,
     StatusBar,
-    Platform
+    Platform,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -27,7 +27,7 @@ import { clearTempData } from '../../shared/actions/tempAccount';
 
 import DropdownHolder from '../components/dropdownHolder';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 const isAndroid = Platform.OS === 'android';
@@ -71,8 +71,8 @@ class AddAdditionalSeed extends React.Component {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be 81 characters long. Your seed is currently ${this.state
-                    .seed.length} characters long. Please try again.`,
+                `Seeds must be 81 characters long. Your seed is currently ${this.state.seed
+                    .length} characters long. Please try again.`,
             );
         } else if (!(this.state.seedName.length > 0)) {
             this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
@@ -105,7 +105,7 @@ class AddAdditionalSeed extends React.Component {
                             navBarTransparent: true,
                         },
                         animated: false,
-                        overrideBackPress: true
+                        overrideBackPress: true,
                     });
                 },
             );
@@ -140,7 +140,7 @@ class AddAdditionalSeed extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
-            overrideBackPress: true
+            overrideBackPress: true,
         });
     }
     onQRPress() {
@@ -188,7 +188,7 @@ class AddAdditionalSeed extends React.Component {
                                             style={styles.textField}
                                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                             labelFontSize={width / 31.8}
-                                            fontSize={isAndroid? width / 27.6 : width / 20.7}
+                                            fontSize={isAndroid ? width / 27.6 : width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"
@@ -199,7 +199,6 @@ class AddAdditionalSeed extends React.Component {
                                             value={seed}
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
-                                            multiline
                                             secureTextEntry={true}
                                         />
                                     </View>
@@ -386,7 +385,7 @@ const styles = StyleSheet.create({
     },
     textField: {
         color: 'white',
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'Lato-Light',
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',

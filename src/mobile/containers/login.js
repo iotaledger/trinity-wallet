@@ -26,7 +26,7 @@ import ExtraDimensions from 'react-native-extra-dimensions-android';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 var HockeyApp = require('react-native-hockeyapp');
@@ -87,10 +87,10 @@ class Login extends React.Component {
                 screen: 'loading',
                 navigatorStyle: {
                     navBarHidden: true,
-                    navBarTransparent: true
+                    navBarTransparent: true,
                 },
                 animated: false,
-                overrideBackPress: true
+                overrideBackPress: true,
             });
         }
 

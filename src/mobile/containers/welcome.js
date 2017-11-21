@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class Welcome extends React.Component {
@@ -28,7 +28,7 @@ class Welcome extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
-            overrideBackPress: true
+            overrideBackPress: true,
         });
     }
 
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20
+        paddingBottom: height / 20,
     },
     nextButton: {
         borderColor: '#9DFFAF',
