@@ -1,7 +1,7 @@
 {
     "global": {
         "invalidResponse": "Resposta inválida",
-        "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponseExplanation": "O nó devolveu uma resposta inválida.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seed",
         "back": "ANTERIOR",
@@ -11,8 +11,8 @@
         "paperWallet": "Carteira de Papel",
         "copyToClipboard": "Copiar para a Área de Transferência",
         "qr": "QR",
-        "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage."
+        "notAvailable": "Esta função não está disponível",
+        "notAvailableExplanation": "Será adicionada numa etapa posterior."
     },
     "addAdditionalSeed": {
         "mainWallet": "CARTEIRA PRINCIPAL",
@@ -26,8 +26,8 @@
         "seedInvalidCharsExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
         "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). Atualmente a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
-        "nicknameInUse": "Nickname already in use",
-        "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
+        "nicknameInUse": "Nome já utilizado",
+        "nicknameInUseExplanation": "Por favor, escolha um nome específico para a sua Seed.",
         "enterSeed": "Por favor, entre a sua Seed.",
         "enterSeedNickname": "Enter a seed nickname.",
         "seedNickname": "Seed nickname"
@@ -52,7 +52,7 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
         "seedCopied": "Seed copiada",
         "seedCopiedExplanation": "A Seed foi copiada para a área de transferência e será ????? quando pressionar \"CONCLUÍDO\" ou decorridos 60 segundos (o que se verificar primeiro). ",
         "clickToCopy": "Clique no botão em baixo e copie a sua Seed para o gestor de palavras-passe."
