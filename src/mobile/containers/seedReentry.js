@@ -17,7 +17,6 @@ import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -34,22 +33,13 @@ class SeedReentry extends React.Component {
         };
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     onDonePress() {
         if (this.state.seed == this.props.tempAccount.seed) {
             this.props.navigator.push({
                 screen: 'setSeedName',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true
             });
         } else {
             this.dropdown.alertWithType(
@@ -104,6 +94,7 @@ class SeedReentry extends React.Component {
                                     containerStyle={{
                                         width: width / 1.4,
                                     }}
+                                    secureTextEntry={true}
                                 />
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
