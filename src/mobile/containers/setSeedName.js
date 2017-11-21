@@ -24,7 +24,7 @@ import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/l
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -91,7 +91,7 @@ class SetSeedName extends React.Component {
                             screen: 'loading',
                             navigatorStyle: {
                                 navBarHidden: true,
-                                navBarTransparent: true
+                                navBarTransparent: true,
                             },
                             animated: false,
                         });
@@ -163,7 +163,7 @@ class SetSeedName extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Seed nickname"
+                                label="Account Name"
                                 tintColor="#F7D002"
                                 autoCapitalize="characters"
                                 autoCorrect={false}
