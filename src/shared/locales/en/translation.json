@@ -13,16 +13,16 @@
         "qr": "QR",
         "notAvailable": "This function is not available",
         "notAvailableExplanation": "It will be added at a later stage.",
-        "enterSeed": "Please enter your seed."
-    },
-    "addAdditionalSeed": {
+        "enterSeed": "Please enter your seed.",
         "mainWallet": "MAIN WALLET",
         "secondWallet": "SECOND WALLET",
         "thirdWallet": "THIRD WALLET",
         "fourthWallet": "FOURTH WALLET",
         "fifthWallet": "FIFTH WALLET",
         "sixthWallet": "SIXTH WALLET",
-        "otherWallet": "OTHER WALLET",
+        "otherWallet": "OTHER WALLET"
+    },
+    "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
         "seedInvalidCharsExplanation":
             "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
@@ -121,6 +121,37 @@
         "ofTheOptions": "of the options listed below."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed."
+        "incorrectSeed": "Incorrect seed.",
+        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
+        "thisIsACheck": "This is a check to make sure you saved your seed.",
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+    },
+    "send": {
+        "invalidAddress": "Invalid address",
+        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
+        "invalidAddressExplanation2": "Address contains invalid characters.",
+        "invalidAddressExplanation3": "Address contains an invalid checksum.",
+        "notEnoughFunds": "Not enough funds",
+        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "keyReuse": "Key reuse",
+        "keyReuseExplanation":
+            "The address you are trying to send to has already been used. Please try another address.",
+        "recipientAddress": "Recipient address",
+        "amount": "Amount",
+        "max": "MAX",
+        "message": "Message",
+        "send": "SEND IOTA"
+    },
+    "setPassword": {
+        "passwordTooShort": "Password is too short",
+        "passwordTooShortExplanation":
+            "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
+        "passwordMismatch": "Passwords do not match",
+        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
+        "nowWeNeedTo": "Now we need to set up a password.",
+        "anEncryptedCopy":
+            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "ensure": "Ensure you use a strong password of at least 12 characters.",
+        "retypePassword": "Retype Password"
     }
 }
