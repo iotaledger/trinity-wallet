@@ -21,7 +21,6 @@ import { getAccountInfo } from '../../shared/actions/account';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeInKeychain } from '../../shared/libs/cryptography';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -37,16 +36,6 @@ class UseSeed extends React.Component {
             seed: '',
             isModalVisible: false,
         };
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onDonePress() {
@@ -69,6 +58,7 @@ class UseSeed extends React.Component {
                 screen: 'loading',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true,
             });
             this.props.setUsedSeedToLogin();
             this.props.setPassword('dummy');
@@ -138,7 +128,7 @@ class UseSeed extends React.Component {
                                             value={seed}
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
-                                            multiline
+                                            secureTextEntry={true}
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>

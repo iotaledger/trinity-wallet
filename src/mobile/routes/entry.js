@@ -15,5 +15,6 @@ Navigation.startSingleScreenApp({
             screenBackgroundImageName: 'bg-green.png',
             screenBackgroundColor: '#102e36',
         },
+        overrideBackPress: true,
     },
 });
