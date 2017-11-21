@@ -11,7 +11,6 @@ import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import { logoutFromWallet } from '../../shared/actions/app';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -26,16 +25,6 @@ class Settings extends React.Component {
             settings: true,
         };
         this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     _showModal = () => this.setState({ isModalVisible: true });
@@ -190,6 +179,7 @@ class Settings extends React.Component {
                 screenBackgroundColor: '#102e36',
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -212,6 +202,7 @@ class Settings extends React.Component {
                 screenBackgroundColor: '#102e36',
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -234,6 +225,7 @@ class Settings extends React.Component {
                     screenBackgroundImageName: 'bg-green.png',
                     screenBackgroundColor: '#102e36',
                 },
+                overrideBackPress: true,
             },
         });
     }
@@ -247,6 +239,7 @@ class Settings extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -259,6 +252,7 @@ class Settings extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
