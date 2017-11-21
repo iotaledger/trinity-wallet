@@ -17,7 +17,7 @@ import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from '../../shared/libs/html.js';
 const isAndroid = Platform.OS === 'android';
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
@@ -172,8 +172,6 @@ class PaperWallet extends React.Component {
             fonts: ['../../shared/custom-fonts/Inconsolata-Bold.ttf'],
         };
 
-
-
         try {
             this.props.navigator.toggleNavBar({
                 to: 'shown',
@@ -237,7 +235,9 @@ class PaperWallet extends React.Component {
                 <View style={styles.midContainer}>
                     <View style={styles.paperWalletContainer}>
                         <View style={styles.seedBox}>
-                            <View style={{paddingVertical: height / 80, alignItems: 'center', justifyContent: 'center'}}>
+                            <View
+                                style={{ paddingVertical: height / 80, alignItems: 'center', justifyContent: 'center' }}
+                            >
                                 <Image source={require('../../shared/images/arrow-black.png')} style={styles.arrow} />
                                 <View style={styles.seedBoxTextContainer}>
                                     <View>
@@ -472,7 +472,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         paddingHorizontal: width / 30,
-        paddingVertical: height / 50
+        paddingVertical: height / 50,
     },
     seedBox: {
         borderColor: 'black',
@@ -487,7 +487,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingTop: height / 100
+        paddingTop: height / 100,
     },
     seedBoxTextLeft: {
         color: 'black',

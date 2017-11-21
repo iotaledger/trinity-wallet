@@ -23,9 +23,11 @@
         "sixthWallet": "6. TEGNEBOG",
         "otherWallet": "ANDEN TEGNEBOG",
         "seedInvalidChars": "Seedet indeholder ugyldige tegn",
-        "seedInvalidCharsExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "seedInvalidCharsExplanation":
+            "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
         "seedTooShort": "Seedet er for kort",
-        "seedTooShortExplanation": "Seeds skal indeholde mindst 60 tegn (helst 81 tegn). Dit seed er i øjeblikket {seed.length} tegn langt. Prøv venligst igen.",
+        "seedTooShortExplanation":
+            "Seeds skal indeholde mindst 60 tegn (helst 81 tegn). Dit seed er i øjeblikket {seed.length} tegn langt. Prøv venligst igen.",
         "nicknameInUse": "Kaldenavnet er allerede i brug",
         "nicknameInUseExplanation": "Brug venligst et unikt kaldenavn til dit seed.",
         "enterSeed": "Indtast venligst dit seed.",
@@ -34,7 +36,8 @@
     },
     "changePassword": {
         "oops": "Ups! Der gik noget galt",
-        "oopsExplanation": "Det ser ud til, at der gik noget galt under opdateringen af din adgangskode. Prøv venligst igen.",
+        "oopsExplanation":
+            "Det ser ud til, at der gik noget galt under opdateringen af din adgangskode. Prøv venligst igen.",
         "passwordUpdated": "Adgangskode opdateret",
         "passwordUpdatedExplanation": "Din adgangskode er blevet opdateret.",
         "incorrectPassword": "Forkert adgangskode",
@@ -44,7 +47,8 @@
         "passwordTooShort": "Adgangskoden er for kort",
         "passwordTooShortExplanation": "Din adgangskode skal være mindst 12 tegn lang. Prøv venligst igen.",
         "oldPassword": "Kan ikke bruge en gammel adgangskode",
-        "oldPasswordExplanation": "Du kan ikke bruge den gamle adgangskode som din nye adgangskode. Prøv venligst igen med en ny adgangskode.",
+        "oldPasswordExplanation":
+            "Du kan ikke bruge den gamle adgangskode som din nye adgangskode. Prøv venligst igen med en ny adgangskode.",
         "ensureStrongPassword": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
         "currentPassword": "Nuværende adgangskode",
         "newPassword": "Ny adgangskode",
@@ -54,16 +58,20 @@
         "seedCleared": "Seed ryddet",
         "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
         "seedCopied": "Seed kopieret",
-        "seedCopiedExplanation": "Dit seed er blevet kopieret til udklipsholderen og bliver ryddet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
+        "seedCopiedExplanation":
+            "Dit seed er blevet kopieret til udklipsholderen og bliver ryddet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
         "clickToCopy": "Klik på knappen nedenfor for at kopiere dit seed til en adgangskodemanager."
     },
     "enterSeed": {
         "invalidCharacters": "Seedet indeholder ugyldige tegn",
-        "invalidCharactersExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "invalidCharactersExplanation":
+            "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
         "seedTooShort": "Seedet er for kort",
-        "seedTooShortExplanation": "Seeds skal indeholde mindst 60 tegn (helst 81 tegn). Dit seed er i øjeblikket {seed.length} tegn langt. Prøv venligst igen.",
+        "seedTooShortExplanation":
+            "Seeds skal indeholde mindst 60 tegn (helst 81 tegn). Dit seed er i øjeblikket {seed.length} tegn langt. Prøv venligst igen.",
         "pleaseEnterSeed": "Indtast venligst dit seed.",
-        "seedExplanation": "Seeds bør være 81 tegn lange og skal indeholde bogstaverne A-Z eller tallet 9. Du kan ikke bruge seeds, som er længere end 81 tegn.",
+        "seedExplanation":
+            "Seeds bør være 81 tegn lange og skal indeholde bogstaverne A-Z eller tallet 9. Du kan ikke bruge seeds, som er længere end 81 tegn.",
         "neverShare": "DEL ALDRIG DIT SEED MED NOGEN"
     },
     "home": {
@@ -92,6 +100,7 @@
         "individualLetters": "Tryk på individuelle bogstaver for at vælge nye tilfældigt."
     },
     "onboardingComplete": {
-        "walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
+        "walletReady":
+            "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
     }
 }

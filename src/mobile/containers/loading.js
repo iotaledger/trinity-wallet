@@ -17,7 +17,7 @@ import { changeHomeScreenRoute } from '../../shared/actions/home';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
 

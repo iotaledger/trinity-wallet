@@ -27,7 +27,7 @@ import TransferConfirmationModal from '../components/transferConfirmationModal';
 import { getAccountInfo } from '../../shared/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -91,9 +91,8 @@ class Send extends Component {
         return true;
     }
 
-    isValidAmount(amount){
-        if (!isNaN(amount))
-            return true;
+    isValidAmount(amount) {
+        if (!isNaN(amount)) return true;
     }
 
     enoughBalance() {
@@ -127,7 +126,7 @@ class Send extends Component {
         const addressIsValid = this.isValidAddress(address);
         const messageIsValid = this.isValidMessage(message);
         const enoughBalance = this.enoughBalance();
-        const amountIsValid = this.isValidAmount(amount)
+        const amountIsValid = this.isValidAmount(amount);
 
         if (addressIsValid && messageIsValid && enoughBalance && amountIsValid) {
             this._showModal();
@@ -145,7 +144,7 @@ class Send extends Component {
             this.renderInvalidAddressErrors(address);
         }
 
-        if(!amountIsValid){
+        if (!amountIsValid) {
             const dropdown = DropdownHolder.getDropdown();
             return dropdown.alertWithType(
                 'error',
@@ -265,7 +264,7 @@ class Send extends Component {
                 1000000 *
                 this.getUnitMultiplier(),
             10,
-        )
+        );
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -319,8 +318,7 @@ class Send extends Component {
                         </View>
                         <Text style={styles.conversionText}>
                             {' '}
-                            {' '}
-                            { conversion == 0 ? '' : (conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2))}{' '}
+                            {conversion == 0 ? '' : conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2)}{' '}
                         </Text>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
@@ -483,7 +481,7 @@ const styles = StyleSheet.create({
     maxButtonContainer: {
         justifyContent: 'flex-start',
         marginTop: height / 150,
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     maxButtonText: {
         color: 'white',
@@ -491,9 +489,7 @@ const styles = StyleSheet.create({
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
-    maxWarningText: {
-
-    },
+    maxWarningText: {},
     maxButton: {
         flexDirection: 'row',
         alignItems: 'center',

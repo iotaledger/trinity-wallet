@@ -5,7 +5,7 @@ import TransactionRow from '../components/transactionRow';
 import Modal from 'react-native-modal';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class History extends React.Component {

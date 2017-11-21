@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import Triangle from 'react-native-triangle';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 const CustomLayoutSpring = {
@@ -48,7 +48,7 @@ class LanguageSetup extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
-            overrideBackPress: true
+            overrideBackPress: true,
         });
     }
 

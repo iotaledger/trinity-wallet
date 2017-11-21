@@ -25,7 +25,7 @@ import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -98,16 +98,14 @@ class Receive extends Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={{ paddingBottom: height / 40, opacity: this.getOpacity() }}>
-                    <View style= {styles.qrContainer}>
+                    <View style={styles.qrContainer}>
                         <QRCode value={receiveAddress} size={width / 2.5} bgColor="#000" fgColor="#FFF" />
                     </View>
                 </View>
                 <View style={{ paddingBottom: height / 40, opacity: this.getOpacity() }}>
                     <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                         <View style={styles.receiveAddressContainer}>
-                            <Text style={styles.receiveAddressText}>
-                                {receiveAddress}
-                            </Text>
+                            <Text style={styles.receiveAddressText}>{receiveAddress}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -200,10 +198,10 @@ const styles = StyleSheet.create({
         height: 15,
     },
     qrContainer: {
-      backgroundColor: 'white',
-      borderRadius: 15,
-      padding: width / 30
-    }
+        backgroundColor: 'white',
+        borderRadius: 15,
+        padding: width / 30,
+    },
 });
 
 const mapStateToProps = state => ({

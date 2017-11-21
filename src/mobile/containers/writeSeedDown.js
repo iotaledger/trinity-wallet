@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import Seedbox from '../components/seedBox.js'
-const width = Dimensions.get('window').width
+import Seedbox from '../components/seedBox.js';
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class WriteSeedDown extends React.Component {
@@ -24,13 +24,13 @@ class WriteSeedDown extends React.Component {
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
-                  <Text style={styles.infoText}>
-                      <Text style={styles.infoTextNormal}>
-                          Your seed is 81 characters read from left to right. Write down your seed and checksum and
-                      </Text>
-                      <Text style={styles.infoTextBold}> triple check </Text>
-                      <Text style={styles.infoTextNormal}>they are correct.</Text>
-                  </Text>
+                    <Text style={styles.infoText}>
+                        <Text style={styles.infoTextNormal}>
+                            Your seed is 81 characters read from left to right. Write down your seed and checksum and
+                        </Text>
+                        <Text style={styles.infoTextBold}> triple check </Text>
+                        <Text style={styles.infoTextNormal}>they are correct.</Text>
+                    </Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
                 </View>
                 <View style={styles.bottomContainer}>
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: height / 80,
-        marginTop: height / 60
+        marginTop: height / 60,
     },
     seedBoxTextContainer: {
         width: width / 1.65,

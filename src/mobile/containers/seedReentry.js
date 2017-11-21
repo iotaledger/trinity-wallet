@@ -20,7 +20,7 @@ import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 
 //import DropdownHolder from './dropdownHolder';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
@@ -39,7 +39,7 @@ class SeedReentry extends React.Component {
                 screen: 'setSeedName',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
-                overrideBackPress: true
+                overrideBackPress: true,
             });
         } else {
             this.dropdown.alertWithType(

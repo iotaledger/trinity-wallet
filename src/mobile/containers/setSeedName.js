@@ -22,7 +22,7 @@ import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/l
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -65,7 +65,7 @@ class SetSeedName extends React.Component {
                     screen: 'setPassword',
                     navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                     animated: false,
-                    overrideBackPress: true
+                    overrideBackPress: true,
                 });
             } else {
                 this.props.clearTempData();
@@ -80,10 +80,10 @@ class SetSeedName extends React.Component {
                             screen: 'loading',
                             navigatorStyle: {
                                 navBarHidden: true,
-                                navBarTransparent: true
+                                navBarTransparent: true,
                             },
                             animated: false,
-                            overrideBackPress: true
+                            overrideBackPress: true,
                         });
                         this.props.getAccountInfoNewSeed(
                             this.props.tempAccount.seed,

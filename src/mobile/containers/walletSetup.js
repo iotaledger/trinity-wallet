@@ -13,20 +13,19 @@ import {
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class WalletSetup extends React.Component {
-
     onYesPress() {
         this.props.navigator.push({
             screen: 'enterSeed',
             navigatorStyle: {
                 navBarHidden: true,
-                navBarTransparent: true
+                navBarTransparent: true,
             },
             animated: false,
-            overrideBackPress: true
+            overrideBackPress: true,
         });
     }
     onNoPress() {
@@ -34,10 +33,10 @@ class WalletSetup extends React.Component {
             screen: 'newSeedSetup',
             navigatorStyle: {
                 navBarHidden: true,
-                navBarTransparent: true
+                navBarTransparent: true,
             },
             animated: false,
-            overrideBackPress: true
+            overrideBackPress: true,
         });
     }
 
