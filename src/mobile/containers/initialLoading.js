@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Image,
+    ImageBackground,
+    Text,
+    StatusBar,
+    BackHandler,
+    Platform,
+} from 'react-native';
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
 import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
@@ -10,7 +20,9 @@ import ExtraDimensions from 'react-native-extra-dimensions-android';
 
 const width = Dimensions.get('window').width;
 let height = Dimensions.get('window').height;
-global.height = DetectNavbar.hasSoftKeys() ? height -= ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT') : Dimensions.get('window').height;
+global.height = DetectNavbar.hasSoftKeys()
+    ? (height -= ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT'))
+    : Dimensions.get('window').height;
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
@@ -31,7 +43,7 @@ export default class InitialLoading extends Component {
     }
 
     handleBackButton() {
-      return true;
+        return true;
     }
 
     componentWillMount() {
@@ -50,23 +62,45 @@ export default class InitialLoading extends Component {
             sharedPreferencesName: 'mySharedPrefs',
             keychainService: 'myKeychain',
         }).then(keys => {
-            if (keys[0].length == 0) {
-                return;
-            } else {
-                var key = '';
-                for (i = 0; i < keys[0].length; i++) {
-                    key = keys[0][i].key;
-                    keysToDelete.push(key);
-                }
+            if (Platform.OS === 'ios') {
+                if (keys[0].length == 0) {
+                    return;
+                } else {
+                    var key = '';
+                    for (i = 0; i < keys[0].length; i++) {
+                        key = keys[0][i].key;
+                        keysToDelete.push(key);
+                    }
 
-                for (i = 0; i < keysToDelete.length; i++) {
-                    var keyToDelete = keysToDelete[i];
-                    deleteItem(keyToDelete, {
-                        sharedPreferencesName: 'mySharedPrefs',
-                        keychainService: 'myKeychain',
-                    });
+                    for (i = 0; i < keysToDelete.length; i++) {
+                        var keyToDelete = keysToDelete[i];
+                        deleteItem(keyToDelete, {
+                            sharedPreferencesName: 'mySharedPrefs',
+                            keychainService: 'myKeychain',
+                        });
+                    }
+                    console.log('Keychain cleared successfully');
                 }
-                console.log('Keychain cleared successfully');
+            }
+            if (Platform.OS === 'android') {
+                if (keys.length == 0) {
+                    return;
+                } else {
+                    var key = '';
+                    for (i = 0; i < keys.length; i++) {
+                        key = keys.key;
+                        keysToDelete.push(key);
+                    }
+
+                    for (i = 0; i < keysToDelete.length; i++) {
+                        var keyToDelete = keysToDelete[i];
+                        deleteItem(keyToDelete, {
+                            sharedPreferencesName: 'mySharedPrefs',
+                            keychainService: 'myKeychain',
+                        });
+                    }
+                    console.log('Keychain cleared successfully');
+                }
             }
         });
     }
@@ -77,7 +111,7 @@ export default class InitialLoading extends Component {
             this.clearKeychain();
             this.props.navigator.push({
                 screen: 'languageSetup',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true},
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
             });
         } else {
