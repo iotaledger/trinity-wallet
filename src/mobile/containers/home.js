@@ -38,7 +38,6 @@ import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import { roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 
 const StatusBarDefaultBarStyle = 'light-content';
@@ -65,17 +64,6 @@ class Home extends Component {
             this.props.setBalance(addressesWithBalance);
         }
         timer.setInterval('polling', () => this.startPolling(), 47000);
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-        timer.clearInterval('polling');
     }
 
     startPolling() {
