@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#1A1A1A',
         justifyContent: 'space-around',
         alignItems: 'center',
-        opacity: 0.7,
+        opacity: 0.9,
     },
     button: {
         justifyContent: 'flex-end',
