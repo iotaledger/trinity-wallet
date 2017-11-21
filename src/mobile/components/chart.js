@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Dimensions, TouchableWithoutFeedback } from 're
 import { Svg, LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 const viewbox = `${width / 3.95} ${height / 50} ${width / 3.93} ${height / 3.7}`;
@@ -12,8 +12,8 @@ class Chart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            price: this.props.marketData.usdPrice
-        }
+            price: this.props.marketData.usdPrice,
+        };
     }
     componentDidMount() {
         polling = setInterval(() => {
@@ -23,23 +23,23 @@ class Chart extends React.Component {
         }, 101000);
     }
 
-    componentWillMount(){
-        this.changeCurrency(this.props.marketData.currency)
+    componentWillMount() {
+        this.changeCurrency(this.props.marketData.currency);
     }
 
     changeCurrency() {
         switch (this.props.marketData.currency) {
             case 'USD':
                 this.props.setCurrency('BTC');
-                this.setState({price: this.props.marketData.btcPrice});
+                this.setState({ price: this.props.marketData.btcPrice });
                 break;
             case 'BTC':
                 this.props.setCurrency('ETH');
-                this.setState({price: this.props.marketData.ethPrice});
+                this.setState({ price: this.props.marketData.ethPrice });
                 break;
             case 'ETH':
                 this.props.setCurrency('USD');
-                this.setState({price: this.props.marketData.usdPrice});
+                this.setState({ price: this.props.marketData.usdPrice });
                 break;
         }
     }
@@ -62,7 +62,7 @@ class Chart extends React.Component {
     }
 
     getMaxY() {
-        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe]
+        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
         const maxValue = Math.max(
             ...data.map(object => {
                 return object.y;
@@ -72,7 +72,7 @@ class Chart extends React.Component {
     }
 
     getMinY() {
-        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe]
+        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
         const minValue = Math.min(
             ...data.map(object => {
                 return object.y;
@@ -82,7 +82,7 @@ class Chart extends React.Component {
     }
 
     getMaxX() {
-        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe]
+        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
         const maxValue = Math.max(
             ...data.map(object => {
                 return object.x;

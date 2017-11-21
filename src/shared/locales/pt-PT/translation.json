@@ -23,9 +23,11 @@
         "sixthWallet": "SEXTA CARTEIRA",
         "otherWallet": "OUTRA CARTEIRA",
         "seedInvalidChars": "A Seed contém carateres inválidos",
-        "seedInvalidCharsExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
+        "seedInvalidCharsExplanation":
+            "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
-        "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). Atualmente a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
+        "seedTooShortExplanation":
+            "As Seeds devem ter pelo menos 60 carateres (idealmente 81). Atualmente a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
         "nicknameInUse": "Nome já utilizado",
         "nicknameInUseExplanation": "Por favor, escolha um nome específico para a sua Seed.",
         "enterSeed": "Por favor, entre a sua Seed.",
@@ -42,9 +44,11 @@
         "passwordsDoNotMatch": "As palavras-passe não coincidem",
         "passwordsDoNotMatchExplanation": "As palavras-passe não coincidem. Por favor, tente de novo.",
         "passwordTooShort": "A palavra-passe é demasiado curta",
-        "passwordTooShortExplanation": "A sua palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
+        "passwordTooShortExplanation":
+            "A sua palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
         "oldPassword": "Não é possível configurar a palavra-passe antiga",
-        "oldPasswordExplanation": "Não pode usar a sua palavra-passe antiga como a sua nova palavra-passe. Por favor tente de novo com uma palavra-passe nova.",
+        "oldPasswordExplanation":
+            "Não pode usar a sua palavra-passe antiga como a sua nova palavra-passe. Por favor tente de novo com uma palavra-passe nova.",
         "ensureStrongPassword": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
         "currentPassword": "Palavra-passe atual",
         "newPassword": "Nova Palavra-Passe",
@@ -54,16 +58,20 @@
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
         "seedCopied": "Seed copiada",
-        "seedCopiedExplanation": "A Seed foi copiada para a área de transferência e será ????? quando pressionar \"CONCLUÍDO\" ou decorridos 60 segundos (o que se verificar primeiro). ",
+        "seedCopiedExplanation":
+            "A Seed foi copiada para a área de transferência e será ????? quando pressionar \"CONCLUÍDO\" ou decorridos 60 segundos (o que se verificar primeiro). ",
         "clickToCopy": "Clique no botão em baixo e copie a sua Seed para o gestor de palavras-passe."
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém carateres inválidos",
-        "invalidCharactersExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
+        "invalidCharactersExplanation":
+            "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
-        "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). De momento, a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
+        "seedTooShortExplanation":
+            "As Seeds devem ter pelo menos 60 carateres (idealmente 81). De momento, a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
         "pleaseEnterSeed": "Por favor, digite a sua Seed.",
-        "seedExplanation": "As Seeds devem ter 81 caracteres e têm de ser constituídas por letras maiúsculas (A-Z) e o número 9. Não podem conter mais de 81 caracteres.",
+        "seedExplanation":
+            "As Seeds devem ter 81 caracteres e têm de ser constituídas por letras maiúsculas (A-Z) e o número 9. Não podem conter mais de 81 caracteres.",
         "neverShare": "NUNCA PARTILHE A SUA SEED COM NINGUÉM"
     },
     "home": {
@@ -92,6 +100,7 @@
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório."
     },
     "onboardingComplete": {
-        "walletReady": "A carteira está configurada e pronta para ser utilizada. Se posteriormente necessitar de efetuar alterações, utilize o menu \"Configurações\"."
+        "walletReady":
+            "A carteira está configurada e pronta para ser utilizada. Se posteriormente necessitar de efetuar alterações, utilize o menu \"Configurações\"."
     }
 }

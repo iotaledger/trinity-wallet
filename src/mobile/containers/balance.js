@@ -1,19 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, ListView, Dimensions, StatusBar, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import {
-    getMarketData,
-    getChartData,
-    getPrice,
-    setCurrency,
-    setTimeframe
-} from '../../shared/actions/marketData';
+import { getMarketData, getChartData, getPrice, setCurrency, setTimeframe } from '../../shared/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
 const isAndroid = Platform.OS === 'android';
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -74,17 +68,17 @@ class Balance extends React.Component {
                 </View>
                 <View style={styles.transactionsContainer}>
                     <View style={styles.line} />
-                            <ListView
-                                dataSource={ds.cloneWithRows(
-                                    accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
-                                )}
-                                renderRow={dataSource => <SimpleTransactionRow addresses={addresses} rowData={dataSource} />}
-                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                                enableEmptySections
-                                contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
-                                scrollEnabled={false}
-                                centerContent
-                            />
+                    <ListView
+                        dataSource={ds.cloneWithRows(
+                            accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
+                        )}
+                        renderRow={dataSource => <SimpleTransactionRow addresses={addresses} rowData={dataSource} />}
+                        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                        enableEmptySections
+                        contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
+                        scrollEnabled={false}
+                        centerContent
+                    />
                     <View style={styles.line} />
                 </View>
                 <View style={{ flex: 5 }}>
@@ -93,8 +87,8 @@ class Balance extends React.Component {
                         getPrice={() => this.props.getPrice()}
                         getChartData={() => this.props.getChartData()}
                         getMarketData={() => this.props.getMarketData()}
-                        setCurrency={(currency) => this.props.setCurrency(currency)}
-                        setTimeframe={(timeframe) => this.props.setTimeframe(timeframe)}
+                        setCurrency={currency => this.props.setCurrency(currency)}
+                        setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
                     />
                 </View>
             </View>
@@ -112,7 +106,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         paddingTop: height / 50,
-        paddingBottom: isAndroid? height / 10 : height / 20
+        paddingBottom: isAndroid ? height / 10 : height / 20,
     },
     iotaBalance: {
         color: 'white',
@@ -131,7 +125,7 @@ const styles = StyleSheet.create({
         flex: 2.5,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: height / 150
+        paddingVertical: height / 150,
     },
     line: {
         borderBottomColor: 'white',
@@ -143,12 +137,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     listViewAndroid: {
-        flex : 1,
+        flex: 1,
         paddingVertical: height / 70,
     },
     listViewIos: {
         paddingTop: height / 90,
-    }
+    },
 });
 
 const mapStateToProps = state => ({
@@ -167,10 +161,10 @@ const mapDispatchToProps = dispatch => ({
     getChartData: () => {
         dispatch(getChartData());
     },
-    setCurrency: (currency) => {
+    setCurrency: currency => {
         dispatch(setCurrency(currency));
     },
-    setTimeframe: (timeframe) => {
+    setTimeframe: timeframe => {
         dispatch(setTimeframe(timeframe));
     },
 });

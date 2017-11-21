@@ -19,7 +19,7 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 
 import { Keyboard } from 'react-native';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 export default class WalletResetConfirmation extends Component {
@@ -40,7 +40,7 @@ export default class WalletResetConfirmation extends Component {
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
-            overrideBackPress: true
+            overrideBackPress: true,
         });
     }
 

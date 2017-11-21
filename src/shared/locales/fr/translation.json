@@ -23,9 +23,11 @@
         "sixthWallet": "SIXIÈME WALLET",
         "otherWallet": "AUTRE WALLET",
         "seedInvalidChars": "La Seed contient des caractères invalides",
-        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidCharsExplanation":
+            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "La Seed est trop courte",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "nicknameInUse": "Cet identifiant est déjà utilisé",
         "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
         "enterSeed": "Veuillez entrer votre seed.",
@@ -44,7 +46,8 @@
         "passwordTooShort": "Le mot de passe est trop court",
         "passwordTooShortExplanation": "Votre mot de passe doit contenir au moins 12 caractères. Veuillez réessayer.",
         "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPasswordExplanation":
+            "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "currentPassword": "Mot de passe Actuel",
         "newPassword": "Nouveau Mot de passe",
@@ -54,16 +57,20 @@
         "seedCleared": "Seed effacée",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "seedCopied": "Seed copiée",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
+        "seedCopiedExplanation":
+            "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
         "clickToCopy": "Click the button below and copy your seed to a password manager."
     },
     "enterSeed": {
         "invalidCharacters": "La Seed contient des caractères invalides",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation":
+            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "La Seed est trop courte",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "pleaseEnterSeed": "Veuillez entrer votre seed.",
-        "seedExplanation": "Une Seed doit contenir des lettres en majuscules (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères. Vous ne pouvez pas utiliser de Seed de plus de 81 caractères.",
+        "seedExplanation":
+            "Une Seed doit contenir des lettres en majuscules (A-Z) et le chiffre 9, et doit être comprise entre 60 et 81 caractères. Vous ne pouvez pas utiliser de Seed de plus de 81 caractères.",
         "neverShare": "NE PARTAGEZ JAMAIS VOTRE SEED"
     },
     "home": {
@@ -92,6 +99,7 @@
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady":
+            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }

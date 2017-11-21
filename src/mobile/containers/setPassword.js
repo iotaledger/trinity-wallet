@@ -20,7 +20,7 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -50,7 +50,7 @@ class SetPassword extends React.Component {
                     navBarTransparent: true,
                 },
                 animated: false,
-                overrideBackPress: true
+                overrideBackPress: true,
             });
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {

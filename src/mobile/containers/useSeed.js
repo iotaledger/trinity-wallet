@@ -24,7 +24,7 @@ import { storeInKeychain } from '../../shared/libs/cryptography';
 
 //import DropdownHolder from './dropdownHolder';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
@@ -58,7 +58,7 @@ class UseSeed extends React.Component {
                 screen: 'loading',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
-                overrideBackPress: true
+                overrideBackPress: true,
             });
             this.props.setUsedSeedToLogin();
             this.props.setPassword('dummy');
@@ -128,7 +128,7 @@ class UseSeed extends React.Component {
                                             value={seed}
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
-                                            multiline
+                                            secureTextEntry={true}
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
