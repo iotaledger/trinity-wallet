@@ -25,7 +25,6 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import DropdownAlert from 'react-native-dropdownalert';
 
 const width = Dimensions.get('window').width;
@@ -42,16 +41,6 @@ class WalletResetRequirePassword extends Component {
         this.resetWallet = this.resetWallet.bind(this);
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     goBack() {
         this.props.navigator.push({
             screen: 'home',
@@ -62,6 +51,7 @@ class WalletResetRequirePassword extends Component {
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -72,13 +62,14 @@ class WalletResetRequirePassword extends Component {
     redirectToInitialScreen() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'welcome',
+                screen: 'languageSetup',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-green.png',
                     screenBackgroundColor: '#102e36',
                 },
+                overrideBackPress: true,
             },
         });
     }
