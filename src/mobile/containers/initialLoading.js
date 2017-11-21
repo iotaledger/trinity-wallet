@@ -78,10 +78,7 @@ export default class InitialLoading extends Component {
                     return;
                 } else {
                     var key = '';
-                    for (i = 0; i < keys.length; i++) {
-                        key = keys.key;
-                        deleteItem(key);
-                    }
+                    Object.keys.forEach(deleteItem(key));
                     console.log('Keychain cleared successfully');
                 }
             }
