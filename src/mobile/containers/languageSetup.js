@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
     StyleSheet,
     View,
@@ -12,6 +14,8 @@ import {
     ImageBackground,
     StatusBar,
 } from 'react-native';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
+
 import Triangle from 'react-native-triangle';
 
 const width = Dimensions.get('window').width;
@@ -30,7 +34,7 @@ const CustomLayoutSpring = {
     },
 };
 
-class LanguageSetup extends React.Component {
+class LanguageSetup extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -79,9 +83,13 @@ class LanguageSetup extends React.Component {
     }
 
     render() {
+        const { onboardingComplete } = this.props;
+
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
+                {!onboardingComplete && (
+                    <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
+                )}
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
@@ -201,7 +209,7 @@ class LanguageSetup extends React.Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onNextPress()}>
                         <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>NEXT</Text>
+                            <Text style={styles.nextText}>{onboardingComplete ? 'DONE' : 'NEXT'}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -306,4 +314,17 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LanguageSetup;
+const mapStateToProps = state => ({
+    onboardingComplete: state.account.onboardingComplete,
+});
+
+const mapDispatchToProps = dispatch => ({
+    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
+});
+
+LanguageSetup.propTypes = {
+    onboardingComplete: PropTypes.bool.isRequired,
+    changeHomeScreenRoute: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LanguageSetup);
