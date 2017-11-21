@@ -166,8 +166,17 @@ class Settings extends React.Component {
     }
 
     onLanguagePress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        this.props.navigator.push({
+            screen: 'languageSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+            overrideBackPress: true,
+        });
     }
 
     onChangePasswordPress() {
