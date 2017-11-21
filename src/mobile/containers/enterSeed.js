@@ -117,7 +117,7 @@ class EnterSeed extends React.Component {
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light', fontSize: width / 20.7 }}
+                                            labelTextStyle={{ fontFamily: 'Inconsolata-Bold', fontSize: width / 20.7 }}
                                             labelFontSize={width / 31.8}
                                             fontSize={isAndroid ? width / 27.6 : width / 20.7}
                                             labelPadding={3}
@@ -133,6 +133,7 @@ class EnterSeed extends React.Component {
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
                                             secureTextEntry={true}
+                                            multiline
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
