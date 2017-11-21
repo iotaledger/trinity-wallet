@@ -101,5 +101,12 @@
     "onboardingComplete": {
         "walletReady":
             "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+    },
+    "paperWallet": {
+        "clickToPrint": "Click the button below to print a paper copy of your seed.",
+        "storeSafely": "Store it safely.",
+        "neverShare": "Never share your seed with anyone.",
+        "iotaLogo": "IOTA logo",
+        "printWallet": "PRINT PAPER WALLET"
     }
 }
