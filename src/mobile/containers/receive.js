@@ -24,7 +24,6 @@ import {
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -40,14 +39,7 @@ class Receive extends Component {
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
     componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
         this.resetAddress();
     }
 
@@ -84,7 +76,7 @@ class Receive extends Component {
 
     onAddressPress(address) {
         const dropdown = DropdownHolder.getDropdown();
-        if (address) {
+        if (address !== ' ') {
             Clipboard.setString(address);
             dropdown.alertWithType('success', 'Address copied', 'Your address has been copied to the clipboard.');
         }
