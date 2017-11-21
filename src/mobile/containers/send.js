@@ -26,7 +26,6 @@ import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import { getAccountInfo } from '../../shared/actions/account';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 import DropdownHolder from '../components/dropdownHolder';
 const width = Dimensions.get('window').width;
@@ -49,16 +48,6 @@ class Send extends Component {
             selectedSetting: '',
             modalContent: '',
         };
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onDenominationPress() {
@@ -103,6 +92,10 @@ class Send extends Component {
         return true;
     }
 
+    isValidAmount(amount) {
+        if (!isNaN(amount)) return true;
+    }
+
     enoughBalance() {
         if (parseFloat(this.state.amount) * this.getUnitMultiplier() > this.props.account.balance) {
             return false;
@@ -126,6 +119,7 @@ class Send extends Component {
 
     onSendPress() {
         const address = this.state.address;
+        const amount = this.state.amount;
         const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
         const message = this.state.message;
 
@@ -133,8 +127,9 @@ class Send extends Component {
         const addressIsValid = this.isValidAddress(address);
         const messageIsValid = this.isValidMessage(message);
         const enoughBalance = this.enoughBalance();
+        const amountIsValid = this.isValidAmount(amount);
 
-        if (addressIsValid && messageIsValid && enoughBalance) {
+        if (addressIsValid && messageIsValid && enoughBalance && amountIsValid) {
             this._showModal();
         }
 
@@ -148,6 +143,15 @@ class Send extends Component {
         }
         if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
+        }
+
+        if (!amountIsValid) {
+            const dropdown = DropdownHolder.getDropdown();
+            return dropdown.alertWithType(
+                'error',
+                'Incorrect amount entered',
+                'Please enter a numerical value for the transaction amount.',
+            );
         }
 
         if (!messageIsValid) {
@@ -273,6 +277,7 @@ class Send extends Component {
                                 style={styles.textField}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
+                                maxLength={90}
                                 fontSize={height / 40}
                                 height={height / 24}
                                 labelPadding={2}
@@ -314,7 +319,7 @@ class Send extends Component {
                         </View>
                         <Text style={styles.conversionText}>
                             {' '}
-                             {conversion == 0 ? '' : conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2)}{' '}
+                            {conversion == 0 ? '' : conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2)}{' '}
                         </Text>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={ebent => this.onDenominationPress()}>

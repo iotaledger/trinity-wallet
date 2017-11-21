@@ -36,15 +36,26 @@ export function setUsedSeedToLogin() {
     };
 }
 
+// TODO: Remove this
+// Depcreated in favor of setSeedIndex
 export function incrementSeedIndex() {
     return {
         type: 'INCREMENT_SEED_INDEX',
     };
 }
 
+// TODO: Remove this
+// Depcreated in favor of setSeedIndex
 export function decrementSeedIndex() {
     return {
         type: 'DECREMENT_SEED_INDEX',
+    };
+}
+
+export function setSeedIndex(payload) {
+    return {
+        type: 'SET_SEED_INDEX',
+        payload,
     };
 }
 
