@@ -16,7 +16,6 @@ import {
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 import { Keyboard } from 'react-native';
 
@@ -31,16 +30,6 @@ export default class WalletResetConfirmation extends Component {
         this.requirePassword = this.requirePassword.bind(this);
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     navigateTo(url) {
         this.props.navigator.push({
             screen: url,
@@ -51,6 +40,7 @@ export default class WalletResetConfirmation extends Component {
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
