@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
@@ -281,6 +282,8 @@ class Settings extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />

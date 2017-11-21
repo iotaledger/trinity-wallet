@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -153,7 +154,7 @@ class SetSeedName extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Seed nickname"
+                                label="Account Name"
                                 tintColor="#F7D002"
                                 autoCapitalize="characters"
                                 autoCorrect={false}

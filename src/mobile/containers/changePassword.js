@@ -1,6 +1,7 @@
 import isUndefined from 'lodash/isUndefined';
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -85,7 +86,7 @@ class ChangePassword extends Component {
 
     isValid() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { password } = this.props;
+        const { password, t } = this.props;
 
         return (
             currentPassword === password &&
@@ -106,7 +107,7 @@ class ChangePassword extends Component {
                 this.dropdown.alertWithType(
                     'error',
                     'Oops! Something went wrong',
-                    'Looks like something wrong while updating your password. Please try again.',
+                    'Looks like something went wrong while updating your password. Please try again.',
                 );
 
             const updatePassword = seed =>
@@ -122,7 +123,7 @@ class ChangePassword extends Component {
                         // on dropdown reference inside this component.
                         this.dropdown.alertWithType(
                             'success',
-                            'Password updated.',
+                            'Password updated',
                             'Your password has been successfully updated.',
                         );
                     })
