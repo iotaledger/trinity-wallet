@@ -57,47 +57,30 @@ export default class InitialLoading extends Component {
     }
 
     clearKeychain() {
-        var keysToDelete = [];
         getAllItems({
             sharedPreferencesName: 'mySharedPrefs',
             keychainService: 'myKeychain',
         }).then(keys => {
             if (Platform.OS === 'ios') {
-                if (keys[0].length == 0) {
+                if (!keys[0].length) {
                     return;
                 } else {
                     var key = '';
                     for (i = 0; i < keys[0].length; i++) {
                         key = keys[0][i].key;
-                        keysToDelete.push(key);
-                    }
-
-                    for (i = 0; i < keysToDelete.length; i++) {
-                        var keyToDelete = keysToDelete[i];
-                        deleteItem(keyToDelete, {
-                            sharedPreferencesName: 'mySharedPrefs',
-                            keychainService: 'myKeychain',
-                        });
+                        deleteItem(key);
                     }
                     console.log('Keychain cleared successfully');
                 }
             }
             if (Platform.OS === 'android') {
-                if (keys.length == 0) {
+                if (!keys.length) {
                     return;
                 } else {
                     var key = '';
                     for (i = 0; i < keys.length; i++) {
                         key = keys.key;
-                        keysToDelete.push(key);
-                    }
-
-                    for (i = 0; i < keysToDelete.length; i++) {
-                        var keyToDelete = keysToDelete[i];
-                        deleteItem(keyToDelete, {
-                            sharedPreferencesName: 'mySharedPrefs',
-                            keychainService: 'myKeychain',
-                        });
+                        deleteItem(key);
                     }
                     console.log('Keychain cleared successfully');
                 }
