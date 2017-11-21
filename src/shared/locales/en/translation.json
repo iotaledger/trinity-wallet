@@ -12,7 +12,8 @@
         "copyToClipboard": "Copy to Clipboard",
         "qr": "QR",
         "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage."
+        "notAvailableExplanation": "It will be added at a later stage.",
+        "enterSeed": "Please enter your seed."
     },
     "addAdditionalSeed": {
         "mainWallet": "MAIN WALLET",
@@ -30,7 +31,6 @@
             "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "nameInUse": "Account name already in use",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterSeed": "Please enter your seed.",
         "enterAccountName": "Enter an account name.",
         "accountName": "Account name"
     },
@@ -68,7 +68,6 @@
         "seedTooShort": "Seed is too short",
         "seedTooShortExplanation":
             "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "pleaseEnterSeed": "Please enter your seed.",
         "seedExplanation":
             "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
@@ -120,5 +119,8 @@
         "mustSaveYourSeed": "You must save your seed with",
         "atLeastOne": "at least one",
         "ofTheOptions": "of the options listed below."
+    },
+    "seedReentry": {
+        "incorrectSeed": "Incorrect seed."
     }
 }
