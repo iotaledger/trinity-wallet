@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, ListView, Dimensions, StatusBar, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice, setCurrency, setTimeframe } from '../../shared/actions/marketData';
@@ -43,6 +44,7 @@ class Balance extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];

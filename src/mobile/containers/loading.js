@@ -10,6 +10,7 @@ import {
     Text,
     ActivityIndicator,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import { setBalance, setFirstUse } from '../../shared/actions/account';
@@ -27,7 +28,7 @@ class Loading extends Component {
     }
 
     render() {
-        const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
+        const { tempAccount: { ready }, account: { firstUse }, navigator, t } = this.props;
 
         if (!ready && this.props.account.firstUse) {
             return (

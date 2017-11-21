@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -164,6 +165,7 @@ class AddAdditionalSeed extends React.Component {
 
     render() {
         const { seed, seedName } = this.state;
+        const { t } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -227,7 +229,7 @@ class AddAdditionalSeed extends React.Component {
                                         baseColor="white"
                                         tintColor="#F7D002"
                                         enablesReturnKeyAutomatically={true}
-                                        label="Seed name"
+                                        label="Seed nickname"
                                         autoCapitalize="characters"
                                         autoCorrect={false}
                                         value={seedName}
