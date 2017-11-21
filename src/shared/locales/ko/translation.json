@@ -23,9 +23,11 @@
         "sixthWallet": "SIXTH WALLET",
         "otherWallet": "OTHER WALLET",
         "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidCharsExplanation":
+            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "nicknameInUse": "Nickname already in use",
         "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
         "enterSeed": "Please enter your seed.",
@@ -44,7 +46,8 @@
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPasswordExplanation":
+            "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "최소 12글자로 이루어진 비밀번호를 사용하십시오.",
         "currentPassword": "Current Password",
         "newPassword": "New Password",
@@ -54,14 +57,17 @@
         "seedCleared": "Seed cleared",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "seedCopied": "Seed copied",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
+        "seedCopiedExplanation":
+            "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
         "clickToCopy": "Click the button below and copy your seed to a password manager."
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation":
+            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "pleaseEnterSeed": "Please enter your seed.",
         "seedExplanation": "씨드는 81자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. 81자 이상의 씨드는 사용할 수 없습니다.",
         "neverShare": "다른 이와 절대로 씨드를 공유하지 마십시오."
@@ -92,6 +98,7 @@
         "individualLetters": "임의로 순서를 정하기 위해 개별 글자를 눌러주세요."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady":
+            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }

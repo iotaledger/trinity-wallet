@@ -13,8 +13,8 @@ import {
 import { connect } from 'react-redux';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
-import Seedbox from '../components/seedBox.js'
-const width = Dimensions.get('window').width
+import Seedbox from '../components/seedBox.js';
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingTop: height / 80,
-        paddingBottom: height / 40
+        paddingBottom: height / 40,
     },
     doneButton: {
         borderColor: '#9DFFAF',

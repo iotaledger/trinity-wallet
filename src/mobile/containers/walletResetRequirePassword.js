@@ -27,7 +27,7 @@ import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class WalletResetRequirePassword extends Component {
@@ -51,7 +51,7 @@ class WalletResetRequirePassword extends Component {
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
-            overrideBackPress: true
+            overrideBackPress: true,
         });
     }
 
@@ -69,7 +69,7 @@ class WalletResetRequirePassword extends Component {
                     screenBackgroundImageName: 'bg-green.png',
                     screenBackgroundColor: '#102e36',
                 },
-                overrideBackPress: true
+                overrideBackPress: true,
             },
         });
     }

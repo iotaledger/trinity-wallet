@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 export default class OnboardingButtons extends Component {
