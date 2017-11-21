@@ -11,7 +11,6 @@ import {
 import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const isAndroid = Platform.OS === 'android';
 const width = Dimensions.get('window').width
@@ -30,16 +29,6 @@ class Balance extends React.Component {
         if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
             this.setState({ balanceIsShort: true });
         }
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onBalanceClick() {
@@ -85,16 +74,17 @@ class Balance extends React.Component {
                 </View>
                 <View style={styles.transactionsContainer}>
                     <View style={styles.line} />
-                        <ListView
-                            dataSource={ds.cloneWithRows(
-                                accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
-                            )}
-                            renderRow={dataSource => <SimpleTransactionRow addresses={addresses} rowData={dataSource} />}
-                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                            enableEmptySections
-                            contentContainerStyle={styles.listView}
-                            scrollEnabled={false}
-                        />
+                            <ListView
+                                dataSource={ds.cloneWithRows(
+                                    accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
+                                )}
+                                renderRow={dataSource => <SimpleTransactionRow addresses={addresses} rowData={dataSource} />}
+                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                                enableEmptySections
+                                contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
+                                scrollEnabled={false}
+                                centerContent
+                            />
                     <View style={styles.line} />
                 </View>
                 <View style={{ flex: 5 }}>
@@ -141,7 +131,7 @@ const styles = StyleSheet.create({
         flex: 2.5,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: height / 80,
+        paddingVertical: height / 150
     },
     line: {
         borderBottomColor: 'white',
@@ -149,14 +139,16 @@ const styles = StyleSheet.create({
         width: width / 1.15,
     },
     separator: {
+        height: height / 90,
         flex: 1,
-        height: 5,
     },
-    listView: {
-        flex: 1,
-        justifyContent: 'center',
-        paddingVertical: height / 40
+    listViewAndroid: {
+        flex : 1,
+        paddingVertical: height / 70,
     },
+    listViewIos: {
+        paddingTop: height / 90,
+    }
 });
 
 const mapStateToProps = state => ({
