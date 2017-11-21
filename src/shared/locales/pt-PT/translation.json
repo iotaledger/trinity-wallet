@@ -1,7 +1,7 @@
 {
     "global": {
         "invalidResponse": "Resposta inválida",
-        "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponseExplanation": "O nó devolveu uma resposta inválida.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seed",
         "back": "ANTERIOR",
@@ -11,8 +11,8 @@
         "paperWallet": "Carteira de Papel",
         "copyToClipboard": "Copiar para a Área de Transferência",
         "qr": "QR",
-        "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage."
+        "notAvailable": "Esta função não está disponível",
+        "notAvailableExplanation": "Será adicionada numa etapa posterior."
     },
     "addAdditionalSeed": {
         "mainWallet": "CARTEIRA PRINCIPAL",
@@ -26,15 +26,15 @@
         "seedInvalidCharsExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
         "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). Atualmente a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
-        "nicknameInUse": "Nickname already in use",
-        "nicknameInUseExplanation": "Please use a unique nickname for your seed.",
+        "nicknameInUse": "Nome já utilizado",
+        "nicknameInUseExplanation": "Por favor, escolha um nome específico para a sua Seed.",
         "enterSeed": "Por favor, entre a sua Seed.",
-        "enterSeedNickname": "Enter a seed nickname.",
-        "seedNickname": "Seed nickname"
+        "enterSeedNickname": "Insira o nome da Seed.",
+        "seedNickname": "Nome da Seed"
     },
     "changePassword": {
         "oops": "Uups! Aconteceu algum problema",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
+        "oopsExplanation": "Ocorreram problemas na atualização da sua palavra-passe. Por favor tente de novo.",
         "passwordUpdated": "Palavra-passe atualizada",
         "passwordUpdatedExplanation": "A sua palavra-passe foi atualizada.",
         "incorrectPassword": "Palavra-passe incorreta",
@@ -43,16 +43,16 @@
         "passwordsDoNotMatchExplanation": "As palavras-passe não coincidem. Por favor, tente de novo.",
         "passwordTooShort": "A palavra-passe é demasiado curta",
         "passwordTooShortExplanation": "A sua palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPassword": "Não é possível configurar a palavra-passe antiga",
+        "oldPasswordExplanation": "Não pode usar a sua palavra-passe antiga como a sua nova palavra-passe. Por favor tente de novo com uma palavra-passe nova.",
         "ensureStrongPassword": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
         "currentPassword": "Palavra-passe atual",
         "newPassword": "Nova Palavra-Passe",
         "confirmPassword": "Confirme a Nova Palavra-Passe"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Seed removida",
+        "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
         "seedCopied": "Seed copiada",
         "seedCopiedExplanation": "A Seed foi copiada para a área de transferência e será ????? quando pressionar \"CONCLUÍDO\" ou decorridos 60 segundos (o que se verificar primeiro). ",
         "clickToCopy": "Clique no botão em baixo e copie a sua Seed para o gestor de palavras-passe."
@@ -78,20 +78,20 @@
     },
     "login": {
         "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "unrecognisedPassword": "Unrecognised password",
+        "emptyPasswordExplanation": "Deve inserir uma palavra-passe para iniciar a sessão, Por favor, tente de novo.",
+        "unrecognisedPassword": "Palavra-passe não reconhecida",
         "unrecognisedPasswordExplanation": "A palavra-passe não foi reconhecida. Por favor, tente novamente.",
         "enterPassword": "Por favor, insira a sua palavra-passe.",
         "useSeed": "USAR A SEED",
-        "login": "LOG IN"
+        "login": "Iniciar sessão"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGenerated": "Não foi gerada a Seed",
+        "seedNotGeneratedExplanation": "Por favor pressione o botão \"Gerar Nova Seed\"",
+        "pressForNewSeed": "PRESSIONE PARA A SEED NOVA",
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "A carteira está configurada e pronta para ser utilizada. Se posteriormente necessitar de efetuar alterações, utilize o menu \"Configurações\"."
     }
 }

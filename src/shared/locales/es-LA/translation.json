@@ -83,7 +83,7 @@
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtalo de nuevo.",
         "enterPassword": "Por favor introduce tu contraseña.",
         "useSeed": "USAR SEED",
-        "login": "LOG IN"
+        "login": "INICIAR SESIÓN"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
