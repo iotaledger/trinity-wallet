@@ -5,56 +5,64 @@
         "unknownError_title": "Unknown error occured",
         "unknownError_text": "We could not perform the desired action this time. Please try again."
     },
-    "setLanguage": {
-        "dropdown_title": "Language",
-        "button1": "NEXT"
+    "addAdditionalSeed": {
+        "mainWallet": "HOVED KONTO",
+        "secondWallet": "ANDRE KONTO",
+        "thirdWallet": "TREDJE KONTO",
+        "fourthWallet": "FJERDE KONTO",
+        "fifthWallet": "FEMTE KONTO",
+        "sixthWallet": "SJETTE KONTO",
+        "otherWallet": "ANNEN KONTO",
+        "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
+        "seedInvalidCharsExplanation":
+            "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
+        "seedTooShort": "Nøkkelen er for kort",
+        "seedTooShortExplanation":
+            "Nøkkelen må være minst 60 tegn (ideelt 81 tegn). Din nøkkel er {seed.length} tegn. Prøv på nytt.",
+        "nicknameInUse": "Kallenavnet er allerede i bruk",
+        "nicknameInUseExplanation": "Bruk et unikt kallenavn for din nøkkel.",
+        "enterSeed": "Skriv inn din nøkkel.",
+        "enterSeedNickname": "Skriv inn et kallenavn for nøkkelen.",
+        "seedNickname": "Kallenavn for nøkkel"
     },
-    "welcome1": {
-        "text1": "Thank you for downloading the IOTA wallet.",
-        "text2": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process.",
-        "button1": "NEXT",
-        "button2": "BACK"
+    "changePassword": {
+        "oops": "Au da. Noe gikk galt",
+        "oopsExplanation": "Ser ut som noe gikk galt under oppdateringen av passordet. Prøv på nytt.",
+        "passwordUpdated": "Passord oppdatert",
+        "passwordUpdatedExplanation": "Ditt passord ble oppdatert.",
+        "incorrectPassword": "Feil passord",
+        "incorrectPasswordExplanation": "Passordet er feil. Prøv på nytt.",
+        "passwordsDoNotMatch": "Passordene er ikke like",
+        "passwordsDoNotMatchExplanation": "Passordene er ikke like, prøv igjen.",
+        "passwordTooShort": "Passordet er for kort",
+        "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
+        "oldPassword": "Kan ikke angi gammelt passord",
+        "oldPasswordExplanation":
+            "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
+        "ensureStrongPassword": "Sikre du bruk et sterkt passord minst 12 tegn.",
+        "currentPassword": "Nåværende passord",
+        "newPassword": "Nytt passord",
+        "confirmPassword": "Bekreft nytt passord"
     },
-    "welcome2": {
-        "text1": "Okay. Let's set up your wallet!",
-        "text2": "Do you already have a seed that you would like to use?",
-        "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "seed_explanation2": "You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
-        "reminder": "Please keep your seed safe",
-        "button1": "YES",
-        "button2": "NO"
-    },
-    "lightserver": {
-        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
-        "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Please choose a server from the list below.",
-        "server_label": "Server",
-        "custom_server_label": "Other server address",
-        "other": "Other",
-        "button1": "NEXT",
-        "button2": "BACK"
-    },
-    "login": {
-        "text": "Please enter your password",
-        "placeholder": "PASSWORD",
-        "error_title": "Unrecognised Password",
-        "error_text": "The password was not recognised. Please try again.",
-        "button1": "DONE",
-        "button2": "USE SEED"
+    "copyToClipboard": {
+        "seedCleared": "Nøkkel er fjernet",
+        "seedClearedExplanation": "Nøkkelen er fjernet fra utklippstaven for din sikkerhet.",
+        "seedCopied": "Nøkkelen er kopiert",
+        "seedCopiedExplanation":
+            "Nøkkelen er blitt kopiert til utklippstavlen og fjernes når du trykker \"DONE\" eller 60 sekunder er gått.",
+        "clickToCopy": "Klikk knappen nedenfor og kopier din nøkkel til et passord-lagrings program."
     },
     "enterSeed": {
-        "error_title": "Seed is too short",
-        "error_text": "Seeds must be at least 60 characters long. Please try again.",
-        "invalid_seed_title": "Invalid seed",
-        "invalid_seed_text": "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
-        "placeholder": "SEED",
-        "seed_explanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "reminder": "NEVER SHARE YOUR SEED WITH ANYONE",
-        "scan_code": "Scan QR code",
-        "close": "CLOSE",
-        "button1": "DONE",
-        "button2": "BACK"
+        "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
+        "invalidCharactersExplanation":
+            "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
+        "seedTooShort": "Nøkkelen er for kort",
+        "seedTooShortExplanation":
+            "Nøkkelen må være minst 60 tegn (ideelt 81 tegn). Din nøkkel er {seed.length} tegn. Prøv på nytt.",
+        "pleaseEnterSeed": "Skriv inn din nøkkel.",
+        "seedExplanation":
+            "Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.",
+        "neverShare": "OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE"
     },
     "newSeedSetup": {
         "title": "GENERATE A NEW SEED",
@@ -124,33 +132,7 @@
         "button2": "BACK"
     },
     "onboardingComplete": {
-        "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-        "button": "NEXT"
-    },
-    "home": {
-        "tab1": "BALANCE",
-        "tab2": "SEND",
-        "tab3": "RECEIVE",
-        "tab4": "HISTORY",
-        "tab5": "TOOLS",
-        "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume",
-        "address": "Address",
-        "amount": "Amount",
-        "button1": "SEND",
-        "button2": "GENERATE NEW ADDRESS",
-        "button3": "LOG OUT",
-        "changeMode": "Change mode",
-        "minimal": "Minimal",
-        "standard": "Standard",
-        "expert": "Expert",
-        "changeTheme": "Change theme",
-        "changeLanguage": "Change language",
-        "addNewSeed": "Add new seed",
-        "setup2fa": "2FA Setup",
-        "changePassword": "Change password",
-        "advancedSettings": "Advanced settings",
-        "logout": "Logout"
+        "walletReady":
+            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     }
 }

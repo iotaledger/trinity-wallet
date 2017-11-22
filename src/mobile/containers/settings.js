@@ -11,9 +11,8 @@ import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import { logoutFromWallet } from '../../shared/actions/app';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class Settings extends React.Component {
@@ -23,19 +22,9 @@ class Settings extends React.Component {
             isModalVisible: false,
             selectedSetting: 'addNewSeed',
             modalContent: <AddNewSeedModal />,
-            settings: true
+            settings: true,
         };
         this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     _showModal = () => this.setState({ isModalVisible: true });
@@ -44,93 +33,91 @@ class Settings extends React.Component {
 
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
 
-    _renderSettingsContent = (boolean) => {
-          if(boolean){
-              return (
-                  <View>
-                      <TouchableOpacity onPress={event => this.onModePress()}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/mode.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Mode</Text>
-                              <Text style={styles.settingText}>{this.props.settings.mode}</Text>
-                          </View>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={event => this.onThemePress()}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/theme.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Theme</Text>
-                              <Text style={styles.settingText}>{this.props.settings.theme}</Text>
-                          </View>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={event => this.onCurrencyPress()}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/currency.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Currency</Text>
-                              <Text style={styles.settingText}>{this.props.settings.currency}</Text>
-                          </View>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={event => this.onLanguagePress()}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/language.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Language</Text>
-                              <Text style={styles.settingText}>{this.props.settings.language}</Text>
-                          </View>
-                      </TouchableOpacity>
-                      <View style={styles.separator} />
-                      <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/add.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Add new seed</Text>
-                          </View>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={event => this.on2FASetupPress()}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/2fa.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Two-factor authentication</Text>
-                          </View>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={event => this.onChangePasswordPress()}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/password.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Change password</Text>
-                          </View>
-                      </TouchableOpacity>
-                      <View style={styles.separator} />
-                      <TouchableOpacity onPress={event => this.onAdvancedSettingsPress()}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/advanced.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Advanced settings</Text>
-                          </View>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={event => this.setModalContent('logoutConfirmation')}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/logout.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Log out</Text>
-                          </View>
-                      </TouchableOpacity>
-                  </View>
-              )
-          } else {
-              return (
-                  <View style={styles.advancedSettingsContainer}>
-                      <TouchableOpacity onPress={event => this.onResetWalletPress()}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/reset.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Reset Wallet</Text>
-                          </View>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={event => this.onBackPress()}>
-                          <View style={styles.item}>
-                              <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
-                              <Text style={styles.titleText}>Back</Text>
-                          </View>
-                      </TouchableOpacity>
-                  </View>
-              )
-          }
-
-
-    }
+    _renderSettingsContent = boolean => {
+        if (boolean) {
+            return (
+                <View>
+                    <TouchableOpacity onPress={event => this.onModePress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/mode.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Mode</Text>
+                            <Text style={styles.settingText}>{this.props.settings.mode}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onThemePress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/theme.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Theme</Text>
+                            <Text style={styles.settingText}>{this.props.settings.theme}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onCurrencyPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/currency.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Currency</Text>
+                            <Text style={styles.settingText}>{this.props.settings.currency}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onLanguagePress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/language.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Language</Text>
+                            <Text style={styles.settingText}>{this.props.settings.language}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View style={styles.separator} />
+                    <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/add.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Add new seed</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.on2FASetupPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/2fa.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Two-factor authentication</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onChangePasswordPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/password.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Change password</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View style={styles.separator} />
+                    <TouchableOpacity onPress={event => this.onAdvancedSettingsPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/advanced.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Advanced settings</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.setModalContent('logoutConfirmation')}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/logout.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Log out</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            );
+        } else {
+            return (
+                <View style={styles.advancedSettingsContainer}>
+                    <TouchableOpacity onPress={event => this.onResetWalletPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/reset.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Reset Wallet</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={event => this.onBackPress()}>
+                        <View style={styles.item}>
+                            <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Back</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            );
+        }
+    };
 
     setModalContent(selectedSetting) {
         let modalContent;
@@ -192,6 +179,7 @@ class Settings extends React.Component {
                 screenBackgroundColor: '#102e36',
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -201,7 +189,7 @@ class Settings extends React.Component {
     }
 
     onAdvancedSettingsPress() {
-        this.setState({settings: false})
+        this.setState({ settings: false });
     }
 
     onResetWalletPress() {
@@ -214,11 +202,12 @@ class Settings extends React.Component {
                 screenBackgroundColor: '#102e36',
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
     onBackPress() {
-        this.setState({settings:true});
+        this.setState({ settings: true });
     }
 
     logout() {
@@ -236,6 +225,7 @@ class Settings extends React.Component {
                     screenBackgroundImageName: 'bg-green.png',
                     screenBackgroundColor: '#102e36',
                 },
+                overrideBackPress: true,
             },
         });
     }
@@ -246,9 +236,10 @@ class Settings extends React.Component {
             screen: 'newSeedSetup',
             navigatorStyle: {
                 navBarHidden: true,
-                navBarTransparent: true
+                navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -258,9 +249,10 @@ class Settings extends React.Component {
             screen: 'addAdditionalSeed',
             navigatorStyle: {
                 navBarHidden: true,
-                navBarTransparent: true
+                navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -283,9 +275,7 @@ class Settings extends React.Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <View style={styles.settingsContainer}>
-                    {this._renderSettingsContent(this.state.settings)}
-                </View>
+                <View style={styles.settingsContainer}>{this._renderSettingsContent(this.state.settings)}</View>
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -345,24 +335,13 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     advancedSettingsContainer: {
-      flex: 1,
-      alignItems: 'flex-start',
-      justifyContent: 'space-between'
+        flex: 1,
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
     },
     modalContent: {
         backgroundColor: '#16313a',
         justifyContent: 'center',
-    },
-    line1: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        width: width / 1.16,
-    },
-    line2: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        width: width / 1.16,
-        marginTop: height / 4.8,
     },
     dropdownTitle: {
         fontSize: 16,
