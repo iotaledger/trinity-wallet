@@ -23,6 +23,7 @@
         "otherWallet": "OTHER WALLET",
         "yes": "YES",
         "no": "NO",
+        "password": "Password",
         "unrecognisedPassword": "Unrecognised password",
         "unrecognisedPasswordExplanation": "The password was not recognised. Please try again."
     },
