@@ -22,12 +22,11 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
 import { Keyboard } from 'react-native';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 var HockeyApp = require('react-native-hockeyapp');
@@ -45,22 +44,6 @@ class Login extends React.Component {
         this.props.getChartData();
         this.props.getPrice();
         this.props.getMarketData();
-    }
-
-    componentWillMount() {
-        HockeyApp.configure(
-            '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
-            true, //Auto send crash reports
-            1, //Authentication type
-            'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
-        );
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onLoginPress() {
@@ -104,9 +87,10 @@ class Login extends React.Component {
                 screen: 'loading',
                 navigatorStyle: {
                     navBarHidden: true,
-                    navBarTransparent: true
+                    navBarTransparent: true,
                 },
                 animated: false,
+                overrideBackPress: true,
             });
         }
 
@@ -135,6 +119,7 @@ class Login extends React.Component {
                 navBarHidden: true,
             },
             animated: false,
+            overrideBackPress: true
         });*/
         }
     }

@@ -16,9 +16,8 @@ import { RNPrint } from 'NativeModules';
 import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from '../../shared/libs/html.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 const isAndroid = Platform.OS === 'android';
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
@@ -34,16 +33,6 @@ class PaperWallet extends React.Component {
             pressedPrint: false,
         };
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onDonePress() {
@@ -183,8 +172,6 @@ class PaperWallet extends React.Component {
             fonts: ['../../shared/custom-fonts/Inconsolata-Bold.ttf'],
         };
 
-
-
         try {
             this.props.navigator.toggleNavBar({
                 to: 'shown',
@@ -238,23 +225,6 @@ class PaperWallet extends React.Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.subtitlesContainer}>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Manual Copy</Text>
-                        </View>
-                        <View style={styles.lineContainer}>
-                            <Text style={styles.line}>────────</Text>
-                        </View>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.currentSubtitle}>Paper Wallet</Text>
-                        </View>
-                        <View style={styles.lineContainer}>
-                            <Text style={styles.line}>────────</Text>
-                        </View>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Copy To Clipboard</Text>
-                        </View>
-                    </View>
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>
                             Click the button below to print a paper copy of your seed.
@@ -265,7 +235,9 @@ class PaperWallet extends React.Component {
                 <View style={styles.midContainer}>
                     <View style={styles.paperWalletContainer}>
                         <View style={styles.seedBox}>
-                            <View style={{paddingVertical: height / 80, alignItems: 'center', justifyContent: 'center'}}>
+                            <View
+                                style={{ paddingVertical: height / 80, alignItems: 'center', justifyContent: 'center' }}
+                            >
                                 <Image source={require('../../shared/images/arrow-black.png')} style={styles.arrow} />
                                 <View style={styles.seedBoxTextContainer}>
                                     <View>
@@ -398,17 +370,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.4,
+        flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
         paddingHorizontal: width / 20,
     },
     midContainer: {
-        flex: 3.6,
+        flex: 3.8,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 7,
+        paddingTop: height / 14,
     },
     bottomContainer: {
         justifyContent: 'flex-end',
@@ -432,51 +404,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
-    currentSubtitle: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        flexWrap: 'wrap',
-    },
-    subtitle: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        flexWrap: 'wrap',
-        opacity: 0.5,
-    },
-    subtitlesContainer: {
-        flexDirection: 'row',
-        flex: 1,
-        paddingTop: height / 10,
-    },
-    subtitleContainer: {
-        paddingHorizontal: width / 75,
-        flex: 1,
-        justifyContent: 'center',
-    },
-    line: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        opacity: 0.5,
-    },
-    lineContainer: {
-        flex: 1.5,
-        justifyContent: 'center',
-    },
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 29,
         textAlign: 'left',
-        paddingTop: height / 11,
+        paddingTop: height / 8,
         paddingHorizontal: width / 8,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -539,7 +472,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         paddingHorizontal: width / 30,
-        paddingVertical: height / 50
+        paddingVertical: height / 50,
     },
     seedBox: {
         borderColor: 'black',
@@ -554,7 +487,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingTop: height / 100
+        paddingTop: height / 100,
     },
     seedBoxTextLeft: {
         color: 'black',

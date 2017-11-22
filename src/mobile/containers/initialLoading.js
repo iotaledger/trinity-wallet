@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
-import { DetectNavbar } from '../theme/androidSoftKeys'
+import { DetectNavbar } from '../theme/androidSoftKeys';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 
 const width = Dimensions.get('window').width;
 let height = Dimensions.get('window').height;
-global.height = DetectNavbar.hasSoftKeys() ? height -= ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT') : Dimensions.get('window').height;
+global.height = DetectNavbar.hasSoftKeys()
+    ? (height -= ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT'))
+    : Dimensions.get('window').height;
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
@@ -22,25 +23,12 @@ export default class InitialLoading extends Component {
 
     componentDidMount() {
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-    }
+    componentWillUnmount() {}
 
     handleBackButton() {
-      return true;
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-    //        HockeyApp.feedback(); //Could possibly cause a crash
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
+        return false;
     }
 
     onLoaded() {
@@ -48,14 +36,16 @@ export default class InitialLoading extends Component {
         if (!state.account.onboardingComplete) {
             this.props.navigator.push({
                 screen: 'languageSetup',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true},
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true,
             });
         } else {
             this.props.navigator.push({
                 screen: 'login',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true,
             });
         }
     }

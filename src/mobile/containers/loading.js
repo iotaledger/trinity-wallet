@@ -16,25 +16,14 @@ import { setBalance, setFirstUse } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
 class Loading extends Component {
     componentDidMount() {
         this.props.changeHomeScreenRoute('balance');
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     render() {
