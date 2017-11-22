@@ -116,7 +116,15 @@ class NewSeedSetup extends Component {
                 overrideBackPress: true,
             });
         } else {
-            this.props.navigator.pop({ animated: false });
+            this.props.navigator.push({
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                },
+                animated: false,
+                overrideBackPress: true,
+            });
         }
     }
 

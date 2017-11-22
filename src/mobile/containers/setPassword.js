@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.6,
+        width: width / 1.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
