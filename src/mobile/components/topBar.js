@@ -3,7 +3,16 @@ import filter from 'lodash/filter';
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, TouchableWithoutFeedback } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    TouchableOpacity,
+    Dimensions,
+    ScrollView,
+    TouchableWithoutFeedback,
+} from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
@@ -31,6 +40,12 @@ export default class TopBar extends Component {
         onChange: PropTypes.func.isRequired,
     };
 
+    componentDidMount() {
+        if (this.props.active) {
+            this.props.toggle(); // Close dropdown in case its opened
+        }
+    }
+
     componentWillReceiveProps(newProps) {
         if (this.props.currentRoute !== newProps.currentRoute) {
             // Detects if navigating across screens
@@ -52,8 +67,8 @@ export default class TopBar extends Component {
             <View style={styles.titleWrapper}>
                 <TouchableWithoutFeedback>
                     <View>
-                      <Text style={styles.mainTitle}>{selectedTitle}</Text>
-                      <Text style={styles.subtitle}>{selectedSubtitle}</Text>
+                        <Text style={styles.mainTitle}>{selectedTitle}</Text>
+                        <Text style={styles.subtitle}>{selectedSubtitle}</Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
@@ -73,7 +88,7 @@ export default class TopBar extends Component {
                         onChange(t.index);
                     }}
                     key={idx}
-                    style={{width:width, alignItems: 'center'}}
+                    style={{ width: width, alignItems: 'center' }}
                 >
                     <Text style={styles.mainTitle}>{t.title}</Text>
                     <Text style={styles.subtitle}>{t.subtitle}</Text>
@@ -85,9 +100,9 @@ export default class TopBar extends Component {
             }
 
             return (
-                <View key={idx}>
+                <View key={idx} style={styles.centralView}>
                     {children}
-                    <View style={styles.separator}/>
+                    <View style={styles.separator} />
                 </View>
             );
         });
@@ -95,7 +110,7 @@ export default class TopBar extends Component {
         return (
             <View style={styles.titleWrapper}>
                 {baseContent}
-                {size(withoutSelectedTitle) ? <View style={styles.separator}/> : null}
+                {size(withoutSelectedTitle) ? <View style={styles.separator} /> : null}
                 {restContent}
             </View>
         );
@@ -110,10 +125,14 @@ export default class TopBar extends Component {
         return (
             <TouchableWithoutFeedback onPress={toggle}>
                 <View style={styles.container}>
-                    <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
+                    <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                         <View style={styles.chevronWrapper}>
-                            {hasMultipleSeeds ? <Image style={styles.chevron} {...iconProps} /> : <View style={styles.chevron} />}
+                            {hasMultipleSeeds ? (
+                                <Image style={styles.chevron} {...iconProps} />
+                            ) : (
+                                <View style={styles.chevron} />
+                            )}
                         </View>
                     </View>
                 </View>
@@ -137,11 +156,11 @@ const styles = StyleSheet.create({
         paddingLeft: width / 10,
         shadowColor: '#071f28',
         shadowOffset: {
-           width: 0,
-           height: -1
+            width: 0,
+            height: -1,
         },
         shadowRadius: 4,
-        shadowOpacity: 1.0
+        shadowOpacity: 1.0,
     },
     titleWrapper: {
         paddingHorizontal: width / 40,
@@ -152,13 +171,16 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 24.4,
         color: '#ffffff',
-        paddingBottom: height / 170
+        paddingBottom: height / 170,
     },
     subtitle: {
         textAlign: 'center',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
         color: '#d3d3d3',
+    },
+    centralView: {
+        alignItems: 'center',
     },
     chevronWrapper: {
         justifyContent: 'center',
@@ -167,14 +189,14 @@ const styles = StyleSheet.create({
     chevron: {
         height: width / 20,
         width: width / 20,
-        marginRight: width / 20
+        marginRight: width / 20,
     },
     separator: {
         width: width / 2,
         marginVertical: height / 60,
         height: 1,
         borderBottomWidth: 0.25,
-        borderBottomColor: 'white'
+        borderBottomColor: 'white',
     },
     scrollViewContainer: {
         maxHeight: height / 3.5,
