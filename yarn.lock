@@ -635,10 +635,6 @@ husky@^0.14.3:
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
 
-i18n-webpack-plugin-generate-json@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/i18n-webpack-plugin-generate-json/-/i18n-webpack-plugin-generate-json-1.1.0.tgz#8858d3fa0f1908304841844a3f480eb498ecdef5"
-
 iconv-lite@^0.4.17, iconv-lite@~0.4.13:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
@@ -1237,6 +1233,10 @@ prop-types@^15.5.10:
 pseudomap@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
+
+react-native-extra-dimensions-android@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/react-native-extra-dimensions-android/-/react-native-extra-dimensions-android-0.21.0.tgz#2992384a90df738cf678a452cadbf251052ce7bc"
 
 read-pkg-up@^2.0.0:
   version "2.0.0"
