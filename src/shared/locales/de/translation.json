@@ -141,9 +141,9 @@
         "passwordTooShortExplanation": "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
-        "nowWeNeedTo": "Now we need to set up a password.",
+        "nowWeNeedTo": "Jetzt müssen wir ein Passwort einrichten.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
+        "ensure": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
         "retypePassword": "Retype Password"
     },
     "setSeedName": {
@@ -158,11 +158,11 @@
         "mode": "Mode",
         "theme": "Theme",
         "currency": "Currency",
-        "language": "Language",
-        "addNewSeed": "Add new seed",
+        "language": "Sprache",
+        "addNewSeed": "Neuen Seed hinzufügen",
         "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
+        "changePassword": "Passwort ändern",
+        "advanced": "Erweiterte Einstellungen",
         "logout": "Log out",
         "reset": "Reset wallet",
         "back": "Back"
@@ -182,23 +182,23 @@
         "reset": "RESET"
     },
     "walletSetup": {
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
+        "seedExplanation": "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
         "explanation1": "You can use it to access your funds from",
         "explanation2": "any wallet",
         "explanation3": ", on",
         "explanation4": "any device",
         "explanation5": ". but if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "keepSafe": "Bewahre Deinen Seed sicher auf."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "Vielen Dank für das Herunterladen des IOTA Wallets.",
+        "weWillSpend": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
+        "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen."
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
+        "tripleCheck": "prüfe dreimal",
         "thatTheyAreCorrect": "that they are correct."
     }
 }
