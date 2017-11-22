@@ -25,9 +25,8 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class ChangePassword extends Component {
@@ -41,16 +40,6 @@ class ChangePassword extends Component {
 
         this.goBack = this.goBack.bind(this);
         this.changePassword = this.changePassword.bind(this);
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     renderTextField(value, label, onChangeText) {
@@ -91,6 +80,7 @@ class ChangePassword extends Component {
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -156,7 +146,11 @@ class ChangePassword extends Component {
                 'Your current password is incorrect. Please try again.',
             );
         } else if (newPassword !== confirmedNewPassword) {
-            return this.dropdown.alertWithType('error', 'Password mismatch', 'Passwords do not match. Please try again.');
+            return this.dropdown.alertWithType(
+                'error',
+                'Password mismatch',
+                'Passwords do not match. Please try again.',
+            );
         } else if (newPassword.length < 12 || confirmedNewPassword.length < 12) {
             return this.dropdown.alertWithType(
                 'error',

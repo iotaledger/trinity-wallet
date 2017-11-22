@@ -20,9 +20,8 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -34,16 +33,6 @@ class SetPassword extends React.Component {
             password: '',
             reentry: '',
         };
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onDonePress() {
@@ -62,6 +51,7 @@ class SetPassword extends React.Component {
                     navBarTransparent: true,
                 },
                 animated: false,
+                overrideBackPress: true,
             });
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
