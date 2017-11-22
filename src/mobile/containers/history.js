@@ -3,10 +3,9 @@ import { TouchableOpacity, StyleSheet, View, ListView, Dimensions, Text } from '
 import { connect } from 'react-redux';
 import TransactionRow from '../components/transactionRow';
 import Modal from 'react-native-modal';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class History extends React.Component {
@@ -17,16 +16,6 @@ class History extends React.Component {
 
     imageLoaded() {
         this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     render() {

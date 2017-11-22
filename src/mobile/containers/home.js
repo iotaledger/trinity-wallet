@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import reduce from 'lodash/reduce';
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -17,11 +21,13 @@ import Send from './send';
 import Receive from './receive';
 import History from './history';
 import Settings from './settings';
-import { changeHomeScreenRoute } from '../../shared/actions/home';
+import TopBar from '../components/topBar';
+import { changeHomeScreenRoute, toggleTopBarDisplay } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
 import {
     incrementSeedIndex,
     decrementSeedIndex,
+    setSeedIndex,
     setReceiveAddress,
     replayBundle,
     setReady,
@@ -32,10 +38,10 @@ import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+import { roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 
 const StatusBarDefaultBarStyle = 'light-content';
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const timer = require('react-native-timer');
 
@@ -58,17 +64,6 @@ class Home extends Component {
             this.props.setBalance(addressesWithBalance);
         }
         timer.setInterval('polling', () => this.startPolling(), 47000);
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-        timer.clearInterval('polling');
     }
 
     startPolling() {
@@ -101,46 +96,6 @@ class Home extends Component {
         if (shouldGenerateAlert) {
             const dropdown = DropdownHolder.getDropdown();
             dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
-        }
-    }
-
-    onLeftArrowPress() {
-        if (this.props.tempAccount.seedIndex > 0 && !this.props.tempAccount.isGeneratingReceiveAddress) {
-            const seedIndex = this.props.tempAccount.seedIndex - 1;
-            const seedName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-
-            this.props.decrementSeedIndex();
-            this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
-            this.props.setReceiveAddress(' ');
-            // Get new account info if not sending or getting transfers
-            if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                    if (error) this.onNodeError();
-                });
-            }
-        }
-    }
-
-    onRightArrowPress() {
-        if (
-            this.props.tempAccount.seedIndex + 1 < this.props.account.seedCount &&
-            !this.props.tempAccount.isGeneratingReceiveAddress
-        ) {
-            const seedIndex = this.props.tempAccount.seedIndex + 1;
-            const seedName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-
-            this.props.incrementSeedIndex();
-            this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
-            this.props.setReceiveAddress(' ');
-
-            // Get new account info if not sending or getting transfers
-            if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                    if (error) this.onNodeError();
-                });
-            }
         }
     }
 
@@ -180,61 +135,95 @@ class Home extends Component {
         this.props.changeHomeScreenRoute('settings');
     }
 
-    _renderTitlebar() {
-        if (this.props.tempAccount.usedSeedToLogin == false) {
-            return (
-                <View style={styles.titlebarContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.onLeftArrowPress()}
-                        hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
-                    >
-                        <Image
-                            style={{
-                                width: width / 20,
-                                height: width / 20,
-                                opacity: this.props.tempAccount.isGeneratingReceiveAddress
-                                    ? 0.3
-                                    : this.props.tempAccount.seedIndex == 0 ? 0.3 : 1,
-                            }}
-                            source={require('../../shared/images/arrow-left.png')}
-                        />
-                    </TouchableOpacity>
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>
-                            {this.props.account.seedNames[this.props.tempAccount.seedIndex]}
-                        </Text>
-                    </View>
-                    <TouchableOpacity
-                        onPress={() => this.onRightArrowPress()}
-                        hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
-                    >
-                        <Image
-                            style={{
-                                width: width / 20,
-                                height: width / 20,
-                                opacity: this.props.tempAccount.isGeneratingReceiveAddress
-                                    ? 0.3
-                                    : this.props.tempAccount.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
-                            }}
-                            source={require('../../shared/images/arrow-right.png')}
-                        />
-                    </TouchableOpacity>
-                </View>
-            );
-        } else {
-            return <View style={styles.titlebarContainer} />;
-        }
+    humanizeBalance(balance) {
+        const decimalPlaces = n => {
+            const s = '' + +n;
+            const match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
+            if (!match) {
+                return 0;
+            }
+
+            return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
+        };
+
+        const formatted = formatValue(balance);
+        const former = roundDown(formatted, 1);
+        const latter = balance < 1000 || decimalPlaces(formatted) <= 1 ? '' : '+';
+
+        return `${former + latter} ${formatUnit(balance)}`;
+    }
+
+    getTopBarProps() {
+        const {
+            account: { seedNames, balance, accountInfo },
+            tempAccount: { seedIndex, isGeneratingReceiveAddress, isSendingTransfer, isGettingTransfers },
+            isTopBarActive,
+            childRoute,
+        } = this.props;
+        const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
+        const selectedSubtitle = this.humanizeBalance(balance);
+
+        const getBalance = currentIdx => {
+            const seedStrings = Object.keys(accountInfo);
+            const data = accountInfo[seedStrings[currentIdx]].addresses;
+
+            if (isEmpty(data)) {
+                return this.humanizeBalance(0); // no addresses
+            }
+
+            const calc = (res, value) => {
+                res += value;
+
+                return res;
+            };
+
+            const balance = reduce(data, calc, 0);
+            return this.humanizeBalance(balance);
+        };
+
+        const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
+        const titles = map(seedNames, withSubtitles);
+
+        return {
+            active: isTopBarActive,
+            selectedTitle,
+            selectedSubtitle,
+            currentSeedIndex: seedIndex,
+            titles,
+            currentRoute: childRoute,
+            toggle: this.props.toggleTopBarDisplay,
+            onChange: newSeedIdx => {
+                if (!isGeneratingReceiveAddress) {
+                    const seedName = seedNames[newSeedIdx];
+
+                    this.props.setSeedIndex(newSeedIdx);
+                    const seedStrings = Object.keys(accountInfo);
+                    this.props.setBalance(accountInfo[seedStrings[newSeedIdx]].addresses); // Dangerous
+                    this.props.setReceiveAddress(' ');
+
+                    // Get new account info if not sending or getting transfers
+                    if (!isSendingTransfer && !isGettingTransfers) {
+                        this.props.getAccountInfo(seedName, newSeedIdx, accountInfo, error => {
+                            if (error) {
+                                this.onNodeError();
+                            }
+                        });
+                    }
+                }
+            },
+        };
     }
 
     render() {
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
+        const topBarProps = this.getTopBarProps();
 
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>{this._renderTitlebar()}</View>
+                <View style={styles.topContainer} />
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }}>{children}</View>
                 </View>
@@ -351,8 +340,10 @@ class Home extends Component {
                     attachments={tailTransactionHashesForPendingTransactions}
                     attach={this.props.replayBundle}
                 />
+                <TopBar {...topBarProps} />
                 <DropdownAlert
                     ref={ref => DropdownHolder.setDropdown(ref)}
+                    elevation={120}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
@@ -370,8 +361,8 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 0.8,
-        justifyContent: 'flex-end',
+        flex: 0.4,
+        marginBottom: height / 100,
     },
     titlebarContainer: {
         flexDirection: 'row',
@@ -400,30 +391,34 @@ const styles = StyleSheet.create({
     },
     midContainer: {
         flex: 4.7,
+        zIndex: 0,
     },
     bottomContainer: {
-        flex: 0.9,
+        flex: 0.6,
     },
     tabBar: {
         flex: 1,
+        elevation: 7,
         flexDirection: 'row',
-        backgroundColor: 'transparent',
+        backgroundColor: '#1A1A1A',
         justifyContent: 'space-around',
         alignItems: 'center',
+        opacity: 0.9,
     },
     button: {
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     icon: {
-        height: width / 10,
-        width: width / 10,
+        paddingTop: height / 40,
+        height: width / 18,
+        width: width / 18,
     },
     iconTitle: {
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
-        paddingTop: height / 60,
+        paddingTop: height / 80,
         fontFamily: 'Lato-Regular',
         fontSize: width / 40.5,
     },
@@ -470,6 +465,7 @@ const mapStateToProps = state => ({
     tailTransactionHashesForPendingTransactions: getTailTransactionHashesForPendingTransactions(state),
     account: state.account,
     childRoute: state.home.childRoute,
+    isTopBarActive: state.home.isTopBarActive,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -488,7 +484,9 @@ const mapDispatchToProps = dispatch => ({
     setBalance: addressesWithBalance => {
         dispatch(setBalance(addressesWithBalance));
     },
+    setSeedIndex: index => dispatch(setSeedIndex(index)),
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
+    toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
     replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
     generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
     disposeOffAlert: () => dispatch(disposeOffAlert()),
@@ -501,10 +499,13 @@ Home.propTypes = {
     alerts: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     childRoute: PropTypes.string.isRequired,
+    isTopBarActive: PropTypes.bool.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
     tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
     generateAlert: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
+    toggleTopBarDisplay: PropTypes.func.isRequired,
+    setSeedIndex: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

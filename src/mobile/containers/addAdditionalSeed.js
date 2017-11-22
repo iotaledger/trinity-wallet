@@ -10,7 +10,7 @@ import {
     ScrollView,
     ImageBackground,
     StatusBar,
-    Platform
+    Platform,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -24,11 +24,10 @@ import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/l
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData } from '../../shared/actions/tempAccount';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 import DropdownHolder from '../components/dropdownHolder';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 const isAndroid = Platform.OS === 'android';
@@ -61,29 +60,19 @@ class AddAdditionalSeed extends React.Component {
         }
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
+        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
                 `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
             );
-        } else if (this.state.seed.length < 60) {
+        } else if (this.state.seed.length < 81) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
-                    .seed.length} characters long. Please try again.`,
+                `Seeds must be 81 characters long. Your seed is currently ${this.state.seed
+                    .length} characters long. Please try again.`,
             );
         } else if (!(this.state.seedName.length > 0)) {
             this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
@@ -116,6 +105,7 @@ class AddAdditionalSeed extends React.Component {
                             navBarTransparent: true,
                         },
                         animated: false,
+                        overrideBackPress: true,
                     });
                 },
             );
@@ -150,6 +140,7 @@ class AddAdditionalSeed extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
     onQRPress() {
@@ -197,7 +188,7 @@ class AddAdditionalSeed extends React.Component {
                                             style={styles.textField}
                                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                             labelFontSize={width / 31.8}
-                                            fontSize={isAndroid? width / 27.6 : width / 20.7}
+                                            fontSize={isAndroid ? width / 27.6 : width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"
@@ -208,7 +199,7 @@ class AddAdditionalSeed extends React.Component {
                                             value={seed}
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
-                                            multiline
+                                            secureTextEntry={true}
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
@@ -394,7 +385,7 @@ const styles = StyleSheet.create({
     },
     textField: {
         color: 'white',
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'Lato-Light',
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',

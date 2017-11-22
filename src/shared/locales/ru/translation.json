@@ -5,56 +5,66 @@
         "unknownError_title": "Unknown error occured",
         "unknownError_text": "We could not perform the desired action this time. Please try again."
     },
-    "setLanguage": {
-        "dropdown_title": "Language",
-        "button1": "NEXT"
+    "addAdditionalSeed": {
+        "mainWallet": "ОСНОВНОЙ КОШЕЛЕК",
+        "secondWallet": "ВТОРОЙ КОШЕЛЕК",
+        "thirdWallet": "ТРЕТИЙ КОШЕЛЕК",
+        "fourthWallet": "ЧЕТВЕРТЫЙ КОШЕЛЕК",
+        "fifthWallet": "ПЯТЫЙ КОШЕЛЕК",
+        "sixthWallet": "ШЕСТОЙ КОШЕЛЕК",
+        "otherWallet": "ДРУГОЙ КОШЕЛЕК",
+        "seedInvalidChars": "Ключ содержит недопустимые символы",
+        "seedInvalidCharsExplanation":
+            "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
+        "seedTooShort": "Ключ слишком короткий",
+        "seedTooShortExplanation":
+            "Ключ должен быть длиной, как минимум, 61 символ (идеально 81 символ). Ваш текущий ключ имеет длину {seed.length}. Пожалуйста, попробуйте снова.",
+        "nicknameInUse": "Данный ник уже используется",
+        "nicknameInUseExplanation": "Пожалуйста, используйте уникальный ник для вашего ключа.",
+        "enterSeed": "Пожалуйста, введите ваш ключ.",
+        "enterSeedNickname": "Введите свой ник от вашего ключа.",
+        "seedNickname": "Ник от вашего ключа"
     },
-    "welcome1": {
-        "text1": "Thank you for downloading the IOTA wallet.",
-        "text2": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process.",
-        "button1": "NEXT",
-        "button2": "BACK"
+    "changePassword": {
+        "oops": "Упс! Произошла какая-то ошибка",
+        "oopsExplanation":
+            "Похоже, что-то пошло не так во время обновления вашего пароля. Пожалуйста, попробуйте снова.",
+        "passwordUpdated": "Пароль обновлён",
+        "passwordUpdatedExplanation": "Ваш пароль был успешно обновлен.",
+        "incorrectPassword": "Неправильный пароль",
+        "incorrectPasswordExplanation": "Неверный пароль. Пожалуйста, попробуйте снова.",
+        "passwordsDoNotMatch": "Пароли не совпадают",
+        "passwordsDoNotMatchExplanation": "Пароли не совпадают. Пожалуйста, попробуйте еще раз.",
+        "passwordTooShort": "Слишком короткий пароль",
+        "passwordTooShortExplanation":
+            "Ваш пароль должен быть длиной по крайней мере 8 символов. Пожалуйста, попробуйте еще раз.",
+        "oldPassword": "Не удается установить старый пароль",
+        "oldPasswordExplanation":
+            "Вы не можете использовать ваш старый пароль в качестве нового. Пожалуйста, попробуйте еще раз с новым паролем.",
+        "ensureStrongPassword": "Убедитесь, что вы используете надежный пароль из по крайней мере 12 символов.",
+        "currentPassword": "Текущий пароль",
+        "newPassword": "Новый пароль",
+        "confirmPassword": "Подтвердите новый пароль"
     },
-    "welcome2": {
-        "text1": "Okay. Let's set up your wallet!",
-        "text2": "Do you already have a seed that you would like to use?",
-        "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "seed_explanation2": "You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
-        "reminder": "Please keep your seed safe",
-        "button1": "YES",
-        "button2": "NO"
-    },
-    "lightserver": {
-        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
-        "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Please choose a server from the list below.",
-        "server_label": "Server",
-        "custom_server_label": "Other server address",
-        "other": "Other",
-        "button1": "NEXT",
-        "button2": "BACK"
-    },
-    "login": {
-        "text": "Please enter your password",
-        "placeholder": "PASSWORD",
-        "error_title": "Unrecognised Password",
-        "error_text": "The password was not recognised. Please try again.",
-        "button1": "DONE",
-        "button2": "USE SEED"
+    "copyToClipboard": {
+        "seedCleared": "Ключ очищен",
+        "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
+        "seedCopied": "Ключ скопирован",
+        "seedCopiedExplanation":
+            "Ключ будет скопирован в буфер обмена на 60 секунд. По прошествии этого времени (или после нажатия \"ГОТОВО\") буфер обмена будет очищен.",
+        "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей."
     },
     "enterSeed": {
-        "error_title": "Seed is too short",
-        "error_text": "Seeds must be at least 60 characters long. Please try again.",
-        "invalid_seed_title": "Invalid seed",
-        "invalid_seed_text": "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
-        "placeholder": "SEED",
-        "seed_explanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "reminder": "NEVER SHARE YOUR SEED WITH ANYONE",
-        "scan_code": "Scan QR code",
-        "close": "CLOSE",
-        "button1": "DONE",
-        "button2": "BACK"
+        "invalidCharacters": "Ключ содержит недопустимые символы",
+        "invalidCharactersExplanation":
+            "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
+        "seedTooShort": "Ключ слишком короткий",
+        "seedTooShortExplanation":
+            "Ключ должен быть длиной, как минимум, 61 символ (идеально 81 символ). Ваш текущий ключ имеет длину {seed.length}. Пожалуйста, попробуйте снова.",
+        "pleaseEnterSeed": "Пожалуйста, введите ваш ключ.",
+        "seedExplanation":
+            "Ключ должен быть длиной 81 символ и содержать только заглавные буквы A-Z и цифру 9. Более длинные ключи не допускаются.",
+        "neverShare": "Никому никогда не сообщайте ваш ключ"
     },
     "newSeedSetup": {
         "title": "GENERATE A NEW SEED",
@@ -124,33 +134,7 @@
         "button2": "BACK"
     },
     "onboardingComplete": {
-        "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
-        "button": "NEXT"
-    },
-    "home": {
-        "tab1": "BALANCE",
-        "tab2": "SEND",
-        "tab3": "RECEIVE",
-        "tab4": "HISTORY",
-        "tab5": "TOOLS",
-        "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume",
-        "address": "Address",
-        "amount": "Amount",
-        "button1": "SEND",
-        "button2": "GENERATE NEW ADDRESS",
-        "button3": "LOG OUT",
-        "changeMode": "Change mode",
-        "minimal": "Minimal",
-        "standard": "Standard",
-        "expert": "Expert",
-        "changeTheme": "Change theme",
-        "changeLanguage": "Change language",
-        "addNewSeed": "Add new seed",
-        "setup2fa": "2FA Setup",
-        "changePassword": "Change password",
-        "advancedSettings": "Advanced settings",
-        "logout": "Logout"
+        "walletReady":
+            "Кошелек настроен и готов к использованию. Если вам понадобится в будущем внести какие-либо изменения, используйте НАСТРОЙКИ из меню."
     }
 }
