@@ -89,116 +89,116 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "Il seme non è stato generato",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "seedNotGeneratedExplanation": "Fare clic sul pulsante \"Genera nuovo seme\".",
+        "pressForNewSeed": "PREMI PER UN NUOVO SEME",
+        "individualLetters": "Premi alcune singole lettere per renderle maggiormente casuali."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Il portafoglio è ora configurato e pronto all'uso. Se in futuro avrai bisogno di apportare modifiche, guarda nel menu Impostazioni."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "clickToPrint": "Fai clic sul pulsante qui sotto per stampare una copia cartacea del tuo seme.",
+        "storeSafely": "Conservala in modo sicuro.",
+        "neverShare": "Non condividere mai il tuo seme con nessuno.",
+        "iotaLogo": "Logo IOTA",
+        "printWallet": "STAMPA IL PORTAFOGLIO SU CARTA"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS"
+        "somethingWentWrong": "Si è verificato un errore",
+        "somethingWentWrongExplanation": "Si prega di riavviare l'applicazione.",
+        "addressCopied": "Indirizzo copiato",
+        "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
+        "generateNewAddress": "GENERA UN NUOVO INDIRIZZO"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with",
-        "atLeastOne": "at least one",
-        "ofTheOptions": "of the options listed below."
+        "mustSaveYourSeed": "Devi salvare il tuo seme con",
+        "atLeastOne": "almeno una",
+        "ofTheOptions": "delle opzioni elencate di seguito."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "incorrectSeed": "Seme non corretto.",
+        "incorrectSeedExplanation": "Il seme inserito non è corretto. Si prega di riprovare.",
+        "thisIsACheck": "Si tratta di un controllo per assicurarsi che hai salvato il tuo seme.",
+        "ifYouHaveNotSaved": "Se non hai salvato il tuo seme, si prega di tornare alla schermata precedente e farlo."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
-        "amount": "Amount",
-        "max": "MAX",
-        "message": "Message",
-        "send": "SEND IOTA"
+        "invalidAddress": "Indirizzo non valido",
+        "invalidAddressExplanation1": "L'indirizzo deve essere 81 caratteri e deve avere un valore di checksum.",
+        "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
+        "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
+        "notEnoughFunds": "Fondi insufficenti",
+        "notEnoughFundsExplanation": "Non hai abbastanza IOTA per completare questo trasferimento.",
+        "keyReuse": "Riutilizzo di chiave",
+        "keyReuseExplanation": "L'indirizzo al quale stai tentando di inviare a è già stato utilizzato. Si prega di provare un altro indirizzo.",
+        "recipientAddress": "Indirizzo del destinatario",
+        "amount": "Importo",
+        "max": "MASSIMO",
+        "message": "Messaggio",
+        "send": "INVIA IOTA"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "passwordTooShort": "La password è troppo corta",
+        "passwordTooShortExplanation": "La password deve essere di almeno ${MIN_PASSWORD_LENGTH} caratteri. Attualmente è di ${this.state.password.length} caratteri. Si prega di riprovare.",
+        "passwordMismatch": "Le password non corrispondono",
+        "passwordMismatchExplanation": "Le password immesse non corrispondono. Si prega di riprovare.",
+        "nowWeNeedTo": "Ora abbiamo bisogno di impostare una password.",
+        "anEncryptedCopy": "Una copia crittografata del tuo seme sarà memorizzata sul dispositivo. Userai questa password per accedere in futuro al tuo portafoglio.",
+        "ensure": "Assicurati di utilizzare una password complessa di almeno 12 caratteri.",
+        "retypePassword": "Reinserisci la password"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "Con questo portafoglio, è possibile utilizzare più semi. Ogni seme richiede un nome di account.",
+        "youCanAdd": "Nel menu impostazioni, è possibile aggiungere più semi."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
-        "language": "Language",
-        "addNewSeed": "Add new seed",
-        "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "back": "Back"
+        "transferSending": "Invio transazione",
+        "transferSendingExplanation": "Si prega di attendere fino a quando la transazione è stata inviata.",
+        "generatingAddress": "Generazione di un indirizzo",
+        "generatingAddressExplanation": "Si prega di attendere fino a quando il tuo indirizzo è stato generato.",
+        "mode": "Modalità",
+        "theme": "Tema",
+        "currency": "Valuta",
+        "language": "Lingua",
+        "addNewSeed": "Aggiungi un nuovo seme",
+        "twoFA": "Autenticazione a due fattori",
+        "changePassword": "Cambia password",
+        "advanced": "Impostazioni avanzate",
+        "logout": "Esci",
+        "reset": "Reimposta il portafoglio",
+        "back": "Indietro"
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": "seeds, password",
-        "warning3": "and",
-        "warning4": "other account information",
-        "warning5": "will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "thisAction": "Questa azione non può essere annullata.",
+        "warning1": "Tutti i dati del tuo portafoglio tra cui",
+        "warning2": "semi, password",
+        "warning3": "e",
+        "warning4": "altre informazioni dell'account",
+        "warning5": "andranno persi.",
+        "areYouSure": "Sei sicuro di voler continuare?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Immettere la password per reimpostare il tuo portafoglio.",
+        "cancel": "ANNULLA",
+        "reset": "REIMPOSTA"
     },
     "walletSetup": {
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": "any wallet",
-        "explanation3": ", on",
-        "explanation4": "any device",
-        "explanation5": ". but if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "doYouAlreadyHaveASeed": "Possiedi già un seme che desideri utilizzare?",
+        "seedExplanation": "Il seme IOTA è come una combinazione di utente e password per il tuo account, in un'unica stringa di 81 caratteri.",
+        "explanation1": "Puoi usarlo per accedere ai tuoi fondi da",
+        "explanation2": "qualsiasi portafoglio",
+        "explanation3": ", su",
+        "explanation4": "qualsiasi dispositivo",
+        "explanation5": ". Ma se perdi il tuo seme, perdi anche i tuoi IOTA.",
+        "keepSafe": "Sei pregato di tenere il tuo seme al sicuro."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "Grazie per aver scaricato il portafoglio IOTA.",
+        "weWillSpend": "In pochi minuti imposteremo insieme il tuo portafoglio.",
+        "reminder": "Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "Il tuo seme è composto da 81 caratteri letti da sinistra a destra. Annota il tuo seme e la relativa checksum, e",
+        "tripleCheck": "controlla tre volte",
+        "thatTheyAreCorrect": "che siano corretti."
     }
 }

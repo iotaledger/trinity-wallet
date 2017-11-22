@@ -65,54 +65,54 @@
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
+        "seedTooShort": "种子太短",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedExplanation": "种子的长度应该有 81 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 81 个字符。",
+        "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
+        "balance": "结余",
+        "send": "发送",
+        "receive": "接收",
+        "history": "历史",
         "settings": "SETTINGS"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "语言"
     },
     "login": {
         "emptyPassword": "Empty password",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
+        "enterPassword": "请输入您的密码.",
+        "useSeed": "使用种子",
         "login": "LOG IN"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
         "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "individualLetters": "通过点击各个字母来随机生成。"
     },
     "onboardingComplete": {
         "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "clickToPrint": "请单击下面的按钮以将您的种子打印到纸上。",
+        "storeSafely": "妥善保存.",
+        "neverShare": "永远不要与任何人分享您的种子。",
+        "iotaLogo": "IOTA标志",
+        "printWallet": "打印出纸版钱包"
     },
     "receive": {
         "somethingWentWrong": "Something went wrong",
         "somethingWentWrongExplanation": "Please restart the app.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS"
+        "generateNewAddress": "生成新的地址"
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "You must save your seed with",
-        "atLeastOne": "at least one",
+        "atLeastOne": "至少一个",
         "ofTheOptions": "of the options listed below."
     },
     "seedReentry": {
@@ -131,19 +131,19 @@
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
-        "amount": "Amount",
+        "amount": "金额",
         "max": "MAX",
         "message": "Message",
         "send": "SEND IOTA"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
+        "passwordTooShort": "密码太短",
         "passwordTooShortExplanation": "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
+        "passwordMismatch": "密码不相符",
+        "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
+        "nowWeNeedTo": "现在我们需要设置一个密码。",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
+        "ensure": "请您确保使用至少 12 个字符的强密码。",
         "retypePassword": "Retype Password"
     },
     "setSeedName": {
@@ -158,11 +158,11 @@
         "mode": "Mode",
         "theme": "Theme",
         "currency": "Currency",
-        "language": "Language",
-        "addNewSeed": "Add new seed",
+        "language": "语言",
+        "addNewSeed": "添加新种子",
         "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
+        "changePassword": "更改密码",
+        "advanced": "高级设置",
         "logout": "Log out",
         "reset": "Reset wallet",
         "back": "Back"
@@ -182,23 +182,23 @@
         "reset": "RESET"
     },
     "walletSetup": {
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
+        "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
         "explanation1": "You can use it to access your funds from",
         "explanation2": "any wallet",
         "explanation3": ", on",
         "explanation4": "any device",
         "explanation5": ". but if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "keepSafe": "请您保管好你的种子."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "感谢您下载IOTA钱包。",
+        "weWillSpend": "接下来我们将花几分钟来设置您的钱包。",
+        "reminder": "您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。"
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
+        "tripleCheck": "第三次检查",
         "thatTheyAreCorrect": "that they are correct."
     }
 }

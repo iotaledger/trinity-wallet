@@ -83,122 +83,122 @@
     "login": {
         "emptyPassword": "パスワードの入力なし",
         "emptyPasswordExplanation": "ログインするにはパスワードを入力する必要があります。もう一度やり直して下さい。",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
-        "login": "LOG IN"
+        "enterPassword": "パスワードを入力して下さい。",
+        "useSeed": "Seedでログイン",
+        "login": "ログイン"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "seedNotGenerated": "Seedが生成されていません。",
+        "seedNotGeneratedExplanation": "「新しいSeedを生成する。」ボタンをクリックして下さい。",
+        "pressForNewSeed": "新しいSeedの複製",
+        "individualLetters": "文字をタップしてランダムにしてください。"
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "ウォレットの準備が整いました。設定の変更は今後も設定メニューから行えます。"
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "clickToPrint": "下のボタンでSeedを印刷できます。",
+        "storeSafely": "安全に保管して下さい。",
+        "neverShare": "Seedを他の人に絶対に教えてはいけません。",
+        "iotaLogo": "IOTAロゴ",
+        "printWallet": "ペーパーウォレットを印刷"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS"
+        "somethingWentWrong": "何かが間違っています。",
+        "somethingWentWrongExplanation": "アプリを再起動して下さい。",
+        "addressCopied": "アドレスをコピーしました。",
+        "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
+        "generateNewAddress": "アドレス生成"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with",
-        "atLeastOne": "at least one",
-        "ofTheOptions": "of the options listed below."
+        "mustSaveYourSeed": "安全にSeedを保存して下さい。",
+        "atLeastOne": "最低一つ",
+        "ofTheOptions": "以下のオプションを使って。"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "incorrectSeed": "Seedが違います。",
+        "incorrectSeedExplanation": "入力したSeedは正しくありません。もう一度やり直して下さい。",
+        "thisIsACheck": "これはあなたがSeedを保存したかを確認するチェックです。",
+        "ifYouHaveNotSaved": "もしSeedを保存していないのであれば、前に戻って、Seedを保存して下さい。"
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
+        "invalidAddress": "無効なアドレスです。",
+        "invalidAddressExplanation1": "アドレスは81文字にする必要があり、チェックサムを持っている必要があります。",
+        "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
+        "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
+        "notEnoughFunds": "残高不足です。",
+        "notEnoughFundsExplanation": "送金を完了するための十分なIOTAが有りません。",
+        "keyReuse": "キーの再使用",
+        "keyReuseExplanation": "送金しようとしているアドレスは既に使用されています。別のアドレスをお試しください。",
+        "recipientAddress": "受取人のアドレス",
         "amount": "Amount",
-        "max": "MAX",
-        "message": "Message",
-        "send": "SEND IOTA"
+        "max": "最大",
+        "message": "メッセージ",
+        "send": "IOTAを送金する。"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "passwordTooShort": "パスワードが短すぎます。",
+        "passwordTooShortExplanation": "パスワードは少なくとも${MIN_PASSWORD_LENGTH}文字以上にする必要があります。今は${this.state.password.length}文字です。もう一度やり直して下さい。",
+        "passwordMismatch": "パスワードが一致しません。",
+        "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
+        "nowWeNeedTo": "次にパスワードの設定です。",
+        "anEncryptedCopy": "暗号化されたSeedのコピーがデバイスに保存されます。今後このパスワードを使用してウォレットにアクセスします。",
+        "ensure": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
+        "retypePassword": "パスワードを再入力して下さい。"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "このウォレットでは複数のSeedを使用できます。 各Seedにはアカウント名が必要です。",
+        "youCanAdd": "設定メニューでSeedを追加できます。"
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
-        "language": "Language",
-        "addNewSeed": "Add new seed",
-        "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "back": "Back"
+        "transferSending": "送金中",
+        "transferSendingExplanation": "送金が完了するまでもうしばらくお待ち下さい。",
+        "generatingAddress": "受取用アドレスを生成する。",
+        "generatingAddressExplanation": "アドレス生成が完了するまでもうしばらくお待ち下さい。",
+        "mode": "モード",
+        "theme": "テーマ",
+        "currency": "通過",
+        "language": "言語",
+        "addNewSeed": "新しいSeedを追加",
+        "twoFA": "2要素認証",
+        "changePassword": "パスワード変更",
+        "advanced": "詳細設定",
+        "logout": "ログアウト",
+        "reset": "ウォレットをリセットします。",
+        "back": "戻る"
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": "seeds, password",
-        "warning3": "and",
-        "warning4": "other account information",
-        "warning5": "will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "thisAction": "この操作は元に戻せません。",
+        "warning1": "全てのウォレットのデータ",
+        "warning2": "（Seedやパスワード",
+        "warning3": "や",
+        "warning4": "その他のアカウント情報）",
+        "warning5": "が失われます。",
+        "areYouSure": "本当に続行しますか？"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
+        "cancel": "キャンセル",
+        "reset": "リセット"
     },
     "walletSetup": {
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": "any wallet",
-        "explanation3": ", on",
-        "explanation4": "any device",
-        "explanation5": ". but if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
+        "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
+        "explanation1": "Seedを使ってあなたの資金にアクセスできます。",
+        "explanation2": "いかなるウォレット",
+        "explanation3": "や",
+        "explanation4": "いかなるデバイスからでも。",
+        "explanation5": "しかし、Seedを失うとIOTAも失われます。",
+        "keepSafe": "Seedは安全に保管してください。"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "IOTA Walletをダウンロードいただきありがとうございます。",
+        "weWillSpend": "ウォレットの設定には数分かかります。",
+        "reminder": "いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "Seedは左から右へ読み、81文字あります。Seedとチェックサムが正確に書き留め、",
+        "tripleCheck": "何度も確認",
+        "thatTheyAreCorrect": "それらが正しいことを確認して下さい。"
     }
 }
