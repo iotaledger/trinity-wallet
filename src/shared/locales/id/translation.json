@@ -97,108 +97,108 @@
         "walletReady": "Dompet sudah dipersiapkan dan siap untuk digunakan. Silahkan cek di menu Perkakas jika Anda ingin membuat perubahan lagi."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "clickToPrint": "Tekan tombol di bawah ini untuk mencetak salinan dompet kertas anda.",
+        "storeSafely": "Simpan dengan baik.",
+        "neverShare": "Jangan pernah memberitahukan Seed Anda dengan siapa pun.",
+        "iotaLogo": "Logo IOTA",
+        "printWallet": "CETAK DOMPET KERTAS"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS"
+        "somethingWentWrong": "Terjadi kesalahan",
+        "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali.",
+        "addressCopied": "Alamat telah disalin",
+        "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
+        "generateNewAddress": "BUAT SEED BARU"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with",
-        "atLeastOne": "at least one",
-        "ofTheOptions": "of the options listed below."
+        "mustSaveYourSeed": "Anda harus menyimpan password anda dengan",
+        "atLeastOne": "setidaknya satu",
+        "ofTheOptions": "pilihan dibawah ini."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "incorrectSeed": "Seed salah.",
+        "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
+        "thisIsACheck": "Ini untuk memverifikasi bahwa anda telah menyimpan Seed Anda.",
+        "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan kembali ke menu sebelumnya."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
-        "amount": "Amount",
-        "max": "MAX",
-        "message": "Message",
-        "send": "SEND IOTA"
+        "invalidAddress": "Alamat salah",
+        "invalidAddressExplanation1": "Alamat harus 81 karakter dan memiliki cek jumlah.",
+        "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
+        "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
+        "notEnoughFunds": "Dana tidak mencukupi",
+        "notEnoughFundsExplanation": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
+        "keyReuse": "Kunci kembali digunakan",
+        "keyReuseExplanation": "Alamat yang anda tuju telah digunakan. Silahkan coba alamat yang lain.",
+        "recipientAddress": "Alamat Penerima",
+        "amount": "Nominal",
+        "max": "Maks",
+        "message": "Pesan",
+        "send": "KIRIM IOTA"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "passwordTooShort": "Kata sandi terlalu singkat",
+        "passwordTooShortExplanation": "Kata sandi setidaknya harus ${MIN_PASSWORD_LENGTH} karakter. Kata sandi anda saat ini adalah ${this.state.password.length} karakter. Silakan coba lagi.",
+        "passwordMismatch": "Kata sandi tidak sama",
+        "passwordMismatchExplanation": "Kata sandi yang Anda masukkan tidak sama. Silahkan coba lagi.",
+        "nowWeNeedTo": "Mari kita membuat kata sandi.",
+        "anEncryptedCopy": "Salinan dari Seed yang terenkripsi akan disimpan di perangkat anda. Anda akan menggunakan kata sandi ini untuk mengakses dompet anda.",
+        "ensure": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 12 karakter.",
+        "retypePassword": "Ketik ulang kata sandi"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "Anda dapat menggunakan beberapa Seed dengan dompet ini. Setiap Seed membutuhkan nama akun.",
+        "youCanAdd": "Anda dapat menambahkan Seed di menu Perkakas."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
-        "language": "Language",
-        "addNewSeed": "Add new seed",
-        "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "back": "Back"
+        "transferSending": "Sedang mentransfer",
+        "transferSendingExplanation": "Silahkan tunggu sampai transfer anda sudah dikirim.",
+        "generatingAddress": "Membuat alamat penerima",
+        "generatingAddressExplanation": "Silahkan tunggu sampai alamat anda telah dibuat.",
+        "mode": "Modus",
+        "theme": "Tema",
+        "currency": "Mata Uang",
+        "language": "Bahasa",
+        "addNewSeed": "Tambahkan Seed baru",
+        "twoFA": "Autentikasi dua faktor",
+        "changePassword": "Ubah Kata Sandi",
+        "advanced": "Pengaturan Lanjutan",
+        "logout": "Keluar",
+        "reset": "Hapus dompet",
+        "back": "Kembali"
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": "seeds, password",
-        "warning3": "and",
-        "warning4": "other account information",
-        "warning5": "will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "thisAction": "Tindakan ini tidak dapat diulang.",
+        "warning1": "Semua dompet anda termasuk",
+        "warning2": "Seed, kata sandi",
+        "warning3": "dan",
+        "warning4": "informasi akun lainnya",
+        "warning5": "akan dihapus.",
+        "areYouSure": "Anda yakin ingin melanjutkan?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Masukkan kata sandi untuk menghapus dompet anda.",
+        "cancel": "BATAL",
+        "reset": "HAPUS"
     },
     "walletSetup": {
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": "any wallet",
-        "explanation3": ", on",
-        "explanation4": "any device",
-        "explanation5": ". but if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "doYouAlreadyHaveASeed": "Apakah anda sudah memiliki Seed yang ingin digunakan?",
+        "seedExplanation": "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
+        "explanation1": "Anda dapat menggunakan ini untuk mengakses dana anda dari",
+        "explanation2": "dompet manapun",
+        "explanation3": ", di",
+        "explanation4": "perangkat manapun",
+        "explanation5": ". Tetapi jika anda lupa Seed, Anda juga akan kehilangan IOTA.",
+        "keepSafe": "Harap disimpan Seed anda dengan baik."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "Terima kasih telah mengunduh dompet IOTA.",
+        "weWillSpend": "Kita akan meluangkan waktu beberapa menit kedepan untuk menyiapkan dompet Anda.",
+        "reminder": "Kami berharap anda tidak mencoba untuk melewatkan beberapa tahap penting ini."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "Seed anda terdiri dari 81 karakter dari kiri ke kanan. Tulis Seed tersebut, cek jumlah karakternya dan pastikan mereka sudah benar",
+        "tripleCheck": "cek kembali",
+        "thatTheyAreCorrect": "bahwa mereka benar."
     }
 }
