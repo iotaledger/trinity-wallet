@@ -193,12 +193,12 @@
     },
     "welcome": {
         "thankYou": "Dank u voor het downloaden van de IOTA-portefeuille.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "weWillSpend": "We zullen de volgende paar minuten het opzetten van uw portemonnee doorbrengen.",
+        "reminder": "U kan worden verleid om sommige stappen over te slaan, maar wij verzoeken u om het volledige proces te volgen."
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
+        "tripleCheck": "drievoudige controle",
         "thatTheyAreCorrect": "that they are correct."
     }
 }
