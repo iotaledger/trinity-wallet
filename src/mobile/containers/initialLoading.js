@@ -22,7 +22,7 @@ export default class InitialLoading extends Component {
     }
 
     componentDidMount() {
-        this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
+        this.timeout = setTimeout(this.onLoaded.bind(this), 100);
     }
 
     componentWillUnmount() {}
@@ -42,7 +42,7 @@ export default class InitialLoading extends Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'login',
+                screen: 'home',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
                 overrideBackPress: true,
