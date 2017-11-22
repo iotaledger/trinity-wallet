@@ -15,27 +15,17 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width;
 const height = global.height;
 
 class SaveYourSeed extends Component {
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     onDonePress() {
         this.props.navigator.push({
             screen: 'seedReentry',
             navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -50,6 +40,7 @@ class SaveYourSeed extends Component {
             screen: 'writeSeedDown',
             navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
+            overrideBackPress: true,
         });
     }
     onPrintClick() {
@@ -57,6 +48,7 @@ class SaveYourSeed extends Component {
             screen: 'paperWallet',
             navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
+            overrideBackPress: true,
         });
     }
     onCopyClick() {
@@ -64,6 +56,7 @@ class SaveYourSeed extends Component {
             screen: 'copySeedToClipboard',
             navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
             animated: false,
+            overrideBackPress: true,
         });
     }
 

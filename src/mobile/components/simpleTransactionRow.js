@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import { round, formatValue, formatUnit } from '../../shared/libs/util';
 import { formatTime, convertUnixTimeToJSDate } from '../../shared/libs/dateUtils';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 class SimpleTransactionRow extends React.Component {
