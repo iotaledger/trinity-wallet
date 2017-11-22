@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import {
@@ -14,9 +16,10 @@ import {
     ImageBackground,
     StatusBar,
 } from 'react-native';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
 import Triangle from 'react-native-triangle';
 
-const width = Dimensions.get('window').width
+const width = Dimensions.get('window').width;
 const height = global.height;
 
 const CustomLayoutSpring = {
@@ -32,9 +35,7 @@ const CustomLayoutSpring = {
     },
 };
 
-var HockeyApp = require('react-native-hockeyapp');
-
-class LanguageSetup extends React.Component {
+class LanguageSetup extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -44,29 +45,19 @@ class LanguageSetup extends React.Component {
         };
     }
 
-    // componentWillMount() {
-    //     HockeyApp.configure(
-    //         '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
-    //         true, //Auto send crash reports
-    //         1, //Authentication type
-    //         'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
-    //     );
-    // }
-    //
-    // componentDidMount() {
-    //     HockeyApp.start();
-    //     HockeyApp.checkForUpdate(); // optional
-    // }
-
     onNextPress() {
+        const screen = this.props.onboardingComplete ? 'home' : 'welcome';
         this.props.navigator.push({
-            screen: 'welcome',
+            screen,
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
+
+        this.props.changeHomeScreenRoute('settings'); // Go back to settings
     }
 
     clickLanguage() {
@@ -98,10 +89,12 @@ class LanguageSetup extends React.Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, onboardingComplete } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
+                {!onboardingComplete && (
+                    <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
+                )}
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
@@ -365,4 +358,17 @@ const styles = StyleSheet.create({
     },
 });
 
-export default translate('setLanguage')(LanguageSetup);
+const mapStateToProps = state => ({
+    onboardingComplete: state.account.onboardingComplete,
+});
+
+const mapDispatchToProps = dispatch => ({
+    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
+});
+
+LanguageSetup.propTypes = {
+    onboardingComplete: PropTypes.bool.isRequired,
+    changeHomeScreenRoute: PropTypes.func.isRequired,
+};
+
+export default translate('setLanguage')(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup));
