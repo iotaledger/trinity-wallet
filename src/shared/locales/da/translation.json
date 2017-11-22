@@ -1,18 +1,9 @@
 {
-    "global": {
-        "invalidResponse": "Ugyldigt svar",
-        "invalidResponseExplanation": "Noden returnerede et ugyldigt svar.",
-        "invalidResponsePollingExplanation": "Noden returnerede et ugyldigt svar under polling.",
-        "seed": "Seed",
-        "back": "TILBAGE",
-        "done": "FÆRDIG",
-        "next": "NÆSTE",
-        "manualCopy": "Skriv ned manuelt",
-        "paperWallet": "Papirtegnebog",
-        "copyToClipboard": "Kopiér til udklipsholder",
-        "qr": "QR",
-        "notAvailable": "Denne funktion er ikke tilgængelig",
-        "notAvailableExplanation": "Den bliver tilføjet på et senere tidspunkt."
+    "notifications": {
+        "invalidServer_title": "Invalid server",
+        "invalidServer_text": "The server address you entered is not valid",
+        "unknownError_title": "Unknown error occured",
+        "unknownError_text": "We could not perform the desired action this time. Please try again."
     },
     "addAdditionalSeed": {
         "mainWallet": "HOVEDTEGNEBOG",
@@ -74,30 +65,72 @@
             "Seeds bør være 81 tegn lange og skal indeholde bogstaverne A-Z eller tallet 9. Du kan ikke bruge seeds, som er længere end 81 tegn.",
         "neverShare": "DEL ALDRIG DIT SEED MED NOGEN"
     },
-    "home": {
-        "balance": "SALDO",
-        "send": "SEND",
-        "receive": "MODTAG",
-        "history": "HISTORIK",
-        "settings": "INDSTILLINGER"
-    },
-    "languageSetup": {
-        "language": "Sprog"
-    },
-    "login": {
-        "emptyPassword": "Tom adgangskode",
-        "emptyPasswordExplanation": "Du skal indtaste en adgangskode for at logge ind. Prøv venligst igen.",
-        "unrecognisedPassword": "Ukendt adgangskode",
-        "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
-        "enterPassword": "Indtast venligst din adgangskode.",
-        "useSeed": "BRUG SEED",
-        "login": "LOG IND"
-    },
     "newSeedSetup": {
-        "seedNotGenerated": "Seedet er ikke blevet genereret",
-        "seedNotGeneratedExplanation": "Klik venligst på knappen \"Generer nyt seed\".",
-        "pressForNewSeed": "TRYK FOR AT FÅ ET NYT SEED",
-        "individualLetters": "Tryk på individuelle bogstaver for at vælge nye tilfældigt."
+        "title": "GENERATE A NEW SEED",
+        "button1": "GENERATE NEW SEED",
+        "text1": "Press individual letters to randomise them.",
+        "text2": "Then click NEXT",
+        "button2": "NEXT",
+        "button3": "BACK"
+    },
+    "saveYourSeed": {
+        "text1": "You must save your seed with at least one of the options listed below.",
+        "text2": "at least one",
+        "optionA": "MANUAL COPY",
+        "optionB": "PRINT PAPER WALLET",
+        "optionC": "COPY TO CLIPBOARD",
+        "button1": "NEXT",
+        "button2": "BACK"
+    },
+    "saveYourSeed2": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+        "text": "triple check",
+        "button": "DONE"
+    },
+    "saveYourSeed3": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "text": "Do not store the seed in plain text.",
+        "button1": "COPY TO CLIPBOARD",
+        "button2": "DONE"
+    },
+    "saveYourSeed4": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Click the button below to print a paper copy of your seed.",
+        "text1": "Store it safely",
+        "text2": "Never share your seed with anyone.",
+        "check_button": "IOTA logo",
+        "button1": "PRINT PAPER WALLET",
+        "button2": "DONE"
+    },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
+    "setPassword": {
+        "title": "PASSWORD SETUP",
+        "text": "Now we need to set up a password.",
+        "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+        "reminder": "Ensure you use a strong password of at least 12 characters.",
+        "placeholder1": "'PASSWORD'",
+        "placeholder2": "RETYPE PASSWORD",
+        "error1_title": "Password is too short",
+        "error1_text": "Your password must be at least 12 characters. Please try again.",
+        "error2_title": "Passwords do not match",
+        "error2_text": "The passwords you have entered do not match. Please try again.",
+        "button1": "DONE",
+        "button2": "BACK"
     },
     "onboardingComplete": {
         "walletReady":

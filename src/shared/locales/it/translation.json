@@ -1,18 +1,9 @@
 {
-    "global": {
-        "invalidResponse": "Risposta non valida",
-        "invalidResponseExplanation": "Il nodo ha restituito una risposta non valida.",
-        "invalidResponsePollingExplanation": "Il nodo ha restituito una risposta non valida durante il polling.",
-        "seed": "Seme",
-        "back": "INDIETRO",
-        "done": "FINE",
-        "next": "AVANTI",
-        "manualCopy": "Copia manuale",
-        "paperWallet": "Portafoglio su carta",
-        "copyToClipboard": "Copia negli appunti",
-        "qr": "QR",
-        "notAvailable": "Questa funzione non è disponibile",
-        "notAvailableExplanation": "It will be added at a later stage."
+    "notifications": {
+        "invalidServer_title": "Invalid server",
+        "invalidServer_text": "The server address you entered is not valid",
+        "unknownError_title": "Unknown error occured",
+        "unknownError_text": "We could not perform the desired action this time. Please try again."
     },
     "addAdditionalSeed": {
         "mainWallet": "PORTAFOGLIO PRINCIPALE",
@@ -73,30 +64,72 @@
             "I semi dovrebbero essere lunghi 81 caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.",
         "neverShare": "NON MOSTRARE MAI IL TUO SEME A NESSUNO"
     },
-    "home": {
-        "balance": "SALDO",
-        "send": "INVIA",
-        "receive": "RICEVI",
-        "history": "STORICO",
-        "settings": "IMPOSTAZIONI"
-    },
-    "languageSetup": {
-        "language": "Lingua"
-    },
-    "login": {
-        "emptyPassword": "Password vuota",
-        "emptyPasswordExplanation": "È necessario immettere una password per il login. Si prega di riprovare.",
-        "unrecognisedPassword": "Password non riconosciuta",
-        "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
-        "enterPassword": "Inserisci la tua password.",
-        "useSeed": "USA IL SEME",
-        "login": "ACCEDI"
-    },
     "newSeedSetup": {
-        "seedNotGenerated": "Il seme non è stato generato",
-        "seedNotGeneratedExplanation": "Fare clic sul pulsante \"Genera nuovo seme\".",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Premi alcune singole lettere per renderle maggiormente casuali."
+        "title": "GENERATE A NEW SEED",
+        "button1": "GENERATE NEW SEED",
+        "text1": "Press individual letters to randomise them.",
+        "text2": "Then click NEXT",
+        "button2": "NEXT",
+        "button3": "BACK"
+    },
+    "saveYourSeed": {
+        "text1": "You must save your seed with at least one of the options listed below.",
+        "text2": "at least one",
+        "optionA": "MANUAL COPY",
+        "optionB": "PRINT PAPER WALLET",
+        "optionC": "COPY TO CLIPBOARD",
+        "button1": "NEXT",
+        "button2": "BACK"
+    },
+    "saveYourSeed2": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+        "text": "triple check",
+        "button": "DONE"
+    },
+    "saveYourSeed3": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "text": "Do not store the seed in plain text.",
+        "button1": "COPY TO CLIPBOARD",
+        "button2": "DONE"
+    },
+    "saveYourSeed4": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Click the button below to print a paper copy of your seed.",
+        "text1": "Store it safely",
+        "text2": "Never share your seed with anyone.",
+        "check_button": "IOTA logo",
+        "button1": "PRINT PAPER WALLET",
+        "button2": "DONE"
+    },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
+    "setPassword": {
+        "title": "PASSWORD SETUP",
+        "text": "Now we need to set up a password.",
+        "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+        "reminder": "Ensure you use a strong password of at least 12 characters.",
+        "placeholder1": "'PASSWORD'",
+        "placeholder2": "RETYPE PASSWORD",
+        "error1_title": "Password is too short",
+        "error1_text": "Your password must be at least 12 characters. Please try again.",
+        "error2_title": "Passwords do not match",
+        "error2_text": "The passwords you have entered do not match. Please try again.",
+        "button1": "DONE",
+        "button2": "BACK"
     },
     "onboardingComplete": {
         "walletReady":
