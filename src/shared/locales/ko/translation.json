@@ -65,54 +65,54 @@
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
+        "seedTooShort": "씨드가 너무 짧습니다.",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedExplanation": "씨드는 81자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. 81자 이상의 씨드는 사용할 수 없습니다.",
+        "neverShare": "다른 이와 절대로 씨드를 공유하지 마십시오."
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
+        "balance": "잔액",
+        "send": "보내기",
+        "receive": "받기",
+        "history": "히스토리",
         "settings": "SETTINGS"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "언어"
     },
     "login": {
         "emptyPassword": "Empty password",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
+        "enterPassword": "비밀번호를 입력 해주십시오.",
+        "useSeed": "씨드 사용하기",
         "login": "LOG IN"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
         "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "individualLetters": "임의로 순서를 정하기 위해 개별 글자를 눌러주세요."
     },
     "onboardingComplete": {
         "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
+        "clickToPrint": "씨드를 인쇄하려면 아래 버튼을 클릭하십시오.",
         "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "neverShare": "절대 다른 이와 당신의 씨드를 공유하지 마십시오.",
+        "iotaLogo": "IOTA 로고",
+        "printWallet": "종이 지갑 인쇄하기"
     },
     "receive": {
         "somethingWentWrong": "Something went wrong",
         "somethingWentWrongExplanation": "Please restart the app.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS"
+        "generateNewAddress": "새 씨드 생성하기"
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "You must save your seed with",
-        "atLeastOne": "at least one",
+        "atLeastOne": "하나 이상",
         "ofTheOptions": "of the options listed below."
     },
     "seedReentry": {
@@ -131,19 +131,19 @@
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
-        "amount": "Amount",
+        "amount": "금액",
         "max": "MAX",
         "message": "Message",
         "send": "SEND IOTA"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
+        "passwordTooShort": "비밀번호가 너무 짧습니다.",
         "passwordTooShortExplanation": "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
+        "passwordMismatch": "비밀번호가 일치하지 않습니다.",
+        "passwordMismatchExplanation": "입력한 비밀번호가 일치하지 않습니다. 다시 입력해주십시오.",
+        "nowWeNeedTo": "이제 비밀번호를 설정해야합니다.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
+        "ensure": "최소 12글자로 이루어진 비밀번호를 사용하십시오.",
         "retypePassword": "Retype Password"
     },
     "setSeedName": {
@@ -158,11 +158,11 @@
         "mode": "Mode",
         "theme": "Theme",
         "currency": "Currency",
-        "language": "Language",
-        "addNewSeed": "Add new seed",
+        "language": "언어",
+        "addNewSeed": "새 씨드 추가하기",
         "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
+        "changePassword": "비밀번호 변경하기",
+        "advanced": "고급 설정",
         "logout": "Log out",
         "reset": "Reset wallet",
         "back": "Back"
@@ -182,8 +182,8 @@
         "reset": "RESET"
     },
     "walletSetup": {
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "doYouAlreadyHaveASeed": "이미 당신이 사용하고 싶은 씨드가 있습니까?",
+        "seedExplanation": "81자로 이루어진 IOTA 씨드는 귀하의 계정에 아이디 및 비밀번호와 같습니다.",
         "explanation1": "You can use it to access your funds from",
         "explanation2": "any wallet",
         "explanation3": ", on",
@@ -192,9 +192,9 @@
         "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "IOTA 지갑을 다운로드 해주셔서 감사합니다.",
+        "weWillSpend": "귀하의 지갑을 만드는 데 몇 분 소모될 예정입니다.",
+        "reminder": "몇 가지 단계를 건너 뛰길 원하시더라도, 모든 프로세스를 완벽히 따르길 권장합니다."
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
