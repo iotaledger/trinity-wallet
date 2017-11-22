@@ -80,7 +80,7 @@ class LanguageSetup extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>

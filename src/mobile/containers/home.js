@@ -221,7 +221,7 @@ class Home extends Component {
         const topBarProps = this.getTopBarProps();
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer} />
                 <View style={styles.midContainer}>
@@ -361,7 +361,7 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 0.4,
+        flex: 0.8,
         marginBottom: height / 100,
     },
     titlebarContainer: {
@@ -390,20 +390,29 @@ const styles = StyleSheet.create({
         paddingTop: height / 150,
     },
     midContainer: {
-        flex: 4.7,
+        flex: 4.62,
         zIndex: 0,
     },
     bottomContainer: {
-        flex: 0.6,
+        flex: 0.68,
     },
     tabBar: {
         flex: 1,
         elevation: 7,
         flexDirection: 'row',
-        backgroundColor: '#1A1A1A',
         justifyContent: 'space-around',
-        alignItems: 'center',
-        opacity: 0.9,
+        alignItems: 'flex-end',
+        backgroundColor: '#071f28',
+        opacity: 0.98,
+        paddingBottom: height / 65,
+        shadowColor: '#071f28',
+        shadowRadius: 4,
+        shadowOffset: {
+           width: 0,
+           height: 2
+        },
+        shadowOpacity: 1.0
+
     },
     button: {
         justifyContent: 'flex-end',
@@ -411,8 +420,8 @@ const styles = StyleSheet.create({
     },
     icon: {
         paddingTop: height / 40,
-        height: width / 18,
-        width: width / 18,
+        height: width / 15,
+        width: width / 15,
     },
     iconTitle: {
         color: 'white',
@@ -421,6 +430,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 80,
         fontFamily: 'Lato-Regular',
         fontSize: width / 40.5,
+        backgroundColor: 'transparent'
     },
     fullyOpaque: {
         opacity: 1,

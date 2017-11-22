@@ -47,7 +47,7 @@ class WalletResetRequirePassword extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
@@ -66,7 +66,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-green.png',
+                    screenBackgroundImageName: 'bg-blue.png',
                     screenBackgroundColor: '#102e36',
                 },
                 overrideBackPress: true,
@@ -97,7 +97,7 @@ class WalletResetRequirePassword extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
