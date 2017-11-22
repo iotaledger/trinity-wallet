@@ -1,97 +1,156 @@
 {
-    "global": {
-        "invalidResponse": "無効な応答",
-        "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
-        "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
-        "seed": "Seed",
-        "back": "戻る",
-        "done": "完了",
-        "next": "次へ",
-        "manualCopy": "手書き",
-        "paperWallet": "ペーパーウォレット",
-        "copyToClipboard": "クリップボードにコピー",
-        "qr": "QRコード",
-        "notAvailable": "この機能は使えません。",
-        "notAvailableExplanation": "この機能は次の段階で追加されます。"
+    "notifications": {
+        "invalidServer_title": "Invalid server",
+        "invalidServer_text": "The server address you entered is not valid",
+        "unknownError_title": "Unknown error occured",
+        "unknownError_text": "We could not perform the desired action this time. Please try again."
     },
-    "addAdditionalSeed": {
-        "mainWallet": "メインウォレット",
-        "secondWallet": "2つ目のウォレット",
-        "thirdWallet": "3つ目のウォレット",
-        "fourthWallet": "4つ目のウォレット",
-        "fifthWallet": "5つ目のウォレット",
-        "sixthWallet": "6つ目のウォレット",
-        "otherWallet": "その他のウォレット",
-        "seedInvalidChars": "無効な文字を含んだSeedです。",
-        "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
-        "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
-        "nicknameInUse": "この名前はすでに使われています。",
-        "nicknameInUseExplanation": "あなたのSeedに唯一の名前を付けてください。",
-        "enterSeed": "Seedを入力して下さい。",
-        "enterSeedNickname": "Seedの名前を入力して下さい。",
-        "seedNickname": "Seedの名前"
+    "setLanguage": {
+        "dropdown_title": "Language",
+        "button1": "NEXT"
     },
-    "changePassword": {
-        "oops": "おっと、何かが間違っています。",
-        "oopsExplanation": "パスワードを更新するときに何かミスをしているようです。もう一度やり直して下さい。",
-        "passwordUpdated": "パスワードを更新しました。",
-        "passwordUpdatedExplanation": "パスワードは正しく更新されました。",
-        "incorrectPassword": "パスワードが正しくありません。",
-        "incorrectPasswordExplanation": "先ほどのパスワードは正しくありません。もう一度やり直して下さい。",
-        "passwordsDoNotMatch": "パスワードが一致しません。",
-        "passwordsDoNotMatchExplanation": "パスワードが一致しません。もう一度やり直して下さい。",
-        "passwordTooShort": "パスワードが短すぎます。",
-        "passwordTooShortExplanation": "パスワードは最低12文字で設定しましょう。もう一度やり直してください。",
-        "oldPassword": "古いパスワードは使えません。",
-        "oldPasswordExplanation": "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直して下さい。",
-        "ensureStrongPassword": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
-        "currentPassword": "現在のパスワード",
-        "newPassword": "新しいパスワード",
-        "confirmPassword": "新しいパスワードを承認"
+    "welcome1": {
+        "text1": "Thank you for downloading the IOTA wallet.",
+        "text2": "We will spend the next few minutes setting up your wallet.",
+        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process.",
+        "button1": "NEXT",
+        "button2": "BACK"
     },
-    "copyToClipboard": {
-        "seedCleared": "Seedを消去しました。",
-        "seedClearedExplanation": "安全のために、Seedをクリップボードから消去しました。",
-        "seedCopied": "Seedをコピーしました。",
-        "seedCopiedExplanation": "Seedをクリップボードにコピーしました。「完了」を押すか60秒が経過するとSeedは消去されます。",
-        "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。"
+    "welcome2": {
+        "text1": "Okay. Let's set up your wallet!",
+        "text2": "Do you already have a seed that you would like to use?",
+        "seed_explanation1": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seed_explanation2": "You can use it to access your funds from any wallet, on any device. But if you lose your seed, you also lose your IOTA",
+        "reminder": "Please keep your seed safe",
+        "button1": "YES",
+        "button2": "NO"
     },
-    "enterSeed": {
-        "invalidCharacters": "無効な文字を含んだSeedです。",
-        "invalidCharactersExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度お願いします。",
-        "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度お願いします。",
-        "pleaseEnterSeed": "Seedを入力して下さい。",
-        "seedExplanation": "Seedは81文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、81文字以上の長さにはできません。",
-        "neverShare": "Seedを他の人に絶対に教えてはいけません。"
-    },
-    "home": {
-        "balance": "残高",
-        "send": "送金",
-        "receive": "受取",
-        "history": "履歴",
-        "settings": "設定"
-    },
-    "languageSetup": {
-        "language": "言語"
+    "lightserver": {
+        "text1": "A light server is a gateway to the IOTA network, kindly provided by members of the community or our corporate partners.",
+        "text2": "You can find out more information about the servers at: http://iotasupport.com/lightwallet.shtml",
+        "text3": "Please choose a server from the list below.",
+        "server_label": "Server",
+        "custom_server_label": "Other server address",
+        "other": "Other",
+        "button1": "NEXT",
+        "button2": "BACK"
     },
     "login": {
-        "emptyPassword": "パスワードの入力なし",
-        "emptyPasswordExplanation": "ログインするにはパスワードを入力する必要があります。もう一度やり直して下さい。",
-        "unrecognisedPassword": "有効でないパスワードです。",
-        "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
-        "enterPassword": "パスワードを入力して下さい。",
-        "useSeed": "Seedでログイン",
-        "login": "ログイン"
+        "text": "Please enter your password",
+        "placeholder": "PASSWORD",
+        "error_title": "Unrecognised Password",
+        "error_text": "The password was not recognised. Please try again.",
+        "button1": "DONE",
+        "button2": "USE SEED"
+    },
+    "enterSeed": {
+        "error_title": "Seed is too short",
+        "error_text": "Seeds must be at least 60 characters long. Please try again.",
+        "invalid_seed_title": "Invalid seed",
+        "invalid_seed_text": "Your seed is invalid. A seed may contain uppercase letters (A-Z) and the number 9 and must be 60-81 characters long.",
+        "placeholder": "SEED",
+        "seed_explanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
+        "reminder": "NEVER SHARE YOUR SEED WITH ANYONE",
+        "scan_code": "Scan QR code",
+        "close": "CLOSE",
+        "button1": "DONE",
+        "button2": "BACK"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seedが生成されていません。",
-        "seedNotGeneratedExplanation": "「新しいSeedを生成する。」ボタンをクリックして下さい。",
-        "pressForNewSeed": "新しいSeedの複製",
-        "individualLetters": "文字をタップしてランダムにしてください。"
+        "title": "GENERATE A NEW SEED",
+        "button1": "GENERATE NEW SEED",
+        "text1": "Press individual letters to randomise them.",
+        "text2": "Then click NEXT",
+        "button2": "NEXT",
+        "button3": "BACK"
+    },
+    "saveYourSeed": {
+        "text1": "You must save your seed with at least one of the options listed below.",
+        "text2": "at least one",
+        "optionA": "MANUAL COPY",
+        "optionB": "PRINT PAPER WALLET",
+        "optionC": "COPY TO CLIPBOARD",
+        "button1": "NEXT",
+        "button2": "BACK"
+    },
+    "saveYourSeed2": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Your seed is 81 characters read from left to right. Write down your seed and checksum and triple check they are correct.",
+        "text": "triple check",
+        "button": "DONE"
+    },
+    "saveYourSeed3": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Click the button below and copy your seed to a password manager. It will stay in your clipboard for 60 seconds.",
+        "text": "Do not store the seed in plain text.",
+        "button1": "COPY TO CLIPBOARD",
+        "button2": "DONE"
+    },
+    "saveYourSeed4": {
+        "optionA": "Manual Copy",
+        "optionB": " Paper Wallet",
+        "optionC": "Copy To Clipboard",
+        "explanation": "Click the button below to print a paper copy of your seed.",
+        "text1": "Store it safely",
+        "text2": "Never share your seed with anyone.",
+        "check_button": "IOTA logo",
+        "button1": "PRINT PAPER WALLET",
+        "button2": "DONE"
+    },
+    "nameYourSeed": {
+        "text": "Here you can enter an name for your seed.",
+        "label": "Seed name",
+        "placeholder": "Main Wallet",
+        "explanation": "Enter a name for your seed to make them easier to differentiate.",
+        "button1": "DONE",
+        "button2": "GO BACK"
+    },
+    "setPassword": {
+        "title": "PASSWORD SETUP",
+        "text": "Now we need to set up a password.",
+        "explanation": "You will use this password to access your wallet in future. An encrypted copy of your seed will be stored on your device.",
+        "reminder": "Ensure you use a strong password of at least 12 characters.",
+        "placeholder1": "'PASSWORD'",
+        "placeholder2": "RETYPE PASSWORD",
+        "error1_title": "Password is too short",
+        "error1_text": "Your password must be at least 12 characters. Please try again.",
+        "error2_title": "Passwords do not match",
+        "error2_text": "The passwords you have entered do not match. Please try again.",
+        "button1": "DONE",
+        "button2": "BACK"
     },
     "onboardingComplete": {
-        "walletReady": "ウォレットの準備が整いました。設定の変更は今後も設定メニューから行えます。"
+        "text": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Tools menu.",
+        "button": "NEXT"
+    },
+    "home": {
+        "tab1": "BALANCE",
+        "tab2": "SEND",
+        "tab3": "RECEIVE",
+        "tab4": "HISTORY",
+        "tab5": "TOOLS",
+        "mcap": "MCAP",
+        "change": "Change",
+        "volume": "Volume",
+        "address": "Address",
+        "amount": "Amount",
+        "button1": "SEND",
+        "button2": "GENERATE NEW ADDRESS",
+        "button3": "LOG OUT",
+        "changeMode": "Change mode",
+        "minimal": "Minimal",
+        "standard": "Standard",
+        "expert": "Expert",
+        "changeTheme": "Change theme",
+        "changeLanguage": "Change language",
+        "addNewSeed": "Add new seed",
+        "setup2fa": "2FA Setup",
+        "changePassword": "Change password",
+        "advancedSettings": "Advanced settings",
+        "logout": "Logout"
     }
 }
