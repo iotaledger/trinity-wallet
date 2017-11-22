@@ -53,7 +53,7 @@ class History extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
     },
     listView: {
         height: height * 0.7,
