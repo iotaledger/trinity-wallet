@@ -53,7 +53,7 @@ export default class InitialLoading extends Component {
     render() {
         const currentYear = getCurrentYear();
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
                     <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />

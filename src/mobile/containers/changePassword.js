@@ -75,7 +75,7 @@ class ChangePassword extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
@@ -177,7 +177,7 @@ class ChangePassword extends Component {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
