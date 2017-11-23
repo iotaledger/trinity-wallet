@@ -25,7 +25,7 @@ class AddNewSeedModal extends React.Component {
     render() {
         const { seed, seedName } = this.state;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ alignItems: 'center' }}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ alignItems: 'center' }}>
                 <View style={styles.modalContent}>
                     <TouchableOpacity style={styles.closeIconButton} onPress={() => this.props.hideModal()}>
                         <Image style={styles.closeIcon} source={require('../../shared/images/cross.png')} />

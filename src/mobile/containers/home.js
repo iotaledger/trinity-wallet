@@ -21,24 +21,15 @@ import Send from './send';
 import Receive from './receive';
 import History from './history';
 import Settings from './settings';
-import TopBar from '../components/topBar';
-import { changeHomeScreenRoute, toggleTopBarDisplay } from '../../shared/actions/home';
+import TopBar from './topBar';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
-import {
-    incrementSeedIndex,
-    decrementSeedIndex,
-    setSeedIndex,
-    setReceiveAddress,
-    replayBundle,
-    setReady,
-    clearTempData,
-} from '../../shared/actions/tempAccount';
+import { setReceiveAddress, replayBundle, setReady, clearTempData } from '../../shared/actions/tempAccount';
 import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
 import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
-import { roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const width = Dimensions.get('window').width;
@@ -56,7 +47,6 @@ class Home extends Component {
 
     componentDidMount() {
         this.props.setFirstUse(false);
-        this.startPolling();
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -68,6 +58,7 @@ class Home extends Component {
 
     startPolling() {
         if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
+            console.log('POLLING TX HISTORY')
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
@@ -80,11 +71,6 @@ class Home extends Component {
     onNodeErrorPolling() {
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response while polling.`);
-    }
-
-    onNodeError() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
     }
 
     componentWillReceiveProps(newProps) {
@@ -135,93 +121,13 @@ class Home extends Component {
         this.props.changeHomeScreenRoute('settings');
     }
 
-    humanizeBalance(balance) {
-        const decimalPlaces = n => {
-            const s = '' + +n;
-            const match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
-            if (!match) {
-                return 0;
-            }
-
-            return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
-        };
-
-        const formatted = formatValue(balance);
-        const former = roundDown(formatted, 1);
-        const latter = balance < 1000 || decimalPlaces(formatted) <= 1 ? '' : '+';
-
-        return `${former + latter} ${formatUnit(balance)}`;
-    }
-
-    getTopBarProps() {
-        const {
-            account: { seedNames, balance, accountInfo },
-            tempAccount: { seedIndex, isGeneratingReceiveAddress, isSendingTransfer, isGettingTransfers },
-            isTopBarActive,
-            childRoute,
-        } = this.props;
-        const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
-        const selectedSubtitle = this.humanizeBalance(balance);
-
-        const getBalance = currentIdx => {
-            const seedStrings = Object.keys(accountInfo);
-            const data = accountInfo[seedStrings[currentIdx]].addresses;
-
-            if (isEmpty(data)) {
-                return this.humanizeBalance(0); // no addresses
-            }
-
-            const calc = (res, value) => {
-                res += value;
-
-                return res;
-            };
-
-            const balance = reduce(data, calc, 0);
-            return this.humanizeBalance(balance);
-        };
-
-        const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
-        const titles = map(seedNames, withSubtitles);
-
-        return {
-            active: isTopBarActive,
-            selectedTitle,
-            selectedSubtitle,
-            currentSeedIndex: seedIndex,
-            titles,
-            currentRoute: childRoute,
-            toggle: this.props.toggleTopBarDisplay,
-            onChange: newSeedIdx => {
-                if (!isGeneratingReceiveAddress) {
-                    const seedName = seedNames[newSeedIdx];
-
-                    this.props.setSeedIndex(newSeedIdx);
-                    const seedStrings = Object.keys(accountInfo);
-                    this.props.setBalance(accountInfo[seedStrings[newSeedIdx]].addresses); // Dangerous
-                    this.props.setReceiveAddress(' ');
-
-                    // Get new account info if not sending or getting transfers
-                    if (!isSendingTransfer && !isGettingTransfers) {
-                        this.props.getAccountInfo(seedName, newSeedIdx, accountInfo, error => {
-                            if (error) {
-                                this.onNodeError();
-                            }
-                        });
-                    }
-                }
-            },
-        };
-    }
-
     render() {
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
-        const topBarProps = this.getTopBarProps();
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer} />
                 <View style={styles.midContainer}>
@@ -340,7 +246,7 @@ class Home extends Component {
                     attachments={tailTransactionHashesForPendingTransactions}
                     attach={this.props.replayBundle}
                 />
-                <TopBar {...topBarProps} />
+                <TopBar />
                 <DropdownAlert
                     ref={ref => DropdownHolder.setDropdown(ref)}
                     elevation={120}
@@ -361,7 +267,7 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 0.4,
+        flex: 0.8,
         marginBottom: height / 100,
     },
     titlebarContainer: {
@@ -390,20 +296,28 @@ const styles = StyleSheet.create({
         paddingTop: height / 150,
     },
     midContainer: {
-        flex: 4.7,
+        flex: 4.62,
         zIndex: 0,
     },
     bottomContainer: {
-        flex: 0.6,
+        flex: 0.68,
     },
     tabBar: {
         flex: 1,
         elevation: 7,
         flexDirection: 'row',
-        backgroundColor: '#1A1A1A',
         justifyContent: 'space-around',
-        alignItems: 'center',
-        opacity: 0.9,
+        alignItems: 'flex-end',
+        backgroundColor: '#071f28',
+        opacity: 0.98,
+        paddingBottom: height / 65,
+        shadowColor: '#071f28',
+        shadowRadius: 4,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 1.0,
     },
     button: {
         justifyContent: 'flex-end',
@@ -411,8 +325,8 @@ const styles = StyleSheet.create({
     },
     icon: {
         paddingTop: height / 40,
-        height: width / 18,
-        width: width / 18,
+        height: width / 15,
+        width: width / 15,
     },
     iconTitle: {
         color: 'white',
@@ -421,6 +335,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 80,
         fontFamily: 'Lato-Regular',
         fontSize: width / 40.5,
+        backgroundColor: 'transparent',
     },
     fullyOpaque: {
         opacity: 1,
@@ -465,16 +380,9 @@ const mapStateToProps = state => ({
     tailTransactionHashesForPendingTransactions: getTailTransactionHashesForPendingTransactions(state),
     account: state.account,
     childRoute: state.home.childRoute,
-    isTopBarActive: state.home.isTopBarActive,
 });
 
 const mapDispatchToProps = dispatch => ({
-    incrementSeedIndex: () => {
-        dispatch(incrementSeedIndex());
-    },
-    decrementSeedIndex: () => {
-        dispatch(decrementSeedIndex());
-    },
     getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },
@@ -484,9 +392,7 @@ const mapDispatchToProps = dispatch => ({
     setBalance: addressesWithBalance => {
         dispatch(setBalance(addressesWithBalance));
     },
-    setSeedIndex: index => dispatch(setSeedIndex(index)),
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-    toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
     replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
     generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
     disposeOffAlert: () => dispatch(disposeOffAlert()),
@@ -499,13 +405,10 @@ Home.propTypes = {
     alerts: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     childRoute: PropTypes.string.isRequired,
-    isTopBarActive: PropTypes.bool.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
     tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
     generateAlert: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
-    toggleTopBarDisplay: PropTypes.func.isRequired,
-    setSeedIndex: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

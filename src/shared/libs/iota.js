@@ -1,6 +1,6 @@
 import IOTA from 'iota.lib.js';
 
-const defaultNode = 'https://www.veriti.io';
+const defaultNode = 'http://ceres.iota.community:14600/';
 
 export const iota = new IOTA({
     provider: defaultNode,

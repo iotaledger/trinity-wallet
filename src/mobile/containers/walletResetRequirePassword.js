@@ -7,6 +7,7 @@ import { setFirstUse, setOnboardingComplete } from '../../shared/actions/account
 import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import PropTypes from 'prop-types';
+import { persistor } from '../store';
 import {
     StyleSheet,
     View,
@@ -47,7 +48,7 @@ class WalletResetRequirePassword extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
@@ -66,7 +67,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-green.png',
+                    screenBackgroundImageName: 'bg-blue.png',
                     screenBackgroundColor: '#102e36',
                 },
                 overrideBackPress: true,
@@ -79,13 +80,21 @@ class WalletResetRequirePassword extends Component {
         const { password, resetWallet } = this.props;
 
         if (isAuthenticated) {
-            deleteFromKeyChain(password);
-            resetWallet();
-            this.props.setOnboardingComplete(false);
-            this.props.setFirstUse(true);
-            this.props.clearTempData();
-            this.props.setPassword('');
-            this.redirectToInitialScreen();
+              persistor.purge().then(() => {
+                  deleteFromKeyChain(password);
+                  this.props.resetWallet();
+                  this.props.setOnboardingComplete(false);
+                  this.props.setFirstUse(true);
+                  this.props.clearTempData();
+                  this.props.setPassword('');
+                  this.redirectToInitialScreen();
+              }).catch(() => {
+                  this.dropdown.alertWithType(
+                      'error',
+                      'Something went wrong',
+                      'Something went wrong while resetting your wallet. Please try again.',
+                  );
+              });
         } else {
             this.dropdown.alertWithType(
                 'error',
@@ -97,7 +106,7 @@ class WalletResetRequirePassword extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
