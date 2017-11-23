@@ -38,8 +38,8 @@
         "accountName": "Nombre de cuenta"
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
+        "oops": "¡Ay! Algo salió mal",
+        "oopsExplanation": "Parece que algo salió mal al actualizar tu contraseña. Por favor, inténtalo de nuevo.",
         "passwordUpdated": "Password updated",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
         "incorrectPassword": "Incorrect password",
