@@ -40,9 +40,9 @@
     "changePassword": {
         "oops": "¡Ay! Algo salió mal",
         "oopsExplanation": "Parece que algo salió mal al actualizar tu contraseña. Por favor, inténtalo de nuevo.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
-        "incorrectPassword": "Incorrect password",
+        "passwordUpdated": "Contraseña actualizada",
+        "passwordUpdatedExplanation": "Tu contraseña se ha actualizado con éxito.",
+        "incorrectPassword": "Contraseña incorrecta",
         "incorrectPasswordExplanation": "The password you entered is incorrect. Please try again.",
         "passwordsDoNotMatch": "Las contraseñas no coinciden",
         "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
