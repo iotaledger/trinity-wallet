@@ -38,6 +38,7 @@
     "react-native-detect-navbar-android": "^0.1.0",
     "react-native-dropdownalert": "git+https://git@github.com/rajivshah3/react-native-dropdownalert",
     "react-native-extra-dimensions-android": "^0.21.0",
+    "react-native-fabric": "^0.5.1",
     "react-native-fs": "^2.8.1",
     "react-native-hockeyapp": "^0.5.1",
     "react-native-html-to-pdf": "^0.4.0",
