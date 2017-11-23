@@ -113,23 +113,23 @@
     "saveYourSeed": {
         "mustSaveYourSeed": "Du musst deinen Seed mit",
         "atLeastOne": "mindestens einer",
-        "ofTheOptions": "of the options listed below."
+        "ofTheOptions": "von den aufgeführten Optionen speichern."
     },
     "seedReentry": {
         "incorrectSeed": "Ungültiger Seed.",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch mal.",
         "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gespeichert hast.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gespeichert hast, gehe bitte zum vorherigen Bildschirm und tu dies."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
-        "invalidAddressExplanation1": "Address should be 81 characters long with a 9 character checksum at the end (90 characters in total).",
+        "invalidAddressExplanation1": "Die Adresse muss 81 Zeichen lang sein mit einer 9 Zeichen langen Prüfsumme am Ende (90 Zeichen insgesamt).",
         "invalidAddressExplanation2": "Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
         "notEnoughFunds": "Zu niedriges Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuse": "Key Wiederverwendung",
+        "keyReuseExplanation": "Die Adresse die du zum Senden verwendest wurde bereits benutzt. Bitte versuche es mit einer anderen Adresse.",
         "recipientAddress": "Adresse des Empfängers",
         "amount": "Betrag",
         "max": "MAX",
@@ -142,7 +142,7 @@
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
         "nowWeNeedTo": "Jetzt müssen wir ein Passwort einrichten.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "Eine verschlüsselte Kopie deines Seeds wird auf deinem Gerät gespeichert. Du wirst dieses Passwort verwenden um in Zukunft auf dein Wallet zuzugreifen.",
         "ensure": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
         "retypePassword": "Passwort erneut eingeben"
     },
