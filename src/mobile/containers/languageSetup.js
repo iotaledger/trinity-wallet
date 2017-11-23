@@ -16,8 +16,9 @@ import {
     ImageBackground,
     StatusBar,
 } from 'react-native';
-import { changeHomeScreenRoute } from '../../shared/actions/home';
+import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
+import setFirstUse from '../../shared/actions/account.js';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -91,10 +92,8 @@ class LanguageSetup extends Component {
     render() {
         const { t, onboardingComplete } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
-                {!onboardingComplete && (
-                    <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
-                )}
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+                <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
@@ -359,16 +358,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    onboardingComplete: state.account.onboardingComplete,
 });
 
-const mapDispatchToProps = dispatch => ({
-    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-});
-
-LanguageSetup.propTypes = {
-    onboardingComplete: PropTypes.bool.isRequired,
-    changeHomeScreenRoute: PropTypes.func.isRequired,
-};
-
-export default translate('setLanguage')(connect(mapStateToProps, mapDispatchToProps)(LanguageSetup));
+export default connect(mapStateToProps)(LanguageSetup);

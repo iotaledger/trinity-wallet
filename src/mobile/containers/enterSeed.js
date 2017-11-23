@@ -97,7 +97,7 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -118,7 +118,7 @@ class EnterSeed extends React.Component {
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light', fontSize: width / 20.7 }}
+                                            labelTextStyle={{ fontFamily: 'Inconsolata-Bold', fontSize: width / 20.7 }}
                                             labelFontSize={width / 31.8}
                                             fontSize={isAndroid ? width / 27.6 : width / 20.7}
                                             labelPadding={3}
@@ -134,6 +134,7 @@ class EnterSeed extends React.Component {
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
                                             secureTextEntry={true}
+                                            multiline
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
@@ -295,7 +296,7 @@ const styles = StyleSheet.create({
     },
     textField: {
         color: 'white',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',

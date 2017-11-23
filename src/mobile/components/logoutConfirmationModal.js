@@ -9,7 +9,7 @@ class LogoutConfirmationModal extends React.Component {
     render() {
         return (
             <ImageBackground
-                source={require('../../shared/images/bg-green.png')}
+                source={require('../../shared/images/bg-blue.png')}
                 style={{ width: width / 1.15, alignItems: 'center' }}
             >
                 <View style={styles.modalContent}>

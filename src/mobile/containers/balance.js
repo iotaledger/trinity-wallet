@@ -83,7 +83,7 @@ class Balance extends React.Component {
                     />
                     <View style={styles.line} />
                 </View>
-                <View style={{ flex: 5 }}>
+                <View style={styles.chartContainer}>
                     <Chart
                         marketData={this.props.marketData}
                         getPrice={() => this.props.getPrice()}
@@ -102,13 +102,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
     },
     balanceContainer: {
         flex: 1,
         alignItems: 'center',
-        paddingTop: height / 50,
-        paddingBottom: isAndroid ? height / 10 : height / 20,
+        justifyContent: 'flex-end',
+        paddingTop: isAndroid ? height / 13 : height / 20,
+        paddingBottom: isAndroid ? height / 30 : height / 50,
     },
     iotaBalance: {
         color: 'white',
@@ -118,16 +119,19 @@ const styles = StyleSheet.create({
     },
     fiatBalance: {
         color: 'white',
-        paddingTop: 5,
+        paddingTop: height / 150,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
     },
     transactionsContainer: {
-        flex: 2.5,
+        flex: 2.2,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: height / 150,
+        paddingVertical: height / 100,
+    },
+    chartContainer: {
+        flex: 5.3,
     },
     line: {
         borderBottomColor: 'white',
