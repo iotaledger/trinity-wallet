@@ -99,6 +99,15 @@ class Receive extends Component {
         }
     }
 
+    getQrOpacity() {
+        const { tempAccount: { receiveAddress } } = this.props;
+        if ((receiveAddress == ' ') && isAndroid) {
+            return 0.1;
+        } else {
+            return 1;
+        }
+    }
+
     render() {
         const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
         const message = this.state.message;
@@ -107,7 +116,7 @@ class Receive extends Component {
                 <View style={styles.container}>
                     <View style={{flex:1, justifyContent: 'center', alignItems: 'center', paddingTop: height / 50}}>
                         <View style={{opacity: this.getOpacity(), alignItems: 'center', flex: 2.3, justifyContent: 'center' }}>
-                            <View style={styles.qrContainer}>
+                            <View style={[styles.qrContainer, {opacity: this.getQrOpacity()}]}>
                                 <QRCode value={receiveAddress + ':' + message} size={isAndroid ? height / 5 : height / 4.7} bgColor="#000" fgColor="#FFF" />
                             </View>
                             <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
