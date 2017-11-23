@@ -1,156 +1,204 @@
 {
-    "notifications": {
-        "invalidServer_title": "Napačen strežnik",
-        "invalidServer_text": "Naslov strežnika, ki ste ga vnesli, ni pravilen",
-        "unknownError_title": "Prišlo je do neznane napake",
-        "unknownError_text": "Željenega dejanja trenutno ni možno izvesti. Prosimo poskusite kasneje."
+    "global": {
+        "invalidResponse": "Invalid response",
+        "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "seed": "Seme",
+        "back": "NAZAJ",
+        "done": "Opravljeno",
+        "next": "Naprej",
+        "manualCopy": "Ročna kopija",
+        "paperWallet": "Papirnata denarnica",
+        "copyToClipboard": "Copy to Clipboard",
+        "qr": "QR",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage.",
+        "enterSeed": "Please enter your seed.",
+        "mainWallet": "MAIN WALLET",
+        "secondWallet": "SECOND WALLET",
+        "thirdWallet": "THIRD WALLET",
+        "fourthWallet": "FOURTH WALLET",
+        "fifthWallet": "FIFTH WALLET",
+        "sixthWallet": "SIXTH WALLET",
+        "otherWallet": "OTHER WALLET",
+        "yes": "DA",
+        "no": "NE",
+        "password": "Geslo",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "Geslo ni bilo prepoznano. Prosimo, poskusite ponovno."
     },
-    "setLanguage": {
-        "dropdown_title": "Jezik",
-        "button1": "Naprej"
+    "addAdditionalSeed": {
+        "seedInvalidChars": "Seed contains invalid characters",
+        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedTooShort": "Seed je prekratek",
+        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "nameInUse": "Account name already in use",
+        "nameInUseExplanation": "Please use a unique account name for your seed.",
+        "enterAccountName": "Enter an account name.",
+        "accountName": "Account name"
     },
-    "welcome1": {
-        "text1": "Zahvaljujemo se vam za prenos IOTA denarnice.",
-        "text2": "Naslednjih nekaj minut bomo porabili za nastavitve vaše denarnice.",
-        "reminder": "Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces.",
-        "button1": "Naprej",
-        "button2": "NAZAJ"
+    "changePassword": {
+        "oops": "Oops! Something went wrong",
+        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
+        "passwordUpdated": "Password updated",
+        "passwordUpdatedExplanation": "Your password has been successfully updated.",
+        "incorrectPassword": "Incorrect password",
+        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "passwordsDoNotMatch": "Gesli se ne ujemata",
+        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordTooShort": "Geslo je prekratko",
+        "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
+        "oldPassword": "Cannot set old password",
+        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password"
     },
-    "welcome2": {
-        "text1": "Okei. Pa nastavimo vašo denarnico!",
-        "text2": "Ali že imate seed, ki bi ga želeli uporabiti?",
-        "seed_explanation1": "IOTA seed je kot uporabniško ime in geslo za vaš račun, združeni v enoten niz 81 znakov.",
-        "seed_explanation2": "Uporabite ga lahko za dostop do vaših sredstev iz katere koli denarnice, na kateri koli napravi. V primeru da seed izgubiste, prav tako izgubiste vaša sredstva",
-        "reminder": "Prosimo vas, da imate seed shranjen na varnem",
-        "button1": "DA",
-        "button2": "NE"
-    },
-    "lightserver": {
-        "text1": "Light strežnik je prehod do IOTA omrežja, ki ga prijazno zagotavljajo člani skupnosti ali naši poslovni partnerji. ",
-        "text2": "Več informacij o strežnikih lahko najdete na: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Na spodnjem seznamu izberite strežnik.",
-        "server_label": "Strežnik",
-        "custom_server_label": "Ostali naslovi strežnika",
-        "other": "Ostalo",
-        "button1": "Naprej",
-        "button2": "NAZAJ"
-    },
-    "login": {
-        "text": "Prosimo vnesite vaše geslo",
-        "placeholder": "Geslo",
-        "error_title": "Neprepoznano geslo",
-        "error_text": "Geslo ni bilo prepoznano. Prosimo, poskusite ponovno.",
-        "button1": "Opravljeno",
-        "button2": "UPORABA SEEDA"
+    "copyToClipboard": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCopied": "Seed copied",
+        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
+        "clickToCopy": "Click the button below and copy your seed to a password manager."
     },
     "enterSeed": {
-        "error_title": "Seed je prekratek",
-        "error_text": "Seed mora imeti vsaj 60 znakov. Prosimo, poskusite ponovno.",
-        "invalid_seed_title": "Napačen seed",
-        "invalid_seed_text": "Vaš seed je nepravilen. Seed mora vsebovati velike črke (A-Z) in številko 9, ter mora imeti med 60-81 znakov.",
-        "placeholder": "Seed",
-        "seed_explanation": "Seme mora biti dolgo 81 znakov in mora vsebovati velike črke od A do Z ali številko 9. Uporaba semena daljšega od 81 znakov ni mogoča.",
-        "reminder": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA",
-        "scan_code": "Skeniraj QR kodo",
-        "close": "Zapri",
-        "button1": "Opravljeno",
-        "button2": "NAZAJ"
-    },
-    "newSeedSetup": {
-        "title": "Napravi nov seed",
-        "button1": "Napravi nov seed",
-        "text1": "Pritisnite posamezne znake za jih ponaključit.",
-        "text2": "Nato kliknite NAPREJ",
-        "button2": "Naprej",
-        "button3": "NAZAJ"
-    },
-    "saveYourSeed": {
-        "text1": "Seed morate shraniti z vsaj eno izmed spodnjih možnosti.",
-        "text2": "vsaj en",
-        "optionA": "Ročna kopija",
-        "optionB": "Printanje papirnate denarnice",
-        "optionC": "Kopiraj v clipboard",
-        "button1": "Naprej",
-        "button2": "NAZAJ"
-    },
-    "saveYourSeed2": {
-        "optionA": "Ročna kopija",
-        "optionB": " Papirnata denarnica",
-        "optionC": "Kopiraj v clipboard",
-        "explanation": "Vaš seed ima 81 znakov iz leve proti desni. Shranite si vaš seed ter njegovo kontrolno vsoto in tri krat preverite, da sta pravilna.",
-        "text": "tri krat preveri",
-        "button": "Opravljeno"
-    },
-    "saveYourSeed3": {
-        "optionA": "Ročna kopija",
-        "optionB": " Papirnata denarnica",
-        "optionC": "Kopiraj v clipboard",
-        "explanation": "Kliknite na spodnji gumb za kopiranje seeda v password manager. Seed bo ostal v clipbordu še 60 sekund.",
-        "text": "Ne shranjujte seeda v navadnem tekstu.",
-        "button1": "Kopiraj v clipboard",
-        "button2": "Opravljeno"
-    },
-    "saveYourSeed4": {
-        "optionA": "Ročna kopija",
-        "optionB": " Papirnata denarnica",
-        "optionC": "Kopiraj v clipboard",
-        "explanation": "Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
-        "text1": "Shranite ga varno",
-        "text2": "Nikoli z nikomer ne delite svojega seeda.",
-        "check_button": "IOTA logotip",
-        "button1": "Printanje papirnate denarnice",
-        "button2": "Opravljeno"
-    },
-    "nameYourSeed": {
-        "text": "Here you can enter an name for your seed.",
-        "label": "Seed name",
-        "placeholder": "Main Wallet",
-        "explanation": "Enter a name for your seed to make them easier to differentiate.",
-        "button1": "DONE",
-        "button2": "GO BACK"
-    },
-    "setPassword": {
-        "title": "Nastavitve gesla",
-        "text": "Ok, zdaj moramo nastaviti geslo.",
-        "explanation": "To geslo boste v prihodnosti uporabili za dostop do vaše denarnice. Šifrirana kopija vašega seeda bo shranjena na vaši napravi.",
-        "reminder": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
-        "placeholder1": "'Geslo'",
-        "placeholder2": "Znova vnesite geslo",
-        "error1_title": "Geslo je prekratko",
-        "error1_text": "Your password must be at least 8 characters. Please try again.",
-        "error2_title": "Gesli se ne ujemata",
-        "error2_text": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
-        "button1": "Opravljeno",
-        "button2": "NAZAJ"
-    },
-    "onboardingComplete": {
-        "text": "Denarnica je sedaj nastavljena in pripravljena za uporabo. Če želite v karkoli spremeniti v prihodnosti, poglejte v menu z orodji.",
-        "button": "Naprej"
+        "invalidCharacters": "Seed contains invalid characters",
+        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedTooShort": "Seed je prekratek",
+        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "seedExplanation": "Seme mora biti dolgo 81 znakov in mora vsebovati velike črke od A do Z ali številko 9. Uporaba semena daljšega od 81 znakov ni mogoča.",
+        "neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
     },
     "home": {
-        "tab1": "Sredstva",
-        "tab2": "Pošlji",
-        "tab3": "Prejmi",
-        "tab4": "Zgodovina",
-        "tab5": "Orodja",
-        "mcap": "Tržna kapitalizacija",
-        "change": "Spremeni",
-        "volume": "Količina transakcij",
-        "address": "Naslov",
+        "balance": "Sredstva",
+        "send": "Pošlji",
+        "receive": "Prejmi",
+        "history": "Zgodovina",
+        "settings": "SETTINGS"
+    },
+    "languageSetup": {
+        "language": "Jezik"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "enterPassword": "Prosimo vnesite vaše geslo.",
+        "useSeed": "UPORABA SEEDA",
+        "login": "LOG IN"
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "Pritisnite posamezne znake za jih ponaključit."
+    },
+    "onboardingComplete": {
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+    },
+    "paperWallet": {
+        "clickToPrint": "Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
+        "storeSafely": "Shranite ga varno.",
+        "neverShare": "Nikoli z nikomer ne delite svojega seeda.",
+        "iotaLogo": "IOTA logotip",
+        "printWallet": "Printanje papirnate denarnice"
+    },
+    "receive": {
+        "somethingWentWrong": "Something went wrong",
+        "somethingWentWrongExplanation": "Please restart the app.",
+        "addressCopied": "Address copied",
+        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "generateNewAddress": "Ustvari nov naslov"
+    },
+    "saveYourSeed": {
+        "mustSaveYourSeed": "You must save your seed with",
+        "atLeastOne": "vsaj en",
+        "ofTheOptions": "of the options listed below."
+    },
+    "seedReentry": {
+        "incorrectSeed": "Incorrect seed.",
+        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
+        "thisIsACheck": "This is a check to make sure you saved your seed.",
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+    },
+    "send": {
+        "invalidAddress": "Invalid address",
+        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
+        "invalidAddressExplanation2": "Address contains invalid characters.",
+        "invalidAddressExplanation3": "Address contains an invalid checksum.",
+        "notEnoughFunds": "Not enough funds",
+        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "keyReuse": "Key reuse",
+        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "recipientAddress": "Recipient address",
         "amount": "Količina",
-        "button1": "Pošlji",
-        "button2": "Ustvari nov naslov",
-        "button3": "Odjava",
-        "changeMode": "Spremeni način",
-        "minimal": "Minimal",
-        "standard": "Standard",
-        "expert": "Strokovnjak",
-        "changeTheme": "Spremeni temo",
-        "changeLanguage": "Menjava jezika",
+        "max": "MAX",
+        "message": "Message",
+        "send": "SEND IOTA"
+    },
+    "setPassword": {
+        "passwordTooShort": "Geslo je prekratko",
+        "passwordTooShortExplanation": "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
+        "passwordMismatch": "Gesli se ne ujemata",
+        "passwordMismatchExplanation": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
+        "nowWeNeedTo": "Ok, zdaj moramo nastaviti geslo.",
+        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "ensure": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
+        "retypePassword": "Retype Password"
+    },
+    "setSeedName": {
+        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
+        "youCanAdd": "You can add more seeds in the Settings menu."
+    },
+    "settings": {
+        "transferSending": "Transfer sending",
+        "transferSendingExplanation": "Please wait until your transfer has been sent.",
+        "generatingAddress": "Generating receive address",
+        "generatingAddressExplanation": "Please wait until your address has been generated.",
+        "mode": "Mode",
+        "theme": "Theme",
+        "currency": "Currency",
+        "language": "Jezik",
         "addNewSeed": "Dodaj nov seed",
-        "setup2fa": "2FA nastavitev",
+        "twoFA": "Two-factor authentication",
         "changePassword": "Zamenjaj geslo",
-        "advancedSettings": "Napredne nastavitve",
-        "logout": "Odjava"
+        "advanced": "Napredne nastavitve",
+        "logout": "Log out",
+        "reset": "Reset wallet",
+        "back": "Back"
+    },
+    "resetWalletConfirmation": {
+        "thisAction": "This action cannot be undone.",
+        "warning1": "All your wallet data including your",
+        "warning2": "seeds, password",
+        "warning3": "and",
+        "warning4": "other account information",
+        "warning5": "will be lost.",
+        "areYouSure": "Are you sure you want to continue?"
+    },
+    "resetWalletRequirePassword": {
+        "enterPassword": "Enter password to reset your wallet.",
+        "cancel": "CANCEL",
+        "reset": "RESET"
+    },
+    "walletSetup": {
+        "doYouAlreadyHaveASeed": "Ali že imate seed, ki bi ga želeli uporabiti?",
+        "seedExplanation": "IOTA seed je kot uporabniško ime in geslo za vaš račun, združeni v enoten niz 81 znakov.",
+        "explanation1": "You can use it to access your funds from",
+        "explanation2": "any wallet",
+        "explanation3": ", on",
+        "explanation4": "any device",
+        "explanation5": ". but if you lose your seed, you also lose your IOTA.",
+        "keepSafe": "Prosimo vas, da imate seed shranjen na varnem."
+    },
+    "welcome": {
+        "thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice.",
+        "weWillSpend": "Naslednjih nekaj minut bomo porabili za nastavitve vaše denarnice.",
+        "reminder": "Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces."
+    },
+    "writeSeedDown": {
+        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "tripleCheck": "tri krat preveri",
+        "thatTheyAreCorrect": "that they are correct."
     }
 }
