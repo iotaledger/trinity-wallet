@@ -9,7 +9,7 @@ const height = global.height;
 class UnitInfoModal extends React.Component {
     render() {
         return (
-            <TouchableOpacity onPress={() => this.props.hideModal()}>
+            <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
                 <View style={styles.modalContent}>
                     <Image source={require('../../shared/images/iota-white.png')} style={styles.iotaIcon} />
                     <TextWithLetterSpacing spacing={4} textStyle={styles.iotaText}>
@@ -50,6 +50,11 @@ class UnitInfoModal extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    modalContainer: {
+      flex:1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
     modalContent: {
         borderRadius: 10,
         borderWidth: 2,

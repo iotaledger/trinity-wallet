@@ -29,7 +29,7 @@ class Chart extends React.Component {
     }
 
     componentWillMount() {
-        this.changeCurrency(this.props.marketData.currency);
+        //this.changeCurrency(this.props.marketData.currency);
     }
 
     changeCurrency() {
