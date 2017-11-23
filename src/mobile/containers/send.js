@@ -82,14 +82,14 @@ class Send extends Component {
         this.setState({ amount, maxPressed: false})
     }
 
-    hasInvalidCharacters(value) {
-        // Currently just checks for white spaces
-        const testAgainst = /\s/;
-        return testAgainst.test(value);
+    isValidAddress(address) {
+        if(this.isValidAddressChars(address) !== null){
+            return size(address) === 90 && iota.utils.isValidChecksum(address);
+        }
     }
 
-    isValidAddress(address) {
-        return size(address) === 90 && iota.utils.isValidChecksum(address) && !this.hasInvalidCharacters(address);
+    isValidAddressChars(address){
+        return address.match(/^[A-Z9]+$/)
     }
 
     isValidMessage(message) {
@@ -116,7 +116,7 @@ class Send extends Component {
 
         if (size(address) !== 90) {
             return dropdown.alertWithType(...props, 'Address should be 81 characters long and should have a checksum.');
-        } else if (this.hasInvalidCharacters(address)) {
+        } else if ((address.match(/^[A-Z9]+$/) == null)) {
             return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
 
@@ -134,8 +134,9 @@ class Send extends Component {
         const messageIsValid = this.isValidMessage(message);
         const enoughBalance = this.enoughBalance();
         const amountIsValid = this.isValidAmount(amount);
+        const addressCharsAreValid = this.isValidAddressChars(address);
 
-        if (addressIsValid && messageIsValid && enoughBalance && amountIsValid) {
+        if (addressIsValid && messageIsValid && enoughBalance && amountIsValid && addressCharsAreValid) {
             this._showModal();
         }
 
