@@ -134,14 +134,8 @@ class AddAdditionalSeed extends React.Component {
     }
 
     onBackPress() {
-        this.props.navigator.push({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-            },
+        this.props.navigator.pop({
             animated: false,
-            overrideBackPress: true,
         });
     }
     onQRPress() {

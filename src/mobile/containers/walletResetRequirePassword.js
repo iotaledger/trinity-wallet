@@ -7,6 +7,7 @@ import { setFirstUse, setOnboardingComplete } from '../../shared/actions/account
 import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import PropTypes from 'prop-types';
+import { persistor } from '../store';
 import {
     StyleSheet,
     View,
@@ -79,13 +80,21 @@ class WalletResetRequirePassword extends Component {
         const { password, resetWallet } = this.props;
 
         if (isAuthenticated) {
-            deleteFromKeyChain(password);
-            resetWallet();
-            this.props.setOnboardingComplete(false);
-            this.props.setFirstUse(true);
-            this.props.clearTempData();
-            this.props.setPassword('');
-            this.redirectToInitialScreen();
+              persistor.purge().then(() => {
+                  deleteFromKeyChain(password);
+                  this.props.resetWallet();
+                  this.props.setOnboardingComplete(false);
+                  this.props.setFirstUse(true);
+                  this.props.clearTempData();
+                  this.props.setPassword('');
+                  this.redirectToInitialScreen();
+              }).catch(() => {
+                  this.dropdown.alertWithType(
+                      'error',
+                      'Something went wrong',
+                      'Something went wrong while resetting your wallet. Please try again.',
+                  );
+              });
         } else {
             this.dropdown.alertWithType(
                 'error',
