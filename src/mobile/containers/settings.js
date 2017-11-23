@@ -11,7 +11,6 @@ import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import { logoutFromWallet } from '../../shared/actions/app';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -26,16 +25,6 @@ class Settings extends React.Component {
             settings: true,
         };
         this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     _showModal = () => this.setState({ isModalVisible: true });
@@ -186,10 +175,11 @@ class Settings extends React.Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: '#102e36',
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -208,10 +198,11 @@ class Settings extends React.Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: '#102e36',
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -231,9 +222,10 @@ class Settings extends React.Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-green.png',
+                    screenBackgroundImageName: 'bg-blue.png',
                     screenBackgroundColor: '#102e36',
                 },
+                overrideBackPress: true,
             },
         });
     }
@@ -247,6 +239,7 @@ class Settings extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -259,6 +252,7 @@ class Settings extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -305,7 +299,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        paddingTop: height / 60,
     },
     titleText: {
         color: 'white',
@@ -348,17 +341,6 @@ const styles = StyleSheet.create({
     modalContent: {
         backgroundColor: '#16313a',
         justifyContent: 'center',
-    },
-    line1: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        width: width / 1.16,
-    },
-    line2: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        width: width / 1.16,
-        marginTop: height / 4.8,
     },
     dropdownTitle: {
         fontSize: 16,

@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import store, { persistState } from '../shared/store';
 
-persistState(store, {
+export const persistor = persistState(store, {
     storage: AsyncStorage,
     blacklist: ['tempAccount'],
 });

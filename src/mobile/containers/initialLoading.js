@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Image,
+    ImageBackground,
+    Text,
+    StatusBar,
+    BackHandler,
+    Platform,
+} from 'react-native';
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import { DetectNavbar } from '../theme/androidSoftKeys';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 
@@ -24,40 +33,59 @@ export default class InitialLoading extends Component {
 
     componentDidMount() {
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-    }
+    componentWillUnmount() {}
 
     handleBackButton() {
-        return true;
+        return false;
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            //        HockeyApp.feedback(); //Could possibly cause a crash
+    clearKeychain() {
+        getAllItems({
+            sharedPreferencesName: 'mySharedPrefs',
+            keychainService: 'myKeychain',
+        }).then(keys => {
+            if (Platform.OS === 'ios') {
+                if (!keys[0].length) {
+                    return;
+                } else {
+                    var key = '';
+                    for (i = 0; i < keys[0].length; i++) {
+                        key = keys[0][i].key;
+                        deleteItem(key);
+                    }
+                    console.log('Keychain cleared successfully');
+                }
+            }
+            if (Platform.OS === 'android') {
+                if (!keys.length) {
+                    return;
+                } else {
+                    var key = '';
+                    Object.keys(keys).forEach(deleteItem(key));
+                    console.log('Keychain cleared successfully');
+                }
+            }
         });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onLoaded() {
         const state = store.getState();
         if (!state.account.onboardingComplete) {
+            this.clearKeychain();
             this.props.navigator.push({
                 screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true,
             });
         } else {
             this.props.navigator.push({
                 screen: 'login',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true,
             });
         }
     }
@@ -65,7 +93,7 @@ export default class InitialLoading extends Component {
     render() {
         const currentYear = getCurrentYear();
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
                     <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
