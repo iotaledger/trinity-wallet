@@ -294,7 +294,6 @@ const styles = StyleSheet.create({
         height: 1,
         borderBottomWidth: 0.25,
         borderBottomColor: 'white',
-        borderStyle: 'dotted'
     },
     scrollViewContainer: {
         maxHeight: height
