@@ -12,7 +12,9 @@ import {
     ImageBackground,
     StatusBar,
 } from 'react-native';
+import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
+import setFirstUse from '../../shared/actions/account.js';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -80,7 +82,7 @@ class LanguageSetup extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
@@ -306,4 +308,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LanguageSetup;
+const mapStateToProps = state => ({
+});
+
+export default connect(mapStateToProps)(LanguageSetup);
