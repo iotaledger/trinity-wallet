@@ -40,7 +40,6 @@ class TopBar extends Component {
 
     static propTypes = {
         seedNames: PropTypes.array.isRequired,
-        balance: PropTypes.number.isRequired,
         accountInfo: PropTypes.object.isRequired,
         seedIndex: PropTypes.number.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
@@ -104,7 +103,7 @@ class TopBar extends Component {
 
         const baseContent = (
             <View style={styles.titleWrapper}>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => this.props.toggleTopBarDisplay()}>
                     <View>
                         <Text style={styles.mainTitle}>{selectedTitle}</Text>
                         <Text style={styles.subtitle}>{selectedSubtitle}</Text>
@@ -149,7 +148,7 @@ class TopBar extends Component {
         return (
             <View style={styles.titleWrapper}>
                 {baseContent}
-                {size(withoutSelectedTitle) ? <View style={styles.separator} /> : null}
+                {size(withoutSelectedTitle) ? <View style={styles.topSeparator} /> : null}
                 {restContent}
             </View>
         );
@@ -243,7 +242,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 50,
         opacity: 0.98,
         backgroundColor: '#071f28',
-        paddingLeft: width / 10,
         shadowColor: '#071f28',
         shadowOffset: {
             width: 0,
@@ -279,7 +277,9 @@ const styles = StyleSheet.create({
     chevron: {
         height: width / 20,
         width: width / 20,
-        marginRight: width / 20,
+        position: 'absolute',
+        top: 0,
+        right: width / 20
     },
     separator: {
         width: width / 2,
@@ -288,8 +288,16 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.25,
         borderBottomColor: 'white',
     },
+    topSeparator: {
+        width: width,
+        marginVertical: height / 60,
+        height: 1,
+        borderBottomWidth: 0.25,
+        borderBottomColor: 'white',
+        borderStyle: 'dotted'
+    },
     scrollViewContainer: {
-        maxHeight: height / 3.5,
+        maxHeight: height
     },
 });
 
