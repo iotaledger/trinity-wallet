@@ -29,7 +29,7 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
-        "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "seedInvalidCharsExplanation": "Seedは大文字アルファベット（A〜Z）、数字の\"9\"のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
         "seedTooShortExplanation": "Seedは81文字にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
         "nameInUse": "このアカウント名はすでに使われています。",
@@ -64,7 +64,7 @@
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
-        "invalidCharactersExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "invalidCharactersExplanation": "Seedは大文字アルファベット（A〜Z）、数字の\"9\"のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
         "seedTooShortExplanation": "Seedは81文字にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
         "seedExplanation": "Seedは81文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、81文字以上の長さにはできません。",
@@ -123,7 +123,7 @@
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
-        "invalidAddressExplanation1": "Address should be 81 characters long with a 9 character checksum at the end (90 characters in total).",
+        "invalidAddressExplanation1": "アドレスは81文字の最後に9文字のチェックサムが加わった合計90文字でなければなりません。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
         "notEnoughFunds": "残高不足です。",
