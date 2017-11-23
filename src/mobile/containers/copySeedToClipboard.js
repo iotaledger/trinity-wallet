@@ -13,8 +13,7 @@ import {
 import { connect } from 'react-redux';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
-
+import Seedbox from '../components/seedBox.js';
 const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -36,14 +35,7 @@ class CopySeedToClipboard extends React.Component {
         }
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
     componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
         this.clearTimeout();
         Clipboard.setString('');
     }
@@ -79,128 +71,18 @@ class CopySeedToClipboard extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.subtitlesContainer}>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Manual Copy</Text>
-                        </View>
-                        <View style={styles.lineContainer}>
-                            <Text style={styles.line}>────────</Text>
-                        </View>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.subtitle}>Paper Wallet</Text>
-                        </View>
-                        <View style={styles.lineContainer}>
-                            <Text style={styles.line}>────────</Text>
-                        </View>
-                        <View style={styles.subtitleContainer}>
-                            <Text style={styles.currentSubtitle}>Copy To Clipboard</Text>
-                        </View>
-                    </View>
+                </View>
+                <View style={styles.midContainer}>
                     <Text style={styles.infoTextNormal}>
                         Click the button below and copy your seed to a password manager.
                     </Text>
                     <Text style={styles.infoTextBold}> Do not store the seed in plain text.</Text>
-                </View>
-                <View style={styles.midContainer}>
-                    <View style={styles.seedBox}>
-                        <Image source={require('../../shared/images/arrow-white.png')} style={styles.arrow} />
-                        <View style={styles.seedBoxTextContainer}>
-                            <View>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(0, 3)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(12, 15)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(24, 27)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(36, 39)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(48, 51)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(60, 63)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(72, 75)}
-                                </Text>
-                            </View>
-                            <View>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(3, 6)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(15, 18)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(27, 30)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(39, 42)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(51, 54)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(63, 66)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(75, 78)}
-                                </Text>
-                            </View>
-                            <View>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(6, 9)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(18, 21)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(30, 33)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(42, 45)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(54, 57)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(66, 69)}
-                                </Text>
-                                <Text style={styles.seedBoxTextLeft}>
-                                    {this.props.tempAccount.seed.substring(78, 81)}
-                                </Text>
-                            </View>
-                            <View>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(9, 12)}
-                                </Text>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(21, 24)}
-                                </Text>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(33, 36)}
-                                </Text>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(45, 48)}
-                                </Text>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(57, 60)}
-                                </Text>
-                                <Text style={styles.seedBoxTextRight}>
-                                    {this.props.tempAccount.seed.substring(69, 72)}
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 55 }}>
+                    <Seedbox seed={this.props.tempAccount.seed} />
+                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 22 }}>
                         <View style={styles.copyButton}>
                             <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
                         </View>
@@ -236,17 +118,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.4,
+        flex: 0.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
         paddingHorizontal: width / 20,
     },
     midContainer: {
-        flex: 3.6,
+        flex: 4.6,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 4.75,
     },
     bottomContainer: {
         justifyContent: 'center',
@@ -270,45 +151,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
-    currentSubtitle: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        flexWrap: 'wrap',
-    },
-    subtitle: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        flexWrap: 'wrap',
-        opacity: 0.5,
-    },
-    subtitlesContainer: {
-        flexDirection: 'row',
-        flex: 1,
-        paddingTop: height / 10,
-    },
-    subtitleContainer: {
-        paddingHorizontal: width / 75,
-        flex: 1,
-        justifyContent: 'center',
-    },
-    line: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 33,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-        opacity: 0.5,
-    },
-    lineContainer: {
-        flex: 1.5,
-        justifyContent: 'center',
-    },
     infoTextNormal: {
         paddingTop: height / 12,
         color: 'white',
@@ -325,6 +167,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingTop: height / 80,
+        paddingBottom: height / 40,
     },
     doneButton: {
         borderColor: '#9DFFAF',
@@ -350,8 +193,8 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
-        width: width / 2.5,
-        height: height / 16,
+        width: width / 2,
+        height: height / 12,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
@@ -359,49 +202,8 @@ const styles = StyleSheet.create({
     copyText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
+        fontSize: width / 29.6,
         backgroundColor: 'transparent',
-    },
-    seedBox: {
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 15,
-        width: width / 1.65,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: height / 80,
-        marginTop: height / 60,
-    },
-    seedBoxTextContainer: {
-        width: width / 1.65,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        paddingTop: height / 160,
-        paddingLeft: width / 70,
-    },
-    seedBoxTextLeft: {
-        color: 'white',
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 25,
-        textAlign: 'justify',
-        letterSpacing: 8,
-        backgroundColor: 'transparent',
-        paddingRight: width / 70,
-        paddingVertical: 2,
-    },
-    seedBoxTextRight: {
-        color: 'white',
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 25,
-        textAlign: 'justify',
-        letterSpacing: 8,
-        backgroundColor: 'transparent',
-        paddingVertical: 2,
-    },
-    arrow: {
-        width: width / 2,
-        height: height / 80,
     },
     dropdownTitle: {
         fontSize: width / 25.9,

@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -14,22 +13,13 @@ class OnboardingComplete extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
