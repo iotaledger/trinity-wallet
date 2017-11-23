@@ -123,7 +123,7 @@
     },
     "send": {
         "invalidAddress": "Alamat salah",
-        "invalidAddressExplanation1": "Address should be 81 characters long with a 9 character checksum at the end (90 characters in total).",
+        "invalidAddressExplanation1": "Alamat harus 81 karakter dan diakhiri dengan cek jumlah 9 karakter (total 90 karakter).",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
         "notEnoughFunds": "Dana tidak mencukupi",
