@@ -37,7 +37,7 @@ class AddNewSeedModal extends React.Component {
                     </TouchableOpacity>
                     <TouchableOpacity onPress={event => this.onExistingSeedPress()}>
                         <View style={styles.existingSeedButton}>
-                            <Text style={styles.existingSeedButtonText}>ADD EXISTING SEED</Text>
+                            <Text style={styles.existingSeedButtonText}>USE EXISTING SEED</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

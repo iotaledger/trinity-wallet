@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     copyButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
+        borderRadius: 13,
         width: width / 2,
         height: height / 12,
         justifyContent: 'center',
