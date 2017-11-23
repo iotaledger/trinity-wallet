@@ -45,19 +45,19 @@ class AddAdditionalSeed extends React.Component {
 
     getDefaultSeedName() {
         if (this.props.account.seedCount == 0) {
-            return 'MAIN WALLET';
+            return 'MAIN ACCOUNT';
         } else if (this.props.account.seedCount == 1) {
-            return 'SECOND WALLET';
+            return 'SECOND ACCOUNT';
         } else if (this.props.account.seedCount == 2) {
-            return 'THIRD WALLET';
+            return 'THIRD ACCOUNT';
         } else if (this.props.account.seedCount == 3) {
-            return 'FOURTH WALLET';
+            return 'FOURTH ACCOUNT';
         } else if (this.props.account.seedCount == 4) {
-            return 'FIFTH WALLET';
+            return 'FIFTH ACCOUNT';
         } else if (this.props.account.seedCount == 5) {
-            return 'SIXTH WALLET';
+            return 'SIXTH ACCOUNT';
         } else if (this.props.account.seedCount == 6) {
-            return 'OTHER WALLET';
+            return 'OTHER ACCOUNT';
         }
     }
 
@@ -80,8 +80,8 @@ class AddAdditionalSeed extends React.Component {
         } else if (this.props.account.seedNames.includes(this.state.seedName)) {
             this.dropdown.alertWithType(
                 'error',
-                'Nickname already in use',
-                `Please use a unique nickname for your seed.`,
+                'Account name already in use',
+                `Please use a unique account name.`,
             );
         } else {
             this.props.clearTempData();
@@ -211,7 +211,7 @@ class AddAdditionalSeed extends React.Component {
                                 </View>
                                 <View style={styles.seedNickNameContainer}>
                                     <View style={styles.subtitleContainer}>
-                                        <Text style={styles.title}>Enter a seed nickname.</Text>
+                                        <Text style={styles.title}>Enter an account name.</Text>
                                     </View>
                                     <TextField
                                         style={styles.textField}
