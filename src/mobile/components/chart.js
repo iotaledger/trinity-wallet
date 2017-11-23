@@ -18,10 +18,11 @@ class Chart extends React.Component {
         var polling;
     }
     componentDidMount() {
-        timer.setInterval('polling', () => this.startPolling(), 101000);
+        timer.setInterval('chartPolling', () => this.startPolling(), 101000);
     }
 
     startPolling() {
+        // 'console.log('POLLING CHART DATA')'
         this.props.getMarketData();
         this.props.getChartData();
         this.props.getPrice();

@@ -36,19 +36,19 @@ class SetSeedName extends React.Component {
 
     getDefaultSeedName() {
         if (this.props.account.seedCount == 0) {
-            return 'MAIN WALLET';
+            return 'MAIN ACCOUNT';
         } else if (this.props.account.seedCount == 1) {
-            return 'SECOND WALLET';
+            return 'SECOND ACCOUNT';
         } else if (this.props.account.seedCount == 2) {
-            return 'THIRD WALLET';
+            return 'THIRD ACCOUNT';
         } else if (this.props.account.seedCount == 3) {
-            return 'FOURTH WALLET';
+            return 'FOURTH ACCOUNT';
         } else if (this.props.account.seedCount == 4) {
-            return 'FIFTH WALLET';
+            return 'FIFTH ACCOUNT';
         } else if (this.props.account.seedCount == 5) {
-            return 'SIXTH WALLET';
+            return 'SIXTH ACCOUNT';
         } else if (this.props.account.seedCount == 6) {
-            return 'OTHER WALLET';
+            return 'OTHER ACCOUNT';
         }
     }
 
@@ -142,7 +142,7 @@ class SetSeedName extends React.Component {
                         <View style={styles.topContainer}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.greetingText}>Enter a nickname for your seed.</Text>
+                                <Text style={styles.greetingText}>Enter a name for your account.</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
@@ -153,7 +153,7 @@ class SetSeedName extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Seed nickname"
+                                label="Account name"
                                 tintColor="#F7D002"
                                 autoCapitalize="characters"
                                 autoCorrect={false}
@@ -171,9 +171,9 @@ class SetSeedName extends React.Component {
                             <View style={styles.infoTextContainer}>
                                 <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                                 <Text style={styles.infoText}>
-                                    You can use multiple seeds with this wallet. Each seed requires a nickname.
+                                    You can use multiple accounts with this wallet. Each account requires a name.
                                 </Text>
-                                <Text style={styles.infoText}>You can add more seeds in the Settings menu.</Text>
+                                <Text style={styles.infoText}>You can add more accounts in the Settings menu.</Text>
                             </View>
                         </View>
                         <View style={styles.bottomContainer}>
