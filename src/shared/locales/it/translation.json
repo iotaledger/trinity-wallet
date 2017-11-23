@@ -14,13 +14,13 @@
         "notAvailable": "Questa funzione non è disponibile",
         "notAvailableExplanation": "Verrà aggiunta in una fase successiva.",
         "enterSeed": "Inserisci il tuo seme.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "mainWallet": "CONTO PRINCIPALE",
+        "secondWallet": "SECONDO CONTO",
+        "thirdWallet": "TERZO CONTO",
+        "fourthWallet": "QUARTO CONTO",
+        "fifthWallet": "QUINTO CONTO",
+        "sixthWallet": "SESTO CONTO",
+        "otherWallet": "ALTRO CONTO",
         "yes": "SI",
         "no": "NO",
         "password": "Password",
@@ -29,13 +29,13 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
-        "seedInvalidCharsExplanation": "Seeds can only contain the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidCharsExplanation": "I semi possono contenere solo le lettere maiuscole A-Z e il numero 9. Il tuo seme ha caratteri non validi. Si prega di riprovare.",
         "seedTooShort": "Il seme è troppo corto",
-        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently {seed.length} characters long. Please try again.",
-        "nameInUse": "Il nome per l'account è già in uso",
-        "nameInUseExplanation": "Si prega di utilizzare un nome per l'account univoco per il tuo seme.",
-        "enterAccountName": "Inserisci il nome per l'account.",
-        "accountName": "Nome per l'account"
+        "seedTooShortExplanation": "I semi devono avere 81 caratteri. Il tuo seme ha attualmente {seed.length} caratteri. Si prega di riprovare.",
+        "nameInUse": "Il nome di conto è già in uso",
+        "nameInUseExplanation": "Si prega di assegnare un nome di conto univoco al tuo seme.",
+        "enterAccountName": "Inserisci un nome di conto.",
+        "accountName": "Nome di conto"
     },
     "changePassword": {
         "oops": "Ops! Qualcosa è andato storto",
@@ -43,7 +43,7 @@
         "passwordUpdated": "Password aggiornata",
         "passwordUpdatedExplanation": "La tua password è stata aggiornata con successo.",
         "incorrectPassword": "Password non corretta",
-        "incorrectPasswordExplanation": "The password you entered is incorrect. Please try again.",
+        "incorrectPasswordExplanation": "La password inserita non è corretta. Si prega di riprovare.",
         "passwordsDoNotMatch": "Le password non corrispondono",
         "passwordsDoNotMatchExplanation": "Le password non corrispondono. Riprova.",
         "passwordTooShort": "La password è troppo corta",
@@ -64,10 +64,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Il seme contiene caratteri non validi",
-        "invalidCharactersExplanation": "Seeds can only contain the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation": "I semi possono contenere solo le lettere maiuscole A-Z e il numero 9. Il tuo seme ha caratteri non validi. Si prega di riprovare.",
         "seedTooShort": "Il seme è troppo corto",
-        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently {seed.length} characters long. Please try again.",
-        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, and the number 9. You cannot use seeds longer than 81 characters.",
+        "seedTooShortExplanation": "I semi devono avere 81 caratteri. Il tuo seme ha attualmente {seed.length} caratteri. Si prega di riprovare.",
+        "seedExplanation": "I semi dovrebbero avere 81 caratteri e contenere lettere maiuscole A-Z, e il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.",
         "neverShare": "NON MOSTRARE MAI IL TUO SEME A NESSUNO"
     },
     "home": {
@@ -123,7 +123,7 @@
     },
     "send": {
         "invalidAddress": "Indirizzo non valido",
-        "invalidAddressExplanation1": "Address should be 81 characters long with a 9 character checksum at the end (90 characters in total).",
+        "invalidAddressExplanation1": "L'indirizzo dovrebbe essere di 81 caratteri con un checksum di 9 caratteri alla fine (90 caratteri in totale).",
         "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
         "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
         "notEnoughFunds": "Fondi insufficenti",
@@ -147,7 +147,7 @@
         "retypePassword": "Reinserisci la password"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Con questo portafoglio, è possibile utilizzare più semi. Ogni seme richiede un nome di account.",
+        "canUseMultipleSeeds": "Con questo portafoglio, è possibile utilizzare più semi. Ogni seme richiede un nome di conto.",
         "youCanAdd": "Nel menu impostazioni, è possibile aggiungere più semi."
     },
     "settings": {
@@ -172,7 +172,7 @@
         "warning1": "Tutti i dati del tuo portafoglio tra cui",
         "warning2": "semi, password",
         "warning3": "e",
-        "warning4": "altre informazioni dell'account",
+        "warning4": "altre informazioni sui conti",
         "warning5": "andranno persi.",
         "areYouSure": "Sei sicuro di voler continuare?"
     },
@@ -183,7 +183,7 @@
     },
     "walletSetup": {
         "doYouAlreadyHaveASeed": "Possiedi già un seme che desideri utilizzare?",
-        "seedExplanation": "Il seme IOTA è come una combinazione di utente e password per il tuo account, in un'unica stringa di 81 caratteri.",
+        "seedExplanation": "Il seme IOTA è come una combinazione di utente e password per il tuo conto, in un'unica stringa di 81 caratteri.",
         "explanation1": "Puoi usarlo per accedere ai tuoi fondi da",
         "explanation2": "qualsiasi portafoglio",
         "explanation3": ", su",
