@@ -73,7 +73,7 @@ class CopySeedToClipboard extends React.Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
@@ -194,9 +194,9 @@ const styles = StyleSheet.create({
     copyButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
-        width: width / 2.5,
-        height: height / 16,
+        borderRadius: 13,
+        width: width / 2,
+        height: height / 12,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     copyText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
+        fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
     dropdownTitle: {

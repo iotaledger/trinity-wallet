@@ -76,7 +76,7 @@ class ChangePassword extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
@@ -178,7 +178,7 @@ class ChangePassword extends Component {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -240,12 +240,12 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midWrapper: {
-        flex: 2.5,
+        flex: 4,
         alignItems: 'center',
         paddingTop: height / 15,
     },
     bottomWrapper: {
-        flex: 2.2,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,

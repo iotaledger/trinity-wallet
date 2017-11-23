@@ -12,6 +12,7 @@ import {
     ImageBackground,
     StatusBar,
     Platform,
+    KeyboardAvoidingView
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -45,19 +46,19 @@ class AddAdditionalSeed extends React.Component {
 
     getDefaultSeedName() {
         if (this.props.account.seedCount == 0) {
-            return 'MAIN WALLET';
+            return 'MAIN ACCOUNT';
         } else if (this.props.account.seedCount == 1) {
-            return 'SECOND WALLET';
+            return 'SECOND ACCOUNT';
         } else if (this.props.account.seedCount == 2) {
-            return 'THIRD WALLET';
+            return 'THIRD ACCOUNT';
         } else if (this.props.account.seedCount == 3) {
-            return 'FOURTH WALLET';
+            return 'FOURTH ACCOUNT';
         } else if (this.props.account.seedCount == 4) {
-            return 'FIFTH WALLET';
+            return 'FIFTH ACCOUNT';
         } else if (this.props.account.seedCount == 5) {
-            return 'SIXTH WALLET';
+            return 'SIXTH ACCOUNT';
         } else if (this.props.account.seedCount == 6) {
-            return 'OTHER WALLET';
+            return 'OTHER ACCOUNT';
         }
     }
 
@@ -80,8 +81,8 @@ class AddAdditionalSeed extends React.Component {
         } else if (this.props.account.seedNames.includes(this.state.seedName)) {
             this.dropdown.alertWithType(
                 'error',
-                'Nickname already in use',
-                `Please use a unique nickname for your seed.`,
+                'Account name already in use',
+                `Please use a unique account name.`,
             );
         } else {
             this.props.clearTempData();
@@ -134,14 +135,8 @@ class AddAdditionalSeed extends React.Component {
     }
 
     onBackPress() {
-        this.props.navigator.push({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-            },
+        this.props.navigator.pop({
             animated: false,
-            overrideBackPress: true,
         });
     }
     onQRPress() {
@@ -167,30 +162,30 @@ class AddAdditionalSeed extends React.Component {
         const { seed, seedName } = this.state;
         const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
-                            <View style={styles.topContainer}>
+                            <View style={styles.topContainer} behavior="padding">
                                 <View style={styles.logoContainer}>
                                     <Image
                                         source={require('../../shared/images/iota-glow.png')}
                                         style={styles.iotaLogo}
                                     />
                                 </View>
+                            </View>
+                            <View style={styles.midContainer}>
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.title}>Please enter your seed.</Text>
                                 </View>
-                            </View>
-                            <View style={styles.midContainer}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
                                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                             labelFontSize={width / 31.8}
-                                            fontSize={isAndroid ? width / 27.6 : width / 20.7}
+                                            fontSize={width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"
@@ -218,7 +213,7 @@ class AddAdditionalSeed extends React.Component {
                                 </View>
                                 <View style={styles.seedNickNameContainer}>
                                     <View style={styles.subtitleContainer}>
-                                        <Text style={styles.title}>Enter a seed nickname.</Text>
+                                        <Text style={styles.title}>Enter an account name.</Text>
                                     </View>
                                     <TextField
                                         style={styles.textField}
@@ -285,14 +280,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 0.8,
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 2.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 12,
     },
     bottomContainer: {
         flex: 0.7,
@@ -424,8 +418,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     seedNickNameContainer: {
-        position: 'absolute',
-        top: height / 3,
+        paddingTop: height / 10
     },
 });
 
