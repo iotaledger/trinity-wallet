@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Image,
+    ImageBackground,
+    Text,
+    StatusBar,
+    BackHandler,
+    Platform,
+} from 'react-native';
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
 import { DetectNavbar } from '../theme/androidSoftKeys';
@@ -31,9 +41,39 @@ export default class InitialLoading extends Component {
         return false;
     }
 
+    clearKeychain() {
+        getAllItems({
+            sharedPreferencesName: 'mySharedPrefs',
+            keychainService: 'myKeychain',
+        }).then(keys => {
+            if (Platform.OS === 'ios') {
+                if (!keys[0].length) {
+                    return;
+                } else {
+                    var key = '';
+                    for (i = 0; i < keys[0].length; i++) {
+                        key = keys[0][i].key;
+                        deleteItem(key);
+                    }
+                    console.log('Keychain cleared successfully');
+                }
+            }
+            if (Platform.OS === 'android') {
+                if (!keys.length) {
+                    return;
+                } else {
+                    var key = '';
+                    Object.keys(keys).forEach(deleteItem(key));
+                    console.log('Keychain cleared successfully');
+                }
+            }
+        });
+    }
+
     onLoaded() {
         const state = store.getState();
         if (!state.account.onboardingComplete) {
+            this.clearKeychain();
             this.props.navigator.push({
                 screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
