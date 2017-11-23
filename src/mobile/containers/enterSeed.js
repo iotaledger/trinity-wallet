@@ -21,7 +21,6 @@ import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -38,16 +37,6 @@ class EnterSeed extends React.Component {
         };
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     handleKeyPress = event => {
         if (event.key == 'Enter') {
             Keyboard.dismiss();
@@ -55,25 +44,26 @@ class EnterSeed extends React.Component {
     };
 
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
+        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
                 `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
             );
-        } else if (this.state.seed.length < 60) {
+        } else if (this.state.seed.length < 81) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
-                    .seed.length} characters long. Please try again.`,
+                `Seeds must be 81 characters long. Your seed is currently ${this.state.seed
+                    .length} characters long. Please try again.`,
             );
-        } else if (this.state.seed.length >= 60) {
+        } else if (this.state.seed.length == 81) {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true,
             });
         }
     }
@@ -106,7 +96,7 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -127,7 +117,7 @@ class EnterSeed extends React.Component {
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light', fontSize: width / 20.7 }}
+                                            labelTextStyle={{ fontFamily: 'Inconsolata-Bold', fontSize: width / 20.7 }}
                                             labelFontSize={width / 31.8}
                                             fontSize={isAndroid ? width / 27.6 : width / 20.7}
                                             labelPadding={3}
@@ -142,6 +132,7 @@ class EnterSeed extends React.Component {
                                             value={seed}
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
+                                            secureTextEntry={true}
                                             multiline
                                         />
                                     </View>
@@ -307,7 +298,7 @@ const styles = StyleSheet.create({
     },
     textField: {
         color: 'white',
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'Lato-Light',
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',

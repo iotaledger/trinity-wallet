@@ -14,27 +14,17 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width;
 const height = global.height;
 
 class SaveYourSeed extends Component {
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     onDonePress() {
         this.props.navigator.push({
             screen: 'seedReentry',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -47,28 +37,31 @@ class SaveYourSeed extends Component {
     onWriteClick() {
         this.props.navigator.push({
             screen: 'writeSeedDown',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
             animated: false,
+            overrideBackPress: true,
         });
     }
     onPrintClick() {
         this.props.navigator.push({
             screen: 'paperWallet',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
             animated: false,
+            overrideBackPress: true,
         });
     }
     onCopyClick() {
         this.props.navigator.push({
             screen: 'copySeedToClipboard',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />

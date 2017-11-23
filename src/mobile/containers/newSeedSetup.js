@@ -17,7 +17,6 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from '../../shared/actions/tempAccount';
 import { randomBytes } from 'react-native-randombytes';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
 import ExtraDimensions from 'react-native-extra-dimensions-android';
@@ -49,15 +48,7 @@ class NewSeedSetup extends Component {
         methods.forEach(method => (this[method] = this[method].bind(this)));
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
     componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
@@ -101,6 +92,7 @@ class NewSeedSetup extends Component {
                 screen: 'saveYourSeed',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true,
             });
         } else {
             this.dropdown.alertWithType(
@@ -121,9 +113,18 @@ class NewSeedSetup extends Component {
                     navBarTransparent: true,
                 },
                 animated: false,
+                overrideBackPress: true,
             });
         } else {
-            this.props.navigator.pop({ animated: false });
+            this.props.navigator.push({
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                },
+                animated: false,
+                overrideBackPress: true,
+            });
         }
     }
 
@@ -156,7 +157,7 @@ class NewSeedSetup extends Component {
     render() {
         const { tempAccount: { seed } } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
@@ -218,7 +219,7 @@ class NewSeedSetup extends Component {
                     <View style={styles.buttonsContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.leftButton}>
-                                <Text style={styles.leftText}>Back</Text>
+                                <Text style={styles.leftText}>BACK</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={event => this.onNextPress()}>
@@ -234,7 +235,7 @@ class NewSeedSetup extends Component {
                                     opacity: this.state.randomised ? 1 : 0.3,
                                 }}
                             >
-                                <Text style={styles.rightText}>Next</Text>
+                                <Text style={styles.rightText}>NEXT</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

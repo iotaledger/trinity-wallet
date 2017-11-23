@@ -24,7 +24,6 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -40,16 +39,6 @@ class ChangePassword extends Component {
 
         this.goBack = this.goBack.bind(this);
         this.changePassword = this.changePassword.bind(this);
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     renderTextField(value, label, onChangeText) {
@@ -86,10 +75,11 @@ class ChangePassword extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -187,7 +177,7 @@ class ChangePassword extends Component {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>

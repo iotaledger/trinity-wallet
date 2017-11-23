@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+import OnboardingButtons from '../components/onboardingButtons.js';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -10,14 +10,14 @@ class Welcome extends React.Component {
         super(props);
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
+    onBackPress() {
+        this.props.navigator.pop({
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            animated: false,
         });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onNextPress() {
@@ -28,12 +28,13 @@ class Welcome extends React.Component {
                 navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
@@ -50,11 +51,12 @@ class Welcome extends React.Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={event => this.onNextPress()}>
-                        <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>NEXT</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this.onBackPress()}
+                        onRightButtonPress={() => this.onNextPress()}
+                        leftText={'BACK'}
+                        rightText={'NEXT'}
+                    />
                 </View>
             </ImageBackground>
         );
@@ -83,6 +85,7 @@ const styles = StyleSheet.create({
         flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
+        paddingBottom: height / 20,
     },
     nextButton: {
         borderColor: '#9DFFAF',

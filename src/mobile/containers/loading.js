@@ -16,7 +16,6 @@ import { setBalance, setFirstUse } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -27,22 +26,12 @@ class Loading extends Component {
         this.props.changeHomeScreenRoute('balance');
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     render() {
         const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
 
         if (!ready && this.props.account.firstUse) {
             return (
-                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -61,7 +50,7 @@ class Loading extends Component {
             );
         } else if (!ready && !this.props.account.firstUse) {
             return (
-                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <IotaSpin duration={3000} />
                 </ImageBackground>
