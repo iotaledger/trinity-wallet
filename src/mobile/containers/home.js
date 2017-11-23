@@ -47,7 +47,6 @@ class Home extends Component {
 
     componentDidMount() {
         this.props.setFirstUse(false);
-        this.startPolling();
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -59,6 +58,7 @@ class Home extends Component {
 
     startPolling() {
         if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
+            console.log('POLLING TX HISTORY')
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;

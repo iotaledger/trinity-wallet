@@ -12,7 +12,9 @@ import {
     ImageBackground,
     StatusBar,
 } from 'react-native';
+import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
+import setFirstUse from '../../shared/actions/account.js';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -306,4 +308,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LanguageSetup;
+const mapStateToProps = state => ({
+});
+
+export default connect(mapStateToProps)(LanguageSetup);
