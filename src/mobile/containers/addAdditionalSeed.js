@@ -11,6 +11,7 @@ import {
     ImageBackground,
     StatusBar,
     Platform,
+    KeyboardAvoidingView
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -133,14 +134,8 @@ class AddAdditionalSeed extends React.Component {
     }
 
     onBackPress() {
-        this.props.navigator.push({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-            },
+        this.props.navigator.pop({
             animated: false,
-            overrideBackPress: true,
         });
     }
     onQRPress() {
@@ -165,30 +160,30 @@ class AddAdditionalSeed extends React.Component {
     render() {
         const { seed, seedName } = this.state;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
-                            <View style={styles.topContainer}>
+                            <View style={styles.topContainer} behavior="padding">
                                 <View style={styles.logoContainer}>
                                     <Image
                                         source={require('../../shared/images/iota-glow.png')}
                                         style={styles.iotaLogo}
                                     />
                                 </View>
+                            </View>
+                            <View style={styles.midContainer}>
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.title}>Please enter your seed.</Text>
                                 </View>
-                            </View>
-                            <View style={styles.midContainer}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
                                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                             labelFontSize={width / 31.8}
-                                            fontSize={isAndroid ? width / 27.6 : width / 20.7}
+                                            fontSize={width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"
@@ -283,14 +278,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 0.8,
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 2.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 12,
     },
     bottomContainer: {
         flex: 0.7,
@@ -422,8 +416,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     seedNickNameContainer: {
-        position: 'absolute',
-        top: height / 3,
+        paddingTop: height / 10
     },
 });
 
