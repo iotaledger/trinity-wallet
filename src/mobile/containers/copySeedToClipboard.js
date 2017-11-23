@@ -193,8 +193,8 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
-        width: width / 2.5,
-        height: height / 16,
+        width: width / 2,
+        height: height / 12,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     copyText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
+        fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
     dropdownTitle: {
