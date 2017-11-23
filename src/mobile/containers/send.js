@@ -25,6 +25,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
+import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from '../../shared/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
@@ -74,17 +75,22 @@ class Send extends Component {
         this.setState({
             amount: (this.props.account.balance / 1000000).toString(),
             denomination: 'Mi',
+            maxPressed: true
         });
     }
 
-    hasInvalidCharacters(value) {
-        // Currently just checks for white spaces
-        const testAgainst = /\s/;
-        return testAgainst.test(value);
+    onAmountType(amount){
+        this.setState({ amount, maxPressed: false})
     }
 
     isValidAddress(address) {
-        return size(address) === 90 && iota.utils.isValidChecksum(address) && !this.hasInvalidCharacters(address);
+        if(this.isValidAddressChars(address) !== null){
+            return size(address) === 90 && iota.utils.isValidChecksum(address);
+        }
+    }
+
+    isValidAddressChars(address){
+        return address.match(/^[A-Z9]+$/)
     }
 
     isValidMessage(message) {
@@ -93,7 +99,8 @@ class Send extends Component {
     }
 
     isValidAmount(amount) {
-        if (!isNaN(amount)) return true;
+        var value = parseFloat(amount);
+        if (!isNaN(value) && value > 0) return true;
     }
 
     enoughBalance() {
@@ -110,7 +117,7 @@ class Send extends Component {
 
         if (size(address) !== 90) {
             return dropdown.alertWithType(...props, 'Address should be 81 characters long and should have a checksum.');
-        } else if (this.hasInvalidCharacters(address)) {
+        } else if ((address.match(/^[A-Z9]+$/) == null)) {
             return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
 
@@ -128,8 +135,9 @@ class Send extends Component {
         const messageIsValid = this.isValidMessage(message);
         const enoughBalance = this.enoughBalance();
         const amountIsValid = this.isValidAmount(amount);
+        const addressCharsAreValid = this.isValidAddressChars(address);
 
-        if (addressIsValid && messageIsValid && enoughBalance && amountIsValid) {
+        if (addressIsValid && messageIsValid && enoughBalance && amountIsValid && addressCharsAreValid) {
             this._showModal();
         }
 
@@ -247,25 +255,54 @@ class Send extends Component {
                 });
                 this.onSendPress();
                 break;
+            case 'unitInfo':
+                modalContent = (
+                    <UnitInfoModal
+                        hideModal={() => this._hideModal()}
+                    />
+                );
+                this.setState({
+                    selectedSetting,
+                    modalContent,
+                });
+                this._showModal();
+                break;
         }
     }
 
     onQRRead(data) {
         this.setState({
-            address: data,
+            address: data.substring(0,81),
+            message: data.substring(82,)
         });
         this._hideModal();
     }
 
+    _renderMaximum () {
+        if(this.state.maxPressed){
+            return (
+                <View style={{justifyContent: 'center'}}>
+                    <Text style={styles.maxWarningText}>
+                    MAXIMUM amount selected
+                    </Text>
+                </View>
+            )
+        } else {
+          return null;
+        }
+    }
+
     render() {
+
         let { amount, address, message } = this.state;
         const conversion = round(
-            parseInt(this.state.amount == '' ? 0 : this.state.amount) *
+            parseFloat(this.isValidAmount(this.state.amount) ? this.state.amount : 0) *
                 this.props.marketData.usdPrice /
                 1000000 *
                 this.getUnitMultiplier(),
             10,
         );
+        const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
             <ScrollView scrollEnabled={false} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -314,7 +351,7 @@ class Send extends Component {
                                 tintColor="#F7D002"
                                 autoCorrect={false}
                                 value={amount}
-                                onChangeText={amount => this.setState({ amount })}
+                                onChangeText={amount => this.onAmountType(amount)}
                             />
                         </View>
                         <Text style={styles.conversionText}>
@@ -329,14 +366,15 @@ class Send extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={styles.maxButtonContainer}>
-                        <View style={styles.buttonContainer}>
+                    <View style={styles.maxContainer}>
+                        <View style={styles.maxButtonContainer}>
                             <TouchableOpacity onPress={event => this.onMaxPress()}>
                                 <View style={styles.maxButton}>
                                     <Text style={styles.maxButtonText}> MAX </Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
+                        {this._renderMaximum()}
                     </View>
                     <View style={styles.textFieldContainer}>
                         <TextField
@@ -355,6 +393,8 @@ class Send extends Component {
                             onChangeText={message => this.setState({ message })}
                         />
                     </View>
+                </View>
+                <View style={styles.midContainer}>
                     {!this.props.tempAccount.isSendingTransfer && (
                         <View style={styles.sendIOTAButtonContainer}>
                             <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
@@ -364,7 +404,8 @@ class Send extends Component {
                             </TouchableOpacity>
                         </View>
                     )}
-                    <View style={{ flex: 1 }}>
+                    {this.props.tempAccount.isSendingTransfer && (
+                    <View style={{ height: height / 7, justifyContent: 'center' }}>
                         <ActivityIndicator
                             animating={this.props.tempAccount.isSendingTransfer}
                             style={styles.activityIndicator}
@@ -372,6 +413,17 @@ class Send extends Component {
                             color="#F7D002"
                         />
                     </View>
+                    ) }
+                </View>
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity style={styles.infoButton}  onPress={() => this.setModalContent('unitInfo')}>
+                        <View style={styles.info}>
+                            <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                            <Text style={styles.infoText}>
+                                IOTA units
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
                 <Modal
                     animationIn={'bounceInUp'}
@@ -405,7 +457,19 @@ const styles = StyleSheet.create({
     topContainer: {
         paddingHorizontal: width / 10,
         zIndex: 1,
+        flex: 3,
+        justifyContent: 'center',
+        //alignItems: 'center'
+    },
+    midContainer: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    bottomContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     textFieldContainer: {
         flex: 1,
@@ -443,6 +507,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: height / 90,
     },
+    maxButtonContainer: {
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
     sendIOTAButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
@@ -479,10 +547,11 @@ const styles = StyleSheet.create({
         bottom: height / 45,
         right: width / 4.6,
     },
-    maxButtonContainer: {
+    maxContainer: {
         justifyContent: 'flex-start',
         marginTop: height / 150,
         flexDirection: 'row',
+        alignItems: 'center'
     },
     maxButtonText: {
         color: 'white',
@@ -490,7 +559,14 @@ const styles = StyleSheet.create({
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
-    maxWarningText: {},
+    maxWarningText: {
+        color: '#FF6C69',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 29.6,
+        backgroundColor: 'transparent',
+        marginLeft: width / 30,
+        justifyContent: 'center'
+    },
     maxButton: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -501,6 +577,29 @@ const styles = StyleSheet.create({
         width: width / 6,
         height: height / 16,
     },
+    infoText: {
+        color: 'white',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 29.6,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    infoIcon: {
+        width: width / 25,
+        height: width / 25,
+        marginRight: width / 60
+    },
+    info: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    infoButton: {
+        position: 'absolute',
+        bottom: - height / 12,
+        right: 0,
+        left: 0
+    }
 });
 
 const mapStateToProps = state => ({

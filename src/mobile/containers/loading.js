@@ -32,7 +32,7 @@ class Loading extends Component {
 
         if (!ready && this.props.account.firstUse) {
             return (
-                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -51,7 +51,7 @@ class Loading extends Component {
             );
         } else if (!ready && !this.props.account.firstUse) {
             return (
-                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <IotaSpin duration={3000} />
                 </ImageBackground>

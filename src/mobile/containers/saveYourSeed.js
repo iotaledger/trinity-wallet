@@ -23,7 +23,7 @@ class SaveYourSeed extends Component {
     onDonePress() {
         this.props.navigator.push({
             screen: 'seedReentry',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
             animated: false,
             overrideBackPress: true,
         });
@@ -38,7 +38,7 @@ class SaveYourSeed extends Component {
     onWriteClick() {
         this.props.navigator.push({
             screen: 'writeSeedDown',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
             animated: false,
             overrideBackPress: true,
         });
@@ -46,7 +46,7 @@ class SaveYourSeed extends Component {
     onPrintClick() {
         this.props.navigator.push({
             screen: 'paperWallet',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
             animated: false,
             overrideBackPress: true,
         });
@@ -54,7 +54,7 @@ class SaveYourSeed extends Component {
     onCopyClick() {
         this.props.navigator.push({
             screen: 'copySeedToClipboard',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-green.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
             animated: false,
             overrideBackPress: true,
         });
@@ -62,7 +62,7 @@ class SaveYourSeed extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />

@@ -81,7 +81,7 @@ class SetPassword extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.6,
+        width: width / 1.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,

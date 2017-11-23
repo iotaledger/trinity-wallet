@@ -70,7 +70,7 @@ class Settings extends React.Component {
                     <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/add.png')} style={styles.icon} />
-                            <Text style={styles.titleText}>Add new seed</Text>
+                            <Text style={styles.titleText}>Add new account</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={event => this.on2FASetupPress()}>
@@ -185,7 +185,7 @@ class Settings extends React.Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: '#102e36',
             },
             animated: false,
@@ -208,7 +208,7 @@ class Settings extends React.Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: '#102e36',
             },
             animated: false,
@@ -232,7 +232,7 @@ class Settings extends React.Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-green.png',
+                    screenBackgroundImageName: 'bg-blue.png',
                     screenBackgroundColor: '#102e36',
                 },
                 overrideBackPress: true,
@@ -311,7 +311,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        paddingTop: height / 60,
     },
     titleText: {
         color: 'white',
