@@ -392,6 +392,8 @@ class Send extends Component {
                             onChangeText={message => this.setState({ message })}
                         />
                     </View>
+                </View>
+                <View style={styles.midContainer}>
                     {!this.props.tempAccount.isSendingTransfer && (
                         <View style={styles.sendIOTAButtonContainer}>
                             <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
@@ -410,7 +412,9 @@ class Send extends Component {
                             color="#F7D002"
                         />
                     </View>
-                  ) }
+                    ) }
+                </View>
+                <View style={styles.bottomContainer}>
                     <TouchableOpacity style={styles.infoButton}  onPress={() => this.setModalContent('unitInfo')}>
                         <View style={styles.info}>
                             <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
@@ -452,7 +456,19 @@ const styles = StyleSheet.create({
     topContainer: {
         paddingHorizontal: width / 10,
         zIndex: 1,
+        flex: 3,
+        justifyContent: 'center',
+        //alignItems: 'center'
+    },
+    midContainer: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    bottomContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     textFieldContainer: {
         flex: 1,

@@ -239,12 +239,12 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midWrapper: {
-        flex: 2.5,
+        flex: 4,
         alignItems: 'center',
         paddingTop: height / 15,
     },
     bottomWrapper: {
-        flex: 2.2,
+        flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
