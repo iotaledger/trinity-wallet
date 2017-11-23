@@ -11,6 +11,7 @@ import {
     BackHandler,
     Platform,
 } from 'react-native';
+import { getAllItems, deleteFromKeyChain } from '../../shared/libs/cryptography';
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
 import { DetectNavbar } from '../theme/androidSoftKeys';
@@ -42,29 +43,16 @@ export default class InitialLoading extends Component {
     }
 
     clearKeychain() {
-        getAllItems({
-            sharedPreferencesName: 'mySharedPrefs',
-            keychainService: 'myKeychain',
-        }).then(keys => {
+        getAllItems().then(keys => {
             if (Platform.OS === 'ios') {
                 if (!keys[0].length) {
                     return;
                 } else {
-                    var key = '';
-                    for (i = 0; i < keys[0].length; i++) {
+                    let key = '';
+                    for (let i = 0; i < keys[0].length; i++) {
                         key = keys[0][i].key;
-                        deleteItem(key);
+                        deleteFromKeyChain(key);
                     }
-                    console.log('Keychain cleared successfully');
-                }
-            }
-            if (Platform.OS === 'android') {
-                if (!keys.length) {
-                    return;
-                } else {
-                    var key = '';
-                    Object.keys(keys).forEach(deleteItem(key));
-                    console.log('Keychain cleared successfully');
                 }
             }
         });
