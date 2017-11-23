@@ -69,7 +69,7 @@ class Settings extends React.Component {
                     <TouchableOpacity onPress={event => this.onAddNewSeedPress()}>
                         <View style={styles.item}>
                             <Image source={require('../../shared/images/add.png')} style={styles.icon} />
-                            <Text style={styles.titleText}>Add new seed</Text>
+                            <Text style={styles.titleText}>Add new account</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={event => this.on2FASetupPress()}>
