@@ -5,7 +5,7 @@ import map from 'lodash/map';
 import each from 'lodash/each';
 import keys from 'lodash/keys';
 import { iota } from '../libs/iota';
-import { isMinutesAgo } from '../libs/dateUtils';
+import { isMinutesAgo, convertUnixTimeToJSDate } from '../libs/dateUtils';
 
 const account = (
     state = {
@@ -98,8 +98,8 @@ export const getTailTransactionHashesForPendingTransactions = (accountInfo, curr
                     !v.persistence &&
                     v.currentIndex === 0 &&
                     v.value > 0 &&
-                    isMinutesAgo(v.timestamp, 10) &&
-                    !isMinutesAgo(v.timestamp, 1440)
+                    isMinutesAgo(convertUnixTimeToJSDate(v.timestamp), 10) &&
+                    !isMinutesAgo(convertUnixTimeToJSDate(v.timestamp), 1440)
                 ) {
                     res.push(v.hash);
                 }

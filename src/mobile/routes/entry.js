@@ -15,7 +15,7 @@ Navigation.startSingleScreenApp({
         navigatorStyle: {
             navBarHidden: true,
             navBarTransparent: true,
-            screenBackgroundImageName: 'bg-green.png',
+            screenBackgroundImageName: 'bg-blue.png',
             screenBackgroundColor: '#102e36',
         },
         overrideBackPress: true,

@@ -37,7 +37,7 @@ export default class WalletResetConfirmation extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
@@ -57,7 +57,7 @@ export default class WalletResetConfirmation extends Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topWrapper}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
     confirmationTextWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: width / 8,
         paddingTop: height / 25,
     },
     confirmationText: {

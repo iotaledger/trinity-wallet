@@ -11,28 +11,31 @@
         "paperWallet": "Papirlommebok",
         "copyToClipboard": "Kopier til utklippstavle",
         "qr": "QR",
-        "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage."
+        "notAvailable": "Denne funksjonen er ikke tilgjengelig",
+        "notAvailableExplanation": "Dette vil bli lagt til i en senere utgave.",
+        "enterSeed": "Skriv inn din nøkkel.",
+        "mainWallet": "MAIN ACCOUNT",
+        "secondWallet": "SECOND ACCOUNT",
+        "thirdWallet": "THIRD ACCOUNT",
+        "fourthWallet": "FOURTH ACCOUNT",
+        "fifthWallet": "FIFTH ACCOUNT",
+        "sixthWallet": "SIXTH ACCOUNT",
+        "otherWallet": "OTHER ACCOUNT",
+        "yes": "JA",
+        "no": "NEI",
+        "password": "Passord",
+        "unrecognisedPassword": "Feil passord",
+        "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt."
     },
     "addAdditionalSeed": {
-        "mainWallet": "HOVED KONTO",
-        "secondWallet": "ANDRE KONTO",
-        "thirdWallet": "TREDJE KONTO",
-        "fourthWallet": "FJERDE KONTO",
-        "fifthWallet": "FEMTE KONTO",
-        "sixthWallet": "SJETTE KONTO",
-        "otherWallet": "ANNEN KONTO",
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
-        "seedInvalidCharsExplanation":
-            "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
+        "seedInvalidCharsExplanation": "Seeds can only contain the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Nøkkelen er for kort",
-        "seedTooShortExplanation":
-            "Nøkkelen må være minst 60 tegn (ideelt 81 tegn). Din nøkkel er {seed.length} tegn. Prøv på nytt.",
-        "nicknameInUse": "Kallenavnet er allerede i bruk",
-        "nicknameInUseExplanation": "Bruk et unikt kallenavn for din nøkkel.",
-        "enterSeed": "Skriv inn din nøkkel.",
-        "enterSeedNickname": "Skriv inn et kallenavn for nøkkelen.",
-        "seedNickname": "Kallenavn for nøkkel"
+        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently {seed.length} characters long. Please try again.",
+        "nameInUse": "Kallenavnet er allerede i bruk",
+        "nameInUseExplanation": "Bruk et unikt kallenavn for din nøkkel.",
+        "enterAccountName": "Angi et kontonavn.",
+        "accountName": "Kontonavn"
     },
     "changePassword": {
         "oops": "Au da. Noe gikk galt",
@@ -40,14 +43,13 @@
         "passwordUpdated": "Passord oppdatert",
         "passwordUpdatedExplanation": "Ditt passord ble oppdatert.",
         "incorrectPassword": "Feil passord",
-        "incorrectPasswordExplanation": "Passordet er feil. Prøv på nytt.",
+        "incorrectPasswordExplanation": "The password you entered is incorrect. Please try again.",
         "passwordsDoNotMatch": "Passordene er ikke like",
         "passwordsDoNotMatchExplanation": "Passordene er ikke like, prøv igjen.",
         "passwordTooShort": "Passordet er for kort",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Kan ikke angi gammelt passord",
-        "oldPasswordExplanation":
-            "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
+        "oldPasswordExplanation": "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
         "ensureStrongPassword": "Sikre du bruk et sterkt passord minst 12 tegn.",
         "currentPassword": "Nåværende passord",
         "newPassword": "Nytt passord",
@@ -57,20 +59,15 @@
         "seedCleared": "Nøkkel er fjernet",
         "seedClearedExplanation": "Nøkkelen er fjernet fra utklippstaven for din sikkerhet.",
         "seedCopied": "Nøkkelen er kopiert",
-        "seedCopiedExplanation":
-            "Nøkkelen er blitt kopiert til utklippstavlen og fjernes når du trykker \"DONE\" eller 60 sekunder er gått.",
+        "seedCopiedExplanation": "Nøkkelen er blitt kopiert til utklippstavlen og fjernes når du trykker \"DONE\" eller 60 sekunder er gått.",
         "clickToCopy": "Klikk knappen nedenfor og kopier din nøkkel til et passord-lagrings program."
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
-        "invalidCharactersExplanation":
-            "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
+        "invalidCharactersExplanation": "Seeds can only contain the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Nøkkelen er for kort",
-        "seedTooShortExplanation":
-            "Nøkkelen må være minst 60 tegn (ideelt 81 tegn). Din nøkkel er {seed.length} tegn. Prøv på nytt.",
-        "pleaseEnterSeed": "Skriv inn din nøkkel.",
-        "seedExplanation":
-            "Masternøkkel skal ha 81 tegn og inneholde bokstavene A-Z eller tallet 9. Du kan ikke bruke mer enn 81 tegn.",
+        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently {seed.length} characters long. Please try again.",
+        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, and the number 9. You cannot use seeds longer than 81 characters.",
         "neverShare": "OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE"
     },
     "home": {
@@ -84,22 +81,124 @@
         "language": "Språk"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "unrecognisedPassword": "Unrecognised password",
-        "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
+        "emptyPassword": "Tomt passord",
+        "emptyPasswordExplanation": "Du må angi et passord for å logge inn. Prøv på nytt.",
         "enterPassword": "Skriv inn passord.",
         "useSeed": "BRUK MASTERNØKKEL",
-        "login": "LOG IN"
+        "login": "LOGG INN"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGenerated": "Nøkkel er ikke blitt generert",
+        "seedNotGeneratedExplanation": "Trykk knappen for å generere ny nøkkel.",
+        "pressForNewSeed": "TRYKK FOR NY NØKKEL",
         "individualLetters": "Trykk enkelte tegn for å flytte de til ny tilfeldig plassering."
     },
     "onboardingComplete": {
-        "walletReady":
-            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Verktøy-menyen."
+    },
+    "paperWallet": {
+        "clickToPrint": "Klikk knappen nedenfor for å skrive ut en kopi av din nøkkel.",
+        "storeSafely": "Lagre den trygt.",
+        "neverShare": "Du må aldri dele nøkkelen din med noen.",
+        "iotaLogo": "IOTA logo",
+        "printWallet": "SKRIV UT PAPIRLOMMEBOK"
+    },
+    "receive": {
+        "somethingWentWrong": "Noe gikk galt",
+        "somethingWentWrongExplanation": "Start programmet på nytt.",
+        "addressCopied": "Addresse kopiert",
+        "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
+        "generateNewAddress": "FÅ NY MASTERNØKKEL"
+    },
+    "saveYourSeed": {
+        "mustSaveYourSeed": "Du må lagre nøkkelen med",
+        "atLeastOne": "minst én",
+        "ofTheOptions": "av alternativene nedenfor."
+    },
+    "seedReentry": {
+        "incorrectSeed": "Feil nøkkel.",
+        "incorrectSeedExplanation": "Nøkkelen du skrev inn er feil. Prøv på nytt.",
+        "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret nøkkelen din.",
+        "ifYouHaveNotSaved": "Dersom du ikke har lagret nøkkelen din, vennligst gå tilbake til forrige steg for å lagre."
+    },
+    "send": {
+        "invalidAddress": "Ugyldig adresse",
+        "invalidAddressExplanation1": "Address should be 81 characters long with a 9 character checksum at the end (90 characters in total).",
+        "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
+        "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
+        "notEnoughFunds": "Ikke nok IOTA",
+        "notEnoughFundsExplanation": "Du har ikke nok IOTA til å sende denne overføringen.",
+        "keyReuse": "Privatnøkkelen er brukt før",
+        "keyReuseExplanation": "Adressen du prøver å sende til er allerede brukt. Prøv en annen adresse.",
+        "recipientAddress": "Mottakeradresse",
+        "amount": "Beløp",
+        "max": "MAKS",
+        "message": "Melding",
+        "send": "SEND IOTA"
+    },
+    "setPassword": {
+        "passwordTooShort": "Passordet er for kort",
+        "passwordTooShortExplanation": "Passordet må være minst ${MIN_PASSWORD_LENGTH} tegn. Det er nå ${this.state.password.length} tegn. Prøv på nytt.",
+        "passwordMismatch": "Passordene samsvarer ikke",
+        "passwordMismatchExplanation": "Passordene du angav samsvarer ikke. Prøv på nytt.",
+        "nowWeNeedTo": "Nå må vi sette opp et passord.",
+        "anEncryptedCopy": "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du skal bruke dette passordet for å åpne lommeboken neste gang.",
+        "ensure": "Forsikre deg om at du bruk et sterkt passord, minst 12 tegn.",
+        "retypePassword": "Skriv inn passordet på nytt"
+    },
+    "setSeedName": {
+        "canUseMultipleSeeds": "Du kan lagre flere hovednøkler i denne lommeboken. Hver av disse må ha et eget kallenavn.",
+        "youCanAdd": "Du kan legge til flere hovednøkler i menyen for innstillinger."
+    },
+    "settings": {
+        "transferSending": "Sender overføring",
+        "transferSendingExplanation": "Vennligst vent til overføringen er ferdig.",
+        "generatingAddress": "Hent neste adresse for mottak",
+        "generatingAddressExplanation": "Vennligst vent til adressen er funnet frem.",
+        "mode": "Modus",
+        "theme": "Tema",
+        "currency": "Valuta",
+        "language": "Språk",
+        "addNewSeed": "Legg til ny hovednøkkel",
+        "twoFA": "To-faktor autentisering",
+        "changePassword": "Endre passord",
+        "advanced": "Avanserte innstillinger",
+        "logout": "Logg ut",
+        "reset": "Tilbakestill lommeboken",
+        "back": "Tilbake"
+    },
+    "resetWalletConfirmation": {
+        "thisAction": "Denne handlingen kan ikke angres.",
+        "warning1": "Alle data i lommeboken, inkludert dine",
+        "warning2": "nøkler, passord",
+        "warning3": "og",
+        "warning4": "annen kontoinformasjon",
+        "warning5": "vil gå tapt.",
+        "areYouSure": "Er du sikker på at du vil fortsette?"
+    },
+    "resetWalletRequirePassword": {
+        "enterPassword": "Angi passord for å tilbakestille lommeboken.",
+        "cancel": "AVBRYT",
+        "reset": "TILBAKESTILL"
+    },
+    "walletSetup": {
+        "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel du ønsker å bruke?",
+        "seedExplanation": "IOTA hovednøkkel er som brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
+        "explanation1": "Du kan bruke den for å få tilgang til dine IOTA fra",
+        "explanation2": "enhver lommebok",
+        "explanation3": ", på",
+        "explanation4": "enhver enhet",
+        "explanation5": ". men hvis du mister din hovednøkkel, du også miste dine IOTA.",
+        "keepSafe": "Vennligst sikre din hovednøkkel godt."
+    },
+    "welcome": {
+        "thankYou": "Takk for at du lastet ned IOTA-lommeboken.",
+        "weWillSpend": "Vi vil bruke neste minuttene til å sette opp lommeboken.",
+        "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
+    },
+    "writeSeedDown": {
+        "yourSeedIs": "Din hovednøkkel er 81 tegn og leses fra venstre mot høyre. Skriv ned denne og kontrolltegnene og",
+        "tripleCheck": "sjekk tre ganger",
+        "thatTheyAreCorrect": "at både nøkkel og kontrolltegn er skrevet korrekt."
     }
 }
