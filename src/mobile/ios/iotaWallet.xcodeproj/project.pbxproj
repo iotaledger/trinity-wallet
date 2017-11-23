@@ -981,7 +981,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = VG8ZVAW5U5;
+						DevelopmentTeam = D6XGU8EVBS;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1872,7 +1872,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = VG8ZVAW5U5;
+				DEVELOPMENT_TEAM = D6XGU8EVBS;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
@@ -1886,7 +1886,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.iotawallet;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.iota-wallet";
 				PRODUCT_NAME = iotaWallet;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1903,7 +1903,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VG8ZVAW5U5;
+				DEVELOPMENT_TEAM = D6XGU8EVBS;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
@@ -1917,7 +1917,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.iotawallet;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.iota-wallet";
 				PRODUCT_NAME = iotaWallet;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";

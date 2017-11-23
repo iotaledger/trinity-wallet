@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
     },
     textField: {
         color: 'white',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',
