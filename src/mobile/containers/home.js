@@ -42,7 +42,6 @@ class Home extends Component {
         this.state = {
             mode: 'STANDARD',
         };
-        var polling;
     }
 
     componentDidMount() {
@@ -56,9 +55,14 @@ class Home extends Component {
         timer.setInterval('polling', () => this.startPolling(), 47000);
     }
 
+    componentWillUnmount() {
+        timer.clearInterval('polling')
+        timer.clearInterval('chartPolling')
+    }
+
     startPolling() {
         if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
-            console.log('POLLING TX HISTORY')
+            //console.log('POLLING TX HISTORY')
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
