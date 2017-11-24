@@ -109,6 +109,15 @@ const styles = StyleSheet.create({
         paddingTop: isAndroid ? height / 13 : height / 20,
         paddingBottom: isAndroid ? height / 30 : height / 50,
     },
+    transactionsContainer: {
+        flex: 2.2,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: height / 100,
+    },
+    chartContainer: {
+        flex: 5.3,
+    },
     iotaBalance: {
         color: 'white',
         fontFamily: 'Lato-Heavy',
@@ -121,15 +130,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
-    },
-    transactionsContainer: {
-        flex: 2.2,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingVertical: height / 100,
-    },
-    chartContainer: {
-        flex: 5.3,
     },
     line: {
         borderBottomColor: 'white',

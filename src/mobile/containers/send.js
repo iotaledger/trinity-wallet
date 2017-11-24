@@ -303,127 +303,126 @@ class Send extends Component {
         );
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
-            <ScrollView scrollEnabled={false} style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={styles.textFieldContainer}>
-                            <TextField
-                                autoCapitalize="characters"
-                                style={styles.textField}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                maxLength={90}
-                                fontSize={height / 40}
-                                height={height / 24}
-                                labelPadding={2}
-                                baseColor="white"
-                                tintColor="#F7D002"
-                                enablesReturnKeyAutomatically={true}
-                                label="Recipient address"
-                                autoCorrect={false}
-                                value={address}
-                                onChangeText={address => this.setState({ address })}
-                            />
+                <View style={styles.container}>
+                    <StatusBar barStyle="light-content" />
+                    <View style={styles.emptyContainer}/>
+                    <View style={styles.topContainer}>
+                        <View style={styles.fieldContainer}>
+                            <View style={styles.textFieldContainer}>
+                                <TextField
+                                    autoCapitalize="characters"
+                                    style={styles.textField}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={height / 55}
+                                    maxLength={90}
+                                    fontSize={height / 40}
+                                    height={height / 24}
+                                    labelPadding={2}
+                                    baseColor="white"
+                                    tintColor="#F7D002"
+                                    enablesReturnKeyAutomatically={true}
+                                    label="Recipient address"
+                                    autoCorrect={false}
+                                    value={address}
+                                    onChangeText={address => this.setState({ address })}
+                                />
+                            </View>
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
+                                    <View style={styles.button}>
+                                        <Text style={styles.qrText}> QR </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
-                                <View style={styles.button}>
-                                    <Text style={styles.qrText}> QR </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={styles.textFieldContainer}>
-                            <TextField
-                                keyboardType={'numeric'}
-                                style={styles.textField}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
-                                height={height / 24}
-                                labelPadding={2}
-                                baseColor="white"
-                                enablesReturnKeyAutomatically={true}
-                                label="Amount"
-                                tintColor="#F7D002"
-                                autoCorrect={false}
-                                value={amount}
-                                onChangeText={amount => this.onAmountType(amount)}
-                            />
-                        </View>
-                        <Text style={styles.conversionText}>
-                            {' '}
-                            {conversion == 0 ? '' : conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2)}{' '}
-                        </Text>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
-                                <View style={styles.button}>
-                                    <Text style={styles.buttonText}> {this.state.denomination} </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={styles.maxContainer}>
-                        <View style={styles.maxButtonContainer}>
-                            <TouchableOpacity onPress={event => this.onMaxPress()}>
-                                <View style={styles.maxButton}>
-                                    <Text style={styles.maxButtonText}> MAX </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        {this._renderMaximum()}
-                    </View>
-                    <View style={styles.textFieldContainer}>
-                        <TextField
-                            style={styles.textField}
-                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                            labelFontSize={height / 55}
-                            fontSize={height / 40}
-                            height={height / 24}
-                            labelPadding={2}
-                            baseColor="white"
-                            enablesReturnKeyAutomatically={true}
-                            label="Message"
-                            tintColor="#F7D002"
-                            autoCorrect={false}
-                            value={message}
-                            onChangeText={message => this.setState({ message })}
-                        />
-                    </View>
-                </View>
-                <View style={styles.midContainer}>
-                    {!this.props.tempAccount.isSendingTransfer && (
-                        <View style={styles.sendIOTAButtonContainer}>
-                            <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
-                                <View style={styles.sendIOTAButton}>
-                                    <Text style={styles.sendIOTAText}>SEND</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                    {this.props.tempAccount.isSendingTransfer && (
-                    <View style={{ height: height / 7, justifyContent: 'center' }}>
-                        <ActivityIndicator
-                            animating={this.props.tempAccount.isSendingTransfer}
-                            style={styles.activityIndicator}
-                            size="large"
-                            color="#F7D002"
-                        />
-                    </View>
-                    ) }
-                </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity style={styles.infoButton}  onPress={() => this.setModalContent('unitInfo')}>
-                        <View style={styles.info}>
-                            <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                            <Text style={styles.infoText}>
-                                IOTA units
+                        <View style={styles.fieldContainer}>
+                            <View style={styles.textFieldContainer}>
+                                <TextField
+                                    keyboardType={'numeric'}
+                                    style={styles.textField}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={height / 55}
+                                    fontSize={height / 40}
+                                    height={height / 24}
+                                    labelPadding={2}
+                                    baseColor="white"
+                                    enablesReturnKeyAutomatically={true}
+                                    label="Amount"
+                                    tintColor="#F7D002"
+                                    autoCorrect={false}
+                                    value={amount}
+                                    onChangeText={amount => this.onAmountType(amount)}
+                                />
+                            </View>
+                            <Text style={styles.conversionText}>
+                                {' '}
+                                {conversion == 0 ? '' : conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2)}{' '}
                             </Text>
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
+                                    <View style={styles.button}>
+                                        <Text style={styles.buttonText}> {this.state.denomination} </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </TouchableOpacity>
-                </View>
+                        <View style={styles.maxContainer}>
+                            <View style={styles.maxButtonContainer}>
+                                <TouchableOpacity onPress={event => this.onMaxPress()}>
+                                    <View style={styles.maxButton}>
+                                        <Text style={styles.maxButtonText}> MAX </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            {this._renderMaximum()}
+                        </View>
+                        <View style={styles.messageFieldContainer}>
+                            <TextField
+                                style={styles.textField}
+                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                labelFontSize={height / 55}
+                                fontSize={height / 40}
+                                height={height / 24}
+                                labelPadding={2}
+                                baseColor="white"
+                                enablesReturnKeyAutomatically={true}
+                                label="Message"
+                                tintColor="#F7D002"
+                                autoCorrect={false}
+                                value={message}
+                                onChangeText={message => this.setState({ message })}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.midContainer}>
+                        {!this.props.tempAccount.isSendingTransfer && (
+                            <View style={styles.sendIOTAButtonContainer}>
+                                <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
+                                    <View style={styles.sendIOTAButton}>
+                                        <Text style={styles.sendIOTAText}>SEND</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        )}
+                        {this.props.tempAccount.isSendingTransfer && (
+                            <ActivityIndicator
+                                animating={this.props.tempAccount.isSendingTransfer}
+                                style={styles.activityIndicator}
+                                size="large"
+                                color="#F7D002"
+                            />
+                        ) }
+                    </View>
+                    <View style={styles.bottomContainer}>
+                        <TouchableOpacity style={styles.infoButton}  onPress={() => this.setModalContent('unitInfo')}>
+                            <View style={styles.info}>
+                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Text style={styles.infoText}>
+                                    IOTA units
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -437,7 +436,8 @@ class Send extends Component {
                 >
                     {this._renderModalContent()}
                 </Modal>
-            </ScrollView>
+                </View>
+
         );
     }
 }
@@ -445,7 +445,7 @@ class Send extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: height / 25,
+        justifyContent: 'center'
     },
     activityIndicator: {
         flex: 1,
@@ -453,27 +453,42 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: height / 5,
     },
+    emptyContainer: {
+        flex: 0.3
+    },
     topContainer: {
         paddingHorizontal: width / 10,
-        zIndex: 1,
-        flex: 3,
-        justifyContent: 'center',
-        //alignItems: 'center'
+        flex: 2.5,
+        justifyContent: 'flex-end',
     },
     midContainer: {
-        flex: 1,
+        flex: 1.4,
         justifyContent: 'center',
         alignItems: 'center'
     },
     bottomContainer: {
+        flex: 0.7,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    fieldContainer: {
+        flexDirection: 'row',
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'flex-end'
     },
     textFieldContainer: {
         flex: 1,
-        paddingRight: width / 20,
+        paddingRight: width / 30,
         paddingTop: 1,
+    },
+    messageFieldContainer: {
+        flex: 0.7,
+        justifyContent: 'center'
+    },
+    maxButtonContainer: {
+        flex: 0.5,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-start',
     },
     textField: {
         color: 'white',
@@ -504,11 +519,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         justifyContent: 'flex-end',
         alignItems: 'center',
-        paddingBottom: height / 90,
-    },
-    maxButtonContainer: {
-        justifyContent: 'flex-end',
-        alignItems: 'center',
+        paddingBottom: height / 110,
     },
     sendIOTAButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
@@ -532,7 +543,6 @@ const styles = StyleSheet.create({
     },
     sendIOTAButtonContainer: {
         alignItems: 'center',
-        paddingTop: height / 16,
     },
     separator: {
         flex: 1,
@@ -593,12 +603,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    infoButton: {
-        position: 'absolute',
-        bottom: - height / 12,
-        right: 0,
-        left: 0
-    }
 });
 
 const mapStateToProps = state => ({
