@@ -57,27 +57,23 @@ class WalletSetup extends React.Component {
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
                         <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                        <Text style={styles.infoText}>{t('seedExplanation')}</Text>
                         <Text style={styles.infoText}>
-                            The IOTA seed is like a master key to your account. It is 81 characters long.
+                            <Text style={styles.infoTextLight}>{t('explanation1')}</Text>
+                            <Text style={styles.infoTextRegular}>{t('explanation2')}</Text>
+                            <Text style={styles.infoTextLight}>{t('explanation3')}</Text>
+                            <Text style={styles.infoTextRegular}>{t('explanation4')}</Text>
+                            <Text style={styles.infoTextLight}>{t('explanation5')}</Text>
                         </Text>
-                        <Text style={styles.infoText}>
-                            <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
-                            <Text style={styles.infoTextRegular}> any wallet</Text>
-                            <Text style={styles.infoTextLight}>, on</Text>
-                            <Text style={styles.infoTextRegular}> any device</Text>
-                            <Text style={styles.infoTextLight}>
-                                . But if you lose your seed, you also lose your IOTA.{' '}
-                            </Text>
-                        </Text>
-                        <Text style={styles.infoText}>Please keep your seed safe.</Text>
+                        <Text style={styles.infoText}>{t('keepSafe')}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onNoPress()}
                         onRightButtonPress={() => this.onYesPress()}
-                        leftText={'NO'}
-                        rightText={'YES'}
+                        leftText={t('global:no')}
+                        rightText={t('global:yes')}
                     />
                 </View>
             </ImageBackground>
@@ -208,4 +204,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default translate('walletSetup')(WalletSetup);
+export default translate(['walletSetup', 'global'])(WalletSetup);
