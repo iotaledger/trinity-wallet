@@ -194,7 +194,7 @@
         "explanation2": "любого кошелька",
         "explanation3": "на",
         "explanation4": "любом устройстве,",
-        "explanation5": "но если вы потеряете свой ключ, вы потеряете ваши IOTA.",
+        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Пожалуйста, тщательно храните свой ключ."
     },
     "welcome": {
