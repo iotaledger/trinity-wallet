@@ -59,14 +59,14 @@
         "seedCleared": "Sleutel gewist",
         "seedClearedExplanation": "Het sleutel werd gewist van het Klembord voor uw veiligheid.",
         "seedCopied": "Sleutel gekopieerd",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "seedCopiedExplanation": "De sleutel is gekopieerd naar het Klembord en wordt gewist zodra u op \"KLAAR\" drukt of nadat 60 seconden zijn verstreken.",
+        "clickToCopy": "Klik op de knop hieronder en kopieer uw sleutel naar een wachtwoordmanager."
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharacters": "Ongeldige tekens in de sleutel",
+        "invalidCharactersExplanation": "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Seed is te kort",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "seedTooShortExplanation": "Sleutels dienen ten minste 60 karakters lang te zijn (idealiter 81 tekens). Uw sleutel is momenteel {sleutel.lengte} tekens lang. Probeer het opnieuw.",
         "seedExplanation": "Seedx moeten 81 tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met m meer dan 81 tekens.",
         "neverShare": "DEEL NOOIT JE SEED MET IEMAND"
     },
@@ -75,31 +75,31 @@
         "send": "Verstuur",
         "receive": "ONTVANG",
         "history": "GESCHIEDENIS",
-        "settings": "SETTINGS"
+        "settings": "INSTELLINGEN"
     },
     "languageSetup": {
         "language": "Taal"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "emptyPassword": "Leeg wachtwoord",
+        "emptyPasswordExplanation": "U moet een wachtwoord ingeven om in te loggen. Probeer het opnieuw.",
         "enterPassword": "Voer je wachtwoord in.",
         "useSeed": "GEBRUIK SEED",
-        "login": "LOG IN"
+        "login": "Aanmelden"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Het laden van de sleutel voor de eerste keer.",
+        "thisMayTake": "Dit kan een tijdje duren.",
+        "youMayNotice": "U kan een vertraging merken van uw systeem."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGenerated": "Sleutel is niet gegenereerd",
+        "seedNotGeneratedExplanation": "Klik op de knop genereer een nieuwe sleutel.",
+        "pressForNewSeed": "DRUK VOOR EEN NIEUWE SLEUTEL",
         "individualLetters": "Druk op individuele letters om deze te willekeurig te kiezen."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "De portefeuille is nu ingesteld en klaar voor gebruik. Als je wijzigingen wil aanbrengen in de toekomst, kijk in het menu Extra."
     },
     "paperWallet": {
         "clickToPrint": "Klik op de knop hieronder om een papieren kopie af te drukken van uw seed.",
@@ -109,74 +109,74 @@
         "printWallet": "PORTEMONNEE VAN PAPIER AFDRUKKEN"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "somethingWentWrong": "Er ging iets mis",
+        "somethingWentWrongExplanation": "Start de app opnieuw.",
+        "addressCopied": "Adres gekopieerd",
+        "addressCopiedExplanation": "Uw adres is naar het Klembord gekopieerd.",
         "generateNewAddress": "GENEREER EEN NIEUW ADRES"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with",
+        "mustSaveYourSeed": "U moet uw sleutel opslaan",
         "atLeastOne": "ten minste een",
-        "ofTheOptions": "of the options listed below."
+        "ofTheOptions": "van de onderstaande opties."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "incorrectSeed": "Onjuiste sleutel.",
+        "incorrectSeedExplanation": "De ingevoerde sleutel is onjuist. Probeer het nog eens.",
+        "thisIsACheck": "Dit is een controle om ervoor te zorgen dat u uw sleutel heeft opgeslagen.",
+        "ifYouHaveNotSaved": "Als u niet uw sleutel hebt opgeslagen, kunt u teruggaan naar het vorige scherm en dit alsnog doen."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
+        "invalidAddress": "Ongeldig adres",
+        "invalidAddressExplanation1": "Adres moet 81 tekens lang zijn en moet een controlesom hebben.",
+        "invalidAddressExplanation2": "Adres bevat ongeldige tekens.",
+        "invalidAddressExplanation3": "Adres bevat een ongeldige controlesom.",
+        "notEnoughFunds": "Saldo ontoereikend",
+        "notEnoughFundsExplanation": "U hoeft niet genoeg IOTA om deze overdracht te voltooien.",
+        "keyReuse": "Herbruik sleutel",
+        "keyReuseExplanation": "Het adres dat u probeert naar te verzenden is al gebruikt. Probeer een ander adres.",
+        "recipientAddress": "Adres van geadresseerde",
         "amount": "Aantal",
         "max": "MAX",
-        "message": "Message",
-        "send": "SEND IOTA"
+        "message": "Bericht",
+        "send": "IOTA VERZENDEN"
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
-        "passwordTooShortExplanation": "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
+        "passwordTooShortExplanation": "Uw wachtwoord moet minstens ${MIN_PASSWORD_LENGTH} tekens lang zijn. Het is momenteel ${this.state.password.length} tekens lang. Probeer het opnieuw.",
         "passwordMismatch": "Wachtwoorden komen niet overeen",
         "passwordMismatchExplanation": "Het ingevoerde wachtwoord is onjuist. Probeer het nog eens.",
         "nowWeNeedTo": "Oke, nu moeten we een wachtwoord instellen.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "Een gecodeerde kopie van uw sleutel zal worden opgeslagen op uw apparaat. U gebruikt dit wachtwoord voor toegang tot uw portefeuille in de toekomst.",
         "ensure": "Zorg ervoor u een sterk wachtwoord gebruikt van ten minste 12 karakters.",
-        "retypePassword": "Retype Password"
+        "retypePassword": "Wachtwoord herhalen"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "U kunt meerdere sleutels gebruiken met deze portefeuille. Elke sleutel vereist een accountnaam.",
+        "youCanAdd": "U kunt meer sleutels toevoegen in het menu instellingen."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
+        "transferSending": "Overdracht verzenden",
+        "transferSendingExplanation": "Wacht tot uw transfer is verstuurd.",
+        "generatingAddress": "Genereren van het ontvangen adres",
+        "generatingAddressExplanation": "Wacht tot uw adres is gegenereerd.",
         "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
+        "theme": "Thema",
+        "currency": "Valuta",
         "language": "Taal",
         "addNewSeed": "Toevoegen van een nieuwe Seed",
-        "twoFA": "Two-factor authentication",
+        "twoFA": "Dubbele verificatie",
         "changePassword": "Wachtwoord wijzigen",
         "advanced": "Geavanceerde instellingen",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "back": "Back"
+        "logout": "Uitloggen",
+        "reset": "Reset portemonnee",
+        "back": "Terug"
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
+        "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
+        "warning1": "Alle gegevens van uw portefeuille met inbegrip van uw",
+        "warning2": " sleutels, wachtwoorden, ",
+        "warning3": "en",
         "warning4": " other account information",
         "warning5": " will be lost.",
         "areYouSure": "Are you sure you want to continue?"
@@ -187,14 +187,14 @@
         "reset": "RESET"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
+        "okay": "Oke. Laat we uw portemonnee instellen!",
         "doYouAlreadyHaveASeed": "Heb je al een zaad dat u zou willen gebruiken?",
         "seedExplanation": "De IOTA seed is zoals een gebruikersnaam en wachtwoord om toegang te verkrijgen tot je account, dit samengevoegd tot een tekenreeks van 81 karakters.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
-        "explanation3": ", on",
-        "explanation4": " any device",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "explanation1": "U kunt deze gebruiken voor toegang tot uw fondsen",
+        "explanation2": " elke portemonnee ",
+        "explanation3": ", op",
+        "explanation4": " elk apparaat",
+        "explanation5": ". Maar als je uw sleutel verliest, verliest u ook uw IOTA.",
         "keepSafe": "Houd uw seed veilig."
     },
     "welcome": {
@@ -203,8 +203,8 @@
         "reminder": "U kan worden verleid om sommige stappen over te slaan, maar wij verzoeken u om het volledige proces te volgen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Uw sleutel is 81 tekens van links naar rechts gelezen. Schrijf uw sleutel en controlesom op",
         "tripleCheck": "drievoudige controle",
-        "thatTheyAreCorrect": "that they are correct."
+        "thatTheyAreCorrect": "dat ze correct zijn."
     }
 }
