@@ -87,6 +87,11 @@
         "useSeed": "BRUG SEED",
         "login": "LOG IND"
     },
+    "loading": {
+        "loadingFirstTime": "Loading seed for the first time.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down."
+    },
     "newSeedSetup": {
         "seedNotGenerated": "Seedet er ikke blevet genereret",
         "seedNotGeneratedExplanation": "Klik venligst på knappen \"Generer nyt seed\".",
