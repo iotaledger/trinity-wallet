@@ -12,7 +12,7 @@ import {
     ImageBackground,
     StatusBar,
     Platform,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -46,19 +46,19 @@ class AddAdditionalSeed extends React.Component {
 
     getDefaultSeedName() {
         if (this.props.account.seedCount == 0) {
-            return 'MAIN ACCOUNT';
+            return t('global.mainWallet');
         } else if (this.props.account.seedCount == 1) {
-            return 'SECOND ACCOUNT';
+            return t('global.secondWallet');
         } else if (this.props.account.seedCount == 2) {
-            return 'THIRD ACCOUNT';
+            return t('global.thirdWallet');
         } else if (this.props.account.seedCount == 3) {
-            return 'FOURTH ACCOUNT';
+            return t('global.fourthWallet');
         } else if (this.props.account.seedCount == 4) {
-            return 'FIFTH ACCOUNT';
+            return t('global.fifthWallet');
         } else if (this.props.account.seedCount == 5) {
-            return 'SIXTH ACCOUNT';
+            return t('global.sixthWallet');
         } else if (this.props.account.seedCount == 6) {
-            return 'OTHER ACCOUNT';
+            return t('global.otherWallet');
         }
     }
 
@@ -66,8 +66,8 @@ class AddAdditionalSeed extends React.Component {
         if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
             this.dropdown.alertWithType(
                 'error',
-                'Seed contains invalid characters',
-                `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
+                t('addAdditionalSeed.seedInvalidChars'),
+                t('addAdditionalSeed.seedInvalidCharsExplanation'),
             );
         } else if (this.state.seed.length < 81) {
             this.dropdown.alertWithType(
@@ -79,11 +79,7 @@ class AddAdditionalSeed extends React.Component {
         } else if (!(this.state.seedName.length > 0)) {
             this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
         } else if (this.props.account.seedNames.includes(this.state.seedName)) {
-            this.dropdown.alertWithType(
-                'error',
-                'Account name already in use',
-                `Please use a unique account name.`,
-            );
+            this.dropdown.alertWithType('error', 'Account name already in use', `Please use a unique account name.`);
         } else {
             this.props.clearTempData();
             storeInKeychain(
@@ -418,7 +414,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     seedNickNameContainer: {
-        paddingTop: height / 10
+        paddingTop: height / 10,
     },
 });
 
@@ -449,4 +445,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddAdditionalSeed);
+export default translate(connect(mapStateToProps, mapDispatchToProps)(AddAdditionalSeed));
