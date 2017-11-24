@@ -175,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",
         "warning1": "全てのウォレットのデータ",
-        "warning2": "（Seedやパスワード",
+        "warning2": " seeds, password, ",
         "warning3": "や",
-        "warning4": "その他のアカウント情報）",
-        "warning5": "が失われます。",
+        "warning4": " other account information",
+        "warning5": " will be lost.",
         "areYouSure": "本当に続行しますか？"
     },
     "resetWalletRequirePassword": {
@@ -191,10 +191,10 @@
         "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
         "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
         "explanation1": "Seedを使ってあなたの資金にアクセスできます。",
-        "explanation2": "いかなるウォレット",
+        "explanation2": " any wallet ",
         "explanation3": "や",
-        "explanation4": "いかなるデバイスからでも。",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "explanation4": " any device",
+        "explanation5": "しかし、Seedを失うとIOTAも失われます。",
         "keepSafe": "Seedは安全に保管してください。"
     },
     "welcome": {
