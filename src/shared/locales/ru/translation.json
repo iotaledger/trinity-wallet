@@ -87,6 +87,11 @@
         "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
         "login": "ВОЙТИ"
     },
+    "loading": {
+        "loadingFirstTime": "Loading seed for the first time.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down."
+    },
     "newSeedSetup": {
         "seedNotGenerated": "Ключ не был сгенерирован",
         "seedNotGeneratedExplanation": "Пожалуйста, нажмите на кнопку \"Сгенерировать новый ключ\".",
