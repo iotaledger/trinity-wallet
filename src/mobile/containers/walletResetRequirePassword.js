@@ -78,17 +78,17 @@ class WalletResetRequirePassword extends Component {
     resetWallet() {
         const isAuthenticated = this.isAuthenticated();
         const { password, resetWallet } = this.props;
-
         if (isAuthenticated) {
               persistor.purge().then(() => {
                   deleteFromKeyChain(password);
-                  this.props.resetWallet();
                   this.props.setOnboardingComplete(false);
                   this.props.setFirstUse(true);
                   this.props.clearTempData();
                   this.props.setPassword('');
                   this.redirectToInitialScreen();
-              }).catch(() => {
+                  this.props.resetWallet();
+              }).catch((error) => {
+                  console.log(error)
                   this.dropdown.alertWithType(
                       'error',
                       'Something went wrong',

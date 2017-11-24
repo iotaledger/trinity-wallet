@@ -32,7 +32,7 @@ export function increaseSeedCount() {
     };
 }
 
-export function addSeedName(seedName) {
+export function addAccountName(seedName) {
     return {
         type: 'ADD_SEED_NAME',
         seedName: seedName,
@@ -239,12 +239,20 @@ export function setAccountInfo(seedName, addresses, transfers, balance) {
     };
 }
 
-export function updateAccountInfo(seedName, addresses, transfers, balance) {
+export function changeAccountName(newAccountName, accountNames, addresses, transfers) {
     return {
-        type: 'UPDATE_ACCOUNT_INFO',
-        seedName,
+        type: 'CHANGE_ACCOUNT_NAME',
+        newAccountName,
+        accountNames,
         addresses,
         transfers,
-        balance,
+    };
+}
+
+export function removeAccount(accountInfo, accountNames) {
+    return {
+        type: 'REMOVE_ACCOUNT',
+        accountInfo,
+        accountNames
     };
 }

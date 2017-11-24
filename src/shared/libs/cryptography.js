@@ -12,8 +12,8 @@ export function storeInKeychain(key, seed, name, alertFn, callback) {
                 if (item.name == name) {
                     alertFn(
                         'error',
-                        'Seedname already in use',
-                        'This seed nickname is already linked to your wallet. Please use a different one.',
+                        'Account name already in use',
+                        'This account name is already linked to your wallet. Please use a different one.',
                     );
                     return;
                 } else if (item.seed == seed) {
@@ -57,10 +57,10 @@ export function getSeed(value, index) {
     return value[index].seed;
 }
 
-export function removeLastSeed(value, password) {
+export function deleteSeed(value, password, seedIndex) {
     deleteFromKeyChain(password);
     let seeds = JSON.parse(value);
-    seeds.splice(-1, 1);
+    seeds.splice(seedIndex, 1);
     seeds = JSON.stringify(seeds);
     SInfo.setItem(password, seeds, {
         sharedPreferencesName: 'mySharedPrefs',
