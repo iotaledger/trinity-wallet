@@ -119,6 +119,14 @@ export function clearSeed() {
     };
 }
 
+export function setSetting(setting) {
+    return {
+        type: 'SET_SETTING',
+        payload: setting
+    }
+}
+
+
 // Check for sending to a used address
 function filterSpentAddresses(inputs) {
     return new Promise((resolve, reject) => {
@@ -259,14 +267,14 @@ function getUnspentInputs(seed, start, threshold, inputs, cb) {
 
 export function checkNode() {
     return dispatch => {
-        iota.api.getNodeInfo(error => {
+        iota.api.getNodeInfo( (error, success) => {
             if (!error) {
-                dispatch(getAccountInfo(seed));
+                console.log(success);
             } else {
                 console.log(error);
             }
         });
-    };
+    }
 }
 
 export function generateNewAddress(seed, seedName, addresses) {

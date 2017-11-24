@@ -42,6 +42,7 @@ class TopBar extends Component {
         seedNames: PropTypes.array.isRequired,
         accountInfo: PropTypes.object.isRequired,
         seedIndex: PropTypes.number.isRequired,
+        currentSetting: PropTypes.string.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGettingTransfers: PropTypes.bool.isRequired,
@@ -62,6 +63,13 @@ class TopBar extends Component {
 
     componentWillReceiveProps(newProps) {
         if (this.props.childRoute !== newProps.childRoute) {
+            // Detects if navigating across screens
+            if (this.props.isTopBarActive) {
+                // In case the dropdown is active
+                this.props.toggleTopBarDisplay();
+            }
+        }
+        if (this.props.currentSetting !== newProps.currentSetting) {
             // Detects if navigating across screens
             if (this.props.isTopBarActive) {
                 // In case the dropdown is active
@@ -304,6 +312,7 @@ const mapStateToProps = state => ({
     seedNames: state.account.seedNames,
     balance: state.account.balance,
     accountInfo: state.account.accountInfo,
+    currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: state.tempAccount.isSendingTransfer,

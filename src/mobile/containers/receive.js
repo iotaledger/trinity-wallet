@@ -114,10 +114,9 @@ class Receive extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center', paddingTop: height / 50}}>
-                        <View style={{opacity: this.getOpacity(), alignItems: 'center', flex: 2.3, justifyContent: 'center' }}>
+                        <View style={{opacity: this.getOpacity(), alignItems: 'center', flex: 2.5, justifyContent: 'center' }}>
                             <View style={[styles.qrContainer, {opacity: this.getQrOpacity()}]}>
-                                <QRCode value={receiveAddress + ':' + message} size={isAndroid ? height / 5 : height / 4.7} bgColor="#000" fgColor="#FFF" />
+                                <QRCode value={receiveAddress + ':' + message} size={ height / 5 } bgColor="#000" fgColor="#FFF" />
                             </View>
                             <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                                 <View style={styles.receiveAddressContainer}>
@@ -140,7 +139,7 @@ class Receive extends Component {
                                 onChangeText={message => this.setState({ message })}
                             />
                         </View>
-                        <View style={{flex:0.7, justifyContent: 'center'}}>
+                        <View style={{flex:0.7, justifyContent: 'flex-start'}}>
                             {receiveAddress === ' ' &&
                                 !isGeneratingReceiveAddress && (
                                     <TouchableOpacity
@@ -180,7 +179,6 @@ class Receive extends Component {
                               </TouchableOpacity>
                             )}
                         </View>
-                    </View>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -198,7 +196,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         width: width / 2,
-        height: width / 3.3,
+        height: width / 3.8,
         justifyContent: 'center',
     },
     activityIndicator: {
@@ -255,8 +253,8 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
-        width: width / 3,
-        height: height / 20,
+        width: width / 2.7,
+        height: height / 17,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'transparent'
@@ -266,7 +264,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingLeft: 6,
     },
 });
 
