@@ -175,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
         "warning1": "All your wallet data including your",
-        "warning2": "seeds, password",
+        "warning2": " seeds, password, ",
         "warning3": "and",
-        "warning4": "other account information",
-        "warning5": "will be lost.",
+        "warning4": " other account information",
+        "warning5": " will be lost.",
         "areYouSure": "Are you sure you want to continue?"
     },
     "resetWalletRequirePassword": {
@@ -191,9 +191,9 @@
         "doYouAlreadyHaveASeed": "Har du allerede et seed, du gerne vil bruge?",
         "seedExplanation": "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
         "explanation1": "You can use it to access your funds from",
-        "explanation2": "any wallet",
+        "explanation2": " any wallet ",
         "explanation3": ", on",
-        "explanation4": "any device",
+        "explanation4": " any device",
         "explanation5": ". But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Du bedes opbevare dit seed sikkert."
     },
