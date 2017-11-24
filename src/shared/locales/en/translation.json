@@ -193,6 +193,7 @@
         "reset": "RESET"
     },
     "walletSetup": {
+        "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
         "seedExplanation":
             "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
