@@ -194,7 +194,7 @@
         "explanation2": "いかなるウォレット",
         "explanation3": "や",
         "explanation4": "いかなるデバイスからでも。",
-        "explanation5": "しかし、Seedを失うとIOTAも失われます。",
+        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Seedは安全に保管してください。"
     },
     "welcome": {
