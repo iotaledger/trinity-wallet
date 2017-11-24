@@ -50,8 +50,8 @@ class WalletSetup extends React.Component {
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                     <View style={styles.greetingTextContainer}>
-                        <Text style={styles.greetingText}>{t('text1')}</Text>
-                        <Text style={styles.questionText}>Do you already have a seed that you would like to use?</Text>
+                        <Text style={styles.greetingText}>{t('okay')}</Text>
+                        <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
                     </View>
                 </View>
                 <View style={styles.midContainer}>
