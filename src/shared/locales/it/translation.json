@@ -87,6 +87,11 @@
         "useSeed": "USA IL SEME",
         "login": "ACCEDI"
     },
+    "loading": {
+        "loadingFirstTime": "Loading seed for the first time.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down."
+    },
     "newSeedSetup": {
         "seedNotGenerated": "Il seme non è stato generato",
         "seedNotGeneratedExplanation": "Fare clic sul pulsante \"Genera nuovo seme\".",
