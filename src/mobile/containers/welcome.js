@@ -43,8 +43,8 @@ class Welcome extends React.Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Text style={styles.infoTextLight}>{t('text1')}</Text>
-                        <Text style={styles.infoTextLight}>{t('text2')}</Text>
+                        <Text style={styles.infoTextLight}>{t('thankYou')}</Text>
+                        <Text style={styles.infoTextLight}>{t('weWillSpend')}</Text>
                         <Text style={styles.infoTextRegular}>{t('reminder')}</Text>
                     </View>
                 </View>
@@ -52,8 +52,8 @@ class Welcome extends React.Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
-                        leftText={'BACK'}
-                        rightText={'NEXT'}
+                        leftText={t('global:back')}
+                        rightText={t('global:next')}
                     />
                 </View>
             </ImageBackground>
@@ -127,4 +127,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default translate('welcome1')(Welcome);
+export default translate(['welcome', 'global'])(Welcome);

@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import { translate } from 'react-i18next';
+import i18next from 'i18next';
 import React from 'react';
 import {
     StyleSheet,
@@ -42,6 +43,7 @@ class WalletSetup extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -206,4 +208,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default WalletSetup;
+export default translate('walletSetup')(WalletSetup);
