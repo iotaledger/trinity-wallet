@@ -177,13 +177,13 @@
         "warning1": "Alle gegevens van uw portefeuille met inbegrip van uw",
         "warning2": " sleutels, wachtwoorden, ",
         "warning3": "en",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "warning4": " andere accountgegevens",
+        "warning5": " zullen verloren gaan.",
+        "areYouSure": "Weet u zeker dat u wilt doorgaan?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
+        "enterPassword": "Voer wachtwoord om uw portemonnee opnieuw in te stellen.",
+        "cancel": "Annuleren",
         "reset": "RESET"
     },
     "walletSetup": {
