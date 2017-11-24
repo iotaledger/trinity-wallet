@@ -36,9 +36,9 @@ class Loading extends Component {
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={styles.infoText}>Loading seed for the first time.</Text>
-                        <Text style={styles.infoText}>This may take a while.</Text>
-                        <Text style={styles.infoText}>You may notice your device slowing down.</Text>
+                        <Text style={styles.infoText}>{t('loadingFirstTime')}</Text>
+                        <Text style={styles.infoText}>{t('thisMayTake')}</Text>
+                        <Text style={styles.infoText}>{t('youMayNotice')}</Text>
                         <ActivityIndicator
                             animating={true}
                             style={styles.activityIndicator}
@@ -107,4 +107,4 @@ Loading.propTypes = {
     navigator: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Loading);
+export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));
