@@ -19,7 +19,7 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
-import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
+import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
 const width = Dimensions.get('window').width;
@@ -100,7 +100,7 @@ class SetSeedName extends React.Component {
                 );
             }
         } else {
-            this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
+            this.dropdown.alertWithType('error', 'No account name entered', `Please enter a name for your account.`);
         }
     }
 
@@ -121,7 +121,7 @@ class SetSeedName extends React.Component {
 
     onNodeSuccess() {
         this.props.increaseSeedCount();
-        this.props.addSeedName(this.state.seedName);
+        this.props.addAccountName(this.state.seedName);
         this.props.clearSeed();
     }
 
@@ -345,8 +345,8 @@ const mapDispatchToProps = dispatch => ({
     clearTempData: () => {
         dispatch(clearTempData());
     },
-    addSeedName: newSeed => {
-        dispatch(addSeedName(newSeed));
+    addAccountName: newSeed => {
+        dispatch(addAccountName(newSeed));
     },
     getAccountInfoNewSeed: (seed, seedName, cb) => {
         dispatch(getAccountInfoNewSeed(seed, seedName, cb));

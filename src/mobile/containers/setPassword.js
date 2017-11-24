@@ -12,7 +12,7 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeedName, setOnboardingComplete } from '../../shared/actions/account';
+import { increaseSeedCount, addAccountName, setOnboardingComplete } from '../../shared/actions/account';
 import { clearTempData, clearSeed } from '../../shared/actions/tempAccount';
 import { storeInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
@@ -42,7 +42,7 @@ class SetPassword extends React.Component {
                 .then(this.props.clearTempData())
                 .then(this.props.clearSeed());
             this.props.setOnboardingComplete(true);
-            this.props.addSeedName(this.props.tempAccount.seedName);
+            this.props.addAccountName(this.props.tempAccount.seedName);
             this.props.navigator.push({
                 screen: 'onboardingComplete',
                 navigatorStyle: {
@@ -307,8 +307,8 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    addSeedName: newSeed => {
-        dispatch(addSeedName(newSeed));
+    addAccountName: newSeed => {
+        dispatch(addAccountName(newSeed));
     },
 });
 
