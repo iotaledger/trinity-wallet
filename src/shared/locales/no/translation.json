@@ -87,6 +87,11 @@
         "useSeed": "BRUK MASTERNØKKEL",
         "login": "LOGG INN"
     },
+    "loading": {
+        "loadingFirstTime": "Loading seed for the first time.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down."
+    },
     "newSeedSetup": {
         "seedNotGenerated": "Nøkkel er ikke blitt generert",
         "seedNotGeneratedExplanation": "Trykk knappen for å generere ny nøkkel.",
