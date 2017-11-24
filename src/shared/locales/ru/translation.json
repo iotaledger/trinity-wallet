@@ -175,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "Это действие нельзя будет отменить.",
         "warning1": "Все данные из вашего кошелька, включая",
-        "warning2": "ключи, пароли",
+        "warning2": " seeds, password, ",
         "warning3": "и",
-        "warning4": "другую информацию",
-        "warning5": "будут потеряны.",
+        "warning4": " other account information",
+        "warning5": " will be lost.",
         "areYouSure": "Вы уверены, что хотите продолжить?"
     },
     "resetWalletRequirePassword": {
@@ -191,10 +191,10 @@
         "doYouAlreadyHaveASeed": "У вас уже есть ключ (seed), который вы хотели бы использовать?",
         "seedExplanation": "Ключ IOTA, комбинация длиной 81 символ, представляет собой одновременно и логин, и пароль к вашему счету.",
         "explanation1": "Вы сможете использовать его для доступа к вашим средствам из",
-        "explanation2": "любого кошелька",
+        "explanation2": " any wallet ",
         "explanation3": "на",
-        "explanation4": "любом устройстве,",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "explanation4": " any device",
+        "explanation5": "Но если вы потеряете свой ключ, вы потеряете ваши IOTA.",
         "keepSafe": "Пожалуйста, тщательно храните свой ключ."
     },
     "welcome": {
