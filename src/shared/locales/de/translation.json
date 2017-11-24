@@ -87,6 +87,11 @@
         "useSeed": "SEED BENUTZEN",
         "login": "ANMELDEN"
     },
+    "loading": {
+        "loadingFirstTime": "Loading seed for the first time.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down."
+    },
     "newSeedSetup": {
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
         "seedNotGeneratedExplanation": "Bitte klicke die \"Neuen Seed erzeugen\" Schaltfläche.",
