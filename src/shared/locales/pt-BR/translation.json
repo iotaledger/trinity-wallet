@@ -175,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
         "warning1": "All your wallet data including your",
-        "warning2": "seeds, password",
+        "warning2": " seeds, password, ",
         "warning3": "and",
-        "warning4": "other account information",
-        "warning5": "will be lost.",
+        "warning4": " other account information",
+        "warning5": " will be lost.",
         "areYouSure": "Are you sure you want to continue?"
     },
     "resetWalletRequirePassword": {
@@ -191,9 +191,9 @@
         "doYouAlreadyHaveASeed": "Já possui uma seed que gostaria de utilizar?",
         "seedExplanation": "A seed IOTA representa, simultaneamente, o nome do utilizador e a senha da sua conta, combinados numa sequência de 81 caracteres.",
         "explanation1": "You can use it to access your funds from",
-        "explanation2": "any wallet",
+        "explanation2": " any wallet ",
         "explanation3": ", on",
-        "explanation4": "any device",
+        "explanation4": " any device",
         "explanation5": ". But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Por favor, mantenha a sua seed protegida e segura."
     },
