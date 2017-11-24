@@ -175,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "Questa azione non può essere annullata.",
         "warning1": "Tutti i dati del tuo portafoglio tra cui",
-        "warning2": "semi, password",
+        "warning2": " seeds, password, ",
         "warning3": "e",
-        "warning4": "altre informazioni sui conti",
-        "warning5": "andranno persi.",
+        "warning4": " other account information",
+        "warning5": " will be lost.",
         "areYouSure": "Sei sicuro di voler continuare?"
     },
     "resetWalletRequirePassword": {
@@ -191,10 +191,10 @@
         "doYouAlreadyHaveASeed": "Possiedi già un seme che desideri utilizzare?",
         "seedExplanation": "Il seme IOTA è come una combinazione di utente e password per il tuo conto, in un'unica stringa di 81 caratteri.",
         "explanation1": "Puoi usarlo per accedere ai tuoi fondi da",
-        "explanation2": "qualsiasi portafoglio",
+        "explanation2": " any wallet ",
         "explanation3": ", su",
-        "explanation4": "qualsiasi dispositivo",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "explanation4": " any device",
+        "explanation5": ". Ma se perdi il tuo seme, perdi anche i tuoi IOTA.",
         "keepSafe": "Sei pregato di tenere il tuo seme al sicuro."
     },
     "welcome": {
