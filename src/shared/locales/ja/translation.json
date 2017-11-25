@@ -14,13 +14,13 @@
         "notAvailable": "この機能は使えません。",
         "notAvailableExplanation": "この機能は次の段階で追加されます。",
         "enterSeed": "Seedを入力して下さい。",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "mainWallet": "メインアカウント",
+        "secondWallet": "2番目のアカウント",
+        "thirdWallet": "3番目のアカウント",
+        "fourthWallet": "4番目のアカウント",
+        "fifthWallet": "5番目のアカウント",
+        "sixthWallet": "6番目のアカウント",
+        "otherWallet": "その他のアカウント",
         "yes": "はい",
         "no": "いいえ",
         "password": "パスワード",
@@ -88,9 +88,9 @@
         "login": "ログイン"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "初めてのSeedを読み込んでいます。",
+        "thisMayTake": "これは時間がかかる場合があります。",
+        "youMayNotice": "あなたのデバイスが遅くなることがあります。"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seedが生成されていません。",
@@ -175,9 +175,9 @@
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",
         "warning1": "全てのウォレットのデータ",
-        "warning2": " seeds, password, ",
+        "warning2": "Seedやパスワードや",
         "warning3": "や",
-        "warning4": " other account information",
+        "warning4": "その他のアカウント情報が",
         "warning5": " will be lost.",
         "areYouSure": "本当に続行しますか？"
     },
