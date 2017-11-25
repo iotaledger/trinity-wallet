@@ -14,13 +14,13 @@
         "notAvailable": "Эта функция не доступна",
         "notAvailableExplanation": "Это будет добавлено на более поздней стадии.",
         "enterSeed": "Пожалуйста, введите ваш ключ.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "mainWallet": "ОСНОВНОЙ СЧЕТ",
+        "secondWallet": "ВТОРОЙ СЧЕТ",
+        "thirdWallet": "ТРЕТИЙ СЧЕТ",
+        "fourthWallet": "ЧЕТВЕРТЫЙ СЧЕТ",
+        "fifthWallet": "ПЯТЫЙ СЧЕТ",
+        "sixthWallet": "ШЕСТОЙ СЧЕТ",
+        "otherWallet": "ДРУГОЙ СЧЕТ",
         "yes": "ДА",
         "no": "НЕТ",
         "password": "Пароль",
@@ -88,9 +88,9 @@
         "login": "ВОЙТИ"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Загрузка ключа в самый первый раз.",
+        "thisMayTake": "Это может занять некоторое время.",
+        "youMayNotice": "Вы можете заметить замедление работы вашего устройства."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Ключ не был сгенерирован",
@@ -175,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "Это действие нельзя будет отменить.",
         "warning1": "Все данные из вашего кошелька, включая",
-        "warning2": " seeds, password, ",
+        "warning2": " ключи, пароли, ",
         "warning3": "и",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
+        "warning4": " другую информацию",
+        "warning5": " будут потеряны.",
         "areYouSure": "Вы уверены, что хотите продолжить?"
     },
     "resetWalletRequirePassword": {
@@ -187,13 +187,13 @@
         "reset": "СБРОС"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
+        "okay": "Окей, давайте настроим ваш кошелек!",
         "doYouAlreadyHaveASeed": "У вас уже есть ключ (seed), который вы хотели бы использовать?",
         "seedExplanation": "Ключ IOTA, комбинация длиной 81 символ, представляет собой одновременно и логин, и пароль к вашему счету.",
         "explanation1": "Вы сможете использовать его для доступа к вашим средствам из",
-        "explanation2": " any wallet ",
+        "explanation2": " любого кошелька ",
         "explanation3": "на",
-        "explanation4": " any device",
+        "explanation4": "любом устройстве,",
         "explanation5": "Но если вы потеряете свой ключ, вы потеряете ваши IOTA.",
         "keepSafe": "Пожалуйста, тщательно храните свой ключ."
     },
