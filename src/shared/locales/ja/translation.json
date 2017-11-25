@@ -177,8 +177,8 @@
         "warning1": "全てのウォレットのデータ",
         "warning2": "Seedやパスワードや",
         "warning3": "や",
-        "warning4": "その他のアカウント情報が",
-        "warning5": " will be lost.",
+        "warning4": " その他のアカウント情報",
+        "warning5": " が失われます。",
         "areYouSure": "本当に続行しますか？"
     },
     "resetWalletRequirePassword": {
@@ -191,9 +191,9 @@
         "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
         "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
         "explanation1": "Seedを使ってあなたの資金にアクセスできます。",
-        "explanation2": " any wallet ",
+        "explanation2": " 全てのウォレットで",
         "explanation3": "や",
-        "explanation4": " any device",
+        "explanation4": " 全てのデバイスで",
         "explanation5": "しかし、Seedを失うとIOTAも失われます。",
         "keepSafe": "Seedは安全に保管してください。"
     },
