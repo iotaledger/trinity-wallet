@@ -169,32 +169,32 @@
         "changePassword": "Skift adgangskode",
         "advanced": "Avancerede indstillinger",
         "logout": "Log out",
-        "reset": "Reset wallet",
-        "back": "Back"
+        "reset": "Nulstil tegnebog",
+        "back": "Tilbage"
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "thisAction": "Denne handling kan ikke fortrydes.",
+        "warning1": "Alle dine tegnebogsdata herunder dit",
+        "warning2": " seed, din adgangskode ",
+        "warning3": "og",
+        "warning4": " andre kontooplysninger",
+        "warning5": " mistes.",
+        "areYouSure": "Er du sikker på, du vil fortsætte?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Indtast adgangskode for at nulstille din tegnebog.",
+        "cancel": "ANNULLER",
+        "reset": "NULSTIL"
     },
     "walletSetup": {
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouAlreadyHaveASeed": "Har du allerede et seed, du gerne vil bruge?",
         "seedExplanation": "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
-        "explanation3": ", on",
-        "explanation4": " any device",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "explanation1": "Du kan bruge det til at tilgå dine midler fra",
+        "explanation2": " enhver tegnebog ",
+        "explanation3": "på",
+        "explanation4": " enhver enhed",
+        "explanation5": ". Men hvis du mister dit seed, mister du også dine IOTA.",
         "keepSafe": "Du bedes opbevare dit seed sikkert."
     },
     "welcome": {
@@ -203,7 +203,7 @@
         "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og",
         "tripleCheck": "trippeltjek",
         "thatTheyAreCorrect": "that they are correct."
     }
