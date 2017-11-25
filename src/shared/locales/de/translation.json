@@ -14,13 +14,13 @@
         "notAvailable": "Dieser Inhalt ist nicht verfügbar",
         "notAvailableExplanation": "Es wird zu einem späteren Zeitpunkt hinzugefügt werden.",
         "enterSeed": "Bitte gib deinen Seed ein.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "mainWallet": "HAUPTKONTO",
+        "secondWallet": "ZWEITES KONTO",
+        "thirdWallet": "DRITTES KONTO",
+        "fourthWallet": "VIERTES KONTO",
+        "fifthWallet": "FÜNFTES KONTO",
+        "sixthWallet": "SECHSTES KONTO",
+        "otherWallet": "ANDERES KONTO",
         "yes": "JA",
         "no": "NEIN",
         "password": "Passwort",
@@ -88,9 +88,9 @@
         "login": "ANMELDEN"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Lade Seed zum ersten Mal.",
+        "thisMayTake": "Dies kann eine Weile dauern.",
+        "youMayNotice": "Dein Gerät könnte dabei langsamer werden."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
@@ -128,7 +128,7 @@
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
-        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
+        "invalidAddressExplanation1": "Adresse sollte 81 Zeichen lang sein und eine Prüfsumme haben.",
         "invalidAddressExplanation2": "Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
         "notEnoughFunds": "Zu niedriges Guthaben",
@@ -175,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "warning1": "Alle deine Wallet Daten, einschließlich deiner",
-        "warning2": " seeds, password, ",
+        "warning2": " seeds, Passwort, ",
         "warning3": "und",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
+        "warning4": " andere Kontoinformationen",
+        "warning5": " werden verloren gehen.",
         "areYouSure": "Bist du sicher, dass du fortfahren möchtest?"
     },
     "resetWalletRequirePassword": {
@@ -191,9 +191,9 @@
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "seedExplanation": "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
         "explanation1": "Du kannst ihn verwenden um auf dein Guthaben zuzugreifen von",
-        "explanation2": " any wallet ",
+        "explanation2": " jedem Wallet ",
         "explanation3": "auf",
-        "explanation4": " any device",
+        "explanation4": " jedem Gerät",
         "explanation5": ". Aber wenn du deinen Seed verlierst, verlierst du auch deine IOTA.",
         "keepSafe": "Bewahre Deinen Seed sicher auf."
     },
