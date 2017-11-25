@@ -14,13 +14,13 @@
         "notAvailable": "Denne funktion er ikke tilgængelig",
         "notAvailableExplanation": "Den bliver tilføjet på et senere tidspunkt.",
         "enterSeed": "Indtast venligst dit seed.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "mainWallet": "HOVEDKONTO",
+        "secondWallet": "2. KONTO",
+        "thirdWallet": "3. KONTO",
+        "fourthWallet": "4. KONTO",
+        "fifthWallet": "5. KONTO",
+        "sixthWallet": "6. KONTO",
+        "otherWallet": "ANDEN KONTO",
         "yes": "JA",
         "no": "NEJ",
         "password": "Adgangskode",
@@ -32,10 +32,10 @@
         "seedInvalidCharsExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
         "seedTooShort": "Seedet er for kort",
         "seedTooShortExplanation": "Seeds skal indeholde mindst 60 tegn (helst 81 tegn). Dit seed er i øjeblikket {seed.length} tegn langt. Prøv venligst igen.",
-        "nameInUse": "Account name already in use",
-        "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
-        "accountName": "Account name"
+        "nameInUse": "Kontonavnet er allerede i brug",
+        "nameInUseExplanation": "Brug venligst et unikt kontonavn til dit seed.",
+        "enterAccountName": "Indtast et kontonavn.",
+        "accountName": "Kontonavn"
     },
     "changePassword": {
         "oops": "Ups! Der gik noget galt",
@@ -88,9 +88,9 @@
         "login": "LOG IND"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Indlæser seed for første gang.",
+        "thisMayTake": "Dette kan tage noget tid.",
+        "youMayNotice": "Dette kan reducere hastigheden på din enhed."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seedet er ikke blevet genereret",
@@ -109,21 +109,21 @@
         "printWallet": "UDSKRIV PAPIRTEGNEBOG"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "somethingWentWrong": "Der gik noget galt",
+        "somethingWentWrongExplanation": "Genstart venligst appen.",
+        "addressCopied": "Adresse kopieret",
+        "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
         "generateNewAddress": "GENERER NY ADRESSE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with",
+        "mustSaveYourSeed": "Du skal gemme dit seed med",
         "atLeastOne": "mindst én",
-        "ofTheOptions": "of the options listed below."
+        "ofTheOptions": "én af valgmulighederne angivet nedenfor."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
+        "incorrectSeed": "Forkert seed.",
+        "incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
+        "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
     },
     "send": {
@@ -205,6 +205,6 @@
     "writeSeedDown": {
         "yourSeedIs": "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og",
         "tripleCheck": "trippeltjek",
-        "thatTheyAreCorrect": "that they are correct."
+        "thatTheyAreCorrect": "at de er korrekt skrevet ned."
     }
 }
