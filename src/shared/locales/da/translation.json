@@ -124,10 +124,10 @@
         "incorrectSeed": "Forkert seed.",
         "incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
         "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "ifYouHaveNotSaved": "Hvis du ikke har gemt dit seed, bedes du gå tilbage til forrige punkt og gøre dette."
     },
     "send": {
-        "invalidAddress": "Invalid address",
+        "invalidAddress": "Ugyldig adresse",
         "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
