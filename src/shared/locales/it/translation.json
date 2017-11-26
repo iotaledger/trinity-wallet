@@ -18,9 +18,9 @@
         "secondWallet": "SECONDO CONTO",
         "thirdWallet": "TERZO CONTO",
         "fourthWallet": "QUARTO CONTO",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "fifthWallet": "QUINTO CONTO",
+        "sixthWallet": "SESTO CONTO",
+        "otherWallet": "ALTRO CONTO",
         "yes": "SI",
         "no": "NO",
         "password": "Password",
@@ -88,9 +88,9 @@
         "login": "ACCEDI"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Carico il seme per la prima volta.",
+        "thisMayTake": "Potrebbe volerci un po'.",
+        "youMayNotice": "Potresti notare che il dispositivo rallenta."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Il seme non è stato generato",
@@ -175,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "Questa azione non può essere annullata.",
         "warning1": "Tutti i dati del tuo portafoglio tra cui",
-        "warning2": " seeds, password, ",
+        "warning2": " semi, password, ",
         "warning3": "e",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
+        "warning4": " altre informazioni sui conti",
+        "warning5": " andranno persi.",
         "areYouSure": "Sei sicuro di voler continuare?"
     },
     "resetWalletRequirePassword": {
@@ -187,13 +187,13 @@
         "reset": "REIMPOSTA"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
+        "okay": "Va bene. Cominciamo a impostare il tuo portafoglio!",
         "doYouAlreadyHaveASeed": "Possiedi già un seme che desideri utilizzare?",
         "seedExplanation": "Il seme IOTA è come una combinazione di utente e password per il tuo conto, in un'unica stringa di 81 caratteri.",
         "explanation1": "Puoi usarlo per accedere ai tuoi fondi da",
-        "explanation2": " any wallet ",
+        "explanation2": " qualsiasi portafoglio ",
         "explanation3": ", su",
-        "explanation4": " any device",
+        "explanation4": " qualsiasi dispositivo",
         "explanation5": ". Ma se perdi il tuo seme, perdi anche i tuoi IOTA.",
         "keepSafe": "Sei pregato di tenere il tuo seme al sicuro."
     },
