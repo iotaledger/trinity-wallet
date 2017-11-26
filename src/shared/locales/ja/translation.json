@@ -12,7 +12,7 @@
         "copyToClipboard": "クリップボードにコピー",
         "qr": "QRコード",
         "notAvailable": "この機能は使えません。",
-        "notAvailableExplanation": "この機能は次の段階で追加されます。",
+        "notAvailableExplanation": "この機能は将来追加される予定です。",
         "enterSeed": "Seedを入力して下さい。",
         "mainWallet": "メインアカウント",
         "secondWallet": "2番目のアカウント",
@@ -38,8 +38,8 @@
         "accountName": "アカウント名"
     },
     "changePassword": {
-        "oops": "おっと、何かが間違っています。",
-        "oopsExplanation": "パスワードを更新するときに何かミスをしているようです。もう一度やり直して下さい。",
+        "oops": "不具合が発生しました。",
+        "oopsExplanation": "パスワード更新作業中に不具合が発生したようです。もう一度やり直して下さい。",
         "passwordUpdated": "パスワードを更新しました。",
         "passwordUpdatedExplanation": "パスワードは正しく更新されました。",
         "incorrectPassword": "パスワードが正しくありません。",
