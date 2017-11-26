@@ -3,7 +3,8 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackg
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 
 class AddNewSeedModal extends React.Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class AddNewSeedModal extends React.Component {
     render() {
         const { seed, seedName } = this.state;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ alignItems: 'center' }}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ alignItems: 'center' }}>
                 <View style={styles.modalContent}>
                     <TouchableOpacity style={styles.closeIconButton} onPress={() => this.props.hideModal()}>
                         <Image style={styles.closeIcon} source={require('../../shared/images/cross.png')} />
@@ -36,7 +37,7 @@ class AddNewSeedModal extends React.Component {
                     </TouchableOpacity>
                     <TouchableOpacity onPress={event => this.onExistingSeedPress()}>
                         <View style={styles.existingSeedButton}>
-                            <Text style={styles.existingSeedButtonText}>ADD EXISTING SEED</Text>
+                            <Text style={styles.existingSeedButtonText}>USE EXISTING SEED</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -95,10 +96,6 @@ const styles = StyleSheet.create({
         right: 0,
         top: 0,
         margin: width / 40,
-    },
-    textField: {
-        color: 'white',
-        fontFamily: 'Inconsolata-Bold',
     },
 });
 

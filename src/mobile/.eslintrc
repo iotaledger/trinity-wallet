@@ -11,6 +11,7 @@
     "jsx-a11y"
   ],
   "rules": {
-    "react/forbid-prop-types": ["error", { "forbid": ["any", "array"] }]
+    "react/forbid-prop-types": ["error", { "forbid": ["any", "array"] }],
+    "react/jsx-filename-extension": 0
   }
 }

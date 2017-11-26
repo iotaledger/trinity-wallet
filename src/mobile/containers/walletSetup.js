@@ -12,28 +12,20 @@ import {
     Platform,
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 
 class WalletSetup extends React.Component {
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     onYesPress() {
         this.props.navigator.push({
             screen: 'enterSeed',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
     onNoPress() {
@@ -41,16 +33,16 @@ class WalletSetup extends React.Component {
             screen: 'newSeedSetup',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
     render() {
-        const isAndroid = Platform.OS === 'android';
-        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
@@ -63,8 +55,7 @@ class WalletSetup extends React.Component {
                     <View style={styles.infoTextContainer}>
                         <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
-                            The IOTA seed is like a username and password to your account, combined into one string of
-                            81 characters.
+                            The IOTA seed is like a master key to your account. It is 81 characters long.
                         </Text>
                         <Text style={styles.infoText}>
                             <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
@@ -91,7 +82,7 @@ class WalletSetup extends React.Component {
     }
 }
 
-const baseStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -121,12 +112,11 @@ const baseStyles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 3,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
+        paddingVertical: height / 60,
     },
     infoText: {
         color: 'white',
@@ -212,45 +202,6 @@ const baseStyles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
-    },
-});
-
-const androidStyles = StyleSheet.create({
-    topContainer: {
-        flex: 1.5,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-    },
-    midContainer: {
-        flex: 1.6,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    bottomContainer: {
-        flex: 0.5,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 40,
-    },
-    greetingTextContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: width / 8,
-        paddingTop: height / 45,
-    },
-    infoTextContainer: {
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 15,
-        width: width / 1.6,
-        minHeight: height / 3,
-        maxHeight: height / 2.3,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingHorizontal: width / 30,
-        borderStyle: 'dotted',
-        paddingVertical: height / 60,
     },
 });
 

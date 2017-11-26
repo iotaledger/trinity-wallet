@@ -2,6 +2,7 @@ import { ActionTypes } from '../actions/home';
 
 const initialState = {
     childRoute: 'balance', // left most tab
+    isTopBarActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +11,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 childRoute: action.payload,
+            };
+        case ActionTypes.TOGGLE_TOP_BAR_DISPLAY:
+            return {
+                ...state,
+                isTopBarActive: !state.isTopBarActive,
             };
         default:
             return state;
