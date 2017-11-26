@@ -2,22 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
+import { getSelectedSeed } from 'selectors/seeds';
 import Template, { Content } from './Template';
 // import Loading from '../UI/Loading';
 // import css from '../Layout/Main.css';
 
-import { getAccountInfoNewSeedAsync } from 'actions/account';
+import { getAccountInfoAsync, getNewAddressAsync } from 'actions/seeds';
 
 class Balance extends React.Component {
     static propTypes = {
-        getAccountInfoNewSeedAsync: PropTypes.func,
+        getAccountInfoAsync: PropTypes.func,
+        getNewAddressAsync: PropTypes.func,
+        seed: PropTypes.shape({
+            name: PropTypes.string,
+            seed: PropTypes.string,
+            addresses: PropTypes.array,
+        }).isRequired,
         // t: PropTypes.func.isRequired,
     };
 
-    // componentDidMount() {
-    //     const seed = 'QAPGQWR9USSAWPAKUDDLWCXQHIVTPYQPOYLATEYHUNAVDNDQSUPFDBJZRMSCNRL9VCALJOLLXTWAUBLDK';
-    //     this.props.getAccountInfoNewSeedAsync(seed);
-    // }
+    componentDidMount() {
+        // this.props.getAccountInfoNewSeedAsync(seed);
+    }
+
+    getBalance = () => {
+        const { getAccountInfoAsync, seed } = this.props;
+        getAccountInfoAsync(seed.seed);
+    };
+
+    getNewAddress = () => {
+        const { getNewAddressAsync, seed } = this.props;
+        getNewAddressAsync(seed.seed);
+    };
 
     render() {
         // const { t } = this.props;
@@ -26,6 +42,8 @@ class Balance extends React.Component {
                 <Content>
                     {/* <Loading /> */}
                     test
+                    <button onClick={this.getNewAddress}>New Address</button>
+                    <button onClick={this.getBalance}>Get Balance</button>
                 </Content>
             </Template>
         );
@@ -33,11 +51,12 @@ class Balance extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    // fullNode: state.settings.fullNode,
+    seed: getSelectedSeed(state),
 });
 
 const mapDispatchToProps = {
-    getAccountInfoNewSeedAsync,
+    getAccountInfoAsync,
+    getNewAddressAsync,
     // addCustomNode,
     // setFullNode,
 };

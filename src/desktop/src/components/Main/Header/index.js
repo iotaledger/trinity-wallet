@@ -1,32 +1,53 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getSeedItems, getSelectedIndex } from 'selectors/seeds';
+import { selectSeed } from 'actions/seeds';
 import Logo from 'components/UI/Logo';
 import css from 'components/Layout/Main.css';
 
-export default class Header extends React.PureComponent {
+class Header extends React.PureComponent {
+    static propTypes = {
+        seeds: PropTypes.array,
+        selectedSeedIndex: PropTypes.number,
+        selectSeed: PropTypes.func.isRequired,
+    };
+
     render() {
+        const { seeds, selectedSeedIndex, selectSeed } = this.props;
         return (
             <header>
                 <div className={css.logo}>
                     <Logo width={48} />
                 </div>
                 <div className={css.seedsList}>
-                    {/* Seeds */}
                     <ul>
-                        <li>
-                            <h1>My main wallet</h1>
-                            <h2>326 Ti</h2>
-                        </li>
-                        <li>
-                            <h1>Small change</h1>
-                            <h2>16 Mi</h2>
-                        </li>
-                        <li>
-                            <h1>For bad times</h1>
-                            <h2>18 Gi</h2>
-                        </li>
+                        {seeds.map((seed, index) => {
+                            return (
+                                <li
+                                    className={selectedSeedIndex === index ? css.active : ''}
+                                    key={seed.seed}
+                                    onClick={() => selectSeed(index)}
+                                >
+                                    <h1>{seed.name}</h1>
+                                    <h2 />
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             </header>
         );
     }
 }
+
+const mapStateToProps = state => ({
+    seeds: getSeedItems(state),
+    selectedSeedIndex: getSelectedIndex(state),
+});
+
+const mapDispatchToProps = {
+    selectSeed,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

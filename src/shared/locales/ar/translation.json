@@ -1,164 +1,222 @@
 {
-    "notifications": {
-        "invalidServer_title": "سيرفر غير صالح",
-        "invalidServer_text": "السيرفر الذي قمت بإدخاله غير صالح",
-        "unknownError_title": "حدث خطأ غير معروف",
-        "unknownError_text": "نعتذر عن تنفيذ الإجراء المطلوب هذه المرة. يرجى المحاولة مرة أخرى."
+    "global": {
+        "invalidResponse": "Invalid response",
+        "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "seed": "سييد",
+        "back": "رجوع",
+        "done": "تم",
+        "next": "التالي",
+        "manualCopy": "نسخة يدوية",
+        "paperWallet": "محفظة ورقية",
+        "copyToClipboard": "Copy to Clipboard",
+        "qr": "رمز QR",
+        "notAvailable": "This function is not available",
+        "notAvailableExplanation": "It will be added at a later stage.",
+        "enterSeed": "Please enter your seed.",
+        "mainWallet": "MAIN ACCOUNT",
+        "secondWallet": "SECOND ACCOUNT",
+        "thirdWallet": "THIRD ACCOUNT",
+        "fourthWallet": "FOURTH ACCOUNT",
+        "fifthWallet": "FIFTH ACCOUNT",
+        "sixthWallet": "SIXTH ACCOUNT",
+        "otherWallet": "OTHER ACCOUNT",
+        "yes": "نعم",
+        "no": "لا",
+        "password": "كلمة السر",
+        "unrecognisedPassword": "Unrecognised password",
+        "unrecognisedPasswordExplanation": "كلمة المرور غير مطابقة. يرجى المحاولة مره اخرى."
     },
-    "setLanguage": {
-        "dropdown_title": "اللغة",
-        "button1": "التالي"
+    "addAdditionalSeed": {
+        "seedInvalidChars": "Seed contains invalid characters",
+        "seedInvalidCharsExplanation":
+            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedTooShort": "السييد قصير جداً",
+        "seedTooShortExplanation":
+            "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "nameInUse": "Account name already in use",
+        "nameInUseExplanation": "Please use a unique account name for your seed.",
+        "enterAccountName": "Enter an account name.",
+        "accountName": "Account name"
     },
-    "welcome1": {
-        "text1": "شكرا لك لتحميل محفظة IOTA.",
-        "text2": "سوف نقضي الدقائق القليلة القادمة في إعداد محفظتك.",
-        "reminder": "قد تميل إلى تخطي بعض الخطوات، ولكننا نحثك على اتباع العملية الكاملة.",
-        "button1": "التالي",
-        "button2": "رجوع"
+    "changePassword": {
+        "oops": "Oops! Something went wrong",
+        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
+        "passwordUpdated": "Password updated",
+        "passwordUpdatedExplanation": "Your password has been successfully updated.",
+        "incorrectPassword": "Incorrect password",
+        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "passwordsDoNotMatch": "كلمتي المرور لا تتطابق",
+        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordTooShort": "كلمة المرور قصيرة جدا",
+        "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
+        "oldPassword": "Cannot set old password",
+        "oldPasswordExplanation":
+            "You cannot use the old password as your new password. Please try again with a new password.",
+        "ensureStrongPassword": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password"
     },
-    "welcome2": {
-        "text1": "حسنًا. لنقم بإعداد محفظتك!",
-        "text2": "هل لديك seed ترغب في استخدامه؟",
-        "seed_explanation1":
-            "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
-        "seed_explanation2":
-            "يمكنك استخدامه للوصول إلى أموالك من أي محفظة، على أي جهاز. ولكن إذا فقدت السييد الخاص بك، ستفقد ما به من IOTA",
-        "reminder": "يرجى الحفاظ على السييد الخاص بك في مكان آمن",
-        "button1": "نعم",
-        "button2": "لا"
-    },
-    "lightserver": {
-        "text1": "السيرفر الخفيف هو بوابة لشبكة IOTA، يتم تقديمه من قبل أعضاء المجتمع أو شركائنا من الشركات. ",
-        "text2": "يمكنك معرفة المزيد من المعلومات حول السيرفرات على: http://iotasupport.com/lightwallet.shtml",
-        "text3": "يرجى اختيار سيرفر من القائمة أدناه.",
-        "server_label": "سيرفر",
-        "custom_server_label": "عنوان سيرفر آخر",
-        "other": "اخرى",
-        "button1": "التالي",
-        "button2": "رجوع"
-    },
-    "login": {
-        "text": "الرجاء إدخال كلمة المرور",
-        "placeholder": "كلمة المرور",
-        "error_title": "كلمة مرور غير مطابقة",
-        "error_text": "كلمة المرور غير مطابقة. يرجى المحاولة مره اخرى.",
-        "button1": "تم",
-        "button2": "استخدم سييد"
+    "copyToClipboard": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCopied": "Seed copied",
+        "seedCopiedExplanation":
+            "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
+        "clickToCopy": "Click the button below and copy your seed to a password manager."
     },
     "enterSeed": {
-        "error_title": "السييد قصير جداً",
-        "error_text": "يجب أن يكون السييد 60 خانة على الأقل. يرجى المحاولة مرة أخرى.",
-        "invalid_seed_title": "سييد غير صالح",
-        "invalid_seed_text":
-            "السييد الذي ادخلته غير صالح. قد يحتوي السييد على أحرف إنجليزية كبيرة (A-Z) والرقم 9 فقط، ويجب أن يكون طوله 60-81 خانة.",
-        "placeholder": "سييد",
-        "seed_explanation":
+        "invalidCharacters": "Seed contains invalid characters",
+        "invalidCharactersExplanation":
+            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedTooShort": "السييد قصير جداً",
+        "seedTooShortExplanation":
+            "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "seedExplanation":
             "يجب أن يكون طول السييد 81 خانة ويجب أن يحتوي على أحرف إنجليزية كبيرة A-Z أو الرقم 9. لا يمكنك استخدام سييد أطول من 81 خانة.",
-        "reminder": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص",
-        "scan_code": "مسح رمز QR",
-        "close": "إغلاق",
-        "button1": "تم",
-        "button2": "رجوع"
-    },
-    "newSeedSetup": {
-        "title": "إنشاء سييد جديد",
-        "button1": "إنشاء سييد جديد",
-        "text1": "اضغط على الأحرف بشكل فردي لكي تكن عشوائية.",
-        "text2": "ثم اضغط التالي",
-        "button2": "التالي",
-        "button3": "رجوع"
-    },
-    "saveYourSeed": {
-        "text1": "يجب عليك حفظ السييد الخاص بك بطريقة واحده على الأقل من الخيارات المدرجة أدناه.",
-        "text2": "بطريقة واحده على الأقل",
-        "optionA": "نسخة يدوية",
-        "optionB": "طباعة محفظة ورقية",
-        "optionC": "نسخ إلى الحافظة",
-        "button1": "التالي",
-        "button2": "رجوع"
-    },
-    "saveYourSeed2": {
-        "optionA": "نسخة يدوية",
-        "optionB": " محفظة ورقية",
-        "optionC": "نسخ إلى الحافظة",
-        "explanation":
-            "السييد الخاص بك 81 خانة يقرأ من اليسار إلى اليمين. اكتب السيد الخاص بك ورمز التحقق وقم بمراجعتها ثلاث مرات لتتأكد من صحتها.",
-        "text": "وقم بمراجعتها ثلاث مرات",
-        "button": "تم"
-    },
-    "saveYourSeed3": {
-        "optionA": "نسخة يدوية",
-        "optionB": " محفظة ورقية",
-        "optionC": "نسخ إلى الحافظة",
-        "explanation":
-            "اضغط على الزر أدناه وانسخ السييد الخاص بك إلى برنامج تخزين كلمات مرور. سوف تبقى في الحافظة لمدة 60 ثانية.",
-        "text": "لا تخزن السييد الخاص بك في نص عادي.",
-        "button1": "نسخ إلى الحافظة",
-        "button2": "تم"
-    },
-    "saveYourSeed4": {
-        "optionA": "نسخة يدوية",
-        "optionB": " محفظة ورقية",
-        "optionC": "نسخ إلى الحافظة",
-        "explanation": "اضغط الزر أدناه لطباعة نسخه ورقية من السييد الخاصة بك.",
-        "text1": "خزنها بأمان",
-        "text2": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص.",
-        "check_button": "شعار IOTA",
-        "button1": "طباعة محفظة ورقية",
-        "button2": "تم"
-    },
-    "nameYourSeed": {
-        "text": "Here you can enter an name for your seed.",
-        "label": "Seed name",
-        "placeholder": "Main Wallet",
-        "explanation": "Enter a name for your seed to make them easier to differentiate.",
-        "button1": "DONE",
-        "button2": "GO BACK"
-    },
-    "setPassword": {
-        "title": "إعداد كلمة المرور",
-        "text": "الآن نحن بحاجة إلى إعداد كلمة مرور.",
-        "explanation":
-            "سوف تستخدم كلمة المرور هذه للوصول إلى محفظتك في المستقبل. سيتم تخزين نسخة مشفرة من السييد الخاص بك على جهازك.",
-        "reminder": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
-        "placeholder1": "'كلمة المرور'",
-        "placeholder2": "إعادة كلمة المرور",
-        "error1_title": "كلمة المرور قصيرة جدا",
-        "error1_text": "Your password must be at least 8 characters. Please try again.",
-        "error2_title": "كلمتي المرور لا تتطابق",
-        "error2_text": "كلمتي المرور المدخلة لا تتطابق، يرجى المحاولة مرة أخرى.",
-        "button1": "تم",
-        "button2": "رجوع"
-    },
-    "onboardingComplete": {
-        "text":
-            "تم إعداد المحفظة وهي جاهزة للاستخدام. إذا احتجت إلى إجراء أية تغييرات في المستقبل، فابحث في قائمة الأدوات.",
-        "button": "التالي"
+        "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص"
     },
     "home": {
-        "tab1": "الرصيد",
-        "tab2": "إرسال",
-        "tab3": "إستلام",
-        "tab4": "التاريخ",
-        "tab5": "أدوات",
-        "mcap": "القيمة السوقية",
-        "change": "تغيير",
-        "volume": "مستوى الصوت",
-        "address": "عنوان",
+        "balance": "الرصيد",
+        "send": "إرسال",
+        "receive": "إستلام",
+        "history": "التاريخ",
+        "settings": "SETTINGS"
+    },
+    "languageSetup": {
+        "language": "اللغة"
+    },
+    "login": {
+        "emptyPassword": "Empty password",
+        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "enterPassword": "الرجاء إدخال كلمة المرور.",
+        "useSeed": "استخدم سييد",
+        "login": "LOG IN"
+    },
+    "loading": {
+        "loadingFirstTime": "Loading seed for the first time.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down."
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seed has not been generated",
+        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
+        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "individualLetters": "اضغط على الأحرف بشكل فردي لكي تكن عشوائية."
+    },
+    "onboardingComplete": {
+        "walletReady":
+            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+    },
+    "paperWallet": {
+        "clickToPrint": "اضغط الزر أدناه لطباعة نسخه ورقية من السييد الخاصة بك.",
+        "storeSafely": "خزنها بأمان.",
+        "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص.",
+        "iotaLogo": "شعار IOTA",
+        "printWallet": "طباعة محفظة ورقية"
+    },
+    "receive": {
+        "somethingWentWrong": "Something went wrong",
+        "somethingWentWrongExplanation": "Please restart the app.",
+        "addressCopied": "Address copied",
+        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "generateNewAddress": "إنشاء سييد جديد"
+    },
+    "saveYourSeed": {
+        "mustSaveYourSeed": "You must save your seed with",
+        "atLeastOne": "بطريقة واحده على الأقل",
+        "ofTheOptions": "of the options listed below."
+    },
+    "seedReentry": {
+        "incorrectSeed": "Incorrect seed.",
+        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
+        "thisIsACheck": "This is a check to make sure you saved your seed.",
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+    },
+    "send": {
+        "invalidAddress": "Invalid address",
+        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
+        "invalidAddressExplanation2": "Address contains invalid characters.",
+        "invalidAddressExplanation3": "Address contains an invalid checksum.",
+        "notEnoughFunds": "Not enough funds",
+        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "keyReuse": "Key reuse",
+        "keyReuseExplanation":
+            "The address you are trying to send to has already been used. Please try another address.",
+        "recipientAddress": "Recipient address",
         "amount": "الكمية",
-        "button1": "إرسال",
-        "button2": "إنشاء سييد جديد",
-        "button3": "تسجيل الخروج",
-        "changeMode": "تغيير الوضع",
-        "minimal": "سهل",
-        "standard": "عادي",
-        "expert": "متقدم",
-        "changeTheme": "تغيير الخلفية",
-        "changeLanguage": "تغيير اللغة",
+        "max": "MAX",
+        "message": "Message",
+        "send": "SEND IOTA"
+    },
+    "setPassword": {
+        "passwordTooShort": "كلمة المرور قصيرة جدا",
+        "passwordTooShortExplanation":
+            "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
+        "passwordMismatch": "كلمتي المرور لا تتطابق",
+        "passwordMismatchExplanation": "كلمتي المرور المدخلة لا تتطابق، يرجى المحاولة مرة أخرى.",
+        "nowWeNeedTo": "الآن نحن بحاجة إلى إعداد كلمة مرور.",
+        "anEncryptedCopy":
+            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "ensure": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
+        "retypePassword": "Retype Password"
+    },
+    "setSeedName": {
+        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
+        "youCanAdd": "You can add more seeds in the Settings menu."
+    },
+    "settings": {
+        "transferSending": "Transfer sending",
+        "transferSendingExplanation": "Please wait until your transfer has been sent.",
+        "generatingAddress": "Generating receive address",
+        "generatingAddressExplanation": "Please wait until your address has been generated.",
+        "mode": "Mode",
+        "theme": "Theme",
+        "currency": "Currency",
+        "language": "اللغة",
         "addNewSeed": "إضافة سييد جديد",
-        "setup2fa": "إعداد 2FA",
+        "twoFA": "Two-factor authentication",
         "changePassword": "تغيير كلمة المرور",
-        "advancedSettings": "إعدادات متقدمة",
-        "logout": "خروج"
+        "advanced": "إعدادات متقدمة",
+        "logout": "Log out",
+        "reset": "Reset wallet",
+        "back": "Back"
+    },
+    "resetWalletConfirmation": {
+        "thisAction": "This action cannot be undone.",
+        "warning1": "All your wallet data including your",
+        "warning2": " seeds, password, ",
+        "warning3": "and",
+        "warning4": " other account information",
+        "warning5": " will be lost.",
+        "areYouSure": "Are you sure you want to continue?"
+    },
+    "resetWalletRequirePassword": {
+        "enterPassword": "Enter password to reset your wallet.",
+        "cancel": "CANCEL",
+        "reset": "RESET"
+    },
+    "walletSetup": {
+        "okay": "حسنًا. لنقم بإعداد محفظتك!",
+        "doYouAlreadyHaveASeed": "هل لديك seed ترغب في استخدامه؟",
+        "seedExplanation":
+            "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
+        "explanation1": "You can use it to access your funds from",
+        "explanation2": " any wallet ",
+        "explanation3": ", on",
+        "explanation4": " any device",
+        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "keepSafe": "يرجى الحفاظ على السييد الخاص بك في مكان آمن."
+    },
+    "welcome": {
+        "thankYou": "شكرا لك لتحميل محفظة IOTA.",
+        "weWillSpend": "سوف نقضي الدقائق القليلة القادمة في إعداد محفظتك.",
+        "reminder": "قد تميل إلى تخطي بعض الخطوات، ولكننا نحثك على اتباع العملية الكاملة."
+    },
+    "writeSeedDown": {
+        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "tripleCheck": "وقم بمراجعتها ثلاث مرات",
+        "thatTheyAreCorrect": "that they are correct."
     }
 }

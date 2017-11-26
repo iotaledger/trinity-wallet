@@ -18,6 +18,10 @@ export const isYesterday = day => {
     return moment(day).isSame(yesterday, 'day');
 };
 
+export const isMinutesAgo = (time, minutes) => {
+    return moment(time).isBefore(moment().subtract(minutes, 'minutes'));
+};
+
 export const getCurrentYear = () => new Date().getFullYear();
 
 export const formatTime = ts => {

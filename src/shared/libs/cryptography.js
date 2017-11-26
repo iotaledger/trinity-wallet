@@ -82,3 +82,12 @@ export function deleteFromKeyChain(
 ) {
     return SInfo.deleteItem(key, options);
 }
+
+export function getAllItems(
+    options = {
+        sharedPreferencesName: 'mySharedPrefs',
+        keychainService: 'myKeychain',
+    },
+) {
+    return SInfo.getAllItems(options);
+}

@@ -49,8 +49,10 @@ export function addAddresses(seedName, addresses) {
 
 export const getAccountInfoNewSeedAsync = (seed, seedName) => {
     return async dispatch => {
+        const address = await iota.api.getNewAddressAsync(seed);
+        console.log('ADDRESS:', address);
         const accountData = await iota.api.getAccountDataAsync(seed);
-        console.log('ACCOUNT DATA:', accountData);
+        console.log('ACCOUNT', accountData);
         const addressesWithBalance = formatAddressBalancesNewSeed(accountData);
         const balance = calculateBalance(addressesWithBalance);
         const transfers = formatTransfers(accountData.transfers, accountData.addresses);
