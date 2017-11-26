@@ -12,9 +12,12 @@ import {
     ImageBackground,
     StatusBar,
 } from 'react-native';
+import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
+import setFirstUse from '../../shared/actions/account.js';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 
 const CustomLayoutSpring = {
     duration: 100,
@@ -29,8 +32,6 @@ const CustomLayoutSpring = {
     },
 };
 
-var HockeyApp = require('react-native-hockeyapp');
-
 class LanguageSetup extends React.Component {
     constructor(props) {
         super(props);
@@ -41,27 +42,15 @@ class LanguageSetup extends React.Component {
         };
     }
 
-    componentWillMount() {
-        HockeyApp.configure(
-            '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
-            true, //Auto send crash reports
-            1, //Authentication type
-            'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
-        );
-    }
-
-    componentDidMount() {
-        HockeyApp.start();
-        HockeyApp.checkForUpdate(); // optional
-    }
-
     onNextPress() {
         this.props.navigator.push({
             screen: 'welcome',
             navigatorStyle: {
                 navBarHidden: true,
+                navBarTransparent: true,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -93,7 +82,7 @@ class LanguageSetup extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
@@ -319,4 +308,6 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LanguageSetup;
+const mapStateToProps = state => ({});
+
+export default connect(mapStateToProps)(LanguageSetup);

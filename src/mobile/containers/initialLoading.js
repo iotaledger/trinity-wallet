@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Image,
+    ImageBackground,
+    Text,
+    StatusBar,
+    BackHandler,
+    Platform,
+} from 'react-native';
+import { getAllItems, deleteFromKeyChain } from '../../shared/libs/cryptography';
 import { getCurrentYear } from '../../shared/libs/dateUtils';
 import store from '../../shared/store';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+import { DetectNavbar } from '../theme/androidSoftKeys';
+import ExtraDimensions from 'react-native-extra-dimensions-android';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+let height = Dimensions.get('window').height;
+global.height = DetectNavbar.hasSoftKeys()
+    ? (height -= ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT'))
+    : Dimensions.get('window').height;
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
@@ -20,29 +36,44 @@ export default class InitialLoading extends Component {
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            //        HockeyApp.feedback(); //Could possibly cause a crash
-        });
+    componentWillUnmount() {}
+
+    handleBackButton() {
+        return false;
     }
 
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
+    clearKeychain() {
+        getAllItems().then(keys => {
+            if (Platform.OS === 'ios') {
+                if (!keys[0].length) {
+                    return;
+                } else {
+                    let key = '';
+                    for (let i = 0; i < keys[0].length; i++) {
+                        key = keys[0][i].key;
+                        deleteFromKeyChain(key);
+                    }
+                }
+            }
+        });
     }
 
     onLoaded() {
         const state = store.getState();
         if (!state.account.onboardingComplete) {
+            this.clearKeychain();
             this.props.navigator.push({
                 screen: 'languageSetup',
-                navigatorStyle: { navBarHidden: true },
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true,
             });
         } else {
             this.props.navigator.push({
                 screen: 'login',
-                navigatorStyle: { navBarHidden: true },
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true,
             });
         }
     }
@@ -50,13 +81,13 @@ export default class InitialLoading extends Component {
     render() {
         const currentYear = getCurrentYear();
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
                     <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>IOTA Foundation © {currentYear}</Text>
+                    <Text style={styles.text}>IOTA Alpha Wallet {currentYear}</Text>
                 </View>
             </ImageBackground>
         );

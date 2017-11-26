@@ -22,10 +22,12 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
 import { Keyboard } from 'react-native';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
+import ExtraDimensions from 'react-native-extra-dimensions-android';
+
 const StatusBarDefaultBarStyle = 'light-content';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 
 var HockeyApp = require('react-native-hockeyapp');
 
@@ -39,25 +41,9 @@ class Login extends React.Component {
         this.onNodeError = this.onNodeError.bind(this);
     }
     getWalletData() {
-        this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
-        this.props.getPrice(this.props.marketData.currency);
+        this.props.getChartData();
+        this.props.getPrice();
         this.props.getMarketData();
-    }
-
-    componentWillMount() {
-        HockeyApp.configure(
-            '61847e74428144ceb0c3baee06c24c33', //HockeyApp App ID
-            true, //Auto send crash reports
-            1, //Authentication type
-            'ac0d91c9d7f5efdd86fa836f1ef6ffbb', //HockeyApp App Secret
-        );
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onLoginPress() {
@@ -101,8 +87,10 @@ class Login extends React.Component {
                 screen: 'loading',
                 navigatorStyle: {
                     navBarHidden: true,
+                    navBarTransparent: true,
                 },
                 animated: false,
+                overrideBackPress: true,
             });
         }
 
@@ -131,6 +119,7 @@ class Login extends React.Component {
                 navBarHidden: true,
             },
             animated: false,
+            overrideBackPress: true
         });*/
         }
     }
@@ -138,7 +127,7 @@ class Login extends React.Component {
     render() {
         let { password } = this.state;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -328,11 +317,11 @@ const mapDispatchToProps = dispatch => ({
     getMarketData: () => {
         dispatch(getMarketData());
     },
-    getPrice: currency => {
-        dispatch(getPrice(currency));
+    getPrice: () => {
+        dispatch(getPrice());
     },
-    getChartData: (currency, timeFrame) => {
-        dispatch(getChartData(currency, timeFrame));
+    getChartData: () => {
+        dispatch(getChartData());
     },
     clearTempData: () => dispatch(clearTempData()),
 });

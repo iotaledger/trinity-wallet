@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import reduce from 'lodash/reduce';
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -17,25 +21,19 @@ import Send from './send';
 import Receive from './receive';
 import History from './history';
 import Settings from './settings';
+import TopBar from './topBar';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
-import {
-    incrementSeedIndex,
-    decrementSeedIndex,
-    setReceiveAddress,
-    replayBundle,
-    setReady,
-    clearTempData,
-} from '../../shared/actions/tempAccount';
+import { setReceiveAddress, replayBundle, setReady, clearTempData } from '../../shared/actions/tempAccount';
 import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
 import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 const StatusBarDefaultBarStyle = 'light-content';
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 const timer = require('react-native-timer');
 
 class Home extends Component {
@@ -44,34 +42,27 @@ class Home extends Component {
         this.state = {
             mode: 'STANDARD',
         };
-        var polling;
     }
 
     componentDidMount() {
         this.props.setFirstUse(false);
-        this.startPolling();
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         if (typeof accountInfo !== 'undefined') {
             this.props.setBalance(addressesWithBalance);
         }
-        timer.setInterval('polling', () => this.startPolling(), 10000);
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
+        timer.setInterval('polling', () => this.startPolling(), 47000);
     }
 
     componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
         timer.clearInterval('polling');
+        timer.clearInterval('chartPolling');
     }
 
     startPolling() {
         if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
+            //console.log('POLLING TX HISTORY')
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
@@ -86,11 +77,6 @@ class Home extends Component {
         dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response while polling.`);
     }
 
-    onNodeError() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
-    }
-
     componentWillReceiveProps(newProps) {
         const didNotHaveAlertPreviously =
             !this.props.alerts.category && !this.props.alerts.title && !this.props.alerts.message;
@@ -100,46 +86,6 @@ class Home extends Component {
         if (shouldGenerateAlert) {
             const dropdown = DropdownHolder.getDropdown();
             dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
-        }
-    }
-
-    onLeftArrowPress() {
-        if (this.props.tempAccount.seedIndex > 0 && !this.props.tempAccount.isGeneratingReceiveAddress) {
-            const seedIndex = this.props.tempAccount.seedIndex - 1;
-            const seedName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-
-            this.props.decrementSeedIndex();
-            this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
-            this.props.setReceiveAddress(' ');
-            // Get new account info if not sending or getting transfers
-            if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                    if (error) this.onNodeError();
-                });
-            }
-        }
-    }
-
-    onRightArrowPress() {
-        if (
-            this.props.tempAccount.seedIndex + 1 < this.props.account.seedCount &&
-            !this.props.tempAccount.isGeneratingReceiveAddress
-        ) {
-            const seedIndex = this.props.tempAccount.seedIndex + 1;
-            const seedName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-
-            this.props.incrementSeedIndex();
-            this.props.setBalance(accountInfo[Object.keys(accountInfo)[seedIndex]].addresses);
-            this.props.setReceiveAddress(' ');
-
-            // Get new account info if not sending or getting transfers
-            if (!this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isGettingTransfers) {
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                    if (error) this.onNodeError();
-                });
-            }
         }
     }
 
@@ -179,61 +125,15 @@ class Home extends Component {
         this.props.changeHomeScreenRoute('settings');
     }
 
-    _renderTitlebar() {
-        if (this.props.tempAccount.usedSeedToLogin == false) {
-            return (
-                <View style={styles.titlebarContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.onLeftArrowPress()}
-                        hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
-                    >
-                        <Image
-                            style={{
-                                width: width / 20,
-                                height: width / 20,
-                                opacity: this.props.tempAccount.isGeneratingReceiveAddress
-                                    ? 0.3
-                                    : this.props.tempAccount.seedIndex == 0 ? 0.3 : 1,
-                            }}
-                            source={require('../../shared/images/arrow-left.png')}
-                        />
-                    </TouchableOpacity>
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>
-                            {this.props.account.seedNames[this.props.tempAccount.seedIndex]}
-                        </Text>
-                    </View>
-                    <TouchableOpacity
-                        onPress={() => this.onRightArrowPress()}
-                        hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
-                    >
-                        <Image
-                            style={{
-                                width: width / 20,
-                                height: width / 20,
-                                opacity: this.props.tempAccount.isGeneratingReceiveAddress
-                                    ? 0.3
-                                    : this.props.tempAccount.seedIndex + 1 == this.props.account.seedCount ? 0.3 : 1,
-                            }}
-                            source={require('../../shared/images/arrow-right.png')}
-                        />
-                    </TouchableOpacity>
-                </View>
-            );
-        } else {
-            return <View style={styles.titlebarContainer} />;
-        }
-    }
-
     render() {
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={{ flex: 1 }}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>{this._renderTitlebar()}</View>
+                <View style={styles.topContainer} />
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }}>{children}</View>
                 </View>
@@ -350,8 +250,10 @@ class Home extends Component {
                     attachments={tailTransactionHashesForPendingTransactions}
                     attach={this.props.replayBundle}
                 />
+                <TopBar />
                 <DropdownAlert
                     ref={ref => DropdownHolder.setDropdown(ref)}
+                    elevation={120}
                     successColor="#009f3f"
                     errorColor="#A10702"
                     titleStyle={styles.dropdownTitle}
@@ -370,7 +272,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
     topContainer: {
         flex: 0.8,
-        justifyContent: 'flex-end',
+        marginBottom: height / 100,
     },
     titlebarContainer: {
         flexDirection: 'row',
@@ -398,33 +300,46 @@ const styles = StyleSheet.create({
         paddingTop: height / 150,
     },
     midContainer: {
-        flex: 4.7,
+        flex: 4.62,
+        zIndex: 0,
     },
     bottomContainer: {
-        flex: 0.9,
+        flex: 0.68,
     },
     tabBar: {
         flex: 1,
+        elevation: 7,
         flexDirection: 'row',
-        backgroundColor: 'transparent',
         justifyContent: 'space-around',
-        alignItems: 'center',
+        alignItems: 'flex-end',
+        backgroundColor: '#071f28',
+        opacity: 0.98,
+        paddingBottom: height / 65,
+        shadowColor: '#071f28',
+        shadowRadius: 4,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 1.0,
     },
     button: {
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     icon: {
-        height: width / 10,
-        width: width / 10,
+        paddingTop: height / 40,
+        height: width / 15,
+        width: width / 15,
     },
     iconTitle: {
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
-        paddingTop: height / 60,
+        paddingTop: height / 80,
         fontFamily: 'Lato-Regular',
         fontSize: width / 40.5,
+        backgroundColor: 'transparent',
     },
     fullyOpaque: {
         opacity: 1,
@@ -472,12 +387,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    incrementSeedIndex: () => {
-        dispatch(incrementSeedIndex());
-    },
-    decrementSeedIndex: () => {
-        dispatch(decrementSeedIndex());
-    },
     getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },

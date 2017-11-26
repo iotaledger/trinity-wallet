@@ -1,20 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, Text, ListView, Dimensions, StatusBar } from 'react-native';
-
+import { StyleSheet, View, Text, ListView, Dimensions, StatusBar, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import {
-    getMarketData,
-    getChartData,
-    getPrice,
-    changeCurrency,
-    changeTimeFrame,
-} from '../../shared/actions/marketData';
+import { getMarketData, getChartData, getPrice, setCurrency, setTimeframe } from '../../shared/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const isAndroid = Platform.OS === 'android';
+const width = Dimensions.get('window').width;
+const height = global.height;
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class Balance extends React.Component {
@@ -29,16 +23,6 @@ class Balance extends React.Component {
         if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
             this.setState({ balanceIsShort: true });
         }
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onBalanceClick() {
@@ -82,8 +66,8 @@ class Balance extends React.Component {
                         )}{' '}
                     </Text>
                 </View>
-                <View style={styles.line} />
                 <View style={styles.transactionsContainer}>
+                    <View style={styles.line} />
                     <ListView
                         dataSource={ds.cloneWithRows(
                             accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
@@ -91,19 +75,20 @@ class Balance extends React.Component {
                         renderRow={dataSource => <SimpleTransactionRow addresses={addresses} rowData={dataSource} />}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                         enableEmptySections
-                        contentContainerStyle={styles.listView}
+                        contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
                         scrollEnabled={false}
+                        centerContent
                     />
+                    <View style={styles.line} />
                 </View>
-                <View style={styles.line} />
-                <View style={{ flex: 50 }}>
+                <View style={styles.chartContainer}>
                     <Chart
                         marketData={this.props.marketData}
-                        getPrice={currency => this.props.getPrice(currency)}
-                        getChartData={(currency, timeFrame) => this.props.getChartData(currency, timeFrame)}
+                        getPrice={() => this.props.getPrice()}
+                        getChartData={() => this.props.getChartData()}
                         getMarketData={() => this.props.getMarketData()}
-                        changeCurrency={(currency, timeFrame) => this.props.changeCurrency(currency, timeFrame)}
-                        changeTimeFrame={(currency, timeFrame) => this.props.changeTimeFrame(currency, timeFrame)}
+                        setCurrency={currency => this.props.setCurrency(currency)}
+                        setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
                     />
                 </View>
             </View>
@@ -115,13 +100,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
     },
     balanceContainer: {
-        flex: 8.5,
+        flex: 1,
         alignItems: 'center',
-        paddingTop: height / 50,
-        paddingBottom: height / 15,
+        justifyContent: 'flex-end',
+        paddingTop: isAndroid ? height / 13 : height / 20,
+        paddingBottom: isAndroid ? height / 30 : height / 50,
     },
     iotaBalance: {
         color: 'white',
@@ -131,16 +117,19 @@ const styles = StyleSheet.create({
     },
     fiatBalance: {
         color: 'white',
-        paddingTop: 5,
+        paddingTop: height / 150,
         fontFamily: 'Lato-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
     },
     transactionsContainer: {
-        flex: 16.5,
-        justifyContent: 'center',
+        flex: 2.2,
+        justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: height / 40,
+        paddingVertical: height / 100,
+    },
+    chartContainer: {
+        flex: 5.3,
     },
     line: {
         borderBottomColor: 'white',
@@ -148,12 +137,15 @@ const styles = StyleSheet.create({
         width: width / 1.15,
     },
     separator: {
+        height: height / 90,
         flex: 1,
-        height: 5,
     },
-    listView: {
+    listViewAndroid: {
         flex: 1,
-        justifyContent: 'center',
+        paddingVertical: height / 70,
+    },
+    listViewIos: {
+        paddingTop: height / 90,
     },
 });
 
@@ -164,20 +156,20 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    changeCurrency: (currency, timeFrame) => {
-        dispatch(changeCurrency(currency, timeFrame));
-    },
-    changeTimeFrame: (currency, timeFrame) => {
-        dispatch(changeTimeFrame(currency, timeFrame));
-    },
     getMarketData: () => {
         dispatch(getMarketData());
     },
-    getPrice: currency => {
-        dispatch(getPrice(currency));
+    getPrice: () => {
+        dispatch(getPrice());
     },
-    getChartData: (currency, timeFrame) => {
-        dispatch(getChartData(currency, timeFrame));
+    getChartData: () => {
+        dispatch(getChartData());
+    },
+    setCurrency: currency => {
+        dispatch(setCurrency(currency));
+    },
+    setTimeframe: timeframe => {
+        dispatch(setTimeframe(timeframe));
     },
 });
 

@@ -3,56 +3,73 @@ import { StyleSheet, View, Text, Dimensions, TouchableWithoutFeedback } from 're
 import { Svg, LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
+const timer = require('react-native-timer');
 
 const viewbox = `${width / 3.95} ${height / 50} ${width / 3.93} ${height / 3.7}`;
 
 class Chart extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            price: this.props.marketData.usdPrice,
+        };
+        var polling;
+    }
     componentDidMount() {
-        polling = setInterval(() => {
-            this.props.getMarketData();
-            this.props.getChartData(this.props.marketData.currency, this.props.marketData.timeFrame);
-            this.props.getPrice(this.props.marketData.currency);
-        }, 90000);
+        timer.setInterval('chartPolling', () => this.startPolling(), 101000);
     }
 
-    onCurrencyClick() {
+    startPolling() {
+        // 'console.log('POLLING CHART DATA')'
+        this.props.getMarketData();
+        this.props.getChartData();
+        this.props.getPrice();
+    }
+
+    componentWillMount() {
+        //this.changeCurrency(this.props.marketData.currency);
+    }
+
+    changeCurrency() {
         switch (this.props.marketData.currency) {
             case 'USD':
-                this.props.changeCurrency('BTC', this.props.marketData.timeFrame);
+                this.props.setCurrency('BTC');
+                this.setState({ price: this.props.marketData.btcPrice });
                 break;
             case 'BTC':
-                this.props.changeCurrency('ETH', this.props.marketData.timeFrame);
+                this.props.setCurrency('ETH');
+                this.setState({ price: this.props.marketData.ethPrice });
                 break;
             case 'ETH':
-                this.props.changeCurrency('USD', this.props.marketData.timeFrame);
+                this.props.setCurrency('USD');
+                this.setState({ price: this.props.marketData.usdPrice });
                 break;
         }
     }
 
-    onTimeFrameClick() {
-        switch (this.props.marketData.timeFrame) {
+    changeTimeframe() {
+        switch (this.props.marketData.timeframe) {
             case '24h':
-                this.props.changeTimeFrame(this.props.marketData.currency, '7d');
+                this.props.setTimeframe('7d');
                 break;
             case '7d':
-                this.props.changeTimeFrame(this.props.marketData.currency, '1m');
+                this.props.setTimeframe('1m');
                 break;
             case '1m':
-                this.props.changeTimeFrame(this.props.marketData.currency, '1h');
+                this.props.setTimeframe('1h');
                 break;
             case '1h':
-                this.props.changeTimeFrame(this.props.marketData.currency, '6h');
-                break;
-            case '6h':
-                this.props.changeTimeFrame(this.props.marketData.currency, '24h');
+                this.props.setTimeframe('24h');
                 break;
         }
     }
 
     getMaxY() {
+        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
         const maxValue = Math.max(
-            ...this.props.marketData.chartData.map(object => {
+            ...data.map(object => {
                 return object.y;
             }),
         );
@@ -60,8 +77,9 @@ class Chart extends React.Component {
     }
 
     getMinY() {
+        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
         const minValue = Math.min(
-            ...this.props.marketData.chartData.map(object => {
+            ...data.map(object => {
                 return object.y;
             }),
         );
@@ -69,8 +87,9 @@ class Chart extends React.Component {
     }
 
     getMaxX() {
+        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
         const maxValue = Math.max(
-            ...this.props.marketData.chartData.map(object => {
+            ...data.map(object => {
                 return object.x;
             }),
         );
@@ -89,9 +108,9 @@ class Chart extends React.Component {
         ];
     }
 
-    getTickFormat(x) {
+    getPriceFormat(x) {
         if (this.props.marketData.currency == 'USD') {
-            x = x.toFixed(2);
+            x = x.toFixed(3);
             return x;
         } else if (this.props.marketData.currency == 'BTC') {
             x = x.toFixed(6);
@@ -103,12 +122,14 @@ class Chart extends React.Component {
     }
 
     render() {
+        const { price } = this.state;
+        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
                     <View style={{ flex: 1 }}>
                         <TouchableWithoutFeedback
-                            onPress={event => this.onCurrencyClick()}
+                            onPress={event => this.changeCurrency()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -118,16 +139,16 @@ class Chart extends React.Component {
                         </TouchableWithoutFeedback>
                     </View>
                     <View style={styles.priceContainer}>
-                        <Text style={styles.iotaPrice}>{this.props.marketData.price} / Mi</Text>
+                        <Text style={styles.iotaPrice}>{this.getPriceFormat(this.state.price)} / Mi</Text>
                     </View>
                     <View style={{ flex: 1 }}>
                         <TouchableWithoutFeedback
-                            onPress={event => this.onTimeFrameClick()}
+                            onPress={event => this.changeTimeframe()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
-                                <Text style={styles.buttonText}>{this.props.marketData.timeFrame}</Text>
+                                <Text style={styles.buttonText}>{this.props.marketData.timeframe}</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -143,7 +164,7 @@ class Chart extends React.Component {
 
                         <VictoryAxis
                             dependentAxis
-                            tickFormat={x => this.getTickFormat(x)}
+                            tickFormat={x => this.getPriceFormat(x)}
                             standalone={false}
                             style={{
                                 axis: { stroke: 'transparent' },
@@ -159,7 +180,7 @@ class Chart extends React.Component {
                             }}
                         />
                         <VictoryLine
-                            data={this.props.marketData.chartData}
+                            data={data}
                             style={{
                                 data: {
                                     stroke: 'url(#gradient)',
@@ -194,6 +215,7 @@ class Chart extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingBottom: height / 40,
         paddingTop: height / 80,
     },
     topContainer: {

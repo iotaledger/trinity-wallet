@@ -11,8 +11,10 @@ Navigation.startSingleScreenApp({
         screen: 'initialLoading',
         navigatorStyle: {
             navBarHidden: true,
-            screenBackgroundImageName: 'bg-green.png',
+            navBarTransparent: true,
+            screenBackgroundImageName: 'bg-blue.png',
             screenBackgroundColor: '#102e36',
         },
+        overrideBackPress: true,
     },
 });

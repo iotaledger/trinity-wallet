@@ -1,7 +1,7 @@
 // import IOTA from 'iota.lib.js';
 import IOTA from './iota.lib.promisified';
 
-const defaultNode = 'http://titan.iota.community:14442';
+const defaultNode = 'http://ceres.iota.community:14600/';
 
 export const iota = new IOTA({
     provider: defaultNode,

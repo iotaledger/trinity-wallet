@@ -16,9 +16,9 @@ import { setBalance, setFirstUse } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
 class Loading extends Component {
@@ -26,22 +26,12 @@ class Loading extends Component {
         this.props.changeHomeScreenRoute('balance');
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     render() {
         const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
 
         if (!ready && this.props.account.firstUse) {
             return (
-                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -60,7 +50,7 @@ class Loading extends Component {
             );
         } else if (!ready && !this.props.account.firstUse) {
             return (
-                <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <IotaSpin duration={3000} />
                 </ImageBackground>
@@ -100,15 +90,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getMarketData: () => {
-        dispatch(getMarketData());
-    },
-    getPrice: currency => {
-        dispatch(getPrice(currency));
-    },
-    getChartData: (currency, timeFrame) => {
-        dispatch(getChartData(currency, timeFrame));
-    },
     setBalance: addressesWithBalance => {
         dispatch(setBalance(addressesWithBalance));
     },
@@ -123,9 +104,6 @@ Loading.propTypes = {
     tempAccount: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
-    getMarketData: PropTypes.func.isRequired,
-    getPrice: PropTypes.func.isRequired,
-    getChartData: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Loading);
