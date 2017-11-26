@@ -15,12 +15,12 @@
         "notAvailableExplanation": "Funktionen kommer i en senare version.",
         "enterSeed": "Ange din adress.",
         "mainWallet": "Huvudkonto",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "secondWallet": "KONTO TVÅ",
+        "thirdWallet": "KONTO TRE",
+        "fourthWallet": "KONTO FYRA",
+        "fifthWallet": "KONTO FEM",
+        "sixthWallet": "KONTO SEX",
+        "otherWallet": "ANNAT KONTO",
         "yes": "JA",
         "no": "NEJ",
         "password": "Lösenord",
@@ -109,34 +109,34 @@
         "printWallet": "SKRIV UT PAPPERSKOPIA"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS"
+        "somethingWentWrong": "Något gick fel",
+        "somethingWentWrongExplanation": "Starta om appen.",
+        "addressCopied": "Adress kopierad",
+        "addressCopiedExplanation": "Din adress har kopierats till urklippet.",
+        "generateNewAddress": "GENERERA NY ADRESS"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with",
-        "atLeastOne": "at least one",
-        "ofTheOptions": "of the options listed below."
+        "mustSaveYourSeed": "Du måste spara din adress med",
+        "atLeastOne": "minst en",
+        "ofTheOptions": "av alternativen som anges nedan."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "incorrectSeed": "Felaktiga adress.",
+        "incorrectSeedExplanation": "Den adress som du angav är felaktig. Vänligen försök igen.",
+        "thisIsACheck": "Detta är en kontroll för att kontrollera om du sparat din adress.",
+        "ifYouHaveNotSaved": "Om du inte har sparat din adress, gå tillbaka till föregående skärm och göra så."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "invalidAddress": "Ogiltig adress",
+        "invalidAddressExplanation1": "Adressen bör vara 81 tecken långt och ska ha en kontrollsumma.",
+        "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
+        "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
+        "notEnoughFunds": "Inte tillräckligt med pengar",
+        "notEnoughFundsExplanation": "Du har inte tillräckligt IOTA att slutföra denna överföring.",
         "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
-        "amount": "Amount",
+        "keyReuseExplanation": "Den adress som du försöker skicka till har redan använts. Försök med en annan adress.",
+        "recipientAddress": "Mottagarens adress",
+        "amount": "Antal",
         "max": "MAX",
         "message": "Meddelande",
         "send": "SKICKA IOTA"
@@ -195,16 +195,16 @@
         "explanation3": ", på",
         "explanation4": " valfri enhet",
         "explanation5": ". Men om du förlorar din adress, då förlorar du också dina IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "keepSafe": "Vänligen förvara din adress säkert."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "Tack för att du använder IOTA plånboken.",
+        "weWillSpend": "Vi kommer att tillbringa de närmaste minuterna till att konfiguera din plånbok.",
+        "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig att följa hela processen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "Din adress läses från vänster till höger och är 81 tecken. Skriv ner din adress samt kontrollsumma och",
+        "tripleCheck": "kolla mer än 2 gånger",
+        "thatTheyAreCorrect": "att den stämmer."
     }
 }
