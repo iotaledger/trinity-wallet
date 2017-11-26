@@ -88,7 +88,7 @@
         "login": "INICIAR SESIÓN"
     },
     "loading": {
-        "loadingFirstTime": "Cargando semilla por primera vez.",
+        "loadingFirstTime": "Cargando la seed por primera vez.",
         "thisMayTake": "Esto puede tomar un tiempo.",
         "youMayNotice": "You may notice your device slowing down."
     },
@@ -116,12 +116,12 @@
         "generateNewAddress": "GENERAR NUEVA DIRECCIÓN"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "Usted debe guardar su semilla con",
+        "mustSaveYourSeed": "Debes guardar tu seed con",
         "atLeastOne": "como mínimo con una",
         "ofTheOptions": "of the options listed below."
     },
     "seedReentry": {
-        "incorrectSeed": "Semilla incorrecta.",
+        "incorrectSeed": "Seed incorrecta.",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
