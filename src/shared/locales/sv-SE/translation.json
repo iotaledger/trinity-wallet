@@ -74,39 +74,39 @@
         "balance": "Konton",
         "send": "SKICKA",
         "receive": "TA EMOT",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "history": "HISTORIK",
+        "settings": "INSTÄLLNINGAR"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "Språk"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
-        "login": "LOG IN"
+        "emptyPassword": "Tomt lösenord",
+        "emptyPasswordExplanation": "Du måste ange ett lösenord för att logga in. Vänligen försök igen.",
+        "enterPassword": "Vänligen ange ditt lösenord.",
+        "useSeed": "ANVÄND DIN ADRESS",
+        "login": "LOGGA IN"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Laddar din adress för första gången.",
+        "thisMayTake": "Detta kan ta ett tag.",
+        "youMayNotice": "Din enhet kan tillfälligt bli långsammare."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "seedNotGenerated": "Adressen har inte blivit genererad",
+        "seedNotGeneratedExplanation": "Vänligen klicka på knappen Generera ny adress.",
+        "pressForNewSeed": "TRYCK FÖR NYA ADRESS",
+        "individualLetters": "Tryck på enskilda bokstäver för att slumpmässigt ändra de."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Plånboken är nu inställd och redo för att användas. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "clickToPrint": "Klicka på knappen nedan för att skriva ut en papperskopia av din adress.",
+        "storeSafely": "Förvara den säkert.",
+        "neverShare": "Dela aldrig din adress med någon.",
+        "iotaLogo": "IOTA logotyp",
+        "printWallet": "SKRIV UT PAPPERSKOPIA"
     },
     "receive": {
         "somethingWentWrong": "Something went wrong",
