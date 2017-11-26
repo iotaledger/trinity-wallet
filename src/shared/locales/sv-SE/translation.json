@@ -133,7 +133,7 @@
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
         "notEnoughFunds": "Inte tillräckligt med pengar",
         "notEnoughFundsExplanation": "Du har inte tillräckligt IOTA att slutföra denna överföring.",
-        "keyReuse": "Key reuse",
+        "keyReuse": "Nyckelåteranvändning",
         "keyReuseExplanation": "Den adress som du försöker skicka till har redan använts. Försök med en annan adress.",
         "recipientAddress": "Mottagarens adress",
         "amount": "Antal",
