@@ -28,10 +28,10 @@
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Adressen innehåller felaktiga karaktäer",
-        "seedInvalidCharsExplanation": "Adressen kan endast innehålla bokstäverna A-Z och numret 9. Din adress innehåller felaktiga karaktärer, försök igen.",
+        "seedInvalidChars": "Adressen innehåller felaktiga tecken",
+        "seedInvalidCharsExplanation": "Adressen kan endast innehålla bokstäverna A-Z och numret 9. Din adress innehåller felaktiga tecken, försök igen.",
         "seedTooShort": "Adressen är för kort",
-        "seedTooShortExplanation": "Adressen måste vara åtminstone 60 karaktärer lång(81 är optimalt). Din adress är endast {seed.length}. Försök igen.",
+        "seedTooShortExplanation": "Adressen måste vara åtminstone 60 tecken lång(81 är optimalt). Din adress är endast {seed.length}. Försök igen.",
         "nameInUse": "Kontonamnet används redan",
         "nameInUseExplanation": "Vänligen använd ett unikt namn för din adress.",
         "enterAccountName": "Ange ditt kontonamn.",
@@ -44,36 +44,36 @@
         "passwordUpdatedExplanation": "Ditt lösenord har uppdaterats.",
         "incorrectPassword": "Felaktigt lösenord",
         "incorrectPasswordExplanation": "Ditt nuvarande lösenord är fel, försök igen.",
-        "passwordsDoNotMatch": "Passwords do not match",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least 12 characters. Please try again.",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "passwordsDoNotMatch": "Lösenorden stämmer inte överens",
+        "passwordsDoNotMatchExplanation": "Lösenorden stämmer inte överens, försök igen.",
+        "passwordTooShort": "Lösenordet är för kort",
+        "passwordTooShortExplanation": "Ditt lösenord måste åtminstone vara 12 tecken långt, försök igen.",
+        "oldPassword": "Ett gammalt lösenord får ej användas",
+        "oldPasswordExplanation": "Ett gammalt lösenord får ej användas som ditt nya, försök igen med ett nytt lösenord.",
+        "ensureStrongPassword": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
+        "currentPassword": "Nuvarande lösenord",
+        "newPassword": "Nytt lösenord",
+        "confirmPassword": "Bekräfta nytt lösenord"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Seed copied",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "seedCleared": "Adress rensad",
+        "seedClearedExplanation": "Adressen har rensats från urklippet för din säkerhet.",
+        "seedCopied": "Adress kopierad",
+        "seedCopiedExplanation": "Adressen har kopierats till urklippet och kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
+        "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till ett lösenordshanterare."
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "invalidCharacters": "Adressen innehåller ogiltiga tecken",
+        "invalidCharactersExplanation": "Adressen kan endast innehålla bokstäverna A-Z och numret 9. Din adress innehåller felaktiga tecken, försök igen.",
+        "seedTooShort": "Adressen är för kort",
+        "seedTooShortExplanation": "Adressen måste vara åtminstone 60 tecken lång(81 är optimalt). Din adress är endast {seed.length}. Försök igen.",
+        "seedExplanation": "Adressen ska vara 81 tecken lång och endast innehålla bokstäverna A-Z och nummer 9. Adressen får inte vara längre än 81 tecken.",
+        "neverShare": "DELA ALDRIG DIN ADRESS MED NÅGON"
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
-        "receive": "RECEIVE",
+        "balance": "Konton",
+        "send": "SKICKA",
+        "receive": "TA EMOT",
         "history": "HISTORY",
         "settings": "SETTINGS"
     },
@@ -138,11 +138,11 @@
         "recipientAddress": "Recipient address",
         "amount": "Amount",
         "max": "MAX",
-        "message": "Message",
-        "send": "SEND IOTA"
+        "message": "Meddelande",
+        "send": "SKICKA IOTA"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
+        "passwordTooShort": "Lösenordet är för kort",
         "passwordTooShortExplanation": "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
         "passwordMismatch": "Passwords do not match",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
