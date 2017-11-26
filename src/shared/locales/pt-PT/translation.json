@@ -34,8 +34,8 @@
         "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). Atualmente a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
         "nameInUse": "Account name already in use",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
-        "accountName": "Account name"
+        "enterAccountName": "Entre um nome de conta.",
+        "accountName": "Nome da Conta"
     },
     "changePassword": {
         "oops": "Uups! Aconteceu algum problema",
@@ -111,7 +111,7 @@
     "receive": {
         "somethingWentWrong": "Something went wrong",
         "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "GERAR NOVO ENDEREÇO"
     },
@@ -121,25 +121,25 @@
         "ofTheOptions": "of the options listed below."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
+        "incorrectSeed": "Seed incorreta.",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
     },
     "send": {
-        "invalidAddress": "Invalid address",
+        "invalidAddress": "Endereço inválido",
         "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
+        "notEnoughFunds": "Fundos insuficientes",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
         "amount": "Quantia",
         "max": "MAX",
-        "message": "Message",
-        "send": "SEND IOTA"
+        "message": "Mensagem",
+        "send": "ENVIAR IOTA"
     },
     "setPassword": {
         "passwordTooShort": "A palavra-passe é demasiado curta",
@@ -149,7 +149,7 @@
         "nowWeNeedTo": "Agora precisamos de criar uma palavra-passe.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
-        "retypePassword": "Retype Password"
+        "retypePassword": "Digite de novo a password"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
@@ -160,8 +160,8 @@
         "transferSendingExplanation": "Please wait until your transfer has been sent.",
         "generatingAddress": "Generating receive address",
         "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
+        "mode": "Modo",
+        "theme": "Tema",
         "currency": "Currency",
         "language": "Idioma",
         "addNewSeed": "Adicionar nova Seed",
