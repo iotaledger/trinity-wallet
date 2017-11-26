@@ -29,9 +29,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém carateres inválidos",
-        "seedInvalidCharsExplanation": "Seeds can only contain the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidCharsExplanation": "As Seed só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
-        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently {seed.length} characters long. Please try again.",
+        "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). Atualmente a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
         "nameInUse": "Account name already in use",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
         "enterAccountName": "Enter an account name.",
@@ -43,7 +43,7 @@
         "passwordUpdated": "Palavra-passe atualizada",
         "passwordUpdatedExplanation": "A sua palavra-passe foi atualizada.",
         "incorrectPassword": "Palavra-passe incorreta",
-        "incorrectPasswordExplanation": "The password you entered is incorrect. Please try again.",
+        "incorrectPasswordExplanation": "A sua palavra-passe está incorreta. Por favor, tente de novo.",
         "passwordsDoNotMatch": "As palavras-passe não coincidem",
         "passwordsDoNotMatchExplanation": "As palavras-passe não coincidem. Por favor, tente de novo.",
         "passwordTooShort": "A palavra-passe é demasiado curta",
@@ -64,10 +64,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém carateres inválidos",
-        "invalidCharactersExplanation": "Seeds can only contain the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
-        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently {seed.length} characters long. Please try again.",
-        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, and the number 9. You cannot use seeds longer than 81 characters.",
+        "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). De momento, a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
+        "seedExplanation": "As Seeds devem ter 81 caracteres e devem apenas ser constituídas por letras maiúsculas (A-Z) e o número 9. Não podem conter mais de 81 caracteres.",
         "neverShare": "NUNCA PARTILHE A SUA SEED COM NINGUÉM"
     },
     "home": {
@@ -87,9 +87,14 @@
         "useSeed": "USAR A SEED",
         "login": "Iniciar sessão"
     },
+    "loading": {
+        "loadingFirstTime": "Loading seed for the first time.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down."
+    },
     "newSeedSetup": {
         "seedNotGenerated": "Não foi gerada a Seed",
-        "seedNotGeneratedExplanation": "Por favor pressione o botão \"Gerar Nova Seed\"",
+        "seedNotGeneratedExplanation": "Por favor pressione o botão \"Gerar Nova Seed\".",
         "pressForNewSeed": "PRESSIONE PARA OBTER NOVA SEED",
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório."
     },
@@ -123,7 +128,7 @@
     },
     "send": {
         "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be 81 characters long with a 9 character checksum at the end (90 characters in total).",
+        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "notEnoughFunds": "Not enough funds",
@@ -170,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
         "warning1": "All your wallet data including your",
-        "warning2": "seeds, password",
+        "warning2": " seeds, password, ",
         "warning3": "and",
-        "warning4": "other account information",
-        "warning5": "will be lost.",
+        "warning4": " other account information",
+        "warning5": " will be lost.",
         "areYouSure": "Are you sure you want to continue?"
     },
     "resetWalletRequirePassword": {
@@ -182,13 +187,14 @@
         "reset": "RESET"
     },
     "walletSetup": {
+        "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Já possui uma Seed que gostaria de utilizar?",
         "seedExplanation": "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
         "explanation1": "You can use it to access your funds from",
-        "explanation2": "any wallet",
+        "explanation2": " any wallet ",
         "explanation3": ", on",
-        "explanation4": "any device",
-        "explanation5": ". but if you lose your seed, you also lose your IOTA.",
+        "explanation4": " any device",
+        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Por favor, mantenha a sua Seed protegida e segura."
     },
     "welcome": {
