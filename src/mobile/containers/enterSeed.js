@@ -21,9 +21,11 @@ import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
+const isAndroid = Platform.OS === 'android';
+
 const StatusBarDefaultBarStyle = 'light-content';
 
 class EnterSeed extends React.Component {
@@ -35,16 +37,6 @@ class EnterSeed extends React.Component {
         };
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     handleKeyPress = event => {
         if (event.key == 'Enter') {
             Keyboard.dismiss();
@@ -52,25 +44,26 @@ class EnterSeed extends React.Component {
     };
 
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
+        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
                 `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
             );
-        } else if (this.state.seed.length < 60) {
+        } else if (this.state.seed.length < 81) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
-                    .seed.length} characters long. Please try again.`,
+                `Seeds must be 81 characters long. Your seed is currently ${this.state.seed
+                    .length} characters long. Please try again.`,
             );
-        } else if (this.state.seed.length >= 60) {
+        } else if (this.state.seed.length == 81) {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
-                navigatorStyle: { navBarHidden: true },
+                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                overrideBackPress: true,
             });
         }
     }
@@ -101,12 +94,9 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
-        const isAndroid = Platform.OS === 'android';
-        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
-        const textFieldFontSize = isAndroid ? width / 22.7 : width / 20.7;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -127,9 +117,9 @@ class EnterSeed extends React.Component {
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                            labelTextStyle={{ fontFamily: 'Inconsolata-Bold', fontSize: width / 20.7 }}
                                             labelFontSize={width / 31.8}
-                                            fontSize={textFieldFontSize}
+                                            fontSize={isAndroid ? width / 27.6 : width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
                                             tintColor="#F7D002"
@@ -142,6 +132,7 @@ class EnterSeed extends React.Component {
                                             value={seed}
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
+                                            secureTextEntry={true}
                                             multiline
                                         />
                                     </View>
@@ -157,6 +148,8 @@ class EnterSeed extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
+                            </View>
+                            <View style={styles.bottomContainer}>
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                                     <Text style={styles.infoText}>
@@ -165,8 +158,6 @@ class EnterSeed extends React.Component {
                                     </Text>
                                     <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
                                 </View>
-                            </View>
-                            <View style={styles.bottomContainer}>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
@@ -206,7 +197,7 @@ class EnterSeed extends React.Component {
     }
 }
 
-const baseStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -217,13 +208,13 @@ const baseStyles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 2.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 12,
     },
     bottomContainer: {
-        flex: 0.7,
+        flex: 2.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -249,14 +240,12 @@ const baseStyles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 3.7,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
-        position: 'absolute',
-        top: height / 3.3,
+        paddingVertical: height / 60,
+        marginBottom: height / 17,
     },
     infoText: {
         color: 'white',
@@ -344,57 +333,6 @@ const baseStyles = StyleSheet.create({
         width: width / 12,
         height: width / 12,
         alignSelf: 'center',
-    },
-});
-
-const androidStyles = StyleSheet.create({
-    topContainer: {
-        flex: 1.2,
-        paddingTop: height / 22,
-    },
-    midContainer: {
-        flex: 4.8,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        paddingTop: height / 17,
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 70,
-    },
-    bottomContainer: {
-        flex: 0.7,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
-    },
-    infoTextContainer: {
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 15,
-        width: width / 1.6,
-        minHeight: height / 3.4,
-        height: height / 3.3,
-        maxHeight: height / 3.2,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        paddingHorizontal: width / 30,
-        borderStyle: 'dotted',
-    },
-    warningText: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 27.6,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    infoText: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.6,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
 });
 

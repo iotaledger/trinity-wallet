@@ -18,12 +18,12 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 class SetSeedName extends React.Component {
@@ -36,34 +36,24 @@ class SetSeedName extends React.Component {
 
     getDefaultSeedName() {
         if (this.props.account.seedCount == 0) {
-            return 'MAIN WALLET';
+            return 'MAIN ACCOUNT';
         } else if (this.props.account.seedCount == 1) {
-            return 'SECOND WALLET';
+            return 'SECOND ACCOUNT';
         } else if (this.props.account.seedCount == 2) {
-            return 'THIRD WALLET';
+            return 'THIRD ACCOUNT';
         } else if (this.props.account.seedCount == 3) {
-            return 'FOURTH WALLET';
+            return 'FOURTH ACCOUNT';
         } else if (this.props.account.seedCount == 4) {
-            return 'FIFTH WALLET';
+            return 'FIFTH ACCOUNT';
         } else if (this.props.account.seedCount == 5) {
-            return 'SIXTH WALLET';
+            return 'SIXTH ACCOUNT';
         } else if (this.props.account.seedCount == 6) {
-            return 'OTHER WALLET';
+            return 'OTHER ACCOUNT';
         }
     }
 
     componentDidMount() {
         this.nameInput.focus();
-    }
-
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
     }
 
     onDonePress() {
@@ -73,8 +63,9 @@ class SetSeedName extends React.Component {
                 this.props.setSeedName(this.state.seedName);
                 this.props.navigator.push({
                     screen: 'setPassword',
-                    navigatorStyle: { navBarHidden: true },
+                    navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                     animated: false,
+                    overrideBackPress: true,
                 });
             } else {
                 this.props.clearTempData();
@@ -89,8 +80,10 @@ class SetSeedName extends React.Component {
                             screen: 'loading',
                             navigatorStyle: {
                                 navBarHidden: true,
+                                navBarTransparent: true,
                             },
                             animated: false,
+                            overrideBackPress: true,
                         });
                         this.props.getAccountInfoNewSeed(
                             this.props.tempAccount.seed,
@@ -140,18 +133,16 @@ class SetSeedName extends React.Component {
 
     render() {
         let { seedName } = this.state;
-        const isAndroid = Platform.OS === 'android';
-        const styles = isAndroid ? merge({}, baseStyles, androidStyles) : baseStyles;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.greetingText}>Enter a nickname for your seed.</Text>
+                                <Text style={styles.greetingText}>Enter a name for your account.</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
@@ -162,7 +153,7 @@ class SetSeedName extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Seed nickname"
+                                label="Account name"
                                 tintColor="#F7D002"
                                 autoCapitalize="characters"
                                 autoCorrect={false}
@@ -180,9 +171,9 @@ class SetSeedName extends React.Component {
                             <View style={styles.infoTextContainer}>
                                 <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                                 <Text style={styles.infoText}>
-                                    You can use multiple seeds with this wallet. Each seed requires a nickname.
+                                    You can use multiple accounts with this wallet. Each account requires a name.
                                 </Text>
-                                <Text style={styles.infoText}>You can add more seeds in the Settings menu.</Text>
+                                <Text style={styles.infoText}>You can add more accounts in the Settings menu.</Text>
                             </View>
                         </View>
                         <View style={styles.bottomContainer}>
@@ -210,7 +201,7 @@ class SetSeedName extends React.Component {
     }
 }
 
-const baseStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -252,12 +243,11 @@ const baseStyles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 4.5,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
+        paddingVertical: height / 60,
         marginTop: height / 15,
     },
     infoText: {
@@ -328,42 +318,6 @@ const baseStyles = StyleSheet.create({
         width: width / 12,
         height: width / 12,
         alignSelf: 'center',
-    },
-});
-
-const androidStyles = StyleSheet.create({
-    topContainer: {
-        flex: 1.2,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-    },
-    midContainer: {
-        flex: 4.8,
-        justifyContent: 'flex-start',
-        paddingTop: height / 6,
-        alignItems: 'center',
-    },
-    bottomContainer: {
-        flex: 0.6,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
-    },
-    infoTextContainer: {
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 15,
-        width: width / 1.6,
-        minHeight: height / 4.5,
-        maxHeight: height / 4.2,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingHorizontal: width / 30,
-        paddingVertical: height / 50,
-        borderStyle: 'dotted',
-        paddingTop: height / 60,
-        marginTop: height / 15,
     },
 });
 

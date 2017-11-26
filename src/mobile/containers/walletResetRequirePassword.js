@@ -7,6 +7,7 @@ import { setFirstUse, setOnboardingComplete } from '../../shared/actions/account
 import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import PropTypes from 'prop-types';
+import { persistor } from '../store';
 import {
     StyleSheet,
     View,
@@ -25,10 +26,10 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 import DropdownAlert from 'react-native-dropdownalert';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 
 class WalletResetRequirePassword extends Component {
     constructor() {
@@ -41,25 +42,17 @@ class WalletResetRequirePassword extends Component {
         this.resetWallet = this.resetWallet.bind(this);
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     goBack() {
         this.props.navigator.push({
             screen: 'home',
             navigatorStyle: {
                 navBarHidden: true,
-                screenBackgroundImageName: 'bg-green.png',
+                navBarTransparent: true,
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
+            overrideBackPress: true,
         });
     }
 
@@ -70,12 +63,14 @@ class WalletResetRequirePassword extends Component {
     redirectToInitialScreen() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'welcome',
+                screen: 'languageSetup',
                 navigatorStyle: {
                     navBarHidden: true,
-                    screenBackgroundImageName: 'bg-green.png',
+                    navBarTransparent: true,
+                    screenBackgroundImageName: 'bg-blue.png',
                     screenBackgroundColor: '#102e36',
                 },
+                overrideBackPress: true,
             },
         });
     }
@@ -85,13 +80,24 @@ class WalletResetRequirePassword extends Component {
         const { password, resetWallet } = this.props;
 
         if (isAuthenticated) {
-            deleteFromKeyChain(password);
-            resetWallet();
-            this.props.setOnboardingComplete(false);
-            this.props.setFirstUse(true);
-            this.props.clearTempData();
-            this.props.setPassword('');
-            this.redirectToInitialScreen();
+            persistor
+                .purge()
+                .then(() => {
+                    deleteFromKeyChain(password);
+                    this.props.resetWallet();
+                    this.props.setOnboardingComplete(false);
+                    this.props.setFirstUse(true);
+                    this.props.clearTempData();
+                    this.props.setPassword('');
+                    this.redirectToInitialScreen();
+                })
+                .catch(() => {
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Something went wrong',
+                        'Something went wrong while resetting your wallet. Please try again.',
+                    );
+                });
         } else {
             this.dropdown.alertWithType(
                 'error',
@@ -103,7 +109,7 @@ class WalletResetRequirePassword extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>

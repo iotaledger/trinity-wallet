@@ -1,165 +1,223 @@
 {
-    "notifications": {
-        "invalidServer_title": "Servidor incorreto",
-        "invalidServer_text": "O endereço do servidor que introduziu tem incorrecções",
-        "unknownError_title": "Ocorreu um erro desconhecido",
-        "unknownError_text": "Não foi possível executar a ação. Por favor, tente novamente."
+    "global": {
+        "invalidResponse": "Resposta inválida",
+        "invalidResponseExplanation": "O servidor devolveu uma resposta inválida.",
+        "invalidResponsePollingExplanation": "Falha ao aceder aos dados mais recentes da conta.",
+        "seed": "Seed",
+        "back": "ANTERIOR",
+        "done": "CONCLUÍDO",
+        "next": "PRÓXIMO",
+        "manualCopy": "Cópia Manual",
+        "paperWallet": "Carteira de Papel",
+        "copyToClipboard": "Copiar para a Área de Transferência",
+        "qr": "QR",
+        "notAvailable": "Esta função não está disponível",
+        "notAvailableExplanation": "Será adicionada numa etapa posterior.",
+        "enterSeed": "Por favor, digite a sua Seed.",
+        "mainWallet": "MAIN ACCOUNT",
+        "secondWallet": "SECOND ACCOUNT",
+        "thirdWallet": "THIRD ACCOUNT",
+        "fourthWallet": "FOURTH ACCOUNT",
+        "fifthWallet": "FIFTH ACCOUNT",
+        "sixthWallet": "SIXTH ACCOUNT",
+        "otherWallet": "OTHER ACCOUNT",
+        "yes": "SIM",
+        "no": "NÃO",
+        "password": "Palavra-passe",
+        "unrecognisedPassword": "Palavra-passe não reconhecida",
+        "unrecognisedPasswordExplanation": "A palavra-passe não foi reconhecida. Por favor, tente novamente."
     },
-    "setLanguage": {
-        "dropdown_title": "Idioma",
-        "button1": "SEGUINTE"
+    "addAdditionalSeed": {
+        "seedInvalidChars": "A Seed contém carateres inválidos",
+        "seedInvalidCharsExplanation":
+            "As Seed só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
+        "seedTooShort": "A Seed é demasiado curta",
+        "seedTooShortExplanation":
+            "As Seeds devem ter pelo menos 60 carateres (idealmente 81). Atualmente a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
+        "nameInUse": "Account name already in use",
+        "nameInUseExplanation": "Please use a unique account name for your seed.",
+        "enterAccountName": "Enter an account name.",
+        "accountName": "Account name"
     },
-    "welcome1": {
-        "text1": "Obrigado por descarregar a carteira IOTA.",
-        "text2": "Os próximos minutos servirão para configurar a sua carteira.",
-        "reminder": "Pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo.",
-        "button1": "SEGUINTE",
-        "button2": "ANTERIOR"
+    "changePassword": {
+        "oops": "Uups! Aconteceu algum problema",
+        "oopsExplanation": "Ocorreram problemas na atualização da sua palavra-passe. Por favor tente de novo.",
+        "passwordUpdated": "Palavra-passe atualizada",
+        "passwordUpdatedExplanation": "A sua palavra-passe foi atualizada.",
+        "incorrectPassword": "Palavra-passe incorreta",
+        "incorrectPasswordExplanation": "A sua palavra-passe está incorreta. Por favor, tente de novo.",
+        "passwordsDoNotMatch": "As palavras-passe não coincidem",
+        "passwordsDoNotMatchExplanation": "As palavras-passe não coincidem. Por favor, tente de novo.",
+        "passwordTooShort": "A palavra-passe é demasiado curta",
+        "passwordTooShortExplanation":
+            "A sua palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
+        "oldPassword": "Não é possível configurar a palavra-passe antiga",
+        "oldPasswordExplanation":
+            "Não pode usar a sua palavra-passe antiga como a sua nova palavra-passe. Por favor tente de novo com uma palavra-passe nova.",
+        "ensureStrongPassword": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
+        "currentPassword": "Palavra-passe atual",
+        "newPassword": "Nova Palavra-Passe",
+        "confirmPassword": "Confirme a Nova Palavra-Passe"
     },
-    "welcome2": {
-        "text1": "Ok. Vamos configurar a sua carteira!",
-        "text2": "Já possui uma Seed que gostaria de utilizar?",
-        "seed_explanation1":
-            "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
-        "seed_explanation2":
-            "Dá acesso aos seus fundos a partir de qualquer carteira, em qualquer dispositivo. Se a perder, não é recuperável, perde tudo o que lá tem",
-        "reminder": "Por favor, mantenha a sua Seed protegida e segura",
-        "button1": "SIM",
-        "button2": "NÃO"
-    },
-    "lightserver": {
-        "text1":
-            "Um servidor é uma forma de acesso à rede IOTA, gentilmente disponibilizada por membros da comunidade ou por parceiros corporativos.",
-        "text2": "Poderá encontrar mais informações sobre os servidores em: http://iotasupport.com/lightwallet.shtml",
-        "text3": "Por favor, escolha um servidor da lista abaixo.",
-        "server_label": "Servidor",
-        "custom_server_label": "Servidor personalizado",
-        "other": "Outro",
-        "button1": "SEGUINTE",
-        "button2": "ANTERIOR"
-    },
-    "login": {
-        "text": "Por favor, insira a sua palavra-passe",
-        "placeholder": "PALAVRA-PASSE",
-        "error_title": "Palavra-passe não reconhecida",
-        "error_text": "A palavra-passe não foi reconhecida. Por favor, tente novamente.",
-        "button1": "CONCLUÍDO",
-        "button2": "USAR A SEED"
+    "copyToClipboard": {
+        "seedCleared": "Seed removida",
+        "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
+        "seedCopied": "Seed copiada",
+        "seedCopiedExplanation":
+            "A Seed foi copiada para a área de transferência e será removida quando pressionar \"CONCLUÍDO\" ou decorridos 60 segundos (o que se verificar primeiro).",
+        "clickToCopy": "Clique no botão em baixo e copie a sua Seed para o gestor de palavras-passe."
     },
     "enterSeed": {
-        "error_title": "A Seed é demasiado curta",
-        "error_text": "As Seeds devem ter pelo menos 60 caracteres. Por favor, tente novamente.",
-        "invalid_seed_title": "Seed incorreta",
-        "invalid_seed_text":
-            "A sua Seed é inválida. A Seed só pode conter letras maiúsculas (A-Z) e o número 9 e, além disso, tem de ter entre 60 a 81 caracteres.",
-        "placeholder": "SEED",
-        "seed_explanation":
-            "As Seeds devem ter 81 caracteres e têm de ser constituídas por letras maiúsculas (A-Z) e o número 9. Não podem conter mais de 81 caracteres.",
-        "reminder": "NUNCA PARTILHE A SUA SEED COM NINGUÉM",
-        "scan_code": "Ler código QR",
-        "close": "FECHAR",
-        "button1": "CONCLUÍDO",
-        "button2": "ANTERIOR"
-    },
-    "newSeedSetup": {
-        "title": "GERAR UMA NOVA SEED",
-        "button1": "GERAR NOVA SEED",
-        "text1": "Digite letras individuais para tornar o processo mais aleatório.",
-        "text2": "De seguida, clique em SEGUINTE",
-        "button2": "SEGUINTE",
-        "button3": "ANTERIOR"
-    },
-    "saveYourSeed": {
-        "text1": "Deve guardar a sua Seed usando, pelo menos, uma das opções listadas em baixo.",
-        "text2": "pelo menos uma",
-        "optionA": "CÓPIA MANUAL",
-        "optionB": "IMPRIMIR CARTEIRA DE PAPEL",
-        "optionC": "COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
-        "button1": "SEGUINTE",
-        "button2": "ANTERIOR"
-    },
-    "saveYourSeed2": {
-        "optionA": "Cópia Manual",
-        "optionB": " Carteira de Papel",
-        "optionC": "Copiar para a Área de Transferência",
-        "explanation":
-            "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e confirme VÁRIAS vezes que anotou corretamente.",
-        "text": "verifique várias vezes",
-        "button": "CONCLUÍDO"
-    },
-    "saveYourSeed3": {
-        "optionA": "Cópia Manual",
-        "optionB": " Carteira de Papel",
-        "optionC": "Copiar para a Área de Transferência",
-        "explanation":
-            "Pressione o botão em baixo para copiar a sua Seed para um gestor de palavras-passe. Esta cópia ficará na sua área de transferência durante 60 segundos.",
-        "text": "Não grave a sua Seed num arquivo de texto não cifrado.",
-        "button1": "COPIAR PARA A ÁREA DE TRANSFERÊNCIA",
-        "button2": "CONCLUÍDO"
-    },
-    "saveYourSeed4": {
-        "optionA": "Cópia Manual",
-        "optionB": " Carteira de Papel",
-        "optionC": "Copiar para a Área de Transferência",
-        "explanation": "Prima o botão em baixo para imprimir uma cópia em papel da sua Seed.",
-        "text1": "Mantenha-a num local seguro",
-        "text2": "Nunca partilhe a sua Seed com ninguém.",
-        "check_button": "Logótipo IOTA",
-        "button1": "IMPRIMIR A CARTEIRA DE PAPEL",
-        "button2": "CONCLUÍDO"
-    },
-    "nameYourSeed": {
-        "text": "Aqui pode inserir um nome para a sua Sedd.",
-        "label": "Nome da Seed",
-        "placeholder": "Carteira Principal",
-        "explanation": "Insira um nome para a sua Seed para ser mais fácil diferenciá-las.",
-        "button1": "CONCLUÍDO",
-        "button2": "VOLTAR"
-    },
-    "setPassword": {
-        "title": "CONFIGURAR PALAVRA-PASSE",
-        "text": "Agora precisamos de criar uma palavra-passe.",
-        "explanation":
-            "No futuro, irá usar esta palavra-passe para aceder à sua carteira. Será armazenada uma cópia cifrada da sua Seed no seu dispositivo.",
-        "reminder": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
-        "placeholder1": "`PALAVRA-PASSE´",
-        "placeholder2": "DIGITE DE NOVO A PALAVRA-PASSE",
-        "error1_title": "A palavra-passe é demasiado curta",
-        "error1_text": "A sua palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
-        "error2_title": "As palavras-passe não coincidem",
-        "error2_text": "As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
-        "button1": "CONCLUÍDO",
-        "button2": "ANTERIOR"
-    },
-    "onboardingComplete": {
-        "text":
-            "Agora a sua carteira está configurada e pronta para ser usada. Se precisar de efetuar alguma alteração no futuro, aceda ao menu Ferramentas.",
-        "button": "SEGUINTE"
+        "invalidCharacters": "A Seed contém carateres inválidos",
+        "invalidCharactersExplanation":
+            "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
+        "seedTooShort": "A Seed é demasiado curta",
+        "seedTooShortExplanation":
+            "As Seeds devem ter pelo menos 60 carateres (idealmente 81). De momento, a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
+        "seedExplanation":
+            "As Seeds devem ter 81 caracteres e devem apenas ser constituídas por letras maiúsculas (A-Z) e o número 9. Não podem conter mais de 81 caracteres.",
+        "neverShare": "NUNCA PARTILHE A SUA SEED COM NINGUÉM"
     },
     "home": {
-        "tab1": "SALDO",
-        "tab2": "ENVIAR",
-        "tab3": "RECEBER",
-        "tab4": "HISTÓRICO",
-        "tab5": "FERRAMENTAS",
-        "mcap": "MCAP",
-        "change": "Variação",
-        "volume": "Volume",
-        "address": "Endereço",
+        "balance": "SALDO",
+        "send": "ENVIAR",
+        "receive": "RECEBER",
+        "history": "HISTÓRICO",
+        "settings": "CONFIGURAÇÕES"
+    },
+    "languageSetup": {
+        "language": "Idioma"
+    },
+    "login": {
+        "emptyPassword": "Palavra-passe vazia",
+        "emptyPasswordExplanation": "Deve inserir uma palavra-passe para iniciar a sessão, Por favor, tente de novo.",
+        "enterPassword": "Por favor, insira a sua palavra-passe.",
+        "useSeed": "USAR A SEED",
+        "login": "Iniciar sessão"
+    },
+    "loading": {
+        "loadingFirstTime": "Loading seed for the first time.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down."
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Não foi gerada a Seed",
+        "seedNotGeneratedExplanation": "Por favor pressione o botão \"Gerar Nova Seed\".",
+        "pressForNewSeed": "PRESSIONE PARA OBTER NOVA SEED",
+        "individualLetters": "Digite letras individuais para tornar o processo mais aleatório."
+    },
+    "onboardingComplete": {
+        "walletReady":
+            "A carteira está configurada e pronta para ser utilizada. Se posteriormente necessitar de efetuar alterações, utilize o menu \"Configurações\"."
+    },
+    "paperWallet": {
+        "clickToPrint": "Prima o botão em baixo para imprimir uma cópia em papel da sua Seed.",
+        "storeSafely": "Guarde em local seguro.",
+        "neverShare": "Nunca partilhe a sua Seed com ninguém.",
+        "iotaLogo": "Logótipo IOTA",
+        "printWallet": "IMPRIMIR CARTEIRA DE PAPEL"
+    },
+    "receive": {
+        "somethingWentWrong": "Something went wrong",
+        "somethingWentWrongExplanation": "Please restart the app.",
+        "addressCopied": "Address copied",
+        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "generateNewAddress": "GERAR NOVO ENDEREÇO"
+    },
+    "saveYourSeed": {
+        "mustSaveYourSeed": "You must save your seed with",
+        "atLeastOne": "pelo menos uma",
+        "ofTheOptions": "of the options listed below."
+    },
+    "seedReentry": {
+        "incorrectSeed": "Incorrect seed.",
+        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
+        "thisIsACheck": "This is a check to make sure you saved your seed.",
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+    },
+    "send": {
+        "invalidAddress": "Invalid address",
+        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
+        "invalidAddressExplanation2": "Address contains invalid characters.",
+        "invalidAddressExplanation3": "Address contains an invalid checksum.",
+        "notEnoughFunds": "Not enough funds",
+        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "keyReuse": "Key reuse",
+        "keyReuseExplanation":
+            "The address you are trying to send to has already been used. Please try another address.",
+        "recipientAddress": "Recipient address",
         "amount": "Quantia",
-        "button1": "ENVIAR",
-        "button2": "GERAR NOVO ENDEREÇO",
-        "button3": "TERMINAR SESSÃO",
-        "changeMode": "Alterar o modo",
-        "minimal": "Simples",
-        "standard": "Padrão",
-        "expert": "Avançado",
-        "changeTheme": "Mudar o tema",
-        "changeLanguage": "Mudar o idioma",
+        "max": "MAX",
+        "message": "Message",
+        "send": "SEND IOTA"
+    },
+    "setPassword": {
+        "passwordTooShort": "A palavra-passe é demasiado curta",
+        "passwordTooShortExplanation":
+            "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
+        "passwordMismatch": "As palavras-passe não coincidem",
+        "passwordMismatchExplanation": "As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
+        "nowWeNeedTo": "Agora precisamos de criar uma palavra-passe.",
+        "anEncryptedCopy":
+            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "ensure": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
+        "retypePassword": "Retype Password"
+    },
+    "setSeedName": {
+        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
+        "youCanAdd": "You can add more seeds in the Settings menu."
+    },
+    "settings": {
+        "transferSending": "Transfer sending",
+        "transferSendingExplanation": "Please wait until your transfer has been sent.",
+        "generatingAddress": "Generating receive address",
+        "generatingAddressExplanation": "Please wait until your address has been generated.",
+        "mode": "Mode",
+        "theme": "Theme",
+        "currency": "Currency",
+        "language": "Idioma",
         "addNewSeed": "Adicionar nova Seed",
-        "setup2fa": "Configuração de 2FA",
+        "twoFA": "Two-factor authentication",
         "changePassword": "Alterar a palavra-passe",
-        "advancedSettings": "Configurações avançadas",
-        "logout": "Terminar Sessão"
+        "advanced": "Configurações avançadas",
+        "logout": "Log out",
+        "reset": "Reset wallet",
+        "back": "Back"
+    },
+    "resetWalletConfirmation": {
+        "thisAction": "This action cannot be undone.",
+        "warning1": "All your wallet data including your",
+        "warning2": " seeds, password, ",
+        "warning3": "and",
+        "warning4": " other account information",
+        "warning5": " will be lost.",
+        "areYouSure": "Are you sure you want to continue?"
+    },
+    "resetWalletRequirePassword": {
+        "enterPassword": "Enter password to reset your wallet.",
+        "cancel": "CANCEL",
+        "reset": "RESET"
+    },
+    "walletSetup": {
+        "okay": "Okay. Let's set up your wallet!",
+        "doYouAlreadyHaveASeed": "Já possui uma Seed que gostaria de utilizar?",
+        "seedExplanation":
+            "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
+        "explanation1": "You can use it to access your funds from",
+        "explanation2": " any wallet ",
+        "explanation3": ", on",
+        "explanation4": " any device",
+        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "keepSafe": "Por favor, mantenha a sua Seed protegida e segura."
+    },
+    "welcome": {
+        "thankYou": "Obrigado por descarregar a carteira IOTA.",
+        "weWillSpend": "Os próximos minutos servirão para configurar a sua carteira.",
+        "reminder": "Pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo."
+    },
+    "writeSeedDown": {
+        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "tripleCheck": "verifique várias vezes",
+        "thatTheyAreCorrect": "that they are correct."
     }
 }

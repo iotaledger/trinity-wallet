@@ -10,6 +10,8 @@ import {
     ScrollView,
     ImageBackground,
     StatusBar,
+    Platform,
+    KeyboardAvoidingView,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -23,12 +25,13 @@ import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/l
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData } from '../../shared/actions/tempAccount';
-import RNShakeEvent from 'react-native-shake-event'; // For HockeyApp bug reporting
 
 import DropdownHolder from '../components/dropdownHolder';
 
-const { height, width } = Dimensions.get('window');
+const width = Dimensions.get('window').width;
+const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
+const isAndroid = Platform.OS === 'android';
 
 class AddAdditionalSeed extends React.Component {
     constructor(props) {
@@ -42,54 +45,40 @@ class AddAdditionalSeed extends React.Component {
 
     getDefaultSeedName() {
         if (this.props.account.seedCount == 0) {
-            return 'MAIN WALLET';
+            return 'MAIN ACCOUNT';
         } else if (this.props.account.seedCount == 1) {
-            return 'SECOND WALLET';
+            return 'SECOND ACCOUNT';
         } else if (this.props.account.seedCount == 2) {
-            return 'THIRD WALLET';
+            return 'THIRD ACCOUNT';
         } else if (this.props.account.seedCount == 3) {
-            return 'FOURTH WALLET';
+            return 'FOURTH ACCOUNT';
         } else if (this.props.account.seedCount == 4) {
-            return 'FIFTH WALLET';
+            return 'FIFTH ACCOUNT';
         } else if (this.props.account.seedCount == 5) {
-            return 'SIXTH WALLET';
+            return 'SIXTH ACCOUNT';
         } else if (this.props.account.seedCount == 6) {
-            return 'OTHER WALLET';
+            return 'OTHER ACCOUNT';
         }
     }
 
-    componentWillMount() {
-        RNShakeEvent.addEventListener('shake', () => {
-            HockeyApp.feedback();
-        });
-    }
-
-    componentWillUnmount() {
-        RNShakeEvent.removeEventListener('shake');
-    }
-
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
+        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
                 `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
             );
-        } else if (this.state.seed.length < 60) {
+        } else if (this.state.seed.length < 81) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
-                    .seed.length} characters long. Please try again.`,
+                `Seeds must be 81 characters long. Your seed is currently ${this.state.seed
+                    .length} characters long. Please try again.`,
             );
         } else if (!(this.state.seedName.length > 0)) {
             this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
         } else if (this.props.account.seedNames.includes(this.state.seedName)) {
-            this.dropdown.alertWithType(
-                'error',
-                'Nickname already in use',
-                `Please use a unique nickname for your seed.`,
-            );
+            this.dropdown.alertWithType('error', 'Account name already in use', `Please use a unique account name.`);
         } else {
             this.props.clearTempData();
             storeInKeychain(
@@ -110,8 +99,10 @@ class AddAdditionalSeed extends React.Component {
                         screen: 'loading',
                         navigatorStyle: {
                             navBarHidden: true,
+                            navBarTransparent: true,
                         },
                         animated: false,
+                        overrideBackPress: true,
                     });
                 },
             );
@@ -139,11 +130,7 @@ class AddAdditionalSeed extends React.Component {
     }
 
     onBackPress() {
-        this.props.navigator.push({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-            },
+        this.props.navigator.pop({
             animated: false,
         });
     }
@@ -169,23 +156,23 @@ class AddAdditionalSeed extends React.Component {
     render() {
         const { seed, seedName } = this.state;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
-                            <View style={styles.topContainer}>
+                            <View style={styles.topContainer} behavior="padding">
                                 <View style={styles.logoContainer}>
                                     <Image
                                         source={require('../../shared/images/iota-glow.png')}
                                         style={styles.iotaLogo}
                                     />
                                 </View>
+                            </View>
+                            <View style={styles.midContainer}>
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.title}>Please enter your seed.</Text>
                                 </View>
-                            </View>
-                            <View style={styles.midContainer}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.textFieldContainer}>
                                         <TextField
@@ -203,7 +190,7 @@ class AddAdditionalSeed extends React.Component {
                                             value={seed}
                                             maxLength={81}
                                             onChangeText={seed => this.setState({ seed })}
-                                            multiline
+                                            secureTextEntry={true}
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
@@ -220,7 +207,7 @@ class AddAdditionalSeed extends React.Component {
                                 </View>
                                 <View style={styles.seedNickNameContainer}>
                                     <View style={styles.subtitleContainer}>
-                                        <Text style={styles.title}>Enter a seed nickname.</Text>
+                                        <Text style={styles.title}>Enter an account name.</Text>
                                     </View>
                                     <TextField
                                         style={styles.textField}
@@ -287,14 +274,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 1.2,
+        flex: 0.8,
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 2.8,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 12,
     },
     bottomContainer: {
         flex: 0.7,
@@ -389,7 +375,7 @@ const styles = StyleSheet.create({
     },
     textField: {
         color: 'white',
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'Lato-Light',
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',
@@ -426,8 +412,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     seedNickNameContainer: {
-        position: 'absolute',
-        top: height / 3,
+        paddingTop: height / 10,
     },
 });
 

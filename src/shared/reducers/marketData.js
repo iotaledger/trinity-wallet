@@ -2,13 +2,33 @@ import { ActionTypes } from '../actions/marketData';
 
 const initialState = {
     currency: 'USD',
-    timeFrame: '24h',
-    chartData: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-    usdPrice: 0,
+    timeframe: '24h',
+    chartData: {
+        USD: {
+            '24h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '7d': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '1m': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '1h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+        },
+        BTC: {
+            '24h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '7d': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '1m': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '1h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+        },
+        ETH: {
+            '24h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '7d': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '1m': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '1h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+        },
+    },
     mcap: '0',
     volume: '0',
     change24h: '0.00',
-    price: 0,
+    usdPrice: 0,
+    btcPrice: 0,
+    ethPrice: 0,
 };
 
 const marketData = (state = initialState, action) => {
@@ -18,15 +38,17 @@ const marketData = (state = initialState, action) => {
                 ...state,
                 currency: action.payload,
             };
-        case ActionTypes.SET_TIME_FRAME:
+        case ActionTypes.SET_TIMEFRAME:
             return {
                 ...state,
-                timeFrame: action.payload,
+                timeframe: action.payload,
             };
         case ActionTypes.SET_PRICE:
             return {
                 ...state,
-                price: action.payload,
+                usdPrice: action.usd,
+                btcPrice: action.btc,
+                ethPrice: action.eth,
             };
         case ActionTypes.SET_STATISTICS:
             return {
@@ -39,7 +61,13 @@ const marketData = (state = initialState, action) => {
         case ActionTypes.SET_CHART_DATA:
             return {
                 ...state,
-                chartData: action.payload,
+                chartData: {
+                    ...state.chartData,
+                    [action.currency]: {
+                        ...state.chartData[action.currency],
+                        [action.timeframe]: action.data,
+                    },
+                },
             };
         default:
             return state;

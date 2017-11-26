@@ -4,6 +4,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSecurelyPersistedSeeds } from 'libs/util';
 import { showError } from 'actions/notifications';
+import { loadSeeds } from 'actions/seeds';
 import Template, { Content, Footer } from '../Onboarding/Template';
 import PasswordInput from 'components/UI/PasswordInput';
 import Button from 'components/UI/Button';
@@ -14,8 +15,11 @@ class Login extends React.Component {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
+        loadSeeds: PropTypes.func.isRequired,
         showError: PropTypes.func.isRequired,
     };
+
+    state = {};
 
     changeHandler = e => {
         const { target: { name, value } } = e;
@@ -27,12 +31,13 @@ class Login extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         const { password } = this.state;
-        const { showError } = this.props;
+        const { loadSeeds, showError } = this.props;
         try {
             const seeds = getSecurelyPersistedSeeds(password);
             console.log('SEEDS:', seeds);
-            // if (seeds) {
-            // }
+            if (seeds) {
+                loadSeeds(seeds);
+            }
             this.props.history.push('/balance');
         } catch (err) {
             showError({
@@ -71,8 +76,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     showError,
+    loadSeeds,
     // addCustomNode,
     // setFullNode,
 };
 
-export default translate('balance')(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default translate('login')(connect(mapStateToProps, mapDispatchToProps)(Login));
