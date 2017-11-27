@@ -156,10 +156,10 @@
         "youCanAdd": "Pode adicionar mais Seeds no menu de configuração."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
+        "transferSending": "A enviar a sua transferência",
+        "transferSendingExplanation": "Por favor aguarde enquanto a sua transferência está a ser enviada.",
+        "generatingAddress": "Gerar endereço de .... completa por favor Ricardo",
+        "generatingAddressExplanation": "Por favor aguarde enquanto o seu endereço está a ser gerado.",
         "mode": "Modo",
         "theme": "Tema",
         "currency": "Currency",
