@@ -185,7 +185,7 @@ export const getAddressesWithChangedBalance = (allAddresses, indicesWithChangedB
     return addressesWithChangedBalance;
 };
 
-export function mergeLatestTransfersInOld(oldTransfers, latestTransfers) {
+export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
     let old = oldTransfers.slice(0);
     let latest = latestTransfers.slice(0);
 
@@ -206,4 +206,4 @@ export function mergeLatestTransfersInOld(oldTransfers, latestTransfers) {
     }
 
     return size(latest) ? [...old, ...latest] : old;
-}
+};
