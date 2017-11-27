@@ -32,8 +32,8 @@
         "seedInvalidCharsExplanation": "As Seed só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
         "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). Atualmente a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
-        "nameInUse": "Nome da conta já está a ser utilizado",
-        "nameInUseExplanation": "Please use a unique account name for your seed.",
+        "nameInUse": "O nome da conta já está a ser utilizado",
+        "nameInUseExplanation": "Por favor, use um nome de conta exclusivo para a sua Seed.",
         "enterAccountName": "Entre um nome de conta.",
         "accountName": "Nome da Conta"
     },
@@ -88,9 +88,9 @@
         "login": "Iniciar sessão"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "A carregar a Seed pela primeira vez.",
+        "thisMayTake": "Isto pode demorar algum tempo.",
+        "youMayNotice": "Pode notar um abrandamento do seu dispositivo."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Não foi gerada a Seed",
@@ -109,10 +109,10 @@
         "printWallet": "IMPRIMIR CARTEIRA DE PAPEL"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
+        "somethingWentWrong": "Algo correu mal",
+        "somethingWentWrongExplanation": "Por favor, reinicie a aplicação.",
         "addressCopied": "Endereço copiado",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "generateNewAddress": "GERAR NOVO ENDEREÇO"
     },
     "saveYourSeed": {
@@ -122,13 +122,13 @@
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorreta.",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "incorrectSeedExplanation": "A Seed que introduziu está incorreta. Por favor, tente novamente.",
+        "thisIsACheck": "Isto é uma verificação para certificar-se que gravou a sua Seed.",
+        "ifYouHaveNotSaved": "Se não gravou a sua Seed, por favor volte para o ecrã anterior e grave-a."
     },
     "send": {
         "invalidAddress": "Endereço inválido",
-        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
+        "invalidAddressExplanation1": "O endereço deve ter 81 caracteres e o código de verificação.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "notEnoughFunds": "Fundos insuficientes",
