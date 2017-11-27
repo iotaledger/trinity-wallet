@@ -174,7 +174,7 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Esta ação não pode ser anulada.",
-        "warning1": "All your wallet data including your",
+        "warning1": "Toda a informação da sua carteira, incluindo",
         "warning2": " seeds, password, ",
         "warning3": "and",
         "warning4": " other account information",
