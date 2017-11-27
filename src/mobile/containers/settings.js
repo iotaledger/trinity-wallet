@@ -5,6 +5,7 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearTempData, setPassword, setSetting, setSeedIndex} from '../../shared/actions/tempAccount';
 import { setFirstUse, getAccountInfoNewSeed, increaseSeedCount, addAccountName, changeAccountName, removeAccount } from '../../shared/actions/account';
+import { setNode } from '../../shared/actions/settings'
 import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewAccount from '../components/addNewAccount';
@@ -14,6 +15,7 @@ import ViewSeed from '../components/viewSeed.js';
 import ViewAddresses from '../components/viewAddresses.js'
 import DeleteAccount from '../components/deleteAccount.js'
 import EditAccountName from '../components/editAccountName.js'
+import NodeSelection from '../components/nodeSelection.js'
 import { logoutFromWallet } from '../../shared/actions/app';
 import { getFromKeychain, storeInKeychain, deleteSeed } from '../../shared/libs/cryptography';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
@@ -115,18 +117,29 @@ class Settings extends React.Component {
             case 'advancedSettings':
                 return (
                     <View style={styles.advancedSettingsContainer}>
-                        <TouchableOpacity onPress={event => this.onResetWalletPress()}>
-                            <View style={styles.item}>
-                                <Image source={require('../../shared/images/reset.png')} style={styles.icon} />
-                                <Text style={styles.titleText}>Reset Wallet</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onBackPress()}>
-                            <View style={styles.item}>
-                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <View style={{flex:1, justifyContent: 'flex-start'}}>
+                            <TouchableOpacity onPress={event => this.props.setSetting('nodeSelection')}>
+                                <View style={styles.item}>
+                                    <Image source={require('../../shared/images/node.png')} style={styles.icon} />
+                                    <Text style={styles.titleText}>Select node</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <View style={styles.separator} />
+                            <TouchableOpacity onPress={event => this.onResetWalletPress()}>
+                                <View style={styles.item}>
+                                    <Image source={require('../../shared/images/reset.png')} style={styles.icon} />
+                                    <Text style={styles.titleText}>Reset Wallet</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                            <TouchableOpacity onPress={event => this.onBackPress()}>
+                                <View style={styles.item}>
+                                    <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                                    <Text style={styles.titleText}>Back</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 );
                 break;
@@ -232,6 +245,16 @@ class Settings extends React.Component {
                         seedCount={this.props.account.seedCount}
                         addAccount={(seed, accountName) => this.addExistingSeed(seed, accountName)}
                         backPress={() => this.props.setSetting('addNewAccount')}
+                    />
+                );
+                break;
+            case 'nodeSelection':
+                return (
+                    <NodeSelection
+                        setNode={(selectedNode) => this.props.setNode(selectedNode)}
+                        node={this.props.settings.fullNode}
+                        nodes={this.props.settings.availableNodes}
+                        backPress={() => this.props.setSetting('advancedSettings')}
                     />
                 );
                 break;
@@ -418,7 +441,8 @@ class Settings extends React.Component {
     }
 
     onEditAccountNamePress(){
-
+      const dropdown = DropdownHolder.getDropdown();
+      dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
     onDeleteAccountPress(){
@@ -435,7 +459,6 @@ class Settings extends React.Component {
     }
 
     onModePress() {
-        console.log(this.props.account.accountInfo)
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
@@ -663,12 +686,14 @@ const mapDispatchToProps = dispatch => ({
     changeAccountName: (newAccountName, accountNames, addresses, transfers) => dispatch(changeAccountName(newAccountName, accountNames, addresses, transfers)),
     removeAccount: (accountInfo, accountNames) => dispatch(removeAccount(accountInfo, accountNames)),
     setSeedIndex: (number) => dispatch(setSeedIndex(number)),
+    setNode: (selectedNode) => dispatch(setNode(selectedNode))
 });
 
 const mapStateToProps = state => ({
     account: state.account,
     settings: state.settings,
     tempAccount: state.tempAccount,
+    settings: state.settings
 });
 
 Settings.propTypes = {
