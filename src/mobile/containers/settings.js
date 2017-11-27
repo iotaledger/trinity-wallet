@@ -5,7 +5,7 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearTempData, setPassword, setSetting, setSeedIndex} from '../../shared/actions/tempAccount';
 import { setFirstUse, getAccountInfoNewSeed, increaseSeedCount, addAccountName, changeAccountName, removeAccount } from '../../shared/actions/account';
-import { setNode } from '../../shared/actions/settings'
+import { setNode, getCurrencyData } from '../../shared/actions/settings'
 import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewAccount from '../components/addNewAccount';
@@ -16,6 +16,7 @@ import ViewAddresses from '../components/viewAddresses.js'
 import DeleteAccount from '../components/deleteAccount.js'
 import EditAccountName from '../components/editAccountName.js'
 import NodeSelection from '../components/nodeSelection.js'
+import CurrencySelection from '../components/currencySelection.js'
 import { logoutFromWallet } from '../../shared/actions/app';
 import { getFromKeychain, storeInKeychain, deleteSeed } from '../../shared/libs/cryptography';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
@@ -31,6 +32,8 @@ class Settings extends React.Component {
             isModalVisible: false,
             modalSetting: 'addNewSeed',
             modalContent: <LogoutConfirmationModal />,
+            selectedNode: '',
+            selectedCurrency: this.props.settings.currency
         };
         this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
     }
@@ -65,7 +68,7 @@ class Settings extends React.Component {
                                 <Text style={styles.settingText}>{this.props.settings.theme}</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onCurrencyPress()}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('currencySelection')}>
                             <View style={styles.item}>
                                 <Image source={require('../../shared/images/currency.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Currency</Text>
@@ -122,6 +125,7 @@ class Settings extends React.Component {
                                 <View style={styles.item}>
                                     <Image source={require('../../shared/images/node.png')} style={styles.icon} />
                                     <Text style={styles.titleText}>Select node</Text>
+                                    <Text numberOfLines={1} style={styles.subtitleText}>{this.state.selectedNode}</Text>
                                 </View>
                             </TouchableOpacity>
                             <View style={styles.separator} />
@@ -255,6 +259,18 @@ class Settings extends React.Component {
                         node={this.props.settings.fullNode}
                         nodes={this.props.settings.availableNodes}
                         backPress={() => this.props.setSetting('advancedSettings')}
+                        setNodeSetting={(selectedNode) => this.setState({selectedNode: selectedNode})}
+                    />
+                );
+                break;
+            case 'currencySelection':
+                return (
+                    <CurrencySelection
+                        getCurrencyData={(currency) => this.props.getCurrencyData(currency)}
+                        currency={this.props.settings.currency}
+                        currencies={this.props.settings.availableCurrencies}
+                        backPress={() => this.props.setSetting('mainSettings')}
+                        setCurrencySetting={(currency) => this.setState({selectedCurrency: currency})}
                     />
                 );
                 break;
@@ -571,7 +587,9 @@ class Settings extends React.Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
+                <View style={{flex:1}}/>
                 <View style={styles.settingsContainer}>{this._renderSettingsContent(this.props.tempAccount.currentSetting)}</View>
+                <View style={{flex:1}}/>
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -602,6 +620,14 @@ const styles = StyleSheet.create({
         fontSize: width / 23,
         backgroundColor: 'transparent',
     },
+    subtitleText: {
+        color: 'white',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 23,
+        marginLeft: width / 12,
+        width: width / 2.4,
+        backgroundColor: 'transparent',
+    },
     settingText: {
         color: 'white',
         fontFamily: 'Lato-Light',
@@ -623,10 +649,9 @@ const styles = StyleSheet.create({
         marginRight: width / 25,
     },
     settingsContainer: {
-        flex: 1,
+        flex: 40,
         justifyContent: 'center',
         alignItems: 'flex-start',
-        paddingVertical: height / 24,
         zIndex: 1,
     },
     advancedSettingsContainer: {
@@ -686,7 +711,8 @@ const mapDispatchToProps = dispatch => ({
     changeAccountName: (newAccountName, accountNames, addresses, transfers) => dispatch(changeAccountName(newAccountName, accountNames, addresses, transfers)),
     removeAccount: (accountInfo, accountNames) => dispatch(removeAccount(accountInfo, accountNames)),
     setSeedIndex: (number) => dispatch(setSeedIndex(number)),
-    setNode: (selectedNode) => dispatch(setNode(selectedNode))
+    setNode: (node) => dispatch(setNode(node)),
+    getCurrencyData: (currency) => dispatch(getCurrencyData(currency))
 });
 
 const mapStateToProps = state => ({
