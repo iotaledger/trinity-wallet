@@ -129,13 +129,13 @@
     "send": {
         "invalidAddress": "Endereço inválido",
         "invalidAddressExplanation1": "O endereço deve ter 81 caracteres e o código de verificação.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
+        "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
+        "invalidAddressExplanation3": "O enderço contém um código de verificação incorreto.",
         "notEnoughFunds": "Fundos insuficientes",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
+        "notEnoughFundsExplanation": "Não contém fundos suficientes para realizar esta transferência.",
+        "keyReuse": "Reutilização da chave",
+        "keyReuseExplanation": "Está a tentar enviar para um endereço que já foi utilizado. Por favor, tente outro endereço.",
+        "recipientAddress": "Endereço do destinatário",
         "amount": "Quantia",
         "max": "MAX",
         "message": "Mensagem",
@@ -143,17 +143,17 @@
     },
     "setPassword": {
         "passwordTooShort": "A palavra-passe é demasiado curta",
-        "passwordTooShortExplanation": "Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state.password.length} characters long. Please try again.",
+        "passwordTooShortExplanation": "A sua palavra-passe deve ter pelo menos ${MIN_PASSWORD_LENGTH} caracteres. Neste momento tem ${this.state.password.length} caracteres.",
         "passwordMismatch": "As palavras-passe não coincidem",
         "passwordMismatchExplanation": "As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
         "nowWeNeedTo": "Agora precisamos de criar uma palavra-passe.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "Um cópia encriptada da sua Seed será guardada no seu dispositivo. Utilizará esta palavra-passe para aceder, futuramente, à sua carteira.",
         "ensure": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
         "retypePassword": "Digite de novo a password"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "Pode utilizar várias Seeds nesta carteira. Cada Seed requere um nome de conta.",
+        "youCanAdd": "Pode adicionar mais Seeds no menu de configuração."
     },
     "settings": {
         "transferSending": "Transfer sending",
