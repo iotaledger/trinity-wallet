@@ -1,8 +1,10 @@
-import get from 'lodash/get';
-import map from 'lodash/map';
+import each from 'lodash/each';
 import filter from 'lodash/filter';
 import pick from 'lodash/pick';
-
+import size from 'lodash/size';
+import head from 'lodash/head';
+import get from 'lodash/get';
+import map from 'lodash/map';
 /*
  @param: account
  {
@@ -169,4 +171,39 @@ export const getIndexesWithBalanceChange = (a, b) => {
         }
     }
     return indexes;
+};
+
+export const getAddressesWithChangedBalance = (allAddresses, indicesWithChangedBalance) => {
+    const addressesWithChangedBalance = [];
+
+    each(indicesWithChangedBalance, idx => {
+        if (allAddresses[idx]) {
+            addressesWithChangedBalance.push(allAddresses[idx]);
+        }
+    });
+
+    return addressesWithChangedBalance;
+};
+
+export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
+    let old = oldTransfers.slice(0);
+    let latest = latestTransfers.slice(0);
+
+    const maxOldTransfers = size(old);
+    const maxLatestTransfers = size(latest);
+
+    for (let i = maxLatestTransfers; i--; ) {
+        const latestTxTop = head(latest[i]);
+        const latestTxBundle = get(latestTxTop, 'bundle');
+        for (let j = maxOldTransfers; j--; ) {
+            const oldTxTop = head(old[j]);
+            const oldTxBundle = get(oldTxTop, 'bundle');
+            if (oldTxBundle === latestTxBundle) {
+                old[j] = latest[i];
+                latest.splice(i, 1);
+            }
+        }
+    }
+
+    return size(latest) ? [...old, ...latest] : old;
 };
