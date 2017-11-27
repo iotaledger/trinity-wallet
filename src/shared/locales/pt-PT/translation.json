@@ -130,7 +130,7 @@
         "invalidAddress": "Endereço inválido",
         "invalidAddressExplanation1": "O endereço deve ter 81 caracteres e o código de verificação.",
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
-        "invalidAddressExplanation3": "O enderço contém um código de verificação incorreto.",
+        "invalidAddressExplanation3": "O endereço contém um código de verificação incorreto.",
         "notEnoughFunds": "Fundos insuficientes",
         "notEnoughFundsExplanation": "Não contém fundos suficientes para realizar esta transferência.",
         "keyReuse": "Reutilização da chave",
@@ -205,6 +205,6 @@
     "writeSeedDown": {
         "yourSeedIs": "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e",
         "tripleCheck": "verifique várias vezes",
-        "thatTheyAreCorrect": "that they are correct."
+        "thatTheyAreCorrect": "que eles estão corretos."
     }
 }
