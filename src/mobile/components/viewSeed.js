@@ -115,7 +115,6 @@ class ViewSeed extends React.Component {
                                             this.hideSeed()
                                         }}
                                     >
-
                                         <View style={styles.viewButton}>
                                             <Text style={styles.viewText}>HIDE SEED</Text>
                                         </View>

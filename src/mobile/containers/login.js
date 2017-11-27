@@ -23,6 +23,7 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import DropdownHolder from '../components/dropdownHolder';
 import { Keyboard } from 'react-native';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
+import IOTA from 'iota.lib.js';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
