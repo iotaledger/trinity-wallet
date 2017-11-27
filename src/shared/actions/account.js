@@ -117,11 +117,6 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                     );
                 } else {
                     cb(null, success);
-                    const addressesWithChangedBalance = getAddressesWithChangedBalance(
-                        addresses,
-                        indexesWithBalanceChange,
-                    );
-                    dispatch(getTransfers(seedName, addressesWithChangedBalance));
                     // Set account info, then finish loading
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
                         dispatch(setReady()),
