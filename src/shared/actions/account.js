@@ -82,7 +82,7 @@ export function setBalance(addressesWithBalance) {
 }
 
 export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
-    return (dispatch, getState) => {
+    return dispatch => {
         // Current addresses and their balances
         let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         // Current transfers
