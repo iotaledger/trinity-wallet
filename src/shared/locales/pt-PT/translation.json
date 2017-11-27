@@ -116,9 +116,9 @@
         "generateNewAddress": "GERAR NOVO ENDEREÇO"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with",
+        "mustSaveYourSeed": "one?????????????????????",
         "atLeastOne": "pelo menos uma",
-        "ofTheOptions": "of the options listed below."
+        "ofTheOptions": "or one here ????????????"
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorreta.",
@@ -175,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "Esta ação não pode ser anulada.",
         "warning1": "Toda a informação da sua carteira, incluindo",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
+        "warning2": "Sedds, palavra-pa????????????????? plural and singular\nSeeds, passwords\nor\nSeed, password",
+        "warning3": "e",
+        "warning4": " outras informações da conta",
+        "warning5": " serão perdidas.",
         "areYouSure": "Tem certeza que deseja continuar?"
     },
     "resetWalletRequirePassword": {
