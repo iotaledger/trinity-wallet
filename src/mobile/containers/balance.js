@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, ListView, Dimensions, StatusBar, Platform } fro
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice, setCurrency, setTimeframe } from '../../shared/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
+import { getCurrencySymbol } from '../../shared/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
@@ -52,6 +53,9 @@ class Balance extends React.Component {
             (this.props.account.balance < 1000 || this.getDecimalPlaces(formatValue(this.props.account.balance)) <= 1
                 ? ''
                 : '+');
+        const currencySymbol = getCurrencySymbol(this.props.settings.currency)
+        const fiatBalance = this.props.account.balance * this.props.marketData.usdPrice / 1000000 * this.props.settings.conversionRate;
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -61,7 +65,7 @@ class Balance extends React.Component {
                         {formatUnit(this.props.account.balance)}
                     </Text>
                     <Text style={styles.fiatBalance}>
-                        $ {round(this.props.account.balance * this.props.marketData.usdPrice / 1000000, 2).toFixed(
+                        {currencySymbol} {round(fiatBalance, 2).toFixed(
                             2,
                         )}{' '}
                     </Text>
@@ -153,6 +157,7 @@ const mapStateToProps = state => ({
     marketData: state.marketData,
     account: state.account,
     tempAccount: state.tempAccount,
+    settings: state.settings
 });
 
 const mapDispatchToProps = dispatch => ({
