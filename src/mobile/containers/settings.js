@@ -18,7 +18,7 @@ import EditAccountName from '../components/editAccountName.js'
 import NodeSelection from '../components/nodeSelection.js'
 import CurrencySelection from '../components/currencySelection.js'
 import { logoutFromWallet } from '../../shared/actions/app';
-import { getFromKeychain, storeInKeychain, deleteSeed } from '../../shared/libs/cryptography';
+import { getFromKeychain, storeInKeychain, deleteSeed, getSeed } from '../../shared/libs/cryptography';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -357,12 +357,10 @@ class Settings extends React.Component {
     //EditAccountName method
     saveAccountName(accountName){
         const dropdown = DropdownHolder.getDropdown();
-        const accountInfo = this.props.account.accountInfo;
-        const accountNameArray = this.props.account.seedNames;
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-        const addressesWithBalance = currentSeedAccountInfo.addresses;
-        const transfers = currentSeedAccountInfo.transfers;
+        let accountInfo = this.props.account.accountInfo;
+        let accountNameArray = this.props.account.seedNames;
+        let seedIndex = this.props.tempAccount.seedIndex;
+
         if(accountNameArray.includes(accountName)){
               dropdown.alertWithType(
                   'error',
@@ -370,23 +368,44 @@ class Settings extends React.Component {
                   'This account name is already linked to your wallet. Please use a different one.',
               );
         } else {
-            /*accountNameArray[seedIndex] = accountName;
-            this.props.changeAccountName(accountName, accountNameArray, addressesWithBalance, transfers);
+
+
+            // Update keychain
+            getFromKeychain(this.props.tempAccount.password, value => {
+                if (typeof value != 'undefined' && value != null) {
+                    const seed = getSeed(value, seedIndex);
+                    deleteSeed(value, this.props.tempAccount.password, seedIndex);
+                    storeInKeychain(this.props.tempAccount.password, seed, accountName);
+                }
+            })
+
+            // Update accountInfo
+            const oldAccountName = accountNameArray[seedIndex];
+            accountInfo[accountName] = accountInfo[oldAccountName];
+            delete accountInfo[oldAccountName];
+
+            // Update account names array
+            accountNameArray.splice(seedIndex, 1);
+            accountNameArray.push(accountName);
+            this.props.setSeedIndex(accountNameArray.length - 1)
+
+            // Update store
+            this.props.changeAccountName(accountInfo, accountNameArray);
+
+
             dropdown.alertWithType(
                 'success',
                 'Account name changed',
                 `Your account name has been changed.`,
-            );*/
+            );
         }
 
-
-            /*}    console.log(this.props.account.accountInfo)
-                console.log(this.props.account.seedCount)
-                console.log(this.props.account.seedNames)
-
-                getFromKeychain(this.props.tempAccount.password, value => {
-                    console.log(value)
-                });*/
+        // Tests
+        /*console.log(this.props.account.accountInfo)
+        console.log(this.props.account.seedNames)
+        getFromKeychain(this.props.tempAccount.password, value => {
+            console.log(value)
+        })*/
     }
 
     //EditAccountName and ViewSeed method
