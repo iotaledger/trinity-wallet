@@ -162,39 +162,39 @@
         "generatingAddressExplanation": "Por favor aguarde enquanto o seu endereço está a ser gerado.",
         "mode": "Modo",
         "theme": "Tema",
-        "currency": "Currency",
+        "currency": "Moeda",
         "language": "Idioma",
         "addNewSeed": "Adicionar nova Seed",
-        "twoFA": "Two-factor authentication",
+        "twoFA": "Autenticação 2-FA",
         "changePassword": "Alterar a palavra-passe",
         "advanced": "Configurações avançadas",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "back": "Back"
+        "logout": "Terminar sessão",
+        "reset": "Redefinir a carteira",
+        "back": "Voltar"
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
+        "thisAction": "Esta ação não pode ser anulada.",
         "warning1": "All your wallet data including your",
         "warning2": " seeds, password, ",
         "warning3": "and",
         "warning4": " other account information",
         "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "areYouSure": "Tem certeza que deseja continuar?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Entre a sua palavra-passe para redefinir a sua carteira.",
+        "cancel": "CANCELAR",
+        "reset": "REDEFINIR"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
+        "okay": "Ok. Vamos configurar a sua carteira!",
         "doYouAlreadyHaveASeed": "Já possui uma Seed que gostaria de utilizar?",
         "seedExplanation": "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
-        "explanation3": ", on",
-        "explanation4": " any device",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "explanation1": "Poderá usá-la para aceder aos seus fundos a partir",
+        "explanation2": " de qualquer carteira ",
+        "explanation3": ", em",
+        "explanation4": " qualquer dispositivo",
+        "explanation5": ". Mas se perder a sua Seed, também perderá os seus IOTA.",
         "keepSafe": "Por favor, mantenha a sua Seed protegida e segura."
     },
     "welcome": {
@@ -203,7 +203,7 @@
         "reminder": "Pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e",
         "tripleCheck": "verifique várias vezes",
         "thatTheyAreCorrect": "that they are correct."
     }
