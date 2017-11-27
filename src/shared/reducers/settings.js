@@ -27,6 +27,41 @@ const initialState = {
     theme: 'Standard',
     language: 'English (International)',
     currency: 'USD',
+    availableCurrencies: [
+        'USD',
+        'GBP',
+        'EUR',
+        'AUD',
+        'BGN',
+        'BRL',
+        'CAD',
+        'CHF',
+        'CNY',
+        'CZK',
+        'DKK',
+        'HKD',
+        'HRK',
+        'HUF',
+        'IDR',
+        'ILS',
+        'INR',
+        'JPY',
+        'KRW',
+        'MXN',
+        'MYR',
+        'NOK',
+        'NZD',
+        'PHP',
+        'PLN',
+        'RON',
+        'RUB',
+        'SEK',
+        'SGD',
+        'THB',
+        'TRY',
+        'ZAR',
+    ],
+    conversionRate: 1
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -71,10 +106,11 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 language: action.payload,
             };
-        case ActionTypes.SET_CURRENCY:
+        case ActionTypes.SET_CURRENCY_DATA:
             return {
                 ...state,
-                language: action.payload,
+                currency: action.currency,
+                conversionRate: action.conversionRate
             };
     }
 

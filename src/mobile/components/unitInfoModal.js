@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 0.25,
         width: 0.5,
-        height: width / 2.5,
+        height: width / 2.3,
         marginHorizontal: width / 75
     },
     iotaIcon: {
