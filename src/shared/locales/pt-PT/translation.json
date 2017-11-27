@@ -32,7 +32,7 @@
         "seedInvalidCharsExplanation": "As Seed só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem carateres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
         "seedTooShortExplanation": "As Seeds devem ter pelo menos 60 carateres (idealmente 81). Atualmente a sua Seed tem {seed.length} carateres. Por favor, tente de novo.",
-        "nameInUse": "Account name already in use",
+        "nameInUse": "Nome da conta já está a ser utilizado",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
         "enterAccountName": "Entre um nome de conta.",
         "accountName": "Nome da Conta"
