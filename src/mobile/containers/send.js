@@ -20,6 +20,7 @@ import { connect } from 'react-redux';
 import { round } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempAccount';
+import { getCurrencySymbol } from '../../shared/libs/currency';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
@@ -298,9 +299,11 @@ class Send extends Component {
             parseFloat(this.isValidAmount(this.state.amount) ? this.state.amount : 0) *
                 this.props.marketData.usdPrice /
                 1000000 *
-                this.getUnitMultiplier(),
+                this.getUnitMultiplier() *
+                this.props.settings.conversionRate,
             10,
         );
+        const currencySymbol = getCurrencySymbol(this.props.settings.currency)
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
                 <View style={styles.container}>
@@ -356,7 +359,7 @@ class Send extends Component {
                             </View>
                             <Text style={styles.conversionText}>
                                 {' '}
-                                {conversion == 0 ? '' : conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2)}{' '}
+                                {conversion == 0 ? '' : conversion < 0.01 ? '< ' + currencySymbol + '0.01' : '= ' + currencySymbol + conversion.toFixed(2)}{' '}
                             </Text>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
@@ -609,6 +612,7 @@ const mapStateToProps = state => ({
     marketData: state.marketData,
     tempAccount: state.tempAccount,
     account: state.account,
+    settings: state.settings
 });
 
 const mapDispatchToProps = dispatch => ({

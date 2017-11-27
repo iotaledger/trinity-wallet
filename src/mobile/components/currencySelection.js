@@ -21,35 +21,29 @@ const CustomLayoutSpring = {
     },
 };
 
-class NodeSelection extends React.Component {
+class CurrencySelection extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             triangleDirection: 'down',
             dropdownHeight: 0,
-            selectedNode: this.props.node,
+            selectedCurrency: this.props.currency,
         };
     }
 
-    componentWillReceiveProps(newProps){
-
-    }
-
-    saveNodeSelection(){
+    saveCurrencySelection(){
         this.props.backPress()
-        this.props.setNodeSetting(this.state.selectedNode)
+        this.props.setCurrencySetting(this.state.selectedCurrency)
+        this.props.getCurrencyData(this.state.selectedCurrency)
     }
 
     onDropdownItemPress(item) {
         this.setState({
             dropdownHeight: 0,
             triangleDirection: 'down',
-            //Temporary
-            selectedNode: item
+            selectedCurrency: item
         });
-        // Function we need to implement
-        // this.props.setNode(item)
     }
 
     onDropdownTitlePress() {
@@ -58,7 +52,7 @@ class NodeSelection extends React.Component {
             case 'down':
                 this.setState({
                     triangleDirection: 'up',
-                    dropdownHeight: height / 3.3,
+                    dropdownHeight: height / 3.2,
                 });
                 break;
             case 'up':
@@ -76,12 +70,12 @@ class NodeSelection extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{flex:1}}/>
-                        <View style={{ justifyContent: 'flex-start', flex: 3}}>
-                            <Text style={styles.dropdownTitle}>Node</Text>
+                        <View style={{ justifyContent: 'flex-start', flex: 2}}>
+                            <Text style={styles.dropdownTitle}>Currency</Text>
                             <View style={styles.dropdownButtonContainer}>
                                 <TouchableWithoutFeedback onPress={event => this.onDropdownTitlePress()}>
                                     <View style={styles.dropdownButton}>
-                                        <Text numberOfLines={1} style={styles.nodeSelected}>{this.state.selectedNode}</Text>
+                                        <Text numberOfLines={1} style={styles.currencySelected}>{this.state.selectedCurrency}</Text>
                                         <Triangle
                                             width={10}
                                             height={10}
@@ -95,18 +89,18 @@ class NodeSelection extends React.Component {
                         <View
                             style={{
                                 height: this.state.dropdownHeight,
+                                width: width / 3,
                                 overflow: 'hidden',
                                 backgroundColor: 'transparent',
-                                width: width / 1.5,
                                 alignItems: 'flex-start',
                                 justifyContent: 'flex-start'
                             }}
                         >
                             <ListView
-                                dataSource={ds.cloneWithRows(this.props.nodes)}
+                                dataSource={ds.cloneWithRows(this.props.currencies)}
                                 renderRow={(rowData, sectionID, rowID) => (
-                                    <TouchableOpacity onPress={event => this.onDropdownItemPress(rowData)}>
-                                        <View style={{height: height / 26.4, justifyContent: 'center'}}>
+                                    <TouchableOpacity onPress={event => this.onDropdownItemPress(rowData)} style={{alignItems:'flex-start', flex: 1}}>
+                                        <View style={{flex:1, height: height / 22.4, alignItems: 'stretch', justifyContent: 'center'}}>
                                             <Text numberOfLines={1} style={styles.dropdownItem}> {rowData} </Text>
                                         </View>
                                     </TouchableOpacity>
@@ -114,7 +108,7 @@ class NodeSelection extends React.Component {
                                 contentContainerView={{flex:1, justifyContent: 'flex-start'}}
                                 //renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                                 enableEmptySections
-                                snapToInterval={height / 26.4}
+                                snapToInterval={height / 22.4}
                             />
                         </View>
                         </View>
@@ -127,7 +121,7 @@ class NodeSelection extends React.Component {
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.saveNodeSelection()}>
+                        <TouchableOpacity onPress={() => this.saveCurrencySelection()}>
                             <View style={styles.itemRight}>
                                 <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Save</Text>
@@ -215,20 +209,19 @@ const styles = StyleSheet.create({
     },
     dropdownItem: {
         color: 'white',
-        fontSize: width / 25.9,
+        fontSize: width / 23,
         fontFamily: 'Lato-Light',
         backgroundColor: 'transparent',
-        textAlign: 'left',
         paddingTop: height / 100,
-        includeFontPadding: false,
+        width: width / 3
     },
     dropdownButtonContainer: {
         marginTop: height / 150,
     },
-    nodeSelected: {
+    currencySelected: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.9,
+        fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingBottom: height / 150,
     },
@@ -238,7 +231,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderBottomColor: 'white',
         borderBottomWidth: 0.7,
-        width: width / 1.5,
+        width: width / 3,
         height: height / 22,
     },
     separator: {
@@ -247,4 +240,4 @@ const styles = StyleSheet.create({
     },
   });
 
-  export default NodeSelection;
+  export default CurrencySelection;
