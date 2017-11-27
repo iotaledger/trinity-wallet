@@ -239,13 +239,11 @@ export function setAccountInfo(seedName, addresses, transfers, balance) {
     };
 }
 
-export function changeAccountName(newAccountName, accountNames, addresses, transfers) {
+export function changeAccountName(accountInfo, accountNames) {
     return {
         type: 'CHANGE_ACCOUNT_NAME',
-        newAccountName,
-        accountNames,
-        addresses,
-        transfers,
+        accountInfo,
+        accountNames
     };
 }
 

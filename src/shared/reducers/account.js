@@ -34,13 +34,7 @@ const account = (
             return {
                 ...state,
                 seedNames: action.accountNames,
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.seedName]: {
-                        addresses: action.addresses,
-                        transfers: action.transfers,
-                    },
-                },
+                accountInfo: action.accountInfo
             };
         case 'REMOVE_ACCOUNT':
             return {
