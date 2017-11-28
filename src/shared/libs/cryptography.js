@@ -43,6 +43,14 @@ export function storeInKeychain(key, seed, name, alertFn, callback) {
     }
 }
 
+export function replaceKeychainValue(key, value){
+    deleteFromKeyChain(key);
+    SInfo.setItem(key, value, {
+        sharedPreferencesName: 'mySharedPrefs',
+        keychainService: 'myKeychain',
+    });
+}
+
 export function getFromKeychain(key, fn) {
     SInfo.getItem(key, {
         sharedPreferencesName: 'mySharedPrefs',
