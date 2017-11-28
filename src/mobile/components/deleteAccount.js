@@ -44,9 +44,8 @@ class DeleteAccount extends React.Component {
     }
 
     onYesPress(){
-        this.props.deleteAccount()
         this._hideModal();
-        this.props.backToAccountManagement()
+        this.props.deleteAccount()
     }
 
     onNoPress(){

@@ -46,11 +46,11 @@ class Settings extends React.Component {
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
 
     _renderSettingsContent = (content) => {
-        const accountInfo = this.props.account.accountInfo;
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-        const addressesWithBalance = currentSeedAccountInfo.addresses;
-        const transfers = currentSeedAccountInfo.transfers;
+        let accountInfo = this.props.account.accountInfo;
+        let seedIndex = this.props.tempAccount.seedIndex;
+        let currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+        let addressesWithBalance = currentSeedAccountInfo.addresses || {};
+        let transfers = currentSeedAccountInfo.transfers || [];
         const dropdown = DropdownHolder.getDropdown();
 
         switch (content) {
@@ -233,7 +233,6 @@ class Settings extends React.Component {
                         onWrongPassword={() => this.onWrongPassword()}
                         deleteAccount={() => this.deleteAccount()}
                         currentAccountName={this.props.account.seedNames[this.props.tempAccount.seedIndex]}
-                        backToAccountManagement={() => this.props.setSetting('accountManagement')}
                     />
                 );
                 break;
@@ -420,10 +419,10 @@ class Settings extends React.Component {
     deleteAccount(){
         const dropdown = DropdownHolder.getDropdown();
 
-        const seedIndex = this.props.tempAccount.seedIndex;
+        let seedIndex = this.props.tempAccount.seedIndex;
         let accountNames = this.props.account.seedNames;
-        const currentAccountName = accountNames[seedIndex];
-        const accountInfo = this.props.account.accountInfo;
+        let currentAccountName = accountNames[seedIndex];
+        let accountInfo = this.props.account.accountInfo;
 
         let newAccountInfo = accountInfo;
         delete newAccountInfo[currentAccountName];
@@ -432,8 +431,9 @@ class Settings extends React.Component {
         getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value != 'undefined' && value != null) {
                 deleteSeed(value, this.props.tempAccount.password, seedIndex);
-                this.props.removeAccount(newAccountInfo, accountNames);
                 this.props.setSeedIndex(0);
+                this.props.removeAccount(newAccountInfo, accountNames);
+                this.props.setSetting('accountManagement');
                 dropdown.alertWithType(
                     'success',
                     'Account deleted',
