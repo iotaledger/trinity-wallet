@@ -1,6 +1,6 @@
 import { SInfo } from '../../mobile/exports';
 
-export function storeInKeychain(key, seed, name, alertFn, callback) {
+export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
     getFromKeychain(key, value => {
         if (typeof value == 'undefined' || value === null) {
             var newSeedArray = [{ name: name, seed: seed }];
@@ -45,6 +45,11 @@ export function storeInKeychain(key, seed, name, alertFn, callback) {
 
 export function replaceKeychainValue(key, value){
     deleteFromKeyChain(key);
+    storeValueInKeychain(key, value)
+}
+
+export function storeValueInKeychain(key, value){
+    const seedArray = JSON.stringify(value);
     SInfo.setItem(key, value, {
         sharedPreferencesName: 'mySharedPrefs',
         keychainService: 'myKeychain',

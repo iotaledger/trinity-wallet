@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
-import { getFromKeychain, deleteFromKeyChain, storeInKeychain } from '../../shared/libs/cryptography';
+import { getFromKeychain, deleteFromKeyChain, storeValueInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
 
@@ -84,8 +84,8 @@ class ChangePassword extends Component {
                     'Looks like something wrong while updating your password. Please try again.',
                 );
 
-            const updatePassword = seed =>
-                Promise.resolve(storeInKeychain(newPassword, seed))
+            const updatePassword = value =>
+                Promise.resolve(storeValueInKeychain(newPassword, value))
                     .then(() => {
                         deleteFromKeyChain(password);
                         setPassword(newPassword);
@@ -104,7 +104,7 @@ class ChangePassword extends Component {
                     })
                     .catch(throwErr);
 
-            return getFromKeychain(password, value => (!isUndefined(value) ? updatePassword(value) : throwErr()));
+             return getFromKeychain(password, value => (!isUndefined(value) ? updatePassword(value) : throwErr()));
         }
 
         return this.renderInvalidSubmissionAlerts();
