@@ -4,6 +4,7 @@ import { showError } from './notifications';
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
     SET_FULLNODE: 'IOTA/SETTINGS/FULLNODE',
+    SET_NODE: 'IOTA/SETTINGS/NODE', // Probably should be merged with SET_FULLNODE
     ADD_CUSTOM_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_NODE',
     SET_MODE: 'IOTA/SETTINGS/SET_MODE',
     SET_THEME: 'IOTA/SETTINGS/SET_THEME',
@@ -19,24 +20,24 @@ export function setLocale(locale) {
 }
 
 export function setCurrencyData(conversionRate, currency) {
-  console.log(conversionRate)
+    console.log(conversionRate);
     return {
         type: ActionTypes.SET_CURRENCY_DATA,
         currency,
-        conversionRate
-    }
+        conversionRate,
+    };
 }
 
 export function getCurrencyData(currency) {
     const url = `https://api.fixer.io/latest?base=USD`;
     return dispatch => {
-    return fetch(url)
-        .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
-        .then(json => {
-          const conversionRate = json.rates[currency] || 1;
-          dispatch(setCurrencyData(conversionRate, currency))
-        });
-    }
+        return fetch(url)
+            .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
+            .then(json => {
+                const conversionRate = json.rates[currency] || 1;
+                dispatch(setCurrencyData(conversionRate, currency));
+            });
+    };
 }
 
 export function setLanguage(language) {
@@ -89,5 +90,12 @@ export function addCustomNode(customNode = '') {
         });
 
         return true;
+    };
+}
+
+export function setNode(payload) {
+    return {
+        type: ActionTypes.SET_NODE,
+        payload,
     };
 }
