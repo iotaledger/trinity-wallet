@@ -96,7 +96,7 @@ class LanguageSetup extends React.Component {
                             <View style={styles.dropdownButtonContainer}>
                                 <TouchableWithoutFeedback onPress={event => this.clickLanguage()}>
                                     <View style={styles.dropdownButton}>
-                                        <Text style={styles.languageSelected}>{this.state.languageSelected}</Text>
+                                        <Text numberOfLines={1} style={styles.languageSelected}>{this.state.languageSelected}</Text>
                                         <Triangle
                                             width={10}
                                             height={10}
@@ -119,82 +119,82 @@ class LanguageSetup extends React.Component {
                         >
                             <ScrollView>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('English (International)')}>
-                                    <Text style={styles.dropdownItem}>English (International)</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>English (International)</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('عربى - Arabic')}>
-                                    <Text style={styles.dropdownItem}>عربى - Arabic</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>عربى - Arabic</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Dansk - Danish')}>
-                                    <Text style={styles.dropdownItem}>Dansk - Danish</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Dansk - Danish</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Deutsch - German')}>
-                                    <Text style={styles.dropdownItem}>Deutsch - German</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Deutsch - German</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Ελληνικά - Greek')}>
-                                    <Text style={styles.dropdownItem}>Ελληνικά - Greek</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Ελληνικά - Greek</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Español - Spanish')}>
-                                    <Text style={styles.dropdownItem}>Español - Spanish</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Español - Spanish</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Suomi - Finnish')}>
-                                    <Text style={styles.dropdownItem}>Suomi - Finnish</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Suomi - Finnish</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Français - French')}>
-                                    <Text style={styles.dropdownItem}>Français - French</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Français - French</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('עִברִית - Hebrew')}>
-                                    <Text style={styles.dropdownItem}>עִברִית - Hebrew</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>עִברִית - Hebrew</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('हिंदी - Hindi')}>
-                                    <Text style={styles.dropdownItem}>हिंदी - Hindi</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>हिंदी - Hindi</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Italiano - Italian')}>
-                                    <Text style={styles.dropdownItem}>Italiano - Italian</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Italiano - Italian</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('日本語 - Japanese')}>
-                                    <Text style={styles.dropdownItem}>日本語 - Japanese</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>日本語 - Japanese</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('한국어 - Korean')}>
-                                    <Text style={styles.dropdownItem}>한국어 - Korean</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>한국어 - Korean</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Nederlands - Dutch')}>
-                                    <Text style={styles.dropdownItem}>Nederlands - Dutch</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Nederlands - Dutch</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Norsk - Norwegian')}>
-                                    <Text style={styles.dropdownItem}>Norsk - Norwegian</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Norsk - Norwegian</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Polski - Polish')}>
-                                    <Text style={styles.dropdownItem}>Polski - Polish</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Polski - Polish</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Português (Brasil)')}>
-                                    <Text style={styles.dropdownItem}>Português (Brasil) - Portuguese (Brazil)</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Português (Brasil) - Portuguese (Brazil)</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Português (Portugal)')}>
-                                    <Text style={styles.dropdownItem}>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>
                                         Português (Portugal) - Portuguese (Portugal)
                                     </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Română - Romanian')}>
-                                    <Text style={styles.dropdownItem}>Română - Romanian</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Română - Romanian</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Pусский - Russian')}>
-                                    <Text style={styles.dropdownItem}>Pусский - Russian</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Pусский - Russian</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Svenska - Swedish')}>
-                                    <Text style={styles.dropdownItem}>Svenska - Swedish</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Svenska - Swedish</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={event => this.clickDropdownItem('Türkçe - Turkish')}>
-                                    <Text style={styles.dropdownItem}>Türkçe - Turkish</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>Türkçe - Turkish</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     onPress={event => this.clickDropdownItem('中文 (简体) - Chinese (Simplified)')}
                                 >
-                                    <Text style={styles.dropdownItem}>中文 (简体) - Chinese (Simplified)</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>中文 (简体) - Chinese (Simplified)</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     onPress={event => this.clickDropdownItem('中文 (繁體) - Chinese (Traditional)')}
                                 >
-                                    <Text style={styles.dropdownItem}>中文 (繁體) - Chinese (Traditional)</Text>
+                                    <Text numberOfLines={1} style={styles.dropdownItem}>中文 (繁體) - Chinese (Traditional)</Text>
                                 </TouchableOpacity>
                             </ScrollView>
                         </View>

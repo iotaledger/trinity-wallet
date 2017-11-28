@@ -14,6 +14,8 @@ import {
     ScrollView,
     Dimensions,
     StatusBar,
+    TouchableWithoutFeedback,
+    Keyboard
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
@@ -72,9 +74,9 @@ class Send extends Component {
     }
 
     onMaxPress() {
+        let max = (this.props.account.balance / this.getUnitMultiplier()).toString()
         this.setState({
-            amount: (this.props.account.balance / 1000000).toString(),
-            denomination: 'Mi',
+            amount: max,
             maxPressed: true
         });
     }
@@ -243,6 +245,7 @@ class Send extends Component {
                 modalContent = (
                     <TransferConfirmationModal
                         amount={this.state.amount}
+                        clearOnSend={() => this.setState({ message: '', amount: '', address: ''})}
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
@@ -292,6 +295,11 @@ class Send extends Component {
         }
     }
 
+    clearInteractions(){
+        this.props.closeTopBar()
+        Keyboard.dismiss()
+    }
+
     render() {
 
         let { amount, address, message } = this.state;
@@ -306,6 +314,7 @@ class Send extends Component {
         const currencySymbol = getCurrencySymbol(this.props.settings.currency)
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={styles.emptyContainer}/>
@@ -440,7 +449,7 @@ class Send extends Component {
                     {this._renderModalContent()}
                 </Modal>
                 </View>
-
+            </TouchableWithoutFeedback>
         );
     }
 }
