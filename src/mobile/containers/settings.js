@@ -11,6 +11,7 @@ import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewAccount from '../components/addNewAccount';
 import UseExistingSeed from '../components/useExistingSeed';
+import ChangePassword from '../components/changePassword';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import ViewSeed from '../components/viewSeed.js';
 import ViewAddresses from '../components/viewAddresses.js'
@@ -36,7 +37,6 @@ class Settings extends React.Component {
             selectedNode: '',
             selectedCurrency: this.props.settings.currency
         };
-        this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
     }
 
     _showModal = () => this.setState({ isModalVisible: true });
@@ -51,6 +51,8 @@ class Settings extends React.Component {
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
         const addressesWithBalance = currentSeedAccountInfo.addresses;
         const transfers = currentSeedAccountInfo.transfers;
+        const dropdown = DropdownHolder.getDropdown();
+
         switch (content) {
             case 'mainSettings':
                 return (
@@ -96,7 +98,7 @@ class Settings extends React.Component {
                                 <Text style={styles.titleText}>Two-factor authentication</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onChangePasswordPress()}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('changePassword')}>
                             <View style={styles.item}>
                                 <Image source={require('../../shared/images/password.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Change password</Text>
@@ -272,6 +274,16 @@ class Settings extends React.Component {
                         currencies={this.props.settings.availableCurrencies}
                         backPress={() => this.props.setSetting('mainSettings')}
                         setCurrencySetting={(currency) => this.setState({selectedCurrency: currency})}
+                    />
+                );
+                break;
+            case 'changePassword':
+                return (
+                    <ChangePassword
+                        password={this.props.tempAccount.password}
+                        setPassword={(password) => this.props.setPassword(password)}
+                        backPress={() => this.props.setSetting('mainSettings')}
+                        dropdown={dropdown}
                     />
                 );
                 break;
@@ -454,14 +466,6 @@ class Settings extends React.Component {
         this._showModal();
     }
 
-    onViewSeedPress(){
-
-    }
-
-    onViewAddressesPress(){
-
-    }
-
     onEditAccountNamePress(){
       const dropdown = DropdownHolder.getDropdown();
       dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
@@ -498,20 +502,6 @@ class Settings extends React.Component {
     onLanguagePress() {
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onChangePasswordPress() {
-        this.props.navigator.push({
-            screen: 'change-password',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundImageName: 'bg-blue.png',
-                screenBackgroundColor: '#102e36',
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
     }
 
     on2FASetupPress() {
@@ -718,7 +708,8 @@ const mapDispatchToProps = dispatch => ({
     removeAccount: (accountInfo, accountNames) => dispatch(removeAccount(accountInfo, accountNames)),
     setSeedIndex: (number) => dispatch(setSeedIndex(number)),
     setNode: (node) => dispatch(setNode(node)),
-    getCurrencyData: (currency) => dispatch(getCurrencyData(currency))
+    getCurrencyData: (currency) => dispatch(getCurrencyData(currency)),
+    setPassword: password => dispatch(setPassword(password)),
 });
 
 const mapStateToProps = state => ({
