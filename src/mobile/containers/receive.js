@@ -108,11 +108,16 @@ class Receive extends Component {
         }
     }
 
+    clearInteractions(){
+        this.props.closeTopBar()
+        Keyboard.dismiss()
+    }
+
     render() {
         const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
         const message = this.state.message;
         return (
-            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+          <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                         <View style={{opacity: this.getOpacity(), alignItems: 'center', flex: 2.5, justifyContent: 'center' }}>
                             <View style={[styles.qrContainer, {opacity: this.getQrOpacity()}]}>
