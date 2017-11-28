@@ -43,12 +43,12 @@ class ViewAddresses extends React.Component {
                             <Text style={styles.titleText}>Back</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={event => this.props.printPress()} style={{flex:1}}>
+                    {/*}<TouchableOpacity onPress={event => this.props.printPress()} style={{flex:1}}>
                         <View style={styles.itemRight}>
                             <Image source={require('../../shared/images/print.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Print</Text>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity>*/}
                 </View>
             </View>
         );
