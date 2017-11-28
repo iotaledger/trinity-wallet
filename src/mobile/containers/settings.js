@@ -20,7 +20,7 @@ import EditAccountName from '../components/editAccountName.js'
 import NodeSelection from '../components/nodeSelection.js'
 import CurrencySelection from '../components/currencySelection.js'
 import { logoutFromWallet } from '../../shared/actions/app';
-import { getFromKeychain, storeInKeychain, deleteSeed, deleteFromKeyChain, replaceKeychainValue } from '../../shared/libs/cryptography';
+import { getFromKeychain, storeSeedInKeychain, deleteSeed, deleteFromKeyChain, replaceKeychainValue } from '../../shared/libs/cryptography';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -316,7 +316,7 @@ class Settings extends React.Component {
             );
         } else {
             this.props.clearTempData();
-            storeInKeychain(
+            storeSeedInKeychain(
                 this.props.tempAccount.password,
                 seed,
                 accountName,
@@ -387,8 +387,7 @@ class Settings extends React.Component {
                 if (typeof value != 'undefined' && value != null) {
                     let seeds = JSON.parse(value);
                     seeds[seedIndex].name = accountName;
-                    const newValue = JSON.stringify(seeds)
-                    replaceKeychainValue(this.props.tempAccount.password, newValue)
+                    replaceKeychainValue(this.props.tempAccount.password, seeds)
                 }
             })
 
@@ -422,7 +421,7 @@ class Settings extends React.Component {
         const dropdown = DropdownHolder.getDropdown();
 
         const seedIndex = this.props.tempAccount.seedIndex;
-        const accountNames = this.props.account.seedNames;
+        let accountNames = this.props.account.seedNames;
         const currentAccountName = accountNames[seedIndex];
         const accountInfo = this.props.account.accountInfo;
 
@@ -464,11 +463,6 @@ class Settings extends React.Component {
             modalContent,
         });
         this._showModal();
-    }
-
-    onEditAccountNamePress(){
-      const dropdown = DropdownHolder.getDropdown();
-      dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
     onDeleteAccountPress(){
