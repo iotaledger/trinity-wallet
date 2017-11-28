@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { clearTempData, setPassword, setSetting, setSeedIndex} from '../../shared/actions/tempAccount';
 import { setFirstUse, getAccountInfoNewSeed, increaseSeedCount, addAccountName, changeAccountName, removeAccount } from '../../shared/actions/account';
 import { setNode, getCurrencyData } from '../../shared/actions/settings'
+import { renameKeys } from '../../shared/libs/util'
 import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewAccount from '../components/addNewAccount';
@@ -18,7 +19,7 @@ import EditAccountName from '../components/editAccountName.js'
 import NodeSelection from '../components/nodeSelection.js'
 import CurrencySelection from '../components/currencySelection.js'
 import { logoutFromWallet } from '../../shared/actions/app';
-import { getFromKeychain, storeInKeychain, deleteSeed, getSeed } from '../../shared/libs/cryptography';
+import { getFromKeychain, storeInKeychain, deleteSeed, deleteFromKeyChain, replaceKeychainValue } from '../../shared/libs/cryptography';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -369,43 +370,29 @@ class Settings extends React.Component {
               );
         } else {
 
-
             // Update keychain
             getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value != 'undefined' && value != null) {
-                    const seed = getSeed(value, seedIndex);
-                    deleteSeed(value, this.props.tempAccount.password, seedIndex);
-                    storeInKeychain(this.props.tempAccount.password, seed, accountName);
+                    let seeds = JSON.parse(value);
+                    seeds[seedIndex].name = accountName;
+                    const newValue = JSON.stringify(seeds)
+                    replaceKeychainValue(this.props.tempAccount.password, newValue)
                 }
             })
 
-            // Update accountInfo
-            const oldAccountName = accountNameArray[seedIndex];
-            accountInfo[accountName] = accountInfo[oldAccountName];
-            delete accountInfo[oldAccountName];
+            const currentAccountName = accountNameArray[seedIndex];
+            const keyMap = {[currentAccountName]: accountName};
+            const newAccountInfo = renameKeys(accountInfo, keyMap);
+            accountNameArray[seedIndex] = accountName;
+            this.props.changeAccountName(newAccountInfo, accountNameArray);
 
-            // Update account names array
-            accountNameArray.splice(seedIndex, 1);
-            accountNameArray.push(accountName);
-            this.props.setSeedIndex(accountNameArray.length - 1)
-
-            // Update store
-            this.props.changeAccountName(accountInfo, accountNameArray);
-
-
+            this.props.setSetting('accountManagement')
             dropdown.alertWithType(
                 'success',
                 'Account name changed',
                 `Your account name has been changed.`,
             );
         }
-
-        // Tests
-        /*console.log(this.props.account.accountInfo)
-        console.log(this.props.account.seedNames)
-        getFromKeychain(this.props.tempAccount.password, value => {
-            console.log(value)
-        })*/
     }
 
     //EditAccountName and ViewSeed method

@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         width: width / 2,
-        height: width / 3.8,
+        height: width / 3.4,
         justifyContent: 'center',
     },
     activityIndicator: {
