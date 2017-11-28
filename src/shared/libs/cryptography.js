@@ -50,7 +50,7 @@ export function replaceKeychainValue(key, value){
 
 export function storeValueInKeychain(key, value){
     const seedArray = JSON.stringify(value);
-    SInfo.setItem(key, value, {
+    SInfo.setItem(key, seedArray, {
         sharedPreferencesName: 'mySharedPrefs',
         keychainService: 'myKeychain',
     });
