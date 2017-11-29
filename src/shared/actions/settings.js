@@ -22,20 +22,20 @@ export function setCurrencyData(conversionRate, currency) {
     return {
         type: ActionTypes.SET_CURRENCY_DATA,
         currency,
-        conversionRate
-    }
+        conversionRate,
+    };
 }
 
 export function getCurrencyData(currency) {
     const url = `https://api.fixer.io/latest?base=USD`;
     return dispatch => {
-    return fetch(url)
-        .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
-        .then(json => {
-          const conversionRate = json.rates[currency] || 1;
-          dispatch(setCurrencyData(conversionRate, currency))
-        });
-    }
+        return fetch(url)
+            .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
+            .then(json => {
+                const conversionRate = json.rates[currency] || 1;
+                dispatch(setCurrencyData(conversionRate, currency));
+            });
+    };
 }
 
 export function setLanguage(language) {
@@ -55,17 +55,10 @@ export const invalidServerError = () => {
 
 export function setFullNode(fullNode) {
     return dispatch => {
-        if (!isValidServerAddress(fullNode)) {
-            dispatch(invalidServerError());
-            return false;
-        }
-
         dispatch({
             type: ActionTypes.SET_FULLNODE,
             payload: fullNode,
         });
-
-        return true;
     };
 }
 

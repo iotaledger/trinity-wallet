@@ -241,7 +241,7 @@ export function changeAccountName(accountInfo, accountNames) {
     return {
         type: 'CHANGE_ACCOUNT_NAME',
         accountInfo,
-        accountNames
+        accountNames,
     };
 }
 
@@ -249,6 +249,6 @@ export function removeAccount(accountInfo, accountNames) {
     return {
         type: 'REMOVE_ACCOUNT',
         accountInfo,
-        accountNames
+        accountNames,
     };
 }

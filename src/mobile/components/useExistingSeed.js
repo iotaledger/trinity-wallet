@@ -11,7 +11,7 @@ import {
     ImageBackground,
     StatusBar,
     Platform,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -39,7 +39,7 @@ class UseExistingSeed extends React.Component {
         this.state = {
             seed: '',
             accountName: this.getDefaultAccountName(),
-            isModalVisible: false
+            isModalVisible: false,
         };
     }
 
@@ -85,95 +85,101 @@ class UseExistingSeed extends React.Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-                        <View style={styles.topContainer}>
-                            <View style={styles.seedContainer}>
-                                <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text>
+                    <View style={styles.topContainer}>
+                        <View style={styles.seedContainer}>
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.title}>Please enter your seed.</Text>
+                            </View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={styles.textFieldContainer}>
+                                    <TextField
+                                        style={styles.textField}
+                                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                        labelFontSize={width / 31.8}
+                                        fontSize={width / 20.7}
+                                        labelPadding={3}
+                                        baseColor="white"
+                                        tintColor="#F7D002"
+                                        enablesReturnKeyAutomatically={true}
+                                        label="Seed"
+                                        autoCapitalize="characters"
+                                        autoCorrect={false}
+                                        value={seed}
+                                        maxLength={81}
+                                        onChangeText={seed => this.setState({ seed })}
+                                        secureTextEntry={true}
+                                    />
                                 </View>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <View style={styles.textFieldContainer}>
-                                        <TextField
-                                            style={styles.textField}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                            labelFontSize={width / 31.8}
-                                            fontSize={width / 20.7}
-                                            labelPadding={3}
-                                            baseColor="white"
-                                            tintColor="#F7D002"
-                                            enablesReturnKeyAutomatically={true}
-                                            label="Seed"
-                                            autoCapitalize="characters"
-                                            autoCorrect={false}
-                                            value={seed}
-                                            maxLength={81}
-                                            onChangeText={seed => this.setState({ seed })}
-                                            secureTextEntry={true}
-                                        />
-                                    </View>
-                                    <View style={styles.qrButtonContainer}>
-                                        <TouchableOpacity onPress={() => this.onQRPress()}>
-                                            <View style={styles.qrButton}>
-                                                <Image
-                                                    source={require('../../shared/images/camera.png')}
-                                                    style={styles.qrImage}
-                                                />
-                                                <Text style={styles.qrText}> QR </Text>
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
+                                <View style={styles.qrButtonContainer}>
+                                    <TouchableOpacity onPress={() => this.onQRPress()}>
+                                        <View style={styles.qrButton}>
+                                            <Image
+                                                source={require('../../shared/images/camera.png')}
+                                                style={styles.qrImage}
+                                            />
+                                            <Text style={styles.qrText}> QR </Text>
+                                        </View>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
-                            <View style={styles.accountNameContainer}>
-                                <View style={styles.subtitleContainer}>
-                                    <Text style={styles.title}>Enter an account name.</Text>
-                                </View>
-                                <TextField
-                                    style={styles.textField}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor="white"
-                                    tintColor="#F7D002"
-                                    enablesReturnKeyAutomatically={true}
-                                    label="Account name"
-                                    autoCapitalize="characters"
-                                    autoCorrect={false}
-                                    value={accountName}
-                                    containerStyle={{ width: width / 1.36 }}
-                                    onChangeText={accountName => this.setState({ accountName })}
+                        </View>
+                        <View style={styles.accountNameContainer}>
+                            <View style={styles.subtitleContainer}>
+                                <Text style={styles.title}>Enter an account name.</Text>
+                            </View>
+                            <TextField
+                                style={styles.textField}
+                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                labelFontSize={width / 31.8}
+                                fontSize={width / 20.7}
+                                labelPadding={3}
+                                baseColor="white"
+                                tintColor="#F7D002"
+                                enablesReturnKeyAutomatically={true}
+                                label="Account name"
+                                autoCapitalize="characters"
+                                autoCorrect={false}
+                                value={accountName}
+                                containerStyle={{ width: width / 1.36 }}
+                                onChangeText={accountName => this.setState({ accountName })}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.bottomContainer}>
+                        <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
+                            <View style={styles.itemLeft}>
+                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.iconLeft} />
+                                <Text style={styles.titleTextLeft}>Back</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={event => this.props.addAccount(seed, accountName)}
+                            style={{ flex: 1 }}
+                        >
+                            <View style={styles.itemRight}>
+                                <Text style={styles.titleTextRight}>Done</Text>
+                                <Image
+                                    source={require('../../shared/images/arrow-right.png')}
+                                    style={styles.iconRight}
                                 />
                             </View>
-                        </View>
-                        <View style={styles.bottomContainer}>
-                            <TouchableOpacity onPress={event => this.props.backPress()} style={{flex:1}}>
-                                <View style={styles.itemLeft}>
-                                    <Image source={require('../../shared/images/arrow-left.png')} style={styles.iconLeft} />
-                                    <Text style={styles.titleTextLeft}>Back</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={event => this.props.addAccount(seed, accountName)} style={{flex:1}}>
-                                <View style={styles.itemRight}>
-                                    <Text style={styles.titleTextRight}>Done</Text>
-                                    <Image source={require('../../shared/images/arrow-right.png')} style={styles.iconRight} />
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                  <Modal
-                      animationIn={'bounceInUp'}
-                      animationOut={'bounceOut'}
-                      animationInTiming={1000}
-                      animationOutTiming={200}
-                      backdropTransitionInTiming={500}
-                      backdropTransitionOutTiming={200}
-                      backdropColor={'#102832'}
-                      backdropOpacity={1}
-                      style={{ alignItems: 'center', margin: 0 }}
-                      isVisible={this.state.isModalVisible}
-                  >
-                      {this._renderModalContent()}
-                  </Modal>
-            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <Modal
+                        animationIn={'bounceInUp'}
+                        animationOut={'bounceOut'}
+                        animationInTiming={1000}
+                        animationOutTiming={200}
+                        backdropTransitionInTiming={500}
+                        backdropTransitionOutTiming={200}
+                        backdropColor={'#102832'}
+                        backdropOpacity={1}
+                        style={{ alignItems: 'center', margin: 0 }}
+                        isVisible={this.state.isModalVisible}
+                    >
+                        {this._renderModalContent()}
+                    </Modal>
+                </View>
             </TouchableWithoutFeedback>
         );
     }
@@ -190,11 +196,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     topContainer: {
         flex: 4.5,
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     logoContainer: {
         justifyContent: 'center',
@@ -261,10 +267,10 @@ const styles = StyleSheet.create({
         paddingBottom: height / 90,
     },
     accountNameContainer: {
-        flex: 1
+        flex: 1,
     },
     seedContainer: {
-        flex: 1
+        flex: 1,
     },
     titleTextLeft: {
         color: 'white',
