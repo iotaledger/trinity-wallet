@@ -123,7 +123,6 @@ class NodeSelection extends React.Component {
                                     contentContainerView={{ flex: 1, justifyContent: 'flex-start' }}
                                     //renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                                     enableEmptySections
-                                    snapToInterval={height / 26.4}
                                 />
                             </View>
                         </View>

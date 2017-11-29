@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
-import { getCurrencyData } from '../../shared/actions/settings';
+import { getCurrencyData, setFullNode } from '../../shared/actions/settings';
 import { setPassword, clearTempData, setReady } from '../../shared/actions/tempAccount';
 import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
@@ -25,6 +25,9 @@ import DropdownHolder from '../components/dropdownHolder';
 import { Keyboard } from 'react-native';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 import IOTA from 'iota.lib.js';
+import Modal from 'react-native-modal';
+import { changeIotaNode } from '../../shared/libs/iota';
+import NodeSelection from '../components/nodeSelection.js';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -38,10 +41,38 @@ class Login extends React.Component {
         super(props);
         this.state = {
             password: '',
+            isModalVisible: false,
         };
         this.onLoginPress = this.onLoginPress.bind(this);
         this.onNodeError = this.onNodeError.bind(this);
     }
+
+    _showModal = data => this.setState({ isModalVisible: true });
+
+    _hideModal = () => this.setState({ isModalVisible: false });
+
+    navigateToNodeSelection(){
+        this._hideModal();
+        this.setState({changingNode: true});
+    }
+
+    _renderModalContent = () => (
+        <ImageBackground
+            source={require('../../shared/images/bg-blue.png')}
+            style={{ width: width / 1.15, alignItems: 'center' }}
+        >
+            <View style={styles.modalContent}>
+                <Text style={styles.questionText}>Do you want to select a different node?</Text>
+                <OnboardingButtons
+                    onLeftButtonPress={() => this._hideModal()}
+                    onRightButtonPress={() => this.navigateToNodeSelection()}
+                    leftText={'NO'}
+                    rightText={'YES'}
+                />
+            </View>
+        </ImageBackground>
+    )
+
     getWalletData() {
         this.props.getChartData();
         this.props.getPrice();
@@ -119,6 +150,8 @@ class Login extends React.Component {
             animated: false,
         });
         this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        this._showModal()
+
     }
 
     onUseSeedPress() {
@@ -140,7 +173,7 @@ class Login extends React.Component {
         return (
             <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                {!this.state.changingNode && (<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
                             <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
@@ -180,6 +213,24 @@ class Login extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
+                )}
+                {this.state.changingNode && (
+                    <View>
+                        <View style={{flex: 0.8}}/>
+                        <View style={{flex: 4.62}}>
+                            <NodeSelection
+                                setNode={selectedNode => {
+                                    changeIotaNode(selectedNode);
+                                    this.props.setFullNode(selectedNode);
+                                }}
+                                node={this.props.settings.fullNode}
+                                nodes={this.props.settings.availableNodes}
+                                backPress={() => this.setState({changingNode: false})}
+                            />
+                        </View>
+                        <View style={{flex: 0.2}}/>
+                    </View>
+                )}
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
                     successColor="#009f3f"
@@ -190,6 +241,20 @@ class Login extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
+                <Modal
+                    animationIn={'bounceInUp'}
+                    animationOut={'bounceOut'}
+                    animationInTiming={1000}
+                    animationOutTiming={200}
+                    backdropTransitionInTiming={500}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={'#132d38'}
+                    backdropOpacity={0.6}
+                    style={{ alignItems: 'center' }}
+                    isVisible={this.state.isModalVisible}
+                >
+                    {this._renderModalContent()}
+                </Modal>
             </ImageBackground>
         );
     }
@@ -304,6 +369,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
     },
+    modalContent: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: 'rgba(255, 255, 255, 0.8)',
+        paddingVertical: height / 18,
+        width: width / 1.15,
+    },
+    questionText: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 27.6,
+        paddingBottom: height / 16,
+    },
 });
 
 const mapStateToProps = state => ({
@@ -338,6 +419,7 @@ const mapDispatchToProps = dispatch => ({
     clearTempData: () => dispatch(clearTempData()),
     getCurrencyData: currency => dispatch(getCurrencyData(currency)),
     setReady: () => dispatch(setReady()),
+    setFullNode: node => dispatch(setFullNode(node)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
