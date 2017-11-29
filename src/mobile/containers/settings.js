@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearTempData, setPassword, setSetting, setSeedIndex } from '../../shared/actions/tempAccount';
+import { clearTempData, setPassword, setSetting, setSeedIndex, setReady } from '../../shared/actions/tempAccount';
 import {
     setFirstUse,
     getAccountInfoNewSeed,
@@ -30,6 +30,7 @@ import { logoutFromWallet } from '../../shared/actions/app';
 import {
     getFromKeychain,
     storeSeedInKeychain,
+    checkKeychainForDuplicates,
     deleteSeed,
     deleteFromKeyChain,
     replaceKeychainValue,
@@ -46,7 +47,6 @@ class Settings extends React.Component {
             isModalVisible: false,
             modalSetting: 'addNewSeed',
             modalContent: <LogoutConfirmationModal />,
-            selectedNode: '',
             selectedCurrency: this.props.settings.currency,
         };
     }
@@ -141,7 +141,7 @@ class Settings extends React.Component {
                                     <Image source={require('../../shared/images/node.png')} style={styles.icon} />
                                     <Text style={styles.titleText}>Select node</Text>
                                     <Text numberOfLines={1} style={styles.subtitleText}>
-                                        {this.state.selectedNode}
+                                        {this.props.settings.fullNode}
                                     </Text>
                                 </View>
                             </TouchableOpacity>
@@ -278,7 +278,6 @@ class Settings extends React.Component {
                         node={this.props.settings.fullNode}
                         nodes={this.props.settings.availableNodes}
                         backPress={() => this.props.setSetting('advancedSettings')}
-                        setNodeSetting={selectedNode => this.setState({ selectedNode: selectedNode })}
                     />
                 );
                 break;
@@ -326,56 +325,54 @@ class Settings extends React.Component {
         } else if (this.props.account.seedNames.includes(accountName)) {
             dropdown.alertWithType('error', 'Account name already in use', `Please use a unique account name.`);
         } else {
-            this.props.clearTempData();
-            storeSeedInKeychain(
+            checkKeychainForDuplicates(
                 this.props.tempAccount.password,
                 seed,
                 accountName,
                 (type, title, message) => dropdown.alertWithType(type, title, message),
-                () => {
-                    this.props.setFirstUse(true);
-                    this.props.getAccountInfoNewSeed(seed, accountName, (error, success) => {
-                        if (error) {
-                            this.onExistingSeedNodeError();
-                        } else {
-                            this.onExistingSeedNodeSuccess(accountName);
-                        }
-                    });
-                    this.props.navigator.push({
-                        screen: 'loading',
-                        navigatorStyle: {
-                            navBarHidden: true,
-                            navBarTransparent: true,
-                        },
-                        animated: false,
-                        overrideBackPress: true,
-                    });
-                },
-            );
-        }
-    }
+                () => ifNoKeychainDuplicates(seed, accountName),
+            )
 
-    //UseExistingSeed method
-    onExistingSeedNodeError() {
-        getFromKeychain(this.props.tempAccount.password, value => {
-            if (typeof value != 'undefined' && value != null) {
-                var lastSeedIndex = this.props.account.seedCount - 1;
-                deleteSeed(value, this.props.tempAccount.password, lastSeedIndex);
-            } else {
-                error();
+            ifNoKeychainDuplicates = (seed, accountName) => {
+                this.props.setFirstUse(true);
+                this.props.navigator.push({
+                    screen: 'loading',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                    },
+                    animated: false,
+                    overrideBackPress: true,
+                });
+                this.props.getAccountInfoNewSeed(seed, accountName, (error, success) => {
+                    if (error) {
+                        onNodeError();
+                    } else {
+                        onNodeSuccess(seed, accountName);
+                    }
+                });
             }
-        });
-        this.props.navigator.pop({
-            animated: false,
-        });
-        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
-        this.props.setFirstUse(false);
-    }
 
-    //UseExistingSeed method
-    onExistingSeedNodeSuccess(accountName) {
-        this.props.increaseSeedCount();
-        this.props.addAccountName(accountName);
+            onNodeError = () => {
+                this.props.navigator.pop({
+                    animated: false,
+                });
+                dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+                this.props.setFirstUse(false);
+            }
+
+            onNodeSuccess = (seed, accountName) => {
+                this.props.clearTempData();
+                storeSeedInKeychain(
+                    this.props.tempAccount.password,
+                    seed,
+                    accountName,
+                )
+                this.props.increaseSeedCount();
+                this.props.addAccountName(accountName);
+                this.props.setReady();
+            }
+        }
     }
 
     //EditAccountName method
@@ -410,6 +407,10 @@ class Settings extends React.Component {
             this.props.setSetting('accountManagement');
             dropdown.alertWithType('success', 'Account name changed', `Your account name has been changed.`);
         }
+        getFromKeychain(this.props.tempAccount.password, value => {
+            console.log(value)
+            console.log(this.props.account)
+        })
     }
 
     //EditAccountName and ViewSeed method
@@ -701,6 +702,7 @@ const mapDispatchToProps = dispatch => ({
     setNode: node => dispatch(setFullNode(node)),
     getCurrencyData: currency => dispatch(getCurrencyData(currency)),
     setPassword: password => dispatch(setPassword(password)),
+    setReady: () => dispatch(setReady()),
 });
 
 const mapStateToProps = state => ({
