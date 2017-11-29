@@ -1,1 +1,1 @@
-export const defaultNode = 'http://www.veriti.io';
+export const defaultNode = 'https://ceres.iota.community:14600/';

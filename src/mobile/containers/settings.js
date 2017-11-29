@@ -407,10 +407,6 @@ class Settings extends React.Component {
             this.props.setSetting('accountManagement');
             dropdown.alertWithType('success', 'Account name changed', `Your account name has been changed.`);
         }
-        getFromKeychain(this.props.tempAccount.password, value => {
-            console.log(value)
-            console.log(this.props.account)
-        })
     }
 
     //EditAccountName and ViewSeed method

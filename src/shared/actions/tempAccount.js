@@ -279,7 +279,7 @@ export function checkNode() {
 
 export function generateNewAddress(seed, seedName, addresses) {
     return dispatch => {
-        const index = size(addresses);
+        const index = size(addresses) - 1;
         const options = { checksum: true, index };
 
         iota.api.getNewAddress(seed, options, (error, address) => {
