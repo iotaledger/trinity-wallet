@@ -302,7 +302,7 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
     marketData: state.marketData,
-    settings: state.settings
+    settings: state.settings,
 });
 
 const mapDispatchToProps = dispatch => ({

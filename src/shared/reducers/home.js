@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
         case ActionTypes.CLOSE_TOP_BAR:
             return {
                 ...state,
-                isTopBarActive: false
+                isTopBarActive: false,
             };
         default:
             return state;

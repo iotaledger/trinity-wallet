@@ -1,8 +1,9 @@
 import { ActionTypes } from '../actions/settings.js';
+import { defaultNode as fullNode } from '../config';
 
 const initialState = {
     locale: 'en',
-    fullNode: 'http://node01.iotatoken.nl:14265',
+    fullNode,
     availableNodes: [
         'https://n1.iota.nu:443',
         'https://node.tangle.works:443',
@@ -61,7 +62,7 @@ const initialState = {
         'TRY',
         'ZAR',
     ],
-    conversionRate: 1
+    conversionRate: 1,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -110,7 +111,7 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currency: action.currency,
-                conversionRate: action.conversionRate
+                conversionRate: action.conversionRate,
             };
     }
 
