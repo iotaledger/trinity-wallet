@@ -18,7 +18,12 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeSeedInKeychain, getFromKeychain, removeLastSeed, checkKeychainForDuplicates } from '../../shared/libs/cryptography';
+import {
+    storeSeedInKeychain,
+    getFromKeychain,
+    removeLastSeed,
+    checkKeychainForDuplicates,
+} from '../../shared/libs/cryptography';
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
@@ -75,7 +80,7 @@ class SetSeedName extends React.Component {
                     this.state.accountName,
                     (type, title, message) => dropdown.alertWithType(type, title, message),
                     () => ifNoKeychainDuplicates(this.props.tempAccount.seed, this.state.accountName),
-                )
+                );
 
                 ifNoKeychainDuplicates = (seed, accountName) => {
                     this.props.setFirstUse(true);
@@ -95,7 +100,7 @@ class SetSeedName extends React.Component {
                             onNodeSuccess(seed, accountName);
                         }
                     });
-                }
+                };
 
                 onNodeError = () => {
                     this.props.navigator.pop({
@@ -103,20 +108,16 @@ class SetSeedName extends React.Component {
                     });
                     dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
                     this.props.setFirstUse(false);
-                }
+                };
 
                 onNodeSuccess = (seed, accountName) => {
                     this.props.clearTempData();
-                    storeSeedInKeychain(
-                        this.props.tempAccount.password,
-                        seed,
-                        accountName,
-                    )
+                    storeSeedInKeychain(this.props.tempAccount.password, seed, accountName);
                     this.props.increaseSeedCount();
                     this.props.addAccountName(accountName);
                     this.props.clearSeed();
                     this.props.setReady();
-                }
+                };
             }
         } else {
             this.dropdown.alertWithType('error', 'No account name entered', `Please enter a name for your account.`);
