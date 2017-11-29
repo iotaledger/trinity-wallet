@@ -21,7 +21,6 @@ import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeSeedInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData } from '../../shared/actions/tempAccount';
@@ -58,6 +57,8 @@ class UseExistingSeed extends React.Component {
             return 'SIXTH ACCOUNT';
         } else if (this.props.seedCount == 6) {
             return 'OTHER ACCOUNT';
+        } else {
+            return '';
         }
     }
 

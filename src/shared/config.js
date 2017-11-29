@@ -1,1 +1,1 @@
-export const defaultNode = 'http://ceres.iota.community:14600/';
+export const defaultNode = 'https://ceres.iota.community:14600/';

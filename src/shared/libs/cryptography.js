@@ -1,24 +1,22 @@
 import { SInfo } from '../../mobile/exports';
 import { parse, serialize } from '../libs/util';
 
-export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
+export function checkKeychainForDuplicates(key, seed, name, error, success) {
     getFromKeychain(key, value => {
-        if (typeof value == 'undefined' || value === null) {
-            var newSeedArray = [{ name: name, seed: seed }];
-            newSeedArray = serialize(newSeedArray);
-            store(newSeedArray);
+        if (typeof value === 'undefined' || value === null) {
+            success();
         } else {
             var seedArray = parse(value);
             for (var item of seedArray) {
-                if (item.name == name) {
-                    alertFn(
+                if (item.name === name) {
+                    error(
                         'error',
                         'Account name already in use',
                         'This account name is already linked to your wallet. Please use a different one.',
                     );
                     return;
-                } else if (item.seed == seed) {
-                    alertFn(
+                } else if (item.seed === seed) {
+                    error(
                         'error',
                         'Seed already in use',
                         'This seed is already linked to your wallet. Please use a different one.',
@@ -26,6 +24,19 @@ export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
                     return;
                 }
             }
+            success();
+        }
+    });
+}
+
+export function storeSeedInKeychain(key, seed, name) {
+    getFromKeychain(key, value => {
+        if (typeof value == 'undefined' || value === null) {
+            var newSeedArray = [{ name: name, seed: seed }];
+            newSeedArray = serialize(newSeedArray);
+            store(newSeedArray);
+        } else {
+            var seedArray = parse(value);
             var newSeed = { name: name, seed: seed };
             seedArray.push(newSeed);
             seedArray = serialize(seedArray);
@@ -38,9 +49,6 @@ export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
             sharedPreferencesName: 'mySharedPrefs',
             keychainService: 'myKeychain',
         });
-        if (typeof callback === 'function') {
-            callback();
-        }
     }
 }
 

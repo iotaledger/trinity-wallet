@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
         width: width / 1.15,
     },
     separator: {
-        height: height / 90,
+        height: height / 120,
         flex: 1,
     },
     listViewAndroid: {
