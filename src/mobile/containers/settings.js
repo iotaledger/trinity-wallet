@@ -362,7 +362,6 @@ class Settings extends React.Component {
 
     //UseExistingSeed method
     onExistingSeedNodeSuccess(accountName) {
-        console.log('success')
         this.props.increaseSeedCount();
         this.props.addAccountName(accountName);
     }
@@ -404,10 +403,6 @@ class Settings extends React.Component {
                 `Your account name has been changed.`,
             );
         }
-        getFromKeychain(this.props.tempAccount.password, value => {
-            console.log(value)
-            console.log(this.props.account.seedCount)
-        })
     }
 
     //EditAccountName and ViewSeed method

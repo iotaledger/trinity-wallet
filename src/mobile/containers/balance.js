@@ -6,7 +6,6 @@ import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/uti
 import { getCurrencySymbol } from '../../shared/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
-import { closeTopBar } from '../../shared/actions/home';
 
 const isAndroid = Platform.OS === 'android';
 const width = Dimensions.get('window').width;
@@ -179,7 +178,6 @@ const mapDispatchToProps = dispatch => ({
     setTimeframe: timeframe => {
         dispatch(setTimeframe(timeframe));
     },
-    closeTopBar: () => dispatch(closeTopBar()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Balance);
