@@ -12,7 +12,7 @@ import {
     changeAccountName,
     removeAccount,
 } from '../../shared/actions/account';
-import { setNode, getCurrencyData } from '../../shared/actions/settings';
+import { setFullNode, getCurrencyData } from '../../shared/actions/settings';
 import { renameKeys } from '../../shared/libs/util';
 import { changeIotaNode } from '../../shared/libs/iota';
 import Modal from 'react-native-modal';
@@ -698,7 +698,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(changeAccountName(newAccountName, accountNames, addresses, transfers)),
     removeAccount: (accountInfo, accountNames) => dispatch(removeAccount(accountInfo, accountNames)),
     setSeedIndex: number => dispatch(setSeedIndex(number)),
-    setNode: node => dispatch(setNode(node)),
+    setNode: node => dispatch(setFullNode(node)),
     getCurrencyData: currency => dispatch(getCurrencyData(currency)),
     setPassword: password => dispatch(setPassword(password)),
 });

@@ -4,7 +4,6 @@ import { showError } from './notifications';
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
     SET_FULLNODE: 'IOTA/SETTINGS/FULLNODE',
-    SET_NODE: 'IOTA/SETTINGS/NODE', // Probably should be merged with SET_FULLNODE
     ADD_CUSTOM_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_NODE',
     SET_MODE: 'IOTA/SETTINGS/SET_MODE',
     SET_THEME: 'IOTA/SETTINGS/SET_THEME',
@@ -56,17 +55,10 @@ export const invalidServerError = () => {
 
 export function setFullNode(fullNode) {
     return dispatch => {
-        if (!isValidServerAddress(fullNode)) {
-            dispatch(invalidServerError());
-            return false;
-        }
-
         dispatch({
             type: ActionTypes.SET_FULLNODE,
             payload: fullNode,
         });
-
-        return true;
     };
 }
 
@@ -89,12 +81,5 @@ export function addCustomNode(customNode = '') {
         });
 
         return true;
-    };
-}
-
-export function setNode(payload) {
-    return {
-        type: ActionTypes.SET_NODE,
-        payload,
     };
 }

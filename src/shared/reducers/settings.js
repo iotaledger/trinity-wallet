@@ -80,7 +80,6 @@ const settingsReducer = (state = initialState, action) => {
             };
 
         case ActionTypes.SET_FULLNODE:
-        case ActionTypes.SET_NODE:
             return {
                 ...state,
                 fullNode: action.payload,
