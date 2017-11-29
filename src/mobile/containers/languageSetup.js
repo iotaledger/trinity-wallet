@@ -83,7 +83,7 @@ class LanguageSetup extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{flex: 1}}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
                 <ScrollView contentContainerStyle={styles.container} scrollEnabled={false}>
                     <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
                     <StatusBar barStyle="light-content" />
@@ -122,7 +122,9 @@ class LanguageSetup extends React.Component {
                                 }}
                             >
                                 <ScrollView>
-                                    <TouchableOpacity onPress={event => this.clickDropdownItem('English (International)')}>
+                                    <TouchableOpacity
+                                        onPress={event => this.clickDropdownItem('English (International)')}
+                                    >
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             English (International)
                                         </Text>

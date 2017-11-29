@@ -41,13 +41,17 @@ class SetPassword extends React.Component {
                 this.props.tempAccount.seed,
                 this.props.tempAccount.seedName,
                 (type, title, message) => dropdown.alertWithType(type, title, message),
-                () => ifNoKeychainDuplicates(this.state.password, this.props.tempAccount.seed, this.props.tempAccount.seedName),
-            )
+                () =>
+                    ifNoKeychainDuplicates(
+                        this.state.password,
+                        this.props.tempAccount.seed,
+                        this.props.tempAccount.seedName,
+                    ),
+            );
             ifNoKeychainDuplicates = (password, seed, accountName) => {
-                storeSeedInKeychain(password, seed, accountName),
-                this.props.addAccountName(accountName);
-                this.props.increaseSeedCount()
-                this.props.clearTempData()
+                storeSeedInKeychain(password, seed, accountName), this.props.addAccountName(accountName);
+                this.props.increaseSeedCount();
+                this.props.clearTempData();
                 this.props.clearSeed();
                 this.props.setOnboardingComplete(true);
                 this.props.navigator.push({
@@ -59,8 +63,7 @@ class SetPassword extends React.Component {
                     animated: false,
                     overrideBackPress: true,
                 });
-            }
-
+            };
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
                 this.dropdown.alertWithType(
