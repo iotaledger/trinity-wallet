@@ -51,9 +51,9 @@ class Login extends React.Component {
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
-    navigateToNodeSelection(){
+    navigateToNodeSelection() {
         this._hideModal();
-        this.setState({changingNode: true});
+        this.setState({ changingNode: true });
     }
 
     _renderModalContent = () => (
@@ -71,7 +71,7 @@ class Login extends React.Component {
                 />
             </View>
         </ImageBackground>
-    )
+    );
 
     getWalletData() {
         this.props.getChartData();
@@ -104,11 +104,9 @@ class Login extends React.Component {
                 'Unrecognised password',
                 'The password was not recognised. Please try again.',
             );
-        }
+        };
 
-
-
-        login = (value) => {
+        login = value => {
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
 
@@ -126,7 +124,7 @@ class Login extends React.Component {
             this.props.getCurrencyData(this.props.settings.currency);
             if (this.props.account.firstUse) {
                 this.props.getAccountInfoNewSeed(value, seedName, (error, success) => {
-                    if (error){
+                    if (error) {
                         this.onNodeError();
                     } else {
                         this.props.setReady();
@@ -138,11 +136,11 @@ class Login extends React.Component {
                     if (error) {
                         this.onNodeError();
                     } else {
-                        this.props.setReady()
+                        this.props.setReady();
                     }
                 });
             }
-        }
+        };
     }
 
     onNodeError() {
@@ -150,8 +148,7 @@ class Login extends React.Component {
             animated: false,
         });
         this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
-        this._showModal()
-
+        this._showModal();
     }
 
     onUseSeedPress() {
@@ -173,51 +170,52 @@ class Login extends React.Component {
         return (
             <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                {!this.state.changingNode && (<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View>
-                        <View style={styles.topContainer}>
-                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                            <View style={styles.titleContainer}>
-                                <Text style={styles.title}>Please enter your password.</Text>
+                {!this.state.changingNode && (
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                        <View>
+                            <View style={styles.topContainer}>
+                                <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                                <View style={styles.titleContainer}>
+                                    <Text style={styles.title}>Please enter your password.</Text>
+                                </View>
+                            </View>
+                            <View style={styles.midContainer}>
+                                <TextField
+                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={width / 31.8}
+                                    fontSize={width / 20.7}
+                                    labelPadding={3}
+                                    baseColor="white"
+                                    label="Password"
+                                    tintColor="#F7D002"
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically={true}
+                                    returnKeyType="done"
+                                    value={password}
+                                    onChangeText={password => this.setState({ password })}
+                                    containerStyle={{
+                                        width: width / 1.4,
+                                    }}
+                                    secureTextEntry={true}
+                                />
+                            </View>
+                            <View style={styles.bottomContainer}>
+                                <OnboardingButtons
+                                    onLeftButtonPress={() => this.onUseSeedPress()}
+                                    onRightButtonPress={() => this.onLoginPress()}
+                                    leftText={'USE SEED'}
+                                    rightText={'LOG IN'}
+                                />
                             </View>
                         </View>
-                        <View style={styles.midContainer}>
-                            <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor="white"
-                                label="Password"
-                                tintColor="#F7D002"
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                returnKeyType="done"
-                                value={password}
-                                onChangeText={password => this.setState({ password })}
-                                containerStyle={{
-                                    width: width / 1.4,
-                                }}
-                                secureTextEntry={true}
-                            />
-                        </View>
-                        <View style={styles.bottomContainer}>
-                            <OnboardingButtons
-                                onLeftButtonPress={() => this.onUseSeedPress()}
-                                onRightButtonPress={() => this.onLoginPress()}
-                                leftText={'USE SEED'}
-                                rightText={'LOG IN'}
-                            />
-                        </View>
-                    </View>
-                </TouchableWithoutFeedback>
+                    </TouchableWithoutFeedback>
                 )}
                 {this.state.changingNode && (
                     <View>
-                        <View style={{flex: 0.8}}/>
-                        <View style={{flex: 4.62}}>
+                        <View style={{ flex: 0.8 }} />
+                        <View style={{ flex: 4.62 }}>
                             <NodeSelection
                                 setNode={selectedNode => {
                                     changeIotaNode(selectedNode);
@@ -225,10 +223,10 @@ class Login extends React.Component {
                                 }}
                                 node={this.props.settings.fullNode}
                                 nodes={this.props.settings.availableNodes}
-                                backPress={() => this.setState({changingNode: false})}
+                                backPress={() => this.setState({ changingNode: false })}
                             />
                         </View>
-                        <View style={{flex: 0.2}}/>
+                        <View style={{ flex: 0.2 }} />
                     </View>
                 )}
                 <DropdownAlert

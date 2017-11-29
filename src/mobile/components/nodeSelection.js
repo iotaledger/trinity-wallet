@@ -52,7 +52,7 @@ class NodeSelection extends React.Component {
         this.setState({
             dropdownHeight: 0,
             triangleDirection: 'down',
-            selectedNode: item
+            selectedNode: item,
         });
     }
 

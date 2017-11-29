@@ -27,6 +27,7 @@ import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
 import CurrencySelection from '../components/currencySelection.js';
 import { logoutFromWallet } from '../../shared/actions/app';
+import { parse } from '../../shared/libs/util';
 import {
     getFromKeychain,
     storeSeedInKeychain,
@@ -331,7 +332,7 @@ class Settings extends React.Component {
                 accountName,
                 (type, title, message) => dropdown.alertWithType(type, title, message),
                 () => ifNoKeychainDuplicates(seed, accountName),
-            )
+            );
 
             ifNoKeychainDuplicates = (seed, accountName) => {
                 this.props.setFirstUse(true);
@@ -351,7 +352,7 @@ class Settings extends React.Component {
                         onNodeSuccess(seed, accountName);
                     }
                 });
-            }
+            };
 
             onNodeError = () => {
                 this.props.navigator.pop({
@@ -359,19 +360,15 @@ class Settings extends React.Component {
                 });
                 dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
                 this.props.setFirstUse(false);
-            }
+            };
 
             onNodeSuccess = (seed, accountName) => {
                 this.props.clearTempData();
-                storeSeedInKeychain(
-                    this.props.tempAccount.password,
-                    seed,
-                    accountName,
-                )
+                storeSeedInKeychain(this.props.tempAccount.password, seed, accountName);
                 this.props.increaseSeedCount();
                 this.props.addAccountName(accountName);
                 this.props.setReady();
-            }
+            };
         }
     }
 
@@ -392,7 +389,7 @@ class Settings extends React.Component {
             // Update keychain
             getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value != 'undefined' && value != null) {
-                    let seeds = JSON.parse(value);
+                    let seeds = parse(value);
                     seeds[seedIndex].name = accountName;
                     replaceKeychainValue(this.props.tempAccount.password, seeds);
                 }
