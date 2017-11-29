@@ -36,12 +36,12 @@ const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 let sentDenomination = '';
+let currencySymbol = '';
 
 class Send extends Component {
     constructor() {
         super();
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
         this.state = {
             denomination: 'i',
             amount: '',
@@ -53,6 +53,9 @@ class Send extends Component {
         };
     }
 
+    componentWillMount(){
+        currencySymbol = getCurrencySymbol(this.props.settings.currency)
+    }
     onDenominationPress() {
         switch (this.state.denomination) {
             case 'Mi':
@@ -62,6 +65,9 @@ class Send extends Component {
                 this.setState({ denomination: 'Ti' });
                 break;
             case 'Ti':
+                this.setState({ denomination: currencySymbol });
+                break;
+            case currencySymbol:
                 this.setState({ denomination: 'i' });
                 break;
             case 'i':
@@ -220,6 +226,9 @@ class Send extends Component {
             case 'Ti':
                 multiplier = 1000000000000;
                 break;
+            case currencySymbol:
+                multiplier = 1000000 * this.props.settings.conversionRate;
+                break;
         }
         return multiplier;
     }
@@ -300,10 +309,18 @@ class Send extends Component {
         Keyboard.dismiss()
     }
 
-    render() {
-
-        let { amount, address, message } = this.state;
-        const conversion = round(
+    getConversionTextFiat(){
+        const convertedValue = round(this.state.amount / this.props.marketData.usdPrice / this.props.settings.conversionRate, 2);
+        let conversionText = ''
+        if(0 < convertedValue && convertedValue < 0.01){
+            conversionText = '< 0.01 Mi';
+        } else if(convertedValue >= 0.01){
+            conversionText = '= ' + convertedValue + ' Mi';
+        }
+        return conversionText;
+    }
+    getConversionTextIota(){
+        const convertedValue = round(
             parseFloat(this.isValidAmount(this.state.amount) ? this.state.amount : 0) *
                 this.props.marketData.usdPrice /
                 1000000 *
@@ -311,7 +328,19 @@ class Send extends Component {
                 this.props.settings.conversionRate,
             10,
         );
-        const currencySymbol = getCurrencySymbol(this.props.settings.currency)
+        let conversionText = ''
+        if(0 < convertedValue && convertedValue < 0.01){
+            conversionText = '< ' + currencySymbol + '0.01';
+        } else if(convertedValue >= 0.01){
+            conversionText = '= ' + currencySymbol + convertedValue.toFixed(2);
+        }
+        return conversionText;
+    }
+
+    render() {
+
+        let { amount, address, message, denomination } = this.state;
+
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -366,10 +395,11 @@ class Send extends Component {
                                     onChangeText={amount => this.onAmountType(amount)}
                                 />
                             </View>
-                            <Text style={styles.conversionText}>
+                            {(denomination != this.props.settings.currencySymbol) && (<Text style={styles.conversionText}>
                                 {' '}
-                                {conversion == 0 ? '' : conversion < 0.01 ? '< ' + currencySymbol + '0.01' : '= ' + currencySymbol + conversion.toFixed(2)}{' '}
+                                {this.state.denomination == currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota()}{' '}
                             </Text>
+                            )}
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
                                     <View style={styles.button}>
