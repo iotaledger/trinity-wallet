@@ -27,6 +27,7 @@ import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
 import CurrencySelection from '../components/currencySelection.js';
 import { logoutFromWallet } from '../../shared/actions/app';
+import { parse } from '../../shared/libs/util';
 import {
     getFromKeychain,
     storeSeedInKeychain,
@@ -395,7 +396,7 @@ class Settings extends React.Component {
             // Update keychain
             getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value != 'undefined' && value != null) {
-                    let seeds = JSON.parse(value);
+                    let seeds = parse(value);
                     seeds[seedIndex].name = accountName;
                     replaceKeychainValue(this.props.tempAccount.password, seeds);
                 }
