@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 
@@ -23,6 +23,7 @@ class EditAccountName extends React.Component {
 
     render() {
         return (
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
                 <View style={styles.topContainer}>
                     <View style={styles.textFieldContainer}>
@@ -64,6 +65,7 @@ class EditAccountName extends React.Component {
                     </TouchableOpacity>
                 </View>
             </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
