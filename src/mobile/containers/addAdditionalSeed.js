@@ -64,22 +64,13 @@ class AddAdditionalSeed extends React.Component {
 
     onDonePress() {
         if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
-            this.dropdown.alertWithType(
-                'error',
-                t('addAdditionalSeed.seedInvalidChars'),
-                t('addAdditionalSeed.seedInvalidCharsExplanation'),
-            );
+            this.dropdown.alertWithType('error', t('seedInvalidChars'), t('seedInvalidCharsExplanation'));
         } else if (this.state.seed.length < 81) {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed is too short',
-                `Seeds must be 81 characters long. Your seed is currently ${this.state.seed
-                    .length} characters long. Please try again.`,
-            );
+            this.dropdown.alertWithType('error', t('seedTooShort'), t('seedTooShortExplanation'));
         } else if (!(this.state.seedName.length > 0)) {
-            this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
+            this.dropdown.alertWithType('error', t('noNickname'), t('noNicknameExplanation'));
         } else if (this.props.account.seedNames.includes(this.state.seedName)) {
-            this.dropdown.alertWithType('error', 'Account name already in use', `Please use a unique account name.`);
+            this.dropdown.alertWithType('error', t('nameInUse'), t('nameInUseExplanation'));
         } else {
             this.props.clearTempData();
             storeInKeychain(
@@ -121,7 +112,7 @@ class AddAdditionalSeed extends React.Component {
         this.props.navigator.pop({
             animated: false,
         });
-        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        this.dropdown.alertWithType('error', t('global.invalidResponse'), t('global.invalidResponseExplanation'));
         this.props.setFirstUse(false);
     }
 
@@ -173,7 +164,7 @@ class AddAdditionalSeed extends React.Component {
                             </View>
                             <View style={styles.midContainer}>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text>
+                                    <Text style={styles.title}>{t('global.enterSeed')}</Text>
                                 </View>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.textFieldContainer}>
@@ -186,7 +177,7 @@ class AddAdditionalSeed extends React.Component {
                                             baseColor="white"
                                             tintColor="#F7D002"
                                             enablesReturnKeyAutomatically={true}
-                                            label="Seed"
+                                            label={t('global.seed')}
                                             autoCapitalize="characters"
                                             autoCorrect={false}
                                             value={seed}
@@ -202,7 +193,7 @@ class AddAdditionalSeed extends React.Component {
                                                     source={require('../../shared/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
-                                                <Text style={styles.qrText}> QR </Text>
+                                                <Text style={styles.qrText}> {t('global.qr')} </Text>
                                             </View>
                                         </TouchableOpacity>
                                     </View>
