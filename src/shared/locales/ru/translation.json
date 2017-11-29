@@ -14,13 +14,13 @@
         "notAvailable": "Эта функция не доступна",
         "notAvailableExplanation": "Это будет добавлено на более поздней стадии.",
         "enterSeed": "Пожалуйста, введите ваш ключ.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "mainWallet": "ОСНОВНОЙ СЧЕТ",
+        "secondWallet": "ВТОРОЙ СЧЕТ",
+        "thirdWallet": "ТРЕТИЙ СЧЕТ",
+        "fourthWallet": "ЧЕТВЕРТЫЙ СЧЕТ",
+        "fifthWallet": "ПЯТЫЙ СЧЕТ",
+        "sixthWallet": "ШЕСТОЙ СЧЕТ",
+        "otherWallet": "ДРУГОЙ СЧЕТ",
         "yes": "ДА",
         "no": "НЕТ",
         "password": "Пароль",
@@ -29,9 +29,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
-        "seedInvalidCharsExplanation": "Seeds can only contain the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidCharsExplanation":
+            "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
         "seedTooShort": "Ключ слишком короткий",
-        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently {seed.length} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Ключ должен быть длиной, как минимум, 61 символ (идеально 81 символ). Ваш текущий ключ имеет длину {seed.length}. Пожалуйста, попробуйте снова.",
         "nameInUse": "Данный ник уже занят",
         "nameInUseExplanation": "Пожалуйста, используйте уникальный ник для вашего ключа.",
         "enterAccountName": "Введите свой ник.",
@@ -39,17 +41,20 @@
     },
     "changePassword": {
         "oops": "Упс! Произошла какая-то ошибка",
-        "oopsExplanation": "Похоже, что-то пошло не так во время обновления вашего пароля. Пожалуйста, попробуйте снова.",
+        "oopsExplanation":
+            "Похоже, что-то пошло не так во время обновления вашего пароля. Пожалуйста, попробуйте снова.",
         "passwordUpdated": "Пароль обновлён",
         "passwordUpdatedExplanation": "Ваш пароль был успешно обновлен.",
         "incorrectPassword": "Неправильный пароль",
-        "incorrectPasswordExplanation": "The password you entered is incorrect. Please try again.",
+        "incorrectPasswordExplanation": "Неверный пароль. Пожалуйста, попробуйте снова.",
         "passwordsDoNotMatch": "Пароли не совпадают",
         "passwordsDoNotMatchExplanation": "Пароли не совпадают. Пожалуйста, попробуйте еще раз.",
         "passwordTooShort": "Слишком короткий пароль",
-        "passwordTooShortExplanation": "Ваш пароль должен быть длиной по крайней мере 8 символов. Пожалуйста, попробуйте еще раз.",
+        "passwordTooShortExplanation":
+            "Ваш пароль должен быть длиной по крайней мере 8 символов. Пожалуйста, попробуйте еще раз.",
         "oldPassword": "Не удается установить старый пароль",
-        "oldPasswordExplanation": "Вы не можете использовать ваш старый пароль в качестве нового. Пожалуйста, попробуйте еще раз с новым паролем.",
+        "oldPasswordExplanation":
+            "Вы не можете использовать ваш старый пароль в качестве нового. Пожалуйста, попробуйте еще раз с новым паролем.",
         "ensureStrongPassword": "Убедитесь, что вы используете надежный пароль из по крайней мере 12 символов.",
         "currentPassword": "Текущий пароль",
         "newPassword": "Новый пароль",
@@ -59,15 +64,19 @@
         "seedCleared": "Ключ очищен",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
         "seedCopied": "Ключ скопирован",
-        "seedCopiedExplanation": "Ключ будет скопирован в буфер обмена на 60 секунд. По прошествии этого времени (или после нажатия \"ГОТОВО\") буфер обмена будет очищен.",
+        "seedCopiedExplanation":
+            "Ключ будет скопирован в буфер обмена на 60 секунд. По прошествии этого времени (или после нажатия \"ГОТОВО\") буфер обмена будет очищен.",
         "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей."
     },
     "enterSeed": {
         "invalidCharacters": "Ключ содержит недопустимые символы",
-        "invalidCharactersExplanation": "Seeds can only contain the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation":
+            "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
         "seedTooShort": "Ключ слишком короткий",
-        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently {seed.length} characters long. Please try again.",
-        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, and the number 9. You cannot use seeds longer than 81 characters.",
+        "seedTooShortExplanation":
+            "Ключ должен быть длиной, как минимум, 61 символ (идеально 81 символ). Ваш текущий ключ имеет длину {seed.length}. Пожалуйста, попробуйте снова.",
+        "seedExplanation":
+            "Ключ должен быть длиной 81 символ и содержать только заглавные буквы A-Z и цифру 9. Более длинные ключи не допускаются.",
         "neverShare": "Никому никогда не сообщайте ваш ключ"
     },
     "home": {
@@ -87,6 +96,11 @@
         "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
         "login": "ВОЙТИ"
     },
+    "loading": {
+        "loadingFirstTime": "Загрузка ключа в самый первый раз.",
+        "thisMayTake": "Это может занять некоторое время.",
+        "youMayNotice": "Вы можете заметить замедление работы вашего устройства."
+    },
     "newSeedSetup": {
         "seedNotGenerated": "Ключ не был сгенерирован",
         "seedNotGeneratedExplanation": "Пожалуйста, нажмите на кнопку \"Сгенерировать новый ключ\".",
@@ -94,7 +108,8 @@
         "individualLetters": "Нажмите какие-нибудь клавиши на клавиатуре в случайном порядке."
     },
     "onboardingComplete": {
-        "walletReady": "Кошелек настроен и готов к использованию. Если вам понадобится в будущем внести какие-либо изменения, используйте НАСТРОЙКИ из меню."
+        "walletReady":
+            "Кошелек настроен и готов к использованию. Если вам понадобится в будущем внести какие-либо изменения, используйте НАСТРОЙКИ из меню."
     },
     "paperWallet": {
         "clickToPrint": "Нажмите на кнопку ниже, чтобы напечатать бумажную копию вашего ключа.",
@@ -123,13 +138,14 @@
     },
     "send": {
         "invalidAddress": "Неверный адрес",
-        "invalidAddressExplanation1": "Address should be 81 characters long with a 9 character checksum at the end (90 characters in total).",
+        "invalidAddressExplanation1": "Адрес должен быть длиной 81 символ и содержать контрольную сумму.",
         "invalidAddressExplanation2": "Адрес содержит недопустимые символы.",
         "invalidAddressExplanation3": "Адрес содержит некорректную контрольную сумму.",
         "notEnoughFunds": "Недостаточно средств",
         "notEnoughFundsExplanation": "У вас недостаточно IOTA для данной операции.",
         "keyReuse": "Повторное использование адреса для отправки",
-        "keyReuseExplanation": "Адрес, на который вы отправляете, уже был повторно использован. Пожалуйста, используйте другой адрес.",
+        "keyReuseExplanation":
+            "Адрес, на который вы отправляете, уже был повторно использован. Пожалуйста, используйте другой адрес.",
         "recipientAddress": "Адрес получателя",
         "amount": "Сумма",
         "max": "МАКС.",
@@ -138,16 +154,19 @@
     },
     "setPassword": {
         "passwordTooShort": "Слишком короткий пароль",
-        "passwordTooShortExplanation": "Ваш пароль должен быть длиной, как минимум, ${MIN_PASSWORD_LENGTH} символов. Текущая длина ${this.state.password.length}. Пожалуйста, попробуйте снова.",
+        "passwordTooShortExplanation":
+            "Ваш пароль должен быть длиной, как минимум, ${MIN_PASSWORD_LENGTH} символов. Текущая длина ${this.state.password.length}. Пожалуйста, попробуйте снова.",
         "passwordMismatch": "Пароли не совпадают",
         "passwordMismatchExplanation": "Введенные пароли не совпадают. Пожалуйста, попробуйте еще раз.",
         "nowWeNeedTo": "Теперь нам нужно установить пароль.",
-        "anEncryptedCopy": "Зашифрованная копия вашего ключа будет сохранена на вашем устройстве. Вы сможете использовать пароль для доступа к кошельку в дальнейшем.",
+        "anEncryptedCopy":
+            "Зашифрованная копия вашего ключа будет сохранена на вашем устройстве. Вы сможете использовать пароль для доступа к кошельку в дальнейшем.",
         "ensure": "Убедитесь, что вы используете надежный пароль из по крайней мере 12 символов.",
         "retypePassword": "Введите пароль еще раз"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Вы можете использовать несколько ключей в данном кошельке. Каждый ключ требует создания своего ника.",
+        "canUseMultipleSeeds":
+            "Вы можете использовать несколько ключей в данном кошельке. Каждый ключ требует создания своего ника.",
         "youCanAdd": "Вы можете добавить ключи в меню Настройки."
     },
     "settings": {
@@ -170,10 +189,10 @@
     "resetWalletConfirmation": {
         "thisAction": "Это действие нельзя будет отменить.",
         "warning1": "Все данные из вашего кошелька, включая",
-        "warning2": "ключи, пароли",
+        "warning2": " ключи, пароли, ",
         "warning3": "и",
-        "warning4": "другую информацию",
-        "warning5": "будут потеряны.",
+        "warning4": " другую информацию",
+        "warning5": " будут потеряны.",
         "areYouSure": "Вы уверены, что хотите продолжить?"
     },
     "resetWalletRequirePassword": {
@@ -182,13 +201,15 @@
         "reset": "СБРОС"
     },
     "walletSetup": {
+        "okay": "Окей, давайте настроим ваш кошелек!",
         "doYouAlreadyHaveASeed": "У вас уже есть ключ (seed), который вы хотели бы использовать?",
-        "seedExplanation": "Ключ IOTA, комбинация длиной 81 символ, представляет собой одновременно и логин, и пароль к вашему счету.",
+        "seedExplanation":
+            "Ключ IOTA, комбинация длиной 81 символ, представляет собой одновременно и логин, и пароль к вашему счету.",
         "explanation1": "Вы сможете использовать его для доступа к вашим средствам из",
-        "explanation2": "любого кошелька",
+        "explanation2": " любого кошелька ",
         "explanation3": "на",
         "explanation4": "любом устройстве,",
-        "explanation5": "но если вы потеряете свой ключ, вы потеряете ваши IOTA.",
+        "explanation5": "Но если вы потеряете свой ключ, вы потеряете ваши IOTA.",
         "keepSafe": "Пожалуйста, тщательно храните свой ключ."
     },
     "welcome": {
@@ -197,7 +218,8 @@
         "reminder": "Возможно, вы захотите пропустить некоторые шаги, но мы настоятельно рекомендуем пройти их все."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Ваш ключ имеет длину 81 символ, которые читаются слева направо. Запишите свой ключ и контрольную сумму и",
+        "yourSeedIs":
+            "Ваш ключ имеет длину 81 символ, которые читаются слева направо. Запишите свой ключ и контрольную сумму и",
         "tripleCheck": "трижды проверьте,",
         "thatTheyAreCorrect": "что они правильны."
     }

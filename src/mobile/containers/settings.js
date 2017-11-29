@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import {
+    Image,
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+    Dimensions,
+    StatusBar,
+    TouchableWithoutFeedback,
+} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearTempData, setPassword, setSetting, setSeedIndex } from '../../shared/actions/tempAccount';
@@ -13,10 +22,12 @@ import {
     removeAccount,
 } from '../../shared/actions/account';
 import { setNode, getCurrencyData } from '../../shared/actions/settings';
+import { renameKeys } from '../../shared/libs/util';
 import { changeIotaNode } from '../../shared/libs/iota';
 import Modal from 'react-native-modal';
 import AddNewAccount from '../components/addNewAccount';
 import UseExistingSeed from '../components/useExistingSeed';
+import ChangePassword from '../components/changePassword';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import ViewSeed from '../components/viewSeed.js';
 import ViewAddresses from '../components/viewAddresses.js';
@@ -25,14 +36,19 @@ import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
 import CurrencySelection from '../components/currencySelection.js';
 import { logoutFromWallet } from '../../shared/actions/app';
-import { getFromKeychain, storeInKeychain, deleteSeed, getSeed } from '../../shared/libs/cryptography';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import {
+    getFromKeychain,
+    storeSeedInKeychain,
+    deleteSeed,
+    deleteFromKeyChain,
+    replaceKeychainValue,
+} from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
 
-class Settings extends React.Component {
+class Settings extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -42,7 +58,6 @@ class Settings extends React.Component {
             selectedNode: '',
             selectedCurrency: this.props.settings.currency,
         };
-        this.onChangePasswordPress = this.onChangePasswordPress.bind(this);
     }
 
     _showModal = () => this.setState({ isModalVisible: true });
@@ -52,11 +67,13 @@ class Settings extends React.Component {
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
 
     _renderSettingsContent = content => {
-        const accountInfo = this.props.account.accountInfo;
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-        const addressesWithBalance = currentSeedAccountInfo.addresses;
-        const transfers = currentSeedAccountInfo.transfers;
+        let accountInfo = this.props.account.accountInfo;
+        let seedIndex = this.props.tempAccount.seedIndex;
+        let currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+        let addressesWithBalance = currentSeedAccountInfo.addresses || {};
+        let transfers = currentSeedAccountInfo.transfers || [];
+        const dropdown = DropdownHolder.getDropdown();
+
         switch (content) {
             case 'mainSettings':
                 return (
@@ -102,7 +119,7 @@ class Settings extends React.Component {
                                 <Text style={styles.titleText}>Two-factor authentication</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onChangePasswordPress()}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('changePassword')}>
                             <View style={styles.item}>
                                 <Image source={require('../../shared/images/password.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Change password</Text>
@@ -239,7 +256,6 @@ class Settings extends React.Component {
                         onWrongPassword={() => this.onWrongPassword()}
                         deleteAccount={() => this.deleteAccount()}
                         currentAccountName={this.props.account.seedNames[this.props.tempAccount.seedIndex]}
-                        backToAccountManagement={() => this.props.setSetting('accountManagement')}
                     />
                 );
                 break;
@@ -286,6 +302,16 @@ class Settings extends React.Component {
                     />
                 );
                 break;
+            case 'changePassword':
+                return (
+                    <ChangePassword
+                        password={this.props.tempAccount.password}
+                        setPassword={password => this.props.setPassword(password)}
+                        backPress={() => this.props.setSetting('mainSettings')}
+                        dropdown={dropdown}
+                    />
+                );
+                break;
         }
     };
 
@@ -310,7 +336,7 @@ class Settings extends React.Component {
             dropdown.alertWithType('error', 'Account name already in use', `Please use a unique account name.`);
         } else {
             this.props.clearTempData();
-            storeInKeychain(
+            storeSeedInKeychain(
                 this.props.tempAccount.password,
                 seed,
                 accountName,
@@ -378,34 +404,21 @@ class Settings extends React.Component {
             // Update keychain
             getFromKeychain(this.props.tempAccount.password, value => {
                 if (typeof value != 'undefined' && value != null) {
-                    const seed = getSeed(value, seedIndex);
-                    deleteSeed(value, this.props.tempAccount.password, seedIndex);
-                    storeInKeychain(this.props.tempAccount.password, seed, accountName);
+                    let seeds = JSON.parse(value);
+                    seeds[seedIndex].name = accountName;
+                    replaceKeychainValue(this.props.tempAccount.password, seeds);
                 }
             });
 
-            // Update accountInfo
-            const oldAccountName = accountNameArray[seedIndex];
-            accountInfo[accountName] = accountInfo[oldAccountName];
-            delete accountInfo[oldAccountName];
+            const currentAccountName = accountNameArray[seedIndex];
+            const keyMap = { [currentAccountName]: accountName };
+            const newAccountInfo = renameKeys(accountInfo, keyMap);
+            accountNameArray[seedIndex] = accountName;
+            this.props.changeAccountName(newAccountInfo, accountNameArray);
 
-            // Update account names array
-            accountNameArray.splice(seedIndex, 1);
-            accountNameArray.push(accountName);
-            this.props.setSeedIndex(accountNameArray.length - 1);
-
-            // Update store
-            this.props.changeAccountName(accountInfo, accountNameArray);
-
+            this.props.setSetting('accountManagement');
             dropdown.alertWithType('success', 'Account name changed', `Your account name has been changed.`);
         }
-
-        // Tests
-        /*console.log(this.props.account.accountInfo)
-        console.log(this.props.account.seedNames)
-        getFromKeychain(this.props.tempAccount.password, value => {
-            console.log(value)
-        })*/
     }
 
     //EditAccountName and ViewSeed method
@@ -418,10 +431,10 @@ class Settings extends React.Component {
     deleteAccount() {
         const dropdown = DropdownHolder.getDropdown();
 
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const accountNames = this.props.account.seedNames;
-        const currentAccountName = accountNames[seedIndex];
-        const accountInfo = this.props.account.accountInfo;
+        let seedIndex = this.props.tempAccount.seedIndex;
+        let accountNames = this.props.account.seedNames;
+        let currentAccountName = accountNames[seedIndex];
+        let accountInfo = this.props.account.accountInfo;
 
         let newAccountInfo = accountInfo;
         delete newAccountInfo[currentAccountName];
@@ -430,8 +443,9 @@ class Settings extends React.Component {
         getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value != 'undefined' && value != null) {
                 deleteSeed(value, this.props.tempAccount.password, seedIndex);
-                this.props.removeAccount(newAccountInfo, accountNames);
                 this.props.setSeedIndex(0);
+                this.props.removeAccount(newAccountInfo, accountNames);
+                this.props.setSetting('accountManagement');
                 dropdown.alertWithType('success', 'Account deleted', `Your account has been removed from the wallet.`);
             } else {
                 error();
@@ -457,15 +471,6 @@ class Settings extends React.Component {
             modalContent,
         });
         this._showModal();
-    }
-
-    onViewSeedPress() {}
-
-    onViewAddressesPress() {}
-
-    onEditAccountNamePress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
     onDeleteAccountPress() {
@@ -495,20 +500,6 @@ class Settings extends React.Component {
     onLanguagePress() {
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onChangePasswordPress() {
-        this.props.navigator.push({
-            screen: 'change-password',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundImageName: 'bg-blue.png',
-                screenBackgroundColor: '#102e36',
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
     }
 
     on2FASetupPress() {
@@ -588,28 +579,30 @@ class Settings extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <View style={{ flex: 1 }} />
-                <View style={styles.settingsContainer}>
-                    {this._renderSettingsContent(this.props.tempAccount.currentSetting)}
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
+                <View style={styles.container}>
+                    <StatusBar barStyle="light-content" />
+                    <View style={{ flex: 1 }} />
+                    <View style={styles.settingsContainer}>
+                        {this._renderSettingsContent(this.props.tempAccount.currentSetting)}
+                    </View>
+                    <View style={{ flex: 1 }} />
+                    <Modal
+                        animationIn={'bounceInUp'}
+                        animationOut={'bounceOut'}
+                        animationInTiming={1000}
+                        animationOutTiming={200}
+                        backdropTransitionInTiming={500}
+                        backdropTransitionOutTiming={200}
+                        backdropColor={'#132d38'}
+                        backdropOpacity={0.8}
+                        style={{ alignItems: 'center' }}
+                        isVisible={this.state.isModalVisible}
+                    >
+                        {this._renderModalContent()}
+                    </Modal>
                 </View>
-                <View style={{ flex: 1 }} />
-                <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
-                    animationInTiming={1000}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={500}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={'#132d38'}
-                    backdropOpacity={0.8}
-                    style={{ alignItems: 'center' }}
-                    isVisible={this.state.isModalVisible}
-                >
-                    {this._renderModalContent()}
-                </Modal>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
@@ -698,7 +691,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'white',
         borderBottomWidth: 0.3,
         width: width / 1.16,
-        height: 0.3,
+        height: height / 3000,
         marginVertical: height / 100,
         alignSelf: 'center',
     },
@@ -707,7 +700,6 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
     clearTempData: () => dispatch(clearTempData()),
-    setPassword: password => dispatch(setPassword(password)),
     setFirstUse: boolean => dispatch(setFirstUse(boolean)),
     getAccountInfoNewSeed: (seed, seedName, cb) => dispatch(getAccountInfoNewSeed(seed, seedName, cb)),
     increaseSeedCount: () => dispatch(increaseSeedCount()),
@@ -719,6 +711,7 @@ const mapDispatchToProps = dispatch => ({
     setSeedIndex: number => dispatch(setSeedIndex(number)),
     setNode: node => dispatch(setNode(node)),
     getCurrencyData: currency => dispatch(getCurrencyData(currency)),
+    setPassword: password => dispatch(setPassword(password)),
 });
 
 const mapStateToProps = state => ({
