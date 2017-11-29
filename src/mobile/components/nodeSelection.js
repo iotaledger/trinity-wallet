@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ListView, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
+import {
+    Image,
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Dimensions,
+    ListView,
+    LayoutAnimation,
+    TouchableWithoutFeedback,
+} from 'react-native';
 import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import Triangle from 'react-native-triangle';
@@ -22,7 +32,6 @@ const CustomLayoutSpring = {
 };
 
 class NodeSelection extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -32,13 +41,11 @@ class NodeSelection extends React.Component {
         };
     }
 
-    componentWillReceiveProps(newProps){
+    componentWillReceiveProps(newProps) {}
 
-    }
-
-    saveNodeSelection(){
-        this.props.backPress()
-        this.props.setNodeSetting(this.state.selectedNode)
+    saveNodeSelection() {
+        this.props.backPress();
+        this.props.setNodeSetting(this.state.selectedNode);
     }
 
     onDropdownItemPress(item) {
@@ -46,7 +53,7 @@ class NodeSelection extends React.Component {
             dropdownHeight: 0,
             triangleDirection: 'down',
             //Temporary
-            selectedNode: item
+            selectedNode: item,
         });
         // Function we need to implement
         // this.props.setNode(item)
@@ -72,16 +79,18 @@ class NodeSelection extends React.Component {
 
     render() {
         return (
-            <TouchableWithoutFeedback onPress={()=>this.setState({ dropdownHeight: 0 })}>
+            <TouchableWithoutFeedback onPress={() => this.setState({ dropdownHeight: 0 })}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{flex:1}}/>
-                        <View style={{ justifyContent: 'flex-start', flex: 3}}>
+                        <View style={{ flex: 1 }} />
+                        <View style={{ justifyContent: 'flex-start', flex: 3 }}>
                             <Text style={styles.dropdownTitle}>Node</Text>
                             <View style={styles.dropdownButtonContainer}>
                                 <TouchableWithoutFeedback onPress={event => this.onDropdownTitlePress()}>
                                     <View style={styles.dropdownButton}>
-                                        <Text numberOfLines={1} style={styles.nodeSelected}>{this.state.selectedNode}</Text>
+                                        <Text numberOfLines={1} style={styles.nodeSelected}>
+                                            {this.state.selectedNode}
+                                        </Text>
                                         <Triangle
                                             width={10}
                                             height={10}
@@ -92,44 +101,52 @@ class NodeSelection extends React.Component {
                                     </View>
                                 </TouchableWithoutFeedback>
                             </View>
-                        <View
-                            style={{
-                                height: this.state.dropdownHeight,
-                                overflow: 'hidden',
-                                backgroundColor: 'transparent',
-                                width: width / 1.5,
-                                alignItems: 'flex-start',
-                                justifyContent: 'flex-start'
-                            }}
-                        >
-                            <ListView
-                                dataSource={ds.cloneWithRows(this.props.nodes)}
-                                renderRow={(rowData, sectionID, rowID) => (
-                                    <TouchableOpacity onPress={event => this.onDropdownItemPress(rowData)}>
-                                        <View style={{height: height / 26.4, justifyContent: 'center'}}>
-                                            <Text numberOfLines={1} style={styles.dropdownItem}> {rowData} </Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                )}
-                                contentContainerView={{flex:1, justifyContent: 'flex-start'}}
-                                //renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                                enableEmptySections
-                                snapToInterval={height / 26.4}
-                            />
+                            <View
+                                style={{
+                                    height: this.state.dropdownHeight,
+                                    overflow: 'hidden',
+                                    backgroundColor: 'transparent',
+                                    width: width / 1.5,
+                                    alignItems: 'flex-start',
+                                    justifyContent: 'flex-start',
+                                }}
+                            >
+                                <ListView
+                                    dataSource={ds.cloneWithRows(this.props.nodes)}
+                                    renderRow={(rowData, sectionID, rowID) => (
+                                        <TouchableOpacity onPress={event => this.onDropdownItemPress(rowData)}>
+                                            <View style={{ height: height / 26.4, justifyContent: 'center' }}>
+                                                <Text numberOfLines={1} style={styles.dropdownItem}>
+                                                    {' '}
+                                                    {rowData}{' '}
+                                                </Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                    )}
+                                    contentContainerView={{ flex: 1, justifyContent: 'flex-start' }}
+                                    //renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                                    enableEmptySections
+                                    snapToInterval={height / 26.4}
+                                />
+                            </View>
                         </View>
-                        </View>
-
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveNodeSelection()}>
                             <View style={styles.itemRight}>
-                                <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/tick.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Save</Text>
                             </View>
                         </TouchableOpacity>
@@ -149,7 +166,7 @@ const styles = StyleSheet.create({
     textFieldContainer: {
         flex: 1,
         alignItems: 'center',
-        paddingTop: height / 10
+        paddingTop: height / 10,
     },
     saveButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
@@ -159,7 +176,7 @@ const styles = StyleSheet.create({
         height: height / 17,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     saveText: {
         color: 'white',
@@ -170,7 +187,7 @@ const styles = StyleSheet.create({
     saveButtonContainer: {
         flex: 2,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 0.5,
@@ -178,11 +195,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     topContainer: {
         flex: 4.5,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     itemLeft: {
         flexDirection: 'row',
@@ -245,6 +262,6 @@ const styles = StyleSheet.create({
         flex: 1,
         height: height / 60,
     },
-  });
+});
 
-  export default NodeSelection;
+export default NodeSelection;

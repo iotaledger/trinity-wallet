@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
-import setFirstUse from '../../shared/actions/account.js';
+import setFirstUse from 'iota-wallet-shared-modules/actions/account.js';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -82,11 +82,17 @@ class LanguageSetup extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
-                <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+                <Image
+                    style={styles.helloBackground}
+                    source={require('iota-wallet-shared-modules/images/hello-back.png')}
+                />
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
                     <View style={styles.titleContainer} />
                 </View>
                 <View style={styles.midContainer}>
@@ -308,7 +314,6 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps)(LanguageSetup);
