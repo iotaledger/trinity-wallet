@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
+    AppState,
     StyleSheet,
     Text,
     TouchableWithoutFeedback,
@@ -14,6 +15,7 @@ import {
     ImageBackground,
     StatusBar,
     TouchableOpacity,
+    Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Balance from './balance';
@@ -22,7 +24,7 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import TopBar from './topBar';
-import { changeHomeScreenRoute } from '../../shared/actions/home';
+import { changeHomeScreenRoute, closeTopBar } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
 import { setReceiveAddress, replayBundle, setReady, clearTempData } from '../../shared/actions/tempAccount';
 import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
@@ -41,10 +43,12 @@ class Home extends Component {
         super();
         this.state = {
             mode: 'STANDARD',
+            appState: AppState.currentState,
         };
     }
 
     componentDidMount() {
+        AppState.addEventListener('change', this._handleAppStateChange);
         this.props.setFirstUse(false);
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
@@ -56,9 +60,18 @@ class Home extends Component {
     }
 
     componentWillUnmount() {
-        timer.clearInterval('polling')
-        timer.clearInterval('chartPolling')
+        AppState.removeEventListener('change', this._handleAppStateChange);
+        timer.clearInterval('polling');
+        timer.clearInterval('chartPolling');
     }
+
+    _handleAppStateChange = nextAppState => {
+        if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+            console.log('App has come to the foreground!');
+        }
+        this.setState({ appState: nextAppState });
+        console.log(nextAppState);
+    };
 
     startPolling() {
         if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
@@ -93,6 +106,7 @@ class Home extends Component {
         const childrenProps = {
             type: route, // TODO: type prop might be unneeded in all the children components;
             navigator: this.props.navigator,
+            closeTopBar: () => this.props.closeTopBar(),
         };
 
         switch (route) {
@@ -403,6 +417,7 @@ const mapDispatchToProps = dispatch => ({
     setFirstUse: boolean => dispatch(setFirstUse(boolean)),
     setReady: boolean => dispatch(setReady(boolean)),
     clearTempData: () => dispatch(clearTempData()),
+    closeTopBar: () => dispatch(closeTopBar()),
 });
 
 Home.propTypes = {

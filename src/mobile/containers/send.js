@@ -14,6 +14,8 @@ import {
     ScrollView,
     Dimensions,
     StatusBar,
+    TouchableWithoutFeedback,
+    Keyboard,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
@@ -34,12 +36,12 @@ const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 let sentDenomination = '';
+let currencySymbol = '';
 
 class Send extends Component {
     constructor() {
         super();
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
         this.state = {
             denomination: 'i',
             amount: '',
@@ -51,6 +53,9 @@ class Send extends Component {
         };
     }
 
+    componentWillMount() {
+        currencySymbol = getCurrencySymbol(this.props.settings.currency);
+    }
     onDenominationPress() {
         switch (this.state.denomination) {
             case 'Mi':
@@ -60,6 +65,9 @@ class Send extends Component {
                 this.setState({ denomination: 'Ti' });
                 break;
             case 'Ti':
+                this.setState({ denomination: currencySymbol });
+                break;
+            case currencySymbol:
                 this.setState({ denomination: 'i' });
                 break;
             case 'i':
@@ -72,25 +80,25 @@ class Send extends Component {
     }
 
     onMaxPress() {
+        let max = (this.props.account.balance / this.getUnitMultiplier()).toString();
         this.setState({
-            amount: (this.props.account.balance / 1000000).toString(),
-            denomination: 'Mi',
-            maxPressed: true
+            amount: max,
+            maxPressed: true,
         });
     }
 
-    onAmountType(amount){
-        this.setState({ amount, maxPressed: false})
+    onAmountType(amount) {
+        this.setState({ amount, maxPressed: false });
     }
 
     isValidAddress(address) {
-        if(this.isValidAddressChars(address) !== null){
+        if (this.isValidAddressChars(address) !== null) {
             return size(address) === 90 && iota.utils.isValidChecksum(address);
         }
     }
 
-    isValidAddressChars(address){
-        return address.match(/^[A-Z9]+$/)
+    isValidAddressChars(address) {
+        return address.match(/^[A-Z9]+$/);
     }
 
     isValidMessage(message) {
@@ -117,7 +125,7 @@ class Send extends Component {
 
         if (size(address) !== 90) {
             return dropdown.alertWithType(...props, 'Address should be 81 characters long and should have a checksum.');
-        } else if ((address.match(/^[A-Z9]+$/) == null)) {
+        } else if (address.match(/^[A-Z9]+$/) == null) {
             return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
 
@@ -218,6 +226,9 @@ class Send extends Component {
             case 'Ti':
                 multiplier = 1000000000000;
                 break;
+            case currencySymbol:
+                multiplier = 1000000 * this.props.settings.conversionRate;
+                break;
         }
         return multiplier;
     }
@@ -243,6 +254,7 @@ class Send extends Component {
                 modalContent = (
                     <TransferConfirmationModal
                         amount={this.state.amount}
+                        clearOnSend={() => this.setState({ message: '', amount: '', address: '' })}
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
@@ -256,11 +268,7 @@ class Send extends Component {
                 this.onSendPress();
                 break;
             case 'unitInfo':
-                modalContent = (
-                    <UnitInfoModal
-                        hideModal={() => this._hideModal()}
-                    />
-                );
+                modalContent = <UnitInfoModal hideModal={() => this._hideModal()} />;
                 this.setState({
                     selectedSetting,
                     modalContent,
@@ -272,30 +280,44 @@ class Send extends Component {
 
     onQRRead(data) {
         this.setState({
-            address: data.substring(0,81),
-            message: data.substring(82,)
+            address: data.substring(0, 81),
+            message: data.substring(82),
         });
         this._hideModal();
     }
 
-    _renderMaximum () {
-        if(this.state.maxPressed){
+    _renderMaximum() {
+        if (this.state.maxPressed) {
             return (
-                <View style={{justifyContent: 'center'}}>
-                    <Text style={styles.maxWarningText}>
-                    MAXIMUM amount selected
-                    </Text>
+                <View style={{ justifyContent: 'center' }}>
+                    <Text style={styles.maxWarningText}>MAXIMUM amount selected</Text>
                 </View>
-            )
+            );
         } else {
-          return null;
+            return null;
         }
     }
 
-    render() {
+    clearInteractions() {
+        this.props.closeTopBar();
+        Keyboard.dismiss();
+    }
 
-        let { amount, address, message } = this.state;
-        const conversion = round(
+    getConversionTextFiat() {
+        const convertedValue = round(
+            this.state.amount / this.props.marketData.usdPrice / this.props.settings.conversionRate,
+            2,
+        );
+        let conversionText = '';
+        if (0 < convertedValue && convertedValue < 0.01) {
+            conversionText = '< 0.01 Mi';
+        } else if (convertedValue >= 0.01) {
+            conversionText = '= ' + convertedValue + ' Mi';
+        }
+        return conversionText;
+    }
+    getConversionTextIota() {
+        const convertedValue = round(
             parseFloat(this.isValidAmount(this.state.amount) ? this.state.amount : 0) *
                 this.props.marketData.usdPrice /
                 1000000 *
@@ -303,12 +325,24 @@ class Send extends Component {
                 this.props.settings.conversionRate,
             10,
         );
-        const currencySymbol = getCurrencySymbol(this.props.settings.currency)
+        let conversionText = '';
+        if (0 < convertedValue && convertedValue < 0.01) {
+            conversionText = '< ' + currencySymbol + '0.01';
+        } else if (convertedValue >= 0.01) {
+            conversionText = '= ' + currencySymbol + convertedValue.toFixed(2);
+        }
+        return conversionText;
+    }
+
+    render() {
+        let { amount, address, message, denomination } = this.state;
+
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <StatusBar barStyle="light-content" />
-                    <View style={styles.emptyContainer}/>
+                    <View style={styles.emptyContainer} />
                     <View style={styles.topContainer}>
                         <View style={styles.fieldContainer}>
                             <View style={styles.textFieldContainer}>
@@ -357,10 +391,14 @@ class Send extends Component {
                                     onChangeText={amount => this.onAmountType(amount)}
                                 />
                             </View>
-                            <Text style={styles.conversionText}>
-                                {' '}
-                                {conversion == 0 ? '' : conversion < 0.01 ? '< ' + currencySymbol + '0.01' : '= ' + currencySymbol + conversion.toFixed(2)}{' '}
-                            </Text>
+                            {denomination != this.props.settings.currencySymbol && (
+                                <Text style={styles.conversionText}>
+                                    {' '}
+                                    {this.state.denomination == currencySymbol
+                                        ? this.getConversionTextFiat()
+                                        : this.getConversionTextIota()}{' '}
+                                </Text>
+                            )}
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
                                     <View style={styles.button}>
@@ -414,33 +452,31 @@ class Send extends Component {
                                 size="large"
                                 color="#F7D002"
                             />
-                        ) }
+                        )}
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity style={styles.infoButton}  onPress={() => this.setModalContent('unitInfo')}>
+                        <TouchableOpacity style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}>
                             <View style={styles.info}>
                                 <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                <Text style={styles.infoText}>
-                                    IOTA units
-                                </Text>
+                                <Text style={styles.infoText}>IOTA units</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
-                <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
-                    animationInTiming={1000}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={500}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={'#102832'}
-                    style={{ alignItems: 'center', margin: 0 }}
-                    isVisible={this.state.isModalVisible}
-                >
-                    {this._renderModalContent()}
-                </Modal>
+                    <Modal
+                        animationIn={'bounceInUp'}
+                        animationOut={'bounceOut'}
+                        animationInTiming={1000}
+                        animationOutTiming={200}
+                        backdropTransitionInTiming={500}
+                        backdropTransitionOutTiming={200}
+                        backdropColor={'#102832'}
+                        style={{ alignItems: 'center', margin: 0 }}
+                        isVisible={this.state.isModalVisible}
+                    >
+                        {this._renderModalContent()}
+                    </Modal>
                 </View>
-
+            </TouchableWithoutFeedback>
         );
     }
 }
@@ -448,7 +484,7 @@ class Send extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     activityIndicator: {
         flex: 1,
@@ -457,7 +493,7 @@ const styles = StyleSheet.create({
         height: height / 5,
     },
     emptyContainer: {
-        flex: 0.3
+        flex: 0.3,
     },
     topContainer: {
         paddingHorizontal: width / 10,
@@ -467,7 +503,7 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 1.4,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     bottomContainer: {
         flex: 0.7,
@@ -477,7 +513,7 @@ const styles = StyleSheet.create({
     fieldContainer: {
         flexDirection: 'row',
         flex: 1,
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     textFieldContainer: {
         flex: 1,
@@ -486,7 +522,7 @@ const styles = StyleSheet.create({
     },
     messageFieldContainer: {
         flex: 0.7,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     maxButtonContainer: {
         flex: 0.5,
@@ -563,7 +599,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         marginTop: height / 150,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     maxButtonText: {
         color: 'white',
@@ -577,7 +613,7 @@ const styles = StyleSheet.create({
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
         marginLeft: width / 30,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     maxButton: {
         flexDirection: 'row',
@@ -599,7 +635,7 @@ const styles = StyleSheet.create({
     infoIcon: {
         width: width / 25,
         height: width / 25,
-        marginRight: width / 60
+        marginRight: width / 60,
     },
     info: {
         flexDirection: 'row',
@@ -612,7 +648,7 @@ const mapStateToProps = state => ({
     marketData: state.marketData,
     tempAccount: state.tempAccount,
     account: state.account,
-    settings: state.settings
+    settings: state.settings,
 });
 
 const mapDispatchToProps = dispatch => ({

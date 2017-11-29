@@ -1,4 +1,5 @@
 import { iota } from '../libs/iota';
+import { getSelectedAccount } from '../selectors/account';
 import {
     addTransferValues,
     formatTransfers,
@@ -7,6 +8,8 @@ import {
     calculateBalance,
     getIndexesWithBalanceChange,
     groupTransfersByBundle,
+    getAddressesWithChangedBalance,
+    mergeLatestTransfersInOld,
 } from '../libs/accountUtils';
 import { setReady, getTransfersRequest, getTransfersSuccess } from './tempAccount';
 import { generateAlert } from '../actions/alerts';
@@ -80,7 +83,7 @@ export function setBalance(addressesWithBalance) {
 
 export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
     return dispatch => {
-        // Current addresses and ther balances
+        // Current addresses and their balances
         let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         // Current transfers
         let transfers = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers;
@@ -98,17 +101,19 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                 const indexesWithBalanceChange = getIndexesWithBalanceChange(newBalances, oldBalances);
                 // Pair new balances to addresses to add to store
                 addressesWithBalance = formatAddressBalances(addresses, newBalances);
-
                 // Calculate balance
                 const balance = calculateBalance(addressesWithBalance);
-                // If balance has changed for any addresses, get updated transaction objects
-                {
-                    /* TODO: Only check check addresses where balance has changed */
-                }
+
                 if (indexesWithBalanceChange.length > 0) {
+                    // Grab addresses where balance was updated.
+                    // Use these addresses to fetch latest transactions objects.
+                    const addressesWithChangedBalance = getAddressesWithChangedBalance(
+                        addresses,
+                        indexesWithBalanceChange,
+                    );
                     dispatch(getTransfersRequest());
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
-                        dispatch(getTransfers(seedName, addresses)),
+                        dispatch(getTransfers(seedName, addressesWithChangedBalance)),
                     );
                 } else {
                     cb(null, success);
@@ -116,17 +121,6 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                     Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
                         dispatch(setReady()),
                     );
-                }
-                // Additional check in case user has account activity in another wallet
-                {
-                    /*var index = addressesWithBalance.length;
-                iota.api.getTransfers(seed, [{'start': index}], (error, success) => {
-                    if(!error) {
-                      console.log(success)
-                    } else {
-                      console.log(error)
-                    }
-                })*/
                 }
             } else {
                 cb(error);
@@ -144,12 +138,12 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
 }
 
 export function getTransfers(seedName, addresses) {
-    return dispatch => {
-        iota.api.findTransactionObjects({ addresses: addresses }, (error, success) => {
+    return (dispatch, getState) => {
+        iota.api.findTransactionObjects({ addresses }, (error, success) => {
             if (!error) {
                 // Get full bundles
-                var bundles = [...new Set(success.map(tx => tx.bundle))];
-                iota.api.findTransactionObjects({ bundles: bundles }, (error, success) => {
+                const bundles = [...new Set(success.map(tx => tx.bundle))];
+                iota.api.findTransactionObjects({ bundles }, (error, success) => {
                     if (!error) {
                         // Add persistence to transaction objects
                         iota.api.getLatestInclusion(success.map(tx => tx.hash), (error, inclusionStates) => {
@@ -161,6 +155,10 @@ export function getTransfers(seedName, addresses) {
                                 // Group transfers into bundles
                                 let transfers = groupTransfersByBundle(success);
                                 // Sort transfers and add transfer value
+                                const selectedAccount = getSelectedAccount(seedName, getState().account.accountInfo);
+                                const oldTransfers = selectedAccount.transfers;
+
+                                transfers = mergeLatestTransfersInOld(oldTransfers, transfers);
                                 transfers = formatTransfers(transfers, addresses);
                                 // Update transfers then set ready
                                 Promise.resolve(dispatch(updateTransfers(seedName, transfers))).then(
@@ -243,7 +241,7 @@ export function changeAccountName(accountInfo, accountNames) {
     return {
         type: 'CHANGE_ACCOUNT_NAME',
         accountInfo,
-        accountNames
+        accountNames,
     };
 }
 
@@ -251,6 +249,6 @@ export function removeAccount(accountInfo, accountNames) {
     return {
         type: 'REMOVE_ACCOUNT',
         accountInfo,
-        accountNames
+        accountNames,
     };
 }
