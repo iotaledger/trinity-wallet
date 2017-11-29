@@ -3,7 +3,6 @@ import { TouchableOpacity, StyleSheet, View, ListView, Dimensions, Text, Touchab
 import { connect } from 'react-redux';
 import TransactionRow from '../components/transactionRow';
 import Modal from 'react-native-modal';
-import { closeTopBar } from '../../shared/actions/home';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const width = Dimensions.get('window').width;
@@ -72,9 +71,5 @@ const mapStateToProps = state => ({
     account: state.account,
     tempAccount: state.tempAccount,
 });
-
-const mapDispatchToProps = dispatch =>({
-    closeTopBar: () => dispatch(closeTopBar()),
-})
 
 export default connect(mapStateToProps)(History);
