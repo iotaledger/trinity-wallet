@@ -16,14 +16,9 @@ import {
 } from 'react-native';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
-import { connect } from 'react-redux';
-import { changeHomeScreenRoute } from '../../shared/actions/home';
-import { setPassword } from '../../shared/actions/tempAccount';
-import { getFromKeychain, deleteFromKeyChain, storeInKeychain } from '../../shared/libs/cryptography';
+import { getFromKeychain, deleteFromKeyChain, storeValueInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
-import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -36,9 +31,6 @@ class ChangePassword extends Component {
             newPassword: '',
             confirmedNewPassword: '',
         };
-
-        this.goBack = this.goBack.bind(this);
-        this.changePassword = this.changePassword.bind(this);
     }
 
     renderTextField(value, label, onChangeText) {
@@ -66,23 +58,6 @@ class ChangePassword extends Component {
         return <TextField {...props} />;
     }
 
-    goBack() {
-        this.props.changeHomeScreenRoute('settings');
-
-        // TODO: next path should be settings
-        this.props.navigator.push({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundImageName: 'bg-blue.png',
-                screenBackgroundColor: Colors.brand.primary,
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
-    }
-
     isValid() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
         const { password } = this.props;
@@ -103,14 +78,14 @@ class ChangePassword extends Component {
 
         if (isValid) {
             const throwErr = () =>
-                this.dropdown.alertWithType(
+                this.props.dropdown.alertWithType(
                     'error',
                     'Oops! Something went wrong',
                     'Looks like something wrong while updating your password. Please try again.',
                 );
 
-            const updatePassword = seed =>
-                Promise.resolve(storeInKeychain(newPassword, seed))
+            const updatePassword = value =>
+                Promise.resolve(storeValueInKeychain(newPassword, value))
                     .then(() => {
                         deleteFromKeyChain(password);
                         setPassword(newPassword);
@@ -120,11 +95,12 @@ class ChangePassword extends Component {
                         // via redux. Generally we should redirect user to the previous screen
                         // on password update but we are kind of limited as we have to keep track
                         // on dropdown reference inside this component.
-                        this.dropdown.alertWithType(
+                        this.props.dropdown.alertWithType(
                             'success',
                             'Password updated.',
                             'Your password has been successfully updated.',
                         );
+                        this.props.backPress();
                     })
                     .catch(throwErr);
 
@@ -139,25 +115,25 @@ class ChangePassword extends Component {
         const { password } = this.props;
 
         if (currentPassword !== password) {
-            return this.dropdown.alertWithType(
+            return this.props.dropdown.alertWithType(
                 'error',
                 'Incorrect password',
                 'Your current password is incorrect. Please try again.',
             );
         } else if (newPassword !== confirmedNewPassword) {
-            return this.dropdown.alertWithType(
+            return this.props.dropdown.alertWithType(
                 'error',
                 'Password mismatch',
                 'Passwords do not match. Please try again.',
             );
         } else if (newPassword.length < 12 || confirmedNewPassword.length < 12) {
-            return this.dropdown.alertWithType(
+            return this.props.dropdown.alertWithType(
                 'error',
                 'Password is too short',
                 'Your password must be at least 12 characters. Please try again.',
             );
         } else if (newPassword === currentPassword) {
-            return this.dropdown.alertWithType(
+            return this.props.dropdown.alertWithType(
                 'error',
                 'Cannot set old password',
                 'You cannot use the old password as your new password. Please try again with a new password.',
@@ -177,50 +153,45 @@ class ChangePassword extends Component {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View>
-                        <View style={styles.topWrapper}>
-                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.logo} />
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.container}>
+                    <View style={styles.topContainer}>
+                        <View style={styles.infoTextWrapper}>
+                            <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                            <Text style={styles.infoText}>
+                                Ensure you use a strong password of at least 12 characters.
+                            </Text>
                         </View>
-                        <View style={styles.midWrapper}>
-                            <View style={styles.infoTextWrapper}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                <Text style={styles.infoText}>
-                                    Ensure you use a strong password of at least 12 characters.
-                                </Text>
-                            </View>
-                            {this.renderTextField(currentPassword, 'Current Password', currentPassword =>
-                                this.setState({ currentPassword }),
-                            )}
-                            {this.renderTextField(newPassword, 'New Password', newPassword =>
-                                this.setState({ newPassword }),
-                            )}
-                            {this.renderTextField(confirmedNewPassword, 'Confirm New Password', confirmedNewPassword =>
-                                this.setState({ confirmedNewPassword }),
-                            )}
-                        </View>
-                        <View style={styles.bottomWrapper}>
-                            <OnboardingButtons
-                                onLeftButtonPress={this.goBack}
-                                onRightButtonPress={this.changePassword}
-                                leftText={toUpper('back')}
-                                rightText={toUpper('done')}
-                            />
-                        </View>
+                        {this.renderTextField(currentPassword, 'Current Password', currentPassword =>
+                            this.setState({ currentPassword }),
+                        )}
+                        {this.renderTextField(newPassword, 'New Password', newPassword =>
+                            this.setState({ newPassword }),
+                        )}
+                        {this.renderTextField(confirmedNewPassword, 'Confirm New Password', confirmedNewPassword =>
+                            this.setState({ confirmedNewPassword }),
+                        )}
                     </View>
-                </TouchableWithoutFeedback>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                />
-            </ImageBackground>
+                    <View style={styles.bottomContainer}>
+                        <TouchableOpacity onPress={event => this.props.backPress()}>
+                            <View style={styles.itemLeft}>
+                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                                <Text style={styles.titleText}>Back</Text>
+                            </View>
+                        </TouchableOpacity>
+                        {currentPassword != '' &&
+                            newPassword != '' &&
+                            confirmedNewPassword != '' && (
+                                <TouchableOpacity onPress={() => this.changePassword()}>
+                                    <View style={styles.itemRight}>
+                                        <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
+                                        <Text style={styles.titleText}>Save</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            )}
+                    </View>
+                </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
@@ -228,26 +199,21 @@ class ChangePassword extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    bottomContainer: {
+        flex: 0.5,
+        width: width,
+        paddingHorizontal: width / 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+    },
+    topContainer: {
+        flex: 4.5,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.brand.primary,
-    },
-    topWrapper: {
-        flex: 0.7,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-    },
-    midWrapper: {
-        flex: 4,
-        alignItems: 'center',
-        paddingTop: height / 15,
-    },
-    bottomWrapper: {
-        flex: 0.7,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     logo: {
         height: width / 5,
@@ -258,12 +224,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
-        height: height / 6.6,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         paddingHorizontal: width / 40,
         borderStyle: 'dotted',
-        paddingTop: height / 60,
+        paddingVertical: height / 60,
     },
     infoText: {
         color: Colors.white,
@@ -285,51 +250,34 @@ const styles = StyleSheet.create({
         width: width / 1.36,
         paddingTop: height / 90,
     },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
+    itemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: height / 50,
+        justifyContent: 'flex-start',
+    },
+    itemRight: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: height / 50,
+        justifyContent: 'flex-end',
+    },
+    icon: {
+        width: width / 22,
+        height: width / 22,
+        marginRight: width / 25,
+    },
+    titleText: {
         color: 'white',
-        backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
+        fontSize: width / 23,
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
     },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
-    },
-});
-
-const mapStateToProps = state => ({
-    password: state.tempAccount.password,
-});
-
-const mapDispatchToProps = dispatch => ({
-    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-    setPassword: password => dispatch(setPassword(password)),
 });
 
 ChangePassword.propTypes = {
     password: PropTypes.string.isRequired,
-    navigator: PropTypes.object.isRequired,
     setPassword: PropTypes.func.isRequired,
-    changeHomeScreenRoute: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);
+export default ChangePassword;
