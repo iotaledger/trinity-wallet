@@ -1,9 +1,9 @@
 import IOTA from 'iota.lib.js';
 import { defaultNode } from '../config';
 
-export const iota = new IOTA({ provider: defaultNode });
+export let iota = new IOTA({ provider: defaultNode });
 
-export const changeIotaNode = node => iota.changeNode(node);
+export const changeIotaNode = provider => iota.changeNode({ provider });
 
 function listener() {
     let node = store.getStore().getState().settings.fullNode;
