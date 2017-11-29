@@ -1,7 +1,7 @@
 import IOTA from 'iota.lib.js';
 import { defaultNode } from '../config';
 
-export let iota = new IOTA({ provider: defaultNode });
+export const iota = new IOTA({ provider: defaultNode });
 
 export const changeIotaNode = provider => iota.changeNode({ provider });
 
