@@ -11,10 +11,10 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
-import { setBalance, setFirstUse } from '../../shared/actions/account';
-import { setSetting } from '../../shared/actions/tempAccount';
-import { changeHomeScreenRoute } from '../../shared/actions/home';
+import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
+import { setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { Navigation } from 'react-native-navigation';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
@@ -30,9 +30,8 @@ class Loading extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-
-      const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
-      if (ready) {
+        const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+        if (ready) {
             Navigation.startSingleScreenApp({
                 screen: {
                     screen: 'home',
@@ -45,7 +44,7 @@ class Loading extends Component {
                     overrideBackPress: true,
                 },
             });
-      }
+        }
     }
 
     render() {
@@ -53,7 +52,10 @@ class Loading extends Component {
 
         if (this.props.account.firstUse) {
             return (
-                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+                <ImageBackground
+                    source={require('iota-wallet-shared-modules/images/bg-blue.png')}
+                    style={styles.container}
+                >
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -72,7 +74,10 @@ class Loading extends Component {
             );
         } else if (!this.props.account.firstUse) {
             return (
-                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+                <ImageBackground
+                    source={require('iota-wallet-shared-modules/images/bg-blue.png')}
+                    style={styles.container}
+                >
                     <StatusBar barStyle="light-content" />
                     <IotaSpin duration={3000} />
                 </ImageBackground>
