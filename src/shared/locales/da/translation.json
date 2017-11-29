@@ -14,13 +14,13 @@
         "notAvailable": "Denne funktion er ikke tilgængelig",
         "notAvailableExplanation": "Den bliver tilføjet på et senere tidspunkt.",
         "enterSeed": "Indtast venligst dit seed.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "mainWallet": "HOVEDKONTO",
+        "secondWallet": "2. KONTO",
+        "thirdWallet": "3. KONTO",
+        "fourthWallet": "4. KONTO",
+        "fifthWallet": "5. KONTO",
+        "sixthWallet": "6. KONTO",
+        "otherWallet": "ANDEN KONTO",
         "yes": "JA",
         "no": "NEJ",
         "password": "Adgangskode",
@@ -29,13 +29,13 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seedet indeholder ugyldige tegn",
-        "seedInvalidCharsExplanation": "Seeds can only contain the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidCharsExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
         "seedTooShort": "Seedet er for kort",
-        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently {seed.length} characters long. Please try again.",
-        "nameInUse": "Account name already in use",
-        "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
-        "accountName": "Account name"
+        "seedTooShortExplanation": "Seeds skal indeholde mindst 60 tegn (helst 81 tegn). Dit seed er i øjeblikket {seed.length} tegn langt. Prøv venligst igen.",
+        "nameInUse": "Kontonavnet er allerede i brug",
+        "nameInUseExplanation": "Brug venligst et unikt kontonavn til dit seed.",
+        "enterAccountName": "Indtast et kontonavn.",
+        "accountName": "Kontonavn"
     },
     "changePassword": {
         "oops": "Ups! Der gik noget galt",
@@ -43,7 +43,7 @@
         "passwordUpdated": "Adgangskode opdateret",
         "passwordUpdatedExplanation": "Din adgangskode er blevet opdateret.",
         "incorrectPassword": "Forkert adgangskode",
-        "incorrectPasswordExplanation": "The password you entered is incorrect. Please try again.",
+        "incorrectPasswordExplanation": "Din nuværende adgangskode er forkert. Prøv venligst igen.",
         "passwordsDoNotMatch": "Adgangskoderne er ikke ens",
         "passwordsDoNotMatchExplanation": "Adgangskoderne er ikke ens. Prøv venligst igen.",
         "passwordTooShort": "Adgangskoden er for kort",
@@ -64,10 +64,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seedet indeholder ugyldige tegn",
-        "invalidCharactersExplanation": "Seeds can only contain the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
         "seedTooShort": "Seedet er for kort",
-        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently {seed.length} characters long. Please try again.",
-        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, and the number 9. You cannot use seeds longer than 81 characters.",
+        "seedTooShortExplanation": "Seeds skal indeholde mindst 60 tegn (helst 81 tegn). Dit seed er i øjeblikket {seed.length} tegn langt. Prøv venligst igen.",
+        "seedExplanation": "Seeds bør være 81 tegn lange og skal indeholde bogstaverne A-Z eller tallet 9. Du kan ikke bruge seeds, som er længere end 81 tegn.",
         "neverShare": "DEL ALDRIG DIT SEED MED NOGEN"
     },
     "home": {
@@ -87,6 +87,11 @@
         "useSeed": "BRUG SEED",
         "login": "LOG IND"
     },
+    "loading": {
+        "loadingFirstTime": "Indlæser seed for første gang.",
+        "thisMayTake": "Dette kan tage noget tid.",
+        "youMayNotice": "Dette kan reducere hastigheden på din enhed."
+    },
     "newSeedSetup": {
         "seedNotGenerated": "Seedet er ikke blevet genereret",
         "seedNotGeneratedExplanation": "Klik venligst på knappen \"Generer nyt seed\".",
@@ -104,26 +109,26 @@
         "printWallet": "UDSKRIV PAPIRTEGNEBOG"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "somethingWentWrong": "Der gik noget galt",
+        "somethingWentWrongExplanation": "Genstart venligst appen.",
+        "addressCopied": "Adresse kopieret",
+        "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
         "generateNewAddress": "GENERER NY ADRESSE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with",
+        "mustSaveYourSeed": "Du skal gemme dit seed med",
         "atLeastOne": "mindst én",
-        "ofTheOptions": "of the options listed below."
+        "ofTheOptions": "én af valgmulighederne angivet nedenfor."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "incorrectSeed": "Forkert seed.",
+        "incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
+        "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
+        "ifYouHaveNotSaved": "Hvis du ikke har gemt dit seed, bedes du gå tilbage til forrige punkt og gøre dette."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be 81 characters long with a 9 character checksum at the end (90 characters in total).",
+        "invalidAddress": "Ugyldig adresse",
+        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
         "invalidAddressExplanation2": "Address contains invalid characters.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "notEnoughFunds": "Not enough funds",
@@ -164,31 +169,32 @@
         "changePassword": "Skift adgangskode",
         "advanced": "Avancerede indstillinger",
         "logout": "Log out",
-        "reset": "Reset wallet",
-        "back": "Back"
+        "reset": "Nulstil tegnebog",
+        "back": "Tilbage"
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": "seeds, password",
-        "warning3": "and",
-        "warning4": "other account information",
-        "warning5": "will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "thisAction": "Denne handling kan ikke fortrydes.",
+        "warning1": "Alle dine tegnebogsdata herunder dit",
+        "warning2": " seed, din adgangskode ",
+        "warning3": "og",
+        "warning4": " andre kontooplysninger",
+        "warning5": " mistes.",
+        "areYouSure": "Er du sikker på, du vil fortsætte?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Indtast adgangskode for at nulstille din tegnebog.",
+        "cancel": "ANNULLER",
+        "reset": "NULSTIL"
     },
     "walletSetup": {
+        "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouAlreadyHaveASeed": "Har du allerede et seed, du gerne vil bruge?",
         "seedExplanation": "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": "any wallet",
-        "explanation3": ", on",
-        "explanation4": "any device",
-        "explanation5": ". but if you lose your seed, you also lose your IOTA.",
+        "explanation1": "Du kan bruge det til at tilgå dine midler fra",
+        "explanation2": " enhver tegnebog ",
+        "explanation3": "på",
+        "explanation4": " enhver enhed",
+        "explanation5": ". Men hvis du mister dit seed, mister du også dine IOTA.",
         "keepSafe": "Du bedes opbevare dit seed sikkert."
     },
     "welcome": {
@@ -197,8 +203,8 @@
         "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og",
         "tripleCheck": "trippeltjek",
-        "thatTheyAreCorrect": "that they are correct."
+        "thatTheyAreCorrect": "at de er korrekt skrevet ned."
     }
 }
