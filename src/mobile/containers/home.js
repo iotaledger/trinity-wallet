@@ -15,7 +15,7 @@ import {
     ImageBackground,
     StatusBar,
     TouchableOpacity,
-    Keyboard
+    Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Balance from './balance';
@@ -43,7 +43,7 @@ class Home extends Component {
         super();
         this.state = {
             mode: 'STANDARD',
-            appState: AppState.currentState
+            appState: AppState.currentState,
         };
     }
 
@@ -61,17 +61,17 @@ class Home extends Component {
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this._handleAppStateChange);
-        timer.clearInterval('polling')
-        timer.clearInterval('chartPolling')
+        timer.clearInterval('polling');
+        timer.clearInterval('chartPolling');
     }
 
-    _handleAppStateChange = (nextAppState) => {
+    _handleAppStateChange = nextAppState => {
         if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-          console.log('App has come to the foreground!')
+            console.log('App has come to the foreground!');
         }
-        this.setState({appState: nextAppState});
-        console.log(nextAppState)
-  }
+        this.setState({ appState: nextAppState });
+        console.log(nextAppState);
+    };
 
     startPolling() {
         if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
@@ -106,7 +106,7 @@ class Home extends Component {
         const childrenProps = {
             type: route, // TODO: type prop might be unneeded in all the children components;
             navigator: this.props.navigator,
-            closeTopBar: () => this.props.closeTopBar()
+            closeTopBar: () => this.props.closeTopBar(),
         };
 
         switch (route) {
