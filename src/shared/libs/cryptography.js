@@ -43,12 +43,12 @@ export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
     }
 }
 
-export function replaceKeychainValue(key, value){
+export function replaceKeychainValue(key, value) {
     deleteFromKeyChain(key);
-    storeValueInKeychain(key, value)
+    storeValueInKeychain(key, value);
 }
 
-export function storeValueInKeychain(key, value){
+export function storeValueInKeychain(key, value) {
     const seedArray = JSON.stringify(value);
     SInfo.setItem(key, seedArray, {
         sharedPreferencesName: 'mySharedPrefs',
