@@ -14,13 +14,13 @@
         "notAvailable": "Fungsi ini tidak tersedia",
         "notAvailableExplanation": "Ini akan ditambahkan di tahap berikutnya.",
         "enterSeed": "Silakan masukkan Seed Anda.",
-        "mainWallet": "AKUN UTAMA",
-        "secondWallet": "AKUN KEDUA",
-        "thirdWallet": "AKUN KETIGA",
-        "fourthWallet": "AKUN KEEMPAT",
-        "fifthWallet": "AKUN KELIMA",
-        "sixthWallet": "AKUN KEENAM",
-        "otherWallet": "AKUN LAINNYA",
+        "mainWallet": "MAIN ACCOUNT",
+        "secondWallet": "SECOND ACCOUNT",
+        "thirdWallet": "THIRD ACCOUNT",
+        "fourthWallet": "FOURTH ACCOUNT",
+        "fifthWallet": "FIFTH ACCOUNT",
+        "sixthWallet": "SIXTH ACCOUNT",
+        "otherWallet": "OTHER ACCOUNT",
         "yes": "IYA",
         "no": "TIDAK",
         "password": "Kata Sandi",
@@ -29,9 +29,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
-        "seedInvalidCharsExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf kapital A-Z dan angka 9. Silakan coba lagi.",
+        "seedInvalidCharsExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
-        "seedTooShortExplanation": "Seed harus terdiri dari setidaknya 81 karakter. Seed Anda adalah {seed.length} karakter. Silahkan coba lagi.",
+        "seedTooShortExplanation": "Seed harus terdiri dari setidaknya 60 karakter (sebaiknya 81 karakter). Seed Anda adalah {seed.length} karakter. Silahkan coba lagi.",
         "nameInUse": "Nama akun sudah digunakan",
         "nameInUseExplanation": "Silahkan menggunakan nama akun yang unik untuk Seed anda.",
         "enterAccountName": "Masukkan nama akun.",
@@ -43,7 +43,7 @@
         "passwordUpdated": "Kata sandi sudah diperbaharui",
         "passwordUpdatedExplanation": "Kata sandi anda telah sukses diperbaharui.",
         "incorrectPassword": "Kata sandi salah",
-        "incorrectPasswordExplanation": "Kata sandi yang Anda masukkan salah. Silahkan coba lagi.",
+        "incorrectPasswordExplanation": "Kata sandi anda salah. Silahkan coba lagi.",
         "passwordsDoNotMatch": "Kata sandi tidak sama",
         "passwordsDoNotMatchExplanation": "Kata sandi tidak cocok. Silahkan coba lagi.",
         "passwordTooShort": "Kata sandi terlalu singkat",
@@ -64,10 +64,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
-        "invalidCharactersExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf kapital A-Z dan angka 9. Silakan coba lagi.",
+        "invalidCharactersExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
-        "seedTooShortExplanation": "Seed harus terdiri dari setidaknya 81 karakter. Seed Anda adalah {seed.length} karakter. Silahkan coba lagi.",
-        "seedExplanation": "Seed harus 81 karakter dan harus berisi huruf kapital A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari 81 karakter.",
+        "seedTooShortExplanation": "Seed harus terdiri dari setidaknya 60 karakter (sebaiknya 81 karakter). Seed Anda adalah {seed.length} karakter. Silahkan coba lagi.",
+        "seedExplanation": "Seed harus 81 karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari 81 karakter.",
         "neverShare": "JANGAN PERNAH MEMBERITAHUKAN SEED ANDA DENGAN SIAPAPUN"
     },
     "home": {
@@ -86,6 +86,11 @@
         "enterPassword": "Silahkan masukan kata sandi Anda.",
         "useSeed": "GUNAKAN SEED",
         "login": "MASUK"
+    },
+    "loading": {
+        "loadingFirstTime": "Loading seed for the first time.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed belum dibuat",
@@ -123,7 +128,7 @@
     },
     "send": {
         "invalidAddress": "Alamat salah",
-        "invalidAddressExplanation1": "Alamat harus 81 karakter dan diakhiri dengan cek jumlah 9 karakter (total 90 karakter).",
+        "invalidAddressExplanation1": "Alamat harus 81 karakter dan memiliki cek jumlah.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
         "notEnoughFunds": "Dana tidak mencukupi",
@@ -170,10 +175,10 @@
     "resetWalletConfirmation": {
         "thisAction": "Tindakan ini tidak dapat diulang.",
         "warning1": "Semua dompet anda termasuk",
-        "warning2": "Seed, kata sandi",
+        "warning2": " seeds, password, ",
         "warning3": "dan",
-        "warning4": "informasi akun lainnya",
-        "warning5": "akan dihapus.",
+        "warning4": " other account information",
+        "warning5": " will be lost.",
         "areYouSure": "Anda yakin ingin melanjutkan?"
     },
     "resetWalletRequirePassword": {
@@ -182,12 +187,13 @@
         "reset": "HAPUS"
     },
     "walletSetup": {
+        "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Apakah anda sudah memiliki Seed yang ingin digunakan?",
         "seedExplanation": "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
         "explanation1": "Anda dapat menggunakan ini untuk mengakses dana anda dari",
-        "explanation2": "dompet manapun",
+        "explanation2": " any wallet ",
         "explanation3": ", di",
-        "explanation4": "perangkat manapun",
+        "explanation4": " any device",
         "explanation5": ". Tetapi jika anda lupa Seed, Anda juga akan kehilangan IOTA.",
         "keepSafe": "Harap disimpan Seed anda dengan baik."
     },

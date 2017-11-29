@@ -20,7 +20,6 @@ export function setLocale(locale) {
 }
 
 export function setCurrencyData(conversionRate, currency) {
-    console.log(conversionRate);
     return {
         type: ActionTypes.SET_CURRENCY_DATA,
         currency,
