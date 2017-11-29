@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux';
 import { increaseSeedCount, addAccountName, setOnboardingComplete } from '../../shared/actions/account';
 import { clearTempData, clearSeed } from '../../shared/actions/tempAccount';
-import { storeSeedInKeychain } from '../../shared/libs/cryptography';
+import { storeSeedInKeychain, checkKeychainForDuplicates } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
@@ -36,22 +36,34 @@ class SetPassword extends React.Component {
 
     onDonePress() {
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
-            Promise.resolve(
-                storeSeedInKeychain(this.state.password, this.props.tempAccount.seed, this.props.tempAccount.seedName),
-            )
-                .then(this.props.clearTempData())
-                .then(this.props.clearSeed());
-            this.props.setOnboardingComplete(true);
-            this.props.addAccountName(this.props.tempAccount.seedName);
-            this.props.navigator.push({
-                screen: 'onboardingComplete',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                },
-                animated: false,
-                overrideBackPress: true,
-            });
+            checkKeychainForDuplicates(
+                this.state.password,
+                this.props.tempAccount.seed,
+                this.props.tempAccount.seedName,
+                (type, title, message) => dropdown.alertWithType(type, title, message),
+                () =>
+                    ifNoKeychainDuplicates(
+                        this.state.password,
+                        this.props.tempAccount.seed,
+                        this.props.tempAccount.seedName,
+                    ),
+            );
+            ifNoKeychainDuplicates = (password, seed, accountName) => {
+                storeSeedInKeychain(password, seed, accountName), this.props.addAccountName(accountName);
+                this.props.increaseSeedCount();
+                this.props.clearTempData();
+                this.props.clearSeed();
+                this.props.setOnboardingComplete(true);
+                this.props.navigator.push({
+                    screen: 'onboardingComplete',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                    },
+                    animated: false,
+                    overrideBackPress: true,
+                });
+            };
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
                 this.dropdown.alertWithType(
