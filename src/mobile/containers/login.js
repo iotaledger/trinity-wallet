@@ -14,7 +14,7 @@ import {
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import { getCurrencyData } from '../../shared/actions/settings';
-import { setPassword, clearTempData } from '../../shared/actions/tempAccount';
+import { setPassword, clearTempData, setReady } from '../../shared/actions/tempAccount';
 import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
@@ -67,26 +67,23 @@ class Login extends React.Component {
             });
         }
 
-        const _this = this;
-        const seedIndex = _this.props.tempAccount.seedIndex;
-        const seedName = _this.props.account.seedNames[seedIndex];
-        function login(value) {
-            _this.getWalletData();
-            _this.props.getCurrencyData(_this.props.settings.currency);
-            if (_this.props.account.firstUse) {
-                _this.props.getAccountInfoNewSeed(value, seedName, (error, success) => {
-                    if (error) _this.onNodeError();
-                });
-            } else {
-                const accountInfo = _this.props.account.accountInfo;
-                _this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                    if (error) {
-                        _this.onNodeError();
-                    }
-                });
-            }
-            _this.props.changeHomeScreenRoute('balance');
-            _this.props.navigator.push({
+        error = () => {
+            this.dropdown.alertWithType(
+                'error',
+                'Unrecognised password',
+                'The password was not recognised. Please try again.',
+            );
+        }
+
+
+
+        login = (value) => {
+            const seedIndex = this.props.tempAccount.seedIndex;
+            const seedName = this.props.account.seedNames[seedIndex];
+
+            this.getWalletData();
+            this.props.changeHomeScreenRoute('balance');
+            this.props.navigator.push({
                 screen: 'loading',
                 navigatorStyle: {
                     navBarHidden: true,
@@ -95,14 +92,25 @@ class Login extends React.Component {
                 animated: false,
                 overrideBackPress: true,
             });
-        }
-
-        function error() {
-            _this.dropdown.alertWithType(
-                'error',
-                'Unrecognised password',
-                'The password was not recognised. Please try again.',
-            );
+            this.props.getCurrencyData(this.props.settings.currency);
+            if (this.props.account.firstUse) {
+                this.props.getAccountInfoNewSeed(value, seedName, (error, success) => {
+                    if (error){
+                        this.onNodeError();
+                    } else {
+                        this.props.setReady();
+                    }
+                });
+            } else {
+                const accountInfo = this.props.account.accountInfo;
+                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                    if (error) {
+                        this.onNodeError();
+                    } else {
+                        this.props.setReady()
+                    }
+                });
+            }
         }
     }
 
@@ -329,6 +337,7 @@ const mapDispatchToProps = dispatch => ({
     },
     clearTempData: () => dispatch(clearTempData()),
     getCurrencyData: currency => dispatch(getCurrencyData(currency)),
+    setReady: () => dispatch(setReady()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
