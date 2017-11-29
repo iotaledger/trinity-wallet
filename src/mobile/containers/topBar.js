@@ -6,9 +6,9 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleTopBarDisplay } from '../../shared/actions/home';
-import { getAccountInfo, setBalance } from '../../shared/actions/account';
-import { setSeedIndex, setReceiveAddress } from '../../shared/actions/tempAccount';
+import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
+import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
+import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -21,7 +21,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
-import { roundDown, formatValue, formatUnit } from '../../shared/libs/util';
+import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 
 const { height, width } = Dimensions.get('window');
 
@@ -29,12 +29,12 @@ class TopBar extends Component {
     static getIconPath(isActive) {
         if (isActive) {
             return {
-                source: require('../../shared/images/chevron-up.png'),
+                source: require('iota-wallet-shared-modules/images/chevron-up.png'),
             };
         }
 
         return {
-            source: require('../../shared/images/chevron-down.png'),
+            source: require('iota-wallet-shared-modules/images/chevron-down.png'),
         };
     }
 
@@ -113,7 +113,9 @@ class TopBar extends Component {
             <View style={styles.titleWrapper}>
                 <TouchableWithoutFeedback onPress={() => this.props.toggleTopBarDisplay()}>
                     <View>
-                        <Text numberOfLines={1} style={styles.mainTitle}>{selectedTitle}</Text>
+                        <Text numberOfLines={1} style={styles.mainTitle}>
+                            {selectedTitle}
+                        </Text>
                         <Text style={styles.subtitle}>{selectedSubtitle}</Text>
                     </View>
                 </TouchableWithoutFeedback>
@@ -136,7 +138,9 @@ class TopBar extends Component {
                     key={idx}
                     style={{ width: width, alignItems: 'center' }}
                 >
-                    <Text numberOfLines={1} style={styles.mainTitle}>{t.title}</Text>
+                    <Text numberOfLines={1} style={styles.mainTitle}>
+                        {t.title}
+                    </Text>
                     <Text style={styles.subtitle}>{t.subtitle}</Text>
                 </TouchableOpacity>
             );
@@ -289,7 +293,7 @@ const styles = StyleSheet.create({
         width: width / 20,
         position: 'absolute',
         top: 0,
-        right: width / 20
+        right: width / 20,
     },
     separator: {
         width: width / 2,
@@ -306,7 +310,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'white',
     },
     scrollViewContainer: {
-        maxHeight: height
+        maxHeight: height,
     },
 });
 
