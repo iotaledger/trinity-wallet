@@ -1,6 +1,36 @@
 import { SInfo } from '../../mobile/exports';
 
-export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
+
+export function checkKeychainForDuplicates(key, seed, name, error, success){
+    getFromKeychain(key, value => {
+        if (typeof value === 'undefined' || value === null) {
+            success();
+        } else {
+              var seedArray = JSON.parse(value);
+              for (var item of seedArray) {
+                  if (item.name === name) {
+                      error(
+                          'error',
+                          'Account name already in use',
+                          'This account name is already linked to your wallet. Please use a different one.',
+                      );
+                      return;
+                  } else if (item.seed === seed) {
+                      error(
+                          'error',
+                          'Seed already in use',
+                          'This seed is already linked to your wallet. Please use a different one.',
+                      );
+                      return;
+                  }
+              }
+              success();
+        }
+    });
+}
+
+
+export function storeSeedInKeychain(key, seed, name) {
     getFromKeychain(key, value => {
         if (typeof value == 'undefined' || value === null) {
             var newSeedArray = [{ name: name, seed: seed }];
@@ -8,23 +38,6 @@ export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
             store(newSeedArray);
         } else {
             var seedArray = JSON.parse(value);
-            for (var item of seedArray) {
-                if (item.name == name) {
-                    alertFn(
-                        'error',
-                        'Account name already in use',
-                        'This account name is already linked to your wallet. Please use a different one.',
-                    );
-                    return;
-                } else if (item.seed == seed) {
-                    alertFn(
-                        'error',
-                        'Seed already in use',
-                        'This seed is already linked to your wallet. Please use a different one.',
-                    );
-                    return;
-                }
-            }
             var newSeed = { name: name, seed: seed };
             seedArray.push(newSeed);
             seedArray = JSON.stringify(seedArray);
@@ -37,9 +50,6 @@ export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
             sharedPreferencesName: 'mySharedPrefs',
             keychainService: 'myKeychain',
         });
-        if (typeof callback === 'function') {
-            callback();
-        }
     }
 }
 

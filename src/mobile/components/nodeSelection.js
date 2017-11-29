@@ -44,19 +44,16 @@ class NodeSelection extends React.Component {
     componentWillReceiveProps(newProps) {}
 
     saveNodeSelection() {
+        this.props.setNode(this.state.selectedNode);
         this.props.backPress();
-        this.props.setNodeSetting(this.state.selectedNode);
     }
 
     onDropdownItemPress(item) {
         this.setState({
             dropdownHeight: 0,
             triangleDirection: 'down',
-            //Temporary
-            selectedNode: item,
+            selectedNode: item
         });
-        // Function we need to implement
-        this.props.setNode(item);
     }
 
     onDropdownTitlePress() {
