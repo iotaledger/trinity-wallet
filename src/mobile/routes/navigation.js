@@ -13,7 +13,6 @@ import WriteSeedDown from '../containers/writeSeedDown';
 import CopySeedToClipboard from '../containers/copySeedToClipboard';
 import PaperWallet from '../containers/paperWallet';
 import Login from '../containers/login';
-import ChangePassword from '../containers/changePassword';
 import WalletResetConfirmation from '../containers/walletResetConfirmation';
 import WalletResetRequirePassword from '../containers/walletResetRequirePassword';
 import OnboardingComplete from '../containers/onboardingComplete';
@@ -36,7 +35,6 @@ export function registerScreens(store, Provider) {
     Navigation.registerComponent('copySeedToClipboard', () => CopySeedToClipboard, store, Provider);
     Navigation.registerComponent('languageSetup', () => LanguageSetup, store, Provider);
     Navigation.registerComponent('welcome', () => Welcome, store, Provider);
-    Navigation.registerComponent('change-password', () => ChangePassword, store, Provider);
     Navigation.registerComponent('wallet-reset-confirm', () => WalletResetConfirmation, store, Provider);
     Navigation.registerComponent('wallet-reset-require-password', () => WalletResetRequirePassword, store, Provider);
     Navigation.registerComponent('onboardingComplete', () => OnboardingComplete, store, Provider);

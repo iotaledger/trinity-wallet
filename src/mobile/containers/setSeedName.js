@@ -18,7 +18,7 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
+import { storeSeedInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
@@ -69,7 +69,7 @@ class SetSeedName extends React.Component {
                 });
             } else {
                 this.props.clearTempData();
-                storeInKeychain(
+                storeSeedInKeychain(
                     this.props.tempAccount.password,
                     this.props.tempAccount.seed,
                     this.state.seedName,

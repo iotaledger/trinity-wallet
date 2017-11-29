@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
+import { getCurrencyData } from '../../shared/actions/settings';
 import { setPassword, clearTempData } from '../../shared/actions/tempAccount';
 import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
@@ -71,6 +72,7 @@ class Login extends React.Component {
         const seedName = _this.props.account.seedNames[seedIndex];
         function login(value) {
             _this.getWalletData();
+            _this.props.getCurrencyData(_this.props.settings.currency);
             if (_this.props.account.firstUse) {
                 _this.props.getAccountInfoNewSeed(value, seedName, (error, success) => {
                     if (error) _this.onNodeError();
@@ -300,6 +302,7 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
     marketData: state.marketData,
+    settings: state.settings,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -325,6 +328,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(getChartData());
     },
     clearTempData: () => dispatch(clearTempData()),
+    getCurrencyData: currency => dispatch(getCurrencyData(currency)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
