@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    Image,
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity,
-    Dimensions,
-    StatusBar,
-    TouchableWithoutFeedback,
-} from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearTempData, setPassword, setSetting, setSeedIndex } from '../../shared/actions/tempAccount';
@@ -48,7 +39,7 @@ import DropdownHolder from '../components/dropdownHolder';
 const width = Dimensions.get('window').width;
 const height = global.height;
 
-class Settings extends Component {
+class Settings extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -579,30 +570,28 @@ class Settings extends Component {
 
     render() {
         return (
-            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
-                <View style={styles.container}>
-                    <StatusBar barStyle="light-content" />
-                    <View style={{ flex: 1 }} />
-                    <View style={styles.settingsContainer}>
-                        {this._renderSettingsContent(this.props.tempAccount.currentSetting)}
-                    </View>
-                    <View style={{ flex: 1 }} />
-                    <Modal
-                        animationIn={'bounceInUp'}
-                        animationOut={'bounceOut'}
-                        animationInTiming={1000}
-                        animationOutTiming={200}
-                        backdropTransitionInTiming={500}
-                        backdropTransitionOutTiming={200}
-                        backdropColor={'#132d38'}
-                        backdropOpacity={0.8}
-                        style={{ alignItems: 'center' }}
-                        isVisible={this.state.isModalVisible}
-                    >
-                        {this._renderModalContent()}
-                    </Modal>
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <View style={{ flex: 1 }} />
+                <View style={styles.settingsContainer}>
+                    {this._renderSettingsContent(this.props.tempAccount.currentSetting)}
                 </View>
-            </TouchableWithoutFeedback>
+                <View style={{ flex: 1 }} />
+                <Modal
+                    animationIn={'bounceInUp'}
+                    animationOut={'bounceOut'}
+                    animationInTiming={1000}
+                    animationOutTiming={200}
+                    backdropTransitionInTiming={500}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={'#132d38'}
+                    backdropOpacity={0.8}
+                    style={{ alignItems: 'center' }}
+                    isVisible={this.state.isModalVisible}
+                >
+                    {this._renderModalContent()}
+                </Modal>
+            </View>
         );
     }
 }
@@ -691,7 +680,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'white',
         borderBottomWidth: 0.3,
         width: width / 1.16,
-        height: height / 3000,
+        height: 0.3,
         marginVertical: height / 100,
         alignSelf: 'center',
     },
