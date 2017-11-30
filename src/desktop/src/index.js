@@ -4,8 +4,8 @@ import { Provider as Redux } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router';
 // import { BrowserRouter as Router } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
-import store from 'store';
 import i18next from './libs/i18next';
+import store from './store';
 import App from './components/App';
 
 render(
