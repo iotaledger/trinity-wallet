@@ -18,10 +18,15 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeSeedInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
+import {
+    storeSeedInKeychain,
+    getFromKeychain,
+    removeLastSeed,
+    checkKeychainForDuplicates,
+} from '../../shared/libs/cryptography';
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
-import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
+import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -30,11 +35,11 @@ class SetSeedName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            seedName: this.getDefaultSeedName(),
+            accountName: this.getDefaultAccountName(),
         };
     }
 
-    getDefaultSeedName() {
+    getDefaultAccountName() {
         if (this.props.account.seedCount == 0) {
             return 'MAIN ACCOUNT';
         } else if (this.props.account.seedCount == 1) {
@@ -49,6 +54,8 @@ class SetSeedName extends React.Component {
             return 'SIXTH ACCOUNT';
         } else if (this.props.account.seedCount == 6) {
             return 'OTHER ACCOUNT';
+        } else {
+            return '';
         }
     }
 
@@ -57,10 +64,9 @@ class SetSeedName extends React.Component {
     }
 
     onDonePress() {
-        if (this.state.seedName != '') {
+        if (this.state.accountName != '') {
             if (!this.props.account.onboardingComplete) {
-                this.props.increaseSeedCount();
-                this.props.setSeedName(this.state.seedName);
+                this.props.setSeedName(this.state.accountName);
                 this.props.navigator.push({
                     screen: 'setPassword',
                     navigatorStyle: { navBarHidden: true, navBarTransparent: true },
@@ -68,61 +74,54 @@ class SetSeedName extends React.Component {
                     overrideBackPress: true,
                 });
             } else {
-                this.props.clearTempData();
-                storeSeedInKeychain(
+                checkKeychainForDuplicates(
                     this.props.tempAccount.password,
                     this.props.tempAccount.seed,
-                    this.state.seedName,
-                    (type, title, message) => this.dropdown.alertWithType(type, title, message),
-                    () => {
-                        this.props.setFirstUse(true);
-                        this.props.navigator.push({
-                            screen: 'loading',
-                            navigatorStyle: {
-                                navBarHidden: true,
-                                navBarTransparent: true,
-                            },
-                            animated: false,
-                            overrideBackPress: true,
-                        });
-                        this.props.getAccountInfoNewSeed(
-                            this.props.tempAccount.seed,
-                            this.state.seedName,
-                            (error, success) => {
-                                if (error) {
-                                    this.onNodeError();
-                                } else {
-                                    this.onNodeSuccess();
-                                }
-                            },
-                        );
-                    },
+                    this.state.accountName,
+                    (type, title, message) => dropdown.alertWithType(type, title, message),
+                    () => ifNoKeychainDuplicates(this.props.tempAccount.seed, this.state.accountName),
                 );
+
+                ifNoKeychainDuplicates = (seed, accountName) => {
+                    this.props.setFirstUse(true);
+                    this.props.navigator.push({
+                        screen: 'loading',
+                        navigatorStyle: {
+                            navBarHidden: true,
+                            navBarTransparent: true,
+                        },
+                        animated: false,
+                        overrideBackPress: true,
+                    });
+                    this.props.getAccountInfoNewSeed(seed, accountName, (error, success) => {
+                        if (error) {
+                            onNodeError();
+                        } else {
+                            onNodeSuccess(seed, accountName);
+                        }
+                    });
+                };
+
+                onNodeError = () => {
+                    this.props.navigator.pop({
+                        animated: false,
+                    });
+                    dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+                    this.props.setFirstUse(false);
+                };
+
+                onNodeSuccess = (seed, accountName) => {
+                    this.props.clearTempData();
+                    storeSeedInKeychain(this.props.tempAccount.password, seed, accountName);
+                    this.props.increaseSeedCount();
+                    this.props.addAccountName(accountName);
+                    this.props.clearSeed();
+                    this.props.setReady();
+                };
             }
         } else {
             this.dropdown.alertWithType('error', 'No account name entered', `Please enter a name for your account.`);
         }
-    }
-
-    onNodeError() {
-        getFromKeychain(this.props.tempAccount.password, value => {
-            if (typeof value != 'undefined' && value != null) {
-                removeLastSeed(value, this.props.tempAccount.password);
-            } else {
-                error();
-            }
-        });
-        this.props.navigator.pop({
-            animated: false,
-        });
-        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
-        this.props.setFirstUse(false);
-    }
-
-    onNodeSuccess() {
-        this.props.increaseSeedCount();
-        this.props.addAccountName(this.state.seedName);
-        this.props.clearSeed();
     }
 
     onBackPress() {
@@ -132,7 +131,7 @@ class SetSeedName extends React.Component {
     }
 
     render() {
-        let { seedName } = this.state;
+        let { accountName } = this.state;
 
         return (
             <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
@@ -159,14 +158,15 @@ class SetSeedName extends React.Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="done"
-                                value={seedName}
-                                onChangeText={seedName => this.setState({ seedName })}
+                                value={accountName}
+                                onChangeText={accountName => this.setState({ accountName })}
                                 containerStyle={{
                                     width: width / 1.36,
                                 }}
                                 ref={input => {
                                     this.nameInput = input;
                                 }}
+                                onSubmitEditing={() => this.onDonePress()}
                             />
                             <View style={styles.infoTextContainer}>
                                 <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
@@ -330,12 +330,13 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    setSeedName: seedName => {
-        dispatch(setSeedName(seedName));
+    setSeedName: accountName => {
+        dispatch(setSeedName(accountName));
     },
     clearSeed: () => {
         dispatch(clearSeed());
     },
+    setReady: () => dispatch(setReady()),
     generateAlert: (error, title, message) => {
         dispatch(generateAlert(error, title, message));
     },
@@ -348,8 +349,8 @@ const mapDispatchToProps = dispatch => ({
     addAccountName: newSeed => {
         dispatch(addAccountName(newSeed));
     },
-    getAccountInfoNewSeed: (seed, seedName, cb) => {
-        dispatch(getAccountInfoNewSeed(seed, seedName, cb));
+    getAccountInfoNewSeed: (seed, accountName, cb) => {
+        dispatch(getAccountInfoNewSeed(seed, accountName, cb));
     },
 });
 

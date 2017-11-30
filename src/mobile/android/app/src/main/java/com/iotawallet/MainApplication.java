@@ -27,6 +27,8 @@ import com.slowpath.hockeyapp.RNHockeyAppModule;
 import com.slowpath.hockeyapp.RNHockeyAppPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
+import com.corbt.keepawake.KCKeepAwakePackage;
+
 public class MainApplication extends NavigationApplication {
 
   @Override
@@ -51,7 +53,8 @@ public class MainApplication extends NavigationApplication {
 	        new RCTCameraPackage(),
 	        new RNFSPackage(),
             new ExtraDimensionsPackage(),
-            new RNDetectNavbarAndroidPackage()
+            new RNDetectNavbarAndroidPackage(),
+            new KCKeepAwakePackage()
     );
   }
 
