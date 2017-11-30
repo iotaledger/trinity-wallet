@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ListView } from 'react-native';
 import Fonts from '../theme/Fonts';
-import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import { formatValue, formatUnit } from '../../shared/libs/util';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -38,16 +38,13 @@ class ViewAddresses extends React.Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
                         <View style={styles.itemLeft}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                style={styles.icon}
-                            />
+                            <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Back</Text>
                         </View>
                     </TouchableOpacity>
                     {/*}<TouchableOpacity onPress={event => this.props.printPress()} style={{flex:1}}>
                         <View style={styles.itemRight}>
-                            <Image source={require('iota-wallet-shared-modules/images/print.png')} style={styles.icon} />
+                            <Image source={require('../../shared/images/print.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Print</Text>
                         </View>
                     </TouchableOpacity>*/}

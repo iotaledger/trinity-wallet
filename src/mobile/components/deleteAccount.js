@@ -63,7 +63,7 @@ class DeleteAccount extends React.Component {
 
     _renderModalContent = (titleColour, sendOrReceive) => (
         <ImageBackground
-            source={require('iota-wallet-shared-modules/images/bg-blue.png')}
+            source={require('../../shared/images/bg-blue.png')}
             style={{ width: width / 1.15, alignItems: 'center' }}
         >
             <View style={styles.modalContent}>
@@ -121,19 +121,13 @@ class DeleteAccount extends React.Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.onContinuePress()}>
                             <View style={styles.itemRight}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/tick.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Continue</Text>
                             </View>
                         </TouchableOpacity>

@@ -53,6 +53,7 @@ class EditAccountName extends React.Component {
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
+                                onSubmitEditing={() => this.props.saveAccountName(this.state.accountName)}
                             />
                         </View>
                         <View style={styles.saveButtonContainer} />
@@ -60,19 +61,13 @@ class EditAccountName extends React.Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.props.saveAccountName(this.state.accountName)}>
                             <View style={styles.itemRight}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/tick.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Save</Text>
                             </View>
                         </TouchableOpacity>
