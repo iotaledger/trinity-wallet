@@ -42,10 +42,13 @@ class WalletSetup extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
                     <View style={styles.greetingTextContainer}>
                         <Text style={styles.greetingText}>Okay. Lets set up your wallet!</Text>
                         <Text style={styles.questionText}>Do you already have a seed that you would like to use?</Text>
@@ -53,7 +56,7 @@ class WalletSetup extends React.Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                        <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
                             The IOTA seed is like a master key to your account. It is 81 characters long.
                         </Text>
