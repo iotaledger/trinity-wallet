@@ -307,6 +307,7 @@ class Home extends Component {
                         inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                         onCancel={this.props.disposeOffAlert}
                         onClose={this.props.disposeOffAlert}
+                        closeInterval={5500}
                     />
                     <KeepAwake />
                 </ImageBackground>
