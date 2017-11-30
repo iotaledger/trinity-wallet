@@ -9,7 +9,7 @@ class SeedBox extends React.Component {
     render() {
         return (
             <View style={styles.seedBox}>
-                <Image source={require('../../shared/images/arrow-white.png')} style={styles.arrow} />
+                <Image source={require('iota-wallet-shared-modules/images/arrow-white.png')} style={styles.arrow} />
                 <View style={styles.seedBoxTextContainer}>
                     <View style={{ marginRight: width / 30 }}>
                         <TextWithLetterSpacing spacing={8} textStyle={styles.seedBoxTextLeft}>

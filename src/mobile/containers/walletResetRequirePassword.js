@@ -1,11 +1,11 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteFromKeyChain } from '../../shared/libs/cryptography';
-import { resetWallet } from '../../shared/actions/app';
-import { setFirstUse, setOnboardingComplete } from '../../shared/actions/account';
+import { deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
+import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
+import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { Navigation } from 'react-native-navigation';
-import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
+import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import PropTypes from 'prop-types';
 import { persistor } from '../store';
 import {
@@ -79,22 +79,25 @@ class WalletResetRequirePassword extends Component {
         const isAuthenticated = this.isAuthenticated();
         const { password, resetWallet } = this.props;
         if (isAuthenticated) {
-              persistor.purge().then(() => {
-                  deleteFromKeyChain(password);
-                  this.props.setOnboardingComplete(false);
-                  this.props.setFirstUse(true);
-                  this.props.clearTempData();
-                  this.props.setPassword('');
-                  this.redirectToInitialScreen();
-                  this.props.resetWallet();
-              }).catch((error) => {
-                  console.log(error)
-                  this.dropdown.alertWithType(
-                      'error',
-                      'Something went wrong',
-                      'Something went wrong while resetting your wallet. Please try again.',
-                  );
-              });
+            persistor
+                .purge()
+                .then(() => {
+                    deleteFromKeyChain(password);
+                    this.props.setOnboardingComplete(false);
+                    this.props.setFirstUse(true);
+                    this.props.clearTempData();
+                    this.props.setPassword('');
+                    this.redirectToInitialScreen();
+                    this.props.resetWallet();
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Something went wrong',
+                        'Something went wrong while resetting your wallet. Please try again.',
+                    );
+                });
         } else {
             this.dropdown.alertWithType(
                 'error',
@@ -106,12 +109,15 @@ class WalletResetRequirePassword extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                                style={styles.iotaLogo}
+                            />
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={styles.generalText}>Enter password to reset your wallet.</Text>
