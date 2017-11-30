@@ -26,12 +26,13 @@ import Settings from './settings';
 import TopBar from './topBar';
 import { changeHomeScreenRoute, closeTopBar } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
-import { setReceiveAddress, replayBundle, setReady, clearTempData } from '../../shared/actions/tempAccount';
+import { setReceiveAddress, replayBundle, setReady, clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
 import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
+import { Navigation } from 'react-native-navigation';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const width = Dimensions.get('window').width;
@@ -50,6 +51,7 @@ class Home extends Component {
     componentDidMount() {
         AppState.addEventListener('change', this._handleAppStateChange);
         this.props.setFirstUse(false);
+
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -65,12 +67,31 @@ class Home extends Component {
         timer.clearInterval('chartPolling');
     }
 
+    logout(){
+        this.props.clearTempData();
+        this.props.setPassword('');
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'login',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundImageName: 'bg-blue.png',
+                    screenBackgroundColor: '#102e36',
+                },
+                overrideBackPress: true,
+            },
+        });
+    }
+
     _handleAppStateChange = nextAppState => {
-        if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-            console.log('App has come to the foreground!');
+        if (this.state.appState.match(/inactive|background/)) {
+            timer.setTimeout('background', () => {this.logout()}, 30000)
+        }
+        if(nextAppState === 'active'){
+            timer.clearTimeout('background')
         }
         this.setState({ appState: nextAppState });
-        console.log(nextAppState);
     };
 
     startPolling() {
@@ -418,6 +439,7 @@ const mapDispatchToProps = dispatch => ({
     setReady: boolean => dispatch(setReady(boolean)),
     clearTempData: () => dispatch(clearTempData()),
     closeTopBar: () => dispatch(closeTopBar()),
+    setPassword: () => dispatch(setPassword()),
 });
 
 Home.propTypes = {
