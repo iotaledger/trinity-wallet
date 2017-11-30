@@ -12,7 +12,3 @@ export const changeHomeScreenRoute = payload => ({
 export const toggleTopBarDisplay = () => ({
     type: ActionTypes.TOGGLE_TOP_BAR_DISPLAY,
 });
-
-export const closeTopBar = () => ({
-    type: ActionTypes.CLOSE_TOP_BAR,
-});
