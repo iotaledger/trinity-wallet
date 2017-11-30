@@ -16,11 +16,7 @@ import {
 } from 'react-native';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
-import {
-    getFromKeychain,
-    deleteFromKeyChain,
-    storeValueInKeychain,
-} from 'iota-wallet-shared-modules/libs/cryptography';
+import { getFromKeychain, deleteFromKeyChain, storeValueInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
 
@@ -108,7 +104,7 @@ class ChangePassword extends Component {
                     })
                     .catch(throwErr);
 
-            return getFromKeychain(password, value => (!isUndefined(value) ? updatePassword(value) : throwErr()));
+             return getFromKeychain(password, value => (!isUndefined(value) ? updatePassword(value) : throwErr()));
         }
 
         return this.renderInvalidSubmissionAlerts();
@@ -157,51 +153,40 @@ class ChangePassword extends Component {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
 
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.container}>
-                    <View style={styles.topContainer}>
-                        <View style={styles.infoTextWrapper}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/info.png')}
-                                style={styles.infoIcon}
-                            />
-                            <Text style={styles.infoText}>
-                                Ensure you use a strong password of at least 12 characters.
-                            </Text>
-                        </View>
-                        {this.renderTextField(currentPassword, 'Current Password', currentPassword =>
-                            this.setState({ currentPassword }),
-                        )}
-                        {this.renderTextField(newPassword, 'New Password', newPassword =>
-                            this.setState({ newPassword }),
-                        )}
-                        {this.renderTextField(confirmedNewPassword, 'Confirm New Password', confirmedNewPassword =>
-                            this.setState({ confirmedNewPassword }),
-                        )}
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <View style={styles.container}>
+                  <View style={styles.topContainer}>
+                            <View style={styles.infoTextWrapper}>
+                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Text style={styles.infoText}>
+                                    Ensure you use a strong password of at least 12 characters.
+                                </Text>
+                            </View>
+                            {this.renderTextField(currentPassword, 'Current Password', currentPassword =>
+                                this.setState({ currentPassword }),
+                            )}
+                            {this.renderTextField(newPassword, 'New Password', newPassword =>
+                                this.setState({ newPassword }),
+                            )}
+                            {this.renderTextField(confirmedNewPassword, 'Confirm New Password', confirmedNewPassword =>
+                                this.setState({ confirmedNewPassword }),
+                            )}
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
-                        {currentPassword != '' &&
-                            newPassword != '' &&
-                            confirmedNewPassword != '' && (
-                                <TouchableOpacity onPress={() => this.changePassword()}>
-                                    <View style={styles.itemRight}>
-                                        <Image
-                                            source={require('iota-wallet-shared-modules/images/tick.png')}
-                                            style={styles.icon}
-                                        />
-                                        <Text style={styles.titleText}>Save</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            )}
+                        {currentPassword != '' && newPassword != '' && confirmedNewPassword != '' && (
+                            <TouchableOpacity onPress={() => this.changePassword()}>
+                                <View style={styles.itemRight}>
+                                    <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
+                                    <Text style={styles.titleText}>Save</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -221,12 +206,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'flex-end'
     },
     topContainer: {
         flex: 4.5,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     logo: {
         height: width / 5,
@@ -287,6 +272,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
 });
+
 
 ChangePassword.propTypes = {
     password: PropTypes.string.isRequired,
