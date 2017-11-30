@@ -9,9 +9,7 @@ const height = global.height;
 class AddNewAccount extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
     onNewSeedPress() {
         this.props.addNewSeed();
@@ -24,24 +22,27 @@ class AddNewAccount extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{ flex: 4, justifyContent: 'flex-start'}}>
+                <View style={{ flex: 4, justifyContent: 'flex-start' }}>
                     <TouchableOpacity onPress={event => this.onExistingSeedPress()}>
                         <View style={styles.item}>
-                            <Image source={require('../../shared/images/key.png')} style={styles.icon} />
+                            <Image source={require('iota-wallet-shared-modules/images/key.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Use existing seed</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={event => this.onNewSeedPress()}>
                         <View style={styles.item}>
-                            <Image source={require('../../shared/images/add.png')} style={styles.icon} />
+                            <Image source={require('iota-wallet-shared-modules/images/add.png')} style={styles.icon} />
                             <Text style={styles.titleText}>Create new seed</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{flex: 0.5, justifyContent: 'flex-end'}}>
+                <View style={{ flex: 0.5, justifyContent: 'flex-end' }}>
                     <TouchableOpacity onPress={event => this.props.backPress()}>
                         <View style={styles.item}>
-                            <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                style={styles.icon}
+                            />
                             <Text style={styles.titleText}>Back</Text>
                         </View>
                     </TouchableOpacity>

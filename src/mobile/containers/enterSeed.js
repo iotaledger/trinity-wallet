@@ -18,7 +18,7 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed } from '../../shared/actions/tempAccount';
+import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
@@ -96,7 +96,7 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -104,7 +104,7 @@ class EnterSeed extends React.Component {
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
                                     <Image
-                                        source={require('../../shared/images/iota-glow.png')}
+                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                                         style={styles.iotaLogo}
                                     />
                                 </View>
@@ -121,12 +121,12 @@ class EnterSeed extends React.Component {
                                             labelFontSize={width / 31.8}
                                             fontSize={isAndroid ? width / 27.6 : width / 20.7}
                                             labelPadding={3}
-                                            baseColor={"white"}
-                                            tintColor={"#F7D002"}
+                                            baseColor={'white'}
+                                            tintColor={'#F7D002'}
                                             enablesReturnKeyAutomatically={true}
-                                            returnKeyType={"done"}
-                                            autoCapitalize={"characters"}
-                                            label={"Seed"}
+                                            returnKeyType={'done'}
+                                            autoCapitalize={'characters'}
+                                            label={'Seed'}
                                             autoCorrect={false}
                                             value={seed}
                                             maxLength={81}
@@ -140,7 +140,7 @@ class EnterSeed extends React.Component {
                                         <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
                                                 <Image
-                                                    source={require('../../shared/images/camera.png')}
+                                                    source={require('iota-wallet-shared-modules/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
                                                 <Text style={styles.qrText}> QR </Text>
@@ -151,7 +151,10 @@ class EnterSeed extends React.Component {
                             </View>
                             <View style={styles.bottomContainer}>
                                 <View style={styles.infoTextContainer}>
-                                    <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/info.png')}
+                                        style={styles.infoIcon}
+                                    />
                                     <Text style={styles.infoText}>
                                         Seeds should be 81 characters long, and should contain capital letters A-Z, or
                                         the number 9. You cannot use seeds longer than 81 characters.
