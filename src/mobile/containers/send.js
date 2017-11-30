@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { round } from '../../shared/libs/util';
+import { round, MAX_SEED_LENGTH } from '../../shared/libs/util';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempAccount';
 import { getCurrencySymbol } from '../../shared/libs/currency';
@@ -116,7 +116,10 @@ class Send extends Component {
         const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
-            return dropdown.alertWithType(...props, 'Address should be 81 characters long and should have a checksum.');
+            return dropdown.alertWithType(
+                ...props,
+                `Address should be ${MAX_SEED_LENGTH} characters long and should have a checksum.`,
+            );
         } else if ((address.match(/^[A-Z9]+$/) == null)) {
             return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
@@ -272,8 +275,8 @@ class Send extends Component {
 
     onQRRead(data) {
         this.setState({
-            address: data.substring(0,81),
-            message: data.substring(82,)
+            address: data.substring(0, MAX_SEED_LENGTH),
+            message: data.substring(82),
         });
         this._hideModal();
     }
