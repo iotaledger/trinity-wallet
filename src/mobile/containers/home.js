@@ -22,11 +22,16 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import TopBar from './topBar';
-import { changeHomeScreenRoute } from '../../shared/actions/home';
-import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
-import { setReceiveAddress, replayBundle, setReady, clearTempData } from '../../shared/actions/tempAccount';
-import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
-import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
+import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
+import { getTailTransactionHashesForPendingTransactions } from 'iota-wallet-shared-modules/store';
+import {
+    setReceiveAddress,
+    replayBundle,
+    setReady,
+    clearTempData,
+} from 'iota-wallet-shared-modules/actions/tempAccount';
+import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
@@ -56,8 +61,8 @@ class Home extends Component {
     }
 
     componentWillUnmount() {
-        timer.clearInterval('polling')
-        timer.clearInterval('chartPolling')
+        timer.clearInterval('polling');
+        timer.clearInterval('chartPolling');
     }
 
     startPolling() {
@@ -131,7 +136,7 @@ class Home extends Component {
         const isCurrentRoute = route => route === childRoute;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer} />
                 <View style={styles.midContainer}>
@@ -147,7 +152,7 @@ class Home extends Component {
                                             ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
                                             : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
                                     }
-                                    source={require('../../shared/images/balance.png')}
+                                    source={require('iota-wallet-shared-modules/images/balance.png')}
                                 />
                                 <Text
                                     style={
@@ -168,7 +173,7 @@ class Home extends Component {
                                             ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
                                             : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
                                     }
-                                    source={require('../../shared/images/send.png')}
+                                    source={require('iota-wallet-shared-modules/images/send.png')}
                                 />
                                 <Text
                                     style={
@@ -189,7 +194,7 @@ class Home extends Component {
                                             ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
                                             : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
                                     }
-                                    source={require('../../shared/images/receive.png')}
+                                    source={require('iota-wallet-shared-modules/images/receive.png')}
                                 />
                                 <Text
                                     style={
@@ -210,7 +215,7 @@ class Home extends Component {
                                             ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
                                             : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
                                     }
-                                    source={require('../../shared/images/history.png')}
+                                    source={require('iota-wallet-shared-modules/images/history.png')}
                                 />
                                 <Text
                                     style={
@@ -231,7 +236,7 @@ class Home extends Component {
                                             ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
                                             : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
                                     }
-                                    source={require('../../shared/images/settings.png')}
+                                    source={require('iota-wallet-shared-modules/images/settings.png')}
                                 />
                                 <Text
                                     style={
