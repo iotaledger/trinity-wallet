@@ -1,7 +1,7 @@
 import isUndefined from 'lodash/isUndefined';
 import size from 'lodash/size';
 import React, { Component } from 'react';
-import { iota } from 'iota-wallet-shared-modules/libs/iota';
+import { iota } from '../../shared/libs/iota';
 import {
     ActivityIndicator,
     StyleSheet,
@@ -14,19 +14,21 @@ import {
     ScrollView,
     Dimensions,
     StatusBar,
+    TouchableWithoutFeedback,
+    Keyboard,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { round } from 'iota-wallet-shared-modules/libs/util';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
-import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
+import { round } from '../../shared/libs/util';
+import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
+import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempAccount';
+import { getCurrencySymbol } from '../../shared/libs/currency';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
-import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
+import { getAccountInfo } from '../../shared/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
 const width = Dimensions.get('window').width;
@@ -34,12 +36,12 @@ const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
 
 let sentDenomination = '';
+let currencySymbol = '';
 
 class Send extends Component {
     constructor() {
         super();
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
         this.state = {
             denomination: 'i',
             amount: '',
@@ -51,6 +53,9 @@ class Send extends Component {
         };
     }
 
+    componentWillMount() {
+        currencySymbol = getCurrencySymbol(this.props.settings.currency);
+    }
     onDenominationPress() {
         switch (this.state.denomination) {
             case 'Mi':
@@ -60,6 +65,9 @@ class Send extends Component {
                 this.setState({ denomination: 'Ti' });
                 break;
             case 'Ti':
+                this.setState({ denomination: currencySymbol });
+                break;
+            case currencySymbol:
                 this.setState({ denomination: 'i' });
                 break;
             case 'i':
@@ -72,9 +80,9 @@ class Send extends Component {
     }
 
     onMaxPress() {
+        let max = (this.props.account.balance / this.getUnitMultiplier()).toString();
         this.setState({
-            amount: (this.props.account.balance / 1000000).toString(),
-            denomination: 'Mi',
+            amount: max,
             maxPressed: true,
         });
     }
@@ -218,6 +226,9 @@ class Send extends Component {
             case 'Ti':
                 multiplier = 1000000000000;
                 break;
+            case currencySymbol:
+                multiplier = 1000000 * this.props.settings.conversionRate;
+                break;
         }
         return multiplier;
     }
@@ -243,6 +254,7 @@ class Send extends Component {
                 modalContent = (
                     <TransferConfirmationModal
                         amount={this.state.amount}
+                        clearOnSend={() => this.setState({ message: '', amount: '', address: '' })}
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
@@ -286,9 +298,26 @@ class Send extends Component {
         }
     }
 
-    render() {
-        let { amount, address, message } = this.state;
-        const conversion = round(
+    clearInteractions() {
+        this.props.closeTopBar();
+        Keyboard.dismiss();
+    }
+
+    getConversionTextFiat() {
+        const convertedValue = round(
+            this.state.amount / this.props.marketData.usdPrice / this.props.settings.conversionRate,
+            2,
+        );
+        let conversionText = '';
+        if (0 < convertedValue && convertedValue < 0.01) {
+            conversionText = '< 0.01 Mi';
+        } else if (convertedValue >= 0.01) {
+            conversionText = '= ' + convertedValue + ' Mi';
+        }
+        return conversionText;
+    }
+    getConversionTextIota() {
+        const convertedValue = round(
             parseFloat(this.isValidAmount(this.state.amount) ? this.state.amount : 0) *
                 this.props.marketData.usdPrice /
                 1000000 *
@@ -296,148 +325,163 @@ class Send extends Component {
                 this.props.settings.conversionRate,
             10,
         );
-        const currencySymbol = getCurrencySymbol(this.props.settings.currency);
+        let conversionText = '';
+        if (0 < convertedValue && convertedValue < 0.01) {
+            conversionText = '< ' + currencySymbol + '0.01';
+        } else if (convertedValue >= 0.01) {
+            conversionText = '= ' + currencySymbol + convertedValue.toFixed(2);
+        }
+        return conversionText;
+    }
+
+    render() {
+        let { amount, address, message, denomination } = this.state;
+
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
-            <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.emptyContainer} />
-                <View style={styles.topContainer}>
-                    <View style={styles.fieldContainer}>
-                        <View style={styles.textFieldContainer}>
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
+                <View style={styles.container}>
+                    <StatusBar barStyle="light-content" />
+                    <View style={styles.emptyContainer} />
+                    <View style={styles.topContainer}>
+                        <View style={styles.fieldContainer}>
+                            <View style={styles.textFieldContainer}>
+                                <TextField
+                                    autoCapitalize={"characters"}
+                                    style={styles.textField}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={height / 55}
+                                    maxLength={90}
+                                    fontSize={height / 40}
+                                    height={height / 24}
+                                    labelPadding={2}
+                                    baseColor="white"
+                                    tintColor="#F7D002"
+                                    enablesReturnKeyAutomatically={true}
+                                    label="Recipient address"
+                                    autoCorrect={false}
+                                    value={address}
+                                    onChangeText={address => this.setState({ address })}
+                                    onSubmitEditing={() => this.refs.amount.focus()}
+                                />
+                            </View>
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
+                                    <View style={styles.button}>
+                                        <Text style={styles.qrText}> QR </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={styles.fieldContainer}>
+                            <View style={styles.textFieldContainer}>
+                                <TextField
+                                    ref={'amount'}
+                                    keyboardType={'numeric'}
+                                    style={styles.textField}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={height / 55}
+                                    fontSize={height / 40}
+                                    height={height / 24}
+                                    labelPadding={2}
+                                    baseColor="white"
+                                    enablesReturnKeyAutomatically={true}
+                                    label="Amount"
+                                    tintColor="#F7D002"
+                                    autoCorrect={false}
+                                    value={amount}
+                                    onChangeText={amount => this.onAmountType(amount)}
+                                    onSubmitEditing={() => this.refs.message.focus()}
+                                />
+                            </View>
+                            {denomination != this.props.settings.currencySymbol && (
+                                <Text style={styles.conversionText}>
+                                    {' '}
+                                    {this.state.denomination == currencySymbol
+                                        ? this.getConversionTextFiat()
+                                        : this.getConversionTextIota()}{' '}
+                                </Text>
+                            )}
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
+                                    <View style={styles.button}>
+                                        <Text style={styles.buttonText}> {this.state.denomination} </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={styles.maxContainer}>
+                            <View style={styles.maxButtonContainer}>
+                                <TouchableOpacity onPress={event => this.onMaxPress()}>
+                                    <View style={styles.maxButton}>
+                                        <Text style={styles.maxButtonText}> MAX </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            {this._renderMaximum()}
+                        </View>
+                        <View style={styles.messageFieldContainer}>
                             <TextField
-                                autoCapitalize="characters"
+                                ref={'message'}
                                 style={styles.textField}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
-                                maxLength={90}
                                 fontSize={height / 40}
                                 height={height / 24}
                                 labelPadding={2}
                                 baseColor="white"
-                                tintColor="#F7D002"
                                 enablesReturnKeyAutomatically={true}
-                                label="Recipient address"
-                                autoCorrect={false}
-                                value={address}
-                                onChangeText={address => this.setState({ address })}
-                            />
-                        </View>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
-                                <View style={styles.button}>
-                                    <Text style={styles.qrText}> QR </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={styles.fieldContainer}>
-                        <View style={styles.textFieldContainer}>
-                            <TextField
-                                keyboardType={'numeric'}
-                                style={styles.textField}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
-                                height={height / 24}
-                                labelPadding={2}
-                                baseColor="white"
-                                enablesReturnKeyAutomatically={true}
-                                label="Amount"
+                                label="Message"
                                 tintColor="#F7D002"
                                 autoCorrect={false}
-                                value={amount}
-                                onChangeText={amount => this.onAmountType(amount)}
+                                value={message}
+                                onChangeText={message => this.setState({ message })}
+                                onSubmitEditing={() => this.sendTransfer()}
                             />
                         </View>
-                        <Text style={styles.conversionText}>
-                            {' '}
-                            {conversion == 0
-                                ? ''
-                                : conversion < 0.01
-                                  ? '< ' + currencySymbol + '0.01'
-                                  : '= ' + currencySymbol + conversion.toFixed(2)}{' '}
-                        </Text>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
-                                <View style={styles.button}>
-                                    <Text style={styles.buttonText}> {this.state.denomination} </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
                     </View>
-                    <View style={styles.maxContainer}>
-                        <View style={styles.maxButtonContainer}>
-                            <TouchableOpacity onPress={event => this.onMaxPress()}>
-                                <View style={styles.maxButton}>
-                                    <Text style={styles.maxButtonText}> MAX </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        {this._renderMaximum()}
-                    </View>
-                    <View style={styles.messageFieldContainer}>
-                        <TextField
-                            style={styles.textField}
-                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                            labelFontSize={height / 55}
-                            fontSize={height / 40}
-                            height={height / 24}
-                            labelPadding={2}
-                            baseColor="white"
-                            enablesReturnKeyAutomatically={true}
-                            label="Message"
-                            tintColor="#F7D002"
-                            autoCorrect={false}
-                            value={message}
-                            onChangeText={message => this.setState({ message })}
-                        />
-                    </View>
-                </View>
-                <View style={styles.midContainer}>
-                    {!this.props.tempAccount.isSendingTransfer && (
-                        <View style={styles.sendIOTAButtonContainer}>
-                            <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
-                                <View style={styles.sendIOTAButton}>
-                                    <Text style={styles.sendIOTAText}>SEND</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                    {this.props.tempAccount.isSendingTransfer && (
-                        <ActivityIndicator
-                            animating={this.props.tempAccount.isSendingTransfer}
-                            style={styles.activityIndicator}
-                            size="large"
-                            color="#F7D002"
-                        />
-                    )}
-                </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}>
-                        <View style={styles.info}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/info.png')}
-                                style={styles.infoIcon}
+                    <View style={styles.midContainer}>
+                        {!this.props.tempAccount.isSendingTransfer && (
+                            <View style={styles.sendIOTAButtonContainer}>
+                                <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
+                                    <View style={styles.sendIOTAButton}>
+                                        <Text style={styles.sendIOTAText}>SEND</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        )}
+                        {this.props.tempAccount.isSendingTransfer && (
+                            <ActivityIndicator
+                                animating={this.props.tempAccount.isSendingTransfer}
+                                style={styles.activityIndicator}
+                                size="large"
+                                color="#F7D002"
                             />
-                            <Text style={styles.infoText}>IOTA units</Text>
-                        </View>
-                    </TouchableOpacity>
+                        )}
+                    </View>
+                    <View style={styles.bottomContainer}>
+                        <TouchableOpacity style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}>
+                            <View style={styles.info}>
+                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Text style={styles.infoText}>IOTA units</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <Modal
+                        animationIn={'bounceInUp'}
+                        animationOut={'bounceOut'}
+                        animationInTiming={1000}
+                        animationOutTiming={200}
+                        backdropTransitionInTiming={500}
+                        backdropTransitionOutTiming={200}
+                        backdropColor={'#102832'}
+                        style={{ alignItems: 'center', margin: 0 }}
+                        isVisible={this.state.isModalVisible}
+                    >
+                        {this._renderModalContent()}
+                    </Modal>
                 </View>
-                <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
-                    animationInTiming={1000}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={500}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={'#102832'}
-                    style={{ alignItems: 'center', margin: 0 }}
-                    isVisible={this.state.isModalVisible}
-                >
-                    {this._renderModalContent()}
-                </Modal>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
