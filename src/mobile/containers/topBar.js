@@ -299,14 +299,14 @@ const styles = StyleSheet.create({
         width: width / 2,
         marginVertical: height / 60,
         height: 1,
-        borderBottomWidth: 0.25,
+        borderBottomWidth: height / 3000,
         borderBottomColor: 'white',
     },
     topSeparator: {
         width: width,
         marginVertical: height / 60,
         height: 1,
-        borderBottomWidth: 0.25,
+        borderBottomWidth: height / 3000,
         borderBottomColor: 'white',
     },
     scrollViewContainer: {

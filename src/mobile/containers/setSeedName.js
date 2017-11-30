@@ -166,6 +166,7 @@ class SetSeedName extends React.Component {
                                 ref={input => {
                                     this.nameInput = input;
                                 }}
+                                onSubmitEditing={() => this.onDonePress()}
                             />
                             <View style={styles.infoTextContainer}>
                                 <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />

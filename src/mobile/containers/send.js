@@ -347,7 +347,7 @@ class Send extends Component {
                         <View style={styles.fieldContainer}>
                             <View style={styles.textFieldContainer}>
                                 <TextField
-                                    autoCapitalize="characters"
+                                    autoCapitalize={"characters"}
                                     style={styles.textField}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                     labelFontSize={height / 55}
@@ -362,6 +362,7 @@ class Send extends Component {
                                     autoCorrect={false}
                                     value={address}
                                     onChangeText={address => this.setState({ address })}
+                                    onSubmitEditing={() => this.refs.amount.focus()}
                                 />
                             </View>
                             <View style={styles.buttonContainer}>
@@ -375,6 +376,7 @@ class Send extends Component {
                         <View style={styles.fieldContainer}>
                             <View style={styles.textFieldContainer}>
                                 <TextField
+                                    ref={'amount'}
                                     keyboardType={'numeric'}
                                     style={styles.textField}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
@@ -389,6 +391,7 @@ class Send extends Component {
                                     autoCorrect={false}
                                     value={amount}
                                     onChangeText={amount => this.onAmountType(amount)}
+                                    onSubmitEditing={() => this.refs.message.focus()}
                                 />
                             </View>
                             {denomination != this.props.settings.currencySymbol && (
@@ -419,6 +422,7 @@ class Send extends Component {
                         </View>
                         <View style={styles.messageFieldContainer}>
                             <TextField
+                                ref={'message'}
                                 style={styles.textField}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
@@ -432,6 +436,7 @@ class Send extends Component {
                                 autoCorrect={false}
                                 value={message}
                                 onChangeText={message => this.setState({ message })}
+                                onSubmitEditing={() => this.sendTransfer()}
                             />
                         </View>
                     </View>
