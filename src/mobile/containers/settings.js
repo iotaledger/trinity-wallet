@@ -511,9 +511,6 @@ class Settings extends React.Component {
     }
 
     logout() {
-        {
-            /* this.props.logoutFromWallet() */
-        }
         this.props.clearTempData();
         this.props.setPassword('');
         Navigation.startSingleScreenApp({
