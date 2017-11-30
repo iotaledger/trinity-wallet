@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Dimensions, ImageBackground, Keyboard } from 'react-native';
+import {
+    Image,
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Dimensions,
+    ImageBackground,
+    Keyboard,
+} from 'react-native';
 import Fonts from '../theme/Fonts';
 import Colors from '../theme/Colors';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -9,13 +19,12 @@ import Modal from 'react-native-modal';
 import { TextField } from 'react-native-material-textfield';
 
 class DeleteAccount extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
             isModalVisible: false,
             pressedContinue: false,
-            password: ''
+            password: '',
         };
     }
 
@@ -23,42 +32,44 @@ class DeleteAccount extends React.Component {
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
-    onBackPress(){
-        if(!this.state.pressedContinue){
-            this.props.backPress()
+    onBackPress() {
+        if (!this.state.pressedContinue) {
+            this.props.backPress();
         } else {
-            this.setState({pressedContinue: false})
+            this.setState({ pressedContinue: false });
         }
     }
 
-    onContinuePress(){
-       if(!this.state.pressedContinue){
-          this.setState({pressedContinue:true})
-       } else {
-            if(this.state.password == this.props.password){
+    onContinuePress() {
+        if (!this.state.pressedContinue) {
+            this.setState({ pressedContinue: true });
+        } else {
+            if (this.state.password == this.props.password) {
                 this._showModal();
             } else {
                 this.props.onWrongPassword();
             }
-       }
+        }
     }
 
-    onYesPress(){
+    onYesPress() {
         this._hideModal();
-        this.props.deleteAccount()
+        this.props.deleteAccount();
     }
 
-    onNoPress(){
+    onNoPress() {
         this._hideModal();
     }
 
     _renderModalContent = (titleColour, sendOrReceive) => (
         <ImageBackground
-            source={require('../../shared/images/bg-blue.png')}
+            source={require('iota-wallet-shared-modules/images/bg-blue.png')}
             style={{ width: width / 1.15, alignItems: 'center' }}
         >
             <View style={styles.modalContent}>
-                <Text style={[ styles.infoText, {paddingBottom: height / 16} ]}>Are you sure you want to delete your account called {this.props.currentAccountName}?</Text>
+                <Text style={[styles.infoText, { paddingBottom: height / 16 }]}>
+                    Are you sure you want to delete your account called {this.props.currentAccountName}?
+                </Text>
                 <OnboardingButtons
                     onLeftButtonPress={() => this.onNoPress()}
                     onRightButtonPress={() => this.onYesPress()}
@@ -67,19 +78,19 @@ class DeleteAccount extends React.Component {
                 />
             </View>
         </ImageBackground>
-
-    )
+    );
 
     render() {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-                    <View style={{flex:0.7}}/>
-                    {!this.state.pressedContinue && (<View style={styles.topContainer}>
-                        <Text style={styles.infoText}>Are you sure you want to delete this account?</Text>
-                        <Text style={styles.infoText}>Your seed and transaction history will be removed.</Text>
-                        <Text style={styles.warningText}>This action cannot be undone.</Text>
-                    </View>
+                    <View style={{ flex: 0.7 }} />
+                    {!this.state.pressedContinue && (
+                        <View style={styles.topContainer}>
+                            <Text style={styles.infoText}>Are you sure you want to delete this account?</Text>
+                            <Text style={styles.infoText}>Your seed and transaction history will be removed.</Text>
+                            <Text style={styles.warningText}>This action cannot be undone.</Text>
+                        </View>
                     )}
                     {this.state.pressedContinue && (
                         <View style={styles.topContainer}>
@@ -106,17 +117,23 @@ class DeleteAccount extends React.Component {
                             />
                         </View>
                     )}
-                    <View style={{flex:1.3}}/>
+                    <View style={{ flex: 1.3 }} />
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.onContinuePress()}>
                             <View style={styles.itemRight}>
-                                <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/tick.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Continue</Text>
                             </View>
                         </TouchableOpacity>
@@ -163,12 +180,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
     topContainer: {
         flex: 2.5,
         justifyContent: 'space-around',
-        paddingHorizontal: width / 15
+        paddingHorizontal: width / 15,
     },
     itemLeft: {
         flexDirection: 'row',
@@ -207,6 +224,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-  });
+});
 
-  export default DeleteAccount;
+export default DeleteAccount;

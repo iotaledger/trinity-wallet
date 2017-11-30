@@ -16,7 +16,7 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
+import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -59,7 +59,7 @@ class SeedReentry extends React.Component {
     render() {
         const { seed } = this.state;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -67,7 +67,7 @@ class SeedReentry extends React.Component {
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
                                     <Image
-                                        source={require('../../shared/images/iota-glow.png')}
+                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                                         style={styles.iotaLogo}
                                     />
                                 </View>
@@ -97,7 +97,10 @@ class SeedReentry extends React.Component {
                                     secureTextEntry={true}
                                 />
                                 <View style={styles.infoTextContainer}>
-                                    <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/info.png')}
+                                        style={styles.infoIcon}
+                                    />
                                     <Text style={styles.infoText}>
                                         This is a check to make sure you saved your seed.
                                     </Text>
