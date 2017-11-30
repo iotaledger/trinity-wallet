@@ -2,7 +2,7 @@ const initialState = {
     ready: false,
     receiveAddress: ' ',
     password: '',
-    seed: '                                                                                 ',
+    seed: Array(82).join(' '),
     seedName: 'MAIN WALLET',
     seedIndex: 0,
     isGeneratingReceiveAddress: false,

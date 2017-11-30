@@ -12,6 +12,7 @@ class TransferConfirmationModal extends React.Component {
     }
     onSendPress() {
         this.props.sendTransfer();
+        this.props.clearOnSend();
         this.props.hideModal();
     }
 

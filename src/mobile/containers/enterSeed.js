@@ -18,12 +18,8 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
 import { setSeed } from '../../shared/actions/tempAccount';
-=======
-import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
->>>>>>> use MAX_SEED_LENGTH constant instead of sprinkling magic 81s everywhere
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
@@ -126,19 +122,19 @@ class EnterSeed extends React.Component {
                                             labelFontSize={width / 31.8}
                                             fontSize={isAndroid ? width / 27.6 : width / 20.7}
                                             labelPadding={3}
-                                            baseColor="white"
-                                            tintColor="#F7D002"
+                                            baseColor={"white"}
+                                            tintColor={"#F7D002"}
                                             enablesReturnKeyAutomatically={true}
-                                            returnKeyType="done"
-                                            blurOnSubmit={true} //Dismisses keyboard upon pressing Done
-                                            autoCapitalize="characters"
-                                            label="Seed"
+                                            returnKeyType={"done"}
+                                            autoCapitalize={"characters"}
+                                            label={"Seed"}
                                             autoCorrect={false}
                                             value={seed}
                                             maxLength={MAX_SEED_LENGTH}
-                                            onChangeText={seed => this.setState({ seed })}
+                                            onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                             secureTextEntry={true}
                                             multiline
+                                            onSubmitEditing={() => this.onDonePress()}
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
