@@ -11,69 +11,36 @@ class UnitInfoModal extends React.Component {
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
                 <View style={styles.modalContent}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-white.png')}
-                        style={styles.iotaIcon}
-                    />
+                    <Image source={require('../../shared/images/iota-white.png')} style={styles.iotaIcon} />
                     <TextWithLetterSpacing spacing={4} textStyle={styles.iotaText}>
-                        IOTA
+                    IOTA
                     </TextWithLetterSpacing>
                     <TextWithLetterSpacing spacing={6} textStyle={styles.titleText}>
-                        UNIT SYSTEM
+                    UNIT SYSTEM
                     </TextWithLetterSpacing>
                     <View style={styles.unitsContainer}>
-                        <View style={{ alignItems: 'flex-start', paddingHorizontal: width / 60 }}>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.denominationText}>
-                                Ti
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.denominationText}>
-                                Gi
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.denominationText}>
-                                Mi
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.denominationText}>
-                                Ki
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.denominationText}>
-                                i
-                            </TextWithLetterSpacing>
+                        <View style={{alignItems: 'flex-start', paddingHorizontal: width / 60}}>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.denominationText}>Ti</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.denominationText}>Gi</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.denominationText}>Mi</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.denominationText}>Ki</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.denominationText}>i</TextWithLetterSpacing>
                         </View>
-                        <View style={styles.line} />
-                        <View style={{ alignItems: 'flex-start', paddingHorizontal: width / 60 }}>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                Trillion
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                Billion
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                Million
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                Thousand
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                One
-                            </TextWithLetterSpacing>
+                        <View style={styles.line}/>
+                        <View style={{alignItems: 'flex-start', paddingHorizontal: width / 60}}>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>Trillion</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>Billion</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>Million</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>Thousand</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>One</TextWithLetterSpacing>
                         </View>
-                        <View style={styles.line} />
-                        <View style={{ alignItems: 'flex-end', paddingHorizontal: width / 60 }}>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                1 000 000 000 000
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                1 000 000 000
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                1 000 000
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                1 000
-                            </TextWithLetterSpacing>
-                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                1
-                            </TextWithLetterSpacing>
+                        <View style={styles.line}/>
+                        <View style={{alignItems: 'flex-end', paddingHorizontal: width / 60}}>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>1 000 000 000 000</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>1 000 000 000</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>1 000 000</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>1 000</TextWithLetterSpacing>
+                            <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>1</TextWithLetterSpacing>
                         </View>
                     </View>
                 </View>
@@ -84,9 +51,9 @@ class UnitInfoModal extends React.Component {
 
 const styles = StyleSheet.create({
     modalContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+      flex:1,
+      alignItems: 'center',
+      justifyContent: 'center'
     },
     modalContent: {
         borderRadius: 10,
@@ -130,11 +97,11 @@ const styles = StyleSheet.create({
         borderWidth: 0.25,
         width: 0.5,
         height: width / 2.3,
-        marginHorizontal: width / 75,
+        marginHorizontal: width / 75
     },
     iotaIcon: {
         width: width / 10,
-        height: width / 10,
+        height: width / 10
     },
     iotaText: {
         color: 'white',

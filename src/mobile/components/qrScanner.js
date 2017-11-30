@@ -9,10 +9,7 @@ class QRScanner extends React.Component {
     render() {
         return (
             <View style={styles.modalContent}>
-                <ImageBackground
-                    source={require('iota-wallet-shared-modules/images/bg-blue.png')}
-                    style={{ alignItems: 'center' }}
-                >
+                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ alignItems: 'center' }}>
                     <View style={{ height: height / 12 }} />
                     <Text style={styles.qrInfoText}>Scan your QR Code</Text>
                     <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />
