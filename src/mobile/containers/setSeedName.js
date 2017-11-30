@@ -18,15 +18,10 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeSeedInKeychain, getFromKeychain, removeLastSeed } from 'iota-wallet-shared-modules/libs/cryptography';
-import {
-    getAccountInfoNewSeed,
-    setFirstUse,
-    increaseSeedCount,
-    addAccountName,
-} from 'iota-wallet-shared-modules/actions/account';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { clearTempData, setSeedName, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { storeSeedInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
+import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
+import { generateAlert } from '../../shared/actions/alerts';
+import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
 const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -140,15 +135,12 @@ class SetSeedName extends React.Component {
         let { seedName } = this.state;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                style={styles.iotaLogo}
-                            />
+                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.greetingText}>Enter a name for your account.</Text>
                             </View>
@@ -177,10 +169,7 @@ class SetSeedName extends React.Component {
                                 }}
                             />
                             <View style={styles.infoTextContainer}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/info.png')}
-                                    style={styles.infoIcon}
-                                />
+                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                                 <Text style={styles.infoText}>
                                     You can use multiple accounts with this wallet. Each account requires a name.
                                 </Text>
