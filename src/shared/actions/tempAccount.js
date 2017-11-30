@@ -115,7 +115,7 @@ export function setSeed(seed) {
 export function clearSeed() {
     return {
         type: 'CLEAR_SEED',
-        payload: '                                                                                 ',
+        payload: Array(82).join(' '),
     };
 }
 
