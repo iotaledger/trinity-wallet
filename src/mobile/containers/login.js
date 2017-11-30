@@ -12,12 +12,12 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
-import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
-import { setPassword, clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getAccountInfo, getAccountInfoNewSeed } from 'iota-wallet-shared-modules/actions/account';
-import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
+import { getCurrencyData } from '../../shared/actions/settings';
+import { setPassword, clearTempData } from '../../shared/actions/tempAccount';
+import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
+import { changeHomeScreenRoute } from '../../shared/actions/home';
+import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
@@ -130,15 +130,12 @@ class Login extends React.Component {
     render() {
         let { password } = this.state;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                style={styles.iotaLogo}
-                            />
+                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.title}>Please enter your password.</Text>
                             </View>
@@ -305,7 +302,7 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
     marketData: state.marketData,
-    settings: state.settings,
+    settings: state.settings
 });
 
 const mapDispatchToProps = dispatch => ({
