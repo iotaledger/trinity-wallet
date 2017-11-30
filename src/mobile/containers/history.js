@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, View, ListView, Dimensions, Text } from 'react-native';
+import { TouchableOpacity, StyleSheet, View, ListView, Dimensions, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import TransactionRow from '../components/transactionRow';
 import Modal from 'react-native-modal';
@@ -24,28 +24,30 @@ class History extends React.Component {
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
         const addresses = Object.keys(currentSeedAccountInfo.addresses);
         return (
-            <View style={styles.container}>
-                <View style={styles.listView}>
-                    <ListView
-                        dataSource={ds.cloneWithRows(accountInfo[Object.keys(accountInfo)[seedIndex]].transfers)}
-                        renderRow={dataSource => (
-                            <TransactionRow
-                                addresses={addresses}
-                                rowData={dataSource}
-                                titleColor="#F8FFA6"
-                                onPress={event => this._showModal()}
-                            />
-                        )}
-                        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                        enableEmptySections
-                        ref={listview => {
-                            this.listview = listview;
-                        }}
-                        onLoadEnd={this.imageLoaded.bind(this)}
-                        snapToInterval={height * 0.7 / 6}
-                    />
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
+                <View style={styles.container}>
+                    <View style={styles.listView}>
+                        <ListView
+                            dataSource={ds.cloneWithRows(accountInfo[Object.keys(accountInfo)[seedIndex]].transfers)}
+                            renderRow={dataSource => (
+                                <TransactionRow
+                                    addresses={addresses}
+                                    rowData={dataSource}
+                                    titleColor="#F8FFA6"
+                                    onPress={event => this._showModal()}
+                                />
+                            )}
+                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                            enableEmptySections
+                            ref={listview => {
+                                this.listview = listview;
+                            }}
+                            onLoadEnd={this.imageLoaded.bind(this)}
+                            snapToInterval={height * 0.7 / 6}
+                        />
+                    </View>
                 </View>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }

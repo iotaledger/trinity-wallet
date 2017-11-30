@@ -1,6 +1,7 @@
 import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
+import isString from 'lodash/isString';
 
 export const MAX_SEED_LENGTH = 81;
 
@@ -118,7 +119,7 @@ const _renameObjectKeys = (object, keyMap) =>
         {},
     );
 
-const _renameArrayKeys = (list, keyMap) => map(list, object => renameObjectKeys(object, keyMap));
+const _renameArrayKeys = (list, keyMap) => map(list, object => _renameObjectKeys(object, keyMap));
 
 export const renameKeys = (payload, keyMap) => {
     if (isArray(payload)) {
@@ -126,4 +127,20 @@ export const renameKeys = (payload, keyMap) => {
     }
 
     return _renameObjectKeys(payload, keyMap);
+};
+
+export const serialize = (data, ...options) => {
+    if (!isString(data)) {
+        return JSON.stringify(data, ...options);
+    }
+
+    return data;
+};
+
+export const parse = data => {
+    try {
+        return JSON.parse(data);
+    } catch (err) {
+        return data;
+    }
 };

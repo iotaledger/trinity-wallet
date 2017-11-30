@@ -1,11 +1,15 @@
 import { ActionTypes } from '../actions/settings.js';
+import { defaultNode as fullNode } from '../config';
 
 const initialState = {
     locale: 'en',
-    fullNode: 'http://node01.iotatoken.nl:14265',
+    fullNode,
     availableNodes: [
-        'https://n1.iota.nu:443',
+        'https://ceres.iota.community:14600/',
+        'http://148.251.181.105:14265/',
         'https://node.tangle.works:443',
+        'http://iotanode.us:443',
+        'https://n1.iota.nu:443',
         'http://node.lukaseder.de:14265',
         'http://eugene.iotasupport.com:14999',
         'http://node02.iotatoken.nl:14265',
@@ -61,7 +65,7 @@ const initialState = {
         'TRY',
         'ZAR',
     ],
-    conversionRate: 1
+    conversionRate: 1,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -110,7 +114,7 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currency: action.currency,
-                conversionRate: action.conversionRate
+                conversionRate: action.conversionRate,
             };
     }
 
