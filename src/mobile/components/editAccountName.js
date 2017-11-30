@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Image,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Dimensions,
-    Keyboard,
-    TouchableWithoutFeedback,
-} from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 
@@ -16,68 +7,64 @@ const width = Dimensions.get('window').width;
 const height = global.height;
 
 class EditAccountName extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            accountName: props.accountName,
-        };
+            accountName: props.accountName
+        }
     }
 
-    componentWillReceiveProps(newProps) {
-        if (this.props.accountName != newProps.accountName) {
+    componentWillReceiveProps(newProps){
+        if(this.props.accountName != newProps.accountName){
             this.setState({ accountName: newProps.accountName });
         }
     }
 
     render() {
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.container}>
-                    <View style={styles.topContainer}>
-                        <View style={styles.textFieldContainer}>
-                            <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor="white"
-                                label="Account name"
-                                tintColor="#F7D002"
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                returnKeyType="done"
-                                value={this.state.accountName}
-                                onChangeText={accountName => this.setState({ accountName })}
-                                containerStyle={{
-                                    width: width / 1.4,
-                                }}
-                            />
-                        </View>
-                        <View style={styles.saveButtonContainer} />
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+                <View style={styles.topContainer}>
+                    <View style={styles.textFieldContainer}>
+                          <TextField
+                              style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                              labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                              labelFontSize={width / 31.8}
+                              fontSize={width / 20.7}
+                              labelPadding={3}
+                              baseColor="white"
+                              label="Account name"
+                              tintColor="#F7D002"
+                              autoCapitalize={'none'}
+                              autoCorrect={false}
+                              enablesReturnKeyAutomatically={true}
+                              returnKeyType="done"
+                              value={this.state.accountName}
+                              onChangeText={accountName => this.setState({ accountName })}
+                              containerStyle={{
+                                  width: width / 1.4,
+                              }}
+                          />
                     </View>
-                    <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.props.backPress()}>
-                            <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Back</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.saveAccountName(this.state.accountName)}>
-                            <View style={styles.itemRight}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/tick.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Save</Text>
-                            </View>
-                        </TouchableOpacity>
+                    <View style={styles.saveButtonContainer}>
                     </View>
                 </View>
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity onPress={event => this.props.backPress()}>
+                        <View style={styles.itemLeft}>
+                            <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Back</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.saveAccountName(this.state.accountName)}>
+                        <View style={styles.itemRight}>
+                            <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
+                            <Text style={styles.titleText}>Save</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
             </TouchableWithoutFeedback>
         );
     }
@@ -92,7 +79,7 @@ const styles = StyleSheet.create({
     textFieldContainer: {
         flex: 1,
         alignItems: 'center',
-        paddingTop: height / 10,
+        paddingTop: height / 10
     },
     saveButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
@@ -102,7 +89,7 @@ const styles = StyleSheet.create({
         height: height / 17,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent'
     },
     saveText: {
         color: 'white',
@@ -113,7 +100,7 @@ const styles = StyleSheet.create({
     saveButtonContainer: {
         flex: 2,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     bottomContainer: {
         flex: 0.5,
@@ -121,11 +108,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'flex-end'
     },
     topContainer: {
         flex: 4.5,
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
     },
     itemLeft: {
         flexDirection: 'row',
@@ -150,6 +137,6 @@ const styles = StyleSheet.create({
         fontSize: width / 23,
         backgroundColor: 'transparent',
     },
-});
+  });
 
-export default EditAccountName;
+  export default EditAccountName;
