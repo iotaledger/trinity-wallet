@@ -106,7 +106,7 @@ class UseExistingSeed extends React.Component {
                                         label="Seed"
                                         autoCorrect={false}
                                         value={seed}
-                                        maxLength={81}
+                                        maxLength={MAX_SEED_LENGTH}
                                         onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                         secureTextEntry={true}
                                         onSubmitEditing={() => this.refs.accountName.focus()}
@@ -144,7 +144,7 @@ class UseExistingSeed extends React.Component {
                                 autoCorrect={false}
                                 value={accountName}
                                 containerStyle={{ width: width / 1.36 }}
-                                autoCapitalize={"characters"}
+                                autoCapitalize={'characters'}
                                 onChangeText={accountName => this.setState({ accountName })}
                             />
                         </View>
