@@ -1,23 +1,22 @@
 import { SInfo } from '../../mobile/exports';
+import { parse, serialize } from '../libs/util';
 
-export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
+export function checkKeychainForDuplicates(key, seed, name, error, success) {
     getFromKeychain(key, value => {
-        if (typeof value == 'undefined' || value === null) {
-            var newSeedArray = [{ name: name, seed: seed }];
-            newSeedArray = JSON.stringify(newSeedArray);
-            store(newSeedArray);
+        if (typeof value === 'undefined' || value === null) {
+            success();
         } else {
-            var seedArray = JSON.parse(value);
+            var seedArray = parse(value);
             for (var item of seedArray) {
-                if (item.name == name) {
-                    alertFn(
+                if (item.name === name) {
+                    error(
                         'error',
                         'Account name already in use',
                         'This account name is already linked to your wallet. Please use a different one.',
                     );
                     return;
-                } else if (item.seed == seed) {
-                    alertFn(
+                } else if (item.seed === seed) {
+                    error(
                         'error',
                         'Seed already in use',
                         'This seed is already linked to your wallet. Please use a different one.',
@@ -25,9 +24,22 @@ export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
                     return;
                 }
             }
+            success();
+        }
+    });
+}
+
+export function storeSeedInKeychain(key, seed, name) {
+    getFromKeychain(key, value => {
+        if (typeof value == 'undefined' || value === null) {
+            var newSeedArray = [{ name: name, seed: seed }];
+            newSeedArray = serialize(newSeedArray);
+            store(newSeedArray);
+        } else {
+            var seedArray = parse(value);
             var newSeed = { name: name, seed: seed };
             seedArray.push(newSeed);
-            seedArray = JSON.stringify(seedArray);
+            seedArray = serialize(seedArray);
             store(seedArray);
         }
     });
@@ -37,19 +49,16 @@ export function storeSeedInKeychain(key, seed, name, alertFn, callback) {
             sharedPreferencesName: 'mySharedPrefs',
             keychainService: 'myKeychain',
         });
-        if (typeof callback === 'function') {
-            callback();
-        }
     }
 }
 
-export function replaceKeychainValue(key, value){
+export function replaceKeychainValue(key, value) {
     deleteFromKeyChain(key);
-    storeValueInKeychain(key, value)
+    storeValueInKeychain(key, value);
 }
 
-export function storeValueInKeychain(key, value){
-    const seedArray = JSON.stringify(value);
+export function storeValueInKeychain(key, value) {
+    const seedArray = serialize(value);
     SInfo.setItem(key, seedArray, {
         sharedPreferencesName: 'mySharedPrefs',
         keychainService: 'myKeychain',
@@ -66,15 +75,16 @@ export function getFromKeychain(key, fn) {
 }
 
 export function getSeed(value, index) {
-    value = JSON.parse(value);
-    return value[index].seed;
+    const parsed = parse(value);
+
+    return parsed[index] ? parsed[index].seed : '';
 }
 
 export function deleteSeed(value, password, seedIndex) {
     deleteFromKeyChain(password);
-    let seeds = JSON.parse(value);
+    let seeds = parse(value);
     seeds.splice(seedIndex, 1);
-    seeds = JSON.stringify(seeds);
+    seeds = serialize(seeds);
     SInfo.setItem(password, seeds, {
         sharedPreferencesName: 'mySharedPrefs',
         keychainService: 'myKeychain',
@@ -82,8 +92,8 @@ export function deleteSeed(value, password, seedIndex) {
 }
 
 export function getSeedName(value, index) {
-    value = JSON.parse(value);
-    return value[index].name;
+    const parsed = parse(value);
+    return parsed[index] ? parsed[index].name : '';
 }
 
 export function deleteFromKeyChain(
