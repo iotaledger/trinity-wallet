@@ -67,21 +67,21 @@
         "invalidCharactersExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
         "seedTooShortExplanation": "Οι σπόροι πρέπει να αποτελούνται τουλάχιστον από 60 χαρακτήρες (ιδανικά 81 χαρακτήρες). Ο σπόρος σας είναι επί του παρόντος {seed.length} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
-        "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedExplanation": "Οι σπόροι πρέπει να είναι 81 χαρακτήρων και πρέπει να περιέχουν τα κεφαλαία γράμματα A-Z, ή τον αριθμό 9. Δεν μπορείτε να χρησιμοποιήσετε σπόρους που είναι μεγαλύτεροι από 81 χαρακτήρες.",
+        "neverShare": "ΜΗ ΜΟΙΡΑΖΕΣΤΕ ΠΟΤΕ ΤΟΝ ΣΠΟΡΟ ΣΑΣ ΜΕ ΚΑΝΕΝΑΝ"
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "balance": "ΥΠΟΛΟΙΠΟ",
+        "send": "ΑΠΟΣΤΟΛΗ",
+        "receive": "ΛΗΨΗ",
+        "history": "ΙΣΤΟΡΙΚΟ",
+        "settings": "ΡΥΘΜΙΣΕΙΣ"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "Γλώσσα"
     },
     "login": {
-        "emptyPassword": "Empty password",
+        "emptyPassword": "Κενός κωδικός πρόσβασης",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
         "enterPassword": "Please enter your password.",
         "useSeed": "USE SEED",
