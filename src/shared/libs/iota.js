@@ -1,16 +1,13 @@
 import IOTA from 'iota.lib.js';
-//store.subscribe(listener)
+import { defaultNode } from '../config';
 
-const defaultNode = 'http://ceres.iota.community:14600/';
+export const iota = new IOTA({ provider: defaultNode });
 
-export const iota = new IOTA({
-    provider: defaultNode
-});
-
+export const changeIotaNode = provider => iota.changeNode({ provider });
 
 function listener() {
-  let node = store.getStore().getState().settings.fullNode
-  return node.settings.fullNode
+    let node = store.getStore().getState().settings.fullNode;
+    return node.settings.fullNode;
 }
 
 export const convertFromTrytes = trytes => {

@@ -113,7 +113,9 @@ class TopBar extends Component {
             <View style={styles.titleWrapper}>
                 <TouchableWithoutFeedback onPress={() => this.props.toggleTopBarDisplay()}>
                     <View>
-                        <Text numberOfLines={1} style={styles.mainTitle}>{selectedTitle}</Text>
+                        <Text numberOfLines={1} style={styles.mainTitle}>
+                            {selectedTitle}
+                        </Text>
                         <Text style={styles.subtitle}>{selectedSubtitle}</Text>
                     </View>
                 </TouchableWithoutFeedback>
@@ -136,7 +138,9 @@ class TopBar extends Component {
                     key={idx}
                     style={{ width: width, alignItems: 'center' }}
                 >
-                    <Text numberOfLines={1} style={styles.mainTitle}>{t.title}</Text>
+                    <Text numberOfLines={1} style={styles.mainTitle}>
+                        {t.title}
+                    </Text>
                     <Text style={styles.subtitle}>{t.subtitle}</Text>
                 </TouchableOpacity>
             );
@@ -289,24 +293,24 @@ const styles = StyleSheet.create({
         width: width / 20,
         position: 'absolute',
         top: 0,
-        right: width / 20
+        right: width / 20,
     },
     separator: {
         width: width / 2,
         marginVertical: height / 60,
         height: 1,
-        borderBottomWidth: 0.25,
+        borderBottomWidth: height / 3000,
         borderBottomColor: 'white',
     },
     topSeparator: {
         width: width,
         marginVertical: height / 60,
         height: 1,
-        borderBottomWidth: 0.25,
+        borderBottomWidth: height / 3000,
         borderBottomColor: 'white',
     },
     scrollViewContainer: {
-        maxHeight: height
+        maxHeight: height,
     },
 });
 
