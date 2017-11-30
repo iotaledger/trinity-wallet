@@ -16,11 +16,7 @@ import {
 } from 'react-native';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
-import {
-    getFromKeychain,
-    deleteFromKeyChain,
-    storeValueInKeychain,
-} from 'iota-wallet-shared-modules/libs/cryptography';
+import { getFromKeychain, deleteFromKeyChain, storeValueInKeychain } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
 
@@ -37,11 +33,12 @@ class ChangePassword extends Component {
         };
     }
 
-    renderTextField(value, label, onChangeText) {
+    renderTextField(ref, value, label, onChangeText, onSubmitEditing) {
         // This should be abstracted away as an independent component
         // We are using almost the same field styles and props
         // across all app
         const props = {
+            ref: ref,
             style: styles.textField,
             labelTextStyle: { fontFamily: Fonts.tertiary },
             labelFontSize: height / 55,
@@ -57,6 +54,7 @@ class ChangePassword extends Component {
             label,
             value,
             onChangeText,
+            onSubmitEditing
         };
 
         return <TextField {...props} />;
@@ -161,31 +159,25 @@ class ChangePassword extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={styles.infoTextWrapper}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/info.png')}
-                                style={styles.infoIcon}
-                            />
+                            <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                             <Text style={styles.infoText}>
                                 Ensure you use a strong password of at least 12 characters.
                             </Text>
                         </View>
-                        {this.renderTextField(currentPassword, 'Current Password', currentPassword =>
-                            this.setState({ currentPassword }),
+                        {this.renderTextField('currentPassword', currentPassword, 'Current Password', currentPassword =>
+                            this.setState({ currentPassword }), onSubmitEditing => this.refs.newPassword.focus(),
                         )}
-                        {this.renderTextField(newPassword, 'New Password', newPassword =>
-                            this.setState({ newPassword }),
+                        {this.renderTextField('newPassword', newPassword, 'New Password', newPassword =>
+                            this.setState({ newPassword }), onSubmitEditing => this.refs.confirmedNewPassword.focus(),
                         )}
-                        {this.renderTextField(confirmedNewPassword, 'Confirm New Password', confirmedNewPassword =>
-                            this.setState({ confirmedNewPassword }),
+                        {this.renderTextField('confirmedNewPassword', confirmedNewPassword, 'Confirm New Password', confirmedNewPassword =>
+                            this.setState({ confirmedNewPassword }), onSubmitEditing => this.changePassword(),
                         )}
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
@@ -194,10 +186,7 @@ class ChangePassword extends Component {
                             confirmedNewPassword != '' && (
                                 <TouchableOpacity onPress={() => this.changePassword()}>
                                     <View style={styles.itemRight}>
-                                        <Image
-                                            source={require('iota-wallet-shared-modules/images/tick.png')}
-                                            style={styles.icon}
-                                        />
+                                        <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
                                         <Text style={styles.titleText}>Save</Text>
                                     </View>
                                 </TouchableOpacity>

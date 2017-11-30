@@ -12,15 +12,13 @@ class TransferConfirmationModal extends React.Component {
     }
     onSendPress() {
         this.props.sendTransfer();
+        this.props.clearOnSend();
         this.props.hideModal();
     }
 
     render() {
         return (
-            <ImageBackground
-                source={require('iota-wallet-shared-modules/images/bg-blue.png')}
-                style={{ alignItems: 'center' }}
-            >
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ alignItems: 'center' }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>

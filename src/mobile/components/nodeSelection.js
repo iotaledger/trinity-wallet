@@ -44,19 +44,16 @@ class NodeSelection extends React.Component {
     componentWillReceiveProps(newProps) {}
 
     saveNodeSelection() {
+        this.props.setNode(this.state.selectedNode);
         this.props.backPress();
-        this.props.setNodeSetting(this.state.selectedNode);
     }
 
     onDropdownItemPress(item) {
         this.setState({
             dropdownHeight: 0,
             triangleDirection: 'down',
-            //Temporary
             selectedNode: item,
         });
-        // Function we need to implement
-        // this.props.setNode(item)
     }
 
     onDropdownTitlePress() {
@@ -126,7 +123,6 @@ class NodeSelection extends React.Component {
                                     contentContainerView={{ flex: 1, justifyContent: 'flex-start' }}
                                     //renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                                     enableEmptySections
-                                    snapToInterval={height / 26.4}
                                 />
                             </View>
                         </View>
@@ -134,19 +130,13 @@ class NodeSelection extends React.Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveNodeSelection()}>
                             <View style={styles.itemRight}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/tick.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Save</Text>
                             </View>
                         </TouchableOpacity>

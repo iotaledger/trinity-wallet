@@ -25,9 +25,9 @@ import {
     setReceiveAddress,
     generateNewAddressRequest,
     generateNewAddressError,
-} from 'iota-wallet-shared-modules/actions/tempAccount';
+} from '../../shared/actions/tempAccount';
 import { TextField } from 'react-native-material-textfield';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -108,11 +108,16 @@ class Receive extends Component {
         }
     }
 
+    clearInteractions() {
+        this.props.closeTopBar();
+        Keyboard.dismiss();
+    }
+
     render() {
         const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
         const message = this.state.message;
         return (
-            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <View
                         style={{

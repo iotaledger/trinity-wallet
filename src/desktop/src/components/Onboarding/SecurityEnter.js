@@ -6,7 +6,7 @@ import { addAndSelectSeed } from 'actions/seeds';
 import { setOnboardingCompletionStatus } from 'actions/app';
 import { showError } from 'actions/notifications';
 // import { getSelectedSeed } from 'selectors/seeds';
-import { isValidPassword } from 'libs/util';
+import { isValidPassword } from '../../../../shared/libs/util';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
