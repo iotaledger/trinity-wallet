@@ -24,7 +24,7 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import TopBar from './topBar';
-import { changeHomeScreenRoute, closeTopBar } from '../../shared/actions/home';
+import { changeHomeScreenRoute, toggleTopBarDisplay } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
 import { setReceiveAddress, replayBundle, setReady, clearTempData, setPassword } from '../../shared/actions/tempAccount';
 import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
@@ -130,7 +130,7 @@ class Home extends Component {
         const childrenProps = {
             type: route, // TODO: type prop might be unneeded in all the children components;
             navigator: this.props.navigator,
-            closeTopBar: () => this.props.closeTopBar(),
+            closeTopBar: () => this.props.toggleTopBarDisplay(),
         };
 
         switch (route) {
@@ -450,7 +450,7 @@ const mapDispatchToProps = dispatch => ({
     setFirstUse: boolean => dispatch(setFirstUse(boolean)),
     setReady: boolean => dispatch(setReady(boolean)),
     clearTempData: () => dispatch(clearTempData()),
-    closeTopBar: () => dispatch(closeTopBar()),
+    toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
     setPassword: () => dispatch(setPassword()),
 });
 

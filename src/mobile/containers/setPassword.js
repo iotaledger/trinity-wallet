@@ -126,9 +126,7 @@ class SetPassword extends React.Component {
                                 returnKeyType="next"
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
-                                onSubmitEditing={event => {
-                                    this.refs.reentry.focus();
-                                }}
+                                onSubmitEditing={() => this.refs.reentry.focus()}
                                 containerStyle={{
                                     width: width / 1.36,
                                 }}
@@ -152,6 +150,7 @@ class SetPassword extends React.Component {
                                 onChangeText={reentry => this.setState({ reentry })}
                                 containerStyle={{ width: width / 1.36 }}
                                 secureTextEntry={true}
+                                onSubmitEditing={() => this.onDonePress()}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
