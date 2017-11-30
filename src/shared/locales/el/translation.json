@@ -1,108 +1,101 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "invalidResponse": "Μη έγκυρη απόκριση",
+        "invalidResponseExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση.",
+        "invalidResponsePollingExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη σταθμοσκόπηση.",
         "seed": "Seed",
-        "back": "BACK",
-        "done": "DONE",
-        "next": "NEXT",
-        "manualCopy": "Manual Copy",
-        "paperWallet": "Paper Wallet",
-        "copyToClipboard": "Copy to Clipboard",
+        "back": "ΠΙΣΩ",
+        "done": "ΤΕΛΟΣ",
+        "next": "ΕΠΟΜΕΝΟ",
+        "manualCopy": "Χειροκίνητη αντιγραφή",
+        "paperWallet": "Χάρτινο Πορτοφόλι",
+        "copyToClipboard": "Αντιγραφή στο πρόχειρο",
         "qr": "QR",
-        "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage.",
-        "enterSeed": "Please enter your seed.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
-        "yes": "YES",
-        "no": "NO",
+        "notAvailable": "Αυτή η λειτουργία δεν είναι διαθέσιμη",
+        "notAvailableExplanation": "Θα προστεθεί σε μεταγενέστερο στάδιο.",
+        "enterSeed": "Παρακαλώ εισάγετε τον κωδικό σας.",
+        "mainWallet": "ΚΥΡΙΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
+        "secondWallet": "ΔΕΥΤΕΡΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
+        "thirdWallet": "ΤΡΙΤΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
+        "fourthWallet": "ΤΕΤΑΡΤΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
+        "fifthWallet": "ΠΕΜΠΤΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
+        "sixthWallet": "ΕΚΤΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
+        "otherWallet": "ΑΛΛΟΣ ΛΟΓΑΡΙΑΣΜΟΣ",
+        "yes": "ΝΑΙ",
+        "no": "ΟΧΙ",
         "password": "Κωδικός πρόσβασης",
-        "unrecognisedPassword": "Unrecognised password",
-        "unrecognisedPasswordExplanation": "The password was not recognised. Please try again."
+        "unrecognisedPassword": "Μη αναγνωρισμένος κωδικός πρόσβασης",
+        "unrecognisedPasswordExplanation": "Ο κωδικός πρόσβασης δεν αναγνωρίστηκε. Παρακαλώ δοκιμάστε ξανά."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation":
-            "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "nameInUse": "Account name already in use",
-        "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
-        "accountName": "Account name"
+        "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
+        "seedInvalidCharsExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
+        "seedTooShortExplanation": "Οι σπόροι πρέπει να είναι τουλάχιστον 60 χαρακτήρες (ιδανικά 81 χαρακτήρες). Ο σπόρος σας είναι επί του παρόντος {seed.length} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "nameInUse": "Όνομα λογαριασμού ήδη σε χρήση",
+        "nameInUseExplanation": "Παρακαλούμε να χρησιμοποιήσετε ένα μοναδικό όνομα λογαριασμού για το σπόρο σας.",
+        "enterAccountName": "Εισάγετε ένα όνομα λογαριασμού.",
+        "accountName": "Όνομα λογαριασμού"
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
-        "incorrectPassword": "Incorrect password",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
-        "passwordsDoNotMatch": "Passwords do not match",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
-        "passwordTooShort": "Password is too short",
+        "oops": "Ωχ! Κάτι πήγε στραβά",
+        "oopsExplanation": "Μοιάζει με κάτι να πήγε στραβά κατά την ενημέρωση του κωδικού πρόσβασης. Παρακαλώ δοκιμάστε ξανά.",
+        "passwordUpdated": "Κωδικός πρόσβασης ενημερώθηκε",
+        "passwordUpdatedExplanation": "O κωδικός πρόσβασής σας έχει ενημερωθεί με επιτυχώς.",
+        "incorrectPassword": "Εσφαλμένος κωδικός πρόσβασης",
+        "incorrectPasswordExplanation": "Ο τρέχων κωδικός πρόσβασης είναι εσφαλμένος. Παρακαλώ δοκιμάστε ξανά.",
+        "passwordsDoNotMatch": "Οι κωδικοί πρόσβασης δεν ταιριάζουν",
+        "passwordsDoNotMatchExplanation": "Οι κωδικοί πρόσβασης δεν ταιριάζουν, παρακαλώ προσπαθήστε ξανά.",
+        "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation":
-            "You cannot use the old password as your new password. Please try again with a new password.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "oldPassword": "Δεν μπορείτε ορίσετε τον παλιό κωδικό πρόσβασης",
+        "oldPasswordExplanation": "Δεν μπορείτε να χρησιμοποιήσετε τον παλιό κωδικό πρόσβασης ως τον νέο σας κωδικό. Παρακαλούμε δοκιμάστε ξανά με ένα νέο κωδικό πρόσβασης.",
+        "ensureStrongPassword": "Βεβαιωθείτε ότι χρησιμοποιείτε έναν ισχυρό κωδικό πρόσβασης τουλάχιστον 12 χαρακτήρων.",
+        "currentPassword": "Τρέχων κωδικός πρόσβασης",
+        "newPassword": "Νέος κωδικός πρόσβασης",
+        "confirmPassword": "Επιβεβαίωση νέου κωδικού πρόσβασης"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Seed copied",
-        "seedCopiedExplanation":
-            "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "seedCleared": "Σπόρος εκκαθαρίστηκε",
+        "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
+        "seedCopied": "Σπόρος αντιγράφηκε",
+        "seedCopiedExplanation": "Ο σπόρος έχει αντιγραφεί στο Πρόχειρο, και θα πρέπει να εκκαθαριστεί αφού πιέσετε το πλήκτρο «ΤΕΛΟΣ» ή 60 δευτερόλεπτα έχουν περάσει, όποιο συμβεί πρώτο.",
+        "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης."
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation":
-            "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "seedExplanation":
-            "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
+        "invalidCharactersExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
+        "seedTooShortExplanation": "Οι σπόροι πρέπει να αποτελούνται τουλάχιστον από 60 χαρακτήρες (ιδανικά 81 χαρακτήρες). Ο σπόρος σας είναι επί του παρόντος {seed.length} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedExplanation": "Οι σπόροι πρέπει να είναι 81 χαρακτήρων και πρέπει να περιέχουν τα κεφαλαία γράμματα A-Z, ή τον αριθμό 9. Δεν μπορείτε να χρησιμοποιήσετε σπόρους που είναι μεγαλύτεροι από 81 χαρακτήρες.",
+        "neverShare": "ΜΗ ΜΟΙΡΑΖΕΣΤΕ ΠΟΤΕ ΤΟΝ ΣΠΟΡΟ ΣΑΣ ΜΕ ΚΑΝΕΝΑΝ"
     },
     "home": {
-        "balance": "BALANCE",
-        "send": "SEND",
-        "receive": "RECEIVE",
-        "history": "HISTORY",
-        "settings": "SETTINGS"
+        "balance": "ΥΠΟΛΟΙΠΟ",
+        "send": "ΑΠΟΣΤΟΛΗ",
+        "receive": "ΛΗΨΗ",
+        "history": "ΙΣΤΟΡΙΚΟ",
+        "settings": "ΡΥΘΜΙΣΕΙΣ"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "Γλώσσα"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
-        "login": "LOG IN"
+        "emptyPassword": "Κενός κωδικός πρόσβασης",
+        "emptyPasswordExplanation": "Πρέπει να εισαγάγετε έναν κωδικό πρόσβασης για να συνδεθείτε. Παρακαλώ δοκιμάστε ξανά.",
+        "enterPassword": "Παρακαλώ εισάγετε τον κωδικό σας.",
+        "useSeed": "ΧΡΗΣΗ ΣΠΟΡΟΥ",
+        "login": "ΣΥΝΔΕΣΗ"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Φόρτωση σπόρου για πρώτη φορά.",
+        "thisMayTake": "Αυτό μπορεί να διαρκέσει λίγο.",
+        "youMayNotice": "Ενδέχεται να παρατηρήσετε τη συσκευή να επιβραδύνει."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGenerated": "Δεν έχει παραχθεί σπόρος",
+        "seedNotGeneratedExplanation": "Παρακαλώ κάντε κλικ στο κουμπί Δημιουργία νέου σπόρου.",
+        "pressForNewSeed": "ΠΑΤΗΣΤΕ ΓΙΑ ΝΕΟ ΣΠΟΡΟ",
         "individualLetters": "Press individual letters to randomise them."
     },
     "onboardingComplete": {
