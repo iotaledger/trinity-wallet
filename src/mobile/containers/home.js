@@ -130,7 +130,7 @@ class Home extends Component {
         const childrenProps = {
             type: route, // TODO: type prop might be unneeded in all the children components;
             navigator: this.props.navigator,
-            closeTopBar: () => this.props.toggleTopBarDisplay(),
+            closeTopBar: () => { if(this.props.isTopBarActive) this.props.toggleTopBarDisplay() },
         };
 
         switch (route) {
@@ -432,6 +432,7 @@ const mapStateToProps = state => ({
     tailTransactionHashesForPendingTransactions: getTailTransactionHashesForPendingTransactions(state),
     account: state.account,
     childRoute: state.home.childRoute,
+    isTopBarActive: state.home.isTopBarActive,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -463,6 +464,7 @@ Home.propTypes = {
     tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
     generateAlert: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
+    isTopBarActive: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
