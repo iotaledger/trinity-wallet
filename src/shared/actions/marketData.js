@@ -55,9 +55,9 @@ export function setCurrency(currency) {
 
 export function setPrice(data) {
     const priceData = get(data, `RAW.IOT`);
-    const usdPrice = get(priceData['USD'], 'PRICE') || 0;
-    const btcPrice = get(priceData['BTC'], 'PRICE') || 0;
-    const ethPrice = get(priceData['ETH'], 'PRICE') || 0;
+    const usdPrice = get(priceData, 'USD.PRICE') || 0;
+    const btcPrice = get(priceData, 'BTC.PRICE') || 0;
+    const ethPrice = get(priceData, 'ETH.PRICE') || 0;
 
     return {
         type: ActionTypes.SET_PRICE,
