@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clipboard, TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
+import { TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
 import { formatValue, formatUnit, round } from '../../shared/libs/util';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from '../../shared/libs/dateUtils';
 import { convertFromTrytes } from '../../shared/libs/iota';
@@ -20,14 +20,6 @@ class TransactionRow extends React.Component {
     _showModal = data => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });
-
-    onBundleHashPress(bundleHash) {
-        Clipboard.setString(bundleHash);
-    }
-
-    onAddressPress(address) {
-        Clipboard.setString(address);
-    }
 
     _renderModalContent = (titleColour, sendOrReceive) => (
         <TouchableOpacity onPress={() => this._hideModal()}>
@@ -58,7 +50,7 @@ class TransactionRow extends React.Component {
                     <Text style={styles.modalBundleTitle}>Bundle Hash:</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <TouchableOpacity
-                            onPress={() => this.onBundleHashPress(this.props.rowData[0].bundle)}
+                            onPress={() => this.props.copyBundleHash(this.props.rowData[0].bundle)}
                             style={{ flex: 7 }}
                         >
                             <Text style={styles.bundleHash} numberOfLines={2}>
@@ -73,7 +65,7 @@ class TransactionRow extends React.Component {
                         renderRow={(rowData, sectionId) => (
                             <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 2 }}>
                                 <TouchableOpacity
-                                    onPress={() => this.onAddressPress(rowData.address)}
+                                    onPress={() => this.props.copyAddress(rowData.address)}
                                     style={{ flex: 5.1 }}
                                 >
                                     <Text style={styles.hash} numberOfLines={2}>
