@@ -21,18 +21,15 @@ const StatusBarDefaultBarStyle = 'light-content';
 class CopySeedToClipboard extends React.Component {
     constructor() {
         super();
-
         this.timeout = null;
     }
 
     generateSeedClearanceAlert() {
-        if (this.dropdown) {
-            this.dropdown.alertWithType(
-                'info',
-                'Seed cleared',
-                'The seed has been cleared from the clipboard for your security.',
-            );
-        }
+        this.dropdown.alertWithType(
+            'info',
+            'Seed cleared',
+            'The seed has been cleared from the clipboard for your security.',
+        );
     }
 
     componentWillUnmount() {
@@ -49,7 +46,6 @@ class CopySeedToClipboard extends React.Component {
     onDonePress() {
         this.clearTimeout();
         Clipboard.setString('');
-
         this.props.navigator.pop({
             animated: false,
         });
@@ -60,7 +56,7 @@ class CopySeedToClipboard extends React.Component {
         this.dropdown.alertWithType(
             'success',
             'Seed copied',
-            'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.',
+            'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed.',
         );
 
         this.timeout = setTimeout(() => {
@@ -104,6 +100,7 @@ class CopySeedToClipboard extends React.Component {
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                    closeInterval={7500}
                 />
             </ImageBackground>
         );
