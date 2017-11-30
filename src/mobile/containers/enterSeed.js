@@ -18,7 +18,12 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { setSeed } from '../../shared/actions/tempAccount';
+=======
+import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+>>>>>>> use MAX_SEED_LENGTH constant instead of sprinkling magic 81s everywhere
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
@@ -44,20 +49,20 @@ class EnterSeed extends React.Component {
     };
 
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
+        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == MAX_SEED_LENGTH) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
                 `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
             );
-        } else if (this.state.seed.length < 81) {
+        } else if (this.state.seed.length < MAX_SEED_LENGTH) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be 81 characters long. Your seed is currently ${this.state.seed
+                `Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${this.state.seed
                     .length} characters long. Please try again.`,
             );
-        } else if (this.state.seed.length == 81) {
+        } else if (this.state.seed.length == MAX_SEED_LENGTH) {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
@@ -130,7 +135,7 @@ class EnterSeed extends React.Component {
                                             label="Seed"
                                             autoCorrect={false}
                                             value={seed}
-                                            maxLength={81}
+                                            maxLength={MAX_SEED_LENGTH}
                                             onChangeText={seed => this.setState({ seed })}
                                             secureTextEntry={true}
                                             multiline
@@ -153,8 +158,8 @@ class EnterSeed extends React.Component {
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                                     <Text style={styles.infoText}>
-                                        Seeds should be 81 characters long, and should contain capital letters A-Z, or
-                                        the number 9. You cannot use seeds longer than 81 characters.
+                                        {`Seeds should be ${MAX_SEED_LENGTH} characters long, and should contain capital letters A-Z, or
+                                        the number 9. You cannot use seeds longer than ${MAX_SEED_LENGTH} characters.`}
                                     </Text>
                                     <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
                                 </View>
