@@ -1,8 +1,8 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "invalidResponse": "Μη έγκυρη απόκριση",
+        "invalidResponseExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση.",
+        "invalidResponsePollingExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη σταθμοσκόπηση.",
         "seed": "Seed",
         "back": "ΠΙΣΩ",
         "done": "ΤΕΛΟΣ",
@@ -24,12 +24,12 @@
         "yes": "ΝΑΙ",
         "no": "ΟΧΙ",
         "password": "Κωδικός πρόσβασης",
-        "unrecognisedPassword": "Unrecognised password",
-        "unrecognisedPasswordExplanation": "The password was not recognised. Please try again."
+        "unrecognisedPassword": "Μη αναγνωρισμένος κωδικός πρόσβασης",
+        "unrecognisedPasswordExplanation": "Ο κωδικός πρόσβασης δεν αναγνωρίστηκε. Παρακαλώ δοκιμάστε ξανά."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
+        "seedInvalidCharsExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Seed is too short",
         "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
         "nameInUse": "Account name already in use",
