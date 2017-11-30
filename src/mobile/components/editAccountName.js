@@ -53,6 +53,7 @@ class EditAccountName extends React.Component {
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
+                                onSubmitEditing={() => this.props.saveAccountName(this.state.accountName)}
                             />
                         </View>
                         <View style={styles.saveButtonContainer} />

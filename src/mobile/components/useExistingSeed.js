@@ -103,12 +103,12 @@ class UseExistingSeed extends React.Component {
                                         tintColor="#F7D002"
                                         enablesReturnKeyAutomatically={true}
                                         label="Seed"
-                                        autoCapitalize="characters"
                                         autoCorrect={false}
                                         value={seed}
                                         maxLength={81}
-                                        onChangeText={seed => this.setState({ seed })}
+                                        onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                         secureTextEntry={true}
+                                        onSubmitEditing={() => this.refs.accountName.focus()}
                                     />
                                 </View>
                                 <View style={styles.qrButtonContainer}>
@@ -129,6 +129,7 @@ class UseExistingSeed extends React.Component {
                                 <Text style={styles.title}>Enter an account name.</Text>
                             </View>
                             <TextField
+                                ref="accountName"
                                 style={styles.textField}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={width / 31.8}
@@ -142,6 +143,7 @@ class UseExistingSeed extends React.Component {
                                 autoCorrect={false}
                                 value={accountName}
                                 containerStyle={{ width: width / 1.36 }}
+                                autoCapitalize={"characters"}
                                 onChangeText={accountName => this.setState({ accountName })}
                             />
                         </View>

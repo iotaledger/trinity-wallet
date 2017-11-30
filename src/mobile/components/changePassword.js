@@ -33,11 +33,12 @@ class ChangePassword extends Component {
         };
     }
 
-    renderTextField(value, label, onChangeText) {
+    renderTextField(ref, value, label, onChangeText, onSubmitEditing) {
         // This should be abstracted away as an independent component
         // We are using almost the same field styles and props
         // across all app
         const props = {
+            ref: ref,
             style: styles.textField,
             labelTextStyle: { fontFamily: Fonts.tertiary },
             labelFontSize: height / 55,
@@ -53,6 +54,7 @@ class ChangePassword extends Component {
             label,
             value,
             onChangeText,
+            onSubmitEditing
         };
 
         return <TextField {...props} />;
@@ -162,14 +164,14 @@ class ChangePassword extends Component {
                                 Ensure you use a strong password of at least 12 characters.
                             </Text>
                         </View>
-                        {this.renderTextField(currentPassword, 'Current Password', currentPassword =>
-                            this.setState({ currentPassword }),
+                        {this.renderTextField('currentPassword', currentPassword, 'Current Password', currentPassword =>
+                            this.setState({ currentPassword }), onSubmitEditing => this.refs.newPassword.focus(),
                         )}
-                        {this.renderTextField(newPassword, 'New Password', newPassword =>
-                            this.setState({ newPassword }),
+                        {this.renderTextField('newPassword', newPassword, 'New Password', newPassword =>
+                            this.setState({ newPassword }), onSubmitEditing => this.refs.confirmedNewPassword.focus(),
                         )}
-                        {this.renderTextField(confirmedNewPassword, 'Confirm New Password', confirmedNewPassword =>
-                            this.setState({ confirmedNewPassword }),
+                        {this.renderTextField('confirmedNewPassword', confirmedNewPassword, 'Confirm New Password', confirmedNewPassword =>
+                            this.setState({ confirmedNewPassword }), onSubmitEditing => this.changePassword(),
                         )}
                     </View>
                     <View style={styles.bottomContainer}>
