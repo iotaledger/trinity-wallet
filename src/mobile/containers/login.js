@@ -238,6 +238,7 @@ class Login extends React.Component {
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                    closeInterval={6000}
                 />
                 <Modal
                     animationIn={'bounceInUp'}
