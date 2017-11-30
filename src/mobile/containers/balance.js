@@ -1,15 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, ListView, Dimensions, StatusBar, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import {
-    getMarketData,
-    getChartData,
-    getPrice,
-    setCurrency,
-    setTimeframe,
-} from 'iota-wallet-shared-modules/actions/marketData';
-import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
+import { getMarketData, getChartData, getPrice, setCurrency, setTimeframe } from '../../shared/actions/marketData';
+import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
+import { getCurrencySymbol } from '../../shared/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
@@ -59,9 +53,8 @@ class Balance extends React.Component {
             (this.props.account.balance < 1000 || this.getDecimalPlaces(formatValue(this.props.account.balance)) <= 1
                 ? ''
                 : '+');
-        const currencySymbol = getCurrencySymbol(this.props.settings.currency);
-        const fiatBalance =
-            this.props.account.balance * this.props.marketData.usdPrice / 1000000 * this.props.settings.conversionRate;
+        const currencySymbol = getCurrencySymbol(this.props.settings.currency)
+        const fiatBalance = this.props.account.balance * this.props.marketData.usdPrice / 1000000 * this.props.settings.conversionRate;
 
         return (
             <View style={styles.container}>
@@ -72,7 +65,9 @@ class Balance extends React.Component {
                         {formatUnit(this.props.account.balance)}
                     </Text>
                     <Text style={styles.fiatBalance}>
-                        {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
+                        {currencySymbol} {round(fiatBalance, 2).toFixed(
+                            2,
+                        )}{' '}
                     </Text>
                 </View>
                 <View style={styles.transactionsContainer}>
@@ -162,7 +157,7 @@ const mapStateToProps = state => ({
     marketData: state.marketData,
     account: state.account,
     tempAccount: state.tempAccount,
-    settings: state.settings,
+    settings: state.settings
 });
 
 const mapDispatchToProps = dispatch => ({
