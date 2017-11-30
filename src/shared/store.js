@@ -10,6 +10,7 @@ import seeds from './reducers/seeds';
 import notifications from './reducers/notifications';
 import alerts from './reducers/alerts';
 import home from './reducers/home';
+import { ActionTypes } from './actions/app';
 
 const reducers = combineReducers({
     alerts,
@@ -24,10 +25,7 @@ const reducers = combineReducers({
 });
 
 const rootReducer = (state, action) => {
-    /* eslint-disable no-param-reassign */
-    // FIXME: For some reason cannot resolve path to shared/actions/app/ActionTypes
-
-    if (action.type === 'IOTA/APP/WALLET/RESET') {
+    if (ActionTypes.WALLET_RESET) {
         state = undefined;
     }
     /* eslint-enable no-param-reassign */
