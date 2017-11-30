@@ -126,12 +126,11 @@ class EnterSeed extends React.Component {
                                             enablesReturnKeyAutomatically={true}
                                             returnKeyType="done"
                                             blurOnSubmit={true} //Dismisses keyboard upon pressing Done
-                                            autoCapitalize="characters"
                                             label="Seed"
                                             autoCorrect={false}
                                             value={seed}
                                             maxLength={81}
-                                            onChangeText={seed => this.setState({ seed })}
+                                            onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                             secureTextEntry={true}
                                             multiline
                                         />
