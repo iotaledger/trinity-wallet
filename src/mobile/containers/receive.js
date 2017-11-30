@@ -123,8 +123,8 @@ class Receive extends Component {
                         style={{
                             opacity: this.getOpacity(),
                             alignItems: 'center',
-                            flex: 2.5,
-                            justifyContent: 'center',
+                            flex: 2,
+                            justifyContent: 'flex-end',
                         }}
                     >
                         <View style={[styles.qrContainer, { opacity: this.getQrOpacity() }]}>
@@ -142,6 +142,8 @@ class Receive extends Component {
                                 </Text>
                             </View>
                         </TouchableOpacity>
+                    </View>
+                    <View style={{ alignItems: 'center', flex: 0.5, justifyContent: 'flex-start' }}>
                         <TextField
                             style={styles.textField}
                             labelTextStyle={{ fontFamily: 'Lato-Light', color: 'white' }}
@@ -156,9 +158,10 @@ class Receive extends Component {
                             value={message}
                             containerStyle={{ width: width / 1.36 }}
                             onChangeText={message => this.setState({ message })}
+                            ref="message"
                         />
                     </View>
-                    <View style={{ flex: 0.7, justifyContent: 'flex-start' }}>
+                    <View style={{ flex: 0.5, justifyContent: 'center' }}>
                         {receiveAddress === ' ' &&
                             !isGeneratingReceiveAddress && (
                                 <TouchableOpacity
@@ -190,6 +193,7 @@ class Receive extends Component {
                                     onPress={() => {
                                         // Check if there's already a network call in progress.
                                         this.setState({ message: '' });
+                                        this.refs.message.blur()
                                     }}
                                     style={styles.removeButtonContainer}
                                 >
@@ -199,6 +203,7 @@ class Receive extends Component {
                                 </TouchableOpacity>
                             )}
                     </View>
+                    <View style={{flex: 0.2}}/>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -262,8 +267,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 15,
         padding: width / 30,
-        marginBottom: height / 60,
-        marginTop: height / 40,
+        marginBottom: height / 40,
     },
     removeButtonContainer: {
         alignItems: 'center',
