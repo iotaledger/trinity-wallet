@@ -56,17 +56,17 @@
         "confirmPassword": "Επιβεβαίωση νέου κωδικού πρόσβασης"
     },
     "copyToClipboard": {
-        "seedCleared": "Σπόρος καταργήθηκε",
-        "seedClearedExplanation": "Ο σπόρος έχει καταργηθεί από το πρόχειρο για την ασφάλειά σας.",
+        "seedCleared": "Σπόρος εκκαθαρίστηκε",
+        "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
         "seedCopied": "Σπόρος αντιγράφηκε",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "seedCopiedExplanation": "Ο σπόρος έχει αντιγραφεί στο Πρόχειρο, και θα πρέπει να εκκαθαριστεί αφού πιέσετε το πλήκτρο «ΤΕΛΟΣ» ή 60 δευτερόλεπτα έχουν περάσει, όποιο συμβεί πρώτο.",
+        "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης."
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
-        "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
+        "invalidCharactersExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
+        "seedTooShortExplanation": "Οι σπόροι πρέπει να αποτελούνται τουλάχιστον από 60 χαρακτήρες (ιδανικά 81 χαρακτήρες). Ο σπόρος σας είναι επί του παρόντος {seed.length} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedExplanation": "Seeds should be 81 characters long and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than 81 characters.",
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
     },
