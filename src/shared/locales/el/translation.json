@@ -82,15 +82,15 @@
     },
     "login": {
         "emptyPassword": "Κενός κωδικός πρόσβασης",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
-        "login": "LOG IN"
+        "emptyPasswordExplanation": "Πρέπει να εισαγάγετε έναν κωδικό πρόσβασης για να συνδεθείτε. Παρακαλώ δοκιμάστε ξανά.",
+        "enterPassword": "Παρακαλώ εισάγετε τον κωδικό σας.",
+        "useSeed": "ΧΡΗΣΗ ΣΠΟΡΟΥ",
+        "login": "ΣΥΝΔΕΣΗ"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Φόρτωση σπόρου για πρώτη φορά.",
+        "thisMayTake": "Αυτό μπορεί να διαρκέσει λίγο.",
+        "youMayNotice": "Ενδέχεται να παρατηρήσετε τη συσκευή να επιβραδύνει."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
