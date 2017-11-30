@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Seedbox from '../components/seedBox.js';
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -26,7 +27,7 @@ class WriteSeedDown extends React.Component {
                 <View style={styles.midContainer}>
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>
-                            Your seed is 81 characters read from left to right. Write down your seed and checksum and
+                            {`Your seed is ${MAX_SEED_LENGTH} characters read from left to right. Write down your seed and checksum and`}
                         </Text>
                         <Text style={styles.infoTextBold}> triple check </Text>
                         <Text style={styles.infoTextNormal}>they are correct.</Text>
