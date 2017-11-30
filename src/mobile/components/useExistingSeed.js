@@ -25,6 +25,7 @@ import { storeSeedInKeychain, getFromKeychain, removeLastSeed } from '../../shar
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData } from '../../shared/actions/tempAccount';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -85,29 +86,29 @@ class UseExistingSeed extends React.Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-                        <View style={styles.topContainer}>
-                            <View style={styles.seedContainer}>
-                                <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text>
-                                </View>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <View style={styles.textFieldContainer}>
-                                        <TextField
-                                            style={styles.textField}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                            labelFontSize={width / 31.8}
-                                            fontSize={width / 20.7}
-                                            labelPadding={3}
-                                            baseColor="white"
-                                            tintColor="#F7D002"
-                                            enablesReturnKeyAutomatically={true}
-                                            label="Seed"
-                                            autoCapitalize="characters"
-                                            autoCorrect={false}
-                                            value={seed}
-                                            maxLength={81}
-                                            onChangeText={seed => this.setState({ seed })}
-                                            secureTextEntry={true}
+                    <View style={styles.topContainer}>
+                        <View style={styles.seedContainer}>
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.title}>Please enter your seed.</Text>
+                            </View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={styles.textFieldContainer}>
+                                    <TextField
+                                        style={styles.textField}
+                                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                        labelFontSize={width / 31.8}
+                                        fontSize={width / 20.7}
+                                        labelPadding={3}
+                                        baseColor="white"
+                                        tintColor="#F7D002"
+                                        enablesReturnKeyAutomatically={true}
+                                        label="Seed"
+                                        autoCapitalize="characters"
+                                        autoCorrect={false}
+                                        value={seed}
+                                        maxLength={MAX_SEED_LENGTH}
+                                        onChangeText={seed => this.setState({ seed })}
+                                        secureTextEntry={true}
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>

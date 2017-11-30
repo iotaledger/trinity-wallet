@@ -15,7 +15,9 @@ import {
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
+
 import { randomiseSeed, setSeed, clearSeed } from '../../shared/actions/tempAccount';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
@@ -197,7 +199,7 @@ class NewSeedSetup extends Component {
                             </TouchableHighlight>
                         )}
                         style={styles.gridContainer}
-                        initialListSize={81}
+                        initialListSize={MAX_SEED_LENGTH}
                         scrollEnabled={false}
                         enableEmptySections
                     />
