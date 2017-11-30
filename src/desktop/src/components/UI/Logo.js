@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LogoGlow from 'images/iota-glow.png';
+import LogoGlow from '../../../../shared/images/iota-glow.png';
 
 export default class Logo extends React.PureComponent {
     static propTypes = {
