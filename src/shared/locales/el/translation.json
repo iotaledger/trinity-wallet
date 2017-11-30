@@ -93,9 +93,9 @@
         "youMayNotice": "Ενδέχεται να παρατηρήσετε τη συσκευή να επιβραδύνει."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGenerated": "Δεν έχει παραχθεί σπόρος",
+        "seedNotGeneratedExplanation": "Παρακαλώ κάντε κλικ στο κουμπί Δημιουργία νέου σπόρου.",
+        "pressForNewSeed": "ΠΑΤΗΣΤΕ ΓΙΑ ΝΕΟ ΣΠΟΡΟ",
         "individualLetters": "Press individual letters to randomise them."
     },
     "onboardingComplete": {
