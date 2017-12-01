@@ -1,10 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
-import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import Triangle from 'react-native-triangle';
+import { translate } from 'react-i18next';
+import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/libs/i18n';
 import i18next from 'i18next';
-import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/i18n'
 import setFirstUse from 'iota-wallet-shared-modules/actions/account.js';
 import { detectLocale, selectLocale } from '../components/locale';
 import locale from 'react-native-locale-detector';
