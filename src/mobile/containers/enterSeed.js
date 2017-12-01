@@ -149,7 +149,9 @@ class EnterSeed extends React.Component {
                             <View style={styles.bottomContainer}>
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                    <Text style={styles.infoText}>{t('seedExplanation')}</Text>
+                                    <Text style={styles.infoText}>
+                                        {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
+                                    </Text>
                                     <Text style={styles.warningText}>{t('neverShare')}</Text>
                                 </View>
                                 <OnboardingButtons
