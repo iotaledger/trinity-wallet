@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -94,6 +95,8 @@ class UseSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
+        const { t } = this.props;
+
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />

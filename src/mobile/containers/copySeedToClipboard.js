@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -21,15 +22,14 @@ const StatusBarDefaultBarStyle = 'light-content';
 class CopySeedToClipboard extends React.Component {
     constructor() {
         super();
+
         this.timeout = null;
     }
 
     generateSeedClearanceAlert() {
-        this.dropdown.alertWithType(
-            'info',
-            'Seed cleared',
-            'The seed has been cleared from the clipboard for your security.',
-        );
+        if (this.dropdown) {
+            this.dropdown.alertWithType('info', t('seedCleared'), t('seedClearedExplanation'));
+        }
     }
 
     componentWillUnmount() {
@@ -46,6 +46,7 @@ class CopySeedToClipboard extends React.Component {
     onDonePress() {
         this.clearTimeout();
         Clipboard.setString('');
+
         this.props.navigator.pop({
             animated: false,
         });
@@ -53,11 +54,7 @@ class CopySeedToClipboard extends React.Component {
 
     onCopyPress() {
         Clipboard.setString(this.props.tempAccount.seed);
-        this.dropdown.alertWithType(
-            'success',
-            'Seed copied',
-            'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed.',
-        );
+        this.dropdown.alertWithType('success', t('seedCopied'), t('seedCopiedExplanation'));
 
         this.timeout = setTimeout(() => {
             Clipboard.setString('');
@@ -66,6 +63,7 @@ class CopySeedToClipboard extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -76,21 +74,19 @@ class CopySeedToClipboard extends React.Component {
                     />
                 </View>
                 <View style={styles.midContainer}>
-                    <Text style={styles.infoTextNormal}>
-                        Click the button below and copy your seed to a password manager.
-                    </Text>
-                    <Text style={styles.infoTextBold}> Do not store the seed in plain text.</Text>
+                    <Text style={styles.infoTextNormal}>{t('clickToCopy')}</Text>
+                    <Text style={styles.infoTextBold}>{t('doNotStore')}</Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 22 }}>
                         <View style={styles.copyButton}>
-                            <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
+                            <Text style={styles.copyText}>{t('global:copyToCliboard').toUpperCase()}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>DONE</Text>
+                            <Text style={styles.doneText}>{t('global:next')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -103,7 +99,6 @@ class CopySeedToClipboard extends React.Component {
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                    closeInterval={7500}
                 />
             </ImageBackground>
         );
@@ -240,4 +235,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default connect(mapStateToProps)(CopySeedToClipboard);
+export default translate('saveYourSeed3')(connect(mapStateToProps)(CopySeedToClipboard));
