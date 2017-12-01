@@ -12,7 +12,7 @@ import {
 import Fonts from '../theme/Fonts';
 import Seedbox from '../components/seedBox.js';
 import { TextField } from 'react-native-material-textfield';
-import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
+import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -130,7 +130,10 @@ class ViewSeed extends React.Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>

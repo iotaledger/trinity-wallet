@@ -62,10 +62,13 @@ class SaveYourSeed extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>You must save your seed with</Text>
                         <Text style={styles.infoTextBold}>{t('text2')}</Text>

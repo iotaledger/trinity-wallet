@@ -11,9 +11,15 @@ import {
 } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice, setCurrency, setTimeframe } from '../../shared/actions/marketData';
-import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
-import { getCurrencySymbol } from '../../shared/libs/currency';
+import {
+    getMarketData,
+    getChartData,
+    getPrice,
+    setCurrency,
+    setTimeframe,
+} from 'iota-wallet-shared-modules/actions/marketData';
+import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
