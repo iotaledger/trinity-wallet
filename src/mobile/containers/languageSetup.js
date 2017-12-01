@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
-import { I18N_LOCALE_LABELS } from 'iota-wallet-shared-modules/i18n'
+import i18next from 'i18next';
+import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/i18n'
 import setFirstUse from 'iota-wallet-shared-modules/actions/account.js';
 import { detectLocale, selectLocale } from '../components/locale';
 import locale from 'react-native-locale-detector';
@@ -78,17 +79,25 @@ class LanguageSetup extends React.Component {
     }
 
     clickDropdownItem(language) {
-        // FIXME: Actually use/set the language here
+        const languageIndex = I18N_LOCALE_LABELS.findIndex(l => l === language);
+
+        i18next.changeLanguage(I18N_LOCALES[languageIndex]);
     }
 
     render() {
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
                 <View style={styles.container}>
-                    <Image style={styles.helloBackground} source={require('iota-wallet-shared-modules/images/hello-back.png')} />
+                    <Image
+                        style={styles.helloBackground}
+                        source={require('iota-wallet-shared-modules/images/hello-back.png')}
+                    />
                     <StatusBar barStyle="light-content" />
                     <View style={styles.topContainer}>
-                        <Image source={require('iota-wallet-shared-modules/images/iota-glow.png')} style={styles.iotaLogo} />
+                        <Image
+                            source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                            style={styles.iotaLogo}
+                        />
                         <View style={styles.titleContainer} />
                         <Dropdown
                             title="Language"
