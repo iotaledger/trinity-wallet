@@ -11,6 +11,7 @@ import {
     ScrollView,
     StatusBar,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
@@ -167,6 +168,7 @@ class Login extends React.Component {
 
     render() {
         let { password } = this.state;
+        const { t } = this.props;
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
