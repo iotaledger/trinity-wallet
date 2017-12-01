@@ -148,7 +148,6 @@ class Settings extends React.Component {
                                     </Text>
                                 </View>
                             </TouchableOpacity>
-                            <View style={styles.separator} />
                             <TouchableOpacity onPress={event => this.props.setSetting('manualSync')}>
                                 <View style={styles.item}>
                                     <Image source={require('../../shared/images/sync.png')} style={styles.icon} />
