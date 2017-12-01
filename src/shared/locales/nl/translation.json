@@ -31,11 +31,13 @@
         "seedInvalidChars": "Ongeldige tekens in de sleutel",
         "seedInvalidCharsExplanation": "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Seed is te kort",
-        "seedTooShortExplanation": "Sleutels dienen ten minste 60 karakters lang te zijn (idealiter 81 tekens). Uw sleutel is momenteel {sleutel.lengte} tekens lang. Probeer het opnieuw.",
+        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
         "nameInUse": "De naam van de account is al in gebruik",
         "nameInUseExplanation": "Gebruik een unieke accountnaam voor uw sleutel.",
         "enterAccountName": "Geen een accountnaam in.",
-        "accountName": "Accountnaam"
+        "accountName": "Accountnaam",
+        "noNickname": "No account name entered",
+        "noNicknameExplanation": "Please enter an account name for your seed."
     },
     "changePassword": {
         "oops": "Oeps, er is iets fout gegaan",
@@ -66,8 +68,8 @@
         "invalidCharacters": "Ongeldige tekens in de sleutel",
         "invalidCharactersExplanation": "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Seed is te kort",
-        "seedTooShortExplanation": "Sleutels dienen ten minste 60 karakters lang te zijn (idealiter 81 tekens). Uw sleutel is momenteel {sleutel.lengte} tekens lang. Probeer het opnieuw.",
-        "seedExplanation": "Seedx moeten 81 tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met m meer dan 81 tekens.",
+        "seedTooShortExplanation": "Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
+        "seedExplanation": "Seeds should be ${MAX_SEED_LENGTH} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than ${MAX_SEED_LENGTH} characters.",
         "neverShare": "DEEL NOOIT JE SEED MET IEMAND"
     },
     "home": {
