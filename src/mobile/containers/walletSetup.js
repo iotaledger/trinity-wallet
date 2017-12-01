@@ -13,6 +13,7 @@ import {
     StatusBar,
     Platform,
 } from 'react-native';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
 const width = Dimensions.get('window').width;
