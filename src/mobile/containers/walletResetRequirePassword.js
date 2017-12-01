@@ -79,23 +79,26 @@ class WalletResetRequirePassword extends Component {
     resetWallet() {
         const isAuthenticated = this.isAuthenticated();
         const { password, resetWallet } = this.props;
-
         if (isAuthenticated) {
-              persistor.purge().then(() => {
-                  deleteFromKeyChain(password);
-                  this.props.resetWallet();
-                  this.props.setOnboardingComplete(false);
-                  this.props.setFirstUse(true);
-                  this.props.clearTempData();
-                  this.props.setPassword('');
-                  this.redirectToInitialScreen();
-              }).catch(() => {
-                  this.dropdown.alertWithType(
-                      'error',
-                      'Something went wrong',
-                      'Something went wrong while resetting your wallet. Please try again.',
-                  );
-              });
+            persistor
+                .purge()
+                .then(() => {
+                    deleteFromKeyChain(password);
+                    this.props.setOnboardingComplete(false);
+                    this.props.setFirstUse(true);
+                    this.props.clearTempData();
+                    this.props.setPassword('');
+                    this.redirectToInitialScreen();
+                    this.props.resetWallet();
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Something went wrong',
+                        'Something went wrong while resetting your wallet. Please try again.',
+                    );
+                });
         } else {
             this.dropdown.alertWithType(
                 'error',
@@ -252,29 +255,32 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.tertiary,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
-        color: Colors.white,
+        color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: Fonts.secondary,
+        fontFamily: 'Lato-Regular',
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
-        color: Colors.white,
+        color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: Fonts.secondary,
+        fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
     },
 });

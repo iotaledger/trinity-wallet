@@ -17,7 +17,7 @@ import {
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
     Keyboard,
-    Platform
+    Platform,
 } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
@@ -43,7 +43,7 @@ class Receive extends Component {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
             dataSource: ds.cloneWithRows([]),
-            message: ''
+            message: '',
         };
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
@@ -102,85 +102,103 @@ class Receive extends Component {
 
     getQrOpacity() {
         const { tempAccount: { receiveAddress } } = this.props;
-        if ((receiveAddress == ' ') && isAndroid) {
+        if (receiveAddress == ' ' && isAndroid) {
             return 0.1;
         } else {
             return 1;
         }
     }
 
+    clearInteractions() {
+        this.props.closeTopBar();
+        Keyboard.dismiss();
+    }
+
     render() {
         const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
         const message = this.state.message;
         return (
-            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center', paddingTop: height / 50}}>
-                        <View style={{opacity: this.getOpacity(), alignItems: 'center', flex: 2.3, justifyContent: 'center' }}>
-                            <View style={[styles.qrContainer, {opacity: this.getQrOpacity()}]}>
-                                <QRCode value={receiveAddress + ':' + message} size={isAndroid ? height / 5 : height / 4.7} bgColor="#000" fgColor="#FFF" />
-                            </View>
-                            <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                                <View style={styles.receiveAddressContainer}>
-                                    <Text numberOfLines={5} style={styles.receiveAddressText}>{receiveAddress}</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TextField
-                                style={styles.textField}
-                                labelTextStyle={{ fontFamily: 'Lato-Light', color: 'white' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
-                                labelPadding={3}
-                                baseColor="white"
-                                tintColor="#F7D002"
-                                enablesReturnKeyAutomatically={true}
-                                label="Optional message"
-                                autoCorrect={false}
-                                value={message}
-                                containerStyle={{ width: width / 1.36 }}
-                                onChangeText={message => this.setState({ message })}
+                    <View
+                        style={{
+                            opacity: this.getOpacity(),
+                            alignItems: 'center',
+                            flex: 2.5,
+                            justifyContent: 'center',
+                        }}
+                    >
+                        <View style={[styles.qrContainer, { opacity: this.getQrOpacity() }]}>
+                            <QRCode
+                                value={receiveAddress + ':' + message}
+                                size={height / 5}
+                                bgColor="#000"
+                                fgColor="#FFF"
                             />
                         </View>
-                        <View style={{flex:0.7, justifyContent: 'center'}}>
-                            {receiveAddress === ' ' &&
-                                !isGeneratingReceiveAddress && (
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            // Check if there's already a network call in progress.
-                                            if (!isGeneratingReceiveAddress) {
-                                                this.onGeneratePress();
-                                            }
-                                        }}
-                                    >
-                                        <View style={styles.generateButton}>
-                                            <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
-                                        </View>
-                                    </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
+                            <View style={styles.receiveAddressContainer}>
+                                <Text numberOfLines={5} style={styles.receiveAddressText}>
+                                    {receiveAddress}
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TextField
+                            style={styles.textField}
+                            labelTextStyle={{ fontFamily: 'Lato-Light', color: 'white' }}
+                            labelFontSize={height / 55}
+                            fontSize={height / 40}
+                            labelPadding={3}
+                            baseColor="white"
+                            tintColor="#F7D002"
+                            enablesReturnKeyAutomatically={true}
+                            label="Optional message"
+                            autoCorrect={false}
+                            value={message}
+                            containerStyle={{ width: width / 1.36 }}
+                            onChangeText={message => this.setState({ message })}
+                        />
+                    </View>
+                    <View style={{ flex: 0.7, justifyContent: 'flex-start' }}>
+                        {receiveAddress === ' ' &&
+                            !isGeneratingReceiveAddress && (
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        // Check if there's already a network call in progress.
+                                        if (!isGeneratingReceiveAddress) {
+                                            this.onGeneratePress();
+                                        }
+                                    }}
+                                >
+                                    <View style={styles.generateButton}>
+                                        <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
+                                    </View>
+                                </TouchableOpacity>
                             )}
-                            {isGeneratingReceiveAddress && (
-                                  <View style={{ height: height / 10}}>
-                                      <ActivityIndicator
-                                          animating={isGeneratingReceiveAddress}
-                                          style={styles.activityIndicator}
-                                          size="large"
-                                          color="#F7D002"
-                                      />
-                                  </View>
+                        {isGeneratingReceiveAddress && (
+                            <View style={{ height: height / 10 }}>
+                                <ActivityIndicator
+                                    animating={isGeneratingReceiveAddress}
+                                    style={styles.activityIndicator}
+                                    size="large"
+                                    color="#F7D002"
+                                />
+                            </View>
+                        )}
+                        {receiveAddress.length > 1 &&
+                            message.length > 1 && (
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        // Check if there's already a network call in progress.
+                                        this.setState({ message: '' });
+                                    }}
+                                    style={styles.removeButtonContainer}
+                                >
+                                    <View style={styles.removeButton}>
+                                        <Text style={styles.removeText}>REMOVE MESSAGE</Text>
+                                    </View>
+                                </TouchableOpacity>
                             )}
-                            {(receiveAddress.length > 1) && (message.length > 1) && (
-                              <TouchableOpacity
-                                  onPress={() => {
-                                      // Check if there's already a network call in progress.
-                                          this.setState({message:''});
-                                  }}
-                                  style={styles.removeButtonContainer}
-                              >
-                                  <View style={styles.removeButton}>
-                                      <Text style={styles.removeText}>REMOVE MESSAGE</Text>
-                                  </View>
-                              </TouchableOpacity>
-                            )}
-                        </View>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -191,15 +209,15 @@ class Receive extends Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        flex:1,
-        justifyContent: 'center'
+        flex: 1,
+        justifyContent: 'center',
     },
     receiveAddressContainer: {
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 8,
-        width: width / 2,
-        height: width / 3.3,
+        width: width / 2.05,
+        height: width / 3.4,
         justifyContent: 'center',
     },
     activityIndicator: {
@@ -246,7 +264,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         padding: width / 30,
         marginBottom: height / 60,
-        marginTop: height / 40
+        marginTop: height / 40,
     },
     removeButtonContainer: {
         alignItems: 'center',
@@ -256,18 +274,17 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: 8,
-        width: width / 3,
-        height: height / 20,
+        width: width / 2.7,
+        height: height / 17,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     removeText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingLeft: 6,
     },
 });
 

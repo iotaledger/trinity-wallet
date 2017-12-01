@@ -29,7 +29,6 @@ global.height = DetectNavbar.hasSoftKeys()
 export default class InitialLoading extends Component {
     constructor() {
         super();
-
         console.ignoredYellowBox = ['Setting a timer'];
     }
 
