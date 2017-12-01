@@ -15,8 +15,7 @@ import {
 } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
-
-import { randomiseSeed, setSeed, clearSeed } from '../../shared/actions/tempAccount';
+import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
@@ -159,10 +158,13 @@ class NewSeedSetup extends Component {
     render() {
         const { tempAccount: { seed } } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
                     <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.generateButton}>
                             <Text style={styles.generateText}>PRESS FOR NEW SEED</Text>
