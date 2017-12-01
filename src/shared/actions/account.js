@@ -10,6 +10,7 @@ import {
     groupTransfersByBundle,
     getAddressesWithChangedBalance,
     mergeLatestTransfersInOld,
+    deduplicateBundles,
 } from '../libs/accountUtils';
 import { setReady, getTransfersRequest, getTransfersSuccess } from './tempAccount';
 import { generateAlert } from '../actions/alerts';
@@ -59,7 +60,9 @@ export function getAccountInfoNewSeed(seed, seedName, cb) {
                 // Calculate balance
                 const balance = calculateBalance(addressesWithBalance);
                 // Sort tranfers and add transfer values
-                const transfers = formatTransfers(success.transfers, success.addresses);
+
+                const transfersWithoutDuplicatedBundles = deduplicateBundles(success.transfers);
+                const transfers = formatTransfers(transfersWithoutDuplicatedBundles, success.addresses);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
                 dispatch(setAccountInfo(seedName, addressesWithBalance, transfers));
                 cb(null, success);
