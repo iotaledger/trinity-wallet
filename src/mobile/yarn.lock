@@ -4537,6 +4537,10 @@ react-native-html-to-pdf@^0.4.0:
     Base64 "~0.2.0"
     inherits "~2.0.1"
 
+react-native-keep-awake@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-keep-awake/-/react-native-keep-awake-2.0.6.tgz#d8eaffe0a6377cc197469d9f06c7f317225403db"
+
 react-native-letter-spacing@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-native-letter-spacing/-/react-native-letter-spacing-0.0.5.tgz#24724548262e38ac5c4796b3163ca025004999bf"
@@ -4651,6 +4655,12 @@ react-native-udp@^1.2.9:
     inherits "^2.0.1"
     ip-regex "^1.0.3"
     util "^0.10.3"
+
+"react-native-user-inactivity@https://github.com/jkomyno/react-native-user-inactivity":
+  version "1.0.0"
+  resolved "https://github.com/jkomyno/react-native-user-inactivity#a4f2a6f2c2664fc6a1152356f8053a8baf338c4c"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native@0.47.2:
   version "0.47.2"

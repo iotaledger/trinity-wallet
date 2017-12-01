@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
+    AppState,
     StyleSheet,
     Text,
     TouchableWithoutFeedback,
@@ -15,6 +16,7 @@ import {
     ImageBackground,
     StatusBar,
     TouchableOpacity,
+    Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Balance from './balance';
@@ -23,14 +25,23 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import TopBar from './topBar';
-import { changeHomeScreenRoute } from '../../shared/actions/home';
+import { changeHomeScreenRoute, toggleTopBarDisplay } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
-import { setReceiveAddress, replayBundle, setReady, clearTempData } from '../../shared/actions/tempAccount';
+import {
+    setReceiveAddress,
+    replayBundle,
+    setReady,
+    clearTempData,
+    setPassword,
+} from '../../shared/actions/tempAccount';
 import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
 import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
+import { Navigation } from 'react-native-navigation';
+import UserInactivity from 'react-native-user-inactivity';
+import KeepAwake from 'react-native-keep-awake';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const width = Dimensions.get('window').width;
@@ -42,11 +53,15 @@ class Home extends Component {
         super();
         this.state = {
             mode: 'STANDARD',
+            appState: AppState.currentState,
+            timeWentInactive: null,
         };
     }
 
     componentDidMount() {
+        AppState.addEventListener('change', this._handleAppStateChange);
         this.props.setFirstUse(false);
+
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -57,9 +72,43 @@ class Home extends Component {
     }
 
     componentWillUnmount() {
-        timer.clearInterval('polling')
-        timer.clearInterval('chartPolling')
+        AppState.removeEventListener('change', this._handleAppStateChange);
+        timer.clearInterval('polling');
+        timer.clearInterval('chartPolling');
     }
+
+    logout() {
+        this.props.clearTempData();
+        this.props.setPassword('');
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'login',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundImageName: 'bg-blue.png',
+                    screenBackgroundColor: '#102e36',
+                },
+                overrideBackPress: true,
+            },
+        });
+    }
+
+    _handleAppStateChange = nextAppState => {
+        if (this.state.appState.match(/inactive|background/)) {
+            timer.setTimeout(
+                'background',
+                () => {
+                    this.logout();
+                },
+                30000,
+            );
+        }
+        if (nextAppState === 'active') {
+            timer.clearTimeout('background');
+        }
+        this.setState({ appState: nextAppState });
+    };
 
     startPolling() {
         if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
@@ -94,6 +143,9 @@ class Home extends Component {
         const childrenProps = {
             type: route, // TODO: type prop might be unneeded in all the children components;
             navigator: this.props.navigator,
+            closeTopBar: () => {
+                if (this.props.isTopBarActive) this.props.toggleTopBarDisplay();
+            },
         };
 
         switch (route) {
@@ -133,140 +185,145 @@ class Home extends Component {
         const isCurrentRoute = route => route === childRoute;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer} />
-                <View style={styles.midContainer}>
-                    <View style={{ flex: 1 }}>{children}</View>
-                </View>
-                <View style={styles.bottomContainer}>
-                    <View style={styles.tabBar}>
-                        <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
-                            <View style={styles.button}>
-                                <Image
-                                    style={
-                                        isCurrentRoute('balance')
-                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                    }
-                                    source={require('../../shared/images/balance.png')}
-                                />
-                                <Text
-                                    style={
-                                        isCurrentRoute('balance')
-                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                    }
-                                >
-                                    {t('tab1')}
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback onPress={event => this.clickSend()}>
-                            <View style={styles.button}>
-                                <Image
-                                    style={
-                                        isCurrentRoute('send')
-                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                    }
-                                    source={require('../../shared/images/send.png')}
-                                />
-                                <Text
-                                    style={
-                                        isCurrentRoute('send')
-                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                    }
-                                >
-                                    {t('tab2')}
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
-                            <View style={styles.button}>
-                                <Image
-                                    style={
-                                        isCurrentRoute('receive')
-                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                    }
-                                    source={require('../../shared/images/receive.png')}
-                                />
-                                <Text
-                                    style={
-                                        isCurrentRoute('receive')
-                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                    }
-                                >
-                                    {t('tab3')}
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
-                            <View style={styles.button}>
-                                <Image
-                                    style={
-                                        isCurrentRoute('history')
-                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                    }
-                                    source={require('../../shared/images/history.png')}
-                                />
-                                <Text
-                                    style={
-                                        isCurrentRoute('history')
-                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                    }
-                                >
-                                    {t('tab4')}
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
-                            <View style={styles.button}>
-                                <Image
-                                    style={
-                                        isCurrentRoute('settings')
-                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                    }
-                                    source={require('../../shared/images/settings.png')}
-                                />
-                                <Text
-                                    style={
-                                        isCurrentRoute('settings')
-                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                            : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                    }
-                                >
-                                    {t('tab5')}
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
+            <UserInactivity timeForInactivity={120000} checkInterval={2000} onInactivity={() => this.logout()}>
+                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
+                    <StatusBar barStyle="light-content" />
+                    <View style={styles.topContainer} />
+                    <View style={styles.midContainer}>
+                        <View style={{ flex: 1 }}>{children}</View>
+                        >>>>>>> develop
                     </View>
-                </View>
-                <Reattacher
-                    attachments={tailTransactionHashesForPendingTransactions}
-                    attach={this.props.replayBundle}
-                />
-                <TopBar />
-                <DropdownAlert
-                    ref={ref => DropdownHolder.setDropdown(ref)}
-                    elevation={120}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                    onCancel={this.props.disposeOffAlert}
-                    onClose={this.props.disposeOffAlert}
-                />
-            </ImageBackground>
+                    <View style={styles.bottomContainer}>
+                        <View style={styles.tabBar}>
+                            <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
+                                <View style={styles.button}>
+                                    <Image
+                                        style={
+                                            isCurrentRoute('balance')
+                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                        }
+                                        source={require('../../shared/images/balance.png')}
+                                    />
+                                    <Text
+                                        style={
+                                            isCurrentRoute('balance')
+                                                ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                        }
+                                    >
+                                        BALANCE
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback onPress={event => this.clickSend()}>
+                                <View style={styles.button}>
+                                    <Image
+                                        style={
+                                            isCurrentRoute('send')
+                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                        }
+                                        source={require('../../shared/images/send.png')}
+                                    />
+                                    <Text
+                                        style={
+                                            isCurrentRoute('send')
+                                                ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                        }
+                                    >
+                                        SEND
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
+                                <View style={styles.button}>
+                                    <Image
+                                        style={
+                                            isCurrentRoute('receive')
+                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                        }
+                                        source={require('../../shared/images/receive.png')}
+                                    />
+                                    <Text
+                                        style={
+                                            isCurrentRoute('receive')
+                                                ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                        }
+                                    >
+                                        RECEIVE
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
+                                <View style={styles.button}>
+                                    <Image
+                                        style={
+                                            isCurrentRoute('history')
+                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                        }
+                                        source={require('../../shared/images/history.png')}
+                                    />
+                                    <Text
+                                        style={
+                                            isCurrentRoute('history')
+                                                ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                        }
+                                    >
+                                        HISTORY
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
+                                <View style={styles.button}>
+                                    <Image
+                                        style={
+                                            isCurrentRoute('settings')
+                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                        }
+                                        source={require('../../shared/images/settings.png')}
+                                    />
+                                    <Text
+                                        style={
+                                            isCurrentRoute('settings')
+                                                ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                        }
+                                    >
+                                        SETTINGS
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                    <Reattacher
+                        attachments={tailTransactionHashesForPendingTransactions}
+                        attach={this.props.replayBundle}
+                    />
+                    <TopBar />
+                    <DropdownAlert
+                        ref={ref => DropdownHolder.setDropdown(ref)}
+                        elevation={120}
+                        successColor="#009f3f"
+                        errorColor="#A10702"
+                        titleStyle={styles.dropdownTitle}
+                        defaultTextContainer={styles.dropdownTextContainer}
+                        messageStyle={styles.dropdownMessage}
+                        imageStyle={styles.dropdownImage}
+                        inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                        onCancel={this.props.disposeOffAlert}
+                        onClose={this.props.disposeOffAlert}
+                        closeInterval={5500}
+                    />
+                    <KeepAwake />
+                </ImageBackground>
+            </UserInactivity>
         );
     }
 }
@@ -386,6 +443,7 @@ const mapStateToProps = state => ({
     tailTransactionHashesForPendingTransactions: getTailTransactionHashesForPendingTransactions(state),
     account: state.account,
     childRoute: state.home.childRoute,
+    isTopBarActive: state.home.isTopBarActive,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -405,6 +463,8 @@ const mapDispatchToProps = dispatch => ({
     setFirstUse: boolean => dispatch(setFirstUse(boolean)),
     setReady: boolean => dispatch(setReady(boolean)),
     clearTempData: () => dispatch(clearTempData()),
+    toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
+    setPassword: () => dispatch(setPassword()),
 });
 
 Home.propTypes = {
@@ -415,6 +475,7 @@ Home.propTypes = {
     tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
     generateAlert: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
+    isTopBarActive: PropTypes.bool.isRequired,
 };
 
 export default translate('home')(connect(mapStateToProps, mapDispatchToProps)(Home));

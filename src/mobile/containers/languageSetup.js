@@ -12,6 +12,7 @@ import {
     TouchableOpacity,
     LayoutAnimation,
     TouchableWithoutFeedback,
+    Keyboard,
     Image,
     ImageBackground,
     StatusBar,
@@ -91,170 +92,183 @@ class LanguageSetup extends Component {
     render() {
         const { t, onboardingComplete } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
-                <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
-                <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
-                    <View style={styles.titleContainer} />
-                </View>
-                <View style={styles.midContainer}>
-                    <View style={{ alignItems: 'center' }}>
-                        <View>
-                            <Text style={styles.dropdownTitle}>{t('language')}</Text>
-                            <View style={styles.dropdownButtonContainer}>
-                                <TouchableWithoutFeedback onPress={event => this.clickLanguage()}>
-                                    <View style={styles.dropdownButton}>
-                                        <Text style={styles.languageSelected}>{this.state.languageSelected}</Text>
-                                        <Triangle
-                                            width={10}
-                                            height={10}
-                                            color={'white'}
-                                            direction={this.state.triangleDirection}
-                                            style={{ marginBottom: height / 80 }}
-                                        />
-                                    </View>
-                                </TouchableWithoutFeedback>
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
+                <ScrollView contentContainerStyle={styles.container} scrollEnabled={false}>
+                    <Image style={styles.helloBackground} source={require('../../shared/images/hello-back.png')} />
+                    <StatusBar barStyle="light-content" />
+                    <View style={styles.topContainer}>
+                        <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                        <View style={styles.titleContainer} />
+                    </View>
+                    <View style={styles.midContainer}>
+                        <View style={{ alignItems: 'center' }}>
+                            <View>
+                                <Text style={styles.dropdownTitle}>{t('language')}</Text>
+                                <View style={styles.dropdownButtonContainer}>
+                                    <TouchableWithoutFeedback onPress={event => this.clickLanguage()}>
+                                        <View style={styles.dropdownButton}>
+                                            <Text numberOfLines={1} style={styles.languageSelected}>
+                                                {this.state.languageSelected}
+                                            </Text>
+                                            <Triangle
+                                                width={10}
+                                                height={10}
+                                                color={'white'}
+                                                direction={this.state.triangleDirection}
+                                                style={{ marginBottom: height / 80 }}
+                                            />
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                </View>
+                            </View>
+                            <View
+                                style={{
+                                    height: this.state.dropdownHeight,
+                                    overflow: 'hidden',
+                                    backgroundColor: 'transparent',
+                                    width: width / 1.5,
+                                    alignItems: 'flex-start',
+                                }}
+                            >
+                                <ScrollView>
+                                    <TouchableOpacity
+                                        onPress={event => this.clickDropdownItem('English (International)')}
+                                    >
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            English (International)
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('عربى - Arabic')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            عربى - Arabic
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Dansk - Danish')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Dansk - Danish
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Deutsch - German')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Deutsch - German
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Ελληνικά - Greek')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Ελληνικά - Greek
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Español - Spanish')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Español - Spanish
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Suomi - Finnish')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Suomi - Finnish
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Français - French')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Français - French
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('עִברִית - Hebrew')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            עִברִית - Hebrew
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('हिंदी - Hindi')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            हिंदी - Hindi
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Italiano - Italian')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Italiano - Italian
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('日本語 - Japanese')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            日本語 - Japanese
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('한국어 - Korean')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            한국어 - Korean
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Nederlands - Dutch')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Nederlands - Dutch
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Norsk - Norwegian')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Norsk - Norwegian
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Polski - Polish')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Polski - Polish
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Português (Brasil)')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Português (Brasil) - Portuguese (Brazil)
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Português (Portugal)')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Português (Portugal) - Portuguese (Portugal)
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Română - Romanian')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Română - Romanian
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Pусский - Russian')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Pусский - Russian
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Svenska - Swedish')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Svenska - Swedish
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Türkçe - Turkish')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Türkçe - Turkish
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={event => this.clickDropdownItem('中文 (简体) - Chinese (Simplified)')}
+                                    >
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            中文 (简体) - Chinese (Simplified)
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={event => this.clickDropdownItem('中文 (繁體) - Chinese (Traditional)')}
+                                    >
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            中文 (繁體) - Chinese (Traditional)
+                                        </Text>
+                                    </TouchableOpacity>
+                                </ScrollView>
                             </View>
                         </View>
-                        <View
-                            style={{
-                                height: this.state.dropdownHeight,
-                                overflow: 'hidden',
-                                backgroundColor: 'transparent',
-                                width: width / 1.5,
-                                alignItems: 'flex-start',
-                            }}
-                        >
-                            <ScrollView>
-                                <TouchableOpacity
-                                    onPress={event => this.clickDropdownItem('English (International)', 'en')}
-                                >
-                                    <Text style={styles.dropdownItem}>English (International)</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('عربى - Arabic', 'ar')}>
-                                    <Text style={styles.dropdownItem}>عربى - Arabic</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Dansk - Danish', 'da')}>
-                                    <Text style={styles.dropdownItem}>Dansk - Danish</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Deutsch - German', 'de')}>
-                                    <Text style={styles.dropdownItem}>Deutsch - German</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Ελληνικά - Greek', 'el')}>
-                                    <Text style={styles.dropdownItem}>Ελληνικά - Greek</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event =>
-                                        this.clickDropdownItem('Español (España) - Spanish (Spain)', 'es_ES')}
-                                >
-                                    <Text style={styles.dropdownItem}>Español (España) - Spanish (Spain)</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event =>
-                                        this.clickDropdownItem(
-                                            'Español (Latinoamérica) - Spanish (Latin America)',
-                                            'es_LA',
-                                        )}
-                                >
-                                    <Text style={styles.dropdownItem}>
-                                        Español (Latinoamérica) - Spanish (Latin America)
-                                    </Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Suomi - Finnish', 'fi')}>
-                                    <Text style={styles.dropdownItem}>Suomi - Finnish</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Français - French', 'fr')}>
-                                    <Text style={styles.dropdownItem}>Français - French</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('עִברִית - Hebrew', 'he')}>
-                                    <Text style={styles.dropdownItem}>עִברִית - Hebrew</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('हिंदी - Hindi', 'hi')}>
-                                    <Text style={styles.dropdownItem}>हिंदी - Hindi</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event => this.clickDropdownItem('Bahasa Indonesia - Indonesian', 'id')}
-                                >
-                                    <Text style={styles.dropdownItem}>Bahasa Indonesia - Indonesian</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Italiano - Italian', 'it')}>
-                                    <Text style={styles.dropdownItem}>Italiano - Italian</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('日本語 - Japanese', 'ja')}>
-                                    <Text style={styles.dropdownItem}>日本語 - Japanese</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('한국어 - Korean', 'ko')}>
-                                    <Text style={styles.dropdownItem}>한국어 - Korean</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Latviešu - Latvian', 'lv')}>
-                                    <Text style={styles.dropdownItem}>Latviešu - Latvian</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Nederlands - Dutch', 'nl')}>
-                                    <Text style={styles.dropdownItem}>Nederlands - Dutch</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Norsk - Norwegian', 'no')}>
-                                    <Text style={styles.dropdownItem}>Norsk - Norwegian</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Polski - Polish', 'pl')}>
-                                    <Text style={styles.dropdownItem}>Polski - Polish</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event => this.clickDropdownItem('Português (Brasil)', 'pt_BR')}
-                                >
-                                    <Text style={styles.dropdownItem}>Português (Brasil) - Portuguese (Brazil)</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event => this.clickDropdownItem('Português (Portugal)', 'pt_PT')}
-                                >
-                                    <Text style={styles.dropdownItem}>
-                                        Português (Portugal) - Portuguese (Portugal)
-                                    </Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Română - Romanian', 'ro')}>
-                                    <Text style={styles.dropdownItem}>Română - Romanian</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Pусский - Russian', 'ru')}>
-                                    <Text style={styles.dropdownItem}>Pусский - Russian</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event => this.clickDropdownItem('Slovenščina - Slovenian', 'sl')}
-                                >
-                                    <Text style={styles.dropdownItem}>Slovenščina - Slovenian</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event => this.clickDropdownItem('Svenska - Swedish', 'sv_SE')}
-                                >
-                                    <Text style={styles.dropdownItem}>Svenska - Swedish</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('Türkçe - Turkish', 'tr')}>
-                                    <Text style={styles.dropdownItem}>Türkçe - Turkish</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={event => this.clickDropdownItem('اردو - Urdu', 'ur')}>
-                                    <Text style={styles.dropdownItem}>اردو - Urdu</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event => this.clickDropdownItem('中文 (简体) - Chinese (Simplified)', 'zh_CN')}
-                                >
-                                    <Text style={styles.dropdownItem}>中文 (简体) - Chinese (Simplified)</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    onPress={event =>
-                                        this.clickDropdownItem('中文 (繁體) - Chinese (Traditional)', 'zh_TW')}
-                                >
-                                    <Text style={styles.dropdownItem}>中文 (繁體) - Chinese (Traditional)</Text>
-                                </TouchableOpacity>
-                            </ScrollView>
-                        </View>
                     </View>
-                </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={event => this.onNextPress()}>
-                        <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>{t('global:next')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                    <View style={styles.bottomContainer}>
+                        <TouchableOpacity onPress={event => this.onNextPress()}>
+                            <View style={styles.nextButton}>
+                                <Text style={styles.nextText}>{t('global:next')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
             </ImageBackground>
         );
     }

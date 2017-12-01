@@ -1,9 +1,19 @@
 import React from 'react';
+import {
+    StyleSheet,
+    View,
+    Text,
+    ListView,
+    Dimensions,
+    StatusBar,
+    Platform,
+    TouchableWithoutFeedback,
+} from 'react-native';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, ListView, Dimensions, StatusBar, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice, setCurrency, setTimeframe } from '../../shared/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
+import { getCurrencySymbol } from '../../shared/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
@@ -54,46 +64,54 @@ class Balance extends React.Component {
             (this.props.account.balance < 1000 || this.getDecimalPlaces(formatValue(this.props.account.balance)) <= 1
                 ? ''
                 : '+');
+        const currencySymbol = getCurrencySymbol(this.props.settings.currency);
+        const fiatBalance =
+            this.props.account.balance * this.props.marketData.usdPrice / 1000000 * this.props.settings.conversionRate;
+
         return (
-            <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.balanceContainer}>
-                    <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
-                        {this.state.balanceIsShort ? shortenedBalance : formatValue(this.props.account.balance)}{' '}
-                        {formatUnit(this.props.account.balance)}
-                    </Text>
-                    <Text style={styles.fiatBalance}>
-                        $ {round(this.props.account.balance * this.props.marketData.usdPrice / 1000000, 2).toFixed(
-                            2,
-                        )}{' '}
-                    </Text>
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
+                <View style={styles.container}>
+                    <StatusBar barStyle="light-content" />
+                    <View style={styles.balanceContainer}>
+                        <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
+                            {this.state.balanceIsShort
+                                ? shortenedBalance
+                                : formatValue(this.props.account.balance)}{' '}
+                            {formatUnit(this.props.account.balance)}
+                        </Text>
+                        <Text style={styles.fiatBalance}>
+                            {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
+                        </Text>
+                    </View>
+                    <View style={styles.transactionsContainer}>
+                        <View style={styles.line} />
+                        <ListView
+                            dataSource={ds.cloneWithRows(
+                                accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
+                            )}
+                            renderRow={dataSource => (
+                                <SimpleTransactionRow addresses={addresses} rowData={dataSource} />
+                            )}
+                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                            enableEmptySections
+                            contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
+                            scrollEnabled={false}
+                            centerContent
+                        />
+                        <View style={styles.line} />
+                    </View>
+                    <View style={styles.chartContainer}>
+                        <Chart
+                            marketData={this.props.marketData}
+                            getPrice={() => this.props.getPrice()}
+                            getChartData={() => this.props.getChartData()}
+                            getMarketData={() => this.props.getMarketData()}
+                            setCurrency={currency => this.props.setCurrency(currency)}
+                            setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
+                        />
+                    </View>
                 </View>
-                <View style={styles.transactionsContainer}>
-                    <View style={styles.line} />
-                    <ListView
-                        dataSource={ds.cloneWithRows(
-                            accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
-                        )}
-                        renderRow={dataSource => <SimpleTransactionRow addresses={addresses} rowData={dataSource} />}
-                        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                        enableEmptySections
-                        contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
-                        scrollEnabled={false}
-                        centerContent
-                    />
-                    <View style={styles.line} />
-                </View>
-                <View style={styles.chartContainer}>
-                    <Chart
-                        marketData={this.props.marketData}
-                        getPrice={() => this.props.getPrice()}
-                        getChartData={() => this.props.getChartData()}
-                        getMarketData={() => this.props.getMarketData()}
-                        setCurrency={currency => this.props.setCurrency(currency)}
-                        setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
-                    />
-                </View>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
@@ -111,6 +129,15 @@ const styles = StyleSheet.create({
         paddingTop: isAndroid ? height / 13 : height / 20,
         paddingBottom: isAndroid ? height / 30 : height / 50,
     },
+    transactionsContainer: {
+        flex: 2.2,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: height / 100,
+    },
+    chartContainer: {
+        flex: 5.3,
+    },
     iotaBalance: {
         color: 'white',
         fontFamily: 'Lato-Heavy',
@@ -124,22 +151,13 @@ const styles = StyleSheet.create({
         fontSize: width / 25,
         backgroundColor: 'transparent',
     },
-    transactionsContainer: {
-        flex: 2.2,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingVertical: height / 100,
-    },
-    chartContainer: {
-        flex: 5.3,
-    },
     line: {
         borderBottomColor: 'white',
-        borderBottomWidth: 0.25,
+        borderBottomWidth: height / 3000,
         width: width / 1.15,
     },
     separator: {
-        height: height / 90,
+        height: height / 120,
         flex: 1,
     },
     listViewAndroid: {
@@ -155,6 +173,7 @@ const mapStateToProps = state => ({
     marketData: state.marketData,
     account: state.account,
     tempAccount: state.tempAccount,
+    settings: state.settings,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -21,7 +21,7 @@ import { setPassword, setUsedSeedToLogin } from '../../shared/actions/tempAccoun
 import { getAccountInfo } from '../../shared/actions/account';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeInKeychain } from '../../shared/libs/cryptography';
+import { storeSeedInKeychain } from '../../shared/libs/cryptography';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -63,7 +63,7 @@ class UseSeed extends React.Component {
             });
             this.props.setUsedSeedToLogin();
             this.props.setPassword('dummy');
-            storeInKeychain(this.props.tempAccount.password, this.state.seed, 'temp');
+            storeSeedInKeychain(this.props.tempAccount.password, this.state.seed, 'temp');
             this.setState({ seed: '' });
         }
     }

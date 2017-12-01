@@ -88,7 +88,7 @@ class SeedReentry extends React.Component {
                                     baseColor="white"
                                     label="Seed"
                                     tintColor="#F7D002"
-                                    autoCapitalize={'none'}
+                                    autoCapitalize={'characters'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically={true}
                                     returnKeyType="done"
@@ -98,6 +98,7 @@ class SeedReentry extends React.Component {
                                         width: width / 1.4,
                                     }}
                                     secureTextEntry={true}
+                                    onSubmitEditing={() => this.onDonePress()}
                                 />
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />

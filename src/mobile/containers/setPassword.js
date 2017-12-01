@@ -13,9 +13,9 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeedName, setOnboardingComplete } from '../../shared/actions/account';
+import { increaseSeedCount, addAccountName, setOnboardingComplete } from '../../shared/actions/account';
 import { clearTempData, clearSeed } from '../../shared/actions/tempAccount';
-import { storeInKeychain } from '../../shared/libs/cryptography';
+import { storeSeedInKeychain, checkKeychainForDuplicates } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
@@ -37,22 +37,34 @@ class SetPassword extends React.Component {
 
     onDonePress() {
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
-            Promise.resolve(
-                storeInKeychain(this.state.password, this.props.tempAccount.seed, this.props.tempAccount.seedName),
-            )
-                .then(this.props.clearTempData())
-                .then(this.props.clearSeed());
-            this.props.setOnboardingComplete(true);
-            this.props.addSeedName(this.props.tempAccount.seedName);
-            this.props.navigator.push({
-                screen: 'onboardingComplete',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                },
-                animated: false,
-                overrideBackPress: true,
-            });
+            checkKeychainForDuplicates(
+                this.state.password,
+                this.props.tempAccount.seed,
+                this.props.tempAccount.seedName,
+                (type, title, message) => dropdown.alertWithType(type, title, message),
+                () =>
+                    ifNoKeychainDuplicates(
+                        this.state.password,
+                        this.props.tempAccount.seed,
+                        this.props.tempAccount.seedName,
+                    ),
+            );
+            ifNoKeychainDuplicates = (password, seed, accountName) => {
+                storeSeedInKeychain(password, seed, accountName), this.props.addAccountName(accountName);
+                this.props.increaseSeedCount();
+                this.props.clearTempData();
+                this.props.clearSeed();
+                this.props.setOnboardingComplete(true);
+                this.props.navigator.push({
+                    screen: 'onboardingComplete',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                    },
+                    animated: false,
+                    overrideBackPress: true,
+                });
+            };
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
                 this.dropdown.alertWithType(
@@ -117,9 +129,7 @@ class SetPassword extends React.Component {
                                 returnKeyType="next"
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
-                                onSubmitEditing={event => {
-                                    this.refs.reentry.focus();
-                                }}
+                                onSubmitEditing={() => this.refs.reentry.focus()}
                                 containerStyle={{
                                     width: width / 1.36,
                                 }}
@@ -143,6 +153,7 @@ class SetPassword extends React.Component {
                                 onChangeText={reentry => this.setState({ reentry })}
                                 containerStyle={{ width: width / 1.36 }}
                                 secureTextEntry={true}
+                                onSubmitEditing={() => this.onDonePress()}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -298,8 +309,8 @@ const mapDispatchToProps = dispatch => ({
     setOnboardingComplete: boolean => {
         dispatch(setOnboardingComplete(boolean));
     },
-    storeInKeychain: password => {
-        dispatch(storeInKeychain(password));
+    storeSeedInKeychain: password => {
+        dispatch(storeSeedInKeychain(password));
     },
     clearTempData: () => {
         dispatch(clearTempData());
@@ -310,8 +321,8 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    addSeedName: newSeed => {
-        dispatch(addSeedName(newSeed));
+    addAccountName: newSeed => {
+        dispatch(addAccountName(newSeed));
     },
 });
 
