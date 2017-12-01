@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import map from 'lodash/map';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     AppState,
@@ -178,6 +179,7 @@ class Home extends Component {
     }
 
     render() {
+        const { t } = this.props;
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
@@ -189,6 +191,7 @@ class Home extends Component {
                     <View style={styles.topContainer} />
                     <View style={styles.midContainer}>
                         <View style={{ flex: 1 }}>{children}</View>
+                        >>>>>>> develop
                     </View>
                     <View style={styles.bottomContainer}>
                         <View style={styles.tabBar}>
@@ -475,4 +478,4 @@ Home.propTypes = {
     isTopBarActive: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default translate('home')(connect(mapStateToProps, mapDispatchToProps)(Home));

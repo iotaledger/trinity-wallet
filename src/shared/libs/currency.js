@@ -1,102 +1,102 @@
 export const getCurrencySymbol = currency => {
-    let symbol = ''
-    switch(currency){
+    let symbol = '';
+    switch (currency) {
         case 'USD':
-            symbol = '$'
+            symbol = '$';
             break;
         case 'GBP':
-            symbol = '£'
+            symbol = '£';
             break;
         case 'EUR':
-            symbol = '€'
+            symbol = '€';
             break;
         case 'AUD':
-            symbol = '$'
+            symbol = '$';
             break;
         case 'BGN':
-            symbol = 'лв'
+            symbol = 'лв';
             break;
         case 'BRL':
-            symbol = 'R$'
+            symbol = 'R$';
             break;
         case 'CAD':
-            symbol = '$'
+            symbol = '$';
             break;
         case 'CHF':
-            symbol = 'CHF'
+            symbol = 'CHF';
             break;
         case 'CNY':
-            symbol = '¥'
+            symbol = '¥';
             break;
         case 'CZK':
-            symbol = 'Kč'
+            symbol = 'Kč';
             break;
         case 'DKK':
-            symbol = 'kr'
+            symbol = 'kr';
             break;
         case 'HKD':
-            symbol = '$'
+            symbol = '$';
             break;
         case 'HRK':
-            symbol = 'kn'
+            symbol = 'kn';
             break;
         case 'HUF':
-            symbol = 'Ft'
+            symbol = 'Ft';
             break;
         case 'IDR':
-            symbol = 'Rp'
+            symbol = 'Rp';
             break;
         case 'ILS':
-            symbol = '₪'
+            symbol = '₪';
             break;
         case 'INR':
-            symbol = '₹'
+            symbol = '₹';
             break;
         case 'JPY':
-            symbol = '¥'
+            symbol = '¥';
             break;
         case 'KRW':
-            symbol = '₩'
+            symbol = '₩';
             break;
         case 'MXN':
-            symbol = '$'
+            symbol = '$';
             break;
         case 'MYR':
-            symbol = 'RM'
+            symbol = 'RM';
             break;
         case 'NOK':
-            symbol = 'kr'
+            symbol = 'kr';
             break;
         case 'NZD':
-            symbol = '$'
+            symbol = '$';
             break;
         case 'PHP':
-            symbol = '₱'
+            symbol = '₱';
             break;
         case 'PLN':
-            symbol = 'zł'
+            symbol = 'zł';
             break;
         case 'RON':
-            symbol = 'RON'
+            symbol = 'RON';
             break;
         case 'RUB':
-            symbol = '₽'
+            symbol = '₽';
             break;
         case 'SEK':
-            symbol = 'kr'
+            symbol = 'kr';
             break;
         case 'SGD':
-            symbol = '$'
+            symbol = '$';
             break;
         case 'THB':
-            symbol = '฿'
+            symbol = '฿';
             break;
         case 'TRY':
-            symbol = '₺'
+            symbol = '₺';
             break;
         case 'ZAR':
-            symbol = 'R'
+            symbol = 'R';
             break;
     }
     return symbol;
-}
+};
