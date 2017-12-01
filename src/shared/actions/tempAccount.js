@@ -115,7 +115,14 @@ export function setSeed(seed) {
 export function clearSeed() {
     return {
         type: 'CLEAR_SEED',
-        payload: '                                                                                 ',
+        payload: Array(82).join(' '),
+    };
+}
+
+export function setSetting(setting) {
+    return {
+        type: 'SET_SETTING',
+        payload: setting,
     };
 }
 
@@ -259,9 +266,9 @@ function getUnspentInputs(seed, start, threshold, inputs, cb) {
 
 export function checkNode() {
     return dispatch => {
-        iota.api.getNodeInfo(error => {
+        iota.api.getNodeInfo((error, success) => {
             if (!error) {
-                dispatch(getAccountInfo(seed));
+                console.log(success);
             } else {
                 console.log(error);
             }
@@ -271,7 +278,8 @@ export function checkNode() {
 
 export function generateNewAddress(seed, seedName, addresses) {
     return dispatch => {
-        const index = size(addresses);
+        let index = 0;
+        size(addresses) == 0 ? (index = 0) : (index = size(addresses) - 1);
         const options = { checksum: true, index };
 
         iota.api.getNewAddress(seed, options, (error, address) => {

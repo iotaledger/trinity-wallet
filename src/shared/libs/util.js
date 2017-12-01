@@ -1,3 +1,8 @@
+import isArray from 'lodash/isArray';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
+import isString from 'lodash/isString';
+
 export const formatValue = value => {
     var negative = false;
     if (value < 0) {
@@ -100,3 +105,40 @@ export const createRandomSeed = (randomBytesFn, length = 81) => {
 };
 
 export const isValidPassword = (password = '') => password.length >= 12;
+
+const _renameObjectKeys = (object, keyMap) =>
+    reduce(
+        object,
+        (result, value, key) => {
+            const k = keyMap[key] || key;
+            result[k] = value;
+            return result;
+        },
+        {},
+    );
+
+const _renameArrayKeys = (list, keyMap) => map(list, object => _renameObjectKeys(object, keyMap));
+
+export const renameKeys = (payload, keyMap) => {
+    if (isArray(payload)) {
+        return _renameArrayKeys(payload, keyMap);
+    }
+
+    return _renameObjectKeys(payload, keyMap);
+};
+
+export const serialize = (data, ...options) => {
+    if (!isString(data)) {
+        return JSON.stringify(data, ...options);
+    }
+
+    return data;
+};
+
+export const parse = data => {
+    try {
+        return JSON.parse(data);
+    } catch (err) {
+        return data;
+    }
+};
