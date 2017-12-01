@@ -11,6 +11,7 @@ import {
     StatusBar,
     Platform,
 } from 'react-native';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
 const width = Dimensions.get('window').width;
@@ -58,7 +59,7 @@ class WalletSetup extends React.Component {
                     <View style={styles.infoTextContainer}>
                         <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
-                            The IOTA seed is like a master key to your account. It is 81 characters long.
+                            {`The IOTA seed is like a master key to your account. It is ${MAX_SEED_LENGTH} characters long.`}
                         </Text>
                         <Text style={styles.infoText}>
                             <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
