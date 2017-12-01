@@ -16,11 +16,11 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, setUsedSeedToLogin } from '../../shared/actions/tempAccount';
-import { getAccountInfo } from '../../shared/actions/account';
+import { setPassword, setUsedSeedToLogin } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeSeedInKeychain } from '../../shared/libs/cryptography';
+import { storeSeedInKeychain } from 'iota-wallet-shared-modules/libs/cryptography';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 
 //import DropdownHolder from './dropdownHolder';
@@ -95,7 +95,7 @@ class UseSeed extends React.Component {
     render() {
         const { seed } = this.state;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -103,7 +103,7 @@ class UseSeed extends React.Component {
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
                                     <Image
-                                        source={require('../../shared/images/iota-glow.png')}
+                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                                         style={styles.iotaLogo}
                                     />
                                 </View>
@@ -136,7 +136,7 @@ class UseSeed extends React.Component {
                                         <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
                                                 <Image
-                                                    source={require('../../shared/images/camera.png')}
+                                                    source={require('iota-wallet-shared-modules/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
                                                 <Text style={styles.qrText}> QR </Text>
