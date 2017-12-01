@@ -31,11 +31,13 @@
         "seedInvalidChars": "Ключ содержит недопустимые символы",
         "seedInvalidCharsExplanation": "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
         "seedTooShort": "Ключ слишком короткий",
-        "seedTooShortExplanation": "Ключ должен быть длиной, как минимум, 61 символ (идеально 81 символ). Ваш текущий ключ имеет длину {seed.length}. Пожалуйста, попробуйте снова.",
+        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
         "nameInUse": "Данный ник уже занят",
         "nameInUseExplanation": "Пожалуйста, используйте уникальный ник для вашего ключа.",
         "enterAccountName": "Введите свой ник.",
-        "accountName": "Ваш ник"
+        "accountName": "Ваш ник",
+        "noNickname": "No account name entered",
+        "noNicknameExplanation": "Please enter an account name for your seed."
     },
     "changePassword": {
         "oops": "Упс! Произошла какая-то ошибка",
@@ -66,8 +68,8 @@
         "invalidCharacters": "Ключ содержит недопустимые символы",
         "invalidCharactersExplanation": "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
         "seedTooShort": "Ключ слишком короткий",
-        "seedTooShortExplanation": "Ключ должен быть длиной, как минимум, 61 символ (идеально 81 символ). Ваш текущий ключ имеет длину {seed.length}. Пожалуйста, попробуйте снова.",
-        "seedExplanation": "Ключ должен быть длиной 81 символ и содержать только заглавные буквы A-Z и цифру 9. Более длинные ключи не допускаются.",
+        "seedTooShortExplanation": "Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
+        "seedExplanation": "Seeds should be ${MAX_SEED_LENGTH} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than ${MAX_SEED_LENGTH} characters.",
         "neverShare": "Никому никогда не сообщайте ваш ключ"
     },
     "home": {
