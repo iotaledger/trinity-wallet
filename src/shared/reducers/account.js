@@ -30,6 +30,19 @@ const account = (
                     },
                 },
             };
+        case 'CHANGE_ACCOUNT_NAME':
+            return {
+                ...state,
+                seedNames: action.accountNames,
+                accountInfo: action.accountInfo,
+            };
+        case 'REMOVE_ACCOUNT':
+            return {
+                ...state,
+                accountInfo: action.accountInfo,
+                seedNames: action.accountNames,
+                seedCount: state.seedCount - 1,
+            };
         case 'UPDATE_ADDRESSES':
             return {
                 ...state,

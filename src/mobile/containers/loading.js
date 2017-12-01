@@ -14,7 +14,9 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import { setBalance, setFirstUse } from '../../shared/actions/account';
+import { setSetting } from '../../shared/actions/tempAccount';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
+import { Navigation } from 'react-native-navigation';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
 
@@ -25,12 +27,31 @@ const logoSpin = require('../logo-spin/logo-spin-glow.html');
 class Loading extends Component {
     componentDidMount() {
         this.props.changeHomeScreenRoute('balance');
+        this.props.setSetting('mainSettings');
+    }
+
+    componentWillReceiveProps(newProps) {
+        const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+        if (ready) {
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'home',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundImageName: 'bg-blue.png',
+                        screenBackgroundColor: '#102e36',
+                    },
+                    overrideBackPress: true,
+                },
+            });
+        }
     }
 
     render() {
         const { tempAccount: { ready }, account: { firstUse }, navigator, t } = this.props;
 
-        if (!ready && this.props.account.firstUse) {
+        if (this.props.account.firstUse) {
             return (
                 <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
@@ -49,15 +70,13 @@ class Loading extends Component {
                     <View style={{ flex: 1 }} />
                 </ImageBackground>
             );
-        } else if (!ready && !this.props.account.firstUse) {
+        } else if (!this.props.account.firstUse) {
             return (
                 <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <IotaSpin duration={3000} />
                 </ImageBackground>
             );
-        } else {
-            return <Home navigator={navigator} />;
         }
     }
 }
@@ -98,6 +117,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setFirstUse(boolean));
     },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
+    setSetting: setting => dispatch(setSetting(setting)),
 });
 
 Loading.propTypes = {

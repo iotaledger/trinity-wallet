@@ -35,7 +35,7 @@ export function increaseSeedCount() {
     };
 }
 
-export function addSeedName(seedName) {
+export function addAccountName(seedName) {
     return {
         type: 'ADD_SEED_NAME',
         seedName: seedName,
@@ -61,9 +61,7 @@ export function getAccountInfoNewSeed(seed, seedName, cb) {
                 // Sort tranfers and add transfer values
                 const transfers = formatTransfers(success.transfers, success.addresses);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
-                Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers))).then(
-                    dispatch(setReady()),
-                );
+                dispatch(setAccountInfo(seedName, addressesWithBalance, transfers));
                 cb(null, success);
             } else {
                 cb(error);
@@ -118,9 +116,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                 } else {
                     cb(null, success);
                     // Set account info, then finish loading
-                    Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
-                        dispatch(setReady()),
-                    );
+                    dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance));
                 }
             } else {
                 cb(error);
@@ -237,12 +233,18 @@ export function setAccountInfo(seedName, addresses, transfers, balance) {
     };
 }
 
-export function updateAccountInfo(seedName, addresses, transfers, balance) {
+export function changeAccountName(accountInfo, accountNames) {
     return {
-        type: 'UPDATE_ACCOUNT_INFO',
-        seedName,
-        addresses,
-        transfers,
-        balance,
+        type: 'CHANGE_ACCOUNT_NAME',
+        accountInfo,
+        accountNames,
+    };
+}
+
+export function removeAccount(accountInfo, accountNames) {
+    return {
+        type: 'REMOVE_ACCOUNT',
+        accountInfo,
+        accountNames,
     };
 }

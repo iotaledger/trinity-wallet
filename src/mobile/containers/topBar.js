@@ -42,6 +42,7 @@ class TopBar extends Component {
         seedNames: PropTypes.array.isRequired,
         accountInfo: PropTypes.object.isRequired,
         seedIndex: PropTypes.number.isRequired,
+        currentSetting: PropTypes.string.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGettingTransfers: PropTypes.bool.isRequired,
@@ -62,6 +63,13 @@ class TopBar extends Component {
 
     componentWillReceiveProps(newProps) {
         if (this.props.childRoute !== newProps.childRoute) {
+            // Detects if navigating across screens
+            if (this.props.isTopBarActive) {
+                // In case the dropdown is active
+                this.props.toggleTopBarDisplay();
+            }
+        }
+        if (this.props.currentSetting !== newProps.currentSetting) {
             // Detects if navigating across screens
             if (this.props.isTopBarActive) {
                 // In case the dropdown is active
@@ -105,7 +113,9 @@ class TopBar extends Component {
             <View style={styles.titleWrapper}>
                 <TouchableWithoutFeedback onPress={() => this.props.toggleTopBarDisplay()}>
                     <View>
-                        <Text style={styles.mainTitle}>{selectedTitle}</Text>
+                        <Text numberOfLines={1} style={styles.mainTitle}>
+                            {selectedTitle}
+                        </Text>
                         <Text style={styles.subtitle}>{selectedSubtitle}</Text>
                     </View>
                 </TouchableWithoutFeedback>
@@ -128,7 +138,9 @@ class TopBar extends Component {
                     key={idx}
                     style={{ width: width, alignItems: 'center' }}
                 >
-                    <Text style={styles.mainTitle}>{t.title}</Text>
+                    <Text numberOfLines={1} style={styles.mainTitle}>
+                        {t.title}
+                    </Text>
                     <Text style={styles.subtitle}>{t.subtitle}</Text>
                 </TouchableOpacity>
             );
@@ -260,12 +272,14 @@ const styles = StyleSheet.create({
         fontSize: width / 24.4,
         color: '#ffffff',
         paddingBottom: height / 170,
+        paddingHorizontal: width / 9,
     },
     subtitle: {
         textAlign: 'center',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
         color: '#d3d3d3',
+        paddingHorizontal: width / 9,
     },
     centralView: {
         alignItems: 'center',
@@ -279,24 +293,24 @@ const styles = StyleSheet.create({
         width: width / 20,
         position: 'absolute',
         top: 0,
-        right: width / 20
+        right: width / 20,
     },
     separator: {
         width: width / 2,
         marginVertical: height / 60,
         height: 1,
-        borderBottomWidth: 0.25,
+        borderBottomWidth: height / 3000,
         borderBottomColor: 'white',
     },
     topSeparator: {
         width: width,
         marginVertical: height / 60,
         height: 1,
-        borderBottomWidth: 0.25,
+        borderBottomWidth: height / 3000,
         borderBottomColor: 'white',
     },
     scrollViewContainer: {
-        maxHeight: height
+        maxHeight: height,
     },
 });
 
@@ -304,6 +318,7 @@ const mapStateToProps = state => ({
     seedNames: state.account.seedNames,
     balance: state.account.balance,
     accountInfo: state.account.accountInfo,
+    currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
