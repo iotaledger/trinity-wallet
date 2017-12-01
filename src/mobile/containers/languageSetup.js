@@ -13,6 +13,7 @@ import {
     ImageBackground,
     StatusBar,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import setFirstUse from '../../shared/actions/account.js';
@@ -94,7 +95,7 @@ class LanguageSetup extends React.Component {
                     <View style={styles.midContainer}>
                         <View style={{ alignItems: 'center' }}>
                             <View>
-                                <Text style={styles.dropdownTitle}>Language</Text>
+                                <Text style={styles.dropdownTitle}>{t('language')}</Text>
                                 <View style={styles.dropdownButtonContainer}>
                                     <TouchableWithoutFeedback onPress={event => this.clickLanguage()}>
                                         <View style={styles.dropdownButton}>
@@ -149,9 +150,19 @@ class LanguageSetup extends React.Component {
                                             Ελληνικά - Greek
                                         </Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Español - Spanish')}>
+                                    <TouchableOpacity
+                                        onPress={event => this.clickDropdownItem('Español (España) - Spanish (Spain)')}
+                                    >
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
-                                            Español - Spanish
+                                            Español (España) - Spanish (Spain)
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={event =>
+                                            this.clickDropdownItem('Español (Latinoamérica) - Spanish (Latin America)')}
+                                    >
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Español (Latinoamérica) - Spanish (Latin America)
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={event => this.clickDropdownItem('Suomi - Finnish')}>
@@ -174,6 +185,13 @@ class LanguageSetup extends React.Component {
                                             हिंदी - Hindi
                                         </Text>
                                     </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={event => this.clickDropdownItem('Bahasa Indonesia - Indonesian')}
+                                    >
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Bahasa Indonesia - Indonesian
+                                        </Text>
+                                    </TouchableOpacity>
                                     <TouchableOpacity onPress={event => this.clickDropdownItem('Italiano - Italian')}>
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             Italiano - Italian
@@ -187,6 +205,11 @@ class LanguageSetup extends React.Component {
                                     <TouchableOpacity onPress={event => this.clickDropdownItem('한국어 - Korean')}>
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             한국어 - Korean
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('Latviešu - Latvian')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Latviešu - Latvian
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={event => this.clickDropdownItem('Nederlands - Dutch')}>
@@ -224,6 +247,13 @@ class LanguageSetup extends React.Component {
                                             Pусский - Russian
                                         </Text>
                                     </TouchableOpacity>
+                                    <TouchableOpacity
+                                        onPress={event => this.clickDropdownItem('Slovenščina - Slovenian')}
+                                    >
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            Slovenščina - Slovenian
+                                        </Text>
+                                    </TouchableOpacity>
                                     <TouchableOpacity onPress={event => this.clickDropdownItem('Svenska - Swedish')}>
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             Svenska - Swedish
@@ -232,6 +262,11 @@ class LanguageSetup extends React.Component {
                                     <TouchableOpacity onPress={event => this.clickDropdownItem('Türkçe - Turkish')}>
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             Türkçe - Turkish
+                                        </Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={event => this.clickDropdownItem('اردو - Urdu')}>
+                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                            اردو - Urdu
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
@@ -255,7 +290,7 @@ class LanguageSetup extends React.Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.onNextPress()}>
                             <View style={styles.nextButton}>
-                                <Text style={styles.nextText}>NEXT</Text>
+                                <Text style={styles.nextText}>{t('global:next')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -363,4 +398,4 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({});
 
-export default connect(mapStateToProps)(LanguageSetup);
+export default translate(['languageSetup', 'global'])(connect(mapStateToProps)(LanguageSetup));
