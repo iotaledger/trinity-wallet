@@ -22,6 +22,7 @@
     "events": "^1.1.1",
     "https-browserify": "0.0.1",
     "i18next": "^10.1.0",
+    "i18next-browser-languagedetector": "^2.1.0",
     "inherits": "^2.0.3",
     "iota.lib.js": "git+https://github.com/aquadestructor/iota.lib.js.git#269197a",
     "lodash": "^4.17.4",
