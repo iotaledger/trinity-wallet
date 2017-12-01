@@ -46,19 +46,19 @@ class AddAdditionalSeed extends React.Component {
 
     getDefaultSeedName() {
         if (this.props.account.seedCount == 0) {
-            return t('global.mainWallet');
+            return t('global:mainWallet');
         } else if (this.props.account.seedCount == 1) {
-            return t('global.secondWallet');
+            return t('global:secondWallet');
         } else if (this.props.account.seedCount == 2) {
-            return t('global.thirdWallet');
+            return t('global:thirdWallet');
         } else if (this.props.account.seedCount == 3) {
-            return t('global.fourthWallet');
+            return t('global:fourthWallet');
         } else if (this.props.account.seedCount == 4) {
-            return t('global.fifthWallet');
+            return t('global:fifthWallet');
         } else if (this.props.account.seedCount == 5) {
-            return t('global.sixthWallet');
+            return t('global:sixthWallet');
         } else if (this.props.account.seedCount == 6) {
-            return t('global.otherWallet');
+            return t('global:otherWallet');
         }
     }
 
@@ -112,7 +112,7 @@ class AddAdditionalSeed extends React.Component {
         this.props.navigator.pop({
             animated: false,
         });
-        this.dropdown.alertWithType('error', t('global.invalidResponse'), t('global.invalidResponseExplanation'));
+        this.dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
         this.props.setFirstUse(false);
     }
 
@@ -164,7 +164,7 @@ class AddAdditionalSeed extends React.Component {
                             </View>
                             <View style={styles.midContainer}>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>{t('global.enterSeed')}</Text>
+                                    <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                 </View>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.textFieldContainer}>
@@ -177,7 +177,7 @@ class AddAdditionalSeed extends React.Component {
                                             baseColor="white"
                                             tintColor="#F7D002"
                                             enablesReturnKeyAutomatically={true}
-                                            label={t('global.seed')}
+                                            label={t('global:seed')}
                                             autoCapitalize="characters"
                                             autoCorrect={false}
                                             value={seed}
@@ -193,7 +193,7 @@ class AddAdditionalSeed extends React.Component {
                                                     source={require('../../shared/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
-                                                <Text style={styles.qrText}> {t('global.qr')} </Text>
+                                                <Text style={styles.qrText}> {t('global:qr')} </Text>
                                             </View>
                                         </TouchableOpacity>
                                     </View>
@@ -436,4 +436,6 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default translate(connect(mapStateToProps, mapDispatchToProps)(AddAdditionalSeed));
+export default translate(['addAdditionalSeed', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(AddAdditionalSeed),
+);

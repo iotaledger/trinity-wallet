@@ -26,7 +26,6 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 const width = Dimensions.get('window').width;
 const height = global.height;
 const isAndroid = Platform.OS === 'android';
-
 const StatusBarDefaultBarStyle = 'light-content';
 
 class EnterSeed extends React.Component {
@@ -45,6 +44,7 @@ class EnterSeed extends React.Component {
     };
 
     onDonePress() {
+        const { t } = this.props;
         if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
             this.dropdown.alertWithType('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         } else if (this.state.seed.length < 81) {
@@ -86,7 +86,7 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
-
+        const { t } = this.props;
         return (
             <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -101,7 +101,7 @@ class EnterSeed extends React.Component {
                                     />
                                 </View>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text> //TODO: add new string
+                                    <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
@@ -118,7 +118,7 @@ class EnterSeed extends React.Component {
                                             enablesReturnKeyAutomatically={true}
                                             returnKeyType={'done'}
                                             autoCapitalize={'characters'}
-                                            label={'Seed'}
+                                            label={t('global:seed')}
                                             autoCorrect={false}
                                             value={seed}
                                             maxLength={81}
@@ -135,7 +135,7 @@ class EnterSeed extends React.Component {
                                                     source={require('../../shared/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
-                                                <Text style={styles.qrText}> QR </Text> // TODO: New string
+                                                <Text style={styles.qrText}>{t('global:qr')}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     </View>
@@ -144,14 +144,14 @@ class EnterSeed extends React.Component {
                             <View style={styles.bottomContainer}>
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                    <Text style={styles.infoText}>{t('seed_explanation')}</Text>
-                                    <Text style={styles.warningText}>{t('reminder')}</Text>
+                                    <Text style={styles.infoText}>{t('seedExplanation')}</Text>
+                                    <Text style={styles.warningText}>{t('neverShare')}</Text>
                                 </View>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
-                                    leftText={t('button2')}
-                                    rightText={t('button1')}
+                                    leftText={t('global:back')}
+                                    rightText={t('global:next')}
                                 />
                             </View>
                         </View>
@@ -337,4 +337,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default translate('enterSeed')(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));
+export default translate(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));
