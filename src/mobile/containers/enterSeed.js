@@ -48,9 +48,13 @@ class EnterSeed extends React.Component {
         const { t } = this.props;
         if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
             this.dropdown.alertWithType('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
-        } else if (this.state.seed.length < 81) {
-            this.dropdown.alertWithType('error', t('seedTooShort'), t('seedTooShortExplanation'));
-        } else if (this.state.seed.length == 81) {
+        } else if (this.state.seed.length < MAX_SEED_LENGTH) {
+            this.dropdown.alertWithType(
+                'error',
+                t('seedTooShort'),
+                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: this.state.seed.length }),
+            );
+        } else if (this.state.seed.length == MAX_SEED_LENGTH) {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
