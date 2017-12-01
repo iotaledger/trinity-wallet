@@ -17,6 +17,8 @@ import { RNPrint } from 'NativeModules';
 import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from '../../shared/libs/html.js';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+
 const isAndroid = Platform.OS === 'android';
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -108,7 +110,7 @@ class PaperWallet extends React.Component {
             <tr>
                 <td>${this.props.tempAccount.seed.substring(72, 75)}</td>
                 <td>${this.props.tempAccount.seed.substring(75, 78)}</td>
-                <td>${this.props.tempAccount.seed.substring(78, 81)}</td>
+                <td>${this.props.tempAccount.seed.substring(78, MAX_SEED_LENGTH)}</td>
             </tr>
         </table>
         </div>
@@ -309,7 +311,7 @@ class PaperWallet extends React.Component {
                                             {this.props.tempAccount.seed.substring(66, 69)}
                                         </Text>
                                         <Text style={styles.seedBoxTextLeft}>
-                                            {this.props.tempAccount.seed.substring(78, 81)}
+                                            {this.props.tempAccount.seed.substring(78, MAX_SEED_LENGTH)}
                                         </Text>
                                     </View>
                                     <View>

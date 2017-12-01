@@ -4,6 +4,7 @@ import { iota } from '../libs/iota';
 import { updateAddresses, addPendingTransfer } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
 import { formatSentTransaction } from '../libs/accountUtils';
+import { MAX_SEED_LENGTH } from '../libs/util';
 
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
@@ -285,7 +286,7 @@ export function generateNewAddress(seed, seedName, addresses) {
         iota.api.getNewAddress(seed, options, (error, address) => {
             if (!error) {
                 const updatedAddresses = cloneDeep(addresses);
-                const addressNoChecksum = address.substring(0, 81);
+                const addressNoChecksum = address.substring(0, MAX_SEED_LENGTH);
                 // In case the newly created address is not part of the addresses object
                 // Add that as a key with a 0 balance.
                 if (!(addressNoChecksum in addresses)) {
@@ -372,7 +373,7 @@ export function checkForNewAddress(seedName, addressesWithBalance, txArray) {
             const changeAddress = txArray[txArray.length - 1].address;
             const addresses = Object.keys(addressesWithBalance);
             // Remove checksum
-            const addressNoChecksum = changeAddress.substring(0, 81);
+            const addressNoChecksum = changeAddress.substring(0, MAX_SEED_LENGTH);
             // If current addresses does not include change address, add new address and balance
             if (!addresses.includes(addressNoChecksum)) {
                 addressesWithBalance[addressNoChecksum] = 0;
@@ -393,7 +394,7 @@ export function randomiseSeed(randomBytesFn) {
         randomBytesFn(100, (error, bytes) => {
             if (!error) {
                 Object.keys(bytes).forEach(key => {
-                    if (bytes[key] < 243 && seed.length < 81) {
+                    if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
                         const randomNumber = bytes[key] % 27;
                         const randomLetter = charset.charAt(randomNumber);
                         seed += randomLetter;

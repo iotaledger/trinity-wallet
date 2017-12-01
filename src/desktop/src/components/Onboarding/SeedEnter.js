@@ -7,6 +7,7 @@ import { isValidSeed } from '../../../../shared/libs/util';
 import { showError } from 'actions/notifications';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
+import { MAX_SEED_LENGTH } from 'libs/util';
 import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
@@ -40,7 +41,7 @@ class SeedEnter extends React.PureComponent {
     };
 
     getPaddedSeed = seed => {
-        return `${seed}${'9'.repeat(81 - seed.length < 0 ? 0 : 81 - seed.length)}`;
+        return `${seed}${'9'.repeat(MAX_SEED_LENGTH - seed.length < 0 ? 0 : MAX_SEED_LENGTH - seed.length)}`;
     };
 
     openScanner = () => {
@@ -98,10 +99,12 @@ class SeedEnter extends React.PureComponent {
                             placeholder={t('placeholder')}
                             value={seed}
                             onChange={this.onChange}
-                            maxLength={81}
+                            maxLength={MAX_SEED_LENGTH}
                             rows={6}
                         />
-                        <p>{seed.length}/81</p>
+                        <p>
+                            {seed.length}/{MAX_SEED_LENGTH}
+                        </p>
                     </div>
                     {/* TODO: prettier fucks this whole part up. maybe we can find a better solution here */}
                     {!showScanner && (
