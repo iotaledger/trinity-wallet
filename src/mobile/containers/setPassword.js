@@ -13,9 +13,9 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addAccountName, setOnboardingComplete } from '../../shared/actions/account';
-import { clearTempData, clearSeed } from '../../shared/actions/tempAccount';
-import { storeSeedInKeychain, checkKeychainForDuplicates } from '../../shared/libs/cryptography';
+import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
+import { clearTempData, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { storeSeedInKeychain, checkKeychainForDuplicates } from 'iota-wallet-shared-modules/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
@@ -93,19 +93,25 @@ class SetPassword extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                                style={styles.iotaLogo}
+                            />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.greetingText}>Now we need to set up a password.</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
                             <View style={styles.infoTextContainer}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/info.png')}
+                                    style={styles.infoIcon}
+                                />
                                 <Text style={styles.infoText}>
                                     An encrypted copy of your seed will be stored on your device. You will use this
                                     password to access your wallet in future.
