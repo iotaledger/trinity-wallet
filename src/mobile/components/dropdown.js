@@ -107,7 +107,7 @@ class Dropdown extends Component {
     }
 
     render() {
-        const { options, title } = this.props;
+        const { options, title, dropdownWidth } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
         const dropdownHeight = isDropdownOpen ? height / 3.2 : 0;
@@ -119,7 +119,7 @@ class Dropdown extends Component {
                     <Text style={styles.dropdownTitle}>{title}</Text>
                     <View style={styles.dropdownButtonContainer}>
                         <TouchableWithoutFeedback onPress={() => this.onDropdownTitlePress()}>
-                            <View style={styles.dropdownButton}>
+                            <View style={[styles.dropdownButton, dropdownWidth]}>
                                 <Text numberOfLines={1} style={styles.selected}>
                                     {selectedOption}
                                 </Text>
@@ -134,14 +134,13 @@ class Dropdown extends Component {
                         </TouchableWithoutFeedback>
                     </View>
                     <View
-                        style={{
+                        style={[{
                             height: dropdownHeight,
-                            width: width / 3,
                             overflow: 'hidden',
                             backgroundColor: 'transparent',
                             alignItems: 'flex-start',
                             justifyContent: 'flex-start',
-                        }}
+                        }, dropdownWidth]}
                     >
                         <ListView
                             dataSource={ds.cloneWithRows(options)}
@@ -158,7 +157,7 @@ class Dropdown extends Component {
                                             justifyContent: 'center',
                                         }}
                                     >
-                                        <Text numberOfLines={1} style={styles.dropdownItem}>
+                                        <Text numberOfLines={1} style={[styles.dropdownItem, dropdownWidth]}>
                                             {rowData}
                                         </Text>
                                     </View>
