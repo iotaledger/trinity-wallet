@@ -3,6 +3,8 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import isString from 'lodash/isString';
 
+export const MAX_SEED_LENGTH = 81;
+
 export const formatValue = value => {
     var negative = false;
     if (value < 0) {
@@ -74,7 +76,7 @@ export const isValidServerAddress = server => {
     return true;
 };
 
-export const isValidSeed = seed => /^[A-Z9]{81}$/.test(seed);
+export const isValidSeed = seed => /^[A-Z9]{MAX_SEED_LENGTH}$/.test(seed);
 
 export const guid = () => {
     const s4 = () =>
@@ -84,13 +86,13 @@ export const guid = () => {
     return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
 };
 
-export const createRandomSeed = (randomBytesFn, length = 81) => {
+export const createRandomSeed = (randomBytesFn, length = MAX_SEED_LENGTH) => {
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
     const bytes = randomBytesFn(100);
     let seed = '';
 
-    if (length > 81 || length < 1) {
-        length = 81;
+    if (length > MAX_SEED_LENGTH || length < 1) {
+        length = MAX_SEED_LENGTH;
     }
 
     Object.keys(bytes).forEach(key => {

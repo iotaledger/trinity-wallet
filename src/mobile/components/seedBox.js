@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet, Dimensions } from 'react-native';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
 
 const width = Dimensions.get('window').width;
@@ -77,7 +78,7 @@ class SeedBox extends React.Component {
                             {this.props.seed.substring(66, 69)}
                         </TextWithLetterSpacing>
                         <TextWithLetterSpacing spacing={8} textStyle={styles.seedBoxTextLeft}>
-                            {this.props.seed.substring(78, 81)}
+                            {this.props.seed.substring(78, MAX_SEED_LENGTH)}
                         </TextWithLetterSpacing>
                     </View>
                     <View style={{ marginRight: width / 30 }}>
