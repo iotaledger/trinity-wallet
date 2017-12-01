@@ -1,5 +1,6 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
@@ -108,6 +109,8 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
