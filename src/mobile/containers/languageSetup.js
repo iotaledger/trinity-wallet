@@ -17,6 +17,7 @@ import { translate } from 'react-i18next';
 import i18next from 'i18next';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
+import { I18N_LOCALE_LABELS } from 'iota-wallet-shared-modules/i18next'
 import setFirstUse from 'iota-wallet-shared-modules/actions/account.js';
 import { detectLocale, selectLocale } from '../components/locale';
 import locale from 'react-native-locale-detector';
