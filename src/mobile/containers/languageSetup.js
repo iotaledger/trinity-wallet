@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import i18next from 'i18next';
