@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 import Triangle from 'react-native-triangle';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+const { width } = Dimensions.get('window');
+const { height } = global;
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const CustomLayoutSpring = {
