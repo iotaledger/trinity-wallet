@@ -13,7 +13,7 @@ import {
     ImageBackground,
     StatusBar,
 } from 'react-native';
-import { translate } from 'react-i18next';
+// import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import setFirstUse from '../../shared/actions/account.js';
@@ -95,7 +95,7 @@ class LanguageSetup extends React.Component {
                     <View style={styles.midContainer}>
                         <View style={{ alignItems: 'center' }}>
                             <View>
-                                <Text style={styles.dropdownTitle}>{t('language')}</Text>
+                                <Text style={styles.dropdownTitle}>Language</Text>
                                 <View style={styles.dropdownButtonContainer}>
                                     <TouchableWithoutFeedback onPress={event => this.clickLanguage()}>
                                         <View style={styles.dropdownButton}>
@@ -290,7 +290,7 @@ class LanguageSetup extends React.Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.onNextPress()}>
                             <View style={styles.nextButton}>
-                                <Text style={styles.nextText}>{t('global:next')}</Text>
+                                <Text style={styles.nextText}>NEXT</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -398,4 +398,4 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({});
 
-export default translate(['languageSetup', 'global'])(connect(mapStateToProps)(LanguageSetup));
+export default connect(mapStateToProps)(LanguageSetup);
