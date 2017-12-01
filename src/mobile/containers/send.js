@@ -347,6 +347,7 @@ class Send extends Component {
                         <View style={styles.fieldContainer}>
                             <View style={styles.textFieldContainer}>
                                 <TextField
+                                    ref="address"
                                     autoCapitalize={"characters"}
                                     style={styles.textField}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
@@ -443,7 +444,14 @@ class Send extends Component {
                     <View style={styles.midContainer}>
                         {!this.props.tempAccount.isSendingTransfer && (
                             <View style={styles.sendIOTAButtonContainer}>
-                                <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
+                                <TouchableOpacity onPress={event =>
+                                    {
+                                    this.setModalContent('transferConfirmation');
+                                    this.refs.address.blur();
+                                    this.refs.amount.blur();
+                                    this.refs.message.blur();
+                                    }
+                                }>
                                     <View style={styles.sendIOTAButton}>
                                         <Text style={styles.sendIOTAText}>SEND</Text>
                                     </View>
