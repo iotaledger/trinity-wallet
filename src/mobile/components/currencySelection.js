@@ -65,7 +65,7 @@ class CurrencySelection extends Component {
     }
 
     render() {
-        const { currency, currencies, backPress, saveCurrencySelection } = this.props;
+        const { currency, currencies, backPress } = this.props;
         return (
             <TouchableWithoutFeedback onPress={() => this.dropdown.closeDropdown()}>
                 <View style={styles.container}>
@@ -76,7 +76,6 @@ class CurrencySelection extends Component {
                         title="Currency"
                         options={currencies}
                         defaultOption={currency}
-                        saveSelection={option => this.saveCurrencySelection(option)}
                         dropdownWidth={styles.dropdownWidth}
                     />
                     <View style={styles.bottomContainer}>
@@ -86,7 +85,7 @@ class CurrencySelection extends Component {
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => saveCurrencySelection()}>
+                        <TouchableOpacity onPress={() => this.saveCurrencySelection(this.dropdown.getSelected())}>
                             <View style={styles.itemRight}>
                                 <Image source={require('iota-wallet-shared-modules/images/tick.png')} style={styles.icon} />
                                 <Text style={styles.titleText}>Save</Text>
