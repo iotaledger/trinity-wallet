@@ -31,11 +31,13 @@
         "seedInvalidChars": "Seed contains invalid characters",
         "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
+        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
         "nameInUse": "Account name already in use",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
         "enterAccountName": "Enter an account name.",
-        "accountName": "Account name"
+        "accountName": "Account name",
+        "noNickname": "No account name entered",
+        "noNicknameExplanation": "Please enter an account name for your seed."
     },
     "changePassword": {
         "oops": "Oops! Something went wrong",
@@ -66,8 +68,8 @@
         "invalidCharacters": "Seed contains invalid characters",
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently {seed.length} characters long. Please try again.",
-        "seedExplanation": "씨드는 81자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. 81자 이상의 씨드는 사용할 수 없습니다.",
+        "seedTooShortExplanation": "Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
+        "seedExplanation": "Seeds should be ${MAX_SEED_LENGTH} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than ${MAX_SEED_LENGTH} characters.",
         "neverShare": "다른 이와 절대로 씨드를 공유하지 마십시오."
     },
     "home": {
