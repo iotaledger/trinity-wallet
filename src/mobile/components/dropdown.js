@@ -99,7 +99,9 @@ class Dropdown extends Component {
     }
 
     saveSelection() {
-        this.props.saveSelection(this.state.selectedOption);
+        const { saveSelection } = this.props
+        if (!saveSelection) return
+        saveSelection(this.state.selectedOption);
     }
 
     closeDropdown() {
