@@ -24,7 +24,7 @@ import {
     removeLastSeed,
     checkKeychainForDuplicates,
 } from '../../shared/libs/cryptography';
-import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
+import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 const width = Dimensions.get('window').width;
@@ -93,7 +93,7 @@ class SetSeedName extends React.Component {
                         animated: false,
                         overrideBackPress: true,
                     });
-                    this.props.getAccountInfoNewSeed(seed, accountName, (error, success) => {
+                    this.props.getFullAccountInfo(seed, accountName, (error, success) => {
                         if (error) {
                             onNodeError();
                         } else {
@@ -349,8 +349,8 @@ const mapDispatchToProps = dispatch => ({
     addAccountName: newSeed => {
         dispatch(addAccountName(newSeed));
     },
-    getAccountInfoNewSeed: (seed, accountName, cb) => {
-        dispatch(getAccountInfoNewSeed(seed, accountName, cb));
+    getFullAccountInfo: (seed, accountName, cb) => {
+        dispatch(getFullAccountInfo(seed, accountName, cb));
     },
 });
 

@@ -176,6 +176,11 @@ class Send extends Component {
     }
 
     sendTransfer() {
+        const dropdown = DropdownHolder.getDropdown();
+        if(this.props.tempAccount.isSyncing){
+            dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
+            return;
+        }
         sentDenomination = this.state.denomination;
 
         const accountInfo = this.props.account.accountInfo;

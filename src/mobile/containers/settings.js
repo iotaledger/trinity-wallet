@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearTempData, setPassword, setSetting, setSeedIndex, setReady } from '../../shared/actions/tempAccount';
+import { clearTempData, setPassword, setSetting, setSeedIndex, setReady, manualSyncRequest, manualSyncComplete } from '../../shared/actions/tempAccount';
 import {
     setFirstUse,
-    getAccountInfoNewSeed,
+    getFullAccountInfo,
     increaseSeedCount,
     addAccountName,
     changeAccountName,
@@ -22,6 +22,7 @@ import ChangePassword from '../components/changePassword';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import ViewSeed from '../components/viewSeed.js';
 import ViewAddresses from '../components/viewAddresses.js';
+import ManualSync from '../components/manualSync.js'
 import DeleteAccount from '../components/deleteAccount.js';
 import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
@@ -35,6 +36,7 @@ import {
     deleteSeed,
     deleteFromKeyChain,
     replaceKeychainValue,
+    getSeed
 } from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -147,9 +149,16 @@ class Settings extends React.Component {
                                 </View>
                             </TouchableOpacity>
                             <View style={styles.separator} />
+                            <TouchableOpacity onPress={event => this.props.setSetting('manualSync')}>
+                                <View style={styles.item}>
+                                    <Image source={require('../../shared/images/sync.png')} style={styles.icon} />
+                                    <Text style={styles.titleText}>Manual sync</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <View style={styles.separator} />
                             <TouchableOpacity onPress={event => this.onResetWalletPress()}>
                                 <View style={styles.item}>
-                                    <Image source={require('../../shared/images/reset.png')} style={styles.icon} />
+                                    <Image source={require('../../shared/images/cross.png')} style={styles.icon} />
                                     <Text style={styles.titleText}>Reset Wallet</Text>
                                 </View>
                             </TouchableOpacity>
@@ -303,8 +312,52 @@ class Settings extends React.Component {
                     />
                 );
                 break;
+            case 'manualSync':
+                return (
+                    <ManualSync
+                        onManualSyncPress={() => this.onManualSyncPress()}
+                        backPress={() => this.props.setSetting('advancedSettings')}
+                        isSyncing={this.props.tempAccount.isSyncing}
+                    />
+                );
+                break;
         }
     };
+
+    onManualSyncPress(){
+        const dropdown = DropdownHolder.getDropdown();
+        this.props.manualSyncRequest();
+        getFromKeychain(this.props.tempAccount.password, value => {
+            if (typeof value != 'undefined' && value != null) {
+                const seedIndex = this.props.tempAccount.seedIndex;
+                const accountName = this.props.account.seedNames[seedIndex];
+                const seed = getSeed(value, seedIndex);
+                this.props.getFullAccountInfo(seed, accountName, (error, success) => {
+                    if (error) {
+                        onNodeError(dropdown);
+                    } else {
+                        onNodeSuccess(dropdown);
+                    }
+                });
+            } else {
+                error(dropdown);
+            }
+        });
+
+        onNodeError = (dropdown) => {
+            this.props.manualSyncComplete();
+            dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        };
+
+        onNodeSuccess = (dropdown) => {
+            this.props.manualSyncComplete();
+            dropdown.alertWithType('success', 'Syncing complete', `Your account has synced successfully.`);
+        };
+
+        error = (dropdown) => {
+            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+        };
+    }
 
     //UseExistingSeed method
     addExistingSeed(seed, accountName) {
@@ -345,7 +398,7 @@ class Settings extends React.Component {
                     animated: false,
                     overrideBackPress: true,
                 });
-                this.props.getAccountInfoNewSeed(seed, accountName, (error, success) => {
+                this.props.getFullAccountInfo(seed, accountName, (error, success) => {
                     if (error) {
                         onNodeError();
                     } else {
@@ -682,7 +735,7 @@ const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
     clearTempData: () => dispatch(clearTempData()),
     setFirstUse: boolean => dispatch(setFirstUse(boolean)),
-    getAccountInfoNewSeed: (seed, seedName, cb) => dispatch(getAccountInfoNewSeed(seed, seedName, cb)),
+    getFullAccountInfo: (seed, seedName, cb) => dispatch(getFullAccountInfo(seed, seedName, cb)),
     increaseSeedCount: () => dispatch(increaseSeedCount()),
     addAccountName: seedName => dispatch(addAccountName(seedName)),
     setSetting: setting => dispatch(setSetting(setting)),
@@ -694,6 +747,8 @@ const mapDispatchToProps = dispatch => ({
     getCurrencyData: currency => dispatch(getCurrencyData(currency)),
     setPassword: password => dispatch(setPassword(password)),
     setReady: () => dispatch(setReady()),
+    manualSyncRequest: () => dispatch(manualSyncRequest()),
+    manualSyncComplete: () => dispatch(manualSyncComplete()),
 });
 
 const mapStateToProps = state => ({
