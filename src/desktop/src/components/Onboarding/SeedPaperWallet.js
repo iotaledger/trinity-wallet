@@ -4,6 +4,7 @@ import QRCode from 'qrcode.react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
+import { MAX_SEED_LENGTH } from 'libs/util';
 import Template, { Main, Footer } from './Template';
 import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
@@ -28,7 +29,8 @@ class SeedPaperWallet extends PureComponent {
                         <div className={css.innerWrapper}>
                             <BoxedSeed t={t} seed={seed} color="black" size="small" />
                             <div className={css.midWrapper}>
-                                <span>Your seed is 81 characters long. Please read from left to right.</span>
+                                <span
+                                >{`Your seed is ${MAX_SEED_LENGTH} characters long. Please read from left to right.`}</span>
                             </div>
                             <div className={css.qrCodeWrapper}>
                                 <QRCode value={seed} />
