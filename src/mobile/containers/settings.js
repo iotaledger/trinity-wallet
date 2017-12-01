@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
@@ -543,8 +544,17 @@ class Settings extends React.Component {
     }
 
     onLanguagePress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        this.props.navigator.push({
+            screen: 'languageSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+            overrideBackPress: true,
+        });
     }
 
     on2FASetupPress() {
@@ -620,6 +630,8 @@ class Settings extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />

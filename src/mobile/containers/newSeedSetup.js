@@ -1,5 +1,6 @@
 import split from 'lodash/split';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -156,7 +157,7 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { tempAccount: { seed } } = this.props;
+        const { tempAccount: { seed }, t } = this.props;
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />

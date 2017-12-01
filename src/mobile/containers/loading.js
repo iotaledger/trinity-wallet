@@ -10,6 +10,7 @@ import {
     Text,
     ActivityIndicator,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
@@ -48,7 +49,7 @@ class Loading extends Component {
     }
 
     render() {
-        const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
+        const { tempAccount: { ready }, account: { firstUse }, navigator, t } = this.props;
 
         if (this.props.account.firstUse) {
             return (
@@ -59,9 +60,9 @@ class Loading extends Component {
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={styles.infoText}>Loading seed for the first time.</Text>
-                        <Text style={styles.infoText}>This may take a while.</Text>
-                        <Text style={styles.infoText}>You may notice your device slowing down.</Text>
+                        <Text style={styles.infoText}>{t('loadingFirstTime')}</Text>
+                        <Text style={styles.infoText}>{t('thisMayTake')}</Text>
+                        <Text style={styles.infoText}>{t('youMayNotice')}</Text>
                         <ActivityIndicator
                             animating={true}
                             style={styles.activityIndicator}
@@ -132,4 +133,4 @@ Loading.propTypes = {
     navigator: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Loading);
+export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));
