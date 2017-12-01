@@ -37,7 +37,7 @@ class ChangePassword extends Component {
         };
     }
 
-    renderTextField(ref, value, label, onChangeText, onSubmitEditing) {
+    renderTextField(ref, value, label, onChangeText, returnKeyType, onSubmitEditing) {
         // This should be abstracted away as an independent component
         // We are using almost the same field styles and props
         // across all app
@@ -58,6 +58,7 @@ class ChangePassword extends Component {
             label,
             value,
             onChangeText,
+            returnKeyType,
             onSubmitEditing,
         };
 
@@ -176,6 +177,7 @@ class ChangePassword extends Component {
                             currentPassword,
                             'Current Password',
                             currentPassword => this.setState({ currentPassword }),
+                            'next',
                             onSubmitEditing => this.refs.newPassword.focus(),
                         )}
                         {this.renderTextField(
@@ -183,6 +185,7 @@ class ChangePassword extends Component {
                             newPassword,
                             'New Password',
                             newPassword => this.setState({ newPassword }),
+                            'next',
                             onSubmitEditing => this.refs.confirmedNewPassword.focus(),
                         )}
                         {this.renderTextField(
@@ -190,6 +193,7 @@ class ChangePassword extends Component {
                             confirmedNewPassword,
                             'Confirm New Password',
                             confirmedNewPassword => this.setState({ confirmedNewPassword }),
+                            'done',
                             onSubmitEditing => this.changePassword(),
                         )}
                     </View>
