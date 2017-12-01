@@ -19,32 +19,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-    textFieldContainer: {
-        flex: 1,
-        alignItems: 'center',
-        paddingTop: height / 10,
-    },
-    saveButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
-        borderRadius: 8,
-        width: width / 2.7,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
-    saveText: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
-    },
-    saveButtonContainer: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     bottomContainer: {
         flex: 0.5,
         width,
