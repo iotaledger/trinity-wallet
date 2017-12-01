@@ -9,6 +9,7 @@ import {
     Platform,
     TouchableWithoutFeedback,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import {
     getMarketData,
@@ -59,6 +60,7 @@ class Balance extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
