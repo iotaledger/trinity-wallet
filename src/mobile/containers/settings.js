@@ -4,17 +4,10 @@ import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar 
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { clearTempData, setPassword, setSetting, setSeedIndex, setReady } from '../../shared/actions/tempAccount';
-import {
-    setFirstUse,
-    getAccountInfoNewSeed,
-    increaseSeedCount,
-    addAccountName,
-    changeAccountName,
-    removeAccount,
-} from '../../shared/actions/account';
-import { setFullNode, getCurrencyData } from '../../shared/actions/settings';
-import { renameKeys } from '../../shared/libs/util';
-import { changeIotaNode } from '../../shared/libs/iota';
+import { setFirstUse, getAccountInfoNewSeed, increaseSeedCount, addAccountName, changeAccountName, removeAccount } from '../../shared/actions/account';
+import { setNode, getCurrencyData } from '../../shared/actions/settings'
+import { renameKeys, MAX_SEED_LENGTH } from '../../shared/libs/util'
+import store from '../../shared/store';
 import Modal from 'react-native-modal';
 import AddNewAccount from '../components/addNewAccount';
 import UseExistingSeed from '../components/useExistingSeed';
@@ -309,17 +302,21 @@ class Settings extends React.Component {
     //UseExistingSeed method
     addExistingSeed(seed, accountName) {
         const dropdown = DropdownHolder.getDropdown();
-        if (!seed.match(/^[A-Z9]+$/) && seed.length == 81) {
+        if (!seed.match(/^[A-Z9]+$/) && seed.length == MAX_SEED_LENGTH) {
             dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
                 `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
             );
-        } else if (seed.length < 81) {
+        } else if (seed.length < MAX_SEED_LENGTH) {
             dropdown.alertWithType(
                 'error',
                 'Seed is too short',
+<<<<<<< src/mobile/containers/settings.js
+                `Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${seed.length} characters long. Please try again.`,
+=======
                 `Seeds must be 81 characters long. Your seed is currently ${seed.length} characters long. Please try again.`,
+>>>>>>> src/mobile/containers/settings.js
             );
         } else if (!(accountName.length > 0)) {
             dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
