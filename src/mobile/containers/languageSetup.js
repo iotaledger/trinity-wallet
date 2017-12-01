@@ -1,17 +1,5 @@
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    ScrollView,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    StatusBar,
-} from 'react-native';
-import { translate } from 'react-i18next';
-import i18next from 'i18next';
+import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import { I18N_LOCALE_LABELS } from 'iota-wallet-shared-modules/i18n'
@@ -22,50 +10,6 @@ import Dropdown from '../components/dropdown'
 
 const width = Dimensions.get('window').width;
 const height = global.height;
-
-
-/* <View style={{ alignItems: 'center' }}>
-    <View>
-        <Text style={styles.dropdownTitle}>Language</Text>
-        <View style={styles.dropdownButtonContainer}>
-            <TouchableWithoutFeedback onPress={event => this.clickLanguage()}>
-                <View style={styles.dropdownButton}>
-                    <Text numberOfLines={1} style={styles.languageSelected}>
-                        {this.state.languageSelected}
-                    </Text>
-                    <Triangle
-                        width={10}
-                        height={10}
-                        color={'white'}
-                        direction={this.state.triangleDirection}
-                        style={{ marginBottom: height / 80 }}
-                    />
-                </View>
-            </TouchableWithoutFeedback>
-        </View>
-    </View>
-    <View
-        style={{
-            height: this.state.dropdownHeight,
-            overflow: 'hidden',
-            backgroundColor: 'transparent',
-            width: width / 1.5,
-            alignItems: 'flex-start',
-        }}
-    >
-        <ScrollView>
-            {I18N_LOCALE_LABELS.map((label) =>
-                <TouchableOpacity onPress={() => this.clickDropdownItem(label)}>
-                    <Text numberOfLines={1} style={styles.dropdownItem}>
-                        {label}
-                    </Text>
-                </TouchableOpacity>
-            )}
-        </ScrollView>
-    </View>
-</View> */
-
-
 
 const styles = StyleSheet.create({
     container: {
@@ -90,13 +34,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: height / 15,
     },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
     nextButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
@@ -117,13 +54,6 @@ const styles = StyleSheet.create({
         height: width / 5,
         width: width / 5,
     },
-    languageSelected: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 20,
-        backgroundColor: 'transparent',
-        paddingBottom: height / 150,
-    },
     helloBackground: {
         position: 'absolute',
         width,
@@ -131,19 +61,10 @@ const styles = StyleSheet.create({
     },
     dropdownWidth: {
         width: width / 2,
-    }
+    },
 });
 
-const DEFAULT_LOCALE_LABEL = I18N_LOCALE_LABELS[0]
-
 class LanguageSetup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            languageSelected: DEFAULT_LOCALE_LABEL,
-        };
-    }
-
     onNextPress() {
         this.props.navigator.push({
             screen: 'welcome',
@@ -157,7 +78,7 @@ class LanguageSetup extends React.Component {
     }
 
     clickDropdownItem(language) {
-        this.setState({ languageSelected: language });
+        // FIXME: Actually use/set the language here
     }
 
     render() {
@@ -172,7 +93,7 @@ class LanguageSetup extends React.Component {
                         <Dropdown
                             title="Language"
                             dropdownWidth={styles.dropdownWidth}
-                            defaultOption={DEFAULT_LOCALE_LABEL}
+                            defaultOption={I18N_LOCALE_LABELS[0]}
                             options={I18N_LOCALE_LABELS}
                             saveSelection={language => this.clickDropdownItem(language)}
                         />
