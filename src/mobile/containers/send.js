@@ -280,8 +280,8 @@ class Send extends Component {
 
     onQRRead(data) {
         this.setState({
-            address: data.substring(0, 81),
-            message: data.substring(82),
+            address: data.substring(0, 90),
+            message: data.substring(91),
         });
         this._hideModal();
     }
@@ -468,7 +468,10 @@ class Send extends Component {
                         )}
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}>
+                        <TouchableOpacity
+                            style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}
+                            hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                        >
                             <View style={styles.info}>
                                 <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                                 <Text style={styles.infoText}>IOTA units</Text>

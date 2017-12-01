@@ -631,6 +631,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         zIndex: 1,
+        paddingVertical: height / 20
     },
     advancedSettingsContainer: {
         flex: 1,

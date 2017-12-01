@@ -35,6 +35,7 @@ import Reattacher from './reAttacher';
 import { Navigation } from 'react-native-navigation';
 import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
+import { TextField } from 'react-native-material-textfield';
 
 const StatusBarDefaultBarStyle = 'light-content';
 const width = Dimensions.get('window').width;
@@ -48,6 +49,8 @@ class Home extends Component {
             mode: 'STANDARD',
             appState: AppState.currentState,
             timeWentInactive: null,
+            inactive: false,
+            password: ''
         };
     }
 
@@ -70,7 +73,7 @@ class Home extends Component {
         timer.clearInterval('chartPolling');
     }
 
-    logout(){
+    /*logout(){
         this.props.clearTempData();
         this.props.setPassword('');
         Navigation.startSingleScreenApp({
@@ -85,6 +88,26 @@ class Home extends Component {
                 overrideBackPress: true,
             },
         });
+    }*/
+
+    onLoginPress() {
+        if (!this.state.password) {
+            this.dropdown.alertWithType(
+                'error',
+                'Empty password',
+                'You must enter a password to log in. Please try again.',
+            );
+        } else {
+            if(this.state.password != this.props.tempAccount.password){
+                this.dropdown.alertWithType(
+                    'error',
+                    'Unrecognised password',
+                    'The password was not recognised. Please try again.',
+                );
+            } else {
+                this.setState({ inactive:false, password: '' })
+            }
+        }
     }
 
     _handleAppStateChange = nextAppState => {
@@ -167,134 +190,181 @@ class Home extends Component {
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
+        let { password } = this.state;
 
         return (
-
             <UserInactivity
                 timeForInactivity={120000}
                 checkInterval={2000}
-                onInactivity={() => this.logout()}
+                onInactivity={() => this.setState({inactive:true})}
             >
                 <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
                     <StatusBar barStyle="light-content" />
-                    <View style={styles.topContainer} />
-                    <View style={styles.midContainer}>
-                        <View style={{ flex: 1 }}>{children}</View>
-                    </View>
-                    <View style={styles.bottomContainer}>
-                        <View style={styles.tabBar}>
-                            <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
-                                <View style={styles.button}>
-                                    <Image
-                                        style={
-                                            isCurrentRoute('balance')
-                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                        }
-                                        source={require('../../shared/images/balance.png')}
-                                    />
-                                    <Text
-                                        style={
-                                            isCurrentRoute('balance')
-                                                ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                        }
-                                    >
-                                        BALANCE
-                                    </Text>
+                    {!this.state.inactive && (
+                        <View style={{flex:1}}>
+                            <View style={styles.topContainer} />
+                            <View style={styles.midContainer}>
+                                <View style={{ flex: 1 }}>{children}</View>
+                            </View>
+                            <View style={styles.bottomContainer}>
+                                <View style={styles.tabBar}>
+                                    <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
+                                        <View style={styles.button}>
+                                            <Image
+                                                style={
+                                                    isCurrentRoute('balance')
+                                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                }
+                                                source={require('../../shared/images/balance.png')}
+                                            />
+                                            <Text
+                                                style={
+                                                    isCurrentRoute('balance')
+                                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                                }
+                                            >
+                                                BALANCE
+                                            </Text>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                    <TouchableWithoutFeedback onPress={event => this.clickSend()}>
+                                        <View style={styles.button}>
+                                            <Image
+                                                style={
+                                                    isCurrentRoute('send')
+                                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                }
+                                                source={require('../../shared/images/send.png')}
+                                            />
+                                            <Text
+                                                style={
+                                                    isCurrentRoute('send')
+                                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                                }
+                                            >
+                                                SEND
+                                            </Text>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                    <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
+                                        <View style={styles.button}>
+                                            <Image
+                                                style={
+                                                    isCurrentRoute('receive')
+                                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                }
+                                                source={require('../../shared/images/receive.png')}
+                                            />
+                                            <Text
+                                                style={
+                                                    isCurrentRoute('receive')
+                                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                                }
+                                            >
+                                                RECEIVE
+                                            </Text>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                    <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
+                                        <View style={styles.button}>
+                                            <Image
+                                                style={
+                                                    isCurrentRoute('history')
+                                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                }
+                                                source={require('../../shared/images/history.png')}
+                                            />
+                                            <Text
+                                                style={
+                                                    isCurrentRoute('history')
+                                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                                }
+                                            >
+                                                HISTORY
+                                            </Text>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                    <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
+                                        <View style={styles.button}>
+                                            <Image
+                                                style={
+                                                    isCurrentRoute('settings')
+                                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                }
+                                                source={require('../../shared/images/settings.png')}
+                                            />
+                                            <Text
+                                                style={
+                                                    isCurrentRoute('settings')
+                                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
+                                                }
+                                            >
+                                                SETTINGS
+                                            </Text>
+                                        </View>
+                                    </TouchableWithoutFeedback>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={event => this.clickSend()}>
-                                <View style={styles.button}>
-                                    <Image
-                                        style={
-                                            isCurrentRoute('send')
-                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                        }
-                                        source={require('../../shared/images/send.png')}
-                                    />
-                                    <Text
-                                        style={
-                                            isCurrentRoute('send')
-                                                ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                        }
-                                    >
-                                        SEND
-                                    </Text>
-                                </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
-                                <View style={styles.button}>
-                                    <Image
-                                        style={
-                                            isCurrentRoute('receive')
-                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                        }
-                                        source={require('../../shared/images/receive.png')}
-                                    />
-                                    <Text
-                                        style={
-                                            isCurrentRoute('receive')
-                                                ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                        }
-                                    >
-                                        RECEIVE
-                                    </Text>
-                                </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
-                                <View style={styles.button}>
-                                    <Image
-                                        style={
-                                            isCurrentRoute('history')
-                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                        }
-                                        source={require('../../shared/images/history.png')}
-                                    />
-                                    <Text
-                                        style={
-                                            isCurrentRoute('history')
-                                                ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                        }
-                                    >
-                                        HISTORY
-                                    </Text>
-                                </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
-                                <View style={styles.button}>
-                                    <Image
-                                        style={
-                                            isCurrentRoute('settings')
-                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                        }
-                                        source={require('../../shared/images/settings.png')}
-                                    />
-                                    <Text
-                                        style={
-                                            isCurrentRoute('settings')
-                                                ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                        }
-                                    >
-                                        SETTINGS
-                                    </Text>
+                            </View>
+                            <TopBar />
+                            </View>
+                        )}
+                        {this.state.inactive && (
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                                <View>
+                                    <View style={styles.loginTopContainer}>
+                                        <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                                        <View style={styles.loginTitleContainer}>
+                                            <Text style={styles.loginTitle}>Please enter your password.</Text>
+                                        </View>
+                                    </View>
+                                    <View style={styles.loginMidContainer}>
+                                        <TextField
+                                            style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                            labelFontSize={width / 31.8}
+                                            fontSize={width / 20.7}
+                                            labelPadding={3}
+                                            baseColor="white"
+                                            label="Password"
+                                            tintColor="#F7D002"
+                                            autoCapitalize={'none'}
+                                            autoCorrect={false}
+                                            enablesReturnKeyAutomatically={true}
+                                            returnKeyType="done"
+                                            value={password}
+                                            onChangeText={password => this.setState({ password })}
+                                            containerStyle={{
+                                                width: width / 1.4,
+                                            }}
+                                            secureTextEntry={true}
+                                        />
+                                    </View>
+                                    <View style={styles.loginBottomContainer}>
+                                        <TouchableOpacity onPress={event => this.onLoginPress()}>
+                                            <View style={styles.loginButton}>
+                                                <Text style={styles.loginText}>LOGIN</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </TouchableWithoutFeedback>
                         </View>
-                    </View>
+                    )}
                     <Reattacher
                         attachments={tailTransactionHashesForPendingTransactions}
                         attach={this.props.replayBundle}
                     />
-                    <TopBar />
                     <DropdownAlert
                         ref={ref => DropdownHolder.setDropdown(ref)}
                         elevation={120}
@@ -423,6 +493,58 @@ const styles = StyleSheet.create({
         width: width / 12,
         height: width / 12,
         alignSelf: 'center',
+    },
+    loginTopContainer: {
+        flex: 1.2,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: height / 22,
+    },
+    loginMidContainer: {
+        flex: 4.8,
+        alignItems: 'center',
+        paddingTop: height / 4.2,
+    },
+    loginBottomContainer: {
+        flex: 0.7,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+    },
+    loginTitleContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: height / 15,
+    },
+    loginTitle: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 20.7,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    iotaLogo: {
+        height: width / 5,
+        width: width / 5,
+    },
+    loginButton: {
+        borderColor: '#9DFFAF',
+        borderWidth: 1.2,
+        borderRadius: 10,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        marginBottom: height / 20,
+    },
+    loginText: {
+        color: '#9DFFAF',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
+    },
+    iotaLogo: {
+        height: width / 5,
+        width: width / 5,
     },
 });
 

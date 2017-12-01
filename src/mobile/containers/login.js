@@ -202,12 +202,11 @@ class Login extends React.Component {
                                 />
                             </View>
                             <View style={styles.bottomContainer}>
-                                <OnboardingButtons
-                                    onLeftButtonPress={() => this.onUseSeedPress()}
-                                    onRightButtonPress={() => this.onLoginPress()}
-                                    leftText={'USE SEED'}
-                                    rightText={'LOG IN'}
-                                />
+                                <TouchableOpacity onPress={event => this.onLoginPress()}>
+                                    <View style={styles.loginButton}>
+                                        <Text style={styles.loginText}>LOGIN</Text>
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -281,7 +280,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -295,15 +293,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    greetingText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        paddingHorizontal: width / 7,
-        paddingBottom: height / 10,
-        backgroundColor: 'transparent',
-    },
     questionText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
@@ -312,22 +301,6 @@ const styles = StyleSheet.create({
         paddingLeft: width / 7,
         paddingRight: width / 7,
         paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
-    newSeedButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginRight: width / 10,
-    },
-    newSeedText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -383,6 +356,22 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
         paddingBottom: height / 16,
+    },
+    loginButton: {
+        borderColor: '#9DFFAF',
+        borderWidth: 1.2,
+        borderRadius: 10,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        marginBottom: height / 20,
+    },
+    loginText: {
+        color: '#9DFFAF',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
     },
 });
 
