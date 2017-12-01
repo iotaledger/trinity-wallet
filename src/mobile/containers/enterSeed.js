@@ -46,18 +46,9 @@ class EnterSeed extends React.Component {
 
     onDonePress() {
         if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed contains invalid characters',
-                `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
-            );
+            this.dropdown.alertWithType('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         } else if (this.state.seed.length < 81) {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed is too short',
-                `Seeds must be 81 characters long. Your seed is currently ${this.state.seed
-                    .length} characters long. Please try again.`,
-            );
+            this.dropdown.alertWithType('error', t('seedTooShort'), t('seedTooShortExplanation'));
         } else if (this.state.seed.length == 81) {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
