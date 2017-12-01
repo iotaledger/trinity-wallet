@@ -1,10 +1,9 @@
 import each from 'lodash/each';
-import filter from 'lodash/filter';
-import pick from 'lodash/pick';
 import size from 'lodash/size';
 import head from 'lodash/head';
 import get from 'lodash/get';
 import map from 'lodash/map';
+import reduce from 'lodash/reduce';
 
 export const formatAddressBalances = (addresses, balances) => {
     var addressesWithBalance = Object.assign({}, ...addresses.map((n, index) => ({ [n]: balances[index] })));
@@ -129,4 +128,27 @@ export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
     }
 
     return size(latest) ? [...old, ...latest] : old;
+};
+
+export const deduplicateBundles = transfers => {
+    const deduplicate = (res, transfer) => {
+        const top = transfer[0];
+        const bundle = top.bundle;
+        const attachmentTimestamp = top.attachmentTimestamp;
+
+        if (get(res, bundle)) {
+            const timestampOnExistingTransfer = get(res[bundle], '[0].attachmentTimestamp');
+            if (attachmentTimestamp > timestampOnExistingTransfer) {
+                const mergeTransfersWithSameBundle = t => res[bundle].push(t);
+                each(transfer, mergeTransfersWithSameBundle);
+            }
+        } else {
+            res = { ...res, ...{ [bundle]: transfer } };
+        }
+
+        return res;
+    };
+
+    const aggregated = reduce(transfers, deduplicate, {});
+    return map(aggregated, v => v);
 };
