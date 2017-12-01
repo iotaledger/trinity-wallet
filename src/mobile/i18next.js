@@ -38,6 +38,10 @@ export default i18next.use(reactI18nextModule).init({
     },
     interpolation: {
         escapeValue: false,
+        format: function(value, format, lng) {
+            if (format === 'uppercase') return value.toUpperCase();
+            return value;
+        },
     },
     react: {
         wait: false,
