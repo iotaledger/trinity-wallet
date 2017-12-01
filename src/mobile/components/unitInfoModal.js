@@ -11,7 +11,10 @@ class UnitInfoModal extends React.Component {
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
                 <View style={styles.modalContent}>
-                    <Image source={require('../../shared/images/iota-white.png')} style={styles.iotaIcon} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-white.png')}
+                        style={styles.iotaIcon}
+                    />
                     <TextWithLetterSpacing spacing={4} textStyle={styles.iotaText}>
                         IOTA
                     </TextWithLetterSpacing>

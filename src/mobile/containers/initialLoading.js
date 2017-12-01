@@ -12,9 +12,9 @@ import {
     BackHandler,
     Platform,
 } from 'react-native';
-import { getAllItems, deleteFromKeyChain } from '../../shared/libs/cryptography';
-import { getCurrentYear } from '../../shared/libs/dateUtils';
-import store from '../../shared/store';
+import { getAllItems, deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
+import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
+import store from 'iota-wallet-shared-modules/store';
 import { DetectNavbar } from '../theme/androidSoftKeys';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 
@@ -81,10 +81,10 @@ export default class InitialLoading extends Component {
     render() {
         const currentYear = getCurrentYear();
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
-                    <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
+                    <Image source={require('iota-wallet-shared-modules/images/iota-white.png')} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>IOTA Alpha Wallet {currentYear}</Text>
