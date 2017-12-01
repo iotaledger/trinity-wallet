@@ -31,11 +31,13 @@
         "seedInvalidChars": "Il seme contiene caratteri non validi",
         "seedInvalidCharsExplanation": "I semi possono contenere solo le lettere maiuscole A-Z e il numero 9. Il tuo seme ha caratteri non validi. Si prega di riprovare.",
         "seedTooShort": "Il seme è troppo corto",
-        "seedTooShortExplanation": "I semi devono avere almeno 60 caratteri (idealmente 81 caratteri). Il tuo seme è attualmente {seed.length} caratteri. Si prega di riprovare.",
+        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
         "nameInUse": "Il nome di conto è già in uso",
         "nameInUseExplanation": "Si prega di assegnare un nome di conto univoco al tuo seme.",
         "enterAccountName": "Inserisci un nome di conto.",
-        "accountName": "Nome di conto"
+        "accountName": "Nome di conto",
+        "noNickname": "No account name entered",
+        "noNicknameExplanation": "Please enter an account name for your seed."
     },
     "changePassword": {
         "oops": "Ops! Qualcosa è andato storto",
@@ -66,8 +68,8 @@
         "invalidCharacters": "Il seme contiene caratteri non validi",
         "invalidCharactersExplanation": "I semi possono contenere solo le lettere maiuscole A-Z e il numero 9. Il tuo seme ha caratteri non validi. Si prega di riprovare.",
         "seedTooShort": "Il seme è troppo corto",
-        "seedTooShortExplanation": "I semi devono avere almeno 60 caratteri (idealmente 81 caratteri). Il tuo seme è attualmente {seed.length} caratteri. Si prega di riprovare.",
-        "seedExplanation": "I semi dovrebbero essere lunghi 81 caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.",
+        "seedTooShortExplanation": "Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
+        "seedExplanation": "Seeds should be ${MAX_SEED_LENGTH} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than ${MAX_SEED_LENGTH} characters.",
         "neverShare": "NON MOSTRARE MAI IL TUO SEME A NESSUNO"
     },
     "home": {
