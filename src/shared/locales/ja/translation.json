@@ -31,11 +31,13 @@
         "seedInvalidChars": "無効な文字を含んだSeedです。",
         "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
+        "seedTooShortExplanation": "Seedは81文字にする必要があります。あなたのSeedは現在${this.state.seed.length}文字です。もう一度やり直して下さい。",
         "nameInUse": "このアカウント名はすでに使われています。",
         "nameInUseExplanation": "あなたのSeedに唯一のアカウント名を付けてください。",
         "enterAccountName": "アカウント名を入力して下さい。",
-        "accountName": "アカウント名"
+        "accountName": "アカウント名",
+        "noNickname": "アカウント名が入力されていません。",
+        "noNicknameExplanation": "Seedのアカウント名を入力して下さい。"
     },
     "changePassword": {
         "oops": "不具合が発生しました。",
@@ -66,8 +68,8 @@
         "invalidCharacters": "無効な文字を含んだSeedです。",
         "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
-        "seedExplanation": "Seedは81文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、81文字以上の長さにはできません。",
+        "seedTooShortExplanation": "Seedは${MAX_SEED_LENGTH}文字にする必要があります。あなたのSeedは現在${this.state.seed.length}文字です。もう一度やり直して下さい。",
+        "seedExplanation": "Seeds should be ${MAX_SEED_LENGTH} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than ${MAX_SEED_LENGTH} characters.",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
