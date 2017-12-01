@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -26,7 +27,6 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 const width = Dimensions.get('window').width;
 const height = global.height;
 const isAndroid = Platform.OS === 'android';
-
 const StatusBarDefaultBarStyle = 'light-content';
 
 class EnterSeed extends React.Component {
@@ -45,20 +45,12 @@ class EnterSeed extends React.Component {
     };
 
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == MAX_SEED_LENGTH) {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed contains invalid characters',
-                `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
-            );
-        } else if (this.state.seed.length < MAX_SEED_LENGTH) {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed is too short',
-                `Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${this.state.seed
-                    .length} characters long. Please try again.`,
-            );
-        } else if (this.state.seed.length == MAX_SEED_LENGTH) {
+        const { t } = this.props;
+        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
+            this.dropdown.alertWithType('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
+        } else if (this.state.seed.length < 81) {
+            this.dropdown.alertWithType('error', t('seedTooShort'), t('seedTooShortExplanation'));
+        } else if (this.state.seed.length == 81) {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
@@ -95,7 +87,7 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
-
+        const { t } = this.props;
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -110,7 +102,7 @@ class EnterSeed extends React.Component {
                                     />
                                 </View>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text>
+                                    <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
@@ -127,7 +119,7 @@ class EnterSeed extends React.Component {
                                             enablesReturnKeyAutomatically={true}
                                             returnKeyType={'done'}
                                             autoCapitalize={'characters'}
-                                            label={'Seed'}
+                                            label={t('global:seed')}
                                             autoCorrect={false}
                                             value={seed}
                                             maxLength={MAX_SEED_LENGTH}
@@ -144,7 +136,7 @@ class EnterSeed extends React.Component {
                                                     source={require('iota-wallet-shared-modules/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
-                                                <Text style={styles.qrText}> QR </Text>
+                                                <Text style={styles.qrText}>{t('global:qr')}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     </View>
@@ -152,21 +144,15 @@ class EnterSeed extends React.Component {
                             </View>
                             <View style={styles.bottomContainer}>
                                 <View style={styles.infoTextContainer}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/info.png')}
-                                        style={styles.infoIcon}
-                                    />
-                                    <Text style={styles.infoText}>
-                                        {`Seeds should be ${MAX_SEED_LENGTH} characters long, and should contain capital letters A-Z, or
-                                        the number 9. You cannot use seeds longer than ${MAX_SEED_LENGTH} characters.`}
-                                    </Text>
-                                    <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
+                                    <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                    <Text style={styles.infoText}>{t('seedExplanation')}</Text>
+                                    <Text style={styles.warningText}>{t('neverShare')}</Text>
                                 </View>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
-                                    leftText={'BACK'}
-                                    rightText={'DONE'}
+                                    leftText={t('global:back')}
+                                    rightText={t('global:next')}
                                 />
                             </View>
                         </View>
@@ -352,4 +338,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnterSeed);
+export default translate(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));

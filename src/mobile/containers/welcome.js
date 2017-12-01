@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
@@ -33,6 +34,7 @@ class Welcome extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -44,21 +46,17 @@ class Welcome extends React.Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Text style={styles.infoTextLight}>Thank you for downloading the IOTA wallet.</Text>
-                        <Text style={styles.infoTextLight}>
-                            We will spend the next few minutes setting up your wallet.
-                        </Text>
-                        <Text style={styles.infoTextRegular}>
-                            You may be tempted to skip some steps, but we urge you to follow the complete process.
-                        </Text>
+                        <Text style={styles.infoTextLight}>{t('thankYou')}</Text>
+                        <Text style={styles.infoTextLight}>{t('weWillSpend')}</Text>
+                        <Text style={styles.infoTextRegular}>{t('reminder')}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
-                        leftText={'BACK'}
-                        rightText={'NEXT'}
+                        leftText={t('global:back')}
+                        rightText={t('global:next')}
                     />
                 </View>
             </ImageBackground>
@@ -132,4 +130,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Welcome;
+export default translate(['welcome', 'global'])(Welcome);
