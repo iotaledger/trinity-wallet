@@ -31,11 +31,13 @@
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
         "seedInvalidCharsExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
-        "seedTooShortExplanation": "Οι σπόροι πρέπει να είναι τουλάχιστον 60 χαρακτήρες (ιδανικά 81 χαρακτήρες). Ο σπόρος σας είναι επί του παρόντος {seed.length} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
         "nameInUse": "Όνομα λογαριασμού ήδη σε χρήση",
         "nameInUseExplanation": "Παρακαλούμε να χρησιμοποιήσετε ένα μοναδικό όνομα λογαριασμού για το σπόρο σας.",
         "enterAccountName": "Εισάγετε ένα όνομα λογαριασμού.",
-        "accountName": "Όνομα λογαριασμού"
+        "accountName": "Όνομα λογαριασμού",
+        "noNickname": "No account name entered",
+        "noNicknameExplanation": "Please enter an account name for your seed."
     },
     "changePassword": {
         "oops": "Ωχ! Κάτι πήγε στραβά",
@@ -66,8 +68,8 @@
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
         "invalidCharactersExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
-        "seedTooShortExplanation": "Οι σπόροι πρέπει να αποτελούνται τουλάχιστον από 60 χαρακτήρες (ιδανικά 81 χαρακτήρες). Ο σπόρος σας είναι επί του παρόντος {seed.length} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
-        "seedExplanation": "Οι σπόροι πρέπει να είναι 81 χαρακτήρων και πρέπει να περιέχουν τα κεφαλαία γράμματα A-Z, ή τον αριθμό 9. Δεν μπορείτε να χρησιμοποιήσετε σπόρους που είναι μεγαλύτεροι από 81 χαρακτήρες.",
+        "seedTooShortExplanation": "Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
+        "seedExplanation": "Seeds should be ${MAX_SEED_LENGTH} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than ${MAX_SEED_LENGTH} characters.",
         "neverShare": "ΜΗ ΜΟΙΡΑΖΕΣΤΕ ΠΟΤΕ ΤΟΝ ΣΠΟΡΟ ΣΑΣ ΜΕ ΚΑΝΕΝΑΝ"
     },
     "home": {
