@@ -20,6 +20,7 @@ import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from '../../shared/actions/tempAccount';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
@@ -121,7 +122,7 @@ class EnterSeed extends React.Component {
                                             label={t('global:seed')}
                                             autoCorrect={false}
                                             value={seed}
-                                            maxLength={81}
+                                            maxLength={MAX_SEED_LENGTH}
                                             onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                             secureTextEntry={true}
                                             multiline

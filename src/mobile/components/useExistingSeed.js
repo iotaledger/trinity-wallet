@@ -24,6 +24,7 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData } from '../../shared/actions/tempAccount';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -105,7 +106,7 @@ class UseExistingSeed extends React.Component {
                                         label="Seed"
                                         autoCorrect={false}
                                         value={seed}
-                                        maxLength={81}
+                                        maxLength={MAX_SEED_LENGTH}
                                         onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                         secureTextEntry={true}
                                         onSubmitEditing={() => this.refs.accountName.focus()}

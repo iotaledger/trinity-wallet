@@ -22,6 +22,7 @@ import { getAccountInfo } from '../../shared/actions/account';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeSeedInKeychain } from '../../shared/libs/cryptography';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -50,8 +51,8 @@ class UseSeed extends React.Component {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
-                    .seed.length} characters long. Please try again.`,
+                `Seeds must be at least 60 characters long (ideally ${MAX_SEED_LENGTH} characters). Your seed is currently ${this
+                    .state.seed.length} characters long. Please try again.`,
             );
         } else if (this.state.seed.length >= 60) {
             this.props.getAccountInfoNewSeed(this.state.seed, 'usedSeed');
@@ -129,7 +130,7 @@ class UseSeed extends React.Component {
                                             label="Seed"
                                             autoCorrect={false}
                                             value={seed}
-                                            maxLength={81}
+                                            maxLength={MAX_SEED_LENGTH}
                                             onChangeText={seed => this.setState({ seed })}
                                             secureTextEntry={true}
                                         />
