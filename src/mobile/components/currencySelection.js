@@ -50,6 +50,9 @@ const styles = StyleSheet.create({
         fontSize: width / 23,
         backgroundColor: 'transparent',
     },
+    dropdownWidth: {
+        width: width / 4,
+    }
 });
 
 class CurrencySelection extends Component {
@@ -74,6 +77,7 @@ class CurrencySelection extends Component {
                         options={currencies}
                         defaultOption={currency}
                         saveSelection={option => this.saveCurrencySelection(option)}
+                        dropdownWidth={styles.dropdownWidth}
                     />
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => backPress()}>
