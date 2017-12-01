@@ -23,10 +23,15 @@ import {
     getFromKeychain,
     removeLastSeed,
     checkKeychainForDuplicates,
-} from '../../shared/libs/cryptography';
-import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
-import { generateAlert } from '../../shared/actions/alerts';
-import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
+} from 'iota-wallet-shared-modules/libs/cryptography';
+import {
+    getAccountInfoNewSeed,
+    setFirstUse,
+    increaseSeedCount,
+    addAccountName,
+} from 'iota-wallet-shared-modules/actions/account';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { clearTempData, setSeedName, clearSeed, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
 const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -134,12 +139,15 @@ class SetSeedName extends React.Component {
         let { accountName } = this.state;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                                style={styles.iotaLogo}
+                            />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.greetingText}>Enter a name for your account.</Text>
                             </View>
@@ -169,7 +177,10 @@ class SetSeedName extends React.Component {
                                 onSubmitEditing={() => this.onDonePress()}
                             />
                             <View style={styles.infoTextContainer}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/info.png')}
+                                    style={styles.infoIcon}
+                                />
                                 <Text style={styles.infoText}>
                                     You can use multiple accounts with this wallet. Each account requires a name.
                                 </Text>
