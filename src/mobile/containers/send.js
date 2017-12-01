@@ -2,7 +2,7 @@ import isUndefined from 'lodash/isUndefined';
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { iota } from '../../shared/libs/iota';
+import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import {
     ActivityIndicator,
     StyleSheet,
@@ -20,16 +20,16 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { round, MAX_SEED_LENGTH } from '../../shared/libs/util';
-import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempAccount';
-import { getCurrencySymbol } from '../../shared/libs/currency';
+import { round, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
-import { getAccountInfo } from '../../shared/actions/account';
+import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
 const width = Dimensions.get('window').width;
@@ -466,7 +466,10 @@ class Send extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}>
                             <View style={styles.info}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/info.png')}
+                                    style={styles.infoIcon}
+                                />
                                 <Text style={styles.infoText}>IOTA units</Text>
                             </View>
                         </TouchableOpacity>

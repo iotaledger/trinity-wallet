@@ -46,10 +46,13 @@ class WalletSetup extends React.Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
                     <View style={styles.greetingTextContainer}>
                         <Text style={styles.greetingText}>{t('okay')}</Text>
                         <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
@@ -57,7 +60,7 @@ class WalletSetup extends React.Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                         <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
                         <Text style={styles.infoText}>{t('seedExplanation')}</Text>
                         <Text style={styles.infoText}>
                             <Text style={styles.infoTextLight}>{t('explanation1')}</Text>

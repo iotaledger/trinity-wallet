@@ -18,12 +18,17 @@ import DropdownAlert from 'react-native-dropdownalert';
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed } from '../../shared/actions/tempAccount';
+import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
-import { generateAlert } from '../../shared/actions/alerts';
-import { clearTempData } from '../../shared/actions/tempAccount';
+import {
+    getAccountInfoNewSeed,
+    setFirstUse,
+    increaseSeedCount,
+    addAccountName,
+} from 'iota-wallet-shared-modules/actions/account';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 
 import DropdownHolder from '../components/dropdownHolder';
@@ -116,7 +121,7 @@ class UseExistingSeed extends React.Component {
                                     <TouchableOpacity onPress={() => this.onQRPress()}>
                                         <View style={styles.qrButton}>
                                             <Image
-                                                source={require('../../shared/images/camera.png')}
+                                                source={require('iota-wallet-shared-modules/images/camera.png')}
                                                 style={styles.qrImage}
                                             />
                                             <Text style={styles.qrText}> QR </Text>
@@ -152,7 +157,10 @@ class UseExistingSeed extends React.Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
                             <View style={styles.itemLeft}>
-                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.iconLeft} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                    style={styles.iconLeft}
+                                />
                                 <Text style={styles.titleTextLeft}>Back</Text>
                             </View>
                         </TouchableOpacity>
@@ -163,7 +171,7 @@ class UseExistingSeed extends React.Component {
                             <View style={styles.itemRight}>
                                 <Text style={styles.titleTextRight}>Done</Text>
                                 <Image
-                                    source={require('../../shared/images/arrow-right.png')}
+                                    source={require('iota-wallet-shared-modules/images/arrow-right.png')}
                                     style={styles.iconRight}
                                 />
                             </View>
