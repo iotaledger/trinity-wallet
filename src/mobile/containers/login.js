@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import { getCurrencyData, setFullNode } from '../../shared/actions/settings';
 import { setPassword, clearTempData, setReady } from '../../shared/actions/tempAccount';
-import { getAccountInfo, getAccountInfoNewSeed } from '../../shared/actions/account';
+import { getAccountInfo, getFullAccountInfo } from '../../shared/actions/account';
 import { changeHomeScreenRoute } from '../../shared/actions/home';
 import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
@@ -123,7 +123,7 @@ class Login extends React.Component {
             });
             this.props.getCurrencyData(this.props.settings.currency);
             if (this.props.account.firstUse) {
-                this.props.getAccountInfoNewSeed(value, seedName, (error, success) => {
+                this.props.getFullAccountInfo(value, seedName, (error, success) => {
                     if (error) {
                         this.onNodeError();
                     } else {
@@ -389,8 +389,8 @@ const mapDispatchToProps = dispatch => ({
     getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },
-    getAccountInfoNewSeed: (seed, seedName, cb) => {
-        dispatch(getAccountInfoNewSeed(seed, seedName, cb));
+    getFullAccountInfo: (seed, seedName, cb) => {
+        dispatch(getFullAccountInfo(seed, seedName, cb));
     },
     changeHomeScreenRoute: tab => {
         dispatch(changeHomeScreenRoute(tab));

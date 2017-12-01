@@ -58,24 +58,29 @@ class Receive extends Component {
         }
     }
 
-    onGeneratePress() {
-        this.props.generateNewAddressRequest();
+    onGeneratePress(){
         const dropdown = DropdownHolder.getDropdown();
+        if(this.props.tempAccount.isSyncing){
+            dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
+            return;
+        }
+
+        this.props.generateNewAddressRequest();
         const seedIndex = this.props.tempAccount.seedIndex;
-        const seedName = this.props.account.seedNames[seedIndex];
+        const accountName = this.props.account.seedNames[seedIndex];
         const accountInfo = this.props.account.accountInfo;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
         const addresses = currentSeedAccountInfo.addresses;
         getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value != 'undefined' && value != null) {
                 const seed = getSeed(value, seedIndex);
-                generate(seed, seedName, addresses);
+                generate(seed, accountName, addresses);
             } else {
                 error();
             }
         });
 
-        const generate = (seed, seedName, addresses) => this.props.generateNewAddress(seed, seedName, addresses);
+        const generate = (seed, accountName, addresses) => this.props.generateNewAddress(seed, accountName, addresses);
         const error = () => {
             this.props.generateNewAddressError();
             dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
