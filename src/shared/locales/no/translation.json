@@ -31,7 +31,7 @@
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
         "seedInvalidCharsExplanation": "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
         "seedTooShort": "Nøkkelen er for kort",
-        "seedTooShortExplanation": "Seeds must be 81 characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "Kallenavnet er allerede i bruk",
         "nameInUseExplanation": "Bruk et unikt kallenavn for din nøkkel.",
         "enterAccountName": "Angi et kontonavn.",
@@ -68,8 +68,8 @@
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
         "invalidCharactersExplanation": "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
         "seedTooShort": "Nøkkelen er for kort",
-        "seedTooShortExplanation": "Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${this.state.seed.length} characters long. Please try again.",
-        "seedExplanation": "Seeds should be ${MAX_SEED_LENGTH} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than ${MAX_SEED_LENGTH} characters.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE"
     },
     "home": {
