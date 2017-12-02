@@ -1,10 +1,14 @@
 import IOTA from 'iota.lib.js';
+import { defaultNode } from '../config';
 
-const defaultNode = 'https://www.veriti.io';
+export const iota = new IOTA({ provider: defaultNode });
 
-export const iota = new IOTA({
-    provider: defaultNode,
-});
+export const changeIotaNode = provider => iota.changeNode({ provider });
+
+function listener() {
+    let node = store.getStore().getState().settings.fullNode;
+    return node.settings.fullNode;
+}
 
 export const convertFromTrytes = trytes => {
     trytes = trytes.replace(/9+$/, '');

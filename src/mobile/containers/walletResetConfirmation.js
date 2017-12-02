@@ -1,5 +1,6 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -36,7 +37,7 @@ export default class WalletResetConfirmation extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
@@ -53,18 +54,23 @@ export default class WalletResetConfirmation extends Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topWrapper}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
                     <View style={styles.subHeaderWrapper}>
                         <Text style={styles.subHeaderText}>{toUpper('this action cannot be undone.')}</Text>
                     </View>
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={styles.infoTextWrapper}>
-                        <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                        <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
                             <Text style={styles.infoTextLight}>All your wallet data including your</Text>
                             <Text style={styles.infoTextRegular}> seeds, password</Text>
@@ -166,7 +172,6 @@ const styles = StyleSheet.create({
     confirmationTextWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: width / 8,
         paddingTop: height / 25,
     },
     confirmationText: {
