@@ -58,8 +58,8 @@ export function getAccountInfoNewSeed(seed, seedName, cb) {
                 // Combine addresses and balances
                 const addressesWithBalance = formatAddressBalancesNewSeed(success);
 
-                const transfersWithoutDuplicatedBundles = deduplicateBundles(success.transfers);
-                const transfers = formatTransfers(transfersWithoutDuplicatedBundles, success.addresses);
+                const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
+                const transfers = formatTransfers(transfersWithoutDuplicateBundles, success.addresses);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
                 dispatch(setAccountInfo(seedName, addressesWithBalance, transfers));
                 cb(null, success);

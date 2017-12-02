@@ -67,7 +67,7 @@ class Home extends Component {
         if (typeof accountInfo !== 'undefined') {
             this.props.setBalance(addressesWithBalance);
         }
-        timer.setInterval('polling', () => this.startPolling(), 30000);
+        timer.setInterval('polling', () => this.startPolling(), 47000);
     }
 
     componentWillUnmount() {
