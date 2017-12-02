@@ -4,6 +4,7 @@ import head from 'lodash/head';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
+import isNull from 'lodash/isNull';
 import { iota } from '../libs/iota';
 
 export const formatAddressBalances = (addresses, balances) => {
@@ -236,14 +237,14 @@ export const filterSpentAddresses = inputs => {
     });
 };
 
-export const getUnspentInputs = (seed, start, threshold, inputs, cb) => {
-    if (arguments.length === 4) {
-        cb = arguments[3];
+export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
+    if (isNull(inputs)) {
         inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
     }
+
     iota.api.getInputs(seed, { start: start, threshold: threshold }, (err, res) => {
         if (err) {
-            cb(err);
+            callback(err);
             return;
         }
         inputs.allBalance += res.inputs.reduce((sum, input) => sum + input.balance, 0);
@@ -263,16 +264,16 @@ export const getUnspentInputs = (seed, start, threshold, inputs, cb) => {
                             totalBalance: inputs.totalBalance + collected,
                             allBalance: inputs.allBalance,
                         },
-                        cb,
+                        callback,
                     );
                 } else {
-                    cb(null, {
+                    callback(null, {
                         inputs: inputs.inputs.concat(filtered),
                         totalBalance: inputs.totalBalance + collected,
                         allBalance: inputs.allBalance,
                     });
                 }
             })
-            .catch(err => cb(err));
+            .catch(err => callback(err));
     });
 };
