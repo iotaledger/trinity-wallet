@@ -5,7 +5,7 @@ import map from 'lodash/map';
 import each from 'lodash/each';
 import keys from 'lodash/keys';
 import { iota } from '../libs/iota';
-import { isMinutesAgo } from '../libs/dateUtils';
+import { isMinutesAgo, convertUnixTimeToJSDate } from '../libs/dateUtils';
 
 const account = (
     state = {
@@ -29,6 +29,19 @@ const account = (
                         transfers: action.transfers,
                     },
                 },
+            };
+        case 'CHANGE_ACCOUNT_NAME':
+            return {
+                ...state,
+                seedNames: action.accountNames,
+                accountInfo: action.accountInfo,
+            };
+        case 'REMOVE_ACCOUNT':
+            return {
+                ...state,
+                accountInfo: action.accountInfo,
+                seedNames: action.accountNames,
+                seedCount: state.seedCount - 1,
             };
         case 'UPDATE_ADDRESSES':
             return {
@@ -98,8 +111,8 @@ export const getTailTransactionHashesForPendingTransactions = (accountInfo, curr
                     !v.persistence &&
                     v.currentIndex === 0 &&
                     v.value > 0 &&
-                    isMinutesAgo(v.timestamp, 10) &&
-                    !isMinutesAgo(v.timestamp, 1440)
+                    isMinutesAgo(convertUnixTimeToJSDate(v.timestamp), 10) &&
+                    !isMinutesAgo(convertUnixTimeToJSDate(v.timestamp), 1440)
                 ) {
                     res.push(v.hash);
                 }

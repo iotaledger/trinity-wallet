@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -18,14 +19,14 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed } from '../../shared/actions/tempAccount';
+import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
 const isAndroid = Platform.OS === 'android';
-
 const StatusBarDefaultBarStyle = 'light-content';
 
 class EnterSeed extends React.Component {
@@ -44,20 +45,16 @@ class EnterSeed extends React.Component {
     };
 
     onDonePress() {
+        const { t } = this.props;
         if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
+            this.dropdown.alertWithType('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
+        } else if (this.state.seed.length < MAX_SEED_LENGTH) {
             this.dropdown.alertWithType(
                 'error',
-                'Seed contains invalid characters',
-                `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
+                t('seedTooShort'),
+                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: this.state.seed.length }),
             );
-        } else if (this.state.seed.length < 81) {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed is too short',
-                `Seeds must be 81 characters long. Your seed is currently ${this.state.seed
-                    .length} characters long. Please try again.`,
-            );
-        } else if (this.state.seed.length == 81) {
+        } else if (this.state.seed.length == MAX_SEED_LENGTH) {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
@@ -94,9 +91,9 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
-
+        const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -104,12 +101,12 @@ class EnterSeed extends React.Component {
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
                                     <Image
-                                        source={require('../../shared/images/iota-glow.png')}
+                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                                         style={styles.iotaLogo}
                                     />
                                 </View>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text>
+                                    <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
@@ -117,32 +114,33 @@ class EnterSeed extends React.Component {
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light', fontSize: width / 20.7 }}
+                                            labelTextStyle={{ fontFamily: 'Inconsolata-Bold', fontSize: width / 20.7 }}
                                             labelFontSize={width / 31.8}
                                             fontSize={isAndroid ? width / 27.6 : width / 20.7}
                                             labelPadding={3}
-                                            baseColor="white"
-                                            tintColor="#F7D002"
+                                            baseColor={'white'}
+                                            tintColor={'#F7D002'}
                                             enablesReturnKeyAutomatically={true}
-                                            returnKeyType="done"
-                                            blurOnSubmit={true} //Dismisses keyboard upon pressing Done
-                                            autoCapitalize="characters"
-                                            label="Seed"
+                                            returnKeyType={'done'}
+                                            autoCapitalize={'characters'}
+                                            label={t('global:seed')}
                                             autoCorrect={false}
                                             value={seed}
-                                            maxLength={81}
-                                            onChangeText={seed => this.setState({ seed })}
+                                            maxLength={MAX_SEED_LENGTH}
+                                            onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                             secureTextEntry={true}
+                                            multiline
+                                            onSubmitEditing={() => this.onDonePress()}
                                         />
                                     </View>
                                     <View style={styles.qrButtonContainer}>
                                         <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
                                                 <Image
-                                                    source={require('../../shared/images/camera.png')}
+                                                    source={require('iota-wallet-shared-modules/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
-                                                <Text style={styles.qrText}> QR </Text>
+                                                <Text style={styles.qrText}>{t('global:qr')}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     </View>
@@ -152,16 +150,15 @@ class EnterSeed extends React.Component {
                                 <View style={styles.infoTextContainer}>
                                     <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
                                     <Text style={styles.infoText}>
-                                        Seeds should be 81 characters long, and should contain capital letters A-Z, or
-                                        the number 9. You cannot use seeds longer than 81 characters.
+                                        {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                                     </Text>
-                                    <Text style={styles.warningText}>NEVER SHARE YOUR SEED WITH ANYONE</Text>
+                                    <Text style={styles.warningText}>{t('neverShare')}</Text>
                                 </View>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
-                                    leftText={'BACK'}
-                                    rightText={'DONE'}
+                                    leftText={t('global:back')}
+                                    rightText={t('global:next')}
                                 />
                             </View>
                         </View>
@@ -297,7 +294,7 @@ const styles = StyleSheet.create({
     },
     textField: {
         color: 'white',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
         justifyContent: 'flex-end',
@@ -347,4 +344,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnterSeed);
+export default translate(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));
