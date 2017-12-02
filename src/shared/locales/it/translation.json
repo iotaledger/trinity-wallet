@@ -31,13 +31,13 @@
         "seedInvalidChars": "Il seme contiene caratteri non validi",
         "seedInvalidCharsExplanation": "I semi possono contenere solo le lettere maiuscole A-Z e il numero 9. Il tuo seme ha caratteri non validi. Si prega di riprovare.",
         "seedTooShort": "Il seme è troppo corto",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation": "I semi devono avere {{maxLength}} caratteri. Il tuo seme ha attualmente {{currentLength}} caratteri. Si prega di riprovare.",
         "nameInUse": "Il nome di conto è già in uso",
         "nameInUseExplanation": "Si prega di assegnare un nome di conto univoco al tuo seme.",
         "enterAccountName": "Inserisci un nome di conto.",
         "accountName": "Nome di conto",
-        "noNickname": "No account name entered",
-        "noNicknameExplanation": "Please enter an account name for your seed."
+        "noNickname": "Nessun nome di conto inserito",
+        "noNicknameExplanation": "Si prega di assegnare un nome di conto al tuo seme."
     },
     "changePassword": {
         "oops": "Ops! Qualcosa è andato storto",
@@ -68,8 +68,8 @@
         "invalidCharacters": "Il seme contiene caratteri non validi",
         "invalidCharactersExplanation": "I semi possono contenere solo le lettere maiuscole A-Z e il numero 9. Il tuo seme ha caratteri non validi. Si prega di riprovare.",
         "seedTooShort": "Il seme è troppo corto",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "I semi devono avere {{maxLength}} caratteri. Il tuo seme ha attualmente {{currentLength}} caratteri. Si prega di riprovare.",
+        "seedExplanation": "I semi devono essere lunghi {{maxLength}} caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di {{maxLength}} caratteri.",
         "neverShare": "NON MOSTRARE MAI IL TUO SEME A NESSUNO"
     },
     "home": {
