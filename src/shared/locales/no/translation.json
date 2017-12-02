@@ -149,19 +149,19 @@
         "passwordMismatch": "Passordene samsvarer ikke",
         "passwordMismatchExplanation": "Passordene du angav samsvarer ikke. Prøv på nytt.",
         "nowWeNeedTo": "Nå må vi sette opp et passord.",
-        "anEncryptedCopy": "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du skal bruke dette passordet for å åpne lommeboken neste gang.",
-        "ensure": "Forsikre deg om at du bruk et sterkt passord, minst 12 tegn.",
+        "anEncryptedCopy": "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken neste gang.",
+        "ensure": "Forsikre deg om at du bruker et sterkt passord med minst 12 tegn.",
         "retypePassword": "Skriv inn passordet på nytt"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Du kan lagre flere hovednøkler i denne lommeboken. Hver av disse må ha et eget kallenavn.",
-        "youCanAdd": "Du kan legge til flere hovednøkler i menyen for innstillinger."
+        "canUseMultipleSeeds": "Du kan lagre flere hovednøkler i denne lommeboken. Hver av disse må ha et eget kontonavn.",
+        "youCanAdd": "Du kan legge til flere hovednøkler i menyen for Innstillinger."
     },
     "settings": {
         "transferSending": "Sender overføring",
         "transferSendingExplanation": "Vennligst vent til overføringen er ferdig.",
-        "generatingAddress": "Hent neste adresse for mottak",
-        "generatingAddressExplanation": "Vennligst vent til adressen er funnet frem.",
+        "generatingAddress": "Lager mottaksadresse",
+        "generatingAddressExplanation": "Vennligst vent til adressen er laget.",
         "mode": "Modus",
         "theme": "Tema",
         "currency": "Valuta",
@@ -191,22 +191,22 @@
     "walletSetup": {
         "okay": "OK. La oss sette opp lommeboken din!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel du ønsker å bruke?",
-        "seedExplanation": "IOTA hovednøkkel er som brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
-        "explanation1": "Du kan bruke den for å få tilgang til dine IOTA fra",
+        "seedExplanation": "IOTA hovednøkkel er som et brukernavn og passord til kontoen, kombinert i en 81 tegn lang streng.",
+        "explanation1": "Du kan bruke den for å få tilgang til dine midler fra",
         "explanation2": " enhver lommebok ",
         "explanation3": ", på",
         "explanation4": " enhver enhet",
-        "explanation5": ". Men hvis du mister din hovednøkkel, du også miste dine IOTA.",
+        "explanation5": ". Men hvis du mister din hovednøkkel, vil du også miste dine IOTA.",
         "keepSafe": "Vennligst sikre din hovednøkkel godt."
     },
     "welcome": {
-        "thankYou": "Takk for at du lastet ned IOTA-lommeboken.",
-        "weWillSpend": "Vi vil bruke neste minuttene til å sette opp lommeboken.",
+        "thankYou": "Takk for at du lastet ned IOTA lommeboken.",
+        "weWillSpend": "Vi vil bruke neste minuttene til å sette opp lommeboken din.",
         "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Din hovednøkkel er 81 tegn og leses fra venstre mot høyre. Skriv ned denne og kontrolltegnene og",
+        "yourSeedIs": "Din hovednøkkel er 81 tegn og leses fra venstre mot høyre. Skriv denne ned sammen med kontrolltegnene og",
         "tripleCheck": "sjekk tre ganger",
-        "thatTheyAreCorrect": "at både nøkkel og kontrolltegn er skrevet korrekt."
+        "thatTheyAreCorrect": "at både hovednøkkel og kontrolltegn er skrevet korrekt."
     }
 }
