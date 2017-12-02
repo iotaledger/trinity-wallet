@@ -138,7 +138,6 @@ class Send extends Component {
         const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
         const message = this.state.message;
 
-        const dropdown = DropdownHolder.getDropdown();
         const addressIsValid = this.isValidAddress(address);
         const messageIsValid = this.isValidMessage(message);
         const enoughBalance = this.enoughBalance();
@@ -189,24 +188,14 @@ class Send extends Component {
 
         this.props.sendTransferRequest();
         getFromKeychain(this.props.tempAccount.password, value => {
-            if (typeof value !== 'undefined') {
-                var seed = getSeed(value, this.props.tempAccount.seedIndex);
-                if (sendTx(seed) == false) {
-                    this.dropdown.alertWithType(
-                        'error',
-                        'Key reuse',
-                        `The address you are trying to send to has already been used. Please try another address.`,
-                    );
-                }
-            } else {
-                console.log('error');
+            if (value) {
+                const seed = getSeed(value, this.props.tempAccount.seedIndex);
+                sendTx(seed);
             }
         });
 
-        const _this = this;
-        function sendTx(seed) {
-            _this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
-        }
+        const sendTx = seed =>
+            this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
     }
 
     getUnitMultiplier() {
@@ -347,7 +336,7 @@ class Send extends Component {
                         <View style={styles.fieldContainer}>
                             <View style={styles.textFieldContainer}>
                                 <TextField
-                                    autoCapitalize={"characters"}
+                                    autoCapitalize={'characters'}
                                     style={styles.textField}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                     labelFontSize={height / 55}
