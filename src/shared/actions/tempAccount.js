@@ -5,6 +5,7 @@ import { iota } from '../libs/iota';
 import { updateAddresses, addPendingTransfer } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
 import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
+import { serialize, parse } from '../libs/util';
 
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
@@ -215,6 +216,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
 
         const unspentInputs = (err, inputs) => {
             if (err) {
+                dispatch(sendTransferError());
                 return dispatch(
                     generateAlert(
                         'error',
@@ -224,6 +226,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                 );
             } else {
                 if (get(inputs, 'allBalance') < value) {
+                    dispatch(sendTransferError());
                     return dispatch(
                         generateAlert(
                             'error',
@@ -232,6 +235,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                         ),
                     );
                 } else if (get(inputs, 'totalBalance') < value) {
+                    dispatch(sendTransferError());
                     return dispatch(
                         generateAlert(
                             'error',
@@ -259,7 +263,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
             }
         };
 
-        return getUnspentInputs(seed, 0, value, unspentInputs);
+        return getUnspentInputs(seed, 0, value, null, unspentInputs);
     };
 }
 
