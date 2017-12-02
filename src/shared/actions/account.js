@@ -57,9 +57,6 @@ export function getAccountInfoNewSeed(seed, seedName, cb) {
             if (!error) {
                 // Combine addresses and balances
                 const addressesWithBalance = formatAddressBalancesNewSeed(success);
-                // Calculate balance
-                const balance = calculateBalance(addressesWithBalance);
-                // Sort tranfers and add transfer values
 
                 const transfersWithoutDuplicatedBundles = deduplicateBundles(success.transfers);
                 const transfers = formatTransfers(transfersWithoutDuplicatedBundles, success.addresses);
