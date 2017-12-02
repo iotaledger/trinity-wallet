@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -27,11 +28,7 @@ class CopySeedToClipboard extends React.Component {
 
     generateSeedClearanceAlert() {
         if (this.dropdown) {
-            this.dropdown.alertWithType(
-                'info',
-                'Seed cleared',
-                'The seed has been cleared from the clipboard for your security.',
-            );
+            this.dropdown.alertWithType('info', t('seedCleared'), t('seedClearedExplanation'));
         }
     }
 
@@ -57,11 +54,7 @@ class CopySeedToClipboard extends React.Component {
 
     onCopyPress() {
         Clipboard.setString(this.props.tempAccount.seed);
-        this.dropdown.alertWithType(
-            'success',
-            'Seed copied',
-            'The seed has been copied to the clipboard and will be cleared once you press "DONE" or 60 seconds have passed, whichever comes first.',
-        );
+        this.dropdown.alertWithType('success', t('seedCopied'), t('seedCopiedExplanation'));
 
         this.timeout = setTimeout(() => {
             Clipboard.setString('');
@@ -70,28 +63,30 @@ class CopySeedToClipboard extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
                 </View>
                 <View style={styles.midContainer}>
-                    <Text style={styles.infoTextNormal}>
-                        Click the button below and copy your seed to a password manager.
-                    </Text>
-                    <Text style={styles.infoTextBold}> Do not store the seed in plain text.</Text>
+                    <Text style={styles.infoTextNormal}>{t('clickToCopy')}</Text>
+                    <Text style={styles.infoTextBold}>{t('doNotStore')}</Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 22 }}>
                         <View style={styles.copyButton}>
-                            <Text style={styles.copyText}>COPY TO CLIPBOARD</Text>
+                            <Text style={styles.copyText}>{t('global:copyToCliboard').toUpperCase()}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>DONE</Text>
+                            <Text style={styles.doneText}>{t('global:next')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -192,9 +187,9 @@ const styles = StyleSheet.create({
     copyButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
-        width: width / 2.5,
-        height: height / 16,
+        borderRadius: 13,
+        width: width / 2,
+        height: height / 12,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
@@ -202,7 +197,7 @@ const styles = StyleSheet.create({
     copyText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
+        fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
     dropdownTitle: {
@@ -240,4 +235,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default connect(mapStateToProps)(CopySeedToClipboard);
+export default translate('saveYourSeed3')(connect(mapStateToProps)(CopySeedToClipboard));

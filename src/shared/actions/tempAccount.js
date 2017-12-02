@@ -4,6 +4,7 @@ import { iota } from '../libs/iota';
 import { updateAddresses, addPendingTransfer } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
 import { formatSentTransaction } from '../libs/accountUtils';
+import { MAX_SEED_LENGTH } from '../libs/util';
 
 // FIXME: Hacking no-console linting.
 // Should rather be dispatching an action.
@@ -115,7 +116,14 @@ export function setSeed(seed) {
 export function clearSeed() {
     return {
         type: 'CLEAR_SEED',
-        payload: '                                                                                 ',
+        payload: Array(82).join(' '),
+    };
+}
+
+export function setSetting(setting) {
+    return {
+        type: 'SET_SETTING',
+        payload: setting,
     };
 }
 
@@ -259,9 +267,9 @@ function getUnspentInputs(seed, start, threshold, inputs, cb) {
 
 export function checkNode() {
     return dispatch => {
-        iota.api.getNodeInfo(error => {
+        iota.api.getNodeInfo((error, success) => {
             if (!error) {
-                dispatch(getAccountInfo(seed));
+                console.log(success);
             } else {
                 console.log(error);
             }
@@ -271,13 +279,14 @@ export function checkNode() {
 
 export function generateNewAddress(seed, seedName, addresses) {
     return dispatch => {
-        const index = size(addresses);
+        let index = 0;
+        size(addresses) == 0 ? (index = 0) : (index = size(addresses) - 1);
         const options = { checksum: true, index };
 
         iota.api.getNewAddress(seed, options, (error, address) => {
             if (!error) {
                 const updatedAddresses = cloneDeep(addresses);
-                const addressNoChecksum = address.substring(0, 81);
+                const addressNoChecksum = address.substring(0, MAX_SEED_LENGTH);
                 // In case the newly created address is not part of the addresses object
                 // Add that as a key with a 0 balance.
                 if (!(addressNoChecksum in addresses)) {
@@ -364,7 +373,7 @@ export function checkForNewAddress(seedName, addressesWithBalance, txArray) {
             const changeAddress = txArray[txArray.length - 1].address;
             const addresses = Object.keys(addressesWithBalance);
             // Remove checksum
-            const addressNoChecksum = changeAddress.substring(0, 81);
+            const addressNoChecksum = changeAddress.substring(0, MAX_SEED_LENGTH);
             // If current addresses does not include change address, add new address and balance
             if (!addresses.includes(addressNoChecksum)) {
                 addressesWithBalance[addressNoChecksum] = 0;
@@ -385,7 +394,7 @@ export function randomiseSeed(randomBytesFn) {
         randomBytesFn(100, (error, bytes) => {
             if (!error) {
                 Object.keys(bytes).forEach(key => {
-                    if (bytes[key] < 243 && seed.length < 81) {
+                    if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
                         const randomNumber = bytes[key] % 27;
                         const randomLetter = charset.charAt(randomNumber);
                         seed += randomLetter;

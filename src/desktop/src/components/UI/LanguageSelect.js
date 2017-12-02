@@ -39,7 +39,7 @@ class LanguageSelect extends React.PureComponent {
                 <option value="fr">Français - French</option>
                 <option value="he">עִברִית - Hebrew</option>
                 <option value="hi">हिंदी - Hindi</option>
-                <option value="id">Indonesian</option>
+                <option value="id">Bahasa Indonesia - Indonesian</option>
                 <option value="it">Italiano - Italian</option>
                 <option value="ja">日本語 - Japanese</option>
                 <option value="ko">한국어 - Korean</option>

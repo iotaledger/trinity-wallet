@@ -1,8 +1,8 @@
 import React from 'react';
 import { Clipboard, TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
-import { formatValue, formatUnit, round } from '../../shared/libs/util';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate } from '../../shared/libs/dateUtils';
-import { convertFromTrytes } from '../../shared/libs/iota';
+import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
+import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
 
 const width = Dimensions.get('window').width;
@@ -31,7 +31,7 @@ class TransactionRow extends React.Component {
 
     _renderModalContent = (titleColour, sendOrReceive) => (
         <TouchableOpacity onPress={() => this._hideModal()}>
-            <View style={{ flex: 1, justifyContent: 'center', width: width / 1.1 }}>
+            <View style={{ flex: 1, justifyContent: 'center', width: width / 1.15 }}>
                 <View style={styles.modalContent}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text
@@ -259,6 +259,7 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         backgroundColor: '#16313a',
+        width: width / 1.15,
         padding: width / 25,
         justifyContent: 'center',
         borderRadius: 10,

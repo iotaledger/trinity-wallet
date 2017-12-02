@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.rnprint.RNPrint.RNPrintPackage;
 import com.facebook.react.ReactApplication;
+import com.jadsonlourenco.RNShakeEvent.RNShakeEventPackage;
 import com.peel.react.rnos.RNOSModule;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
@@ -27,6 +28,8 @@ import com.slowpath.hockeyapp.RNHockeyAppModule;
 import com.slowpath.hockeyapp.RNHockeyAppPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
+import com.corbt.keepawake.KCKeepAwakePackage;
+
 public class MainApplication extends NavigationApplication {
 
   @Override
@@ -44,6 +47,7 @@ public class MainApplication extends NavigationApplication {
             new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
+            new RNShakeEventPackage(),
             new RNOSModule(),
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
@@ -51,7 +55,8 @@ public class MainApplication extends NavigationApplication {
 	        new RCTCameraPackage(),
 	        new RNFSPackage(),
             new ExtraDimensionsPackage(),
-            new RNDetectNavbarAndroidPackage()
+            new RNDetectNavbarAndroidPackage(),
+            new KCKeepAwakePackage()
     );
   }
 
