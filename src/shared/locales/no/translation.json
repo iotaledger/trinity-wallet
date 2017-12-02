@@ -49,7 +49,7 @@
         "passwordsDoNotMatch": "Passordene er ikke like",
         "passwordsDoNotMatchExplanation": "Passordene er ikke like. Prøv igjen.",
         "passwordTooShort": "Passordet er for kort",
-        "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
+        "passwordTooShortExplanation": "Passordet ditt må være minst 12 tegn. Prøv igjen.",
         "oldPassword": "Kan ikke angi gammelt passord",
         "oldPasswordExplanation": "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
         "ensureStrongPassword": "Sikre du bruk et sterkt passord minst 12 tegn.",
@@ -106,7 +106,7 @@
     "paperWallet": {
         "clickToPrint": "Klikk knappen nedenfor for å skrive ut en papirkopi av din hovednøkkel.",
         "storeSafely": "Lagre den trygt.",
-        "neverShare": "Du må aldri dele nøkkelen din med noen.",
+        "neverShare": "Du må aldri dele hovednøkkelen din med noen.",
         "iotaLogo": "IOTA logo",
         "printWallet": "SKRIV UT PAPIRLOMMEBOK"
     },
@@ -206,7 +206,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Din hovednøkkel er 81 tegn og leses fra venstre mot høyre. Skriv denne ned sammen med kontrolltegnene og",
-        "tripleCheck": "sjekk tre ganger",
+        "tripleCheck": "dobbeltsjekk",
         "thatTheyAreCorrect": "at både hovednøkkel og kontrolltegn er skrevet korrekt."
     }
 }
