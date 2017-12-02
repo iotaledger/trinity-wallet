@@ -4,6 +4,7 @@ import head from 'lodash/head';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
+import some from 'lodash/some';
 
 export const formatAddressBalances = (addresses, balances) => {
     var addressesWithBalance = Object.assign({}, ...addresses.map((n, index) => ({ [n]: balances[index] })));
@@ -27,7 +28,21 @@ export const groupTransfersByBundle = transfers => {
         } else {
             const i = groupedTransfers.findIndex(bundle => bundle[0].bundle === tx.bundle);
             if (i !== -1) {
-                groupedTransfers[i].push(tx);
+                const groupedRow = groupedTransfers[i];
+
+                for (let j = size(groupedRow); j--; ) {
+                    const transfer = groupedRow[j];
+                    if (get(tx, 'currentIndex') === get(transfer, 'currentIndex')) {
+                        if (get(tx, 'attachmentTimestamp') > get(transfer, 'attachmentTimestamp')) {
+                            groupedTransfers[i][j] = tx;
+                        }
+                        break;
+                    } else {
+                        if (j === 0) {
+                            groupedTransfers[i].push(tx); // Would break the loop anyways
+                        }
+                    }
+                }
             } else {
                 groupedTransfers.push([tx]);
             }
@@ -139,8 +154,7 @@ export const deduplicateBundles = transfers => {
         if (get(res, bundle)) {
             const timestampOnExistingTransfer = get(res[bundle], '[0].attachmentTimestamp');
             if (attachmentTimestamp > timestampOnExistingTransfer) {
-                const mergeTransfersWithSameBundle = t => res[bundle].push(t);
-                each(transfer, mergeTransfersWithSameBundle);
+                res[bundle] = transfer;
             }
         } else {
             res = { ...res, ...{ [bundle]: transfer } };
