@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
 import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/libs/i18n';
 import i18next from 'i18next';
 import setFirstUse from 'iota-wallet-shared-modules/actions/account.js';
 import { detectLocale, selectLocale } from '../components/locale';
 import locale from 'react-native-locale-detector';
-import Dropdown from '../components/dropdown'
+import Dropdown from '../components/dropdown';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -79,14 +78,13 @@ class LanguageSetup extends React.Component {
     }
 
     clickDropdownItem(language) {
-        const languageIndex = I18N_LOCALE_LABELS.findIndex(l => l === language);
-
-        i18next.changeLanguage(I18N_LOCALES[languageIndex]);
+        // const languageIndex = I18N_LOCALE_LABELS.findIndex(l => l === language);
+        // i18next.changeLanguage(I18N_LOCALES[languageIndex]);
     }
 
     render() {
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-green.png')} style={{ flex: 1 }}>
                 <View style={styles.container}>
                     <Image
                         style={styles.helloBackground}
@@ -122,4 +120,4 @@ class LanguageSetup extends React.Component {
 
 const mapStateToProps = state => ({});
 
-export default translate(['languageSetup', 'global'])(connect(mapStateToProps)(LanguageSetup));
+export default connect(mapStateToProps)(LanguageSetup);
