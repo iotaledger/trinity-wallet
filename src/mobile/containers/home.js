@@ -191,7 +191,6 @@ class Home extends Component {
                     <View style={styles.topContainer} />
                     <View style={styles.midContainer}>
                         <View style={{ flex: 1 }}>{children}</View>
-                        >>>>>>> develop
                     </View>
                     <View style={styles.bottomContainer}>
                         <View style={styles.tabBar}>
