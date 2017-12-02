@@ -62,7 +62,7 @@
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
         "seedCopied": "Hovednøkkelen er kopiert",
         "seedCopiedExplanation": "Hovednøkkelen er blitt kopiert til utklippstavlen og fjernes når du trykker \"FERDIG\" eller 60 sekunder er gått.",
-        "clickToCopy": "Klikk knappen nedenfor og kopier din nøkkel til et passord-lagrings program."
+        "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til et passord-lagrings program."
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
