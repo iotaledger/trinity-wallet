@@ -69,16 +69,14 @@ class SetPassword extends React.Component {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
                 this.dropdown.alertWithType(
                     'error',
-                    'Password is too short',
-                    `Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state
-                        .password.length} characters long. Please try again.`,
+                    t('passwordTooShort'),
+                    t('passwordTooShortExplanation', {
+                        minLength: MIN_PASSWORD_LENGTH,
+                        currentLength: this.state.password.length,
+                    }),
                 );
             } else if (!(this.state.password === this.state.reentry)) {
-                this.dropdown.alertWithType(
-                    'error',
-                    'Passwords do not match',
-                    'The passwords you have entered do not match. Please try again.',
-                );
+                this.dropdown.alertWithType('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
             }
         }
     }
@@ -103,7 +101,7 @@ class SetPassword extends React.Component {
                                 style={styles.iotaLogo}
                             />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.greetingText}>Now we need to set up a password.</Text>
+                                <Text style={styles.greetingText}>{t('nowWeNeedTo')}</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
@@ -112,13 +110,8 @@ class SetPassword extends React.Component {
                                     source={require('iota-wallet-shared-modules/images/info.png')}
                                     style={styles.infoIcon}
                                 />
-                                <Text style={styles.infoText}>
-                                    An encrypted copy of your seed will be stored on your device. You will use this
-                                    password to access your wallet in future.
-                                </Text>
-                                <Text style={styles.warningText}>
-                                    Ensure you use a strong password of at least 12 characters.
-                                </Text>
+                                <Text style={styles.infoText}>{t('anEncryptedCopy')}</Text>
+                                <Text style={styles.warningText}>{t('ensure')}</Text>
                             </View>
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
@@ -127,7 +120,7 @@ class SetPassword extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Password"
+                                label={t('global:password')}
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -149,7 +142,7 @@ class SetPassword extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Retype Password"
+                                label={t('retypePassword')}
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -166,8 +159,8 @@ class SetPassword extends React.Component {
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={'BACK'}
-                                rightText={'DONE'}
+                                leftText={t('global:back')}
+                                rightText={t('global:done')}
                             />
                         </View>
                     </View>
@@ -332,4 +325,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SetPassword);
+export default translate(['setPassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SetPassword));
