@@ -41,7 +41,7 @@ class LanguageSetup extends React.Component {
         this.state = {
             triangleDirection: 'down',
             dropdownHeight: 0,
-            languageSelected: 'English (International)',
+            languageSelected: '',
         };
     }
 
@@ -82,7 +82,7 @@ class LanguageSetup extends React.Component {
             languageSelected: item,
         });
 
-        i18next.changeLanguage(translationResource || 'en'); // TODO: Remove || when passed appropriate strings for each resource
+        i18next.changeLanguage(translationResource); // TODO: Remove || when passed appropriate strings for each resource
     }
 
     render() {
