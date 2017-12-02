@@ -26,7 +26,13 @@ import Settings from './settings';
 import TopBar from './topBar';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from '../../shared/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
-import { setReceiveAddress, replayBundle, setReady, clearTempData, setPassword } from '../../shared/actions/tempAccount';
+import {
+    setReceiveAddress,
+    replayBundle,
+    setReady,
+    clearTempData,
+    setPassword,
+} from '../../shared/actions/tempAccount';
 import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
 import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
@@ -61,7 +67,7 @@ class Home extends Component {
         if (typeof accountInfo !== 'undefined') {
             this.props.setBalance(addressesWithBalance);
         }
-        timer.setInterval('polling', () => this.startPolling(), 47000);
+        timer.setInterval('polling', () => this.startPolling(), 30000);
     }
 
     componentWillUnmount() {
@@ -70,7 +76,7 @@ class Home extends Component {
         timer.clearInterval('chartPolling');
     }
 
-    logout(){
+    logout() {
         this.props.clearTempData();
         this.props.setPassword('');
         Navigation.startSingleScreenApp({
@@ -89,10 +95,16 @@ class Home extends Component {
 
     _handleAppStateChange = nextAppState => {
         if (this.state.appState.match(/inactive|background/)) {
-            timer.setTimeout('background', () => {this.logout()}, 30000)
+            timer.setTimeout(
+                'background',
+                () => {
+                    this.logout();
+                },
+                30000,
+            );
         }
-        if(nextAppState === 'active'){
-            timer.clearTimeout('background')
+        if (nextAppState === 'active') {
+            timer.clearTimeout('background');
         }
         this.setState({ appState: nextAppState });
     };
@@ -130,7 +142,9 @@ class Home extends Component {
         const childrenProps = {
             type: route, // TODO: type prop might be unneeded in all the children components;
             navigator: this.props.navigator,
-            closeTopBar: () => { if(this.props.isTopBarActive) this.props.toggleTopBarDisplay() },
+            closeTopBar: () => {
+                if (this.props.isTopBarActive) this.props.toggleTopBarDisplay();
+            },
         };
 
         switch (route) {
@@ -169,12 +183,7 @@ class Home extends Component {
         const isCurrentRoute = route => route === childRoute;
 
         return (
-
-            <UserInactivity
-                timeForInactivity={120000}
-                checkInterval={2000}
-                onInactivity={() => this.logout()}
-            >
+            <UserInactivity timeForInactivity={120000} checkInterval={2000} onInactivity={() => this.logout()}>
                 <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
                     <StatusBar barStyle="light-content" />
                     <View style={styles.topContainer} />
@@ -312,7 +321,6 @@ class Home extends Component {
                     <KeepAwake />
                 </ImageBackground>
             </UserInactivity>
-
         );
     }
 }
@@ -464,7 +472,7 @@ Home.propTypes = {
     tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
     generateAlert: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
-    isTopBarActive: PropTypes.bool.isRequired
+    isTopBarActive: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
