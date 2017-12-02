@@ -107,7 +107,6 @@ class UseExistingSeed extends React.Component {
                                         value={seed}
                                         maxLength={81}
                                         onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
-                                        secureTextEntry={true}
                                         onSubmitEditing={() => this.refs.accountName.focus()}
                                     />
                                 </View>
