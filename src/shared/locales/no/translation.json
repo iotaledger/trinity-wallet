@@ -67,14 +67,14 @@
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
         "invalidCharactersExplanation": "Hovednøkkelen kan bare bestå av bokstavene A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Prøv på nytt.",
-        "seedTooShort": "Nøkkelen er for kort",
+        "seedTooShort": "Hovednøkkelen er for kort",
         "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
         "seedExplanation": "Hovednøkler bør være {{maxLength}} tegn, og bør inneholde de store bokstavene A-Z, eller tallet 9. Du kan ikke bruke hovednøkler lenger enn {{maxLength}} tegn.",
-        "neverShare": "OPPGI ALDRI DIN MASTERNØKKEL TIL ANDRE"
+        "neverShare": "OPPGI ALDRI DIN HOVEDNØKKEL TIL ANDRE"
     },
     "home": {
         "balance": "SALDO",
-        "send": "SENDE",
+        "send": "SEND",
         "receive": "MOTTA",
         "history": "HISTORIKK",
         "settings": "INNSTILLINGER"
@@ -86,7 +86,7 @@
         "emptyPassword": "Tomt passord",
         "emptyPasswordExplanation": "Du må angi et passord for å logge inn. Prøv på nytt.",
         "enterPassword": "Skriv inn passord.",
-        "useSeed": "BRUK MASTERNØKKEL",
+        "useSeed": "BRUK HOVEDNØKKEL",
         "login": "LOGG INN"
     },
     "loading": {
@@ -95,16 +95,16 @@
         "youMayNotice": "Du kan merke en treghet på enheten din."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Nøkkel er ikke blitt generert",
-        "seedNotGeneratedExplanation": "Trykk knappen for å generere ny nøkkel.",
-        "pressForNewSeed": "TRYKK FOR NY NØKKEL",
-        "individualLetters": "Trykk enkelte tegn for å flytte de til ny tilfeldig plassering."
+        "seedNotGenerated": "Hovednøkkel har ikke blitt generert",
+        "seedNotGeneratedExplanation": "Trykk knappen for å generere ny hovednøkkel.",
+        "pressForNewSeed": "TRYKK FOR NY HOVEDNØKKEL",
+        "individualLetters": "Trykk enkelte tegn for å gi de tilfeldig plassering."
     },
     "onboardingComplete": {
-        "walletReady": "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Verktøy-menyen."
+        "walletReady": "Lommeboken er nå satt opp og klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du se på Innstillinger menyen."
     },
     "paperWallet": {
-        "clickToPrint": "Klikk knappen nedenfor for å skrive ut en kopi av din nøkkel.",
+        "clickToPrint": "Klikk knappen nedenfor for å skrive ut en papirkopi av din hovednøkkel.",
         "storeSafely": "Lagre den trygt.",
         "neverShare": "Du må aldri dele nøkkelen din med noen.",
         "iotaLogo": "IOTA logo",
@@ -115,26 +115,26 @@
         "somethingWentWrongExplanation": "Start programmet på nytt.",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
-        "generateNewAddress": "FÅ NY MASTERNØKKEL"
+        "generateNewAddress": "LAG NY ADDRESSE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "Du må lagre nøkkelen med",
-        "atLeastOne": "minst én",
+        "mustSaveYourSeed": "Du må lagre hovednøkkelen med",
+        "atLeastOne": "minst en",
         "ofTheOptions": "av alternativene nedenfor."
     },
     "seedReentry": {
-        "incorrectSeed": "Feil nøkkel.",
-        "incorrectSeedExplanation": "Nøkkelen du skrev inn er feil. Prøv på nytt.",
+        "incorrectSeed": "Feil hovednøkkel.",
+        "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
         "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret nøkkelen din.",
-        "ifYouHaveNotSaved": "Dersom du ikke har lagret nøkkelen din, vennligst gå tilbake til forrige steg for å lagre."
+        "ifYouHaveNotSaved": "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake til forrige steg for å lagre."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
         "invalidAddressExplanation1": "Adressen skal 81 tegn og bør ha 9 kontrolltegn.",
         "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
-        "notEnoughFunds": "Ikke nok IOTA",
-        "notEnoughFundsExplanation": "Du har ikke nok IOTA til å sende denne overføringen.",
+        "notEnoughFunds": "Ikke nok midler",
+        "notEnoughFundsExplanation": "Du har ikke nok IOTA til å fullføre denne overføringen.",
         "keyReuse": "Privatnøkkelen er brukt før",
         "keyReuseExplanation": "Adressen du prøver å sende til er allerede brukt. Prøv en annen adresse.",
         "recipientAddress": "Mottakeradresse",
@@ -145,7 +145,7 @@
     },
     "setPassword": {
         "passwordTooShort": "Passordet er for kort",
-        "passwordTooShortExplanation": "Passordet må være minst ${MIN_PASSWORD_LENGTH} tegn. Det er nå ${this.state.password.length} tegn. Prøv på nytt.",
+        "passwordTooShortExplanation": "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
         "passwordMismatch": "Passordene samsvarer ikke",
         "passwordMismatchExplanation": "Passordene du angav samsvarer ikke. Prøv på nytt.",
         "nowWeNeedTo": "Nå må vi sette opp et passord.",
