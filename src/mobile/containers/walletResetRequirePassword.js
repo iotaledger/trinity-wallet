@@ -1,12 +1,14 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { deleteFromKeyChain } from '../../shared/libs/cryptography';
-import { resetWallet } from '../../shared/actions/app';
-import { setFirstUse, setOnboardingComplete } from '../../shared/actions/account';
+import { deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
+import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
+import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { Navigation } from 'react-native-navigation';
-import { clearTempData, setPassword } from '../../shared/actions/tempAccount';
+import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import PropTypes from 'prop-types';
+import { persistor } from '../store';
 import {
     StyleSheet,
     View,
@@ -47,7 +49,7 @@ class WalletResetRequirePassword extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundImageName: 'bg-blue.png',
                 screenBackgroundColor: Colors.brand.primary,
             },
             animated: false,
@@ -66,7 +68,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-green.png',
+                    screenBackgroundImageName: 'bg-blue.png',
                     screenBackgroundColor: '#102e36',
                 },
                 overrideBackPress: true,
@@ -77,15 +79,26 @@ class WalletResetRequirePassword extends Component {
     resetWallet() {
         const isAuthenticated = this.isAuthenticated();
         const { password, resetWallet } = this.props;
-
         if (isAuthenticated) {
-            deleteFromKeyChain(password);
-            resetWallet();
-            this.props.setOnboardingComplete(false);
-            this.props.setFirstUse(true);
-            this.props.clearTempData();
-            this.props.setPassword('');
-            this.redirectToInitialScreen();
+            persistor
+                .purge()
+                .then(() => {
+                    deleteFromKeyChain(password);
+                    this.props.setOnboardingComplete(false);
+                    this.props.setFirstUse(true);
+                    this.props.clearTempData();
+                    this.props.setPassword('');
+                    this.redirectToInitialScreen();
+                    this.props.resetWallet();
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Something went wrong',
+                        'Something went wrong while resetting your wallet. Please try again.',
+                    );
+                });
         } else {
             this.dropdown.alertWithType(
                 'error',
@@ -96,13 +109,18 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                                style={styles.iotaLogo}
+                            />
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={styles.generalText}>Enter password to reset your wallet.</Text>
@@ -240,29 +258,32 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.tertiary,
     },
     dropdownTitle: {
-        fontSize: 16,
+        fontSize: width / 25.9,
         textAlign: 'left',
         fontWeight: 'bold',
-        color: Colors.white,
+        color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: Fonts.secondary,
+        fontFamily: 'Lato-Regular',
     },
     dropdownTextContainer: {
         flex: 1,
-        padding: 15,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: 14,
+        fontSize: width / 29.6,
         textAlign: 'left',
         fontWeight: 'normal',
-        color: Colors.white,
+        color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: Fonts.secondary,
+        fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
     },
     dropdownImage: {
-        padding: 8,
-        width: 36,
-        height: 36,
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
         alignSelf: 'center',
     },
 });

@@ -1,3 +1,10 @@
+import isArray from 'lodash/isArray';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
+import isString from 'lodash/isString';
+
+export const MAX_SEED_LENGTH = 81;
+
 export const formatValue = value => {
     var negative = false;
     if (value < 0) {
@@ -69,7 +76,7 @@ export const isValidServerAddress = server => {
     return true;
 };
 
-export const isValidSeed = seed => /^[A-Z9]{81}$/.test(seed);
+export const isValidSeed = seed => /^[A-Z9]{MAX_SEED_LENGTH}$/.test(seed);
 
 export const guid = () => {
     const s4 = () =>
@@ -79,13 +86,13 @@ export const guid = () => {
     return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
 };
 
-export const createRandomSeed = (randomBytesFn, length = 81) => {
+export const createRandomSeed = (randomBytesFn, length = MAX_SEED_LENGTH) => {
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
     const bytes = randomBytesFn(100);
     let seed = '';
 
-    if (length > 81 || length < 1) {
-        length = 81;
+    if (length > MAX_SEED_LENGTH || length < 1) {
+        length = MAX_SEED_LENGTH;
     }
 
     Object.keys(bytes).forEach(key => {
@@ -100,3 +107,40 @@ export const createRandomSeed = (randomBytesFn, length = 81) => {
 };
 
 export const isValidPassword = (password = '') => password.length >= 12;
+
+const _renameObjectKeys = (object, keyMap) =>
+    reduce(
+        object,
+        (result, value, key) => {
+            const k = keyMap[key] || key;
+            result[k] = value;
+            return result;
+        },
+        {},
+    );
+
+const _renameArrayKeys = (list, keyMap) => map(list, object => _renameObjectKeys(object, keyMap));
+
+export const renameKeys = (payload, keyMap) => {
+    if (isArray(payload)) {
+        return _renameArrayKeys(payload, keyMap);
+    }
+
+    return _renameObjectKeys(payload, keyMap);
+};
+
+export const serialize = (data, ...options) => {
+    if (!isString(data)) {
+        return JSON.stringify(data, ...options);
+    }
+
+    return data;
+};
+
+export const parse = data => {
+    try {
+        return JSON.parse(data);
+    } catch (err) {
+        return data;
+    }
+};

@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Dimensions, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
-import { getCurrentYear } from '../../shared/libs/dateUtils';
-import store from '../../shared/store';
+import {
+    StyleSheet,
+    View,
+    Dimensions,
+    Image,
+    ImageBackground,
+    Text,
+    StatusBar,
+    BackHandler,
+    Platform,
+} from 'react-native';
+import { getAllItems, deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
+import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
+import store from 'iota-wallet-shared-modules/store';
 import { DetectNavbar } from '../theme/androidSoftKeys';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 
@@ -17,7 +29,6 @@ global.height = DetectNavbar.hasSoftKeys()
 export default class InitialLoading extends Component {
     constructor() {
         super();
-
         console.ignoredYellowBox = ['Setting a timer'];
     }
 
@@ -31,9 +42,26 @@ export default class InitialLoading extends Component {
         return false;
     }
 
+    clearKeychain() {
+        getAllItems().then(keys => {
+            if (Platform.OS === 'ios') {
+                if (!keys[0].length) {
+                    return;
+                } else {
+                    let key = '';
+                    for (let i = 0; i < keys[0].length; i++) {
+                        key = keys[0][i].key;
+                        deleteFromKeyChain(key);
+                    }
+                }
+            }
+        });
+    }
+
     onLoaded() {
         const state = store.getState();
         if (!state.account.onboardingComplete) {
+            this.clearKeychain();
             this.props.navigator.push({
                 screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
@@ -53,10 +81,10 @@ export default class InitialLoading extends Component {
     render() {
         const currentYear = getCurrentYear();
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
-                    <Image source={require('../../shared/images/iota-white.png')} style={styles.logo} />
+                    <Image source={require('iota-wallet-shared-modules/images/iota-white.png')} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>IOTA Alpha Wallet {currentYear}</Text>

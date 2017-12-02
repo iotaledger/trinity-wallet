@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -12,9 +13,9 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeedName, setOnboardingComplete } from '../../shared/actions/account';
-import { clearTempData, clearSeed } from '../../shared/actions/tempAccount';
-import { storeInKeychain } from '../../shared/libs/cryptography';
+import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
+import { clearTempData, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { storeSeedInKeychain, checkKeychainForDuplicates } from 'iota-wallet-shared-modules/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
@@ -36,22 +37,34 @@ class SetPassword extends React.Component {
 
     onDonePress() {
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
-            Promise.resolve(
-                storeInKeychain(this.state.password, this.props.tempAccount.seed, this.props.tempAccount.seedName),
-            )
-                .then(this.props.clearTempData())
-                .then(this.props.clearSeed());
-            this.props.setOnboardingComplete(true);
-            this.props.addSeedName(this.props.tempAccount.seedName);
-            this.props.navigator.push({
-                screen: 'onboardingComplete',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                },
-                animated: false,
-                overrideBackPress: true,
-            });
+            checkKeychainForDuplicates(
+                this.state.password,
+                this.props.tempAccount.seed,
+                this.props.tempAccount.seedName,
+                (type, title, message) => dropdown.alertWithType(type, title, message),
+                () =>
+                    ifNoKeychainDuplicates(
+                        this.state.password,
+                        this.props.tempAccount.seed,
+                        this.props.tempAccount.seedName,
+                    ),
+            );
+            ifNoKeychainDuplicates = (password, seed, accountName) => {
+                storeSeedInKeychain(password, seed, accountName), this.props.addAccountName(accountName);
+                this.props.increaseSeedCount();
+                this.props.clearTempData();
+                this.props.clearSeed();
+                this.props.setOnboardingComplete(true);
+                this.props.navigator.push({
+                    screen: 'onboardingComplete',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                    },
+                    animated: false,
+                    overrideBackPress: true,
+                });
+            };
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
                 this.dropdown.alertWithType(
@@ -77,20 +90,28 @@ class SetPassword extends React.Component {
 
     render() {
         let { password, reentry } = this.state;
+        const { t } = this.props;
+
         return (
-            <ImageBackground source={require('../../shared/images/bg-green.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                                style={styles.iotaLogo}
+                            />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.greetingText}>Now we need to set up a password.</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
                             <View style={styles.infoTextContainer}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/info.png')}
+                                    style={styles.infoIcon}
+                                />
                                 <Text style={styles.infoText}>
                                     An encrypted copy of your seed will be stored on your device. You will use this
                                     password to access your wallet in future.
@@ -114,9 +135,7 @@ class SetPassword extends React.Component {
                                 returnKeyType="next"
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
-                                onSubmitEditing={event => {
-                                    this.refs.reentry.focus();
-                                }}
+                                onSubmitEditing={() => this.refs.reentry.focus()}
                                 containerStyle={{
                                     width: width / 1.36,
                                 }}
@@ -140,6 +159,7 @@ class SetPassword extends React.Component {
                                 onChangeText={reentry => this.setState({ reentry })}
                                 containerStyle={{ width: width / 1.36 }}
                                 secureTextEntry={true}
+                                onSubmitEditing={() => this.onDonePress()}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -208,7 +228,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.6,
+        width: width / 1.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
@@ -295,8 +315,8 @@ const mapDispatchToProps = dispatch => ({
     setOnboardingComplete: boolean => {
         dispatch(setOnboardingComplete(boolean));
     },
-    storeInKeychain: password => {
-        dispatch(storeInKeychain(password));
+    storeSeedInKeychain: password => {
+        dispatch(storeSeedInKeychain(password));
     },
     clearTempData: () => {
         dispatch(clearTempData());
@@ -307,8 +327,8 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    addSeedName: newSeed => {
-        dispatch(addSeedName(newSeed));
+    addAccountName: newSeed => {
+        dispatch(addAccountName(newSeed));
     },
 });
 
