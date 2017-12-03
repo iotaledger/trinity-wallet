@@ -132,7 +132,7 @@
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
-        "invalidAddressExplanation1": "Adressen skal 81 tegn og bør ha 9 kontrolltegn.",
+        "invalidAddressExplanation1": "Adressen bør være 81 tegn og ha kontrolltegn.",
         "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
         "notEnoughFunds": "Ikke nok midler",
@@ -209,6 +209,6 @@
     "writeSeedDown": {
         "yourSeedIs": "Din hovednøkkel er 81 tegn og leses fra venstre mot høyre. Skriv denne ned sammen med kontrolltegnene og",
         "tripleCheck": "dobbeltsjekk",
-        "thatTheyAreCorrect": "at både hovednøkkel og kontrolltegn er skrevet korrekt."
+        "thatTheyAreCorrect": "at de er riktige."
     }
 }
