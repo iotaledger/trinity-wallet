@@ -139,12 +139,12 @@
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
         "amount": "金額",
-        "max": "MAX",
-        "message": "Message",
-        "send": "SEND IOTA"
+        "max": "最大值",
+        "message": "訊息",
+        "send": "發送IOTA"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
+        "passwordTooShort": "密碼過短",
         "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "Passwords do not match",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
@@ -162,11 +162,11 @@
         "transferSendingExplanation": "Please wait until your transfer has been sent.",
         "generatingAddress": "Generating receive address",
         "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
-        "language": "Language",
-        "addNewSeed": "Add new seed",
+        "mode": "模式",
+        "theme": "佈景主題",
+        "currency": "貨幣",
+        "language": "語言",
+        "addNewSeed": "增加新的種子碼",
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
@@ -191,22 +191,22 @@
     "walletSetup": {
         "okay": "好囉。來建置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否已有希望使用的種子碼?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seedExplanation": "IOTA種子碼是由您帳戶的名稱和密碼結合成為81個字元長的字串。",
         "explanation1": "You can use it to access your funds from",
         "explanation2": " any wallet ",
         "explanation3": ", on",
         "explanation4": " any device",
         "explanation5": ". But if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "keepSafe": "請妥善保存您的種子碼"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "感謝您下載IOTA錢包。",
+        "weWillSpend": "接下來幾分鐘我們將為您設置您的錢包。",
+        "reminder": "您或許希望跳過一些步驟，但我們建議您按完整程序設置。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "您的種子碼是由左至右。寫下您的種子碼和檢查碼，並",
+        "tripleCheck": "再三確認",
+        "thatTheyAreCorrect": "兩者皆正確"
     }
 }
