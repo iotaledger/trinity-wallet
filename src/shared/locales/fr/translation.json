@@ -87,12 +87,12 @@
         "emptyPasswordExplanation": "Un mot de passe est requis pour la connexion. Veuillez réessayer.",
         "enterPassword": "Veuillez renseigner votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
-        "login": "LOG IN"
+        "login": "SE CONNECTER"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Chargement de la seed pour la première fois.",
+        "thisMayTake": "Cela peut prendre un peu temps.",
+        "youMayNotice": "Il se peut que votre appareil ralentisse."
     },
     "newSeedSetup": {
         "seedNotGenerated": "La Seed n'a pas été générée",
@@ -111,7 +111,7 @@
         "printWallet": "IMPRIMER LE PAPER WALLET"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
+        "somethingWentWrong": "Une erreur s'est produite",
         "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papiers.",
@@ -125,8 +125,8 @@
     "seedReentry": {
         "incorrectSeed": "Seed incorrecte.",
         "incorrectSeedExplanation": "La seed que vous avez entrée est incorrecte. Veuillez réessayer.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
+        "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir à l’écran précédent et le faire."
     },
     "send": {
         "invalidAddress": "Adresse invalide",
@@ -159,8 +159,8 @@
     },
     "settings": {
         "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
+        "transferSendingExplanation": "Veuillez attendre que votre transfert ait été envoyé.",
+        "generatingAddress": "Génération d'une adresse de réception",
         "generatingAddressExplanation": "Veuillez attendre que votre adresse ait été générée.",
         "mode": "Mode",
         "theme": "Thème",
