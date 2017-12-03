@@ -10,11 +10,12 @@ import {
     Text,
     ActivityIndicator,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
-import { setBalance, setFirstUse } from '../../shared/actions/account';
-import { setSetting } from '../../shared/actions/tempAccount';
-import { changeHomeScreenRoute } from '../../shared/actions/home';
+import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
+import { setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { Navigation } from 'react-native-navigation';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
@@ -30,9 +31,8 @@ class Loading extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-
-      const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
-      if (ready) {
+        const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+        if (ready) {
             Navigation.startSingleScreenApp({
                 screen: {
                     screen: 'home',
@@ -45,21 +45,24 @@ class Loading extends Component {
                     overrideBackPress: true,
                 },
             });
-      }
+        }
     }
 
     render() {
-        const { tempAccount: { ready }, account: { firstUse }, navigator } = this.props;
+        const { tempAccount: { ready }, account: { firstUse }, navigator, t } = this.props;
 
         if (this.props.account.firstUse) {
             return (
-                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+                <ImageBackground
+                    source={require('iota-wallet-shared-modules/images/bg-blue.png')}
+                    style={styles.container}
+                >
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={styles.infoText}>Loading seed for the first time.</Text>
-                        <Text style={styles.infoText}>This may take a while.</Text>
-                        <Text style={styles.infoText}>You may notice your device slowing down.</Text>
+                        <Text style={styles.infoText}>{t('loadingFirstTime')}</Text>
+                        <Text style={styles.infoText}>{t('thisMayTake')}</Text>
+                        <Text style={styles.infoText}>{t('youMayNotice')}</Text>
                         <ActivityIndicator
                             animating={true}
                             style={styles.activityIndicator}
@@ -72,7 +75,10 @@ class Loading extends Component {
             );
         } else if (!this.props.account.firstUse) {
             return (
-                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+                <ImageBackground
+                    source={require('iota-wallet-shared-modules/images/bg-blue.png')}
+                    style={styles.container}
+                >
                     <StatusBar barStyle="light-content" />
                     <IotaSpin duration={3000} />
                 </ImageBackground>
@@ -127,4 +133,4 @@ Loading.propTypes = {
     navigator: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Loading);
+export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));

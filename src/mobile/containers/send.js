@@ -1,7 +1,8 @@
 import isUndefined from 'lodash/isUndefined';
 import size from 'lodash/size';
 import React, { Component } from 'react';
-import { iota } from '../../shared/libs/iota';
+import { translate } from 'react-i18next';
+import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import {
     ActivityIndicator,
     StyleSheet,
@@ -19,16 +20,16 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { round } from '../../shared/libs/util';
-import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempAccount';
-import { getCurrencySymbol } from '../../shared/libs/currency';
+import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
+import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
-import { getAccountInfo } from '../../shared/actions/account';
+import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
 const width = Dimensions.get('window').width;
@@ -98,11 +99,11 @@ class Send extends Component {
     }
 
     isValidAddressChars(address) {
-        return address.match(/^[A-Z9]+$/);
+        return address.match(VALID_SEED_REGEX);
     }
 
     isValidMessage(message) {
-        //return this.state.message.match(/^[A-Z9]+$/);
+        //return this.state.message.match(VALID_SEED_REGEX);
         return true;
     }
 
@@ -120,16 +121,19 @@ class Send extends Component {
     }
 
     renderInvalidAddressErrors(address) {
-        const props = ['error', 'Invalid Address'];
+        const props = ['error', 'Invalid address'];
         const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
-            return dropdown.alertWithType(...props, 'Address should be 81 characters long and should have a checksum.');
-        } else if (address.match(/^[A-Z9]+$/) == null) {
+            return dropdown.alertWithType(
+                ...props,
+                `Address should be ${MAX_SEED_LENGTH} characters long and should have a checksum.`,
+            );
+        } else if (address.match(VALID_SEED_REGEX) == null) {
             return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
 
-        return dropdown.alertWithType(...props, 'Address contains invalid checksum');
+        return dropdown.alertWithType(...props, 'Address contains an invalid checksum');
     }
 
     onSendPress() {
@@ -138,7 +142,6 @@ class Send extends Component {
         const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
         const message = this.state.message;
 
-        const dropdown = DropdownHolder.getDropdown();
         const addressIsValid = this.isValidAddress(address);
         const messageIsValid = this.isValidMessage(message);
         const enoughBalance = this.enoughBalance();
@@ -153,7 +156,7 @@ class Send extends Component {
             const dropdown = DropdownHolder.getDropdown();
             return dropdown.alertWithType(
                 'error',
-                'Not enough cash',
+                'Not enough funds',
                 'You do not have enough IOTA to complete this transfer.',
             );
         }
@@ -194,24 +197,14 @@ class Send extends Component {
 
         this.props.sendTransferRequest();
         getFromKeychain(this.props.tempAccount.password, value => {
-            if (typeof value !== 'undefined') {
-                var seed = getSeed(value, this.props.tempAccount.seedIndex);
-                if (sendTx(seed) == false) {
-                    this.dropdown.alertWithType(
-                        'error',
-                        'Key reuse',
-                        `The address you are trying to send to has already been used. Please try another address.`,
-                    );
-                }
-            } else {
-                console.log('error');
+            if (value) {
+                const seed = getSeed(value, this.props.tempAccount.seedIndex);
+                sendTx(seed);
             }
         });
 
-        const _this = this;
-        function sendTx(seed) {
-            _this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
-        }
+        const sendTx = seed =>
+            this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
     }
 
     getUnitMultiplier() {
@@ -478,7 +471,10 @@ class Send extends Component {
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                         >
                             <View style={styles.info}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/info.png')}
+                                    style={styles.infoIcon}
+                                />
                                 <Text style={styles.infoText}>IOTA units</Text>
                             </View>
                         </TouchableOpacity>

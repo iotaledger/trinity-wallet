@@ -1,8 +1,5 @@
-import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
-import reduce from 'lodash/reduce';
-import map from 'lodash/map';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     AppState,
@@ -24,11 +21,17 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import TopBar from './topBar';
-import { changeHomeScreenRoute, toggleTopBarDisplay } from '../../shared/actions/home';
-import { getTailTransactionHashesForPendingTransactions } from '../../shared/store';
-import { setReceiveAddress, replayBundle, setReady, clearTempData, setPassword } from '../../shared/actions/tempAccount';
-import { getAccountInfo, setBalance, setFirstUse } from '../../shared/actions/account';
-import { generateAlert, disposeOffAlert } from '../../shared/actions/alerts';
+import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
+import { getTailTransactionHashesForPendingTransactions } from 'iota-wallet-shared-modules/store';
+import {
+    setReceiveAddress,
+    replayBundle,
+    setReady,
+    clearTempData,
+    setPassword,
+} from 'iota-wallet-shared-modules/actions/tempAccount';
+import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from './reAttacher';
@@ -112,10 +115,16 @@ class Home extends Component {
 
     _handleAppStateChange = nextAppState => {
         if (this.state.appState.match(/inactive|background/)) {
-            timer.setTimeout('background', () => {this.logout()}, 30000)
+            timer.setTimeout(
+                'background',
+                () => {
+                    this.logout();
+                },
+                30000,
+            );
         }
-        if(nextAppState === 'active'){
-            timer.clearTimeout('background')
+        if (nextAppState === 'active') {
+            timer.clearTimeout('background');
         }
         this.setState({ appState: nextAppState });
     };
@@ -134,7 +143,7 @@ class Home extends Component {
 
     onNodeErrorPolling() {
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response while polling.`);
+        dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
     }
 
     componentWillReceiveProps(newProps) {
@@ -153,7 +162,9 @@ class Home extends Component {
         const childrenProps = {
             type: route, // TODO: type prop might be unneeded in all the children components;
             navigator: this.props.navigator,
-            closeTopBar: () => { if(this.props.isTopBarActive) this.props.toggleTopBarDisplay() },
+            closeTopBar: () => {
+                if (this.props.isTopBarActive) this.props.toggleTopBarDisplay();
+            },
         };
 
         switch (route) {
@@ -187,6 +198,7 @@ class Home extends Component {
     }
 
     render() {
+        const { t } = this.props;
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
@@ -382,7 +394,6 @@ class Home extends Component {
                     <KeepAwake />
                 </ImageBackground>
             </UserInactivity>
-
         );
     }
 }
@@ -586,7 +597,7 @@ Home.propTypes = {
     tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
     generateAlert: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
-    isTopBarActive: PropTypes.bool.isRequired
+    isTopBarActive: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default translate(['home', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Home));
