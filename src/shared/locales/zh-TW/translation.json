@@ -105,35 +105,35 @@
     },
     "paperWallet": {
         "clickToPrint": "按下方按鈕列印出您的種子碼。",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "storeSafely": "妥善存放。",
+        "neverShare": "千萬別和任何人分享您的種子碼。",
+        "iotaLogo": "IOTA標誌",
+        "printWallet": "列印紙本錢包"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS"
+        "somethingWentWrong": "出現錯誤",
+        "somethingWentWrongExplanation": "請重新啟動程式",
+        "addressCopied": "已複製地址",
+        "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
+        "generateNewAddress": "產生新地址"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with",
-        "atLeastOne": "at least one",
-        "ofTheOptions": "of the options listed below."
+        "mustSaveYourSeed": "您必須將種子碼存放",
+        "atLeastOne": "於至少",
+        "ofTheOptions": "下列其中一個選項。"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
+        "incorrectSeed": "錯誤的種子碼。",
+        "incorrectSeedExplanation": "您輸入的種子碼錯誤。請再試一遍。",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "ifYouHaveNotSaved": "若您尚未儲存您的種子碼，請回到上一個畫面儲存。"
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
+        "invalidAddress": "無效的地址",
+        "invalidAddressExplanation1": "地址長度需含81個字元，且包含一個檢查碼。",
+        "invalidAddressExplanation2": "地址包含無效的字元。",
+        "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
+        "notEnoughFunds": "餘額不足",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
@@ -184,13 +184,13 @@
         "areYouSure": "Are you sure you want to continue?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "輸入密碼以重新設置您的錢包。",
+        "cancel": "取消",
+        "reset": "重設"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
+        "okay": "好囉。來建置您的錢包！",
+        "doYouAlreadyHaveASeed": "您是否已有希望使用的種子碼?",
         "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
         "explanation1": "You can use it to access your funds from",
         "explanation2": " any wallet ",
