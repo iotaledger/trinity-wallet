@@ -115,11 +115,13 @@
         "somethingWentWrongExplanation": "Por favor, reinicie a aplicação.",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
-        "generateNewAddress": "GERAR NOVO ENDEREÇO"
+        "generateNewAddress": "GERAR NOVO ENDEREÇO",
+        "message": "Optional message",
+        "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "Deverá guardar a sua Seed com",
-        "atLeastOne": "pelo menos uma",
+        "mustSaveYourSeed": "You must save your seed with ",
+        "atLeastOne": "at least one ",
         "ofTheOptions": "das opções listadas em baixo."
     },
     "seedReentry": {
