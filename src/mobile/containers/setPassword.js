@@ -135,14 +135,16 @@ class SetPassword extends React.Component {
                                 returnKeyType="next"
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
-                                onSubmitEditing={() => this.refs.reentry.focus()}
+                                onSubmitEditing={() => this.reentry.focus()}
                                 containerStyle={{
                                     width: width / 1.36,
                                 }}
                                 secureTextEntry={true}
                             />
                             <TextField
-                                ref="reentry"
+                                ref={c => {
+                                    this.reentry = c;
+                                }}
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={width / 31.8}
