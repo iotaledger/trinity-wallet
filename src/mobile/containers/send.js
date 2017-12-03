@@ -1,7 +1,8 @@
 import isUndefined from 'lodash/isUndefined';
 import size from 'lodash/size';
 import React, { Component } from 'react';
-import { iota } from '../../shared/libs/iota';
+import { translate } from 'react-i18next';
+import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import {
     ActivityIndicator,
     StyleSheet,
@@ -19,16 +20,16 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { round } from '../../shared/libs/util';
-import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempAccount';
-import { getCurrencySymbol } from '../../shared/libs/currency';
+import { round, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
-import { getAccountInfo } from '../../shared/actions/account';
+import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
 const width = Dimensions.get('window').width;
@@ -120,16 +121,19 @@ class Send extends Component {
     }
 
     renderInvalidAddressErrors(address) {
-        const props = ['error', 'Invalid Address'];
+        const props = ['error', 'Invalid address'];
         const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
-            return dropdown.alertWithType(...props, 'Address should be 81 characters long and should have a checksum.');
+            return dropdown.alertWithType(
+                ...props,
+                `Address should be ${MAX_SEED_LENGTH} characters long and should have a checksum.`,
+            );
         } else if (address.match(/^[A-Z9]+$/) == null) {
             return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
 
-        return dropdown.alertWithType(...props, 'Address contains invalid checksum');
+        return dropdown.alertWithType(...props, 'Address contains an invalid checksum');
     }
 
     onSendPress() {
@@ -152,7 +156,7 @@ class Send extends Component {
             const dropdown = DropdownHolder.getDropdown();
             return dropdown.alertWithType(
                 'error',
-                'Not enough cash',
+                'Not enough funds',
                 'You do not have enough IOTA to complete this transfer.',
             );
         }
@@ -269,7 +273,7 @@ class Send extends Component {
 
     onQRRead(data) {
         this.setState({
-            address: data.substring(0, 81),
+            address: data.substring(0, MAX_SEED_LENGTH),
             message: data.substring(82),
         });
         this._hideModal();
@@ -451,7 +455,10 @@ class Send extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}>
                             <View style={styles.info}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/info.png')}
+                                    style={styles.infoIcon}
+                                />
                                 <Text style={styles.infoText}>IOTA units</Text>
                             </View>
                         </TouchableOpacity>
