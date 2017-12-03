@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import i18next from 'i18next';
-import locale from 'react-native-locale-detector';
+// import locale from 'react-native-locale-detector';
 
-export function detectLocale() {
+export function detectLocale(locale) {
     var adaptedLocale = locale.substring(0, 2);
     if (adaptedLocale === 'es' && !locale.match(/ES/)) {
         // Catch all non-Spain Spanish
@@ -36,8 +36,7 @@ export function detectLocale() {
     }
 }
 
-export function selectLocale() {
-    var lang = i18next.language;
+export function selectLocale(lang) {
     if (lang === 'ar') {
         return 'عربى - Arabic';
     }
@@ -50,10 +49,10 @@ export function selectLocale() {
     if (lang === 'el') {
         return 'Ελληνικά - Greek';
     }
-    if (lang === 'es_ES') {
+    if (lang === 'es-ES') {
         return 'Español (España) - Spanish (Spain)';
     }
-    if (lang === 'es_LA') {
+    if (lang === 'es-LA') {
         return 'Español (Latinoamérica) - Spanish (Latin America)';
     }
     if (lang === 'fi') {
@@ -92,10 +91,10 @@ export function selectLocale() {
     if (lang === 'pl') {
         return 'Polski - Polish';
     }
-    if (lang === 'pt_PT') {
+    if (lang === 'pt-PT') {
         return 'Português (Brasil) - Portuguese (Brazil)';
     }
-    if (lang === 'pt_BR') {
+    if (lang === 'pt-BR') {
         return 'Português (Portugal) - Portuguese (Portugal)';
     }
     if (lang === 'ro') {
@@ -116,10 +115,10 @@ export function selectLocale() {
     if (lang === 'ur') {
         return 'اردو - Urdu';
     }
-    if (lang === 'zh_CN') {
+    if (lang === 'zh-CN') {
         return '中文 (简体) - Chinese (Simplified)';
     }
-    if (lang === 'zh_TW') {
+    if (lang === 'zh-TW') {
         return '中文 (繁體) - Chinese (Traditional)';
     } else {
         return 'English (International)';
