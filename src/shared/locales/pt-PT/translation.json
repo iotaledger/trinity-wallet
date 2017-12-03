@@ -105,22 +105,22 @@
     },
     "paperWallet": {
         "clickToPrint": "Prima o botão em baixo para imprimir uma cópia em papel da sua Seed.",
-        "storeSafely": "Guarde em local seguro.",
+        "storeSafely": "Guarde-a em local seguro.",
         "neverShare": "Nunca partilhe a sua Seed com ninguém.",
         "iotaLogo": "Logótipo IOTA",
         "printWallet": "IMPRIMIR CARTEIRA DE PAPEL"
     },
     "receive": {
-        "somethingWentWrong": "Algo correu mal",
+        "somethingWentWrong": "Ocorreu um problema",
         "somethingWentWrongExplanation": "Por favor, reinicie a aplicação.",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "generateNewAddress": "GERAR NOVO ENDEREÇO"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "one?????????????????????",
+        "mustSaveYourSeed": "Deverá guardar a sua Seed com",
         "atLeastOne": "pelo menos uma",
-        "ofTheOptions": "or one here ????????????"
+        "ofTheOptions": "das opções listadas em baixo."
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorreta.",
@@ -145,10 +145,10 @@
     },
     "setPassword": {
         "passwordTooShort": "A palavra-passe é demasiado curta",
-        "passwordTooShortExplanation": "A sua palavra-passe deve ter pelo menos ${MIN_PASSWORD_LENGTH} caracteres. Neste momento tem ${this.state.password.length} caracteres.",
+        "passwordTooShortExplanation": "A sua palavra-passe deve ter pelo menos {MIN_PASSWORD_LENGTH} caracteres. Neste momento tem {this. state. password. length} caracteres. Por favor tente de novo.",
         "passwordMismatch": "As palavras-passe não coincidem",
         "passwordMismatchExplanation": "As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
-        "nowWeNeedTo": "Agora precisamos de criar uma palavra-passe.",
+        "nowWeNeedTo": "Agora precisamos de gerar uma palavra-passe.",
         "anEncryptedCopy": "Um cópia encriptada da sua Seed será guardada no seu dispositivo. Utilizará esta palavra-passe para aceder, futuramente, à sua carteira.",
         "ensure": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
         "retypePassword": "Digite de novo a password"
@@ -171,7 +171,7 @@
         "changePassword": "Alterar a palavra-passe",
         "advanced": "Configurações avançadas",
         "logout": "Terminar sessão",
-        "reset": "Redefinir a carteira",
+        "reset": "Reconfigurar a carteira",
         "back": "Voltar"
     },
     "resetWalletConfirmation": {
