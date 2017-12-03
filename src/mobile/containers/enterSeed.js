@@ -20,7 +20,7 @@ import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
@@ -46,7 +46,7 @@ class EnterSeed extends React.Component {
 
     onDonePress() {
         const { t } = this.props;
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
+        if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length == MAX_SEED_LENGTH) {
             this.dropdown.alertWithType('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         } else if (this.state.seed.length < MAX_SEED_LENGTH) {
             this.dropdown.alertWithType(
