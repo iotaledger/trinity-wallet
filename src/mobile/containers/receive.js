@@ -1,5 +1,6 @@
 import isUndefined from 'lodash/isUndefined';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     ActivityIndicator,
@@ -25,9 +26,9 @@ import {
     setReceiveAddress,
     generateNewAddressRequest,
     generateNewAddressError,
-} from '../../shared/actions/tempAccount';
+} from 'iota-wallet-shared-modules/actions/tempAccount';
 import { TextField } from 'react-native-material-textfield';
-import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
+import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
 

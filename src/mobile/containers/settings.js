@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearTempData, setPassword, setSetting, setSeedIndex, setReady } from '../../shared/actions/tempAccount';
+import {
+    clearTempData,
+    setPassword,
+    setSetting,
+    setSeedIndex,
+    setReady,
+} from 'iota-wallet-shared-modules/actions/tempAccount';
 import {
     setFirstUse,
     getAccountInfoNewSeed,
@@ -11,10 +18,10 @@ import {
     addAccountName,
     changeAccountName,
     removeAccount,
-} from '../../shared/actions/account';
-import { setFullNode, getCurrencyData } from '../../shared/actions/settings';
-import { renameKeys } from '../../shared/libs/util';
-import { changeIotaNode } from '../../shared/libs/iota';
+} from 'iota-wallet-shared-modules/actions/account';
+import { setFullNode, getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
+import { renameKeys, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
 import AddNewAccount from '../components/addNewAccount';
 import UseExistingSeed from '../components/useExistingSeed';
@@ -26,8 +33,8 @@ import DeleteAccount from '../components/deleteAccount.js';
 import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
 import CurrencySelection from '../components/currencySelection.js';
-import { logoutFromWallet } from '../../shared/actions/app';
-import { parse } from '../../shared/libs/util';
+import { logoutFromWallet } from 'iota-wallet-shared-modules/actions/app';
+import { parse } from 'iota-wallet-shared-modules/libs/util';
 import {
     getFromKeychain,
     storeSeedInKeychain,
@@ -35,7 +42,7 @@ import {
     deleteSeed,
     deleteFromKeyChain,
     replaceKeychainValue,
-} from '../../shared/libs/cryptography';
+} from 'iota-wallet-shared-modules/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
 
 const width = Dimensions.get('window').width;
@@ -72,28 +79,40 @@ class Settings extends React.Component {
                     <View>
                         <TouchableOpacity onPress={event => this.onModePress()}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/mode.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/mode.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Mode</Text>
                                 <Text style={styles.settingText}>{this.props.settings.mode}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={event => this.onThemePress()}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/theme.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/theme.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Theme</Text>
                                 <Text style={styles.settingText}>{this.props.settings.theme}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={event => this.props.setSetting('currencySelection')}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/currency.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/currency.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Currency</Text>
                                 <Text style={styles.settingText}>{this.props.settings.currency}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={event => this.onLanguagePress()}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/language.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/language.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Language</Text>
                                 <Text style={styles.settingText}>{this.props.settings.language}</Text>
                             </View>
@@ -101,32 +120,47 @@ class Settings extends React.Component {
                         <View style={styles.separator} />
                         <TouchableOpacity onPress={event => this.onAccountManagementPress()}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/account.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/account.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Account management</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={event => this.on2FASetupPress()}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/2fa.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/2fa.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Two-factor authentication</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={event => this.props.setSetting('changePassword')}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/password.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/password.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Change password</Text>
                             </View>
                         </TouchableOpacity>
                         <View style={styles.separator} />
                         <TouchableOpacity onPress={event => this.props.setSetting('advancedSettings')}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/advanced.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/advanced.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Advanced settings</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={event => this.setModalContent('logoutConfirmation')}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/logout.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/logout.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Log out</Text>
                             </View>
                         </TouchableOpacity>
@@ -139,7 +173,10 @@ class Settings extends React.Component {
                         <View style={{ flex: 1, justifyContent: 'flex-start' }}>
                             <TouchableOpacity onPress={event => this.props.setSetting('nodeSelection')}>
                                 <View style={styles.item}>
-                                    <Image source={require('../../shared/images/node.png')} style={styles.icon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/node.png')}
+                                        style={styles.icon}
+                                    />
                                     <Text style={styles.titleText}>Select node</Text>
                                     <Text numberOfLines={1} style={styles.subtitleText}>
                                         {this.props.settings.fullNode}
@@ -149,7 +186,10 @@ class Settings extends React.Component {
                             <View style={styles.separator} />
                             <TouchableOpacity onPress={event => this.onResetWalletPress()}>
                                 <View style={styles.item}>
-                                    <Image source={require('../../shared/images/reset.png')} style={styles.icon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/reset.png')}
+                                        style={styles.icon}
+                                    />
                                     <Text style={styles.titleText}>Reset Wallet</Text>
                                 </View>
                             </TouchableOpacity>
@@ -157,7 +197,10 @@ class Settings extends React.Component {
                         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                             <TouchableOpacity onPress={event => this.onBackPress()}>
                                 <View style={styles.item}>
-                                    <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                        style={styles.icon}
+                                    />
                                     <Text style={styles.titleText}>Back</Text>
                                 </View>
                             </TouchableOpacity>
@@ -171,32 +214,47 @@ class Settings extends React.Component {
                         <View style={{ flex: 4, justifyContent: 'flex-start' }}>
                             <TouchableOpacity onPress={event => this.props.setSetting('viewSeed')}>
                                 <View style={styles.item}>
-                                    <Image source={require('../../shared/images/key.png')} style={styles.icon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/key.png')}
+                                        style={styles.icon}
+                                    />
                                     <Text style={styles.titleText}>View seed</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={event => this.props.setSetting('viewAddresses')}>
                                 <View style={styles.item}>
-                                    <Image source={require('../../shared/images/addresses.png')} style={styles.icon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/addresses.png')}
+                                        style={styles.icon}
+                                    />
                                     <Text style={styles.titleText}>View addresses</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={event => this.props.setSetting('editAccountName')}>
                                 <View style={styles.item}>
-                                    <Image source={require('../../shared/images/edit.png')} style={styles.icon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/edit.png')}
+                                        style={styles.icon}
+                                    />
                                     <Text style={styles.titleText}>Edit account name</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={event => this.onDeleteAccountPress()}>
                                 <View style={styles.item}>
-                                    <Image source={require('../../shared/images/delete.png')} style={styles.icon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/delete.png')}
+                                        style={styles.icon}
+                                    />
                                     <Text style={styles.titleText}>Delete account</Text>
                                 </View>
                             </TouchableOpacity>
                             <View style={styles.separator} />
                             <TouchableOpacity onPress={event => this.props.setSetting('addNewAccount')}>
                                 <View style={styles.item}>
-                                    <Image source={require('../../shared/images/add.png')} style={styles.icon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/add.png')}
+                                        style={styles.icon}
+                                    />
                                     <Text style={styles.titleText}>Add new account</Text>
                                 </View>
                             </TouchableOpacity>
@@ -204,7 +262,10 @@ class Settings extends React.Component {
                         <View style={{ flex: 0.5, justifyContent: 'flex-end' }}>
                             <TouchableOpacity onPress={event => this.onBackPress()}>
                                 <View style={styles.item}>
-                                    <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                        style={styles.icon}
+                                    />
                                     <Text style={styles.titleText}>Back</Text>
                                 </View>
                             </TouchableOpacity>
@@ -309,17 +370,17 @@ class Settings extends React.Component {
     //UseExistingSeed method
     addExistingSeed(seed, accountName) {
         const dropdown = DropdownHolder.getDropdown();
-        if (!seed.match(/^[A-Z9]+$/) && seed.length == 81) {
+        if (!seed.match(/^[A-Z9]+$/) && seed.length == MAX_SEED_LENGTH) {
             dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
                 `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
             );
-        } else if (seed.length < 81) {
+        } else if (seed.length < MAX_SEED_LENGTH) {
             dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be 81 characters long. Your seed is currently ${seed.length} characters long. Please try again.`,
+                `Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${seed.length} characters long. Please try again.`,
             );
         } else if (!(accountName.length > 0)) {
             dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
@@ -483,8 +544,17 @@ class Settings extends React.Component {
     }
 
     onLanguagePress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        this.props.navigator.push({
+            screen: 'languageSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundImageName: 'bg-green.png',
+                screenBackgroundColor: '#102e36',
+            },
+            animated: false,
+            overrideBackPress: true,
+        });
     }
 
     on2FASetupPress() {
@@ -560,6 +630,8 @@ class Settings extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
