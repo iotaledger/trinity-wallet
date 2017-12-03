@@ -33,7 +33,8 @@
         "seedInvalidCharsExplanation":
             "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seed es demasiado corta",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "Nombre de cuenta ya está en uso",
         "nameInUseExplanation": "Por favor, usa un nombre de cuenta único para tu seed.",
         "enterAccountName": "Introduzca un nombre de cuenta.",
@@ -73,8 +74,10 @@
         "invalidCharactersExplanation":
             "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seed es demasiado corta",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation":
+            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "NUNCA COMPARTAS TU SEED CON NADIE"
     },
     "home": {
@@ -152,7 +155,8 @@
     },
     "setPassword": {
         "passwordTooShort": "La contraseña es demasiado corta",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation":
+            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "Las contraseñas no coinciden",
         "passwordMismatchExplanation": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
         "nowWeNeedTo": "Ahora tenemos que configurar una contraseña.",

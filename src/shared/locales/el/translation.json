@@ -32,7 +32,8 @@
         "seedInvalidCharsExplanation":
             "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "Όνομα λογαριασμού ήδη σε χρήση",
         "nameInUseExplanation": "Παρακαλούμε να χρησιμοποιήσετε ένα μοναδικό όνομα λογαριασμού για το σπόρο σας.",
         "enterAccountName": "Εισάγετε ένα όνομα λογαριασμού.",
@@ -75,8 +76,10 @@
         "invalidCharactersExplanation":
             "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation":
+            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "ΜΗ ΜΟΙΡΑΖΕΣΤΕ ΠΟΤΕ ΤΟΝ ΣΠΟΡΟ ΣΑΣ ΜΕ ΚΑΝΕΝΑΝ"
     },
     "home": {
@@ -155,7 +158,8 @@
     },
     "setPassword": {
         "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation":
+            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "Passwords do not match",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Now we need to set up a password.",
