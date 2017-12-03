@@ -8,7 +8,7 @@ import {
     Dimensions,
     Keyboard,
     TouchableWithoutFeedback,
-    ActivityIndicator
+    ActivityIndicator,
 } from 'react-native';
 import Fonts from '../theme/Fonts';
 
@@ -16,12 +16,11 @@ const width = Dimensions.get('window').width;
 const height = global.height;
 
 class ManualSync extends React.Component {
-
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
-                <View style={{ flex: 0.5 }}/>
+                    <View style={{ flex: 0.5 }} />
                     {!this.props.isSyncing && (
                         <View style={styles.innerContainer}>
                             <Text style={styles.infoText}>Press the button below to sync your account.</Text>
@@ -30,7 +29,7 @@ class ManualSync extends React.Component {
                             <View style={styles.syncButtonContainer}>
                                 <TouchableOpacity
                                     onPress={() => {
-                                        this.props.onManualSyncPress()
+                                        this.props.onManualSyncPress();
                                     }}
                                 >
                                     <View style={styles.syncButton}>
@@ -58,7 +57,10 @@ class ManualSync extends React.Component {
                     {!this.props.isSyncing && (
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
@@ -90,11 +92,11 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         flex: 8,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     innerContainer: {
         flex: 4,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     item: {
         flexDirection: 'row',
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
     syncButtonContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     syncButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
@@ -126,7 +128,7 @@ const styles = StyleSheet.create({
         height: height / 17,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     syncButtonText: {
         color: 'white',
