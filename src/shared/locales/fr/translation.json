@@ -23,14 +23,14 @@
         "otherWallet": "AUTRE COMPTE",
         "yes": "OUI",
         "no": "NON",
-        "password": "Mot de Passe",
+        "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "La Seed contient des caractères invalides",
+        "seedInvalidChars": "La seed contient des caractères invalides",
         "seedInvalidCharsExplanation": "Les seeds ne peuvent être constituées que de lettres majuscules de A à Z et du chiffre 9. Votre seed comporte des caractères invalides. Veuillez réessayer.",
-        "seedTooShort": "La Seed est trop courte",
+        "seedTooShort": "La seed est trop courte",
         "seedTooShortExplanation": "Les seeds doivent comporter {{maxLength}} caractères. Votre seed comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
         "nameInUse": "Ce nom de compte est déjà utilisé",
         "nameInUseExplanation": "Veuillez utiliser un nom de compte unique pour votre seed.",
@@ -53,7 +53,7 @@
         "oldPassword": "Cannot set old password",
         "oldPasswordExplanation": "Vous ne pouvez pas utiliser l’ancien mot de passe comme nouveau mot de passe. Veuillez réessayer avec un nouveau mot de passe.",
         "ensureStrongPassword": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
-        "currentPassword": "Mot de passe Actuel",
+        "currentPassword": "Mot de passe actuel",
         "newPassword": "Nouveau Mot de passe",
         "confirmPassword": "Confirmer le Nouveau Mot de passe"
     },
@@ -65,9 +65,9 @@
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez vos graines dans un gestionnaire de mot de passe."
     },
     "enterSeed": {
-        "invalidCharacters": "La Seed contient des caractères invalides",
+        "invalidCharacters": "La seed contient des caractères invalides",
         "invalidCharactersExplanation": "Les seeds ne peuvent être constituées que de lettres majuscules de A à Z et du chiffre 9. Votre seed comporte des caractères invalides. Veuillez réessayer.",
-        "seedTooShort": "La Seed est trop courte",
+        "seedTooShort": "La seed est trop courte",
         "seedTooShortExplanation": "Les seeds doivent comporter au moins {{maxLength}} caractères. Votre seed comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
         "seedExplanation": "Les seeds doivent comporter {{maxLength}} caractères et doivent contenir des majuscules de A à Z, ou le chiffre 9. Vous ne pouvez pas utiliser les seeds de plus de {{maxLength}} caractères.",
         "neverShare": "NE PARTAGEZ JAMAIS VOTRE SEED"
@@ -95,7 +95,7 @@
         "youMayNotice": "Il se peut que votre appareil ralentisse."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "La Seed n'a pas été générée",
+        "seedNotGenerated": "La seed n'a pas été générée",
         "seedNotGeneratedExplanation": "Cliquez sur le bouton \"Générer une Nouvelle Seed\".",
         "pressForNewSeed": "CLIQUEZ POUR UNE NOUVELLE SEED",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
@@ -106,9 +106,9 @@
     "paperWallet": {
         "clickToPrint": "Cliquez sur le bouton ci-dessous pour imprimer une copie papier de votre seed.",
         "storeSafely": "Conservez-la en lieu sûr.",
-        "neverShare": "Ne communiquez votre Seed à personne.",
+        "neverShare": "Ne communiquez votre seed à personne.",
         "iotaLogo": "logo IOTA",
-        "printWallet": "IMPRIMER LE PAPER WALLET"
+        "printWallet": "IMPRIMER LE WALLET PAPIER"
     },
     "receive": {
         "somethingWentWrong": "Une erreur s'est produite",
@@ -189,8 +189,8 @@
         "reset": "RÉINITIALISER"
     },
     "walletSetup": {
-        "okay": "Okay. Paramétrons votre Wallet !",
-        "doYouAlreadyHaveASeed": "Est-ce que vous possédez une Seed que vous souhaitez utiliser ?",
+        "okay": "Okay. Paramétrons votre wallet !",
+        "doYouAlreadyHaveASeed": "Est-ce que vous possédez une seed que vous souhaitez utiliser ?",
         "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
         "explanation1": "Vous pouvez l’utiliser pour accéder à vos fonds de",
         "explanation2": " n’importe quel wallet ",
@@ -200,8 +200,8 @@
         "keepSafe": "Merci de garder votre Seed en sécurité."
     },
     "welcome": {
-        "thankYou": "Merci d’avoir téléchargé le Wallet IOTA.",
-        "weWillSpend": "Nous allons passer les prochaines minutes à paramétrer votre Wallet.",
+        "thankYou": "Merci d’avoir téléchargé le wallet IOTA.",
+        "weWillSpend": "Nous allons passer les prochaines minutes à paramétrer votre wallet.",
         "reminder": "Vous serez tenté de passer des étapes mais nous vous demandons de suivre le process complet."
     },
     "writeSeedDown": {
