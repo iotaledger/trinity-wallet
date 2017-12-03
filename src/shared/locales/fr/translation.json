@@ -8,7 +8,7 @@
         "done": "OK",
         "next": "SUIVANT",
         "manualCopy": "Copie Manuelle",
-        "paperWallet": "Paper Wallet",
+        "paperWallet": "Wallet papier",
         "copyToClipboard": "Copier dans le Presse-papiers",
         "qr": "QR",
         "notAvailable": "Cette fonction n’est pas disponible",
@@ -62,7 +62,7 @@
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "seedCopied": "Seed copiée",
         "seedCopiedExplanation": "La seed a été copiée dans le presse-papiers et sera effacée après 60 secondes, ou dès que vous aurez appuyé sur \"OK\".",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez vos graines dans un gestionnaire de mot de passe."
     },
     "enterSeed": {
         "invalidCharacters": "La Seed contient des caractères invalides",
@@ -97,7 +97,7 @@
     "newSeedSetup": {
         "seedNotGenerated": "La Seed n'a pas été générée",
         "seedNotGeneratedExplanation": "Cliquez sur le bouton \"Générer une Nouvelle Seed\".",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "pressForNewSeed": "CLIQUEZ POUR UNE NOUVELLE SEED",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
     },
     "onboardingComplete": {
