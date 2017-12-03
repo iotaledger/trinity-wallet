@@ -17,6 +17,8 @@ import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
 import { DetectNavbar } from '../theme/androidSoftKeys';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
+import { detectLocale } from '../components/locale';
+import locale from 'react-native-locale-detector';
 
 const width = Dimensions.get('window').width;
 let height = Dimensions.get('window').height;

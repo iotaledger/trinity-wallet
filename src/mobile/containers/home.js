@@ -120,7 +120,7 @@ class Home extends Component {
 
     onNodeErrorPolling() {
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response while polling.`);
+        dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
     }
 
     componentWillReceiveProps(newProps) {
@@ -207,7 +207,7 @@ class Home extends Component {
                                                 : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                         }
                                     >
-                                        BALANCE
+                                        {t('global:balance')}
                                     </Text>
                                 </View>
                             </TouchableWithoutFeedback>
@@ -228,7 +228,7 @@ class Home extends Component {
                                                 : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                         }
                                     >
-                                        SEND
+                                        {t('global:send')}
                                     </Text>
                                 </View>
                             </TouchableWithoutFeedback>
@@ -249,7 +249,7 @@ class Home extends Component {
                                                 : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                         }
                                     >
-                                        RECEIVE
+                                        {t('global:receive')}
                                     </Text>
                                 </View>
                             </TouchableWithoutFeedback>
@@ -270,7 +270,7 @@ class Home extends Component {
                                                 : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                         }
                                     >
-                                        HISTORY
+                                        {t('global:history')}
                                     </Text>
                                 </View>
                             </TouchableWithoutFeedback>
@@ -291,7 +291,7 @@ class Home extends Component {
                                                 : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
                                         }
                                     >
-                                        SETTINGS
+                                        {t('global:settings')}
                                     </Text>
                                 </View>
                             </TouchableWithoutFeedback>
@@ -473,4 +473,4 @@ Home.propTypes = {
     isTopBarActive: PropTypes.bool.isRequired,
 };
 
-export default translate('home')(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default translate(['home', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Home));
