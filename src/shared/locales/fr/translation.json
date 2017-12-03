@@ -1,7 +1,7 @@
 {
     "global": {
         "invalidResponse": "Réponse non valide",
-        "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponseExplanation": "Le node a retourné une réponse invalide.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seed",
         "back": "RETOUR",
@@ -41,7 +41,7 @@
     },
     "changePassword": {
         "oops": "Oups. Une erreur est survenue",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
+        "oopsExplanation": "Une erreur s'est produite lors de la mise à jour du mot de passe. Veuillez réessayer.",
         "passwordUpdated": "Mot de passe mis à jour",
         "passwordUpdatedExplanation": "Votre mot de passe a été modifié avec succès.",
         "incorrectPassword": "Mot de passe incorrect",
@@ -51,7 +51,7 @@
         "passwordTooShort": "Le mot de passe est trop court",
         "passwordTooShortExplanation": "Votre mot de passe doit contenir au moins 12 caractères. Veuillez réessayer.",
         "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPasswordExplanation": "Vous ne pouvez pas utiliser l’ancien mot de passe comme nouveau mot de passe. Veuillez réessayer avec un nouveau mot de passe.",
         "ensureStrongPassword": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "currentPassword": "Mot de passe Actuel",
         "newPassword": "Nouveau Mot de passe",
@@ -61,7 +61,7 @@
         "seedCleared": "Seed effacée",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "seedCopied": "Seed copiée",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
+        "seedCopiedExplanation": "La seed a été copiée dans le presse-papiers et sera effacée après 60 secondes, ou dès que vous aurez appuyé sur \"OK\".",
         "clickToCopy": "Click the button below and copy your seed to a password manager."
     },
     "enterSeed": {
