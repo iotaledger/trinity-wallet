@@ -123,11 +123,13 @@
         "somethingWentWrongExplanation": "Please restart the app.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS"
+        "generateNewAddress": "GENERATE NEW ADDRESS",
+        "message": "Optional message",
+        "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with",
-        "atLeastOne": "at least one",
+        "mustSaveYourSeed": "You must save your seed with ",
+        "atLeastOne": "at least one ",
         "ofTheOptions": "of the options listed below."
     },
     "seedReentry": {
