@@ -43,13 +43,12 @@ class LanguageSetup extends React.Component {
         this.state = {
             triangleDirection: 'down',
             dropdownHeight: 0,
-            lang: detectLocale(locale),
             languageSelected: selectLocale(detectLocale(locale)),
         };
     }
 
-    componentDidMount() {
-        i18next.changeLanguage(this.state.lang);
+    componentWillMount() {
+        i18next.changeLanguage(detectLocale(locale));
     }
 
     onNextPress() {
