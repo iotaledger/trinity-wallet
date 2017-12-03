@@ -1,4 +1,5 @@
 import { Navigation } from 'react-native-navigation';
+import withSafeAreaView from '../components/withSafeAreaView';
 import InitialLoading from '../containers/initialLoading';
 import Home from '../containers/home';
 import Loading from '../containers/loading';
@@ -21,24 +22,34 @@ import UseSeed from '../containers/useSeed';
 import SeedReentry from '../containers/seedReentry';
 
 export function registerScreens(store, Provider) {
-    Navigation.registerComponent('initialLoading', () => InitialLoading, store, Provider);
-    Navigation.registerComponent('home', () => Home, store, Provider);
-    Navigation.registerComponent('loading', () => Loading, store, Provider);
-    Navigation.registerComponent('newSeedSetup', () => NewSeedSetup, store, Provider);
-    Navigation.registerComponent('walletSetup', () => WalletSetup, store, Provider);
-    Navigation.registerComponent('enterSeed', () => EnterSeed, store, Provider);
-    Navigation.registerComponent('saveYourSeed', () => SaveYourSeed, store, Provider);
-    Navigation.registerComponent('setPassword', () => SetPassword, store, Provider);
-    Navigation.registerComponent('login', () => Login, store, Provider);
-    Navigation.registerComponent('writeSeedDown', () => WriteSeedDown, store, Provider);
-    Navigation.registerComponent('paperWallet', () => PaperWallet, store, Provider);
-    Navigation.registerComponent('copySeedToClipboard', () => CopySeedToClipboard, store, Provider);
-    Navigation.registerComponent('languageSetup', () => LanguageSetup, store, Provider);
-    Navigation.registerComponent('welcome', () => Welcome, store, Provider);
-    Navigation.registerComponent('wallet-reset-confirm', () => WalletResetConfirmation, store, Provider);
-    Navigation.registerComponent('wallet-reset-require-password', () => WalletResetRequirePassword, store, Provider);
-    Navigation.registerComponent('onboardingComplete', () => OnboardingComplete, store, Provider);
-    Navigation.registerComponent('useSeed', () => UseSeed, store, Provider);
-    Navigation.registerComponent('setSeedName', () => SetSeedName, store, Provider);
-    Navigation.registerComponent('seedReentry', () => SeedReentry, store, Provider);
+    Navigation.registerComponent('initialLoading', () => withSafeAreaView(InitialLoading), store, Provider);
+    Navigation.registerComponent('home', () => withSafeAreaView(Home), store, Provider);
+    Navigation.registerComponent('loading', () => withSafeAreaView(Loading), store, Provider);
+    Navigation.registerComponent('newSeedSetup', () => withSafeAreaView(NewSeedSetup), store, Provider);
+    Navigation.registerComponent('walletSetup', () => withSafeAreaView(WalletSetup), store, Provider);
+    Navigation.registerComponent('enterSeed', () => withSafeAreaView(EnterSeed), store, Provider);
+    Navigation.registerComponent('saveYourSeed', () => withSafeAreaView(SaveYourSeed), store, Provider);
+    Navigation.registerComponent('setPassword', () => withSafeAreaView(SetPassword), store, Provider);
+    Navigation.registerComponent('login', () => withSafeAreaView(Login), store, Provider);
+    Navigation.registerComponent('writeSeedDown', () => withSafeAreaView(WriteSeedDown), store, Provider);
+    Navigation.registerComponent('paperWallet', () => withSafeAreaView(PaperWallet), store, Provider);
+    Navigation.registerComponent('copySeedToClipboard', () => withSafeAreaView(CopySeedToClipboard), store, Provider);
+    Navigation.registerComponent('languageSetup', () => withSafeAreaView(LanguageSetup), store, Provider);
+    Navigation.registerComponent('welcome', () => withSafeAreaView(Welcome), store, Provider);
+    Navigation.registerComponent(
+        'wallet-reset-confirm',
+        () => withSafeAreaView(WalletResetConfirmation),
+        store,
+        Provider,
+    );
+    Navigation.registerComponent(
+        'wallet-reset-require-password',
+        () => withSafeAreaView(WalletResetRequirePassword),
+        store,
+        Provider,
+    );
+    Navigation.registerComponent('onboardingComplete', () => withSafeAreaView(OnboardingComplete), store, Provider);
+    Navigation.registerComponent('useSeed', () => withSafeAreaView(UseSeed), store, Provider);
+    Navigation.registerComponent('setSeedName', () => withSafeAreaView(SetSeedName), store, Provider);
+    Navigation.registerComponent('seedReentry', () => withSafeAreaView(SeedReentry), store, Provider);
 }
