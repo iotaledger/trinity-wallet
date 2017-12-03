@@ -120,8 +120,8 @@
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
+        "mustSaveYourSeed": "U moet uw sleutel opslaan ",
+        "atLeastOne": "ten minste een ",
         "ofTheOptions": "van de onderstaande opties."
     },
     "seedReentry": {
