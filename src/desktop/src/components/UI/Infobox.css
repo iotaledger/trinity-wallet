@@ -15,7 +15,7 @@
 }
 
 .icon {
-    background: url(../../../../shared/images/info.png) no-repeat;
+    background: url(images/info.png) no-repeat;
     background-size: contain;
     display: inline-block;
     width: 32px;

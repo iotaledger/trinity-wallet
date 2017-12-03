@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, View, ListView, Dimensions, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import TransactionRow from '../components/transactionRow';
 import Modal from 'react-native-modal';
 import DropdownHolder from '../components/dropdownHolder';
@@ -40,6 +41,7 @@ class History extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];

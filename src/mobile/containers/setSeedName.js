@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -41,19 +42,19 @@ class SetSeedName extends React.Component {
 
     getDefaultAccountName() {
         if (this.props.account.seedCount == 0) {
-            return 'MAIN ACCOUNT';
+            return t('mainWallet');
         } else if (this.props.account.seedCount == 1) {
-            return 'SECOND ACCOUNT';
+            return t('secondWallet');
         } else if (this.props.account.seedCount == 2) {
-            return 'THIRD ACCOUNT';
+            return t('thirdWallet');
         } else if (this.props.account.seedCount == 3) {
-            return 'FOURTH ACCOUNT';
+            return t('fourthWallet');
         } else if (this.props.account.seedCount == 4) {
-            return 'FIFTH ACCOUNT';
+            return t('fifthWallet');
         } else if (this.props.account.seedCount == 5) {
-            return 'SIXTH ACCOUNT';
+            return t('sixthWallet');
         } else if (this.props.account.seedCount == 6) {
-            return 'OTHER ACCOUNT';
+            return t('otherWallet');
         } else {
             return '';
         }
@@ -106,7 +107,11 @@ class SetSeedName extends React.Component {
                     this.props.navigator.pop({
                         animated: false,
                     });
-                    dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+                    dropdown.alertWithType(
+                        'error',
+                        t('global:invalidResponse'),
+                        t('global:invalidResponseExplanation'),
+                    );
                     this.props.setFirstUse(false);
                 };
 
@@ -120,7 +125,11 @@ class SetSeedName extends React.Component {
                 };
             }
         } else {
-            this.dropdown.alertWithType('error', 'No account name entered', `Please enter a name for your account.`);
+            this.dropdown.alertWithType(
+                'error',
+                t('addAdditionalSeed:noNickname'),
+                t('addAdditionalSeed:noNicknameExplanation'),
+            );
         }
     }
 
@@ -134,14 +143,17 @@ class SetSeedName extends React.Component {
         let { accountName } = this.state;
 
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                                style={styles.iotaLogo}
+                            />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.greetingText}>Enter a name for your account.</Text>
+                                <Text style={styles.greetingText}>{t('addAdditionalSeed:enterAccountName')}</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
@@ -169,19 +181,20 @@ class SetSeedName extends React.Component {
                                 onSubmitEditing={() => this.onDonePress()}
                             />
                             <View style={styles.infoTextContainer}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                <Text style={styles.infoText}>
-                                    You can use multiple accounts with this wallet. Each account requires a name.
-                                </Text>
-                                <Text style={styles.infoText}>You can add more accounts in the Settings menu.</Text>
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/info.png')}
+                                    style={styles.infoIcon}
+                                />
+                                <Text style={styles.infoText}>{t('canUseMultipleSeeds')}</Text>
+                                <Text style={styles.infoText}>{t('youCanAdd')}</Text>
                             </View>
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={'BACK'}
-                                rightText={'DONE'}
+                                leftText={t('global:back')}
+                                rightText={t('global:done')}
                             />
                         </View>
                     </View>
@@ -354,4 +367,6 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SetSeedName);
+export default translate(['setSeedName', 'global', 'addAdditionalSeed'])(
+    connect(mapStateToProps, mapDispatchToProps)(SetSeedName),
+);
