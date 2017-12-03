@@ -79,7 +79,7 @@ class TopBar extends Component {
     }
 
     shouldDisable() {
-        return this.props.isGeneratingReceiveAddress || this.props.isSendingTransfer;
+        return this.props.isGeneratingReceiveAddress || this.props.isSendingTransfer || this.props.isSyncing;
     }
 
     filterSeedTitles(seedNames, currentSeedIndex) {
@@ -380,6 +380,7 @@ const mapStateToProps = state => ({
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isGettingTransfers: state.tempAccount.isGettingTransfers,
+    isSyncing: state.tempAccount.isSyncing,
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
 });
