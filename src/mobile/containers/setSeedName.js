@@ -24,10 +24,15 @@ import {
     getFromKeychain,
     removeLastSeed,
     checkKeychainForDuplicates,
-} from '../../shared/libs/cryptography';
-import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
-import { generateAlert } from '../../shared/actions/alerts';
-import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
+} from 'iota-wallet-shared-modules/libs/cryptography';
+import {
+    getFullAccountInfo,
+    setFirstUse,
+    increaseSeedCount,
+    addAccountName,
+} from 'iota-wallet-shared-modules/actions/account';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { clearTempData, setSeedName, clearSeed, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
 const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -41,6 +46,8 @@ class SetSeedName extends React.Component {
     }
 
     getDefaultAccountName() {
+        const { t } = this.props;
+
         if (this.props.account.seedCount == 0) {
             return t('mainWallet');
         } else if (this.props.account.seedCount == 1) {
@@ -65,6 +72,8 @@ class SetSeedName extends React.Component {
     }
 
     onDonePress() {
+        const { t } = this.props;
+
         if (this.state.accountName != '') {
             if (!this.props.account.onboardingComplete) {
                 this.props.setSeedName(this.state.accountName);
@@ -141,6 +150,7 @@ class SetSeedName extends React.Component {
 
     render() {
         let { accountName } = this.state;
+        const { t } = this.props;
 
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
