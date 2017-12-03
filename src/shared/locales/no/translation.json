@@ -116,8 +116,8 @@
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
         "generateNewAddress": "LAG NY ADDRESSE",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "Valgfri melding",
+        "removeMessage": "FJERN MELDINGEN"
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "Du må lagre hovednøkkelen med ",
