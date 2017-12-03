@@ -78,6 +78,10 @@ class TopBar extends Component {
         }
     }
 
+    shouldDisable() {
+        return this.props.isGeneratingReceiveAddress || this.props.isSendingTransfer;
+    }
+
     filterSeedTitles(seedNames, currentSeedIndex) {
         return filter(seedNames, (t, i) => i !== currentSeedIndex);
     }
@@ -108,15 +112,33 @@ class TopBar extends Component {
 
         const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
         const titles = map(seedNames, withSubtitles);
+        const disableWhen = this.shouldDisable();
 
         const baseContent = (
             <View style={styles.titleWrapper}>
-                <TouchableWithoutFeedback onPress={() => this.props.toggleTopBarDisplay()}>
+                <TouchableWithoutFeedback
+                    onPress={() => {
+                        if (!disableWhen) {
+                            this.props.toggleTopBarDisplay();
+                        }
+                    }}
+                >
                     <View>
-                        <Text numberOfLines={1} style={styles.mainTitle}>
+                        <Text
+                            numberOfLines={1}
+                            style={
+                                disableWhen ? StyleSheet.flatten([styles.mainTitle, styles.disabled]) : styles.mainTitle
+                            }
+                        >
                             {selectedTitle}
                         </Text>
-                        <Text style={styles.subtitle}>{selectedSubtitle}</Text>
+                        <Text
+                            style={
+                                disableWhen ? StyleSheet.flatten([styles.subtitle, styles.disabled]) : styles.subtitle
+                            }
+                        >
+                            {selectedSubtitle}
+                        </Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
@@ -132,16 +154,25 @@ class TopBar extends Component {
             const children = (
                 <TouchableOpacity
                     onPress={() => {
-                        this.props.toggleTopBarDisplay(); // Close
-                        this.onChange(t.index);
+                        if (!disableWhen) {
+                            this.props.toggleTopBarDisplay(); // Close
+                            this.onChange(t.index);
+                        }
                     }}
                     key={idx}
                     style={{ width: width, alignItems: 'center' }}
                 >
-                    <Text numberOfLines={1} style={styles.mainTitle}>
+                    <Text
+                        numberOfLines={1}
+                        style={disableWhen ? StyleSheet.flatten([styles.mainTitle, styles.disabled]) : styles.mainTitle}
+                    >
                         {t.title}
                     </Text>
-                    <Text style={styles.subtitle}>{t.subtitle}</Text>
+                    <Text
+                        style={disableWhen ? StyleSheet.flatten([styles.subtitle, styles.disabled]) : styles.subtitle}
+                    >
+                        {t.subtitle}
+                    </Text>
                 </TouchableOpacity>
             );
 
@@ -222,17 +253,37 @@ class TopBar extends Component {
         const iconProps = TopBar.getIconPath(isTopBarActive);
         const children = this.renderTitles();
         const hasMultipleSeeds = size(this.filterSeedTitles(seedNames, seedIndex));
+        const shouldDisable = this.shouldDisable();
 
         return (
-            <TouchableWithoutFeedback onPress={this.props.toggleTopBarDisplay}>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    if (!shouldDisable) {
+                        this.props.toggleTopBarDisplay();
+                    }
+                }}
+            >
                 <View style={styles.container}>
                     <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                         <View style={styles.chevronWrapper}>
                             {hasMultipleSeeds ? (
-                                <Image style={styles.chevron} {...iconProps} />
+                                <Image
+                                    style={
+                                        shouldDisable
+                                            ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
+                                            : styles.chevron
+                                    }
+                                    {...iconProps}
+                                />
                             ) : (
-                                <View style={styles.chevron} />
+                                <View
+                                    style={
+                                        shouldDisable
+                                            ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
+                                            : styles.chevron
+                                    }
+                                />
                             )}
                         </View>
                     </View>
@@ -294,6 +345,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         right: width / 20,
+    },
+    disabled: {
+        color: '#a9a9a9',
+    },
+    disabledImage: {
+        tintColor: '#a9a9a9',
     },
     separator: {
         width: width / 2,
