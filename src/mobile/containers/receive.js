@@ -1,5 +1,6 @@
 import isUndefined from 'lodash/isUndefined';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     ActivityIndicator,
@@ -25,9 +26,9 @@ import {
     setReceiveAddress,
     generateNewAddressRequest,
     generateNewAddressError,
-} from '../../shared/actions/tempAccount';
+} from 'iota-wallet-shared-modules/actions/tempAccount';
 import { TextField } from 'react-native-material-textfield';
-import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
+import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -83,7 +84,7 @@ class Receive extends Component {
         const generate = (seed, accountName, addresses) => this.props.generateNewAddress(seed, accountName, addresses);
         const error = () => {
             this.props.generateNewAddressError();
-            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+            dropdown.alertWithType('error', t('somethingWentWrong'), t('somethingWentWrongExplanation'));
         };
     }
 
@@ -91,7 +92,7 @@ class Receive extends Component {
         const dropdown = DropdownHolder.getDropdown();
         if (address !== ' ') {
             Clipboard.setString(address);
-            dropdown.alertWithType('success', 'Address copied', 'Your address has been copied to the clipboard.');
+            dropdown.alertWithType('success', t('addressCopied'), t('addressCopiedExplanation'));
         }
     }
 
@@ -158,7 +159,7 @@ class Receive extends Component {
                             baseColor="white"
                             tintColor="#F7D002"
                             enablesReturnKeyAutomatically={true}
-                            label="Optional message"
+                            label={t('message')}
                             autoCorrect={false}
                             value={message}
                             containerStyle={{ width: width / 1.36 }}
@@ -178,7 +179,7 @@ class Receive extends Component {
                                     }}
                                 >
                                     <View style={styles.generateButton}>
-                                        <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
+                                        <Text style={styles.generateText}>{t('generateNewAddress')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             )}
@@ -203,7 +204,7 @@ class Receive extends Component {
                                     style={styles.removeButtonContainer}
                                 >
                                     <View style={styles.removeButton}>
-                                        <Text style={styles.removeText}>REMOVE MESSAGE</Text>
+                                        <Text style={styles.removeText}>{t('removeMessage')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             )}
@@ -314,4 +315,4 @@ Receive.propTypes = {
     setReceiveAddress: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Receive);
+export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));

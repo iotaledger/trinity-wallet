@@ -116,7 +116,7 @@ export default (state = initialState, action) => {
                 isSendingTransfer: false,
                 lastTxAddress: '',
                 lastTxValue: 0,
-                currentSetting: 'mainSettings'
+                currentSetting: 'mainSettings',
             };
         case 'GET_TRANSFERS_REQUEST':
             return {
