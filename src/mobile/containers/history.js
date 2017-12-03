@@ -1,9 +1,10 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, View, ListView, Dimensions, Text, TouchableWithoutFeedback } from 'react-native';
+import { TouchableOpacity, StyleSheet, View, ListView, Dimensions, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import TransactionRow from '../components/transactionRow';
 import Modal from 'react-native-modal';
+import DropdownHolder from '../components/dropdownHolder';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const width = Dimensions.get('window').width;
@@ -17,6 +18,26 @@ class History extends React.Component {
 
     imageLoaded() {
         this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
+    }
+
+    copyBundleHash(item) {
+        const dropdown = DropdownHolder.getDropdown();
+        Clipboard.setString(item);
+        dropdown.alertWithType(
+            'success',
+            'Bundle hash copied',
+            'The bundle hash has been copied to the clipboard.',
+        );
+    }
+
+    copyAddress(item) {
+        const dropdown = DropdownHolder.getDropdown();
+        Clipboard.setString(item);
+        dropdown.alertWithType(
+            'success',
+            'Address copied',
+            'The address has been copied to the clipboard.',
+        );
     }
 
     render() {
@@ -37,6 +58,8 @@ class History extends React.Component {
                                     rowData={dataSource}
                                     titleColor="#F8FFA6"
                                     onPress={event => this._showModal()}
+                                    copyAddress={(item) => this.copyAddress(item)}
+                                    copyBundleHash={(item) => this.copyBundleHash(item)}
                                 />
                             )}
                             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
