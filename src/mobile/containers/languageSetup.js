@@ -18,7 +18,8 @@ import i18next from 'i18next';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import setFirstUse from 'iota-wallet-shared-modules/actions/account.js';
-import { selectLocale } from '../components/locale';
+import { detectLocale, selectLocale } from '../components/locale';
+import locale from 'react-native-locale-detector';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -42,8 +43,13 @@ class LanguageSetup extends React.Component {
         this.state = {
             triangleDirection: 'down',
             dropdownHeight: 0,
-            languageSelected: selectLocale(),
+            lang: detectLocale(locale),
+            languageSelected: selectLocale(detectLocale(locale)),
         };
+    }
+
+    componentDidMount() {
+        i18next.changeLanguage(this.state.lang);
     }
 
     onNextPress() {
