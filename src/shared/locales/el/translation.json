@@ -146,13 +146,13 @@
         "send": "SEND IOTA"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
+        "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
         "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
+        "passwordMismatch": "Οι κωδικοί πρόσβασης δεν ταιριάζουν",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Now we need to set up a password.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
+        "ensure": "Βεβαιωθείτε ότι χρησιμοποιείτε έναν ισχυρό κωδικό πρόσβασης τουλάχιστον 12 χαρακτήρων.",
         "retypePassword": "Retype Password"
     },
     "setSeedName": {
@@ -167,7 +167,7 @@
         "mode": "Mode",
         "theme": "Theme",
         "currency": "Currency",
-        "language": "Language",
+        "language": "Γλώσσα",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
