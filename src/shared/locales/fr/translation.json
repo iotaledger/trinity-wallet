@@ -115,11 +115,13 @@
         "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papiers.",
-        "generateNewAddress": "GÉNÉRER UNE NOUVELLE ADRESSE"
+        "generateNewAddress": "GÉNÉRER UNE NOUVELLE ADRESSE",
+        "message": "Optional message",
+        "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "Vous devez enregistrer votre seed avec",
-        "atLeastOne": "au moins une",
+        "mustSaveYourSeed": "You must save your seed with ",
+        "atLeastOne": "at least one ",
         "ofTheOptions": "des options répertoriées ci-dessous."
     },
     "seedReentry": {
