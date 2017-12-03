@@ -121,7 +121,7 @@ class Home extends Component {
     };
 
     startPolling() {
-        if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer) {
+        if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isSyncing) {
             //console.log('POLLING TX HISTORY')
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
