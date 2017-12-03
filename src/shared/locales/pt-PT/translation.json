@@ -15,7 +15,7 @@
         "notAvailableExplanation": "Será adicionada numa etapa posterior.",
         "enterSeed": "Por favor, digite a sua Seed.",
         "mainWallet": "CONTA PRINCIPAL",
-        "secondWallet": "SECUNDA CONTA",
+        "secondWallet": "SEGUNDA CONTA",
         "thirdWallet": "TERCEIRA CONTA",
         "fourthWallet": "QUARTA CONTA",
         "fifthWallet": "QUINTA CONTA",
@@ -158,7 +158,7 @@
         "youCanAdd": "Pode adicionar mais Seeds no menu de configuração."
     },
     "settings": {
-        "transferSending": "A enviar a sua transferência",
+        "transferSending": "A realizar a sua tranferência",
         "transferSendingExplanation": "Por favor aguarde enquanto a sua transferência está a ser enviada.",
         "generatingAddress": "A gerar endereço próprio",
         "generatingAddressExplanation": "Por favor aguarde enquanto o seu endereço está a ser gerado.",
