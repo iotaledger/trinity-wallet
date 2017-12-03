@@ -28,7 +28,7 @@ export function detectLocale(locale) {
         // Catch all Traditional Chinese
         return 'zh_TW';
     }
-    if (locale.match(/nb/)) {
+    if (adaptedLocale === 'nb') {
         // Norwegian Bokmål
         return 'no';
     } else {
@@ -49,10 +49,10 @@ export function selectLocale(lang) {
     if (lang === 'el') {
         return 'Ελληνικά - Greek';
     }
-    if (lang === 'es-ES') {
+    if (lang === 'es_ES') {
         return 'Español (España) - Spanish (Spain)';
     }
-    if (lang === 'es-LA') {
+    if (lang === 'es_LA') {
         return 'Español (Latinoamérica) - Spanish (Latin America)';
     }
     if (lang === 'fi') {
@@ -91,10 +91,10 @@ export function selectLocale(lang) {
     if (lang === 'pl') {
         return 'Polski - Polish';
     }
-    if (lang === 'pt-PT') {
+    if (lang === 'pt_PT') {
         return 'Português (Brasil) - Portuguese (Brazil)';
     }
-    if (lang === 'pt-BR') {
+    if (lang === 'pt_BR') {
         return 'Português (Portugal) - Portuguese (Portugal)';
     }
     if (lang === 'ro') {
@@ -106,7 +106,7 @@ export function selectLocale(lang) {
     if (lang === 'sl') {
         return 'Slovenščina - Slovenian';
     }
-    if (lang === 'sv') {
+    if (lang === 'sv_SE') {
         return 'Svenska - Swedish';
     }
     if (lang === 'tr') {
@@ -115,10 +115,10 @@ export function selectLocale(lang) {
     if (lang === 'ur') {
         return 'اردو - Urdu';
     }
-    if (lang === 'zh-CN') {
+    if (lang === 'zh_CN') {
         return '中文 (简体) - Chinese (Simplified)';
     }
-    if (lang === 'zh-TW') {
+    if (lang === 'zh_TW') {
         return '中文 (繁體) - Chinese (Traditional)';
     } else {
         return 'English (International)';
