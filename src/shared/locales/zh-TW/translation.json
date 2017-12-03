@@ -115,11 +115,13 @@
         "somethingWentWrongExplanation": "請重新啟動程式",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "generateNewAddress": "產生新地址"
+        "generateNewAddress": "產生新地址",
+        "message": "Optional message",
+        "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "您必須將種子碼存放",
-        "atLeastOne": "於至少",
+        "mustSaveYourSeed": "You must save your seed with ",
+        "atLeastOne": "at least one ",
         "ofTheOptions": "下列其中一個選項。"
     },
     "seedReentry": {
