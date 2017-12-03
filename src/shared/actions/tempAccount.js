@@ -5,6 +5,7 @@ import { iota } from '../libs/iota';
 import { updateAddresses, addPendingTransfer } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
 import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
+import isArray from 'lodash/isArray';
 import { serialize, parse } from '../libs/util';
 
 // FIXME: Hacking no-console linting.
@@ -215,7 +216,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
         };
 
         const unspentInputs = (err, inputs) => {
-            if (err) {
+            if (err && err.message !== 'Not enough balance') {
                 dispatch(sendTransferError());
                 return dispatch(
                     generateAlert(
