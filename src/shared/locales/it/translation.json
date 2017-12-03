@@ -120,8 +120,8 @@
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
+        "mustSaveYourSeed": "Devi salvare il tuo seme con ",
+        "atLeastOne": "almeno una ",
         "ofTheOptions": "delle opzioni elencate di seguito."
     },
     "seedReentry": {
