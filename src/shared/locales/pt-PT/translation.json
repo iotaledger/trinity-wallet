@@ -160,7 +160,7 @@
     "settings": {
         "transferSending": "A enviar a sua transferência",
         "transferSendingExplanation": "Por favor aguarde enquanto a sua transferência está a ser enviada.",
-        "generatingAddress": "Gerar endereço de .... completa por favor Ricardo",
+        "generatingAddress": "A gerar endereço próprio",
         "generatingAddressExplanation": "Por favor aguarde enquanto o seu endereço está a ser gerado.",
         "mode": "Modo",
         "theme": "Tema",
