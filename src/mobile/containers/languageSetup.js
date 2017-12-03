@@ -84,7 +84,7 @@ class LanguageSetup extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-green.png')} style={{ flex: 1 }}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
                 <View style={styles.container}>
                     <Image
                         style={styles.helloBackground}
