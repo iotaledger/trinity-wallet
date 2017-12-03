@@ -97,11 +97,7 @@ class NewSeedSetup extends Component {
                 overrideBackPress: true,
             });
         } else {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed has not been generated',
-                'Please click the Generate New Seed button.',
-            );
+            this.dropdown.alertWithType('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
         }
     }
 
@@ -168,7 +164,7 @@ class NewSeedSetup extends Component {
                     />
                     <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.generateButton}>
-                            <Text style={styles.generateText}>PRESS FOR NEW SEED</Text>
+                            <Text style={styles.generateText}>t('pressForNewSeed')</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -219,12 +215,12 @@ class NewSeedSetup extends Component {
                             marginBottom: height / 23,
                         }}
                     >
-                        Press individual letters to randomise them.
+                        {t('individualLetters')}
                     </Text>
                     <View style={styles.buttonsContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.leftButton}>
-                                <Text style={styles.leftText}>BACK</Text>
+                                <Text style={styles.leftText}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={event => this.onNextPress()}>
@@ -240,7 +236,7 @@ class NewSeedSetup extends Component {
                                     opacity: this.state.randomised ? 1 : 0.3,
                                 }}
                             >
-                                <Text style={styles.rightText}>NEXT</Text>
+                                <Text style={styles.rightText}>{t('global:next')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -420,4 +416,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup);
+export default translate(['newSeedSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup));
