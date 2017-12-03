@@ -17,8 +17,7 @@ import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
 import { DetectNavbar } from '../theme/androidSoftKeys';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
-import locale from 'react-native-locale-detector';
-import i18next from 'i18next';
+import { detectLocale } from '../components/locale';
 
 const width = Dimensions.get('window').width;
 let height = Dimensions.get('window').height;
@@ -44,40 +43,6 @@ export default class InitialLoading extends Component {
         return false;
     }
 
-    detectLocale() {
-        var adaptedLocale = locale.substring(0, 2);
-        if (adaptedLocale === 'es' && !locale.match(/ES/)) {
-            // Catch all non-Spain Spanish
-            return 'es_LA';
-        }
-        if (locale.match(/ES/)) {
-            // Spanish (Spain)
-            return 'es_ES';
-        }
-        if (adaptedLocale === 'pt' && !locale.match(/BR/)) {
-            // Catch all non-Brazillian Portuguese
-            return 'pt_PT';
-        }
-        if (adaptedLocale === 'sv') {
-            // Swedish (Sweden)
-            return 'sv_SE';
-        }
-        if (adaptedLocale === 'zh' && !locale.match(/Hant/)) {
-            // Catch all non-Traditional Chinese
-            return 'zh_CN';
-        }
-        if (locale.match(/Hant/)) {
-            // Catch all Traditional Chinese
-            return 'zh_TW';
-        }
-        if (locale.match(/nb/)) {
-            // Norwegian Bokmal
-            return 'no';
-        } else {
-            return adaptedLocale;
-        }
-    }
-
     clearKeychain() {
         getAllItems().then(keys => {
             if (Platform.OS === 'ios') {
@@ -96,10 +61,7 @@ export default class InitialLoading extends Component {
 
     onLoaded() {
         const state = store.getState();
-        var localeToUse = this.detectLocale();
-        i18next.changeLanguage(localeToUse);
-        console.log(localeToUse);
-        console.log(i18next.language);
+        detectLocale();
         if (!state.account.onboardingComplete) {
             this.clearKeychain();
             this.props.navigator.push({
