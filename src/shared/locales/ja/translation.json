@@ -121,7 +121,7 @@
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
+        "atLeastOne": "最低一つ ",
         "ofTheOptions": "以下のオプションを使って。"
     },
     "seedReentry": {
