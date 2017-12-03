@@ -32,7 +32,8 @@
         "seedInvalidCharsExplanation":
             "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "Nama akun sudah digunakan",
         "nameInUseExplanation": "Silahkan menggunakan nama akun yang unik untuk Seed anda.",
         "enterAccountName": "Masukkan nama akun.",
@@ -72,8 +73,10 @@
         "invalidCharactersExplanation":
             "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation":
+            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "JANGAN PERNAH MEMBERITAHUKAN SEED ANDA DENGAN SIAPAPUN"
     },
     "home": {

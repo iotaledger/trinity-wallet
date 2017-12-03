@@ -60,7 +60,7 @@ class WalletSetup extends React.Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                         <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
+                        <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
                         <Text style={styles.infoText}>{t('seedExplanation')}</Text>
                         <Text style={styles.infoText}>
                             <Text style={styles.infoTextLight}>{t('explanation1')}</Text>
