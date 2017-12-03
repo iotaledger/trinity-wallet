@@ -22,7 +22,7 @@ import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeSeedInKeychain } from 'iota-wallet-shared-modules/libs/cryptography';
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -41,7 +41,7 @@ class UseSeed extends React.Component {
     }
 
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
+        if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length >= 60) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
