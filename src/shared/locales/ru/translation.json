@@ -115,11 +115,13 @@
         "somethingWentWrongExplanation": "Пожалуйста, перезапустите приложение.",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
-        "generateNewAddress": "СГЕНЕРИРОВАТЬ НОВЫЙ АДРЕС"
+        "generateNewAddress": "СГЕНЕРИРОВАТЬ НОВЫЙ АДРЕС",
+        "message": "Optional message",
+        "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "Вы должны сохранить ваш ключ,",
-        "atLeastOne": "используя по крайней мере один",
+        "mustSaveYourSeed": "You must save your seed with ",
+        "atLeastOne": "at least one ",
         "ofTheOptions": "из представленных вариантов."
     },
     "seedReentry": {
