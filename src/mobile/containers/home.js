@@ -1,7 +1,3 @@
-import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
-import reduce from 'lodash/reduce';
-import map from 'lodash/map';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
