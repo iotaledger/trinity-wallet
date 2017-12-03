@@ -6,9 +6,9 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleTopBarDisplay } from '../../shared/actions/home';
-import { getAccountInfo, setBalance } from '../../shared/actions/account';
-import { setSeedIndex, setReceiveAddress } from '../../shared/actions/tempAccount';
+import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
+import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
+import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -21,7 +21,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
-import { roundDown, formatValue, formatUnit } from '../../shared/libs/util';
+import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 
 const { height, width } = Dimensions.get('window');
 
@@ -29,12 +29,12 @@ class TopBar extends Component {
     static getIconPath(isActive) {
         if (isActive) {
             return {
-                source: require('../../shared/images/chevron-up.png'),
+                source: require('iota-wallet-shared-modules/images/chevron-up.png'),
             };
         }
 
         return {
-            source: require('../../shared/images/chevron-down.png'),
+            source: require('iota-wallet-shared-modules/images/chevron-down.png'),
         };
     }
 
