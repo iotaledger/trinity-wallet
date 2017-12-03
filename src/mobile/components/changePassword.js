@@ -1,6 +1,7 @@
 import isUndefined from 'lodash/isUndefined';
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
@@ -16,7 +17,11 @@ import {
 } from 'react-native';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
-import { getFromKeychain, deleteFromKeyChain, storeValueInKeychain } from '../../shared/libs/cryptography';
+import {
+    getFromKeychain,
+    deleteFromKeyChain,
+    storeValueInKeychain,
+} from 'iota-wallet-shared-modules/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
 
@@ -33,7 +38,7 @@ class ChangePassword extends Component {
         };
     }
 
-    renderTextField(ref, value, label, onChangeText, onSubmitEditing) {
+    renderTextField(ref, value, label, onChangeText, returnKeyType, onSubmitEditing) {
         // This should be abstracted away as an independent component
         // We are using almost the same field styles and props
         // across all app
@@ -54,7 +59,8 @@ class ChangePassword extends Component {
             label,
             value,
             onChangeText,
-            onSubmitEditing
+            returnKeyType,
+            onSubmitEditing,
         };
 
         return <TextField {...props} />;
@@ -62,7 +68,7 @@ class ChangePassword extends Component {
 
     isValid() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { password } = this.props;
+        const { password, t } = this.props;
 
         return (
             currentPassword === password &&
@@ -83,7 +89,7 @@ class ChangePassword extends Component {
                 this.props.dropdown.alertWithType(
                     'error',
                     'Oops! Something went wrong',
-                    'Looks like something wrong while updating your password. Please try again.',
+                    'Looks like something went wrong while updating your password. Please try again.',
                 );
 
             const updatePassword = value =>
@@ -99,7 +105,7 @@ class ChangePassword extends Component {
                         // on dropdown reference inside this component.
                         this.props.dropdown.alertWithType(
                             'success',
-                            'Password updated.',
+                            'Password updated',
                             'Your password has been successfully updated.',
                         );
                         this.props.backPress();
@@ -159,25 +165,46 @@ class ChangePassword extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={styles.infoTextWrapper}>
-                            <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/info.png')}
+                                style={styles.infoIcon}
+                            />
                             <Text style={styles.infoText}>
                                 Ensure you use a strong password of at least 12 characters.
                             </Text>
                         </View>
-                        {this.renderTextField('currentPassword', currentPassword, 'Current Password', currentPassword =>
-                            this.setState({ currentPassword }), onSubmitEditing => this.refs.newPassword.focus(),
+                        {this.renderTextField(
+                            'currentPassword',
+                            currentPassword,
+                            'Current Password',
+                            currentPassword => this.setState({ currentPassword }),
+                            'next',
+                            onSubmitEditing => this.refs.newPassword.focus(),
                         )}
-                        {this.renderTextField('newPassword', newPassword, 'New Password', newPassword =>
-                            this.setState({ newPassword }), onSubmitEditing => this.refs.confirmedNewPassword.focus(),
+                        {this.renderTextField(
+                            'newPassword',
+                            newPassword,
+                            'New Password',
+                            newPassword => this.setState({ newPassword }),
+                            'next',
+                            onSubmitEditing => this.refs.confirmedNewPassword.focus(),
                         )}
-                        {this.renderTextField('confirmedNewPassword', confirmedNewPassword, 'Confirm New Password', confirmedNewPassword =>
-                            this.setState({ confirmedNewPassword }), onSubmitEditing => this.changePassword(),
+                        {this.renderTextField(
+                            'confirmedNewPassword',
+                            confirmedNewPassword,
+                            'Confirm New Password',
+                            confirmedNewPassword => this.setState({ confirmedNewPassword }),
+                            'done',
+                            onSubmitEditing => this.changePassword(),
                         )}
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
@@ -186,7 +213,10 @@ class ChangePassword extends Component {
                             confirmedNewPassword != '' && (
                                 <TouchableOpacity onPress={() => this.changePassword()}>
                                     <View style={styles.itemRight}>
-                                        <Image source={require('../../shared/images/tick.png')} style={styles.icon} />
+                                        <Image
+                                            source={require('iota-wallet-shared-modules/images/tick.png')}
+                                            style={styles.icon}
+                                        />
                                         <Text style={styles.titleText}>Save</Text>
                                     </View>
                                 </TouchableOpacity>

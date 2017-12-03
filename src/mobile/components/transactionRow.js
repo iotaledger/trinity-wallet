@@ -35,12 +35,18 @@ class TransactionRow extends React.Component {
                                 color: titleColour,
                             }}
                         >
-                            {sendOrReceive ? 'RECEIVE' : 'SEND'} {round(formatValue(this.props.rowData[0].value), 1)}{' '}
+                            {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(this.props.rowData[0].value), 1)}{' '}
                             {formatUnit(this.props.rowData[0].value)}
                         </Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.modalStatus}>
-                                {this.props.rowData[0].persistence ? (sendOrReceive ? 'Received' : 'Sent') : 'Pending'}
+                            <Text
+                                style={[
+                                    styles.modalStatus,
+                                    !isReceived && styles.sent,
+                                    !hasPersistence && styles.pending,
+                                ]}
+                            >
+                                {hasPersistence ? (isReceived ? 'Received' : 'Sent') : 'Pending'}
                             </Text>
                             <Text style={styles.modalTimestamp}>
                                 {formatModalTime(convertUnixTimeToJSDate(this.props.rowData[0].timestamp))}
@@ -93,8 +99,9 @@ class TransactionRow extends React.Component {
     );
 
     render() {
-        const sendOrReceive = this.props.addresses.includes(this.props.rowData[0].address);
-        const titleColour = sendOrReceive ? '#72BBE8' : '#F7D002';
+        const hasPersistence = this.props.rowData[0].persistence;
+        const isReceived = this.props.addresses.includes(this.props.rowData[0].address);
+        const titleColour = isReceived ? '#72BBE8' : '#F7D002';
         return (
             <TouchableOpacity onPress={() => this._showModal(this.props.rowData[0])}>
                 <View style={{ flex: 1, alignItems: 'center' }}>
@@ -117,12 +124,13 @@ class TransactionRow extends React.Component {
                                     color: titleColour,
                                 }}
                             >
-                                {sendOrReceive ? 'RECEIVE' : 'SEND'}{' '}
-                                {round(formatValue(this.props.rowData[0].value), 1)}{' '}
+                                {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(this.props.rowData[0].value), 1)}{' '}
                                 {formatUnit(this.props.rowData[0].value)}
                             </Text>
-                            <Text style={styles.status}>
-                                {this.props.rowData[0].persistence ? (sendOrReceive ? 'Received' : 'Sent') : 'Pending'}
+                            <Text
+                                style={[styles.status, !isReceived && styles.sent, !hasPersistence && styles.pending]}
+                            >
+                                {hasPersistence ? (isReceived ? 'Received' : 'Sent') : 'Pending'}
                             </Text>
                         </View>
                         <View
@@ -166,7 +174,7 @@ class TransactionRow extends React.Component {
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                 >
-                    {this._renderModalContent(titleColour, sendOrReceive)}
+                    {this._renderModalContent(titleColour, isReceived, hasPersistence)}
                 </Modal>
             </TouchableOpacity>
         );
@@ -271,6 +279,15 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'right',
+    },
+    pending: {
+        color: '#f75602',
+    },
+    sent: {
+        color: '#F7D002',
+    },
+    received: {
+        color: '#9DFFAF',
     },
 });
 

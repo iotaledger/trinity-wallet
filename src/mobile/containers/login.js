@@ -11,6 +11,7 @@ import {
     ScrollView,
     StatusBar,
 } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
 import { getCurrencyData, setFullNode } from '../../shared/actions/settings';
@@ -26,7 +27,7 @@ import { Keyboard } from 'react-native';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 import IOTA from 'iota.lib.js';
 import Modal from 'react-native-modal';
-import { changeIotaNode } from '../../shared/libs/iota';
+import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import NodeSelection from '../components/nodeSelection.js';
 
 const StatusBarDefaultBarStyle = 'light-content';
@@ -58,7 +59,7 @@ class Login extends React.Component {
 
     _renderModalContent = () => (
         <ImageBackground
-            source={require('../../shared/images/bg-blue.png')}
+            source={require('iota-wallet-shared-modules/images/bg-blue.png')}
             style={{ width: width / 1.15, alignItems: 'center' }}
         >
             <View style={styles.modalContent}>
@@ -167,14 +168,18 @@ class Login extends React.Component {
 
     render() {
         let { password } = this.state;
+        const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 {!this.state.changingNode && (
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <View>
                             <View style={styles.topContainer}>
-                                <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                                    style={styles.iotaLogo}
+                                />
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.title}>Please enter your password.</Text>
                                 </View>
@@ -199,6 +204,7 @@ class Login extends React.Component {
                                         width: width / 1.4,
                                     }}
                                     secureTextEntry={true}
+                                    onSubmitEditing={() => this.onLoginPress()}
                                 />
                             </View>
                             <View style={styles.bottomContainer}>

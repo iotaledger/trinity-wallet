@@ -1,4 +1,6 @@
 rootProject.name = 'iotaWallet'
+include ':react-native-shake-event'
+project(':react-native-shake-event').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-shake-event/android')
 include ':react-native-os'
 project(':react-native-os').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-os/android')
 include ':react-native-camera'
@@ -38,3 +40,5 @@ include ':react-native-keep-awake'
 project(':react-native-keep-awake').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-keep-awake/android')
 include ':react-native-extra-dimensions-android', ':app'
 project(':react-native-extra-dimensions-android').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-extra-dimensions-android/android')
+include ':app', ':react-native-i18n'
+project(':react-native-i18n').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-i18n/android')
