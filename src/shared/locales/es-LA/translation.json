@@ -14,13 +14,13 @@
         "notAvailable": "Esta función no está disponible",
         "notAvailableExplanation": "Se añadirá más adelante.",
         "enterSeed": "Por favor, introduzca tu seed.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "mainWallet": "CUENTA PRINCIPAL",
+        "secondWallet": "SEGUNDA CUENTA",
+        "thirdWallet": "TERCERA CUENTA",
+        "fourthWallet": "CUARTA CUENTA",
+        "fifthWallet": "QUINTA CUENTA",
+        "sixthWallet": "SEXTA CUENTA",
+        "otherWallet": "OTRA CUENTA",
         "yes": "SÍ",
         "no": "NO",
         "password": "Contraseña",
@@ -53,9 +53,9 @@
         "oldPassword": "Cannot set old password",
         "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "Asegúrete que utilizas una contraseña segura con al menos 12 caracteres.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "Contraseña actual",
+        "newPassword": "Contraseña nueva",
+        "confirmPassword": "Confirme nueva contraseña"
     },
     "copyToClipboard": {
         "seedCleared": "Seed cleared",
@@ -90,8 +90,8 @@
         "login": "INICIAR SESIÓN"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
+        "loadingFirstTime": "Cargando la seed por primera vez.",
+        "thisMayTake": "Esto puede tomar un tiempo.",
         "youMayNotice": "You may notice your device slowing down."
     },
     "newSeedSetup": {
@@ -112,20 +112,20 @@
     },
     "receive": {
         "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
+        "somethingWentWrongExplanation": "Por favor, reinicie la aplicación.",
+        "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "GENERAR NUEVA DIRECCIÓN",
         "message": "Optional message",
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
+        "mustSaveYourSeed": "Debes guardar tu seed con ",
+        "atLeastOne": "como mínimo una ",
         "ofTheOptions": "of the options listed below."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
+        "incorrectSeed": "Seed incorrecta.",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
@@ -143,7 +143,7 @@
         "amount": "Cantidad",
         "max": "MAX",
         "message": "Message",
-        "send": "SEND IOTA"
+        "send": "ENVIAR IOTA"
     },
     "setPassword": {
         "passwordTooShort": "La contraseña es demasiado corta",
