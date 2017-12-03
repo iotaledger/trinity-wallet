@@ -1,6 +1,6 @@
 import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
-// import hoistNonReactStatics from 'hoist-non-react-statics';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 
 // TODO Replace this with the react-native SafeAreaView when we update to 0.50+
 export default function withSafeAreaView(WrappedComponent) {
@@ -12,6 +12,5 @@ export default function withSafeAreaView(WrappedComponent) {
         );
     }
 
-    return EnhancedComponent;
-    // return hoistNonReactStatics(EnhancedComponent, WrappedComponent);
+    return hoistNonReactStatics(EnhancedComponent, WrappedComponent);
 }
