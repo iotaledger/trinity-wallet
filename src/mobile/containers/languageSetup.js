@@ -18,6 +18,8 @@ import i18next from 'i18next';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import setFirstUse from 'iota-wallet-shared-modules/actions/account.js';
+import { detectLocale, selectLocale } from '../components/locale';
+import locale from 'react-native-locale-detector';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -41,8 +43,12 @@ class LanguageSetup extends React.Component {
         this.state = {
             triangleDirection: 'down',
             dropdownHeight: 0,
-            languageSelected: 'English (International)',
+            languageSelected: selectLocale(detectLocale(locale)),
         };
+    }
+
+    componentWillMount() {
+        i18next.changeLanguage(detectLocale(locale));
     }
 
     onNextPress() {
@@ -82,7 +88,7 @@ class LanguageSetup extends React.Component {
             languageSelected: item,
         });
 
-        i18next.changeLanguage(translationResource || 'en'); // TODO: Remove || when passed appropriate strings for each resource
+        i18next.changeLanguage(translationResource); // TODO: Remove || when passed appropriate strings for each resource
     }
 
     render() {
@@ -262,14 +268,19 @@ class LanguageSetup extends React.Component {
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        onPress={event => this.clickDropdownItem('Português (Brasil)', 'pt_BR')}
+                                        onPress={event =>
+                                            this.clickDropdownItem('Português (Brasil) - Portuguese (Brazil)', 'pt_BR')}
                                     >
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             Português (Brasil) - Portuguese (Brazil)
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        onPress={event => this.clickDropdownItem('Português (Portugal)', 'pt_PT')}
+                                        onPress={event =>
+                                            this.clickDropdownItem(
+                                                'Português (Portugal) - Portuguese (Portugal)',
+                                                'pt_PT',
+                                            )}
                                     >
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             Português (Portugal) - Portuguese (Portugal)

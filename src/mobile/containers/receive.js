@@ -59,27 +59,32 @@ class Receive extends Component {
         }
     }
 
-    onGeneratePress() {
-        this.props.generateNewAddressRequest();
+    onGeneratePress(){
         const dropdown = DropdownHolder.getDropdown();
+        if(this.props.tempAccount.isSyncing){
+            dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
+            return;
+        }
+
+        this.props.generateNewAddressRequest();
         const seedIndex = this.props.tempAccount.seedIndex;
-        const seedName = this.props.account.seedNames[seedIndex];
+        const accountName = this.props.account.seedNames[seedIndex];
         const accountInfo = this.props.account.accountInfo;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
         const addresses = currentSeedAccountInfo.addresses;
         getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value != 'undefined' && value != null) {
                 const seed = getSeed(value, seedIndex);
-                generate(seed, seedName, addresses);
+                generate(seed, accountName, addresses);
             } else {
                 error();
             }
         });
 
-        const generate = (seed, seedName, addresses) => this.props.generateNewAddress(seed, seedName, addresses);
+        const generate = (seed, accountName, addresses) => this.props.generateNewAddress(seed, accountName, addresses);
         const error = () => {
             this.props.generateNewAddressError();
-            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+            dropdown.alertWithType('error', t('somethingWentWrong'), t('somethingWentWrongExplanation'));
         };
     }
 
@@ -87,7 +92,7 @@ class Receive extends Component {
         const dropdown = DropdownHolder.getDropdown();
         if (address !== ' ') {
             Clipboard.setString(address);
-            dropdown.alertWithType('success', 'Address copied', 'Your address has been copied to the clipboard.');
+            dropdown.alertWithType('success', t('addressCopied'), t('addressCopiedExplanation'));
         }
     }
 
@@ -124,8 +129,8 @@ class Receive extends Component {
                         style={{
                             opacity: this.getOpacity(),
                             alignItems: 'center',
-                            flex: 2.5,
-                            justifyContent: 'center',
+                            flex: 2,
+                            justifyContent: 'flex-end',
                         }}
                     >
                         <View style={[styles.qrContainer, { opacity: this.getQrOpacity() }]}>
@@ -143,6 +148,8 @@ class Receive extends Component {
                                 </Text>
                             </View>
                         </TouchableOpacity>
+                    </View>
+                    <View style={{ alignItems: 'center', flex: 0.5, justifyContent: 'flex-start' }}>
                         <TextField
                             style={styles.textField}
                             labelTextStyle={{ fontFamily: 'Lato-Light', color: 'white' }}
@@ -152,14 +159,15 @@ class Receive extends Component {
                             baseColor="white"
                             tintColor="#F7D002"
                             enablesReturnKeyAutomatically={true}
-                            label="Optional message"
+                            label={t('message')}
                             autoCorrect={false}
                             value={message}
                             containerStyle={{ width: width / 1.36 }}
                             onChangeText={message => this.setState({ message })}
+                            ref="message"
                         />
                     </View>
-                    <View style={{ flex: 0.7, justifyContent: 'flex-start' }}>
+                    <View style={{ flex: 0.5, justifyContent: 'center' }}>
                         {receiveAddress === ' ' &&
                             !isGeneratingReceiveAddress && (
                                 <TouchableOpacity
@@ -171,7 +179,7 @@ class Receive extends Component {
                                     }}
                                 >
                                     <View style={styles.generateButton}>
-                                        <Text style={styles.generateText}>GENERATE NEW ADDRESS</Text>
+                                        <Text style={styles.generateText}>{t('generateNewAddress')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             )}
@@ -191,15 +199,17 @@ class Receive extends Component {
                                     onPress={() => {
                                         // Check if there's already a network call in progress.
                                         this.setState({ message: '' });
+                                        this.refs.message.blur()
                                     }}
                                     style={styles.removeButtonContainer}
                                 >
                                     <View style={styles.removeButton}>
-                                        <Text style={styles.removeText}>REMOVE MESSAGE</Text>
+                                        <Text style={styles.removeText}>{t('removeMessage')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             )}
                     </View>
+                    <View style={{flex: 0.2}}/>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -263,8 +273,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 15,
         padding: width / 30,
-        marginBottom: height / 60,
-        marginTop: height / 40,
+        marginBottom: height / 40,
     },
     removeButtonContainer: {
         alignItems: 'center',
@@ -306,4 +315,4 @@ Receive.propTypes = {
     setReceiveAddress: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Receive);
+export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));

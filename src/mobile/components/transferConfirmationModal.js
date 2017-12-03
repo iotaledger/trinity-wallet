@@ -18,10 +18,7 @@ class TransferConfirmationModal extends React.Component {
 
     render() {
         return (
-            <ImageBackground
-                source={require('iota-wallet-shared-modules/images/bg-blue.png')}
-                style={{ alignItems: 'center' }}
-            >
+            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ width: width / 1.15, alignItems: 'center' }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
@@ -32,7 +29,7 @@ class TransferConfirmationModal extends React.Component {
                             </Text>
                             <Text style={styles.middleText}> to the address:</Text>
                         </Text>
-                        <Text style={styles.addressText}> {this.props.address} </Text>
+                        <Text numberOfLines={3} style={styles.addressText}>{this.props.address}</Text>
                     </View>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.hideModal()}
@@ -48,14 +45,15 @@ class TransferConfirmationModal extends React.Component {
 
 const styles = StyleSheet.create({
     modalContent: {
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         borderRadius: 10,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
-        paddingHorizontal: width / 15,
-        paddingTop: width / 15,
-        paddingBottom: width / 20,
+        paddingVertical: height / 30,
+        width: width / 1.15,
+        paddingHorizontal: width / 20,
+
     },
     textContainer: {
         alignItems: 'flex-start',
@@ -66,7 +64,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 31.8,
-        paddingLeft: width / 80,
     },
     regularText: {
         color: 'white',
@@ -87,7 +84,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
         marginBottom: height / 30,
-        paddingHorizontal: width / 80,
+        marginTop: height / 70,
     },
     iotaText: {
         color: 'white',
