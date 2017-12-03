@@ -171,8 +171,8 @@
         "changePassword": "Alterar a palavra-passe",
         "advanced": "Configurações avançadas",
         "logout": "Terminar sessão",
-        "reset": "Reconfigurar a carteira",
-        "back": "Voltar"
+        "reset": "Reiniciar completamente a carteira",
+        "back": "Anterior"
     },
     "resetWalletConfirmation": {
         "thisAction": "Esta ação não pode ser anulada.",
@@ -184,9 +184,9 @@
         "areYouSure": "Tem a certeza que deseja continuar?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Entre a sua palavra-passe para reconfigurar a sua carteira.",
+        "enterPassword": "Insira a sua palavra-passe para reiniciar a sua carteira.",
         "cancel": "CANCELAR",
-        "reset": "RECONFIGURAR"
+        "reset": "RECONFIGURAR COMPLETAMENTE"
     },
     "walletSetup": {
         "okay": "Ok. Vamos configurar a sua carteira!",
@@ -202,7 +202,7 @@
     "welcome": {
         "thankYou": "Obrigado por descarregar a carteira IOTA.",
         "weWillSpend": "Vamos configurar a sua carteira.",
-        "reminder": "Pode sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo."
+        "reminder": "Poderá sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo."
     },
     "writeSeedDown": {
         "yourSeedIs": "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e",
