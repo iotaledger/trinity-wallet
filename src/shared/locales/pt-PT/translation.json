@@ -159,7 +159,7 @@
     },
     "settings": {
         "transferSending": "A realizar a sua tranferência",
-        "transferSendingExplanation": "Por favor aguarde enquanto a sua transferência está a ser enviada.",
+        "transferSendingExplanation": "Por favor aguarde enquanto a sua transferência está a ser realizada.",
         "generatingAddress": "A gerar endereço próprio",
         "generatingAddressExplanation": "Por favor aguarde enquanto o seu endereço está a ser gerado.",
         "mode": "Modo",
