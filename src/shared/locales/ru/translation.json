@@ -121,7 +121,7 @@
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
+        "atLeastOne": "по крайней мере один ",
         "ofTheOptions": "из представленных вариантов."
     },
     "seedReentry": {
