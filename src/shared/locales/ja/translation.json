@@ -115,11 +115,13 @@
         "somethingWentWrongExplanation": "アプリを再起動して下さい。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "アドレス生成"
+        "generateNewAddress": "アドレス生成",
+        "message": "Optional message",
+        "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "安全にSeedを保存して下さい。",
-        "atLeastOne": "最低一つ",
+        "mustSaveYourSeed": "You must save your seed with ",
+        "atLeastOne": "at least one ",
         "ofTheOptions": "以下のオプションを使って。"
     },
     "seedReentry": {
