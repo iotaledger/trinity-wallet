@@ -1,13 +1,13 @@
 import i18next from 'i18next';
 import { reactI18nextModule } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+// import LanguageDetector from 'i18next-browser-languagedetector';
+import i18nextReactNative from 'i18next-react-native-language-detector';
 
 export default i18next
     .use(reactI18nextModule)
-    .use(LanguageDetector)
+    .use(i18nextReactNative)
     .init(
         {
-            lng: 'en',
             fallbackLng: 'en',
             parseMissingKeyHandler: value => `Translation not available for ${value}`,
             resources: {

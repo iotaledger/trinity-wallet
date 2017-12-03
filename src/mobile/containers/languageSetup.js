@@ -18,6 +18,7 @@ import i18next from 'i18next';
 import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import setFirstUse from 'iota-wallet-shared-modules/actions/account.js';
+import locale from 'react-native-locale-detector';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -41,7 +42,7 @@ class LanguageSetup extends React.Component {
         this.state = {
             triangleDirection: 'down',
             dropdownHeight: 0,
-            languageSelected: '',
+            languageSelected: this.selectLocale(),
         };
     }
 
@@ -55,6 +56,96 @@ class LanguageSetup extends React.Component {
             animated: false,
             overrideBackPress: true,
         });
+    }
+
+    selectLocale() {
+        var lang = i18next.language;
+        if (lang === 'ar') {
+            return 'عربى - Arabic';
+        }
+        if (lang === 'da') {
+            return 'Dansk - Danish';
+        }
+        if (lang === 'de') {
+            return 'Deutsch - German';
+        }
+        if (lang === 'el') {
+            return 'Ελληνικά - Greek';
+        }
+        if (lang === 'es_ES') {
+            return 'Español (España) - Spanish (Spain)';
+        }
+        if (lang === 'es_LA') {
+            return 'Español (Latinoamérica) - Spanish (Latin America)';
+        }
+        if (lang === 'fi') {
+            return 'Suomi - Finnish';
+        }
+        if (lang === 'fr') {
+            return 'Français - French';
+        }
+        if (lang === 'el') {
+            return 'עִברִית - Hebrew';
+        }
+        if (lang === 'hi') {
+            return 'हिंदी - Hindi';
+        }
+        if (lang === 'id') {
+            return 'Bahasa Indonesia - Indonesian';
+        }
+        if (lang === 'it') {
+            return 'Italiano - Italian';
+        }
+        if (lang === 'ja') {
+            return '日本語 - Japanese';
+        }
+        if (lang === 'ko') {
+            return '한국어 - Korean';
+        }
+        if (lang === 'lv') {
+            return 'Latviešu - Latvian';
+        }
+        if (lang === 'nl') {
+            return 'Nederlands - Dutch';
+        }
+        if (lang === 'no') {
+            return 'Norsk - Norwegian';
+        }
+        if (lang === 'pl') {
+            return 'Polski - Polish';
+        }
+        if (lang === 'pt_PT') {
+            return 'Português (Brasil) - Portuguese (Brazil)';
+        }
+        if (lang === 'pt_BR') {
+            return 'Português (Portugal) - Portuguese (Portugal)';
+        }
+        if (lang === 'ro') {
+            return 'Română - Romanian';
+        }
+        if (lang === 'ru') {
+            return 'Pусский - Russian';
+        }
+        if (lang === 'sl') {
+            return 'Slovenščina - Slovenian';
+        }
+        if (lang === 'sv') {
+            return 'Svenska - Swedish';
+        }
+        if (lang === 'tr') {
+            return 'Türkçe - Turkish';
+        }
+        if (lang === 'ur') {
+            return 'اردو - Urdu';
+        }
+        if (lang === 'zh_CN') {
+            return '中文 (简体) - Chinese (Simplified)';
+        }
+        if (lang === 'zh_TW') {
+            return '中文 (繁體) - Chinese (Traditional)';
+        } else {
+            return 'English (International)';
+        }
     }
 
     clickLanguage() {
@@ -134,7 +225,7 @@ class LanguageSetup extends React.Component {
                             >
                                 <ScrollView>
                                     <TouchableOpacity
-                                        onPress={event => this.clickDropdownItem('English (International)', 'en')}
+                                        onPress={event => this.clickDropdownItem('English (International)', 'es_ES')}
                                     >
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             English (International)
@@ -262,14 +353,19 @@ class LanguageSetup extends React.Component {
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        onPress={event => this.clickDropdownItem('Português (Brasil)', 'pt_BR')}
+                                        onPress={event =>
+                                            this.clickDropdownItem('Português (Brasil) - Portuguese (Brazil)', 'pt_BR')}
                                     >
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             Português (Brasil) - Portuguese (Brazil)
                                         </Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        onPress={event => this.clickDropdownItem('Português (Portugal)', 'pt_PT')}
+                                        onPress={event =>
+                                            this.clickDropdownItem(
+                                                'Português (Portugal) - Portuguese (Portugal)',
+                                                'pt_PT',
+                                            )}
                                     >
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             Português (Portugal) - Portuguese (Portugal)
