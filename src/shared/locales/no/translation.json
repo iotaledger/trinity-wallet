@@ -115,11 +115,13 @@
         "somethingWentWrongExplanation": "Start programmet på nytt.",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
-        "generateNewAddress": "LAG NY ADDRESSE"
+        "generateNewAddress": "LAG NY ADDRESSE",
+        "message": "Optional message",
+        "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "Du må lagre hovednøkkelen med",
-        "atLeastOne": "minst en",
+        "mustSaveYourSeed": "You must save your seed with ",
+        "atLeastOne": "at least one ",
         "ofTheOptions": "av alternativene nedenfor."
     },
     "seedReentry": {
