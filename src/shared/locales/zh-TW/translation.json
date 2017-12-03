@@ -52,7 +52,7 @@
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "無法設置舊密碼",
         "oldPasswordExplanation": "無法將舊密碼設置為新密碼。請嘗試輸入新密碼。",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
+        "ensureStrongPassword": "請確保使用至少12字元強度的密碼。",
         "currentPassword": "當前密碼",
         "newPassword": "新密碼",
         "confirmPassword": "確認新密碼"
@@ -61,8 +61,8 @@
         "seedCleared": "種子碼已清除",
         "seedClearedExplanation": "為保安全，種子碼已從剪貼簿清除。",
         "seedCopied": "種子碼已複製",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "seedCopiedExplanation": "種子碼已複製至剪貼簿，按「完成」或過六十秒後便會清除。",
+        "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
@@ -70,7 +70,7 @@
         "seedTooShort": "種子碼過短",
         "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
         "balance": "餘額",
@@ -83,28 +83,28 @@
         "language": "語言"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
-        "login": "LOG IN"
+        "emptyPassword": "空白的密碼",
+        "emptyPasswordExplanation": "您必須輸入密碼以登入。請再試一遍。",
+        "enterPassword": "請輸入您的密碼。",
+        "useSeed": "使用種子碼",
+        "login": "登入"
     },
     "loading": {
         "loadingFirstTime": "Loading seed for the first time.",
         "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "youMayNotice": "您的裝置可能會變慢"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "seedNotGenerated": "尚未產生種子碼",
+        "seedNotGeneratedExplanation": "請按「產生新種子碼」鈕",
+        "pressForNewSeed": "按此處得到新種子碼",
+        "individualLetters": "請按各字母以成隨機順序"
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "錢包已設置完成且能使用。若您在未來需要做任何變動，請到設定選單。"
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
+        "clickToPrint": "按下方按鈕列印出您的種子碼。",
         "storeSafely": "Store it safely.",
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
