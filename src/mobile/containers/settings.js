@@ -20,7 +20,7 @@ import {
     removeAccount,
 } from 'iota-wallet-shared-modules/actions/account';
 import { setFullNode, getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
-import { renameKeys, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
 import AddNewAccount from '../components/addNewAccount';
@@ -370,7 +370,7 @@ class Settings extends React.Component {
     //UseExistingSeed method
     addExistingSeed(seed, accountName) {
         const dropdown = DropdownHolder.getDropdown();
-        if (!seed.match(/^[A-Z9]+$/) && seed.length == MAX_SEED_LENGTH) {
+        if (!seed.match(VALID_SEED_REGEX) && seed.length == MAX_SEED_LENGTH) {
             dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
