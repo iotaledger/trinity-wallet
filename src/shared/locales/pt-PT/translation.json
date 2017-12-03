@@ -6,7 +6,7 @@
         "seed": "Seed",
         "back": "ANTERIOR",
         "done": "CONCLUÍDO",
-        "next": "PRÓXIMO",
+        "next": "SEGUINTE",
         "manualCopy": "Cópia Manual",
         "paperWallet": "Carteira de Papel",
         "copyToClipboard": "Copiar para a Área de Transferência",
@@ -41,7 +41,7 @@
     },
     "changePassword": {
         "oops": "Uups! Aconteceu algum problema",
-        "oopsExplanation": "Ocorreram problemas na atualização da sua palavra-passe. Por favor tente de novo.",
+        "oopsExplanation": "Ocorreram problemas ao atualizar a sua palavra-passe. Por favor tente de novo.",
         "passwordUpdated": "Palavra-passe atualizada",
         "passwordUpdatedExplanation": "A sua palavra-passe foi atualizada.",
         "incorrectPassword": "Palavra-passe incorreta",
