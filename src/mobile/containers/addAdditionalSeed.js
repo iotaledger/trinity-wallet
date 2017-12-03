@@ -16,16 +16,24 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
-import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
+
+import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { storeInKeychain, getFromKeychain, removeLastSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import {
+    getAccountInfoNewSeed,
+    setFirstUse,
+    increaseSeedCount,
+    addSeedName,
+} from 'iota-wallet-shared-modules/actions/account';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+
+import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
+import QRScanner from '../components/qrScanner.js';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
-import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
-import { generateAlert } from '../../shared/actions/alerts';
-import { clearTempData } from '../../shared/actions/tempAccount';
 
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -63,9 +71,9 @@ class AddAdditionalSeed extends React.Component {
     }
 
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
+        if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length == MAX_SEED_LENGTH) {
             this.dropdown.alertWithType('error', t('seedInvalidChars'), t('seedInvalidCharsExplanation'));
-        } else if (this.state.seed.length < 81) {
+        } else if (this.state.seed.length < MAX_SEED_LENGTH) {
             this.dropdown.alertWithType('error', t('seedTooShort'), t('seedTooShortExplanation'));
         } else if (!(this.state.seedName.length > 0)) {
             this.dropdown.alertWithType('error', t('noNickname'), t('noNicknameExplanation'));
@@ -181,7 +189,7 @@ class AddAdditionalSeed extends React.Component {
                                             autoCapitalize="characters"
                                             autoCorrect={false}
                                             value={seed}
-                                            maxLength={81}
+                                            maxLength={MAX_SEED_LENGTH}
                                             onChangeText={seed => this.setState({ seed })}
                                             secureTextEntry={true}
                                         />
