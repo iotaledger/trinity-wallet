@@ -210,7 +210,7 @@ class Home extends Component {
 
         return (
             <UserInactivity
-                timeForInactivity={120000}
+                timeForInactivity={300000}
                 checkInterval={2000}
                 onInactivity={() => this.setState({ inactive: true })}
             >
