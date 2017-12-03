@@ -23,9 +23,11 @@ class Chart extends React.Component {
 
     startPolling() {
         // 'console.log('POLLING CHART DATA')'
-        this.props.getMarketData();
-        this.props.getChartData();
-        this.props.getPrice();
+        if(!this.props.isSyncing && !this.props.isGeneratingReceiveAddress && !this.props.isSendingTransfer){
+            this.props.getMarketData();
+            this.props.getChartData();
+            this.props.getPrice();
+        }
     }
 
     componentWillMount() {
