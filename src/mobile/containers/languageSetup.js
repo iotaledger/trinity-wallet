@@ -135,7 +135,7 @@ class LanguageSetup extends React.Component {
                             >
                                 <ScrollView>
                                     <TouchableOpacity
-                                        onPress={event => this.clickDropdownItem('English (International)', 'es_ES')}
+                                        onPress={event => this.clickDropdownItem('English (International)', 'en')}
                                     >
                                         <Text numberOfLines={1} style={styles.dropdownItem}>
                                             English (International)
