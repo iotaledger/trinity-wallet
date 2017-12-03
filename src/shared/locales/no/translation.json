@@ -120,8 +120,8 @@
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
+        "mustSaveYourSeed": "Du må lagre hovednøkkelen med ",
+        "atLeastOne": "minst én ",
         "ofTheOptions": "av alternativene nedenfor."
     },
     "seedReentry": {
