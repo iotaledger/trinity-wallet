@@ -20,7 +20,7 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { round, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
@@ -99,11 +99,11 @@ class Send extends Component {
     }
 
     isValidAddressChars(address) {
-        return address.match(/^[A-Z9]+$/);
+        return address.match(VALID_SEED_REGEX);
     }
 
     isValidMessage(message) {
-        //return this.state.message.match(/^[A-Z9]+$/);
+        //return this.state.message.match(VALID_SEED_REGEX);
         return true;
     }
 
@@ -129,7 +129,7 @@ class Send extends Component {
                 ...props,
                 `Address should be ${MAX_SEED_LENGTH} characters long and should have a checksum.`,
             );
-        } else if (address.match(/^[A-Z9]+$/) == null) {
+        } else if (address.match(VALID_SEED_REGEX) == null) {
             return dropdown.alertWithType(...props, 'Address contains invalid characters.');
         }
 
