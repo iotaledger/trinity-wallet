@@ -24,15 +24,10 @@ import {
     getFromKeychain,
     removeLastSeed,
     checkKeychainForDuplicates,
-} from 'iota-wallet-shared-modules/libs/cryptography';
-import {
-    getAccountInfoNewSeed,
-    setFirstUse,
-    increaseSeedCount,
-    addAccountName,
-} from 'iota-wallet-shared-modules/actions/account';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { clearTempData, setSeedName, clearSeed, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
+} from '../../shared/libs/cryptography';
+import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
+import { generateAlert } from '../../shared/actions/alerts';
+import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 const width = Dimensions.get('window').width;
 const height = global.height;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -47,19 +42,19 @@ class SetSeedName extends React.Component {
 
     getDefaultAccountName() {
         if (this.props.account.seedCount == 0) {
-            return 'MAIN ACCOUNT';
+            return t('mainWallet');
         } else if (this.props.account.seedCount == 1) {
-            return 'SECOND ACCOUNT';
+            return t('secondWallet');
         } else if (this.props.account.seedCount == 2) {
-            return 'THIRD ACCOUNT';
+            return t('thirdWallet');
         } else if (this.props.account.seedCount == 3) {
-            return 'FOURTH ACCOUNT';
+            return t('fourthWallet');
         } else if (this.props.account.seedCount == 4) {
-            return 'FIFTH ACCOUNT';
+            return t('fifthWallet');
         } else if (this.props.account.seedCount == 5) {
-            return 'SIXTH ACCOUNT';
+            return t('sixthWallet');
         } else if (this.props.account.seedCount == 6) {
-            return 'OTHER ACCOUNT';
+            return t('otherWallet');
         } else {
             return '';
         }
@@ -99,7 +94,7 @@ class SetSeedName extends React.Component {
                         animated: false,
                         overrideBackPress: true,
                     });
-                    this.props.getAccountInfoNewSeed(seed, accountName, (error, success) => {
+                    this.props.getFullAccountInfo(seed, accountName, (error, success) => {
                         if (error) {
                             onNodeError();
                         } else {
@@ -112,7 +107,11 @@ class SetSeedName extends React.Component {
                     this.props.navigator.pop({
                         animated: false,
                     });
-                    dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+                    dropdown.alertWithType(
+                        'error',
+                        t('global:invalidResponse'),
+                        t('global:invalidResponseExplanation'),
+                    );
                     this.props.setFirstUse(false);
                 };
 
@@ -126,7 +125,11 @@ class SetSeedName extends React.Component {
                 };
             }
         } else {
-            this.dropdown.alertWithType('error', 'No account name entered', `Please enter a name for your account.`);
+            this.dropdown.alertWithType(
+                'error',
+                t('addAdditionalSeed:noNickname'),
+                t('addAdditionalSeed:noNicknameExplanation'),
+            );
         }
     }
 
@@ -150,7 +153,7 @@ class SetSeedName extends React.Component {
                                 style={styles.iotaLogo}
                             />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.greetingText}>Enter a name for your account.</Text>
+                                <Text style={styles.greetingText}>{t('addAdditionalSeed:enterAccountName')}</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
@@ -182,18 +185,16 @@ class SetSeedName extends React.Component {
                                     source={require('iota-wallet-shared-modules/images/info.png')}
                                     style={styles.infoIcon}
                                 />
-                                <Text style={styles.infoText}>
-                                    You can use multiple accounts with this wallet. Each account requires a name.
-                                </Text>
-                                <Text style={styles.infoText}>You can add more accounts in the Settings menu.</Text>
+                                <Text style={styles.infoText}>{t('canUseMultipleSeeds')}</Text>
+                                <Text style={styles.infoText}>{t('youCanAdd')}</Text>
                             </View>
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={'BACK'}
-                                rightText={'DONE'}
+                                leftText={t('global:back')}
+                                rightText={t('global:done')}
                             />
                         </View>
                     </View>
@@ -361,9 +362,11 @@ const mapDispatchToProps = dispatch => ({
     addAccountName: newSeed => {
         dispatch(addAccountName(newSeed));
     },
-    getAccountInfoNewSeed: (seed, accountName, cb) => {
-        dispatch(getAccountInfoNewSeed(seed, accountName, cb));
+    getFullAccountInfo: (seed, accountName, cb) => {
+        dispatch(getFullAccountInfo(seed, accountName, cb));
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SetSeedName);
+export default translate(['setSeedName', 'global', 'addAdditionalSeed'])(
+    connect(mapStateToProps, mapDispatchToProps)(SetSeedName),
+);
