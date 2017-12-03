@@ -120,8 +120,8 @@
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
+        "mustSaveYourSeed": "Du måste spara din adress med ",
+        "atLeastOne": "minst en ",
         "ofTheOptions": "av alternativen som anges nedan."
     },
     "seedReentry": {
