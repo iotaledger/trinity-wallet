@@ -46,7 +46,7 @@ class EnterSeed extends React.Component {
 
     onDonePress() {
         const { t } = this.props;
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
+        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == MAX_SEED_LENGTH) {
             this.dropdown.alertWithType('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         } else if (this.state.seed.length < MAX_SEED_LENGTH) {
             this.dropdown.alertWithType(
