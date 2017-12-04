@@ -9,7 +9,6 @@ import {
     Text,
     Image,
     ListView,
-    Dimensions,
     TouchableOpacity,
     Clipboard,
     StatusBar,
@@ -17,7 +16,6 @@ import {
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
     Keyboard,
-    Platform,
 } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
@@ -33,8 +31,8 @@ import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
 
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 const StatusBarDefaultBarStyle = 'light-content';
-const isAndroid = Platform.OS === 'android';
 
 class Receive extends Component {
     constructor() {
