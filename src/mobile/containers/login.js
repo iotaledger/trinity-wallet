@@ -91,10 +91,8 @@ class Login extends React.Component {
             getFromKeychain(this.state.password, value => {
                 this.props.setPassword(this.state.password);
                 if (value) {
-                    console.log('VALUE', value);
                     var seed = getSeed(value, 0);
-                    console.log('SEED', seed);
-                    // login(seed);
+                    login(seed);
                 } else {
                     error();
                 }
