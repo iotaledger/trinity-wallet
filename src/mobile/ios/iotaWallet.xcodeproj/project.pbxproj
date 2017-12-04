@@ -52,6 +52,7 @@
 		6099739E1FD225DE0064B450 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 609973971FD225DD0064B450 /* Lato-Light.ttf */; };
 		6099739F1FD225DE0064B450 /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 609973981FD225DD0064B450 /* Lato-Heavy.ttf */; };
 		60ABE45D4856C876EFB3E718 /* libPods-iotaWallet-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D215E82DADAEAE41E8BB76DC /* libPods-iotaWallet-tvOSTests.a */; };
+		60F4FC861FD502A2001F5A1E /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F4FC781FD50249001F5A1E /* libRNDeviceInfo.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		C89A2020D6B12FAF4A0F1EE1 /* libPods-iotaWalletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D51D802F5BB3E916B0C7685 /* libPods-iotaWalletTests.a */; };
 		CB1583E41FCFA657004C2604 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1583B41FCFA625004C2604 /* libKCKeepAwake.a */; };
@@ -283,6 +284,27 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNShakeEvent;
 		};
+		60F4FC541FD50249001F5A1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 604AFFAB1FAF8B71003CBDFE /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B0D2BE4E9E672BAFC56687D0300B00BC;
+			remoteInfo = RNDeviceInfo;
+		};
+		60F4FC771FD50249001F5A1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F4FC4A1FD50248001F5A1E /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
+			remoteInfo = RNDeviceInfo;
+		};
+		60F4FC791FD50249001F5A1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F4FC4A1FD50248001F5A1E /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
+			remoteInfo = "RNDeviceInfo-tvOS";
+		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -492,6 +514,7 @@
 		60F4FBA01FD3AECF001F5A1E /* sl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = sl; path = sl.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		60F4FBA11FD3AEE0001F5A1E /* ur */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ur; path = ur.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		60F4FBA21FD3AEF0001F5A1E /* lv */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = lv; path = lv.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		60F4FC4A1FD50248001F5A1E /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7B9BB620504D82DA379AC714 /* Pods-iotaWallet-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -526,6 +549,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60F4FC861FD502A2001F5A1E /* libRNDeviceInfo.a in Frameworks */,
 				CB1583E41FCFA657004C2604 /* libKCKeepAwake.a in Frameworks */,
 				6083B36F1FB7E65700DF3681 /* libRNShakeEvent.a in Frameworks */,
 				CB1C68571F9CC65500229848 /* libRNFS.a in Frameworks */,
@@ -730,6 +754,7 @@
 				604AFFB81FAF8B71003CBDFE /* libPods-iotaWallet-tvOS.a */,
 				604AFFBA1FAF8B71003CBDFE /* libPods-iotaWallet-tvOSTests.a */,
 				604AFFBC1FAF8B71003CBDFE /* libPods-iotaWalletTests.a */,
+				60F4FC551FD50249001F5A1E /* libRNDeviceInfo.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -754,6 +779,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		60F4FC4B1FD50248001F5A1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60F4FC781FD50249001F5A1E /* libRNDeviceInfo.a */,
+				60F4FC7A1FD50249001F5A1E /* libRNDeviceInfo-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -766,6 +800,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				60F4FC4A1FD50248001F5A1E /* RNDeviceInfo.xcodeproj */,
 				CB1583AF1FCFA61C004C2604 /* KCKeepAwake.xcodeproj */,
 				6083B3691FB7E61000DF3681 /* RNShakeEvent.xcodeproj */,
 				604AFFFD1FAF951A003CBDFE /* RNHockeyApp.h */,
@@ -1155,6 +1190,10 @@
 					ProjectRef = CB87E5951F550649009DB5ED /* ReactNativeNavigation.xcodeproj */;
 				},
 				{
+					ProductGroup = 60F4FC4B1FD50248001F5A1E /* Products */;
+					ProjectRef = 60F4FC4A1FD50248001F5A1E /* RNDeviceInfo.xcodeproj */;
+				},
+				{
 					ProductGroup = CB1C684F1F9CC62900229848 /* Products */;
 					ProjectRef = CB1C684E1F9CC62900229848 /* RNFS.xcodeproj */;
 				},
@@ -1395,6 +1434,27 @@
 			fileType = archive.ar;
 			path = libRNShakeEvent.a;
 			remoteRef = 6083B36D1FB7E61000DF3681 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60F4FC551FD50249001F5A1E /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = 60F4FC541FD50249001F5A1E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60F4FC781FD50249001F5A1E /* libRNDeviceInfo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNDeviceInfo.a;
+			remoteRef = 60F4FC771FD50249001F5A1E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60F4FC7A1FD50249001F5A1E /* libRNDeviceInfo-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNDeviceInfo-tvOS.a";
+			remoteRef = 60F4FC791FD50249001F5A1E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
