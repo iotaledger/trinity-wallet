@@ -29,7 +29,7 @@ const CustomLayoutSpring = {
 };
 
 const styles = StyleSheet.create({
-    topContainer: {
+    container: {
         flex: 1,
         justifyContent: 'flex-start',
     },
@@ -113,7 +113,7 @@ class Dropdown extends Component {
         const dropdownHeight = isDropdownOpen ? height / 3.2 : 0;
 
         return (
-            <View style={styles.topContainer}>
+            <View style={styles.container}>
                 <Text style={styles.dropdownTitle}>{title}</Text>
                 <View style={styles.dropdownButtonContainer}>
                     <TouchableWithoutFeedback onPress={() => this.onDropdownTitlePress()}>
