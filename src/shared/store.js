@@ -25,7 +25,7 @@ const reducers = combineReducers({
 });
 
 const rootReducer = (state, action) => {
-    if (ActionTypes.WALLET_RESET) {
+    if (action.type === ActionTypes.WALLET_RESET) {
         state = undefined;
     }
     /* eslint-enable no-param-reassign */
