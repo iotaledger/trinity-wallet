@@ -32,8 +32,7 @@ import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/crypto
 import TransactionRow from '../components/transactionRow';
 import DropdownHolder from '../components/dropdownHolder';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 const isAndroid = Platform.OS === 'android';
 
@@ -59,9 +58,9 @@ class Receive extends Component {
         }
     }
 
-    onGeneratePress(){
+    onGeneratePress() {
         const dropdown = DropdownHolder.getDropdown();
-        if(this.props.tempAccount.isSyncing){
+        if (this.props.tempAccount.isSyncing) {
             dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
             return;
         }
@@ -199,7 +198,7 @@ class Receive extends Component {
                                     onPress={() => {
                                         // Check if there's already a network call in progress.
                                         this.setState({ message: '' });
-                                        this.refs.message.blur()
+                                        this.refs.message.blur();
                                     }}
                                     style={styles.removeButtonContainer}
                                 >
@@ -209,7 +208,7 @@ class Receive extends Component {
                                 </TouchableOpacity>
                             )}
                     </View>
-                    <View style={{flex: 0.2}}/>
+                    <View style={{ flex: 0.2 }} />
                 </View>
             </TouchableWithoutFeedback>
         );

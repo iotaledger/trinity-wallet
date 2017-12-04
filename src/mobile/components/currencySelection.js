@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-import {
-    Image,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Dimensions,
-    TouchableWithoutFeedback,
-} from 'react-native';
-import Dropdown from './dropdown';
+import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 
-const { width } = Dimensions.get('window');
-const height = global.height;
+import Dropdown from './dropdown';
 
 const styles = StyleSheet.create({
     container: {
@@ -52,7 +43,7 @@ const styles = StyleSheet.create({
     },
     dropdownWidth: {
         width: width / 4,
-    }
+    },
 });
 
 class CurrencySelection extends Component {
@@ -81,13 +72,19 @@ class CurrencySelection extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={require('iota-wallet-shared-modules/images/arrow-left.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveCurrencySelection(this.dropdown.getSelected())}>
                             <View style={styles.itemRight}>
-                                <Image source={require('iota-wallet-shared-modules/images/tick.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/tick.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Save</Text>
                             </View>
                         </TouchableOpacity>
