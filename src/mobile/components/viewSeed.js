@@ -4,7 +4,7 @@ import Fonts from '../theme/Fonts';
 import Seedbox from '../components/seedBox.js';
 import { TextField } from 'react-native-material-textfield';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class ViewSeed extends React.Component {
     constructor() {

@@ -12,7 +12,7 @@ import {
 import Fonts from '../theme/Fonts';
 import Colors from '../theme/Colors';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 import Modal from 'react-native-modal';
 import { TextField } from 'react-native-material-textfield';
 

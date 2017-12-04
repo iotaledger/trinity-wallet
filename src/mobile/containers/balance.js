@@ -15,7 +15,7 @@ import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
 const isAndroid = Platform.OS === 'android';
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class Balance extends React.Component {
@@ -70,9 +70,7 @@ class Balance extends React.Component {
                     <StatusBar barStyle="light-content" />
                     <View style={styles.balanceContainer}>
                         <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
-                            {this.state.balanceIsShort
-                                ? shortenedBalance
-                                : formatValue(this.props.account.balance)}{' '}
+                            {this.state.balanceIsShort ? shortenedBalance : formatValue(this.props.account.balance)}{' '}
                             {formatUnit(this.props.account.balance)}
                         </Text>
                         <Text style={styles.fiatBalance}>

@@ -3,7 +3,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import OnboardingButtons from './onboardingButtons.js';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class UnitInfoModal extends React.Component {
     render() {

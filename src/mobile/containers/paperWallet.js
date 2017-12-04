@@ -9,7 +9,7 @@ import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html.js';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 const isAndroid = Platform.OS === 'android';
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
 let results = '';
