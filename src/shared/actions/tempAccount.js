@@ -119,10 +119,10 @@ export function setReady() {
     };
 }
 
-export function setSeed(seed) {
+export function setSeed(payload) {
     return {
         type: 'SET_SEED',
-        payload: seed,
+        payload,
     };
 }
 
