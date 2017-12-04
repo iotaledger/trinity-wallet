@@ -2755,10 +2755,6 @@ https-browserify@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-0.0.1.tgz#3f91365cabe60b77ed0ebba24b454e3e09d95a82"
 
-i18next-react-native-language-detector@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/i18next-react-native-language-detector/-/i18next-react-native-language-detector-1.0.2.tgz#5c47482611a44262302a363d5be34a42b11ddfc6"
-
 i18next@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.1.0.tgz#41b19eb8fa011ea602163e524cf84a5de6777047"
@@ -4505,6 +4501,10 @@ react-native-detect-navbar-android@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/react-native-detect-navbar-android/-/react-native-detect-navbar-android-0.1.0.tgz#3c18dc628d64401ae86002607d5bd6faa21a5118"
 
+react-native-device-info@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.13.0.tgz#81051eebd3db6959e4f1d2cb0ae8df74105040cf"
+
 "react-native-dropdownalert@git+https://git@github.com/rajivshah3/react-native-dropdownalert":
   version "3.1.2"
   resolved "git+https://git@github.com/rajivshah3/react-native-dropdownalert#4e6355398d74b64210acac23cd69a2aace3e1bfd"
@@ -4555,10 +4555,6 @@ react-native-level-fs@^3.0.0:
   dependencies:
     level-filesystem "^1.0.1"
     levelup "^0.18.2"
-
-react-native-locale-detector@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-locale-detector/-/react-native-locale-detector-1.0.1.tgz#c002261ecb60619e5952257c8c7fa31c2c15ed30"
 
 react-native-material-textfield@^0.9.0:
   version "0.9.0"

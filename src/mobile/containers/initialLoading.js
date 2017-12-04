@@ -5,8 +5,6 @@ import { StyleSheet, View, Image, ImageBackground, Text, StatusBar, BackHandler,
 import { getAllItems, deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
 import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
-import { detectLocale } from '../components/locale';
-import locale from 'react-native-locale-detector';
 import { width, height } from '../util/dimensions';
 
 /* eslint-disable global-require */

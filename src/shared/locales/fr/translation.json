@@ -116,8 +116,8 @@
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papiers.",
         "generateNewAddress": "GÉNÉRER UNE NOUVELLE ADRESSE",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "Message facultatif",
+        "removeMessage": "SUPPRIMER LE MESSAGE"
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "Vous devez enregistrer votre seed avec ",
