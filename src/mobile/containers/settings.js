@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import {
@@ -52,8 +52,7 @@ import DropdownHolder from '../components/dropdownHolder';
 import i18next from 'i18next';
 import { selectLocale } from '../components/locale';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class Settings extends React.Component {
     constructor(props) {
@@ -439,7 +438,9 @@ class Settings extends React.Component {
             dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${seed.length} characters long. Please try again.`,
+                `Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${
+                    seed.length
+                } characters long. Please try again.`,
             );
         } else if (!(accountName.length > 0)) {
             dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);

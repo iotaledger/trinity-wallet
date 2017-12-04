@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    ImageBackground,
-    WebView,
-    StatusBar,
-    Text,
-    ActivityIndicator,
-} from 'react-native';
+import { StyleSheet, View, ImageBackground, WebView, StatusBar, Text, ActivityIndicator } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
@@ -20,8 +11,7 @@ import { Navigation } from 'react-native-navigation';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
 class Loading extends Component {
