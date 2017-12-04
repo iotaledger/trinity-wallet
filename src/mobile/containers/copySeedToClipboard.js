@@ -1,22 +1,11 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    Clipboard,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, Clipboard, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
 import Seedbox from '../components/seedBox.js';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {

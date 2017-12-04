@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ListView } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, ListView } from 'react-native';
 import Fonts from '../theme/Fonts';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class ViewAddresses extends React.Component {
     render() {
