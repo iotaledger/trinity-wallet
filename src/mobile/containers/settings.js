@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import {
@@ -52,8 +52,7 @@ import DropdownHolder from '../components/dropdownHolder';
 import i18next from 'i18next';
 import { selectLocale } from '../components/locale';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class Settings extends React.Component {
     constructor(props) {
