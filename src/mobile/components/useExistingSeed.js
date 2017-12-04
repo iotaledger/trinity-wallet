@@ -27,8 +27,7 @@ import { clearTempData } from '../../shared/actions/tempAccount';
 
 import DropdownHolder from '../components/dropdownHolder';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 const isAndroid = Platform.OS === 'android';
 

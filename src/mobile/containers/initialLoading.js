@@ -1,30 +1,13 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Image,
-    ImageBackground,
-    Text,
-    StatusBar,
-    BackHandler,
-    Platform,
-} from 'react-native';
+import { StyleSheet, View, Image, ImageBackground, Text, StatusBar, BackHandler, Platform } from 'react-native';
 import { getAllItems, deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
 import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
-import { DetectNavbar } from '../theme/androidSoftKeys';
-import ExtraDimensions from 'react-native-extra-dimensions-android';
 import { detectLocale } from '../components/locale';
 import locale from 'react-native-locale-detector';
-
-const width = Dimensions.get('window').width;
-let height = Dimensions.get('window').height;
-global.height = DetectNavbar.hasSoftKeys()
-    ? (height -= ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT'))
-    : Dimensions.get('window').height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */

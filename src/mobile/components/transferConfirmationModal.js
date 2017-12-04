@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 
 class TransferConfirmationModal extends React.Component {
     constructor(props) {
@@ -18,7 +17,10 @@ class TransferConfirmationModal extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ width: width / 1.15, alignItems: 'center' }}>
+            <ImageBackground
+                source={require('../../shared/images/bg-blue.png')}
+                style={{ width: width / 1.15, alignItems: 'center' }}
+            >
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
@@ -29,7 +31,9 @@ class TransferConfirmationModal extends React.Component {
                             </Text>
                             <Text style={styles.middleText}> to the address:</Text>
                         </Text>
-                        <Text numberOfLines={3} style={styles.addressText}>{this.props.address}</Text>
+                        <Text numberOfLines={3} style={styles.addressText}>
+                            {this.props.address}
+                        </Text>
                     </View>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.hideModal()}
@@ -53,7 +57,6 @@ const styles = StyleSheet.create({
         paddingVertical: height / 30,
         width: width / 1.15,
         paddingHorizontal: width / 20,
-
     },
     textContainer: {
         alignItems: 'flex-start',

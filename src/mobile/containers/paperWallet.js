@@ -1,16 +1,6 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    StatusBar,
-    Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import { RNPrint } from 'NativeModules';
@@ -19,8 +9,7 @@ import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html.js';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 const isAndroid = Platform.OS === 'android';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
 let results = '';

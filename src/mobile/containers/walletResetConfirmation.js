@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -20,8 +19,7 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 
 import { Keyboard } from 'react-native';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 
 export default class WalletResetConfirmation extends Component {
     constructor() {

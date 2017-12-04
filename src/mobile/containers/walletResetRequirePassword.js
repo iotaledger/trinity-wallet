@@ -12,7 +12,6 @@ import { persistor } from '../store';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -29,8 +28,7 @@ import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 
 class WalletResetRequirePassword extends Component {
     constructor() {

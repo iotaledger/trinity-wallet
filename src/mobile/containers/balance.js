@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    ListView,
-    Dimensions,
-    StatusBar,
-    Platform,
-    TouchableWithoutFeedback,
-} from 'react-native';
+import { StyleSheet, View, Text, ListView, StatusBar, Platform, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import {
@@ -24,8 +15,7 @@ import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
 const isAndroid = Platform.OS === 'android';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class Balance extends React.Component {

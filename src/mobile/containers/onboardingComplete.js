@@ -1,9 +1,8 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 
 class OnboardingComplete extends React.Component {
     onNextPress() {

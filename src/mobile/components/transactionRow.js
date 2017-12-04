@@ -1,12 +1,11 @@
 import React from 'react';
-import { TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
+import { TouchableOpacity, View, Text, StyleSheet, ListView } from 'react-native';
 import { formatValue, formatUnit, round } from '../../shared/libs/util';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from '../../shared/libs/dateUtils';
 import { convertFromTrytes } from '../../shared/libs/iota';
 import Modal from 'react-native-modal';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class TransactionRow extends React.Component {
