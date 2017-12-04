@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class AddNewAccount extends React.Component {
     constructor(props) {

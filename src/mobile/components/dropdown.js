@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Triangle from 'react-native-triangle';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const CustomLayoutSpring = {

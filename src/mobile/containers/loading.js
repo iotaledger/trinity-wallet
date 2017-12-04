@@ -11,7 +11,7 @@ import { Navigation } from 'react-native-navigation';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
 class Loading extends Component {

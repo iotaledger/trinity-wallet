@@ -3,7 +3,7 @@ import { View, Image, StyleSheet } from 'react-native';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class SeedBox extends React.Component {
     render() {

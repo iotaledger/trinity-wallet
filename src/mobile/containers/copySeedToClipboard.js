@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
 import Seedbox from '../components/seedBox.js';
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {
