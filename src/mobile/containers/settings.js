@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearTempData, setPassword, setSetting, setSeedIndex, setReady, manualSyncRequest, manualSyncComplete } from '../../shared/actions/tempAccount';
+import {
+    clearTempData,
+    setPassword,
+    setSetting,
+    setSeedIndex,
+    setReady,
+    manualSyncRequest,
+    manualSyncComplete,
+} from '../../shared/actions/tempAccount';
 import {
     setFirstUse,
     getFullAccountInfo,
@@ -23,10 +31,11 @@ import ChangePassword from '../components/changePassword';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import ViewSeed from '../components/viewSeed.js';
 import ViewAddresses from '../components/viewAddresses.js';
-import ManualSync from '../components/manualSync.js'
+import ManualSync from '../components/manualSync.js';
 import DeleteAccount from '../components/deleteAccount.js';
 import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
+import LanguageSelection from '../components/languageSelection.js';
 import CurrencySelection from '../components/currencySelection.js';
 import { logoutFromWallet } from 'iota-wallet-shared-modules/actions/app';
 import { parse } from 'iota-wallet-shared-modules/libs/util';
@@ -37,9 +46,11 @@ import {
     deleteSeed,
     deleteFromKeyChain,
     replaceKeychainValue,
-    getSeed
+    getSeed,
 } from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
+import i18next from 'i18next';
+import { selectLocale } from '../components/locale';
 
 const width = Dimensions.get('window').width;
 const height = global.height;
@@ -103,14 +114,16 @@ class Settings extends React.Component {
                                 <Text style={styles.settingText}>{this.props.settings.currency}</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onLanguagePress()}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('languageSelection')}>
                             <View style={styles.item}>
                                 <Image
                                     source={require('iota-wallet-shared-modules/images/language.png')}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Language</Text>
-                                <Text style={styles.settingText}>{this.props.settings.language}</Text>
+                                <Text numberOfLines={1} style={styles.settingText}>
+                                    {selectLocale(i18next.language)}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                         <View style={styles.separator} />
@@ -353,6 +366,9 @@ class Settings extends React.Component {
                     />
                 );
                 break;
+            case 'languageSelection':
+                return <LanguageSelection backPress={() => this.props.setSetting('mainSettings')} />;
+                break;
             case 'changePassword':
                 return (
                     <ChangePassword
@@ -375,7 +391,7 @@ class Settings extends React.Component {
         }
     };
 
-    onManualSyncPress(){
+    onManualSyncPress() {
         const dropdown = DropdownHolder.getDropdown();
         this.props.manualSyncRequest();
         getFromKeychain(this.props.tempAccount.password, value => {
@@ -395,17 +411,17 @@ class Settings extends React.Component {
             }
         });
 
-        onNodeError = (dropdown) => {
+        onNodeError = dropdown => {
             this.props.manualSyncComplete();
             dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
         };
 
-        onNodeSuccess = (dropdown) => {
+        onNodeSuccess = dropdown => {
             this.props.manualSyncComplete();
             dropdown.alertWithType('success', 'Syncing complete', `Your account has synced successfully.`);
         };
 
-        error = (dropdown) => {
+        error = dropdown => {
             dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
         };
     }
@@ -586,20 +602,6 @@ class Settings extends React.Component {
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
-    onLanguagePress() {
-        this.props.navigator.push({
-            screen: 'languageSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
-    }
-
     on2FASetupPress() {
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
@@ -746,7 +748,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         zIndex: 1,
-        paddingVertical: height / 20
+        paddingVertical: height / 20,
     },
     advancedSettingsContainer: {
         flex: 1,

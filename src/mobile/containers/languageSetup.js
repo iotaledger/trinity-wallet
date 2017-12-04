@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         height: width / 0.95,
     },
     dropdownWidth: {
-        width: width / 2,
+        width: width / 1.5,
     },
 });
 
