@@ -6,15 +6,13 @@ import {
     StyleSheet,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    Dimensions,
     ImageBackground,
     Keyboard,
 } from 'react-native';
 import Fonts from '../theme/Fonts';
 import Colors from '../theme/Colors';
 import OnboardingButtons from '../components/onboardingButtons.js';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 import Modal from 'react-native-modal';
 import { TextField } from 'react-native-material-textfield';
 

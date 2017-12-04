@@ -21,8 +21,7 @@ import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/crypto
 
 //import DropdownHolder from './dropdownHolder';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 

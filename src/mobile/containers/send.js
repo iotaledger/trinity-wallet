@@ -13,7 +13,6 @@ import {
     LayoutAnimation,
     ListView,
     ScrollView,
-    Dimensions,
     StatusBar,
     TouchableWithoutFeedback,
     Keyboard,
@@ -31,8 +30,7 @@ import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
 let sentDenomination = '';
@@ -179,7 +177,7 @@ class Send extends Component {
 
     sendTransfer() {
         const dropdown = DropdownHolder.getDropdown();
-        if(this.props.tempAccount.isSyncing){
+        if (this.props.tempAccount.isSyncing) {
             dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
             return;
         }
@@ -345,7 +343,7 @@ class Send extends Component {
                             <View style={styles.textFieldContainer}>
                                 <TextField
                                     ref="address"
-                                    autoCapitalize={"characters"}
+                                    autoCapitalize={'characters'}
                                     style={styles.textField}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                     labelFontSize={height / 55}
@@ -441,14 +439,14 @@ class Send extends Component {
                     <View style={styles.midContainer}>
                         {!this.props.tempAccount.isSendingTransfer && (
                             <View style={styles.sendIOTAButtonContainer}>
-                                <TouchableOpacity onPress={event =>
-                                    {
-                                    this.setModalContent('transferConfirmation');
-                                    this.refs.address.blur();
-                                    this.refs.amount.blur();
-                                    this.refs.message.blur();
-                                    }
-                                }>
+                                <TouchableOpacity
+                                    onPress={event => {
+                                        this.setModalContent('transferConfirmation');
+                                        this.refs.address.blur();
+                                        this.refs.amount.blur();
+                                        this.refs.message.blur();
+                                    }}
+                                >
                                     <View style={styles.sendIOTAButton}>
                                         <Text style={styles.sendIOTAText}>SEND</Text>
                                     </View>
@@ -466,7 +464,8 @@ class Send extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}
+                            style={styles.infoButton}
+                            onPress={() => this.setModalContent('unitInfo')}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                         >
                             <View style={styles.info}>

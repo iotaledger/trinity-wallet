@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { clearTempData, setPassword, setSetting, setSeedIndex, setReady, manualSyncRequest, manualSyncComplete } from '../../shared/actions/tempAccount';
+import {
+    clearTempData,
+    setPassword,
+    setSetting,
+    setSeedIndex,
+    setReady,
+    manualSyncRequest,
+    manualSyncComplete,
+} from '../../shared/actions/tempAccount';
 import {
     setFirstUse,
     getFullAccountInfo,
@@ -23,7 +31,7 @@ import ChangePassword from '../components/changePassword';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import ViewSeed from '../components/viewSeed.js';
 import ViewAddresses from '../components/viewAddresses.js';
-import ManualSync from '../components/manualSync.js'
+import ManualSync from '../components/manualSync.js';
 import DeleteAccount from '../components/deleteAccount.js';
 import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
@@ -37,12 +45,11 @@ import {
     deleteSeed,
     deleteFromKeyChain,
     replaceKeychainValue,
-    getSeed
+    getSeed,
 } from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 
 class Settings extends React.Component {
     constructor(props) {
@@ -375,7 +382,7 @@ class Settings extends React.Component {
         }
     };
 
-    onManualSyncPress(){
+    onManualSyncPress() {
         const dropdown = DropdownHolder.getDropdown();
         this.props.manualSyncRequest();
         getFromKeychain(this.props.tempAccount.password, value => {
@@ -395,17 +402,17 @@ class Settings extends React.Component {
             }
         });
 
-        onNodeError = (dropdown) => {
+        onNodeError = dropdown => {
             this.props.manualSyncComplete();
             dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
         };
 
-        onNodeSuccess = (dropdown) => {
+        onNodeSuccess = dropdown => {
             this.props.manualSyncComplete();
             dropdown.alertWithType('success', 'Syncing complete', `Your account has synced successfully.`);
         };
 
-        error = (dropdown) => {
+        error = dropdown => {
             dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
         };
     }
@@ -746,7 +753,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         zIndex: 1,
-        paddingVertical: height / 20
+        paddingVertical: height / 20,
     },
     advancedSettingsContainer: {
         flex: 1,
