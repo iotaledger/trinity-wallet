@@ -3,9 +3,9 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableW
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/libs/i18n';
-import locale from 'react-native-locale-detector';
 import { detectLocale, selectLocale } from '../components/locale';
 import Dropdown from '../components/dropdown';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 
 const { width } = Dimensions.get('window');
 const { height } = global;

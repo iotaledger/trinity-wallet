@@ -21,7 +21,7 @@ class TransactionRow extends React.Component {
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
-    _renderModalContent = (titleColour, sendOrReceive) => (
+    _renderModalContent = (titleColour, isReceived, hasPersistence) => (
         <TouchableOpacity onPress={() => this._hideModal()}>
             <View style={{ flex: 1, justifyContent: 'center', width: width / 1.15 }}>
                 <View style={styles.modalContent}>

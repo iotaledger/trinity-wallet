@@ -396,6 +396,7 @@ class Settings extends React.Component {
         this.props.manualSyncRequest();
         getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value != 'undefined' && value != null) {
+                console.log(value);
                 const seedIndex = this.props.tempAccount.seedIndex;
                 const accountName = this.props.account.seedNames[seedIndex];
                 const seed = getSeed(value, seedIndex);

@@ -10,6 +10,7 @@ import {
     ImageBackground,
     ScrollView,
     StatusBar,
+    Keyboard,
 } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -23,7 +24,6 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
-import { Keyboard } from 'react-native';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 import IOTA from 'iota.lib.js';
 import Modal from 'react-native-modal';
@@ -204,7 +204,7 @@ class Login extends React.Component {
                                         width: width / 1.4,
                                     }}
                                     secureTextEntry={true}
-                                    onSubmitEditing={() => this.onLoginPress()}
+                                    onSubmitEditing={() => Keyboard.dismiss}
                                 />
                             </View>
                             <View style={styles.bottomContainer}>
