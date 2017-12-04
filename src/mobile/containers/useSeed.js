@@ -3,7 +3,6 @@ import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
@@ -26,8 +25,7 @@ import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/li
 
 //import DropdownHolder from './dropdownHolder';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 
@@ -51,8 +49,9 @@ class UseSeed extends React.Component {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be at least 60 characters long (ideally ${MAX_SEED_LENGTH} characters). Your seed is currently ${this
-                    .state.seed.length} characters long. Please try again.`,
+                `Seeds must be at least 60 characters long (ideally ${
+                    MAX_SEED_LENGTH
+                } characters). Your seed is currently ${this.state.seed.length} characters long. Please try again.`,
             );
         } else if (this.state.seed.length >= 60) {
             this.props.getAccountInfoNewSeed(this.state.seed, 'usedSeed');

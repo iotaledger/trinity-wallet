@@ -2,7 +2,6 @@ import React from 'react';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -24,7 +23,6 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
 import { Keyboard } from 'react-native';
-import ExtraDimensions from 'react-native-extra-dimensions-android';
 import IOTA from 'iota.lib.js';
 import Modal from 'react-native-modal';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
@@ -32,8 +30,7 @@ import NodeSelection from '../components/nodeSelection.js';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 var HockeyApp = require('react-native-hockeyapp');
 
