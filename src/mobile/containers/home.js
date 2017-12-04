@@ -54,6 +54,7 @@ class Home extends Component {
             timeWentInactive: null,
             inactive: false,
             password: '',
+            minimised: false,
         };
     }
 
@@ -114,7 +115,8 @@ class Home extends Component {
     }
 
     _handleAppStateChange = nextAppState => {
-        if (this.state.appState.match(/inactive|background/)) {
+        if (nextAppState.match(/inactive|background/)) {
+            this.setState({ minimised: true });
             timer.setTimeout(
                 'background',
                 () => {
@@ -123,7 +125,9 @@ class Home extends Component {
                 30000,
             );
         }
+
         if (nextAppState === 'active') {
+            this.setState({ minimised: false });
             timer.clearTimeout('background');
         }
         this.setState({ appState: nextAppState });
@@ -216,124 +220,140 @@ class Home extends Component {
             >
                 <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
                     <StatusBar barStyle="light-content" />
-                    {!this.state.inactive && (
-                        <View style={{ flex: 1 }}>
-                            <View style={styles.topContainer} />
-                            <View style={styles.midContainer}>
-                                <View style={{ flex: 1 }}>{children}</View>
-                            </View>
-                            <View style={styles.bottomContainer}>
-                                <View style={styles.tabBar}>
-                                    <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
-                                        <View style={styles.button}>
-                                            <Image
-                                                style={
-                                                    isCurrentRoute('balance')
-                                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                                }
-                                                source={require('iota-wallet-shared-modules/images/balance.png')}
-                                            />
-                                            <Text
-                                                style={
-                                                    isCurrentRoute('balance')
-                                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                                }
-                                            >
-                                                BALANCE
-                                            </Text>
-                                        </View>
-                                    </TouchableWithoutFeedback>
-                                    <TouchableWithoutFeedback onPress={event => this.clickSend()}>
-                                        <View style={styles.button}>
-                                            <Image
-                                                style={
-                                                    isCurrentRoute('send')
-                                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                                }
-                                                source={require('iota-wallet-shared-modules/images/send.png')}
-                                            />
-                                            <Text
-                                                style={
-                                                    isCurrentRoute('send')
-                                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                                }
-                                            >
-                                                SEND
-                                            </Text>
-                                        </View>
-                                    </TouchableWithoutFeedback>
-                                    <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
-                                        <View style={styles.button}>
-                                            <Image
-                                                style={
-                                                    isCurrentRoute('receive')
-                                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                                }
-                                                source={require('iota-wallet-shared-modules/images/receive.png')}
-                                            />
-                                            <Text
-                                                style={
-                                                    isCurrentRoute('receive')
-                                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                                }
-                                            >
-                                                RECEIVE
-                                            </Text>
-                                        </View>
-                                    </TouchableWithoutFeedback>
-                                    <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
-                                        <View style={styles.button}>
-                                            <Image
-                                                style={
-                                                    isCurrentRoute('history')
-                                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                                }
-                                                source={require('iota-wallet-shared-modules/images/history.png')}
-                                            />
-                                            <Text
-                                                style={
-                                                    isCurrentRoute('history')
-                                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                                }
-                                            >
-                                                HISTORY
-                                            </Text>
-                                        </View>
-                                    </TouchableWithoutFeedback>
-                                    <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
-                                        <View style={styles.button}>
-                                            <Image
-                                                style={
-                                                    isCurrentRoute('settings')
-                                                        ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                        : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                                }
-                                                source={require('iota-wallet-shared-modules/images/settings.png')}
-                                            />
-                                            <Text
-                                                style={
-                                                    isCurrentRoute('settings')
-                                                        ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                        : StyleSheet.flatten([styles.iconTitle, styles.partiallyOpaque])
-                                                }
-                                            >
-                                                SETTINGS
-                                            </Text>
-                                        </View>
-                                    </TouchableWithoutFeedback>
+                    {!this.state.inactive &&
+                        !this.state.minimised && (
+                            <View style={{ flex: 1 }}>
+                                <View style={styles.topContainer} />
+                                <View style={styles.midContainer}>
+                                    <View style={{ flex: 1 }}>{children}</View>
                                 </View>
+                                <View style={styles.bottomContainer}>
+                                    <View style={styles.tabBar}>
+                                        <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
+                                            <View style={styles.button}>
+                                                <Image
+                                                    style={
+                                                        isCurrentRoute('balance')
+                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                    }
+                                                    source={require('iota-wallet-shared-modules/images/balance.png')}
+                                                />
+                                                <Text
+                                                    style={
+                                                        isCurrentRoute('balance')
+                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([
+                                                                  styles.iconTitle,
+                                                                  styles.partiallyOpaque,
+                                                              ])
+                                                    }
+                                                >
+                                                    BALANCE
+                                                </Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                        <TouchableWithoutFeedback onPress={event => this.clickSend()}>
+                                            <View style={styles.button}>
+                                                <Image
+                                                    style={
+                                                        isCurrentRoute('send')
+                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                    }
+                                                    source={require('iota-wallet-shared-modules/images/send.png')}
+                                                />
+                                                <Text
+                                                    style={
+                                                        isCurrentRoute('send')
+                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([
+                                                                  styles.iconTitle,
+                                                                  styles.partiallyOpaque,
+                                                              ])
+                                                    }
+                                                >
+                                                    SEND
+                                                </Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                        <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
+                                            <View style={styles.button}>
+                                                <Image
+                                                    style={
+                                                        isCurrentRoute('receive')
+                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                    }
+                                                    source={require('iota-wallet-shared-modules/images/receive.png')}
+                                                />
+                                                <Text
+                                                    style={
+                                                        isCurrentRoute('receive')
+                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([
+                                                                  styles.iconTitle,
+                                                                  styles.partiallyOpaque,
+                                                              ])
+                                                    }
+                                                >
+                                                    RECEIVE
+                                                </Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                        <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
+                                            <View style={styles.button}>
+                                                <Image
+                                                    style={
+                                                        isCurrentRoute('history')
+                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                    }
+                                                    source={require('iota-wallet-shared-modules/images/history.png')}
+                                                />
+                                                <Text
+                                                    style={
+                                                        isCurrentRoute('history')
+                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([
+                                                                  styles.iconTitle,
+                                                                  styles.partiallyOpaque,
+                                                              ])
+                                                    }
+                                                >
+                                                    HISTORY
+                                                </Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                        <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
+                                            <View style={styles.button}>
+                                                <Image
+                                                    style={
+                                                        isCurrentRoute('settings')
+                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                    }
+                                                    source={require('iota-wallet-shared-modules/images/settings.png')}
+                                                />
+                                                <Text
+                                                    style={
+                                                        isCurrentRoute('settings')
+                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([
+                                                                  styles.iconTitle,
+                                                                  styles.partiallyOpaque,
+                                                              ])
+                                                    }
+                                                >
+                                                    SETTINGS
+                                                </Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                    </View>
+                                </View>
+                                <TopBar />
                             </View>
-                            <TopBar />
-                        </View>
-                    )}
+                        )}
                     {this.state.inactive && (
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

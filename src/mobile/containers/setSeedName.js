@@ -49,7 +49,7 @@ class SetSeedName extends React.Component {
         const { t } = this.props;
 
         if (this.props.account.seedCount == 0) {
-            return t('mainWallet');
+            return 'Main Wallet';
         } else if (this.props.account.seedCount == 1) {
             return t('secondWallet');
         } else if (this.props.account.seedCount == 2) {
