@@ -82,6 +82,10 @@ class Dropdown extends Component {
             isDropdownOpen: false,
             selectedOption: option,
         });
+
+        const { saveSelection } = this.props;
+        if (!saveSelection) return;
+        saveSelection(option);
     }
 
     onDropdownTitlePress() {
@@ -96,12 +100,6 @@ class Dropdown extends Component {
 
     getSelected() {
         return this.state.selectedOption;
-    }
-
-    saveSelection() {
-        const { saveSelection } = this.props
-        if (!saveSelection) return
-        saveSelection(this.state.selectedOption);
     }
 
     closeDropdown() {
@@ -136,13 +134,16 @@ class Dropdown extends Component {
                         </TouchableWithoutFeedback>
                     </View>
                     <View
-                        style={[{
-                            height: dropdownHeight,
-                            overflow: 'hidden',
-                            backgroundColor: 'transparent',
-                            alignItems: 'flex-start',
-                            justifyContent: 'flex-start',
-                        }, dropdownWidth]}
+                        style={[
+                            {
+                                height: dropdownHeight,
+                                overflow: 'hidden',
+                                backgroundColor: 'transparent',
+                                alignItems: 'flex-start',
+                                justifyContent: 'flex-start',
+                            },
+                            dropdownWidth,
+                        ]}
                     >
                         <ListView
                             dataSource={ds.cloneWithRows(options)}
