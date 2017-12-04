@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
@@ -10,9 +10,8 @@ import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/lib
 import setFirstUse from 'iota-wallet-shared-modules/actions/account';
 import Dropdown from '../components/dropdown';
 
-var locale = getDeviceLocale();
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
+let locale = getDeviceLocale();
 
 const styles = StyleSheet.create({
     container: {
