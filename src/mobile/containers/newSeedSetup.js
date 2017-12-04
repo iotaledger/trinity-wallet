@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableHighlight,
     ImageBackground,
@@ -21,11 +20,7 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
-import ExtraDimensions from 'react-native-extra-dimensions-android';
-import { DetectNavbar } from '../theme/androidSoftKeys';
-
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 
 const StatusBarDefaultBarStyle = 'light-content';
 

@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
-import {
-    Image,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Dimensions,
-    Keyboard,
-    TouchableWithoutFeedback,
-} from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
-
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 
 class EditAccountName extends React.Component {
     constructor(props) {

@@ -1,10 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { Svg, LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
-
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 const timer = require('react-native-timer');
 
 const viewbox = `${width / 3.95} ${height / 50} ${width / 3.93} ${height / 3.7}`;
@@ -23,7 +21,7 @@ class Chart extends React.Component {
 
     startPolling() {
         // 'console.log('POLLING CHART DATA')'
-        if(!this.props.isSyncing && !this.props.isGeneratingReceiveAddress && !this.props.isSendingTransfer){
+        if (!this.props.isSyncing && !this.props.isGeneratingReceiveAddress && !this.props.isSendingTransfer) {
             this.props.getMarketData();
             this.props.getChartData();
             this.props.getPrice();
@@ -218,7 +216,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingBottom: height / 40,
-        paddingTop: height / 80
+        paddingTop: height / 80,
     },
     topContainer: {
         flex: 0.7,

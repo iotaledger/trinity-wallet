@@ -7,7 +7,6 @@ import {
     Text,
     TouchableWithoutFeedback,
     Image,
-    Dimensions,
     View,
     ImageBackground,
     StatusBar,
@@ -41,8 +40,7 @@ import KeepAwake from 'react-native-keep-awake';
 import { TextField } from 'react-native-material-textfield';
 
 const StatusBarDefaultBarStyle = 'light-content';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
 const timer = require('react-native-timer');
 
 class Home extends Component {
@@ -53,7 +51,7 @@ class Home extends Component {
             appState: AppState.currentState,
             timeWentInactive: null,
             inactive: false,
-            password: ''
+            password: '',
         };
     }
 
@@ -101,14 +99,14 @@ class Home extends Component {
                 'You must enter a password to log in. Please try again.',
             );
         } else {
-            if(this.state.password != this.props.tempAccount.password){
+            if (this.state.password != this.props.tempAccount.password) {
                 this.dropdown.alertWithType(
                     'error',
                     'Unrecognised password',
                     'The password was not recognised. Please try again.',
                 );
             } else {
-                this.setState({ inactive:false, password: '' })
+                this.setState({ inactive: false, password: '' });
             }
         }
     }
@@ -130,7 +128,11 @@ class Home extends Component {
     };
 
     startPolling() {
-        if (!this.props.tempAccount.isGettingTransfers && !this.props.tempAccount.isSendingTransfer && !this.props.tempAccount.isSyncing) {
+        if (
+            !this.props.tempAccount.isGettingTransfers &&
+            !this.props.tempAccount.isSendingTransfer &&
+            !this.props.tempAccount.isSyncing
+        ) {
             //console.log('POLLING TX HISTORY')
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
@@ -208,12 +210,12 @@ class Home extends Component {
             <UserInactivity
                 timeForInactivity={120000}
                 checkInterval={2000}
-                onInactivity={() => this.setState({inactive:true})}
+                onInactivity={() => this.setState({ inactive: true })}
             >
                 <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ flex: 1 }}>
                     <StatusBar barStyle="light-content" />
                     {!this.state.inactive && (
-                        <View style={{flex:1}}>
+                        <View style={{ flex: 1 }}>
                             <View style={styles.topContainer} />
                             <View style={styles.midContainer}>
                                 <View style={{ flex: 1 }}>{children}</View>
@@ -328,14 +330,17 @@ class Home extends Component {
                                 </View>
                             </View>
                             <TopBar />
-                            </View>
-                        )}
-                        {this.state.inactive && (
+                        </View>
+                    )}
+                    {this.state.inactive && (
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                                 <View>
                                     <View style={styles.loginTopContainer}>
-                                        <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                                        <Image
+                                            source={require('../../shared/images/iota-glow.png')}
+                                            style={styles.iotaLogo}
+                                        />
                                         <View style={styles.loginTitleContainer}>
                                             <Text style={styles.loginTitle}>Please enter your password.</Text>
                                         </View>
