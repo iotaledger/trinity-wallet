@@ -92,15 +92,12 @@ class Home extends Component {
     }*/
 
     onLoginPress() {
+        const dropdown = DropdownHolder.getDropdown();
         if (!this.state.password) {
-            this.dropdown.alertWithType(
-                'error',
-                'Empty password',
-                'You must enter a password to log in. Please try again.',
-            );
+            dropdown.alertWithType('error', 'Empty password', 'You must enter a password to log in. Please try again.');
         } else {
             if (this.state.password != this.props.tempAccount.password) {
-                this.dropdown.alertWithType(
+                dropdown.alertWithType(
                     'error',
                     'Unrecognised password',
                     'The password was not recognised. Please try again.',

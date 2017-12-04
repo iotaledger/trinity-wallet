@@ -20,6 +20,7 @@ import {
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
 import DropdownAlert from 'react-native-dropdownalert';

@@ -28,7 +28,7 @@ const CustomLayoutSpring = {
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 4.5,
+        flex: 1,
         justifyContent: 'flex-start',
     },
     dropdownTitle: {
@@ -112,63 +112,60 @@ class Dropdown extends Component {
 
         return (
             <View style={styles.topContainer}>
-                <View style={{ flex: 1 }} />
-                <View style={{ justifyContent: 'flex-start', flex: 2 }}>
-                    <Text style={styles.dropdownTitle}>{title}</Text>
-                    <View style={styles.dropdownButtonContainer}>
-                        <TouchableWithoutFeedback onPress={() => this.onDropdownTitlePress()}>
-                            <View style={[styles.dropdownButton, dropdownWidth]}>
-                                <Text numberOfLines={1} style={styles.selected}>
-                                    {selectedOption}
-                                </Text>
-                                <Triangle
-                                    width={10}
-                                    height={10}
-                                    color={'white'}
-                                    direction={triangleDirection}
-                                    style={{ marginBottom: height / 80 }}
-                                />
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </View>
-                    <View
-                        style={[
-                            {
-                                height: dropdownHeight,
-                                overflow: 'hidden',
-                                backgroundColor: 'transparent',
-                                alignItems: 'flex-start',
-                                justifyContent: 'flex-start',
-                            },
-                            dropdownWidth,
-                        ]}
-                    >
-                        <ListView
-                            dataSource={ds.cloneWithRows(options)}
-                            renderRow={rowData => (
-                                <TouchableOpacity
-                                    onPress={() => this.onOptionPress(rowData)}
-                                    style={{ alignItems: 'flex-start', flex: 1 }}
+                <Text style={styles.dropdownTitle}>{title}</Text>
+                <View style={styles.dropdownButtonContainer}>
+                    <TouchableWithoutFeedback onPress={() => this.onDropdownTitlePress()}>
+                        <View style={[styles.dropdownButton, dropdownWidth]}>
+                            <Text numberOfLines={1} style={styles.selected}>
+                                {selectedOption}
+                            </Text>
+                            <Triangle
+                                width={10}
+                                height={10}
+                                color={'white'}
+                                direction={triangleDirection}
+                                style={{ marginBottom: height / 80 }}
+                            />
+                        </View>
+                    </TouchableWithoutFeedback>
+                </View>
+                <View
+                    style={[
+                        {
+                            height: dropdownHeight,
+                            overflow: 'hidden',
+                            backgroundColor: 'transparent',
+                            alignItems: 'flex-start',
+                            justifyContent: 'flex-start',
+                        },
+                        dropdownWidth,
+                    ]}
+                >
+                    <ListView
+                        dataSource={ds.cloneWithRows(options)}
+                        renderRow={rowData => (
+                            <TouchableOpacity
+                                onPress={() => this.onOptionPress(rowData)}
+                                style={{ alignItems: 'flex-start', flex: 1 }}
+                            >
+                                <View
+                                    style={{
+                                        flex: 1,
+                                        height: height / 22.4,
+                                        alignItems: 'stretch',
+                                        justifyContent: 'center',
+                                    }}
                                 >
-                                    <View
-                                        style={{
-                                            flex: 1,
-                                            height: height / 22.4,
-                                            alignItems: 'stretch',
-                                            justifyContent: 'center',
-                                        }}
-                                    >
-                                        <Text numberOfLines={1} style={[styles.dropdownItem, dropdownWidth]}>
-                                            {rowData}
-                                        </Text>
-                                    </View>
-                                </TouchableOpacity>
-                            )}
-                            contentContainerView={{ flex: 1, justifyContent: 'flex-start' }}
-                            enableEmptySections
-                            snapToInterval={height / 22.4}
-                        />
-                    </View>
+                                    <Text numberOfLines={1} style={[styles.dropdownItem, dropdownWidth]}>
+                                        {rowData}
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
+                        contentContainerView={{ flex: 1, justifyContent: 'flex-start' }}
+                        enableEmptySections
+                        snapToInterval={height / 22.4}
+                    />
                 </View>
             </View>
         );
