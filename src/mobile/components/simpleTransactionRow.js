@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class SimpleTransactionRow extends React.Component {
     constructor(props) {

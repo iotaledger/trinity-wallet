@@ -9,7 +9,7 @@ import locale from 'react-native-locale-detector';
 import { detectLocale, selectLocale } from '../components/locale';
 import Dropdown from '../components/dropdown';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
     container: {

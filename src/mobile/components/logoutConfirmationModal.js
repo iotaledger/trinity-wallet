@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import OnboardingButtons from './onboardingButtons.js';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class LogoutConfirmationModal extends React.Component {
     render() {

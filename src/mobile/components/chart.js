@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { Svg, LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 const timer = require('react-native-timer');
 
 const viewbox = `${width / 3.95} ${height / 50} ${width / 3.93} ${height / 3.7}`;

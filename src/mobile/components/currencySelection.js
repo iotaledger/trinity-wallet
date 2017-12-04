@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 import Dropdown from './dropdown';
 

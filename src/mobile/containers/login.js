@@ -30,7 +30,7 @@ import NodeSelection from '../components/nodeSelection.js';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 var HockeyApp = require('react-native-hockeyapp');
 

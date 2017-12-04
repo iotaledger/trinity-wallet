@@ -3,7 +3,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, ListView } from 'react
 import Fonts from '../theme/Fonts';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class ViewAddresses extends React.Component {
     render() {

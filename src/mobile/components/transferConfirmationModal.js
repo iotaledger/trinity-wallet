@@ -3,7 +3,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground } from
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class TransferConfirmationModal extends React.Component {
     constructor(props) {

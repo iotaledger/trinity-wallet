@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class EditAccountName extends React.Component {
     constructor(props) {

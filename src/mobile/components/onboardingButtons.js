@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 export default class OnboardingButtons extends Component {
     render() {

@@ -49,7 +49,7 @@ import {
 } from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class Settings extends React.Component {
     constructor(props) {
@@ -430,7 +430,9 @@ class Settings extends React.Component {
             dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${seed.length} characters long. Please try again.`,
+                `Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${
+                    seed.length
+                } characters long. Please try again.`,
             );
         } else if (!(accountName.length > 0)) {
             dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);

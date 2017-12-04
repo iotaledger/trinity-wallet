@@ -40,7 +40,7 @@ import KeepAwake from 'react-native-keep-awake';
 import { TextField } from 'react-native-material-textfield';
 
 const StatusBarDefaultBarStyle = 'light-content';
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 const timer = require('react-native-timer');
 
 class Home extends Component {
