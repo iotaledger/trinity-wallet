@@ -35,6 +35,7 @@ import ManualSync from '../components/manualSync.js';
 import DeleteAccount from '../components/deleteAccount.js';
 import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
+import LanguageSelection from '../components/languageSelection.js';
 import CurrencySelection from '../components/currencySelection.js';
 import { logoutFromWallet } from 'iota-wallet-shared-modules/actions/app';
 import { parse } from 'iota-wallet-shared-modules/libs/util';
@@ -48,6 +49,8 @@ import {
     getSeed,
 } from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
+import i18next from 'i18next';
+import { selectLocale } from '../components/locale';
 
 import { width, height } from '../util/dimensions';
 
@@ -110,14 +113,16 @@ class Settings extends React.Component {
                                 <Text style={styles.settingText}>{this.props.settings.currency}</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onLanguagePress()}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('languageSelection')}>
                             <View style={styles.item}>
                                 <Image
                                     source={require('iota-wallet-shared-modules/images/language.png')}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Language</Text>
-                                <Text style={styles.settingText}>{this.props.settings.language}</Text>
+                                <Text numberOfLines={1} style={styles.settingText}>
+                                    {selectLocale(i18next.language)}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                         <View style={styles.separator} />
@@ -360,6 +365,9 @@ class Settings extends React.Component {
                     />
                 );
                 break;
+            case 'languageSelection':
+                return <LanguageSelection backPress={() => this.props.setSetting('mainSettings')} />;
+                break;
             case 'changePassword':
                 return (
                     <ChangePassword
@@ -593,20 +601,6 @@ class Settings extends React.Component {
     onThemePress() {
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onLanguagePress() {
-        this.props.navigator.push({
-            screen: 'languageSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
     }
 
     on2FASetupPress() {

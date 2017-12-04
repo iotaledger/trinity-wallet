@@ -60,6 +60,7 @@ export function getFullAccountInfo(seed, seedName, cb) {
 
                 const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
                 const transfers = formatTransfers(transfersWithoutDuplicateBundles, success.addresses);
+                const balance = calculateBalance(addressesWithBalance);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
                 dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance));
                 cb(null, success);
@@ -121,7 +122,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
             } else {
                 cb(error);
                 console.log(error);
-                console.log('OUVHVSUDOVUHFOVUFDSVUYFSDOVUYSDFOUVYFSOUVY')
+                console.log('OUVHVSUDOVUHFOVUFDSVUYFSDOVUYSDFOUVYFSOUVY');
                 dispatch(
                     generateAlert(
                         'error',
