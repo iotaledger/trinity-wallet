@@ -59,9 +59,9 @@ class Receive extends Component {
         }
     }
 
-    onGeneratePress(){
+    onGeneratePress() {
         const dropdown = DropdownHolder.getDropdown();
-        if(this.props.tempAccount.isSyncing){
+        if (this.props.tempAccount.isSyncing) {
             dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
             return;
         }
@@ -120,7 +120,7 @@ class Receive extends Component {
     }
 
     render() {
-        const { tempAccount: { receiveAddress, isGeneratingReceiveAddress } } = this.props;
+        const { tempAccount: { receiveAddress, isGeneratingReceiveAddress }, t } = this.props;
         const message = this.state.message;
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -199,7 +199,7 @@ class Receive extends Component {
                                     onPress={() => {
                                         // Check if there's already a network call in progress.
                                         this.setState({ message: '' });
-                                        this.refs.message.blur()
+                                        this.refs.message.blur();
                                     }}
                                     style={styles.removeButtonContainer}
                                 >
@@ -209,7 +209,7 @@ class Receive extends Component {
                                 </TouchableOpacity>
                             )}
                     </View>
-                    <View style={{flex: 0.2}}/>
+                    <View style={{ flex: 0.2 }} />
                 </View>
             </TouchableWithoutFeedback>
         );
