@@ -22,20 +22,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 2,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
+    },
+    midContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 15,
     },
     nextButton: {
         borderColor: '#9DFFAF',
@@ -111,7 +111,8 @@ class LanguageSetup extends Component {
                             source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                             style={styles.iotaLogo}
                         />
-                        <View style={styles.titleContainer} />
+                    </View>
+                    <View style={styles.midContainer}>
                         <Dropdown
                             title={t('language')}
                             dropdownWidth={styles.dropdownWidth}
