@@ -21,15 +21,9 @@ import { connect } from 'react-redux';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import {
-    getAccountInfoNewSeed,
-    setFirstUse,
-    increaseSeedCount,
-    addAccountName,
-} from 'iota-wallet-shared-modules/actions/account';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
+import { generateAlert } from '../../shared/actions/alerts';
+import { clearTempData } from '../../shared/actions/tempAccount';
 
 import DropdownHolder from '../components/dropdownHolder';
 
@@ -113,7 +107,6 @@ class UseExistingSeed extends React.Component {
                                         value={seed}
                                         maxLength={MAX_SEED_LENGTH}
                                         onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
-                                        secureTextEntry={true}
                                         onSubmitEditing={() => this.refs.accountName.focus()}
                                     />
                                 </View>

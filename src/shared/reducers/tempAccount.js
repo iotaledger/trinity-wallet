@@ -11,7 +11,8 @@ const initialState = {
     lastTxValue: 0,
     isSendingTransfer: false,
     isGettingTransfers: false,
-    currentSetting: 'mainSettings',
+    isSyncing: false,
+    currentSetting: 'mainSettings'
 };
 
 export default (state = initialState, action) => {
@@ -46,6 +47,16 @@ export default (state = initialState, action) => {
                 ...state,
                 isGeneratingReceiveAddress: false,
                 receiveAddress: action.payload,
+            };
+        case 'MANUAL_SYNC_REQUEST':
+            return {
+                ...state,
+                isSyncing: true,
+            };
+        case 'MANUAL_SYNC_COMPLETE':
+            return {
+                ...state,
+                isSyncing: false,
             };
         case 'GENERATE_NEW_ADDRESS_ERROR':
             return {

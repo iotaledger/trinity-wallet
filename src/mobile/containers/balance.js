@@ -108,6 +108,9 @@ class Balance extends React.Component {
                     </View>
                     <View style={styles.chartContainer}>
                         <Chart
+                            isSendingTransfer={this.props.tempAccount.isSendingTransfer}
+                            isGeneratingReceiveAddress={this.props.tempAccount.isGeneratingReceiveAddress}
+                            isSyncing={this.props.tempAccount.isSyncing}
                             marketData={this.props.marketData}
                             getPrice={() => this.props.getPrice()}
                             getChartData={() => this.props.getChartData()}
