@@ -116,8 +116,8 @@
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "generateNewAddress": "GERAR NOVO ENDEREÇO",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "Mensagem opcional",
+        "removeMessage": "REMOVER MENSAGEM"
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "Deverá guardar a sua Seed com ",
