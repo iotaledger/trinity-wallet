@@ -97,7 +97,6 @@ class SeedReentry extends React.Component {
                                     containerStyle={{
                                         width: width / 1.4,
                                     }}
-                                    secureTextEntry={true}
                                     onSubmitEditing={() => this.onDonePress()}
                                 />
                                 <View style={styles.infoTextContainer}>

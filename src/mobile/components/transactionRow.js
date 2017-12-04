@@ -1,8 +1,8 @@
 import React from 'react';
-import { Clipboard, TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
-import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
-import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota';
+import { TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
+import { formatValue, formatUnit, round } from '../../shared/libs/util';
+import { formatTime, formatModalTime, convertUnixTimeToJSDate } from '../../shared/libs/dateUtils';
+import { convertFromTrytes } from '../../shared/libs/iota';
 import Modal from 'react-native-modal';
 
 const width = Dimensions.get('window').width;
@@ -21,15 +21,7 @@ class TransactionRow extends React.Component {
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
-    onBundleHashPress(bundleHash) {
-        Clipboard.setString(bundleHash);
-    }
-
-    onAddressPress(address) {
-        Clipboard.setString(address);
-    }
-
-    _renderModalContent = (titleColour, isReceived, hasPersistence) => (
+    _renderModalContent = (titleColour, sendOrReceive) => (
         <TouchableOpacity onPress={() => this._hideModal()}>
             <View style={{ flex: 1, justifyContent: 'center', width: width / 1.15 }}>
                 <View style={styles.modalContent}>
@@ -64,7 +56,7 @@ class TransactionRow extends React.Component {
                     <Text style={styles.modalBundleTitle}>Bundle Hash:</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <TouchableOpacity
-                            onPress={() => this.onBundleHashPress(this.props.rowData[0].bundle)}
+                            onPress={() => this.props.copyBundleHash(this.props.rowData[0].bundle)}
                             style={{ flex: 7 }}
                         >
                             <Text style={styles.bundleHash} numberOfLines={2}>
@@ -79,7 +71,7 @@ class TransactionRow extends React.Component {
                         renderRow={(rowData, sectionId) => (
                             <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 2 }}>
                                 <TouchableOpacity
-                                    onPress={() => this.onAddressPress(rowData.address)}
+                                    onPress={() => this.props.copyAddress(rowData.address)}
                                     style={{ flex: 5.1 }}
                                 >
                                     <Text style={styles.hash} numberOfLines={2}>
