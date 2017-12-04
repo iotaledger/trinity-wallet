@@ -5,7 +5,6 @@ import {
     StyleSheet,
     View,
     Text,
-    Platform,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
@@ -24,7 +23,7 @@ import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
 import { width, height } from '../util/dimensions';
-const isAndroid = Platform.OS === 'android';
+import { isAndroid } from '../util/device';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class EnterSeed extends React.Component {

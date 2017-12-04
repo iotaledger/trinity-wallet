@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Image, ImageBackground, Text, StatusBar, BackHandler, Platform } from 'react-native';
+import { StyleSheet, View, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
 import { getAllItems, deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
 import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
 import { width, height } from '../util/dimensions';
+import { isIOS } from '../util/device';
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
@@ -27,7 +28,7 @@ export default class InitialLoading extends Component {
 
     clearKeychain() {
         getAllItems().then(keys => {
-            if (Platform.OS === 'ios') {
+            if (isIOS) {
                 if (!keys[0].length) {
                     return;
                 } else {
