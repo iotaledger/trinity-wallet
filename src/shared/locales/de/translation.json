@@ -36,7 +36,7 @@
         "nameInUseExplanation": "Bitte benutze einen einzigartigen Kontonamen für deinen Seed.",
         "enterAccountName": "Gib einen Kontonamen ein.",
         "accountName": "Kontoname",
-        "noNickname": "No account name entered",
+        "noNickname": "Kein Kontoname eingegeben",
         "noNicknameExplanation": "Please enter an account name for your seed."
     },
     "changePassword": {
