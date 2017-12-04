@@ -19,8 +19,10 @@ import { connect } from 'react-redux';
 import Triangle from 'react-native-triangle';
 import setFirstUse from 'iota-wallet-shared-modules/actions/account.js';
 import { detectLocale, selectLocale } from '../components/locale';
-import locale from 'react-native-locale-detector';
+import { getDeviceLocale } from 'react-native-device-info';
 
+var locale = '',
+    locale = getDeviceLocale();
 const width = Dimensions.get('window').width;
 const height = global.height;
 
