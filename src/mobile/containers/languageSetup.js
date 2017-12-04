@@ -97,6 +97,7 @@ class LanguageSetup extends Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
                 <View style={styles.container}>
@@ -112,7 +113,7 @@ class LanguageSetup extends Component {
                         />
                         <View style={styles.titleContainer} />
                         <Dropdown
-                            title="Language"
+                            title={t('language')}
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={defaultLanguageLabel}
                             options={I18N_LOCALE_LABELS}
@@ -122,7 +123,7 @@ class LanguageSetup extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => this.onNextPress()}>
                             <View style={styles.nextButton}>
-                                <Text style={styles.nextText}>NEXT</Text>
+                                <Text style={styles.nextText}>{t('global:next')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
