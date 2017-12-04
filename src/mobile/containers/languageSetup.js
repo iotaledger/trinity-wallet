@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/libs/i18n';
+import { translate } from 'react-i18next';
 import i18next from 'i18next';
-import setFirstUse from 'iota-wallet-shared-modules/actions/account.js';
-import { detectLocale, selectLocale } from '../components/locale';
+import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/libs/i18n';
+import setFirstUse from 'iota-wallet-shared-modules/actions/account';
 import locale from 'react-native-locale-detector';
+import { detectLocale, selectLocale } from '../components/locale';
 import Dropdown from '../components/dropdown';
 
 const width = Dimensions.get('window').width;
@@ -64,7 +65,19 @@ const styles = StyleSheet.create({
     },
 });
 
-class LanguageSetup extends React.Component {
+const defaultLocale = detectLocale(locale);
+const defaultLanguageLabel = selectLocale(defaultLocale);
+
+const updateLanguageFromLabel = label => {
+    const languageIndex = I18N_LOCALE_LABELS.findIndex(l => l === label);
+    i18next.changeLanguage(I18N_LOCALES[languageIndex]);
+};
+
+class LanguageSetup extends Component {
+    componentWillMount() {
+        i18next.changeLanguage(defaultLocale);
+    }
+
     onNextPress() {
         this.props.navigator.push({
             screen: 'welcome',
@@ -77,9 +90,8 @@ class LanguageSetup extends React.Component {
         });
     }
 
-    clickDropdownItem(language) {
-        // const languageIndex = I18N_LOCALE_LABELS.findIndex(l => l === language);
-        // i18next.changeLanguage(I18N_LOCALES[languageIndex]);
+    clickDropdownItem(languageLabel) {
+        updateLanguageFromLabel(languageLabel);
     }
 
     render() {
@@ -100,7 +112,7 @@ class LanguageSetup extends React.Component {
                         <Dropdown
                             title="Language"
                             dropdownWidth={styles.dropdownWidth}
-                            defaultOption={I18N_LOCALE_LABELS[0]}
+                            defaultOption={defaultLanguageLabel}
                             options={I18N_LOCALE_LABELS}
                             saveSelection={language => this.clickDropdownItem(language)}
                         />
@@ -120,4 +132,4 @@ class LanguageSetup extends React.Component {
 
 const mapStateToProps = state => ({});
 
-export default connect(mapStateToProps)(LanguageSetup);
+export default translate(['languageSetup', 'global'])(connect(mapStateToProps)(LanguageSetup));
