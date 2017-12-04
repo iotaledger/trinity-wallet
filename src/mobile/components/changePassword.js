@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: width / 40,
         borderStyle: 'dotted',
-        paddingVertical: height / 60,
+        paddingVertical: height / 50,
     },
     infoText: {
         color: Colors.white,
