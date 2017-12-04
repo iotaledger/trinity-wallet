@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { width, height } from '../util/dimensions';
 import Dropdown from './dropdown';
-
-const { width } = Dimensions.get('window');
-const height = global.height;
 
 const styles = StyleSheet.create({
     container: {

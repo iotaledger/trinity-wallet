@@ -10,7 +10,6 @@ import {
     ScrollView,
     ImageBackground,
     StatusBar,
-    Platform,
     KeyboardAvoidingView,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
@@ -28,10 +27,9 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 
 import DropdownHolder from '../components/dropdownHolder';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 const StatusBarDefaultBarStyle = 'light-content';
-const isAndroid = Platform.OS === 'android';
 
 class UseExistingSeed extends React.Component {
     constructor(props) {

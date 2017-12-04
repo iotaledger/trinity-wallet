@@ -11,7 +11,6 @@ import {
     ScrollView,
     ImageBackground,
     StatusBar,
-    Platform,
     KeyboardAvoidingView,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
@@ -37,10 +36,9 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 
 import DropdownHolder from '../components/dropdownHolder';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 const StatusBarDefaultBarStyle = 'light-content';
-const isAndroid = Platform.OS === 'android';
 
 class AddAdditionalSeed extends React.Component {
     constructor(props) {

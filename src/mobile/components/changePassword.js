@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -24,9 +23,7 @@ import {
 } from 'iota-wallet-shared-modules/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
-
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class ChangePassword extends Component {
     constructor() {

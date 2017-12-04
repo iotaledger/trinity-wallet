@@ -13,7 +13,6 @@ import {
     LayoutAnimation,
     ListView,
     ScrollView,
-    Dimensions,
     StatusBar,
     TouchableWithoutFeedback,
     Keyboard,
@@ -32,8 +31,7 @@ import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
 let sentDenomination = '';
