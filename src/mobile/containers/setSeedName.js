@@ -8,7 +8,6 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    Platform,
     ImageBackground,
     ScrollView,
     StatusBar,

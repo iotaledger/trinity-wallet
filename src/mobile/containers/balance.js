@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, ListView, StatusBar, Platform, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import {
@@ -14,7 +14,7 @@ import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
-const isAndroid = Platform.OS === 'android';
+import { isAndroid } from '../util/device';
 import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
