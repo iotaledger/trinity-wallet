@@ -4,15 +4,13 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    Dimensions,
     ListView,
     LayoutAnimation,
     TouchableWithoutFeedback,
 } from 'react-native';
 import Triangle from 'react-native-triangle';
 
-const { width } = Dimensions.get('window');
-const { height } = global;
+import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 const CustomLayoutSpring = {

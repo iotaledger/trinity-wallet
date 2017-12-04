@@ -1,16 +1,6 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    StatusBar,
-    Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import { RNPrint } from 'NativeModules';
@@ -18,9 +8,8 @@ import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
 import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html.js';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-const isAndroid = Platform.OS === 'android';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { isAndroid, isIOS } from '../util/device';
+import { width, height } from '../util/dimensions';
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
 let results = '';
@@ -43,7 +32,7 @@ class PaperWallet extends React.Component {
             RNFS.unlink(RNFS.DocumentDirectoryPath + '/qr.png');
 
             // Doesn't convert to PDF for android.
-            if (Platform.OS === 'ios') {
+            if (isIOS) {
                 Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then(item =>
                     item.forEach(item => RNFS.unlink(item.path)),
                 );

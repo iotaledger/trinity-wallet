@@ -7,7 +7,6 @@ import {
     Text,
     TouchableWithoutFeedback,
     Image,
-    Dimensions,
     View,
     ImageBackground,
     StatusBar,
@@ -41,8 +40,7 @@ import KeepAwake from 'react-native-keep-awake';
 import { TextField } from 'react-native-material-textfield';
 
 const StatusBarDefaultBarStyle = 'light-content';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const timer = require('react-native-timer');
 
 class Home extends Component {

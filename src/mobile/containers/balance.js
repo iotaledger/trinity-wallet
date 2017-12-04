@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    ListView,
-    Dimensions,
-    StatusBar,
-    Platform,
-    TouchableWithoutFeedback,
-} from 'react-native';
+import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import {
@@ -23,9 +14,8 @@ import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
-const isAndroid = Platform.OS === 'android';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { isAndroid } from '../util/device';
+import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class Balance extends React.Component {
@@ -80,9 +70,7 @@ class Balance extends React.Component {
                     <StatusBar barStyle="light-content" />
                     <View style={styles.balanceContainer}>
                         <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
-                            {this.state.balanceIsShort
-                                ? shortenedBalance
-                                : formatValue(this.props.account.balance)}{' '}
+                            {this.state.balanceIsShort ? shortenedBalance : formatValue(this.props.account.balance)}{' '}
                             {formatUnit(this.props.account.balance)}
                         </Text>
                         <Text style={styles.fiatBalance}>
