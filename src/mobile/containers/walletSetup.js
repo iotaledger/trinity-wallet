@@ -6,7 +6,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, Statu
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class WalletSetup extends React.Component {
     onYesPress() {

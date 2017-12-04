@@ -19,7 +19,7 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 
 import { Keyboard } from 'react-native';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 export default class WalletResetConfirmation extends Component {
     constructor() {

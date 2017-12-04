@@ -7,7 +7,7 @@ import Modal from 'react-native-modal';
 import DropdownHolder from '../components/dropdownHolder';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class History extends React.Component {
     constructor(props) {

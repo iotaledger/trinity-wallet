@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Fonts from '../theme/Fonts';
 
-import { width, height } from 'iota-wallet-shared-modules/libs/dimensions';
+import { width, height } from '../util/dimensions';
 
 class ManualSync extends React.Component {
     render() {
