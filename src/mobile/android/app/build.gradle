@@ -98,7 +98,7 @@ android {
     defaultConfig {
         applicationId "com.iotawallet"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 1
         multiDexEnabled true
         versionName "1.0"
