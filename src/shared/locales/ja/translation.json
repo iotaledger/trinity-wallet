@@ -116,11 +116,11 @@
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
         "generateNewAddress": "アドレス生成",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "任意のメッセージ",
+        "removeMessage": "メッセージを削除します。"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with ",
+        "mustSaveYourSeed": "安全にSeedを保存して下さい。",
         "atLeastOne": "最低一つ ",
         "ofTheOptions": "以下のオプションを使って。"
     },
