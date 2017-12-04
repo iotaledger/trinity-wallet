@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import OnboardingButtons from './onboardingButtons.js';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class LogoutConfirmationModal extends React.Component {
     render() {

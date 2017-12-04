@@ -4,9 +4,7 @@ import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
-    Platform,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
@@ -24,9 +22,8 @@ import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/li
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
-const isAndroid = Platform.OS === 'android';
+import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class EnterSeed extends React.Component {
