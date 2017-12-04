@@ -23,7 +23,6 @@ import { connect } from 'react-redux';
 import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
@@ -179,6 +178,11 @@ class Send extends Component {
     }
 
     sendTransfer() {
+        const dropdown = DropdownHolder.getDropdown();
+        if(this.props.tempAccount.isSyncing){
+            dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
+            return;
+        }
         sentDenomination = this.state.denomination;
 
         const accountInfo = this.props.account.accountInfo;
@@ -273,8 +277,8 @@ class Send extends Component {
 
     onQRRead(data) {
         this.setState({
-            address: data.substring(0, MAX_SEED_LENGTH),
-            message: data.substring(82),
+            address: data.substring(0, 90),
+            message: data.substring(91),
         });
         this._hideModal();
     }
@@ -340,7 +344,8 @@ class Send extends Component {
                         <View style={styles.fieldContainer}>
                             <View style={styles.textFieldContainer}>
                                 <TextField
-                                    autoCapitalize={'characters'}
+                                    ref="address"
+                                    autoCapitalize={"characters"}
                                     style={styles.textField}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                     labelFontSize={height / 55}
@@ -436,7 +441,14 @@ class Send extends Component {
                     <View style={styles.midContainer}>
                         {!this.props.tempAccount.isSendingTransfer && (
                             <View style={styles.sendIOTAButtonContainer}>
-                                <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
+                                <TouchableOpacity onPress={event =>
+                                    {
+                                    this.setModalContent('transferConfirmation');
+                                    this.refs.address.blur();
+                                    this.refs.amount.blur();
+                                    this.refs.message.blur();
+                                    }
+                                }>
                                     <View style={styles.sendIOTAButton}>
                                         <Text style={styles.sendIOTAText}>SEND</Text>
                                     </View>
@@ -453,7 +465,10 @@ class Send extends Component {
                         )}
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}>
+                        <TouchableOpacity
+                            style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}
+                            hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                        >
                             <View style={styles.info}>
                                 <Image
                                     source={require('iota-wallet-shared-modules/images/info.png')}

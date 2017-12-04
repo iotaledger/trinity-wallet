@@ -128,7 +128,7 @@ class EnterSeed extends React.Component {
                                             value={seed}
                                             maxLength={MAX_SEED_LENGTH}
                                             onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
-                                            secureTextEntry={true}
+                                            secureTextEntry
                                             multiline
                                             onSubmitEditing={() => this.onDonePress()}
                                         />
