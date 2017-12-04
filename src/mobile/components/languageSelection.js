@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
-import { width, height } from '../util/dimensions';
-import Dropdown from './dropdown';
+import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import i18next from 'i18next';
+import { translate } from 'react-i18next';
+import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/libs/i18n';
+import locale from 'react-native-locale-detector';
+import { detectLocale, selectLocale } from '../components/locale';
+import Dropdown from '../components/dropdown';
+
+const { width } = Dimensions.get('window');
+const { height } = global;
 
 const styles = StyleSheet.create({
     container: {
@@ -45,21 +52,35 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     dropdownWidth: {
-        width: width / 2,
+        width: width / 1.5,
     },
 });
 
-class CurrencySelection extends Component {
-    saveCurrencySelection(currency) {
-        const { backPress, setCurrencySetting, getCurrencyData } = this.props;
+const currentLocale = i18next.language;
+const currentLanguageLabel = selectLocale(currentLocale);
 
+const updateLanguageFromLabel = label => {
+    const languageIndex = I18N_LOCALE_LABELS.findIndex(l => l === label);
+    i18next.changeLanguage(I18N_LOCALES[languageIndex]);
+};
+
+class LanguageSelection extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            languageSelected: currentLanguageLabel,
+        };
+    }
+
+    saveLanguageSelection() {
+        const { backPress } = this.props;
+        updateLanguageFromLabel(this.state.languageSelected);
         backPress();
-        setCurrencySetting(currency);
-        getCurrencyData(currency);
     }
 
     render() {
-        const { currency, currencies, backPress } = this.props;
+        const { backPress } = this.props;
+
         return (
             <TouchableWithoutFeedback onPress={() => this.dropdown.closeDropdown()}>
                 <View style={styles.container}>
@@ -69,10 +90,11 @@ class CurrencySelection extends Component {
                             ref={c => {
                                 this.dropdown = c;
                             }}
-                            title="Currency"
-                            options={currencies}
-                            defaultOption={currency}
+                            title="Language"
                             dropdownWidth={styles.dropdownWidth}
+                            defaultOption={currentLanguageLabel}
+                            options={I18N_LOCALE_LABELS}
+                            saveSelection={language => this.setState({ languageSelected: language })}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -85,7 +107,7 @@ class CurrencySelection extends Component {
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.saveCurrencySelection(this.dropdown.getSelected())}>
+                        <TouchableOpacity onPress={() => this.saveLanguageSelection()}>
                             <View style={styles.itemRight}>
                                 <Image
                                     source={require('iota-wallet-shared-modules/images/tick.png')}
@@ -101,4 +123,4 @@ class CurrencySelection extends Component {
     }
 }
 
-export default CurrencySelection;
+export default translate(['languageSelection', 'global'])(LanguageSelection);
