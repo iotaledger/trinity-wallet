@@ -105,22 +105,22 @@
     },
     "paperWallet": {
         "clickToPrint": "Κάντε κλικ στο παρακάτω κουμπί για να εκτυπώσετε ένα αντίγραφο του σπόρου σας.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "storeSafely": "Αποθηκεύστε το με ασφάλεια.",
+        "neverShare": "Ποτέ μη μοιράζεστε το σπόρο σας με κανέναν.",
+        "iotaLogo": "Λογότυπο ΙΟΤΑ",
+        "printWallet": "ΕΚΤΥΠΩΣΗ ΧΑΡΤΙΝΟΥ ΠΟΡΤΟΦΩΛΙΟΥ"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "somethingWentWrong": "Κάτι πήγε στραβά",
+        "somethingWentWrongExplanation": "Παρακαλώ επανεκκινήστε την εφαρμογή.",
+        "addressCopied": "Η διεύθυνση αντιγράφηκε",
+        "addressCopiedExplanation": "Η διεύθυνσή σας έχει αντιγραφεί στο Πρόχειρο.",
+        "generateNewAddress": "ΔΗΜΙΟΥΡΓΙΑ ΝΕΑΣ ΔΙΕΥΘΥΝΣΗΣ",
+        "message": "Προαιρετικό μήνυμα",
+        "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with ",
+        "mustSaveYourSeed": "Πρέπει να αποθηκεύσετε το σπόρο σας με ",
         "atLeastOne": "at least one ",
         "ofTheOptions": "of the options listed below."
     },
