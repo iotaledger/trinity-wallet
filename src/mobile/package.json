@@ -85,6 +85,7 @@
     "babel-eslint": "^8.0.0",
     "babel-jest": "20.0.3",
     "babel-preset-react-native": "3.0.1",
+    "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.7.2",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-prettier": "^2.6.0",
