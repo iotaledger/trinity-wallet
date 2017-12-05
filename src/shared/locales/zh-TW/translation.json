@@ -25,7 +25,9 @@
         "no": "否",
         "password": "密碼",
         "unrecognisedPassword": "未知的密碼",
-        "unrecognisedPasswordExplanation": "此為未知密碼，請再試一遍。"
+        "unrecognisedPasswordExplanation": "此為未知密碼，請再試一遍。",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -132,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "無效的地址",
-        "invalidAddressExplanation1": "地址長度需含81個字元，且包含一個檢查碼。",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
         "notEnoughFunds": "餘額不足",
@@ -143,7 +145,11 @@
         "amount": "金額",
         "max": "最大值",
         "message": "訊息",
-        "send": "發送IOTA"
+        "send": "SEND",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
