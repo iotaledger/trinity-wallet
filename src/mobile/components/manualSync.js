@@ -15,6 +15,8 @@ import { width, height } from '../util/dimensions';
 
 class ManualSync extends React.Component {
     render() {
+        const { t } = this.props;
+
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>

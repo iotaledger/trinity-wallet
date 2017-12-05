@@ -51,6 +51,8 @@ class AddAdditionalSeed extends React.Component {
     }
 
     getDefaultSeedName() {
+        const { t } = this.props;
+
         if (this.props.account.seedCount == 0) {
             return t('global:mainWallet');
         } else if (this.props.account.seedCount == 1) {
@@ -69,6 +71,8 @@ class AddAdditionalSeed extends React.Component {
     }
 
     onDonePress() {
+        const { t } = this.props;
+
         if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length == MAX_SEED_LENGTH) {
             this.dropdown.alertWithType('error', t('seedInvalidChars'), t('seedInvalidCharsExplanation'));
         } else if (this.state.seed.length < MAX_SEED_LENGTH) {
@@ -108,6 +112,8 @@ class AddAdditionalSeed extends React.Component {
     }
 
     onNodeError() {
+        const { t } = this.props;
+
         getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value != 'undefined' && value != null) {
                 removeLastSeed(value, this.props.tempAccount.password);

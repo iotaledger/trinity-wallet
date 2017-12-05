@@ -84,6 +84,7 @@ class NewSeedSetup extends Component {
         });
     }
     onNextPress() {
+        const { t } = this.props;
         if (this.state.randomised) {
             this.props.navigator.push({
                 screen: 'saveYourSeed',

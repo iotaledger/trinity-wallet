@@ -34,6 +34,7 @@ class SeedReentry extends React.Component {
     }
 
     onDonePress() {
+        const { t } = this.props;
         if (this.state.seed == this.props.tempAccount.seed) {
             this.props.navigator.push({
                 screen: 'setSeedName',

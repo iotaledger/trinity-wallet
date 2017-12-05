@@ -53,8 +53,8 @@ class Balance extends React.Component {
         const { t } = this.props;
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
-        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-        const addresses = Object.keys(currentSeedAccountInfo.addresses);
+        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]] || {};
+        const addresses = Object.keys(currentSeedAccountInfo.addresses) || {};
         const shortenedBalance =
             roundDown(formatValue(this.props.account.balance), 1) +
             (this.props.account.balance < 1000 || this.getDecimalPlaces(formatValue(this.props.account.balance)) <= 1

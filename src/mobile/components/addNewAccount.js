@@ -7,7 +7,6 @@ import { width, height } from '../util/dimensions';
 class AddNewAccount extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
     }
     onNewSeedPress() {
         this.props.addNewSeed();

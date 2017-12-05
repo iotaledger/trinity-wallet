@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     bottomContainer: {
-        flex: 0.5,
+        flex: 0.6,
         width: width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     listView: {
-        flex: 3,
+        flex: 2.9,
         justifyContent: 'center',
         width: width,
     },

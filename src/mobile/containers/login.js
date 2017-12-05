@@ -79,6 +79,7 @@ class Login extends React.Component {
     }
 
     onLoginPress() {
+        const { t } = this.props;
         if (!this.state.password) {
             this.dropdown.alertWithType(
                 'error',
@@ -143,6 +144,7 @@ class Login extends React.Component {
     }
 
     onNodeError() {
+        const { t } = this.props;
         this.props.navigator.pop({
             animated: false,
         });
@@ -151,6 +153,7 @@ class Login extends React.Component {
     }
 
     onUseSeedPress() {
+        const { t } = this.props;
         this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
         {
             /*this.props.navigator.push({
