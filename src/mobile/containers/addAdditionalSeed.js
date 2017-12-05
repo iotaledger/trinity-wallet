@@ -76,7 +76,11 @@ class AddAdditionalSeed extends React.Component {
         if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length == MAX_SEED_LENGTH) {
             this.dropdown.alertWithType('error', t('seedInvalidChars'), t('seedInvalidCharsExplanation'));
         } else if (this.state.seed.length < MAX_SEED_LENGTH) {
-            this.dropdown.alertWithType('error', t('seedTooShort'), t('seedTooShortExplanation'));
+            this.dropdown.alertWithType(
+                'error',
+                t('seedTooShort'),
+                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: this.state.seed.length }),
+            );
         } else if (!(this.state.seedName.length > 0)) {
             this.dropdown.alertWithType('error', t('noNickname'), t('noNicknameExplanation'));
         } else if (this.props.account.seedNames.includes(this.state.seedName)) {
