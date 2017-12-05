@@ -160,7 +160,7 @@
         "youCanAdd": "Pode adicionar mais Seeds no menu de configuração."
     },
     "settings": {
-        "transferSending": "A realizar a sua tranferência",
+        "transferSending": "A realizar a sua transferência",
         "transferSendingExplanation": "Por favor aguarde enquanto a sua transferência está a ser realizada.",
         "generatingAddress": "A gerar endereço próprio",
         "generatingAddressExplanation": "Por favor aguarde enquanto o seu endereço está a ser gerado.",
