@@ -210,11 +210,11 @@
     "welcome": {
         "thankYou": "Σας ευχαριστούμε που κατεβάσατε το πορτοφόλι ΙΟΤΑ.",
         "weWillSpend": "Θα περάσουμε τα επόμενα λίγα λεπτά εγκαθιστώντας το πορτοφόλι σας.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "reminder": "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "Ο σπόρος σας είναι 81 χαρακτήρες που διαβάζονται από αριστερά προς τα δεξιά. Γράψτε το σπόρο σας και το άθροισμα ελέγχου και",
+        "tripleCheck": "τριπλοτσεκάρετε",
+        "thatTheyAreCorrect": "ότι είναι σωστά."
     }
 }
