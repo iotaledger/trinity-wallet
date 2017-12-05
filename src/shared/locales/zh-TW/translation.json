@@ -145,7 +145,7 @@
         "amount": "金額",
         "max": "最大值",
         "message": "訊息",
-        "send": "SEND",
+        "send": "傳送",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
         "maximumSelected": "MAXIMUM amount selected",
