@@ -286,6 +286,8 @@ class Send extends Component {
     }
 
     _renderMaximum() {
+        const { t } = this.props;
+
         if (this.state.maxPressed) {
             return (
                 <View style={{ justifyContent: 'center' }}>
