@@ -40,13 +40,6 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		604A002D1FAF951D003CBDFE /* RNHockeyApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 604A002C1FAF951C003CBDFE /* RNHockeyApp.m */; };
 		6083B36F1FB7E65700DF3681 /* libRNShakeEvent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6083B36E1FB7E61000DF3681 /* libRNShakeEvent.a */; };
-		609973991FD225DE0064B450 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 609973621FD225DB0064B450 /* Lato-Bold.ttf */; };
-		6099739A1FD225DE0064B450 /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 609973931FD225DC0064B450 /* Inconsolata-Bold.ttf */; };
-		6099739B1FD225DE0064B450 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 609973941FD225DC0064B450 /* Lato-Black.ttf */; };
-		6099739C1FD225DE0064B450 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 609973951FD225DC0064B450 /* Lato-Regular.ttf */; };
-		6099739D1FD225DE0064B450 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 609973961FD225DC0064B450 /* Inconsolata-Regular.ttf */; };
-		6099739E1FD225DE0064B450 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 609973971FD225DD0064B450 /* Lato-Light.ttf */; };
-		6099739F1FD225DE0064B450 /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 609973981FD225DD0064B450 /* Lato-Heavy.ttf */; };
 		60ABE45D4856C876EFB3E718 /* libPods-iotaWallet-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D215E82DADAEAE41E8BB76DC /* libPods-iotaWallet-tvOSTests.a */; };
 		60F4FC861FD502A2001F5A1E /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F4FC781FD50249001F5A1E /* libRNDeviceInfo.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -60,6 +53,13 @@
 		CB87E5C01F550673009DB5ED /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB87E5BF1F55064B009DB5ED /* libReactNativeNavigation.a */; };
 		CBDB98A11F8EAE1500035DC3 /* libRNPrint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDB989D1F8EAE0200035DC3 /* libRNPrint.a */; };
 		CBDB98A21F8EAE1C00035DC3 /* libRNHTMLtoPDF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBDB988E1F8EADC300035DC3 /* libRNHTMLtoPDF.a */; };
+		CBFE03461FD648E000094FBB /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE033F1FD648DA00094FBB /* Lato-Bold.ttf */; };
+		CBFE03471FD648E000094FBB /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03401FD648DB00094FBB /* Lato-Black.ttf */; };
+		CBFE03481FD648E000094FBB /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03411FD648DC00094FBB /* Lato-Light.ttf */; };
+		CBFE03491FD648E000094FBB /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03421FD648DE00094FBB /* Lato-Heavy.ttf */; };
+		CBFE034A1FD648E000094FBB /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03431FD648DE00094FBB /* Inconsolata-Bold.ttf */; };
+		CBFE034B1FD648E000094FBB /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03441FD648DF00094FBB /* Lato-Regular.ttf */; };
+		CBFE034C1FD648E000094FBB /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03451FD648E000094FBB /* Inconsolata-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,13 +280,6 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNShakeEvent;
 		};
-		60F4FC541FD50249001F5A1E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 604AFFAB1FAF8B71003CBDFE /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B0D2BE4E9E672BAFC56687D0300B00BC;
-			remoteInfo = RNDeviceInfo;
-		};
 		60F4FC771FD50249001F5A1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 60F4FC4A1FD50248001F5A1E /* RNDeviceInfo.xcodeproj */;
@@ -474,13 +467,6 @@
 		6083B2D31FB5597B00DF3681 /* buildnumber.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = buildnumber.xcconfig; sourceTree = "<group>"; };
 		6083B2D41FB559C300DF3681 /* iotaWalletTests-debug-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWalletTests-debug-config.xcconfig"; sourceTree = "<group>"; };
 		6083B3691FB7E61000DF3681 /* RNShakeEvent.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNShakeEvent.xcodeproj; path = "../node_modules/react-native-shake-event/ios/RNShakeEvent.xcodeproj"; sourceTree = "<group>"; };
-		609973621FD225DB0064B450 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../../shared/custom-fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
-		609973931FD225DC0064B450 /* Inconsolata-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Bold.ttf"; path = "../../shared/custom-fonts/Inconsolata-Bold.ttf"; sourceTree = "<group>"; };
-		609973941FD225DC0064B450 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "../../shared/custom-fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
-		609973951FD225DC0064B450 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../shared/custom-fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
-		609973961FD225DC0064B450 /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../../shared/custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
-		609973971FD225DD0064B450 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../../shared/custom-fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
-		609973981FD225DD0064B450 /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Heavy.ttf"; path = "../../shared/custom-fonts/Lato-Heavy.ttf"; sourceTree = "<group>"; };
 		60F4FB541FD3AE3B001F5A1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		60F4FB871FD3AE44001F5A1E /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		60F4FB881FD3AE48001F5A1E /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -527,6 +513,13 @@
 		CB87E5951F550649009DB5ED /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		CBDB986A1F8EAD9800035DC3 /* RNHTMLtoPDF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNHTMLtoPDF.xcodeproj; path = "../node_modules/react-native-html-to-pdf/ios/RNHTMLtoPDF.xcodeproj"; sourceTree = "<group>"; };
 		CBDB98971F8EAE0200035DC3 /* RNPrint.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNPrint.xcodeproj; path = "../node_modules/react-native-print/ios/RNPrint.xcodeproj"; sourceTree = "<group>"; };
+		CBFE033F1FD648DA00094FBB /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../../shared/custom-fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		CBFE03401FD648DB00094FBB /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "../../shared/custom-fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
+		CBFE03411FD648DC00094FBB /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../../shared/custom-fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
+		CBFE03421FD648DE00094FBB /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Heavy.ttf"; path = "../../shared/custom-fonts/Lato-Heavy.ttf"; sourceTree = "<group>"; };
+		CBFE03431FD648DE00094FBB /* Inconsolata-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Bold.ttf"; path = "../../shared/custom-fonts/Inconsolata-Bold.ttf"; sourceTree = "<group>"; };
+		CBFE03441FD648DF00094FBB /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../shared/custom-fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		CBFE03451FD648E000094FBB /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../../shared/custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
 		D215E82DADAEAE41E8BB76DC /* libPods-iotaWallet-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iotaWallet-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F88047D21594709567CE0F /* Pods-iotaWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -750,7 +743,6 @@
 				604AFFB81FAF8B71003CBDFE /* libPods-iotaWallet-tvOS.a */,
 				604AFFBA1FAF8B71003CBDFE /* libPods-iotaWallet-tvOSTests.a */,
 				604AFFBC1FAF8B71003CBDFE /* libPods-iotaWalletTests.a */,
-				60F4FC551FD50249001F5A1E /* libRNDeviceInfo.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -837,13 +829,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				609973961FD225DC0064B450 /* Inconsolata-Regular.ttf */,
-				609973931FD225DC0064B450 /* Inconsolata-Bold.ttf */,
-				609973941FD225DC0064B450 /* Lato-Black.ttf */,
-				609973981FD225DD0064B450 /* Lato-Heavy.ttf */,
-				609973971FD225DD0064B450 /* Lato-Light.ttf */,
-				609973621FD225DB0064B450 /* Lato-Bold.ttf */,
-				609973951FD225DC0064B450 /* Lato-Regular.ttf */,
+				CBFE03431FD648DE00094FBB /* Inconsolata-Bold.ttf */,
+				CBFE03451FD648E000094FBB /* Inconsolata-Regular.ttf */,
+				CBFE03401FD648DB00094FBB /* Lato-Black.ttf */,
+				CBFE033F1FD648DA00094FBB /* Lato-Bold.ttf */,
+				CBFE03421FD648DE00094FBB /* Lato-Heavy.ttf */,
+				CBFE03411FD648DC00094FBB /* Lato-Light.ttf */,
+				CBFE03441FD648DF00094FBB /* Lato-Regular.ttf */,
 				6083B2C81FB557A700DF3681 /* Config */,
 				13B07FAE1A68108700A75B9A /* iotaWallet */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1432,13 +1424,6 @@
 			remoteRef = 6083B36D1FB7E61000DF3681 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		60F4FC551FD50249001F5A1E /* libRNDeviceInfo.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNDeviceInfo.a;
-			remoteRef = 60F4FC541FD50249001F5A1E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		60F4FC781FD50249001F5A1E /* libRNDeviceInfo.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1600,15 +1585,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6099739E1FD225DE0064B450 /* Lato-Light.ttf in Resources */,
-				6099739B1FD225DE0064B450 /* Lato-Black.ttf in Resources */,
+				CBFE03491FD648E000094FBB /* Lato-Heavy.ttf in Resources */,
+				CBFE03481FD648E000094FBB /* Lato-Light.ttf in Resources */,
+				CBFE03471FD648E000094FBB /* Lato-Black.ttf in Resources */,
+				CBFE034B1FD648E000094FBB /* Lato-Regular.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				6099739F1FD225DE0064B450 /* Lato-Heavy.ttf in Resources */,
-				6099739C1FD225DE0064B450 /* Lato-Regular.ttf in Resources */,
+				CBFE034C1FD648E000094FBB /* Inconsolata-Regular.ttf in Resources */,
+				CBFE034A1FD648E000094FBB /* Inconsolata-Bold.ttf in Resources */,
+				CBFE03461FD648E000094FBB /* Lato-Bold.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				609973991FD225DE0064B450 /* Lato-Bold.ttf in Resources */,
-				6099739D1FD225DE0064B450 /* Inconsolata-Regular.ttf in Resources */,
-				6099739A1FD225DE0064B450 /* Inconsolata-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
