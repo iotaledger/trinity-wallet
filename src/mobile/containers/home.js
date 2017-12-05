@@ -68,7 +68,6 @@ class Home extends Component {
     }
 
     componentWillUnmount() {
-        console.log('DOes it log?');
         this.endBackgroundProcesses();
     }
 
