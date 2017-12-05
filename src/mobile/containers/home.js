@@ -56,7 +56,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        AppState.addEventListener('change', this._handleAppStateChange);
         this.props.setFirstUse(false);
 
         const accountInfo = this.props.account.accountInfo;
@@ -65,13 +64,57 @@ class Home extends Component {
         if (typeof accountInfo !== 'undefined') {
             this.props.setBalance(addressesWithBalance);
         }
-        timer.setInterval('polling', () => this.startPolling(), 47000);
     }
 
     componentWillUnmount() {
+        this.endBackgroundProcesses();
+    }
+
+    startBackgroundProcesses() {
+        AppState.addEventListener('change', this._handleAppStateChange);
+        timer.setInterval('polling', () => this.startAccountPolling(), 47000);
+        timer.setInterval('chartPolling', () => this.startPolling(), 101000);
+    }
+
+    endBackgroundProcesses() {
         AppState.removeEventListener('change', this._handleAppStateChange);
         timer.clearInterval('polling');
         timer.clearInterval('chartPolling');
+    }
+
+    startAccountPolling() {
+        if (
+            !this.props.tempAccount.isGettingTransfers &&
+            !this.props.tempAccount.isSendingTransfer &&
+            !this.props.tempAccount.isSyncing
+        ) {
+            //console.log('POLLING TX HISTORY')
+            const seedIndex = this.props.tempAccount.seedIndex;
+            const seedName = this.props.account.seedNames[seedIndex];
+            const accountInfo = this.props.account.accountInfo;
+            this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                if (error) this.onNodeErrorPolling();
+            });
+        }
+    }
+
+    startChartPolling() {
+        // 'console.log('POLLING CHART DATA')'
+        if (
+            !this.props.settings.isSyncing &&
+            !this.props.settings.isGeneratingReceiveAddress &&
+            !this.props.settings.isSendingTransfer
+        ) {
+            this.props.getMarketData();
+            this.props.getChartData();
+            this.props.getPrice();
+        }
+    }
+
+    onNodeErrorPolling() {
+        const dropdown = DropdownHolder.getDropdown();
+        const { t } = this.props;
+        dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
     }
 
     /*logout(){
@@ -93,6 +136,7 @@ class Home extends Component {
 
     onLoginPress() {
         const dropdown = DropdownHolder.getDropdown();
+        const { t } = this.props;
         if (!this.state.password) {
             dropdown.alertWithType('error', 'Empty password', 'You must enter a password to log in. Please try again.');
         } else {
@@ -124,27 +168,6 @@ class Home extends Component {
         this.setState({ appState: nextAppState });
     };
 
-    startPolling() {
-        if (
-            !this.props.tempAccount.isGettingTransfers &&
-            !this.props.tempAccount.isSendingTransfer &&
-            !this.props.tempAccount.isSyncing
-        ) {
-            //console.log('POLLING TX HISTORY')
-            const seedIndex = this.props.tempAccount.seedIndex;
-            const seedName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-            this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                if (error) this.onNodeErrorPolling();
-            });
-        }
-    }
-
-    onNodeErrorPolling() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
-    }
-
     componentWillReceiveProps(newProps) {
         const didNotHaveAlertPreviously =
             !this.props.alerts.category && !this.props.alerts.title && !this.props.alerts.message;
@@ -174,7 +197,13 @@ class Home extends Component {
             case 'history':
                 return <History {...childrenProps} />;
             case 'settings':
-                return <Settings {...childrenProps} />;
+                return (
+                    <Settings
+                        startBackgroundProcesses={() => this.startBackgroundProcesses()}
+                        endBackgroundProcesses={() => this.endBackgroundProcesses()}
+                        {...childrenProps}
+                    />
+                );
             default:
                 return <Balance {...childrenProps} />;
         }

@@ -7,6 +7,8 @@ import { width, height } from '../util/dimensions';
 
 class UnitInfoModal extends React.Component {
     render() {
+        const { t } = this.props;
+
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
                 <View style={styles.modalContent}>

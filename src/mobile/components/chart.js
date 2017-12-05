@@ -13,23 +13,6 @@ class Chart extends React.Component {
         this.state = {
             price: this.props.marketData.usdPrice,
         };
-        var polling;
-    }
-    componentDidMount() {
-        timer.setInterval('chartPolling', () => this.startPolling(), 101000);
-    }
-
-    startPolling() {
-        // 'console.log('POLLING CHART DATA')'
-        if (!this.props.isSyncing && !this.props.isGeneratingReceiveAddress && !this.props.isSendingTransfer) {
-            this.props.getMarketData();
-            this.props.getChartData();
-            this.props.getPrice();
-        }
-    }
-
-    componentWillMount() {
-        //this.changeCurrency(this.props.marketData.currency);
     }
 
     changeCurrency() {

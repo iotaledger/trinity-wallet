@@ -42,6 +42,8 @@ class UseExistingSeed extends React.Component {
     }
 
     getDefaultAccountName() {
+        const { t } = this.props;
+
         if (this.props.seedCount == 0) {
             return 'MAIN ACCOUNT';
         } else if (this.props.seedCount == 1) {
@@ -82,6 +84,8 @@ class UseExistingSeed extends React.Component {
 
     render() {
         const { seed, accountName } = this.state;
+        const { t } = this.props;
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>

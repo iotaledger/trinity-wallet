@@ -12,6 +12,7 @@ class SimpleTransactionRow extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         const icon =
             this.props.rowData[0].transferValue < 0
                 ? require('iota-wallet-shared-modules/images/send.png')

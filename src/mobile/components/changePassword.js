@@ -78,7 +78,7 @@ class ChangePassword extends Component {
 
     changePassword() {
         const isValid = this.isValid();
-        const { password, setPassword } = this.props;
+        const { password, setPassword, t } = this.props;
         const { newPassword } = this.state;
 
         if (isValid) {
@@ -117,7 +117,7 @@ class ChangePassword extends Component {
 
     renderInvalidSubmissionAlerts() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { password } = this.props;
+        const { password, t } = this.props;
 
         if (currentPassword !== password) {
             return this.props.dropdown.alertWithType(
@@ -156,6 +156,7 @@ class ChangePassword extends Component {
 
     render() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
+        const { t } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

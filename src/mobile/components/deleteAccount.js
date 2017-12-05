@@ -79,10 +79,12 @@ class DeleteAccount extends React.Component {
     );
 
     render() {
+        const { t } = this.props;
+
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.7 }} />
+                    <View style={{ flex: 0.3 }} />
                     {!this.state.pressedContinue && (
                         <View style={styles.topContainer}>
                             <Text style={styles.infoText}>Are you sure you want to delete this account?</Text>

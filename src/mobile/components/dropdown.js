@@ -164,7 +164,6 @@ class Dropdown extends Component {
                         )}
                         contentContainerView={{ flex: 1, justifyContent: 'flex-start' }}
                         enableEmptySections
-                        snapToInterval={height / 22.4}
                     />
                 </View>
             </View>
