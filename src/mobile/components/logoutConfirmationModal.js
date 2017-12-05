@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import OnboardingButtons from './onboardingButtons.js';
-
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import { width, height } from '../util/dimensions';
 
 class LogoutConfirmationModal extends React.Component {
@@ -9,10 +9,7 @@ class LogoutConfirmationModal extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground
-                source={require('iota-wallet-shared-modules/images/bg-blue.png')}
-                style={{ width: width / 1.15, alignItems: 'center' }}
-            >
+            <ImageBackground source={blueBackgroundImagePath} style={{ width: width / 1.15, alignItems: 'center' }}>
                 <View style={styles.modalContent}>
                     <Text style={styles.questionText}>Are you sure you want to log out?</Text>
                     <OnboardingButtons
