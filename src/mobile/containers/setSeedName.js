@@ -27,6 +27,9 @@ import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } fr
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class SetSeedName extends React.Component {
@@ -142,15 +145,12 @@ class SetSeedName extends React.Component {
         let { accountName } = this.state;
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                style={styles.iotaLogo}
-                            />
+                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.greetingText}>{t('addAdditionalSeed:enterAccountName')}</Text>
                             </View>
@@ -180,10 +180,7 @@ class SetSeedName extends React.Component {
                                 onSubmitEditing={() => this.onDonePress()}
                             />
                             <View style={styles.infoTextContainer}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/info.png')}
-                                    style={styles.infoIcon}
-                                />
+                                <Image source={infoImagePath} style={styles.infoIcon} />
                                 <Text style={styles.infoText}>{t('canUseMultipleSeeds')}</Text>
                                 <Text style={styles.infoText}>{t('youCanAdd')}</Text>
                             </View>
