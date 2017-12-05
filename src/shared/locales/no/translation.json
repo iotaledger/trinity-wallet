@@ -134,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "Adressen bør være {{maxLength}} tegn og ha kontrolltegn.",
         "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
         "notEnoughFunds": "Ikke nok midler",
@@ -145,10 +145,10 @@
         "amount": "Beløp",
         "max": "MAKS",
         "message": "Melding",
-        "send": "SEND",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
+        "send": "SENDE",
+        "invalidAmount": "Ugyldig beløp lagt inn",
+        "invalidAmountExplanation": "Vennligst skriv inn en tallverdi for transaksjonsbeløpet.",
+        "maximumSelected": "MAKSIMUM beløp valgt",
         "iotaUnits": "IOTA units"
     },
     "setPassword": {
