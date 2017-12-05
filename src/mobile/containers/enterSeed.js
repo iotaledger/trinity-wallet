@@ -22,6 +22,9 @@ import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/li
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 const StatusBarDefaultBarStyle = 'light-content';
@@ -90,17 +93,14 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                        style={styles.iotaLogo}
-                                    />
+                                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                 </View>
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.title}>{t('global:enterSeed')}</Text>
@@ -132,7 +132,7 @@ class EnterSeed extends React.Component {
                                         <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
                                                 <Image
-                                                    source={require('iota-wallet-shared-modules/images/camera.png')}
+                                                    source={cameraImagePath}
                                                     style={styles.qrImage}
                                                 />
                                                 <Text style={styles.qrText}>{t('global:qr')}</Text>
