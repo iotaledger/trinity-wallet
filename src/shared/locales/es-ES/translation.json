@@ -93,7 +93,7 @@
     },
     "loading": {
         "loadingFirstTime": "Cargando la seed por primera vez.",
-        "thisMayTake": "Esto puede tomar un tiempo.",
+        "thisMayTake": "Esto puede tardar un rato.",
         "youMayNotice": "You may notice your device slowing down."
     },
     "newSeedSetup": {
