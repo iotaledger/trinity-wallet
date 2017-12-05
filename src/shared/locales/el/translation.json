@@ -194,14 +194,14 @@
     "resetWalletRequirePassword": {
         "enterPassword": "Εισάγετε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι σας.",
         "cancel": "ΑΚΥΡΟ",
-        "reset": "RESET"
+        "reset": "ΕΠΑΝΑΦΟΡΑ"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
+        "okay": "Εντάξει. Ας εγκαταστήσουμε το πορτοφόλι σας!",
+        "doYouAlreadyHaveASeed": "Έχετε ήδη έναν σπόρο που θα θέλατε να χρησιμοποιήσετε;",
+        "seedExplanation": "Ο σπόρος ΙΟΤΑ είναι όπως ένα όνομα χρήστη και κωδικός πρόσβασης για το λογαριασμό σας, σε συνδυασμένα σε μια συμβολοσειρά 81 χαρακτήρων.",
+        "explanation1": "Μπορείτε να το χρησιμοποιήσετε για να αποκτήσετε πρόσβαση στα κεφάλαιά σας από",
+        "explanation2": " κάθε πορτοφόλι ",
         "explanation3": ", on",
         "explanation4": " any device",
         "explanation5": ". But if you lose your seed, you also lose your IOTA.",
