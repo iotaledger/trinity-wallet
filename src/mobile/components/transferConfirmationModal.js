@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
-
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import { width, height } from '../util/dimensions';
 
 class TransferConfirmationModal extends React.Component {
@@ -21,10 +21,7 @@ class TransferConfirmationModal extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground
-                source={require('iota-wallet-shared-modules/images/bg-blue.png')}
-                style={{ width: width / 1.15, alignItems: 'center' }}
-            >
+            <ImageBackground source={blueBackgroundImagePath} style={{ width: width / 1.15, alignItems: 'center' }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
