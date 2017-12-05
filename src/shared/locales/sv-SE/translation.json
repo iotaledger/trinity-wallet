@@ -25,7 +25,9 @@
         "no": "NEJ",
         "password": "Lösenord",
         "unrecognisedPassword": "Fel lösenord",
-        "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen."
+        "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Adressen innehåller felaktiga tecken",
@@ -132,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
-        "invalidAddressExplanation1": "Adressen bör vara 81 tecken långt och ska ha en kontrollsumma.",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
         "notEnoughFunds": "Inte tillräckligt med pengar",
@@ -143,7 +145,11 @@
         "amount": "Antal",
         "max": "MAX",
         "message": "Meddelande",
-        "send": "SKICKA IOTA"
+        "send": "SEND",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
