@@ -145,7 +145,7 @@
         "amount": "Betrag",
         "max": "MAX",
         "message": "Nachricht",
-        "send": "SEND",
+        "send": "SENDEN",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
         "maximumSelected": "MAXIMUM amount selected",
