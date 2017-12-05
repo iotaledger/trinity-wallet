@@ -145,7 +145,7 @@
         "amount": "金额",
         "max": "MAX",
         "message": "Message",
-        "send": "SEND",
+        "send": "发送",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
         "maximumSelected": "MAXIMUM amount selected",
