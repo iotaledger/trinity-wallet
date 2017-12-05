@@ -20,7 +20,7 @@ class TransferConfirmationModal extends React.Component {
 
         return (
             <ImageBackground
-                source={require('../../shared/images/bg-blue.png')}
+                source={require('iota-wallet-shared-modules/images/bg-blue.png')}
                 style={{ width: width / 1.15, alignItems: 'center' }}
             >
                 <View style={styles.modalContent}>

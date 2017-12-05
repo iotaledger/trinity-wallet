@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import {
+    Image,
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Dimensions,
+    Keyboard,
+    TouchableWithoutFeedback,
+    AppState,
+} from 'react-native';
 import Fonts from '../theme/Fonts';
 import Seedbox from '../components/seedBox.js';
 import { TextField } from 'react-native-material-textfield';
@@ -13,6 +23,7 @@ class ViewSeed extends React.Component {
             password: '',
             showSeed: false,
             seed: '',
+            appState: AppState.currentState,
         };
     }
 
@@ -37,6 +48,21 @@ class ViewSeed extends React.Component {
             this.props.onWrongPassword();
         }
     }
+
+    componentDidMount() {
+        AppState.addEventListener('change', this._handleAppStateChange);
+    }
+
+    componentWillUnmount() {
+        AppState.removeEventListener('change', this._handleAppStateChange);
+    }
+
+    _handleAppStateChange = nextAppState => {
+        if (nextAppState.match(/inactive|background/)) {
+            this.hideSeed();
+        }
+        this.setState({ appState: nextAppState });
+    };
 
     hideSeed() {
         this.setState({
