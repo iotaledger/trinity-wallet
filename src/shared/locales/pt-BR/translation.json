@@ -25,7 +25,9 @@
         "no": "NÃO",
         "password": "Senha",
         "unrecognisedPassword": "Palavra-passe não reconhecida",
-        "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente."
+        "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém carateres inválidos",
@@ -116,8 +118,8 @@
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "generateNewAddress": "GERAR NOVO ENDEREÇO",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "Mensagem opcional",
+        "removeMessage": "REMOVER MENSAGEM"
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "Deverá guardar a sua Seed com ",
@@ -132,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "Endereço inválido",
-        "invalidAddressExplanation1": "O endereço deve ter 81 caracteres e o código de verificação.",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
         "invalidAddressExplanation3": "O endereço contém um código de verificação incorreto.",
         "notEnoughFunds": "Fundos insuficientes",
@@ -143,7 +145,11 @@
         "amount": "Quantia",
         "max": "MAX",
         "message": "Mensagem",
-        "send": "ENVIAR IOTA"
+        "send": "ENVIAR",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "A senha é muito curta",
