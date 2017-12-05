@@ -25,7 +25,9 @@
         "no": "TIDAK",
         "password": "Kata Sandi",
         "unrecognisedPassword": "Kata sandi tidak dikenali",
-        "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali."
+        "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali.",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -132,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "Alamat salah",
-        "invalidAddressExplanation1": "Alamat harus 81 karakter dan memiliki cek jumlah.",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
         "notEnoughFunds": "Dana tidak mencukupi",
@@ -143,7 +145,11 @@
         "amount": "Nominal",
         "max": "Maks",
         "message": "Pesan",
-        "send": "KIRIM IOTA"
+        "send": "SEND",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "Kata sandi terlalu singkat",
