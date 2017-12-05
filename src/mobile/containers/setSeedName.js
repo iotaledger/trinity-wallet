@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingVertical: height / 60,
+        paddingVertical: height / 35,
         marginTop: height / 15,
     },
     infoText: {

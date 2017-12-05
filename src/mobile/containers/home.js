@@ -30,6 +30,7 @@ import {
     setPassword,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -74,7 +75,7 @@ class Home extends Component {
     startBackgroundProcesses() {
         AppState.addEventListener('change', this._handleAppStateChange);
         timer.setInterval('polling', () => this.startAccountPolling(), 47000);
-        timer.setInterval('chartPolling', () => this.startPolling(), 101000);
+        timer.setInterval('chartPolling', () => this.startChartPolling(), 101000);
     }
 
     endBackgroundProcesses() {
@@ -614,6 +615,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     alerts: state.alerts,
     tempAccount: state.tempAccount,
+    settings: state.settings,
     tailTransactionHashesForPendingTransactions: getTailTransactionHashesForPendingTransactions(state),
     account: state.account,
     childRoute: state.home.childRoute,
@@ -639,6 +641,9 @@ const mapDispatchToProps = dispatch => ({
     clearTempData: () => dispatch(clearTempData()),
     toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
     setPassword: () => dispatch(setPassword()),
+    getMarketData: () => dispatch(getMarketData()),
+    getPrice: () => dispatch(getPrice()),
+    getChartData: () => dispatch(getChartData()),
 });
 
 Home.propTypes = {

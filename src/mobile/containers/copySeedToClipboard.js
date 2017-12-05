@@ -79,7 +79,7 @@ class CopySeedToClipboard extends React.Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>{t('global:next')}</Text>
+                            <Text style={styles.doneText}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
