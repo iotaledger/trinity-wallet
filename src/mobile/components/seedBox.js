@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
+import arrowWhiteImagePath from 'iota-wallet-shared-modules/images/arrow-white.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -9,7 +10,7 @@ class SeedBox extends React.Component {
     render() {
         return (
             <View style={styles.seedBox}>
-                <Image source={require('iota-wallet-shared-modules/images/arrow-white.png')} style={styles.arrow} />
+                <Image source={arrowWhiteImagePath} style={styles.arrow} />
                 <View style={styles.seedBoxTextContainer}>
                     <View style={{ marginRight: width / 30 }}>
                         <TextWithLetterSpacing spacing={8} textStyle={styles.seedBoxTextLeft}>
