@@ -10,6 +10,7 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import Fonts from '../theme/Fonts';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -57,10 +58,7 @@ class ManualSync extends React.Component {
                     {!this.props.isSyncing && (
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
