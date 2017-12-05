@@ -6,6 +6,8 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import PropTypes from 'prop-types';
 import Seedbox from '../components/seedBox.js';
 import { width, height } from '../util/dimensions';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {
@@ -58,13 +60,10 @@ class CopySeedToClipboard extends React.Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <Text style={styles.infoTextNormal}>{t('clickToCopy')}</Text>
