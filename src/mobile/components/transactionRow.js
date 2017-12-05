@@ -1,8 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, View, Text, StyleSheet, ListView } from 'react-native';
-import { formatValue, formatUnit, round } from '../../shared/libs/util';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate } from '../../shared/libs/dateUtils';
-import { convertFromTrytes } from '../../shared/libs/iota';
+import { TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
+import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
+import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
 
 import { width, height } from '../util/dimensions';

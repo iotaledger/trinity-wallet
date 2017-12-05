@@ -161,7 +161,7 @@ class AddAdditionalSeed extends React.Component {
         const { seed, seedName } = this.state;
         const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -169,7 +169,7 @@ class AddAdditionalSeed extends React.Component {
                             <View style={styles.topContainer} behavior="padding">
                                 <View style={styles.logoContainer}>
                                     <Image
-                                        source={require('../../shared/images/iota-glow.png')}
+                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                                         style={styles.iotaLogo}
                                     />
                                 </View>
@@ -202,7 +202,7 @@ class AddAdditionalSeed extends React.Component {
                                         <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
                                                 <Image
-                                                    source={require('../../shared/images/camera.png')}
+                                                    source={require('iota-wallet-shared-modules/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
                                                 <Text style={styles.qrText}> {t('global:qr')} </Text>
