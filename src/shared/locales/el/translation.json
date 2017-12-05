@@ -26,8 +26,8 @@
         "password": "Κωδικός πρόσβασης",
         "unrecognisedPassword": "Μη αναγνωρισμένος κωδικός πρόσβασης",
         "unrecognisedPasswordExplanation": "Ο κωδικός πρόσβασης δεν αναγνωρίστηκε. Παρακαλώ δοκιμάστε ξανά.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgress": "Συγχρονισμός σε εξέλιξη",
+        "syncInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί ο συγχρονισμός."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -134,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "Μη έγκυρη διεύθυνση",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "Η διεύθυνση πρέπει να είναι {{maxLength}} χαρακτήρες και θα πρέπει να έχει ένα άθροισμα ελέγχου.",
         "invalidAddressExplanation2": "Η διεύθυνση περιέχει μη έγκυρους χαρακτήρες.",
         "invalidAddressExplanation3": "Η διεύθυνση περιέχει ένα μη έγκυρο άθροισμα ελέγχου.",
         "notEnoughFunds": "Δεν υπάρχει αρκετό κεφάλαιο",
@@ -145,11 +145,11 @@
         "amount": "Ποσό",
         "max": "ΜΕΓΙΣΤΟ",
         "message": "Μήνυμα",
-        "send": "SEND",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "send": "ΑΠΟΣΤΟΛΗ",
+        "invalidAmount": "Εισήχθη λάθος ποσό",
+        "invalidAmountExplanation": "Παρακαλώ εισάγετε μια αριθμητική τιμή για το ποσό της συναλλαγής.",
+        "maximumSelected": "ΜΕΓΙΣΤΟ ποσό επιλέχθηκε",
+        "iotaUnits": "Μονάδες ΙΟΤΑ"
     },
     "setPassword": {
         "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
@@ -168,32 +168,32 @@
     "settings": {
         "transferSending": "Αποστολή μεταφοράς",
         "transferSendingExplanation": "Παρακαλώ περιμένετε έως ότου η μεταφορά σας έχει σταλεί.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
+        "generatingAddress": "Δημιουργεία διεύθυνσης λήψης",
+        "generatingAddressExplanation": "Παρακαλώ περιμένετε μέχρι η διεύθυνση σας να έχει δημιουργηθεί.",
+        "mode": "Λειτουργία",
+        "theme": "Θέμα",
+        "currency": "Νόμισμα",
         "language": "Γλώσσα",
-        "addNewSeed": "Add new seed",
-        "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "back": "Back"
+        "addNewSeed": "Προσθέστε νέο σπόρο",
+        "twoFA": "Έλεγχος ταυτότητας δύο παραγόντων",
+        "changePassword": "Αλλάξτε κωδικό πρόσβασης",
+        "advanced": "Ρυθμίσεις για προχωρημένους",
+        "logout": "Αποσύνδεση",
+        "reset": "Επαναφέρετε το πορτοφόλι",
+        "back": "Πίσω"
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
+        "warning1": "Όλα τα δεδομένα του πορτοφολιού σας, συμπεριλαμβανομένων",
+        "warning2": " σπόρων, κωδικών πρόσβασης ",
+        "warning3": "και",
+        "warning4": " άλλες πληροφορίες λογαριασμού",
+        "warning5": " θα χαθούν.",
+        "areYouSure": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
+        "enterPassword": "Εισάγετε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι σας.",
+        "cancel": "ΑΚΥΡΟ",
         "reset": "RESET"
     },
     "walletSetup": {
