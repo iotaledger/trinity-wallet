@@ -25,7 +25,9 @@
         "no": "Nee",
         "password": "Wachtwoord",
         "unrecognisedPassword": "Niet herkend wachtwoord",
-        "unrecognisedPasswordExplanation": "Het wachtwoord is onjuist. Probeer het opnieuw."
+        "unrecognisedPasswordExplanation": "Het wachtwoord is onjuist. Probeer het opnieuw.",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ongeldige tekens in de sleutel",
@@ -132,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "Ongeldig adres",
-        "invalidAddressExplanation1": "Adres moet 81 tekens lang zijn en moet een controlesom hebben.",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Adres bevat ongeldige tekens.",
         "invalidAddressExplanation3": "Adres bevat een ongeldige controlesom.",
         "notEnoughFunds": "Saldo ontoereikend",
@@ -143,7 +145,11 @@
         "amount": "Aantal",
         "max": "MAX",
         "message": "Bericht",
-        "send": "IOTA VERZENDEN"
+        "send": "SEND",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
