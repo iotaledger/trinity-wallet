@@ -10,6 +10,11 @@ import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html.js';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { isAndroid, isIOS } from '../util/device';
 import { width, height } from '../util/dimensions';
+import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked.png';
+import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked.png';
+import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
 let results = '';
@@ -18,7 +23,7 @@ class PaperWallet extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            checkboxImage: require('iota-wallet-shared-modules/images/checkbox-checked.png'),
+            checkboxImage: checkboxCheckedImagePath,
             showIotaLogo: true,
             iotaLogoVisibility: 'visible',
             pressedPrint: false,
@@ -29,7 +34,7 @@ class PaperWallet extends React.Component {
     onDonePress() {
         this.props.navigator.pop({ animated: false });
         if (this.state.pressedPrint) {
-            RNFS.unlink(RNFS.DocumentDirectoryPath + '/qr.png');
+            RNFS.unlink(qrPath);
 
             // Doesn't convert to PDF for android.
             if (isIOS) {
@@ -180,27 +185,22 @@ class PaperWallet extends React.Component {
 
     _renderIotaLogo() {
         if (this.state.showIotaLogo) {
-            return (
-                <Image
-                    style={styles.paperWalletLogo}
-                    source={require('iota-wallet-shared-modules/images/iota-full.png')}
-                />
-            );
+            return <Image style={styles.paperWalletLogo} source={iotaFullImagePath} />;
         } else {
             return null;
         }
     }
 
     onCheckboxPress() {
-        if (this.state.checkboxImage == require('iota-wallet-shared-modules/images/checkbox-checked.png')) {
+        if (this.state.checkboxImage == checkboxCheckedImagePath) {
             this.setState({
-                checkboxImage: require('iota-wallet-shared-modules/images/checkbox-unchecked.png'),
+                checkboxImage: checkboxUncheckedImagePath,
                 showIotaLogo: false,
                 iotaLogoVisibility: 'hidden',
             });
         } else {
             this.setState({
-                checkboxImage: require('iota-wallet-shared-modules/images/checkbox-checked.png'),
+                checkboxImage: checkboxCheckedImagePath,
                 showIotaLogo: true,
                 iotaLogoVisibility: 'visible',
             });
@@ -219,13 +219,10 @@ class PaperWallet extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>
                             Click the button below to print a paper copy of your seed.
@@ -239,10 +236,7 @@ class PaperWallet extends React.Component {
                             <View
                                 style={{ paddingVertical: height / 80, alignItems: 'center', justifyContent: 'center' }}
                             >
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-black.png')}
-                                    style={styles.arrow}
-                                />
+                                <Image source={arrowBlackImagePath} style={styles.arrow} />
                                 <View style={styles.seedBoxTextContainer}>
                                     <View>
                                         <Text style={styles.seedBoxTextLeft}>
