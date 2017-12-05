@@ -40,6 +40,13 @@ import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { TextField } from 'react-native-material-textfield';
 
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
+import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
+import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
+import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
+import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 const StatusBarDefaultBarStyle = 'light-content';
 import { width, height } from '../util/dimensions';
 const timer = require('react-native-timer');
@@ -243,7 +250,7 @@ class Home extends Component {
                 checkInterval={2000}
                 onInactivity={() => this.setState({ inactive: true })}
             >
-                <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
+                <ImageBackground source={blueBackgroundImagePath} style={{ flex: 1 }}>
                     <StatusBar barStyle="light-content" />
                     {!this.state.inactive &&
                         !this.state.minimised && (
@@ -262,7 +269,7 @@ class Home extends Component {
                                                             ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
                                                             : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
                                                     }
-                                                    source={require('iota-wallet-shared-modules/images/balance.png')}
+                                                    source={balanceImagePath}
                                                 />
                                                 <Text
                                                     style={
@@ -286,7 +293,7 @@ class Home extends Component {
                                                             ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
                                                             : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
                                                     }
-                                                    source={require('iota-wallet-shared-modules/images/send.png')}
+                                                    source={sendImagePath}
                                                 />
                                                 <Text
                                                     style={
@@ -310,7 +317,7 @@ class Home extends Component {
                                                             ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
                                                             : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
                                                     }
-                                                    source={require('iota-wallet-shared-modules/images/receive.png')}
+                                                    source={receiveImagePath}
                                                 />
                                                 <Text
                                                     style={
@@ -334,7 +341,7 @@ class Home extends Component {
                                                             ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
                                                             : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
                                                     }
-                                                    source={require('iota-wallet-shared-modules/images/history.png')}
+                                                    source={historyImagePath}
                                                 />
                                                 <Text
                                                     style={
@@ -358,7 +365,7 @@ class Home extends Component {
                                                             ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
                                                             : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
                                                     }
-                                                    source={require('iota-wallet-shared-modules/images/settings.png')}
+                                                    source={settingsImagePath}
                                                 />
                                                 <Text
                                                     style={
@@ -384,10 +391,7 @@ class Home extends Component {
                             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                                 <View>
                                     <View style={styles.loginTopContainer}>
-                                        <Image
-                                            source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                            style={styles.iotaLogo}
-                                        />
+                                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                         <View style={styles.loginTitleContainer}>
                                             <Text style={styles.loginTitle}>Please enter your password.</Text>
                                         </View>
