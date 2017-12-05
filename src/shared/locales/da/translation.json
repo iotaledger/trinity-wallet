@@ -25,7 +25,9 @@
         "no": "NEJ",
         "password": "Adgangskode",
         "unrecognisedPassword": "Ukendt adgangskode",
-        "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen."
+        "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seedet indeholder ugyldige tegn",
@@ -132,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
-        "invalidAddressExplanation1": "Adressen bør indeholde 81 tegn og skal have en kontrolsum.",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Adressen indeholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressen indeholder en ugyldig kontrolsum.",
         "notEnoughFunds": "Ikke nok penge",
@@ -143,7 +145,11 @@
         "amount": "Beløb",
         "max": "MAKS.",
         "message": "Besked",
-        "send": "SEND IOTA"
+        "send": "SEND",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "Adgangskoden er for kort",
