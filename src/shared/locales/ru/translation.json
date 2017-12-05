@@ -25,7 +25,9 @@
         "no": "НЕТ",
         "password": "Пароль",
         "unrecognisedPassword": "Пароль не распознан",
-        "unrecognisedPasswordExplanation": "Некорректный пароль. Повторите попытку."
+        "unrecognisedPasswordExplanation": "Некорректный пароль. Повторите попытку.",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -132,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "Неверный адрес",
-        "invalidAddressExplanation1": "Адрес должен быть длиной 81 символ и содержать контрольную сумму.",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Адрес содержит недопустимые символы.",
         "invalidAddressExplanation3": "Адрес содержит некорректную контрольную сумму.",
         "notEnoughFunds": "Недостаточно средств",
@@ -143,7 +145,11 @@
         "amount": "Сумма",
         "max": "МАКС.",
         "message": "Сообщение",
-        "send": "Отправить IOTA"
+        "send": "SEND",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "Слишком короткий пароль",
