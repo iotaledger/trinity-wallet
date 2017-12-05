@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
-import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/libs/i18n';
+import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { detectLocale, selectLocale } from '../components/locale';
 import Dropdown from '../components/dropdown';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
@@ -59,22 +59,15 @@ const styles = StyleSheet.create({
 const currentLocale = i18next.language;
 const currentLanguageLabel = selectLocale(currentLocale);
 
-const updateLanguageFromLabel = label => {
-    const languageIndex = I18N_LOCALE_LABELS.findIndex(l => l === label);
-    i18next.changeLanguage(I18N_LOCALES[languageIndex]);
-};
-
 class LanguageSelection extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            languageSelected: currentLanguageLabel,
-        };
+        this.languageSelected = currentLanguageLabel;
     }
 
     saveLanguageSelection() {
         const { backPress } = this.props;
-        updateLanguageFromLabel(this.state.languageSelected);
+        i18next.changeLanguage(getLocaleFromLabel(this.languageSelected));
         backPress();
     }
 
@@ -90,11 +83,13 @@ class LanguageSelection extends Component {
                             ref={c => {
                                 this.dropdown = c;
                             }}
-                            title="Language"
+                            title={t('language')}
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={currentLanguageLabel}
                             options={I18N_LOCALE_LABELS}
-                            saveSelection={language => this.setState({ languageSelected: language })}
+                            saveSelection={language => {
+                                this.languageSelected = language;
+                            }}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
