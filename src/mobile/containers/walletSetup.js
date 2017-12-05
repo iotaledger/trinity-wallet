@@ -5,6 +5,9 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -35,13 +38,10 @@ class WalletSetup extends React.Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     <View style={styles.greetingTextContainer}>
                         <Text style={styles.greetingText}>{t('okay')}</Text>
                         <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
@@ -49,7 +49,7 @@ class WalletSetup extends React.Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
+                        <Image source={infoImagePath} style={styles.infoIcon} />
                         <Text style={styles.infoText}>{t('seedExplanation')}</Text>
                         <Text style={styles.infoText}>
                             <Text style={styles.infoTextLight}>{t('explanation1')}</Text>
