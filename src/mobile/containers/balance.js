@@ -2,13 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import {
-    getMarketData,
-    getChartData,
-    getPrice,
-    setCurrency,
-    setTimeframe,
-} from 'iota-wallet-shared-modules/actions/marketData';
+import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
@@ -102,9 +96,6 @@ class Balance extends React.Component {
                             isGeneratingReceiveAddress={this.props.tempAccount.isGeneratingReceiveAddress}
                             isSyncing={this.props.tempAccount.isSyncing}
                             marketData={this.props.marketData}
-                            getPrice={() => this.props.getPrice()}
-                            getChartData={() => this.props.getChartData()}
-                            getMarketData={() => this.props.getMarketData()}
                             setCurrency={currency => this.props.setCurrency(currency)}
                             setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
                         />
@@ -176,15 +167,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getMarketData: () => {
-        dispatch(getMarketData());
-    },
-    getPrice: () => {
-        dispatch(getPrice());
-    },
-    getChartData: () => {
-        dispatch(getChartData());
-    },
     setCurrency: currency => {
         dispatch(setCurrency(currency));
     },
