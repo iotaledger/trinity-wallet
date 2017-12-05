@@ -19,7 +19,7 @@ import {
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
+import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -120,19 +120,16 @@ class Send extends Component {
 
     renderInvalidAddressErrors(address) {
         const { t } = this.props;
-        const props = ['error', 'Invalid address'];
+        const props = ['error', t('invalidAddress')];
         const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
-            return dropdown.alertWithType(
-                ...props,
-                `Address should be ${MAX_SEED_LENGTH} characters long and should have a checksum.`,
-            );
+            return dropdown.alertWithType(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
         } else if (address.match(VALID_SEED_REGEX) == null) {
-            return dropdown.alertWithType(...props, 'Address contains invalid characters.');
+            return dropdown.alertWithType(...props, t('invalidAddressExplanation2'));
         }
 
-        return dropdown.alertWithType(...props, 'Address contains an invalid checksum');
+        return dropdown.alertWithType(...props, t('invalidAddressExplanation3'));
     }
 
     onSendPress() {
@@ -154,11 +151,7 @@ class Send extends Component {
 
         if (!enoughBalance) {
             const dropdown = DropdownHolder.getDropdown();
-            return dropdown.alertWithType(
-                'error',
-                'Not enough funds',
-                'You do not have enough IOTA to complete this transfer.',
-            );
+            return dropdown.alertWithType('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
         }
         if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
@@ -166,11 +159,7 @@ class Send extends Component {
 
         if (!amountIsValid) {
             const dropdown = DropdownHolder.getDropdown();
-            return dropdown.alertWithType(
-                'error',
-                'Incorrect amount entered',
-                'Please enter a numerical value for the transaction amount.',
-            );
+            return dropdown.alertWithType('error', t('invalidAmount'), t('invalidAmountExplanation'));
         }
 
         if (!messageIsValid) {
@@ -182,7 +171,7 @@ class Send extends Component {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (this.props.tempAccount.isSyncing) {
-            dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
+            dropdown.alertWithType('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
             return;
         }
         sentDenomination = this.state.denomination;
@@ -291,7 +280,7 @@ class Send extends Component {
         if (this.state.maxPressed) {
             return (
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={styles.maxWarningText}>MAXIMUM amount selected</Text>
+                    <Text style={styles.maxWarningText}>t('maximumSelected')</Text>
                 </View>
             );
         } else {
@@ -360,7 +349,7 @@ class Send extends Component {
                                     baseColor="white"
                                     tintColor="#F7D002"
                                     enablesReturnKeyAutomatically={true}
-                                    label="Recipient address"
+                                    label={t('recipientAddress')}
                                     autoCorrect={false}
                                     value={address}
                                     onChangeText={address => this.setState({ address })}
@@ -370,7 +359,7 @@ class Send extends Component {
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
                                     <View style={styles.button}>
-                                        <Text style={styles.qrText}> QR </Text>
+                                        <Text style={styles.qrText}>{t('global:qr')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -388,7 +377,7 @@ class Send extends Component {
                                     labelPadding={2}
                                     baseColor="white"
                                     enablesReturnKeyAutomatically={true}
-                                    label="Amount"
+                                    label={t('amount')}
                                     tintColor="#F7D002"
                                     autoCorrect={false}
                                     value={amount}
@@ -416,7 +405,7 @@ class Send extends Component {
                             <View style={styles.maxButtonContainer}>
                                 <TouchableOpacity onPress={event => this.onMaxPress()}>
                                     <View style={styles.maxButton}>
-                                        <Text style={styles.maxButtonText}> MAX </Text>
+                                        <Text style={styles.maxButtonText}>{t('max')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -433,7 +422,7 @@ class Send extends Component {
                                 labelPadding={2}
                                 baseColor="white"
                                 enablesReturnKeyAutomatically={true}
-                                label="Message"
+                                label={t('message')}
                                 tintColor="#F7D002"
                                 autoCorrect={false}
                                 value={message}
@@ -454,7 +443,7 @@ class Send extends Component {
                                     }}
                                 >
                                     <View style={styles.sendIOTAButton}>
-                                        <Text style={styles.sendIOTAText}>SEND</Text>
+                                        <Text style={styles.sendIOTAText}>{t('send')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -479,7 +468,7 @@ class Send extends Component {
                                     source={require('iota-wallet-shared-modules/images/info.png')}
                                     style={styles.infoIcon}
                                 />
-                                <Text style={styles.infoText}>IOTA units</Text>
+                                <Text style={styles.infoText}>t('iotaUnits')</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
