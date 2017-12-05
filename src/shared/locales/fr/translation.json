@@ -25,7 +25,9 @@
         "no": "NON",
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
-        "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer."
+        "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -132,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "Adresse invalide",
-        "invalidAddressExplanation1": "L'adresse doit comporter 81 caractères et présenter un code de vérification.",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "La Seed contient des caractères invalides.",
         "invalidAddressExplanation3": "La Seed contient un code de vérification invalide.",
         "notEnoughFunds": "Fonds insuffisants",
@@ -143,7 +145,11 @@
         "amount": "Montant",
         "max": "MAX",
         "message": "Message",
-        "send": "ENVOYER LES IOTA"
+        "send": "SEND",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "Le mot de passe est trop court",
