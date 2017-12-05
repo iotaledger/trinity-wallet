@@ -145,7 +145,7 @@
         "amount": "Aantal",
         "max": "MAX",
         "message": "Bericht",
-        "send": "SEND",
+        "send": "Verstuur",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
         "maximumSelected": "MAXIMUM amount selected",
