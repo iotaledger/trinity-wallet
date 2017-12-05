@@ -6,6 +6,8 @@ import { width, height } from '../util/dimensions';
 
 class LogoutConfirmationModal extends React.Component {
     render() {
+        const { t } = this.props;
+
         return (
             <ImageBackground
                 source={require('iota-wallet-shared-modules/images/bg-blue.png')}

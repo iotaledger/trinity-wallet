@@ -62,11 +62,11 @@ export default class WalletResetConfirmation extends Component {
                         source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                         style={styles.iotaLogo}
                     />
+                </View>
+                <View style={styles.midWrapper}>
                     <View style={styles.subHeaderWrapper}>
                         <Text style={styles.subHeaderText}>{toUpper('this action cannot be undone.')}</Text>
                     </View>
-                </View>
-                <View style={styles.midWrapper}>
                     <View style={styles.infoTextWrapper}>
                         <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
@@ -108,13 +108,12 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midWrapper: {
-        flex: 2.4,
+        flex: 2.1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 8,
+        justifyContent: 'space-between',
     },
     bottomWrapper: {
-        flex: 1.2,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -123,7 +122,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: width / 10,
-        paddingTop: height / 15,
     },
     subHeaderText: {
         color: Colors.orangeDark,
@@ -140,7 +138,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
-        paddingVertical: height / 50,
+        paddingVertical: height / 35,
         borderStyle: 'dotted',
     },
     infoText: {
@@ -167,14 +165,12 @@ const styles = StyleSheet.create({
     confirmationTextWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 25,
     },
     confirmationText: {
         color: Colors.white,
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
-        paddingTop: height / 40,
         backgroundColor: 'transparent',
     },
     iotaLogo: {

@@ -79,7 +79,7 @@ class LanguageSelection extends Component {
     }
 
     render() {
-        const { backPress } = this.props;
+        const { backPress, t } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={() => this.dropdown.closeDropdown()}>

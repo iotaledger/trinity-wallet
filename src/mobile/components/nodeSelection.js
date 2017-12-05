@@ -9,13 +9,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-    textFieldContainer: {
-        flex: 1,
-        alignItems: 'center',
-        paddingTop: height / 10,
+    topContainer: {
+        flex: 10,
+        justifyContent: 'flex-end',
     },
     bottomContainer: {
-        flex: 0.5,
+        flex: 1,
         width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
@@ -59,20 +58,23 @@ class NodeSelection extends Component {
     }
 
     render() {
-        const { node, nodes, backPress } = this.props;
+        const { node, nodes, backPress, t } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={() => this.dropdown.closeDropdown()}>
                 <View style={styles.container}>
-                    <Dropdown
-                        ref={c => {
-                            this.dropdown = c;
-                        }}
-                        title="Node"
-                        dropdownWidth={styles.dropdownWidth}
-                        defaultOption={node}
-                        options={nodes}
-                    />
+                    <View style={styles.topContainer}>
+                        <View style={{ flex: 0.2 }} />
+                        <Dropdown
+                            ref={c => {
+                                this.dropdown = c;
+                            }}
+                            title="Node"
+                            dropdownWidth={styles.dropdownWidth}
+                            defaultOption={node}
+                            options={nodes}
+                        />
+                    </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>

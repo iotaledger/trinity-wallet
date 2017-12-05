@@ -277,13 +277,7 @@ class TopBar extends Component {
                                     {...iconProps}
                                 />
                             ) : (
-                                <View
-                                    style={
-                                        shouldDisable
-                                            ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                            : styles.chevron
-                                    }
-                                />
+                                <View />
                             )}
                         </View>
                     </View>

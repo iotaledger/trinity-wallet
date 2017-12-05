@@ -58,6 +58,8 @@ class Receive extends Component {
 
     onGeneratePress() {
         const dropdown = DropdownHolder.getDropdown();
+        const { t } = this.props;
+
         if (this.props.tempAccount.isSyncing) {
             dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
             return;
@@ -79,6 +81,7 @@ class Receive extends Component {
         });
 
         const generate = (seed, accountName, addresses) => this.props.generateNewAddress(seed, accountName, addresses);
+
         const error = () => {
             this.props.generateNewAddressError();
             dropdown.alertWithType('error', t('somethingWentWrong'), t('somethingWentWrongExplanation'));
@@ -87,6 +90,8 @@ class Receive extends Component {
 
     onAddressPress(address) {
         const dropdown = DropdownHolder.getDropdown();
+        const { t } = this.props;
+
         if (address !== ' ') {
             Clipboard.setString(address);
             dropdown.alertWithType('success', t('addressCopied'), t('addressCopiedExplanation'));

@@ -34,6 +34,7 @@ class SetPassword extends React.Component {
     }
 
     onDonePress() {
+        const { t } = this.props;
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
             checkKeychainForDuplicates(
                 this.state.password,

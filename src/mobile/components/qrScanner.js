@@ -6,6 +6,8 @@ import { width, height } from '../util/dimensions';
 
 class QRScanner extends React.Component {
     render() {
+        const { t } = this.props;
+
         return (
             <View style={styles.modalContent}>
                 <ImageBackground

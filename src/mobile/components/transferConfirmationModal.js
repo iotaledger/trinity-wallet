@@ -16,6 +16,8 @@ class TransferConfirmationModal extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <ImageBackground
                 source={require('../../shared/images/bg-blue.png')}

@@ -47,6 +47,8 @@ class ViewSeed extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
