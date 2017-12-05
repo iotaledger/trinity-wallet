@@ -10,6 +10,7 @@ import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { Navigation } from 'react-native-navigation';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 
 import { width, height } from '../util/dimensions';
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
@@ -43,10 +44,7 @@ class Loading extends Component {
 
         if (this.props.account.firstUse) {
             return (
-                <ImageBackground
-                    source={require('iota-wallet-shared-modules/images/bg-blue.png')}
-                    style={styles.container}
-                >
+                <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -65,10 +63,7 @@ class Loading extends Component {
             );
         } else if (!this.props.account.firstUse) {
             return (
-                <ImageBackground
-                    source={require('iota-wallet-shared-modules/images/bg-blue.png')}
-                    style={styles.container}
-                >
+                <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <IotaSpin duration={3000} />
                 </ImageBackground>
