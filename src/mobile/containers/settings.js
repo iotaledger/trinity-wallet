@@ -20,6 +20,7 @@ import {
     addAccountName,
     changeAccountName,
     removeAccount,
+    setBalance,
 } from 'iota-wallet-shared-modules/actions/account';
 import { setFullNode, getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
 import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
@@ -72,6 +73,7 @@ class Settings extends React.Component {
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
 
     _renderSettingsContent = content => {
+        const { t } = this.props;
         let accountInfo = this.props.account.accountInfo;
         let seedIndex = this.props.tempAccount.seedIndex;
         let currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
@@ -392,10 +394,10 @@ class Settings extends React.Component {
 
     onManualSyncPress() {
         const dropdown = DropdownHolder.getDropdown();
+        const { t } = this.props;
         this.props.manualSyncRequest();
         getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value != 'undefined' && value != null) {
-                console.log(value);
                 const seedIndex = this.props.tempAccount.seedIndex;
                 const accountName = this.props.account.seedNames[seedIndex];
                 const seed = getSeed(value, seedIndex);
@@ -428,6 +430,7 @@ class Settings extends React.Component {
 
     //UseExistingSeed method
     addExistingSeed(seed, accountName) {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (!seed.match(VALID_SEED_REGEX) && seed.length == MAX_SEED_LENGTH) {
             dropdown.alertWithType(
@@ -494,6 +497,7 @@ class Settings extends React.Component {
 
     //EditAccountName method
     saveAccountName(accountName) {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         let accountInfo = this.props.account.accountInfo;
         let accountNameArray = this.props.account.seedNames;
@@ -528,18 +532,20 @@ class Settings extends React.Component {
 
     //EditAccountName and ViewSeed method
     onWrongPassword() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'Unrecognised password', 'The password was not recognised. Please try again.');
     }
 
     //DeleteAccount method
     deleteAccount() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-
         let seedIndex = this.props.tempAccount.seedIndex;
-        let accountNames = this.props.account.seedNames;
-        let currentAccountName = accountNames[seedIndex];
+        const accountNames = this.props.account.seedNames;
+        const currentAccountName = accountNames[seedIndex];
         let accountInfo = this.props.account.accountInfo;
+        let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
 
         let newAccountInfo = accountInfo;
         delete newAccountInfo[currentAccountName];
@@ -550,6 +556,12 @@ class Settings extends React.Component {
                 deleteSeed(value, this.props.tempAccount.password, seedIndex);
                 this.props.setSeedIndex(0);
                 this.props.removeAccount(newAccountInfo, accountNames);
+
+                seedIndex = this.props.tempAccount.seedIndex;
+                accountInfo = this.props.account.accountInfo;
+                addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+
+                this.props.setBalance(addressesWithBalance);
                 this.props.setSetting('accountManagement');
                 dropdown.alertWithType('success', 'Account deleted', `Your account has been removed from the wallet.`);
             } else {
@@ -579,6 +591,7 @@ class Settings extends React.Component {
     }
 
     onDeleteAccountPress() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (this.props.account.seedCount == 1) {
             dropdown.alertWithType('error', 'Cannot perform action', 'Go to advanced settings to reset the wallet.');
@@ -588,21 +601,25 @@ class Settings extends React.Component {
     }
 
     onModePress() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
     onCurrencyPress() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
     onThemePress() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
 
     on2FASetupPress() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
     }
@@ -643,7 +660,7 @@ class Settings extends React.Component {
     }
 
     navigateNewSeed() {
-        this._hideModal();
+        //this.props.endBackgroundProcesses();
         this.props.navigator.push({
             screen: 'newSeedSetup',
             navigatorStyle: {
@@ -660,6 +677,7 @@ class Settings extends React.Component {
     }
 
     onAddNewSeedPress() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (this.props.tempAccount.isSendingTransfer) {
             dropdown.alertWithType('error', 'Transfer sending', 'Please wait until your transfer has been sent.');
@@ -813,6 +831,7 @@ const mapDispatchToProps = dispatch => ({
     setReady: () => dispatch(setReady()),
     manualSyncRequest: () => dispatch(manualSyncRequest()),
     manualSyncComplete: () => dispatch(manualSyncComplete()),
+    setBalance: address => dispatch(setBalance(address)),
 });
 
 const mapStateToProps = state => ({

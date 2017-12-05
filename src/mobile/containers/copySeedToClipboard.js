@@ -16,6 +16,8 @@ class CopySeedToClipboard extends React.Component {
     }
 
     generateSeedClearanceAlert() {
+        const { t } = this.props;
+
         if (this.dropdown) {
             this.dropdown.alertWithType('info', t('seedCleared'), t('seedClearedExplanation'));
         }
@@ -42,6 +44,8 @@ class CopySeedToClipboard extends React.Component {
     }
 
     onCopyPress() {
+        const { t } = this.props;
+
         Clipboard.setString(this.props.tempAccount.seed);
         this.dropdown.alertWithType('success', t('seedCopied'), t('seedCopiedExplanation'));
 

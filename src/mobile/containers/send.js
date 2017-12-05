@@ -119,6 +119,7 @@ class Send extends Component {
     }
 
     renderInvalidAddressErrors(address) {
+        const { t } = this.props;
         const props = ['error', 'Invalid address'];
         const dropdown = DropdownHolder.getDropdown();
 
@@ -135,6 +136,7 @@ class Send extends Component {
     }
 
     onSendPress() {
+        const { t } = this.props;
         const address = this.state.address;
         const amount = this.state.amount;
         const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
@@ -177,6 +179,7 @@ class Send extends Component {
     }
 
     sendTransfer() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (this.props.tempAccount.isSyncing) {
             dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
@@ -332,7 +335,7 @@ class Send extends Component {
 
     render() {
         let { amount, address, message, denomination } = this.state;
-
+        const { t } = this.props;
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
