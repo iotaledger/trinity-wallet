@@ -58,7 +58,7 @@ class Home extends Component {
 
     componentDidMount() {
         this.props.setFirstUse(false);
-
+        this.startBackgroundProcesses();
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
