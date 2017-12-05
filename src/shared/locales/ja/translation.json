@@ -134,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "アドレスは{{maxLength}}文字にする必要があり、チェックサムを持っている必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
         "notEnoughFunds": "残高不足です。",
@@ -146,8 +146,8 @@
         "max": "最大",
         "message": "メッセージ",
         "send": "送金",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "invalidAmount": "不適切な金額が入力されました。",
+        "invalidAmountExplanation": "取引金額の数値を入力して下さい。",
         "maximumSelected": "MAXIMUM amount selected",
         "iotaUnits": "IOTA units"
     },
