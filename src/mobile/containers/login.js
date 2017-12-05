@@ -13,12 +13,12 @@ import {
 } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice } from '../../shared/actions/marketData';
-import { getCurrencyData, setFullNode } from '../../shared/actions/settings';
-import { setPassword, clearTempData, setReady } from '../../shared/actions/tempAccount';
-import { getAccountInfo, getFullAccountInfo } from '../../shared/actions/account';
-import { changeHomeScreenRoute } from '../../shared/actions/home';
-import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
+import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
+import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
+import { setPassword, clearTempData, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
+import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
+import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';

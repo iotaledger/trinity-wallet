@@ -57,7 +57,10 @@ class ManualSync extends React.Component {
                     {!this.props.isSyncing && (
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/arrow-left.png')} style={styles.icon} />
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                    style={styles.icon}
+                                />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
