@@ -7,6 +7,8 @@ import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
+import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
@@ -65,10 +67,10 @@ export default class InitialLoading extends Component {
     render() {
         const currentYear = getCurrentYear();
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
-                    <Image source={require('iota-wallet-shared-modules/images/iota-white.png')} style={styles.logo} />
+                    <Image source={iotaWhiteImagePath} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>IOTA Alpha Wallet {currentYear}</Text>
