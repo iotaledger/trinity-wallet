@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Seedbox from '../components/seedBox.js';
 import { width, height } from '../util/dimensions';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 class WriteSeedDown extends React.Component {
     constructor(props) {
@@ -20,18 +22,17 @@ class WriteSeedDown extends React.Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>
-                            {`Your seed is ${MAX_SEED_LENGTH} characters read from left to right. Write down your seed and checksum and`}
+                            {`Your seed is ${
+                                MAX_SEED_LENGTH
+                            } characters read from left to right. Write down your seed and checksum and`}
                         </Text>
                         <Text style={styles.infoTextBold}> triple check </Text>
                         <Text style={styles.infoTextNormal}>they are correct.</Text>
