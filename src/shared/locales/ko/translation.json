@@ -145,7 +145,7 @@
         "amount": "금액",
         "max": "MAX",
         "message": "Message",
-        "send": "SEND",
+        "send": "보내기",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
         "maximumSelected": "MAXIMUM amount selected",
