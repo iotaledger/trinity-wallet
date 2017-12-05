@@ -22,9 +22,10 @@ import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/li
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 const StatusBarDefaultBarStyle = 'light-content';
@@ -131,10 +132,7 @@ class EnterSeed extends React.Component {
                                     <View style={styles.qrButtonContainer}>
                                         <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
-                                                <Image
-                                                    source={cameraImagePath}
-                                                    style={styles.qrImage}
-                                                />
+                                                <Image source={cameraImagePath} style={styles.qrImage} />
                                                 <Text style={styles.qrText}>{t('global:qr')}</Text>
                                             </View>
                                         </TouchableOpacity>
@@ -143,10 +141,7 @@ class EnterSeed extends React.Component {
                             </View>
                             <View style={styles.bottomMidContainer}>
                                 <View style={styles.infoTextContainer}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/info.png')}
-                                        style={styles.infoIcon}
-                                    />
+                                    <Image source={infoImagePath} style={styles.infoIcon} />
                                     <Text style={styles.infoText}>
                                         {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                                     </Text>
