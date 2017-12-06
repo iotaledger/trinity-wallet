@@ -6,12 +6,11 @@ import i18next from 'i18next';
 import Triangle from 'react-native-triangle';
 import { detectLocale, selectLocale } from '../components/locale';
 import { getDeviceLocale } from 'react-native-device-info';
-import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'iota-wallet-shared-modules/libs/i18n';
+import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import setFirstUse from 'iota-wallet-shared-modules/actions/account';
 import Dropdown from '../components/dropdown';
 
 import { width, height } from '../util/dimensions';
-let locale = getDeviceLocale();
 
 const styles = StyleSheet.create({
     container: {
@@ -66,13 +65,9 @@ const styles = StyleSheet.create({
     },
 });
 
+const locale = getDeviceLocale();
 const defaultLocale = detectLocale(locale);
 const defaultLanguageLabel = selectLocale(defaultLocale);
-
-const updateLanguageFromLabel = label => {
-    const languageIndex = I18N_LOCALE_LABELS.findIndex(l => l === label);
-    i18next.changeLanguage(I18N_LOCALES[languageIndex]);
-};
 
 class LanguageSetup extends Component {
     componentWillMount() {
@@ -92,7 +87,7 @@ class LanguageSetup extends Component {
     }
 
     clickDropdownItem(languageLabel) {
-        updateLanguageFromLabel(languageLabel);
+        i18next.changeLanguage(getLocaleFromLabel(languageLabel));
     }
 
     render() {

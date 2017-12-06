@@ -62,3 +62,8 @@ export const I18N_LOCALE_LABELS = [
     '中文 (简体) - Chinese (Simplified)',
     '中文 (繁體) - Chinese (Traditional)',
 ];
+
+export const getLocaleFromLabel = label => {
+    const languageIndex = I18N_LOCALE_LABELS.findIndex(l => l === label);
+    return I18N_LOCALES[languageIndex];
+};
