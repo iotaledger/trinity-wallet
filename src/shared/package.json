@@ -16,7 +16,8 @@
         "moment": "^2.19.1",
         "redux": "^3.7.2",
         "redux-persist": "^4.10.1",
-        "redux-thunk": "^2.2.0"
+        "redux-thunk": "^2.2.0",
+        "reselect": "^3.0.1"
     },
     "devDependencies": {
         "babel-eslint": "^8.0.3",
