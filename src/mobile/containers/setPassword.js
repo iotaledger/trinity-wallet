@@ -1,8 +1,8 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -12,16 +12,15 @@ import {
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addSeedName, setOnboardingComplete } from '../../shared/actions/account';
-import { clearTempData, clearSeed } from '../../shared/actions/tempAccount';
-import { storeInKeychain } from '../../shared/libs/cryptography';
+import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
+import { clearTempData, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { storeSeedInKeychain, checkKeychainForDuplicates } from 'iota-wallet-shared-modules/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -35,37 +34,48 @@ class SetPassword extends React.Component {
     }
 
     onDonePress() {
+        const { t } = this.props;
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
-            Promise.resolve(
-                storeInKeychain(this.state.password, this.props.tempAccount.seed, this.props.tempAccount.seedName),
-            )
-                .then(this.props.clearTempData())
-                .then(this.props.clearSeed());
-            this.props.setOnboardingComplete(true);
-            this.props.addSeedName(this.props.tempAccount.seedName);
-            this.props.navigator.push({
-                screen: 'onboardingComplete',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                },
-                animated: false,
-                overrideBackPress: true,
-            });
+            checkKeychainForDuplicates(
+                this.state.password,
+                this.props.tempAccount.seed,
+                this.props.tempAccount.seedName,
+                (type, title, message) => dropdown.alertWithType(type, title, message),
+                () =>
+                    ifNoKeychainDuplicates(
+                        this.state.password,
+                        this.props.tempAccount.seed,
+                        this.props.tempAccount.seedName,
+                    ),
+            );
+            ifNoKeychainDuplicates = (password, seed, accountName) => {
+                storeSeedInKeychain(password, seed, accountName), this.props.addAccountName(accountName);
+                this.props.increaseSeedCount();
+                this.props.clearTempData();
+                this.props.clearSeed();
+                this.props.setOnboardingComplete(true);
+                this.props.navigator.push({
+                    screen: 'onboardingComplete',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                    },
+                    animated: false,
+                    overrideBackPress: true,
+                });
+            };
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
                 this.dropdown.alertWithType(
                     'error',
-                    'Password is too short',
-                    `Your password must be at least ${MIN_PASSWORD_LENGTH} characters. It is currently ${this.state
-                        .password.length} characters long. Please try again.`,
+                    t('passwordTooShort'),
+                    t('passwordTooShortExplanation', {
+                        minLength: MIN_PASSWORD_LENGTH,
+                        currentLength: this.state.password.length,
+                    }),
                 );
             } else if (!(this.state.password === this.state.reentry)) {
-                this.dropdown.alertWithType(
-                    'error',
-                    'Passwords do not match',
-                    'The passwords you have entered do not match. Please try again.',
-                );
+                this.dropdown.alertWithType('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
             }
         }
     }
@@ -77,27 +87,30 @@ class SetPassword extends React.Component {
 
     render() {
         let { password, reentry } = this.state;
+        const { t } = this.props;
+
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                                style={styles.iotaLogo}
+                            />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.greetingText}>Now we need to set up a password.</Text>
+                                <Text style={styles.greetingText}>{t('nowWeNeedTo')}</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
                             <View style={styles.infoTextContainer}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                <Text style={styles.infoText}>
-                                    An encrypted copy of your seed will be stored on your device. You will use this
-                                    password to access your wallet in future.
-                                </Text>
-                                <Text style={styles.warningText}>
-                                    Ensure you use a strong password of at least 12 characters.
-                                </Text>
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/info.png')}
+                                    style={styles.infoIcon}
+                                />
+                                <Text style={styles.infoText}>{t('anEncryptedCopy')}</Text>
+                                <Text style={styles.warningText}>{t('ensure')}</Text>
                             </View>
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
@@ -106,7 +119,7 @@ class SetPassword extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Password"
+                                label={t('global:password')}
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -114,23 +127,23 @@ class SetPassword extends React.Component {
                                 returnKeyType="next"
                                 value={password}
                                 onChangeText={password => this.setState({ password })}
-                                onSubmitEditing={event => {
-                                    this.refs.reentry.focus();
-                                }}
+                                onSubmitEditing={() => this.reentry.focus()}
                                 containerStyle={{
                                     width: width / 1.36,
                                 }}
                                 secureTextEntry={true}
                             />
                             <TextField
-                                ref="reentry"
+                                ref={c => {
+                                    this.reentry = c;
+                                }}
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={width / 31.8}
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Retype Password"
+                                label={t('retypePassword')}
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -140,14 +153,15 @@ class SetPassword extends React.Component {
                                 onChangeText={reentry => this.setState({ reentry })}
                                 containerStyle={{ width: width / 1.36 }}
                                 secureTextEntry={true}
+                                onSubmitEditing={() => this.onDonePress()}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={'BACK'}
-                                rightText={'DONE'}
+                                leftText={t('global:back')}
+                                rightText={t('global:done')}
                             />
                         </View>
                     </View>
@@ -213,7 +227,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingVertical: height / 60,
+        paddingVertical: height / 35,
         marginTop: height / 25,
     },
     infoText: {
@@ -295,8 +309,8 @@ const mapDispatchToProps = dispatch => ({
     setOnboardingComplete: boolean => {
         dispatch(setOnboardingComplete(boolean));
     },
-    storeInKeychain: password => {
-        dispatch(storeInKeychain(password));
+    storeSeedInKeychain: password => {
+        dispatch(storeSeedInKeychain(password));
     },
     clearTempData: () => {
         dispatch(clearTempData());
@@ -307,9 +321,9 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    addSeedName: newSeed => {
-        dispatch(addSeedName(newSeed));
+    addAccountName: newSeed => {
+        dispatch(addAccountName(newSeed));
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SetPassword);
+export default translate(['setPassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SetPassword));

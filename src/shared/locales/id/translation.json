@@ -14,18 +14,20 @@
         "notAvailable": "Fungsi ini tidak tersedia",
         "notAvailableExplanation": "Ini akan ditambahkan di tahap berikutnya.",
         "enterSeed": "Silakan masukkan Seed Anda.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "mainWallet": "AKUN UTAMA",
+        "secondWallet": "AKUN KEDUA",
+        "thirdWallet": "AKUN KETIGA",
+        "fourthWallet": "AKUN KEEMPAT",
+        "fifthWallet": "AKUN KELIMA",
+        "sixthWallet": "AKUN KEENAM",
+        "otherWallet": "AKUN LAINNYA",
         "yes": "IYA",
         "no": "TIDAK",
         "password": "Kata Sandi",
         "unrecognisedPassword": "Kata sandi tidak dikenali",
-        "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali."
+        "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali.",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -33,11 +35,13 @@
             "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
         "seedTooShortExplanation":
-            "Seed harus terdiri dari setidaknya 60 karakter (sebaiknya 81 karakter). Seed Anda adalah {seed.length} karakter. Silahkan coba lagi.",
+            "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{maxLength}} karakter. Silahkan coba lagi.",
         "nameInUse": "Nama akun sudah digunakan",
         "nameInUseExplanation": "Silahkan menggunakan nama akun yang unik untuk Seed anda.",
         "enterAccountName": "Masukkan nama akun.",
-        "accountName": "Nama akun"
+        "accountName": "Nama akun",
+        "noNickname": "Tidak ada nama akun yang dimasukkan",
+        "noNicknameExplanation": "Silahkan masukkan nama akun untuk Seed Anda."
     },
     "changePassword": {
         "oops": "Ups! Terjadi kesalahan",
@@ -72,9 +76,9 @@
             "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
         "seedTooShortExplanation":
-            "Seed harus terdiri dari setidaknya 60 karakter (sebaiknya 81 karakter). Seed Anda adalah {seed.length} karakter. Silahkan coba lagi.",
+            "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{maxLength}} karakter. Silahkan coba lagi.",
         "seedExplanation":
-            "Seed harus 81 karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari 81 karakter.",
+            "Seed harus {{maxLength}} karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari {{maxLength}} karakter.",
         "neverShare": "JANGAN PERNAH MEMBERITAHUKAN SEED ANDA DENGAN SIAPAPUN"
     },
     "home": {
@@ -95,9 +99,9 @@
         "login": "MASUK"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Menyiapkan Seed untuk pertama kalinya.",
+        "thisMayTake": "Ini dapat memakan beberapa saat.",
+        "youMayNotice": "Anda mungkin dapat memperhatikan perangkat anda menjadi lambat pada proses ini."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed belum dibuat",
@@ -121,11 +125,13 @@
         "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali.",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
-        "generateNewAddress": "BUAT SEED BARU"
+        "generateNewAddress": "BUAT SEED BARU",
+        "message": "Pesan opsional",
+        "removeMessage": "HAPUS PESAN"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "Anda harus menyimpan password anda dengan",
-        "atLeastOne": "setidaknya satu",
+        "mustSaveYourSeed": "Anda harus menyimpan password anda dengan ",
+        "atLeastOne": "setidaknya satu ",
         "ofTheOptions": "pilihan dibawah ini."
     },
     "seedReentry": {
@@ -136,7 +142,7 @@
     },
     "send": {
         "invalidAddress": "Alamat salah",
-        "invalidAddressExplanation1": "Alamat harus 81 karakter dan memiliki cek jumlah.",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
         "notEnoughFunds": "Dana tidak mencukupi",
@@ -147,7 +153,11 @@
         "amount": "Nominal",
         "max": "Maks",
         "message": "Pesan",
-        "send": "KIRIM IOTA"
+        "send": "KIRIM",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "Kata sandi terlalu singkat",
@@ -186,10 +196,10 @@
     "resetWalletConfirmation": {
         "thisAction": "Tindakan ini tidak dapat diulang.",
         "warning1": "Semua dompet anda termasuk",
-        "warning2": " seeds, password, ",
+        "warning2": " Seed, kata sandi, ",
         "warning3": "dan",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
+        "warning4": " informasi akun lainnya",
+        "warning5": " akan dihapus.",
         "areYouSure": "Anda yakin ingin melanjutkan?"
     },
     "resetWalletRequirePassword": {
@@ -198,14 +208,14 @@
         "reset": "HAPUS"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
+        "okay": "Oke. Mari menyiapkan dompet Anda!",
         "doYouAlreadyHaveASeed": "Apakah anda sudah memiliki Seed yang ingin digunakan?",
         "seedExplanation":
             "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
         "explanation1": "Anda dapat menggunakan ini untuk mengakses dana anda dari",
-        "explanation2": " any wallet ",
+        "explanation2": " dompet manapun ",
         "explanation3": ", di",
-        "explanation4": " any device",
+        "explanation4": " perangkat manapun",
         "explanation5": ". Tetapi jika anda lupa Seed, Anda juga akan kehilangan IOTA.",
         "keepSafe": "Harap disimpan Seed anda dengan baik."
     },

@@ -25,17 +25,21 @@
         "no": "いいえ",
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
-        "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。"
+        "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
         "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
+        "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。現在のSeedは{{currentLength}}文字です。もう一度やり直して下さい。",
         "nameInUse": "このアカウント名はすでに使われています。",
         "nameInUseExplanation": "あなたのSeedに唯一のアカウント名を付けてください。",
         "enterAccountName": "アカウント名を入力して下さい。",
-        "accountName": "アカウント名"
+        "accountName": "アカウント名",
+        "noNickname": "アカウント名が入力されていません。",
+        "noNicknameExplanation": "Seedのアカウント名を入力して下さい。"
     },
     "changePassword": {
         "oops": "不具合が発生しました。",
@@ -66,8 +70,9 @@
         "invalidCharacters": "無効な文字を含んだSeedです。",
         "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは最低60文字以上(理想的には81文字)にする必要があります。あなたのSeedは現在{seed.length}文字です。もう一度やり直して下さい。",
-        "seedExplanation": "Seedは81文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、81文字以上の長さにはできません。",
+        "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
+        "seedExplanation":
+            "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -113,11 +118,13 @@
         "somethingWentWrongExplanation": "アプリを再起動して下さい。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "generateNewAddress": "アドレス生成"
+        "generateNewAddress": "アドレス生成",
+        "message": "任意のメッセージ",
+        "removeMessage": "メッセージを削除します。"
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "安全にSeedを保存して下さい。",
-        "atLeastOne": "最低一つ",
+        "atLeastOne": "最低一つ ",
         "ofTheOptions": "以下のオプションを使って。"
     },
     "seedReentry": {
@@ -128,7 +135,7 @@
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
-        "invalidAddressExplanation1": "アドレスは81文字にする必要があり、チェックサムを持っている必要があります。",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
         "notEnoughFunds": "残高不足です。",
@@ -139,12 +146,15 @@
         "amount": "金額",
         "max": "最大",
         "message": "メッセージ",
-        "send": "IOTAを送金する。"
+        "send": "送金",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "パスワードが短すぎます。",
-        "passwordTooShortExplanation":
-            "パスワードは少なくとも${MIN_PASSWORD_LENGTH}文字以上にする必要があります。今は${this.state.password.length}文字です。もう一度やり直して下さい。",
+        "passwordTooShortExplanation": "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直して下さい。",
         "passwordMismatch": "パスワードが一致しません。",
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
         "nowWeNeedTo": "次にパスワードの設定です。",

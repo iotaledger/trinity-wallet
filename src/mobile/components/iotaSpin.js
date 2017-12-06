@@ -67,7 +67,7 @@ class IotaSpin extends React.Component {
                 style={{
                     transform: [{ scale: scale }, { rotate: spin }],
                 }}
-                source={require('../../shared/images/iota-glow.png')}
+                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
             />
         );
     }

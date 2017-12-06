@@ -1,11 +1,15 @@
 import { ActionTypes } from '../actions/settings.js';
+import { defaultNode as fullNode } from '../config';
 
 const initialState = {
     locale: 'en',
-    fullNode: 'http://node01.iotatoken.nl:14265',
+    fullNode,
     availableNodes: [
-        'https://n1.iota.nu:443',
+        'https://ceres.iota.community:14600/',
+        'http://148.251.181.105:14265/',
         'https://node.tangle.works:443',
+        'http://iotanode.us:443',
+        'https://n1.iota.nu:443',
         'http://node.lukaseder.de:14265',
         'http://eugene.iotasupport.com:14999',
         'http://node02.iotatoken.nl:14265',
@@ -27,6 +31,41 @@ const initialState = {
     theme: 'Standard',
     language: 'English (International)',
     currency: 'USD',
+    availableCurrencies: [
+        'USD',
+        'GBP',
+        'EUR',
+        'AUD',
+        'BGN',
+        'BRL',
+        'CAD',
+        'CHF',
+        'CNY',
+        'CZK',
+        'DKK',
+        'HKD',
+        'HRK',
+        'HUF',
+        'IDR',
+        'ILS',
+        'INR',
+        'JPY',
+        'KRW',
+        'MXN',
+        'MYR',
+        'NOK',
+        'NZD',
+        'PHP',
+        'PLN',
+        'RON',
+        'RUB',
+        'SEK',
+        'SGD',
+        'THB',
+        'TRY',
+        'ZAR',
+    ],
+    conversionRate: 1,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -71,10 +110,11 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 language: action.payload,
             };
-        case ActionTypes.SET_CURRENCY:
+        case ActionTypes.SET_CURRENCY_DATA:
             return {
                 ...state,
-                language: action.payload,
+                currency: action.currency,
+                conversionRate: action.conversionRate,
             };
     }
 
