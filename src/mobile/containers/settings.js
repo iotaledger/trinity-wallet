@@ -453,16 +453,17 @@ class Settings extends React.Component {
     }
 
     onResetWalletPress() {
-        this.props.navigator.push({
-            screen: 'wallet-reset-confirm',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundImageName: 'bg-blue.png',
-                screenBackgroundColor: '#102e36',
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'wallet-reset-confirm',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundImageName: 'bg-blue.png',
+                    screenBackgroundColor: '#102e36',
+                },
+                overrideBackPress: true,
             },
-            animated: false,
-            overrideBackPress: true,
         });
     }
 
