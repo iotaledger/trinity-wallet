@@ -4,7 +4,7 @@ import QRCode from 'qrcode.react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
-import { MAX_SEED_LENGTH } from 'libs/util';
+import { MAX_SEED_LENGTH } from '../../../../shared/libs/util';
 import Template, { Content, Footer } from './Template';
 import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
