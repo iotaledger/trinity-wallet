@@ -1,20 +1,12 @@
 import merge from 'lodash/merge';
+import { translate } from 'react-i18next';
+import i18next from 'i18next';
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    StatusBar,
-    Platform,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class WalletSetup extends React.Component {
     onYesPress() {
@@ -41,40 +33,40 @@ class WalletSetup extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
                     <View style={styles.greetingTextContainer}>
-                        <Text style={styles.greetingText}>Okay. Lets set up your wallet!</Text>
-                        <Text style={styles.questionText}>Do you already have a seed that you would like to use?</Text>
+                        <Text style={styles.greetingText}>{t('okay')}</Text>
+                        <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
                     </View>
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                        <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
+                        <Text style={styles.infoText}>{t('seedExplanation')}</Text>
                         <Text style={styles.infoText}>
-                            The IOTA seed is like a master key to your account. It is 81 characters long.
+                            <Text style={styles.infoTextLight}>{t('explanation1')}</Text>
+                            <Text style={styles.infoTextRegular}>{t('explanation2')}</Text>
+                            <Text style={styles.infoTextLight}>{t('explanation3')}</Text>
+                            <Text style={styles.infoTextRegular}>{t('explanation4')}</Text>
+                            <Text style={styles.infoTextLight}>{t('explanation5')}</Text>
                         </Text>
-                        <Text style={styles.infoText}>
-                            <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
-                            <Text style={styles.infoTextRegular}> any wallet</Text>
-                            <Text style={styles.infoTextLight}>, on</Text>
-                            <Text style={styles.infoTextRegular}> any device</Text>
-                            <Text style={styles.infoTextLight}>
-                                . But if you lose your seed, you also lose your IOTA.{' '}
-                            </Text>
-                        </Text>
-                        <Text style={styles.infoText}>Please keep your seed safe.</Text>
+                        <Text style={styles.infoText}>{t('keepSafe')}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onNoPress()}
                         onRightButtonPress={() => this.onYesPress()}
-                        leftText={'NO'}
-                        rightText={'YES'}
+                        leftText={t('global:no')}
+                        rightText={t('global:yes')}
                     />
                 </View>
             </ImageBackground>
@@ -116,7 +108,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingVertical: height / 60,
+        paddingVertical: height / 35,
     },
     infoText: {
         color: 'white',
@@ -205,4 +197,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default WalletSetup;
+export default translate(['walletSetup', 'global'])(WalletSetup);

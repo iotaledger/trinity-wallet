@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { translate } from 'react-i18next';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class OnboardingComplete extends React.Component {
     onNextPress() {
@@ -18,11 +18,16 @@ class OnboardingComplete extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
@@ -31,7 +36,7 @@ class OnboardingComplete extends React.Component {
                             look in the Settings menu.
                         </Text>
                     </View>
-                    <Image source={require('../../shared/images/balloons.png')} style={styles.party} />
+                    <Image source={require('iota-wallet-shared-modules/images/balloons.png')} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onNextPress()}>

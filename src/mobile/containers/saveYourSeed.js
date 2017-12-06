@@ -1,22 +1,12 @@
 import merge from 'lodash/merge';
 import React, { Component } from 'react';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    Platform,
-    StatusBar,
-} from 'react-native';
+import { translate } from 'react-i18next';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class SaveYourSeed extends Component {
     onDonePress() {
@@ -60,36 +50,40 @@ class SaveYourSeed extends Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
                     <Text style={styles.infoText}>
-                        <Text style={styles.infoTextNormal}>You must save your seed with</Text>
-                        <Text style={styles.infoTextBold}> at least one </Text>
-                        <Text style={styles.infoTextNormal}>of the options listed below.</Text>
+                        <Text style={styles.infoTextNormal}>{t('mustSaveYourSeed')}</Text>
+                        <Text style={styles.infoTextBold}>{t('atLeastOne')}</Text>
+                        <Text style={styles.infoTextNormal}>{t('ofTheOptions')}</Text>
                     </Text>
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ paddingTop: height / 20 }}>
                         <TouchableOpacity onPress={event => this.onWriteClick()}>
                             <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>MANUAL COPY</Text>
+                                <Text style={styles.optionButtonText}>{t('global:manualCopy').toUpperCase()}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onPrintClick()}>
                             <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>PRINT PAPER WALLET</Text>
+                                <Text style={styles.optionButtonText}>{t('global:paperWallet').toUpperCase()}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onCopyClick()}>
                             <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>COPY TO CLIPBOARD</Text>
+                                <Text style={styles.optionButtonText}>{t('global:copyToClipboard').toUpperCase()}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -98,8 +92,8 @@ class SaveYourSeed extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onDonePress()}
-                        leftText={'BACK'}
-                        rightText={'DONE'}
+                        leftText={t('global:back')}
+                        rightText={t('global:done')}
                     />
                 </View>
             </ImageBackground>
@@ -199,4 +193,4 @@ SaveYourSeed.propTypes = {
     navigator: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(SaveYourSeed);
+export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps)(SaveYourSeed));

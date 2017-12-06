@@ -6,9 +6,9 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleTopBarDisplay } from '../../shared/actions/home';
-import { getAccountInfo, setBalance } from '../../shared/actions/account';
-import { setSeedIndex, setReceiveAddress } from '../../shared/actions/tempAccount';
+import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
+import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
+import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -21,7 +21,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
-import { roundDown, formatValue, formatUnit } from '../../shared/libs/util';
+import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 
 const { height, width } = Dimensions.get('window');
 
@@ -29,12 +29,12 @@ class TopBar extends Component {
     static getIconPath(isActive) {
         if (isActive) {
             return {
-                source: require('../../shared/images/chevron-up.png'),
+                source: require('iota-wallet-shared-modules/images/chevron-up.png'),
             };
         }
 
         return {
-            source: require('../../shared/images/chevron-down.png'),
+            source: require('iota-wallet-shared-modules/images/chevron-down.png'),
         };
     }
 
@@ -42,6 +42,7 @@ class TopBar extends Component {
         seedNames: PropTypes.array.isRequired,
         accountInfo: PropTypes.object.isRequired,
         seedIndex: PropTypes.number.isRequired,
+        currentSetting: PropTypes.string.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGettingTransfers: PropTypes.bool.isRequired,
@@ -68,6 +69,17 @@ class TopBar extends Component {
                 this.props.toggleTopBarDisplay();
             }
         }
+        if (this.props.currentSetting !== newProps.currentSetting) {
+            // Detects if navigating across screens
+            if (this.props.isTopBarActive) {
+                // In case the dropdown is active
+                this.props.toggleTopBarDisplay();
+            }
+        }
+    }
+
+    shouldDisable() {
+        return this.props.isGeneratingReceiveAddress || this.props.isSendingTransfer || this.props.isSyncing;
     }
 
     filterSeedTitles(seedNames, currentSeedIndex) {
@@ -100,13 +112,33 @@ class TopBar extends Component {
 
         const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
         const titles = map(seedNames, withSubtitles);
+        const disableWhen = this.shouldDisable();
 
         const baseContent = (
             <View style={styles.titleWrapper}>
-                <TouchableWithoutFeedback onPress={() => this.props.toggleTopBarDisplay()}>
+                <TouchableWithoutFeedback
+                    onPress={() => {
+                        if (!disableWhen) {
+                            this.props.toggleTopBarDisplay();
+                        }
+                    }}
+                >
                     <View>
-                        <Text style={styles.mainTitle}>{selectedTitle}</Text>
-                        <Text style={styles.subtitle}>{selectedSubtitle}</Text>
+                        <Text
+                            numberOfLines={1}
+                            style={
+                                disableWhen ? StyleSheet.flatten([styles.mainTitle, styles.disabled]) : styles.mainTitle
+                            }
+                        >
+                            {selectedTitle}
+                        </Text>
+                        <Text
+                            style={
+                                disableWhen ? StyleSheet.flatten([styles.subtitle, styles.disabled]) : styles.subtitle
+                            }
+                        >
+                            {selectedSubtitle}
+                        </Text>
                     </View>
                 </TouchableWithoutFeedback>
             </View>
@@ -122,14 +154,25 @@ class TopBar extends Component {
             const children = (
                 <TouchableOpacity
                     onPress={() => {
-                        this.props.toggleTopBarDisplay(); // Close
-                        this.onChange(t.index);
+                        if (!disableWhen) {
+                            this.props.toggleTopBarDisplay(); // Close
+                            this.onChange(t.index);
+                        }
                     }}
                     key={idx}
                     style={{ width: width, alignItems: 'center' }}
                 >
-                    <Text style={styles.mainTitle}>{t.title}</Text>
-                    <Text style={styles.subtitle}>{t.subtitle}</Text>
+                    <Text
+                        numberOfLines={1}
+                        style={disableWhen ? StyleSheet.flatten([styles.mainTitle, styles.disabled]) : styles.mainTitle}
+                    >
+                        {t.title}
+                    </Text>
+                    <Text
+                        style={disableWhen ? StyleSheet.flatten([styles.subtitle, styles.disabled]) : styles.subtitle}
+                    >
+                        {t.subtitle}
+                    </Text>
                 </TouchableOpacity>
             );
 
@@ -210,17 +253,31 @@ class TopBar extends Component {
         const iconProps = TopBar.getIconPath(isTopBarActive);
         const children = this.renderTitles();
         const hasMultipleSeeds = size(this.filterSeedTitles(seedNames, seedIndex));
+        const shouldDisable = this.shouldDisable();
 
         return (
-            <TouchableWithoutFeedback onPress={this.props.toggleTopBarDisplay}>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    if (!shouldDisable) {
+                        this.props.toggleTopBarDisplay();
+                    }
+                }}
+            >
                 <View style={styles.container}>
                     <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                         <View style={styles.chevronWrapper}>
                             {hasMultipleSeeds ? (
-                                <Image style={styles.chevron} {...iconProps} />
+                                <Image
+                                    style={
+                                        shouldDisable
+                                            ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
+                                            : styles.chevron
+                                    }
+                                    {...iconProps}
+                                />
                             ) : (
-                                <View style={styles.chevron} />
+                                <View />
                             )}
                         </View>
                     </View>
@@ -260,12 +317,14 @@ const styles = StyleSheet.create({
         fontSize: width / 24.4,
         color: '#ffffff',
         paddingBottom: height / 170,
+        paddingHorizontal: width / 9,
     },
     subtitle: {
         textAlign: 'center',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
         color: '#d3d3d3',
+        paddingHorizontal: width / 9,
     },
     centralView: {
         alignItems: 'center',
@@ -281,18 +340,24 @@ const styles = StyleSheet.create({
         top: 0,
         right: width / 20,
     },
+    disabled: {
+        color: '#a9a9a9',
+    },
+    disabledImage: {
+        tintColor: '#a9a9a9',
+    },
     separator: {
         width: width / 2,
         marginVertical: height / 60,
         height: 1,
-        borderBottomWidth: 0.25,
+        borderBottomWidth: height / 3000,
         borderBottomColor: 'white',
     },
     topSeparator: {
         width: width,
         marginVertical: height / 60,
         height: 1,
-        borderBottomWidth: 0.25,
+        borderBottomWidth: height / 3000,
         borderBottomColor: 'white',
     },
     scrollViewContainer: {
@@ -304,10 +369,12 @@ const mapStateToProps = state => ({
     seedNames: state.account.seedNames,
     balance: state.account.balance,
     accountInfo: state.account.accountInfo,
+    currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     isGettingTransfers: state.tempAccount.isGettingTransfers,
+    isSyncing: state.tempAccount.isSyncing,
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
 });

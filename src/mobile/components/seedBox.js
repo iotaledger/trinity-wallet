@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class SeedBox extends React.Component {
     render() {
         return (
             <View style={styles.seedBox}>
-                <Image source={require('../../shared/images/arrow-white.png')} style={styles.arrow} />
+                <Image source={require('iota-wallet-shared-modules/images/arrow-white.png')} style={styles.arrow} />
                 <View style={styles.seedBoxTextContainer}>
                     <View style={{ marginRight: width / 30 }}>
                         <TextWithLetterSpacing spacing={8} textStyle={styles.seedBoxTextLeft}>
@@ -77,7 +77,7 @@ class SeedBox extends React.Component {
                             {this.props.seed.substring(66, 69)}
                         </TextWithLetterSpacing>
                         <TextWithLetterSpacing spacing={8} textStyle={styles.seedBoxTextLeft}>
-                            {this.props.seed.substring(78, 81)}
+                            {this.props.seed.substring(78, MAX_SEED_LENGTH)}
                         </TextWithLetterSpacing>
                     </View>
                     <View style={{ marginRight: width / 30 }}>

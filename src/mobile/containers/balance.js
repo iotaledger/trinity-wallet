@@ -1,14 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, ListView, Dimensions, StatusBar, Platform } from 'react-native';
+import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice, setCurrency, setTimeframe } from '../../shared/actions/marketData';
-import { round, roundDown, formatValue, formatUnit } from '../../shared/libs/util';
+import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
+import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
-const isAndroid = Platform.OS === 'android';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { isAndroid } from '../util/device';
+import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class Balance extends React.Component {
@@ -43,6 +44,7 @@ class Balance extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
@@ -52,46 +54,54 @@ class Balance extends React.Component {
             (this.props.account.balance < 1000 || this.getDecimalPlaces(formatValue(this.props.account.balance)) <= 1
                 ? ''
                 : '+');
+        const currencySymbol = getCurrencySymbol(this.props.settings.currency);
+        const fiatBalance =
+            this.props.account.balance * this.props.marketData.usdPrice / 1000000 * this.props.settings.conversionRate;
+
         return (
-            <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.balanceContainer}>
-                    <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
-                        {this.state.balanceIsShort ? shortenedBalance : formatValue(this.props.account.balance)}{' '}
-                        {formatUnit(this.props.account.balance)}
-                    </Text>
-                    <Text style={styles.fiatBalance}>
-                        $ {round(this.props.account.balance * this.props.marketData.usdPrice / 1000000, 2).toFixed(
-                            2,
-                        )}{' '}
-                    </Text>
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
+                <View style={styles.container}>
+                    <StatusBar barStyle="light-content" />
+                    <View style={styles.balanceContainer}>
+                        <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
+                            {this.state.balanceIsShort
+                                ? shortenedBalance
+                                : formatValue(this.props.account.balance)}{' '}
+                            {formatUnit(this.props.account.balance)}
+                        </Text>
+                        <Text style={styles.fiatBalance}>
+                            {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
+                        </Text>
+                    </View>
+                    <View style={styles.transactionsContainer}>
+                        <View style={styles.line} />
+                        <ListView
+                            dataSource={ds.cloneWithRows(
+                                accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
+                            )}
+                            renderRow={dataSource => (
+                                <SimpleTransactionRow addresses={addresses} rowData={dataSource} />
+                            )}
+                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                            enableEmptySections
+                            contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
+                            scrollEnabled={false}
+                            centerContent
+                        />
+                        <View style={styles.line} />
+                    </View>
+                    <View style={styles.chartContainer}>
+                        <Chart
+                            isSendingTransfer={this.props.tempAccount.isSendingTransfer}
+                            isGeneratingReceiveAddress={this.props.tempAccount.isGeneratingReceiveAddress}
+                            isSyncing={this.props.tempAccount.isSyncing}
+                            marketData={this.props.marketData}
+                            setCurrency={currency => this.props.setCurrency(currency)}
+                            setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
+                        />
+                    </View>
                 </View>
-                <View style={styles.transactionsContainer}>
-                    <View style={styles.line} />
-                    <ListView
-                        dataSource={ds.cloneWithRows(
-                            accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
-                        )}
-                        renderRow={dataSource => <SimpleTransactionRow addresses={addresses} rowData={dataSource} />}
-                        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                        enableEmptySections
-                        contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
-                        scrollEnabled={false}
-                        centerContent
-                    />
-                    <View style={styles.line} />
-                </View>
-                <View style={styles.chartContainer}>
-                    <Chart
-                        marketData={this.props.marketData}
-                        getPrice={() => this.props.getPrice()}
-                        getChartData={() => this.props.getChartData()}
-                        getMarketData={() => this.props.getMarketData()}
-                        setCurrency={currency => this.props.setCurrency(currency)}
-                        setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
-                    />
-                </View>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
@@ -109,6 +119,15 @@ const styles = StyleSheet.create({
         paddingTop: isAndroid ? height / 13 : height / 20,
         paddingBottom: isAndroid ? height / 30 : height / 50,
     },
+    transactionsContainer: {
+        flex: 2.2,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: height / 100,
+    },
+    chartContainer: {
+        flex: 5.3,
+    },
     iotaBalance: {
         color: 'white',
         fontFamily: 'Lato-Heavy',
@@ -122,22 +141,13 @@ const styles = StyleSheet.create({
         fontSize: width / 25,
         backgroundColor: 'transparent',
     },
-    transactionsContainer: {
-        flex: 2.2,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingVertical: height / 100,
-    },
-    chartContainer: {
-        flex: 5.3,
-    },
     line: {
         borderBottomColor: 'white',
-        borderBottomWidth: 0.25,
+        borderBottomWidth: height / 3000,
         width: width / 1.15,
     },
     separator: {
-        height: height / 90,
+        height: height / 120,
         flex: 1,
     },
     listViewAndroid: {
@@ -153,18 +163,10 @@ const mapStateToProps = state => ({
     marketData: state.marketData,
     account: state.account,
     tempAccount: state.tempAccount,
+    settings: state.settings,
 });
 
 const mapDispatchToProps = dispatch => ({
-    getMarketData: () => {
-        dispatch(getMarketData());
-    },
-    getPrice: () => {
-        dispatch(getPrice());
-    },
-    getChartData: () => {
-        dispatch(getChartData());
-    },
     setCurrency: currency => {
         dispatch(setCurrency(currency));
     },

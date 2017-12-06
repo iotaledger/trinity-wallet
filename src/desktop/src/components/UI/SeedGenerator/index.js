@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Letter from './Letter';
-import { createRandomSeed } from '../../../libs/util';
+import { createRandomSeed } from 'libs/seedUtil';
 
 import css from './SeedGenerator.css';
 

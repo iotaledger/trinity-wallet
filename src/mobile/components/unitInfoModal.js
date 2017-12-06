@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import OnboardingButtons from './onboardingButtons.js';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class UnitInfoModal extends React.Component {
     render() {
+        const { t } = this.props;
+
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
                 <View style={styles.modalContent}>
-                    <Image source={require('../../shared/images/iota-white.png')} style={styles.iotaIcon} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-white.png')}
+                        style={styles.iotaIcon}
+                    />
                     <TextWithLetterSpacing spacing={4} textStyle={styles.iotaText}>
                         IOTA
                     </TextWithLetterSpacing>
@@ -126,7 +130,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 0.25,
         width: 0.5,
-        height: width / 2.5,
+        height: width / 2.3,
         marginHorizontal: width / 75,
     },
     iotaIcon: {

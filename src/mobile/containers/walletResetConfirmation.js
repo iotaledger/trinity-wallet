@@ -1,10 +1,10 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -19,8 +19,7 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 
 import { Keyboard } from 'react-native';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 export default class WalletResetConfirmation extends Component {
     constructor() {
@@ -53,18 +52,23 @@ export default class WalletResetConfirmation extends Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topWrapper}>
-                    <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                    <Image
+                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                        style={styles.iotaLogo}
+                    />
+                </View>
+                <View style={styles.midWrapper}>
                     <View style={styles.subHeaderWrapper}>
                         <Text style={styles.subHeaderText}>{toUpper('this action cannot be undone.')}</Text>
                     </View>
-                </View>
-                <View style={styles.midWrapper}>
                     <View style={styles.infoTextWrapper}>
-                        <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                        <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
                             <Text style={styles.infoTextLight}>All your wallet data including your</Text>
                             <Text style={styles.infoTextRegular}> seeds, password</Text>
@@ -104,13 +108,12 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midWrapper: {
-        flex: 2.4,
+        flex: 2.1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 8,
+        justifyContent: 'space-between',
     },
     bottomWrapper: {
-        flex: 1.2,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -119,7 +122,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: width / 10,
-        paddingTop: height / 15,
     },
     subHeaderText: {
         color: Colors.orangeDark,
@@ -132,14 +134,11 @@ const styles = StyleSheet.create({
         borderColor: Colors.white,
         borderWidth: 1,
         borderRadius: 15,
-        minWidth: width / 1.6,
-        maxWidth: width / 1.7,
-        minHeight: height / 5,
-        maxHeight: height / 4.9,
+        width: width / 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
-        paddingVertical: height / 80,
+        paddingVertical: height / 35,
         borderStyle: 'dotted',
     },
     infoText: {
@@ -166,14 +165,12 @@ const styles = StyleSheet.create({
     confirmationTextWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 25,
     },
     confirmationText: {
         color: Colors.white,
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
-        paddingTop: height / 40,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
