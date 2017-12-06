@@ -9,7 +9,8 @@
         "Umair Safraz"
     ],
     "scripts": {
-        "test": "./node_modules/.bin/mocha --require babel-core/register \"__tests__/**/*.spec.js\""
+        "test": "./node_modules/.bin/mocha --require babel-core/register \"__tests__/**/*.spec.js\"",
+        "test:watch": "yarn test --watch"
     },
     "license": "MIT",
     "dependencies": {
