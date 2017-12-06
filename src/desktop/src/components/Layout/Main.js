@@ -25,7 +25,8 @@ export default withRouter(
                     <Route path="/balance" component={Balance} />
                     <Route path="/send" component={Send} />
                     <Route path="/receive" component={Balance} />
-                    <Route path="/settings" component={Balance} />
+                    <Route exact path="/settings" component={Balance} />
+                    <Route path="/settings/add-seed" component={Balance} />
                     <Redirect from="/" to="/login" />
                 </Switch>
             );
