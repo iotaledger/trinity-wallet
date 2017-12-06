@@ -478,7 +478,7 @@ class Send extends Component {
                                     source={require('iota-wallet-shared-modules/images/info.png')}
                                     style={styles.infoIcon}
                                 />
-                                <Text style={styles.infoText}>t('iotaUnits')</Text>
+                                <Text style={styles.infoText}>{t('iotaUnits')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -681,4 +681,4 @@ const mapDispatchToProps = dispatch => ({
     sendTransferRequest: () => dispatch(sendTransferRequest()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Send);
+export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
