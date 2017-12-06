@@ -160,7 +160,7 @@ class NewSeedSetup extends Component {
                     />
                     <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.generateButton}>
-                            <Text style={styles.generateText}>t('pressForNewSeed')</Text>
+                            <Text style={styles.generateText}>{t('pressForNewSeed')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
