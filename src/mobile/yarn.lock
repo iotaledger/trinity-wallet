@@ -4622,9 +4622,9 @@ react-native-randombytes@^2.3.0:
     buffer "^4.9.1"
     sjcl "^1.0.3"
 
-react-native-sensitive-info@5.0.0:
+"react-native-sensitive-info@git://github.com/mCodex/react-native-sensitive-info.git#keystore":
   version "5.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-sensitive-info/-/react-native-sensitive-info-5.0.0.tgz#766c11e0d15dd2fe530340110c1c8d529803af42"
+  resolved "git://github.com/mCodex/react-native-sensitive-info.git#f3be931d04fd82ec7794ea3705053d64e35d1b2c"
 
 react-native-shake-event@^4.0.1:
   version "4.0.1"
