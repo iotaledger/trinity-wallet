@@ -1,4 +1,4 @@
-import isUndefined from 'lodash/isUndefined';
+import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
@@ -223,7 +223,16 @@ class Send extends Component {
 
     _showModal = () => this.setState({ isModalVisible: true });
 
-    _hideModal = () => this.setState({ isModalVisible: false });
+    _hideModal = callback =>
+        this.setState({ isModalVisible: false }, () => {
+            const callable = fn => isFunction(fn);
+
+            if (callable(callback)) {
+                setTimeout(() => {
+                    callback();
+                });
+            }
+        });
 
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
 
@@ -246,7 +255,7 @@ class Send extends Component {
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
-                        hideModal={() => this._hideModal()}
+                        hideModal={callback => this._hideModal(callback)}
                     />
                 );
                 this.setState({
@@ -448,14 +457,15 @@ class Send extends Component {
                                 </TouchableOpacity>
                             </View>
                         )}
-                        {this.props.tempAccount.isSendingTransfer && (
-                            <ActivityIndicator
-                                animating={this.props.tempAccount.isSendingTransfer}
-                                style={styles.activityIndicator}
-                                size="large"
-                                color="#F7D002"
-                            />
-                        )}
+                        {this.props.tempAccount.isSendingTransfer &&
+                            !this.state.isModalVisible && (
+                                <ActivityIndicator
+                                    animating={this.props.tempAccount.isSendingTransfer && !this.state.isModalVisible}
+                                    style={styles.activityIndicator}
+                                    size="large"
+                                    color="#F7D002"
+                                />
+                            )}
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
