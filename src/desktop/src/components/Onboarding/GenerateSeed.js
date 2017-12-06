@@ -6,7 +6,7 @@ import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import Template, { Content, Footer } from './Template';
-import { isValidSeed } from 'libs/util';
+import { isValidSeed } from '../../../../shared/libs/util';
 import { createRandomSeed } from 'libs/seedUtil';
 import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
