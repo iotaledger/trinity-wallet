@@ -1,10 +1,4 @@
-import { createRandomSeed as createRandomSeedWrapped } from '../../../shared/libs/util';
-import randomBytes from 'randombytes';
 import sjcl from 'sjcl';
-
-export const createRandomSeed = (length = 81) => {
-    return createRandomSeedWrapped(randomBytes, length);
-};
 
 export const securelyPersistSeeds = (password, seeds) => {
     const stringifiedSeeds = typeof seeds === 'string' ? seeds : JSON.stringify(seeds);

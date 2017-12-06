@@ -2,7 +2,7 @@ const initialState = {
     ready: false,
     receiveAddress: ' ',
     password: '',
-    seed: '                                                                                 ',
+    seed: Array(82).join(' '),
     seedName: 'MAIN WALLET',
     seedIndex: 0,
     isGeneratingReceiveAddress: false,
@@ -11,6 +11,8 @@ const initialState = {
     lastTxValue: 0,
     isSendingTransfer: false,
     isGettingTransfers: false,
+    isSyncing: false,
+    currentSetting: 'mainSettings',
 };
 
 export default (state = initialState, action) => {
@@ -45,6 +47,16 @@ export default (state = initialState, action) => {
                 ...state,
                 isGeneratingReceiveAddress: false,
                 receiveAddress: action.payload,
+            };
+        case 'MANUAL_SYNC_REQUEST':
+            return {
+                ...state,
+                isSyncing: true,
+            };
+        case 'MANUAL_SYNC_COMPLETE':
+            return {
+                ...state,
+                isSyncing: false,
             };
         case 'GENERATE_NEW_ADDRESS_ERROR':
             return {
@@ -104,6 +116,7 @@ export default (state = initialState, action) => {
                 isSendingTransfer: false,
                 lastTxAddress: '',
                 lastTxValue: 0,
+                currentSetting: 'mainSettings',
             };
         case 'GET_TRANSFERS_REQUEST':
             return {
@@ -119,6 +132,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 seed: action.payload,
+            };
+        case 'SET_SETTING':
+            return {
+                ...state,
+                currentSetting: action.payload,
             };
         default:
             return state;

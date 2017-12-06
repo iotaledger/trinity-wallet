@@ -25,7 +25,9 @@
         "no": "NO",
         "password": "Password",
         "unrecognisedPassword": "Password non riconosciuta",
-        "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare."
+        "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -33,11 +35,13 @@
             "I semi possono contenere solo le lettere maiuscole A-Z e il numero 9. Il tuo seme ha caratteri non validi. Si prega di riprovare.",
         "seedTooShort": "Il seme è troppo corto",
         "seedTooShortExplanation":
-            "I semi devono avere almeno 60 caratteri (idealmente 81 caratteri). Il tuo seme è attualmente {seed.length} caratteri. Si prega di riprovare.",
+            "I semi devono avere {{maxLength}} caratteri. Il tuo seme ha attualmente {{currentLength}} caratteri. Si prega di riprovare.",
         "nameInUse": "Il nome di conto è già in uso",
         "nameInUseExplanation": "Si prega di assegnare un nome di conto univoco al tuo seme.",
         "enterAccountName": "Inserisci un nome di conto.",
-        "accountName": "Nome di conto"
+        "accountName": "Nome di conto",
+        "noNickname": "Nessun nome di conto inserito",
+        "noNicknameExplanation": "Si prega di assegnare un nome di conto al tuo seme."
     },
     "changePassword": {
         "oops": "Ops! Qualcosa è andato storto",
@@ -72,9 +76,9 @@
             "I semi possono contenere solo le lettere maiuscole A-Z e il numero 9. Il tuo seme ha caratteri non validi. Si prega di riprovare.",
         "seedTooShort": "Il seme è troppo corto",
         "seedTooShortExplanation":
-            "I semi devono avere almeno 60 caratteri (idealmente 81 caratteri). Il tuo seme è attualmente {seed.length} caratteri. Si prega di riprovare.",
+            "I semi devono avere {{maxLength}} caratteri. Il tuo seme ha attualmente {{currentLength}} caratteri. Si prega di riprovare.",
         "seedExplanation":
-            "I semi dovrebbero essere lunghi 81 caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di 81 caratteri.",
+            "I semi devono essere lunghi {{maxLength}} caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di {{maxLength}} caratteri.",
         "neverShare": "NON MOSTRARE MAI IL TUO SEME A NESSUNO"
     },
     "home": {
@@ -121,11 +125,13 @@
         "somethingWentWrongExplanation": "Si prega di riavviare l'applicazione.",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
-        "generateNewAddress": "GENERA UN NUOVO INDIRIZZO"
+        "generateNewAddress": "GENERA UN NUOVO INDIRIZZO",
+        "message": "Messaggio opzionale",
+        "removeMessage": "RIMUOVI IL MESSAGGIO"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "Devi salvare il tuo seme con",
-        "atLeastOne": "almeno una",
+        "mustSaveYourSeed": "Devi salvare il tuo seme con ",
+        "atLeastOne": "almeno una ",
         "ofTheOptions": "delle opzioni elencate di seguito."
     },
     "seedReentry": {
@@ -136,7 +142,7 @@
     },
     "send": {
         "invalidAddress": "Indirizzo non valido",
-        "invalidAddressExplanation1": "L'indirizzo deve essere 81 caratteri e deve avere un valore di checksum.",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
         "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
         "notEnoughFunds": "Fondi insufficenti",
@@ -148,7 +154,11 @@
         "amount": "Importo",
         "max": "MASSIMO",
         "message": "Messaggio",
-        "send": "INVIA IOTA"
+        "send": "INVIA",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "La password è troppo corta",

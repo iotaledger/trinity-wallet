@@ -1,4 +1,5 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -10,28 +11,34 @@ import {
     ScrollView,
     ImageBackground,
     StatusBar,
-    Platform,
     KeyboardAvoidingView,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from 'react-native-dropdownalert';
-import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed } from '../../shared/actions/tempAccount';
 import Modal from 'react-native-modal';
+
+import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { storeInKeychain, getFromKeychain, removeLastSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import {
+    getAccountInfoNewSeed,
+    setFirstUse,
+    increaseSeedCount,
+    addSeedName,
+} from 'iota-wallet-shared-modules/actions/account';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+
+import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
+import QRScanner from '../components/qrScanner.js';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
-import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
-import { generateAlert } from '../../shared/actions/alerts';
-import { clearTempData } from '../../shared/actions/tempAccount';
 
 import DropdownHolder from '../components/dropdownHolder';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 const StatusBarDefaultBarStyle = 'light-content';
-const isAndroid = Platform.OS === 'android';
 
 class AddAdditionalSeed extends React.Component {
     constructor(props) {
@@ -44,41 +51,40 @@ class AddAdditionalSeed extends React.Component {
     }
 
     getDefaultSeedName() {
+        const { t } = this.props;
+
         if (this.props.account.seedCount == 0) {
-            return 'MAIN ACCOUNT';
+            return t('global:mainWallet');
         } else if (this.props.account.seedCount == 1) {
-            return 'SECOND ACCOUNT';
+            return t('global:secondWallet');
         } else if (this.props.account.seedCount == 2) {
-            return 'THIRD ACCOUNT';
+            return t('global:thirdWallet');
         } else if (this.props.account.seedCount == 3) {
-            return 'FOURTH ACCOUNT';
+            return t('global:fourthWallet');
         } else if (this.props.account.seedCount == 4) {
-            return 'FIFTH ACCOUNT';
+            return t('global:fifthWallet');
         } else if (this.props.account.seedCount == 5) {
-            return 'SIXTH ACCOUNT';
+            return t('global:sixthWallet');
         } else if (this.props.account.seedCount == 6) {
-            return 'OTHER ACCOUNT';
+            return t('global:otherWallet');
         }
     }
 
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length == 81) {
+        const { t } = this.props;
+
+        if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length == MAX_SEED_LENGTH) {
+            this.dropdown.alertWithType('error', t('seedInvalidChars'), t('seedInvalidCharsExplanation'));
+        } else if (this.state.seed.length < MAX_SEED_LENGTH) {
             this.dropdown.alertWithType(
                 'error',
-                'Seed contains invalid characters',
-                `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
-            );
-        } else if (this.state.seed.length < 81) {
-            this.dropdown.alertWithType(
-                'error',
-                'Seed is too short',
-                `Seeds must be 81 characters long. Your seed is currently ${this.state.seed
-                    .length} characters long. Please try again.`,
+                t('seedTooShort'),
+                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: this.state.seed.length }),
             );
         } else if (!(this.state.seedName.length > 0)) {
-            this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
+            this.dropdown.alertWithType('error', t('noNickname'), t('noNicknameExplanation'));
         } else if (this.props.account.seedNames.includes(this.state.seedName)) {
-            this.dropdown.alertWithType('error', 'Account name already in use', `Please use a unique account name.`);
+            this.dropdown.alertWithType('error', t('nameInUse'), t('nameInUseExplanation'));
         } else {
             this.props.clearTempData();
             storeInKeychain(
@@ -110,6 +116,8 @@ class AddAdditionalSeed extends React.Component {
     }
 
     onNodeError() {
+        const { t } = this.props;
+
         getFromKeychain(this.props.tempAccount.password, value => {
             if (typeof value != 'undefined' && value != null) {
                 removeLastSeed(value, this.props.tempAccount.password);
@@ -120,7 +128,7 @@ class AddAdditionalSeed extends React.Component {
         this.props.navigator.pop({
             animated: false,
         });
-        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        this.dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
         this.props.setFirstUse(false);
     }
 
@@ -155,8 +163,9 @@ class AddAdditionalSeed extends React.Component {
 
     render() {
         const { seed, seedName } = this.state;
+        const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -164,14 +173,14 @@ class AddAdditionalSeed extends React.Component {
                             <View style={styles.topContainer} behavior="padding">
                                 <View style={styles.logoContainer}>
                                     <Image
-                                        source={require('../../shared/images/iota-glow.png')}
+                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                                         style={styles.iotaLogo}
                                     />
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text>
+                                    <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                 </View>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.textFieldContainer}>
@@ -184,11 +193,11 @@ class AddAdditionalSeed extends React.Component {
                                             baseColor="white"
                                             tintColor="#F7D002"
                                             enablesReturnKeyAutomatically={true}
-                                            label="Seed"
+                                            label={t('global:seed')}
                                             autoCapitalize="characters"
                                             autoCorrect={false}
                                             value={seed}
-                                            maxLength={81}
+                                            maxLength={MAX_SEED_LENGTH}
                                             onChangeText={seed => this.setState({ seed })}
                                             secureTextEntry={true}
                                         />
@@ -197,10 +206,10 @@ class AddAdditionalSeed extends React.Component {
                                         <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
                                                 <Image
-                                                    source={require('../../shared/images/camera.png')}
+                                                    source={require('iota-wallet-shared-modules/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
-                                                <Text style={styles.qrText}> QR </Text>
+                                                <Text style={styles.qrText}> {t('global:qr')} </Text>
                                             </View>
                                         </TouchableOpacity>
                                     </View>
@@ -218,7 +227,7 @@ class AddAdditionalSeed extends React.Component {
                                         baseColor="white"
                                         tintColor="#F7D002"
                                         enablesReturnKeyAutomatically={true}
-                                        label="Seed name"
+                                        label="Seed nickname"
                                         autoCapitalize="characters"
                                         autoCorrect={false}
                                         value={seedName}
@@ -443,4 +452,6 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddAdditionalSeed);
+export default translate(['addAdditionalSeed', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(AddAdditionalSeed),
+);

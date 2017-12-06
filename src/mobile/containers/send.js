@@ -1,7 +1,8 @@
-import isUndefined from 'lodash/isUndefined';
+import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
 import React, { Component } from 'react';
-import { iota } from '../../shared/libs/iota';
+import { translate } from 'react-i18next';
+import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import {
     ActivityIndicator,
     StyleSheet,
@@ -12,33 +13,34 @@ import {
     LayoutAnimation,
     ListView,
     ScrollView,
-    Dimensions,
     StatusBar,
+    TouchableWithoutFeedback,
+    Keyboard,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { round } from '../../shared/libs/util';
-import { getFromKeychain, getSeed } from '../../shared/libs/cryptography';
-import { sendTransaction, sendTransferRequest } from '../../shared/actions/tempAccount';
+import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
+import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
-import { getAccountInfo } from '../../shared/actions/account';
+import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
 let sentDenomination = '';
+let currencySymbol = '';
 
 class Send extends Component {
     constructor() {
         super();
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
         this.state = {
             denomination: 'i',
             amount: '',
@@ -50,6 +52,9 @@ class Send extends Component {
         };
     }
 
+    componentWillMount() {
+        currencySymbol = getCurrencySymbol(this.props.settings.currency);
+    }
     onDenominationPress() {
         switch (this.state.denomination) {
             case 'Mi':
@@ -59,6 +64,9 @@ class Send extends Component {
                 this.setState({ denomination: 'Ti' });
                 break;
             case 'Ti':
+                this.setState({ denomination: currencySymbol });
+                break;
+            case currencySymbol:
                 this.setState({ denomination: 'i' });
                 break;
             case 'i':
@@ -71,9 +79,9 @@ class Send extends Component {
     }
 
     onMaxPress() {
+        let max = (this.props.account.balance / this.getUnitMultiplier()).toString();
         this.setState({
-            amount: (this.props.account.balance / 1000000).toString(),
-            denomination: 'Mi',
+            amount: max,
             maxPressed: true,
         });
     }
@@ -89,11 +97,11 @@ class Send extends Component {
     }
 
     isValidAddressChars(address) {
-        return address.match(/^[A-Z9]+$/);
+        return address.match(VALID_SEED_REGEX);
     }
 
     isValidMessage(message) {
-        //return this.state.message.match(/^[A-Z9]+$/);
+        //return this.state.message.match(VALID_SEED_REGEX);
         return true;
     }
 
@@ -111,25 +119,26 @@ class Send extends Component {
     }
 
     renderInvalidAddressErrors(address) {
-        const props = ['error', 'Invalid Address'];
+        const { t } = this.props;
+        const props = ['error', t('invalidAddress')];
         const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
-            return dropdown.alertWithType(...props, 'Address should be 81 characters long and should have a checksum.');
-        } else if (address.match(/^[A-Z9]+$/) == null) {
-            return dropdown.alertWithType(...props, 'Address contains invalid characters.');
+            return dropdown.alertWithType(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
+        } else if (address.match(VALID_SEED_REGEX) == null) {
+            return dropdown.alertWithType(...props, t('invalidAddressExplanation2'));
         }
 
-        return dropdown.alertWithType(...props, 'Address contains invalid checksum');
+        return dropdown.alertWithType(...props, t('invalidAddressExplanation3'));
     }
 
     onSendPress() {
+        const { t } = this.props;
         const address = this.state.address;
         const amount = this.state.amount;
         const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
         const message = this.state.message;
 
-        const dropdown = DropdownHolder.getDropdown();
         const addressIsValid = this.isValidAddress(address);
         const messageIsValid = this.isValidMessage(message);
         const enoughBalance = this.enoughBalance();
@@ -142,11 +151,7 @@ class Send extends Component {
 
         if (!enoughBalance) {
             const dropdown = DropdownHolder.getDropdown();
-            return dropdown.alertWithType(
-                'error',
-                'Not enough cash',
-                'You do not have enough IOTA to complete this transfer.',
-            );
+            return dropdown.alertWithType('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
         }
         if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
@@ -154,11 +159,7 @@ class Send extends Component {
 
         if (!amountIsValid) {
             const dropdown = DropdownHolder.getDropdown();
-            return dropdown.alertWithType(
-                'error',
-                'Incorrect amount entered',
-                'Please enter a numerical value for the transaction amount.',
-            );
+            return dropdown.alertWithType('error', t('invalidAmount'), t('invalidAmountExplanation'));
         }
 
         if (!messageIsValid) {
@@ -167,6 +168,12 @@ class Send extends Component {
     }
 
     sendTransfer() {
+        const { t } = this.props;
+        const dropdown = DropdownHolder.getDropdown();
+        if (this.props.tempAccount.isSyncing) {
+            dropdown.alertWithType('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
+            return;
+        }
         sentDenomination = this.state.denomination;
 
         const accountInfo = this.props.account.accountInfo;
@@ -180,24 +187,14 @@ class Send extends Component {
 
         this.props.sendTransferRequest();
         getFromKeychain(this.props.tempAccount.password, value => {
-            if (typeof value !== 'undefined') {
-                var seed = getSeed(value, this.props.tempAccount.seedIndex);
-                if (sendTx(seed) == false) {
-                    this.dropdown.alertWithType(
-                        'error',
-                        'Key reuse',
-                        `The address you are trying to send to has already been used. Please try another address.`,
-                    );
-                }
-            } else {
-                console.log('error');
+            if (value) {
+                const seed = getSeed(value, this.props.tempAccount.seedIndex);
+                sendTx(seed);
             }
         });
 
-        const _this = this;
-        function sendTx(seed) {
-            _this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
-        }
+        const sendTx = seed =>
+            this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
     }
 
     getUnitMultiplier() {
@@ -217,13 +214,25 @@ class Send extends Component {
             case 'Ti':
                 multiplier = 1000000000000;
                 break;
+            case currencySymbol:
+                multiplier = 1000000 * this.props.settings.conversionRate;
+                break;
         }
         return multiplier;
     }
 
     _showModal = () => this.setState({ isModalVisible: true });
 
-    _hideModal = () => this.setState({ isModalVisible: false });
+    _hideModal = callback =>
+        this.setState({ isModalVisible: false }, () => {
+            const callable = fn => isFunction(fn);
+
+            if (callable(callback)) {
+                setTimeout(() => {
+                    callback();
+                });
+            }
+        });
 
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
 
@@ -242,10 +251,11 @@ class Send extends Component {
                 modalContent = (
                     <TransferConfirmationModal
                         amount={this.state.amount}
+                        clearOnSend={() => this.setState({ message: '', amount: '', address: '' })}
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
-                        hideModal={() => this._hideModal()}
+                        hideModal={callback => this._hideModal(callback)}
                     />
                 );
                 this.setState({
@@ -267,17 +277,19 @@ class Send extends Component {
 
     onQRRead(data) {
         this.setState({
-            address: data.substring(0, 81),
-            message: data.substring(82),
+            address: data.substring(0, 90),
+            message: data.substring(91),
         });
         this._hideModal();
     }
 
     _renderMaximum() {
+        const { t } = this.props;
+
         if (this.state.maxPressed) {
             return (
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={styles.maxWarningText}>MAXIMUM amount selected</Text>
+                    <Text style={styles.maxWarningText}>t('maximumSelected')</Text>
                 </View>
             );
         } else {
@@ -285,150 +297,206 @@ class Send extends Component {
         }
     }
 
-    render() {
-        let { amount, address, message } = this.state;
-        const conversion = round(
+    clearInteractions() {
+        this.props.closeTopBar();
+        Keyboard.dismiss();
+    }
+
+    getConversionTextFiat() {
+        const convertedValue = round(
+            this.state.amount / this.props.marketData.usdPrice / this.props.settings.conversionRate,
+            2,
+        );
+        let conversionText = '';
+        if (0 < convertedValue && convertedValue < 0.01) {
+            conversionText = '< 0.01 Mi';
+        } else if (convertedValue >= 0.01) {
+            conversionText = '= ' + convertedValue + ' Mi';
+        }
+        return conversionText;
+    }
+    getConversionTextIota() {
+        const convertedValue = round(
             parseFloat(this.isValidAmount(this.state.amount) ? this.state.amount : 0) *
                 this.props.marketData.usdPrice /
                 1000000 *
-                this.getUnitMultiplier(),
+                this.getUnitMultiplier() *
+                this.props.settings.conversionRate,
             10,
         );
+        let conversionText = '';
+        if (0 < convertedValue && convertedValue < 0.01) {
+            conversionText = '< ' + currencySymbol + '0.01';
+        } else if (convertedValue >= 0.01) {
+            conversionText = '= ' + currencySymbol + convertedValue.toFixed(2);
+        }
+        return conversionText;
+    }
+
+    render() {
+        let { amount, address, message, denomination } = this.state;
+        const { t } = this.props;
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
-            <ScrollView scrollEnabled={false} style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <View style={styles.topContainer}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={styles.textFieldContainer}>
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
+                <View style={styles.container}>
+                    <StatusBar barStyle="light-content" />
+                    <View style={styles.emptyContainer} />
+                    <View style={styles.topContainer}>
+                        <View style={styles.fieldContainer}>
+                            <View style={styles.textFieldContainer}>
+                                <TextField
+                                    ref="address"
+                                    autoCapitalize={'characters'}
+                                    style={styles.textField}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={height / 55}
+                                    maxLength={90}
+                                    fontSize={height / 40}
+                                    height={height / 24}
+                                    labelPadding={2}
+                                    baseColor="white"
+                                    tintColor="#F7D002"
+                                    enablesReturnKeyAutomatically={true}
+                                    label={t('recipientAddress')}
+                                    autoCorrect={false}
+                                    value={address}
+                                    onChangeText={address => this.setState({ address })}
+                                    onSubmitEditing={() => this.refs.amount.focus()}
+                                />
+                            </View>
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
+                                    <View style={styles.button}>
+                                        <Text style={styles.qrText}>{t('global:qr')}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={styles.fieldContainer}>
+                            <View style={styles.textFieldContainer}>
+                                <TextField
+                                    ref={'amount'}
+                                    keyboardType={'numeric'}
+                                    style={styles.textField}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={height / 55}
+                                    fontSize={height / 40}
+                                    height={height / 24}
+                                    labelPadding={2}
+                                    baseColor="white"
+                                    enablesReturnKeyAutomatically={true}
+                                    label={t('amount')}
+                                    tintColor="#F7D002"
+                                    autoCorrect={false}
+                                    value={amount}
+                                    onChangeText={amount => this.onAmountType(amount)}
+                                    onSubmitEditing={() => this.refs.message.focus()}
+                                />
+                            </View>
+                            {denomination != this.props.settings.currencySymbol && (
+                                <Text style={styles.conversionText}>
+                                    {' '}
+                                    {this.state.denomination == currencySymbol
+                                        ? this.getConversionTextFiat()
+                                        : this.getConversionTextIota()}{' '}
+                                </Text>
+                            )}
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
+                                    <View style={styles.button}>
+                                        <Text style={styles.buttonText}> {this.state.denomination} </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={styles.maxContainer}>
+                            <View style={styles.maxButtonContainer}>
+                                <TouchableOpacity onPress={event => this.onMaxPress()}>
+                                    <View style={styles.maxButton}>
+                                        <Text style={styles.maxButtonText}>{t('max')}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            {this._renderMaximum()}
+                        </View>
+                        <View style={styles.messageFieldContainer}>
                             <TextField
-                                autoCapitalize="characters"
+                                ref={'message'}
                                 style={styles.textField}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
-                                maxLength={90}
                                 fontSize={height / 40}
                                 height={height / 24}
                                 labelPadding={2}
                                 baseColor="white"
-                                tintColor="#F7D002"
                                 enablesReturnKeyAutomatically={true}
-                                label="Recipient address"
-                                autoCorrect={false}
-                                value={address}
-                                onChangeText={address => this.setState({ address })}
-                            />
-                        </View>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
-                                <View style={styles.button}>
-                                    <Text style={styles.qrText}> QR </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={styles.textFieldContainer}>
-                            <TextField
-                                keyboardType={'numeric'}
-                                style={styles.textField}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={height / 55}
-                                fontSize={height / 40}
-                                height={height / 24}
-                                labelPadding={2}
-                                baseColor="white"
-                                enablesReturnKeyAutomatically={true}
-                                label="Amount"
+                                label={t('message')}
                                 tintColor="#F7D002"
                                 autoCorrect={false}
-                                value={amount}
-                                onChangeText={amount => this.onAmountType(amount)}
+                                value={message}
+                                onChangeText={message => this.setState({ message })}
+                                onSubmitEditing={() => this.sendTransfer()}
                             />
                         </View>
-                        <Text style={styles.conversionText}>
-                            {' '}
-                            {conversion == 0 ? '' : conversion < 0.01 ? '< $0.01' : '= $' + conversion.toFixed(2)}{' '}
-                        </Text>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
-                                <View style={styles.button}>
-                                    <Text style={styles.buttonText}> {this.state.denomination} </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
                     </View>
-                    <View style={styles.maxContainer}>
-                        <View style={styles.maxButtonContainer}>
-                            <TouchableOpacity onPress={event => this.onMaxPress()}>
-                                <View style={styles.maxButton}>
-                                    <Text style={styles.maxButtonText}> MAX </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        {this._renderMaximum()}
+                    <View style={styles.midContainer}>
+                        {!this.props.tempAccount.isSendingTransfer && (
+                            <View style={styles.sendIOTAButtonContainer}>
+                                <TouchableOpacity
+                                    onPress={event => {
+                                        this.setModalContent('transferConfirmation');
+                                        this.refs.address.blur();
+                                        this.refs.amount.blur();
+                                        this.refs.message.blur();
+                                    }}
+                                >
+                                    <View style={styles.sendIOTAButton}>
+                                        <Text style={styles.sendIOTAText}>{t('send')}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        )}
+                        {this.props.tempAccount.isSendingTransfer &&
+                            !this.state.isModalVisible && (
+                                <ActivityIndicator
+                                    animating={this.props.tempAccount.isSendingTransfer && !this.state.isModalVisible}
+                                    style={styles.activityIndicator}
+                                    size="large"
+                                    color="#F7D002"
+                                />
+                            )}
                     </View>
-                    <View style={styles.textFieldContainer}>
-                        <TextField
-                            style={styles.textField}
-                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                            labelFontSize={height / 55}
-                            fontSize={height / 40}
-                            height={height / 24}
-                            labelPadding={2}
-                            baseColor="white"
-                            enablesReturnKeyAutomatically={true}
-                            label="Message"
-                            tintColor="#F7D002"
-                            autoCorrect={false}
-                            value={message}
-                            onChangeText={message => this.setState({ message })}
-                        />
+                    <View style={styles.bottomContainer}>
+                        <TouchableOpacity
+                            style={styles.infoButton}
+                            onPress={() => this.setModalContent('unitInfo')}
+                            hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                        >
+                            <View style={styles.info}>
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/info.png')}
+                                    style={styles.infoIcon}
+                                />
+                                <Text style={styles.infoText}>t('iotaUnits')</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
+                    <Modal
+                        animationIn={'bounceInUp'}
+                        animationOut={'bounceOut'}
+                        animationInTiming={1000}
+                        animationOutTiming={200}
+                        backdropTransitionInTiming={500}
+                        backdropTransitionOutTiming={200}
+                        backdropColor={'#102832'}
+                        style={{ alignItems: 'center', margin: 0 }}
+                        isVisible={this.state.isModalVisible}
+                    >
+                        {this._renderModalContent()}
+                    </Modal>
                 </View>
-                <View style={styles.midContainer}>
-                    {!this.props.tempAccount.isSendingTransfer && (
-                        <View style={styles.sendIOTAButtonContainer}>
-                            <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
-                                <View style={styles.sendIOTAButton}>
-                                    <Text style={styles.sendIOTAText}>SEND</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                    {this.props.tempAccount.isSendingTransfer && (
-                        <View style={{ height: height / 7, justifyContent: 'center' }}>
-                            <ActivityIndicator
-                                animating={this.props.tempAccount.isSendingTransfer}
-                                style={styles.activityIndicator}
-                                size="large"
-                                color="#F7D002"
-                            />
-                        </View>
-                    )}
-                </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}>
-                        <View style={styles.info}>
-                            <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                            <Text style={styles.infoText}>IOTA units</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <Modal
-                    animationIn={'bounceInUp'}
-                    animationOut={'bounceOut'}
-                    animationInTiming={1000}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={500}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={'#102832'}
-                    style={{ alignItems: 'center', margin: 0 }}
-                    isVisible={this.state.isModalVisible}
-                >
-                    {this._renderModalContent()}
-                </Modal>
-            </ScrollView>
+            </TouchableWithoutFeedback>
         );
     }
 }
@@ -436,7 +504,7 @@ class Send extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: height / 25,
+        justifyContent: 'center',
     },
     activityIndicator: {
         flex: 1,
@@ -444,27 +512,42 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: height / 5,
     },
+    emptyContainer: {
+        flex: 0.3,
+    },
     topContainer: {
         paddingHorizontal: width / 10,
-        zIndex: 1,
-        flex: 3,
-        justifyContent: 'center',
-        //alignItems: 'center'
+        flex: 2.5,
+        justifyContent: 'flex-end',
     },
     midContainer: {
-        flex: 1,
+        flex: 1.4,
         justifyContent: 'center',
         alignItems: 'center',
     },
     bottomContainer: {
-        flex: 1,
-        justifyContent: 'center',
+        flex: 0.7,
+        justifyContent: 'flex-start',
         alignItems: 'center',
+    },
+    fieldContainer: {
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'flex-end',
     },
     textFieldContainer: {
         flex: 1,
-        paddingRight: width / 20,
+        paddingRight: width / 30,
         paddingTop: 1,
+    },
+    messageFieldContainer: {
+        flex: 0.7,
+        justifyContent: 'center',
+    },
+    maxButtonContainer: {
+        flex: 0.5,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-start',
     },
     textField: {
         color: 'white',
@@ -495,11 +578,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         justifyContent: 'flex-end',
         alignItems: 'center',
-        paddingBottom: height / 90,
-    },
-    maxButtonContainer: {
-        justifyContent: 'flex-end',
-        alignItems: 'center',
+        paddingBottom: height / 110,
     },
     sendIOTAButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
@@ -523,7 +602,6 @@ const styles = StyleSheet.create({
     },
     sendIOTAButtonContainer: {
         alignItems: 'center',
-        paddingTop: height / 16,
     },
     separator: {
         flex: 1,
@@ -584,18 +662,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    infoButton: {
-        position: 'absolute',
-        bottom: -height / 12,
-        right: 0,
-        left: 0,
-    },
 });
 
 const mapStateToProps = state => ({
     marketData: state.marketData,
     tempAccount: state.tempAccount,
     account: state.account,
+    settings: state.settings,
 });
 
 const mapDispatchToProps = dispatch => ({
