@@ -60,13 +60,13 @@
 }
 
 .body-home {
-    background-image: url(../../../../shared/images/hello-back.png), url(../../../../shared/images/bg-green.jpg);
+    background-image: url(../../../../shared/images/hello-back.png), url(../../../../shared/images/bg-blue.jpg);
     background-size: contain, 100% 100%;
     background-position: center;
 }
 
 .body-done {
-    background-image: url(../../../../shared/images/balloons.png), url(../../../../shared/images/bg-green.jpg);
+    background-image: url(../../../../shared/images/balloons.png), url(../../../../shared/images/bg-blue.jpg);
     background-size: contain, 100% 100%;
     background-position: center;
 }
