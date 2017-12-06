@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class QRScanner extends React.Component {
     render() {
+        const { t } = this.props;
+
         return (
             <View style={styles.modalContent}>
-                <ImageBackground source={require('../../shared/images/bg-blue.png')} style={{ alignItems: 'center' }}>
+                <ImageBackground
+                    source={require('iota-wallet-shared-modules/images/bg-blue.png')}
+                    style={{ alignItems: 'center' }}
+                >
                     <View style={{ height: height / 12 }} />
                     <Text style={styles.qrInfoText}>Scan your QR Code</Text>
                     <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />

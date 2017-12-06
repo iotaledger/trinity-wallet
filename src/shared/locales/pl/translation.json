@@ -25,7 +25,9 @@
         "no": "NIE",
         "password": "Hasło",
         "unrecognisedPassword": "Nierozpoznane hasło",
-        "unrecognisedPasswordExplanation": "Wpisano nieprawidłowe hasło. Spróbuj ponownie."
+        "unrecognisedPasswordExplanation": "Wpisano nieprawidłowe hasło. Spróbuj ponownie.",
+        "syncInProgress": "Syncing in progress",
+        "syncInProgressExplanation": "Please wait until syncing is complete."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -33,11 +35,13 @@
             "Seed może składać się tylko z wielkich liter A-Z i oraz cyfr 9. Twój Seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation":
-            "Seed, musi zawierać co najmniej 60 znaków (najlepiej 81 znaków). Twój Seed jest ma {seed.length} znaków. Proszę spróbować ponownie.",
+            "Seed musi zawierać co najmniej {{maxLength}} znaków. Twój Seed ma {{currentLength}} znaków. Proszę spróbować ponownie.",
         "nameInUse": "Ta nazwa konta jest już w użyciu",
         "nameInUseExplanation": "Użyj unikalnej nazwy konta dla twojego Seeda.",
         "enterAccountName": "Wprowadź nazwę konta.",
-        "accountName": "Nazwa konta"
+        "accountName": "Nazwa konta",
+        "noNickname": "Nie wprowadzono nazwy konta",
+        "noNicknameExplanation": "Wpisz nazwę konta dla twojego seeda."
     },
     "changePassword": {
         "oops": "Ups. Coś poszło nie tak",
@@ -71,9 +75,9 @@
             "Seed może składać się tylko z wielkich liter A-Z i oraz cyfr 9. Twój Seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation":
-            "Seed musi zawierać co najmniej 60 znaków (najlepiej 81 znaków). Twój Seed jest ma {seed.length} znaków. Proszę spróbować ponownie.",
+            "Seed musi zawierać {{maxLength}} znaków. Twój Seed ma {{currentLength}} znaków. Proszę spróbować ponownie.",
         "seedExplanation":
-            "Seed powinien składać się z 81 znaków i powinien zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż 81 znaków.",
+            "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
         "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA"
     },
     "home": {
@@ -120,11 +124,13 @@
         "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
-        "generateNewAddress": "WYGENERUJ NOWY ADRES"
+        "generateNewAddress": "WYGENERUJ NOWY ADRES",
+        "message": "Wiadomość opcjonalna",
+        "removeMessage": "USUŃ WIADOMOŚĆ"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "Musisz zapisać swojego seeda z",
-        "atLeastOne": "co najmniej jedną",
+        "mustSaveYourSeed": "Musisz zapisać swojego seeda z ",
+        "atLeastOne": "co najmniej jedną ",
         "ofTheOptions": "opcji wylistowanych poniżej."
     },
     "seedReentry": {
@@ -135,7 +141,7 @@
     },
     "send": {
         "invalidAddress": "Błędny adres",
-        "invalidAddressExplanation1": "Adres powinien składać się z 81 znaków i zawierać sumę kontrolną.",
+        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Adres zawiera nieprawidłowe znaki.",
         "invalidAddressExplanation3": "Adres zawiera nieprawidłową sume kontrolną.",
         "notEnoughFunds": "Brak wystarczających środków",
@@ -146,7 +152,11 @@
         "amount": "Ilość",
         "max": "MAX",
         "message": "Wiadomość",
-        "send": "WYŚLIJ IOTA"
+        "send": "SEND",
+        "invalidAmount": "Incorrect amount entered",
+        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "maximumSelected": "MAXIMUM amount selected",
+        "iotaUnits": "IOTA units"
     },
     "setPassword": {
         "passwordTooShort": "Hasło jest zbyt krótkie",

@@ -60,14 +60,16 @@
 }
 
 .body-home {
-    background-image: url(../../../../shared/images/hello-back.png), url(../../../../shared/images/bg-blue.jpg);
-    background-size: contain, 100% 100%;
+    <<<<<<<: url(../../../../shared/images/hello-back.png), url(../../../../shared/images/bg-blue.jpg);
+    =======: url(images/hello-back.png), url(images/bg-green.svg);
+    >>>>>>>: contain, 100% 100%;
     background-position: center;
 }
 
 .body-done {
-    background-image: url(../../../../shared/images/balloons.png), url(../../../../shared/images/bg-blue.jpg);
-    background-size: contain, 100% 100%;
+    <<<<<<<: url(../../../../shared/images/balloons.png), url(../../../../shared/images/bg-blue.jpg);
+    =======: url(images/balloons.png), url(images/bg-green.svg);
+    >>>>>>>: contain, 100% 100%;
     background-position: center;
 }
 

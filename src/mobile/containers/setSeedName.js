@@ -1,14 +1,13 @@
 import merge from 'lodash/merge';
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    Platform,
     ImageBackground,
     ScrollView,
     StatusBar,
@@ -18,37 +17,44 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeInKeychain, getFromKeychain, removeLastSeed } from '../../shared/libs/cryptography';
-import { getAccountInfoNewSeed, setFirstUse, increaseSeedCount, addSeedName } from '../../shared/actions/account';
+import {
+    storeSeedInKeychain,
+    getFromKeychain,
+    removeLastSeed,
+    checkKeychainForDuplicates,
+} from '../../shared/libs/cryptography';
+import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
-import { clearTempData, setSeedName, clearSeed } from '../../shared/actions/tempAccount';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
+import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class SetSeedName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            seedName: this.getDefaultSeedName(),
+            accountName: this.getDefaultAccountName(),
         };
     }
 
-    getDefaultSeedName() {
+    getDefaultAccountName() {
+        const { t } = this.props;
         if (this.props.account.seedCount == 0) {
-            return 'MAIN ACCOUNT';
+            return t('global:mainWallet');
         } else if (this.props.account.seedCount == 1) {
-            return 'SECOND ACCOUNT';
+            return t('global:secondWallet');
         } else if (this.props.account.seedCount == 2) {
-            return 'THIRD ACCOUNT';
+            return t('global:thirdWallet');
         } else if (this.props.account.seedCount == 3) {
-            return 'FOURTH ACCOUNT';
+            return t('global:fourthWallet');
         } else if (this.props.account.seedCount == 4) {
-            return 'FIFTH ACCOUNT';
+            return t('global:fifthWallet');
         } else if (this.props.account.seedCount == 5) {
-            return 'SIXTH ACCOUNT';
+            return t('global:sixthWallet');
         } else if (this.props.account.seedCount == 6) {
-            return 'OTHER ACCOUNT';
+            return t('global:otherWallet');
+        } else {
+            return '';
         }
     }
 
@@ -57,10 +63,10 @@ class SetSeedName extends React.Component {
     }
 
     onDonePress() {
-        if (this.state.seedName != '') {
+        const { t } = this.props;
+        if (this.state.accountName != '') {
             if (!this.props.account.onboardingComplete) {
-                this.props.increaseSeedCount();
-                this.props.setSeedName(this.state.seedName);
+                this.props.setSeedName(this.state.accountName);
                 this.props.navigator.push({
                     screen: 'setPassword',
                     navigatorStyle: { navBarHidden: true, navBarTransparent: true },
@@ -68,61 +74,62 @@ class SetSeedName extends React.Component {
                     overrideBackPress: true,
                 });
             } else {
-                this.props.clearTempData();
-                storeInKeychain(
+                checkKeychainForDuplicates(
                     this.props.tempAccount.password,
                     this.props.tempAccount.seed,
-                    this.state.seedName,
-                    (type, title, message) => this.dropdown.alertWithType(type, title, message),
-                    () => {
-                        this.props.setFirstUse(true);
-                        this.props.navigator.push({
-                            screen: 'loading',
-                            navigatorStyle: {
-                                navBarHidden: true,
-                                navBarTransparent: true,
-                            },
-                            animated: false,
-                            overrideBackPress: true,
-                        });
-                        this.props.getAccountInfoNewSeed(
-                            this.props.tempAccount.seed,
-                            this.state.seedName,
-                            (error, success) => {
-                                if (error) {
-                                    this.onNodeError();
-                                } else {
-                                    this.onNodeSuccess();
-                                }
-                            },
-                        );
-                    },
+                    this.state.accountName,
+                    (type, title, message) => dropdown.alertWithType(type, title, message),
+                    () => ifNoKeychainDuplicates(this.props.tempAccount.seed, this.state.accountName),
                 );
+
+                ifNoKeychainDuplicates = (seed, accountName) => {
+                    this.props.setFirstUse(true);
+                    this.props.navigator.push({
+                        screen: 'loading',
+                        navigatorStyle: {
+                            navBarHidden: true,
+                            navBarTransparent: true,
+                        },
+                        animated: false,
+                        overrideBackPress: true,
+                    });
+                    this.props.getFullAccountInfo(seed, accountName, (error, success) => {
+                        if (error) {
+                            onNodeError();
+                        } else {
+                            onNodeSuccess(seed, accountName);
+                        }
+                    });
+                };
+
+                onNodeError = () => {
+                    this.props.navigator.pop({
+                        animated: false,
+                    });
+                    dropdown.alertWithType(
+                        'error',
+                        t('global:invalidResponse'),
+                        t('global:invalidResponseExplanation'),
+                    );
+                    this.props.setFirstUse(false);
+                };
+
+                onNodeSuccess = (seed, accountName) => {
+                    this.props.clearTempData();
+                    storeSeedInKeychain(this.props.tempAccount.password, seed, accountName);
+                    this.props.increaseSeedCount();
+                    this.props.addAccountName(accountName);
+                    this.props.clearSeed();
+                    this.props.setReady();
+                };
             }
         } else {
-            this.dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
+            this.dropdown.alertWithType(
+                'error',
+                t('addAdditionalSeed:noNickname'),
+                t('addAdditionalSeed:noNicknameExplanation'),
+            );
         }
-    }
-
-    onNodeError() {
-        getFromKeychain(this.props.tempAccount.password, value => {
-            if (typeof value != 'undefined' && value != null) {
-                removeLastSeed(value, this.props.tempAccount.password);
-            } else {
-                error();
-            }
-        });
-        this.props.navigator.pop({
-            animated: false,
-        });
-        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
-        this.props.setFirstUse(false);
-    }
-
-    onNodeSuccess() {
-        this.props.increaseSeedCount();
-        this.props.addSeedName(this.state.seedName);
-        this.props.clearSeed();
     }
 
     onBackPress() {
@@ -132,17 +139,20 @@ class SetSeedName extends React.Component {
     }
 
     render() {
-        let { seedName } = this.state;
-
+        let { accountName } = this.state;
+        const { t } = this.props;
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image source={require('../../shared/images/iota-glow.png')} style={styles.iotaLogo} />
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                                style={styles.iotaLogo}
+                            />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.greetingText}>Enter a name for your account.</Text>
+                                <Text style={styles.greetingText}>{t('addAdditionalSeed:enterAccountName')}</Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
@@ -159,29 +169,31 @@ class SetSeedName extends React.Component {
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="done"
-                                value={seedName}
-                                onChangeText={seedName => this.setState({ seedName })}
+                                value={accountName}
+                                onChangeText={accountName => this.setState({ accountName })}
                                 containerStyle={{
                                     width: width / 1.36,
                                 }}
                                 ref={input => {
                                     this.nameInput = input;
                                 }}
+                                onSubmitEditing={() => this.onDonePress()}
                             />
                             <View style={styles.infoTextContainer}>
-                                <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
-                                <Text style={styles.infoText}>
-                                    You can use multiple accounts with this wallet. Each account requires a name.
-                                </Text>
-                                <Text style={styles.infoText}>You can add more accounts in the Settings menu.</Text>
+                                <Image
+                                    source={require('iota-wallet-shared-modules/images/info.png')}
+                                    style={styles.infoIcon}
+                                />
+                                <Text style={styles.infoText}>{t('canUseMultipleSeeds')}</Text>
+                                <Text style={styles.infoText}>{t('youCanAdd')}</Text>
                             </View>
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={'BACK'}
-                                rightText={'DONE'}
+                                leftText={t('global:back')}
+                                rightText={t('global:done')}
                             />
                         </View>
                     </View>
@@ -247,7 +259,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingVertical: height / 60,
+        paddingVertical: height / 35,
         marginTop: height / 15,
     },
     infoText: {
@@ -330,12 +342,13 @@ const mapDispatchToProps = dispatch => ({
     increaseSeedCount: () => {
         dispatch(increaseSeedCount());
     },
-    setSeedName: seedName => {
-        dispatch(setSeedName(seedName));
+    setSeedName: accountName => {
+        dispatch(setSeedName(accountName));
     },
     clearSeed: () => {
         dispatch(clearSeed());
     },
+    setReady: () => dispatch(setReady()),
     generateAlert: (error, title, message) => {
         dispatch(generateAlert(error, title, message));
     },
@@ -345,12 +358,14 @@ const mapDispatchToProps = dispatch => ({
     clearTempData: () => {
         dispatch(clearTempData());
     },
-    addSeedName: newSeed => {
-        dispatch(addSeedName(newSeed));
+    addAccountName: newSeed => {
+        dispatch(addAccountName(newSeed));
     },
-    getAccountInfoNewSeed: (seed, seedName, cb) => {
-        dispatch(getAccountInfoNewSeed(seed, seedName, cb));
+    getFullAccountInfo: (seed, accountName, cb) => {
+        dispatch(getFullAccountInfo(seed, accountName, cb));
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SetSeedName);
+export default translate(['setSeedName', 'global', 'addAdditionalSeed'])(
+    connect(mapStateToProps, mapDispatchToProps)(SetSeedName),
+);

@@ -1,8 +1,8 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
@@ -16,16 +16,16 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { setPassword, setUsedSeedToLogin } from '../../shared/actions/tempAccount';
-import { getAccountInfo } from '../../shared/actions/account';
+import { setPassword, setUsedSeedToLogin } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeInKeychain } from '../../shared/libs/cryptography';
+import { storeSeedInKeychain } from 'iota-wallet-shared-modules/libs/cryptography';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 
 //import DropdownHolder from './dropdownHolder';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 //const dropdown = DropdownHolder.getDropDown();
 
@@ -39,7 +39,7 @@ class UseSeed extends React.Component {
     }
 
     onDonePress() {
-        if (!this.state.seed.match(/^[A-Z9]+$/) && this.state.seed.length >= 60) {
+        if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length >= 60) {
             this.dropdown.alertWithType(
                 'error',
                 'Seed contains invalid characters',
@@ -49,8 +49,8 @@ class UseSeed extends React.Component {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be at least 60 characters long (ideally 81 characters). Your seed is currently ${this.state
-                    .seed.length} characters long. Please try again.`,
+                `Seeds must be at least 60 characters long (ideally ${MAX_SEED_LENGTH} characters). Your seed is currently ${this
+                    .state.seed.length} characters long. Please try again.`,
             );
         } else if (this.state.seed.length >= 60) {
             this.props.getAccountInfoNewSeed(this.state.seed, 'usedSeed');
@@ -62,7 +62,7 @@ class UseSeed extends React.Component {
             });
             this.props.setUsedSeedToLogin();
             this.props.setPassword('dummy');
-            storeInKeychain(this.props.tempAccount.password, this.state.seed, 'temp');
+            storeSeedInKeychain(this.props.tempAccount.password, this.state.seed, 'temp');
             this.setState({ seed: '' });
         }
     }
@@ -93,8 +93,10 @@ class UseSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
+        const { t } = this.props;
+
         return (
-            <ImageBackground source={require('../../shared/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -102,7 +104,7 @@ class UseSeed extends React.Component {
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
                                     <Image
-                                        source={require('../../shared/images/iota-glow.png')}
+                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                                         style={styles.iotaLogo}
                                     />
                                 </View>
@@ -126,7 +128,7 @@ class UseSeed extends React.Component {
                                             label="Seed"
                                             autoCorrect={false}
                                             value={seed}
-                                            maxLength={81}
+                                            maxLength={MAX_SEED_LENGTH}
                                             onChangeText={seed => this.setState({ seed })}
                                             secureTextEntry={true}
                                         />
@@ -135,7 +137,7 @@ class UseSeed extends React.Component {
                                         <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
                                                 <Image
-                                                    source={require('../../shared/images/camera.png')}
+                                                    source={require('iota-wallet-shared-modules/images/camera.png')}
                                                     style={styles.qrImage}
                                                 />
                                                 <Text style={styles.qrText}> QR </Text>
