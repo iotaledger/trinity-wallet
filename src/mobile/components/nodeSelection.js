@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     topContainer: {
-        flex: 10,
+        flex: 9,
         justifyContent: 'flex-end',
     },
     bottomContainer: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     itemLeft: {
         flexDirection: 'row',
