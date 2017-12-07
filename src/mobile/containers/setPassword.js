@@ -20,6 +20,7 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { isAndroid } from '../util/device';
 
 import { width, height } from '../util/dimensions';
 const MIN_PASSWORD_LENGTH = 12;
@@ -86,109 +87,122 @@ class SetPassword extends React.Component {
         });
     }
 
-    render() {
+    _renderContent() {
+        const { t } = this.props;
         let { password, reentry } = this.state;
+
+        return (
+            <View>
+                <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+                    <View style={styles.container}>
+                        <View style={styles.topContainer}>
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                                style={styles.iotaLogo}
+                            />
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.greetingText}>{t('nowWeNeedTo')}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.midContainer}>
+                            <View style={{ flex: 0.4 }} />
+                            <View style={styles.infoTextWrapper}>
+                                <View style={styles.infoTextContainer}>
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/info.png')}
+                                        style={styles.infoIcon}
+                                    />
+                                    <Text style={styles.infoText}>{t('anEncryptedCopy')}</Text>
+                                    <Text style={styles.warningText}>{t('ensure')}</Text>
+                                </View>
+                            </View>
+                            <View style={styles.textfieldsContainer}>
+                                <TextField
+                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={width / 31.8}
+                                    fontSize={width / 20.7}
+                                    labelPadding={3}
+                                    baseColor="white"
+                                    label={t('global:password')}
+                                    tintColor="#F7D002"
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically={true}
+                                    returnKeyType="next"
+                                    value={password}
+                                    onChangeText={password => this.setState({ password })}
+                                    onSubmitEditing={() => this.reentry.focus()}
+                                    containerStyle={{
+                                        width: width / 1.36,
+                                    }}
+                                    secureTextEntry={true}
+                                />
+                                <TextField
+                                    ref={c => {
+                                        this.reentry = c;
+                                    }}
+                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={width / 31.8}
+                                    fontSize={width / 20.7}
+                                    labelPadding={3}
+                                    baseColor="white"
+                                    label={t('retypePassword')}
+                                    tintColor="#F7D002"
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically={true}
+                                    returnKeyType="done"
+                                    value={reentry}
+                                    onChangeText={reentry => this.setState({ reentry })}
+                                    containerStyle={{ width: width / 1.36 }}
+                                    secureTextEntry={true}
+                                    onSubmitEditing={() => this.onDonePress()}
+                                />
+                            </View>
+                            <View style={{ flex: 0.2 }} />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <OnboardingButtons
+                                onLeftButtonPress={() => this.onBackPress()}
+                                onRightButtonPress={() => this.onDonePress()}
+                                leftText={t('global:back')}
+                                rightText={t('global:done')}
+                            />
+                        </View>
+                    </View>
+                </TouchableWithoutFeedback>
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
+                />
+            </View>
+        );
+    }
+
+    render() {
         const { t } = this.props;
 
         return (
             <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
-                <KeyboardAwareScrollView
-                    resetScrollToCoords={{ x: 0, y: 0 }}
-                    contentContainerStyle={styles.container}
-                    scrollEnabled={false}
-                >
-                    <StatusBar barStyle="light-content" />
-                    <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
-                        <View style={styles.container}>
-                            <View style={styles.topContainer}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                    style={styles.iotaLogo}
-                                />
-                                <View style={styles.titleContainer}>
-                                    <Text style={styles.greetingText}>{t('nowWeNeedTo')}</Text>
-                                </View>
-                            </View>
-                            <View style={styles.midContainer}>
-                                <View style={{ flex: 0.4 }} />
-                                <View style={styles.infoTextWrapper}>
-                                    <View style={styles.infoTextContainer}>
-                                        <Image
-                                            source={require('iota-wallet-shared-modules/images/info.png')}
-                                            style={styles.infoIcon}
-                                        />
-                                        <Text style={styles.infoText}>{t('anEncryptedCopy')}</Text>
-                                        <Text style={styles.warningText}>{t('ensure')}</Text>
-                                    </View>
-                                </View>
-                                <View style={styles.textfieldsContainer}>
-                                    <TextField
-                                        style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                        labelFontSize={width / 31.8}
-                                        fontSize={width / 20.7}
-                                        labelPadding={3}
-                                        baseColor="white"
-                                        label={t('global:password')}
-                                        tintColor="#F7D002"
-                                        autoCapitalize={'none'}
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically={true}
-                                        returnKeyType="next"
-                                        value={password}
-                                        onChangeText={password => this.setState({ password })}
-                                        onSubmitEditing={() => this.reentry.focus()}
-                                        containerStyle={{
-                                            width: width / 1.36,
-                                        }}
-                                        secureTextEntry={true}
-                                    />
-                                    <TextField
-                                        ref={c => {
-                                            this.reentry = c;
-                                        }}
-                                        style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                        labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                        labelFontSize={width / 31.8}
-                                        fontSize={width / 20.7}
-                                        labelPadding={3}
-                                        baseColor="white"
-                                        label={t('retypePassword')}
-                                        tintColor="#F7D002"
-                                        autoCapitalize={'none'}
-                                        autoCorrect={false}
-                                        enablesReturnKeyAutomatically={true}
-                                        returnKeyType="done"
-                                        value={reentry}
-                                        onChangeText={reentry => this.setState({ reentry })}
-                                        containerStyle={{ width: width / 1.36 }}
-                                        secureTextEntry={true}
-                                        onSubmitEditing={() => this.onDonePress()}
-                                    />
-                                </View>
-                                <View style={{ flex: 0.2 }} />
-                            </View>
-                            <View style={styles.bottomContainer}>
-                                <OnboardingButtons
-                                    onLeftButtonPress={() => this.onBackPress()}
-                                    onRightButtonPress={() => this.onDonePress()}
-                                    leftText={t('global:back')}
-                                    rightText={t('global:done')}
-                                />
-                            </View>
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <DropdownAlert
-                        ref={ref => (this.dropdown = ref)}
-                        successColor="#009f3f"
-                        errorColor="#A10702"
-                        titleStyle={styles.dropdownTitle}
-                        defaultTextContainer={styles.dropdownTextContainer}
-                        messageStyle={styles.dropdownMessage}
-                        imageStyle={styles.dropdownImage}
-                        inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                    />
-                </KeyboardAwareScrollView>
+                {isAndroid && <View style={styles.container}>{this._renderContent()}</View>}
+                {!isAndroid && (
+                    <KeyboardAwareScrollView
+                        resetScrollToCoords={{ x: 0, y: 0 }}
+                        contentContainerStyle={styles.container}
+                        scrollEnabled={false}
+                        enableOnAndroid={false}
+                    >
+                        {this._renderContent()}
+                    </KeyboardAwareScrollView>
+                )}
             </ImageBackground>
         );
     }
