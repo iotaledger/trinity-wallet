@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     },
     separator: {
         borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
+        borderBottomWidth: height / 1500,
         width: width / 1.16,
         alignSelf: 'center',
     },
