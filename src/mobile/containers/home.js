@@ -34,7 +34,7 @@ import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-module
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
-import Reattacher from './reAttacher';
+import Reattacher from '../components/reAttacher';
 import { Navigation } from 'react-native-navigation';
 import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';

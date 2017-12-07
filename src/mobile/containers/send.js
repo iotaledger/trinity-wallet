@@ -681,4 +681,4 @@ const mapDispatchToProps = dispatch => ({
     sendTransferRequest: () => dispatch(sendTransferRequest()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Send);
+export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
