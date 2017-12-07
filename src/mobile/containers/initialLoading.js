@@ -8,6 +8,8 @@ import store from 'iota-wallet-shared-modules/store';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
 
+const VERSION = 'v0.1 (4)';
+
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
 export default class InitialLoading extends Component {
@@ -71,7 +73,7 @@ export default class InitialLoading extends Component {
                     <Image source={require('iota-wallet-shared-modules/images/iota-white.png')} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>IOTA Alpha Wallet {currentYear}</Text>
+                    <Text style={styles.text}>IOTA Alpha Wallet {VERSION}</Text>
                 </View>
             </ImageBackground>
         );
