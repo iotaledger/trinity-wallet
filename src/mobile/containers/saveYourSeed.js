@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
         textAlign: 'center',
-        paddingHorizontal: width / 20,
         backgroundColor: 'transparent',
     },
     optionButton: {

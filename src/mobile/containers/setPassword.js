@@ -105,7 +105,7 @@ class SetPassword extends React.Component {
                             </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.4 }} />
+                            <View style={{ flex: 0.3 }} />
                             <View style={styles.infoTextWrapper}>
                                 <View style={styles.infoTextContainer}>
                                     <Image
