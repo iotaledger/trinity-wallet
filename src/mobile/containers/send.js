@@ -289,7 +289,7 @@ class Send extends Component {
         if (this.state.maxPressed) {
             return (
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={styles.maxWarningText}>t('maximumSelected')</Text>
+                    <Text style={styles.maxWarningText}>{t('maximumSelected')}</Text>
                 </View>
             );
         } else {
