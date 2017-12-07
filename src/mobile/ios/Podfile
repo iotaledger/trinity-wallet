@@ -6,7 +6,6 @@ target 'iotaWallet' do
   # use_frameworks!
 
   # Pods for iotaWallet
-pod 'HockeySDK', :subspecs => ['AllFeaturesLib']
 pod 'Fabric'
 pod 'Crashlytics'
 
