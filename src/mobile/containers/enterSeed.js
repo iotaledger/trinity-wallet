@@ -204,14 +204,14 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     topMidContainer: {
-        flex: 2.2,
+        flex: 1.9,
         alignItems: 'center',
         justifyContent: 'center',
     },
     bottomMidContainer: {
-        flex: 2.1,
+        flex: 2.4,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 1.2,

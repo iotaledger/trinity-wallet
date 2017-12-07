@@ -108,15 +108,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 0.5,
+        flex: 1,
         width: width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     topContainer: {
-        flex: 4.5,
+        flex: 9,
         justifyContent: 'space-around',
     },
     itemLeft: {
