@@ -120,13 +120,13 @@ const styles = StyleSheet.create({
         paddingBottom: isAndroid ? height / 30 : height / 50,
     },
     transactionsContainer: {
-        flex: 2.3,
+        flex: 2.2,
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: height / 110,
     },
     chartContainer: {
-        flex: 5.2,
+        flex: 5.3,
     },
     iotaBalance: {
         color: 'white',
