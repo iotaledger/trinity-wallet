@@ -58,7 +58,7 @@ class MainSettings extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.itemContainer}>
-                    <TouchableOpacity onPress={event => this.props.setSetting('languageSelection')}>
+                    <TouchableOpacity onPress={event => this.props.onLanguagePress()}>
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
                                 <Image
