@@ -110,23 +110,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
     },
     balanceContainer: {
-        flex: 1,
+        flex: 2.5,
         alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingTop: isAndroid ? height / 13 : height / 20,
-        paddingBottom: isAndroid ? height / 30 : height / 50,
+        justifyContent: 'center',
     },
     transactionsContainer: {
         flex: 2.3,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: height / 110,
     },
     chartContainer: {
         flex: 5.2,
+        paddingVertical: height / 80,
     },
     iotaBalance: {
         color: 'white',
@@ -143,7 +140,7 @@ const styles = StyleSheet.create({
     },
     line: {
         borderBottomColor: 'white',
-        borderBottomWidth: height / 3000,
+        borderBottomWidth: height / 1000,
         width: width / 1.15,
     },
     separator: {
