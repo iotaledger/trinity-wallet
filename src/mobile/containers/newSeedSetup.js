@@ -21,6 +21,7 @@ import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 
 import { width, height } from '../util/dimensions';
+import { isIPhoneX } from '../util/device';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -282,13 +283,14 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     list: {
-        justifyContent: 'center',
+        justifyContent: isIPhoneX ? 'flex-start' : 'center',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        height: width / 1.15,
-        width: width / 1.15,
+        height: isIPhoneX ? width / 1.1 : width / 1.15,
+        width: isIPhoneX ? width / 1.1 : width / 1.15,
         flex: 1,
     },
+
     gridContainer: {
         height: width / 1.15,
         width: width / 1.15,

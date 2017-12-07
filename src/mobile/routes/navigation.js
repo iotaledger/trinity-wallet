@@ -20,9 +20,7 @@ import OnboardingComplete from '../containers/onboardingComplete';
 import SetSeedName from '../containers/setSeedName';
 import UseSeed from '../containers/useSeed';
 import SeedReentry from '../containers/seedReentry';
-var DeviceInfo = require('react-native-device-info');
-const device = DeviceInfo.getDeviceId();
-const isIPhoneX = device.includes('iPhone10');
+import { isIPhoneX } from '../util/device';
 
 function getGenerator(screen) {
     if (isIPhoneX) {
