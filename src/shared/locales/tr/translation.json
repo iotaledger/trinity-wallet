@@ -1,7 +1,7 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
+        "invalidResponse": "Geçersiz yanıt",
+        "invalidResponseExplanation": "Düğümü geçersiz yanıt döndürdü.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seed",
         "back": "BACK",
