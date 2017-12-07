@@ -33,15 +33,13 @@
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|screenSize"
         android:screenOrientation="portrait"
-          android:windowSoftInputMode="adjustPan">
-
+        android:windowSoftInputMode="adjustPan"
+      >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-      <activity android:name="net.hockeyapp.android.UpdateActivity" />
-      <activity android:name="net.hockeyapp.android.FeedbackActivity" />
     </application>
 </manifest>
