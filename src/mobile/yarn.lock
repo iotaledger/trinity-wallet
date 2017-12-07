@@ -4547,9 +4547,20 @@ react-native-html-to-pdf@^0.4.0:
     Base64 "~0.2.0"
     inherits "~2.0.1"
 
+react-native-iphone-x-helper@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.0.1.tgz#950dbdaca66f458689a7e9697c5beb9bd53f98f2"
+
 react-native-keep-awake@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/react-native-keep-awake/-/react-native-keep-awake-2.0.6.tgz#d8eaffe0a6377cc197469d9f06c7f317225403db"
+
+react-native-keyboard-aware-scroll-view@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.4.1.tgz#bda86cbe3cdf60c572a95e7e0fbac635bc9ce66d"
+  dependencies:
+    prop-types "^15.6.0"
+    react-native-iphone-x-helper "^1.0.1"
 
 react-native-letter-spacing@^0.0.5:
   version "0.0.5"
@@ -4623,9 +4634,9 @@ react-native-safe-area-view@^0.2.0:
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-react-native-sensitive-info@5.0.0:
+"react-native-sensitive-info@git://github.com/mCodex/react-native-sensitive-info.git#keystore":
   version "5.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-sensitive-info/-/react-native-sensitive-info-5.0.0.tgz#766c11e0d15dd2fe530340110c1c8d529803af42"
+  resolved "git://github.com/mCodex/react-native-sensitive-info.git#f3be931d04fd82ec7794ea3705053d64e35d1b2c"
 
 react-native-shake-event@^4.0.1:
   version "4.0.1"
