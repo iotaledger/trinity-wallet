@@ -91,12 +91,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     bottomContainer: {
-        flex: 0.6,
+        flex: 1,
         width: width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     addressText: {
         color: 'white',
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     listView: {
-        flex: 2.9,
+        flex: 9,
         justifyContent: 'center',
         width: width,
     },
