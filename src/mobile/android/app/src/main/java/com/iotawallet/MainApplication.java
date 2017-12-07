@@ -25,8 +25,6 @@ import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.rnfs.RNFSPackage;
 import java.util.Arrays;
 import java.util.List;
-import com.slowpath.hockeyapp.RNHockeyAppModule;
-import com.slowpath.hockeyapp.RNHockeyAppPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
