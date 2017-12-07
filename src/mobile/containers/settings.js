@@ -485,17 +485,14 @@ class Settings extends React.Component {
     }
 
     navigateNewSeed() {
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'newSeedSetup',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
-                },
-                overrideBackPress: true,
+        this.props.navigator.push({
+            screen: 'newSeedSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
             },
+            animated: false,
+            overrideBackPress: true,
         });
     }
 
