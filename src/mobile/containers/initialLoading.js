@@ -47,7 +47,7 @@ export default class InitialLoading extends Component {
         if (!state.account.onboardingComplete) {
             this.clearKeychain();
             this.props.navigator.push({
-                screen: 'languageSetup',
+                screen: 'welcome',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
                 overrideBackPress: true,
