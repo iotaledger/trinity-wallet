@@ -201,7 +201,7 @@ class NewSeedSetup extends Component {
                     />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <View style={{ justifyContent: 'center', flex: 0.5 }}>
+                    <View style={{ justifyContent: 'center', flex: 0.4 }}>
                         <Text
                             style={{
                                 color: 'white',
