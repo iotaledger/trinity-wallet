@@ -140,6 +140,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-device-info')
     compile project(':react-native-shake-event')
     compile project(':react-native-extra-dimensions-android')
     compile project(':react-native-detect-navbar-android')
@@ -158,7 +159,6 @@ dependencies {
   	compile "com.facebook.react:react-native:+"
   	compile project(':react-native-navigation')
   	compile project(':react-native-svg')
-  	compile project(':react-native-sensitive-info')
   	compile project(':react-native-camera')
     compile project(':react-native-fs')
     compile project(":react-native-hockeyapp")
