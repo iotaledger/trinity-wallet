@@ -122,7 +122,6 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
             } else {
                 cb(error);
                 console.log(error);
-                console.log('OUVHVSUDOVUHFOVUFDSVUYFSDOVUYSDFOUVYFSOUVY');
                 dispatch(
                     generateAlert(
                         'error',

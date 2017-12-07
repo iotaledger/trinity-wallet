@@ -107,6 +107,7 @@ class LanguageSetup extends Component {
                         />
                     </View>
                     <View style={styles.midContainer}>
+                        <View style={{ flex: 0.2 }} />
                         <Dropdown
                             title={t('language')}
                             dropdownWidth={styles.dropdownWidth}
