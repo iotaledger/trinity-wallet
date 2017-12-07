@@ -33,8 +33,6 @@ const StatusBarDefaultBarStyle = 'light-content';
 
 import { width, height } from '../util/dimensions';
 
-var HockeyApp = require('react-native-hockeyapp');
-
 class Login extends React.Component {
     constructor(props) {
         super(props);

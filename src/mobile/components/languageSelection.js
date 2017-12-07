@@ -83,7 +83,7 @@ class LanguageSelection extends Component {
                             ref={c => {
                                 this.dropdown = c;
                             }}
-                            title={t('language')}
+                            title={this.languageSelected}
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={currentLanguageLabel}
                             options={I18N_LOCALE_LABELS}
