@@ -340,7 +340,7 @@ class Send extends Component {
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
-                <KeyboardAvoidingView style={styles.container}>
+                <View style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={styles.emptyContainer} />
                     <View style={styles.topContainer}>
@@ -496,7 +496,7 @@ class Send extends Component {
                     >
                         {this._renderModalContent()}
                     </Modal>
-                </KeyboardAvoidingView>
+                </View>
             </TouchableWithoutFeedback>
         );
     }
