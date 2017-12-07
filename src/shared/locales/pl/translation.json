@@ -26,8 +26,8 @@
         "password": "Hasło",
         "unrecognisedPassword": "Nierozpoznane hasło",
         "unrecognisedPasswordExplanation": "Wpisano nieprawidłowe hasło. Spróbuj ponownie.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgress": "Synchronizacja w toku",
+        "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -145,7 +145,7 @@
         "amount": "Ilość",
         "max": "MAX",
         "message": "Wiadomość",
-        "send": "SEND",
+        "send": "WYŚLIJ",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
         "maximumSelected": "MAXIMUM amount selected",
