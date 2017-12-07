@@ -15,6 +15,7 @@ import {
     ScrollView,
     StatusBar,
     TouchableWithoutFeedback,
+    KeyboardAvoidingView,
     Keyboard,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
@@ -339,7 +340,7 @@ class Send extends Component {
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
-                <View style={styles.container}>
+                <KeyboardAvoidingView style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={styles.emptyContainer} />
                     <View style={styles.topContainer}>
@@ -436,7 +437,7 @@ class Send extends Component {
                                 autoCorrect={false}
                                 value={message}
                                 onChangeText={message => this.setState({ message })}
-                                onSubmitEditing={() => this.sendTransfer()}
+                                onSubmitEditing={() => this.onSendPress()}
                             />
                         </View>
                     </View>
@@ -495,7 +496,7 @@ class Send extends Component {
                     >
                         {this._renderModalContent()}
                     </Modal>
-                </View>
+                </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
         );
     }
