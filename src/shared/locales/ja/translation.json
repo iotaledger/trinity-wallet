@@ -25,7 +25,9 @@
         "no": "いいえ",
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
-        "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。"
+        "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
+        "syncInProgress": "同期中...",
+        "syncInProgressExplanation": "同期が完了するまでお待ち下さい。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -132,7 +134,7 @@
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
-        "invalidAddressExplanation1": "アドレスは81文字にする必要があり、チェックサムを持っている必要があります。",
+        "invalidAddressExplanation1": "アドレスは{{maxLength}}文字にする必要があり、チェックサムを持っている必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
         "notEnoughFunds": "残高不足です。",
@@ -143,7 +145,11 @@
         "amount": "金額",
         "max": "最大",
         "message": "メッセージ",
-        "send": "IOTAを送金する。"
+        "send": "送金",
+        "invalidAmount": "不適切な金額が入力されました。",
+        "invalidAmountExplanation": "取引金額の数値を入力して下さい。",
+        "maximumSelected": "設定した最大額",
+        "iotaUnits": "IOTA（単位）"
     },
     "setPassword": {
         "passwordTooShort": "パスワードが短すぎます。",

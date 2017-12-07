@@ -25,19 +25,21 @@
         "no": "ΟΧΙ",
         "password": "Κωδικός πρόσβασης",
         "unrecognisedPassword": "Μη αναγνωρισμένος κωδικός πρόσβασης",
-        "unrecognisedPasswordExplanation": "Ο κωδικός πρόσβασης δεν αναγνωρίστηκε. Παρακαλώ δοκιμάστε ξανά."
+        "unrecognisedPasswordExplanation": "Ο κωδικός πρόσβασης δεν αναγνωρίστηκε. Παρακαλώ δοκιμάστε ξανά.",
+        "syncInProgress": "Συγχρονισμός σε εξέλιξη",
+        "syncInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί ο συγχρονισμός."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
         "seedInvalidCharsExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation": "Οι σπόροι πρέπει να έχουν {{maxLength}} χαρακτήρες μήκος. Ο σπόρος σας είναι επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "nameInUse": "Όνομα λογαριασμού ήδη σε χρήση",
         "nameInUseExplanation": "Παρακαλούμε να χρησιμοποιήσετε ένα μοναδικό όνομα λογαριασμού για το σπόρο σας.",
         "enterAccountName": "Εισάγετε ένα όνομα λογαριασμού.",
         "accountName": "Όνομα λογαριασμού",
-        "noNickname": "No account name entered",
-        "noNicknameExplanation": "Please enter an account name for your seed."
+        "noNickname": "Δεν έγινε εισαγωγή ονόματος λογαριασμού",
+        "noNicknameExplanation": "Παρακαλούμε εισάγετε ένα όνομα λογαριασμού για το σπόρο σας."
     },
     "changePassword": {
         "oops": "Ωχ! Κάτι πήγε στραβά",
@@ -68,8 +70,8 @@
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
         "invalidCharactersExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "Οι σπόροι πρέπει να έχουν {{maxLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedExplanation": "Οι σπόροι πρέπει να είναι {{maxLength}} χαρακτήρων και πρέπει να περιέχουν τα κεφαλαία γράμματα A-Z, ή τον αριθμό 9. Δεν μπορείτε να χρησιμοποιήσετε σπόρους που είναι μεγαλύτεροι από {{maxLength}} χαρακτήρες.",
         "neverShare": "ΜΗ ΜΟΙΡΑΖΕΣΤΕ ΠΟΤΕ ΤΟΝ ΣΠΟΡΟ ΣΑΣ ΜΕ ΚΑΝΕΝΑΝ"
     },
     "home": {
@@ -98,117 +100,121 @@
         "seedNotGenerated": "Δεν έχει παραχθεί σπόρος",
         "seedNotGeneratedExplanation": "Παρακαλώ κάντε κλικ στο κουμπί Δημιουργία νέου σπόρου.",
         "pressForNewSeed": "ΠΑΤΗΣΤΕ ΓΙΑ ΝΕΟ ΣΠΟΡΟ",
-        "individualLetters": "Press individual letters to randomise them."
+        "individualLetters": "Πατήστε μεμονομένα γράμματα για να τα τυχαιοποιήσετε."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Το πορτοφόλι είναι πλέον εγκατεστημένο και έτοιμο για χρήση. Εάν χρειάζεται να κάνετε οποιεσδήποτε αλλαγές στο μέλλον, κοιτάξτε στο μενού ρυθμίσεων."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "clickToPrint": "Κάντε κλικ στο παρακάτω κουμπί για να εκτυπώσετε ένα αντίγραφο του σπόρου σας.",
+        "storeSafely": "Αποθηκεύστε το με ασφάλεια.",
+        "neverShare": "Ποτέ μη μοιράζεστε το σπόρο σας με κανέναν.",
+        "iotaLogo": "Λογότυπο ΙΟΤΑ",
+        "printWallet": "ΕΚΤΥΠΩΣΗ ΧΑΡΤΙΝΟΥ ΠΟΡΤΟΦΩΛΙΟΥ"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "somethingWentWrong": "Κάτι πήγε στραβά",
+        "somethingWentWrongExplanation": "Παρακαλώ επανεκκινήστε την εφαρμογή.",
+        "addressCopied": "Η διεύθυνση αντιγράφηκε",
+        "addressCopiedExplanation": "Η διεύθυνσή σας έχει αντιγραφεί στο Πρόχειρο.",
+        "generateNewAddress": "ΔΗΜΙΟΥΡΓΙΑ ΝΕΑΣ ΔΙΕΥΘΥΝΣΗΣ",
+        "message": "Προαιρετικό μήνυμα",
+        "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
-        "ofTheOptions": "of the options listed below."
+        "mustSaveYourSeed": "Πρέπει να αποθηκεύσετε το σπόρο σας με ",
+        "atLeastOne": "τουλάχιστον μία ",
+        "ofTheOptions": "από τις επιλογές που αναφέρονται παρακάτω."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "incorrectSeed": "Λάθος σπόρος.",
+        "incorrectSeedExplanation": "Ο σπόρος που πληκτρολογήσατε είναι εσφαλμένος. Παρακαλώ δοκιμάστε ξανά.",
+        "thisIsACheck": "Αυτό είναι ένας έλεγχος για να βεβαιωθείτε ότι έχετε αποθηκεύσει το σπόρο σας.",
+        "ifYouHaveNotSaved": "Αν δεν έχετε αποθηκεύσει το σπόρο σας, παρακαλούμε πηγαίνετε πίσω στην προηγούμενη οθόνη και κάντε το."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be 81 characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
+        "invalidAddress": "Μη έγκυρη διεύθυνση",
+        "invalidAddressExplanation1": "Η διεύθυνση πρέπει να είναι {{maxLength}} χαρακτήρες και θα πρέπει να έχει ένα άθροισμα ελέγχου.",
+        "invalidAddressExplanation2": "Η διεύθυνση περιέχει μη έγκυρους χαρακτήρες.",
+        "invalidAddressExplanation3": "Η διεύθυνση περιέχει ένα μη έγκυρο άθροισμα ελέγχου.",
+        "notEnoughFunds": "Δεν υπάρχει αρκετό κεφάλαιο",
+        "notEnoughFundsExplanation": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
+        "keyReuse": "Επαναχρησιμοποίηση κλειδιού",
+        "keyReuseExplanation": "Η διεύθυνση στην οποία προσπαθείτε να στείλετε έχει ήδη χρησιμοποιηθεί. Παρακαλώ δοκιμάστε μια άλλη διεύθυνση.",
+        "recipientAddress": "Διεύθυνση Παραλήπτη",
         "amount": "Ποσό",
-        "max": "MAX",
-        "message": "Message",
-        "send": "SEND IOTA"
+        "max": "ΜΕΓΙΣΤΟ",
+        "message": "Μήνυμα",
+        "send": "ΑΠΟΣΤΟΛΗ",
+        "invalidAmount": "Εισήχθη λάθος ποσό",
+        "invalidAmountExplanation": "Παρακαλώ εισάγετε μια αριθμητική τιμή για το ποσό της συναλλαγής.",
+        "maximumSelected": "ΜΕΓΙΣΤΟ ποσό επιλέχθηκε",
+        "iotaUnits": "Μονάδες ΙΟΤΑ"
     },
     "setPassword": {
         "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "Οι σπόροι πρέπει να έχουν {{minLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "passwordMismatch": "Οι κωδικοί πρόσβασης δεν ταιριάζουν",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "passwordMismatchExplanation": "Οι κωδικοί πρόσβασης που έχετε καταχωρήσει δεν ταιριάζουν. Παρακαλώ ξαναπροσπαθήστε.",
+        "nowWeNeedTo": "Τώρα πρέπει να ορίσουμε έναν κωδικό πρόσβασης.",
+        "anEncryptedCopy": "Ένα κρυπτογραφημένο αντίγραφο του σπόρου σας θα αποθηκευτεί στη συσκευή σας. Θα μπορείτε να χρησιμοποιήσετε αυτόν τον κωδικό πρόσβασης για να αποκτήσετε πρόσβαση το πορτοφόλι σας στο μέλλον.",
         "ensure": "Βεβαιωθείτε ότι χρησιμοποιείτε έναν ισχυρό κωδικό πρόσβασης τουλάχιστον 12 χαρακτήρων.",
-        "retypePassword": "Retype Password"
+        "retypePassword": "Πληκτρολογήστε ξανά τον κωδικό πρόσβασης"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "Μπορείτε να χρησιμοποιήσετε πολλούς σπόρους με αυτό το πορτοφόλι. Κάθε Σπόρος απαιτεί ένα όνομα λογαριασμού.",
+        "youCanAdd": "Μπορείτε να προσθέσετε περισσότερους σπόρους από το μενού ρυθμίσεων."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
+        "transferSending": "Αποστολή μεταφοράς",
+        "transferSendingExplanation": "Παρακαλώ περιμένετε έως ότου η μεταφορά σας έχει σταλεί.",
+        "generatingAddress": "Δημιουργεία διεύθυνσης λήψης",
+        "generatingAddressExplanation": "Παρακαλώ περιμένετε μέχρι η διεύθυνση σας να έχει δημιουργηθεί.",
+        "mode": "Λειτουργία",
+        "theme": "Θέμα",
+        "currency": "Νόμισμα",
         "language": "Γλώσσα",
-        "addNewSeed": "Add new seed",
-        "twoFA": "Two-factor authentication",
-        "changePassword": "Change password",
-        "advanced": "Advanced settings",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "back": "Back"
+        "addNewSeed": "Προσθέστε νέο σπόρο",
+        "twoFA": "Έλεγχος ταυτότητας δύο παραγόντων",
+        "changePassword": "Αλλάξτε κωδικό πρόσβασης",
+        "advanced": "Ρυθμίσεις για προχωρημένους",
+        "logout": "Αποσύνδεση",
+        "reset": "Επαναφέρετε το πορτοφόλι",
+        "back": "Πίσω"
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
+        "warning1": "Όλα τα δεδομένα του πορτοφολιού σας, συμπεριλαμβανομένων",
+        "warning2": " σπόρων, κωδικών πρόσβασης ",
+        "warning3": "και",
+        "warning4": " άλλες πληροφορίες λογαριασμού",
+        "warning5": " θα χαθούν.",
+        "areYouSure": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Εισάγετε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι σας.",
+        "cancel": "ΑΚΥΡΟ",
+        "reset": "ΕΠΑΝΑΦΟΡΑ"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
-        "explanation3": ", on",
-        "explanation4": " any device",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "okay": "Εντάξει. Ας εγκαταστήσουμε το πορτοφόλι σας!",
+        "doYouAlreadyHaveASeed": "Έχετε ήδη έναν σπόρο που θα θέλατε να χρησιμοποιήσετε;",
+        "seedExplanation": "Ο σπόρος ΙΟΤΑ είναι όπως ένα όνομα χρήστη και κωδικός πρόσβασης για το λογαριασμό σας, σε συνδυασμένα σε μια συμβολοσειρά 81 χαρακτήρων.",
+        "explanation1": "Μπορείτε να το χρησιμοποιήσετε για να αποκτήσετε πρόσβαση στα κεφάλαιά σας από",
+        "explanation2": " κάθε πορτοφόλι ",
+        "explanation3": ", σε",
+        "explanation4": " οποιαδήποτε συσκευή",
+        "explanation5": ". Αλλά αν χάσετε το σπόρο σας, θα χάσετε επίσης τα ΙΟΤΑ σας.",
+        "keepSafe": "Παρακαλώ κρατήστε το σπόρο σας ασφαλή."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading the IOTA wallet.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "Σας ευχαριστούμε που κατεβάσατε το πορτοφόλι ΙΟΤΑ.",
+        "weWillSpend": "Θα περάσουμε τα επόμενα λίγα λεπτά εγκαθιστώντας το πορτοφόλι σας.",
+        "reminder": "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "Ο σπόρος σας είναι 81 χαρακτήρες που διαβάζονται από αριστερά προς τα δεξιά. Γράψτε το σπόρο σας και το άθροισμα ελέγχου και",
+        "tripleCheck": "τριπλοτσεκάρετε",
+        "thatTheyAreCorrect": "ότι είναι σωστά."
     }
 }
