@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     topContainer: {
-        flex: 4.5,
+        flex: 9,
         justifyContent: 'space-around',
     },
     passwordTextContainer: {
@@ -203,8 +203,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 0.5,
-        justifyContent: 'flex-end',
+        flex: 1,
+        justifyContent: 'center',
     },
     item: {
         flexDirection: 'row',

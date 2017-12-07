@@ -40,19 +40,19 @@ class SetSeedName extends React.Component {
     getDefaultAccountName() {
         const { t } = this.props;
         if (this.props.account.seedCount == 0) {
-            return t('mainWallet');
+            return t('global:mainWallet');
         } else if (this.props.account.seedCount == 1) {
-            return t('secondWallet');
+            return t('global:secondWallet');
         } else if (this.props.account.seedCount == 2) {
-            return t('thirdWallet');
+            return t('global:thirdWallet');
         } else if (this.props.account.seedCount == 3) {
-            return t('fourthWallet');
+            return t('global:fourthWallet');
         } else if (this.props.account.seedCount == 4) {
-            return t('fifthWallet');
+            return t('global:fifthWallet');
         } else if (this.props.account.seedCount == 5) {
-            return t('sixthWallet');
+            return t('global:sixthWallet');
         } else if (this.props.account.seedCount == 6) {
-            return t('otherWallet');
+            return t('global:otherWallet');
         } else {
             return '';
         }
