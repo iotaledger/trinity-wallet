@@ -200,14 +200,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     bottomContainer: {
-        flex: 0.5,
+        flex: 1,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     topContainer: {
-        flex: 4.5,
+        flex: 9,
         justifyContent: 'space-around',
     },
     logoContainer: {
