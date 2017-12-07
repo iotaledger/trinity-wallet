@@ -15,7 +15,6 @@ import {
     ScrollView,
     StatusBar,
     TouchableWithoutFeedback,
-    KeyboardAvoidingView,
     Keyboard,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
