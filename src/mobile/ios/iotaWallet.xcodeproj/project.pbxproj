@@ -38,7 +38,6 @@
 		3933F23405C1A7DA85AA571A /* libPods-iotaWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9ED25C0E2B25086EB947F7 /* libPods-iotaWallet.a */; };
 		41661B0E52C06755BAB97122 /* libPods-iotaWallet-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DA04854F76D6CF0ED2F220 /* libPods-iotaWallet-tvOS.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		604A002D1FAF951D003CBDFE /* RNHockeyApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 604A002C1FAF951C003CBDFE /* RNHockeyApp.m */; };
 		6083B36F1FB7E65700DF3681 /* libRNShakeEvent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6083B36E1FB7E61000DF3681 /* libRNShakeEvent.a */; };
 		60ABE45D4856C876EFB3E718 /* libPods-iotaWallet-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D215E82DADAEAE41E8BB76DC /* libPods-iotaWallet-tvOSTests.a */; };
 		60F4FC861FD502A2001F5A1E /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F4FC781FD50249001F5A1E /* libRNDeviceInfo.a */; };
@@ -237,13 +236,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 2D2A28201D9B03D100D4039D;
 			remoteInfo = "RCTAnimation-tvOS";
-		};
-		604AFFB31FAF8B71003CBDFE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 604AFFAB1FAF8B71003CBDFE /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4769217EB460C36D3C9BBA6B7ADB63EF;
-			remoteInfo = "HockeySDK-HockeySDKResources";
 		};
 		604AFFB51FAF8B71003CBDFE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -458,9 +450,7 @@
 		3A9ED25C0E2B25086EB947F7 /* libPods-iotaWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iotaWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6003E2BD1F896555008A6D52 /* iotaWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = iotaWallet.entitlements; path = iotaWallet/iotaWallet.entitlements; sourceTree = "<group>"; };
-		604A002C1FAF951C003CBDFE /* RNHockeyApp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNHockeyApp.m; sourceTree = "<group>"; };
 		604AFFAB1FAF8B71003CBDFE /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
-		604AFFFD1FAF951A003CBDFE /* RNHockeyApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNHockeyApp.h; sourceTree = "<group>"; };
 		6083B2CD1FB558A700DF3681 /* iotaWallet-release-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWallet-release-config.xcconfig"; sourceTree = "<group>"; };
 		6083B2CF1FB558DF00DF3681 /* iotaWallet-debug-config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "iotaWallet-debug-config.xcconfig"; sourceTree = "<group>"; };
 		6083B2D11FB5594F00DF3681 /* iotaWalletTests-release-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWalletTests-release-config.xcconfig"; sourceTree = "<group>"; };
@@ -738,7 +728,6 @@
 		604AFFAC1FAF8B71003CBDFE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				604AFFB41FAF8B71003CBDFE /* HockeySDKResources.bundle */,
 				604AFFB61FAF8B71003CBDFE /* libPods-iotaWallet.a */,
 				604AFFB81FAF8B71003CBDFE /* libPods-iotaWallet-tvOS.a */,
 				604AFFBA1FAF8B71003CBDFE /* libPods-iotaWallet-tvOSTests.a */,
@@ -791,8 +780,6 @@
 				60F4FC4A1FD50248001F5A1E /* RNDeviceInfo.xcodeproj */,
 				CB1583AF1FCFA61C004C2604 /* KCKeepAwake.xcodeproj */,
 				6083B3691FB7E61000DF3681 /* RNShakeEvent.xcodeproj */,
-				604AFFFD1FAF951A003CBDFE /* RNHockeyApp.h */,
-				604A002C1FAF951C003CBDFE /* RNHockeyApp.m */,
 				604AFFAB1FAF8B71003CBDFE /* Pods.xcodeproj */,
 				CB1C684E1F9CC62900229848 /* RNFS.xcodeproj */,
 				CB1C67AA1F9A414A00229848 /* RCTCamera.xcodeproj */,
@@ -1382,13 +1369,6 @@
 			remoteRef = 5E9157341DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		604AFFB41FAF8B71003CBDFE /* HockeySDKResources.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = HockeySDKResources.bundle;
-			remoteRef = 604AFFB31FAF8B71003CBDFE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		604AFFB61FAF8B71003CBDFE /* libPods-iotaWallet.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1881,7 +1861,6 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				604A002D1FAF951D003CBDFE /* RNHockeyApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
