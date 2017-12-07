@@ -44,7 +44,6 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
-	new RNHockeyAppPackage(MainApplication.this),
             new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
