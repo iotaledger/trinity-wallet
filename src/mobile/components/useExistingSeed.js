@@ -126,6 +126,7 @@ class UseExistingSeed extends React.Component {
                                 </View>
                             </View>
                         </View>
+                        <View style={{ flex: 1 }} />
                         <View style={styles.accountNameContainer}>
                             <View style={styles.subtitleContainer}>
                                 <Text style={styles.title}>Enter an account name.</Text>
@@ -197,7 +198,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between',
     },
     bottomContainer: {
         flex: 1,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     },
     topContainer: {
         flex: 9,
-        justifyContent: 'space-around',
+        justifyContent: 'flex-start',
     },
     logoContainer: {
         justifyContent: 'center',
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15,
+        paddingTop: height / 25,
         paddingBottom: height / 30,
     },
     subtitleContainer: {
@@ -275,10 +275,10 @@ const styles = StyleSheet.create({
         paddingBottom: height / 90,
     },
     accountNameContainer: {
-        flex: 1,
+        flex: 4,
     },
     seedContainer: {
-        flex: 1,
+        flex: 4,
     },
     titleTextLeft: {
         color: 'white',
