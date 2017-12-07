@@ -2711,7 +2711,7 @@ hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
-hoist-non-react-statics@2.3.1:
+hoist-non-react-statics@2.3.1, hoist-non-react-statics@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
 
@@ -4627,6 +4627,12 @@ react-native-randombytes@^2.3.0:
   dependencies:
     buffer "^4.9.1"
     sjcl "^1.0.3"
+
+react-native-safe-area-view@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.2.0.tgz#bda97f548e2ead4a90a06d95558647bc73434670"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
 
 "react-native-sensitive-info@git://github.com/mCodex/react-native-sensitive-info.git#keystore":
   version "5.0.0"
