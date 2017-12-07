@@ -612,12 +612,6 @@ const styles = StyleSheet.create({
         height: 36,
         alignSelf: 'center',
     },
-    separator: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        width: width / 1.16,
-        alignSelf: 'center',
-    },
 });
 
 const mapDispatchToProps = dispatch => ({
