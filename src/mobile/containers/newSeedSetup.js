@@ -201,19 +201,20 @@ class NewSeedSetup extends Component {
                     />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <Text
-                        style={{
-                            color: 'white',
-                            fontFamily: 'Lato-Light',
-                            textAlign: 'center',
-                            fontSize: width / 27.6,
-                            backgroundColor: 'transparent',
-                            height: this.state.infoTextHeight,
-                            marginBottom: height / 23,
-                        }}
-                    >
-                        {t('individualLetters')}
-                    </Text>
+                    <View style={{ justifyContent: 'center', flex: 0.5 }}>
+                        <Text
+                            style={{
+                                color: 'white',
+                                fontFamily: 'Lato-Light',
+                                textAlign: 'center',
+                                fontSize: width / 27.6,
+                                backgroundColor: 'transparent',
+                                height: this.state.infoTextHeight,
+                            }}
+                        >
+                            {t('individualLetters')}
+                        </Text>
+                    </View>
                     <View style={styles.buttonsContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.leftButton}>
@@ -273,12 +274,12 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 4,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 0.5,
+        flex: 1.3,
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
@@ -330,6 +331,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     buttonsContainer: {
+        flex: 1,
         alignItems: 'flex-end',
         justifyContent: 'center',
         flexDirection: 'row',
