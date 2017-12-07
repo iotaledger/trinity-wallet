@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         flex: 2.3,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: height / 100,
+        paddingVertical: height / 110,
     },
     chartContainer: {
         flex: 5.2,
