@@ -1,11 +1,8 @@
 import assign from 'lodash/assign';
 import noop from 'lodash/noop';
 import React from 'react';
-import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { SetSeedName } from '../../containers/setSeedName';
-
-jest.mock('react-native-device-info');
 
 const getProps = overrides =>
     assign(
