@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import Link from './Link';
 import css from '../../Layout/Main.css';
@@ -11,10 +11,13 @@ const images = {
     settings: require('../../../../../shared/images/settings.png'),
 };
 
-class Sidebar extends React.Component {
-    static propTypes = {};
-
+class Sidebar extends React.PureComponent {
+    static propTypes = {
+        t: PropTypes.func.isRequired,
+    };
     render() {
+        // eslint-disable-next-line
+        const { t } = this.props;
         return (
             <div className={css.sidebar}>
                 <ul>

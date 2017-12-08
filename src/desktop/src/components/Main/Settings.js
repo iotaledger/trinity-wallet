@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
+import { getAccountInfoAsync, getNewAddressAsync } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
 import Template, { Content } from './Template';
 // import Loading from '../UI/Loading';
 // import css from '../Layout/Main.css';
-
-import { getAccountInfoAsync, getNewAddressAsync } from 'actions/seeds';
 
 class Settings extends React.Component {
     static propTypes = {};
