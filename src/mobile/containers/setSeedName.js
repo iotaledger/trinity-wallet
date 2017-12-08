@@ -15,7 +15,7 @@ import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/ac
 import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
-class SetSeedName extends React.Component {
+export class SetSeedName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -45,7 +45,9 @@ class SetSeedName extends React.Component {
     }
 
     componentDidMount() {
-        this.nameInput.focus();
+        if (this.nameInput) {
+            this.nameInput.focus();
+        }
     }
 
     onDonePress() {
