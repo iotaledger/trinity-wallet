@@ -30,7 +30,7 @@ class Header extends React.PureComponent {
                                     onClick={() => selectSeed(index)}
                                 >
                                     <h1>{seed.name}</h1>
-                                    <h2 />
+                                    {/* <h2 /> */}
                                 </li>
                             );
                         })}

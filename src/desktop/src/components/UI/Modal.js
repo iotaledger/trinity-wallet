@@ -86,7 +86,9 @@ export default class Modal extends React.Component {
 
         return ReactDOM.createPortal(
             <div
-                ref={node => (this.backdropEl = node)}
+                ref={node => {
+                    this.backdropEl = node;
+                }}
                 className={classNames(css.backdrop, className)}
                 onClick={e => e.target === this.backdropEl && this.close()}
             >
