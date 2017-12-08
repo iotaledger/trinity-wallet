@@ -227,7 +227,7 @@ class TopBar extends Component {
 
     onNodeError() {
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
     }
 
     humanizeBalance(balance) {
@@ -388,4 +388,4 @@ const mapDispatchToProps = dispatch => ({
     setReceiveAddress: string => dispatch(setReceiveAddress(string)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
+export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));
