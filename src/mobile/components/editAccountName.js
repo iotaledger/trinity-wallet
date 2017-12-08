@@ -1,10 +1,18 @@
 import trim from 'lodash/trim';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { width, height } from '../util/dimensions';
 
-class EditAccountName extends React.Component {
+class EditAccountName extends Component {
+    static propTypes = {
+        seedIndex: PropTypes.number.isRequired,
+        accountName: PropTypes.string.isRequired,
+        saveAccountName: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +21,7 @@ class EditAccountName extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (this.props.accountName != newProps.accountName) {
+        if (this.props.accountName !== newProps.accountName) {
             this.setState({ accountName: newProps.accountName });
         }
     }
