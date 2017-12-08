@@ -84,7 +84,6 @@ class WalletResetRequirePassword extends Component {
                 .purge()
                 .then(() => {
                     deleteFromKeyChain(password);
-                    deleteFromKeyChain(password);
                     this.redirectToInitialScreen();
                     this.props.setOnboardingComplete(false);
                     this.props.setFirstUse(true);
@@ -136,14 +135,14 @@ class WalletResetRequirePassword extends Component {
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
+                                enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 value={this.state.password}
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
-                                secureTextEntry={true}
+                                secureTextEntry
                             />
                         </View>
                         <View style={styles.bottomContainer}>
