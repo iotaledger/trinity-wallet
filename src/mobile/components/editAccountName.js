@@ -35,7 +35,7 @@ class EditAccountName extends React.Component {
                                 baseColor="white"
                                 label="Account name"
                                 tintColor="#F7D002"
-                                autoCapitalize={'characters'}
+                                autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="done"
