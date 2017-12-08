@@ -67,8 +67,8 @@ class CopySeedToClipboard extends React.Component {
                     />
                 </View>
                 <View style={styles.midContainer}>
-                    <Text style={styles.infoTextNormal}>Click the button below to copy your seed.</Text>
-                    <Text style={styles.infoTextBold}>Do not store your seed in plain text.</Text>
+                    <Text style={styles.infoTextNormal}>{t('clickToCopy')}</Text>
+                    <Text style={styles.infoTextBold}>{t('doNotStore')}</Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 22 }}>
                         <View style={styles.copyButton}>
@@ -228,4 +228,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default translate('saveYourSeed3')(connect(mapStateToProps)(CopySeedToClipboard));
+export default translate(['copyToClipboard', 'global'])(connect(mapStateToProps)(CopySeedToClipboard));

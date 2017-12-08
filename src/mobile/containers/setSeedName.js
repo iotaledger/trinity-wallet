@@ -153,7 +153,7 @@ export class SetSeedName extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Account name"
+                                label={t('addAdditionalSeed:accountName')}
                                 tintColor="#F7D002"
                                 autoCapitalize="words"
                                 autoCorrect={false}
