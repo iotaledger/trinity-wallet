@@ -146,7 +146,6 @@ class UseExistingSeed extends React.Component {
                                 autoCorrect={false}
                                 value={accountName}
                                 containerStyle={{ width: width / 1.36 }}
-                                autoCapitalize={'characters'}
                                 onChangeText={accountName => this.setState({ accountName })}
                             />
                         </View>
