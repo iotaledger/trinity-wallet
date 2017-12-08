@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-var DeviceInfo = require('react-native-device-info');
+import DeviceInfo from 'react-native-device-info';
 const device = DeviceInfo.getModel();
 
 export const isAndroid = Platform.OS === 'android';
