@@ -43,11 +43,7 @@ class SeedReentry extends React.Component {
                 overrideBackPress: true,
             });
         } else {
-            this.dropdown.alertWithType(
-                'error',
-                'Incorrect seed.',
-                `The seed you entered is incorrect. Please try again.`,
-            );
+            this.dropdown.alertWithType('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
         }
     }
 
@@ -75,7 +71,7 @@ class SeedReentry extends React.Component {
                                     />
                                 </View>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text>
+                                    <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
@@ -86,7 +82,7 @@ class SeedReentry extends React.Component {
                                     fontSize={width / 20.7}
                                     labelPadding={3}
                                     baseColor="white"
-                                    label="Seed"
+                                    label={t('global:seed')}
                                     tintColor="#F7D002"
                                     autoCapitalize={'characters'}
                                     autoCorrect={false}
@@ -104,21 +100,16 @@ class SeedReentry extends React.Component {
                                         source={require('iota-wallet-shared-modules/images/info.png')}
                                         style={styles.infoIcon}
                                     />
-                                    <Text style={styles.infoText}>
-                                        This is a check to make sure you saved your seed.
-                                    </Text>
-                                    <Text style={styles.infoText}>
-                                        If you have not saved your seed, please go back to the previous screen and do
-                                        so.
-                                    </Text>
+                                    <Text style={styles.infoText}>{t('thisIsACheck')}</Text>
+                                    <Text style={styles.infoText}>{t('ifYouHaveNotSaved')}</Text>
                                 </View>
                             </View>
                             <View style={styles.bottomContainer}>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
-                                    leftText={'BACK'}
-                                    rightText={'DONE'}
+                                    leftText={t('global:back')}
+                                    rightText={t('global:done')}
                                 />
                             </View>
                         </View>
@@ -281,4 +272,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default connect(mapStateToProps)(SeedReentry);
+export default translate(['seedReentry', 'global'])(connect(mapStateToProps)(SeedReentry));
