@@ -436,7 +436,7 @@ class Send extends Component {
                                 autoCorrect={false}
                                 value={message}
                                 onChangeText={message => this.setState({ message })}
-                                onSubmitEditing={() => this.sendTransfer()}
+                                onSubmitEditing={() => this.onSendPress()}
                             />
                         </View>
                     </View>
