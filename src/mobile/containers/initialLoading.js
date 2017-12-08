@@ -8,7 +8,7 @@ import store from 'iota-wallet-shared-modules/store';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
 
-const VERSION = 'v0.1 (4)';
+const VERSION = 'v0.1 (5)';
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
