@@ -84,40 +84,42 @@ class DeleteAccount extends React.Component {
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-                    <View style={{ flex: 0.3 }} />
-                    {!this.state.pressedContinue && (
-                        <View style={styles.topContainer}>
-                            <Text style={styles.infoText}>Are you sure you want to delete this account?</Text>
-                            <Text style={styles.infoText}>Your seed and transaction history will be removed.</Text>
-                            <Text style={styles.warningText}>This action cannot be undone.</Text>
-                        </View>
-                    )}
-                    {this.state.pressedContinue && (
-                        <View style={styles.topContainer}>
-                            <Text style={styles.infoText}>Enter your password to delete this account.</Text>
-                            <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor="white"
-                                label="Password"
-                                tintColor="#F7D002"
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                returnKeyType="done"
-                                value={this.state.password}
-                                onChangeText={password => this.setState({ password })}
-                                containerStyle={{
-                                    width: width / 1.4,
-                                }}
-                                secureTextEntry={true}
-                            />
-                        </View>
-                    )}
-                    <View style={{ flex: 1.3 }} />
+                    <View style={styles.topContainer}>
+                        <View style={{ flex: 0.3 }} />
+                        {!this.state.pressedContinue && (
+                            <View style={styles.textContainer}>
+                                <Text style={styles.infoText}>Are you sure you want to delete this account?</Text>
+                                <Text style={styles.infoText}>Your seed and transaction history will be removed.</Text>
+                                <Text style={styles.warningText}>This action cannot be undone.</Text>
+                            </View>
+                        )}
+                        {this.state.pressedContinue && (
+                            <View style={styles.textContainer}>
+                                <Text style={styles.infoText}>Enter your password to delete this account.</Text>
+                                <TextField
+                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={width / 31.8}
+                                    fontSize={width / 20.7}
+                                    labelPadding={3}
+                                    baseColor="white"
+                                    label="Password"
+                                    tintColor="#F7D002"
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically={true}
+                                    returnKeyType="done"
+                                    value={this.state.password}
+                                    onChangeText={password => this.setState({ password })}
+                                    containerStyle={{
+                                        width: width / 1.4,
+                                    }}
+                                    secureTextEntry={true}
+                                />
+                            </View>
+                        )}
+                        <View style={{ flex: 1.3 }} />
+                    </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.itemLeft}>
@@ -174,15 +176,20 @@ const styles = StyleSheet.create({
         paddingVertical: height / 18,
         width: width / 1.15,
     },
+    topContainer: {
+        flex: 9,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     bottomContainer: {
-        flex: 0.5,
+        flex: 1,
         width: width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
-    topContainer: {
+    textContainer: {
         flex: 2.5,
         justifyContent: 'space-around',
         paddingHorizontal: width / 15,

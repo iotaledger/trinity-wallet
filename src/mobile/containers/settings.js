@@ -38,6 +38,9 @@ import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
 import LanguageSelection from '../components/languageSelection.js';
 import CurrencySelection from '../components/currencySelection.js';
+import MainSettings from '../components/mainSettings.js';
+import AdvancedSettings from '../components/advancedSettings.js';
+import AccountManagement from '../components/accountManagement.js';
 import { logoutFromWallet } from 'iota-wallet-shared-modules/actions/app';
 import { parse } from 'iota-wallet-shared-modules/libs/util';
 import {
@@ -50,8 +53,6 @@ import {
     getSeed,
 } from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
-import i18next from 'i18next';
-import { selectLocale } from '../components/locale';
 
 import { width, height } from '../util/dimensions';
 
@@ -84,206 +85,34 @@ class Settings extends React.Component {
         switch (content) {
             case 'mainSettings':
                 return (
-                    <View>
-                        <TouchableOpacity onPress={event => this.onModePress()}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/mode.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Mode</Text>
-                                <Text style={styles.settingText}>{this.props.settings.mode}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onThemePress()}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/theme.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Theme</Text>
-                                <Text style={styles.settingText}>{this.props.settings.theme}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.props.setSetting('currencySelection')}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/currency.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Currency</Text>
-                                <Text style={styles.settingText}>{this.props.settings.currency}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.props.setSetting('languageSelection')}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/language.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Language</Text>
-                                <Text numberOfLines={1} style={styles.settingText}>
-                                    {selectLocale(i18next.language)}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                        <View style={styles.separator} />
-                        <TouchableOpacity onPress={event => this.onAccountManagementPress()}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/account.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Account management</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.on2FASetupPress()}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/2fa.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Two-factor authentication</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.props.setSetting('changePassword')}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/password.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Change password</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <View style={styles.separator} />
-                        <TouchableOpacity onPress={event => this.props.setSetting('advancedSettings')}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/advanced.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Advanced settings</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.setModalContent('logoutConfirmation')}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/logout.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Log out</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                    <MainSettings
+                        setSetting={setting => this.props.setSetting(setting)}
+                        setModalContent={content => this.setModalContent(content)}
+                        on2FASetupPress={() => this.on2FASetupPress()}
+                        onThemePress={() => this.featureUnavailable()}
+                        onModePress={() => this.featureUnavailable()}
+                        onLanguagePress={() => this.featureUnavailable()}
+                        mode={this.props.settings.mode}
+                        theme={this.props.settings.theme}
+                        currency={this.props.settings.currency}
+                    />
                 );
                 break;
             case 'advancedSettings':
                 return (
-                    <View style={styles.advancedSettingsContainer}>
-                        <View style={{ flex: 1, justifyContent: 'flex-start' }}>
-                            <TouchableOpacity onPress={event => this.props.setSetting('nodeSelection')}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/node.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Select node</Text>
-                                    <Text numberOfLines={1} style={styles.subtitleText}>
-                                        {this.props.settings.fullNode}
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={event => this.props.setSetting('manualSync')}>
-                                <View style={styles.item}>
-                                    <Image source={require('../../shared/images/sync.png')} style={styles.icon} />
-                                    <Text style={styles.titleText}>Manual sync</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <View style={styles.separator} />
-                            <TouchableOpacity onPress={event => this.onResetWalletPress()}>
-                                <View style={styles.item}>
-                                    <Image source={require('../../shared/images/cross.png')} style={styles.icon} />
-                                    <Text style={styles.titleText}>Reset Wallet</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-                            <TouchableOpacity onPress={event => this.onBackPress()}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Back</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
+                    <AdvancedSettings
+                        setSetting={setting => this.props.setSetting(setting)}
+                        onResetWalletPress={() => this.onResetWalletPress()}
+                        node={this.props.settings.fullNode}
+                    />
                 );
                 break;
             case 'accountManagement':
                 return (
-                    <View style={styles.advancedSettingsContainer}>
-                        <View style={{ flex: 4, justifyContent: 'flex-start' }}>
-                            <TouchableOpacity onPress={event => this.props.setSetting('viewSeed')}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/key.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>View seed</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={event => this.props.setSetting('viewAddresses')}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/addresses.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>View addresses</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={event => this.props.setSetting('editAccountName')}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/edit.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Edit account name</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={event => this.onDeleteAccountPress()}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/delete.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Delete account</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <View style={styles.separator} />
-                            <TouchableOpacity onPress={event => this.props.setSetting('addNewAccount')}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/add.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Add new account</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ flex: 0.5, justifyContent: 'flex-end' }}>
-                            <TouchableOpacity onPress={event => this.onBackPress()}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Back</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
+                    <AccountManagement
+                        setSetting={setting => this.props.setSetting(setting)}
+                        onDeleteAccountPress={() => this.onDeleteAccountPress()}
+                    />
                 );
                 break;
             case 'viewSeed':
@@ -368,7 +197,8 @@ class Settings extends React.Component {
                 );
                 break;
             case 'languageSelection':
-                return <LanguageSelection backPress={() => this.props.setSetting('mainSettings')} />;
+                return;
+                <LanguageSelection backPress={() => this.props.setSetting('mainSettings')} />;
                 break;
             case 'changePassword':
                 return (
@@ -600,13 +430,7 @@ class Settings extends React.Component {
         }
     }
 
-    onModePress() {
-        const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onCurrencyPress() {
+    featureUnavailable() {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
@@ -661,7 +485,6 @@ class Settings extends React.Component {
     }
 
     navigateNewSeed() {
-        //this.props.endBackgroundProcesses();
         this.props.navigator.push({
             screen: 'newSeedSetup',
             navigatorStyle: {
@@ -671,10 +494,6 @@ class Settings extends React.Component {
             animated: false,
             overrideBackPress: true,
         });
-    }
-
-    onAccountManagementPress() {
-        this.props.setSetting('accountManagement');
     }
 
     onAddNewSeedPress() {
@@ -734,25 +553,9 @@ const styles = StyleSheet.create({
         fontSize: width / 23,
         backgroundColor: 'transparent',
     },
-    subtitleText: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 23,
-        marginLeft: width / 12,
-        width: width / 2.4,
-        backgroundColor: 'transparent',
-    },
-    settingText: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-        marginLeft: width / 30,
-    },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
         width: width,
         paddingHorizontal: width / 15,
@@ -802,14 +605,6 @@ const styles = StyleSheet.create({
         padding: 8,
         width: 36,
         height: 36,
-        alignSelf: 'center',
-    },
-    separator: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        width: width / 1.16,
-        height: 0.3,
-        marginVertical: height / 100,
         alignSelf: 'center',
     },
 });
