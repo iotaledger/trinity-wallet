@@ -1,4 +1,4 @@
-package com.iotawallet;
+package com.iota.wallet;
 
 import com.horcrux.svg.SvgPackage;
 import com.reactnativenavigation.controllers.SplashActivity;
