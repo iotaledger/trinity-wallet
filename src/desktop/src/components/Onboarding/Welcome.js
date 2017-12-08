@@ -11,7 +11,7 @@ class Welcome extends React.PureComponent {
         t: PropTypes.func.isRequired,
     };
 
-    state = { modalOpen: false };
+    // state = { modalOpen: false };
 
     render() {
         const { t } = this.props;
