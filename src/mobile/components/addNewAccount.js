@@ -85,6 +85,10 @@ const styles = StyleSheet.create({
         height: width / 22,
         marginRight: width / 25,
     },
+    itemContainer: {
+        flex: 1,
+        justifyContent: 'center',
+    },
 });
 
 export default AddNewAccount;

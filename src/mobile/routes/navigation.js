@@ -20,36 +20,34 @@ import OnboardingComplete from '../containers/onboardingComplete';
 import SetSeedName from '../containers/setSeedName';
 import UseSeed from '../containers/useSeed';
 import SeedReentry from '../containers/seedReentry';
+import { isIPhoneX } from '../util/device';
 
+function getGenerator(screen) {
+    if (isIPhoneX) {
+        return withSafeAreaView(screen);
+    } else {
+        return screen;
+    }
+}
 export function registerScreens(store, Provider) {
-    Navigation.registerComponent('initialLoading', () => withSafeAreaView(InitialLoading), store, Provider);
-    Navigation.registerComponent('home', () => withSafeAreaView(Home), store, Provider);
-    Navigation.registerComponent('loading', () => withSafeAreaView(Loading), store, Provider);
-    Navigation.registerComponent('newSeedSetup', () => withSafeAreaView(NewSeedSetup), store, Provider);
-    Navigation.registerComponent('walletSetup', () => withSafeAreaView(WalletSetup), store, Provider);
-    Navigation.registerComponent('enterSeed', () => withSafeAreaView(EnterSeed), store, Provider);
-    Navigation.registerComponent('saveYourSeed', () => withSafeAreaView(SaveYourSeed), store, Provider);
-    Navigation.registerComponent('setPassword', () => withSafeAreaView(SetPassword), store, Provider);
-    Navigation.registerComponent('login', () => withSafeAreaView(Login), store, Provider);
-    Navigation.registerComponent('writeSeedDown', () => withSafeAreaView(WriteSeedDown), store, Provider);
-    Navigation.registerComponent('paperWallet', () => withSafeAreaView(PaperWallet), store, Provider);
-    Navigation.registerComponent('copySeedToClipboard', () => withSafeAreaView(CopySeedToClipboard), store, Provider);
-    Navigation.registerComponent('languageSetup', () => withSafeAreaView(LanguageSetup), store, Provider);
-    Navigation.registerComponent('welcome', () => withSafeAreaView(Welcome), store, Provider);
-    Navigation.registerComponent(
-        'wallet-reset-confirm',
-        () => withSafeAreaView(WalletResetConfirmation),
-        store,
-        Provider,
-    );
-    Navigation.registerComponent(
-        'wallet-reset-require-password',
-        () => withSafeAreaView(WalletResetRequirePassword),
-        store,
-        Provider,
-    );
-    Navigation.registerComponent('onboardingComplete', () => withSafeAreaView(OnboardingComplete), store, Provider);
-    Navigation.registerComponent('useSeed', () => withSafeAreaView(UseSeed), store, Provider);
-    Navigation.registerComponent('setSeedName', () => withSafeAreaView(SetSeedName), store, Provider);
-    Navigation.registerComponent('seedReentry', () => withSafeAreaView(SeedReentry), store, Provider);
+    Navigation.registerComponent('initialLoading', () => getGenerator(InitialLoading), store, Provider);
+    Navigation.registerComponent('home', () => getGenerator(Home), store, Provider);
+    Navigation.registerComponent('loading', () => getGenerator(Loading), store, Provider);
+    Navigation.registerComponent('newSeedSetup', () => getGenerator(NewSeedSetup), store, Provider);
+    Navigation.registerComponent('walletSetup', () => getGenerator(WalletSetup), store, Provider);
+    Navigation.registerComponent('enterSeed', () => getGenerator(EnterSeed), store, Provider);
+    Navigation.registerComponent('saveYourSeed', () => getGenerator(SaveYourSeed), store, Provider);
+    Navigation.registerComponent('setPassword', () => getGenerator(SetPassword), store, Provider);
+    Navigation.registerComponent('login', () => getGenerator(Login), store, Provider);
+    Navigation.registerComponent('writeSeedDown', () => getGenerator(WriteSeedDown), store, Provider);
+    Navigation.registerComponent('paperWallet', () => getGenerator(PaperWallet), store, Provider);
+    Navigation.registerComponent('copySeedToClipboard', () => getGenerator(CopySeedToClipboard), store, Provider);
+    Navigation.registerComponent('languageSetup', () => getGenerator(LanguageSetup), store, Provider);
+    Navigation.registerComponent('welcome', () => getGenerator(Welcome), store, Provider);
+    Navigation.registerComponent('wallet-reset-confirm', () => WalletResetConfirmation, store, Provider);
+    Navigation.registerComponent('wallet-reset-require-password', () => WalletResetRequirePassword, store, Provider);
+    Navigation.registerComponent('onboardingComplete', () => OnboardingComplete, store, Provider);
+    Navigation.registerComponent('useSeed', () => UseSeed, store, Provider);
+    Navigation.registerComponent('setSeedName', () => SetSeedName, store, Provider);
+    Navigation.registerComponent('seedReentry', () => SeedReentry, store, Provider);
 }
