@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
         fontSize: width / 23,
         fontFamily: 'Lato-Light',
         backgroundColor: 'transparent',
+        textAlign: 'left',
         paddingTop: height / 100,
         width: width / 3,
     },

@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     topContainer: {
-        flex: 10,
+        flex: 9,
         justifyContent: 'flex-start',
     },
     itemLeft: {
