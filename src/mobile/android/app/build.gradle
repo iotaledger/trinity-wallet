@@ -96,7 +96,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.iotawallet"
+        applicationId "com.iota.wallet"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
@@ -161,7 +161,6 @@ dependencies {
   	compile project(':react-native-svg')
   	compile project(':react-native-camera')
     compile project(':react-native-fs')
-    compile project(":react-native-hockeyapp")
     compile project(':react-native-keep-awake')
     compile("com.crashlytics.sdk.android:crashlytics:2.6.4@aar") {
             transitive = true;

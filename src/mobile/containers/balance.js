@@ -84,7 +84,7 @@ class Balance extends React.Component {
                             )}
                             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                             enableEmptySections
-                            contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
+                            contentContainerStyle={styles.listView}
                             scrollEnabled={false}
                             centerContent
                         />
@@ -110,23 +110,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
     },
     balanceContainer: {
-        flex: 1,
+        flex: 2.5,
         alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingTop: isAndroid ? height / 13 : height / 20,
-        paddingBottom: isAndroid ? height / 30 : height / 50,
+        justifyContent: 'center',
     },
     transactionsContainer: {
-        flex: 2.2,
+        flex: 2,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: height / 110,
     },
     chartContainer: {
-        flex: 5.3,
+        flex: 5.5,
+        //paddingVertical: isAndroid ? height / 80 : 0,
     },
     iotaBalance: {
         color: 'white',
@@ -143,19 +140,16 @@ const styles = StyleSheet.create({
     },
     line: {
         borderBottomColor: 'white',
-        borderBottomWidth: height / 3000,
+        borderBottomWidth: height / 1000,
         width: width / 1.15,
     },
     separator: {
         height: height / 120,
         flex: 1,
     },
-    listViewAndroid: {
+    listView: {
         flex: 1,
         paddingVertical: height / 70,
-    },
-    listViewIos: {
-        paddingTop: height / 90,
     },
 });
 

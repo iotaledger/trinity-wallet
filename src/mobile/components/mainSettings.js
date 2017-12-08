@@ -58,7 +58,7 @@ class MainSettings extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.itemContainer}>
-                    <TouchableOpacity onPress={event => this.props.setSetting('languageSelection')}>
+                    <TouchableOpacity onPress={event => this.props.onLanguagePress()}>
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
                                 <Image
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     },
     separator: {
         borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
+        borderBottomWidth: height / 1500,
         width: width / 1.16,
         alignSelf: 'center',
     },
