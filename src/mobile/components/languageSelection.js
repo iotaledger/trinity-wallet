@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     topContainer: {
-        flex: 10,
+        flex: 9,
         justifyContent: 'flex-start',
     },
     itemLeft: {
@@ -83,7 +83,7 @@ class LanguageSelection extends Component {
                             ref={c => {
                                 this.dropdown = c;
                             }}
-                            title={t('language')}
+                            title={this.languageSelected}
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={currentLanguageLabel}
                             options={I18N_LOCALE_LABELS}

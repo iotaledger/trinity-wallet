@@ -289,7 +289,7 @@ class Send extends Component {
         if (this.state.maxPressed) {
             return (
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={styles.maxWarningText}>t('maximumSelected')</Text>
+                    <Text style={styles.maxWarningText}>{t('maximumSelected')}</Text>
                 </View>
             );
         } else {
@@ -436,7 +436,7 @@ class Send extends Component {
                                 autoCorrect={false}
                                 value={message}
                                 onChangeText={message => this.setState({ message })}
-                                onSubmitEditing={() => this.sendTransfer()}
+                                onSubmitEditing={() => this.onSendPress()}
                             />
                         </View>
                     </View>
@@ -478,7 +478,7 @@ class Send extends Component {
                                     source={require('iota-wallet-shared-modules/images/info.png')}
                                     style={styles.infoIcon}
                                 />
-                                <Text style={styles.infoText}>t('iotaUnits')</Text>
+                                <Text style={styles.infoText}>{t('iotaUnits')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -681,4 +681,4 @@ const mapDispatchToProps = dispatch => ({
     sendTransferRequest: () => dispatch(sendTransferRequest()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Send);
+export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
