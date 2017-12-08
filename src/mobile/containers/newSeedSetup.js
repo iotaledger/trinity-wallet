@@ -19,10 +19,12 @@ import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/ac
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import { Navigation } from 'react-native-navigation';
 
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
+import { isIPhoneX } from '../util/device';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -112,14 +114,18 @@ class NewSeedSetup extends Component {
                 overrideBackPress: true,
             });
         } else {
-            this.props.navigator.push({
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
+            // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'home',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundImageName: 'bg-blue.png',
+                        screenBackgroundColor: '#102e36',
+                    },
+                    overrideBackPress: true,
                 },
-                animated: false,
-                overrideBackPress: true,
             });
         }
     }
@@ -199,19 +205,20 @@ class NewSeedSetup extends Component {
                     />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <Text
-                        style={{
-                            color: 'white',
-                            fontFamily: 'Lato-Light',
-                            textAlign: 'center',
-                            fontSize: width / 27.6,
-                            backgroundColor: 'transparent',
-                            height: this.state.infoTextHeight,
-                            marginBottom: height / 23,
-                        }}
-                    >
-                        {t('individualLetters')}
-                    </Text>
+                    <View style={{ justifyContent: 'center', flex: 0.4 }}>
+                        <Text
+                            style={{
+                                color: 'white',
+                                fontFamily: 'Lato-Light',
+                                textAlign: 'center',
+                                fontSize: width / 27.6,
+                                backgroundColor: 'transparent',
+                                height: this.state.infoTextHeight,
+                            }}
+                        >
+                            {t('individualLetters')}
+                        </Text>
+                    </View>
                     <View style={styles.buttonsContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.leftButton}>
@@ -271,23 +278,24 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4.8,
+        flex: 4,
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 0.5,
+        flex: 1.3,
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
     list: {
-        justifyContent: 'center',
+        justifyContent: isIPhoneX ? 'flex-start' : 'center',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        height: width / 1.15,
-        width: width / 1.15,
+        height: isIPhoneX ? width / 1.1 : width / 1.15,
+        width: isIPhoneX ? width / 1.1 : width / 1.15,
         flex: 1,
     },
+
     gridContainer: {
         height: width / 1.15,
         width: width / 1.15,
@@ -327,6 +335,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     buttonsContainer: {
+        flex: 1,
         alignItems: 'flex-end',
         justifyContent: 'center',
         flexDirection: 'row',

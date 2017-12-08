@@ -88,8 +88,9 @@ class Settings extends React.Component {
                         setSetting={setting => this.props.setSetting(setting)}
                         setModalContent={content => this.setModalContent(content)}
                         on2FASetupPress={() => this.on2FASetupPress()}
-                        onThemePress={() => this.onThemePress()}
-                        onModePress={() => this.onModePress()}
+                        onThemePress={() => this.featureUnavailable()}
+                        onModePress={() => this.featureUnavailable()}
+                        onLanguagePress={() => this.featureUnavailable()}
                         mode={this.props.settings.mode}
                         theme={this.props.settings.theme}
                         currency={this.props.settings.currency}
@@ -195,7 +196,8 @@ class Settings extends React.Component {
                 );
                 break;
             case 'languageSelection':
-                return <LanguageSelection backPress={() => this.props.setSetting('mainSettings')} />;
+                return;
+                <LanguageSelection backPress={() => this.props.setSetting('mainSettings')} />;
                 break;
             case 'changePassword':
                 return (
@@ -429,13 +431,7 @@ class Settings extends React.Component {
         }
     }
 
-    onModePress() {
-        const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onCurrencyPress() {
+    featureUnavailable() {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
@@ -490,7 +486,6 @@ class Settings extends React.Component {
     }
 
     navigateNewSeed() {
-        //this.props.endBackgroundProcesses();
         this.props.navigator.push({
             screen: 'newSeedSetup',
             navigatorStyle: {
