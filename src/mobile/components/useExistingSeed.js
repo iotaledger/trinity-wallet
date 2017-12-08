@@ -1,3 +1,4 @@
+import trim from 'lodash/trim';
 import React from 'react';
 import {
     StyleSheet,
@@ -146,7 +147,6 @@ class UseExistingSeed extends React.Component {
                                 autoCorrect={false}
                                 value={accountName}
                                 containerStyle={{ width: width / 1.36 }}
-                                autoCapitalize={'characters'}
                                 onChangeText={accountName => this.setState({ accountName })}
                             />
                         </View>
@@ -162,7 +162,7 @@ class UseExistingSeed extends React.Component {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={event => this.props.addAccount(seed, accountName)}
+                            onPress={event => this.props.addAccount(seed, trim(accountName))}
                             style={{ flex: 1 }}
                         >
                             <View style={styles.itemRight}>
