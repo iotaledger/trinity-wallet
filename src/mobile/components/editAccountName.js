@@ -1,6 +1,6 @@
+import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import { width, height } from '../util/dimensions';
 
@@ -44,7 +44,7 @@ class EditAccountName extends React.Component {
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
-                                onSubmitEditing={() => this.props.saveAccountName(this.state.accountName)}
+                                onSubmitEditing={() => this.props.saveAccountName(trim(this.state.accountName))}
                             />
                         </View>
                         <View style={styles.saveButtonContainer} />
@@ -59,7 +59,7 @@ class EditAccountName extends React.Component {
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.saveAccountName(this.state.accountName)}>
+                        <TouchableOpacity onPress={() => this.props.saveAccountName(trim(this.state.accountName))}>
                             <View style={styles.itemRight}>
                                 <Image
                                     source={require('iota-wallet-shared-modules/images/tick.png')}
