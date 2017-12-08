@@ -485,7 +485,6 @@ class Settings extends React.Component {
     }
 
     navigateNewSeed() {
-        //this.props.endBackgroundProcesses();
         this.props.navigator.push({
             screen: 'newSeedSetup',
             navigatorStyle: {
