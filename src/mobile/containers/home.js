@@ -39,6 +39,7 @@ import { Navigation } from 'react-native-navigation';
 import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { TextField } from 'react-native-material-textfield';
+import { isAndroid } from '../util/device';
 
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
@@ -46,7 +47,6 @@ import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
 import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
 import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
 import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 const StatusBarDefaultBarStyle = 'light-content';
 import { width, height } from '../util/dimensions';
 const timer = require('react-native-timer');
@@ -61,10 +61,17 @@ class Home extends Component {
             inactive: false,
             password: '',
             minimised: false,
+            tabsVisible: true,
         };
     }
 
     componentDidMount() {
+        // We listen for keyboard show/hide to toggle tab visibility
+        // Without this the current navigator (react-native-navigator) breaks the current tab behavior when keyboard is up
+        if (isAndroid) {
+            this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
+            this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+        }
         this.props.setFirstUse(false);
         this.startBackgroundProcesses();
         const accountInfo = this.props.account.accountInfo;
@@ -77,7 +84,17 @@ class Home extends Component {
 
     componentWillUnmount() {
         this.endBackgroundProcesses();
+        if (this.keyboardDidShowListener) this.keyboardDidShowListener.remove();
+        if (this.keyboardDidHideListener) this.keyboardDidHideListener.remove();
     }
+
+    keyboardDidShow = () => {
+        this.setState({ tabsVisible: false });
+    };
+
+    keyboardDidHide = () => {
+        this.setState({ tabsVisible: true });
+    };
 
     startBackgroundProcesses() {
         AppState.addEventListener('change', this._handleAppStateChange);
@@ -242,7 +259,7 @@ class Home extends Component {
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
-        let { password } = this.state;
+        let { password, tabsVisible } = this.state;
 
         return (
             <UserInactivity
@@ -260,128 +277,160 @@ class Home extends Component {
                                     <View style={{ flex: 1 }}>{children}</View>
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <View style={styles.tabBar}>
-                                        <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
-                                            <View style={styles.button}>
-                                                <Image
-                                                    style={
-                                                        isCurrentRoute('balance')
-                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                                    }
-                                                    source={balanceImagePath}
-                                                />
-                                                <Text
-                                                    style={
-                                                        isCurrentRoute('balance')
-                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                            : StyleSheet.flatten([
-                                                                  styles.iconTitle,
-                                                                  styles.partiallyOpaque,
-                                                              ])
-                                                    }
-                                                >
-                                                    BALANCE
-                                                </Text>
-                                            </View>
-                                        </TouchableWithoutFeedback>
-                                        <TouchableWithoutFeedback onPress={event => this.clickSend()}>
-                                            <View style={styles.button}>
-                                                <Image
-                                                    style={
-                                                        isCurrentRoute('send')
-                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                                    }
-                                                    source={sendImagePath}
-                                                />
-                                                <Text
-                                                    style={
-                                                        isCurrentRoute('send')
-                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                            : StyleSheet.flatten([
-                                                                  styles.iconTitle,
-                                                                  styles.partiallyOpaque,
-                                                              ])
-                                                    }
-                                                >
-                                                    SEND
-                                                </Text>
-                                            </View>
-                                        </TouchableWithoutFeedback>
-                                        <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
-                                            <View style={styles.button}>
-                                                <Image
-                                                    style={
-                                                        isCurrentRoute('receive')
-                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                                    }
-                                                    source={receiveImagePath}
-                                                />
-                                                <Text
-                                                    style={
-                                                        isCurrentRoute('receive')
-                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                            : StyleSheet.flatten([
-                                                                  styles.iconTitle,
-                                                                  styles.partiallyOpaque,
-                                                              ])
-                                                    }
-                                                >
-                                                    RECEIVE
-                                                </Text>
-                                            </View>
-                                        </TouchableWithoutFeedback>
-                                        <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
-                                            <View style={styles.button}>
-                                                <Image
-                                                    style={
-                                                        isCurrentRoute('history')
-                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                                    }
-                                                    source={historyImagePath}
-                                                />
-                                                <Text
-                                                    style={
-                                                        isCurrentRoute('history')
-                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                            : StyleSheet.flatten([
-                                                                  styles.iconTitle,
-                                                                  styles.partiallyOpaque,
-                                                              ])
-                                                    }
-                                                >
-                                                    HISTORY
-                                                </Text>
-                                            </View>
-                                        </TouchableWithoutFeedback>
-                                        <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
-                                            <View style={styles.button}>
-                                                <Image
-                                                    style={
-                                                        isCurrentRoute('settings')
-                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
-                                                    }
-                                                    source={settingsImagePath}
-                                                />
-                                                <Text
-                                                    style={
-                                                        isCurrentRoute('settings')
-                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
-                                                            : StyleSheet.flatten([
-                                                                  styles.iconTitle,
-                                                                  styles.partiallyOpaque,
-                                                              ])
-                                                    }
-                                                >
-                                                    SETTINGS
-                                                </Text>
-                                            </View>
-                                        </TouchableWithoutFeedback>
-                                    </View>
+                                    {tabsVisible ? (
+                                        <View style={styles.tabBar}>
+                                            <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
+                                                <View style={styles.button}>
+                                                    <Image
+                                                        style={
+                                                            isCurrentRoute('balance')
+                                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                                : StyleSheet.flatten([
+                                                                      styles.icon,
+                                                                      styles.partiallyOpaque,
+                                                                  ])
+                                                        }
+                                                        source={balanceImagePath}
+                                                    />
+                                                    <Text
+                                                        style={
+                                                            isCurrentRoute('balance')
+                                                                ? StyleSheet.flatten([
+                                                                      styles.iconTitle,
+                                                                      styles.fullyOpaque,
+                                                                  ])
+                                                                : StyleSheet.flatten([
+                                                                      styles.iconTitle,
+                                                                      styles.partiallyOpaque,
+                                                                  ])
+                                                        }
+                                                    >
+                                                        BALANCE
+                                                    </Text>
+                                                </View>
+                                            </TouchableWithoutFeedback>
+                                            <TouchableWithoutFeedback onPress={event => this.clickSend()}>
+                                                <View style={styles.button}>
+                                                    <Image
+                                                        style={
+                                                            isCurrentRoute('send')
+                                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                                : StyleSheet.flatten([
+                                                                      styles.icon,
+                                                                      styles.partiallyOpaque,
+                                                                  ])
+                                                        }
+                                                        source={sendImagePath}
+                                                    />
+                                                    <Text
+                                                        style={
+                                                            isCurrentRoute('send')
+                                                                ? StyleSheet.flatten([
+                                                                      styles.iconTitle,
+                                                                      styles.fullyOpaque,
+                                                                  ])
+                                                                : StyleSheet.flatten([
+                                                                      styles.iconTitle,
+                                                                      styles.partiallyOpaque,
+                                                                  ])
+                                                        }
+                                                    >
+                                                        SEND
+                                                    </Text>
+                                                </View>
+                                            </TouchableWithoutFeedback>
+                                            <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
+                                                <View style={styles.button}>
+                                                    <Image
+                                                        style={
+                                                            isCurrentRoute('receive')
+                                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                                : StyleSheet.flatten([
+                                                                      styles.icon,
+                                                                      styles.partiallyOpaque,
+                                                                  ])
+                                                        }
+                                                        source={receiveImagePath}
+                                                    />
+                                                    <Text
+                                                        style={
+                                                            isCurrentRoute('receive')
+                                                                ? StyleSheet.flatten([
+                                                                      styles.iconTitle,
+                                                                      styles.fullyOpaque,
+                                                                  ])
+                                                                : StyleSheet.flatten([
+                                                                      styles.iconTitle,
+                                                                      styles.partiallyOpaque,
+                                                                  ])
+                                                        }
+                                                    >
+                                                        RECEIVE
+                                                    </Text>
+                                                </View>
+                                            </TouchableWithoutFeedback>
+                                            <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
+                                                <View style={styles.button}>
+                                                    <Image
+                                                        style={
+                                                            isCurrentRoute('history')
+                                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                                : StyleSheet.flatten([
+                                                                      styles.icon,
+                                                                      styles.partiallyOpaque,
+                                                                  ])
+                                                        }
+                                                        source={historyImagePath}
+                                                    />
+                                                    <Text
+                                                        style={
+                                                            isCurrentRoute('history')
+                                                                ? StyleSheet.flatten([
+                                                                      styles.iconTitle,
+                                                                      styles.fullyOpaque,
+                                                                  ])
+                                                                : StyleSheet.flatten([
+                                                                      styles.iconTitle,
+                                                                      styles.partiallyOpaque,
+                                                                  ])
+                                                        }
+                                                    >
+                                                        HISTORY
+                                                    </Text>
+                                                </View>
+                                            </TouchableWithoutFeedback>
+                                            <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
+                                                <View style={styles.button}>
+                                                    <Image
+                                                        style={
+                                                            isCurrentRoute('settings')
+                                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                                : StyleSheet.flatten([
+                                                                      styles.icon,
+                                                                      styles.partiallyOpaque,
+                                                                  ])
+                                                        }
+                                                        source={settingsImagePath}
+                                                    />
+                                                    <Text
+                                                        style={
+                                                            isCurrentRoute('settings')
+                                                                ? StyleSheet.flatten([
+                                                                      styles.iconTitle,
+                                                                      styles.fullyOpaque,
+                                                                  ])
+                                                                : StyleSheet.flatten([
+                                                                      styles.iconTitle,
+                                                                      styles.partiallyOpaque,
+                                                                  ])
+                                                        }
+                                                    >
+                                                        SETTINGS
+                                                    </Text>
+                                                </View>
+                                            </TouchableWithoutFeedback>
+                                        </View>
+                                    ) : null}
                                 </View>
                                 <TopBar />
                             </View>
