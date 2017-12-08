@@ -96,7 +96,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.iotawallet"
+        applicationId "com.iota.wallet"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1

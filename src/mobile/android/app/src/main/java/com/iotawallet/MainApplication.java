@@ -1,4 +1,4 @@
-package com.iotawallet;
+package com.iota.wallet;
 
 import android.app.Application;
 
