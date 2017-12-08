@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Niet herkend wachtwoord",
         "unrecognisedPasswordExplanation": "Het wachtwoord is onjuist. Probeer het opnieuw.",
         "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "somethingWentWrong": "Something went wrong",
+        "somethingWentWrongExplanation": "Please restart the app."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ongeldige tekens in de sleutel",
@@ -64,7 +66,8 @@
         "seedClearedExplanation": "Het sleutel werd gewist van het Klembord voor uw veiligheid.",
         "seedCopied": "Sleutel gekopieerd",
         "seedCopiedExplanation": "De sleutel is gekopieerd naar het Klembord en wordt gewist zodra u op \"KLAAR\" drukt of nadat 60 seconden zijn verstreken.",
-        "clickToCopy": "Klik op de knop hieronder en kopieer uw sleutel naar een wachtwoordmanager."
+        "clickToCopy": "Klik op de knop hieronder en kopieer uw sleutel naar een wachtwoordmanager.",
+        "doNotStore": "Do not store your seed in plain text."
     },
     "enterSeed": {
         "invalidCharacters": "Ongeldige tekens in de sleutel",
@@ -113,8 +116,6 @@
         "printWallet": "PORTEMONNEE VAN PAPIER AFDRUKKEN"
     },
     "receive": {
-        "somethingWentWrong": "Er ging iets mis",
-        "somethingWentWrongExplanation": "Start de app opnieuw.",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Uw adres is naar het Klembord gekopieerd.",
         "generateNewAddress": "GENEREER EEN NIEUW ADRES",
@@ -127,7 +128,7 @@
         "ofTheOptions": "van de onderstaande opties."
     },
     "seedReentry": {
-        "incorrectSeed": "Onjuiste sleutel.",
+        "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "De ingevoerde sleutel is onjuist. Probeer het nog eens.",
         "thisIsACheck": "Dit is een controle om ervoor te zorgen dat u uw sleutel heeft opgeslagen.",
         "ifYouHaveNotSaved": "Als u niet uw sleutel hebt opgeslagen, kunt u teruggaan naar het vorige scherm en dit alsnog doen."
@@ -180,7 +181,15 @@
         "advanced": "Geavanceerde instellingen",
         "logout": "Uitloggen",
         "reset": "Reset portemonnee",
-        "back": "Terug"
+        "back": "Terug",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
@@ -216,5 +225,11 @@
         "yourSeedIs": "Uw sleutel is 81 tekens van links naar rechts gelezen. Schrijf uw sleutel en controlesom op",
         "tripleCheck": "drievoudige controle",
         "thatTheyAreCorrect": "dat ze correct zijn."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Address copied",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
