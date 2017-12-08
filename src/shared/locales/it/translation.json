@@ -142,7 +142,8 @@
     },
     "send": {
         "invalidAddress": "Indirizzo non valido",
-        "invalidAddressExplanation1": "L'indirizzo deve essere {{maxLength}} caratteri e deve avere un valore di checksum.",
+        "invalidAddressExplanation1":
+            "L'indirizzo deve essere {{maxLength}} caratteri e deve avere un valore di checksum.",
         "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
         "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
         "notEnoughFunds": "Fondi insufficenti",
