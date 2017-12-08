@@ -53,7 +53,7 @@ describe('Testing EditAccountName component', () => {
             });
         });
 
-        describe('when onPress prop on second TouchableOpacity is triggered', () => {
+        describe('when onPress prop of second TouchableOpacity is triggered', () => {
             it('should call prop method saveAccountName with trimmed accountName state prop', () => {
                 const props = getProps({
                     saveAccountName: jest.fn(),
@@ -67,7 +67,7 @@ describe('Testing EditAccountName component', () => {
             });
         });
 
-        describe('when onSubmitEditing prop on second TextField component is triggered', () => {
+        describe('when onSubmitEditing prop of second TextField component is triggered', () => {
             it('should call prop method saveAccountName with trimmed accountName state prop', () => {
                 const props = getProps({
                     saveAccountName: jest.fn(),
