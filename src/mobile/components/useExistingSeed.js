@@ -128,7 +128,7 @@ class UseExistingSeed extends React.Component {
                                 tintColor="#F7D002"
                                 enablesReturnKeyAutomatically={true}
                                 label="Account name"
-                                autoCapitalize="characters"
+                                autoCapitalize="words"
                                 autoCorrect={false}
                                 value={accountName}
                                 containerStyle={{ width: width / 1.36 }}
