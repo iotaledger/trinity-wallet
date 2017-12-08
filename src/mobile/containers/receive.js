@@ -84,7 +84,7 @@ class Receive extends Component {
 
         const error = () => {
             this.props.generateNewAddressError();
-            dropdown.alertWithType('error', t('somethingWentWrong'), t('somethingWentWrongExplanation'));
+            dropdown.alertWithType('error', t('global:somethingWentWrong'), t('global:somethingWentWrongExplanation'));
         };
     }
 
