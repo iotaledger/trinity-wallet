@@ -44,7 +44,6 @@
     "react-native-extra-dimensions-android": "^0.21.0",
     "react-native-fabric": "^0.5.1",
     "react-native-fs": "^2.8.1",
-    "react-native-hockeyapp": "^0.5.1",
     "react-native-html-to-pdf": "^0.4.0",
     "react-native-http": "github:tradle/react-native-http#834492d",
     "react-native-keep-awake": "^2.0.6",
@@ -60,8 +59,8 @@
     "react-native-qrcode-scanner": "^0.0.22",
     "react-native-qrcode-svg": "^5.0.3",
     "react-native-randombytes": "^2.3.0",
-    "react-native-sensitive-info": "git://github.com/mCodex/react-native-sensitive-info.git#keystore",
     "react-native-safe-area-view": "^0.2.0",
+    "react-native-sensitive-info": "5.0.0",
     "react-native-shake-event": "^4.0.1",
     "react-native-svg": "^5.4.1",
     "react-native-tcp": "^3.3.0",
@@ -69,6 +68,7 @@
     "react-native-triangle": "0.0.8",
     "react-native-udp": "^1.2.9",
     "react-native-user-inactivity": "https://github.com/jkomyno/react-native-user-inactivity",
+    "react-navigation": "^1.0.0-beta.21",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
     "redux": "^3.7.2",
@@ -87,7 +87,10 @@
   "devDependencies": {
     "babel-eslint": "^8.0.0",
     "babel-jest": "20.0.3",
-    "babel-preset-react-native": "^4.0.0",
+    "babel-preset-react-native": "3.0.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.7.2",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-prettier": "^2.6.0",
@@ -97,11 +100,19 @@
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-react-native": "^3.1.0",
     "jest": "20.0.4",
+    "jest-serializer-enzyme": "^1.0.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^16.2.0",
     "react-test-renderer": "16.0.0-alpha.12",
-    "rn-nodeify": "^8.2.0"
+    "rn-nodeify": "^8.2.0",
+    "sinon": "^4.1.2"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "roots": [
+      "../"
+    ],
+    "setupTestFrameworkScriptFile": "./testConfig.js"
   },
   "react-native": {
     "zlib": "browserify-zlib",

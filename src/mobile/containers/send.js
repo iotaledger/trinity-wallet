@@ -436,7 +436,7 @@ class Send extends Component {
                                 autoCorrect={false}
                                 value={message}
                                 onChangeText={message => this.setState({ message })}
-                                onSubmitEditing={() => this.sendTransfer()}
+                                onSubmitEditing={() => this.onSendPress()}
                             />
                         </View>
                     </View>
@@ -681,4 +681,4 @@ const mapDispatchToProps = dispatch => ({
     sendTransferRequest: () => dispatch(sendTransferRequest()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Send);
+export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));

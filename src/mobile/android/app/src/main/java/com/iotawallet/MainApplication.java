@@ -1,4 +1,4 @@
-package com.iotawallet;
+package com.iota.wallet;
 
 import android.app.Application;
 
@@ -25,8 +25,6 @@ import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.rnfs.RNFSPackage;
 import java.util.Arrays;
 import java.util.List;
-import com.slowpath.hockeyapp.RNHockeyAppModule;
-import com.slowpath.hockeyapp.RNHockeyAppPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
@@ -44,7 +42,6 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
-	new RNHockeyAppPackage(MainApplication.this),
             new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
