@@ -227,9 +227,9 @@
         "thatTheyAreCorrect": "prüfe ob diese Korrekt sind."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Bundle Hash kopiert",
+        "bundleHashCopiedExplanation": "Deine Bundle Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert."
     }
 }
