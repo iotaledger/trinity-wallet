@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ListView } from 'react-native';
-import Fonts from '../theme/Fonts';
+import { Image, View, Text, StyleSheet, TouchableOpacity, ListView, Clipboard } from 'react-native';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
+import DropdownHolder from '../components/dropdownHolder';
 
-class ViewAddresses extends React.Component {
+class ViewAddresses extends Component {
+    copy(address) {
+        const dropdown = DropdownHolder.getDropdown();
+        Clipboard.setString(address);
+        if (dropdown) {
+            // Just to be sure
+            dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -15,11 +23,16 @@ class ViewAddresses extends React.Component {
                         dataSource={ds.cloneWithRows(this.props.addressesWithBalance)}
                         renderRow={(rowData, sectionID, rowID) => (
                             <View style={{ flexDirection: 'row', paddingHorizontal: width / 15 }}>
-                                <View style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}>
-                                    <Text numberOfLines={2} style={styles.addressText}>
-                                        {rowID}
-                                    </Text>
-                                </View>
+                                <TouchableOpacity
+                                    onPress={() => this.copy(rowID)}
+                                    style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}
+                                >
+                                    <View>
+                                        <Text numberOfLines={2} style={styles.addressText}>
+                                            {rowID}
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
                                 <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
                                     <Text style={styles.balanceText}>
                                         {formatValue(rowData)} {formatUnit(rowData)}
@@ -30,9 +43,6 @@ class ViewAddresses extends React.Component {
                         contentContainerView={{ flex: 1 }}
                         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                         enableEmptySections
-                        ref={listview => {
-                            this.listview = listview;
-                        }}
                     />
                 </View>
                 <View style={styles.bottomContainer}>
@@ -45,12 +55,6 @@ class ViewAddresses extends React.Component {
                             <Text style={styles.titleText}>Back</Text>
                         </View>
                     </TouchableOpacity>
-                    {/*}<TouchableOpacity onPress={event => this.props.printPress()} style={{flex:1}}>
-                        <View style={styles.itemRight}>
-                            <Image source={require('iota-wallet-shared-modules/images/print.png')} style={styles.icon} />
-                            <Text style={styles.titleText}>Print</Text>
-                        </View>
-                    </TouchableOpacity>*/}
                 </View>
             </View>
         );
@@ -87,12 +91,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     bottomContainer: {
-        flex: 0.5,
+        flex: 1,
         width: width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     addressText: {
         color: 'white',
@@ -108,7 +112,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     listView: {
-        flex: 3,
+        flex: 9,
         justifyContent: 'center',
         width: width,
     },

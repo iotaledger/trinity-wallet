@@ -1,11 +1,10 @@
 import get from 'lodash/get';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class SimpleTransactionRow extends React.Component {
     constructor(props) {
@@ -13,6 +12,7 @@ class SimpleTransactionRow extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         const icon =
             this.props.rowData[0].transferValue < 0
                 ? require('iota-wallet-shared-modules/images/send.png')

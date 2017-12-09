@@ -1,23 +1,12 @@
 import merge from 'lodash/merge';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    Platform,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class SaveYourSeed extends Component {
     onDonePress() {
@@ -141,7 +130,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 25.3,
         textAlign: 'center',
-        paddingHorizontal: width / 20,
         backgroundColor: 'transparent',
     },
     optionButton: {

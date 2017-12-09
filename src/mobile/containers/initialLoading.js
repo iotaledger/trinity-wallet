@@ -1,30 +1,14 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Image,
-    ImageBackground,
-    Text,
-    StatusBar,
-    BackHandler,
-    Platform,
-} from 'react-native';
+import { StyleSheet, View, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
 import { getAllItems, deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
 import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
-import { DetectNavbar } from '../theme/androidSoftKeys';
-import ExtraDimensions from 'react-native-extra-dimensions-android';
-import { detectLocale } from '../components/locale';
-import locale from 'react-native-locale-detector';
+import { width, height } from '../util/dimensions';
+import { isIOS } from '../util/device';
 
-const width = Dimensions.get('window').width;
-let height = Dimensions.get('window').height;
-global.height = DetectNavbar.hasSoftKeys()
-    ? (height -= ExtraDimensions.get('SOFT_MENU_BAR_HEIGHT'))
-    : Dimensions.get('window').height;
+const VERSION = 'v0.1 (5)';
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
@@ -46,7 +30,7 @@ export default class InitialLoading extends Component {
 
     clearKeychain() {
         getAllItems().then(keys => {
-            if (Platform.OS === 'ios') {
+            if (isIOS) {
                 if (!keys[0].length) {
                     return;
                 } else {
@@ -65,7 +49,7 @@ export default class InitialLoading extends Component {
         if (!state.account.onboardingComplete) {
             this.clearKeychain();
             this.props.navigator.push({
-                screen: 'languageSetup',
+                screen: 'welcome',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
                 overrideBackPress: true,
@@ -89,7 +73,7 @@ export default class InitialLoading extends Component {
                     <Image source={require('iota-wallet-shared-modules/images/iota-white.png')} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>IOTA Alpha Wallet {currentYear}</Text>
+                    <Text style={styles.text}>IOTA Alpha Wallet {VERSION}</Text>
                 </View>
             </ImageBackground>
         );

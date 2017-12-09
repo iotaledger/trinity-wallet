@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import {
@@ -10,14 +10,17 @@ import {
     setSetting,
     setSeedIndex,
     setReady,
-} from 'iota-wallet-shared-modules/actions/tempAccount';
+    manualSyncRequest,
+    manualSyncComplete,
+} from '../../shared/actions/tempAccount';
 import {
     setFirstUse,
-    getAccountInfoNewSeed,
+    getFullAccountInfo,
     increaseSeedCount,
     addAccountName,
     changeAccountName,
     removeAccount,
+    setBalance,
 } from 'iota-wallet-shared-modules/actions/account';
 import { setFullNode, getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
 import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
@@ -29,10 +32,15 @@ import ChangePassword from '../components/changePassword';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import ViewSeed from '../components/viewSeed.js';
 import ViewAddresses from '../components/viewAddresses.js';
+import ManualSync from '../components/manualSync.js';
 import DeleteAccount from '../components/deleteAccount.js';
 import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
+import LanguageSelection from '../components/languageSelection.js';
 import CurrencySelection from '../components/currencySelection.js';
+import MainSettings from '../components/mainSettings.js';
+import AdvancedSettings from '../components/advancedSettings.js';
+import AccountManagement from '../components/accountManagement.js';
 import { logoutFromWallet } from 'iota-wallet-shared-modules/actions/app';
 import { parse } from 'iota-wallet-shared-modules/libs/util';
 import {
@@ -42,11 +50,11 @@ import {
     deleteSeed,
     deleteFromKeyChain,
     replaceKeychainValue,
-} from 'iota-wallet-shared-modules/libs/cryptography';
+    getSeed,
+} from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class Settings extends React.Component {
     constructor(props) {
@@ -66,6 +74,7 @@ class Settings extends React.Component {
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
 
     _renderSettingsContent = content => {
+        const { t } = this.props;
         let accountInfo = this.props.account.accountInfo;
         let seedIndex = this.props.tempAccount.seedIndex;
         let currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
@@ -76,201 +85,34 @@ class Settings extends React.Component {
         switch (content) {
             case 'mainSettings':
                 return (
-                    <View>
-                        <TouchableOpacity onPress={event => this.onModePress()}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/mode.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Mode</Text>
-                                <Text style={styles.settingText}>{this.props.settings.mode}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onThemePress()}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/theme.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Theme</Text>
-                                <Text style={styles.settingText}>{this.props.settings.theme}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.props.setSetting('currencySelection')}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/currency.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Currency</Text>
-                                <Text style={styles.settingText}>{this.props.settings.currency}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onLanguagePress()}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/language.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Language</Text>
-                                <Text style={styles.settingText}>{this.props.settings.language}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <View style={styles.separator} />
-                        <TouchableOpacity onPress={event => this.onAccountManagementPress()}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/account.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Account management</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.on2FASetupPress()}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/2fa.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Two-factor authentication</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.props.setSetting('changePassword')}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/password.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Change password</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <View style={styles.separator} />
-                        <TouchableOpacity onPress={event => this.props.setSetting('advancedSettings')}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/advanced.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Advanced settings</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.setModalContent('logoutConfirmation')}>
-                            <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/logout.png')}
-                                    style={styles.icon}
-                                />
-                                <Text style={styles.titleText}>Log out</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                    <MainSettings
+                        setSetting={setting => this.props.setSetting(setting)}
+                        setModalContent={content => this.setModalContent(content)}
+                        on2FASetupPress={() => this.on2FASetupPress()}
+                        onThemePress={() => this.featureUnavailable()}
+                        onModePress={() => this.featureUnavailable()}
+                        onLanguagePress={() => this.featureUnavailable()}
+                        mode={this.props.settings.mode}
+                        theme={this.props.settings.theme}
+                        currency={this.props.settings.currency}
+                    />
                 );
                 break;
             case 'advancedSettings':
                 return (
-                    <View style={styles.advancedSettingsContainer}>
-                        <View style={{ flex: 1, justifyContent: 'flex-start' }}>
-                            <TouchableOpacity onPress={event => this.props.setSetting('nodeSelection')}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/node.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Select node</Text>
-                                    <Text numberOfLines={1} style={styles.subtitleText}>
-                                        {this.props.settings.fullNode}
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                            <View style={styles.separator} />
-                            <TouchableOpacity onPress={event => this.onResetWalletPress()}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/reset.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Reset Wallet</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-                            <TouchableOpacity onPress={event => this.onBackPress()}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Back</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
+                    <AdvancedSettings
+                        setSetting={setting => this.props.setSetting(setting)}
+                        onResetWalletPress={() => this.onResetWalletPress()}
+                        node={this.props.settings.fullNode}
+                    />
                 );
                 break;
             case 'accountManagement':
                 return (
-                    <View style={styles.advancedSettingsContainer}>
-                        <View style={{ flex: 4, justifyContent: 'flex-start' }}>
-                            <TouchableOpacity onPress={event => this.props.setSetting('viewSeed')}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/key.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>View seed</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={event => this.props.setSetting('viewAddresses')}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/addresses.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>View addresses</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={event => this.props.setSetting('editAccountName')}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/edit.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Edit account name</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={event => this.onDeleteAccountPress()}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/delete.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Delete account</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <View style={styles.separator} />
-                            <TouchableOpacity onPress={event => this.props.setSetting('addNewAccount')}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/add.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Add new account</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ flex: 0.5, justifyContent: 'flex-end' }}>
-                            <TouchableOpacity onPress={event => this.onBackPress()}>
-                                <View style={styles.item}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                        style={styles.icon}
-                                    />
-                                    <Text style={styles.titleText}>Back</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
+                    <AccountManagement
+                        setSetting={setting => this.props.setSetting(setting)}
+                        onDeleteAccountPress={() => this.onDeleteAccountPress()}
+                    />
                 );
                 break;
             case 'viewSeed':
@@ -354,6 +196,10 @@ class Settings extends React.Component {
                     />
                 );
                 break;
+            case 'languageSelection':
+                return;
+                <LanguageSelection backPress={() => this.props.setSetting('mainSettings')} />;
+                break;
             case 'changePassword':
                 return (
                     <ChangePassword
@@ -364,28 +210,85 @@ class Settings extends React.Component {
                     />
                 );
                 break;
+            case 'manualSync':
+                return (
+                    <ManualSync
+                        onManualSyncPress={() => this.onManualSyncPress()}
+                        backPress={() => this.props.setSetting('advancedSettings')}
+                        isSyncing={this.props.tempAccount.isSyncing}
+                    />
+                );
+                break;
         }
     };
 
+    onManualSyncPress() {
+        const dropdown = DropdownHolder.getDropdown();
+        const { t } = this.props;
+        this.props.manualSyncRequest();
+        getFromKeychain(this.props.tempAccount.password, value => {
+            if (typeof value != 'undefined' && value != null) {
+                const seedIndex = this.props.tempAccount.seedIndex;
+                const accountName = this.props.account.seedNames[seedIndex];
+                const seed = getSeed(value, seedIndex);
+                this.props.getFullAccountInfo(seed, accountName, (error, success) => {
+                    if (error) {
+                        onNodeError(dropdown);
+                    } else {
+                        onNodeSuccess(dropdown);
+                    }
+                });
+            } else {
+                error(dropdown);
+            }
+        });
+
+        onNodeError = dropdown => {
+            this.props.manualSyncComplete();
+            dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
+        };
+
+        onNodeSuccess = dropdown => {
+            this.props.manualSyncComplete();
+            dropdown.alertWithType('success', t('syncingComplete'), t('syncingCompleteExplanation'));
+        };
+
+        error = dropdown => {
+            dropdown.alertWithType('error', t('global:somethingWentWrong'), t('global:somethingWentWrongExplanation'));
+        };
+    }
+
     //UseExistingSeed method
     addExistingSeed(seed, accountName) {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (!seed.match(VALID_SEED_REGEX) && seed.length == MAX_SEED_LENGTH) {
             dropdown.alertWithType(
                 'error',
-                'Seed contains invalid characters',
-                `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
+                t('addAdditionalSeed:seedInvalidChars'),
+                t('addAdditionalSeed:seedInvalidCharsExplanation'),
             );
         } else if (seed.length < MAX_SEED_LENGTH) {
             dropdown.alertWithType(
                 'error',
-                'Seed is too short',
-                `Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${seed.length} characters long. Please try again.`,
+                t('addAdditionalSeed:seedTooShort'),
+                t('addAdditionalSeed:seedTooShortExplanation', {
+                    maxLength: MAX_SEED_LENGTH,
+                    currentLength: seed.length,
+                }),
             );
         } else if (!(accountName.length > 0)) {
-            dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
+            dropdown.alertWithType(
+                'error',
+                t('addAdditionalSeed:noNickname'),
+                t('addAdditionalSeed:noNicknameExplanation'),
+            );
         } else if (this.props.account.seedNames.includes(accountName)) {
-            dropdown.alertWithType('error', 'Account name already in use', `Please use a unique account name.`);
+            dropdown.alertWithType(
+                'error',
+                t('addAdditionalSeed:nameInUse'),
+                t('addAdditionalSeed:nameInUseExplanation'),
+            );
         } else {
             checkKeychainForDuplicates(
                 this.props.tempAccount.password,
@@ -406,7 +309,7 @@ class Settings extends React.Component {
                     animated: false,
                     overrideBackPress: true,
                 });
-                this.props.getAccountInfoNewSeed(seed, accountName, (error, success) => {
+                this.props.getFullAccountInfo(seed, accountName, (error, success) => {
                     if (error) {
                         onNodeError();
                     } else {
@@ -419,7 +322,7 @@ class Settings extends React.Component {
                 this.props.navigator.pop({
                     animated: false,
                 });
-                dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+                dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
                 this.props.setFirstUse(false);
             };
 
@@ -435,6 +338,7 @@ class Settings extends React.Component {
 
     //EditAccountName method
     saveAccountName(accountName) {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         let accountInfo = this.props.account.accountInfo;
         let accountNameArray = this.props.account.seedNames;
@@ -443,8 +347,8 @@ class Settings extends React.Component {
         if (accountNameArray.includes(accountName)) {
             dropdown.alertWithType(
                 'error',
-                'Account name already in use',
-                'This account name is already linked to your wallet. Please use a different one.',
+                t('addAdditionalSeed:nameInUse'),
+                t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
             // Update keychain
@@ -463,24 +367,26 @@ class Settings extends React.Component {
             this.props.changeAccountName(newAccountInfo, accountNameArray);
 
             this.props.setSetting('accountManagement');
-            dropdown.alertWithType('success', 'Account name changed', `Your account name has been changed.`);
+            dropdown.alertWithType('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
         }
     }
 
     //EditAccountName and ViewSeed method
     onWrongPassword() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'Unrecognised password', 'The password was not recognised. Please try again.');
+        dropdown.alertWithType('error', t('global:unrecognisedPassword'), t('global:unrecognisedPasswordExplanation'));
     }
 
     //DeleteAccount method
     deleteAccount() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-
         let seedIndex = this.props.tempAccount.seedIndex;
-        let accountNames = this.props.account.seedNames;
-        let currentAccountName = accountNames[seedIndex];
+        const accountNames = this.props.account.seedNames;
+        const currentAccountName = accountNames[seedIndex];
         let accountInfo = this.props.account.accountInfo;
+        let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
 
         let newAccountInfo = accountInfo;
         delete newAccountInfo[currentAccountName];
@@ -491,8 +397,14 @@ class Settings extends React.Component {
                 deleteSeed(value, this.props.tempAccount.password, seedIndex);
                 this.props.setSeedIndex(0);
                 this.props.removeAccount(newAccountInfo, accountNames);
+
+                seedIndex = this.props.tempAccount.seedIndex;
+                accountInfo = this.props.account.accountInfo;
+                addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+
+                this.props.setBalance(addressesWithBalance);
                 this.props.setSetting('accountManagement');
-                dropdown.alertWithType('success', 'Account deleted', `Your account has been removed from the wallet.`);
+                dropdown.alertWithType('success', t('accountDeleted'), t('accountDeletedExplanation'));
             } else {
                 error();
             }
@@ -520,59 +432,49 @@ class Settings extends React.Component {
     }
 
     onDeleteAccountPress() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (this.props.account.seedCount == 1) {
-            dropdown.alertWithType('error', 'Cannot perform action', 'Go to advanced settings to reset the wallet.');
+            dropdown.alertWithType(
+                'error',
+                t('global:cannotPerformAction'),
+                t('global:cannotPerformActionExplanation'),
+            );
         } else {
             this.props.setSetting('deleteAccount');
         }
     }
 
-    onModePress() {
+    featureUnavailable() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onCurrencyPress() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
     }
 
     onThemePress() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-    }
-
-    onLanguagePress() {
-        this.props.navigator.push({
-            screen: 'languageSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundImageName: 'bg-green.png',
-                screenBackgroundColor: '#102e36',
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
+        dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
     }
 
     on2FASetupPress() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
     }
 
     onResetWalletPress() {
-        this.props.navigator.push({
-            screen: 'wallet-reset-confirm',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundImageName: 'bg-blue.png',
-                screenBackgroundColor: '#102e36',
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'wallet-reset-confirm',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundImageName: 'bg-blue.png',
+                    screenBackgroundColor: '#102e36',
+                },
+                overrideBackPress: true,
             },
-            animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -598,7 +500,6 @@ class Settings extends React.Component {
     }
 
     navigateNewSeed() {
-        this._hideModal();
         this.props.navigator.push({
             screen: 'newSeedSetup',
             navigatorStyle: {
@@ -610,20 +511,13 @@ class Settings extends React.Component {
         });
     }
 
-    onAccountManagementPress() {
-        this.props.setSetting('accountManagement');
-    }
-
     onAddNewSeedPress() {
+        const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (this.props.tempAccount.isSendingTransfer) {
-            dropdown.alertWithType('error', 'Transfer sending', 'Please wait until your transfer has been sent.');
+            dropdown.alertWithType('error', t('transferSending'), t('transferSendingExplanation'));
         } else if (this.props.tempAccount.isGeneratingReceiveAddress) {
-            dropdown.alertWithType(
-                'error',
-                'Generating receive address',
-                'Please wait until your address has been generated.',
-            );
+            dropdown.alertWithType('error', t('generatingAddress'), t('generatingAddressExplanation'));
         } else {
             this.setModalContent('addNewSeed');
         }
@@ -670,25 +564,9 @@ const styles = StyleSheet.create({
         fontSize: width / 23,
         backgroundColor: 'transparent',
     },
-    subtitleText: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 23,
-        marginLeft: width / 12,
-        width: width / 2.4,
-        backgroundColor: 'transparent',
-    },
-    settingText: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-        marginLeft: width / 30,
-    },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: height / 50,
         justifyContent: 'flex-start',
         width: width,
         paddingHorizontal: width / 15,
@@ -703,6 +581,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         zIndex: 1,
+        paddingVertical: height / 20,
     },
     advancedSettingsContainer: {
         flex: 1,
@@ -739,21 +618,13 @@ const styles = StyleSheet.create({
         height: 36,
         alignSelf: 'center',
     },
-    separator: {
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.3,
-        width: width / 1.16,
-        height: 0.3,
-        marginVertical: height / 100,
-        alignSelf: 'center',
-    },
 });
 
 const mapDispatchToProps = dispatch => ({
     logoutFromWallet: () => dispatch(logoutFromWallet()),
     clearTempData: () => dispatch(clearTempData()),
     setFirstUse: boolean => dispatch(setFirstUse(boolean)),
-    getAccountInfoNewSeed: (seed, seedName, cb) => dispatch(getAccountInfoNewSeed(seed, seedName, cb)),
+    getFullAccountInfo: (seed, seedName, cb) => dispatch(getFullAccountInfo(seed, seedName, cb)),
     increaseSeedCount: () => dispatch(increaseSeedCount()),
     addAccountName: seedName => dispatch(addAccountName(seedName)),
     setSetting: setting => dispatch(setSetting(setting)),
@@ -765,6 +636,9 @@ const mapDispatchToProps = dispatch => ({
     getCurrencyData: currency => dispatch(getCurrencyData(currency)),
     setPassword: password => dispatch(setPassword(password)),
     setReady: () => dispatch(setReady()),
+    manualSyncRequest: () => dispatch(manualSyncRequest()),
+    manualSyncComplete: () => dispatch(manualSyncComplete()),
+    setBalance: address => dispatch(setBalance(address)),
 });
 
 const mapStateToProps = state => ({
@@ -781,4 +655,6 @@ Settings.propTypes = {
     logoutFromWallet: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default translate(['settings', 'global', 'addAdditionalSeed'])(
+    connect(mapStateToProps, mapDispatchToProps)(Settings),
+);
