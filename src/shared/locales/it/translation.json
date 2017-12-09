@@ -28,8 +28,8 @@
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
         "syncInProgress": "Sincronizzazione in corso",
         "syncInProgressExplanation": "Si prega di attendere che la sincronizzazione sia completa.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrong": "Si è verificato un errore",
+        "somethingWentWrongExplanation": "Si prega di riavviare l'applicazione."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -128,7 +128,7 @@
         "ofTheOptions": "delle opzioni elencate di seguito."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Seme non corretto",
         "incorrectSeedExplanation": "Il seme inserito non è corretto. Si prega di riprovare.",
         "thisIsACheck": "Si tratta di un controllo per assicurarsi che hai salvato il tuo seme.",
         "ifYouHaveNotSaved": "Se non hai salvato il tuo seme, si prega di tornare alla schermata precedente e farlo."
@@ -229,7 +229,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
