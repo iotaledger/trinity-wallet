@@ -1,26 +1,25 @@
 import * as Keychain from 'react-native-keychain';
 
 export default {
-    get: async () => {
-        try {
-            return await Keychain.getGenericPassword();
-        } catch (err) {
-            console.error(err); // eslint-disable-line no-console
-            return undefined;
-        }
+    get: () => {
+        return new Promise((resolve, reject) => {
+            Keychain.getGenericPassword()
+                .then(credentials => resolve(credentials))
+                .catch(err => reject(err));
+        });
     },
-    clear: async () => {
-        try {
-            await Keychain.resetGenericPassword();
-        } catch (err) {
-            console.error(err); // eslint-disable-line no-console
-        }
+    clear: () => {
+        return new Promise((resolve, reject) => {
+            Keychain.resetGenericPassword()
+                .then(() => resolve())
+                .catch(err => reject(err));
+        });
     },
-    set: async (key, value) => {
-        try {
-            await Keychain.setGenericPassword(key, value);
-        } catch (err) {
-            console.error(err); // eslint-disable-line no-console
-        }
+    set: (key, value) => {
+        return new Promise((resolve, reject) => {
+            Keychain.setGenericPassword(key, value)
+                .then(() => resolve())
+                .catch(err => reject(err));
+        });
     },
 };
