@@ -67,7 +67,7 @@
         "seedCopied": "Seed kopieret",
         "seedCopiedExplanation": "Dit seed er blevet kopieret til udklipsholderen og bliver ryddet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
         "clickToCopy": "Klik på knappen nedenfor for at kopiere dit seed til en adgangskodemanager.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Opbevar ikke dit seed i klartekst."
     },
     "enterSeed": {
         "invalidCharacters": "Seedet indeholder ugyldige tegn",
@@ -182,14 +182,14 @@
         "logout": "Log ud",
         "reset": "Nulstil tegnebog",
         "back": "Tilbage",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "syncingComplete": "Synkronisering fuldført",
+        "syncingCompleteExplanation": "Din konto er synkroniseret.",
+        "nicknameChanged": "Kontonavn ændret",
+        "nicknameChangedExplanation": "Dit kontonavn er blevet ændret.",
+        "accountDeleted": "Konto slettet",
+        "accountDeletedExplanation": "Din konto er blevet fjernet fra tegnebogen.",
+        "cannotPerformAction": "Kan ikke udføre handling",
+        "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denne handling kan ikke fortrydes.",
@@ -227,9 +227,9 @@
         "thatTheyAreCorrect": "at de er korrekt skrevet ned."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Bundt-hash kopieret",
+        "bundleHashCopiedExplanation": "Bundt-hashet er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen."
     }
 }
