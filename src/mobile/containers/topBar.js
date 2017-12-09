@@ -6,6 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
