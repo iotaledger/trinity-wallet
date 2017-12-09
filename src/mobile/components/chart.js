@@ -10,6 +10,16 @@ const viewbox = `${width / 3.95} ${height / 50} ${width / 3.93} ${height / 3.7}`
 const chartDrawHeight = height / 3.3;
 const chartDrawWidth = width / 1.15;
 
+const getChartCurrencySymbol = currency => {
+    if (currency === 'BTC') {
+        return '₿';
+    } else if (currency === 'ETH') {
+        return 'Ξ';
+    }
+
+    return '$';
+};
+
 class Chart extends React.Component {
     constructor(props) {
         super(props);
@@ -108,6 +118,7 @@ class Chart extends React.Component {
     }
 
     render() {
+        const { currencySymbol } = this.props;
         const { price } = this.state;
         const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
         return (
@@ -125,7 +136,10 @@ class Chart extends React.Component {
                         </TouchableWithoutFeedback>
                     </View>
                     <View style={styles.priceContainer}>
-                        <Text style={styles.iotaPrice}>{this.getPriceFormat(this.state.price)} / Mi</Text>
+                        <Text style={styles.iotaPrice}>
+                            {getChartCurrencySymbol(this.props.marketData.currency)}{' '}
+                            {this.getPriceFormat(this.state.price)} / Mi
+                        </Text>
                     </View>
                     <View style={{ flex: 1 }}>
                         <TouchableWithoutFeedback
@@ -219,6 +233,10 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
+        borderColor: '#f2f2f2',
+        borderWidth: 0.8,
+        borderRadius: 5,
+        padding: 3,
     },
     chartContainer: {
         flex: 5,
@@ -236,19 +254,19 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        fontWeight: 'bold',
+        fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
-        fontSize: width / 29.6,
+        fontSize: width / 35,
     },
     iotaPrice: {
         color: 'white',
-        fontWeight: 'bold',
+        fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
         fontSize: width / 24,
     },
     marketFigure: {
         color: 'white',
-        fontWeight: 'bold',
+        fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
         fontSize: width / 37.6,
     },
