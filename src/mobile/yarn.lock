@@ -5097,6 +5097,10 @@ react-native-keyboard-aware-scroll-view@^0.4.1:
     prop-types "^15.6.0"
     react-native-iphone-x-helper "^1.0.1"
 
+react-native-keychain@2.0.0-rc:
+  version "2.0.0-rc"
+  resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-2.0.0-rc.tgz#2446fc520bc630741e95eb722fe48e44988f4c12"
+
 react-native-letter-spacing@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-native-letter-spacing/-/react-native-letter-spacing-0.0.5.tgz#24724548262e38ac5c4796b3163ca025004999bf"

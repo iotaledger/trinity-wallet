@@ -140,6 +140,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fabric')
     compile project(':react-native-device-info')
     compile project(':react-native-shake-event')
     compile project(':react-native-extra-dimensions-android')
