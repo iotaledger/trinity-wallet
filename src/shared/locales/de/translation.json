@@ -26,8 +26,8 @@
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte nochmals Versuchen.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "syncInProgress": "Synchronisierung im Gange",
+        "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
         "somethingWentWrongExplanation": "Bitte die App neustarten."
     },
@@ -67,7 +67,7 @@
         "seedCopied": "Seed kopiert",
         "seedCopiedExplanation": "Der Seed wurde in die Zwischenablage kopiert und wird gelöscht, sobald du \"FERTIG\" drückst, oder 60 Sekunden vergangen sind, je nachdem was zuerst passiert.",
         "clickToCopy": "Klicke die untere Schaltfläche um deinen Seed in deinen Passwort Manager zu kopieren.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Speichere deinen Seed nicht als Klartext."
     },
     "enterSeed": {
         "invalidCharacters": "Seed beinhaltet ungültige Zeichen",
@@ -135,7 +135,7 @@
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "Die Adresse sollte {{maxLength}} Zeichen lang sein und eine Prüfsumme haben.",
         "invalidAddressExplanation2": "Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
         "notEnoughFunds": "Zu niedriges Guthaben",
@@ -147,10 +147,10 @@
         "max": "MAX",
         "message": "Nachricht",
         "send": "SENDEN",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmount": "Falschen Betrag eingegeben",
+        "invalidAmountExplanation": "Bitte gib einen numerischen Wert als Buchungsbetrag ein.",
+        "maximumSelected": "MAXIMALER Betrag ausgewählt",
+        "iotaUnits": "IOTA Einheiten"
     },
     "setPassword": {
         "passwordTooShort": "Passwort ist zu kurz",
@@ -182,14 +182,14 @@
         "logout": "Abmelden",
         "reset": "Wallet zurücksetzen",
         "back": "Zurück",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "syncingComplete": "Synchronisierung abgeschlossen",
+        "syncingCompleteExplanation": "Dein Account wurde erfolgreich synchronisiert.",
+        "nicknameChanged": "Account Name geändert",
+        "nicknameChangedExplanation": "Dein Account-Name wurde geändert.",
+        "accountDeleted": "Account entfernt",
+        "accountDeletedExplanation": "Dein Account wurde von der Wallet entfernt.",
+        "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
+        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um die Wallet zurückzusetzen."
     },
     "resetWalletConfirmation": {
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
@@ -227,9 +227,9 @@
         "thatTheyAreCorrect": "prüfe ob diese Korrekt sind."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Bundle-Hash kopiert",
+        "bundleHashCopiedExplanation": "Deine Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
     }
 }
