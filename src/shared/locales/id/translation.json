@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Kata sandi tidak dikenali",
         "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali.",
         "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "somethingWentWrong": "Terjadi kesalahan",
+        "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -64,7 +66,8 @@
         "seedClearedExplanation": "Seed telah dihapus dari papan klip demi keamanan anda.",
         "seedCopied": "Seed telah disalin",
         "seedCopiedExplanation": "Seed telah disalin ke papan klip dan akan dihapus setelah Anda menekan \"SELESAI\" atau 60 detik telah berlalu.",
-        "clickToCopy": "Klik tombol dibawah ini dan salin Seed Anda ke dalam manajer kata sandi."
+        "clickToCopy": "Klik tombol dibawah ini dan salin Seed Anda ke dalam manajer kata sandi.",
+        "doNotStore": "Do not store your seed in plain text."
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
@@ -113,8 +116,6 @@
         "printWallet": "CETAK DOMPET KERTAS"
     },
     "receive": {
-        "somethingWentWrong": "Terjadi kesalahan",
-        "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali.",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
         "generateNewAddress": "BUAT SEED BARU",
@@ -127,7 +128,7 @@
         "ofTheOptions": "pilihan dibawah ini."
     },
     "seedReentry": {
-        "incorrectSeed": "Seed salah.",
+        "incorrectSeed": "Seed salah",
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
         "thisIsACheck": "Ini untuk memverifikasi bahwa anda telah menyimpan Seed Anda.",
         "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan kembali ke menu sebelumnya."
@@ -180,7 +181,15 @@
         "advanced": "Pengaturan Lanjutan",
         "logout": "Keluar",
         "reset": "Hapus dompet",
-        "back": "Kembali"
+        "back": "Kembali",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Tindakan ini tidak dapat diulang.",
@@ -216,5 +225,11 @@
         "yourSeedIs": "Seed anda terdiri dari 81 karakter dari kiri ke kanan. Tulis Seed tersebut, cek jumlah karakternya dan pastikan mereka sudah benar",
         "tripleCheck": "cek kembali",
         "thatTheyAreCorrect": "bahwa mereka benar."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Alamat telah disalin",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
