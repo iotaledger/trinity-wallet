@@ -28,8 +28,8 @@
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte nochmals Versuchen.",
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrong": "Ein Fehler ist aufgetreten",
+        "somethingWentWrongExplanation": "Bitte die App neustarten."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed beinhaltet ungültige Zeichen",
@@ -128,7 +128,7 @@
         "ofTheOptions": "von den aufgeführten Optionen speichern."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch mal.",
         "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gespeichert hast.",
         "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gespeichert hast, gehe bitte zum vorherigen Bildschirm und tu dies."
@@ -229,7 +229,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
