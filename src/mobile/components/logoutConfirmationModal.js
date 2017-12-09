@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import OnboardingButtons from './onboardingButtons.js';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class LogoutConfirmationModal extends React.Component {
     render() {
+        const { t } = this.props;
+
         return (
             <ImageBackground
                 source={require('iota-wallet-shared-modules/images/bg-blue.png')}

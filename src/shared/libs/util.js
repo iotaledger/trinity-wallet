@@ -5,6 +5,8 @@ import isString from 'lodash/isString';
 
 export const MAX_SEED_LENGTH = 81;
 
+export const ADDRESS_LENGTH = 90;
+
 export const VALID_SEED_REGEX = /^[A-Z9]+$/;
 
 export const formatValue = value => {

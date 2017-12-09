@@ -1,4 +1,4 @@
-import isUndefined from 'lodash/isUndefined';
+import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
@@ -13,17 +13,16 @@ import {
     LayoutAnimation,
     ListView,
     ScrollView,
-    Dimensions,
     StatusBar,
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
+import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
@@ -32,8 +31,7 @@ import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 
 import DropdownHolder from '../components/dropdownHolder';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
 let sentDenomination = '';
@@ -121,22 +119,21 @@ class Send extends Component {
     }
 
     renderInvalidAddressErrors(address) {
-        const props = ['error', 'Invalid address'];
+        const { t } = this.props;
+        const props = ['error', t('invalidAddress')];
         const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
-            return dropdown.alertWithType(
-                ...props,
-                `Address should be ${MAX_SEED_LENGTH} characters long and should have a checksum.`,
-            );
+            return dropdown.alertWithType(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
         } else if (address.match(VALID_SEED_REGEX) == null) {
-            return dropdown.alertWithType(...props, 'Address contains invalid characters.');
+            return dropdown.alertWithType(...props, t('invalidAddressExplanation2'));
         }
 
-        return dropdown.alertWithType(...props, 'Address contains an invalid checksum');
+        return dropdown.alertWithType(...props, t('invalidAddressExplanation3'));
     }
 
     onSendPress() {
+        const { t } = this.props;
         const address = this.state.address;
         const amount = this.state.amount;
         const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
@@ -154,11 +151,7 @@ class Send extends Component {
 
         if (!enoughBalance) {
             const dropdown = DropdownHolder.getDropdown();
-            return dropdown.alertWithType(
-                'error',
-                'Not enough funds',
-                'You do not have enough IOTA to complete this transfer.',
-            );
+            return dropdown.alertWithType('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
         }
         if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
@@ -166,11 +159,7 @@ class Send extends Component {
 
         if (!amountIsValid) {
             const dropdown = DropdownHolder.getDropdown();
-            return dropdown.alertWithType(
-                'error',
-                'Incorrect amount entered',
-                'Please enter a numerical value for the transaction amount.',
-            );
+            return dropdown.alertWithType('error', t('invalidAmount'), t('invalidAmountExplanation'));
         }
 
         if (!messageIsValid) {
@@ -179,6 +168,12 @@ class Send extends Component {
     }
 
     sendTransfer() {
+        const { t } = this.props;
+        const dropdown = DropdownHolder.getDropdown();
+        if (this.props.tempAccount.isSyncing) {
+            dropdown.alertWithType('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
+            return;
+        }
         sentDenomination = this.state.denomination;
 
         const accountInfo = this.props.account.accountInfo;
@@ -228,7 +223,16 @@ class Send extends Component {
 
     _showModal = () => this.setState({ isModalVisible: true });
 
-    _hideModal = () => this.setState({ isModalVisible: false });
+    _hideModal = callback =>
+        this.setState({ isModalVisible: false }, () => {
+            const callable = fn => isFunction(fn);
+
+            if (callable(callback)) {
+                setTimeout(() => {
+                    callback();
+                });
+            }
+        });
 
     _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
 
@@ -251,7 +255,7 @@ class Send extends Component {
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
-                        hideModal={() => this._hideModal()}
+                        hideModal={callback => this._hideModal(callback)}
                     />
                 );
                 this.setState({
@@ -273,17 +277,19 @@ class Send extends Component {
 
     onQRRead(data) {
         this.setState({
-            address: data.substring(0, MAX_SEED_LENGTH),
-            message: data.substring(82),
+            address: data.substring(0, 90),
+            message: data.substring(91),
         });
         this._hideModal();
     }
 
     _renderMaximum() {
+        const { t } = this.props;
+
         if (this.state.maxPressed) {
             return (
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={styles.maxWarningText}>MAXIMUM amount selected</Text>
+                    <Text style={styles.maxWarningText}>{t('maximumSelected')}</Text>
                 </View>
             );
         } else {
@@ -329,7 +335,7 @@ class Send extends Component {
 
     render() {
         let { amount, address, message, denomination } = this.state;
-
+        const { t } = this.props;
         const maxHeight = this.state.maxPressed ? height / 10 : 0;
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -340,6 +346,7 @@ class Send extends Component {
                         <View style={styles.fieldContainer}>
                             <View style={styles.textFieldContainer}>
                                 <TextField
+                                    ref="address"
                                     autoCapitalize={'characters'}
                                     style={styles.textField}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
@@ -351,7 +358,7 @@ class Send extends Component {
                                     baseColor="white"
                                     tintColor="#F7D002"
                                     enablesReturnKeyAutomatically={true}
-                                    label="Recipient address"
+                                    label={t('recipientAddress')}
                                     autoCorrect={false}
                                     value={address}
                                     onChangeText={address => this.setState({ address })}
@@ -361,7 +368,7 @@ class Send extends Component {
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
                                     <View style={styles.button}>
-                                        <Text style={styles.qrText}> QR </Text>
+                                        <Text style={styles.qrText}>{t('global:qr')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -379,7 +386,7 @@ class Send extends Component {
                                     labelPadding={2}
                                     baseColor="white"
                                     enablesReturnKeyAutomatically={true}
-                                    label="Amount"
+                                    label={t('amount')}
                                     tintColor="#F7D002"
                                     autoCorrect={false}
                                     value={amount}
@@ -407,7 +414,7 @@ class Send extends Component {
                             <View style={styles.maxButtonContainer}>
                                 <TouchableOpacity onPress={event => this.onMaxPress()}>
                                     <View style={styles.maxButton}>
-                                        <Text style={styles.maxButtonText}> MAX </Text>
+                                        <Text style={styles.maxButtonText}>{t('max')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -424,42 +431,54 @@ class Send extends Component {
                                 labelPadding={2}
                                 baseColor="white"
                                 enablesReturnKeyAutomatically={true}
-                                label="Message"
+                                label={t('message')}
                                 tintColor="#F7D002"
                                 autoCorrect={false}
                                 value={message}
                                 onChangeText={message => this.setState({ message })}
-                                onSubmitEditing={() => this.sendTransfer()}
+                                onSubmitEditing={() => this.onSendPress()}
                             />
                         </View>
                     </View>
                     <View style={styles.midContainer}>
                         {!this.props.tempAccount.isSendingTransfer && (
                             <View style={styles.sendIOTAButtonContainer}>
-                                <TouchableOpacity onPress={event => this.setModalContent('transferConfirmation')}>
+                                <TouchableOpacity
+                                    onPress={event => {
+                                        this.setModalContent('transferConfirmation');
+                                        this.refs.address.blur();
+                                        this.refs.amount.blur();
+                                        this.refs.message.blur();
+                                    }}
+                                >
                                     <View style={styles.sendIOTAButton}>
-                                        <Text style={styles.sendIOTAText}>SEND</Text>
+                                        <Text style={styles.sendIOTAText}>{t('send')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
                         )}
-                        {this.props.tempAccount.isSendingTransfer && (
-                            <ActivityIndicator
-                                animating={this.props.tempAccount.isSendingTransfer}
-                                style={styles.activityIndicator}
-                                size="large"
-                                color="#F7D002"
-                            />
-                        )}
+                        {this.props.tempAccount.isSendingTransfer &&
+                            !this.state.isModalVisible && (
+                                <ActivityIndicator
+                                    animating={this.props.tempAccount.isSendingTransfer && !this.state.isModalVisible}
+                                    style={styles.activityIndicator}
+                                    size="large"
+                                    color="#F7D002"
+                                />
+                            )}
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity style={styles.infoButton} onPress={() => this.setModalContent('unitInfo')}>
+                        <TouchableOpacity
+                            style={styles.infoButton}
+                            onPress={() => this.setModalContent('unitInfo')}
+                            hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                        >
                             <View style={styles.info}>
                                 <Image
                                     source={require('iota-wallet-shared-modules/images/info.png')}
                                     style={styles.infoIcon}
                                 />
-                                <Text style={styles.infoText}>IOTA units</Text>
+                                <Text style={styles.infoText}>{t('iotaUnits')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -662,4 +681,4 @@ const mapDispatchToProps = dispatch => ({
     sendTransferRequest: () => dispatch(sendTransferRequest()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Send);
+export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));

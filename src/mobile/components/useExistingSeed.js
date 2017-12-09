@@ -1,44 +1,23 @@
+import trim from 'lodash/trim';
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Image,
-    ScrollView,
-    ImageBackground,
-    StatusBar,
-    Platform,
-    KeyboardAvoidingView,
-} from 'react-native';
+import PropTypes from 'prop-types';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Image } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from 'react-native-dropdownalert';
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
-import { connect } from 'react-redux';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import Modal from 'react-native-modal';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import {
-    getAccountInfoNewSeed,
-    setFirstUse,
-    increaseSeedCount,
-    addAccountName,
-} from 'iota-wallet-shared-modules/actions/account';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { clearTempData } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 
-import DropdownHolder from '../components/dropdownHolder';
-
-const width = Dimensions.get('window').width;
-const height = global.height;
-const StatusBarDefaultBarStyle = 'light-content';
-const isAndroid = Platform.OS === 'android';
+import { width, height } from '../util/dimensions';
 
 class UseExistingSeed extends React.Component {
+    static propTypes = {
+        seedCount: PropTypes.number.isRequired,
+        addAccount: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -49,6 +28,8 @@ class UseExistingSeed extends React.Component {
     }
 
     getDefaultAccountName() {
+        const { t } = this.props;
+
         if (this.props.seedCount == 0) {
             return 'MAIN ACCOUNT';
         } else if (this.props.seedCount == 1) {
@@ -89,6 +70,8 @@ class UseExistingSeed extends React.Component {
 
     render() {
         const { seed, accountName } = this.state;
+        const { t } = this.props;
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -113,7 +96,6 @@ class UseExistingSeed extends React.Component {
                                         value={seed}
                                         maxLength={MAX_SEED_LENGTH}
                                         onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
-                                        secureTextEntry={true}
                                         onSubmitEditing={() => this.refs.accountName.focus()}
                                     />
                                 </View>
@@ -130,6 +112,7 @@ class UseExistingSeed extends React.Component {
                                 </View>
                             </View>
                         </View>
+                        <View style={{ flex: 1 }} />
                         <View style={styles.accountNameContainer}>
                             <View style={styles.subtitleContainer}>
                                 <Text style={styles.title}>Enter an account name.</Text>
@@ -145,11 +128,10 @@ class UseExistingSeed extends React.Component {
                                 tintColor="#F7D002"
                                 enablesReturnKeyAutomatically={true}
                                 label="Account name"
-                                autoCapitalize="characters"
+                                autoCapitalize="words"
                                 autoCorrect={false}
                                 value={accountName}
                                 containerStyle={{ width: width / 1.36 }}
-                                autoCapitalize={'characters'}
                                 onChangeText={accountName => this.setState({ accountName })}
                             />
                         </View>
@@ -165,7 +147,7 @@ class UseExistingSeed extends React.Component {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={event => this.props.addAccount(seed, accountName)}
+                            onPress={event => this.props.addAccount(seed, trim(accountName))}
                             style={{ flex: 1 }}
                         >
                             <View style={styles.itemRight}>
@@ -201,18 +183,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between',
     },
     bottomContainer: {
-        flex: 0.5,
+        flex: 1,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     topContainer: {
-        flex: 4.5,
-        justifyContent: 'space-around',
+        flex: 9,
+        justifyContent: 'flex-start',
     },
     logoContainer: {
         justifyContent: 'center',
@@ -221,7 +202,7 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15,
+        paddingTop: height / 25,
         paddingBottom: height / 30,
     },
     subtitleContainer: {
@@ -279,10 +260,10 @@ const styles = StyleSheet.create({
         paddingBottom: height / 90,
     },
     accountNameContainer: {
-        flex: 1,
+        flex: 4,
     },
     seedContainer: {
-        flex: 1,
+        flex: 4,
     },
     titleTextLeft: {
         color: 'white',

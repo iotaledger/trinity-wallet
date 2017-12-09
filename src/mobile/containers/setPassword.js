@@ -3,7 +3,6 @@ import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -20,9 +19,10 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { isAndroid } from '../util/device';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -36,6 +36,7 @@ class SetPassword extends React.Component {
     }
 
     onDonePress() {
+        const { t } = this.props;
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
             checkKeychainForDuplicates(
                 this.state.password,
@@ -86,15 +87,14 @@ class SetPassword extends React.Component {
         });
     }
 
-    render() {
-        let { password, reentry } = this.state;
+    _renderContent() {
         const { t } = this.props;
+        let { password, reentry } = this.state;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
-                <StatusBar barStyle="light-content" />
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View>
+            <View>
+                <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+                    <View style={styles.container}>
                         <View style={styles.topContainer}>
                             <Image
                                 source={require('iota-wallet-shared-modules/images/iota-glow.png')}
@@ -105,57 +105,63 @@ class SetPassword extends React.Component {
                             </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={styles.infoTextContainer}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/info.png')}
-                                    style={styles.infoIcon}
-                                />
-                                <Text style={styles.infoText}>{t('anEncryptedCopy')}</Text>
-                                <Text style={styles.warningText}>{t('ensure')}</Text>
+                            <View style={{ flex: 0.3 }} />
+                            <View style={styles.infoTextWrapper}>
+                                <View style={styles.infoTextContainer}>
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/info.png')}
+                                        style={styles.infoIcon}
+                                    />
+                                    <Text style={styles.infoText}>{t('anEncryptedCopy')}</Text>
+                                    <Text style={styles.warningText}>{t('ensure')}</Text>
+                                </View>
                             </View>
-                            <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor="white"
-                                label={t('global:password')}
-                                tintColor="#F7D002"
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                returnKeyType="next"
-                                value={password}
-                                onChangeText={password => this.setState({ password })}
-                                onSubmitEditing={() => this.reentry.focus()}
-                                containerStyle={{
-                                    width: width / 1.36,
-                                }}
-                                secureTextEntry={true}
-                            />
-                            <TextField
-                                ref={c => {
-                                    this.reentry = c;
-                                }}
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                labelFontSize={width / 31.8}
-                                fontSize={width / 20.7}
-                                labelPadding={3}
-                                baseColor="white"
-                                label={t('retypePassword')}
-                                tintColor="#F7D002"
-                                autoCapitalize={'none'}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
-                                returnKeyType="done"
-                                value={reentry}
-                                onChangeText={reentry => this.setState({ reentry })}
-                                containerStyle={{ width: width / 1.36 }}
-                                secureTextEntry={true}
-                                onSubmitEditing={() => this.onDonePress()}
-                            />
+                            <View style={styles.textfieldsContainer}>
+                                <TextField
+                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={width / 31.8}
+                                    fontSize={width / 20.7}
+                                    labelPadding={3}
+                                    baseColor="white"
+                                    label={t('global:password')}
+                                    tintColor="#F7D002"
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically={true}
+                                    returnKeyType="next"
+                                    value={password}
+                                    onChangeText={password => this.setState({ password })}
+                                    onSubmitEditing={() => this.reentry.focus()}
+                                    containerStyle={{
+                                        width: width / 1.36,
+                                    }}
+                                    secureTextEntry={true}
+                                />
+                                <TextField
+                                    ref={c => {
+                                        this.reentry = c;
+                                    }}
+                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                    labelFontSize={width / 31.8}
+                                    fontSize={width / 20.7}
+                                    labelPadding={3}
+                                    baseColor="white"
+                                    label={t('retypePassword')}
+                                    tintColor="#F7D002"
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically={true}
+                                    returnKeyType="done"
+                                    value={reentry}
+                                    onChangeText={reentry => this.setState({ reentry })}
+                                    containerStyle={{ width: width / 1.36 }}
+                                    secureTextEntry={true}
+                                    onSubmitEditing={() => this.onDonePress()}
+                                />
+                            </View>
+                            <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
@@ -177,6 +183,26 @@ class SetPassword extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
+            </View>
+        );
+    }
+
+    render() {
+        const { t } = this.props;
+
+        return (
+            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+                {isAndroid && <View style={styles.container}>{this._renderContent()}</View>}
+                {!isAndroid && (
+                    <KeyboardAwareScrollView
+                        resetScrollToCoords={{ x: 0, y: 0 }}
+                        contentContainerStyle={styles.container}
+                        scrollEnabled={false}
+                        enableOnAndroid={false}
+                    >
+                        {this._renderContent()}
+                    </KeyboardAwareScrollView>
+                )}
             </ImageBackground>
         );
     }
@@ -187,7 +213,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: 'transparent',
     },
     topContainer: {
         flex: 1.2,
@@ -197,12 +223,16 @@ const styles = StyleSheet.create({
     },
     midContainer: {
         flex: 4.8,
-        justifyContent: 'flex-start',
-        paddingTop: height / 10,
+        justifyContent: 'space-around',
         alignItems: 'center',
     },
+    textfieldsContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+    },
     bottomContainer: {
-        flex: 0.7,
+        flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -228,8 +258,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingVertical: height / 60,
+        paddingVertical: height / 35,
         marginTop: height / 25,
+    },
+    infoTextWrapper: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     infoText: {
         color: 'white',

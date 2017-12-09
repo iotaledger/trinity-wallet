@@ -1,31 +1,15 @@
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    ListView,
-    Dimensions,
-    StatusBar,
-    Platform,
-    TouchableWithoutFeedback,
-} from 'react-native';
+import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import {
-    getMarketData,
-    getChartData,
-    getPrice,
-    setCurrency,
-    setTimeframe,
-} from 'iota-wallet-shared-modules/actions/marketData';
+import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
 
-const isAndroid = Platform.OS === 'android';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { isAndroid } from '../util/device';
+import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class Balance extends React.Component {
@@ -100,7 +84,7 @@ class Balance extends React.Component {
                             )}
                             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                             enableEmptySections
-                            contentContainerStyle={isAndroid ? styles.listViewAndroid : styles.listViewIos}
+                            contentContainerStyle={styles.listView}
                             scrollEnabled={false}
                             centerContent
                         />
@@ -108,10 +92,10 @@ class Balance extends React.Component {
                     </View>
                     <View style={styles.chartContainer}>
                         <Chart
+                            isSendingTransfer={this.props.tempAccount.isSendingTransfer}
+                            isGeneratingReceiveAddress={this.props.tempAccount.isGeneratingReceiveAddress}
+                            isSyncing={this.props.tempAccount.isSyncing}
                             marketData={this.props.marketData}
-                            getPrice={() => this.props.getPrice()}
-                            getChartData={() => this.props.getChartData()}
-                            getMarketData={() => this.props.getMarketData()}
                             setCurrency={currency => this.props.setCurrency(currency)}
                             setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
                         />
@@ -126,23 +110,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
     },
     balanceContainer: {
-        flex: 1,
+        flex: 2.5,
         alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingTop: isAndroid ? height / 13 : height / 20,
-        paddingBottom: isAndroid ? height / 30 : height / 50,
+        justifyContent: 'center',
     },
     transactionsContainer: {
-        flex: 2.2,
+        flex: 2,
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: height / 100,
     },
     chartContainer: {
-        flex: 5.3,
+        flex: 5.5,
+        //paddingVertical: isAndroid ? height / 80 : 0,
     },
     iotaBalance: {
         color: 'white',
@@ -159,19 +140,16 @@ const styles = StyleSheet.create({
     },
     line: {
         borderBottomColor: 'white',
-        borderBottomWidth: height / 3000,
+        borderBottomWidth: height / 1000,
         width: width / 1.15,
     },
     separator: {
         height: height / 120,
         flex: 1,
     },
-    listViewAndroid: {
+    listView: {
         flex: 1,
         paddingVertical: height / 70,
-    },
-    listViewIos: {
-        paddingTop: height / 90,
     },
 });
 
@@ -183,15 +161,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getMarketData: () => {
-        dispatch(getMarketData());
-    },
-    getPrice: () => {
-        dispatch(getPrice());
-    },
-    getChartData: () => {
-        dispatch(getChartData());
-    },
     setCurrency: currency => {
         dispatch(setCurrency(currency));
     },

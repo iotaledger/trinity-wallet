@@ -8,14 +8,13 @@ import {
     Dimensions,
     Keyboard,
     TouchableWithoutFeedback,
+    AppState,
 } from 'react-native';
 import Fonts from '../theme/Fonts';
 import Seedbox from '../components/seedBox.js';
 import { TextField } from 'react-native-material-textfield';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
-
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class ViewSeed extends React.Component {
     constructor() {
@@ -24,6 +23,7 @@ class ViewSeed extends React.Component {
             password: '',
             showSeed: false,
             seed: '',
+            appState: AppState.currentState,
         };
     }
 
@@ -49,6 +49,21 @@ class ViewSeed extends React.Component {
         }
     }
 
+    componentDidMount() {
+        AppState.addEventListener('change', this._handleAppStateChange);
+    }
+
+    componentWillUnmount() {
+        AppState.removeEventListener('change', this._handleAppStateChange);
+    }
+
+    _handleAppStateChange = nextAppState => {
+        if (nextAppState.match(/inactive|background/)) {
+            this.hideSeed();
+        }
+        this.setState({ appState: nextAppState });
+    };
+
     hideSeed() {
         this.setState({
             seed: '',
@@ -58,6 +73,8 @@ class ViewSeed extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -158,7 +175,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     topContainer: {
-        flex: 4.5,
+        flex: 9,
         justifyContent: 'space-around',
     },
     passwordTextContainer: {
@@ -186,8 +203,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 0.5,
-        justifyContent: 'flex-end',
+        flex: 1,
+        justifyContent: 'center',
     },
     item: {
         flexDirection: 'row',

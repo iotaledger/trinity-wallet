@@ -7,205 +7,79 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0169BAD88ABCF39CD8691EB167F86A32 /* buttonRoundedRegularHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 897546A63DE25C55FB50E8AA1981564A /* buttonRoundedRegularHighlighted.png */; };
-		01E6C0547D782AE52790DCDAED2DCB52 /* Pods-iotaWallet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46690F73410509C835368C77C3CA395C /* Pods-iotaWallet-dummy.m */; };
-		03F9E6CC9D330A9439A168B85DB80016 /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = FCD0A0BBA3BF3139E1247A601655FB6A /* Cancel.png */; };
-		049DC27A120D8C64D604EE458AF41DB7 /* Cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 47EC11AEF52607C56C210F6EF991E575 /* Cancel@3x.png */; };
-		28DEAC650483E15A5602394CE175AD84 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E4DEA17FE1AFAEDC893B73D220336A9A /* ja.lproj */; };
-		2DC4ABBB56462C2DE42224B60BD5F84D /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 7D3768927DA0C738527646A0BFF3A174 /* fr.lproj */; };
-		33D030DF61B65C5537D08546640B90A2 /* Blur.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A3CE40C23F8F191A2B91F8800813079 /* Blur.png */; };
-		3489571CA89142FDC6B3C8AF2554924A /* FeedbackPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = AF712082F97AF0ECB39A677ECEDAC964 /* FeedbackPlaceholder.png */; };
-		3A624FBA699DEA2F5BA1095F016C7389 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 96932BED8A386BD597EBEF60E8D1C471 /* pt.lproj */; };
-		3F4EE4E013A4285A452231E7001A59D3 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7D45E716DFD3BC1BE840CD46FB898B8 /* Arrow@2x.png */; };
-		40F50C320E441CA6832A1903FC423C3B /* pt-PT.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6F6B08501F371C65F6CF2BD293F51F5B /* pt-PT.lproj */; };
-		43346BB4720B201DF61B419AD168C8CC /* IconGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E20F5BEB73B8AFC37FD2B2026BFFDED /* IconGradient.png */; };
-		4358E71B5410586455C8B158367E2881 /* Rectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B73F3468AC553862E44F400B45D1C75 /* Rectangle.png */; };
-		4876037C91809E9395FBC6DA1263D7A0 /* iconCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B3EEDFE85D11764C7E51FAEA8F008A /* iconCamera.png */; };
-		49A9CF505C50A2439636F3B7662D5E10 /* Blur@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FCF0407E30764F5288804CEDC433FA99 /* Blur@3x.png */; };
 		4EB5F5F718C1386C24F000BFF44BE511 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 572DBE63D5360AB71E5F80F979738FD0 /* Foundation.framework */; };
-		507B27E488D80AFBF7E60509D4B6FAFB /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1BDA2535DEBE02AFB5FA012E0507F6F5 /* ru.lproj */; };
-		5115D6363C75F1CFED742D78CBA9331C /* buttonRoundedDeleteHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = A914E476928547F0FAE1EFEA461157C7 /* buttonRoundedDeleteHighlighted.png */; };
-		58B208AEE306DDB0814DA9F469D56AF3 /* Rectangle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A9CCFBAB81F460340F64F5775469D76 /* Rectangle@3x.png */; };
-		5C072A354CF2E5C1E28796462F1EE5D1 /* authorize_denied@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80DEBA096EE758A28FBFCA3F082B4178 /* authorize_denied@3x.png */; };
-		61623C6B3CAB656828E4E8E21DBA3B51 /* AppIconPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 035DCE7745DDEB4A419A2E68D26A11C1 /* AppIconPlaceHolder.png */; };
-		62EBE29FCD3236D8A4CEAE2A55AD8C9C /* Blur@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE074F944D58136A71CDE99EC40AF2E4 /* Blur@2x.png */; };
+		539380FF4C3821B8658949321F3DE16C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D154F4805B9715F0E6D79B0363CE280 /* Foundation.framework */; };
 		631248093AC7ABAF32DE898B1F2FEED1 /* Pods-iotaWalletTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB33423EBDD2099E869C192311141EE /* Pods-iotaWalletTests-dummy.m */; };
-		635FEA3A17E0368486B6EBB951113919 /* IconGradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1435D93C0D06C810389E24CB3637A63A /* IconGradient@2x.png */; };
-		63E45E69AE22E5EC53274CB00FF9CC11 /* feedbackActivity@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3025C68079DA4BCF6F03E9D122515A89 /* feedbackActivity@2x~ipad.png */; };
-		6FE15250DA0FAFDD7740E391A3981205 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 0737B16350A7794F146D97446ED84BFD /* de.lproj */; };
+		6AA3936E3CD759ACCD62FB270D7D3D51 /* Pods-iotaWallet-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46690F73410509C835368C77C3CA395C /* Pods-iotaWallet-dummy.m */; };
 		700921C87A9AC08DE903A42F9B0EEE2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 572DBE63D5360AB71E5F80F979738FD0 /* Foundation.framework */; };
 		72CEBFA4399BA55D6AAB8E01A7C079AC /* Pods-iotaWallet-tvOSTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B74197A7CC07D888A2ADE7ADF7E25177 /* Pods-iotaWallet-tvOSTests-dummy.m */; };
-		74188F838D216E12DACBAEA65FE68A47 /* Ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB53AD7E2123BEB32750DBCE70B9CA08 /* Ok@2x.png */; };
-		77C8A6E286C4017355A3504DE7224672 /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1B7F06DE10E11A837B31793A91F9FEDF /* it.lproj */; };
-		7953B9FC0310262E2C693A3D1E5E5219 /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 80A41020F711BD4E8414744544FA6116 /* nb.lproj */; };
-		86954DB3FF1C5EDF65479FAD9FC1434F /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = ED90D6EDE19EF7CDE1FAAE03B22D5955 /* es.lproj */; };
-		89226F9F79E9BB2F2219E70A6BFCDED4 /* authorize_denied@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5C10503774CC2DD7500CBD0A4812DB4 /* authorize_denied@2x.png */; };
-		8AE77ECF56D527473E2A071BFAF62243 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 77C8167AD992CFA586FB74E78CE7AC4E /* en.lproj */; };
-		8DF93789021A18DC6066C6C544637F90 /* feedbackActivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A77A1AF766AA7BF47576DC859A5240D2 /* feedbackActivity@2x.png */; };
-		907E2F103EB6057B52422FCB26A8721B /* Cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21643D6FD0BAC97F00394EFB8C193B14 /* Cancel@2x.png */; };
-		909B555C0A8D89705758D033A11DACC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D154F4805B9715F0E6D79B0363CE280 /* Foundation.framework */; };
-		91C4BA98435286267215EB6915BEF20D /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C64D8F306FBADB7BFFA971843BA3C087 /* zh-Hans.lproj */; };
-		96146C16D76EE2FCCC0D735CDDEAB236 /* buttonRoundedDelete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB1D3AADFEAD8F9086FCFB85CE58D4A /* buttonRoundedDelete@2x.png */; };
-		98607B164CD8C94FC4997C23B8676D62 /* buttonRoundedRegular@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1AE4492AEE344BEAFE2BAA735E81CC /* buttonRoundedRegular@2x.png */; };
-		99EDE96EE366DEE42CA68F3527CD2ECB /* authorize_denied.png in Resources */ = {isa = PBXBuildFile; fileRef = F45FF3D953990BDB8691397E278008DB /* authorize_denied.png */; };
-		9BFF5F7C39DD6384DBB7A137EBBE6209 /* buttonRoundedRegularHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F391522424A594251A93F2B3B3A21533 /* buttonRoundedRegularHighlighted@2x.png */; };
-		9E10DDC85EE5213720EEFBA655FA3F0E /* feedbackActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = F05EBEFFA680D9865916788B11DAB126 /* feedbackActivity.png */; };
-		A010F6E013E49F89AD9814ABEEF6A5ED /* iconCamera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A69A9E092941BE41E7F561262889202 /* iconCamera@2x.png */; };
-		A48255B69BC546E153BAC32062805A26 /* Rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D8FDE04B5303F51CC1E2D5E423BD017 /* Rectangle@2x.png */; };
-		A695DB65C9820EF89C7DF501778092E3 /* buttonRoundedDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = C79E6B6337206A0452C301DAFCB7945B /* buttonRoundedDelete.png */; };
-		A7D8B3C3F26205FEC2CEEF050A4B1B8C /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1EB2E4A1B5D991E58C8827ACFC31CEFF /* nl.lproj */; };
 		A9FA529A46B90EA7523CB4E30CC0F9B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D154F4805B9715F0E6D79B0363CE280 /* Foundation.framework */; };
-		AEDE07BAC2BF8283698040A6FCB0656E /* hu.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 711657701A104DF4CCF52E9D30243E4C /* hu.lproj */; };
-		B6FEDE99E79B79C5333FAAF1E3447488 /* fa.lproj in Resources */ = {isa = PBXBuildFile; fileRef = ACC6603AA14997A9D630FADD5009DBAF /* fa.lproj */; };
-		CEE5B95F1FDD7706D183F8EC7B1FCD22 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F682C44C5D75385503A064B67E888B5A /* Arrow.png */; };
-		D7D77BFDA1A81D4F861D434327D3071E /* feedbackActivity~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EABF6E211E00D990803BE3CE5A37D307 /* feedbackActivity~ipad.png */; };
-		D8D7470358FC1267D87352CD4ED27F42 /* feedbackActivity@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81708089041C0F0C5ABC3B60043D3FF1 /* feedbackActivity@3x.png */; };
-		DA8C9A3AE256F3EE5A85FE500551F7CC /* Ok.png in Resources */ = {isa = PBXBuildFile; fileRef = D6C71987F43CBDFE4DD79008AA8F650C /* Ok.png */; };
-		DAA687DB1294E121F74001C76286EFF7 /* buttonRoundedDeleteHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3656D40C2133F65D73EC93B5ADD1C564 /* buttonRoundedDeleteHighlighted@2x.png */; };
-		DE73828B7FFC6D94C6423C84005E62FC /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A119CFCA63E157B929E146CFD911D0F8 /* bg.png */; };
-		E0EF08B5093705A6C20FAB5CD6000679 /* Arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F17F4F8B3C1D05E9100274441DA89AC5 /* Arrow@3x.png */; };
-		E27BB7E54AB24234BCBFCCDD46BEA397 /* hr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = B42986D2DFA7074A6F1F3F4CCE98A541 /* hr.lproj */; };
-		E6A201A0681FF512C08B945B5CBC11AF /* Ok@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C31D0B5242B9D8D0F39E5A98891934E9 /* Ok@3x.png */; };
 		F2FF658FDDD82E70D435994A9376E950 /* Pods-iotaWallet-tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDCC31954952E8ED3563C87838794915 /* Pods-iotaWallet-tvOS-dummy.m */; };
-		F96D7C9233936972F698F568E02E78BE /* buttonRoundedRegular.png in Resources */ = {isa = PBXBuildFile; fileRef = D18B4C8BC0A0F0CE186494EBA57D6262 /* buttonRoundedRegular.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		293AE3B45FCBC043E6D9A6038299877D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EB9AD825427F216B54E693242E671FA1;
-			remoteInfo = "HockeySDK-HockeySDKResources";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		02D04D8B66FF852CA9CE5AE62B6E4762 /* Pods-iotaWallet-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		035DCE7745DDEB4A419A2E68D26A11C1 /* AppIconPlaceHolder.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = AppIconPlaceHolder.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/AppIconPlaceHolder.png"; sourceTree = "<group>"; };
-		0737B16350A7794F146D97446ED84BFD /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/de.lproj"; sourceTree = "<group>"; };
-		0E20F5BEB73B8AFC37FD2B2026BFFDED /* IconGradient.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = IconGradient.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/IconGradient.png"; sourceTree = "<group>"; };
-		1435D93C0D06C810389E24CB3637A63A /* IconGradient@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "IconGradient@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/IconGradient@2x.png"; sourceTree = "<group>"; };
-		18B3EEDFE85D11764C7E51FAEA8F008A /* iconCamera.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = iconCamera.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/iconCamera.png"; sourceTree = "<group>"; };
-		1A69A9E092941BE41E7F561262889202 /* iconCamera@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "iconCamera@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/iconCamera@2x.png"; sourceTree = "<group>"; };
-		1B7F06DE10E11A837B31793A91F9FEDF /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = it.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/it.lproj"; sourceTree = "<group>"; };
-		1BDA2535DEBE02AFB5FA012E0507F6F5 /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/ru.lproj"; sourceTree = "<group>"; };
-		1EB2E4A1B5D991E58C8827ACFC31CEFF /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nl.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/nl.lproj"; sourceTree = "<group>"; };
-		2148751330DA6336426E3407577B74D8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
-		21643D6FD0BAC97F00394EFB8C193B14 /* Cancel@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Cancel@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Cancel@2x.png"; sourceTree = "<group>"; };
-		2452C58A28D59B9655A135C45AEE7D6D /* libPods-iotaWallet-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWallet-tvOSTests.a"; path = "libPods-iotaWallet-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		24AF74A9654A4D746C45BF4703B59C32 /* libPods-iotaWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWallet.a"; path = "libPods-iotaWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		127A207207EC3B730ADDF9FCC5F6E4C2 /* libPods-iotaWalletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWalletTests.a"; path = "libPods-iotaWalletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		200C81134ACADBF4B01AF7F1C51DE9EC /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
+		29DE526E5B1D3B37719460B12B391B91 /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
 		2D154F4805B9715F0E6D79B0363CE280 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		2F8F35C01093637129DAAFCD8541B1F9 /* Pods-iotaWallet-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-resources.sh"; sourceTree = "<group>"; };
-		3025C68079DA4BCF6F03E9D122515A89 /* feedbackActivity@2x~ipad.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity@2x~ipad.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity@2x~ipad.png"; sourceTree = "<group>"; };
-		3656D40C2133F65D73EC93B5ADD1C564 /* buttonRoundedDeleteHighlighted@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedDeleteHighlighted@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDeleteHighlighted@2x.png"; sourceTree = "<group>"; };
+		37209F64985E3BD16080A2175B3E4697 /* libPods-iotaWallet-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWallet-tvOSTests.a"; path = "libPods-iotaWallet-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38762C35886DC4ECF10EFED95A572966 /* Pods-iotaWallet-tvOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-tvOS-frameworks.sh"; sourceTree = "<group>"; };
-		4228F509741C3CCF781D0800BBE4AED9 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
+		3E83342BF76D6E184A1B6112515DF75C /* libPods-iotaWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWallet.a"; path = "libPods-iotaWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44D974E91B6D16A4FD3C0E8112718609 /* libPods-iotaWallet-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWallet-tvOS.a"; path = "libPods-iotaWallet-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46690F73410509C835368C77C3CA395C /* Pods-iotaWallet-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iotaWallet-dummy.m"; sourceTree = "<group>"; };
-		4769217EB460C36D3C9BBA6B7ADB63EF /* HockeySDKResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = HockeySDKResources.bundle; path = HockeySDKResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		47EC11AEF52607C56C210F6EF991E575 /* Cancel@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Cancel@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Cancel@3x.png"; sourceTree = "<group>"; };
-		4D0BCE00CE11581F0FB55B4CB4AD25C9 /* ResourceBundle-HockeySDKResources-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-HockeySDKResources-Info.plist"; sourceTree = "<group>"; };
-		4D8FDE04B5303F51CC1E2D5E423BD017 /* Rectangle@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Rectangle@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Rectangle@2x.png"; sourceTree = "<group>"; };
-		4FB74A2B96446BC7051985BB1BC3FDE6 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
+		494C290BDBEAED23BA5743A3CE2FA0D1 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
 		5182FC9A9CB742002F3ADBCB340656BC /* Pods-iotaWallet-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iotaWallet-acknowledgements.plist"; sourceTree = "<group>"; };
 		572DBE63D5360AB71E5F80F979738FD0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6A9CCFBAB81F460340F64F5775469D76 /* Rectangle@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Rectangle@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Rectangle@3x.png"; sourceTree = "<group>"; };
+		5B0AC4555A08701A9F1760172610E0AF /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
 		6C6EE5A123BD1C07FA0F7C1E19C4AFE8 /* Pods-iotaWalletTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iotaWalletTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		6F6B08501F371C65F6CF2BD293F51F5B /* pt-PT.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "pt-PT.lproj"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/pt-PT.lproj"; sourceTree = "<group>"; };
-		711657701A104DF4CCF52E9D30243E4C /* hu.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = hu.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/hu.lproj"; sourceTree = "<group>"; };
 		74691848F9069BE50F4CE1B75F698D0A /* Pods-iotaWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWalletTests.release.xcconfig"; sourceTree = "<group>"; };
-		77C8167AD992CFA586FB74E78CE7AC4E /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/en.lproj"; sourceTree = "<group>"; };
-		78044F1342E5585676B8B8C2D1907A6F /* libPods-iotaWalletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWalletTests.a"; path = "libPods-iotaWalletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A3CE40C23F8F191A2B91F8800813079 /* Blur.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Blur.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Blur.png"; sourceTree = "<group>"; };
 		7AB33423EBDD2099E869C192311141EE /* Pods-iotaWalletTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iotaWalletTests-dummy.m"; sourceTree = "<group>"; };
-		7D3768927DA0C738527646A0BFF3A174 /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/fr.lproj"; sourceTree = "<group>"; };
-		7D6F5BBFD9315E0CAAEF11F3C51576A7 /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
-		80A41020F711BD4E8414744544FA6116 /* nb.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nb.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/nb.lproj"; sourceTree = "<group>"; };
-		80DEBA096EE758A28FBFCA3F082B4178 /* authorize_denied@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "authorize_denied@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/authorize_denied@3x.png"; sourceTree = "<group>"; };
-		81708089041C0F0C5ABC3B60043D3FF1 /* feedbackActivity@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity@3x.png"; sourceTree = "<group>"; };
-		897546A63DE25C55FB50E8AA1981564A /* buttonRoundedRegularHighlighted.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedRegularHighlighted.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegularHighlighted.png"; sourceTree = "<group>"; };
+		82981FB005A4ED4C556297735FD4ACED /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
+		856A7EF81F93DD33C78FA7140067110C /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
 		8B2F91B005C9479831574677EF9520B9 /* Pods-iotaWallet-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8CC930F313BD512D7F2C8EF4E10045BB /* Pods-iotaWallet-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-frameworks.sh"; sourceTree = "<group>"; };
-		8D16014068EF7DAEA4E6C253C5438F73 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
-		90C754B468167349FE734C8755AFCCA6 /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
+		8DB331D62E03B90D571016097AB0A7E0 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
+		92972CC1C216B42A9AB4B6EABB27FC16 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		96932BED8A386BD597EBEF60E8D1C471 /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pt.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/pt.lproj"; sourceTree = "<group>"; };
 		974D494D07541D960F62A30D15B0B1D2 /* Pods-iotaWallet-tvOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-tvOSTests-resources.sh"; sourceTree = "<group>"; };
-		9B73F3468AC553862E44F400B45D1C75 /* Rectangle.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Rectangle.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Rectangle.png"; sourceTree = "<group>"; };
 		9FAA3B4F5E935E052059841186E4D11E /* Pods-iotaWalletTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWalletTests-resources.sh"; sourceTree = "<group>"; };
 		9FC12C99CBF3DBF6CAB9BA5B2C7EB4E0 /* Pods-iotaWalletTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWalletTests-frameworks.sh"; sourceTree = "<group>"; };
-		A119CFCA63E157B929E146CFD911D0F8 /* bg.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = bg.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/bg.png"; sourceTree = "<group>"; };
-		A4996B7739A2DC135F2A2600BCCF7E12 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDK.framework"; sourceTree = "<group>"; };
-		A77A1AF766AA7BF47576DC859A5240D2 /* feedbackActivity@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity@2x.png"; sourceTree = "<group>"; };
-		A914E476928547F0FAE1EFEA461157C7 /* buttonRoundedDeleteHighlighted.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedDeleteHighlighted.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDeleteHighlighted.png"; sourceTree = "<group>"; };
+		A61E08527EFC3DBEDD4BFA0B5C45104C /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
 		A9621886576F406B16E7E70C7178CBFB /* Pods-iotaWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet.release.xcconfig"; sourceTree = "<group>"; };
-		AB53AD7E2123BEB32750DBCE70B9CA08 /* Ok@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Ok@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Ok@2x.png"; sourceTree = "<group>"; };
-		ABE899A8331578E77444CD25B264E291 /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
-		ACC6603AA14997A9D630FADD5009DBAF /* fa.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fa.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/fa.lproj"; sourceTree = "<group>"; };
-		AF712082F97AF0ECB39A677ECEDAC964 /* FeedbackPlaceholder.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = FeedbackPlaceholder.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/FeedbackPlaceholder.png"; sourceTree = "<group>"; };
 		AFBBDCB2421DD57E906357604CA8979D /* Pods-iotaWallet-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		B42986D2DFA7074A6F1F3F4CCE98A541 /* hr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = hr.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/hr.lproj"; sourceTree = "<group>"; };
 		B4FBFBA96647FC39F8128DD0230FC699 /* Pods-iotaWallet-tvOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iotaWallet-tvOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B74197A7CC07D888A2ADE7ADF7E25177 /* Pods-iotaWallet-tvOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iotaWallet-tvOSTests-dummy.m"; sourceTree = "<group>"; };
 		BDCC31954952E8ED3563C87838794915 /* Pods-iotaWallet-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iotaWallet-tvOS-dummy.m"; sourceTree = "<group>"; };
-		C31D0B5242B9D8D0F39E5A98891934E9 /* Ok@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Ok@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Ok@3x.png"; sourceTree = "<group>"; };
-		C64D8F306FBADB7BFFA971843BA3C087 /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hans.lproj"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/zh-Hans.lproj"; sourceTree = "<group>"; };
 		C784DF16C1694C7F62509A92CB7D188B /* Pods-iotaWallet-tvOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-tvOSTests-frameworks.sh"; sourceTree = "<group>"; };
-		C79E6B6337206A0452C301DAFCB7945B /* buttonRoundedDelete.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedDelete.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDelete.png"; sourceTree = "<group>"; };
-		CE074F944D58136A71CDE99EC40AF2E4 /* Blur@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Blur@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Blur@2x.png"; sourceTree = "<group>"; };
-		CEB1D3AADFEAD8F9086FCFB85CE58D4A /* buttonRoundedDelete@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedDelete@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedDelete@2x.png"; sourceTree = "<group>"; };
-		CF1918D6BC50F8CEF37A2D94421E9962 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
-		D004EC936371C4C7C4F521C215B5ED1A /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
-		D18B4C8BC0A0F0CE186494EBA57D6262 /* buttonRoundedRegular.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = buttonRoundedRegular.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegular.png"; sourceTree = "<group>"; };
-		D25B6EEBF31E38F54BC619BB37523EA5 /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
-		D6C71987F43CBDFE4DD79008AA8F650C /* Ok.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Ok.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Ok.png"; sourceTree = "<group>"; };
 		D7A30FABAEA4BFE286B9D32198E6B500 /* Pods-iotaWallet-tvOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iotaWallet-tvOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		DE1AE4492AEE344BEAFE2BAA735E81CC /* buttonRoundedRegular@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedRegular@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegular@2x.png"; sourceTree = "<group>"; };
+		DBA48C54AB315A7317F3DD387EF04883 /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
 		E4C28A69E5FBC75217AF472B2B67087B /* Pods-iotaWallet-tvOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iotaWallet-tvOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		E4DEA17FE1AFAEDC893B73D220336A9A /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/ja.lproj"; sourceTree = "<group>"; };
-		E5C10503774CC2DD7500CBD0A4812DB4 /* authorize_denied@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "authorize_denied@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/authorize_denied@2x.png"; sourceTree = "<group>"; };
-		E7D45E716DFD3BC1BE840CD46FB898B8 /* Arrow@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Arrow@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Arrow@2x.png"; sourceTree = "<group>"; };
 		E8DBC02D58ADE8B11883C3E7B279F5ED /* Pods-iotaWallet-tvOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iotaWallet-tvOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		E8F1BFA01DEBD3D8E4D9EC1BADE47E1E /* Pods-iotaWallet-tvOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iotaWallet-tvOS-resources.sh"; sourceTree = "<group>"; };
-		EABF6E211E00D990803BE3CE5A37D307 /* feedbackActivity~ipad.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "feedbackActivity~ipad.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity~ipad.png"; sourceTree = "<group>"; };
+		EAC88243AB9F702F3015F7068842116A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
 		EC5DFF337743EB6772DBD5B727C8A917 /* Pods-iotaWallet-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iotaWallet-acknowledgements.markdown"; sourceTree = "<group>"; };
-		ECA095BA14B11C322935CBED56770808 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
 		ECCC535276D27E7685186E1CF4AF827F /* Pods-iotaWalletTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iotaWalletTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		ED90D6EDE19EF7CDE1FAAE03B22D5955 /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/es.lproj"; sourceTree = "<group>"; };
-		EE5C4A062A371FDFC2719FB31DAB66A0 /* libPods-iotaWallet-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-iotaWallet-tvOS.a"; path = "libPods-iotaWallet-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F05EBEFFA680D9865916788B11DAB126 /* feedbackActivity.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = feedbackActivity.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/feedbackActivity.png"; sourceTree = "<group>"; };
 		F101ED25099A77B091E0EA8EAE577ADE /* Pods-iotaWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F17F4F8B3C1D05E9100274441DA89AC5 /* Arrow@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Arrow@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Arrow@3x.png"; sourceTree = "<group>"; };
 		F35488199EC3C6B14E3DFCB66286FA14 /* Pods-iotaWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet.debug.xcconfig"; sourceTree = "<group>"; };
-		F391522424A594251A93F2B3B3A21533 /* buttonRoundedRegularHighlighted@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "buttonRoundedRegularHighlighted@2x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/buttonRoundedRegularHighlighted@2x.png"; sourceTree = "<group>"; };
 		F3BDCAB3D4022B0DF458D8ECED4A1772 /* Pods-iotaWallet-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iotaWallet-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		F45FF3D953990BDB8691397E278008DB /* authorize_denied.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = authorize_denied.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/authorize_denied.png"; sourceTree = "<group>"; };
-		F682C44C5D75385503A064B67E888B5A /* Arrow.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Arrow.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Arrow.png"; sourceTree = "<group>"; };
-		FCD0A0BBA3BF3139E1247A601655FB6A /* Cancel.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Cancel.png; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Cancel.png"; sourceTree = "<group>"; };
-		FCF0407E30764F5288804CEDC433FA99 /* Blur@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Blur@3x.png"; path = "HockeySDK-iOS/HockeySDKAllFeatures/HockeySDK.embeddedframework/HockeySDKResources.bundle/Blur@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		093DE1D3FBC8A217339EA09022A725D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				539380FF4C3821B8658949321F3DE16C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1C7124C271EFA08B5ED98CF633546C63 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A9FA529A46B90EA7523CB4E30CC0F9B3 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1CBFA7F82CA4DFFEFB45CEAAF77EDD95 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				909B555C0A8D89705758D033A11DACC3 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3E4285FE58B9D59B584D9F34BF3244CC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,20 +113,13 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		18CEA9B905044CCC39696E0CFE52ABD3 /* Crashlytics */ = {
+		1DECF7299F0875E9BCB9492390207331 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				90C754B468167349FE734C8755AFCCA6 /* ANSCompatibility.h */,
-				ABE899A8331578E77444CD25B264E291 /* Answers.h */,
-				8D16014068EF7DAEA4E6C253C5438F73 /* CLSAttributes.h */,
-				7D6F5BBFD9315E0CAAEF11F3C51576A7 /* CLSLogging.h */,
-				4228F509741C3CCF781D0800BBE4AED9 /* CLSReport.h */,
-				D25B6EEBF31E38F54BC619BB37523EA5 /* CLSStackFrame.h */,
-				ECA095BA14B11C322935CBED56770808 /* Crashlytics.h */,
-				29F6E6759696E13391E479153A7B5775 /* Frameworks */,
+				26F9D6AB1F30C869A5F58AF8EF5A99C8 /* Crashlytics */,
+				D479A0301687E2A8F6F67D392B8551D2 /* Fabric */,
 			);
-			name = Crashlytics;
-			path = Crashlytics;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		20F731AE46C73F232AF0C168DC383CF9 /* tvOS */ = {
@@ -263,22 +130,37 @@
 			name = tvOS;
 			sourceTree = "<group>";
 		};
-		29F6E6759696E13391E479153A7B5775 /* Frameworks */ = {
+		26F9D6AB1F30C869A5F58AF8EF5A99C8 /* Crashlytics */ = {
 			isa = PBXGroup;
 			children = (
-				CF1918D6BC50F8CEF37A2D94421E9962 /* Crashlytics.framework */,
+				5B0AC4555A08701A9F1760172610E0AF /* ANSCompatibility.h */,
+				A61E08527EFC3DBEDD4BFA0B5C45104C /* Answers.h */,
+				8DB331D62E03B90D571016097AB0A7E0 /* CLSAttributes.h */,
+				29DE526E5B1D3B37719460B12B391B91 /* CLSLogging.h */,
+				856A7EF81F93DD33C78FA7140067110C /* CLSReport.h */,
+				DBA48C54AB315A7317F3DD387EF04883 /* CLSStackFrame.h */,
+				200C81134ACADBF4B01AF7F1C51DE9EC /* Crashlytics.h */,
+				E268B07786115FF5D5DFF396150E695F /* Frameworks */,
+			);
+			name = Crashlytics;
+			path = Crashlytics;
+			sourceTree = "<group>";
+		};
+		2DDA681774534EB985F60A3418A4C908 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92972CC1C216B42A9AB4B6EABB27FC16 /* Fabric.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		44F33DF6BC0E65BC2B8AD42F1E598D8D /* Products */ = {
+		2E43BB284226208CA911FE27FA418706 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4769217EB460C36D3C9BBA6B7ADB63EF /* HockeySDKResources.bundle */,
-				24AF74A9654A4D746C45BF4703B59C32 /* libPods-iotaWallet.a */,
-				EE5C4A062A371FDFC2719FB31DAB66A0 /* libPods-iotaWallet-tvOS.a */,
-				2452C58A28D59B9655A135C45AEE7D6D /* libPods-iotaWallet-tvOSTests.a */,
-				78044F1342E5585676B8B8C2D1907A6F /* libPods-iotaWalletTests.a */,
+				3E83342BF76D6E184A1B6112515DF75C /* libPods-iotaWallet.a */,
+				44D974E91B6D16A4FD3C0E8112718609 /* libPods-iotaWallet-tvOS.a */,
+				37209F64985E3BD16080A2175B3E4697 /* libPods-iotaWallet-tvOSTests.a */,
+				127A207207EC3B730ADDF9FCC5F6E4C2 /* libPods-iotaWalletTests.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -313,66 +195,6 @@
 			path = "Target Support Files/Pods-iotaWallet";
 			sourceTree = "<group>";
 		};
-		56687ABF146D112B3C09160AD0662562 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				035DCE7745DDEB4A419A2E68D26A11C1 /* AppIconPlaceHolder.png */,
-				F682C44C5D75385503A064B67E888B5A /* Arrow.png */,
-				E7D45E716DFD3BC1BE840CD46FB898B8 /* Arrow@2x.png */,
-				F17F4F8B3C1D05E9100274441DA89AC5 /* Arrow@3x.png */,
-				F45FF3D953990BDB8691397E278008DB /* authorize_denied.png */,
-				E5C10503774CC2DD7500CBD0A4812DB4 /* authorize_denied@2x.png */,
-				80DEBA096EE758A28FBFCA3F082B4178 /* authorize_denied@3x.png */,
-				A119CFCA63E157B929E146CFD911D0F8 /* bg.png */,
-				7A3CE40C23F8F191A2B91F8800813079 /* Blur.png */,
-				CE074F944D58136A71CDE99EC40AF2E4 /* Blur@2x.png */,
-				FCF0407E30764F5288804CEDC433FA99 /* Blur@3x.png */,
-				C79E6B6337206A0452C301DAFCB7945B /* buttonRoundedDelete.png */,
-				CEB1D3AADFEAD8F9086FCFB85CE58D4A /* buttonRoundedDelete@2x.png */,
-				A914E476928547F0FAE1EFEA461157C7 /* buttonRoundedDeleteHighlighted.png */,
-				3656D40C2133F65D73EC93B5ADD1C564 /* buttonRoundedDeleteHighlighted@2x.png */,
-				D18B4C8BC0A0F0CE186494EBA57D6262 /* buttonRoundedRegular.png */,
-				DE1AE4492AEE344BEAFE2BAA735E81CC /* buttonRoundedRegular@2x.png */,
-				897546A63DE25C55FB50E8AA1981564A /* buttonRoundedRegularHighlighted.png */,
-				F391522424A594251A93F2B3B3A21533 /* buttonRoundedRegularHighlighted@2x.png */,
-				FCD0A0BBA3BF3139E1247A601655FB6A /* Cancel.png */,
-				21643D6FD0BAC97F00394EFB8C193B14 /* Cancel@2x.png */,
-				47EC11AEF52607C56C210F6EF991E575 /* Cancel@3x.png */,
-				0737B16350A7794F146D97446ED84BFD /* de.lproj */,
-				77C8167AD992CFA586FB74E78CE7AC4E /* en.lproj */,
-				ED90D6EDE19EF7CDE1FAAE03B22D5955 /* es.lproj */,
-				ACC6603AA14997A9D630FADD5009DBAF /* fa.lproj */,
-				F05EBEFFA680D9865916788B11DAB126 /* feedbackActivity.png */,
-				A77A1AF766AA7BF47576DC859A5240D2 /* feedbackActivity@2x.png */,
-				3025C68079DA4BCF6F03E9D122515A89 /* feedbackActivity@2x~ipad.png */,
-				81708089041C0F0C5ABC3B60043D3FF1 /* feedbackActivity@3x.png */,
-				EABF6E211E00D990803BE3CE5A37D307 /* feedbackActivity~ipad.png */,
-				AF712082F97AF0ECB39A677ECEDAC964 /* FeedbackPlaceholder.png */,
-				7D3768927DA0C738527646A0BFF3A174 /* fr.lproj */,
-				B42986D2DFA7074A6F1F3F4CCE98A541 /* hr.lproj */,
-				711657701A104DF4CCF52E9D30243E4C /* hu.lproj */,
-				18B3EEDFE85D11764C7E51FAEA8F008A /* iconCamera.png */,
-				1A69A9E092941BE41E7F561262889202 /* iconCamera@2x.png */,
-				0E20F5BEB73B8AFC37FD2B2026BFFDED /* IconGradient.png */,
-				1435D93C0D06C810389E24CB3637A63A /* IconGradient@2x.png */,
-				1B7F06DE10E11A837B31793A91F9FEDF /* it.lproj */,
-				E4DEA17FE1AFAEDC893B73D220336A9A /* ja.lproj */,
-				80A41020F711BD4E8414744544FA6116 /* nb.lproj */,
-				1EB2E4A1B5D991E58C8827ACFC31CEFF /* nl.lproj */,
-				D6C71987F43CBDFE4DD79008AA8F650C /* Ok.png */,
-				AB53AD7E2123BEB32750DBCE70B9CA08 /* Ok@2x.png */,
-				C31D0B5242B9D8D0F39E5A98891934E9 /* Ok@3x.png */,
-				96932BED8A386BD597EBEF60E8D1C471 /* pt.lproj */,
-				6F6B08501F371C65F6CF2BD293F51F5B /* pt-PT.lproj */,
-				9B73F3468AC553862E44F400B45D1C75 /* Rectangle.png */,
-				4D8FDE04B5303F51CC1E2D5E423BD017 /* Rectangle@2x.png */,
-				6A9CCFBAB81F460340F64F5775469D76 /* Rectangle@3x.png */,
-				1BDA2535DEBE02AFB5FA012E0507F6F5 /* ru.lproj */,
-				C64D8F306FBADB7BFFA971843BA3C087 /* zh-Hans.lproj */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		58996781A54EE964D7111D73083A18A5 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,43 +203,15 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		5D32A382C933E5625A844E1AB5B575DC /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				4D0BCE00CE11581F0FB55B4CB4AD25C9 /* ResourceBundle-HockeySDKResources-Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/HockeySDK";
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				A42F72DC1D780481325DD00969B19BB6 /* Frameworks */,
-				D352319D45685E5D52792C91D4741C2A /* Pods */,
-				44F33DF6BC0E65BC2B8AD42F1E598D8D /* Products */,
+				1DECF7299F0875E9BCB9492390207331 /* Pods */,
+				2E43BB284226208CA911FE27FA418706 /* Products */,
 				030CD3CB089099A7DABE8E99F1CACAAB /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		8E9DEA6E5AC2FB275231FA223B4FD6CD /* Fabric */ = {
-			isa = PBXGroup;
-			children = (
-				D004EC936371C4C7C4F521C215B5ED1A /* FABAttributes.h */,
-				4FB74A2B96446BC7051985BB1BC3FDE6 /* Fabric.h */,
-				95D68CE6D19375D81B3614913BA7F23C /* Frameworks */,
-			);
-			name = Fabric;
-			path = Fabric;
-			sourceTree = "<group>";
-		};
-		95D68CE6D19375D81B3614913BA7F23C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2148751330DA6336426E3407577B74D8 /* Fabric.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A42F72DC1D780481325DD00969B19BB6 /* Frameworks */ = {
@@ -444,41 +238,23 @@
 			path = "Target Support Files/Pods-iotaWallet-tvOS";
 			sourceTree = "<group>";
 		};
-		D352319D45685E5D52792C91D4741C2A /* Pods */ = {
+		D479A0301687E2A8F6F67D392B8551D2 /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
-				18CEA9B905044CCC39696E0CFE52ABD3 /* Crashlytics */,
-				8E9DEA6E5AC2FB275231FA223B4FD6CD /* Fabric */,
-				E25129B40D95926566DB5D8E1372D3D3 /* HockeySDK */,
+				494C290BDBEAED23BA5743A3CE2FA0D1 /* FABAttributes.h */,
+				82981FB005A4ED4C556297735FD4ACED /* Fabric.h */,
+				2DDA681774534EB985F60A3418A4C908 /* Frameworks */,
 			);
-			name = Pods;
+			name = Fabric;
+			path = Fabric;
 			sourceTree = "<group>";
 		};
-		D35BEF80FDDD14784E0F82220580673F /* Frameworks */ = {
+		E268B07786115FF5D5DFF396150E695F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A4996B7739A2DC135F2A2600BCCF7E12 /* HockeySDK.framework */,
+				EAC88243AB9F702F3015F7068842116A /* Crashlytics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DF1DCD6B7F1482E15839734028431A4A /* AllFeaturesLib */ = {
-			isa = PBXGroup;
-			children = (
-				D35BEF80FDDD14784E0F82220580673F /* Frameworks */,
-				56687ABF146D112B3C09160AD0662562 /* Resources */,
-			);
-			name = AllFeaturesLib;
-			sourceTree = "<group>";
-		};
-		E25129B40D95926566DB5D8E1372D3D3 /* HockeySDK */ = {
-			isa = PBXGroup;
-			children = (
-				DF1DCD6B7F1482E15839734028431A4A /* AllFeaturesLib */,
-				5D32A382C933E5625A844E1AB5B575DC /* Support Files */,
-			);
-			name = HockeySDK;
-			path = HockeySDK;
 			sourceTree = "<group>";
 		};
 		E92223F6889B1D89CE21951DC5B5CE31 /* Pods-iotaWallet-tvOSTests */ = {
@@ -512,24 +288,7 @@
 			);
 			name = "Pods-iotaWallet-tvOSTests";
 			productName = "Pods-iotaWallet-tvOSTests";
-			productReference = 2452C58A28D59B9655A135C45AEE7D6D /* libPods-iotaWallet-tvOSTests.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		60F7A3BEEE33F6F338E77AFCFA425395 /* Pods-iotaWallet */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DC215B61D1DF60783BC4D420EC3A3458 /* Build configuration list for PBXNativeTarget "Pods-iotaWallet" */;
-			buildPhases = (
-				E1E289BA3B80B005033395E79B1579B6 /* Sources */,
-				1CBFA7F82CA4DFFEFB45CEAAF77EDD95 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				42BF78756DCAD67A61011DA0C52F9A31 /* PBXTargetDependency */,
-			);
-			name = "Pods-iotaWallet";
-			productName = "Pods-iotaWallet";
-			productReference = 24AF74A9654A4D746C45BF4703B59C32 /* libPods-iotaWallet.a */;
+			productReference = 37209F64985E3BD16080A2175B3E4697 /* libPods-iotaWallet-tvOSTests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		72CFD389525AFB7A80A4C32CD21A6B28 /* Pods-iotaWalletTests */ = {
@@ -545,7 +304,7 @@
 			);
 			name = "Pods-iotaWalletTests";
 			productName = "Pods-iotaWalletTests";
-			productReference = 78044F1342E5585676B8B8C2D1907A6F /* libPods-iotaWalletTests.a */;
+			productReference = 127A207207EC3B730ADDF9FCC5F6E4C2 /* libPods-iotaWalletTests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		82CC19A378600AE3B8BF3E9628E9834D /* Pods-iotaWallet-tvOS */ = {
@@ -561,25 +320,24 @@
 			);
 			name = "Pods-iotaWallet-tvOS";
 			productName = "Pods-iotaWallet-tvOS";
-			productReference = EE5C4A062A371FDFC2719FB31DAB66A0 /* libPods-iotaWallet-tvOS.a */;
+			productReference = 44D974E91B6D16A4FD3C0E8112718609 /* libPods-iotaWallet-tvOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EB9AD825427F216B54E693242E671FA1 /* HockeySDK-HockeySDKResources */ = {
+		B0EF9AC5221EDC803528BEE6E4270D81 /* Pods-iotaWallet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36BC870E757C15E340A9A6F2C5E8A6F4 /* Build configuration list for PBXNativeTarget "HockeySDK-HockeySDKResources" */;
+			buildConfigurationList = 76EC9E5F7EAD09DDE435A29B0C8FE6E1 /* Build configuration list for PBXNativeTarget "Pods-iotaWallet" */;
 			buildPhases = (
-				7097FE18530E2A5B620A9BFBDE8ABC3C /* Sources */,
-				3E4285FE58B9D59B584D9F34BF3244CC /* Frameworks */,
-				5E1A292E24DC1060B1BBA5AB692423C3 /* Resources */,
+				FAAD448F72FF15A38F80A79537C915B3 /* Sources */,
+				093DE1D3FBC8A217339EA09022A725D5 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "HockeySDK-HockeySDKResources";
-			productName = "HockeySDK-HockeySDKResources";
-			productReference = 4769217EB460C36D3C9BBA6B7ADB63EF /* HockeySDKResources.bundle */;
-			productType = "com.apple.product-type.bundle";
+			name = "Pods-iotaWallet";
+			productName = "Pods-iotaWallet";
+			productReference = 3E83342BF76D6E184A1B6112515DF75C /* libPods-iotaWallet.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -598,81 +356,17 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 44F33DF6BC0E65BC2B8AD42F1E598D8D /* Products */;
+			productRefGroup = 2E43BB284226208CA911FE27FA418706 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EB9AD825427F216B54E693242E671FA1 /* HockeySDK-HockeySDKResources */,
-				60F7A3BEEE33F6F338E77AFCFA425395 /* Pods-iotaWallet */,
+				B0EF9AC5221EDC803528BEE6E4270D81 /* Pods-iotaWallet */,
 				82CC19A378600AE3B8BF3E9628E9834D /* Pods-iotaWallet-tvOS */,
 				5E6C47CFF106180110E6A38BDE43F6E0 /* Pods-iotaWallet-tvOSTests */,
 				72CFD389525AFB7A80A4C32CD21A6B28 /* Pods-iotaWalletTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		5E1A292E24DC1060B1BBA5AB692423C3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				61623C6B3CAB656828E4E8E21DBA3B51 /* AppIconPlaceHolder.png in Resources */,
-				CEE5B95F1FDD7706D183F8EC7B1FCD22 /* Arrow.png in Resources */,
-				3F4EE4E013A4285A452231E7001A59D3 /* Arrow@2x.png in Resources */,
-				E0EF08B5093705A6C20FAB5CD6000679 /* Arrow@3x.png in Resources */,
-				99EDE96EE366DEE42CA68F3527CD2ECB /* authorize_denied.png in Resources */,
-				89226F9F79E9BB2F2219E70A6BFCDED4 /* authorize_denied@2x.png in Resources */,
-				5C072A354CF2E5C1E28796462F1EE5D1 /* authorize_denied@3x.png in Resources */,
-				DE73828B7FFC6D94C6423C84005E62FC /* bg.png in Resources */,
-				33D030DF61B65C5537D08546640B90A2 /* Blur.png in Resources */,
-				62EBE29FCD3236D8A4CEAE2A55AD8C9C /* Blur@2x.png in Resources */,
-				49A9CF505C50A2439636F3B7662D5E10 /* Blur@3x.png in Resources */,
-				A695DB65C9820EF89C7DF501778092E3 /* buttonRoundedDelete.png in Resources */,
-				96146C16D76EE2FCCC0D735CDDEAB236 /* buttonRoundedDelete@2x.png in Resources */,
-				5115D6363C75F1CFED742D78CBA9331C /* buttonRoundedDeleteHighlighted.png in Resources */,
-				DAA687DB1294E121F74001C76286EFF7 /* buttonRoundedDeleteHighlighted@2x.png in Resources */,
-				F96D7C9233936972F698F568E02E78BE /* buttonRoundedRegular.png in Resources */,
-				98607B164CD8C94FC4997C23B8676D62 /* buttonRoundedRegular@2x.png in Resources */,
-				0169BAD88ABCF39CD8691EB167F86A32 /* buttonRoundedRegularHighlighted.png in Resources */,
-				9BFF5F7C39DD6384DBB7A137EBBE6209 /* buttonRoundedRegularHighlighted@2x.png in Resources */,
-				03F9E6CC9D330A9439A168B85DB80016 /* Cancel.png in Resources */,
-				907E2F103EB6057B52422FCB26A8721B /* Cancel@2x.png in Resources */,
-				049DC27A120D8C64D604EE458AF41DB7 /* Cancel@3x.png in Resources */,
-				6FE15250DA0FAFDD7740E391A3981205 /* de.lproj in Resources */,
-				8AE77ECF56D527473E2A071BFAF62243 /* en.lproj in Resources */,
-				86954DB3FF1C5EDF65479FAD9FC1434F /* es.lproj in Resources */,
-				B6FEDE99E79B79C5333FAAF1E3447488 /* fa.lproj in Resources */,
-				9E10DDC85EE5213720EEFBA655FA3F0E /* feedbackActivity.png in Resources */,
-				8DF93789021A18DC6066C6C544637F90 /* feedbackActivity@2x.png in Resources */,
-				63E45E69AE22E5EC53274CB00FF9CC11 /* feedbackActivity@2x~ipad.png in Resources */,
-				D8D7470358FC1267D87352CD4ED27F42 /* feedbackActivity@3x.png in Resources */,
-				D7D77BFDA1A81D4F861D434327D3071E /* feedbackActivity~ipad.png in Resources */,
-				3489571CA89142FDC6B3C8AF2554924A /* FeedbackPlaceholder.png in Resources */,
-				2DC4ABBB56462C2DE42224B60BD5F84D /* fr.lproj in Resources */,
-				E27BB7E54AB24234BCBFCCDD46BEA397 /* hr.lproj in Resources */,
-				AEDE07BAC2BF8283698040A6FCB0656E /* hu.lproj in Resources */,
-				4876037C91809E9395FBC6DA1263D7A0 /* iconCamera.png in Resources */,
-				A010F6E013E49F89AD9814ABEEF6A5ED /* iconCamera@2x.png in Resources */,
-				43346BB4720B201DF61B419AD168C8CC /* IconGradient.png in Resources */,
-				635FEA3A17E0368486B6EBB951113919 /* IconGradient@2x.png in Resources */,
-				77C8A6E286C4017355A3504DE7224672 /* it.lproj in Resources */,
-				28DEAC650483E15A5602394CE175AD84 /* ja.lproj in Resources */,
-				7953B9FC0310262E2C693A3D1E5E5219 /* nb.lproj in Resources */,
-				A7D8B3C3F26205FEC2CEEF050A4B1B8C /* nl.lproj in Resources */,
-				DA8C9A3AE256F3EE5A85FE500551F7CC /* Ok.png in Resources */,
-				74188F838D216E12DACBAEA65FE68A47 /* Ok@2x.png in Resources */,
-				E6A201A0681FF512C08B945B5CBC11AF /* Ok@3x.png in Resources */,
-				40F50C320E441CA6832A1903FC423C3B /* pt-PT.lproj in Resources */,
-				3A624FBA699DEA2F5BA1095F016C7389 /* pt.lproj in Resources */,
-				4358E71B5410586455C8B158367E2881 /* Rectangle.png in Resources */,
-				A48255B69BC546E153BAC32062805A26 /* Rectangle@2x.png in Resources */,
-				58B208AEE306DDB0814DA9F469D56AF3 /* Rectangle@3x.png in Resources */,
-				507B27E488D80AFBF7E60509D4B6FAFB /* ru.lproj in Resources */,
-				91C4BA98435286267215EB6915BEF20D /* zh-Hans.lproj in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4145457FB20C94BB1061676B51AE31B2 /* Sources */ = {
@@ -691,13 +385,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7097FE18530E2A5B620A9BFBDE8ABC3C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D7A4DDEC900ADB0619DE28B9B1CB3953 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -706,245 +393,82 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1E289BA3B80B005033395E79B1579B6 /* Sources */ = {
+		FAAD448F72FF15A38F80A79537C915B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01E6C0547D782AE52790DCDAED2DCB52 /* Pods-iotaWallet-dummy.m in Sources */,
+				6AA3936E3CD759ACCD62FB270D7D3D51 /* Pods-iotaWallet-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		42BF78756DCAD67A61011DA0C52F9A31 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "HockeySDK-HockeySDKResources";
-			target = EB9AD825427F216B54E693242E671FA1 /* HockeySDK-HockeySDKResources */;
-			targetProxy = 293AE3B45FCBC043E6D9A6038299877D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		0D46F318BC632C67B749E460DB790812 /* Release */ = {
+		04BAD6BAE4F564C7EE2AB7D70ECE392F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02D04D8B66FF852CA9CE5AE62B6E4762 /* Pods-iotaWallet-tvOS.release.xcconfig */;
+			baseConfigurationReference = F35488199EC3C6B14E3DFCB66286FA14 /* Pods-iotaWallet.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.2;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		282A9A5183558DD660B7C173E1AD44B6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				TVOS_DEPLOYMENT_TARGET = 9.2;
-			};
-			name = Release;
-		};
-		346343603029431C49C2AC562AFF359C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F101ED25099A77B091E0EA8EAE577ADE /* Pods-iotaWalletTests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		3837C0A2055847305C06875E64429D96 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A9621886576F406B16E7E70C7178CBFB /* Pods-iotaWallet.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		675E5639654F7FFFDBCE91856BA39D7C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/HockeySDK";
-				INFOPLIST_FILE = "Target Support Files/HockeySDK/ResourceBundle-HockeySDKResources-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = HockeySDKResources;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		827A89EDD778F300D1877EDA55B10633 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AFBBDCB2421DD57E906357604CA8979D /* Pods-iotaWallet-tvOS.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.2;
-			};
-			name = Debug;
-		};
-		839589B59F4853886F87F951D357286F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/HockeySDK";
-				INFOPLIST_FILE = "Target Support Files/HockeySDK/ResourceBundle-HockeySDKResources-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = HockeySDKResources;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		9D625C3752B9B2C9659751DEA05FE98B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		250EF7537AA06414A0EBCE117D9DBC30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -953,83 +477,209 @@
 			};
 			name = Debug;
 		};
-		B9A36402CB8F51E69BBC1A60F9626488 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B2F91B005C9479831574677EF9520B9 /* Pods-iotaWallet-tvOSTests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.2;
-			};
-			name = Debug;
-		};
-		C7A83A86D98D7FFE5C32747728B244B8 /* Release */ = {
+		4C035A2822F0DC4C330864A5AD03552D /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F3BDCAB3D4022B0DF458D8ECED4A1772 /* Pods-iotaWallet-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		540894E390D42F7B45CC342BA9EFA6DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFBBDCB2421DD57E906357604CA8979D /* Pods-iotaWallet-tvOS.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		825915393C8C31BB72C26D78BA42B86D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F101ED25099A77B091E0EA8EAE577ADE /* Pods-iotaWalletTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A58C1C4D2258808B5D33FD4600125A24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02D04D8B66FF852CA9CE5AE62B6E4762 /* Pods-iotaWallet-tvOS.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		AFC68722148905714165497912F92B58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		CD3072D1AF14A829C1988D5B6BD519EC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F35488199EC3C6B14E3DFCB66286FA14 /* Pods-iotaWallet.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		EA2CB01B3A68CDB7BEDC7583B827155A /* Release */ = {
+		D0E4DA3DD848343A12B19A67741B5FFF /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 74691848F9069BE50F4CE1B75F698D0A /* Pods-iotaWalletTests.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAAB7A74281665289B0D1B5EB1DC4C20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B2F91B005C9479831574677EF9520B9 /* Pods-iotaWallet-tvOSTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		F2CC5D5BFC003C696494D55D6A4D6F7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9621886576F406B16E7E70C7178CBFB /* Pods-iotaWallet.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -1039,17 +689,8 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9D625C3752B9B2C9659751DEA05FE98B /* Debug */,
-				282A9A5183558DD660B7C173E1AD44B6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		36BC870E757C15E340A9A6F2C5E8A6F4 /* Build configuration list for PBXNativeTarget "HockeySDK-HockeySDKResources" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				675E5639654F7FFFDBCE91856BA39D7C /* Debug */,
-				839589B59F4853886F87F951D357286F /* Release */,
+				250EF7537AA06414A0EBCE117D9DBC30 /* Debug */,
+				AFC68722148905714165497912F92B58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1057,8 +698,17 @@
 		5AFD0C870B7A257FDF707866242AEDA0 /* Build configuration list for PBXNativeTarget "Pods-iotaWallet-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				827A89EDD778F300D1877EDA55B10633 /* Debug */,
-				0D46F318BC632C67B749E460DB790812 /* Release */,
+				540894E390D42F7B45CC342BA9EFA6DB /* Debug */,
+				A58C1C4D2258808B5D33FD4600125A24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76EC9E5F7EAD09DDE435A29B0C8FE6E1 /* Build configuration list for PBXNativeTarget "Pods-iotaWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04BAD6BAE4F564C7EE2AB7D70ECE392F /* Debug */,
+				F2CC5D5BFC003C696494D55D6A4D6F7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1066,8 +716,8 @@
 		AAFAC84374DFCE1A9683039AE7F8E035 /* Build configuration list for PBXNativeTarget "Pods-iotaWalletTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				346343603029431C49C2AC562AFF359C /* Debug */,
-				EA2CB01B3A68CDB7BEDC7583B827155A /* Release */,
+				825915393C8C31BB72C26D78BA42B86D /* Debug */,
+				D0E4DA3DD848343A12B19A67741B5FFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1075,17 +725,8 @@
 		C2E566C2D95F5B1D800C5C2F11D568FF /* Build configuration list for PBXNativeTarget "Pods-iotaWallet-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B9A36402CB8F51E69BBC1A60F9626488 /* Debug */,
-				C7A83A86D98D7FFE5C32747728B244B8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DC215B61D1DF60783BC4D420EC3A3458 /* Build configuration list for PBXNativeTarget "Pods-iotaWallet" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CD3072D1AF14A829C1988D5B6BD519EC /* Debug */,
-				3837C0A2055847305C06875E64429D96 /* Release */,
+				DAAB7A74281665289B0D1B5EB1DC4C20 /* Debug */,
+				4C035A2822F0DC4C330864A5AD03552D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

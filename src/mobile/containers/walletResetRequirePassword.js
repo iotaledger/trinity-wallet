@@ -12,7 +12,6 @@ import { persistor } from '../store';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -29,8 +28,7 @@ import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class WalletResetRequirePassword extends Component {
     constructor() {
@@ -44,16 +42,18 @@ class WalletResetRequirePassword extends Component {
     }
 
     goBack() {
-        this.props.navigator.push({
-            screen: 'home',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundImageName: 'bg-blue.png',
-                screenBackgroundColor: Colors.brand.primary,
+        // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundImageName: 'bg-blue.png',
+                    screenBackgroundColor: '#102e36',
+                },
+                overrideBackPress: true,
             },
-            animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -64,7 +64,7 @@ class WalletResetRequirePassword extends Component {
     redirectToInitialScreen() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'languageSetup',
+                screen: 'welcome',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -78,17 +78,17 @@ class WalletResetRequirePassword extends Component {
 
     resetWallet() {
         const isAuthenticated = this.isAuthenticated();
-        const { password, resetWallet } = this.props;
+        const { password, resetWallet, t } = this.props;
         if (isAuthenticated) {
             persistor
                 .purge()
                 .then(() => {
                     deleteFromKeyChain(password);
+                    this.redirectToInitialScreen();
                     this.props.setOnboardingComplete(false);
                     this.props.setFirstUse(true);
                     this.props.clearTempData();
                     this.props.setPassword('');
-                    this.redirectToInitialScreen();
                     this.props.resetWallet();
                 })
                 .catch(error => {
