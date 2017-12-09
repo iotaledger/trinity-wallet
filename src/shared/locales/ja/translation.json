@@ -28,8 +28,8 @@
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
         "syncInProgress": "同期中...",
         "syncInProgressExplanation": "同期が完了するまでお待ち下さい。",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrong": "何かが間違っています。",
+        "somethingWentWrongExplanation": "アプリを再起動して下さい。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -229,7 +229,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
