@@ -28,8 +28,8 @@
         "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
         "syncInProgress": "Synkronisering i gang",
         "syncInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrong": "Der gik noget galt",
+        "somethingWentWrongExplanation": "Genstart venligst appen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seedet indeholder ugyldige tegn",
@@ -128,7 +128,7 @@
         "ofTheOptions": "én af valgmulighederne angivet nedenfor."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Forkert seed",
         "incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
         "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
         "ifYouHaveNotSaved": "Hvis du ikke har gemt dit seed, bedes du gå tilbage til forrige punkt og gøre dette."
@@ -229,7 +229,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
