@@ -28,8 +28,8 @@
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrong": "Ocorreu um problema",
+        "somethingWentWrongExplanation": "Por favor, reinicie a aplicação."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém carateres inválidos",
@@ -128,7 +128,7 @@
         "ofTheOptions": "das opções listadas em baixo."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Seed incorreta",
         "incorrectSeedExplanation": "A Seed que introduziu está incorreta. Por favor, tente novamente.",
         "thisIsACheck": "Isto é uma verificação para certificar-se que gravou a sua Seed.",
         "ifYouHaveNotSaved": "Se não gravou a sua Seed, por favor volte para o ecrã anterior e grave-a."
@@ -149,8 +149,8 @@
         "send": "ENVIAR",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "maximumSelected": "Selecionado o montante MÁXIMO",
+        "iotaUnits": "Unidades IOTA"
     },
     "setPassword": {
         "passwordTooShort": "A senha é muito curta",
@@ -229,7 +229,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
