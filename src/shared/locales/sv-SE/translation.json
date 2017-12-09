@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
         "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "somethingWentWrong": "Något gick fel",
+        "somethingWentWrongExplanation": "Starta om appen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Adressen innehåller felaktiga tecken",
@@ -64,7 +66,8 @@
         "seedClearedExplanation": "Adressen har rensats från urklippet för din säkerhet.",
         "seedCopied": "Adress kopierad",
         "seedCopiedExplanation": "Adressen har kopierats till urklippet och kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
-        "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till ett lösenordshanterare."
+        "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till ett lösenordshanterare.",
+        "doNotStore": "Do not store your seed in plain text."
     },
     "enterSeed": {
         "invalidCharacters": "Adressen innehåller ogiltiga tecken",
@@ -113,8 +116,6 @@
         "printWallet": "SKRIV UT PAPPERSKOPIA"
     },
     "receive": {
-        "somethingWentWrong": "Något gick fel",
-        "somethingWentWrongExplanation": "Starta om appen.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklippet.",
         "generateNewAddress": "GENERERA NY ADRESS",
@@ -127,7 +128,7 @@
         "ofTheOptions": "av alternativen som anges nedan."
     },
     "seedReentry": {
-        "incorrectSeed": "Felaktiga adress.",
+        "incorrectSeed": "Felaktiga adress",
         "incorrectSeedExplanation": "Den adress som du angav är felaktig. Vänligen försök igen.",
         "thisIsACheck": "Detta är en kontroll för att kontrollera om du sparat din adress.",
         "ifYouHaveNotSaved": "Om du inte har sparat din adress, gå tillbaka till föregående skärm och göra så."
@@ -180,7 +181,15 @@
         "advanced": "Avancerade inställningar",
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
-        "back": "Tillbaka"
+        "back": "Tillbaka",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denna åtgärd kan inte ångras.",
@@ -216,5 +225,11 @@
         "yourSeedIs": "Din adress läses från vänster till höger och är 81 tecken. Skriv ner din adress samt kontrollsumma och",
         "tripleCheck": "kolla mer än 2 gånger",
         "thatTheyAreCorrect": "att den stämmer."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Adress kopierad",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
