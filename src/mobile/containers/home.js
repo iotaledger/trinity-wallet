@@ -236,7 +236,7 @@ class Home extends Component {
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
-        let { password, tabsVisible } = this.state;
+        let { password } = this.state;
 
         return (
             <UserInactivity
