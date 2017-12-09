@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Ukendt adgangskode",
         "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
         "syncInProgress": "Synkronisering i gang",
-        "syncInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført."
+        "syncInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
+        "somethingWentWrong": "Der gik noget galt",
+        "somethingWentWrongExplanation": "Genstart venligst appen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seedet indeholder ugyldige tegn",
@@ -64,7 +66,8 @@
         "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
         "seedCopied": "Seed kopieret",
         "seedCopiedExplanation": "Dit seed er blevet kopieret til udklipsholderen og bliver ryddet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
-        "clickToCopy": "Klik på knappen nedenfor for at kopiere dit seed til en adgangskodemanager."
+        "clickToCopy": "Klik på knappen nedenfor for at kopiere dit seed til en adgangskodemanager.",
+        "doNotStore": "Opbevar ikke dit seed i klartekst."
     },
     "enterSeed": {
         "invalidCharacters": "Seedet indeholder ugyldige tegn",
@@ -113,8 +116,6 @@
         "printWallet": "UDSKRIV PAPIRTEGNEBOG"
     },
     "receive": {
-        "somethingWentWrong": "Der gik noget galt",
-        "somethingWentWrongExplanation": "Genstart venligst appen.",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
         "generateNewAddress": "GENERER NY ADRESSE",
@@ -127,7 +128,7 @@
         "ofTheOptions": "én af valgmulighederne angivet nedenfor."
     },
     "seedReentry": {
-        "incorrectSeed": "Forkert seed.",
+        "incorrectSeed": "Forkert seed",
         "incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
         "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
         "ifYouHaveNotSaved": "Hvis du ikke har gemt dit seed, bedes du gå tilbage til forrige punkt og gøre dette."
@@ -180,7 +181,15 @@
         "advanced": "Avancerede indstillinger",
         "logout": "Log ud",
         "reset": "Nulstil tegnebog",
-        "back": "Tilbage"
+        "back": "Tilbage",
+        "syncingComplete": "Synkronisering fuldført",
+        "syncingCompleteExplanation": "Din konto er synkroniseret.",
+        "nicknameChanged": "Kontonavn ændret",
+        "nicknameChangedExplanation": "Dit kontonavn er blevet ændret.",
+        "accountDeleted": "Konto slettet",
+        "accountDeletedExplanation": "Din konto er blevet fjernet fra tegnebogen.",
+        "cannotPerformAction": "Kan ikke udføre handling",
+        "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denne handling kan ikke fortrydes.",
@@ -216,5 +225,11 @@
         "yourSeedIs": "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og",
         "tripleCheck": "trippeltjek",
         "thatTheyAreCorrect": "at de er korrekt skrevet ned."
+    },
+    "history": {
+        "bundleHashCopied": "Bundt-hash kopieret",
+        "bundleHashCopiedExplanation": "Bundt-hashet er blevet kopiret til udklipsholderen.",
+        "addressCopied": "Adresse kopieret",
+        "addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen."
     }
 }

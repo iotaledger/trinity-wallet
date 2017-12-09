@@ -8,7 +8,7 @@
     "android": "./node_modules/.bin/react-native run-android",
     "lint": "./node_modules/.bin/eslint --ext .js .",
     "ios": "./node_modules/.bin/react-native run-ios",
-    "test": "jest"
+    "test": "jest --forceExit"
   },
   "dependencies": {
     "assert": "^1.4.1",
@@ -68,6 +68,7 @@
     "react-native-triangle": "0.0.8",
     "react-native-udp": "^1.2.9",
     "react-native-user-inactivity": "https://github.com/jkomyno/react-native-user-inactivity",
+    "react-navigation": "^1.0.0-beta.21",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
     "redux": "^3.7.2",
