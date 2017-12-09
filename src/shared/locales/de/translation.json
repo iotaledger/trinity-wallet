@@ -185,11 +185,11 @@
         "syncingComplete": "Synchronisierung abgeschlossen",
         "syncingCompleteExplanation": "Dein Account wurde erfolgreich synchronisiert.",
         "nicknameChanged": "Account Name geändert",
-        "nicknameChangedExplanation": "Dein Account name wurde geändert.",
-        "accountDeleted": "Accound entfernt",
+        "nicknameChangedExplanation": "Dein Account-Name wurde geändert.",
+        "accountDeleted": "Account entfernt",
         "accountDeletedExplanation": "Dein Account wurde von der Wallet entfernt.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
-        "cannotPerformActionExplanation": "Gehen auf erweiterte Einstellungen um die Wallet zurück zu setzen."
+        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um die Wallet zurückzusetzen."
     },
     "resetWalletConfirmation": {
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
@@ -227,9 +227,9 @@
         "thatTheyAreCorrect": "prüfe ob diese Korrekt sind."
     },
     "history": {
-        "bundleHashCopied": "Bundle Hash kopiert",
-        "bundleHashCopiedExplanation": "Deine Bundle Hash wurde in die Zwischenablage kopiert.",
+        "bundleHashCopied": "Bundle-Hash kopiert",
+        "bundleHashCopiedExplanation": "Deine Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
-        "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert."
+        "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
     }
 }
