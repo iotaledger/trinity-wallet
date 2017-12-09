@@ -67,15 +67,14 @@
         "seedCopied": "Seedをコピーしました。",
         "seedCopiedExplanation": "Seedをクリップボードにコピーしました。「完了」を押すか60秒が経過するとSeedは消去されます。",
         "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Seedをプレーンテキストで保存するのはやめましょう。"
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
         "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
         "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation":
-            "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedExplanation": "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -129,7 +128,7 @@
         "ofTheOptions": "以下のオプションを使って。"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Seedが違います。",
         "incorrectSeedExplanation": "入力したSeedは正しくありません。もう一度やり直して下さい。",
         "thisIsACheck": "これはあなたがSeedを保存したかを確認するチェックです。",
         "ifYouHaveNotSaved": "もしSeedを保存していないのであれば、前に戻って、Seedを保存して下さい。"
@@ -183,14 +182,14 @@
         "logout": "ログアウト",
         "reset": "ウォレットをリセットします。",
         "back": "戻る",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "syncingComplete": "同期が完了しました。",
+        "syncingCompleteExplanation": "アカウントは正常に同期しました。",
+        "nicknameChanged": "アカウント名が変更されました。",
+        "nicknameChangedExplanation": "アカウント名が変更されました。",
+        "accountDeleted": "アカウントは削除されました。",
+        "accountDeletedExplanation": "アカウントはウォレットから削除されました。",
+        "cannotPerformAction": "操作を実行できません。",
+        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。"
     },
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",
@@ -228,9 +227,9 @@
         "thatTheyAreCorrect": "それらが正しいことを確認して下さい。"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "バンドルハッシュをコピーしました。",
+        "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。"
     }
 }
