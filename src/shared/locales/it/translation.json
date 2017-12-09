@@ -227,8 +227,8 @@
         "thatTheyAreCorrect": "che siano corretti."
     },
     "history": {
-        "bundleHashCopied": "Hash di bundle copiato",
-        "bundleHashCopiedExplanation": "L'hash del bundle è stato copiato negli Appunti.",
+        "bundleHashCopied": "Hash del pacchetto copiato",
+        "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "L'indirizzo è stato copiato negli Appunti."
     }
