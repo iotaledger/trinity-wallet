@@ -4,9 +4,7 @@ import { translate } from 'react-i18next';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
-    Platform,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
@@ -24,9 +22,8 @@ import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/li
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
-const isAndroid = Platform.OS === 'android';
+import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class EnterSeed extends React.Component {
@@ -109,7 +106,7 @@ class EnterSeed extends React.Component {
                                     <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                 </View>
                             </View>
-                            <View style={styles.midContainer}>
+                            <View style={styles.topMidContainer}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={styles.textFieldContainer}>
                                         <TextField
@@ -128,8 +125,6 @@ class EnterSeed extends React.Component {
                                             value={seed}
                                             maxLength={MAX_SEED_LENGTH}
                                             onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
-                                            secureTextEntry={true}
-                                            multiline
                                             onSubmitEditing={() => this.onDonePress()}
                                         />
                                     </View>
@@ -146,14 +141,19 @@ class EnterSeed extends React.Component {
                                     </View>
                                 </View>
                             </View>
-                            <View style={styles.bottomContainer}>
+                            <View style={styles.bottomMidContainer}>
                                 <View style={styles.infoTextContainer}>
-                                    <Image source={require('../../shared/images/info.png')} style={styles.infoIcon} />
+                                    <Image
+                                        source={require('iota-wallet-shared-modules/images/info.png')}
+                                        style={styles.infoIcon}
+                                    />
                                     <Text style={styles.infoText}>
                                         {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                                     </Text>
                                     <Text style={styles.warningText}>{t('neverShare')}</Text>
                                 </View>
+                            </View>
+                            <View style={styles.bottomContainer}>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
@@ -203,14 +203,18 @@ const styles = StyleSheet.create({
         flex: 1.2,
         paddingTop: height / 22,
     },
-    midContainer: {
-        flex: 2.8,
+    topMidContainer: {
+        flex: 1.9,
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 12,
+        justifyContent: 'center',
+    },
+    bottomMidContainer: {
+        flex: 2.4,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 2.7,
+        flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -240,8 +244,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
         borderStyle: 'dotted',
-        paddingVertical: height / 60,
-        marginBottom: height / 17,
+        paddingVertical: height / 35,
     },
     infoText: {
         color: 'white',

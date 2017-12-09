@@ -1,10 +1,9 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Dimensions, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -52,12 +51,17 @@ class Welcome extends React.Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <OnboardingButtons
+                    {/*}<OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
                         leftText={t('global:back')}
                         rightText={t('global:next')}
-                    />
+                    />*/}
+                    <TouchableOpacity onPress={() => this.onNextPress()}>
+                        <View style={styles.nextButton}>
+                            <Text style={styles.nextText}>{t('global:next')}</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
         );
@@ -127,6 +131,22 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         paddingTop: height / 30,
         textAlign: 'center',
+    },
+    nextButton: {
+        borderColor: '#9DFFAF',
+        borderWidth: 1.2,
+        borderRadius: 10,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        marginBottom: height / 20,
+    },
+    nextText: {
+        color: '#9DFFAF',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
     },
 });
 

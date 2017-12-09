@@ -6,10 +6,11 @@ const initialState = {
     fullNode,
     availableNodes: [
         'https://ceres.iota.community:14600/',
-        'http://148.251.181.105:14265/',
+        'https://nodes.iota.cafe:443',
         'https://node.tangle.works:443',
-        'http://iotanode.us:443',
+        'http://148.251.181.105:14265/',
         'https://n1.iota.nu:443',
+        'http://iotanode.us:443',
         'http://node.lukaseder.de:14265',
         'http://eugene.iotasupport.com:14999',
         'http://node02.iotatoken.nl:14265',

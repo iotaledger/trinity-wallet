@@ -1,21 +1,18 @@
+import trim from 'lodash/trim';
 import React, { Component } from 'react';
-import {
-    Image,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Dimensions,
-    Keyboard,
-    TouchableWithoutFeedback,
-} from 'react-native';
-import Fonts from '../theme/Fonts';
+import PropTypes from 'prop-types';
+import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
+import { width, height } from '../util/dimensions';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+class EditAccountName extends Component {
+    static propTypes = {
+        seedIndex: PropTypes.number.isRequired,
+        accountName: PropTypes.string.isRequired,
+        saveAccountName: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+    };
 
-class EditAccountName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,12 +21,14 @@ class EditAccountName extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (this.props.accountName != newProps.accountName) {
+        if (this.props.accountName !== newProps.accountName) {
             this.setState({ accountName: newProps.accountName });
         }
     }
 
     render() {
+        const { t } = this.props;
+
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
@@ -44,7 +43,7 @@ class EditAccountName extends React.Component {
                                 baseColor="white"
                                 label="Account name"
                                 tintColor="#F7D002"
-                                autoCapitalize={'none'}
+                                autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="done"
@@ -53,7 +52,7 @@ class EditAccountName extends React.Component {
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
-                                onSubmitEditing={() => this.props.saveAccountName(this.state.accountName)}
+                                onSubmitEditing={() => this.props.saveAccountName(trim(this.state.accountName))}
                             />
                         </View>
                         <View style={styles.saveButtonContainer} />
@@ -68,7 +67,7 @@ class EditAccountName extends React.Component {
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.saveAccountName(this.state.accountName)}>
+                        <TouchableOpacity onPress={() => this.props.saveAccountName(trim(this.state.accountName))}>
                             <View style={styles.itemRight}>
                                 <Image
                                     source={require('iota-wallet-shared-modules/images/tick.png')}
@@ -117,15 +116,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 0.5,
+        flex: 1,
         width: width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     topContainer: {
-        flex: 4.5,
+        flex: 9,
         justifyContent: 'space-around',
     },
     itemLeft: {

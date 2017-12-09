@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -14,14 +13,14 @@ import {
     ScrollView,
     StatusBar,
 } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
 
 import { Keyboard } from 'react-native';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 export default class WalletResetConfirmation extends Component {
     constructor() {
@@ -46,7 +45,19 @@ export default class WalletResetConfirmation extends Component {
     }
 
     goBack() {
-        this.navigateTo('home');
+        // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundImageName: 'bg-blue.png',
+                    screenBackgroundColor: '#102e36',
+                },
+                overrideBackPress: true,
+            },
+        });
     }
 
     requirePassword() {
@@ -64,11 +75,11 @@ export default class WalletResetConfirmation extends Component {
                         source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                         style={styles.iotaLogo}
                     />
+                </View>
+                <View style={styles.midWrapper}>
                     <View style={styles.subHeaderWrapper}>
                         <Text style={styles.subHeaderText}>{toUpper('this action cannot be undone.')}</Text>
                     </View>
-                </View>
-                <View style={styles.midWrapper}>
                     <View style={styles.infoTextWrapper}>
                         <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
@@ -110,13 +121,12 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midWrapper: {
-        flex: 2.4,
+        flex: 2.1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 8,
+        justifyContent: 'space-between',
     },
     bottomWrapper: {
-        flex: 1.2,
+        flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -125,7 +135,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: width / 10,
-        paddingTop: height / 15,
     },
     subHeaderText: {
         color: Colors.orangeDark,
@@ -138,14 +147,11 @@ const styles = StyleSheet.create({
         borderColor: Colors.white,
         borderWidth: 1,
         borderRadius: 15,
-        minWidth: width / 1.6,
-        maxWidth: width / 1.7,
-        minHeight: height / 5,
-        maxHeight: height / 4.9,
+        width: width / 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
-        paddingVertical: height / 80,
+        paddingVertical: height / 35,
         borderStyle: 'dotted',
     },
     infoText: {
@@ -172,14 +178,12 @@ const styles = StyleSheet.create({
     confirmationTextWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: height / 25,
     },
     confirmationText: {
         color: Colors.white,
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
-        paddingTop: height / 40,
         backgroundColor: 'transparent',
     },
     iotaLogo: {

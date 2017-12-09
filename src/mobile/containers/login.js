@@ -2,7 +2,6 @@ import React from 'react';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -10,20 +9,20 @@ import {
     ImageBackground,
     ScrollView,
     StatusBar,
+    Keyboard,
 } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, clearTempData, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getAccountInfo, getAccountInfoNewSeed } from 'iota-wallet-shared-modules/actions/account';
+import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import DropdownHolder from '../components/dropdownHolder';
-import { Keyboard } from 'react-native';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 import IOTA from 'iota.lib.js';
 import Modal from 'react-native-modal';
@@ -32,10 +31,7 @@ import NodeSelection from '../components/nodeSelection.js';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
-const width = Dimensions.get('window').width;
-const height = global.height;
-
-var HockeyApp = require('react-native-hockeyapp');
+import { width, height } from '../util/dimensions';
 
 class Login extends React.Component {
     constructor(props) {
@@ -81,6 +77,7 @@ class Login extends React.Component {
     }
 
     onLoginPress() {
+        const { t } = this.props;
         if (!this.state.password) {
             this.dropdown.alertWithType(
                 'error',
@@ -124,7 +121,7 @@ class Login extends React.Component {
             });
             this.props.getCurrencyData(this.props.settings.currency);
             if (this.props.account.firstUse) {
-                this.props.getAccountInfoNewSeed(value, seedName, (error, success) => {
+                this.props.getFullAccountInfo(value, seedName, (error, success) => {
                     if (error) {
                         this.onNodeError();
                     } else {
@@ -145,6 +142,7 @@ class Login extends React.Component {
     }
 
     onNodeError() {
+        const { t } = this.props;
         this.props.navigator.pop({
             animated: false,
         });
@@ -153,6 +151,7 @@ class Login extends React.Component {
     }
 
     onUseSeedPress() {
+        const { t } = this.props;
         this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
         {
             /*this.props.navigator.push({
@@ -204,16 +203,15 @@ class Login extends React.Component {
                                         width: width / 1.4,
                                     }}
                                     secureTextEntry={true}
-                                    onSubmitEditing={() => this.onLoginPress()}
+                                    onSubmitEditing={() => Keyboard.dismiss}
                                 />
                             </View>
                             <View style={styles.bottomContainer}>
-                                <OnboardingButtons
-                                    onLeftButtonPress={() => this.onUseSeedPress()}
-                                    onRightButtonPress={() => this.onLoginPress()}
-                                    leftText={'USE SEED'}
-                                    rightText={'LOG IN'}
-                                />
+                                <TouchableOpacity onPress={event => this.onLoginPress()}>
+                                    <View style={styles.loginButton}>
+                                        <Text style={styles.loginText}>LOGIN</Text>
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -287,7 +285,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -301,15 +298,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    greetingText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        paddingHorizontal: width / 7,
-        paddingBottom: height / 10,
-        backgroundColor: 'transparent',
-    },
     questionText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
@@ -318,22 +306,6 @@ const styles = StyleSheet.create({
         paddingLeft: width / 7,
         paddingRight: width / 7,
         paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
-    newSeedButton: {
-        borderColor: '#F7D002',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginRight: width / 10,
-    },
-    newSeedText: {
-        color: '#F7D002',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 25.3,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -390,6 +362,22 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         paddingBottom: height / 16,
     },
+    loginButton: {
+        borderColor: '#9DFFAF',
+        borderWidth: 1.2,
+        borderRadius: 10,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        marginBottom: height / 20,
+    },
+    loginText: {
+        color: '#9DFFAF',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
+    },
 });
 
 const mapStateToProps = state => ({
@@ -406,8 +394,8 @@ const mapDispatchToProps = dispatch => ({
     getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },
-    getAccountInfoNewSeed: (seed, seedName, cb) => {
-        dispatch(getAccountInfoNewSeed(seed, seedName, cb));
+    getFullAccountInfo: (seed, seedName, cb) => {
+        dispatch(getFullAccountInfo(seed, seedName, cb));
     },
     changeHomeScreenRoute: tab => {
         dispatch(changeHomeScreenRoute(tab));

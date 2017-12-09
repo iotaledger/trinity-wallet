@@ -1,9 +1,10 @@
-package com.iotawallet;
+package com.iota.wallet;
 
 import android.app.Application;
 
 import com.rnprint.RNPrint.RNPrintPackage;
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.jadsonlourenco.RNShakeEvent.RNShakeEventPackage;
 import com.peel.react.rnos.RNOSModule;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
@@ -24,12 +25,9 @@ import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.rnfs.RNFSPackage;
 import java.util.Arrays;
 import java.util.List;
-import com.slowpath.hockeyapp.RNHockeyAppModule;
-import com.slowpath.hockeyapp.RNHockeyAppPackage;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
-import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 
 public class MainApplication extends NavigationApplication {
 
@@ -44,10 +42,10 @@ public class MainApplication extends NavigationApplication {
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
-	new RNHockeyAppPackage(MainApplication.this),
             new RandomBytesPackage(),
             new SvgPackage(),
             new MainReactPackage(),
+            new RNDeviceInfo(),
             new RNShakeEventPackage(),
             new RNOSModule(),
             new RNHTMLtoPDFPackage(),
@@ -57,8 +55,7 @@ public class MainApplication extends NavigationApplication {
 	        new RNFSPackage(),
             new ExtraDimensionsPackage(),
             new RNDetectNavbarAndroidPackage(),
-            new KCKeepAwakePackage(),
-            new RNI18nPackage()
+            new KCKeepAwakePackage()
     );
   }
 

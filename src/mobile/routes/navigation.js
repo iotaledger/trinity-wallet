@@ -1,4 +1,5 @@
 import { Navigation } from 'react-native-navigation';
+import withSafeAreaView from '../components/withSafeAreaView';
 import InitialLoading from '../containers/initialLoading';
 import Home from '../containers/home';
 import Loading from '../containers/loading';
@@ -19,22 +20,30 @@ import OnboardingComplete from '../containers/onboardingComplete';
 import SetSeedName from '../containers/setSeedName';
 import UseSeed from '../containers/useSeed';
 import SeedReentry from '../containers/seedReentry';
+import { isIPhoneX } from '../util/device';
 
+function getGenerator(screen) {
+    if (isIPhoneX) {
+        return withSafeAreaView(screen);
+    } else {
+        return screen;
+    }
+}
 export function registerScreens(store, Provider) {
-    Navigation.registerComponent('initialLoading', () => InitialLoading, store, Provider);
-    Navigation.registerComponent('home', () => Home, store, Provider);
-    Navigation.registerComponent('loading', () => Loading, store, Provider);
-    Navigation.registerComponent('newSeedSetup', () => NewSeedSetup, store, Provider);
-    Navigation.registerComponent('walletSetup', () => WalletSetup, store, Provider);
-    Navigation.registerComponent('enterSeed', () => EnterSeed, store, Provider);
-    Navigation.registerComponent('saveYourSeed', () => SaveYourSeed, store, Provider);
-    Navigation.registerComponent('setPassword', () => SetPassword, store, Provider);
-    Navigation.registerComponent('login', () => Login, store, Provider);
-    Navigation.registerComponent('writeSeedDown', () => WriteSeedDown, store, Provider);
-    Navigation.registerComponent('paperWallet', () => PaperWallet, store, Provider);
-    Navigation.registerComponent('copySeedToClipboard', () => CopySeedToClipboard, store, Provider);
-    Navigation.registerComponent('languageSetup', () => LanguageSetup, store, Provider);
-    Navigation.registerComponent('welcome', () => Welcome, store, Provider);
+    Navigation.registerComponent('initialLoading', () => getGenerator(InitialLoading), store, Provider);
+    Navigation.registerComponent('home', () => getGenerator(Home), store, Provider);
+    Navigation.registerComponent('loading', () => getGenerator(Loading), store, Provider);
+    Navigation.registerComponent('newSeedSetup', () => getGenerator(NewSeedSetup), store, Provider);
+    Navigation.registerComponent('walletSetup', () => getGenerator(WalletSetup), store, Provider);
+    Navigation.registerComponent('enterSeed', () => getGenerator(EnterSeed), store, Provider);
+    Navigation.registerComponent('saveYourSeed', () => getGenerator(SaveYourSeed), store, Provider);
+    Navigation.registerComponent('setPassword', () => getGenerator(SetPassword), store, Provider);
+    Navigation.registerComponent('login', () => getGenerator(Login), store, Provider);
+    Navigation.registerComponent('writeSeedDown', () => getGenerator(WriteSeedDown), store, Provider);
+    Navigation.registerComponent('paperWallet', () => getGenerator(PaperWallet), store, Provider);
+    Navigation.registerComponent('copySeedToClipboard', () => getGenerator(CopySeedToClipboard), store, Provider);
+    Navigation.registerComponent('languageSetup', () => getGenerator(LanguageSetup), store, Provider);
+    Navigation.registerComponent('welcome', () => getGenerator(Welcome), store, Provider);
     Navigation.registerComponent('wallet-reset-confirm', () => WalletResetConfirmation, store, Provider);
     Navigation.registerComponent('wallet-reset-require-password', () => WalletResetRequirePassword, store, Provider);
     Navigation.registerComponent('onboardingComplete', () => OnboardingComplete, store, Provider);
