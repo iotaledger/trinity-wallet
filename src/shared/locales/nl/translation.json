@@ -28,8 +28,8 @@
         "unrecognisedPasswordExplanation": "Het wachtwoord is onjuist. Probeer het opnieuw.",
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrong": "Er ging iets mis",
+        "somethingWentWrongExplanation": "Start de app opnieuw."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ongeldige tekens in de sleutel",
@@ -128,7 +128,7 @@
         "ofTheOptions": "van de onderstaande opties."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Onjuiste sleutel",
         "incorrectSeedExplanation": "De ingevoerde sleutel is onjuist. Probeer het nog eens.",
         "thisIsACheck": "Dit is een controle om ervoor te zorgen dat u uw sleutel heeft opgeslagen.",
         "ifYouHaveNotSaved": "Als u niet uw sleutel hebt opgeslagen, kunt u teruggaan naar het vorige scherm en dit alsnog doen."
@@ -229,7 +229,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
