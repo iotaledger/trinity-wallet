@@ -3,11 +3,9 @@ import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, Statu
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
-import Triangle from 'react-native-triangle';
 import { detectLocale, selectLocale } from '../components/locale';
 import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import setFirstUse from 'iota-wallet-shared-modules/actions/account';
 import Dropdown from '../components/dropdown';
 
 import { width, height } from '../util/dimensions';
