@@ -2,7 +2,7 @@
     "global": {
         "invalidResponse": "Réponse non valide",
         "invalidResponseExplanation": "Le node a retourné une réponse invalide.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "invalidResponsePollingExplanation": "Le node a retourné une réponse invalide lors de son interrogation.",
         "seed": "Seed",
         "back": "RETOUR",
         "done": "OK",
@@ -26,8 +26,8 @@
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "syncInProgress": "Synchronisation en cours",
+        "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
         "somethingWentWrongExplanation": "Veuillez redémarrer l'application."
     },
@@ -54,7 +54,7 @@
         "passwordsDoNotMatchExplanation": "Les mots de passe ne correspondent pas. Veuillez réessayer.",
         "passwordTooShort": "Le mot de passe est trop court",
         "passwordTooShortExplanation": "Votre mot de passe doit contenir au moins 12 caractères. Veuillez réessayer.",
-        "oldPassword": "Cannot set old password",
+        "oldPassword": "Impossible de réutiliser l'ancien mot de passe",
         "oldPasswordExplanation": "Vous ne pouvez pas utiliser l’ancien mot de passe comme nouveau mot de passe. Veuillez réessayer avec un nouveau mot de passe.",
         "ensureStrongPassword": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "currentPassword": "Mot de passe actuel",
@@ -67,7 +67,7 @@
         "seedCopied": "Seed copiée",
         "seedCopiedExplanation": "La seed a été copiée dans le presse-papiers et sera effacée après 60 secondes, ou dès que vous aurez appuyé sur \"OK\".",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez vos graines dans un gestionnaire de mot de passe.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Ne stockez pas votre seed en texte en clair."
     },
     "enterSeed": {
         "invalidCharacters": "La seed contient des caractères invalides",
@@ -135,7 +135,7 @@
     },
     "send": {
         "invalidAddress": "Adresse invalide",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
         "invalidAddressExplanation2": "La Seed contient des caractères invalides.",
         "invalidAddressExplanation3": "La Seed contient un code de vérification invalide.",
         "notEnoughFunds": "Fonds insuffisants",
@@ -147,10 +147,10 @@
         "max": "MAX",
         "message": "Message",
         "send": "ENVOYER",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmount": "Montant entré incorrect",
+        "invalidAmountExplanation": "Veuillez entrer une valeur numérique pour le montant de la transaction.",
+        "maximumSelected": "Montant MAXIMAL sélectionné",
+        "iotaUnits": "Unités IOTA"
     },
     "setPassword": {
         "passwordTooShort": "Le mot de passe est trop court",
@@ -182,14 +182,14 @@
         "logout": "Déconnexion",
         "reset": "Réinitialiser le wallet",
         "back": "Retour",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "syncingComplete": "Synchronisation terminée",
+        "syncingCompleteExplanation": "Votre compte a été synchronisé avec succès.",
+        "nicknameChanged": "Nom de compte modifié",
+        "nicknameChangedExplanation": "Votre nom de compte a été modifié.",
+        "accountDeleted": "Compte supprimé",
+        "accountDeletedExplanation": "Votre compte a été supprimé du wallet.",
+        "cannotPerformAction": "Impossible d’effectuer cette action",
+        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Cette action est irréversible.",
@@ -230,6 +230,6 @@
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Adressée copiée",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papiers."
     }
 }
