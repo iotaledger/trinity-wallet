@@ -1,37 +1,23 @@
+import trim from 'lodash/trim';
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Image,
-    ScrollView,
-    ImageBackground,
-    StatusBar,
-    KeyboardAvoidingView,
-} from 'react-native';
+import PropTypes from 'prop-types';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Image } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from 'react-native-dropdownalert';
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
-import { connect } from 'react-redux';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import Modal from 'react-native-modal';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
-import { generateAlert } from '../../shared/actions/alerts';
-import { clearTempData } from '../../shared/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 
-import DropdownHolder from '../components/dropdownHolder';
-
 import { width, height } from '../util/dimensions';
-import { isAndroid } from '../util/device';
-const StatusBarDefaultBarStyle = 'light-content';
 
 class UseExistingSeed extends React.Component {
+    static propTypes = {
+        seedCount: PropTypes.number.isRequired,
+        addAccount: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -142,11 +128,10 @@ class UseExistingSeed extends React.Component {
                                 tintColor="#F7D002"
                                 enablesReturnKeyAutomatically={true}
                                 label="Account name"
-                                autoCapitalize="characters"
+                                autoCapitalize="words"
                                 autoCorrect={false}
                                 value={accountName}
                                 containerStyle={{ width: width / 1.36 }}
-                                autoCapitalize={'characters'}
                                 onChangeText={accountName => this.setState({ accountName })}
                             />
                         </View>
@@ -162,7 +147,7 @@ class UseExistingSeed extends React.Component {
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={event => this.props.addAccount(seed, accountName)}
+                            onPress={event => this.props.addAccount(seed, trim(accountName))}
                             style={{ flex: 1 }}
                         >
                             <View style={styles.itemRight}>

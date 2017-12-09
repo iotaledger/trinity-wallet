@@ -1,5 +1,8 @@
 # IOTA Wallet
 
+[![Build Status](https://www.bitrise.io/app/e1c71066b5c75521/status.svg?token=NytmjW1aEHEu-1kNaMRuiQ&branch=develop)](https://www.bitrise.io/app/e1c71066b5c75521)
+
+
 This is the shared repository for the IOTA mobile and desktop wallets. The apps are based on React and built with React-Native (mobile) and Electron (desktop).
 
 ## Prerequisites

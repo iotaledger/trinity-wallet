@@ -13,6 +13,7 @@ import {
     ScrollView,
     StatusBar,
 } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -44,7 +45,19 @@ export default class WalletResetConfirmation extends Component {
     }
 
     goBack() {
-        this.navigateTo('home');
+        // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundImageName: 'bg-blue.png',
+                    screenBackgroundColor: '#102e36',
+                },
+                overrideBackPress: true,
+            },
+        });
     }
 
     requirePassword() {
