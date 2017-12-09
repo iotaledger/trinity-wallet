@@ -28,16 +28,15 @@
     },
     "homepage": "https://gitlab.com/iota-community/wallet#README",
     "devDependencies": {
+        "babel-eslint": "^8.0.3",
+        "eslint": "^4.12.1",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-plugin-babel": "^4.1.2",
+        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-react": "^7.5.1",
         "husky": "^0.14.3",
         "lint-staged": "^4.2.3",
         "prettier": "^1.7.4"
     },
-    "dependencies": {
-        "eslint": "^4.7.2",
-        "eslint-config-prettier": "^2.6.0",
-        "eslint-plugin-babel": "^4.1.2",
-        "eslint-plugin-import": "^2.7.0",
-        "eslint-plugin-react": "^7.3.0",
-        "react-native-extra-dimensions-android": "^0.21.0"
-    }
+    "dependencies": {}
 }

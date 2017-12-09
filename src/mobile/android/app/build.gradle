@@ -96,9 +96,9 @@ android {
 
 
     defaultConfig {
-        applicationId "com.iotawallet"
+        applicationId "com.iota.wallet"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 1
         multiDexEnabled true
         versionName "1.0"
@@ -140,6 +140,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-device-info')
     compile project(':react-native-shake-event')
     compile project(':react-native-extra-dimensions-android')
     compile project(':react-native-detect-navbar-android')
@@ -158,10 +159,8 @@ dependencies {
   	compile "com.facebook.react:react-native:+"
   	compile project(':react-native-navigation')
   	compile project(':react-native-svg')
-  	compile project(':react-native-sensitive-info')
   	compile project(':react-native-camera')
     compile project(':react-native-fs')
-    compile project(":react-native-hockeyapp")
     compile project(':react-native-keep-awake')
     compile("com.crashlytics.sdk.android:crashlytics:2.6.4@aar") {
             transitive = true;

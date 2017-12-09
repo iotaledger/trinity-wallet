@@ -1,22 +1,11 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    Clipboard,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, Clipboard, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
 import Seedbox from '../components/seedBox.js';
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {
@@ -27,6 +16,8 @@ class CopySeedToClipboard extends React.Component {
     }
 
     generateSeedClearanceAlert() {
+        const { t } = this.props;
+
         if (this.dropdown) {
             this.dropdown.alertWithType('info', t('seedCleared'), t('seedClearedExplanation'));
         }
@@ -53,6 +44,8 @@ class CopySeedToClipboard extends React.Component {
     }
 
     onCopyPress() {
+        const { t } = this.props;
+
         Clipboard.setString(this.props.tempAccount.seed);
         this.dropdown.alertWithType('success', t('seedCopied'), t('seedCopiedExplanation'));
 
@@ -79,14 +72,14 @@ class CopySeedToClipboard extends React.Component {
                     <Seedbox seed={this.props.tempAccount.seed} />
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 22 }}>
                         <View style={styles.copyButton}>
-                            <Text style={styles.copyText}>{t('global:copyToCliboard').toUpperCase()}</Text>
+                            <Text style={styles.copyText}>{t('global:copyToClipboard').toUpperCase()}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>{t('global:next')}</Text>
+                            <Text style={styles.doneText}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -235,4 +228,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default translate('saveYourSeed3')(connect(mapStateToProps)(CopySeedToClipboard));
+export default translate(['copyToClipboard', 'global'])(connect(mapStateToProps)(CopySeedToClipboard));

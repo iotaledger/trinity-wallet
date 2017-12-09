@@ -1,4 +1,3 @@
-#import "RNHockeyApp.h"
 #if __has_include(<React/RCTEventDispatcher.h>)
 #import <React/RCTEventDispatcher.h>
 #else

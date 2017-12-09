@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import {
     StyleSheet,
     View,
-    Dimensions,
     Text,
     TouchableWithoutFeedback,
     TouchableOpacity,
@@ -24,9 +23,7 @@ import {
 } from 'iota-wallet-shared-modules/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
-
-const width = Dimensions.get('window').width;
-const height = global.height;
+import { width, height } from '../util/dimensions';
 
 class ChangePassword extends Component {
     constructor() {
@@ -81,7 +78,7 @@ class ChangePassword extends Component {
 
     changePassword() {
         const isValid = this.isValid();
-        const { password, setPassword } = this.props;
+        const { password, setPassword, t } = this.props;
         const { newPassword } = this.state;
 
         if (isValid) {
@@ -120,7 +117,7 @@ class ChangePassword extends Component {
 
     renderInvalidSubmissionAlerts() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { password } = this.props;
+        const { password, t } = this.props;
 
         if (currentPassword !== password) {
             return this.props.dropdown.alertWithType(
@@ -159,6 +156,7 @@ class ChangePassword extends Component {
 
     render() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
+        const { t } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -235,15 +233,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     bottomContainer: {
-        flex: 0.5,
+        flex: 1,
         width: width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     topContainer: {
-        flex: 4.5,
+        flex: 9,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -260,7 +258,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: width / 40,
         borderStyle: 'dotted',
-        paddingVertical: height / 60,
+        paddingVertical: height / 50,
     },
     infoText: {
         color: Colors.white,

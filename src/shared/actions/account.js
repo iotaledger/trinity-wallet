@@ -51,7 +51,7 @@ export function addAddresses(seedName, addresses) {
     };
 }
 
-export function getAccountInfoNewSeed(seed, seedName, cb) {
+export function getFullAccountInfo(seed, seedName, cb) {
     return dispatch => {
         iota.api.getAccountData(seed, (error, success) => {
             if (!error) {
@@ -60,8 +60,9 @@ export function getAccountInfoNewSeed(seed, seedName, cb) {
 
                 const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
                 const transfers = formatTransfers(transfersWithoutDuplicateBundles, success.addresses);
+                const balance = calculateBalance(addressesWithBalance);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
-                dispatch(setAccountInfo(seedName, addressesWithBalance, transfers));
+                dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance));
                 cb(null, success);
             } else {
                 cb(error);

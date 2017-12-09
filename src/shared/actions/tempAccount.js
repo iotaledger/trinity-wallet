@@ -80,6 +80,18 @@ export function generateNewAddressError() {
     };
 }
 
+export function manualSyncRequest() {
+    return {
+        type: 'MANUAL_SYNC_REQUEST',
+    };
+}
+
+export function manualSyncComplete() {
+    return {
+        type: 'MANUAL_SYNC_COMPLETE',
+    };
+}
+
 export function sendTransferRequest() {
     return {
         type: 'SEND_TRANSFER_REQUEST',
@@ -107,10 +119,10 @@ export function setReady() {
     };
 }
 
-export function setSeed(seed) {
+export function setSeed(payload) {
     return {
         type: 'SET_SEED',
-        payload: seed,
+        payload,
     };
 }
 
