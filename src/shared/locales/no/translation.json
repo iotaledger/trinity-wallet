@@ -28,8 +28,8 @@
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vent til synkronisering er fullført.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrong": "Noe gikk galt",
+        "somethingWentWrongExplanation": "Start programmet på nytt."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -128,7 +128,7 @@
         "ofTheOptions": "av alternativene nedenfor."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Feil hovednøkkel",
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
         "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret nøkkelen din.",
         "ifYouHaveNotSaved": "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake til forrige steg for å lagre."
@@ -229,7 +229,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
