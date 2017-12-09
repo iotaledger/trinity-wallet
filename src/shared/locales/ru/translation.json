@@ -28,8 +28,8 @@
         "unrecognisedPasswordExplanation": "Некорректный пароль. Повторите попытку.",
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrong": "Произошла ошибка",
+        "somethingWentWrongExplanation": "Пожалуйста, перезапустите приложение."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -128,7 +128,7 @@
         "ofTheOptions": "из представленных вариантов."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
         "thisIsACheck": "Это проверка, чтобы убедиться, что вы сохранили свой ключ.",
         "ifYouHaveNotSaved": "Если вы не сохранили свой ключ, пожалуйста, вернитесь на предыдущий экран и сделайте это."
@@ -229,7 +229,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
