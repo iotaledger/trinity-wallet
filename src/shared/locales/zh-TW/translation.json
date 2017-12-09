@@ -28,8 +28,8 @@
         "unrecognisedPasswordExplanation": "此為未知密碼，請再試一遍。",
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrong": "出現錯誤",
+        "somethingWentWrongExplanation": "請重新啟動程式"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -229,7 +229,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "已複製地址",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
