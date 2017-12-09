@@ -19,7 +19,7 @@ class TransferConfirmationModal extends React.Component {
 
     render() {
         const { t } = this.props;
-        var transferContents = null;
+        let transferContents = null;
         if (this.props.amount === 0) {
             transferContents = <Text style={styles.iotaText}>a message</Text>;
         } else {

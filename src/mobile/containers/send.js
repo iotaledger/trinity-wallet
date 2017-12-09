@@ -107,7 +107,7 @@ class Send extends Component {
 
     isValidAmount(amount) {
         var value = parseFloat(amount);
-        if (!isNaN(value)) return true;
+        return !isNaN(value);
     }
 
     enoughBalance() {
