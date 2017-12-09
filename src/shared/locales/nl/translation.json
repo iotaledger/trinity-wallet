@@ -13,7 +13,7 @@
         "qr": "QR",
         "notAvailable": "Deze functie is niet beschikbaar",
         "notAvailableExplanation": "In een later stadium zal het worden toegevoegd.",
-        "enterSeed": "Geef uw sleutel in.",
+        "enterSeed": "Voer uw sleutel in.",
         "mainWallet": "Hoofd account",
         "secondWallet": "Tweede account",
         "thirdWallet": "Derde account",
@@ -26,8 +26,8 @@
         "password": "Wachtwoord",
         "unrecognisedPassword": "Niet herkend wachtwoord",
         "unrecognisedPasswordExplanation": "Het wachtwoord is onjuist. Probeer het opnieuw.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "syncInProgress": "Bezig met synchroniseren",
+        "syncInProgressExplanation": "Een ogenblik geduld alstublieft terwijl het synchroniseren wordt voltooid.",
         "somethingWentWrong": "Er ging iets mis",
         "somethingWentWrongExplanation": "Start de app opnieuw."
     },
@@ -35,13 +35,13 @@
         "seedInvalidChars": "Ongeldige tekens in de sleutel",
         "seedInvalidCharsExplanation": "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Seed is te kort",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation": "Uw seed moet minstens {{maxLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
         "nameInUse": "De naam van de account is al in gebruik",
         "nameInUseExplanation": "Gebruik een unieke accountnaam voor uw sleutel.",
         "enterAccountName": "Geen een accountnaam in.",
         "accountName": "Accountnaam",
-        "noNickname": "No account name entered",
-        "noNicknameExplanation": "Please enter an account name for your seed."
+        "noNickname": "Geen accountnaam ingevoerd",
+        "noNicknameExplanation": "Gebruik een unieke accountnaam voor uw seed."
     },
     "changePassword": {
         "oops": "Oeps, er is iets fout gegaan",
@@ -67,14 +67,14 @@
         "seedCopied": "Sleutel gekopieerd",
         "seedCopiedExplanation": "De sleutel is gekopieerd naar het Klembord en wordt gewist zodra u op \"KLAAR\" drukt of nadat 60 seconden zijn verstreken.",
         "clickToCopy": "Klik op de knop hieronder en kopieer uw sleutel naar een wachtwoordmanager.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Bewaar je seed niet als tekst."
     },
     "enterSeed": {
         "invalidCharacters": "Ongeldige tekens in de sleutel",
         "invalidCharactersExplanation": "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Seed is te kort",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "Uw seed moet minstens {{maxLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
+        "seedExplanation": "Seeds moeten {{maxLength}} tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met meer dan {{maxLength}} tekens.",
         "neverShare": "DEEL NOOIT JE SEED MET IEMAND"
     },
     "home": {
@@ -119,8 +119,8 @@
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Uw adres is naar het Klembord gekopieerd.",
         "generateNewAddress": "GENEREER EEN NIEUW ADRES",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "Optioneel bericht",
+        "removeMessage": "VERWIJDER BERICHT"
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "U moet uw sleutel opslaan ",
@@ -135,7 +135,7 @@
     },
     "send": {
         "invalidAddress": "Ongeldig adres",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "Adres moet {{maxLength}} tekens lang zijn en moet een controle bevatten.",
         "invalidAddressExplanation2": "Adres bevat ongeldige tekens.",
         "invalidAddressExplanation3": "Adres bevat een ongeldige controlesom.",
         "notEnoughFunds": "Saldo ontoereikend",
@@ -147,10 +147,10 @@
         "max": "MAX",
         "message": "Bericht",
         "send": "Verstuur",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmount": "Onjuist bedrag ingevoerd",
+        "invalidAmountExplanation": "Voer een numerieke waarde voor het bedrag van de transactie.",
+        "maximumSelected": "Maximumbedrag geselecteerd",
+        "iotaUnits": "IOTA eenheden"
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
@@ -182,14 +182,14 @@
         "logout": "Uitloggen",
         "reset": "Reset portemonnee",
         "back": "Terug",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "syncingComplete": "Synchroniseren voltooid",
+        "syncingCompleteExplanation": "Uw account is succesvol bijgewerkt.",
+        "nicknameChanged": "Accountnaam veranderd",
+        "nicknameChangedExplanation": "Uw accountnaam is veranderd.",
+        "accountDeleted": "Account verwijderd",
+        "accountDeletedExplanation": "Uw account is verwijderd uit de portefeuille.",
+        "cannotPerformAction": "Kan actie niet uitvoeren",
+        "cannotPerformActionExplanation": "Ga naar de geavanceerde instellingen om uw portefeuille te resetten."
     },
     "resetWalletConfirmation": {
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
@@ -227,9 +227,9 @@
         "thatTheyAreCorrect": "dat ze correct zijn."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Bundel hash gekopieerd",
+        "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het Klembord.",
         "addressCopied": "Adres gekopieerd",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Het adres is naar het Klembord gekopieerd."
     }
 }
