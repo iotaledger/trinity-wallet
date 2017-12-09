@@ -19,6 +19,7 @@ import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/ac
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import { Navigation } from 'react-native-navigation';
 
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
@@ -111,14 +112,18 @@ class NewSeedSetup extends Component {
                 overrideBackPress: true,
             });
         } else {
-            this.props.navigator.push({
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
+            // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'home',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundImageName: 'bg-blue.png',
+                        screenBackgroundColor: '#102e36',
+                    },
+                    overrideBackPress: true,
                 },
-                animated: false,
-                overrideBackPress: true,
             });
         }
     }

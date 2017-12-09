@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
         "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "somethingWentWrong": "Une erreur s'est produite",
+        "somethingWentWrongExplanation": "Veuillez redémarrer l'application."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -64,7 +66,8 @@
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "seedCopied": "Seed copiée",
         "seedCopiedExplanation": "La seed a été copiée dans le presse-papiers et sera effacée après 60 secondes, ou dès que vous aurez appuyé sur \"OK\".",
-        "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez vos graines dans un gestionnaire de mot de passe."
+        "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez vos graines dans un gestionnaire de mot de passe.",
+        "doNotStore": "Do not store your seed in plain text."
     },
     "enterSeed": {
         "invalidCharacters": "La seed contient des caractères invalides",
@@ -113,8 +116,6 @@
         "printWallet": "IMPRIMER LE WALLET PAPIER"
     },
     "receive": {
-        "somethingWentWrong": "Une erreur s'est produite",
-        "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papiers.",
         "generateNewAddress": "GÉNÉRER UNE NOUVELLE ADRESSE",
@@ -127,7 +128,7 @@
         "ofTheOptions": "des options répertoriées ci-dessous."
     },
     "seedReentry": {
-        "incorrectSeed": "Seed incorrecte.",
+        "incorrectSeed": "Seed incorrecte",
         "incorrectSeedExplanation": "La seed que vous avez entrée est incorrecte. Veuillez réessayer.",
         "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
         "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir à l’écran précédent et le faire."
@@ -180,7 +181,15 @@
         "advanced": "Réglages avancés",
         "logout": "Déconnexion",
         "reset": "Réinitialiser le wallet",
-        "back": "Retour"
+        "back": "Retour",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Cette action est irréversible.",
@@ -216,5 +225,11 @@
         "yourSeedIs": "Votre Seed se lit de gauche à droite et comporte 81 caractères. Notez-la, ainsi que le code de vérification et",
         "tripleCheck": "vérifiez à plusieurs reprises",
         "thatTheyAreCorrect": "qu'ils sont corrects."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Adressée copiée",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
