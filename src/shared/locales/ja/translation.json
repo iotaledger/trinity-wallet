@@ -227,9 +227,9 @@
         "thatTheyAreCorrect": "それらが正しいことを確認して下さい。"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "バンドルハッシュをコピーしました。",
+        "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。"
     }
 }
