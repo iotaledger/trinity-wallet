@@ -184,12 +184,12 @@
         "back": "戻る",
         "syncingComplete": "同期が完了しました。",
         "syncingCompleteExplanation": "アカウントは正常に同期しました。",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "nicknameChanged": "アカウント名が変更されました。",
+        "nicknameChangedExplanation": "アカウント名が変更されました。",
+        "accountDeleted": "アカウントは削除されました。",
+        "accountDeletedExplanation": "アカウントはウォレットから削除されました。",
+        "cannotPerformAction": "操作を実行できません。",
+        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。"
     },
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",
