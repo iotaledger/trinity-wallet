@@ -167,7 +167,7 @@
         "youCanAdd": "Vous pouvez ajouter plus de seeds dans le menu Réglages."
     },
     "settings": {
-        "transferSending": "Transfer sending",
+        "transferSending": "Transfert en cours",
         "transferSendingExplanation": "Veuillez attendre que votre transfert ait été envoyé.",
         "generatingAddress": "Génération d'une adresse de réception",
         "generatingAddressExplanation": "Veuillez attendre que votre adresse ait été générée.",
