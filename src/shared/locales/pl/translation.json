@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Nierozpoznane hasło",
         "unrecognisedPasswordExplanation": "Wpisano nieprawidłowe hasło. Spróbuj ponownie.",
         "syncInProgress": "Synchronizacja w toku",
-        "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji."
+        "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
+        "somethingWentWrong": "Coś poszło nie tak",
+        "somethingWentWrongExplanation": "Uruchom ponownie aplikację."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -64,7 +66,8 @@
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "seedCopied": "Seed skopiowany",
         "seedCopiedExplanation": "Seed został skopiowany do schowka i zostanie wyczyszczony po naciśnięciu \"Gotowe\" lub po upłynięciu 60 sekund, w zależności od tego co nastąpi wcześniej.",
-        "clickToCopy": "Kliknij przycisk poniżej i skopiuj swojego Seeda do Menedżera haseł."
+        "clickToCopy": "Kliknij przycisk poniżej i skopiuj swojego Seeda do Menedżera haseł.",
+        "doNotStore": "Do not store your seed in plain text."
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
@@ -113,8 +116,6 @@
         "printWallet": "WYDRUKUJ PAPIEROWY PORTFEL"
     },
     "receive": {
-        "somethingWentWrong": "Coś poszło nie tak",
-        "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
         "generateNewAddress": "WYGENERUJ NOWY ADRES",
@@ -127,7 +128,7 @@
         "ofTheOptions": "opcji wylistowanych poniżej."
     },
     "seedReentry": {
-        "incorrectSeed": "Nieprawidłowy seed.",
+        "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "thisIsACheck": "To jest test w celu upewnienia się że zapisałeś swojego seeda.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego seeda, proszę wrócić do poprzedniego ekranu i to wykonać."
@@ -180,7 +181,15 @@
         "advanced": "Ustawienia zaawansowane",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
-        "back": "Wstecz"
+        "back": "Wstecz",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Tej akcji nie można cofnąć.",
@@ -216,5 +225,11 @@
         "yourSeedIs": "Twój seed zawiera 81 znaków czytany od lewej do prawej. Zapisz seeda oraz sumę kontrolną i",
         "tripleCheck": "sprawdź trzykrotnie",
         "thatTheyAreCorrect": "że są one poprawne."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Adres skopiowany",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }

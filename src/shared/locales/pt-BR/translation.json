@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Palavra-passe não reconhecida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
         "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "somethingWentWrong": "Ocorreu um problema",
+        "somethingWentWrongExplanation": "Por favor, reinicie a aplicação."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém carateres inválidos",
@@ -64,7 +66,8 @@
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
         "seedCopied": "Seed copiada",
         "seedCopiedExplanation": "A Seed foi copiada para a área de transferência e será removida quando pressionar \"CONCLUÍDO\" ou decorridos 60 segundos (o que se verificar primeiro).",
-        "clickToCopy": "Clique no botão em baixo e copie a sua Seed para o gestor de palavras-passe."
+        "clickToCopy": "Clique no botão em baixo e copie a sua Seed para o gestor de palavras-passe.",
+        "doNotStore": "Do not store your seed in plain text."
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém carateres inválidos",
@@ -113,8 +116,6 @@
         "printWallet": "IMPRIMIR CARTEIRA DE PAPEL"
     },
     "receive": {
-        "somethingWentWrong": "Ocorreu um problema",
-        "somethingWentWrongExplanation": "Por favor, reinicie a aplicação.",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "generateNewAddress": "GERAR NOVO ENDEREÇO",
@@ -127,7 +128,7 @@
         "ofTheOptions": "das opções listadas em baixo."
     },
     "seedReentry": {
-        "incorrectSeed": "Seed incorreta.",
+        "incorrectSeed": "Seed incorreta",
         "incorrectSeedExplanation": "A Seed que introduziu está incorreta. Por favor, tente novamente.",
         "thisIsACheck": "Isto é uma verificação para certificar-se que gravou a sua Seed.",
         "ifYouHaveNotSaved": "Se não gravou a sua Seed, por favor volte para o ecrã anterior e grave-a."
@@ -148,8 +149,8 @@
         "send": "ENVIAR",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "maximumSelected": "Selecionado o montante MÁXIMO",
+        "iotaUnits": "Unidades IOTA"
     },
     "setPassword": {
         "passwordTooShort": "A senha é muito curta",
@@ -180,7 +181,15 @@
         "advanced": "Configurações avançadas",
         "logout": "Terminar sessão",
         "reset": "Reiniciar completamente a carteira",
-        "back": "Anterior"
+        "back": "Anterior",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Esta ação não pode ser anulada.",
@@ -216,5 +225,11 @@
         "yourSeedIs": "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e",
         "tripleCheck": "verifique com muita ATENÇÃO",
         "thatTheyAreCorrect": "se eles estão corretos."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Endereço copiado",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
