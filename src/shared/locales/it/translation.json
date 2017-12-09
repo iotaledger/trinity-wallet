@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
         "syncInProgress": "Sincronizzazione in corso",
-        "syncInProgressExplanation": "Si prega di attendere che la sincronizzazione sia completa."
+        "syncInProgressExplanation": "Si prega di attendere che la sincronizzazione sia completa.",
+        "somethingWentWrong": "Si è verificato un errore",
+        "somethingWentWrongExplanation": "Si prega di riavviare l'applicazione."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -66,9 +68,9 @@
         "seedCleared": "Seme cancellato",
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
         "seedCopied": "Seme copiato",
-        "seedCopiedExplanation":
-            "Il seme è stato copiato negli Appunti e verrà cancellato una volta che si preme \"FINE\" o al massimo tra 60 secondi.",
-        "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password."
+        "seedCopiedExplanation": "Il seme è stato copiato negli Appunti e verrà cancellato una volta che si preme \"FINE\" o al massimo tra 60 secondi.",
+        "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password.",
+        "doNotStore": "Do not store your seed in plain text."
     },
     "enterSeed": {
         "invalidCharacters": "Il seme contiene caratteri non validi",
@@ -121,8 +123,6 @@
         "printWallet": "STAMPA IL PORTAFOGLIO SU CARTA"
     },
     "receive": {
-        "somethingWentWrong": "Si è verificato un errore",
-        "somethingWentWrongExplanation": "Si prega di riavviare l'applicazione.",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
         "generateNewAddress": "GENERA UN NUOVO INDIRIZZO",
@@ -135,7 +135,7 @@
         "ofTheOptions": "delle opzioni elencate di seguito."
     },
     "seedReentry": {
-        "incorrectSeed": "Seme non corretto.",
+        "incorrectSeed": "Seme non corretto",
         "incorrectSeedExplanation": "Il seme inserito non è corretto. Si prega di riprovare.",
         "thisIsACheck": "Si tratta di un controllo per assicurarsi che hai salvato il tuo seme.",
         "ifYouHaveNotSaved": "Se non hai salvato il tuo seme, si prega di tornare alla schermata precedente e farlo."
@@ -193,7 +193,15 @@
         "advanced": "Impostazioni avanzate",
         "logout": "Esci",
         "reset": "Reimposta il portafoglio",
-        "back": "Indietro"
+        "back": "Indietro",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Questa azione non può essere annullata.",
@@ -231,5 +239,11 @@
             "Il tuo seme è composto da 81 caratteri letti da sinistra a destra. Annota il tuo seme e la relativa checksum, e",
         "tripleCheck": "controlla tre volte",
         "thatTheyAreCorrect": "che siano corretti."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Indirizzo copiato",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
