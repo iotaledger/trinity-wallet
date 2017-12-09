@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     balanceContainer: {
-        flex: 2.5,
+        flex: 1.8,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -120,15 +120,18 @@ const styles = StyleSheet.create({
         flex: 2,
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginTop: 10,
     },
     chartContainer: {
-        flex: 5.5,
+        flex: 5,
+        // paddingVertical: height / 100,
+        // justifyContent: 'flex-end',
         //paddingVertical: isAndroid ? height / 80 : 0,
     },
     iotaBalance: {
         color: 'white',
         fontFamily: 'Lato-Heavy',
-        fontSize: width / 9,
+        fontSize: width / 8,
         backgroundColor: 'transparent',
     },
     fiatBalance: {
@@ -139,7 +142,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     line: {
-        borderBottomColor: 'white',
+        borderBottomColor: '#999',
         borderBottomWidth: height / 1000,
         width: width / 1.15,
     },
@@ -149,7 +152,7 @@ const styles = StyleSheet.create({
     },
     listView: {
         flex: 1,
-        paddingVertical: height / 70,
+        paddingVertical: height / 50,
     },
 });
 
