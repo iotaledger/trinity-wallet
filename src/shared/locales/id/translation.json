@@ -28,8 +28,8 @@
         "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali.",
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrong": "Terjadi kesalahan",
+        "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -128,7 +128,7 @@
         "ofTheOptions": "pilihan dibawah ini."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "Seed salah",
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
         "thisIsACheck": "Ini untuk memverifikasi bahwa anda telah menyimpan Seed Anda.",
         "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan kembali ke menu sebelumnya."
@@ -229,7 +229,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
