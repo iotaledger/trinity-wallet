@@ -6,84 +6,64 @@ import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/
 
 import { width, height } from '../util/dimensions';
 
-class SimpleTransactionRow extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+const styles = StyleSheet.create({
+    container: {
+        width,
+        flex: 1,
+        flexDirection: 'row',
+        height: height / 40,
+        alignItems: 'center',
+        paddingHorizontal: 24,
+    },
+    icon: {
+        width: width / 35,
+        height: width / 35,
+    },
+    text: {
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Bold',
+        fontSize: width / 32,
+        fontWeight: '400',
+    },
+});
 
+class SimpleTransactionRow extends Component {
     render() {
-        const { t } = this.props;
+        const { t, rowData, addresses } = this.props;
         const icon =
-            this.props.rowData[0].transferValue < 0
+            rowData[0].transferValue < 0
                 ? require('iota-wallet-shared-modules/images/send.png')
                 : require('iota-wallet-shared-modules/images/receive.png');
-        const sign = this.props.rowData[0].transferValue < 0 ? '-' : '+';
-        const address = get(this.props.rowData, '[0].address');
-        const sendOrReceive = this.props.addresses.includes(address);
+        const sign = rowData[0].transferValue < 0 ? '-' : '+';
+        const address = get(rowData, '[0].address');
+        const sendOrReceive = addresses.includes(address);
         const titleColour = sendOrReceive ? '#72BBE8' : '#F7D002';
 
         return (
             <View style={styles.container}>
-                <View style={{ flex: 0.5 }}>
+                <View style={{ flex: 0.8, alignItems: 'flex-start' }}>
                     <Image source={icon} style={styles.icon} />
                 </View>
                 <View style={{ flex: 3, alignItems: 'flex-start' }}>
-                    <Text
-                        style={{
-                            color: titleColour,
-                            backgroundColor: 'transparent',
-                            padding: 5,
-                            fontFamily: 'Lato-Bold',
-                            fontSize: width / 29.6,
-                        }}
-                    >
-                        {formatTime(convertUnixTimeToJSDate(this.props.rowData[0].timestamp))}
+                    <Text style={[styles.text, { color: titleColour, padding: 5 }]}>
+                        {formatTime(convertUnixTimeToJSDate(rowData[0].timestamp))}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
-                    <Text
-                        style={{
-                            color: titleColour,
-                            backgroundColor: 'transparent',
-                            fontFamily: 'Lato-Bold',
-                            fontSize: width / 29.6,
-                        }}
-                    >
+                    <Text style={[styles.text, { color: titleColour }]}>
                         {sendOrReceive
-                            ? this.props.rowData[0].persistence ? 'Received' : 'Receiving'
-                            : this.props.rowData[0].persistence ? 'Sent' : 'Sending'}
+                            ? rowData[0].persistence ? 'Received' : 'Receiving'
+                            : rowData[0].persistence ? 'Sent' : 'Sending'}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
-                    <Text
-                        style={{
-                            color: titleColour,
-                            backgroundColor: 'transparent',
-                            fontFamily: 'Lato-Bold',
-                            fontSize: width / 29.6,
-                        }}
-                    >
-                        {sign} {round(formatValue(this.props.rowData[0].value), 1)}{' '}
-                        {formatUnit(this.props.rowData[0].value)}
+                    <Text style={[styles.text, { color: titleColour }]}>
+                        {sign} {round(formatValue(rowData[0].value), 1)} {formatUnit(rowData[0].value)}
                     </Text>
                 </View>
             </View>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-        height: height / 40,
-        width: width / 1.5,
-        alignItems: 'center',
-    },
-    icon: {
-        width: width / 30,
-        height: width / 30,
-    },
-});
 
 module.exports = SimpleTransactionRow;

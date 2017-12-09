@@ -7,6 +7,9 @@ const timer = require('react-native-timer');
 
 const viewbox = `${width / 3.95} ${height / 50} ${width / 3.93} ${height / 3.7}`;
 
+const chartDrawHeight = height / 3.3;
+const chartDrawWidth = width / 1.15;
+
 class Chart extends React.Component {
     constructor(props) {
         super(props);
@@ -137,7 +140,7 @@ class Chart extends React.Component {
                     </View>
                 </View>
                 <View style={styles.chartContainer}>
-                    <Svg height={height / 3.2} width={width / 1.15} viewBox={viewbox}>
+                    <Svg height={chartDrawHeight} width={chartDrawWidth} viewBox={viewbox} scale={height / 20}>
                         <Defs>
                             <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
                                 <Stop stopColor="#FFA25B" stopOpacity="1" offset="100%" />
@@ -153,8 +156,8 @@ class Chart extends React.Component {
                                 axis: { stroke: 'transparent' },
                                 tickLabels: { fill: 'white', fontSize: width / 44, fontFamily: 'Lato-Regular' },
                             }}
-                            height={height / 3.2}
-                            width={width / 1.15}
+                            height={chartDrawHeight}
+                            width={chartDrawWidth}
                             gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.25 }} />}
                             tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
                             tickValues={this.getTickValues()}
@@ -175,8 +178,8 @@ class Chart extends React.Component {
                                 y: [this.getMinY(), this.getMaxY()],
                             }}
                             scale={{ x: 'time', y: 'linear' }}
-                            height={height / 3.2}
-                            width={width / 1.15}
+                            height={chartDrawHeight}
+                            width={chartDrawWidth}
                             standalone={false}
                             animate={{
                                 duration: 1500,
@@ -198,15 +201,15 @@ class Chart extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingBottom: height / 40,
-        paddingTop: height / 80,
+        // paddingTop: height / 15,
+        marginBottom: 10,
+        marginTop: 10,
     },
     topContainer: {
-        flex: 0.7,
+        flex: 1,
         flexDirection: 'row',
         backgroundColor: 'transparent',
         alignItems: 'center',
-        justifyContent: 'space-between',
         zIndex: 1,
     },
     priceContainer: {
@@ -218,7 +221,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     chartContainer: {
-        flex: 3.3,
+        flex: 5,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
@@ -229,6 +232,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'center',
+        // paddingBottom: height / 40,
     },
     buttonText: {
         color: 'white',
