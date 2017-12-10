@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryLine, VictoryAxis, Line, VictoryLabel, VictoryContainer } from 'victory-native';
-import chevronDownPath from 'iota-wallet-shared-modules/images/chevron-down.png';
 import { width, height } from '../util/dimensions';
 
 const chartDrawHeight = height * 0.38;
@@ -130,7 +129,6 @@ class Chart extends React.Component {
                             style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
-                                <Image source={chevronDownPath} style={styles.icon} />
                                 <Text style={styles.buttonText}>{this.props.marketData.currency}</Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -148,7 +146,6 @@ class Chart extends React.Component {
                             style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
-                                <Image source={chevronDownPath} style={styles.icon} />
                                 <Text style={styles.buttonText}>{this.props.marketData.timeframe}</Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -222,7 +219,9 @@ const styles = StyleSheet.create({
         borderWidth: 0.6,
         borderRadius: 5,
         paddingHorizontal: 10,
-        paddingVertical: 2.5,
+        // paddingVertical: 2.5,
+        paddingTop: 2.5,
+        paddingBottom: 3.5,
     },
     button: {
         flex: 1,
@@ -277,12 +276,6 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
         fontSize: width / 37.6,
-    },
-    icon: {
-        marginBottom: -1,
-        width: width / 50,
-        height: width / 50,
-        marginRight: width / 50,
     },
 });
 
