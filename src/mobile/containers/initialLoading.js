@@ -7,8 +7,11 @@ import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
+import { getVersion, getBuildNumber } from 'react-native-device-info';
 
-const VERSION = 'v0.1 (5)';
+const version = getVersion();
+const build = getBuildNumber();
+const FULL_VERSION = 'v' + version + ' (' + build + ')';
 
 /* eslint-disable global-require */
 /* eslint-disable react/jsx-filename-extension */
@@ -73,7 +76,7 @@ export default class InitialLoading extends Component {
                     <Image source={require('iota-wallet-shared-modules/images/iota-white.png')} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>IOTA Alpha Wallet {VERSION}</Text>
+                    <Text style={styles.text}>IOTA Alpha Wallet {FULL_VERSION}</Text>
                 </View>
             </ImageBackground>
         );
