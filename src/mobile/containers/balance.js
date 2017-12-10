@@ -58,7 +58,7 @@ class Balance extends React.Component {
         const fiatBalance =
             this.props.account.balance * this.props.marketData.usdPrice / 1000000 * this.props.settings.conversionRate;
         const recentTransactions = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4);
-        const hasTransactions = false; //recentTransactions.length > 0
+        const hasTransactions = recentTransactions.length > 0;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
