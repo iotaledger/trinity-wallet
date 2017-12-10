@@ -27,13 +27,17 @@
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
         "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "somethingWentWrong": "Något gick fel",
+        "somethingWentWrongExplanation": "Starta om appen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Adressen innehåller felaktiga tecken",
-        "seedInvalidCharsExplanation": "Adressen kan endast innehålla bokstäverna A-Z och numret 9. Din adress innehåller felaktiga tecken, försök igen.",
+        "seedInvalidCharsExplanation":
+            "Adressen kan endast innehålla bokstäverna A-Z och numret 9. Din adress innehåller felaktiga tecken, försök igen.",
         "seedTooShort": "Adressen är för kort",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "Kontonamnet används redan",
         "nameInUseExplanation": "Vänligen använd ett unikt namn för din adress.",
         "enterAccountName": "Ange ditt kontonamn.",
@@ -53,7 +57,8 @@
         "passwordTooShort": "Lösenordet är för kort",
         "passwordTooShortExplanation": "Ditt lösenord måste åtminstone vara 12 tecken långt, försök igen.",
         "oldPassword": "Ett gammalt lösenord får ej användas",
-        "oldPasswordExplanation": "Ett gammalt lösenord får ej användas som ditt nya, försök igen med ett nytt lösenord.",
+        "oldPasswordExplanation":
+            "Ett gammalt lösenord får ej användas som ditt nya, försök igen med ett nytt lösenord.",
         "ensureStrongPassword": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
         "currentPassword": "Nuvarande lösenord",
         "newPassword": "Nytt lösenord",
@@ -63,15 +68,20 @@
         "seedCleared": "Adress rensad",
         "seedClearedExplanation": "Adressen har rensats från urklippet för din säkerhet.",
         "seedCopied": "Adress kopierad",
-        "seedCopiedExplanation": "Adressen har kopierats till urklippet och kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
-        "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till ett lösenordshanterare."
+        "seedCopiedExplanation":
+            "Adressen har kopierats till urklippet och kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
+        "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till ett lösenordshanterare.",
+        "doNotStore": "Do not store your seed in plain text."
     },
     "enterSeed": {
         "invalidCharacters": "Adressen innehåller ogiltiga tecken",
-        "invalidCharactersExplanation": "Adressen kan endast innehålla bokstäverna A-Z och numret 9. Din adress innehåller felaktiga tecken, försök igen.",
+        "invalidCharactersExplanation":
+            "Adressen kan endast innehålla bokstäverna A-Z och numret 9. Din adress innehåller felaktiga tecken, försök igen.",
         "seedTooShort": "Adressen är för kort",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation":
+            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "DELA ALDRIG DIN ADRESS MED NÅGON"
     },
     "home": {
@@ -103,7 +113,8 @@
         "individualLetters": "Tryck på enskilda bokstäver för att slumpmässigt ändra de."
     },
     "onboardingComplete": {
-        "walletReady": "Plånboken är nu inställd och redo för att användas. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
+        "walletReady":
+            "Plånboken är nu inställd och redo för att användas. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
     },
     "paperWallet": {
         "clickToPrint": "Klicka på knappen nedan för att skriva ut en papperskopia av din adress.",
@@ -113,8 +124,6 @@
         "printWallet": "SKRIV UT PAPPERSKOPIA"
     },
     "receive": {
-        "somethingWentWrong": "Något gick fel",
-        "somethingWentWrongExplanation": "Starta om appen.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklippet.",
         "generateNewAddress": "GENERERA NY ADRESS",
@@ -127,7 +136,7 @@
         "ofTheOptions": "av alternativen som anges nedan."
     },
     "seedReentry": {
-        "incorrectSeed": "Felaktiga adress.",
+        "incorrectSeed": "Felaktiga adress",
         "incorrectSeedExplanation": "Den adress som du angav är felaktig. Vänligen försök igen.",
         "thisIsACheck": "Detta är en kontroll för att kontrollera om du sparat din adress.",
         "ifYouHaveNotSaved": "Om du inte har sparat din adress, gå tillbaka till föregående skärm och göra så."
@@ -153,11 +162,13 @@
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
-        "passwordTooShortExplanation": "Ditt lösenord måste vara minst ${MIN_PASSWORD_LENGTH} tecken. Det är för närvarande ${this.state.password.length} tecken lång. Vänligen försök igen.",
+        "passwordTooShortExplanation":
+            "Ditt lösenord måste vara minst ${MIN_PASSWORD_LENGTH} tecken. Det är för närvarande ${this.state.password.length} tecken lång. Vänligen försök igen.",
         "passwordMismatch": "Lösenorden matchar inte",
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
         "nowWeNeedTo": "Nu behöver vi ställa in ett lösenord.",
-        "anEncryptedCopy": "En krypterad version av din adress sparas på din enhet. Detta lösenord kommer användas för att få tillgång till din plånbok i framtiden.",
+        "anEncryptedCopy":
+            "En krypterad version av din adress sparas på din enhet. Detta lösenord kommer användas för att få tillgång till din plånbok i framtiden.",
         "ensure": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
         "retypePassword": "Skriv lösenordet igen"
     },
@@ -180,7 +191,15 @@
         "advanced": "Avancerade inställningar",
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
-        "back": "Tillbaka"
+        "back": "Tillbaka",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denna åtgärd kan inte ångras.",
@@ -199,7 +218,8 @@
     "walletSetup": {
         "okay": "Okej. Låt oss ställa in din plånbok!",
         "doYouAlreadyHaveASeed": "Har du redan en adress som du vill använda?",
-        "seedExplanation": "IOTA adressen är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
+        "seedExplanation":
+            "IOTA adressen är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
         "explanation1": "Du kan använda det för att komma åt dina pengar från",
         "explanation2": " vilken plånbok som helst ",
         "explanation3": ", på",
@@ -213,8 +233,15 @@
         "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig att följa hela processen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Din adress läses från vänster till höger och är 81 tecken. Skriv ner din adress samt kontrollsumma och",
+        "yourSeedIs":
+            "Din adress läses från vänster till höger och är 81 tecken. Skriv ner din adress samt kontrollsumma och",
         "tripleCheck": "kolla mer än 2 gånger",
         "thatTheyAreCorrect": "att den stämmer."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Adress kopierad",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
