@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     line: {
         borderBottomColor: '#999',
         borderBottomWidth: height / 1000,
-        width: width / 1.15,
+        width: width / 1.2,
     },
     separator: {
         height: height / 120,
