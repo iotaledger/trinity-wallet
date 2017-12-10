@@ -13,7 +13,7 @@
         "qr": "QR",
         "notAvailable": "Denna funktion är inte tillgänglig",
         "notAvailableExplanation": "Funktionen kommer i en senare version.",
-        "enterSeed": "Ange din adress.",
+        "enterSeed": "Ange din seed.",
         "mainWallet": "Huvudkonto",
         "secondWallet": "KONTO TVÅ",
         "thirdWallet": "KONTO TRE",
@@ -26,22 +26,22 @@
         "password": "Lösenord",
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "syncInProgress": "Synkronisering pågår",
+        "syncInProgressExplanation": "Vänta tills synkroniseringen är klar.",
         "somethingWentWrong": "Något gick fel",
         "somethingWentWrongExplanation": "Starta om appen."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Adressen innehåller felaktiga tecken",
-        "seedInvalidCharsExplanation": "Adressen kan endast innehålla bokstäverna A-Z och numret 9. Din adress innehåller felaktiga tecken, försök igen.",
-        "seedTooShort": "Adressen är för kort",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedInvalidChars": "Din seed innehåller felaktiga tecken",
+        "seedInvalidCharsExplanation": "Din seed kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken, försök igen.",
+        "seedTooShort": "Din seed är för kort",
+        "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "nameInUse": "Kontonamnet används redan",
         "nameInUseExplanation": "Vänligen använd ett unikt namn för din adress.",
         "enterAccountName": "Ange ditt kontonamn.",
         "accountName": "Kontonamn",
-        "noNickname": "No account name entered",
-        "noNicknameExplanation": "Please enter an account name for your seed."
+        "noNickname": "Inget kontonamn angivet",
+        "noNicknameExplanation": "Vänligen ange ett namn för din adress."
     },
     "changePassword": {
         "oops": "Ops! Något gick snett",
@@ -67,14 +67,14 @@
         "seedCopied": "Adress kopierad",
         "seedCopiedExplanation": "Adressen har kopierats till urklippet och kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
         "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till ett lösenordshanterare.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Förvara inte din seed i oformaterad text."
     },
     "enterSeed": {
         "invalidCharacters": "Adressen innehåller ogiltiga tecken",
         "invalidCharactersExplanation": "Adressen kan endast innehålla bokstäverna A-Z och numret 9. Din adress innehåller felaktiga tecken, försök igen.",
         "seedTooShort": "Adressen är för kort",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
+        "seedExplanation": "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
         "neverShare": "DELA ALDRIG DIN ADRESS MED NÅGON"
     },
     "home": {
@@ -119,8 +119,8 @@
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklippet.",
         "generateNewAddress": "GENERERA NY ADRESS",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "Valfritt meddelande",
+        "removeMessage": "TA BORT MEDDELANDE"
     },
     "saveYourSeed": {
         "mustSaveYourSeed": "Du måste spara din adress med ",
@@ -135,7 +135,7 @@
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "Din seed bör vara {{maxLength}} tecken långt och ska ha en kontrollsumma.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
         "notEnoughFunds": "Inte tillräckligt med pengar",
@@ -147,10 +147,10 @@
         "max": "MAX",
         "message": "Meddelande",
         "send": "SKICKA",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmount": "Felaktigt belopp angivet",
+        "invalidAmountExplanation": "Ange ett numeriskt värde för transaktionsbeloppet.",
+        "maximumSelected": "HÖGSTA belopp valt",
+        "iotaUnits": "IOTA enheter"
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
@@ -182,14 +182,14 @@
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
         "back": "Tillbaka",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "syncingComplete": "Synkronisering genomförd",
+        "syncingCompleteExplanation": "Ditt konto har synkroniserat färdigt.",
+        "nicknameChanged": "Kontonamn bytt",
+        "nicknameChangedExplanation": "Namnet på ditt konto har ändrats.",
+        "accountDeleted": "Kontot har tagits bort",
+        "accountDeletedExplanation": "Ditt konto har tagits bort från plånboken.",
+        "cannotPerformAction": "Kan inte utföra åtgärden",
+        "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denna åtgärd kan inte ångras.",
@@ -227,9 +227,9 @@
         "thatTheyAreCorrect": "att den stämmer."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Hash kopierades",
+        "bundleHashCopiedExplanation": "Bunt hashen har kopierats till Urklipp.",
         "addressCopied": "Adress kopierad",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Din adress har kopierats till urklippet."
     }
 }
