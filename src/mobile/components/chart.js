@@ -1,14 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
-import { Svg, LinearGradient, Defs, Stop } from 'react-native-svg';
-import { VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
+import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { LinearGradient, Defs, Stop } from 'react-native-svg';
+import { VictoryLine, VictoryAxis, Line, VictoryLabel, VictoryContainer } from 'victory-native';
+import chevronDownPath from 'iota-wallet-shared-modules/images/chevron-down.png';
 import { width, height } from '../util/dimensions';
-const timer = require('react-native-timer');
 
-const viewbox = `${width / 3.95} ${height / 50} ${width / 3.93} ${height / 3.7}`;
-
-const chartDrawHeight = height / 3.3;
-const chartDrawWidth = width / 1.15;
+const chartDrawHeight = height * 0.38;
+const chartDrawWidth = width;
+const victoryContainerWidth = width * 0.85;
 
 const getChartCurrencySymbol = currency => {
     if (currency === 'BTC') {
@@ -124,13 +123,14 @@ class Chart extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
-                    <View style={{ flex: 1 }}>
+                    <View style={styles.buttonContainer}>
                         <TouchableWithoutFeedback
                             onPress={event => this.changeCurrency()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
+                                <Image source={chevronDownPath} style={styles.icon} />
                                 <Text style={styles.buttonText}>{this.props.marketData.currency}</Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -141,20 +141,21 @@ class Chart extends React.Component {
                             {this.getPriceFormat(this.state.price)} / Mi
                         </Text>
                     </View>
-                    <View style={{ flex: 1 }}>
+                    <View style={styles.buttonContainer}>
                         <TouchableWithoutFeedback
                             onPress={event => this.changeTimeframe()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
+                                <Image source={chevronDownPath} style={styles.icon} />
                                 <Text style={styles.buttonText}>{this.props.marketData.timeframe}</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
                 <View style={styles.chartContainer}>
-                    <Svg height={chartDrawHeight} width={chartDrawWidth} viewBox={viewbox} scale={height / 20}>
+                    <VictoryContainer height={chartDrawHeight} width={victoryContainerWidth}>
                         <Defs>
                             <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
                                 <Stop stopColor="#FFA25B" stopOpacity="1" offset="100%" />
@@ -172,7 +173,7 @@ class Chart extends React.Component {
                             }}
                             height={chartDrawHeight}
                             width={chartDrawWidth}
-                            gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.25 }} />}
+                            gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.2 }} />}
                             tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
                             tickValues={this.getTickValues()}
                             domain={{
@@ -184,7 +185,7 @@ class Chart extends React.Component {
                             style={{
                                 data: {
                                     stroke: 'url(#gradient)',
-                                    strokeWidth: 2,
+                                    strokeWidth: 1.4,
                                 },
                             }}
                             domain={{
@@ -200,7 +201,7 @@ class Chart extends React.Component {
                                 onLoad: { duration: 2000 },
                             }}
                         />
-                    </Svg>
+                    </VictoryContainer>
                 </View>
                 <View style={styles.marketDataContainer}>
                     <Text style={styles.marketFigure}>MCAP: $ {this.props.marketData.mcap}</Text>
@@ -213,13 +214,28 @@ class Chart extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    buttonContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderColor: '#f2f2f2',
+        borderWidth: 0.6,
+        borderRadius: 5,
+        paddingHorizontal: 10,
+        paddingVertical: 2.5,
+    },
+    button: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     container: {
         flex: 1,
-        // paddingTop: height / 15,
-        marginBottom: 10,
-        marginTop: 10,
+        paddingVertical: height / 40,
     },
     topContainer: {
+        paddingTop: 15,
         flex: 1,
         flexDirection: 'row',
         backgroundColor: 'transparent',
@@ -230,27 +246,19 @@ const styles = StyleSheet.create({
         flex: 8,
         alignItems: 'center',
     },
-    button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: '#f2f2f2',
-        borderWidth: 0.8,
-        borderRadius: 5,
-        padding: 3,
-    },
     chartContainer: {
         flex: 5,
+        width: width / 1.15,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
     },
     marketDataContainer: {
-        flex: 0.6,
+        flex: 1,
         flexDirection: 'row',
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'center',
-        // paddingBottom: height / 40,
     },
     buttonText: {
         color: 'white',
@@ -269,6 +277,12 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
         fontSize: width / 37.6,
+    },
+    icon: {
+        marginBottom: -1,
+        width: width / 50,
+        height: width / 50,
+        marginRight: width / 50,
     },
 });
 
