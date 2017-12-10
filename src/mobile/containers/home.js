@@ -507,7 +507,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1.0,
     },
     button: {
-        width: 40,
+        width: width / 8,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
