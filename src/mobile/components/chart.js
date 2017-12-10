@@ -170,7 +170,7 @@ class Chart extends React.Component {
                             }}
                             height={chartDrawHeight}
                             width={chartDrawWidth}
-                            gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.2 }} />}
+                            gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.1 }} />}
                             tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
                             tickValues={this.getTickValues()}
                             domain={{
@@ -182,7 +182,7 @@ class Chart extends React.Component {
                             style={{
                                 data: {
                                     stroke: 'url(#gradient)',
-                                    strokeWidth: 1.4,
+                                    strokeWidth: 1.2,
                                 },
                             }}
                             domain={{
