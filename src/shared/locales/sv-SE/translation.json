@@ -13,7 +13,7 @@
         "qr": "QR",
         "notAvailable": "Denna funktion är inte tillgänglig",
         "notAvailableExplanation": "Funktionen kommer i en senare version.",
-        "enterSeed": "Ange din adress.",
+        "enterSeed": "Ange din seed.",
         "mainWallet": "Huvudkonto",
         "secondWallet": "KONTO TVÅ",
         "thirdWallet": "KONTO TRE",
@@ -32,9 +32,9 @@
         "somethingWentWrongExplanation": "Starta om appen."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Adressen innehåller felaktiga tecken",
-        "seedInvalidCharsExplanation": "Adressen kan endast innehålla bokstäverna A-Z och numret 9. Din adress innehåller felaktiga tecken, försök igen.",
-        "seedTooShort": "Adressen är för kort",
+        "seedInvalidChars": "Din seed innehåller felaktiga tecken",
+        "seedInvalidCharsExplanation": "Din seed kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken, försök igen.",
+        "seedTooShort": "Din seed är för kort",
         "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "nameInUse": "Kontonamnet används redan",
         "nameInUseExplanation": "Vänligen använd ett unikt namn för din adress.",
@@ -148,9 +148,9 @@
         "message": "Meddelande",
         "send": "SKICKA",
         "invalidAmount": "Felaktigt belopp angivet",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmountExplanation": "Ange ett numeriskt värde för transaktionsbeloppet.",
+        "maximumSelected": "HÖGSTA belopp valt",
+        "iotaUnits": "IOTA enheter"
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
@@ -182,14 +182,14 @@
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
         "back": "Tillbaka",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "syncingComplete": "Synkronisering genomförd",
+        "syncingCompleteExplanation": "Ditt konto har synkroniserat färdigt.",
+        "nicknameChanged": "Kontonamn bytt",
+        "nicknameChangedExplanation": "Namnet på ditt konto har ändrats.",
+        "accountDeleted": "Kontot har tagits bort",
+        "accountDeletedExplanation": "Ditt konto har tagits bort från plånboken.",
+        "cannotPerformAction": "Kan inte utföra åtgärden",
+        "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denna åtgärd kan inte ångras.",
@@ -227,9 +227,9 @@
         "thatTheyAreCorrect": "att den stämmer."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Hash kopierades",
+        "bundleHashCopiedExplanation": "Bunt hashen har kopierats till Urklipp.",
         "addressCopied": "Adress kopierad",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Din adress har kopierats till urklippet."
     }
 }
