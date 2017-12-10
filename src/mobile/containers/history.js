@@ -23,14 +23,14 @@ class History extends React.Component {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         Clipboard.setString(item);
-        dropdown.alertWithType('success', 'Bundle hash copied', 'The bundle hash has been copied to the clipboard.');
+        dropdown.alertWithType('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
     }
 
     copyAddress(item) {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         Clipboard.setString(item);
-        dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
+        dropdown.alertWithType('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
     render() {
@@ -90,4 +90,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default connect(mapStateToProps)(History);
+export default translate(['history', 'global'])(connect(mapStateToProps)(History));

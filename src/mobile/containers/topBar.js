@@ -6,6 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -227,7 +228,7 @@ class TopBar extends Component {
 
     onNodeError() {
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
     }
 
     humanizeBalance(balance) {
@@ -388,4 +389,4 @@ const mapDispatchToProps = dispatch => ({
     setReceiveAddress: string => dispatch(setReceiveAddress(string)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
+export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));

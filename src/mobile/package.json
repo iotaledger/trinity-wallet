@@ -8,7 +8,7 @@
     "android": "./node_modules/.bin/react-native run-android",
     "lint": "./node_modules/.bin/eslint --ext .js .",
     "ios": "./node_modules/.bin/react-native run-ios",
-    "test": "jest"
+    "test": "jest --forceExit"
   },
   "dependencies": {
     "assert": "^1.4.1",

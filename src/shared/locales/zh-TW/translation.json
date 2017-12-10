@@ -27,13 +27,16 @@
         "unrecognisedPassword": "未知的密碼",
         "unrecognisedPasswordExplanation": "此為未知密碼，請再試一遍。",
         "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "somethingWentWrong": "出現錯誤",
+        "somethingWentWrongExplanation": "請重新啟動程式"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
         "seedInvalidCharsExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短。",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "此帳戶已有人使用",
         "nameInUseExplanation": "種子碼請使用獨特帳戶名稱",
         "enterAccountName": "輸入帳戶名稱",
@@ -64,14 +67,17 @@
         "seedClearedExplanation": "為保安全，種子碼已從剪貼簿清除。",
         "seedCopied": "種子碼已複製",
         "seedCopiedExplanation": "種子碼已複製至剪貼簿，按「完成」或過六十秒後便會清除。",
-        "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。"
+        "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。",
+        "doNotStore": "Do not store your seed in plain text."
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
         "invalidCharactersExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation":
+            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
@@ -113,8 +119,6 @@
         "printWallet": "列印紙本錢包"
     },
     "receive": {
-        "somethingWentWrong": "出現錯誤",
-        "somethingWentWrongExplanation": "請重新啟動程式",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
         "generateNewAddress": "產生新地址",
@@ -127,7 +131,7 @@
         "ofTheOptions": "下列其中一個選項。"
     },
     "seedReentry": {
-        "incorrectSeed": "錯誤的種子碼。",
+        "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤。請再試一遍。",
         "thisIsACheck": "本頁面提醒您檢查是否已儲存種子碼",
         "ifYouHaveNotSaved": "若您尚未儲存您的種子碼，請回到上一個畫面儲存。"
@@ -153,7 +157,8 @@
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation":
+            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "密碼不符",
         "passwordMismatchExplanation": "您輸入的密碼不符。請再試一遍。",
         "nowWeNeedTo": "現在需要設置密碼。",
@@ -180,7 +185,15 @@
         "advanced": "進階設定",
         "logout": "登出",
         "reset": "重設錢包",
-        "back": "返回"
+        "back": "返回",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "此向操作無法復原",
@@ -216,5 +229,11 @@
         "yourSeedIs": "您的種子碼是由左至右。寫下您的種子碼和檢查碼，並",
         "tripleCheck": "再三確認",
         "thatTheyAreCorrect": "兩者皆正確"
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "已複製地址",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
