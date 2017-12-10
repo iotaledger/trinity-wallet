@@ -529,7 +529,7 @@ const styles = StyleSheet.create({
         opacity: 1,
     },
     partiallyOpaque: {
-        opacity: 0.6,
+        opacity: 0.4,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
