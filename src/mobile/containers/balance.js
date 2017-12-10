@@ -57,6 +57,8 @@ class Balance extends React.Component {
         const currencySymbol = getCurrencySymbol(this.props.settings.currency);
         const fiatBalance =
             this.props.account.balance * this.props.marketData.usdPrice / 1000000 * this.props.settings.conversionRate;
+        const recentTransactions = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4);
+        const hasTransactions = false; //recentTransactions.length > 0
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
@@ -75,19 +77,23 @@ class Balance extends React.Component {
                     </View>
                     <View style={styles.transactionsContainer}>
                         <View style={styles.line} />
-                        <ListView
-                            dataSource={ds.cloneWithRows(
-                                accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
-                            )}
-                            renderRow={dataSource => (
-                                <SimpleTransactionRow addresses={addresses} rowData={dataSource} />
-                            )}
-                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                            enableEmptySections
-                            contentContainerStyle={styles.listView}
-                            scrollEnabled={false}
-                            centerContent
-                        />
+                        {hasTransactions ? (
+                            <ListView
+                                dataSource={ds.cloneWithRows(recentTransactions)}
+                                renderRow={dataSource => (
+                                    <SimpleTransactionRow addresses={addresses} rowData={dataSource} />
+                                )}
+                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                                enableEmptySections
+                                contentContainerStyle={styles.listView}
+                                scrollEnabled={false}
+                                centerContent
+                            />
+                        ) : (
+                            <View style={styles.listView}>
+                                <Text style={styles.noTransactions}>NO RECENT HISTORY</Text>
+                            </View>
+                        )}
                         <View style={styles.line} />
                     </View>
                     <View style={styles.chartContainer}>
@@ -141,6 +147,13 @@ const styles = StyleSheet.create({
         fontSize: width / 25,
         backgroundColor: 'transparent',
     },
+    noTransactions: {
+        color: 'white',
+        paddingTop: height / 150,
+        fontFamily: 'Lato-Light',
+        fontSize: width / 40,
+        backgroundColor: 'transparent',
+    },
     line: {
         borderBottomColor: '#999',
         borderBottomWidth: height / 1000,
@@ -152,6 +165,7 @@ const styles = StyleSheet.create({
     },
     listView: {
         flex: 1,
+        justifyContent: 'center',
         paddingVertical: height / 50,
     },
 });
