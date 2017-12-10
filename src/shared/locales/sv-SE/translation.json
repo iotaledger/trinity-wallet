@@ -37,7 +37,7 @@
         "seedTooShort": "Din seed är för kort",
         "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "nameInUse": "Kontonamnet används redan",
-        "nameInUseExplanation": "Vänligen använd ett unikt namn för din adress.",
+        "nameInUseExplanation": "Vänligen använd ett unikt namn för din seed.",
         "enterAccountName": "Ange ditt kontonamn.",
         "accountName": "Kontonamn",
         "noNickname": "Inget kontonamn angivet",
