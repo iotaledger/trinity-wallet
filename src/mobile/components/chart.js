@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
-import { VictoryLine, VictoryAxis, Line, VictoryLabel, VictoryContainer } from 'victory-native';
+import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel, VictoryContainer } from 'victory-native';
 import { width, height } from '../util/dimensions';
 
-const chartDrawHeight = height * 0.38;
-const chartDrawWidth = width;
+const chartWidth = width * 0.98;
+const chartHeight = height * 0.46;
 const victoryContainerWidth = width * 0.85;
+const victoryContainerHeight = height * 0.46;
 
 const getChartCurrencySymbol = currency => {
     if (currency === 'BTC') {
@@ -152,52 +153,47 @@ class Chart extends React.Component {
                     </View>
                 </View>
                 <View style={styles.chartContainer}>
-                    <VictoryContainer height={chartDrawHeight} width={victoryContainerWidth}>
-                        <Defs>
-                            <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                <Stop stopColor="#FFA25B" stopOpacity="1" offset="100%" />
-                                <Stop stopColor="#FFFFFF" stopOpacity="0.25" offset="0%" />
-                            </LinearGradient>
-                        </Defs>
-
-                        <VictoryAxis
-                            dependentAxis
-                            tickFormat={x => this.getPriceFormat(x)}
-                            standalone={false}
-                            style={{
-                                axis: { stroke: 'transparent' },
-                                tickLabels: { fill: 'white', fontSize: width / 44, fontFamily: 'Lato-Regular' },
-                            }}
-                            height={chartDrawHeight}
-                            width={chartDrawWidth}
-                            gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.1 }} />}
-                            tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
-                            tickValues={this.getTickValues()}
-                            domain={{
-                                y: [this.getMinY(), this.getMaxY()],
-                            }}
-                        />
-                        <VictoryLine
-                            data={data}
-                            style={{
-                                data: {
-                                    stroke: 'url(#gradient)',
-                                    strokeWidth: 1.2,
-                                },
-                            }}
-                            domain={{
-                                x: [-1, this.getMaxX() + 1],
-                                y: [this.getMinY(), this.getMaxY()],
-                            }}
-                            scale={{ x: 'time', y: 'linear' }}
-                            height={chartDrawHeight}
-                            width={chartDrawWidth}
-                            standalone={false}
-                            animate={{
-                                duration: 1500,
-                                onLoad: { duration: 2000 },
-                            }}
-                        />
+                    <VictoryContainer height={victoryContainerHeight} width={victoryContainerWidth}>
+                        <VictoryChart domainPadding={20} height={chartHeight} width={chartWidth}>
+                            <Defs>
+                                <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
+                                    <Stop stopColor="#FFA25B" stopOpacity="1" offset="100%" />
+                                    <Stop stopColor="#FFFFFF" stopOpacity="0.25" offset="0%" />
+                                </LinearGradient>
+                            </Defs>
+                            <VictoryLine
+                                data={data}
+                                style={{
+                                    data: {
+                                        stroke: 'url(#gradient)',
+                                        strokeWidth: 1.2,
+                                    },
+                                }}
+                                domain={{
+                                    x: [-1, this.getMaxX() + 1],
+                                    y: [this.getMinY(), this.getMaxY()],
+                                }}
+                                scale={{ x: 'time', y: 'linear' }}
+                                animate={{
+                                    duration: 1500,
+                                    onLoad: { duration: 2000 },
+                                }}
+                            />
+                            <VictoryAxis
+                                dependentAxis
+                                tickFormat={x => this.getPriceFormat(x)}
+                                style={{
+                                    axis: { stroke: 'transparent' },
+                                    tickLabels: { fill: 'white', fontSize: width / 44, fontFamily: 'Lato-Regular' },
+                                }}
+                                gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.1 }} />}
+                                tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
+                                tickValues={this.getTickValues()}
+                                domain={{
+                                    y: [this.getMinY(), this.getMaxY()],
+                                }}
+                            />
+                        </VictoryChart>
                     </VictoryContainer>
                 </View>
                 <View style={styles.marketDataContainer}>
@@ -231,7 +227,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        paddingVertical: height / 40,
+        paddingVertical: height / 1000,
     },
     topContainer: {
         paddingTop: 15,
