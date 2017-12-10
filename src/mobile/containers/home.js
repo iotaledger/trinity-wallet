@@ -141,13 +141,13 @@ class Home extends Component {
         const dropdown = DropdownHolder.getDropdown();
         const { t } = this.props;
         if (!this.state.password) {
-            dropdown.alertWithType('error', 'Empty password', 'You must enter a password to log in. Please try again.');
+            dropdown.alertWithType('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else {
             if (this.state.password != this.props.tempAccount.password) {
                 dropdown.alertWithType(
                     'error',
-                    'Unrecognised password',
-                    'The password was not recognised. Please try again.',
+                    t('global:unrecognisedPassword'),
+                    t('global:unrecognisedPasswordExplanation'),
                 );
             } else {
                 this.setState({ inactive: false, password: '' });
@@ -275,7 +275,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    BALANCE
+                                                    {t('global:balance')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -299,7 +299,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    SEND
+                                                    {t('global:send')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -323,7 +323,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    RECEIVE
+                                                    {t('global:receive')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -347,7 +347,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    HISTORY
+                                                    {t('global:history')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -371,7 +371,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    SETTINGS
+                                                    {t('global:settings')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -401,7 +401,7 @@ class Home extends Component {
                                             fontSize={width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
-                                            label="Password"
+                                            label={t('global:password')}
                                             tintColor="#F7D002"
                                             autoCapitalize={'none'}
                                             autoCorrect={false}
@@ -418,7 +418,7 @@ class Home extends Component {
                                     <View style={styles.loginBottomContainer}>
                                         <TouchableOpacity onPress={event => this.onLoginPress()}>
                                             <View style={styles.loginButton}>
-                                                <Text style={styles.loginText}>LOGIN</Text>
+                                                <Text style={styles.loginText}>{t('login:login')}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     </View>
@@ -658,4 +658,4 @@ Home.propTypes = {
     isTopBarActive: PropTypes.bool.isRequired,
 };
 
-export default translate(['home', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home));
