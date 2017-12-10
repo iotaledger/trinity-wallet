@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryLine, VictoryAxis, Line, VictoryLabel, VictoryContainer } from 'victory-native';
 import { width, height } from '../util/dimensions';
