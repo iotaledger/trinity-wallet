@@ -219,7 +219,7 @@
     "welcome": {
         "thankYou": "Merci d’avoir téléchargé le wallet IOTA.",
         "weWillSpend": "Nous allons passer les prochaines minutes à paramétrer votre wallet.",
-        "reminder": "Vous serez tenté de passer des étapes mais nous vous demandons de suivre le process complet."
+        "reminder": "Vous serez tenté de passer des étapes mais nous vous demandons de suivre le processus complet."
     },
     "writeSeedDown": {
         "yourSeedIs": "Votre Seed se lit de gauche à droite et comporte 81 caractères. Notez-la, ainsi que le code de vérification et",
@@ -227,8 +227,8 @@
         "thatTheyAreCorrect": "qu'ils sont corrects."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Hash du paquet copié",
+        "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papiers.",
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papiers."
     }
