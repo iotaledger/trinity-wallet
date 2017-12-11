@@ -2,17 +2,7 @@ import split from 'lodash/split';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableHighlight,
-    ImageBackground,
-    ListView,
-    TouchableOpacity,
-    Image,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, ListView, TouchableOpacity, Image, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -21,8 +11,7 @@ import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Navigation } from 'react-native-navigation';
 
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
 
@@ -39,54 +28,14 @@ class NewSeedSetup extends Component {
         this.state = {
             randomised: false,
             infoTextHeight: 0,
-            flashComplete: false,
         };
-
-        this.bind(['flashText1', 'flashText2']);
-    }
-
-    bind(methods) {
-        methods.forEach(method => (this[method] = this[method].bind(this)));
-    }
-
-    componentWillUnmount() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
     }
 
     onGeneratePress() {
         this.props.randomiseSeed(randomBytes);
-        this.setState({ randomised: true });
-        if (!this.state.flashComplete) {
-            this.timeout = setTimeout(this.flashText1, 1000);
-            this.timeout = setTimeout(this.flashText2, 1250);
-            this.timeout = setTimeout(this.flashText1, 1400);
-            this.timeout = setTimeout(this.flashText2, 1650);
-
-            this.timeout = setTimeout(this.flashText1, 2400);
-            this.timeout = setTimeout(this.flashText2, 2650);
-            this.timeout = setTimeout(this.flashText1, 2800);
-            this.timeout = setTimeout(this.flashText2, 3050);
-
-            this.timeout = setTimeout(this.flashText1, 3800);
-            this.timeout = setTimeout(this.flashText2, 4050);
-            this.timeout = setTimeout(this.flashText1, 4200);
-            this.timeout = setTimeout(this.flashText2, 4450);
-            this.setState({ flashComplete: true });
-        }
+        this.setState({ randomised: true, infoTextHeight: height / 38 });
     }
 
-    flashText1() {
-        this.setState({
-            infoTextHeight: 0,
-        });
-    }
-    flashText2() {
-        this.setState({
-            infoTextHeight: height / 38,
-        });
-    }
     onNextPress() {
         const { t } = this.props;
         if (this.state.randomised) {
@@ -159,7 +108,7 @@ class NewSeedSetup extends Component {
     render() {
         const { tempAccount: { seed }, t } = this.props;
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -253,7 +202,7 @@ class NewSeedSetup extends Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -269,7 +218,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 2.1,

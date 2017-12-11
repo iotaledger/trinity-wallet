@@ -6,7 +6,6 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
     Keyboard,
@@ -28,6 +27,7 @@ import IOTA from 'iota.lib.js';
 import Modal from 'react-native-modal';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import NodeSelection from '../components/nodeSelection.js';
+import COLORS from '../theme/Colors';
 
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
@@ -56,7 +56,7 @@ class Login extends React.Component {
     }
 
     _renderModalContent = () => (
-        <ImageBackground source={blueBackgroundImagePath} style={{ width: width / 1.15, alignItems: 'center' }}>
+        <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
             <View style={styles.modalContent}>
                 <Text style={styles.questionText}>Do you want to select a different node?</Text>
                 <OnboardingButtons
@@ -66,7 +66,7 @@ class Login extends React.Component {
                     rightText={'YES'}
                 />
             </View>
-        </ImageBackground>
+        </View>
     );
 
     getWalletData() {
@@ -168,7 +168,7 @@ class Login extends React.Component {
         let { password } = this.state;
         const { t } = this.props;
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 {!this.state.changingNode && (
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -254,7 +254,7 @@ class Login extends React.Component {
                 >
                     {this._renderModalContent()}
                 </Modal>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,

@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import OnboardingButtons from './onboardingButtons.js';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import COLORS from '../theme/Colors';
+
 import { width, height } from '../util/dimensions';
 
-class LogoutConfirmationModal extends React.Component {
+class LogoutConfirmationModal extends Component {
     render() {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={{ width: width / 1.15, alignItems: 'center' }}>
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
                 <View style={styles.modalContent}>
                     <Text style={styles.questionText}>Are you sure you want to log out?</Text>
                     <OnboardingButtons
@@ -19,7 +20,7 @@ class LogoutConfirmationModal extends React.Component {
                         rightText={'YES'}
                     />
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
