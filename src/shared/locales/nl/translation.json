@@ -7,9 +7,9 @@
         "back": "Terug",
         "done": "GEREED",
         "next": "VOLGENDE",
-        "manualCopy": "Handmatig kopiëren",
-        "paperWallet": "Portemonnee van papier",
-        "copyToClipboard": "Naar klembord kopiëren",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Deze functie is niet beschikbaar",
         "notAvailableExplanation": "In een later stadium zal het worden toegevoegd.",
@@ -64,10 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Sleutel gewist",
         "seedClearedExplanation": "Het sleutel werd gewist van het Klembord voor uw veiligheid.",
-        "seedCopied": "Sleutel gekopieerd",
-        "seedCopiedExplanation": "De sleutel is gekopieerd naar het Klembord en wordt gewist zodra u op \"KLAAR\" drukt of nadat 60 seconden zijn verstreken.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Klik op de knop hieronder en kopieer uw sleutel naar een wachtwoordmanager.",
-        "doNotStore": "Bewaar je seed niet als tekst."
+        "doNotStore": "Bewaar je seed niet als tekst.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Ongeldige tekens in de sleutel",
@@ -123,6 +124,8 @@
         "removeMessage": "VERWIJDER BERICHT"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "U moet uw sleutel opslaan ",
         "atLeastOne": "ten minste een ",
         "ofTheOptions": "van de onderstaande opties."
@@ -131,7 +134,7 @@
         "incorrectSeed": "Onjuiste sleutel",
         "incorrectSeedExplanation": "De ingevoerde sleutel is onjuist. Probeer het nog eens.",
         "thisIsACheck": "Dit is een controle om ervoor te zorgen dat u uw sleutel heeft opgeslagen.",
-        "ifYouHaveNotSaved": "Als u niet uw sleutel hebt opgeslagen, kunt u teruggaan naar het vorige scherm en dit alsnog doen."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Ongeldig adres",
