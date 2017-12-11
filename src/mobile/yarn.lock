@@ -5131,6 +5131,10 @@ react-native-os@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-os/-/react-native-os-1.1.0.tgz#bfbe1c44d8a5b14a6f3a3a405d8ada6f547a516e"
 
+react-native-permissions@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-1.0.4.tgz#745240bbe4fd180265543ef5a5803150cfe8a842"
+
 react-native-print@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-print/-/react-native-print-0.3.0.tgz#870082cdd14cc1a064cf0fa3b7460932cb032768"
