@@ -16,7 +16,6 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
 } from 'react-native';
@@ -112,7 +111,7 @@ class WalletResetRequirePassword extends Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -166,7 +165,7 @@ class WalletResetRequirePassword extends Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle="light-content"
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -186,7 +185,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.brand.primary,
+        backgroundColor: Colors.backgroundGreen,
     },
     topWrapper: {
         flex: 1.3,

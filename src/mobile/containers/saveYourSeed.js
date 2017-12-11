@@ -1,12 +1,13 @@
 import merge from 'lodash/merge';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
+import COLORS from '../theme/Colors';
 
 import { width, height } from '../util/dimensions';
 
@@ -63,7 +64,7 @@ class SaveYourSeed extends Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image
@@ -116,7 +117,7 @@ class SaveYourSeed extends Component {
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,
