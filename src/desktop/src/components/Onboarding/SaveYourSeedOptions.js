@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import SeedManualCopy from 'components/Onboarding/SeedManualCopy';
 import SeedCopyToClipboard from 'components/Onboarding/SeedCopyToClipboard';
 import SeedPaperWallet from 'components/Onboarding/SeedPaperWallet';
@@ -35,7 +35,7 @@ class SaveYourSeedOptions extends PureComponent {
 
         return (
             <Template bodyClass={css.bodySeed}>
-                <Main>
+                <Content>
                     <div className="columns">
                         <aside>
                             <p>
@@ -50,7 +50,7 @@ class SaveYourSeedOptions extends PureComponent {
                                     {t('global:paperWallet')}
                                 </Button>
                                 <Button onClick={e => this.changeType(e, 'clipboard')} variant="extra">
-                                    {t('global:copyToClipboard')}
+                                    {t('copyToClipboard:copyToClipboard')}
                                 </Button>
                             </nav>
                         </aside>
@@ -64,7 +64,7 @@ class SaveYourSeedOptions extends PureComponent {
                             )}
                         </section>
                     </div>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/seed/generate" variant="warning">
                         {t('global:back')}

@@ -8,6 +8,9 @@ import { Keyboard } from 'react-native';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import arrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -102,10 +105,7 @@ class UseExistingSeed extends React.Component {
                                 <View style={styles.qrButtonContainer}>
                                     <TouchableOpacity onPress={() => this.onQRPress()}>
                                         <View style={styles.qrButton}>
-                                            <Image
-                                                source={require('iota-wallet-shared-modules/images/camera.png')}
-                                                style={styles.qrImage}
-                                            />
+                                            <Image source={cameraImagePath} style={styles.qrImage} />
                                             <Text style={styles.qrText}> QR </Text>
                                         </View>
                                     </TouchableOpacity>
@@ -139,10 +139,7 @@ class UseExistingSeed extends React.Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.iconLeft}
-                                />
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                                 <Text style={styles.titleTextLeft}>Back</Text>
                             </View>
                         </TouchableOpacity>
@@ -152,10 +149,7 @@ class UseExistingSeed extends React.Component {
                         >
                             <View style={styles.itemRight}>
                                 <Text style={styles.titleTextRight}>Done</Text>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-right.png')}
-                                    style={styles.iconRight}
-                                />
+                                <Image source={arrowRightImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
                     </View>

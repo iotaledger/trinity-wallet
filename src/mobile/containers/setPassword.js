@@ -7,7 +7,6 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
 } from 'react-native';
@@ -21,7 +20,10 @@ import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { isAndroid } from '../util/device';
+import COLORS from '../theme/Colors';
 
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -96,10 +98,7 @@ class SetPassword extends React.Component {
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                style={styles.iotaLogo}
-                            />
+                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.greetingText}>{t('nowWeNeedTo')}</Text>
                             </View>
@@ -108,10 +107,7 @@ class SetPassword extends React.Component {
                             <View style={{ flex: 0.3 }} />
                             <View style={styles.infoTextWrapper}>
                                 <View style={styles.infoTextContainer}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/info.png')}
-                                        style={styles.infoIcon}
-                                    />
+                                    <Image source={infoImagePath} style={styles.infoIcon} />
                                     <Text style={styles.infoText}>{t('anEncryptedCopy')}</Text>
                                     <Text style={styles.warningText}>{t('ensure')}</Text>
                                 </View>
@@ -191,7 +187,7 @@ class SetPassword extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 {isAndroid && <View style={styles.container}>{this._renderContent()}</View>}
                 {!isAndroid && (
                     <KeyboardAwareScrollView
@@ -203,7 +199,7 @@ class SetPassword extends React.Component {
                         {this._renderContent()}
                     </KeyboardAwareScrollView>
                 )}
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -213,7 +209,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
