@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import css from '../Layout/Onboarding.css';
 
@@ -14,9 +14,9 @@ class Done extends React.PureComponent {
         const { t } = this.props;
         return (
             <Template bodyClass={css.bodyDone}>
-                <Main>
+                <Content>
                     <p>{t('text')}</p>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/" variant="success">
                         {t('button')}
