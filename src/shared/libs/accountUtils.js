@@ -170,26 +170,30 @@ export const deduplicateBundles = transfers => {
 
 export const filterSpentAddresses = inputs => {
     return new Promise((resolve, reject) => {
+        // Find transaction objects for addresses
         iota.api.findTransactionObjects({ addresses: inputs.map(input => input.address) }, (err, txs) => {
             if (err) {
                 reject(err);
             }
+            // Filter out receive transactions
             txs = txs.filter(tx => tx.value < 0);
-            const bundleHashes = txs.map(tx => tx.bundle);
             if (txs.length > 0) {
+                // Get bundle hashes
                 const bundles = txs.map(tx => tx.bundle);
+                // Find transaction objects for bundle hashes
                 iota.api.findTransactionObjects({ bundles: bundles }, (err, txs) => {
                     if (err) {
                         reject(err);
                     }
                     let hashes = txs.filter(tx => tx.currentIndex === 0);
-                    const allBundleHashes = txs.map(tx => tx.bundle);
                     hashes = hashes.map(tx => tx.hash);
                     iota.api.getLatestInclusion(hashes, (err, states) => {
                         if (err) {
                             reject(err);
                         }
+                        // Filter confirmed hashes
                         const confirmedHashes = hashes.filter((hash, i) => states[i]);
+                        // Filter unconfirmed hashes
                         const unconfirmedHashes = hashes
                             .filter(hash => confirmedHashes.indexOf(hash) === -1)
                             .map(hash => ({ hash, validate: true }));
