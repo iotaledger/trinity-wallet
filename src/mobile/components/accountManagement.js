@@ -12,7 +12,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('viewSeed')}>
                             <View style={styles.item}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/key.png')}
+                                    source={keyImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>View seed</Text>
@@ -23,7 +23,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('viewAddresses')}>
                             <View style={styles.item}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/addresses.png')}
+                                    source={addressesImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>View addresses</Text>
@@ -34,7 +34,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('editAccountName')}>
                             <View style={styles.item}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/edit.png')}
+                                    source={editImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Edit account name</Text>
@@ -45,7 +45,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.onDeleteAccountPress()}>
                             <View style={styles.item}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/delete.png')}
+                                    source={deleteImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Delete account</Text>
@@ -59,7 +59,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('addNewAccount')}>
                             <View style={styles.item}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/add.png')}
+                                    source={addImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Add new account</Text>
@@ -73,7 +73,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                    source={arrowLeftImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Back</Text>
