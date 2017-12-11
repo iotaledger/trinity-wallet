@@ -61,7 +61,7 @@ export default class WalletResetConfirmation extends Component {
     }
 
     requirePassword() {
-        this.navigateTo('wallet-reset-require-password');
+        this.navigateTo('walletResetRequirePassword');
     }
 
     render() {
