@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
+import { StyleSheet, View, Image, Text, StatusBar, BackHandler } from 'react-native';
 import { getAllItems, deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
 import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
+import COLORS from '../theme/Colors';
 
 const version = getVersion();
 const build = getBuildNumber();
@@ -70,7 +71,7 @@ export default class InitialLoading extends Component {
     render() {
         const currentYear = getCurrentYear();
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
                     <Image source={require('iota-wallet-shared-modules/images/iota-white.png')} style={styles.logo} />
@@ -78,7 +79,7 @@ export default class InitialLoading extends Component {
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>IOTA Alpha Wallet {FULL_VERSION}</Text>
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: COLORS.backgroundGreen,
     },
     logoContainer: {
         flex: 1,
