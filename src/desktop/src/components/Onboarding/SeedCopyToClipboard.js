@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { showNotification } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
@@ -24,7 +24,7 @@ class SeedCopyToClipboard extends React.PureComponent {
 
         return (
             <Template>
-                <Main>
+                <Content>
                     <Steps currentStep="clipboard" />
                     <p>
                         Click the button below to copy your seed to a password manager. It will stay in your clipboard
@@ -45,7 +45,7 @@ class SeedCopyToClipboard extends React.PureComponent {
                             </Button>
                         </CopyToClipboard>
                     </div>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/seed/save" variant="success">
                         {t('button2')}

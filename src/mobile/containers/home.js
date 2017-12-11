@@ -8,7 +8,6 @@ import {
     TouchableWithoutFeedback,
     Image,
     View,
-    ImageBackground,
     StatusBar,
     TouchableOpacity,
     Keyboard,
@@ -40,6 +39,7 @@ import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { TextField } from 'react-native-material-textfield';
 import { isAndroid } from '../util/device';
+import COLORS from '../theme/Colors';
 
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
@@ -61,17 +61,10 @@ class Home extends Component {
             inactive: false,
             password: '',
             minimised: false,
-            tabsVisible: true,
         };
     }
 
     componentDidMount() {
-        // We listen for keyboard show/hide to toggle tab visibility
-        // Without this the current navigator (react-native-navigator) breaks the current tab behavior when keyboard is up
-        if (isAndroid) {
-            this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
-            this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
-        }
         this.props.setFirstUse(false);
         this.startBackgroundProcesses();
         const accountInfo = this.props.account.accountInfo;
@@ -84,17 +77,7 @@ class Home extends Component {
 
     componentWillUnmount() {
         this.endBackgroundProcesses();
-        if (this.keyboardDidShowListener) this.keyboardDidShowListener.remove();
-        if (this.keyboardDidHideListener) this.keyboardDidHideListener.remove();
     }
-
-    keyboardDidShow = () => {
-        this.setState({ tabsVisible: false });
-    };
-
-    keyboardDidHide = () => {
-        this.setState({ tabsVisible: true });
-    };
 
     startBackgroundProcesses() {
         AppState.addEventListener('change', this._handleAppStateChange);
@@ -164,13 +147,13 @@ class Home extends Component {
         const dropdown = DropdownHolder.getDropdown();
         const { t } = this.props;
         if (!this.state.password) {
-            dropdown.alertWithType('error', 'Empty password', 'You must enter a password to log in. Please try again.');
+            dropdown.alertWithType('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else {
             if (this.state.password != this.props.tempAccount.password) {
                 dropdown.alertWithType(
                     'error',
-                    'Unrecognised password',
-                    'The password was not recognised. Please try again.',
+                    t('global:unrecognisedPassword'),
+                    t('global:unrecognisedPasswordExplanation'),
                 );
             } else {
                 this.setState({ inactive: false, password: '' });
@@ -259,7 +242,7 @@ class Home extends Component {
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
-        let { password, tabsVisible } = this.state;
+        let { password } = this.state;
 
         return (
             <UserInactivity
@@ -267,7 +250,7 @@ class Home extends Component {
                 checkInterval={2000}
                 onInactivity={() => this.setState({ inactive: true })}
             >
-                <ImageBackground source={blueBackgroundImagePath} style={{ flex: 1 }}>
+                <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                     <StatusBar barStyle="light-content" />
                     {!this.state.inactive &&
                         !this.state.minimised && (
@@ -277,160 +260,128 @@ class Home extends Component {
                                     <View style={{ flex: 1 }}>{children}</View>
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    {tabsVisible ? (
-                                        <View style={styles.tabBar}>
-                                            <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
-                                                <View style={styles.button}>
-                                                    <Image
-                                                        style={
-                                                            isCurrentRoute('balance')
-                                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                                : StyleSheet.flatten([
-                                                                      styles.icon,
-                                                                      styles.partiallyOpaque,
-                                                                  ])
-                                                        }
-                                                        source={balanceImagePath}
-                                                    />
-                                                    <Text
-                                                        style={
-                                                            isCurrentRoute('balance')
-                                                                ? StyleSheet.flatten([
-                                                                      styles.iconTitle,
-                                                                      styles.fullyOpaque,
-                                                                  ])
-                                                                : StyleSheet.flatten([
-                                                                      styles.iconTitle,
-                                                                      styles.partiallyOpaque,
-                                                                  ])
-                                                        }
-                                                    >
-                                                        BALANCE
-                                                    </Text>
-                                                </View>
-                                            </TouchableWithoutFeedback>
-                                            <TouchableWithoutFeedback onPress={event => this.clickSend()}>
-                                                <View style={styles.button}>
-                                                    <Image
-                                                        style={
-                                                            isCurrentRoute('send')
-                                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                                : StyleSheet.flatten([
-                                                                      styles.icon,
-                                                                      styles.partiallyOpaque,
-                                                                  ])
-                                                        }
-                                                        source={sendImagePath}
-                                                    />
-                                                    <Text
-                                                        style={
-                                                            isCurrentRoute('send')
-                                                                ? StyleSheet.flatten([
-                                                                      styles.iconTitle,
-                                                                      styles.fullyOpaque,
-                                                                  ])
-                                                                : StyleSheet.flatten([
-                                                                      styles.iconTitle,
-                                                                      styles.partiallyOpaque,
-                                                                  ])
-                                                        }
-                                                    >
-                                                        SEND
-                                                    </Text>
-                                                </View>
-                                            </TouchableWithoutFeedback>
-                                            <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
-                                                <View style={styles.button}>
-                                                    <Image
-                                                        style={
-                                                            isCurrentRoute('receive')
-                                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                                : StyleSheet.flatten([
-                                                                      styles.icon,
-                                                                      styles.partiallyOpaque,
-                                                                  ])
-                                                        }
-                                                        source={receiveImagePath}
-                                                    />
-                                                    <Text
-                                                        style={
-                                                            isCurrentRoute('receive')
-                                                                ? StyleSheet.flatten([
-                                                                      styles.iconTitle,
-                                                                      styles.fullyOpaque,
-                                                                  ])
-                                                                : StyleSheet.flatten([
-                                                                      styles.iconTitle,
-                                                                      styles.partiallyOpaque,
-                                                                  ])
-                                                        }
-                                                    >
-                                                        RECEIVE
-                                                    </Text>
-                                                </View>
-                                            </TouchableWithoutFeedback>
-                                            <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
-                                                <View style={styles.button}>
-                                                    <Image
-                                                        style={
-                                                            isCurrentRoute('history')
-                                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                                : StyleSheet.flatten([
-                                                                      styles.icon,
-                                                                      styles.partiallyOpaque,
-                                                                  ])
-                                                        }
-                                                        source={historyImagePath}
-                                                    />
-                                                    <Text
-                                                        style={
-                                                            isCurrentRoute('history')
-                                                                ? StyleSheet.flatten([
-                                                                      styles.iconTitle,
-                                                                      styles.fullyOpaque,
-                                                                  ])
-                                                                : StyleSheet.flatten([
-                                                                      styles.iconTitle,
-                                                                      styles.partiallyOpaque,
-                                                                  ])
-                                                        }
-                                                    >
-                                                        HISTORY
-                                                    </Text>
-                                                </View>
-                                            </TouchableWithoutFeedback>
-                                            <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
-                                                <View style={styles.button}>
-                                                    <Image
-                                                        style={
-                                                            isCurrentRoute('settings')
-                                                                ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
-                                                                : StyleSheet.flatten([
-                                                                      styles.icon,
-                                                                      styles.partiallyOpaque,
-                                                                  ])
-                                                        }
-                                                        source={settingsImagePath}
-                                                    />
-                                                    <Text
-                                                        style={
-                                                            isCurrentRoute('settings')
-                                                                ? StyleSheet.flatten([
-                                                                      styles.iconTitle,
-                                                                      styles.fullyOpaque,
-                                                                  ])
-                                                                : StyleSheet.flatten([
-                                                                      styles.iconTitle,
-                                                                      styles.partiallyOpaque,
-                                                                  ])
-                                                        }
-                                                    >
-                                                        SETTINGS
-                                                    </Text>
-                                                </View>
-                                            </TouchableWithoutFeedback>
-                                        </View>
-                                    ) : null}
+                                    <View style={styles.tabBar}>
+                                        <TouchableWithoutFeedback onPress={event => this.clickBalance()}>
+                                            <View style={styles.button}>
+                                                <Image
+                                                    style={
+                                                        isCurrentRoute('balance')
+                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                    }
+                                                    source={require('iota-wallet-shared-modules/images/balance.png')}
+                                                />
+                                                <Text
+                                                    style={
+                                                        isCurrentRoute('balance')
+                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([
+                                                                  styles.iconTitle,
+                                                                  styles.partiallyOpaque,
+                                                              ])
+                                                    }
+                                                >
+                                                    {t('home:balance')}
+                                                </Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                        <TouchableWithoutFeedback onPress={event => this.clickSend()}>
+                                            <View style={styles.button}>
+                                                <Image
+                                                    style={
+                                                        isCurrentRoute('send')
+                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                    }
+                                                    source={require('iota-wallet-shared-modules/images/send.png')}
+                                                />
+                                                <Text
+                                                    style={
+                                                        isCurrentRoute('send')
+                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([
+                                                                  styles.iconTitle,
+                                                                  styles.partiallyOpaque,
+                                                              ])
+                                                    }
+                                                >
+                                                    {t('home:send')}
+                                                </Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                        <TouchableWithoutFeedback onPress={event => this.clickReceive()}>
+                                            <View style={styles.button}>
+                                                <Image
+                                                    style={
+                                                        isCurrentRoute('receive')
+                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                    }
+                                                    source={require('iota-wallet-shared-modules/images/receive.png')}
+                                                />
+                                                <Text
+                                                    style={
+                                                        isCurrentRoute('receive')
+                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([
+                                                                  styles.iconTitle,
+                                                                  styles.partiallyOpaque,
+                                                              ])
+                                                    }
+                                                >
+                                                    {t('home:receive')}
+                                                </Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                        <TouchableWithoutFeedback onPress={event => this.clickHistory()}>
+                                            <View style={styles.button}>
+                                                <Image
+                                                    style={
+                                                        isCurrentRoute('history')
+                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                    }
+                                                    source={require('iota-wallet-shared-modules/images/history.png')}
+                                                />
+                                                <Text
+                                                    style={
+                                                        isCurrentRoute('history')
+                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([
+                                                                  styles.iconTitle,
+                                                                  styles.partiallyOpaque,
+                                                              ])
+                                                    }
+                                                >
+                                                    {t('home:history')}
+                                                </Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                        <TouchableWithoutFeedback onPress={event => this.clickSettings()}>
+                                            <View style={styles.button}>
+                                                <Image
+                                                    style={
+                                                        isCurrentRoute('settings')
+                                                            ? StyleSheet.flatten([styles.icon, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([styles.icon, styles.partiallyOpaque])
+                                                    }
+                                                    source={require('iota-wallet-shared-modules/images/settings.png')}
+                                                />
+                                                <Text
+                                                    style={
+                                                        isCurrentRoute('settings')
+                                                            ? StyleSheet.flatten([styles.iconTitle, styles.fullyOpaque])
+                                                            : StyleSheet.flatten([
+                                                                  styles.iconTitle,
+                                                                  styles.partiallyOpaque,
+                                                              ])
+                                                    }
+                                                >
+                                                    {t('home:settings')}
+                                                </Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
+                                    </View>
                                 </View>
                                 <TopBar />
                             </View>
@@ -453,7 +404,7 @@ class Home extends Component {
                                             fontSize={width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
-                                            label="Password"
+                                            label={t('global:password')}
                                             tintColor="#F7D002"
                                             autoCapitalize={'none'}
                                             autoCorrect={false}
@@ -470,7 +421,7 @@ class Home extends Component {
                                     <View style={styles.loginBottomContainer}>
                                         <TouchableOpacity onPress={event => this.onLoginPress()}>
                                             <View style={styles.loginButton}>
-                                                <Text style={styles.loginText}>LOGIN</Text>
+                                                <Text style={styles.loginText}>{t('login:login')}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     </View>
@@ -498,7 +449,7 @@ class Home extends Component {
                         closeInterval={5500}
                     />
                     <KeepAwake />
-                </ImageBackground>
+                </View>
             </UserInactivity>
         );
     }
@@ -547,10 +498,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        backgroundColor: '#071f28',
+        backgroundColor: COLORS.backgroundBlack,
         opacity: 0.98,
         paddingBottom: height / 65,
-        shadowColor: '#071f28',
+        shadowColor: COLORS.backgroundBlack,
         shadowRadius: 4,
         shadowOffset: {
             width: 0,
@@ -559,6 +510,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1.0,
     },
     button: {
+        width: width / 8,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
@@ -580,7 +532,7 @@ const styles = StyleSheet.create({
         opacity: 1,
     },
     partiallyOpaque: {
-        opacity: 0.6,
+        opacity: 0.4,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
@@ -710,4 +662,4 @@ Home.propTypes = {
     isTopBarActive: PropTypes.bool.isRequired,
 };
 
-export default translate(['home', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home));

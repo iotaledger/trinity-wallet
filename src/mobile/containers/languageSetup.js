@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
@@ -9,6 +9,7 @@ import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import setFirstUse from 'iota-wallet-shared-modules/actions/account';
 import Dropdown from '../components/dropdown';
+import COLORS from '../theme/Colors';
 
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
@@ -96,7 +97,7 @@ class LanguageSetup extends Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={{ flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                 <View style={styles.container}>
                     <Image style={styles.helloBackground} source={helloBackImagePath} />
                     <StatusBar barStyle="light-content" />
@@ -121,7 +122,7 @@ class LanguageSetup extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }

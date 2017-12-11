@@ -6,6 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -22,6 +23,7 @@ import {
 } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import COLORS from '../theme/Colors';
 
 const { height, width } = Dimensions.get('window');
 
@@ -227,7 +229,7 @@ class TopBar extends Component {
 
     onNodeError() {
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
     }
 
     humanizeBalance(balance) {
@@ -298,8 +300,8 @@ const styles = StyleSheet.create({
         paddingTop: height / 25,
         paddingBottom: height / 50,
         opacity: 0.98,
-        backgroundColor: '#071f28',
-        shadowColor: '#071f28',
+        backgroundColor: COLORS.backgroundBlack,
+        shadowColor: COLORS.backgroundBlack,
         shadowOffset: {
             width: 0,
             height: -1,
@@ -388,4 +390,4 @@ const mapDispatchToProps = dispatch => ({
     setReceiveAddress: string => dispatch(setReceiveAddress(string)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
+export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));

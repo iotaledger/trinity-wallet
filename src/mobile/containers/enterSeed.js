@@ -9,7 +9,6 @@ import {
     TouchableWithoutFeedback,
     Image,
     ScrollView,
-    ImageBackground,
     StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
@@ -21,6 +20,7 @@ import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import COLORS from '../theme/Colors';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
@@ -94,7 +94,7 @@ class EnterSeed extends React.Component {
         const { seed } = this.state;
         const { t } = this.props;
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -183,7 +183,7 @@ class EnterSeed extends React.Component {
                 >
                     {this._renderModalContent()}
                 </Modal>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
