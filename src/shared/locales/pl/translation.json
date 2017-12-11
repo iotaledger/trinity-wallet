@@ -7,9 +7,9 @@
         "back": "WSTECZ",
         "done": "GOTOWE",
         "next": "DALEJ",
-        "manualCopy": "Ręczne kopiowanie",
-        "paperWallet": "Papierowy portfel",
-        "copyToClipboard": "Kopiuj do Schowka",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "Kod QR",
         "notAvailable": "Ta funkcja nie jest dostępna",
         "notAvailableExplanation": "Zostanie dodane na późniejszym etapie.",
@@ -64,10 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Seed wyczyszczony",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
-        "seedCopied": "Seed skopiowany",
-        "seedCopiedExplanation": "Seed został skopiowany do schowka i zostanie wyczyszczony po naciśnięciu \"Gotowe\" lub po upłynięciu 60 sekund, w zależności od tego co nastąpi wcześniej.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Kliknij przycisk poniżej i skopiuj swojego Seeda do Menedżera haseł.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
@@ -123,6 +124,8 @@
         "removeMessage": "USUŃ WIADOMOŚĆ"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Musisz zapisać swojego seeda z ",
         "atLeastOne": "co najmniej jedną ",
         "ofTheOptions": "opcji wylistowanych poniżej."
@@ -131,7 +134,7 @@
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "thisIsACheck": "To jest test w celu upewnienia się że zapisałeś swojego seeda.",
-        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego seeda, proszę wrócić do poprzedniego ekranu i to wykonać."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Błędny adres",
