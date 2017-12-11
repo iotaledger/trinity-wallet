@@ -7,9 +7,9 @@
         "back": "TILBAGE",
         "done": "FÆRDIG",
         "next": "NÆSTE",
-        "manualCopy": "Skriv ned manuelt",
-        "paperWallet": "Papirtegnebog",
-        "copyToClipboard": "Kopiér til udklipsholder",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Denne funktion er ikke tilgængelig",
         "notAvailableExplanation": "Den bliver tilføjet på et senere tidspunkt.",
@@ -64,10 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Seed ryddet",
         "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
-        "seedCopied": "Seed kopieret",
-        "seedCopiedExplanation": "Dit seed er blevet kopieret til udklipsholderen og bliver ryddet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Klik på knappen nedenfor for at kopiere dit seed til en adgangskodemanager.",
-        "doNotStore": "Opbevar ikke dit seed i klartekst."
+        "doNotStore": "Opbevar ikke dit seed i klartekst.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Seedet indeholder ugyldige tegn",
@@ -123,6 +124,8 @@
         "removeMessage": "FJERN BESKED"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Du skal gemme dit seed med ",
         "atLeastOne": "mindst én ",
         "ofTheOptions": "én af valgmulighederne angivet nedenfor."
@@ -131,7 +134,7 @@
         "incorrectSeed": "Forkert seed",
         "incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
         "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
-        "ifYouHaveNotSaved": "Hvis du ikke har gemt dit seed, bedes du gå tilbage til forrige punkt og gøre dette."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
