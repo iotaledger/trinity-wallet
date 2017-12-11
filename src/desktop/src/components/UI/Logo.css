@@ -1,0 +1,189 @@
+.logo {
+    position: relative;
+    display: inline-block;
+    svg {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        circle {
+            fill: #fff;
+        }
+    }
+
+    &.static {
+        > svg:first-of-type {
+            filter: blur(5px);
+            circle {
+                fill: rgba(198, 255, 157, 1);
+            }
+        }
+    }
+
+    &.animated {
+        > svg:first-of-type {
+            animation-name: blur;
+            circle {
+                fill: rgba(198, 255, 157, 0.5);
+            }
+        }
+        > svg:last-of-type {
+            animation-name: rotation;
+        }
+        svg {
+            animation-duration: 3s;
+            circle {
+                animation-duration: 3s;
+                r: 0;
+            }
+            :global {
+                .level-1 .l {
+                    animation-name: radius18;
+                }
+                .level-1 .m,
+                .level-2 .l {
+                    animation-name: radius15;
+                }
+                .level-1 .s,
+                .level-2 .m,
+                .level-3 .l {
+                    animation-name: radius13;
+                }
+                .level-2 .s,
+                .level-3 .m,
+                .level-4 .l {
+                    animation-name: radius11;
+                }
+                .level-3 .s,
+                .level-4 .m,
+                .level-5 .l {
+                    animation-name: radius10;
+                }
+                .level-4 .s,
+                .level-5 .m,
+                .level-5 .s {
+                    animation-name: radius8;
+                }
+                .level-6 .l,
+                .level-6 .m,
+                .level-6 .s {
+                    animation-name: radius6;
+                }
+            }
+        }
+    }
+    &.infinite {
+        svg,
+        svg circle {
+            animation-iteration-count: infinite;
+        }
+    }
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes blur {
+    0% {
+        transform: rotate(-45deg);
+    }
+    20% {
+        filter: blur(0px);
+    }
+    40% {
+        filter: blur(10px);
+    }
+    100% {
+        filter: blur(0px);
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes :global(radius18) {
+    30% {
+        r: 0;
+    }
+    100% {
+        r: 0;
+    }
+}
+
+@keyframes :global(radius15) {
+    25% {
+        r: 0;
+    }
+    60% {
+        r: 15;
+    }
+    100% {
+        r: 0;
+    }
+}
+
+@keyframes :global(radius13) {
+    20% {
+        r: 0;
+    }
+    50% {
+        r: 13;
+    }
+    100% {
+        r: 0;
+    }
+}
+
+@keyframes :global(radius11) {
+    15% {
+        r: 0;
+    }
+    40% {
+        r: 11;
+    }
+    100% {
+        r: 0;
+    }
+}
+
+@keyframes :global(radius10) {
+    10% {
+        r: 0;
+    }
+    30% {
+        r: 10;
+    }
+    100% {
+        r: 0;
+    }
+}
+
+@keyframes :global(radius8) {
+    5% {
+        r: 0;
+    }
+    25% {
+        r: 8;
+    }
+    100% {
+        r: 0;
+    }
+}
+
+@keyframes :global(radius6) {
+    0% {
+        r: 0;
+    }
+    20% {
+        r: 6;
+    }
+    30% {
+        r: 6;
+    }
+    100% {
+        r: 0;
+    }
+}

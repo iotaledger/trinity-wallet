@@ -15,22 +15,28 @@ class WalletSetup extends React.PureComponent {
         return (
             <Template>
                 <Main>
-                    <p>{t('text1')}</p>
-                    <p>{t('text2')}</p>
+                    <p>{t('walletSetup:okay')}</p>
+                    <p>{t('walletSetup:doYouAlreadyHaveASeed')}</p>
                     <Infobox>
-                        <p>{t('seed_explanation1')}</p>
-                        <p>{t('seed_explanation2')}</p>
+                        <p>{t('walletSetup:seedExplanation')}</p>
                         <p>
-                            <strong>{t('reminder')}</strong>
+                            {t('walletSetup:explanation1')}
+                            <strong>{t('walletSetup:explanation2')}</strong>
+                            {t('walletSetup:explanation3')}
+                            <strong>{t('walletSetup:explanation4')}</strong>
+                            {t('walletSetup:explanation5')}
+                        </p>
+                        <p>
+                            <strong>{t('walletSetup:keepSafe')}</strong>
                         </p>
                     </Infobox>
                 </Main>
                 <Footer>
                     <Button to="/seed/generate" variant="warning">
-                        {t('button2')}
+                        {t('global:no')}
                     </Button>
                     <Button to="/seed/enter" variant="success">
-                        {t('button1')}
+                        {t('global:yes')}
                     </Button>
                 </Footer>
             </Template>

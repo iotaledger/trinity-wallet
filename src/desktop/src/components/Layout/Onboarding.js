@@ -10,9 +10,6 @@ import GenerateSeed from '../Onboarding/GenerateSeed';
 import SeedEnter from '../Onboarding/SeedEnter';
 import SeedName from '../Onboarding/SeedName';
 import SaveYourSeedOptions from '../Onboarding/SaveYourSeedOptions';
-import SeedManualCopy from '../Onboarding/SeedManualCopy';
-import SeedCopyToClipboard from '../Onboarding/SeedCopyToClipboard';
-import SeedPaperWallet from '../Onboarding/SeedPaperWallet';
 import SecurityIntro from '../Onboarding/SecurityIntro';
 import SecurityEnter from '../Onboarding/SecurityEnter';
 import Done from '../Onboarding/Done';
@@ -42,10 +39,7 @@ export default withRouter(
                                 <Route path="/lightserver" component={LightServerSetup} />
                                 <Route path="/wallet-setup" component={WalletSetup} />
                                 <Route path="/seed/generate" component={GenerateSeed} />
-                                <Route exact path="/seed/save" component={SaveYourSeedOptions} />
-                                <Route path="/seed/save/manual" component={SeedManualCopy} />
-                                <Route path="/seed/save/clipboard" component={SeedCopyToClipboard} />
-                                <Route path="/seed/save/paperwallet" component={SeedPaperWallet} />
+                                <Route exact path="/seed/save/:type" component={SaveYourSeedOptions} />
                                 <Route path="/seed/enter" component={SeedEnter} />
                                 <Route path="/seed/name" component={SeedName} />
                                 <Route path="/security/intro" component={SecurityIntro} />
