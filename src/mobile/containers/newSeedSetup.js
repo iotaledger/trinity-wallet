@@ -2,17 +2,7 @@ import split from 'lodash/split';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableHighlight,
-    ImageBackground,
-    ListView,
-    TouchableOpacity,
-    Image,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, ListView, TouchableOpacity, Image, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -21,6 +11,7 @@ import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Navigation } from 'react-native-navigation';
 
+import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
 
@@ -157,7 +148,7 @@ class NewSeedSetup extends Component {
     render() {
         const { tempAccount: { seed }, t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image
@@ -254,7 +245,7 @@ class NewSeedSetup extends Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -270,7 +261,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 2.1,
