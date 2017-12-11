@@ -7,7 +7,7 @@ import { showError } from 'actions/notifications';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
 import { MAX_SEED_LENGTH } from 'libs/util';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 import SeedInput from 'components/UI/SeedInput';
@@ -68,7 +68,7 @@ class SeedEnter extends React.PureComponent {
         const { seed = '', validSeed } = this.state;
         return (
             <Template type="form" onSubmit={this.onSubmit}>
-                <Main>
+                <Content>
                     <SeedInput
                         seed={seed}
                         onChange={this.onChange}
@@ -79,7 +79,7 @@ class SeedEnter extends React.PureComponent {
                         <p>{t('seedReentry:thisIsACheck')}</p>
                         <p>{t('seedReentry:ifYouHaveNotSaved')}</p>
                     </Infobox>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to={validSeed ? '/seed/save/manual' : '/wallet-setup'} variant="warning">
                         {t('global:back')}
