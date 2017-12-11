@@ -30,7 +30,12 @@ export function getCurrencyData(currency) {
     const url = `https://api.fixer.io/latest?base=USD`;
     return dispatch => {
         return fetch(url)
-            .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
+            .then(
+                response => response.json(),
+                error => {
+                    console.log('SOMETHING WENT WRONG: ', error);
+                },
+            )
             .then(json => {
                 const conversionRate = json.rates[currency] || 1;
                 dispatch(setCurrencyData(conversionRate, currency));
