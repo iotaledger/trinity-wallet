@@ -7,9 +7,9 @@
         "back": "KEMBALI",
         "done": "SELESAI",
         "next": "BERIKUTNYA",
-        "manualCopy": "Simpan Manual",
-        "paperWallet": "Dompet Kertas",
-        "copyToClipboard": "Salin Ke Papan Klip",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Fungsi ini tidak tersedia",
         "notAvailableExplanation": "Ini akan ditambahkan di tahap berikutnya.",
@@ -64,10 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Seed telah dihapus",
         "seedClearedExplanation": "Seed telah dihapus dari papan klip demi keamanan anda.",
-        "seedCopied": "Seed telah disalin",
-        "seedCopiedExplanation": "Seed telah disalin ke papan klip dan akan dihapus setelah Anda menekan \"SELESAI\" atau 60 detik telah berlalu.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Klik tombol dibawah ini dan salin Seed Anda ke dalam manajer kata sandi.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
@@ -123,6 +124,8 @@
         "removeMessage": "HAPUS PESAN"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Anda harus menyimpan password anda dengan ",
         "atLeastOne": "setidaknya satu ",
         "ofTheOptions": "pilihan dibawah ini."
@@ -131,7 +134,7 @@
         "incorrectSeed": "Seed salah",
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
         "thisIsACheck": "Ini untuk memverifikasi bahwa anda telah menyimpan Seed Anda.",
-        "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan kembali ke menu sebelumnya."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Alamat salah",
