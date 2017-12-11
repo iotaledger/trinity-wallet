@@ -33,9 +33,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ongeldige tekens in de sleutel",
-        "seedInvalidCharsExplanation": "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
+        "seedInvalidCharsExplanation":
+            "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Seed is te kort",
-        "seedTooShortExplanation": "Uw seed moet minstens {{maxLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
+        "seedTooShortExplanation":
+            "Uw seed moet minstens {{maxLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
         "nameInUse": "De naam van de account is al in gebruik",
         "nameInUseExplanation": "Gebruik een unieke accountnaam voor uw sleutel.",
         "enterAccountName": "Geen een accountnaam in.",
@@ -45,7 +47,8 @@
     },
     "changePassword": {
         "oops": "Oeps, er is iets fout gegaan",
-        "oopsExplanation": "Het lijkt erop dat er iets fout gegaan tijdens het bijwerken van uw wachtwoord. Probeer het opnieuw.",
+        "oopsExplanation":
+            "Het lijkt erop dat er iets fout gegaan tijdens het bijwerken van uw wachtwoord. Probeer het opnieuw.",
         "passwordUpdated": "Wachtwoord bijgewerkt",
         "passwordUpdatedExplanation": "Uw wachtwoord is succesvol gewijzigd.",
         "incorrectPassword": "Onjuist wachtwoord",
@@ -55,7 +58,8 @@
         "passwordTooShort": "Wachtwoord is te kort",
         "passwordTooShortExplanation": "Je wachtwoord moet minstens 12 tekens lang zijn. Probeer aub opnieuw.",
         "oldPassword": "Kan uw oud wachtwoord niet instellen",
-        "oldPasswordExplanation": "U kunt het oude wachtwoord niet gebruiken als uw nieuwe wachtwoord. Probeer het opnieuw met een ander wachtwoord.",
+        "oldPasswordExplanation":
+            "U kunt het oude wachtwoord niet gebruiken als uw nieuwe wachtwoord. Probeer het opnieuw met een ander wachtwoord.",
         "ensureStrongPassword": "Zorg ervoor u een sterk wachtwoord gebruikt van ten minste 12 karakters.",
         "currentPassword": "Huidig ​​wachtwoord",
         "newPassword": "Nieuw wachtwoord",
@@ -65,16 +69,20 @@
         "seedCleared": "Sleutel gewist",
         "seedClearedExplanation": "Het sleutel werd gewist van het Klembord voor uw veiligheid.",
         "seedCopied": "Sleutel gekopieerd",
-        "seedCopiedExplanation": "De sleutel is gekopieerd naar het Klembord en wordt gewist zodra u op \"KLAAR\" drukt of nadat 60 seconden zijn verstreken.",
+        "seedCopiedExplanation":
+            "De sleutel is gekopieerd naar het Klembord en wordt gewist zodra u op \"KLAAR\" drukt of nadat 60 seconden zijn verstreken.",
         "clickToCopy": "Klik op de knop hieronder en kopieer uw sleutel naar een wachtwoordmanager.",
         "doNotStore": "Bewaar je seed niet als tekst."
     },
     "enterSeed": {
         "invalidCharacters": "Ongeldige tekens in de sleutel",
-        "invalidCharactersExplanation": "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
+        "invalidCharactersExplanation":
+            "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Seed is te kort",
-        "seedTooShortExplanation": "Uw seed moet minstens {{maxLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
-        "seedExplanation": "Seeds moeten {{maxLength}} tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met meer dan {{maxLength}} tekens.",
+        "seedTooShortExplanation":
+            "Uw seed moet minstens {{maxLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
+        "seedExplanation":
+            "Seeds moeten {{maxLength}} tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met meer dan {{maxLength}} tekens.",
         "neverShare": "DEEL NOOIT JE SEED MET IEMAND"
     },
     "home": {
@@ -106,7 +114,8 @@
         "individualLetters": "Druk op individuele letters om deze te willekeurig te kiezen."
     },
     "onboardingComplete": {
-        "walletReady": "De portefeuille is nu ingesteld en klaar voor gebruik. Als je wijzigingen wil aanbrengen in de toekomst, kijk in het menu Extra."
+        "walletReady":
+            "De portefeuille is nu ingesteld en klaar voor gebruik. Als je wijzigingen wil aanbrengen in de toekomst, kijk in het menu Extra."
     },
     "paperWallet": {
         "clickToPrint": "Klik op de knop hieronder om een papieren kopie af te drukken van uw seed.",
@@ -131,7 +140,8 @@
         "incorrectSeed": "Onjuiste sleutel",
         "incorrectSeedExplanation": "De ingevoerde sleutel is onjuist. Probeer het nog eens.",
         "thisIsACheck": "Dit is een controle om ervoor te zorgen dat u uw sleutel heeft opgeslagen.",
-        "ifYouHaveNotSaved": "Als u niet uw sleutel hebt opgeslagen, kunt u teruggaan naar het vorige scherm en dit alsnog doen."
+        "ifYouHaveNotSaved":
+            "Als u niet uw sleutel hebt opgeslagen, kunt u teruggaan naar het vorige scherm en dit alsnog doen."
     },
     "send": {
         "invalidAddress": "Ongeldig adres",
@@ -154,16 +164,19 @@
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
-        "passwordTooShortExplanation": "Uw wachtwoord moet minstens ${MIN_PASSWORD_LENGTH} tekens lang zijn. Het is momenteel ${this.state.password.length} tekens lang. Probeer het opnieuw.",
+        "passwordTooShortExplanation":
+            "Uw wachtwoord moet minstens ${MIN_PASSWORD_LENGTH} tekens lang zijn. Het is momenteel ${this.state.password.length} tekens lang. Probeer het opnieuw.",
         "passwordMismatch": "Wachtwoorden komen niet overeen",
         "passwordMismatchExplanation": "Het ingevoerde wachtwoord is onjuist. Probeer het nog eens.",
         "nowWeNeedTo": "Oke, nu moeten we een wachtwoord instellen.",
-        "anEncryptedCopy": "Een gecodeerde kopie van uw sleutel zal worden opgeslagen op uw apparaat. U gebruikt dit wachtwoord voor toegang tot uw portefeuille in de toekomst.",
+        "anEncryptedCopy":
+            "Een gecodeerde kopie van uw sleutel zal worden opgeslagen op uw apparaat. U gebruikt dit wachtwoord voor toegang tot uw portefeuille in de toekomst.",
         "ensure": "Zorg ervoor u een sterk wachtwoord gebruikt van ten minste 12 karakters.",
         "retypePassword": "Wachtwoord herhalen"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "U kunt meerdere sleutels gebruiken met deze portefeuille. Elke sleutel vereist een accountnaam.",
+        "canUseMultipleSeeds":
+            "U kunt meerdere sleutels gebruiken met deze portefeuille. Elke sleutel vereist een accountnaam.",
         "youCanAdd": "U kunt meer sleutels toevoegen in het menu instellingen."
     },
     "settings": {
@@ -208,7 +221,8 @@
     "walletSetup": {
         "okay": "Oke. Laat we uw portemonnee instellen!",
         "doYouAlreadyHaveASeed": "Heb je al een zaad dat u zou willen gebruiken?",
-        "seedExplanation": "De IOTA seed is zoals een gebruikersnaam en wachtwoord om toegang te verkrijgen tot je account, dit samengevoegd tot een tekenreeks van 81 karakters.",
+        "seedExplanation":
+            "De IOTA seed is zoals een gebruikersnaam en wachtwoord om toegang te verkrijgen tot je account, dit samengevoegd tot een tekenreeks van 81 karakters.",
         "explanation1": "U kunt deze gebruiken voor toegang tot uw fondsen",
         "explanation2": " elke portemonnee ",
         "explanation3": ", op",
@@ -219,7 +233,8 @@
     "welcome": {
         "thankYou": "Dank u voor het downloaden van de IOTA-portefeuille.",
         "weWillSpend": "We zullen de volgende paar minuten het opzetten van uw portemonnee doorbrengen.",
-        "reminder": "U kan worden verleid om sommige stappen over te slaan, maar wij verzoeken u om het volledige proces te volgen."
+        "reminder":
+            "U kan worden verleid om sommige stappen over te slaan, maar wij verzoeken u om het volledige proces te volgen."
     },
     "writeSeedDown": {
         "yourSeedIs": "Uw sleutel is 81 tekens van links naar rechts gelezen. Schrijf uw sleutel en controlesom op",
