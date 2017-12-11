@@ -7,9 +7,9 @@
         "back": "ANTERIOR",
         "done": "CONCLUÍDO",
         "next": "SEGUINTE",
-        "manualCopy": "Cópia Manual",
-        "paperWallet": "Carteira de Papel",
-        "copyToClipboard": "Copiar para a Área de Transferência",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Esta função não está disponível",
         "notAvailableExplanation": "Será adicionada numa etapa posterior.",
@@ -67,11 +67,11 @@
     "copyToClipboard": {
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
-        "seedCopied": "Seed copiada",
-        "seedCopiedExplanation":
-            "A Seed foi copiada para a área de transferência e será removida quando pressionar \"CONCLUÍDO\" ou decorridos 60 segundos (o que se verificar primeiro).",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Clique no botão em baixo e copie a sua Seed para o gestor de palavras-passe.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém caracteres inválidos",
@@ -131,6 +131,8 @@
         "removeMessage": "REMOVER MENSAGEM"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Deverá guardar a sua Seed com ",
         "atLeastOne": "pelo menos uma ",
         "ofTheOptions": "das opções listadas em baixo."
@@ -139,7 +141,7 @@
         "incorrectSeed": "Seed incorreta",
         "incorrectSeedExplanation": "A Seed que introduziu está incorreta. Por favor, tente novamente.",
         "thisIsACheck": "Isto é uma verificação para certificar-se que gravou a sua Seed.",
-        "ifYouHaveNotSaved": "Se não gravou a sua Seed, por favor volte para o ecrã anterior e grave-a."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Endereço inválido",
