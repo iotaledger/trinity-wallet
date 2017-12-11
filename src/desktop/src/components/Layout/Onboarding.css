@@ -19,11 +19,13 @@
 .wrapper {
     left: 50%;
     margin: auto;
-    max-width: 100%;
+    /*max-width: 100%;*/
+    max-width: calc(100vw - 32px);
     position: absolute;
     text-align: center;
     transform: translate3d(-50%, 0, 0);
-    width: 512px;
+    width: 768px;
+    /*width: 512px;*/
 
     > div,
     > section,
@@ -58,13 +60,13 @@
 }
 
 .body-home {
-    background-image: url(images/hello-back.png), url(images/bg-green.svg);
+    background-image: url(images/hello-back.png), url(images/bg-blue.jpg);
     background-size: contain, 100% 100%;
     background-position: center;
 }
 
 .body-done {
-    background-image: url(images/balloons.png), url(images/bg-green.svg);
+    background-image: url(images/balloons.png), url(images/bg-blue.jpg);
     background-size: contain, 100% 100%;
     background-position: center;
 }
@@ -86,6 +88,38 @@
     transform: rotateY(180deg);
     video {
         max-width: 100%;
+    }
+}
+
+.seedGenerator {
+    margin: auto;
+    max-width: 384px;
+    width: 75%;
+}
+
+.saveYourSeed {
+}
+
+.seedWrapper {
+    background: white;
+    display: flex;
+    padding: 16px;
+
+    .seed {
+        flex: 1 1 calc(100% - 208px);
+        min-width: 208px;
+    }
+
+    .qr {
+        align-self: center;
+        flex: 1 1 208px;
+        padding-left: 16px;
+        text-align: right;
+        canvas {
+            height: auto !important;
+            image-rendering: pixelated;
+            max-width: 100%;
+        }
     }
 }
 
