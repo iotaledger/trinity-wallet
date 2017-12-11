@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import Dropdown from '../components/dropdown';
 import { width, height } from '../util/dimensions';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 
 const styles = StyleSheet.create({
     container: {
@@ -78,19 +80,13 @@ class NodeSelection extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveNodeSelection()}>
                             <View style={styles.itemRight}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/tick.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={tickImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Save</Text>
                             </View>
                         </TouchableOpacity>

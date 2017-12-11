@@ -41,6 +41,12 @@ import { TextField } from 'react-native-material-textfield';
 import { isAndroid } from '../util/device';
 import COLORS from '../theme/Colors';
 
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
+import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
+import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
+import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
+import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
 const StatusBarDefaultBarStyle = 'light-content';
 import { width, height } from '../util/dimensions';
 const timer = require('react-native-timer');
@@ -385,10 +391,7 @@ class Home extends Component {
                             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                                 <View>
                                     <View style={styles.loginTopContainer}>
-                                        <Image
-                                            source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                            style={styles.iotaLogo}
-                                        />
+                                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                         <View style={styles.loginTitleContainer}>
                                             <Text style={styles.loginTitle}>Please enter your password.</Text>
                                         </View>
