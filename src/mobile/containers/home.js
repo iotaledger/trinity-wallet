@@ -498,10 +498,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        backgroundColor: COLORS.backgroundBlack,
+        backgroundColor: COLORS.backgroundDarkGreen,
         opacity: 0.98,
         paddingBottom: height / 65,
-        shadowColor: COLORS.backgroundBlack,
+        shadowColor: COLORS.backgroundDarkGreen,
         shadowRadius: 4,
         shadowOffset: {
             width: 0,
