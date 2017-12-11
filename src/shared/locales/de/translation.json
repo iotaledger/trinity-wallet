@@ -8,12 +8,12 @@
         "back": "ZURÜCK",
         "done": "FERTIG",
         "next": "WEITER",
-        "manualCopy": "Niederschrift",
-        "paperWallet": "Papier Wallet",
-        "copyToClipboard": "In die Zwischenablage kopieren",
+        "manualCopy": "Schreibe deinen Seed auf",
+        "paperWallet": "Ausdrucken",
+        "copyToClipboard": "Zu Passwortmanager hinzufügen",
         "qr": "QR",
         "notAvailable": "Dieser Inhalt ist nicht verfügbar",
-        "notAvailableExplanation": "Es wird zu einem späteren Zeitpunkt hinzugefügt werden.",
+        "notAvailableExplanation": "Die Funktion wird zu einem späteren Zeitpunkt hinzugefügt werden.",
         "enterSeed": "Bitte gib deinen Seed ein.",
         "mainWallet": "HAUPTKONTO",
         "secondWallet": "ZWEITES KONTO",
@@ -27,7 +27,7 @@
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte nochmals Versuchen.",
-        "syncInProgress": "Synchronisierung im Gange",
+        "syncInProgress": "Synchronisierung ...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
         "somethingWentWrongExplanation": "Bitte die App neustarten."
@@ -68,11 +68,12 @@
     "copyToClipboard": {
         "seedCleared": "Seed gelöscht",
         "seedClearedExplanation": "Der Seed wurde aus der Zwischenablage aus Sicherheitsgründen gelöscht.",
-        "seedCopied": "Seed kopiert",
+        "seedCopied": "Seed in Zwischenablage kopiert",
         "seedCopiedExplanation":
-            "Der Seed wurde in die Zwischenablage kopiert und wird gelöscht, sobald du \"FERTIG\" drückst, oder 60 Sekunden vergangen sind, je nachdem was zuerst passiert.",
+            "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst, oder 60 Sekunden vergangen sind.",
         "clickToCopy": "Klicke die untere Schaltfläche um deinen Seed in deinen Passwort Manager zu kopieren.",
-        "doNotStore": "Speichere deinen Seed nicht als Klartext."
+        "doNotStore": "Speichere deinen Seed nicht als Klartext.",
+        "copyToClipboard": "In die Zwischenablage kopieren"
     },
     "enterSeed": {
         "invalidCharacters": "Seed beinhaltet ungültige Zeichen",
@@ -132,6 +133,8 @@
         "removeMessage": "NACHRICHT LÖSCHEN"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed aus Zwischenablage gelöscht",
+        "seedClearedExplanation": "Der Seed wurde aus der Zwischenablage aus Sicherheitsgründen gelöscht.",
         "mustSaveYourSeed": "Du musst deinen Seed mit ",
         "atLeastOne": "mindestens einer ",
         "ofTheOptions": "von den aufgeführten Optionen speichern."
@@ -140,8 +143,7 @@
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch mal.",
         "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gespeichert hast.",
-        "ifYouHaveNotSaved":
-            "Wenn du deinen Seed nicht gespeichert hast, gehe bitte zum vorherigen Bildschirm und tu dies."
+        "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gespeichert hast, gehe zurück und tu dies."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
@@ -208,7 +210,7 @@
     "resetWalletConfirmation": {
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "warning1": "Alle deine Wallet Daten, einschließlich deiner",
-        "warning2": " seeds, Passwort, ",
+        "warning2": " seeds, deinem Passwort, ",
         "warning3": "und",
         "warning4": " andere Kontoinformationen",
         "warning5": " werden verloren gehen.",
@@ -243,8 +245,8 @@
         "thatTheyAreCorrect": "prüfe ob diese Korrekt sind."
     },
     "history": {
-        "bundleHashCopied": "Bundle-Hash kopiert",
-        "bundleHashCopiedExplanation": "Deine Bundle-Hash wurde in die Zwischenablage kopiert.",
+        "bundleHashCopied": "Bundle Hash kopiert",
+        "bundleHashCopiedExplanation": "Deine Bundle Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
     }

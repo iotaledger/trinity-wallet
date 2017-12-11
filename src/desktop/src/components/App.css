@@ -13,6 +13,8 @@
     --color-red: #ff6c69;
     --color-green: #9dffaf;
     --color-darkgreen: green;
+    --color-pale-darkgreen: #203c43;
+    --color-primary: #04a997;
 
     --color-label: var(--color-yellow);
     --color-button-warning: var(--color-yellow);
@@ -22,15 +24,36 @@
     --color-button-cta: var(--color-darkgreen);
     --color-button-default: white;
 
+    --color-sidenav-text: #9eaaad;
+    --color-sidenav-text-active: white;
+    --color-sidenav-underline: transparent;
+    --color-sidenav-underline-active: var(--color-primary);
+
     /*--font-size-default: 1.8vh;*/
-    --font-size-default: 14px;
+    --font-size-medium: 14px;
     --font-size-small: 12px;
     --font-size-title: 20px;
+    --font-size-default: var(--font-size-medium);
 
     --z-index-modal: 2048;
     --z-index-overlay: 1024;
     --z-index-dropdown: 512;
     --z-index-elevated: 1;
+}
+
+@media print {
+    body {
+        color: black !important;
+        background: none !important;
+    }
+
+    :global(.printHidden) {
+        display: none;
+    }
+
+    button {
+        display: none;
+    }
 }
 
 * {
@@ -49,7 +72,7 @@ body {
 }
 
 body {
-    background-image: url(images/bg-green.svg);
+    background-image: url(images/bg-blue.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;

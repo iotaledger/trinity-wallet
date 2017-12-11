@@ -53,7 +53,6 @@ import {
     getSeed,
 } from '../../shared/libs/cryptography';
 import DropdownHolder from '../components/dropdownHolder';
-
 import { width, height } from '../util/dimensions';
 
 class Settings extends React.Component {

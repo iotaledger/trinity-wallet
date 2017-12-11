@@ -9,7 +9,6 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
 } from 'react-native';
@@ -17,9 +16,13 @@ import { Navigation } from 'react-native-navigation';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import COLORS from '../theme/Colors';
 
 import { Keyboard } from 'react-native';
 
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 
 export default class WalletResetConfirmation extends Component {
@@ -68,20 +71,17 @@ export default class WalletResetConfirmation extends Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topWrapper}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={styles.subHeaderWrapper}>
                         <Text style={styles.subHeaderText}>{toUpper('this action cannot be undone.')}</Text>
                     </View>
                     <View style={styles.infoTextWrapper}>
-                        <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
+                        <Image source={infoImagePath} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
                             <Text style={styles.infoTextLight}>All your wallet data including your</Text>
                             <Text style={styles.infoTextRegular}> seeds, password</Text>
@@ -102,7 +102,7 @@ export default class WalletResetConfirmation extends Component {
                         rightText={'YES'}
                     />
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topWrapper: {
         flex: 1.3,
