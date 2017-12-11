@@ -7,7 +7,7 @@
         "back": "戻る",
         "done": "完了",
         "next": "次へ",
-        "manualCopy": "Write seed down",
+        "manualCopy": "Seedを書き写す",
         "paperWallet": "印刷する",
         "copyToClipboard": "パスワード マネージャーに追加",
         "qr": "QRコード",
@@ -65,10 +65,10 @@
         "seedCleared": "Seedを消去しました。",
         "seedClearedExplanation": "安全のために、Seedをクリップボードから消去しました。",
         "seedCopied": "Seedをクリップボードにコピーしました",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "seedCopiedExplanation": "\"完了\"を押す、または60秒後にはSeedは消去されます。",
         "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。",
         "doNotStore": "Seedをプレーンテキストで保存するのはやめましょう。",
-        "copyToClipboard": "Copy to clipboard"
+        "copyToClipboard": "クリップボードにコピー"
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
@@ -124,8 +124,8 @@
         "removeMessage": "メッセージを削除します。"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Seedが消去されました",
+        "seedClearedExplanation": "コピーされたSeedをクリップボードから削除しました。",
         "mustSaveYourSeed": "安全にSeedを保存して下さい。",
         "atLeastOne": "最低一つ ",
         "ofTheOptions": "以下のオプションを使って。"
@@ -134,7 +134,7 @@
         "incorrectSeed": "Seedが違います。",
         "incorrectSeedExplanation": "入力したSeedは正しくありません。もう一度やり直して下さい。",
         "thisIsACheck": "これはあなたがSeedを保存したかを確認するチェックです。",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "Seedをまだ保存していない場合は戻ってください。"
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
