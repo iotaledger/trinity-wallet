@@ -9,7 +9,7 @@
         "next": "NÄSTA",
         "manualCopy": "Skriv ner din seed",
         "paperWallet": "Skriva ut papperskopia",
-        "copyToClipboard": "Add to password manager",
+        "copyToClipboard": "Lägg till i lösenordshanteraren",
         "qr": "QR",
         "notAvailable": "Denna funktion är inte tillgänglig",
         "notAvailableExplanation": "Funktionen kommer i en senare version.",
@@ -64,11 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Adress rensad",
         "seedClearedExplanation": "Adressen har rensats från urklippet för din säkerhet.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "seedCopied": "Kopierat till urklipp",
+        "seedCopiedExplanation": "Din seed kommer att rensas när du trycker på ”klar” eller 60 sekunder har gått.",
         "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till ett lösenordshanterare.",
         "doNotStore": "Förvara inte din seed i oformaterad text.",
-        "copyToClipboard": "Copy to clipboard"
+        "copyToClipboard": "Kopiera till urklipp"
     },
     "enterSeed": {
         "invalidCharacters": "Adressen innehåller ogiltiga tecken",
@@ -124,8 +124,8 @@
         "removeMessage": "TA BORT MEDDELANDE"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Seed rensad",
+        "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhet.",
         "mustSaveYourSeed": "Du måste spara din adress med ",
         "atLeastOne": "minst en ",
         "ofTheOptions": "av alternativen som anges nedan."
@@ -134,7 +134,7 @@
         "incorrectSeed": "Felaktiga adress",
         "incorrectSeedExplanation": "Den adress som du angav är felaktig. Vänligen försök igen.",
         "thisIsACheck": "Detta är en kontroll för att kontrollera om du sparat din adress.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "Om du inte har sparat din seed, gå tillbaka till föregående skärm och göra så."
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
