@@ -9,7 +9,6 @@ import {
     TouchableWithoutFeedback,
     Image,
     ScrollView,
-    ImageBackground,
     StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
@@ -18,6 +17,7 @@ import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import COLORS from '../theme/Colors';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -58,7 +58,7 @@ class SeedReentry extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -125,7 +125,7 @@ class SeedReentry extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
