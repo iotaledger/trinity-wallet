@@ -28,6 +28,7 @@ import java.util.List;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 
 public class MainApplication extends NavigationApplication {
 
@@ -55,7 +56,8 @@ public class MainApplication extends NavigationApplication {
 	        new RNFSPackage(),
             new ExtraDimensionsPackage(),
             new RNDetectNavbarAndroidPackage(),
-            new KCKeepAwakePackage()
+            new KCKeepAwakePackage(),
+            new ReactNativePushNotificationPackage()
     );
   }
 
