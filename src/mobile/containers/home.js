@@ -275,7 +275,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    {t('global:balance')}
+                                                    {t('home:balance')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -299,7 +299,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    {t('global:send')}
+                                                    {t('home:send')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -323,7 +323,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    {t('global:receive')}
+                                                    {t('home:receive')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -347,7 +347,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    {t('global:history')}
+                                                    {t('home:history')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -371,7 +371,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    {t('global:settings')}
+                                                    {t('home:settings')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
