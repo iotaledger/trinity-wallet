@@ -13,6 +13,7 @@ import SetPassword from '../containers/setPassword';
 import WriteSeedDown from '../containers/writeSeedDown';
 import CopySeedToClipboard from '../containers/copySeedToClipboard';
 import PaperWallet from '../containers/paperWallet';
+import SaveSeedConfirmation from '../containers/saveSeedConfirmation';
 import Login from '../containers/login';
 import WalletResetConfirmation from '../containers/walletResetConfirmation';
 import WalletResetRequirePassword from '../containers/walletResetRequirePassword';
@@ -44,10 +45,11 @@ export function registerScreens(store, Provider) {
     Navigation.registerComponent('copySeedToClipboard', () => getGenerator(CopySeedToClipboard), store, Provider);
     Navigation.registerComponent('languageSetup', () => getGenerator(LanguageSetup), store, Provider);
     Navigation.registerComponent('welcome', () => getGenerator(Welcome), store, Provider);
-    Navigation.registerComponent('wallet-reset-confirm', () => WalletResetConfirmation, store, Provider);
-    Navigation.registerComponent('wallet-reset-require-password', () => WalletResetRequirePassword, store, Provider);
+    Navigation.registerComponent('walletResetConfirm', () => WalletResetConfirmation, store, Provider);
+    Navigation.registerComponent('walletResetRequirePassword', () => WalletResetRequirePassword, store, Provider);
     Navigation.registerComponent('onboardingComplete', () => OnboardingComplete, store, Provider);
     Navigation.registerComponent('useSeed', () => UseSeed, store, Provider);
     Navigation.registerComponent('setSeedName', () => SetSeedName, store, Provider);
     Navigation.registerComponent('seedReentry', () => SeedReentry, store, Provider);
+    Navigation.registerComponent('saveSeedConfirmation', () => SaveSeedConfirmation, store, Provider);
 }

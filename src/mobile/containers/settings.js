@@ -466,7 +466,7 @@ class Settings extends React.Component {
     onResetWalletPress() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'wallet-reset-confirm',
+                screen: 'walletResetConfirm',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
