@@ -5,7 +5,7 @@ import { persistStore } from 'redux-persist';
 import { withRouter } from 'react-router-dom';
 import store from 'store';
 import i18next from 'libs/i18next';
-import Loading from 'components/Layout/Loading';
+import Loading from 'components/UI/Loading';
 import Onboarding from 'components/Layout/Onboarding';
 import Notifications from 'components/UI/Notifications';
 

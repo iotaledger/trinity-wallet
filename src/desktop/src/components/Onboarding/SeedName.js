@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import { renameCurrentSeed } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
 import { showError } from 'actions/notifications';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Infobox from '../UI/Infobox';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
@@ -55,7 +55,7 @@ class SeedName extends React.PureComponent {
         const { name } = this.state;
         return (
             <Template>
-                <Main>
+                <Content>
                     <p>{t('addAdditionalSeed:enterAccountName')}</p>
                     <div className={css.formGroup}>
                         <label>{t('addAdditionalSeed:accountName')}</label>
@@ -64,7 +64,7 @@ class SeedName extends React.PureComponent {
                     <Infobox>
                         <p>{t('setSeedName:canUseMultipleSeeds')}</p>
                     </Infobox>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/seed/enter" variant="warning">
                         {t('global:back')}

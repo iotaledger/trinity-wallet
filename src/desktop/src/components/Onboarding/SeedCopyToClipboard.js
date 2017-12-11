@@ -22,10 +22,7 @@ class SeedCopyToClipboard extends React.PureComponent {
 
         return (
             <div>
-                <p>
-                    Click the button below to copy your seed to a password manager. It will stay in your clipboard until
-                    you continue to your next screen.
-                </p>
+                <p>{t('copyToClipboard:clickToCopy')}</p>
                 <BoxedSeed t={t} seed={seed} />
                 <div className={css.buttonWrapper}>
                     <CopyToClipboard text={seed}>
@@ -37,7 +34,7 @@ class SeedCopyToClipboard extends React.PureComponent {
                                     title: 'Seed copied to clipboard!',
                                 })}
                         >
-                            {t('global:copyToClipboard')}
+                            {t('copyToClipboard:copyToClipboard')}
                         </Button>
                     </CopyToClipboard>
                 </div>

@@ -7,9 +7,9 @@
         "back": "TILBAKE",
         "done": "FERDIG",
         "next": "NESTE",
-        "manualCopy": "Manuell kopi",
-        "paperWallet": "Papirlommebok",
-        "copyToClipboard": "Kopier til utklippstavle",
+        "manualCopy": "Skriv ned hovednøkkelen",
+        "paperWallet": "Skriv ut papirkopi",
+        "copyToClipboard": "Legg til i passord-lagrings program",
         "qr": "QR",
         "notAvailable": "Denne funksjonen er ikke tilgjengelig",
         "notAvailableExplanation": "Dette vil bli lagt til i en senere utgave.",
@@ -67,11 +67,12 @@
     "copyToClipboard": {
         "seedCleared": "Hovednøkkel er fjernet",
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
-        "seedCopied": "Hovednøkkelen er kopiert",
+        "seedCopied": "Kopierte hovednøkkelen til utklippstavle",
         "seedCopiedExplanation":
-            "Hovednøkkelen er blitt kopiert til utklippstavlen og fjernes når du trykker \"FERDIG\" eller 60 sekunder er gått.",
+            "Hovednøkkelen vil fjernes med en gang du trykker \"FERDIG\" eller 60 sekunder har gått.",
         "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til et passord-lagrings program.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Lagre ikke hovednøkkeleb din i klartekst.",
+        "copyToClipboard": "Kopier til utklippstavlen"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
@@ -131,6 +132,8 @@
         "removeMessage": "FJERN MELDINGEN"
     },
     "saveYourSeed": {
+        "seedCleared": "Hovednøkkel er fjernet",
+        "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
         "mustSaveYourSeed": "Du må lagre hovednøkkelen med ",
         "atLeastOne": "minst én ",
         "ofTheOptions": "av alternativene nedenfor."
@@ -139,8 +142,7 @@
         "incorrectSeed": "Feil hovednøkkel",
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
         "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret nøkkelen din.",
-        "ifYouHaveNotSaved":
-            "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake til forrige steg for å lagre."
+        "ifYouHaveNotSaved": "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake for å lagre."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -194,14 +196,14 @@
         "logout": "Logg ut",
         "reset": "Tilbakestill lommeboken",
         "back": "Tilbake",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "syncingComplete": "Synkronisering fullført",
+        "syncingCompleteExplanation": "Din konto har blitt vellykket sybkronisert.",
+        "nicknameChanged": "Kontonavnet er endret",
+        "nicknameChangedExplanation": "Ditt kontonavn har blitt endret.",
+        "accountDeleted": "Konto slettet",
+        "accountDeletedExplanation": "Kontoen er fjernet fra lommeboken.",
+        "cannotPerformAction": "Kan ikke utføre handling",
+        "cannotPerformActionExplanation": "Gå til avanserte innstillinger for å tilbakestille lommeboken."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denne handlingen kan ikke angres.",
@@ -242,9 +244,9 @@
         "thatTheyAreCorrect": "at de er riktige."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Pakke hash kopiert",
+        "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen."
     }
 }

@@ -7,7 +7,7 @@ import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import { isValidSeed } from 'libs/util';
 import { createRandomSeed } from 'libs/seedUtil';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
 
@@ -67,13 +67,13 @@ class GenerateSeed extends React.PureComponent {
 
         return (
             <Template>
-                <Main>
+                <Content>
                     <Button type="button" onClick={this.generateNewSeed} variant="cta">
                         {t('newSeedSetup:pressForNewSeed')}
                     </Button>
                     <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
                     <p>{this.state.seed ? t('newSeedSetup:individualLetters') : '\u00A0'}</p>
-                </Main>
+                </Content>
                 <Footer>
                     <Button onClick={this.onRequestPrevious} variant="warning">
                         {t('global:back')}

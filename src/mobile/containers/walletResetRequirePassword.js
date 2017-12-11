@@ -16,7 +16,6 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
 } from 'react-native';
@@ -27,6 +26,8 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -112,15 +113,12 @@ class WalletResetRequirePassword extends Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                style={styles.iotaLogo}
-                            />
+                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={styles.generalText}>Enter password to reset your wallet.</Text>
@@ -135,14 +133,14 @@ class WalletResetRequirePassword extends Component {
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
+                                enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 value={this.state.password}
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
-                                secureTextEntry={true}
+                                secureTextEntry
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -166,7 +164,7 @@ class WalletResetRequirePassword extends Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle="light-content"
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -186,7 +184,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.brand.primary,
+        backgroundColor: Colors.backgroundGreen,
     },
     topWrapper: {
         flex: 1.3,
