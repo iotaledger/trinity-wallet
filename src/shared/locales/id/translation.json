@@ -192,7 +192,7 @@
         "accountDeleted": "Hapus akun",
         "accountDeletedExplanation": "Akun anda telah dihapus dari dompet ini.",
         "cannotPerformAction": "Tidak dapat melakukan aksi ini",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformActionExplanation": "Klik aturan lanjut untuk menghapus dompet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Tindakan ini tidak dapat diulang.",
@@ -230,9 +230,9 @@
         "thatTheyAreCorrect": "bahwa mereka benar."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Salin rangkaian hash",
+        "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Alamat telah disalin ke papan klip."
     }
 }
