@@ -7,9 +7,9 @@
         "back": "TILLBAKA",
         "done": "KLAR",
         "next": "NÄSTA",
-        "manualCopy": "Kopiera manuellt",
-        "paperWallet": "Pappers plånbok",
-        "copyToClipboard": "Kopiera till klippbordet",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Denna funktion är inte tillgänglig",
         "notAvailableExplanation": "Funktionen kommer i en senare version.",
@@ -39,7 +39,7 @@
         "seedTooShortExplanation":
             "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "nameInUse": "Kontonamnet används redan",
-        "nameInUseExplanation": "Vänligen använd ett unikt namn för din adress.",
+        "nameInUseExplanation": "Vänligen använd ett unikt namn för din seed.",
         "enterAccountName": "Ange ditt kontonamn.",
         "accountName": "Kontonamn",
         "noNickname": "Inget kontonamn angivet",
@@ -67,11 +67,11 @@
     "copyToClipboard": {
         "seedCleared": "Adress rensad",
         "seedClearedExplanation": "Adressen har rensats från urklippet för din säkerhet.",
-        "seedCopied": "Adress kopierad",
-        "seedCopiedExplanation":
-            "Adressen har kopierats till urklippet och kommer att rensas när du trycker på ”klar” eller när 60 sekunder har gått.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till ett lösenordshanterare.",
-        "doNotStore": "Förvara inte din seed i oformaterad text."
+        "doNotStore": "Förvara inte din seed i oformaterad text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Adressen innehåller ogiltiga tecken",
@@ -131,6 +131,8 @@
         "removeMessage": "TA BORT MEDDELANDE"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Du måste spara din adress med ",
         "atLeastOne": "minst en ",
         "ofTheOptions": "av alternativen som anges nedan."
@@ -139,7 +141,7 @@
         "incorrectSeed": "Felaktiga adress",
         "incorrectSeedExplanation": "Den adress som du angav är felaktig. Vänligen försök igen.",
         "thisIsACheck": "Detta är en kontroll för att kontrollera om du sparat din adress.",
-        "ifYouHaveNotSaved": "Om du inte har sparat din adress, gå tillbaka till föregående skärm och göra så."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Ogiltig adress",

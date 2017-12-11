@@ -7,9 +7,9 @@
         "back": "TILBAKE",
         "done": "FERDIG",
         "next": "NESTE",
-        "manualCopy": "Manuell kopi",
-        "paperWallet": "Papirlommebok",
-        "copyToClipboard": "Kopier til utklippstavle",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Denne funksjonen er ikke tilgjengelig",
         "notAvailableExplanation": "Dette vil bli lagt til i en senere utgave.",
@@ -67,11 +67,11 @@
     "copyToClipboard": {
         "seedCleared": "Hovednøkkel er fjernet",
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
-        "seedCopied": "Hovednøkkelen er kopiert",
-        "seedCopiedExplanation":
-            "Hovednøkkelen er blitt kopiert til utklippstavlen og fjernes når du trykker \"FERDIG\" eller 60 sekunder er gått.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til et passord-lagrings program.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
@@ -131,6 +131,8 @@
         "removeMessage": "FJERN MELDINGEN"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Du må lagre hovednøkkelen med ",
         "atLeastOne": "minst én ",
         "ofTheOptions": "av alternativene nedenfor."
@@ -139,8 +141,7 @@
         "incorrectSeed": "Feil hovednøkkel",
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
         "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret nøkkelen din.",
-        "ifYouHaveNotSaved":
-            "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake til forrige steg for å lagre."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
