@@ -7,9 +7,9 @@
         "back": "ZURÜCK",
         "done": "FERTIG",
         "next": "WEITER",
-        "manualCopy": "Niederschrift",
-        "paperWallet": "Papier Wallet",
-        "copyToClipboard": "In die Zwischenablage kopieren",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Dieser Inhalt ist nicht verfügbar",
         "notAvailableExplanation": "Es wird zu einem späteren Zeitpunkt hinzugefügt werden.",
@@ -64,10 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Seed gelöscht",
         "seedClearedExplanation": "Der Seed wurde aus der Zwischenablage aus Sicherheitsgründen gelöscht.",
-        "seedCopied": "Seed kopiert",
-        "seedCopiedExplanation": "Der Seed wurde in die Zwischenablage kopiert und wird gelöscht, sobald du \"FERTIG\" drückst, oder 60 Sekunden vergangen sind, je nachdem was zuerst passiert.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Klicke die untere Schaltfläche um deinen Seed in deinen Passwort Manager zu kopieren.",
-        "doNotStore": "Speichere deinen Seed nicht als Klartext."
+        "doNotStore": "Speichere deinen Seed nicht als Klartext.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Seed beinhaltet ungültige Zeichen",
@@ -123,6 +124,8 @@
         "removeMessage": "NACHRICHT LÖSCHEN"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Du musst deinen Seed mit ",
         "atLeastOne": "mindestens einer ",
         "ofTheOptions": "von den aufgeführten Optionen speichern."
@@ -131,7 +134,7 @@
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch mal.",
         "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gespeichert hast.",
-        "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gespeichert hast, gehe bitte zum vorherigen Bildschirm und tu dies."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
