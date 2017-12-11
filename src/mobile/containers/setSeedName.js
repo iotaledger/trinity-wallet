@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import trim from 'lodash/trim';
 import React from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
@@ -13,9 +13,7 @@ import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } fr
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import COLORS from '../theme/Colors';
 const StatusBarDefaultBarStyle = 'light-content';
 
 export class SetSeedName extends React.Component {
@@ -135,7 +133,7 @@ export class SetSeedName extends React.Component {
         let { accountName } = this.state;
         const { t } = this.props;
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -153,7 +151,7 @@ export class SetSeedName extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Account name"
+                                label={t('addAdditionalSeed:accountName')}
                                 tintColor="#F7D002"
                                 autoCapitalize="words"
                                 autoCorrect={false}
@@ -195,7 +193,7 @@ export class SetSeedName extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -205,7 +203,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,

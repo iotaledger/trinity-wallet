@@ -2,9 +2,28 @@ const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
+const ipcMain = electron.ipcMain;
+// const shell = electron.shell;
+
+ipcMain.on('print-to-pdf', event => {
+    // const pdfPath = path.join(os.tmpdir(), 'print.pdf');
+    const win = BrowserWindow.fromWebContents(event.sender);
+    win.webContents.printToPDF({}, (error, data) => {
+        console.log(error, data);
+        // if (error) {throw error;}
+        // fs.writeFile(pdfPath, data, error => {
+        //     if (error) {
+        //         throw error;
+        //     }
+        //     shell.openExternal('file://' + pdfPath);
+        //     event.sender.send('wrote-pdf', pdfPath);
+        // });
+    });
+});
+
 let mainWindow;
 
-function createWindow() {
+const createWindow = () => {
     mainWindow = new BrowserWindow({
         width: 1024,
         height: 768,
@@ -27,7 +46,7 @@ function createWindow() {
         .catch(err => {
             console.log('An error occurred: ', err);
         });
-}
+};
 
 app.on('ready', createWindow);
 

@@ -244,16 +244,16 @@ class Settings extends React.Component {
 
         onNodeError = dropdown => {
             this.props.manualSyncComplete();
-            dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+            dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
         };
 
         onNodeSuccess = dropdown => {
             this.props.manualSyncComplete();
-            dropdown.alertWithType('success', 'Syncing complete', `Your account has synced successfully.`);
+            dropdown.alertWithType('success', t('syncingComplete'), t('syncingCompleteExplanation'));
         };
 
         error = dropdown => {
-            dropdown.alertWithType('error', 'Something went wrong', 'Please restart the app.');
+            dropdown.alertWithType('error', t('global:somethingWentWrong'), t('global:somethingWentWrongExplanation'));
         };
     }
 
@@ -264,21 +264,30 @@ class Settings extends React.Component {
         if (!seed.match(VALID_SEED_REGEX) && seed.length == MAX_SEED_LENGTH) {
             dropdown.alertWithType(
                 'error',
-                'Seed contains invalid characters',
-                `Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.`,
+                t('addAdditionalSeed:seedInvalidChars'),
+                t('addAdditionalSeed:seedInvalidCharsExplanation'),
             );
         } else if (seed.length < MAX_SEED_LENGTH) {
             dropdown.alertWithType(
                 'error',
-                'Seed is too short',
-                `Seeds must be ${MAX_SEED_LENGTH} characters long. Your seed is currently ${
-                    seed.length
-                } characters long. Please try again.`,
+                t('addAdditionalSeed:seedTooShort'),
+                t('addAdditionalSeed:seedTooShortExplanation', {
+                    maxLength: MAX_SEED_LENGTH,
+                    currentLength: seed.length,
+                }),
             );
         } else if (!(accountName.length > 0)) {
-            dropdown.alertWithType('error', 'No nickname entered', `Please enter a nickname for your seed.`);
+            dropdown.alertWithType(
+                'error',
+                t('addAdditionalSeed:noNickname'),
+                t('addAdditionalSeed:noNicknameExplanation'),
+            );
         } else if (this.props.account.seedNames.includes(accountName)) {
-            dropdown.alertWithType('error', 'Account name already in use', `Please use a unique account name.`);
+            dropdown.alertWithType(
+                'error',
+                t('addAdditionalSeed:nameInUse'),
+                t('addAdditionalSeed:nameInUseExplanation'),
+            );
         } else {
             checkKeychainForDuplicates(
                 this.props.tempAccount.password,
@@ -312,7 +321,7 @@ class Settings extends React.Component {
                 this.props.navigator.pop({
                     animated: false,
                 });
-                dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+                dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
                 this.props.setFirstUse(false);
             };
 
@@ -337,8 +346,8 @@ class Settings extends React.Component {
         if (accountNameArray.includes(accountName)) {
             dropdown.alertWithType(
                 'error',
-                'Account name already in use',
-                'This account name is already linked to your wallet. Please use a different one.',
+                t('addAdditionalSeed:nameInUse'),
+                t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
             // Update keychain
@@ -357,7 +366,7 @@ class Settings extends React.Component {
             this.props.changeAccountName(newAccountInfo, accountNameArray);
 
             this.props.setSetting('accountManagement');
-            dropdown.alertWithType('success', 'Account name changed', `Your account name has been changed.`);
+            dropdown.alertWithType('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
         }
     }
 
@@ -365,7 +374,7 @@ class Settings extends React.Component {
     onWrongPassword() {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'Unrecognised password', 'The password was not recognised. Please try again.');
+        dropdown.alertWithType('error', t('global:unrecognisedPassword'), t('global:unrecognisedPasswordExplanation'));
     }
 
     //DeleteAccount method
@@ -394,7 +403,7 @@ class Settings extends React.Component {
 
                 this.props.setBalance(addressesWithBalance);
                 this.props.setSetting('accountManagement');
-                dropdown.alertWithType('success', 'Account deleted', `Your account has been removed from the wallet.`);
+                dropdown.alertWithType('success', t('accountDeleted'), t('accountDeletedExplanation'));
             } else {
                 error();
             }
@@ -425,7 +434,11 @@ class Settings extends React.Component {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (this.props.account.seedCount == 1) {
-            dropdown.alertWithType('error', 'Cannot perform action', 'Go to advanced settings to reset the wallet.');
+            dropdown.alertWithType(
+                'error',
+                t('global:cannotPerformAction'),
+                t('global:cannotPerformActionExplanation'),
+            );
         } else {
             this.props.setSetting('deleteAccount');
         }
@@ -434,25 +447,25 @@ class Settings extends React.Component {
     featureUnavailable() {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
     }
 
     onThemePress() {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
     }
 
     on2FASetupPress() {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
     }
 
     onResetWalletPress() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'wallet-reset-confirm',
+                screen: 'walletResetConfirm',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -501,13 +514,9 @@ class Settings extends React.Component {
         const { t } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (this.props.tempAccount.isSendingTransfer) {
-            dropdown.alertWithType('error', 'Transfer sending', 'Please wait until your transfer has been sent.');
+            dropdown.alertWithType('error', t('transferSending'), t('transferSendingExplanation'));
         } else if (this.props.tempAccount.isGeneratingReceiveAddress) {
-            dropdown.alertWithType(
-                'error',
-                'Generating receive address',
-                'Please wait until your address has been generated.',
-            );
+            dropdown.alertWithType('error', t('generatingAddress'), t('generatingAddressExplanation'));
         } else {
             this.setModalContent('addNewSeed');
         }
@@ -645,4 +654,6 @@ Settings.propTypes = {
     logoutFromWallet: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default translate(['settings', 'global', 'addAdditionalSeed'])(
+    connect(mapStateToProps, mapDispatchToProps)(Settings),
+);

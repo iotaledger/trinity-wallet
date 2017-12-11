@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import COLORS from '../theme/Colors';
 
 import { width, height } from '../util/dimensions';
 
-class QRScanner extends React.Component {
+class QRScanner extends Component {
     render() {
         const { t } = this.props;
 
         return (
             <View style={styles.modalContent}>
-                <ImageBackground source={blueBackgroundImagePath} style={{ alignItems: 'center' }}>
+                <View style={{ alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
                     <View style={{ height: height / 12 }} />
                     <Text style={styles.qrInfoText}>Scan your QR Code</Text>
                     <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />
@@ -20,7 +20,7 @@ class QRScanner extends React.Component {
                             <Text style={styles.closeButtonText}>CLOSE</Text>
                         </TouchableOpacity>
                     </View>
-                </ImageBackground>
+                </View>
             </View>
         );
     }

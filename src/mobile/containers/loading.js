@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, ImageBackground, WebView, StatusBar, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, WebView, StatusBar, Text, ActivityIndicator } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
@@ -10,7 +10,7 @@ import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { Navigation } from 'react-native-navigation';
 import Home from './home';
 import IotaSpin from '../components/iotaSpin';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import COLORS from '../theme/Colors';
 
 import { width, height } from '../util/dimensions';
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
@@ -44,7 +44,7 @@ class Loading extends Component {
 
         if (this.props.account.firstUse) {
             return (
-                <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+                <View style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -59,14 +59,14 @@ class Loading extends Component {
                         />
                     </View>
                     <View style={{ flex: 1 }} />
-                </ImageBackground>
+                </View>
             );
         } else if (!this.props.account.firstUse) {
             return (
-                <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+                <View style={styles.container}>
                     <StatusBar barStyle="light-content" />
                     <IotaSpin duration={3000} />
-                </ImageBackground>
+                </View>
             );
         }
     }
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: COLORS.backgroundGreen,
     },
     infoText: {
         color: 'white',

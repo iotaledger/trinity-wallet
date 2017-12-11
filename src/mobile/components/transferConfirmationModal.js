@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import COLORS from '../theme/Colors';
+
 import { width, height } from '../util/dimensions';
 
-class TransferConfirmationModal extends React.Component {
+class TransferConfirmationModal extends Component {
     constructor(props) {
         super(props);
     }
@@ -19,17 +20,24 @@ class TransferConfirmationModal extends React.Component {
 
     render() {
         const { t } = this.props;
-
+        let transferContents = null;
+        if (this.props.amount === 0) {
+            transferContents = <Text style={styles.iotaText}>a message</Text>;
+        } else {
+            transferContents = (
+                <Text style={styles.iotaText}>
+                    {' '}
+                    {this.props.amount} {this.props.denomination}{' '}
+                </Text>
+            );
+        }
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={{ width: width / 1.15, alignItems: 'center' }}>
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
                             <Text style={styles.regularText}>You are about to send </Text>
-                            <Text style={styles.iotaText}>
-                                {' '}
-                                {this.props.amount} {this.props.denomination}{' '}
-                            </Text>
+                            {transferContents}
                             <Text style={styles.middleText}> to the address:</Text>
                         </Text>
                         <Text numberOfLines={3} style={styles.addressText}>
@@ -43,7 +51,7 @@ class TransferConfirmationModal extends React.Component {
                         rightText={'SEND'}
                     />
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
