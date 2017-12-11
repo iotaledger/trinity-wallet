@@ -181,6 +181,9 @@ export function generateNewAddress(seed, seedName, addresses) {
 
         iota.api.getNewAddress(seed, options, (error, address) => {
             if (!error) {
+                const addressToCheck = [{ address: address }];
+                Promise.resolve(filterSpentAddresses(addressToCheck)).then(value => console.log(value));
+
                 const updatedAddresses = cloneDeep(addresses);
                 const addressNoChecksum = address.substring(0, MAX_SEED_LENGTH);
                 // In case the newly created address is not part of the addresses object
@@ -188,6 +191,7 @@ export function generateNewAddress(seed, seedName, addresses) {
                 if (!(addressNoChecksum in addresses)) {
                     updatedAddresses[addressNoChecksum] = 0;
                 }
+
                 dispatch(updateAddresses(seedName, updatedAddresses));
                 dispatch(generateNewAddressSuccess(address));
             } else {
