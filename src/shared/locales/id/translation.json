@@ -7,9 +7,9 @@
         "back": "KEMBALI",
         "done": "SELESAI",
         "next": "BERIKUTNYA",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "copyToClipboard": "Add to password manager",
+        "manualCopy": "Tulis Seed Anda",
+        "paperWallet": "Cetak ke printer",
+        "copyToClipboard": "Tambahkan ke manajer kata sandi",
         "qr": "QR",
         "notAvailable": "Fungsi ini tidak tersedia",
         "notAvailableExplanation": "Ini akan ditambahkan di tahap berikutnya.",
@@ -26,8 +26,8 @@
         "password": "Kata Sandi",
         "unrecognisedPassword": "Kata sandi tidak dikenali",
         "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "syncInProgress": "Sinkronisasi sedang berlangsung",
+        "syncInProgressExplanation": "Silahkan tunggu sampai sinkronisasi selesai.",
         "somethingWentWrong": "Terjadi kesalahan",
         "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali."
     },
@@ -64,11 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Seed telah dihapus",
         "seedClearedExplanation": "Seed telah dihapus dari papan klip demi keamanan anda.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "seedCopied": "Seed sudah disalin ke papan klip",
+        "seedCopiedExplanation": "Seed akan dihapus setelah menekan \"SELESAI\" atau 60 detik telah berlalu.",
         "clickToCopy": "Klik tombol dibawah ini dan salin Seed Anda ke dalam manajer kata sandi.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "doNotStore": "Jangan simpan Seed Anda di dalam teks biasa.",
+        "copyToClipboard": "Salin ke papan klip"
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
@@ -124,8 +124,8 @@
         "removeMessage": "HAPUS PESAN"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Seed telah dihapus",
+        "seedClearedExplanation": "Seed telah dihapus dari papan klip demi keamanan anda.",
         "mustSaveYourSeed": "Anda harus menyimpan password anda dengan ",
         "atLeastOne": "setidaknya satu ",
         "ofTheOptions": "pilihan dibawah ini."
@@ -134,11 +134,11 @@
         "incorrectSeed": "Seed salah",
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
         "thisIsACheck": "Ini untuk memverifikasi bahwa anda telah menyimpan Seed Anda.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan mengulang kembali."
     },
     "send": {
         "invalidAddress": "Alamat salah",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "Alamat harus {{maxLength}} karakter dan memiliki cek jumlah.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
         "notEnoughFunds": "Dana tidak mencukupi",
@@ -150,10 +150,10 @@
         "max": "Maks",
         "message": "Pesan",
         "send": "KIRIM",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmount": "Jumlah nilai salah",
+        "invalidAmountExplanation": "Silakan masukkan nilai numerik untuk jumlah transaksi.",
+        "maximumSelected": "Jumlah MAKSIMUM dipilih",
+        "iotaUnits": "Unit IOTA"
     },
     "setPassword": {
         "passwordTooShort": "Kata sandi terlalu singkat",
@@ -185,13 +185,13 @@
         "logout": "Keluar",
         "reset": "Hapus dompet",
         "back": "Kembali",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
+        "syncingComplete": "Sinkronisasi selesai",
+        "syncingCompleteExplanation": "Akun Anda telah disinkronisasi.",
+        "nicknameChanged": "Ubah nama akun",
+        "nicknameChangedExplanation": "Nama akun Anda berhasil diubah.",
+        "accountDeleted": "Hapus akun",
+        "accountDeletedExplanation": "Akun anda telah dihapus dari dompet ini.",
+        "cannotPerformAction": "Tidak dapat melakukan aksi ini",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
