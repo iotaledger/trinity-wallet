@@ -54,6 +54,7 @@
     "react-native-modal": "^4.0.0",
     "react-native-navigation": "^1.1.205",
     "react-native-os": "^1.0.1",
+    "react-native-permissions": "^1.0.4",
     "react-native-print": "^0.3.0",
     "react-native-qrcode": "^0.2.6",
     "react-native-qrcode-scanner": "^0.0.22",
