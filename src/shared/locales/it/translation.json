@@ -7,9 +7,9 @@
         "back": "INDIETRO",
         "done": "FINE",
         "next": "AVANTI",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "copyToClipboard": "Add to password manager",
+        "manualCopy": "Annota il seme",
+        "paperWallet": "Stampa copia cartacea",
+        "copyToClipboard": "Aggiungi al gestore di password",
         "qr": "QR",
         "notAvailable": "Questa funzione non è disponibile",
         "notAvailableExplanation": "Verrà aggiunta in una fase successiva.",
@@ -64,11 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Seme cancellato",
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "seedCopied": "Copiato il seme negli appunti",
+        "seedCopiedExplanation": "Il seme verrà cancellato una volta che si preme \"FINE\" o che sono trascorsi 60 secondi.",
         "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password.",
         "doNotStore": "Non salvare il tuo seme in un file non crittografato.",
-        "copyToClipboard": "Copy to clipboard"
+        "copyToClipboard": "Copia negli appunti"
     },
     "enterSeed": {
         "invalidCharacters": "Il seme contiene caratteri non validi",
@@ -124,8 +124,8 @@
         "removeMessage": "RIMUOVI IL MESSAGGIO"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Seme cancellato",
+        "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
         "mustSaveYourSeed": "Devi salvare il tuo seme con ",
         "atLeastOne": "almeno una ",
         "ofTheOptions": "delle opzioni elencate di seguito."
@@ -134,7 +134,7 @@
         "incorrectSeed": "Seme non corretto",
         "incorrectSeedExplanation": "Il seme inserito non è corretto. Si prega di riprovare.",
         "thisIsACheck": "Si tratta di un controllo per assicurarsi che hai salvato il tuo seme.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "Se non hai salvato il tuo seme, si prega di tornare indietro e farlo."
     },
     "send": {
         "invalidAddress": "Indirizzo non valido",
