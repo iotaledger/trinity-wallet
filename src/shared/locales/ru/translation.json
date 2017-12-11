@@ -7,9 +7,9 @@
         "back": "НАЗАД",
         "done": "ГОТОВО",
         "next": "ДАЛЕЕ",
-        "manualCopy": "Ручное копирование",
-        "paperWallet": "Бумажный кошелек",
-        "copyToClipboard": "Скопировать в буфер обмена",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR-код",
         "notAvailable": "Эта функция не доступна",
         "notAvailableExplanation": "Это будет добавлено на более поздней стадии.",
@@ -69,11 +69,11 @@
     "copyToClipboard": {
         "seedCleared": "Ключ очищен",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
-        "seedCopied": "Ключ скопирован",
-        "seedCopiedExplanation":
-            "Ключ скопирован в буфер обмена на 60 секунд. По прошествии этого времени (или после нажатия \"ГОТОВО\") буфер обмена будет очищен.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Ключ содержит недопустимые символы",
@@ -133,6 +133,8 @@
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "You must save your seed with ",
         "atLeastOne": "по крайней мере один ",
         "ofTheOptions": "из представленных вариантов."
@@ -141,7 +143,7 @@
         "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
         "thisIsACheck": "Это проверка, чтобы убедиться, что вы сохранили свой ключ.",
-        "ifYouHaveNotSaved": "Если вы не сохранили свой ключ, пожалуйста, вернитесь на предыдущий экран и сделайте это."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Неверный адрес",
