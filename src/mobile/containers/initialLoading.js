@@ -9,6 +9,7 @@ import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import COLORS from '../theme/Colors';
+import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 
 const version = getVersion();
 const build = getBuildNumber();
