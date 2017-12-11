@@ -1,35 +1,21 @@
-import merge from 'lodash/merge';
+import isEmpty from 'lodash/isEmpty';
+import trim from 'lodash/trim';
 import React from 'react';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    ScrollView,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, ImageBackground, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import {
-    storeSeedInKeychain,
-    getFromKeychain,
-    removeLastSeed,
-    checkKeychainForDuplicates,
-} from '../../shared/libs/cryptography';
+import { storeSeedInKeychain, checkKeychainForDuplicates } from '../../shared/libs/cryptography';
 import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
-class SetSeedName extends React.Component {
+export class SetSeedName extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -59,14 +45,18 @@ class SetSeedName extends React.Component {
     }
 
     componentDidMount() {
-        this.nameInput.focus();
+        if (this.nameInput) {
+            this.nameInput.focus();
+        }
     }
 
     onDonePress() {
         const { t } = this.props;
-        if (this.state.accountName != '') {
+        const trimmedAccountName = trim(this.state.accountName);
+
+        if (!isEmpty(this.state.accountName)) {
             if (!this.props.account.onboardingComplete) {
-                this.props.setSeedName(this.state.accountName);
+                this.props.setSeedName(trimmedAccountName);
                 this.props.navigator.push({
                     screen: 'setPassword',
                     navigatorStyle: { navBarHidden: true, navBarTransparent: true },
@@ -77,9 +67,9 @@ class SetSeedName extends React.Component {
                 checkKeychainForDuplicates(
                     this.props.tempAccount.password,
                     this.props.tempAccount.seed,
-                    this.state.accountName,
+                    trimmedAccountName,
                     (type, title, message) => dropdown.alertWithType(type, title, message),
-                    () => ifNoKeychainDuplicates(this.props.tempAccount.seed, this.state.accountName),
+                    () => ifNoKeychainDuplicates(this.props.tempAccount.seed, trimmedAccountName),
                 );
 
                 ifNoKeychainDuplicates = (seed, accountName) => {
@@ -163,9 +153,9 @@ class SetSeedName extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Account name"
+                                label={t('addAdditionalSeed:accountName')}
                                 tintColor="#F7D002"
-                                autoCapitalize="characters"
+                                autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="done"

@@ -227,10 +227,8 @@ class PaperWallet extends React.Component {
                         style={styles.iotaLogo}
                     />
                     <Text style={styles.infoText}>
-                        <Text style={styles.infoTextNormal}>
-                            Click the button below to print a paper copy of your seed.
-                        </Text>
-                        <Text style={styles.infoTextBold}> Store it safely.</Text>
+                        <Text style={styles.infoTextNormal}>{t('clickToPrint')}</Text>
+                        <Text style={styles.infoTextBold}> {t('storeSafely')}</Text>
                     </Text>
                 </View>
                 <View style={styles.midContainer}>
@@ -338,18 +336,18 @@ class PaperWallet extends React.Component {
                         </View>
                         <View style={styles.paperWalletTextContainer}>
                             {this._renderIotaLogo()}
-                            <Text style={styles.paperWalletText}>Never share your seed with anyone.</Text>
+                            <Text style={styles.paperWalletText}>{t('neverShare')}</Text>
                         </View>
                         <QRCode value={this.props.tempAccount.seed} getRef={c => (this.svg = c)} size={width / 3.5} />
                     </View>
                     <TouchableOpacity style={styles.checkboxContainer} onPress={event => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
-                        <Text style={styles.checkboxText}>IOTA logo</Text>
+                        <Text style={styles.checkboxText}>{t('iotaLogo')}</Text>
                     </TouchableOpacity>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onPrintPress()}>
                             <View style={styles.printButton}>
-                                <Text style={styles.printText}>PRINT PAPER WALLET</Text>
+                                <Text style={styles.printText}>{t('printWallet')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -357,7 +355,7 @@ class PaperWallet extends React.Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>DONE</Text>
+                            <Text style={styles.doneText}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -562,4 +560,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default connect(mapStateToProps)(PaperWallet);
+export default translate(['paperWallet', 'global'])(connect(mapStateToProps)(PaperWallet));
