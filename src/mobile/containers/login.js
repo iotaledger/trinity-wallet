@@ -78,6 +78,7 @@ class Login extends React.Component {
 
     onLoginPress() {
         const { t } = this.props;
+        Keyboard.dismiss;
         if (!this.state.password) {
             this.dropdown.alertWithType(
                 'error',
@@ -203,7 +204,7 @@ class Login extends React.Component {
                                         width: width / 1.4,
                                     }}
                                     secureTextEntry={true}
-                                    onSubmitEditing={() => Keyboard.dismiss}
+                                    onSubmitEditing={() => this.onLoginPress()}
                                 />
                             </View>
                             <View style={styles.bottomContainer}>
