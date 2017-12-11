@@ -299,8 +299,8 @@ const styles = StyleSheet.create({
         paddingTop: height / 25,
         paddingBottom: height / 50,
         opacity: 0.98,
-        backgroundColor: '#071f28',
-        shadowColor: '#071f28',
+        backgroundColor: '#1a1b1b',
+        shadowColor: '#1a1b1b',
         shadowOffset: {
             width: 0,
             height: -1,

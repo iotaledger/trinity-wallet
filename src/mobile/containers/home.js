@@ -8,7 +8,6 @@ import {
     TouchableWithoutFeedback,
     Image,
     View,
-    ImageBackground,
     StatusBar,
     TouchableOpacity,
     Keyboard,
@@ -40,6 +39,7 @@ import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { TextField } from 'react-native-material-textfield';
 import { isAndroid } from '../util/device';
+import { backgroundGreen } from '../theme/Colors';
 
 const StatusBarDefaultBarStyle = 'light-content';
 import { width, height } from '../util/dimensions';
@@ -244,7 +244,7 @@ class Home extends Component {
                 checkInterval={2000}
                 onInactivity={() => this.setState({ inactive: true })}
             >
-                <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
+                <View style={{ flex: 1, backgroundColor: backgroundGreen }}>
                     <StatusBar barStyle="light-content" />
                     {!this.state.inactive &&
                         !this.state.minimised && (
@@ -446,7 +446,7 @@ class Home extends Component {
                         closeInterval={5500}
                     />
                     <KeepAwake />
-                </ImageBackground>
+                </View>
             </UserInactivity>
         );
     }
@@ -495,10 +495,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        backgroundColor: '#071f28',
+        backgroundColor: '#1a1b1b',
         opacity: 0.98,
         paddingBottom: height / 65,
-        shadowColor: '#071f28',
+        shadowColor: '#1a1b1b',
         shadowRadius: 4,
         shadowOffset: {
             width: 0,

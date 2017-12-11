@@ -5,9 +5,9 @@ import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel, VictoryCont
 import { width, height } from '../util/dimensions';
 
 const chartWidth = width * 0.98;
-const chartHeight = height * 0.46;
+const chartHeight = height * 0.44;
 const victoryContainerWidth = width * 0.85;
-const victoryContainerHeight = height * 0.46;
+const victoryContainerHeight = height * 0.44;
 
 const getChartCurrencySymbol = currency => {
     if (currency === 'BTC') {
@@ -19,50 +19,43 @@ const getChartCurrencySymbol = currency => {
     return '$';
 };
 
+const timeframeFromCurrent = {
+    '24h': '7d',
+    '7d': '1m',
+    '1m': '1h',
+    '1h': '24h',
+};
+
+const nextCurrency = {
+    USD: 'BTC',
+    BTC: 'ETH',
+    ETH: 'USD',
+};
+
 class Chart extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            price: this.props.marketData.usdPrice,
+            price: props.marketData.usdPrice,
         };
     }
 
     changeCurrency() {
-        switch (this.props.marketData.currency) {
-            case 'USD':
-                this.props.setCurrency('BTC');
-                this.setState({ price: this.props.marketData.btcPrice });
-                break;
-            case 'BTC':
-                this.props.setCurrency('ETH');
-                this.setState({ price: this.props.marketData.ethPrice });
-                break;
-            case 'ETH':
-                this.props.setCurrency('USD');
-                this.setState({ price: this.props.marketData.usdPrice });
-                break;
-        }
+        const { marketData, setCurrency } = this.props;
+        const newCurrency = nextCurrency[marketData.currency];
+        setCurrency(newCurrency);
+        this.setState({ price: marketData[`${newCurrency.toLowerCase()}Price`] });
     }
 
     changeTimeframe() {
-        switch (this.props.marketData.timeframe) {
-            case '24h':
-                this.props.setTimeframe('7d');
-                break;
-            case '7d':
-                this.props.setTimeframe('1m');
-                break;
-            case '1m':
-                this.props.setTimeframe('1h');
-                break;
-            case '1h':
-                this.props.setTimeframe('24h');
-                break;
-        }
+        const { marketData, setTimeframe } = this.props;
+        setTimeframe(timeframeFromCurrent[marketData.timeframe]);
     }
 
     getMaxY() {
-        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
+        const { marketData } = this.props;
+        const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
             ...data.map(object => {
                 return object.y;
@@ -72,7 +65,8 @@ class Chart extends React.Component {
     }
 
     getMinY() {
-        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
+        const { marketData } = this.props;
+        const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const minValue = Math.min(
             ...data.map(object => {
                 return object.y;
@@ -82,7 +76,8 @@ class Chart extends React.Component {
     }
 
     getMaxX() {
-        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
+        const { marketData } = this.props;
+        const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
             ...data.map(object => {
                 return object.x;
@@ -104,22 +99,21 @@ class Chart extends React.Component {
     }
 
     getPriceFormat(x) {
-        if (this.props.marketData.currency == 'USD') {
-            x = x.toFixed(3);
-            return x;
-        } else if (this.props.marketData.currency == 'BTC') {
-            x = x.toFixed(6);
-            return x;
-        } else {
-            x = x.toFixed(5);
-            return x;
+        const { marketData } = this.props;
+
+        if (marketData.currency === 'USD') {
+            return x.toFixed(3);
+        } else if (marketData.currency === 'BTC') {
+            return x.toFixed(6);
         }
+
+        return x.toFixed(5);
     }
 
     render() {
-        const { currencySymbol } = this.props;
         const { price } = this.state;
-        const data = this.props.marketData.chartData[this.props.marketData.currency][this.props.marketData.timeframe];
+        const { marketData } = this.props;
+        const data = marketData.chartData[marketData.currency][marketData.timeframe];
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
@@ -130,14 +124,13 @@ class Chart extends React.Component {
                             style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
-                                <Text style={styles.buttonText}>{this.props.marketData.currency}</Text>
+                                <Text style={styles.buttonText}>{marketData.currency}</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
                     <View style={styles.priceContainer}>
                         <Text style={styles.iotaPrice}>
-                            {getChartCurrencySymbol(this.props.marketData.currency)}{' '}
-                            {this.getPriceFormat(this.state.price)} / Mi
+                            {getChartCurrencySymbol(marketData.currency)} {this.getPriceFormat(price)} / Mi
                         </Text>
                     </View>
                     <View style={styles.buttonContainer}>
@@ -147,7 +140,7 @@ class Chart extends React.Component {
                             style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
-                                <Text style={styles.buttonText}>{this.props.marketData.timeframe}</Text>
+                                <Text style={styles.buttonText}>{marketData.timeframe}</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -197,9 +190,9 @@ class Chart extends React.Component {
                     </VictoryContainer>
                 </View>
                 <View style={styles.marketDataContainer}>
-                    <Text style={styles.marketFigure}>MCAP: $ {this.props.marketData.mcap}</Text>
-                    <Text style={styles.marketFigure}>Change: {this.props.marketData.change24h}%</Text>
-                    <Text style={styles.marketFigure}>Volume (24h): $ {this.props.marketData.volume}</Text>
+                    <Text style={styles.marketFigure}>MCAP: $ {marketData.mcap}</Text>
+                    <Text style={styles.marketFigure}>Change: {marketData.change24h}%</Text>
+                    <Text style={styles.marketFigure}>Volume (24h): $ {marketData.volume}</Text>
                 </View>
             </View>
         );
@@ -210,12 +203,10 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center',
         borderColor: '#f2f2f2',
-        borderWidth: 0.6,
+        borderWidth: 0.4,
         borderRadius: 5,
         paddingHorizontal: 10,
-        // paddingVertical: 2.5,
         paddingTop: 2.5,
         paddingBottom: 3.5,
     },
@@ -223,19 +214,19 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
     },
     container: {
         flex: 1,
-        paddingVertical: height / 1000,
+        flexDirection: 'column',
+        justifyContent: 'center',
     },
     topContainer: {
-        paddingTop: 15,
         flex: 1,
         flexDirection: 'row',
         backgroundColor: 'transparent',
         alignItems: 'center',
         zIndex: 1,
+        paddingVertical: height / 45,
     },
     priceContainer: {
         flex: 8,
@@ -254,6 +245,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'center',
+        paddingBottom: height / 100,
     },
     buttonText: {
         color: 'white',
