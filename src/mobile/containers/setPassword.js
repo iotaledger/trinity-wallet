@@ -7,7 +7,6 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
 } from 'react-native';
@@ -21,6 +20,7 @@ import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { isAndroid } from '../util/device';
+import COLORS from '../theme/Colors';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
@@ -190,7 +190,7 @@ class SetPassword extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 {isAndroid && <View style={styles.container}>{this._renderContent()}</View>}
                 {!isAndroid && (
                     <KeyboardAwareScrollView
@@ -202,7 +202,7 @@ class SetPassword extends React.Component {
                         {this._renderContent()}
                     </KeyboardAwareScrollView>
                 )}
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,

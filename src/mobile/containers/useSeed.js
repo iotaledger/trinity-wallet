@@ -8,7 +8,6 @@ import {
     TouchableWithoutFeedback,
     Image,
     ScrollView,
-    ImageBackground,
     StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
@@ -22,9 +21,7 @@ import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeSeedInKeychain } from 'iota-wallet-shared-modules/libs/cryptography';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
-import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import COLORS from '../theme/Colors';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -100,7 +97,7 @@ class UseSeed extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -179,7 +176,7 @@ class UseSeed extends React.Component {
                 >
                     {this._renderModalContent()}
                 </Modal>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -189,6 +186,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,

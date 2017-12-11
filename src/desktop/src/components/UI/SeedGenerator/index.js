@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Letter from './Letter';
 import { createRandomSeed } from 'libs/seedUtil';
 
@@ -9,6 +10,7 @@ export default class SeedGenerator extends React.PureComponent {
     static propTypes = {
         seed: PropTypes.string,
         onUpdatedSeed: PropTypes.func,
+        className: PropTypes.string,
     };
 
     state = {
@@ -75,9 +77,9 @@ export default class SeedGenerator extends React.PureComponent {
     };
 
     render() {
-        const { seed, updateCounter } = this.state;
+        const { className, seed, updateCounter } = this.state;
         return (
-            <div className={css.wrapper}>
+            <div className={classNames(css.wrapper, className)}>
                 {seed.split('').map((letter, index) => {
                     return (
                         <Letter

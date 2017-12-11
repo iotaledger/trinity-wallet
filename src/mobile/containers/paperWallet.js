@@ -1,6 +1,6 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import { RNPrint } from 'NativeModules';
@@ -10,11 +10,7 @@ import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html.js';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { isAndroid, isIOS } from '../util/device';
 import { width, height } from '../util/dimensions';
-import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked.png';
-import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked.png';
-import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import COLORS from '../theme/Colors';
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
 let results = '';
@@ -219,15 +215,13 @@ class PaperWallet extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     <Text style={styles.infoText}>
-                        <Text style={styles.infoTextNormal}>
-                            Click the button below to print a paper copy of your seed.
-                        </Text>
-                        <Text style={styles.infoTextBold}> Store it safely.</Text>
+                        <Text style={styles.infoTextNormal}>{t('clickToPrint')}</Text>
+                        <Text style={styles.infoTextBold}> {t('storeSafely')}</Text>
                     </Text>
                 </View>
                 <View style={styles.midContainer}>
@@ -332,18 +326,18 @@ class PaperWallet extends React.Component {
                         </View>
                         <View style={styles.paperWalletTextContainer}>
                             {this._renderIotaLogo()}
-                            <Text style={styles.paperWalletText}>Never share your seed with anyone.</Text>
+                            <Text style={styles.paperWalletText}>{t('neverShare')}</Text>
                         </View>
                         <QRCode value={this.props.tempAccount.seed} getRef={c => (this.svg = c)} size={width / 3.5} />
                     </View>
                     <TouchableOpacity style={styles.checkboxContainer} onPress={event => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
-                        <Text style={styles.checkboxText}>IOTA logo</Text>
+                        <Text style={styles.checkboxText}>{t('iotaLogo')}</Text>
                     </TouchableOpacity>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onPrintPress()}>
                             <View style={styles.printButton}>
-                                <Text style={styles.printText}>PRINT PAPER WALLET</Text>
+                                <Text style={styles.printText}>{t('printWallet')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -351,11 +345,11 @@ class PaperWallet extends React.Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>DONE</Text>
+                            <Text style={styles.doneText}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -365,7 +359,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
@@ -556,4 +550,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default connect(mapStateToProps)(PaperWallet);
+export default translate(['paperWallet', 'global'])(connect(mapStateToProps)(PaperWallet));

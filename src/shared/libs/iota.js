@@ -1,4 +1,5 @@
-import IOTA from 'iota.lib.js';
+// import IOTA from 'iota.lib.js';
+import IOTA from './iota.lib.promisified';
 import { defaultNode } from '../config';
 
 export const iota = new IOTA({ provider: defaultNode });
@@ -12,12 +13,11 @@ function listener() {
 
 export const convertFromTrytes = trytes => {
     trytes = trytes.replace(/9+$/, '');
-    var message = iota.utils.fromTrytes(trytes);
-    if (trytes == '') {
+    const message = iota.utils.fromTrytes(trytes);
+    if (trytes === '') {
         return 'Empty';
-    } else {
-        return message;
     }
+    return message;
 };
 
 export const getBalances = addresses => {

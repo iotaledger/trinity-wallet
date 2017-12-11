@@ -1,19 +1,31 @@
 import merge from 'lodash/merge';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
+import COLORS from '../theme/Colors';
 
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 
 class SaveYourSeed extends Component {
+    componentWillReceiveProps(newProps) {
+        const { t } = this.props;
+        if (newProps.tempAccount.copiedToClipboard) {
+            this.timeout = setTimeout(() => {
+                this.dropdown.alertWithType('info', t('seedCleared'), t('seedClearedExplanation'));
+            }, 500);
+            this.props.setCopiedToClipboard(false);
+        }
+    }
     onDonePress() {
         this.props.navigator.push({
-            screen: 'seedReentry',
+            screen: 'saveSeedConfirmation',
             navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
             animated: false,
             overrideBackPress: true,
@@ -54,7 +66,7 @@ class SaveYourSeed extends Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -95,7 +107,16 @@ class SaveYourSeed extends Component {
                         rightText={t('global:done')}
                     />
                 </View>
-            </ImageBackground>
+                <DropdownAlert
+                    ref={ref => (this.dropdown = ref)}
+                    successColor="#009f3f"
+                    errorColor="#A10702"
+                    titleStyle={styles.dropdownTitle}
+                    defaultTextContainer={styles.dropdownTextContainer}
+                    messageStyle={styles.dropdownMessage}
+                    imageStyle={styles.dropdownImage}
+                />
+            </View>
         );
     }
 }
@@ -105,7 +126,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,
@@ -125,8 +146,8 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     optionButtonText: {
-        color: '#8BD4FF',
-        fontFamily: 'Lato-Light',
+        color: '#88D4FF',
+        fontFamily: 'Lato-Regular',
         fontSize: width / 25.3,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -135,7 +156,7 @@ const styles = StyleSheet.create({
         borderColor: '#8BD4FF',
         borderWidth: 1.5,
         borderRadius: 15,
-        width: width / 1.6,
+        width: width / 1.36,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -156,24 +177,24 @@ const styles = StyleSheet.create({
     infoText: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.9,
+        fontSize: width / 23,
         textAlign: 'left',
         paddingTop: height / 10,
-        paddingHorizontal: width / 6,
         textAlign: 'center',
         backgroundColor: 'transparent',
+        paddingHorizontal: width / 9,
     },
     infoTextNormal: {
         color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 25.9,
+        fontSize: width / 23,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 25.9,
+        fontSize: width / 23,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -181,14 +202,47 @@ const styles = StyleSheet.create({
         height: width / 5,
         width: width / 5,
     },
+    dropdownTitle: {
+        fontSize: width / 25.9,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
+    },
+    dropdownMessage: {
+        fontSize: width / 29.6,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
+    },
+    dropdownImage: {
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
+        alignSelf: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
+const mapDispatchToProps = dispatch => ({
+    setCopiedToClipboard: boolean => dispatch(setCopiedToClipboard(boolean)),
+});
+
 SaveYourSeed.propTypes = {
     navigator: PropTypes.object.isRequired,
 };
 
-export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps)(SaveYourSeed));
+export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));

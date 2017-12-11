@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
-import {
-    Image,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    ImageBackground,
-    Keyboard,
-} from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Fonts from '../theme/Fonts';
 import Colors from '../theme/Colors';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { width, height } from '../util/dimensions';
 import Modal from 'react-native-modal';
 import { TextField } from 'react-native-material-textfield';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
+import COLORS from '../theme/Colors';
 
 class DeleteAccount extends React.Component {
     constructor(props) {
@@ -63,7 +52,7 @@ class DeleteAccount extends React.Component {
     }
 
     _renderModalContent = (titleColour, sendOrReceive) => (
-        <ImageBackground source={blueBackgroundImagePath} style={{ width: width / 1.15, alignItems: 'center' }}>
+        <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
             <View style={styles.modalContent}>
                 <Text style={[styles.infoText, { paddingBottom: height / 16 }]}>
                     Are you sure you want to delete your account called {this.props.currentAccountName}?
@@ -75,7 +64,7 @@ class DeleteAccount extends React.Component {
                     rightText={'YES'}
                 />
             </View>
-        </ImageBackground>
+        </View>
     );
 
     render() {

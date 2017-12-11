@@ -16,7 +16,6 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
 } from 'react-native';
@@ -114,7 +113,7 @@ class WalletResetRequirePassword extends Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -134,14 +133,14 @@ class WalletResetRequirePassword extends Component {
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
+                                enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 value={this.state.password}
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
-                                secureTextEntry={true}
+                                secureTextEntry
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -165,7 +164,7 @@ class WalletResetRequirePassword extends Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle="light-content"
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -185,7 +184,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.brand.primary,
+        backgroundColor: Colors.backgroundGreen,
     },
     topWrapper: {
         flex: 1.3,
