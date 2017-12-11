@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { renameCurrentSeed } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Infobox from '../UI/Infobox';
 import Button from '../UI/Button';
 import css from '../Layout/Onboarding.css';
@@ -45,7 +45,7 @@ class SeedName extends React.PureComponent {
         const { name } = this.state;
         return (
             <Template>
-                <Main>
+                <Content>
                     <p>{t('text')}</p>
                     <div className={css.formGroup}>
                         <label>{t('label')}</label>
@@ -60,7 +60,7 @@ class SeedName extends React.PureComponent {
                     <Infobox>
                         <p>{t('explanation')}</p>
                     </Infobox>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/seed/enter" variant="warning">
                         {t('button2')}

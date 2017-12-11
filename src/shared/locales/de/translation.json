@@ -69,7 +69,8 @@
         "seedCleared": "Seed gelöscht",
         "seedClearedExplanation": "Der Seed wurde aus der Zwischenablage aus Sicherheitsgründen gelöscht.",
         "seedCopied": "Seed in Zwischenablage kopiert",
-        "seedCopiedExplanation": "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst, oder 60 Sekunden vergangen sind.",
+        "seedCopiedExplanation":
+            "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst, oder 60 Sekunden vergangen sind.",
         "clickToCopy": "Klicke die untere Schaltfläche um deinen Seed in deinen Passwort Manager zu kopieren.",
         "doNotStore": "Speichere deinen Seed nicht als Klartext.",
         "copyToClipboard": "In die Zwischenablage kopieren"
