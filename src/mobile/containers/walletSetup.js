@@ -42,23 +42,30 @@ class WalletSetup extends React.Component {
                         source={require('iota-wallet-shared-modules/images/iota-glow.png')}
                         style={styles.iotaLogo}
                     />
-                    <View style={styles.greetingTextContainer}>
-                        <Text style={styles.greetingText}>{t('okay')}</Text>
-                        <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
-                    </View>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={styles.infoTextContainer}>
-                        <Image source={require('iota-wallet-shared-modules/images/info.png')} style={styles.infoIcon} />
-                        <Text style={styles.infoText}>{t('seedExplanation')}</Text>
-                        <Text style={styles.infoText}>
-                            <Text style={styles.infoTextLight}>{t('explanation1')}</Text>
-                            <Text style={styles.infoTextRegular}>{t('explanation2')}</Text>
-                            <Text style={styles.infoTextLight}>{t('explanation3')}</Text>
-                            <Text style={styles.infoTextRegular}>{t('explanation4')}</Text>
-                            <Text style={styles.infoTextLight}>{t('explanation5')}</Text>
-                        </Text>
-                        <Text style={styles.infoText}>{t('keepSafe')}</Text>
+                    <View style={styles.topMidContainer}>
+                        <View style={styles.greetingTextContainer}>
+                            <Text style={styles.greetingText}>{t('okay')}</Text>
+                            <Text style={styles.questionText}>{t('doYouAlreadyHaveASeed')}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.bottomMidContainer}>
+                        <View style={styles.infoTextContainer}>
+                            <Image
+                                source={require('iota-wallet-shared-modules/images/info.png')}
+                                style={styles.infoIcon}
+                            />
+                            <Text style={styles.infoText}>{t('seedExplanation')}</Text>
+                            <Text style={styles.infoText}>
+                                <Text style={styles.infoTextLight}>{t('explanation1')}</Text>
+                                <Text style={styles.infoTextRegular}>{t('explanation2')}</Text>
+                                <Text style={styles.infoTextLight}>{t('explanation3')}</Text>
+                                <Text style={styles.infoTextRegular}>{t('explanation4')}</Text>
+                                <Text style={styles.infoTextLight}>{t('explanation5')}</Text>
+                            </Text>
+                            <Text style={styles.infoText}>{t('keepSafe')}</Text>
+                        </View>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
@@ -82,19 +89,25 @@ const styles = StyleSheet.create({
         backgroundColor: '#102e36',
     },
     topContainer: {
-        flex: 1.5,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 2.5,
+        flex: 3.7,
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 8,
+    },
+    topMidContainer: {
+        flex: 0.65,
+        justifyContent: 'flex-end',
+    },
+    bottomMidContainer: {
+        flex: 1.35,
+        justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 0.7,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -103,7 +116,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 15,
-        width: width / 1.6,
+        width: width / 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: width / 30,
@@ -138,7 +151,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: width / 8,
-        paddingTop: height / 15,
     },
     greetingText: {
         color: 'white',
