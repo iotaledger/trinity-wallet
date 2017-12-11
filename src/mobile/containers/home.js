@@ -39,7 +39,7 @@ import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { TextField } from 'react-native-material-textfield';
 import { isAndroid } from '../util/device';
-import { backgroundGreen } from '../theme/Colors';
+import COLORS from '../theme/Colors';
 
 const StatusBarDefaultBarStyle = 'light-content';
 import { width, height } from '../util/dimensions';
@@ -244,7 +244,7 @@ class Home extends Component {
                 checkInterval={2000}
                 onInactivity={() => this.setState({ inactive: true })}
             >
-                <View style={{ flex: 1, backgroundColor: backgroundGreen }}>
+                <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                     <StatusBar barStyle="light-content" />
                     {!this.state.inactive &&
                         !this.state.minimised && (
@@ -495,10 +495,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        backgroundColor: '#1a1b1b',
+        backgroundColor: COLORS.backgroundBlack,
         opacity: 0.98,
         paddingBottom: height / 65,
-        shadowColor: '#1a1b1b',
+        shadowColor: COLORS.backgroundBlack,
         shadowRadius: 4,
         shadowOffset: {
             width: 0,

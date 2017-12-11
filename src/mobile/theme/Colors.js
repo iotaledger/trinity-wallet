@@ -9,7 +9,7 @@ const BaseColors = {
     white: '#FFFFFF',
     backgroundGreen: '#1B4149',
     backgroundGray: '#3B3B3B',
-    backgroundBlack: '#1a1b1b',
+    backgroundBlack: '#1A1A1A',
 };
 
 export default {
