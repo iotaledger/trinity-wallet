@@ -15,6 +15,20 @@ class Chart extends React.Component {
         };
     }
 
+    componentWillMount() {
+        switch (this.props.marketData.currency) {
+            case 'USD':
+                this.setState({ price: this.props.marketData.usdPrice });
+                break;
+            case 'BTC':
+                this.setState({ price: this.props.marketData.btcPrice });
+                break;
+            case 'ETH':
+                this.setState({ price: this.props.marketData.ethPrice });
+                break;
+        }
+    }
+
     changeCurrency() {
         switch (this.props.marketData.currency) {
             case 'USD':
