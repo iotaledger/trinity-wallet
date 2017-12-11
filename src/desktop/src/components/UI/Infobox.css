@@ -2,7 +2,8 @@
     border: 1px dotted white;
     border-radius: 16px;
     font-size: var(--font-size-small);
-    margin: 16px 0;
+    max-width: 512px;
+    margin: 16px auto;
     padding: 16px;
 
     > :first-child {

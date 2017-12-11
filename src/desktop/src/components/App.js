@@ -53,7 +53,7 @@ class App extends React.Component {
                     this.setState(() => ({
                         initialized: true,
                     })),
-                2500,
+                3200,
             );
         });
     }

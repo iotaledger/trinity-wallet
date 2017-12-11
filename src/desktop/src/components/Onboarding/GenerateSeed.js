@@ -18,12 +18,11 @@ class GenerateSeed extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        seed: PropTypes.string,
         showError: PropTypes.func.isRequired,
     };
 
     state = {
-        seed: this.props.seed,
+        seed: null,
     };
 
     generateNewSeed = () => {
@@ -52,27 +51,35 @@ class GenerateSeed extends React.PureComponent {
         }
         clearSeeds(seed);
         addAndSelectSeed(seed);
-        history.push('/seed/save');
+        history.push('/seed/save/manual');
+    };
+
+    onRequestPrevious = () => {
+        const { history, clearSeeds } = this.props;
+
+        clearSeeds();
+        history.push('/wallet-setup');
     };
 
     render() {
         const { t } = this.props;
         const { seed } = this.state;
+
         return (
-            <Template headline={t('title')}>
+            <Template>
                 <Main>
                     <Button type="button" onClick={this.generateNewSeed} variant="cta">
-                        {t('button1')}
+                        {t('newSeedSetup:pressForNewSeed')}
                     </Button>
                     <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
-                    <p>{t('text1')}</p>
+                    <p>{this.state.seed ? t('newSeedSetup:individualLetters') : '\u00A0'}</p>
                 </Main>
                 <Footer>
-                    <Button to="/wallet-setup" variant="warning">
-                        {t('button3')}
+                    <Button onClick={this.onRequestPrevious} variant="warning">
+                        {t('global:back')}
                     </Button>
                     <Button onClick={this.onRequestNext} variant="success">
-                        {t('button2')}
+                        {t('global:next')}
                     </Button>
                 </Footer>
             </Template>
