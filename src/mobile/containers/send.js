@@ -30,6 +30,7 @@ import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import DropdownHolder from '../components/dropdownHolder';
 import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
@@ -474,10 +475,7 @@ class Send extends Component {
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                         >
                             <View style={styles.info}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/info.png')}
-                                    style={styles.infoIcon}
-                                />
+                                <Image source={infoImagePath} style={styles.infoIcon} />
                                 <Text style={styles.infoText}>{t('iotaUnits')}</Text>
                             </View>
                         </TouchableOpacity>

@@ -74,7 +74,7 @@ export default class InitialLoading extends Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
-                    <Image source={require('iota-wallet-shared-modules/images/iota-white.png')} style={styles.logo} />
+                    <Image source={iotaWhiteImagePath} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>IOTA Alpha Wallet {FULL_VERSION}</Text>
