@@ -84,7 +84,7 @@ class Receive extends Component {
 
         const error = () => {
             this.props.generateNewAddressError();
-            dropdown.alertWithType('error', t('somethingWentWrong'), t('somethingWentWrongExplanation'));
+            dropdown.alertWithType('error', t('global:somethingWentWrong'), t('global:somethingWentWrongExplanation'));
         };
     }
 
@@ -143,13 +143,25 @@ class Receive extends Component {
                                 fgColor="#FFF"
                             />
                         </View>
-                        <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                            <View style={styles.receiveAddressContainer}>
-                                <Text numberOfLines={5} style={styles.receiveAddressText}>
-                                    {receiveAddress}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
+                        {receiveAddress.length > 1 && (
+                            <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
+                                <View style={styles.receiveAddressContainer}>
+                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(0, 18)}</Text>
+                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(18, 36)}</Text>
+                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(36, 54)}</Text>
+                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(54, 72)}</Text>
+                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(72, 90)}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
+                        {receiveAddress.length <= 1 && (
+                            // Place holder
+                            <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
+                                <View style={styles.receiveAddressContainer}>
+                                    <Text style={styles.receiveAddressText}>{Array(19).join(' ')}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
                     </View>
                     <View style={{ alignItems: 'center', flex: 0.5, justifyContent: 'flex-start' }}>
                         <TextField
@@ -228,9 +240,9 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 8,
-        width: width / 2.05,
         height: width / 3.4,
         justifyContent: 'center',
+        padding: width / 30,
     },
     activityIndicator: {
         flex: 1,
@@ -243,7 +255,6 @@ const styles = StyleSheet.create({
         fontSize: width / 21.8,
         color: 'white',
         backgroundColor: 'transparent',
-        padding: width / 30,
         textAlign: 'center',
     },
     generateButton: {
