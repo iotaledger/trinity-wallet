@@ -143,15 +143,25 @@ class Receive extends Component {
                                 fgColor="#FFF"
                             />
                         </View>
-                        <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                            <View style={styles.receiveAddressContainer}>
-                                <Text style={styles.receiveAddressText}>{receiveAddress.substring(0, 18)}</Text>
-                                <Text style={styles.receiveAddressText}>{receiveAddress.substring(18, 36)}</Text>
-                                <Text style={styles.receiveAddressText}>{receiveAddress.substring(36, 54)}</Text>
-                                <Text style={styles.receiveAddressText}>{receiveAddress.substring(54, 72)}</Text>
-                                <Text style={styles.receiveAddressText}>{receiveAddress.substring(72, 90)}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        {receiveAddress.length > 1 && (
+                            <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
+                                <View style={styles.receiveAddressContainer}>
+                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(0, 18)}</Text>
+                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(18, 36)}</Text>
+                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(36, 54)}</Text>
+                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(54, 72)}</Text>
+                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(72, 90)}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
+                        {receiveAddress.length <= 1 && (
+                            // Place holder
+                            <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
+                                <View style={styles.receiveAddressContainer}>
+                                    <Text style={styles.receiveAddressText}>{Array(19).join(' ')}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
                     </View>
                     <View style={{ alignItems: 'center', flex: 0.5, justifyContent: 'flex-start' }}>
                         <TextField
@@ -231,7 +241,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         height: width / 3.4,
-        width: width / 2.05,
         justifyContent: 'center',
         padding: width / 30,
     },
