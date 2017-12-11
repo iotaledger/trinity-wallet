@@ -6,6 +6,7 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import PropTypes from 'prop-types';
 import Seedbox from '../components/seedBox.js';
 import { width, height } from '../util/dimensions';
+import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {
@@ -15,7 +16,7 @@ class CopySeedToClipboard extends React.Component {
         this.timeout = null;
     }
 
-    generateSeedClearanceAlert() {
+    generateClipboardClearAlert() {
         const { t } = this.props;
 
         if (this.dropdown) {
@@ -37,6 +38,7 @@ class CopySeedToClipboard extends React.Component {
     onDonePress() {
         this.clearTimeout();
         Clipboard.setString('');
+        this.props.setCopiedToClipboard(true);
 
         this.props.navigator.pop({
             animated: false,
@@ -48,10 +50,9 @@ class CopySeedToClipboard extends React.Component {
 
         Clipboard.setString(this.props.tempAccount.seed);
         this.dropdown.alertWithType('success', t('seedCopied'), t('seedCopiedExplanation'));
-
         this.timeout = setTimeout(() => {
             Clipboard.setString('');
-            this.generateSeedClearanceAlert();
+            this.generateClipboardClearAlert();
         }, 60000);
     }
 
@@ -70,9 +71,9 @@ class CopySeedToClipboard extends React.Component {
                     <Text style={styles.infoTextNormal}>{t('clickToCopy')}</Text>
                     <Text style={styles.infoTextBold}>{t('doNotStore')}</Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
-                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 22 }}>
+                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ marginTop: height / 22 }}>
                         <View style={styles.copyButton}>
-                            <Text style={styles.copyText}>{t('global:copyToClipboard').toUpperCase()}</Text>
+                            <Text style={styles.copyText}>{t('copyToClipboard').toUpperCase()}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        paddingHorizontal: width / 6,
+        paddingHorizontal: width / 5,
     },
     infoTextBold: {
         color: 'white',
@@ -228,4 +229,10 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default translate(['copyToClipboard', 'global'])(connect(mapStateToProps)(CopySeedToClipboard));
+const mapDispatchToProps = dispatch => ({
+    setCopiedToClipboard: boolean => dispatch(setCopiedToClipboard(boolean)),
+});
+
+export default translate(['copyToClipboard', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(CopySeedToClipboard),
+);
