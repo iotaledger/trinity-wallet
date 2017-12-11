@@ -39,15 +39,15 @@ class SecurityEnter extends React.PureComponent {
 
         if (password !== passwordConfirm) {
             return showError({
-                title: t('error2_title'),
-                text: t('error2_text'),
+                title: t('changePassword:passwordsDoNotMatch'),
+                text: t('changePassword:passwordsDoNotMatchExplanation'),
             });
         }
 
         if (!isValidPassword(password)) {
             return showError({
-                title: t('error1_title'),
-                text: t('error1_text'),
+                title: t('changePassword:passwordTooShort'),
+                text: t('changePassword:passwordTooShortExplanation'),
             });
         }
 
@@ -60,28 +60,31 @@ class SecurityEnter extends React.PureComponent {
         return (
             <Template type="form" onSubmit={this.onRequestNext}>
                 <Main>
-                    <p>{t('text')}</p>
+                    <p>{t('setPassword:nowWeNeedTo')}</p>
                     <div className={css.formGroup}>
-                        <PasswordInput placeholder={t('placeholder1')} name="password" onChange={this.changeHandler} />
+                        <PasswordInput
+                            placeholder={t('global:password')}
+                            name="password"
+                            onChange={this.changeHandler}
+                        />
                     </div>
                     <div className={css.formGroup}>
                         <PasswordInput
-                            placeholder={t('placeholder2')}
+                            placeholder={t('setPassword:retypePassword')}
                             name="passwordConfirm"
                             onChange={this.changeHandler}
                         />
                     </div>
                     <Infobox>
-                        <p>{t('explanation')}</p>
-                        <p>{t('reminder')}</p>
+                        <p>{t('setPassword:anEncryptedCopy')}</p>
                     </Infobox>
                 </Main>
                 <Footer>
                     <Button to="/seed/name" variant="warning">
-                        {t('button2')}
+                        {t('global:back')}
                     </Button>
                     <Button type="submit" variant="success">
-                        {t('button1')}
+                        {t('global:done')}
                     </Button>
                 </Footer>
             </Template>

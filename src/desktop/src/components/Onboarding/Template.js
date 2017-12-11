@@ -43,7 +43,7 @@ export default class Template extends React.Component {
         return (
             <Type {...props}>
                 <header>
-                    <Logo width={72} />
+                    <Logo width={72} className="static" />
                     {headline && <h1>{headline}</h1>}
                 </header>
                 {React.Children.map(children, child => {
