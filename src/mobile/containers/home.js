@@ -47,6 +47,8 @@ import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
 import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
 import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
 import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+
 const StatusBarDefaultBarStyle = 'light-content';
 import { width, height } from '../util/dimensions';
 const timer = require('react-native-timer');
