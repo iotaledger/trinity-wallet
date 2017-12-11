@@ -7,9 +7,9 @@
         "back": "VOLVER",
         "done": "LISTO",
         "next": "SIGUIENTE",
-        "manualCopy": "Copiar Manualmente",
-        "paperWallet": "Billetera de Papel",
-        "copyToClipboard": "Copiar al Portapapeles",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Esta función no está disponible",
         "notAvailableExplanation": "Se añadirá más adelante.",
@@ -64,10 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Seed copied",
-        "seedCopiedExplanation": "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contiene caracteres inválidos",
@@ -123,6 +124,8 @@
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Debes guardar tu seed con ",
         "atLeastOne": "como mínimo con una ",
         "ofTheOptions": "of the options listed below."
@@ -131,7 +134,7 @@
         "incorrectSeed": "Seed incorrecta",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Invalid address",
