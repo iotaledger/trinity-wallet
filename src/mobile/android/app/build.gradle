@@ -165,6 +165,10 @@ dependencies {
     compile("com.crashlytics.sdk.android:crashlytics:2.6.4@aar") {
             transitive = true;
     }
+    compile project(':react-native-push-notification')
+    compile ('com.google.android.gms:play-services-gcm:8.1.0') {
+        force = true;
+    }
 }
 
 // Run this once to be able to run the application with BUCK
