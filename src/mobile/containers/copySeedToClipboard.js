@@ -1,11 +1,13 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, Clipboard, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, Clipboard, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
 import Seedbox from '../components/seedBox.js';
+import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
+import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
 const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {
@@ -15,7 +17,7 @@ class CopySeedToClipboard extends React.Component {
         this.timeout = null;
     }
 
-    generateSeedClearanceAlert() {
+    generateClipboardClearAlert() {
         const { t } = this.props;
 
         if (this.dropdown) {
@@ -37,6 +39,7 @@ class CopySeedToClipboard extends React.Component {
     onDonePress() {
         this.clearTimeout();
         Clipboard.setString('');
+        this.props.setCopiedToClipboard(true);
 
         this.props.navigator.pop({
             animated: false,
@@ -48,17 +51,16 @@ class CopySeedToClipboard extends React.Component {
 
         Clipboard.setString(this.props.tempAccount.seed);
         this.dropdown.alertWithType('success', t('seedCopied'), t('seedCopiedExplanation'));
-
         this.timeout = setTimeout(() => {
             Clipboard.setString('');
-            this.generateSeedClearanceAlert();
+            this.generateClipboardClearAlert();
         }, 60000);
     }
 
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image
@@ -67,12 +69,12 @@ class CopySeedToClipboard extends React.Component {
                     />
                 </View>
                 <View style={styles.midContainer}>
-                    <Text style={styles.infoTextNormal}>Click the button below to copy your seed.</Text>
-                    <Text style={styles.infoTextBold}>Do not store your seed in plain text.</Text>
+                    <Text style={styles.infoTextNormal}>{t('clickToCopy')}</Text>
+                    <Text style={styles.infoTextBold}>{t('doNotStore')}</Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
-                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ paddingTop: height / 22 }}>
+                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ marginTop: height / 22 }}>
                         <View style={styles.copyButton}>
-                            <Text style={styles.copyText}>{t('global:copyToClipboard').toUpperCase()}</Text>
+                            <Text style={styles.copyText}>{t('copyToClipboard').toUpperCase()}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -93,7 +95,7 @@ class CopySeedToClipboard extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 0.4,
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        paddingHorizontal: width / 6,
+        paddingHorizontal: width / 5,
     },
     infoTextBold: {
         color: 'white',
@@ -228,4 +230,10 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default translate('saveYourSeed3')(connect(mapStateToProps)(CopySeedToClipboard));
+const mapDispatchToProps = dispatch => ({
+    setCopiedToClipboard: boolean => dispatch(setCopiedToClipboard(boolean)),
+});
+
+export default translate(['copyToClipboard', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(CopySeedToClipboard),
+);

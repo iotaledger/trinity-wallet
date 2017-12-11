@@ -9,7 +9,6 @@ import {
     TouchableWithoutFeedback,
     Image,
     ScrollView,
-    ImageBackground,
     StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
@@ -18,6 +17,7 @@ import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import COLORS from '../theme/Colors';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -43,11 +43,7 @@ class SeedReentry extends React.Component {
                 overrideBackPress: true,
             });
         } else {
-            this.dropdown.alertWithType(
-                'error',
-                'Incorrect seed.',
-                `The seed you entered is incorrect. Please try again.`,
-            );
+            this.dropdown.alertWithType('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
         }
     }
 
@@ -62,7 +58,7 @@ class SeedReentry extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -75,7 +71,7 @@ class SeedReentry extends React.Component {
                                     />
                                 </View>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your seed.</Text>
+                                    <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
@@ -86,7 +82,7 @@ class SeedReentry extends React.Component {
                                     fontSize={width / 20.7}
                                     labelPadding={3}
                                     baseColor="white"
-                                    label="Seed"
+                                    label={t('global:seed')}
                                     tintColor="#F7D002"
                                     autoCapitalize={'characters'}
                                     autoCorrect={false}
@@ -104,21 +100,16 @@ class SeedReentry extends React.Component {
                                         source={require('iota-wallet-shared-modules/images/info.png')}
                                         style={styles.infoIcon}
                                     />
-                                    <Text style={styles.infoText}>
-                                        This is a check to make sure you saved your seed.
-                                    </Text>
-                                    <Text style={styles.infoText}>
-                                        If you have not saved your seed, please go back to the previous screen and do
-                                        so.
-                                    </Text>
+                                    <Text style={styles.infoText}>{t('thisIsACheck')}</Text>
+                                    <Text style={styles.infoText}>{t('ifYouHaveNotSaved')}</Text>
                                 </View>
                             </View>
                             <View style={styles.bottomContainer}>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.onBackPress()}
                                     onRightButtonPress={() => this.onDonePress()}
-                                    leftText={'BACK'}
-                                    rightText={'DONE'}
+                                    leftText={t('global:back')}
+                                    rightText={t('global:done')}
                                 />
                             </View>
                         </View>
@@ -134,7 +125,7 @@ class SeedReentry extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -144,6 +135,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
@@ -153,7 +145,7 @@ const styles = StyleSheet.create({
         flex: 3.8,
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: height / 12,
+        paddingTop: height / 8,
     },
     bottomContainer: {
         flex: 1.7,
@@ -281,4 +273,4 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-export default connect(mapStateToProps)(SeedReentry);
+export default translate(['seedReentry', 'global'])(connect(mapStateToProps)(SeedReentry));

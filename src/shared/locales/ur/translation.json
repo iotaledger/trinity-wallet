@@ -7,9 +7,9 @@
         "back": "BACK",
         "done": "DONE",
         "next": "NEXT",
-        "manualCopy": "Manual Copy",
-        "paperWallet": "Paper Wallet",
-        "copyToClipboard": "Copy to Clipboard",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "This function is not available",
         "notAvailableExplanation": "It will be added at a later stage.",
@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Unrecognised password",
         "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
         "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "somethingWentWrong": "Something went wrong",
+        "somethingWentWrongExplanation": "Please restart the app."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -65,10 +67,11 @@
     "copyToClipboard": {
         "seedCleared": "Seed cleared",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Seed copied",
-        "seedCopiedExplanation":
-            "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager."
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "clickToCopy": "Click the button below and copy your seed to a password manager.",
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
@@ -121,8 +124,6 @@
         "printWallet": "PRINT PAPER WALLET"
     },
     "receive": {
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "GENERATE NEW ADDRESS",
@@ -130,15 +131,17 @@
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "You must save your seed with ",
         "atLeastOne": "at least one ",
         "ofTheOptions": "of the options listed below."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed.",
+        "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Invalid address",
@@ -191,7 +194,15 @@
         "advanced": "Advanced settings",
         "logout": "Log out",
         "reset": "Reset wallet",
-        "back": "Back"
+        "back": "Back",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
@@ -228,5 +239,11 @@
         "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "triple check",
         "thatTheyAreCorrect": "that they are correct."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Address copied",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
