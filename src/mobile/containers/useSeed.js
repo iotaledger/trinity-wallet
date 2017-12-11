@@ -49,8 +49,9 @@ class UseSeed extends React.Component {
             this.dropdown.alertWithType(
                 'error',
                 'Seed is too short',
-                `Seeds must be at least 60 characters long (ideally ${MAX_SEED_LENGTH} characters). Your seed is currently ${this
-                    .state.seed.length} characters long. Please try again.`,
+                `Seeds must be at least 60 characters long (ideally ${
+                    MAX_SEED_LENGTH
+                } characters). Your seed is currently ${this.state.seed.length} characters long. Please try again.`,
             );
         } else if (this.state.seed.length >= 60) {
             this.props.getAccountInfoNewSeed(this.state.seed, 'usedSeed');
@@ -103,10 +104,7 @@ class UseSeed extends React.Component {
                         <View style={styles.container}>
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                        style={styles.iotaLogo}
-                                    />
+                                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                 </View>
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.title}>Please enter your seed.</Text>
@@ -136,10 +134,7 @@ class UseSeed extends React.Component {
                                     <View style={styles.qrButtonContainer}>
                                         <TouchableOpacity onPress={() => this.onQRPress()}>
                                             <View style={styles.qrButton}>
-                                                <Image
-                                                    source={require('iota-wallet-shared-modules/images/camera.png')}
-                                                    style={styles.qrImage}
-                                                />
+                                                <Image source={cameraImagePath} style={styles.qrImage} />
                                                 <Text style={styles.qrText}> QR </Text>
                                             </View>
                                         </TouchableOpacity>

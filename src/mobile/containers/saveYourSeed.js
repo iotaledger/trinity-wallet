@@ -9,6 +9,8 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
 import COLORS from '../theme/Colors';
 
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 
 class SaveYourSeed extends Component {
@@ -67,10 +69,7 @@ class SaveYourSeed extends Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>{t('mustSaveYourSeed')}</Text>
                         <Text style={styles.infoTextBold}>{t('atLeastOne')}</Text>

@@ -11,6 +11,9 @@ import setFirstUse from 'iota-wallet-shared-modules/actions/account';
 import Dropdown from '../components/dropdown';
 import COLORS from '../theme/Colors';
 
+import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -96,16 +99,10 @@ class LanguageSetup extends Component {
         return (
             <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                 <View style={styles.container}>
-                    <Image
-                        style={styles.helloBackground}
-                        source={require('iota-wallet-shared-modules/images/hello-back.png')}
-                    />
+                    <Image style={styles.helloBackground} source={helloBackImagePath} />
                     <StatusBar barStyle="light-content" />
                     <View style={styles.topContainer}>
-                        <Image
-                            source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                            style={styles.iotaLogo}
-                        />
+                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     </View>
                     <View style={styles.midContainer}>
                         <View style={{ flex: 0.2 }} />

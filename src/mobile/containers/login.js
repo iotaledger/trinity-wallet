@@ -29,6 +29,8 @@ import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import NodeSelection from '../components/nodeSelection.js';
 import COLORS from '../theme/Colors';
 
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 const StatusBarDefaultBarStyle = 'light-content';
 
 import { width, height } from '../util/dimensions';
@@ -172,10 +174,7 @@ class Login extends React.Component {
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <View>
                             <View style={styles.topContainer}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                    style={styles.iotaLogo}
-                                />
+                                <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.title}>Please enter your password.</Text>
                                 </View>

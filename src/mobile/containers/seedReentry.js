@@ -19,6 +19,9 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import COLORS from '../theme/Colors';
 
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 //import DropdownHolder from './dropdownHolder';
 
 import { width, height } from '../util/dimensions';
@@ -65,10 +68,7 @@ class SeedReentry extends React.Component {
                         <View style={styles.container}>
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                        style={styles.iotaLogo}
-                                    />
+                                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                 </View>
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.title}>{t('global:enterSeed')}</Text>

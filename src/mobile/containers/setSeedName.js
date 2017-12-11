@@ -138,10 +138,7 @@ export class SetSeedName extends React.Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                style={styles.iotaLogo}
-                            />
+                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.greetingText}>{t('addAdditionalSeed:enterAccountName')}</Text>
                             </View>
@@ -171,10 +168,7 @@ export class SetSeedName extends React.Component {
                                 onSubmitEditing={() => this.onDonePress()}
                             />
                             <View style={styles.infoTextContainer}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/info.png')}
-                                    style={styles.infoIcon}
-                                />
+                                <Image source={infoImagePath} style={styles.infoIcon} />
                                 <Text style={styles.infoText}>{t('canUseMultipleSeeds')}</Text>
                                 <Text style={styles.infoText}>{t('youCanAdd')}</Text>
                             </View>

@@ -12,7 +12,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('nodeSelection')}>
                             <View style={styles.item}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/node.png')}
+                                    source={nodeImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Select node</Text>
@@ -25,7 +25,7 @@ class AdvancedSettings extends React.Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('manualSync')}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/sync.png')} style={styles.icon} />
+                                <Image source={syncImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Manual sync</Text>
                             </View>
                         </TouchableOpacity>
@@ -36,7 +36,7 @@ class AdvancedSettings extends React.Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.onResetWalletPress()}>
                             <View style={styles.item}>
-                                <Image source={require('../../shared/images/cross.png')} style={styles.icon} />
+                                <Image source={crossImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Reset Wallet</Text>
                             </View>
                         </TouchableOpacity>
@@ -48,7 +48,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
+                                    source={arrowLeftImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Back</Text>
