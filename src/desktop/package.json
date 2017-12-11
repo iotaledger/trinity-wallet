@@ -35,10 +35,9 @@
         "cross-env": "^5.0.5",
         "css-hot-loader": "^1.3.1",
         "css-loader": "^0.23.1",
-        "electron": "^1.7.8",
+        "electron": "^1.7.9",
         "electron-builder": "^19.29.2",
-        "electron-devtools-installer": "^2.2.0",
-        "electron-prebuilt": "^1.4.13",
+        "electron-devtools-installer": "^2.2.1",
         "eslint": "^4.9.0",
         "express": "^4.13.4",
         "extract-text-webpack-plugin": "^3.0.0",
@@ -60,10 +59,11 @@
         "react-qr-reader": "^1.2.1",
         "react-redux": "^5.0.6",
         "react-router-dom": "^4.2.2",
-        "react-transition-group": "^2.2.1",
         "react-textarea-autosize": "^5.2.1",
+        "react-transition-group": "^2.2.1",
         "redux": "^3.7.2",
         "redux-persist": "^4.9.1",
+        "sjcl": "^1.0.7",
         "style-loader": "^0.13.1",
         "url-loader": "^0.6.2",
         "webpack": "^3.6.0",
@@ -75,7 +75,7 @@
             "buildResources": "../../shared/build",
             "output": "./out"
         },
-        "appId": "com.iotatoken.wallet",
+        "appId": "com.iotatoken.uclwallet",
         "asar": false,
         "protocols": [
             {
@@ -115,5 +115,9 @@
         "mac": {
             "category": "public.app-category.developer-tools"
         }
+    },
+    "dependencies": {
+        "babel-polyfill": "^6.26.0",
+        "electron-rebuild": "^1.6.0"
     }
 }

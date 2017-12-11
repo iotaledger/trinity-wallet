@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import trim from 'lodash/trim';
 import React from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
@@ -13,6 +13,7 @@ import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } fr
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
+import COLORS from '../theme/Colors';
 const StatusBarDefaultBarStyle = 'light-content';
 
 export class SetSeedName extends React.Component {
@@ -132,15 +133,12 @@ export class SetSeedName extends React.Component {
         let { accountName } = this.state;
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                style={styles.iotaLogo}
-                            />
+                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.greetingText}>{t('addAdditionalSeed:enterAccountName')}</Text>
                             </View>
@@ -170,10 +168,7 @@ export class SetSeedName extends React.Component {
                                 onSubmitEditing={() => this.onDonePress()}
                             />
                             <View style={styles.infoTextContainer}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/info.png')}
-                                    style={styles.infoIcon}
-                                />
+                                <Image source={infoImagePath} style={styles.infoIcon} />
                                 <Text style={styles.infoText}>{t('canUseMultipleSeeds')}</Text>
                                 <Text style={styles.infoText}>{t('youCanAdd')}</Text>
                             </View>
@@ -198,7 +193,7 @@ export class SetSeedName extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -208,7 +203,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,

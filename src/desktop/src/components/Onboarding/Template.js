@@ -4,23 +4,24 @@ import PropTypes from 'prop-types';
 // import Header from './Header';
 import Logo from '../UI/Logo';
 
-export const Main = ({ children }) =>
+export const Content = ({ children }) =>
     children && (
         <main>
             <div>{children}</div>
         </main>
     );
-export const Footer = ({ children }) => children && <footer>{children}</footer>;
+export const Footer = ({ className, children }) => children && <footer className={className}>{children}</footer>;
 
 export default class Template extends React.Component {
     static propTypes = {
         bodyClass: PropTypes.string,
         children: PropTypes.node.isRequired,
+        // TODO: rename headline to title
         headline: PropTypes.string,
         type: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
     };
 
-    static Main = Main;
+    static Content = Content;
     static Footer = Footer;
 
     componentWillMount() {
@@ -47,7 +48,7 @@ export default class Template extends React.Component {
                     {headline && <h1>{headline}</h1>}
                 </header>
                 {React.Children.map(children, child => {
-                    if (child.type === Main) {
+                    if (child.type === Content) {
                         return child;
                     }
                 })}

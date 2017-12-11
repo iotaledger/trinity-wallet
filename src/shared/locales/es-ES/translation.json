@@ -8,9 +8,9 @@
         "back": "VOLVER",
         "done": "LISTO",
         "next": "SIGUIENTE",
-        "manualCopy": "Copiar Manualmente",
-        "paperWallet": "Billetera de Papel",
-        "copyToClipboard": "Copiar al Portapapeles",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Esta función no está disponible",
         "notAvailableExplanation": "Se añadirá más adelante.",
@@ -38,13 +38,13 @@
             "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
         "seedTooShort": "La seed es demasiado corta",
         "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+            "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
         "nameInUse": "Nombre de cuenta ya está en uso",
         "nameInUseExplanation": "Por favor, usa un nombre de cuenta único para tu seed.",
         "enterAccountName": "Introduzca un nombre de cuenta.",
         "accountName": "Nombre de cuenta",
-        "noNickname": "No account name entered",
-        "noNicknameExplanation": "Please enter an account name for your seed."
+        "noNickname": "Falta ingresar un nombre de la cuenta",
+        "noNicknameExplanation": "Por favor ingresa un nombre para la cuenta de tu seed."
     },
     "changePassword": {
         "oops": "¡Ay! Algo salió mal",
@@ -52,28 +52,28 @@
         "passwordUpdated": "Contraseña actualizada",
         "passwordUpdatedExplanation": "Tu contraseña se ha actualizado con éxito.",
         "incorrectPassword": "Contraseña incorrecta",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "incorrectPasswordExplanation": "La contraseña es incorrecta. Por favor inténtalo de nuevo.",
         "passwordsDoNotMatch": "Las contraseñas no coinciden",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordsDoNotMatchExplanation": "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.",
         "passwordTooShort": "La contraseña es demasiado corta",
         "passwordTooShortExplanation":
             "La contraseña debe tener al menos 12 caracteres. Por favor, inténtalo de nuevo.",
-        "oldPassword": "Cannot set old password",
+        "oldPassword": "No puedes reusar una vieja contraseña",
         "oldPasswordExplanation":
-            "You cannot use the old password as your new password. Please try again with a new password.",
+            "No puedes reusar la contraseña anterior como una nueva. Por favor inténtalo de nuevo con una distinta.",
         "ensureStrongPassword": "Asegúrate de utilizar una contraseña segura con al menos 12 caracteres.",
         "currentPassword": "Contraseña actual",
         "newPassword": "Contraseña nueva",
         "confirmPassword": "Confirme nueva contraseña"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
+        "seedCleared": "Seed removida",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Seed copied",
-        "seedCopiedExplanation":
-            "The seed has been copied to the clipboard and will be cleared once you press \"DONE\" or 60 seconds have passed, whichever comes first.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contiene caracteres inválidos",
@@ -133,6 +133,8 @@
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Debes guardar tu seed con ",
         "atLeastOne": "como mínimo con una ",
         "ofTheOptions": "of the options listed below."
@@ -141,7 +143,7 @@
         "incorrectSeed": "Seed incorrecta",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back to the previous screen and do so."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Invalid address",
