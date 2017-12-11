@@ -9,7 +9,6 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
 } from 'react-native';
@@ -17,6 +16,7 @@ import { Navigation } from 'react-native-navigation';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import COLORS from '../theme/Colors';
 
 import { Keyboard } from 'react-native';
 
@@ -61,14 +61,14 @@ export default class WalletResetConfirmation extends Component {
     }
 
     requirePassword() {
-        this.navigateTo('wallet-reset-require-password');
+        this.navigateTo('walletResetRequirePassword');
     }
 
     render() {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topWrapper}>
                     <Image
@@ -102,7 +102,7 @@ export default class WalletResetConfirmation extends Component {
                         rightText={'YES'}
                     />
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topWrapper: {
         flex: 1.3,

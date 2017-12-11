@@ -7,9 +7,9 @@
         "back": "返回",
         "done": "完成",
         "next": "下一步",
-        "manualCopy": "手動複製",
-        "paperWallet": "紙本錢包",
-        "copyToClipboard": "複製到剪貼簿",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR Code",
         "notAvailable": "此功能尚未開放",
         "notAvailableExplanation": "此功能將於稍後加入。",
@@ -27,7 +27,9 @@
         "unrecognisedPassword": "未知的密碼",
         "unrecognisedPasswordExplanation": "此為未知密碼，請再試一遍。",
         "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "somethingWentWrong": "出現錯誤",
+        "somethingWentWrongExplanation": "請重新啟動程式"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -63,9 +65,11 @@
     "copyToClipboard": {
         "seedCleared": "種子碼已清除",
         "seedClearedExplanation": "為保安全，種子碼已從剪貼簿清除。",
-        "seedCopied": "種子碼已複製",
-        "seedCopiedExplanation": "種子碼已複製至剪貼簿，按「完成」或過六十秒後便會清除。",
-        "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。"
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。",
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
@@ -116,8 +120,6 @@
         "printWallet": "列印紙本錢包"
     },
     "receive": {
-        "somethingWentWrong": "出現錯誤",
-        "somethingWentWrongExplanation": "請重新啟動程式",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
         "generateNewAddress": "產生新地址",
@@ -125,15 +127,17 @@
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "您必須將種子碼存放 ",
         "atLeastOne": "於至少 ",
         "ofTheOptions": "下列其中一個選項。"
     },
     "seedReentry": {
-        "incorrectSeed": "錯誤的種子碼。",
+        "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤。請再試一遍。",
         "thisIsACheck": "本頁面提醒您檢查是否已儲存種子碼",
-        "ifYouHaveNotSaved": "若您尚未儲存您的種子碼，請回到上一個畫面儲存。"
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "無效的地址",
@@ -184,7 +188,15 @@
         "advanced": "進階設定",
         "logout": "登出",
         "reset": "重設錢包",
-        "back": "返回"
+        "back": "返回",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "此向操作無法復原",
@@ -220,5 +232,11 @@
         "yourSeedIs": "您的種子碼是由左至右。寫下您的種子碼和檢查碼，並",
         "tripleCheck": "再三確認",
         "thatTheyAreCorrect": "兩者皆正確"
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "已複製地址",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
