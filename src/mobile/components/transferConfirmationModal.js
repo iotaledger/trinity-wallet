@@ -19,7 +19,17 @@ class TransferConfirmationModal extends React.Component {
 
     render() {
         const { t } = this.props;
-
+        let transferContents = null;
+        if (this.props.amount === 0) {
+            transferContents = <Text style={styles.iotaText}>a message</Text>;
+        } else {
+            transferContents = (
+                <Text style={styles.iotaText}>
+                    {' '}
+                    {this.props.amount} {this.props.denomination}{' '}
+                </Text>
+            );
+        }
         return (
             <ImageBackground
                 source={require('iota-wallet-shared-modules/images/bg-blue.png')}
@@ -29,10 +39,7 @@ class TransferConfirmationModal extends React.Component {
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
                             <Text style={styles.regularText}>You are about to send </Text>
-                            <Text style={styles.iotaText}>
-                                {' '}
-                                {this.props.amount} {this.props.denomination}{' '}
-                            </Text>
+                            {transferContents}
                             <Text style={styles.middleText}> to the address:</Text>
                         </Text>
                         <Text numberOfLines={3} style={styles.addressText}>

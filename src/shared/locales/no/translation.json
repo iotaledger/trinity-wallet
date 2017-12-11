@@ -7,9 +7,9 @@
         "back": "TILBAKE",
         "done": "FERDIG",
         "next": "NESTE",
-        "manualCopy": "Manuell kopi",
-        "paperWallet": "Papirlommebok",
-        "copyToClipboard": "Kopier til utklippstavle",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Denne funksjonen er ikke tilgjengelig",
         "notAvailableExplanation": "Dette vil bli lagt til i en senere utgave.",
@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Feil passord",
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
         "syncInProgress": "Synkronisering pågår",
-        "syncInProgressExplanation": "Vent til synkronisering er fullført."
+        "syncInProgressExplanation": "Vent til synkronisering er fullført.",
+        "somethingWentWrong": "Noe gikk galt",
+        "somethingWentWrongExplanation": "Start programmet på nytt."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -65,10 +67,11 @@
     "copyToClipboard": {
         "seedCleared": "Hovednøkkel er fjernet",
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstaven for din sikkerhet.",
-        "seedCopied": "Hovednøkkelen er kopiert",
-        "seedCopiedExplanation":
-            "Hovednøkkelen er blitt kopiert til utklippstavlen og fjernes når du trykker \"FERDIG\" eller 60 sekunder er gått.",
-        "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til et passord-lagrings program."
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "clickToCopy": "Klikk knappen nedenfor og kopier din hovednøkkel til et passord-lagrings program.",
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
@@ -121,8 +124,6 @@
         "printWallet": "SKRIV UT PAPIRLOMMEBOK"
     },
     "receive": {
-        "somethingWentWrong": "Noe gikk galt",
-        "somethingWentWrongExplanation": "Start programmet på nytt.",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
         "generateNewAddress": "LAG NY ADDRESSE",
@@ -130,16 +131,17 @@
         "removeMessage": "FJERN MELDINGEN"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Du må lagre hovednøkkelen med ",
         "atLeastOne": "minst én ",
         "ofTheOptions": "av alternativene nedenfor."
     },
     "seedReentry": {
-        "incorrectSeed": "Feil hovednøkkel.",
+        "incorrectSeed": "Feil hovednøkkel",
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
         "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret nøkkelen din.",
-        "ifYouHaveNotSaved":
-            "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake til forrige steg for å lagre."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -192,7 +194,15 @@
         "advanced": "Avanserte innstillinger",
         "logout": "Logg ut",
         "reset": "Tilbakestill lommeboken",
-        "back": "Tilbake"
+        "back": "Tilbake",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denne handlingen kan ikke angres.",
@@ -231,5 +241,11 @@
             "Din hovednøkkel er 81 tegn og leses fra venstre mot høyre. Skriv denne ned sammen med kontrolltegnene og",
         "tripleCheck": "dobbeltsjekk",
         "thatTheyAreCorrect": "at de er riktige."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Addresse kopiert",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }

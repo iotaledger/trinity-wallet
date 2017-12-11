@@ -13,6 +13,7 @@ const initialState = {
     isGettingTransfers: false,
     isSyncing: false,
     currentSetting: 'mainSettings',
+    copiedToClipboard: false,
 };
 
 export default (state = initialState, action) => {
@@ -117,6 +118,7 @@ export default (state = initialState, action) => {
                 lastTxAddress: '',
                 lastTxValue: 0,
                 currentSetting: 'mainSettings',
+                copiedToClipboard: false,
             };
         case 'GET_TRANSFERS_REQUEST':
             return {
@@ -137,6 +139,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 currentSetting: action.payload,
+            };
+        case 'SET_COPIED_TO_CLIPBOARD':
+            return {
+                ...state,
+                copiedToClipboard: action.payload,
             };
         default:
             return state;

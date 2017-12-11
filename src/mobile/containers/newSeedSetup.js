@@ -37,54 +37,14 @@ class NewSeedSetup extends Component {
         this.state = {
             randomised: false,
             infoTextHeight: 0,
-            flashComplete: false,
         };
-
-        this.bind(['flashText1', 'flashText2']);
-    }
-
-    bind(methods) {
-        methods.forEach(method => (this[method] = this[method].bind(this)));
-    }
-
-    componentWillUnmount() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
     }
 
     onGeneratePress() {
         this.props.randomiseSeed(randomBytes);
-        this.setState({ randomised: true });
-        if (!this.state.flashComplete) {
-            this.timeout = setTimeout(this.flashText1, 1000);
-            this.timeout = setTimeout(this.flashText2, 1250);
-            this.timeout = setTimeout(this.flashText1, 1400);
-            this.timeout = setTimeout(this.flashText2, 1650);
-
-            this.timeout = setTimeout(this.flashText1, 2400);
-            this.timeout = setTimeout(this.flashText2, 2650);
-            this.timeout = setTimeout(this.flashText1, 2800);
-            this.timeout = setTimeout(this.flashText2, 3050);
-
-            this.timeout = setTimeout(this.flashText1, 3800);
-            this.timeout = setTimeout(this.flashText2, 4050);
-            this.timeout = setTimeout(this.flashText1, 4200);
-            this.timeout = setTimeout(this.flashText2, 4450);
-            this.setState({ flashComplete: true });
-        }
+        this.setState({ randomised: true, infoTextHeight: height / 38 });
     }
 
-    flashText1() {
-        this.setState({
-            infoTextHeight: 0,
-        });
-    }
-    flashText2() {
-        this.setState({
-            infoTextHeight: height / 38,
-        });
-    }
     onNextPress() {
         const { t } = this.props;
         if (this.state.randomised) {
