@@ -193,6 +193,7 @@ class Settings extends React.Component {
                         currencies={this.props.settings.availableCurrencies}
                         backPress={() => this.props.setSetting('mainSettings')}
                         setCurrencySetting={currency => this.setState({ selectedCurrency: currency })}
+                        onGetCurrencyDataError={() => this.onGetCurrencyDataError()}
                     />
                 );
                 break;
@@ -221,6 +222,11 @@ class Settings extends React.Component {
                 break;
         }
     };
+
+    onGetCurrencyDataError() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'Poor connection', 'Failed to change currency due to a poor connection.');
+    }
 
     onManualSyncPress() {
         const dropdown = DropdownHolder.getDropdown();
