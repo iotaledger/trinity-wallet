@@ -4,6 +4,7 @@ import OnboardingButtons from './onboardingButtons.js';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
 import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import { width, height } from '../util/dimensions';
+import COLORS from '../theme/Colors';
 
 class UnitInfoModal extends React.Component {
     render() {
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 30,
         paddingTop: height / 50,
         width: width / 1.15,
-        backgroundColor: '#071f28',
+        backgroundColor: COLORS.backgroundDarkGreen,
         alignItems: 'center',
         justifyContent: 'center',
     },
