@@ -3,16 +3,10 @@ import Promise from 'bluebird';
 
 const PromisifiedIOTA = (...args) => {
     const iota = new IOTA(...args);
-    const promisified = {
-        ...iota,
-        api: Promise.promisifyAll(iota.api),
-        multisig: {
-            ...iota.multisig,
-            initiateTransferAsync: Promise.promisify(iota.multisig.initiateTransfer),
-            addSignatureAsync: Promise.promisify(iota.multisig.addSignature),
-        },
-    };
-    return promisified;
+    iota.api = Promise.promisifyAll(iota.api);
+    iota.multisig.initiateTransferAsync = Promise.promisify(iota.multisig.initiateTransfer);
+    iota.multisig.addSignatureAsync = Promise.promisify(iota.multisig.addSignature);
+    return iota;
 };
 
 export default PromisifiedIOTA;
