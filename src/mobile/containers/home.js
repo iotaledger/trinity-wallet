@@ -8,7 +8,6 @@ import {
     TouchableWithoutFeedback,
     Image,
     View,
-    ImageBackground,
     StatusBar,
     TouchableOpacity,
     Keyboard,
@@ -40,6 +39,7 @@ import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { TextField } from 'react-native-material-textfield';
 import { isAndroid } from '../util/device';
+import COLORS from '../theme/Colors';
 
 const StatusBarDefaultBarStyle = 'light-content';
 import { width, height } from '../util/dimensions';
@@ -236,7 +236,7 @@ class Home extends Component {
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
-        let { password, tabsVisible } = this.state;
+        let { password } = this.state;
 
         return (
             <UserInactivity
@@ -244,7 +244,7 @@ class Home extends Component {
                 checkInterval={2000}
                 onInactivity={() => this.setState({ inactive: true })}
             >
-                <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
+                <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                     <StatusBar barStyle="light-content" />
                     {!this.state.inactive &&
                         !this.state.minimised && (
@@ -446,7 +446,7 @@ class Home extends Component {
                         closeInterval={5500}
                     />
                     <KeepAwake />
-                </ImageBackground>
+                </View>
             </UserInactivity>
         );
     }
@@ -495,10 +495,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        backgroundColor: '#071f28',
+        backgroundColor: COLORS.backgroundBlack,
         opacity: 0.98,
         paddingBottom: height / 65,
-        shadowColor: '#071f28',
+        shadowColor: COLORS.backgroundBlack,
         shadowRadius: 4,
         shadowOffset: {
             width: 0,
@@ -507,6 +507,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1.0,
     },
     button: {
+        width: width / 8,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
@@ -528,7 +529,7 @@ const styles = StyleSheet.create({
         opacity: 1,
     },
     partiallyOpaque: {
-        opacity: 0.6,
+        opacity: 0.4,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
