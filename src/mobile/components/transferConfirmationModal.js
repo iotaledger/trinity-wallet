@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import COLORS from '../theme/Colors';
 
 import { width, height } from '../util/dimensions';
 
-class TransferConfirmationModal extends React.Component {
+class TransferConfirmationModal extends Component {
     constructor(props) {
         super(props);
     }
@@ -31,10 +32,7 @@ class TransferConfirmationModal extends React.Component {
             );
         }
         return (
-            <ImageBackground
-                source={require('iota-wallet-shared-modules/images/bg-blue.png')}
-                style={{ width: width / 1.15, alignItems: 'center' }}
-            >
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
@@ -53,7 +51,7 @@ class TransferConfirmationModal extends React.Component {
                         rightText={'SEND'}
                     />
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }

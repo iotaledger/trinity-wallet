@@ -5,8 +5,9 @@ import { persistStore } from 'redux-persist';
 import { withRouter } from 'react-router-dom';
 import store from 'store';
 import i18next from 'libs/i18next';
-import Loading from 'components/Layout/Loading';
+import Loading from 'components/UI/Loading';
 import Onboarding from 'components/Layout/Onboarding';
+import Main from 'components/Layout/Main';
 import Notifications from 'components/UI/Notifications';
 
 import './App.css';
@@ -48,15 +49,34 @@ class App extends React.Component {
 
     componentWillMount() {
         persistStore(store, { blacklist: ['tempAccount', 'notifications', 'seeds'] }, () => {
-            setTimeout(
-                () =>
-                    this.setState(() => ({
-                        initialized: true,
-                    })),
-                2500,
-            );
+            // setTimeout(
+            //     () =>
+            //         this.setState(() => ({
+            //             initialized: true,
+            //         })),
+            //     2500,
+            // );
+            // TODO: re-add timeout to avoid flashes of the loading spinner. temporarily disabled for easier debugging
+            this.setState(() => ({
+                initialized: true,
+            }));
         });
     }
+
+    // TODO: this is not working on windows. Investigate why
+    // componentDidMount() {
+    //     const { remote } = require('electron');
+    //     const keytar = remote.require('keytar');
+    //     // const keytar = require('keytar');
+    //     keytar
+    //         .setPassword('iotaWallet', 'Main Wallet', 'AAABBBCCCC999')
+    //         .then(() => {
+    //             console.log('SAVED SEED');
+    //         })
+    //         .catch(err => {
+    //             console.log('ERROR WHILE SAVING', err);
+    //         });
+    // }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.settings.locale !== this.props.settings.locale) {
@@ -81,7 +101,7 @@ class App extends React.Component {
             <div>
                 {this.state.error && <p>{this.state.error.message}</p>}
                 <Notifications />
-                {app.isOnboardingCompleted ? <div /> : <Onboarding />}
+                {app.isOnboardingCompleted ? <Main /> : <Onboarding />}
             </div>
         );
     }

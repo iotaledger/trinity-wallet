@@ -3,6 +3,15 @@ import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
 import { selectLocale } from '../components/locale';
 import i18next from 'i18next';
+import modeImagePath from 'iota-wallet-shared-modules/images/mode.png';
+import themeImagePath from 'iota-wallet-shared-modules/images/theme.png';
+import currencyImagePath from 'iota-wallet-shared-modules/images/currency.png';
+import languageImagePath from 'iota-wallet-shared-modules/images/language.png';
+import accountImagePath from 'iota-wallet-shared-modules/images/account.png';
+import twoFactorAuthImagePath from 'iota-wallet-shared-modules/images/2fa.png';
+import passwordImagePath from 'iota-wallet-shared-modules/images/password.png';
+import advancedImagePath from 'iota-wallet-shared-modules/images/advanced.png';
+import logoutImagePath from 'iota-wallet-shared-modules/images/logout.png';
 
 class MainSettings extends React.Component {
     render() {
@@ -14,7 +23,7 @@ class MainSettings extends React.Component {
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/mode.png')}
+                                    source={modeImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Mode</Text>
@@ -30,7 +39,7 @@ class MainSettings extends React.Component {
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/theme.png')}
+                                    source={themeImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Theme</Text>
@@ -46,7 +55,7 @@ class MainSettings extends React.Component {
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/currency.png')}
+                                    source={currencyImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Currency</Text>
@@ -62,7 +71,7 @@ class MainSettings extends React.Component {
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
                                 <Image
-                                    source={require('iota-wallet-shared-modules/images/language.png')}
+                                    source={languageImagePath}
                                     style={styles.icon}
                                 />
                                 <Text style={styles.titleText}>Language</Text>
@@ -82,7 +91,7 @@ class MainSettings extends React.Component {
                     <TouchableOpacity onPress={event => this.props.setSetting('accountManagement')}>
                         <View style={styles.item}>
                             <Image
-                                source={require('iota-wallet-shared-modules/images/account.png')}
+                                source={accountImagePath}
                                 style={styles.icon}
                             />
                             <Text style={styles.titleText}>Account management</Text>
@@ -92,7 +101,7 @@ class MainSettings extends React.Component {
                 <View style={styles.itemContainer}>
                     <TouchableOpacity onPress={event => this.props.on2FASetupPress()}>
                         <View style={styles.item}>
-                            <Image source={require('iota-wallet-shared-modules/images/2fa.png')} style={styles.icon} />
+                            <Image source={twoFactorAuthImagePath} style={styles.icon} />
                             <Text style={styles.titleText}>Two-factor authentication</Text>
                         </View>
                     </TouchableOpacity>
@@ -101,7 +110,7 @@ class MainSettings extends React.Component {
                     <TouchableOpacity onPress={event => this.props.setSetting('changePassword')}>
                         <View style={styles.item}>
                             <Image
-                                source={require('iota-wallet-shared-modules/images/password.png')}
+                                source={passwordImagePath}
                                 style={styles.icon}
                             />
                             <Text style={styles.titleText}>Change password</Text>
@@ -115,7 +124,7 @@ class MainSettings extends React.Component {
                     <TouchableOpacity onPress={event => this.props.setSetting('advancedSettings')}>
                         <View style={styles.item}>
                             <Image
-                                source={require('iota-wallet-shared-modules/images/advanced.png')}
+                                source={advancedImagePath}
                                 style={styles.icon}
                             />
                             <Text style={styles.titleText}>Advanced settings</Text>
@@ -126,7 +135,7 @@ class MainSettings extends React.Component {
                     <TouchableOpacity onPress={event => this.props.setModalContent('logoutConfirmation')}>
                         <View style={styles.item}>
                             <Image
-                                source={require('iota-wallet-shared-modules/images/logout.png')}
+                                source={logoutImagePath}
                                 style={styles.icon}
                             />
                             <Text style={styles.titleText}>Log out</Text>

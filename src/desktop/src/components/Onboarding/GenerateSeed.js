@@ -5,11 +5,12 @@ import { translate } from 'react-i18next';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
-import { isValidSeed } from 'libs/util';
+import Template, { Content, Footer } from './Template';
+import { isValidSeed } from '../../../../shared/libs/util';
 import { createRandomSeed } from 'libs/seedUtil';
-import Template, { Main, Footer } from './Template';
 import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
+import css from '../Layout/Onboarding.css';
 
 class GenerateSeed extends React.PureComponent {
     static propTypes = {
@@ -60,13 +61,15 @@ class GenerateSeed extends React.PureComponent {
         const { seed } = this.state;
         return (
             <Template headline={t('title')}>
-                <Main>
+                <Content>
                     <Button type="button" onClick={this.generateNewSeed} variant="cta">
                         {t('button1')}
                     </Button>
-                    <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
+                    <div className={css.seedGenerator}>
+                        <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
+                    </div>
                     <p>{t('text1')}</p>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/wallet-setup" variant="warning">
                         {t('button3')}
