@@ -24,6 +24,13 @@ export function getTransfersSuccess() {
     };
 }
 
+export function setCopiedToClipboard(boolean) {
+    return {
+        type: 'SET_COPIED_TO_CLIPBOARD',
+        payload: boolean,
+    };
+}
+
 export function setReceiveAddress(payload) {
     return {
         type: 'SET_RECEIVE_ADDRESS',

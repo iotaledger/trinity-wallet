@@ -145,9 +145,11 @@ class Receive extends Component {
                         </View>
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
                             <View style={styles.receiveAddressContainer}>
-                                <Text numberOfLines={5} style={styles.receiveAddressText}>
-                                    {receiveAddress}
-                                </Text>
+                                <Text style={styles.receiveAddressText}>{receiveAddress.substring(0, 18)}</Text>
+                                <Text style={styles.receiveAddressText}>{receiveAddress.substring(18, 36)}</Text>
+                                <Text style={styles.receiveAddressText}>{receiveAddress.substring(36, 54)}</Text>
+                                <Text style={styles.receiveAddressText}>{receiveAddress.substring(54, 72)}</Text>
+                                <Text style={styles.receiveAddressText}>{receiveAddress.substring(72, 90)}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -228,9 +230,10 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 8,
-        width: width / 2.05,
         height: width / 3.4,
+        width: width / 2.05,
         justifyContent: 'center',
+        padding: width / 30,
     },
     activityIndicator: {
         flex: 1,
@@ -243,7 +246,6 @@ const styles = StyleSheet.create({
         fontSize: width / 21.8,
         color: 'white',
         backgroundColor: 'transparent',
-        padding: width / 30,
         textAlign: 'center',
     },
     generateButton: {
