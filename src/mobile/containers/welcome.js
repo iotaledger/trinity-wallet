@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
         flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     nextButton: {
         borderColor: '#9DFFAF',

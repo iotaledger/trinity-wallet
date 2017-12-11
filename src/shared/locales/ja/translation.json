@@ -7,9 +7,9 @@
         "back": "戻る",
         "done": "完了",
         "next": "次へ",
-        "manualCopy": "手書き",
-        "paperWallet": "ペーパーウォレット",
-        "copyToClipboard": "クリップボードにコピー",
+        "manualCopy": "Seedを書き写す",
+        "paperWallet": "印刷する",
+        "copyToClipboard": "パスワード マネージャーに追加",
         "qr": "QRコード",
         "notAvailable": "この機能は使えません。",
         "notAvailableExplanation": "この機能は将来追加される予定です。",
@@ -27,7 +27,9 @@
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
         "syncInProgress": "同期中...",
-        "syncInProgressExplanation": "同期が完了するまでお待ち下さい。"
+        "syncInProgressExplanation": "同期が完了するまでお待ち下さい。",
+        "somethingWentWrong": "何かが間違っています。",
+        "somethingWentWrongExplanation": "アプリを再起動して下さい。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -62,9 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Seedを消去しました。",
         "seedClearedExplanation": "安全のために、Seedをクリップボードから消去しました。",
-        "seedCopied": "Seedをコピーしました。",
-        "seedCopiedExplanation": "Seedをクリップボードにコピーしました。「完了」を押すか60秒が経過するとSeedは消去されます。",
-        "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。"
+        "seedCopied": "Seedをクリップボードにコピーしました",
+        "seedCopiedExplanation": "\"完了\"を押す、または60秒後にはSeedは消去されます。",
+        "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。",
+        "doNotStore": "Seedをプレーンテキストで保存するのはやめましょう。",
+        "copyToClipboard": "クリップボードにコピー"
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
@@ -114,8 +118,6 @@
         "printWallet": "ペーパーウォレットを印刷"
     },
     "receive": {
-        "somethingWentWrong": "何かが間違っています。",
-        "somethingWentWrongExplanation": "アプリを再起動して下さい。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
         "generateNewAddress": "アドレス生成",
@@ -123,6 +125,8 @@
         "removeMessage": "メッセージを削除します。"
     },
     "saveYourSeed": {
+        "seedCleared": "Seedが消去されました",
+        "seedClearedExplanation": "コピーされたSeedをクリップボードから削除しました。",
         "mustSaveYourSeed": "安全にSeedを保存して下さい。",
         "atLeastOne": "最低一つ ",
         "ofTheOptions": "以下のオプションを使って。"
@@ -131,7 +135,7 @@
         "incorrectSeed": "Seedが違います。",
         "incorrectSeedExplanation": "入力したSeedは正しくありません。もう一度やり直して下さい。",
         "thisIsACheck": "これはあなたがSeedを保存したかを確認するチェックです。",
-        "ifYouHaveNotSaved": "もしSeedを保存していないのであれば、前に戻って、Seedを保存して下さい。"
+        "ifYouHaveNotSaved": "Seedをまだ保存していない場合は戻ってください。"
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
@@ -181,7 +185,15 @@
         "advanced": "詳細設定",
         "logout": "ログアウト",
         "reset": "ウォレットをリセットします。",
-        "back": "戻る"
+        "back": "戻る",
+        "syncingComplete": "同期が完了しました。",
+        "syncingCompleteExplanation": "アカウントは正常に同期しました。",
+        "nicknameChanged": "アカウント名が変更されました。",
+        "nicknameChangedExplanation": "アカウント名が変更されました。",
+        "accountDeleted": "アカウントは削除されました。",
+        "accountDeletedExplanation": "アカウントはウォレットから削除されました。",
+        "cannotPerformAction": "操作を実行できません。",
+        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。"
     },
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",
@@ -217,5 +229,11 @@
         "yourSeedIs": "Seedは左から右へ読み、81文字あります。Seedとチェックサムが正確に書き留め、",
         "tripleCheck": "何度も確認",
         "thatTheyAreCorrect": "それらが正しいことを確認して下さい。"
+    },
+    "history": {
+        "bundleHashCopied": "バンドルハッシュをコピーしました。",
+        "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
+        "addressCopied": "アドレスをコピーしました。",
+        "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。"
     }
 }

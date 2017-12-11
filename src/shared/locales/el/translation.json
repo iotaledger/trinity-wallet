@@ -7,9 +7,9 @@
         "back": "ΠΙΣΩ",
         "done": "ΤΕΛΟΣ",
         "next": "ΕΠΟΜΕΝΟ",
-        "manualCopy": "Χειροκίνητη αντιγραφή",
-        "paperWallet": "Χάρτινο Πορτοφόλι",
-        "copyToClipboard": "Αντιγραφή στο πρόχειρο",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Αυτή η λειτουργία δεν είναι διαθέσιμη",
         "notAvailableExplanation": "Θα προστεθεί σε μεταγενέστερο στάδιο.",
@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Μη αναγνωρισμένος κωδικός πρόσβασης",
         "unrecognisedPasswordExplanation": "Ο κωδικός πρόσβασης δεν αναγνωρίστηκε. Παρακαλώ δοκιμάστε ξανά.",
         "syncInProgress": "Συγχρονισμός σε εξέλιξη",
-        "syncInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί ο συγχρονισμός."
+        "syncInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί ο συγχρονισμός.",
+        "somethingWentWrong": "Κάτι πήγε στραβά",
+        "somethingWentWrongExplanation": "Παρακαλώ επανεκκινήστε την εφαρμογή."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -67,11 +69,12 @@
     "copyToClipboard": {
         "seedCleared": "Σπόρος εκκαθαρίστηκε",
         "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
-        "seedCopied": "Σπόρος αντιγράφηκε",
-        "seedCopiedExplanation":
-            "Ο σπόρος έχει αντιγραφεί στο Πρόχειρο, και θα πρέπει να εκκαθαριστεί αφού πιέσετε το πλήκτρο «ΤΕΛΟΣ» ή 60 δευτερόλεπτα έχουν περάσει, όποιο συμβεί πρώτο.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy":
-            "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης."
+            "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -125,8 +128,6 @@
         "printWallet": "ΕΚΤΥΠΩΣΗ ΧΑΡΤΙΝΟΥ ΠΟΡΤΟΦΩΛΙΟΥ"
     },
     "receive": {
-        "somethingWentWrong": "Κάτι πήγε στραβά",
-        "somethingWentWrongExplanation": "Παρακαλώ επανεκκινήστε την εφαρμογή.",
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
         "addressCopiedExplanation": "Η διεύθυνσή σας έχει αντιγραφεί στο Πρόχειρο.",
         "generateNewAddress": "ΔΗΜΙΟΥΡΓΙΑ ΝΕΑΣ ΔΙΕΥΘΥΝΣΗΣ",
@@ -134,16 +135,17 @@
         "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Πρέπει να αποθηκεύσετε το σπόρο σας με ",
         "atLeastOne": "τουλάχιστον μία ",
         "ofTheOptions": "από τις επιλογές που αναφέρονται παρακάτω."
     },
     "seedReentry": {
-        "incorrectSeed": "Λάθος σπόρος.",
+        "incorrectSeed": "Λάθος σπόρος",
         "incorrectSeedExplanation": "Ο σπόρος που πληκτρολογήσατε είναι εσφαλμένος. Παρακαλώ δοκιμάστε ξανά.",
         "thisIsACheck": "Αυτό είναι ένας έλεγχος για να βεβαιωθείτε ότι έχετε αποθηκεύσει το σπόρο σας.",
-        "ifYouHaveNotSaved":
-            "Αν δεν έχετε αποθηκεύσει το σπόρο σας, παρακαλούμε πηγαίνετε πίσω στην προηγούμενη οθόνη και κάντε το."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Μη έγκυρη διεύθυνση",
@@ -199,7 +201,15 @@
         "advanced": "Ρυθμίσεις για προχωρημένους",
         "logout": "Αποσύνδεση",
         "reset": "Επαναφέρετε το πορτοφόλι",
-        "back": "Πίσω"
+        "back": "Πίσω",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "resetWalletConfirmation": {
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
@@ -238,5 +248,11 @@
             "Ο σπόρος σας είναι 81 χαρακτήρες που διαβάζονται από αριστερά προς τα δεξιά. Γράψτε το σπόρο σας και το άθροισμα ελέγχου και",
         "tripleCheck": "τριπλοτσεκάρετε",
         "thatTheyAreCorrect": "ότι είναι σωστά."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Η διεύθυνση αντιγράφηκε",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }
