@@ -73,7 +73,7 @@ class CopySeedToClipboard extends React.Component {
                     <Seedbox seed={this.props.tempAccount.seed} />
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ marginTop: height / 22 }}>
                         <View style={styles.copyButton}>
-                            <Text style={styles.copyText}>{t('global:copyToClipboard').toUpperCase()}</Text>
+                            <Text style={styles.copyText}>{t('copyToClipboard').toUpperCase()}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
