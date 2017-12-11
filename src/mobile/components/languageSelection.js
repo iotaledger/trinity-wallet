@@ -6,6 +6,8 @@ import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modul
 import { detectLocale, selectLocale } from '../components/locale';
 import Dropdown from '../components/dropdown';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 
 const { width } = Dimensions.get('window');
 const { height } = global;
@@ -95,19 +97,13 @@ class LanguageSelection extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveLanguageSelection()}>
                             <View style={styles.itemRight}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/tick.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={tickImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Save</Text>
                             </View>
                         </TouchableOpacity>

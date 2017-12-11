@@ -24,15 +24,14 @@ class WriteSeedDown extends React.Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>
-                            {`Your seed is ${MAX_SEED_LENGTH} characters read from left to right. Write down your seed and checksum and`}
+                            {`Your seed is ${
+                                MAX_SEED_LENGTH
+                            } characters read from left to right. Write down your seed and checksum and`}
                         </Text>
                         <Text style={styles.infoTextBold}> triple check </Text>
                         <Text style={styles.infoTextNormal}>they are correct.</Text>
