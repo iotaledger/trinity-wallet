@@ -54,8 +54,8 @@ class CurrencySelection extends Component {
         const { backPress, setCurrencySetting, getCurrencyData } = this.props;
 
         backPress();
-        setCurrencySetting(currency);
         getCurrencyData(currency);
+        setCurrencySetting(currency);
     }
 
     render() {
