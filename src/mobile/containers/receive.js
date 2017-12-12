@@ -1,4 +1,4 @@
-import isUndefined from 'lodash/isUndefined';
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -7,13 +7,9 @@ import {
     StyleSheet,
     View,
     Text,
-    Image,
     ListView,
     TouchableOpacity,
     Clipboard,
-    StatusBar,
-    ScrollView,
-    KeyboardAvoidingView,
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
@@ -26,8 +22,7 @@ import {
     generateNewAddressError,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { TextField } from 'react-native-material-textfield';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
-import TransactionRow from '../components/transactionRow';
+import keychain, { getSeed } from '../util/keychain';
 import DropdownHolder from '../components/dropdownHolder';
 
 import { width, height } from '../util/dimensions';
@@ -71,14 +66,17 @@ class Receive extends Component {
         const accountInfo = this.props.account.accountInfo;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
         const addresses = currentSeedAccountInfo.addresses;
-        getFromKeychain(this.props.tempAccount.password, value => {
-            if (typeof value != 'undefined' && value != null) {
-                const seed = getSeed(value, seedIndex);
-                generate(seed, accountName, addresses);
-            } else {
-                error();
-            }
-        });
+        keychain
+            .get()
+            .then(credentials => {
+                if (get(credentials, 'password')) {
+                    const seed = getSeed(credentials.password, seedIndex);
+                    generate(seed, accountName, addresses);
+                } else {
+                    error();
+                }
+            })
+            .catch(err => console.log(err));
 
         const generate = (seed, accountName, addresses) => this.props.generateNewAddress(seed, accountName, addresses);
 
