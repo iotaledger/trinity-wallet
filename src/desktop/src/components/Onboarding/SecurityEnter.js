@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { securelyPersistSeeds } from 'libs/util';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { setOnboardingCompletionStatus } from 'actions/app';
 import { showError } from 'actions/notifications';
 import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from '../../../../shared/libs/util';
 import Template, { Content, Footer } from './Template';
-import { securelyPersistSeeds } from 'libs/util';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 import PasswordInput from '../UI/PasswordInput';
@@ -27,13 +27,6 @@ class SecurityEnter extends React.PureComponent {
     };
 
     state = {};
-
-    changeHandler = e => {
-        const { target: { name, value } } = e;
-        this.setState(() => ({
-            [name]: value,
-        }));
-    };
 
     onRequestNext = e => {
         e.preventDefault();
@@ -58,6 +51,13 @@ class SecurityEnter extends React.PureComponent {
         clearSeeds();
         setOnboardingCompletionStatus(true);
         history.push('/done');
+    };
+
+    changeHandler = e => {
+        const { target: { name, value } } = e;
+        this.setState(() => ({
+            [name]: value,
+        }));
     };
 
     render() {

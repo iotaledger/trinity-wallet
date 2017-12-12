@@ -4,7 +4,7 @@ import NavLink from '../../UI/NavLink';
 
 // import css from '../../Layout/Main.css';
 
-export default class Link extends React.Component {
+export default class Link extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
         image: PropTypes.string,
