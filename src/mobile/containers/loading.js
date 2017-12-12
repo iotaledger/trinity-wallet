@@ -31,7 +31,7 @@ class Loading extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundImageName: 'bg-blue.png',
-                        screenBackgroundColor: '#102e36',
+                        screenBackgroundColor: COLORS.backgroundDarkGreen,
                     },
                     overrideBackPress: true,
                 },
