@@ -6,6 +6,7 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Seedbox from '../components/seedBox.js';
 import { width, height } from '../util/dimensions';
 import COLORS from '../theme/Colors';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 class WriteSeedDown extends React.Component {
     constructor(props) {

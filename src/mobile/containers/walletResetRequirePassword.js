@@ -19,14 +19,13 @@ import {
     ScrollView,
     StatusBar,
 } from 'react-native';
-import Colors from '../theme/Colors';
+import COLORS from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 import { width, height } from '../util/dimensions';
@@ -50,8 +49,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundDarkGreen,
                 },
                 overrideBackPress: true,
             },
@@ -70,7 +68,7 @@ class WalletResetRequirePassword extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundDarkGreen,
                 },
                 overrideBackPress: true,
             },
@@ -156,8 +154,8 @@ class WalletResetRequirePassword extends Component {
                 </TouchableWithoutFeedback>
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
-                    successColor={Colors.dropdown.success}
-                    errorColor={Colors.dropdown.error}
+                    successColor={COLORS.dropdown.success}
+                    errorColor={COLORS.dropdown.error}
                     titleStyle={styles.dropdownTitle}
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
@@ -171,10 +169,10 @@ class WalletResetRequirePassword extends Component {
 
 const onboardingButtonsOverride = StyleSheet.create({
     rightButton: {
-        borderColor: Colors.red,
+        borderColor: COLORS.red,
     },
     rightText: {
-        color: Colors.red,
+        color: COLORS.red,
         fontFamily: Fonts.secondary,
     },
 });
@@ -184,7 +182,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.backgroundGreen,
+        backgroundColor: COLORS.backgroundGreen,
     },
     topWrapper: {
         flex: 1.3,
@@ -211,7 +209,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     questionText: {
-        color: Colors.white,
+        color: COLORS.white,
         fontFamily: Fonts.secondary,
         fontSize: width / 20.25,
         textAlign: 'center',
@@ -221,7 +219,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     newSeedButton: {
-        borderColor: Colors.orangeDark,
+        borderColor: COLORS.orangeDark,
         borderWidth: 1.2,
         borderRadius: 10,
         width: width / 1.65,
@@ -231,7 +229,7 @@ const styles = StyleSheet.create({
         marginRight: width / 10,
     },
     newSeedText: {
-        color: Colors.orangeDark,
+        color: COLORS.orangeDark,
         fontFamily: Fonts.tertiary,
         fontSize: width / 25.3,
         backgroundColor: 'transparent',
@@ -249,7 +247,7 @@ const styles = StyleSheet.create({
         width: width / 1.65,
     },
     textField: {
-        color: Colors.white,
+        color: COLORS.white,
         fontFamily: Fonts.tertiary,
     },
     textFieldLabel: {

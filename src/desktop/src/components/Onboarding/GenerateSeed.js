@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { createRandomSeed } from 'libs/seedUtil';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
@@ -23,13 +24,6 @@ class GenerateSeed extends React.PureComponent {
 
     state = {
         seed: null,
-    };
-
-    generateNewSeed = () => {
-        const newSeed = createRandomSeed();
-        this.setState(() => ({
-            seed: newSeed,
-        }));
     };
 
     onUpdatedSeed = seed => {
@@ -59,6 +53,13 @@ class GenerateSeed extends React.PureComponent {
 
         clearSeeds();
         history.push('/wallet-setup');
+    };
+
+    generateNewSeed = () => {
+        const newSeed = createRandomSeed();
+        this.setState(() => ({
+            seed: newSeed,
+        }));
     };
 
     render() {

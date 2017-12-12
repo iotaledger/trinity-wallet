@@ -47,6 +47,8 @@ import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
 import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
 import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
 import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+
 const StatusBarDefaultBarStyle = 'light-content';
 import { width, height } from '../util/dimensions';
 const timer = require('react-native-timer');
@@ -136,7 +138,8 @@ class Home extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundDarkGreen
+,
                 },
                 overrideBackPress: true,
             },
@@ -498,10 +501,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        backgroundColor: COLORS.backgroundBlack,
+        backgroundColor: COLORS.backgroundDarkGreen,
         opacity: 0.98,
         paddingBottom: height / 65,
-        shadowColor: COLORS.backgroundBlack,
+        shadowColor: COLORS.backgroundDarkGreen,
         shadowRadius: 4,
         shadowOffset: {
             width: 0,
