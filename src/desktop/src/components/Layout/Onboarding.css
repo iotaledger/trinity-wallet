@@ -67,6 +67,7 @@
         .wrapper {
             aside,
             footer,
+            header,
             p,
             button {
                 display: none;
