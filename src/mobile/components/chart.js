@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
-import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel, VictoryContainer } from 'victory-native';
+import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 import { width, height } from '../util/dimensions';
+import { isAndroid } from '../util/device';
 
 const chartWidth = width * 0.98;
 const chartHeight = height * 0.4;
-const victoryContainerWidth = width * 0.87;
-const victoryContainerHeight = height * 0.4;
 
 const getChartCurrencySymbol = currency => {
     if (currency === 'BTC') {
@@ -160,48 +159,46 @@ class Chart extends React.Component {
                     </View>
                 </View>
                 <View style={styles.chartContainer}>
-                    <VictoryContainer height={victoryContainerHeight} width={victoryContainerWidth}>
-                        <VictoryChart domainPadding={20} height={chartHeight} width={chartWidth}>
-                            <Defs>
-                                <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                    <Stop stopColor="#FFA25B" stopOpacity="1" offset="100%" />
-                                    <Stop stopColor="#FFFFFF" stopOpacity="0.25" offset="0%" />
-                                </LinearGradient>
-                            </Defs>
-                            <VictoryLine
-                                data={data}
-                                style={{
-                                    data: {
-                                        stroke: 'url(#gradient)',
-                                        strokeWidth: 1.2,
-                                    },
-                                }}
-                                domain={{
-                                    x: [-1, this.getMaxX() + 1],
-                                    y: [this.getMinY(), this.getMaxY()],
-                                }}
-                                scale={{ x: 'time', y: 'linear' }}
-                                animate={{
-                                    duration: 1500,
-                                    onLoad: { duration: 2000 },
-                                }}
-                            />
-                            <VictoryAxis
-                                dependentAxis
-                                tickFormat={x => this.getPriceFormat(x)}
-                                style={{
-                                    axis: { stroke: 'transparent' },
-                                    tickLabels: { fill: 'white', fontSize: width / 44, fontFamily: 'Lato-Regular' },
-                                }}
-                                gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.1 }} />}
-                                tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
-                                tickValues={this.getTickValues()}
-                                domain={{
-                                    y: [this.getMinY(), this.getMaxY()],
-                                }}
-                            />
-                        </VictoryChart>
-                    </VictoryContainer>
+                    <VictoryChart domainPadding={isAndroid ? 0 : 15} height={chartHeight} width={chartWidth}>
+                        <Defs>
+                            <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
+                                <Stop stopColor="#FFA25B" stopOpacity="1" offset="100%" />
+                                <Stop stopColor="#FFFFFF" stopOpacity="0.25" offset="0%" />
+                            </LinearGradient>
+                        </Defs>
+                        <VictoryLine
+                            data={data}
+                            style={{
+                                data: {
+                                    stroke: 'url(#gradient)',
+                                    strokeWidth: 1.2,
+                                },
+                            }}
+                            domain={{
+                                x: [-1, this.getMaxX() + 1],
+                                y: [this.getMinY(), this.getMaxY()],
+                            }}
+                            scale={{ x: 'time', y: 'linear' }}
+                            animate={{
+                                duration: 1500,
+                                onLoad: { duration: 2000 },
+                            }}
+                        />
+                        <VictoryAxis
+                            dependentAxis
+                            tickFormat={x => this.getPriceFormat(x)}
+                            style={{
+                                axis: { stroke: 'transparent' },
+                                tickLabels: { fill: 'white', fontSize: width / 44, fontFamily: 'Lato-Regular' },
+                            }}
+                            gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.1 }} />}
+                            tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
+                            tickValues={this.getTickValues()}
+                            domain={{
+                                y: [this.getMinY(), this.getMaxY()],
+                            }}
+                        />
+                    </VictoryChart>
                 </View>
                 <View style={styles.marketDataContainer}>
                     <Text style={styles.marketFigure}>MCAP: $ {marketData.mcap}</Text>
@@ -252,6 +249,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
+        paddingLeft: width / 8,
     },
     marketDataContainer: {
         flex: 1,
