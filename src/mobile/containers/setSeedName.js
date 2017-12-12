@@ -14,6 +14,8 @@ import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
 import COLORS from '../theme/Colors';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 const StatusBarDefaultBarStyle = 'light-content';
 
 export class SetSeedName extends React.Component {

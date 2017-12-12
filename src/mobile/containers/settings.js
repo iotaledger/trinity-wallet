@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
+import COLORS from '../theme/Colors';
 import {
     clearTempData,
     setPassword,
@@ -476,7 +477,7 @@ class Settings extends React.Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundDarkGreen,
                 },
                 overrideBackPress: true,
             },
@@ -497,7 +498,7 @@ class Settings extends React.Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundDarkGreen,
                 },
                 overrideBackPress: true,
             },
