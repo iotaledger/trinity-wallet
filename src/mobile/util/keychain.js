@@ -8,7 +8,19 @@ const keychain = {
     get: () => {
         return new Promise((resolve, reject) => {
             Keychain.getGenericPassword()
-                .then(credentials => resolve(credentials))
+                .then(credentials => {
+                    if (isEmpty(credentials)) {
+                        resolve(null);
+                    } else {
+                        const payload = {
+                            password: get(credentials, 'username'),
+                            data: get(credentials, 'password'),
+                            service: get(credentials, 'service'),
+                        };
+
+                        resolve(payload);
+                    }
+                })
                 .catch(err => reject(err));
         });
     },

@@ -69,8 +69,8 @@ class Receive extends Component {
         keychain
             .get()
             .then(credentials => {
-                if (get(credentials, 'password')) {
-                    const seed = getSeed(credentials.password, seedIndex);
+                if (get(credentials, 'data')) {
+                    const seed = getSeed(credentials.data, seedIndex);
                     generate(seed, accountName, addresses);
                 } else {
                     error();
