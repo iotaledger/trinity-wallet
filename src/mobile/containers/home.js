@@ -68,7 +68,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        keychain.get().then(a => console.log(a));
         this.props.setFirstUse(false);
         this.startBackgroundProcesses();
         const accountInfo = this.props.account.accountInfo;
@@ -186,8 +185,6 @@ class Home extends Component {
     };
 
     componentWillReceiveProps(newProps) {
-        keychain.get().then(a => console.log(a));
-
         const didNotHaveAlertPreviously =
             !this.props.alerts.category && !this.props.alerts.title && !this.props.alerts.message;
         const hasANewAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
