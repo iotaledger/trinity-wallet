@@ -1,24 +1,29 @@
 .wrapper {
-    border: 1px dotted white;
+    border: 1px dotted rgba(255, 255, 255, 0.3);
     border-radius: 16px;
     font-size: var(--font-size-small);
-    max-width: 512px;
     margin: 16px auto;
-    padding: 16px;
-
+    padding: 24px 16px 24px 57px;
+    text-align: left;
+    position: relative;
+    max-width: 512px;
     > :first-child {
         margin-top: 0;
+        padding-top: 0px;
     }
-
     > :last-child {
         margin-bottom: 0;
+        padding-bottom: 0px;
     }
-}
-
-.icon {
-    background: url(images/info.png) no-repeat;
-    background-size: contain;
-    display: inline-block;
-    width: 32px;
-    height: 32px;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 24px;
+        left: 16px;
+        background: url(images/info.png) no-repeat;
+        background-size: contain;
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+    }
 }

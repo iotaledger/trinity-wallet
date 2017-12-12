@@ -31,7 +31,7 @@
             position: absolute;
             right: 0px;
             top: 50%;
-            margin-top: -3px;
+            pointer-event: none;
         }
     }
 }
