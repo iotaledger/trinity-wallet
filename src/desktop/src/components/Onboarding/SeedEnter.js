@@ -39,22 +39,6 @@ class SeedEnter extends React.PureComponent {
         }));
     };
 
-    getPaddedSeed = seed => {
-        return `${seed}${'9'.repeat(MAX_SEED_LENGTH - seed.length < 0 ? 0 : MAX_SEED_LENGTH - seed.length)}`;
-    };
-
-    openScanner = () => {
-        this.setState(() => ({
-            showScanner: true,
-        }));
-    };
-
-    closeScanner = () => {
-        this.setState(() => ({
-            showScanner: false,
-        }));
-    };
-
     onScanEvent = seed => {
         console.log('SEED:', seed);
         if (seed !== null) {
@@ -83,6 +67,22 @@ class SeedEnter extends React.PureComponent {
         clearSeeds();
         addAndSelectSeed(seed);
         history.push('/seed/name');
+    };
+
+    getPaddedSeed = seed => {
+        return `${seed}${'9'.repeat(MAX_SEED_LENGTH - seed.length < 0 ? 0 : MAX_SEED_LENGTH - seed.length)}`;
+    };
+
+    openScanner = () => {
+        this.setState(() => ({
+            showScanner: true,
+        }));
+    };
+
+    closeScanner = () => {
+        this.setState(() => ({
+            showScanner: false,
+        }));
     };
 
     render() {
