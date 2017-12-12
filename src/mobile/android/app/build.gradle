@@ -140,6 +140,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fabric')
     compile project(':react-native-device-info')
     compile project(':react-native-shake-event')
     compile project(':react-native-extra-dimensions-android')
@@ -151,7 +152,6 @@ dependencies {
     compile project(':react-native-udp')
     compile project(':react-native-tcp')
     compile project(':react-native-svg')
-    compile project(':react-native-sensitive-info')
     compile project(':react-native-randombytes')
     compile project(':react-native-navigation')
   	compile fileTree(dir: "libs", include: ["*.jar"])
@@ -162,6 +162,7 @@ dependencies {
   	compile project(':react-native-camera')
     compile project(':react-native-fs')
     compile project(':react-native-keep-awake')
+    compile project(':react-native-keychain')
     compile("com.crashlytics.sdk.android:crashlytics:2.6.4@aar") {
             transitive = true;
     }
