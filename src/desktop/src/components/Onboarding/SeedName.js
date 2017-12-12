@@ -23,13 +23,6 @@ class SeedName extends React.PureComponent {
         name: this.props.seed.name || '',
     };
 
-    setName = e => {
-        const { target } = e;
-        this.setState(() => ({
-            name: target.value,
-        }));
-    };
-
     onRequestNext = () => {
         const { renameCurrentSeed, history, t } = this.props;
         if (this.state.name) {
@@ -38,6 +31,13 @@ class SeedName extends React.PureComponent {
             renameCurrentSeed(t('placeholder'));
         }
         history.push('/security/enter');
+    };
+
+    setName = e => {
+        const { target } = e;
+        this.setState(() => ({
+            name: target.value,
+        }));
     };
 
     render() {
