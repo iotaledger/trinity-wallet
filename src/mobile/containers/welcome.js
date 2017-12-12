@@ -51,12 +51,6 @@ class Welcome extends React.Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    {/*}<OnboardingButtons
-                        onLeftButtonPress={() => this.onBackPress()}
-                        onRightButtonPress={() => this.onNextPress()}
-                        leftText={t('global:back')}
-                        rightText={t('global:next')}
-                    />*/}
                     <TouchableOpacity onPress={() => this.onNextPress()}>
                         <View style={styles.nextButton}>
                             <Text style={styles.nextText}>{t('global:next')}</Text>
