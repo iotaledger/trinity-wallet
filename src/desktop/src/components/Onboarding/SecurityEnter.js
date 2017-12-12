@@ -8,7 +8,7 @@ import { showError } from 'actions/notifications';
 import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from 'libs/util';
 import Template, { Content, Footer } from './Template';
-import { securelyPersistSeeds } from 'libs/util';
+import { securelyPersistSeeds } from 'libs/storage';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 import PasswordInput from '../UI/PasswordInput';
@@ -17,9 +17,11 @@ import css from '../Layout/Onboarding.css';
 class SecurityEnter extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired,
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
+        seeds: PropTypes.object,
         showError: PropTypes.func.isRequired,
         setOnboardingCompletionStatus: PropTypes.func.isRequired,
     };
@@ -106,4 +108,4 @@ const mapDispatchToProps = {
     showError,
 };
 
-export default translate('setPassword')(connect(null, mapDispatchToProps)(SecurityEnter));
+export default translate('setPassword')(connect(mapStateToProps, mapDispatchToProps)(SecurityEnter));

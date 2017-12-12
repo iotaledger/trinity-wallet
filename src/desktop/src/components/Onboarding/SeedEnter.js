@@ -65,7 +65,7 @@ class SeedEnter extends React.PureComponent {
 
     render() {
         const { t } = this.props;
-        const { seed = '', validSeed } = this.state;
+        const { seed = '', seedValid } = this.state;
         return (
             <Template type="form" onSubmit={this.onSubmit}>
                 <Content>
@@ -81,7 +81,7 @@ class SeedEnter extends React.PureComponent {
                     </Infobox>
                 </Content>
                 <Footer>
-                    <Button to={validSeed ? '/seed/save/manual' : '/wallet-setup'} variant="warning">
+                    <Button to={seedValid ? '/seed/save/manual' : '/wallet-setup'} variant="warning">
                         {t('global:back')}
                     </Button>
                     <Button type="submit" variant="success">
