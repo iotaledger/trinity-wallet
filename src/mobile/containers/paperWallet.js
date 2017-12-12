@@ -11,6 +11,12 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { isAndroid, isIOS } from '../util/device';
 import { width, height } from '../util/dimensions';
 import COLORS from '../theme/Colors';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import iotaFullImagePath from 'iota-wallet-shared-modules/images/iota-full.png';
+import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked.png';
+import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked.png';
+import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
+
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
 let results = '';

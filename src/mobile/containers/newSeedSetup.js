@@ -10,7 +10,7 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { randomBytes } from 'react-native-randombytes';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Navigation } from 'react-native-navigation';
-
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
@@ -71,7 +71,7 @@ class NewSeedSetup extends Component {
                         navBarHidden: true,
                         navBarTransparent: true,
                         screenBackgroundImageName: 'bg-blue.png',
-                        screenBackgroundColor: '#102e36',
+                        screenBackgroundColor: COLORS.backgroundDarkGreen,
                     },
                     overrideBackPress: true,
                 },

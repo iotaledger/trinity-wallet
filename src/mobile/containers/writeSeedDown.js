@@ -6,6 +6,7 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Seedbox from '../components/seedBox.js';
 import { width, height } from '../util/dimensions';
 import COLORS from '../theme/Colors';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 class WriteSeedDown extends React.Component {
     constructor(props) {
@@ -29,9 +30,7 @@ class WriteSeedDown extends React.Component {
                 <View style={styles.midContainer}>
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>
-                            {`Your seed is ${
-                                MAX_SEED_LENGTH
-                            } characters read from left to right. Write down your seed and checksum and`}
+                            {`Your seed is ${MAX_SEED_LENGTH} characters read from left to right. Write down your seed and checksum and`}
                         </Text>
                         <Text style={styles.infoTextBold}> triple check </Text>
                         <Text style={styles.infoTextNormal}>they are correct.</Text>
