@@ -5199,10 +5199,6 @@ react-native-safe-area-view@^0.2.0:
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-react-native-sensitive-info@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-sensitive-info/-/react-native-sensitive-info-5.0.0.tgz#766c11e0d15dd2fe530340110c1c8d529803af42"
-
 react-native-shake-event@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/react-native-shake-event/-/react-native-shake-event-4.0.1.tgz#b167e844b711eff50d44d029537fbb228b2ac6b2"
