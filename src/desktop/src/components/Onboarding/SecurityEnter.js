@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
-import { setOnboardingCompletionStatus } from 'actions/app';
 import { showError } from 'actions/notifications';
 import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from 'libs/util';
@@ -23,7 +22,6 @@ class SecurityEnter extends React.PureComponent {
         }).isRequired,
         seeds: PropTypes.object,
         showError: PropTypes.func.isRequired,
-        setOnboardingCompletionStatus: PropTypes.func.isRequired,
     };
 
     state = {};
@@ -56,7 +54,6 @@ class SecurityEnter extends React.PureComponent {
 
         securelyPersistSeeds(password, seeds);
         clearSeeds();
-        setOnboardingCompletionStatus(true);
         history.push('/done');
     };
 
@@ -102,7 +99,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    setOnboardingCompletionStatus,
     addAndSelectSeed,
     clearSeeds,
     showError,
