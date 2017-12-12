@@ -1,4 +1,3 @@
-import noop from 'lodash/noop';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -36,10 +35,7 @@ export default class InitialLoading extends Component {
 
     clearKeychain() {
         if (isIOS) {
-            keychain
-                .clear()
-                .then(noop)
-                .catch(err => console.log(err));
+            keychain.clear().catch(err => console.error(err));
         }
     }
 
