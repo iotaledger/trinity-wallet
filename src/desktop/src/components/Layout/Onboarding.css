@@ -17,13 +17,11 @@
 }
 
 .wrapper {
-    left: 50%;
-    margin: auto;
+    margin: 0 auto;
     max-width: 100%;
-    position: absolute;
+    max-width: 512px;
     text-align: center;
-    transform: translate3d(-50%, 0, 0);
-    width: 512px;
+    padding: 0 20px;
 
     > div,
     > section,
@@ -56,15 +54,7 @@
     }
 }
 
-.body-done {
-    background-image: url(images/balloons.png), url(images/bg-green.svg);
-    background-size: contain, 100% 100%;
-    background-position: center;
-}
-
 .body-seed {
-    background-image: url(images/bg-green.svg) center center;
-    background-size: cover;
     .wrapper {
         width: 100%;
         max-width: 1280px;
