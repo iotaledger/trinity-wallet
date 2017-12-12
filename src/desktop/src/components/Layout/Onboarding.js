@@ -30,8 +30,8 @@ export default withRouter(
                         key={location.key}
                         timeout={300}
                         classNames={css.pageTransition}
-                        mountOnEnter={true}
-                        unmountOnExit={true}
+                        mountOnEnter
+                        unmountOnExit
                     >
                         <div className={css.wrapper}>
                             <Switch location={location}>

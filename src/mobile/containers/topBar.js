@@ -300,8 +300,8 @@ const styles = StyleSheet.create({
         paddingTop: height / 25,
         paddingBottom: height / 50,
         opacity: 0.98,
-        backgroundColor: COLORS.backgroundBlack,
-        shadowColor: COLORS.backgroundBlack,
+        backgroundColor: COLORS.backgroundDarkGreen,
+        shadowColor: COLORS.backgroundDarkGreen,
         shadowOffset: {
             width: 0,
             height: -1,

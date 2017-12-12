@@ -12,25 +12,27 @@ import Notifications from 'components/UI/Notifications';
 
 import './App.css';
 
-class ErrorBoundary extends React.Component {
-    static propTypes = {
-        children: PropTypes.node,
-    };
+// should be used later:
 
-    state = {};
-
-    componentDidCatch(error) {
-        this.setState(() => ({
-            error,
-        }));
-    }
-    render() {
-        if (this.state.error) {
-            return <p>{this.state.error.message}</p>;
-        }
-        return this.props.children;
-    }
-}
+// class ErrorBoundary extends React.Component {
+//     static propTypes = {
+//         children: PropTypes.node,
+//     };
+//
+//     state = {};
+//
+//     componentDidCatch(error) {
+//         this.setState(() => ({
+//             error,
+//         }));
+//     }
+//     render() {
+//         if (this.state.error) {
+//             return <p>{this.state.error.message}</p>;
+//         }
+//         return this.props.children;
+//     }
+// }
 
 class App extends React.Component {
     static propTypes = {
