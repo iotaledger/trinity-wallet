@@ -51,7 +51,7 @@ export const storeSeedInKeychain = async (password, seed, name) => {
         return keychain.set(password, serialize(seedArray));
     }
 
-    const existingSeedArray = parse(data.password);
+    const existingSeedArray = parse(get(data, 'data'));
     const updatedKeychainInfo = [...existingSeedArray, info]; // Might need to check type
     return keychain.set(password, serialize(updatedKeychainInfo));
 };
@@ -97,7 +97,7 @@ export const updateAccountNameInKeychain = async (replaceAtIndex, newAccountName
         return keychain.set(password, serialize(updatedAccountInfo));
     }
 
-    return keychain.set(password, accountInformation);
+    return Promise.reject(new Error('Something went wrong while updating account name.'));
 };
 
 export const deleteFromKeychain = async (deleteFromIndex, password) => {
@@ -109,10 +109,10 @@ export const deleteFromKeychain = async (deleteFromIndex, password) => {
         const remove = (d, i) => i !== deleteFromIndex;
         const updatedAccountInfo = filter(parsed, remove);
 
-        return keychain.set(password, updatedAccountInfo);
+        return keychain.set(password, serialize(updatedAccountInfo));
     }
 
-    return keychain.set(password, accountInformation);
+    return Promise.reject(new Error('Something went wrong while deleting from keychain.'));
 };
 
 export default keychain;
