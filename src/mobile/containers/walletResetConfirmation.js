@@ -13,7 +13,6 @@ import {
     StatusBar,
 } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
@@ -21,7 +20,6 @@ import COLORS from '../theme/Colors';
 import { Keyboard } from 'react-native';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 
@@ -40,7 +38,7 @@ export default class WalletResetConfirmation extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 screenBackgroundImageName: 'bg-blue.png',
-                screenBackgroundColor: Colors.brand.primary,
+                screenBackgroundColor: COLORS.brand.primary,
             },
             animated: false,
             overrideBackPress: true,
@@ -56,7 +54,7 @@ export default class WalletResetConfirmation extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundDarkGreen,
                 },
                 overrideBackPress: true,
             },
@@ -137,14 +135,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 10,
     },
     subHeaderText: {
-        color: Colors.orangeDark,
+        color: COLORS.orangeDark,
         fontFamily: Fonts.secondary,
         fontSize: width / 22.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextWrapper: {
-        borderColor: Colors.white,
+        borderColor: COLORS.white,
         borderWidth: 1,
         borderRadius: 15,
         width: width / 1.6,
@@ -155,7 +153,7 @@ const styles = StyleSheet.create({
         borderStyle: 'dotted',
     },
     infoText: {
-        color: Colors.white,
+        color: COLORS.white,
         fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 60,
@@ -167,7 +165,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        fontFamily: Colors.secondary,
+        fontFamily: COLORS.secondary,
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
@@ -180,7 +178,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     confirmationText: {
-        color: Colors.white,
+        color: COLORS.white,
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',

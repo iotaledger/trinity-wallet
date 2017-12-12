@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
+import keyImagePath from 'iota-wallet-shared-modules/images/key.png';
+import addressesImagePath from 'iota-wallet-shared-modules/images/addresses.png';
+import editImagePath from 'iota-wallet-shared-modules/images/edit.png';
+import deleteImagePath from 'iota-wallet-shared-modules/images/delete.png';
+import addImagePath from 'iota-wallet-shared-modules/images/add.png';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
 class AdvancedSettings extends React.Component {
     render() {
@@ -11,10 +17,7 @@ class AdvancedSettings extends React.Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('viewSeed')}>
                             <View style={styles.item}>
-                                <Image
-                                    source={keyImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={keyImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>View seed</Text>
                             </View>
                         </TouchableOpacity>
@@ -22,10 +25,7 @@ class AdvancedSettings extends React.Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('viewAddresses')}>
                             <View style={styles.item}>
-                                <Image
-                                    source={addressesImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={addressesImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>View addresses</Text>
                             </View>
                         </TouchableOpacity>
@@ -33,10 +33,7 @@ class AdvancedSettings extends React.Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('editAccountName')}>
                             <View style={styles.item}>
-                                <Image
-                                    source={editImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={editImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Edit account name</Text>
                             </View>
                         </TouchableOpacity>
@@ -44,10 +41,7 @@ class AdvancedSettings extends React.Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.onDeleteAccountPress()}>
                             <View style={styles.item}>
-                                <Image
-                                    source={deleteImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={deleteImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Delete account</Text>
                             </View>
                         </TouchableOpacity>
@@ -58,10 +52,7 @@ class AdvancedSettings extends React.Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('addNewAccount')}>
                             <View style={styles.item}>
-                                <Image
-                                    source={addImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={addImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Add new account</Text>
                             </View>
                         </TouchableOpacity>
@@ -72,10 +63,7 @@ class AdvancedSettings extends React.Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
-                                <Image
-                                    source={arrowLeftImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>

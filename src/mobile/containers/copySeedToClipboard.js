@@ -8,6 +8,8 @@ import Seedbox from '../components/seedBox.js';
 import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+
 const StatusBarDefaultBarStyle = 'light-content';
 
 class CopySeedToClipboard extends React.Component {
