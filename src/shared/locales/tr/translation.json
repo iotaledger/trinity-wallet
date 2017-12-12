@@ -8,8 +8,8 @@
         "done": "Tamamlandı",
         "next": "SONRAKİ",
         "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "copyToClipboard": "Add to password manager",
+        "paperWallet": "Kağıdın bir kopyasını al",
+        "copyToClipboard": "Şifre yöneticisine ekle",
         "qr": "QR",
         "notAvailable": "Bu işlev kullanılabilir değil",
         "notAvailableExplanation": "Daha sonraki bir aşamada eklenecektir.",
@@ -33,11 +33,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
-        "seedInvalidCharsExplanation":
-            "Tohum yalnızca büyük harf A-Z ve 9 numara oluşabilir. Tohumunuz geçersiz karakterler içeriyor. Lütfen yeniden deneyin.",
+        "seedInvalidCharsExplanation": "Tohum yalnızca büyük harf A-Z ve 9 numara oluşabilir. Tohumunuz geçersiz karakterler içeriyor. Lütfen yeniden deneyin.",
         "seedTooShort": "Tohum çok kısa",
-        "seedTooShortExplanation":
-            "Tohumlar {{maxLength}} karakter uzunluğunda olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluktadır. Lütfen yeniden deneyin.",
+        "seedTooShortExplanation": "Tohumlar {{maxLength}} karakter uzunluğunda olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluktadır. Lütfen yeniden deneyin.",
         "nameInUse": "Hesap adı zaten kullanılıyor",
         "nameInUseExplanation": "Lütfen tohumunuz için benzersiz bir hesap adı kullanın.",
         "enterAccountName": "Bir hesap adı girin.",
@@ -47,8 +45,7 @@
     },
     "changePassword": {
         "oops": "Eyvah. Bir sorun oluştu",
-        "oopsExplanation":
-            "Parolanızı güncelleştirilirken bir şeyler ters gitmiş gibi görünüyor. Lütfen yeniden deneyin.",
+        "oopsExplanation": "Parolanızı güncelleştirilirken bir şeyler ters gitmiş gibi görünüyor. Lütfen yeniden deneyin.",
         "passwordUpdated": "Parola güncellendi",
         "passwordUpdatedExplanation": "Şifren başarıyla güncellendi.",
         "incorrectPassword": "Yanlış parola",
@@ -58,8 +55,7 @@
         "passwordTooShort": "Parola çok kısa",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Eski parola ayarlayamazsınız",
-        "oldPasswordExplanation":
-            "Yeni şifreniz olarak eski parolayı kullanamazsınız. Lütfen yeni bir parola ile yeniden deneyin.",
+        "oldPasswordExplanation": "Yeni şifreniz olarak eski parolayı kullanamazsınız. Lütfen yeni bir parola ile yeniden deneyin.",
         "ensureStrongPassword": "En az 12 karakter uzunluğunda güçlü bir parola kullandığınızdan emin olun.",
         "currentPassword": "Geçerli Şifre",
         "newPassword": "Yeni Şifre",
@@ -68,21 +64,18 @@
     "copyToClipboard": {
         "seedCleared": "Tohum temizlendi",
         "seedClearedExplanation": "Tohum güvenliğiniz için pano'dan temizlendi.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "seedCopied": "Oluşum panoya kopyalandı",
+        "seedCopiedExplanation": "\"Bitti\" ya da 60 saniye geçtiğinizde oluşum temizlenecektir.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seed is too short",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation":
-            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
     },
     "home": {
@@ -114,8 +107,7 @@
         "individualLetters": "Press individual letters to randomise them."
     },
     "onboardingComplete": {
-        "walletReady":
-            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
         "clickToPrint": "Click the button below to print a paper copy of your seed.",
@@ -146,8 +138,7 @@
     },
     "send": {
         "invalidAddress": "Geçersiz adres",
-        "invalidAddressExplanation1":
-            "Adres {{maxLength}} karakter uzunluğunda olmalı ve bir sağlama toplamı olmalıdır.",
+        "invalidAddressExplanation1": "Adres {{maxLength}} karakter uzunluğunda olmalı ve bir sağlama toplamı olmalıdır.",
         "invalidAddressExplanation2": "Adres geçersiz karakterler içeriyor.",
         "invalidAddressExplanation3": "Adres geçersiz bir sağlama toplamı içeryor.",
         "notEnoughFunds": "Yetersiz fon",
@@ -166,13 +157,11 @@
     },
     "setPassword": {
         "passwordTooShort": "Parola çok kısa",
-        "passwordTooShortExplanation":
-            "Tohumlar {{minLength}} karakter uzunluğunda olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluktadır. Lütfen yeniden deneyin.",
+        "passwordTooShortExplanation": "Tohumlar {{minLength}} karakter uzunluğunda olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluktadır. Lütfen yeniden deneyin.",
         "passwordMismatch": "Parolalar eşleşmiyor",
         "passwordMismatchExplanation": "Girdiğiniz parolalar eşleşmiyor. Lütfen tekrar girin.",
         "nowWeNeedTo": "Şimdi bir parola ayarlamanız gerekir.",
-        "anEncryptedCopy":
-            "Senin tohum şifrelenmiş bir kopyasını cihazınızda saklanacaktır. Cüzdanını gelecekte erişmek için bu parolayı kullanır.",
+        "anEncryptedCopy": "Senin tohum şifrelenmiş bir kopyasını cihazınızda saklanacaktır. Cüzdanını gelecekte erişmek için bu parolayı kullanır.",
         "ensure": "En az 12 karakter uzunluğunda bir güçlü parola kullandığınızdan emin olun.",
         "retypePassword": "Şifrenizi tekrar girin"
     },
@@ -207,23 +196,22 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "warning1": "Tüm cüzdan verileriniz sizinkileri içerir",
+        "warning2": " cüzdan şifreleri, şifreler ",
+        "warning3": "ve",
+        "warning4": " diğer hesap bilgileri",
+        "warning5": " boşa gidecek.",
+        "areYouSure": "Devam etmek istediğine emin misin?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Cüzdanınızı sıfırlamak için şifreyi girin.",
+        "cancel": "İPTAL",
+        "reset": "SIFIRLA"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation":
-            "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "okay": "Tamam. Cüzdanını ayarlayabilirsin!",
+        "doYouAlreadyHaveASeed": "Kullanmak istediğiniz bir cüzdan şifreniz var mı?",
+        "seedExplanation": "IOTA cüzdan şifresi, hesabınız için bir kullanıcı adı ve şifre gibi, 81 karakterden oluşan bir diziyle birleştirilmiştir.",
         "explanation1": "You can use it to access your funds from",
         "explanation2": " any wallet ",
         "explanation3": ", on",
