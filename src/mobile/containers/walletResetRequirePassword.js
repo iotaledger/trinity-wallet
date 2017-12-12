@@ -2,7 +2,7 @@ import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
+import keychain from '../util/keychain';
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
 import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { Navigation } from 'react-native-navigation';
@@ -81,8 +81,8 @@ class WalletResetRequirePassword extends Component {
         if (isAuthenticated) {
             persistor
                 .purge()
+                .then(() => keychain.clear())
                 .then(() => {
-                    deleteFromKeyChain(password);
                     this.redirectToInitialScreen();
                     this.props.setOnboardingComplete(false);
                     this.props.setFirstUse(true);
@@ -91,7 +91,6 @@ class WalletResetRequirePassword extends Component {
                     this.props.resetWallet();
                 })
                 .catch(error => {
-                    console.log(error);
                     this.dropdown.alertWithType(
                         'error',
                         'Something went wrong',
