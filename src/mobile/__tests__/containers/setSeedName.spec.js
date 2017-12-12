@@ -15,7 +15,7 @@ const getProps = overrides =>
                 push: noop,
             },
             setSeedName: noop,
-            t: noop,
+            t: () => 'foo',
         },
         overrides,
     );
