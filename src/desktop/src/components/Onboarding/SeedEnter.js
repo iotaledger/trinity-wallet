@@ -63,6 +63,22 @@ class SeedEnter extends React.PureComponent {
         history.push('/seed/name');
     };
 
+    getPaddedSeed = seed => {
+        return `${seed}${'9'.repeat(MAX_SEED_LENGTH - seed.length < 0 ? 0 : MAX_SEED_LENGTH - seed.length)}`;
+    };
+
+    openScanner = () => {
+        this.setState(() => ({
+            showScanner: true,
+        }));
+    };
+
+    closeScanner = () => {
+        this.setState(() => ({
+            showScanner: false,
+        }));
+    };
+
     render() {
         const { t } = this.props;
         const { seed = '', seedValid } = this.state;
