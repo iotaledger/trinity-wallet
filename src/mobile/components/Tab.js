@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import { translate } from 'react-i18next';
-// import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableWithoutFeedback, Image, View } from 'react-native';
-// import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
