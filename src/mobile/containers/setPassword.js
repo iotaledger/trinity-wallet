@@ -51,13 +51,13 @@ class SetPassword extends React.Component {
                             this.props.tempAccount.seedName,
                         );
                     } else {
-                        if (hasDuplicateAccountName(credentials.password, this.props.tempAccount.seedName)) {
+                        if (hasDuplicateAccountName(credentials.data, this.props.tempAccount.seedName)) {
                             return this.dropdown.alertWithType(
                                 'error',
                                 'Account name already in use',
                                 'This account name is already linked to your wallet. Please use a different one.',
                             );
-                        } else if (hasDuplicateSeed(credentials.password, this.props.tempAccount.seed)) {
+                        } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
                             return this.dropdown.alertWithType(
                                 'error',
                                 'Seed already in use',
@@ -84,7 +84,6 @@ class SetPassword extends React.Component {
             ifNoKeychainDuplicates = (password, seed, accountName) => {
                 storeSeedInKeychain(password, seed, accountName)
                     .then(() => {
-                        keychain.get().then(cred => console.log('CRED', cred));
                         this.props.addAccountName(accountName);
                         this.props.increaseSeedCount();
                         this.props.clearTempData();
