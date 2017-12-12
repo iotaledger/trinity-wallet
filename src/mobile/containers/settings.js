@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -45,13 +46,14 @@ import AdvancedSettings from '../components/advancedSettings.js';
 import AccountManagement from '../components/accountManagement.js';
 import { logoutFromWallet } from 'iota-wallet-shared-modules/actions/app';
 import { parse } from 'iota-wallet-shared-modules/libs/util';
-import {
-    getFromKeychain,
+import keychain, {
+    hasDuplicateAccountName,
+    hasDuplicateSeed,
+    getSeed,
+    updateAccountNameInKeychain,
+    deleteFromKeychain,
     storeSeedInKeychain,
-    checkKeychainForDuplicates,
-    deleteSeed,
-} from '../../shared/libs/cryptography';
-import keychain, { getSeed, updateAccountNameInKeychain, deleteFromKeychain } from '../util/keychain';
+} from '../util/keychain';
 import DropdownHolder from '../components/dropdownHolder';
 import { width, height } from '../util/dimensions';
 
@@ -298,13 +300,30 @@ class Settings extends React.Component {
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
-            checkKeychainForDuplicates(
-                this.props.tempAccount.password,
-                seed,
-                accountName,
-                (type, title, message) => dropdown.alertWithType(type, title, message),
-                () => ifNoKeychainDuplicates(seed, accountName),
-            );
+            keychain
+                .get()
+                .then(credentials => {
+                    if (isNull(credentials)) {
+                        return ifNoKeychainDuplicates(seed, accountName);
+                    } else {
+                        if (hasDuplicateAccountName(credentials.data, accountName)) {
+                            return this.dropdown.alertWithType(
+                                'error',
+                                'Account name already in use',
+                                'This account name is already linked to your wallet. Please use a different one.',
+                            );
+                        } else if (hasDuplicateSeed(credentials.data, seed)) {
+                            return this.dropdown.alertWithType(
+                                'error',
+                                'Seed already in use',
+                                'This seed is already linked to your wallet. Please use a different one.',
+                            );
+                        }
+
+                        return ifNoKeychainDuplicates(seed, accountName);
+                    }
+                })
+                .catch(err => console.log(err));
 
             ifNoKeychainDuplicates = (seed, accountName) => {
                 this.props.setFirstUse(true);
@@ -336,10 +355,13 @@ class Settings extends React.Component {
 
             onNodeSuccess = (seed, accountName) => {
                 this.props.clearTempData();
-                storeSeedInKeychain(this.props.tempAccount.password, seed, accountName);
-                this.props.increaseSeedCount();
-                this.props.addAccountName(accountName);
-                this.props.setReady();
+                storeSeedInKeychain(this.props.tempAccount.password, seed, accountName)
+                    .then(() => {
+                        this.props.increaseSeedCount();
+                        this.props.addAccountName(accountName);
+                        this.props.setReady();
+                    })
+                    .catch(err => console.log(err));
             };
         }
     }
