@@ -16,7 +16,6 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
 import COLORS from '../theme/Colors';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';

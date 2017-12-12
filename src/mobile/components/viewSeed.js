@@ -13,7 +13,7 @@ import {
 import Fonts from '../theme/Fonts';
 import Seedbox from '../components/seedBox.js';
 import { TextField } from 'react-native-material-textfield';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
@@ -35,16 +35,21 @@ class ViewSeed extends React.Component {
     }
 
     viewSeed() {
-        if (this.state.password == this.props.password) {
-            getFromKeychain(this.state.password, value => {
-                if (typeof value != 'undefined' && value != null) {
-                    const seed = getSeed(value, this.props.seedIndex);
-                    this.setState({ seed: seed });
-                    this.setState({ showSeed: true });
-                } else {
-                    error();
-                }
-            });
+        if (this.state.password === this.props.password) {
+            keychain
+                .get()
+                .then(credentials => {
+                    const data = get(credentials, 'data');
+
+                    if (!data) {
+                        throw 'Error';
+                    } else {
+                        const seed = getSeed(value, this.props.seedIndex);
+                        this.setState({ seed });
+                        this.setState({ showSeed: true });
+                    }
+                })
+                .catch(err => error());
         } else {
             this.props.onWrongPassword();
         }
