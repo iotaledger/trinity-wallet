@@ -7,9 +7,9 @@
         "back": "ANTERIOR",
         "done": "CONCLUÍDO",
         "next": "SEGUINTE",
-        "manualCopy": "Cópia Manual",
-        "paperWallet": "Carteira de Papel",
-        "copyToClipboard": "Copiar para a Área de Transferência",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Esta função não está disponível",
         "notAvailableExplanation": "Será adicionada numa etapa posterior.",
@@ -33,9 +33,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
-        "seedInvalidCharsExplanation": "As Seeds só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente de novo.",
+        "seedInvalidCharsExplanation":
+            "As Seeds só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
-        "seedTooShortExplanation": "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente de novo.",
+        "seedTooShortExplanation":
+            "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente de novo.",
         "nameInUse": "Este nome da conta já está a ser utilizado",
         "nameInUseExplanation": "Por favor, use um nome de conta exclusivo para a sua Seed.",
         "enterAccountName": "Entre um nome de conta.",
@@ -55,7 +57,8 @@
         "passwordTooShort": "A palavra-passe é demasiado curta",
         "passwordTooShortExplanation": "A palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
         "oldPassword": "Não é possível utilizar a palavra-passe antiga",
-        "oldPasswordExplanation": "Não pode usar a sua palavra-passe antiga como a sua nova palavra-passe. Por favor tente de novo com uma palavra-passe nova.",
+        "oldPasswordExplanation":
+            "Não pode usar a sua palavra-passe antiga como a sua nova palavra-passe. Por favor tente de novo com uma palavra-passe nova.",
         "ensureStrongPassword": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
         "currentPassword": "Palavra-passe atual",
         "newPassword": "Nova Palavra-Passe",
@@ -64,17 +67,21 @@
     "copyToClipboard": {
         "seedCleared": "Seed removida",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
-        "seedCopied": "Seed copiada",
-        "seedCopiedExplanation": "A Seed foi copiada para a área de transferência e será removida quando pressionar \"CONCLUÍDO\" ou decorridos 60 segundos (o que se verificar primeiro).",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Clique no botão em baixo e copie a sua Seed para o gestor de palavras-passe.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém caracteres inválidos",
-        "invalidCharactersExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente de novo.",
+        "invalidCharactersExplanation":
+            "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
-        "seedTooShortExplanation": "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente de novo.",
-        "seedExplanation": "As Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Não pode utilizar Seeds com mais de {{maxLength}} caracteres.",
+        "seedTooShortExplanation":
+            "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente de novo.",
+        "seedExplanation":
+            "As Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Não pode utilizar Seeds com mais de {{maxLength}} caracteres.",
         "neverShare": "NUNCA PARTILHE A SUA SEED COM NINGUÉM"
     },
     "home": {
@@ -106,7 +113,8 @@
         "individualLetters": "Digite letras individuais para tornar o processo mais aleatório."
     },
     "onboardingComplete": {
-        "walletReady": "A carteira está configurada e pronta para ser utilizada. Se posteriormente necessitar de efetuar alterações, utilize o menu \"Configurações\"."
+        "walletReady":
+            "A carteira está configurada e pronta para ser utilizada. Se posteriormente necessitar de efetuar alterações, utilize o menu \"Configurações\"."
     },
     "paperWallet": {
         "clickToPrint": "Prima o botão em baixo para imprimir uma cópia em papel da sua Seed.",
@@ -123,6 +131,8 @@
         "removeMessage": "REMOVER MENSAGEM"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Deverá guardar a sua Seed com ",
         "atLeastOne": "pelo menos uma ",
         "ofTheOptions": "das opções listadas em baixo."
@@ -131,7 +141,7 @@
         "incorrectSeed": "Seed incorreta",
         "incorrectSeedExplanation": "A Seed que introduziu está incorreta. Por favor, tente novamente.",
         "thisIsACheck": "Isto é uma verificação para certificar-se que gravou a sua Seed.",
-        "ifYouHaveNotSaved": "Se não gravou a sua Seed, por favor volte para o ecrã anterior e grave-a."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Endereço inválido",
@@ -141,7 +151,8 @@
         "notEnoughFunds": "Fundos insuficientes",
         "notEnoughFundsExplanation": "Não contém fundos suficientes para realizar esta transferência.",
         "keyReuse": "Reutilização da chave",
-        "keyReuseExplanation": "Está a tentar enviar para um endereço que já foi utilizado. Por favor, tente outro endereço.",
+        "keyReuseExplanation":
+            "Está a tentar enviar para um endereço que já foi utilizado. Por favor, tente outro endereço.",
         "recipientAddress": "Endereço do destinatário",
         "amount": "Quantia",
         "max": "MAX",
@@ -154,11 +165,13 @@
     },
     "setPassword": {
         "passwordTooShort": "A palavra-passe é demasiado curta",
-        "passwordTooShortExplanation": "A sua palavra-passe deve ter pelo menos {MIN_PASSWORD_LENGTH} caracteres. Neste momento tem {this. state. password. length} caracteres. Por favor tente de novo.",
+        "passwordTooShortExplanation":
+            "A sua palavra-passe deve ter pelo menos {MIN_PASSWORD_LENGTH} caracteres. Neste momento tem {this. state. password. length} caracteres. Por favor tente de novo.",
         "passwordMismatch": "As palavras-passe não coincidem",
         "passwordMismatchExplanation": "As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
         "nowWeNeedTo": "Agora precisamos de gerar uma palavra-passe.",
-        "anEncryptedCopy": "Um cópia cifrada da sua Seed será guardada no seu dispositivo. Utilizará esta palavra-passe para aceder, futuramente, à sua carteira.",
+        "anEncryptedCopy":
+            "Um cópia cifrada da sua Seed será guardada no seu dispositivo. Utilizará esta palavra-passe para aceder, futuramente, à sua carteira.",
         "ensure": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
         "retypePassword": "Digite de novo a password"
     },
@@ -208,7 +221,8 @@
     "walletSetup": {
         "okay": "Ok. Vamos configurar a sua carteira!",
         "doYouAlreadyHaveASeed": "Já possui uma Seed que gostaria de utilizar?",
-        "seedExplanation": "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
+        "seedExplanation":
+            "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
         "explanation1": "Poderá usá-la para aceder aos seus fundos a partir",
         "explanation2": " de qualquer carteira ",
         "explanation3": ", em",
@@ -222,7 +236,8 @@
         "reminder": "Poderá sentir-se tentado a ignorar alguns passos, mas aconselhamos que siga o processo completo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e",
+        "yourSeedIs":
+            "A sua Seed tem 81 caracteres, lidos da esquerda para a direita. Anote a sua Seed e o Código de Verificação e",
         "tripleCheck": "verifique várias vezes",
         "thatTheyAreCorrect": "se eles estão corretos."
     },

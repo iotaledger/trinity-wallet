@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import QrReader from 'react-qr-reader';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { isValidSeed } from 'libs/util';
 import { showError } from 'actions/notifications';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
-import { MAX_SEED_LENGTH } from 'libs/util';
-import Template, { Main, Footer } from './Template';
+import { isValidSeed, MAX_SEED_LENGTH } from '../../../../shared/libs/util';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
 import Infobox from '../UI/Infobox';
@@ -22,37 +21,21 @@ class SeedEnter extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        selectedSeed: PropTypes.shape({
-            seed: PropTypes.string,
-        }).isRequired,
+        // selectedSeed: PropTypes.shape({
+        //     seed: PropTypes.string,
+        // }).isRequired,
         showError: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     };
 
     state = {
-        seed: this.props.selectedSeed.seed,
+        seed: '',
     };
 
     onChange = e => {
         const { target: { name, value = '' } } = e;
         this.setState(() => ({
             [name]: value.replace(/[^A-Z9]*/g, ''),
-        }));
-    };
-
-    getPaddedSeed = seed => {
-        return `${seed}${'9'.repeat(MAX_SEED_LENGTH - seed.length < 0 ? 0 : MAX_SEED_LENGTH - seed.length)}`;
-    };
-
-    openScanner = () => {
-        this.setState(() => ({
-            showScanner: true,
-        }));
-    };
-
-    closeScanner = () => {
-        this.setState(() => ({
-            showScanner: false,
         }));
     };
 
@@ -86,12 +69,28 @@ class SeedEnter extends React.PureComponent {
         history.push('/seed/name');
     };
 
+    getPaddedSeed = seed => {
+        return `${seed}${'9'.repeat(MAX_SEED_LENGTH - seed.length < 0 ? 0 : MAX_SEED_LENGTH - seed.length)}`;
+    };
+
+    openScanner = () => {
+        this.setState(() => ({
+            showScanner: true,
+        }));
+    };
+
+    closeScanner = () => {
+        this.setState(() => ({
+            showScanner: false,
+        }));
+    };
+
     render() {
         const { t } = this.props;
         const { seed = '', showScanner } = this.state;
         return (
             <Template type="form" onSubmit={this.onSubmit}>
-                <Main>
+                <Content>
                     <div className={css.formGroup}>
                         <textarea
                             name="seed"
@@ -136,7 +135,7 @@ class SeedEnter extends React.PureComponent {
                             <strong>{t('reminder')}</strong>
                         </p>
                     </Infobox>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/wallet-setup" variant="warning">
                         {t('button2')}

@@ -1,8 +1,12 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import COLORS from '../theme/Colors';
 
 import { width, height } from '../util/dimensions';
+import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 class OnboardingComplete extends React.Component {
     onNextPress() {
@@ -21,13 +25,10 @@ class OnboardingComplete extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
@@ -36,7 +37,7 @@ class OnboardingComplete extends React.Component {
                             look in the Settings menu.
                         </Text>
                     </View>
-                    <Image source={require('iota-wallet-shared-modules/images/balloons.png')} style={styles.party} />
+                    <Image source={balloonsImagePath} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onNextPress()}>
@@ -45,7 +46,7 @@ class OnboardingComplete extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,

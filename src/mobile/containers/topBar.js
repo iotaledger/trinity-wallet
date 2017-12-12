@@ -23,6 +23,7 @@ import {
 } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import COLORS from '../theme/Colors';
 
 const { height, width } = Dimensions.get('window');
 
@@ -299,8 +300,8 @@ const styles = StyleSheet.create({
         paddingTop: height / 25,
         paddingBottom: height / 50,
         opacity: 0.98,
-        backgroundColor: '#071f28',
-        shadowColor: '#071f28',
+        backgroundColor: COLORS.backgroundDarkGreen,
+        shadowColor: COLORS.backgroundDarkGreen,
         shadowOffset: {
             width: 0,
             height: -1,

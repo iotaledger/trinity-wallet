@@ -4,6 +4,7 @@ import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 import { width, height } from '../util/dimensions';
 import DropdownHolder from '../components/dropdownHolder';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
 class ViewAddresses extends Component {
     copy(address) {
@@ -48,10 +49,7 @@ class ViewAddresses extends Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
                         <View style={styles.itemLeft}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                style={styles.icon}
-                            />
+                            <Image source={arrowLeftImagePath} style={styles.icon} />
                             <Text style={styles.titleText}>Back</Text>
                         </View>
                     </TouchableOpacity>

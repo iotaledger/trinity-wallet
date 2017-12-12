@@ -39,31 +39,41 @@ class History extends React.Component {
         const seedIndex = this.props.tempAccount.seedIndex;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
         const addresses = Object.keys(currentSeedAccountInfo.addresses);
+        const transactions = currentSeedAccountInfo.transfers;
+        const hasTransactions = transactions.length > 0;
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
-                    <View style={styles.listView}>
-                        <ListView
-                            dataSource={ds.cloneWithRows(accountInfo[Object.keys(accountInfo)[seedIndex]].transfers)}
-                            renderRow={dataSource => (
-                                <TransactionRow
-                                    addresses={addresses}
-                                    rowData={dataSource}
-                                    titleColor="#F8FFA6"
-                                    onPress={event => this._showModal()}
-                                    copyAddress={item => this.copyAddress(item)}
-                                    copyBundleHash={item => this.copyBundleHash(item)}
-                                />
-                            )}
-                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                            enableEmptySections
-                            ref={listview => {
-                                this.listview = listview;
-                            }}
-                            onLoadEnd={this.imageLoaded.bind(this)}
-                            snapToInterval={height * 0.7 / 6}
-                        />
-                    </View>
+                    {hasTransactions ? (
+                        <View style={styles.listView}>
+                            <ListView
+                                dataSource={ds.cloneWithRows(
+                                    accountInfo[Object.keys(accountInfo)[seedIndex]].transfers,
+                                )}
+                                renderRow={dataSource => (
+                                    <TransactionRow
+                                        addresses={addresses}
+                                        rowData={dataSource}
+                                        titleColor="#F8FFA6"
+                                        onPress={event => this._showModal()}
+                                        copyAddress={item => this.copyAddress(item)}
+                                        copyBundleHash={item => this.copyBundleHash(item)}
+                                    />
+                                )}
+                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                                enableEmptySections
+                                ref={listview => {
+                                    this.listview = listview;
+                                }}
+                                onLoadEnd={this.imageLoaded.bind(this)}
+                                snapToInterval={height * 0.7 / 6}
+                            />
+                        </View>
+                    ) : (
+                        <View style={styles.noTransactionsContainer}>
+                            <Text style={styles.noTransactions}>NO TRANSACTION HISTORY</Text>
+                        </View>
+                    )}
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -82,6 +92,17 @@ const styles = StyleSheet.create({
     separator: {
         flex: 1,
         height: height / 60,
+    },
+    noTransactionsContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    noTransactions: {
+        color: 'white',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        backgroundColor: 'transparent',
     },
 });
 

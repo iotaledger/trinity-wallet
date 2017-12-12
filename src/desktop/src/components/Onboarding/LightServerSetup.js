@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { addCustomNode, setFullNode } from 'actions/settings';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import ServerSelect from '../UI/ServerSelect';
 
@@ -61,7 +61,7 @@ class LightServerSetup extends React.PureComponent {
         const { fullNode } = this.state;
         return (
             <Template headline={t('title')}>
-                <Main>
+                <Content>
                     <p>{t('text1')}</p>
                     <p>{t('text2')}</p>
                     <p>{t('text3')}</p>
@@ -75,7 +75,7 @@ class LightServerSetup extends React.PureComponent {
                             <input type="text" name="customServer" onChange={this.onCustomServerChange} autoFocus />
                         </div>
                     )}
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/instructions" variant="warning">
                         {t('button2')}
