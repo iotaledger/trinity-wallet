@@ -152,7 +152,6 @@ dependencies {
     compile project(':react-native-udp')
     compile project(':react-native-tcp')
     compile project(':react-native-svg')
-    compile project(':react-native-sensitive-info')
     compile project(':react-native-randombytes')
     compile project(':react-native-navigation')
   	compile fileTree(dir: "libs", include: ["*.jar"])
