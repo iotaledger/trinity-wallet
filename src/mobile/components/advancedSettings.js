@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
+import nodeImagePath from 'iota-wallet-shared-modules/images/node.png';
+import syncImagePath from 'iota-wallet-shared-modules/images/sync.png';
+import crossImagePath from 'iota-wallet-shared-modules/images/cross.png';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
 class AdvancedSettings extends React.Component {
     render() {
@@ -11,10 +15,7 @@ class AdvancedSettings extends React.Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('nodeSelection')}>
                             <View style={styles.item}>
-                                <Image
-                                    source={nodeImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={nodeImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Select node</Text>
                                 <Text numberOfLines={1} style={styles.settingText}>
                                     {this.props.node}
@@ -47,10 +48,7 @@ class AdvancedSettings extends React.Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
-                                <Image
-                                    source={arrowLeftImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>

@@ -5,9 +5,9 @@ import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel, VictoryCont
 import { width, height } from '../util/dimensions';
 
 const chartWidth = width * 0.98;
-const chartHeight = height * 0.44;
-const victoryContainerWidth = width * 0.85;
-const victoryContainerHeight = height * 0.44;
+const chartHeight = height * 0.4;
+const victoryContainerWidth = width * 0.87;
+const victoryContainerHeight = height * 0.4;
 
 const getChartCurrencySymbol = currency => {
     if (currency === 'BTC') {
@@ -208,6 +208,7 @@ class Chart extends React.Component {
                     <Text style={styles.marketFigure}>Change: {marketData.change24h}%</Text>
                     <Text style={styles.marketFigure}>Volume (24h): $ {marketData.volume}</Text>
                 </View>
+                <View style={{ flex: 0.2 }} />
             </View>
         );
     }
@@ -218,11 +219,10 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         borderColor: '#f2f2f2',
-        borderWidth: 0.4,
+        borderWidth: height / 2000,
         borderRadius: 5,
-        paddingHorizontal: 10,
-        paddingTop: 2.5,
-        paddingBottom: 3.5,
+        paddingHorizontal: width / 40,
+        paddingVertical: height / 110,
     },
     button: {
         flex: 1,
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         alignItems: 'center',
         zIndex: 1,
-        paddingVertical: height / 45,
+        paddingVertical: height / 70,
     },
     priceContainer: {
         flex: 8,
@@ -259,7 +259,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingBottom: height / 100,
     },
     buttonText: {
         color: 'white',
