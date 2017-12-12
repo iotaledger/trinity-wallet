@@ -61,7 +61,6 @@
     "react-native-qrcode-svg": "^5.0.3",
     "react-native-randombytes": "^2.3.0",
     "react-native-safe-area-view": "^0.2.0",
-    "react-native-sensitive-info": "5.0.0",
     "react-native-shake-event": "^4.0.1",
     "react-native-svg": "^6.0.1-rc.1",
     "react-native-tcp": "^3.3.0",
