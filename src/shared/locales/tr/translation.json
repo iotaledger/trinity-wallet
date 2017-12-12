@@ -111,30 +111,30 @@
     },
     "paperWallet": {
         "clickToPrint": "Cüzdan şifrelerinizin bir kopyasını basmak için aşağıdaki düğmeyi tıklayın.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
-        "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "storeSafely": "Güvenle saklayın.",
+        "neverShare": "Cüzdan şifrenizi sakın kimseyle paylaşmayın.",
+        "iotaLogo": "IOTA logosu",
+        "printWallet": "KAĞIT CÜZDANI YAZDIR"
     },
     "receive": {
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "GENERATE NEW ADDRESS",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "addressCopied": "Adres kopyalandı",
+        "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
+        "generateNewAddress": "YENİ ADRES OLUŞTUR",
+        "message": "İsteğe bağlı mesaj",
+        "removeMessage": "MESAJI SİL"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "mustSaveYourSeed": "You must save your seed with ",
-        "atLeastOne": "at least one ",
-        "ofTheOptions": "of the options listed below."
+        "seedCleared": "Cüzdan şifresi temizlendi",
+        "seedClearedExplanation": "Güvenliğiniz için cüzdan şifresi panodan temizlendi.",
+        "mustSaveYourSeed": "Cüzdan şifreni... ile kurtarmalısın ",
+        "atLeastOne": "en az 1 ",
+        "ofTheOptions": "aşağıda listelenen seçeneklerden biri."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "incorrectSeed": "Yanlış cüzdan şifresi",
+        "incorrectSeedExplanation": "Bu cüzdan şifresi yanlış girildi. Lütfen tekrar deneyin.",
+        "thisIsACheck": "Bu, cüzdan şifresini kurduğunuzdan emin olmak için yapılan bir kontrol.",
+        "ifYouHaveNotSaved": "Cüzdan şifrenizi kurtarmadıysanız, lütfen geri dönüp onu halledin."
     },
     "send": {
         "invalidAddress": "Geçersiz adres",
@@ -192,10 +192,10 @@
         "accountDeleted": "Hesap silindi",
         "accountDeletedExplanation": "Hesabınız cüzdandan kaldırıldı.",
         "cannotPerformAction": "İşlem gerçekleştirilemiyor",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin."
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
+        "thisAction": "Bu işlem geri alınamaz.",
         "warning1": "Tüm cüzdan verileriniz sizinkileri içerir",
         "warning2": " cüzdan şifreleri, şifreler ",
         "warning3": "ve",
