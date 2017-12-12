@@ -8,7 +8,6 @@ import {
     TouchableWithoutFeedback,
     Image,
     View,
-    ImageBackground,
     StatusBar,
     TouchableOpacity,
     Keyboard,
@@ -40,6 +39,15 @@ import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { TextField } from 'react-native-material-textfield';
 import { isAndroid } from '../util/device';
+import COLORS from '../theme/Colors';
+
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
+import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
+import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
+import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
+import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 const StatusBarDefaultBarStyle = 'light-content';
 import { width, height } from '../util/dimensions';
@@ -130,7 +138,8 @@ class Home extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundDarkGreen
+,
                 },
                 overrideBackPress: true,
             },
@@ -141,13 +150,13 @@ class Home extends Component {
         const dropdown = DropdownHolder.getDropdown();
         const { t } = this.props;
         if (!this.state.password) {
-            dropdown.alertWithType('error', 'Empty password', 'You must enter a password to log in. Please try again.');
+            dropdown.alertWithType('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else {
             if (this.state.password != this.props.tempAccount.password) {
                 dropdown.alertWithType(
                     'error',
-                    'Unrecognised password',
-                    'The password was not recognised. Please try again.',
+                    t('global:unrecognisedPassword'),
+                    t('global:unrecognisedPasswordExplanation'),
                 );
             } else {
                 this.setState({ inactive: false, password: '' });
@@ -236,7 +245,7 @@ class Home extends Component {
         const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
         const children = this.renderChildren(childRoute);
         const isCurrentRoute = route => route === childRoute;
-        let { password, tabsVisible } = this.state;
+        let { password } = this.state;
 
         return (
             <UserInactivity
@@ -244,7 +253,7 @@ class Home extends Component {
                 checkInterval={2000}
                 onInactivity={() => this.setState({ inactive: true })}
             >
-                <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
+                <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                     <StatusBar barStyle="light-content" />
                     {!this.state.inactive &&
                         !this.state.minimised && (
@@ -275,7 +284,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    BALANCE
+                                                    {t('home:balance')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -299,7 +308,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    SEND
+                                                    {t('home:send')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -323,7 +332,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    RECEIVE
+                                                    {t('home:receive')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -347,7 +356,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    HISTORY
+                                                    {t('home:history')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -371,7 +380,7 @@ class Home extends Component {
                                                               ])
                                                     }
                                                 >
-                                                    SETTINGS
+                                                    {t('home:settings')}
                                                 </Text>
                                             </View>
                                         </TouchableWithoutFeedback>
@@ -385,10 +394,7 @@ class Home extends Component {
                             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                                 <View>
                                     <View style={styles.loginTopContainer}>
-                                        <Image
-                                            source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                            style={styles.iotaLogo}
-                                        />
+                                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                         <View style={styles.loginTitleContainer}>
                                             <Text style={styles.loginTitle}>Please enter your password.</Text>
                                         </View>
@@ -401,7 +407,7 @@ class Home extends Component {
                                             fontSize={width / 20.7}
                                             labelPadding={3}
                                             baseColor="white"
-                                            label="Password"
+                                            label={t('global:password')}
                                             tintColor="#F7D002"
                                             autoCapitalize={'none'}
                                             autoCorrect={false}
@@ -418,7 +424,7 @@ class Home extends Component {
                                     <View style={styles.loginBottomContainer}>
                                         <TouchableOpacity onPress={event => this.onLoginPress()}>
                                             <View style={styles.loginButton}>
-                                                <Text style={styles.loginText}>LOGIN</Text>
+                                                <Text style={styles.loginText}>{t('login:login')}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     </View>
@@ -446,7 +452,7 @@ class Home extends Component {
                         closeInterval={5500}
                     />
                     <KeepAwake />
-                </ImageBackground>
+                </View>
             </UserInactivity>
         );
     }
@@ -495,10 +501,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        backgroundColor: '#071f28',
+        backgroundColor: COLORS.backgroundDarkGreen,
         opacity: 0.98,
         paddingBottom: height / 65,
-        shadowColor: '#071f28',
+        shadowColor: COLORS.backgroundDarkGreen,
         shadowRadius: 4,
         shadowOffset: {
             width: 0,
@@ -507,6 +513,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1.0,
     },
     button: {
+        width: width / 8,
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
@@ -528,7 +535,7 @@ const styles = StyleSheet.create({
         opacity: 1,
     },
     partiallyOpaque: {
-        opacity: 0.6,
+        opacity: 0.4,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
@@ -658,4 +665,4 @@ Home.propTypes = {
     isTopBarActive: PropTypes.bool.isRequired,
 };
 
-export default translate(['home', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home));

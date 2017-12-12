@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { createRandomSeed } from 'libs/seedUtil';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
-import { isValidSeed } from 'libs/util';
-import { createRandomSeed } from 'libs/seedUtil';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
+import { isValidSeed } from '../../../../shared/libs/util';
 import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
+import css from '../Layout/Onboarding.css';
 
 class GenerateSeed extends React.PureComponent {
     static propTypes = {
@@ -24,13 +25,6 @@ class GenerateSeed extends React.PureComponent {
 
     state = {
         seed: this.props.seed,
-    };
-
-    generateNewSeed = () => {
-        const newSeed = createRandomSeed();
-        this.setState(() => ({
-            seed: newSeed,
-        }));
     };
 
     onUpdatedSeed = seed => {
@@ -55,18 +49,27 @@ class GenerateSeed extends React.PureComponent {
         history.push('/seed/save');
     };
 
+    generateNewSeed = () => {
+        const newSeed = createRandomSeed();
+        this.setState(() => ({
+            seed: newSeed,
+        }));
+    };
+
     render() {
         const { t } = this.props;
         const { seed } = this.state;
         return (
             <Template headline={t('title')}>
-                <Main>
+                <Content>
                     <Button type="button" onClick={this.generateNewSeed} variant="cta">
                         {t('button1')}
                     </Button>
-                    <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
+                    <div className={css.seedGenerator}>
+                        <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
+                    </div>
                     <p>{t('text1')}</p>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/wallet-setup" variant="warning">
                         {t('button3')}

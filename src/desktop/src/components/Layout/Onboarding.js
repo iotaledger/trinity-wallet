@@ -9,7 +9,8 @@ import WalletSetup from '../Onboarding/WalletSetup';
 import GenerateSeed from '../Onboarding/GenerateSeed';
 import SeedEnter from '../Onboarding/SeedEnter';
 import SeedName from '../Onboarding/SeedName';
-import SaveYourSeedOptions from '../Onboarding/SaveYourSeedOptions';
+// import SaveYourSeedOptions from '../Onboarding/SaveYourSeedOptions';
+import SaveYourSeed from '../Onboarding/SaveYourSeed';
 import SeedManualCopy from '../Onboarding/SeedManualCopy';
 import SeedCopyToClipboard from '../Onboarding/SeedCopyToClipboard';
 import SeedPaperWallet from '../Onboarding/SeedPaperWallet';
@@ -33,8 +34,8 @@ export default withRouter(
                         key={location.key}
                         timeout={300}
                         classNames={css.pageTransition}
-                        mountOnEnter={true}
-                        unmountOnExit={true}
+                        mountOnEnter
+                        unmountOnExit
                     >
                         <div className={css.wrapper}>
                             <Switch location={location}>
@@ -42,7 +43,8 @@ export default withRouter(
                                 <Route path="/lightserver" component={LightServerSetup} />
                                 <Route path="/wallet-setup" component={WalletSetup} />
                                 <Route path="/seed/generate" component={GenerateSeed} />
-                                <Route exact path="/seed/save" component={SaveYourSeedOptions} />
+                                <Route exact path="/seed/save" component={SaveYourSeed} />
+                                {/* <Route exact path="/seed/save" component={SaveYourSeedOptions} /> */}
                                 <Route path="/seed/save/manual" component={SeedManualCopy} />
                                 <Route path="/seed/save/clipboard" component={SeedCopyToClipboard} />
                                 <Route path="/seed/save/paperwallet" component={SeedPaperWallet} />
