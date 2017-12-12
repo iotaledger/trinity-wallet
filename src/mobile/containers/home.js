@@ -419,6 +419,7 @@ class Home extends Component {
                                                 width: width / 1.4,
                                             }}
                                             secureTextEntry={true}
+                                            onSubmitEditing={() => this.onLoginPress()}
                                         />
                                     </View>
                                     <View style={styles.loginBottomContainer}>
