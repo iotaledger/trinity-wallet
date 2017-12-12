@@ -2,6 +2,7 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import COLORS from '../theme/Colors';
 
 import { width, height } from '../util/dimensions';
 
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundDarkGreen,
     },
     topContainer: {
         flex: 1,
