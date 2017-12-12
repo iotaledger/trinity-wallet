@@ -105,6 +105,9 @@ strong {
             width: 50%;
             padding: 0 30px;
         }
+        > aside {
+            max-width: 300px;
+        }
         > aside nav button {
             display: block;
             min-width: 200px;
