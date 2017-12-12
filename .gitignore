@@ -63,3 +63,14 @@ fastlane/screenshots
 
 node_modules_*
 dist
+
+# Created by https://www.gitignore.io/api/crashlytics
+
+### Crashlytics ###
+#Crashlytics
+crashlytics-build.properties
+com_crashlytics_export_strings.xml
+crashlytics.properties
+fabric.properties
+
+# End of https://www.gitignore.io/api/crashlytics
