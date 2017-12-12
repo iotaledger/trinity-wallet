@@ -47,6 +47,10 @@ export default (state = initialState, action) => {
         case ActionTypes.CLEAR: {
             return initialState;
         }
+
+        case ActionTypes.LOAD_SEEDS: {
+            return action.payload || state;
+        }
     }
 
     return state;

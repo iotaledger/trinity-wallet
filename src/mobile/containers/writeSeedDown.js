@@ -1,10 +1,12 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Seedbox from '../components/seedBox.js';
 import { width, height } from '../util/dimensions';
+import COLORS from '../theme/Colors';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 class WriteSeedDown extends React.Component {
     constructor(props) {
@@ -20,13 +22,10 @@ class WriteSeedDown extends React.Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <Text style={styles.infoText}>
@@ -45,7 +44,7 @@ class WriteSeedDown extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 0.5,
