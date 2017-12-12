@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
+import keyImagePath from 'iota-wallet-shared-modules/images/key.png';
+import addressesImagePath from 'iota-wallet-shared-modules/images/addresses.png';
+import editImagePath from 'iota-wallet-shared-modules/images/edit.png';
+import deleteImagePath from 'iota-wallet-shared-modules/images/delete.png';
+import addImagePath from 'iota-wallet-shared-modules/images/add.png';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
 class AdvancedSettings extends React.Component {
     render() {

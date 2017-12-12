@@ -21,6 +21,7 @@
         "compile:win32": "electron-builder --win --x32"
     },
     "devDependencies": {
+        "babel-polyfill": "^6.26.0",
         "babel-core": "^6.7.6",
         "babel-eslint": "^8.0.0",
         "babel-loader": "^6.2.4",
@@ -37,6 +38,7 @@
         "css-loader": "^0.23.1",
         "electron": "^1.7.9",
         "electron-builder": "^19.29.2",
+        "electron-rebuild": "^1.6.0",
         "electron-devtools-installer": "^2.2.1",
         "eslint": "^4.9.0",
         "express": "^4.13.4",
@@ -115,9 +117,5 @@
         "mac": {
             "category": "public.app-category.developer-tools"
         }
-    },
-    "dependencies": {
-        "babel-polyfill": "^6.26.0",
-        "electron-rebuild": "^1.6.0"
     }
 }
