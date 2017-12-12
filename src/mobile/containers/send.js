@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
 import React, { Component } from 'react';
@@ -21,7 +22,7 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import keychain, { getSeed } from '../util/keychain';
 import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
@@ -187,12 +188,15 @@ class Send extends Component {
         const message = this.state.message;
 
         this.props.sendTransferRequest();
-        getFromKeychain(this.props.tempAccount.password, value => {
-            if (value) {
-                const seed = getSeed(value, this.props.tempAccount.seedIndex);
-                sendTx(seed);
-            }
-        });
+        keychain
+            .get()
+            .then(credentials => {
+                if (get(credentials, 'data')) {
+                    const seed = getSeed(credentials.data, this.props.tempAccount.seedIndex);
+                    sendTx(seed);
+                }
+            })
+            .catch(err => console.log(err));
 
         const sendTx = seed =>
             this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);

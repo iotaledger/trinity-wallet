@@ -7,6 +7,8 @@ import { width, height } from '../util/dimensions';
 import Modal from 'react-native-modal';
 import { TextField } from 'react-native-material-textfield';
 import COLORS from '../theme/Colors';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 
 class DeleteAccount extends React.Component {
     constructor(props) {

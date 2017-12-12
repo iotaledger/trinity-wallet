@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -59,6 +58,7 @@
 		CBFE034A1FD648E000094FBB /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03431FD648DE00094FBB /* Inconsolata-Bold.ttf */; };
 		CBFE034B1FD648E000094FBB /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03441FD648DF00094FBB /* Lato-Regular.ttf */; };
 		CBFE034C1FD648E000094FBB /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBFE03451FD648E000094FBB /* Inconsolata-Regular.ttf */; };
+		BCCD269481564D2C81E6E261 /* libRNClipboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A3924744F3445B889D8805 /* libRNClipboard.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -512,6 +512,8 @@
 		CBFE03451FD648E000094FBB /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../../shared/custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
 		D215E82DADAEAE41E8BB76DC /* libPods-iotaWallet-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iotaWallet-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F88047D21594709567CE0F /* Pods-iotaWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet.debug.xcconfig"; sourceTree = "<group>"; };
+		A937E21FD0D64559BDD2A51D /* RNClipboard.xcodeproj */ = {isa = PBXFileReference; name = "RNClipboard.xcodeproj"; path = "../node_modules/react-native-clipboard/RNClipboard.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		57A3924744F3445B889D8805 /* libRNClipboard.a */ = {isa = PBXFileReference; name = "libRNClipboard.a"; path = "libRNClipboard.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -552,6 +554,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				223B998F0B2E47599B0BBF46 /* libRNSVG.a in Frameworks */,
 				3933F23405C1A7DA85AA571A /* libPods-iotaWallet.a in Frameworks */,
+				BCCD269481564D2C81E6E261 /* libRNClipboard.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +803,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				9090DAE9334840B081B3AC44 /* RNSVG.xcodeproj */,
+				A937E21FD0D64559BDD2A51D /* RNClipboard.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1029,7 +1033,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 910;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -1953,6 +1957,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1961,6 +1966,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iotaWallet.app/iotaWallet";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
+				);
 			};
 			name = Debug;
 		};
@@ -1974,12 +1983,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-tcp/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
 				);
 				INFOPLIST_FILE = iotaWalletTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2009,6 +2020,7 @@
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
 					"$(SRCROOT)/../../../React/**",
+					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -2042,6 +2054,7 @@
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
 					"$(SRCROOT)/../../../React/**",
+					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -2080,6 +2093,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2091,6 +2105,10 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
+				);
 			};
 			name = Debug;
 		};
@@ -2115,6 +2133,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2126,6 +2145,10 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-clipboard/RNClipboard",
+				);
 			};
 			name = Release;
 		};
@@ -2146,6 +2169,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iotaWallet-tvOSTests";
@@ -2173,6 +2197,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.iotaWallet-tvOSTests";
