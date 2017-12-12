@@ -19,6 +19,7 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import TopBar from './topBar';
+import keychain from '../util/keychain';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from 'iota-wallet-shared-modules/store';
 import {
