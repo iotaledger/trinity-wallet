@@ -16,17 +16,17 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
 } from 'react-native';
-import Colors from '../theme/Colors';
+import COLORS from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { Keyboard } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -49,8 +49,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundDarkGreen,
                 },
                 overrideBackPress: true,
             },
@@ -69,7 +68,7 @@ class WalletResetRequirePassword extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundDarkGreen,
                 },
                 overrideBackPress: true,
             },
@@ -112,15 +111,12 @@ class WalletResetRequirePassword extends Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                style={styles.iotaLogo}
-                            />
+                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={styles.generalText}>Enter password to reset your wallet.</Text>
@@ -135,14 +131,14 @@ class WalletResetRequirePassword extends Component {
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
-                                enablesReturnKeyAutomatically={true}
+                                enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 value={this.state.password}
                                 onChangeText={password => this.setState({ password })}
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
-                                secureTextEntry={true}
+                                secureTextEntry
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -158,25 +154,25 @@ class WalletResetRequirePassword extends Component {
                 </TouchableWithoutFeedback>
                 <DropdownAlert
                     ref={ref => (this.dropdown = ref)}
-                    successColor={Colors.dropdown.success}
-                    errorColor={Colors.dropdown.error}
+                    successColor={COLORS.dropdown.success}
+                    errorColor={COLORS.dropdown.error}
                     titleStyle={styles.dropdownTitle}
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle="light-content"
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
 
 const onboardingButtonsOverride = StyleSheet.create({
     rightButton: {
-        borderColor: Colors.red,
+        borderColor: COLORS.red,
     },
     rightText: {
-        color: Colors.red,
+        color: COLORS.red,
         fontFamily: Fonts.secondary,
     },
 });
@@ -186,7 +182,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.brand.primary,
+        backgroundColor: COLORS.backgroundGreen,
     },
     topWrapper: {
         flex: 1.3,
@@ -213,7 +209,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     questionText: {
-        color: Colors.white,
+        color: COLORS.white,
         fontFamily: Fonts.secondary,
         fontSize: width / 20.25,
         textAlign: 'center',
@@ -223,7 +219,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     newSeedButton: {
-        borderColor: Colors.orangeDark,
+        borderColor: COLORS.orangeDark,
         borderWidth: 1.2,
         borderRadius: 10,
         width: width / 1.65,
@@ -233,7 +229,7 @@ const styles = StyleSheet.create({
         marginRight: width / 10,
     },
     newSeedText: {
-        color: Colors.orangeDark,
+        color: COLORS.orangeDark,
         fontFamily: Fonts.tertiary,
         fontSize: width / 25.3,
         backgroundColor: 'transparent',
@@ -251,7 +247,7 @@ const styles = StyleSheet.create({
         width: width / 1.65,
     },
     textField: {
-        color: Colors.white,
+        color: COLORS.white,
         fontFamily: Fonts.tertiary,
     },
     textFieldLabel: {

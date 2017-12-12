@@ -7,9 +7,9 @@
         "back": "INDIETRO",
         "done": "FINE",
         "next": "AVANTI",
-        "manualCopy": "Copia manuale",
-        "paperWallet": "Portafoglio su carta",
-        "copyToClipboard": "Copia negli appunti",
+        "manualCopy": "Annota il seme",
+        "paperWallet": "Stampa copia cartacea",
+        "copyToClipboard": "Aggiungi al gestore di password",
         "qr": "QR",
         "notAvailable": "Questa funzione non è disponibile",
         "notAvailableExplanation": "Verrà aggiunta in una fase successiva.",
@@ -67,10 +67,12 @@
     "copyToClipboard": {
         "seedCleared": "Seme cancellato",
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
-        "seedCopied": "Seme copiato",
-        "seedCopiedExplanation": "Il seme è stato copiato negli Appunti e verrà cancellato una volta che si preme \"FINE\" o al massimo tra 60 secondi.",
+        "seedCopied": "Copiato il seme negli appunti",
+        "seedCopiedExplanation":
+            "Il seme verrà cancellato una volta che si preme \"FINE\" o che sono trascorsi 60 secondi.",
         "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Non salvare il tuo seme in un file non crittografato.",
+        "copyToClipboard": "Copia negli appunti"
     },
     "enterSeed": {
         "invalidCharacters": "Il seme contiene caratteri non validi",
@@ -130,6 +132,8 @@
         "removeMessage": "RIMUOVI IL MESSAGGIO"
     },
     "saveYourSeed": {
+        "seedCleared": "Seme cancellato",
+        "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
         "mustSaveYourSeed": "Devi salvare il tuo seme con ",
         "atLeastOne": "almeno una ",
         "ofTheOptions": "delle opzioni elencate di seguito."
@@ -138,7 +142,7 @@
         "incorrectSeed": "Seme non corretto",
         "incorrectSeedExplanation": "Il seme inserito non è corretto. Si prega di riprovare.",
         "thisIsACheck": "Si tratta di un controllo per assicurarsi che hai salvato il tuo seme.",
-        "ifYouHaveNotSaved": "Se non hai salvato il tuo seme, si prega di tornare alla schermata precedente e farlo."
+        "ifYouHaveNotSaved": "Se non hai salvato il tuo seme, si prega di tornare indietro e farlo."
     },
     "send": {
         "invalidAddress": "Indirizzo non valido",
@@ -194,14 +198,14 @@
         "logout": "Esci",
         "reset": "Reimposta il portafoglio",
         "back": "Indietro",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "syncingComplete": "Sincronizzazione completata",
+        "syncingCompleteExplanation": "Il tuo account è stato sincronizzato correttamente.",
+        "nicknameChanged": "Nome di conto modificato",
+        "nicknameChangedExplanation": "Il tuo nome di conto è stato modificato.",
+        "accountDeleted": "Conto eliminato",
+        "accountDeletedExplanation": "Il tuo conto è stato rimosso dal portafoglio.",
+        "cannotPerformAction": "Non è possibile eseguire l'azione",
+        "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio."
     },
     "resetWalletConfirmation": {
         "thisAction": "Questa azione non può essere annullata.",
@@ -241,9 +245,9 @@
         "thatTheyAreCorrect": "che siano corretti."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Hash del pacchetto copiato",
+        "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "L'indirizzo è stato copiato negli Appunti."
     }
 }

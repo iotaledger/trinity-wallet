@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
-import {
-    Image,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    ImageBackground,
-    Keyboard,
-} from 'react-native';
+import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Fonts from '../theme/Fonts';
 import Colors from '../theme/Colors';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { width, height } from '../util/dimensions';
 import Modal from 'react-native-modal';
 import { TextField } from 'react-native-material-textfield';
+import COLORS from '../theme/Colors';
 
 class DeleteAccount extends React.Component {
     constructor(props) {
@@ -60,10 +52,7 @@ class DeleteAccount extends React.Component {
     }
 
     _renderModalContent = (titleColour, sendOrReceive) => (
-        <ImageBackground
-            source={require('iota-wallet-shared-modules/images/bg-blue.png')}
-            style={{ width: width / 1.15, alignItems: 'center' }}
-        >
+        <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
             <View style={styles.modalContent}>
                 <Text style={[styles.infoText, { paddingBottom: height / 16 }]}>
                     Are you sure you want to delete your account called {this.props.currentAccountName}?
@@ -75,7 +64,7 @@ class DeleteAccount extends React.Component {
                     rightText={'YES'}
                 />
             </View>
-        </ImageBackground>
+        </View>
     );
 
     render() {
@@ -123,19 +112,13 @@ class DeleteAccount extends React.Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.onContinuePress()}>
                             <View style={styles.itemRight}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/tick.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={tickImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Continue</Text>
                             </View>
                         </TouchableOpacity>
