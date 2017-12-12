@@ -367,31 +367,6 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.68,
     },
-    button: {
-        width: width / 8,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    icon: {
-        paddingTop: height / 40,
-        height: width / 15,
-        width: width / 15,
-    },
-    iconTitle: {
-        color: 'white',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        paddingTop: height / 80,
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 40.5,
-        backgroundColor: 'transparent',
-    },
-    fullyOpaque: {
-        opacity: 1,
-    },
-    partiallyOpaque: {
-        opacity: 0.4,
-    },
     dropdownTitle: {
         fontSize: width / 25.9,
         textAlign: 'left',
@@ -468,10 +443,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
     },
 });
 
