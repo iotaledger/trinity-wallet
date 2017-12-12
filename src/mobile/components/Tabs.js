@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import { isAndroid } from '../util/device';
@@ -28,9 +28,16 @@ const styles = StyleSheet.create({
 
 class Tabs extends Component {
     render() {
-        const { children } = this.props;
+        const { children, onPress, currentRoute } = this.props;
 
-        const tabContainer = <View style={styles.tabBar}>{children}</View>;
+        const childComponents = Children.map(children, child =>
+            cloneElement(child, {
+                onPress: () => onPress(child.props.name),
+                isActive: child.props.name === currentRoute,
+            }),
+        );
+
+        const tabContainer = <View style={styles.tabBar}>{childComponents}</View>;
 
         if (isAndroid) {
             return (
@@ -54,6 +61,8 @@ class Tabs extends Component {
 
 Tabs.propTypes = {
     children: PropTypes.node,
+    onPress: PropTypes.func.isRequired,
+    currentRoute: PropTypes.string.isRequired,
 };
 
 export default Tabs;
