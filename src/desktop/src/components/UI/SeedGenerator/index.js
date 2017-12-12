@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createRandomSeed } from 'libs/seedUtil';
 import { MAX_SEED_LENGTH } from 'libs/util';
+import Letter from './Letter';
 
 import css from './SeedGenerator.css';
 
