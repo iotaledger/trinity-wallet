@@ -1,16 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import Template, { Content } from './Template';
 
-import css from '../Layout/Main.css';
+// import css from '../Layout/Main.css';
 
-class Send extends React.Component {
+class Send extends React.PureComponent {
     static propTypes = {};
 
     render() {
-        // const { t } = this.props;
+        // eslint-disable-next-line
+        const { t } = this.props;
         return (
             <Template>
                 <Content>Send</Content>
@@ -19,7 +20,7 @@ class Send extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = () => ({
     // fullNode: state.settings.fullNode,
 });
 
