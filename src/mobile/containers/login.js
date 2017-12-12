@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import React from 'react';
 import {
     StyleSheet,
@@ -10,20 +11,16 @@ import {
     StatusBar,
     Keyboard,
 } from 'react-native';
-import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, clearTempData, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import keychain, { getSeed } from '../util/keychain';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import DropdownHolder from '../components/dropdownHolder';
-import ExtraDimensions from 'react-native-extra-dimensions-android';
-import IOTA from 'iota.lib.js';
 import Modal from 'react-native-modal';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import NodeSelection from '../components/nodeSelection.js';
@@ -85,15 +82,18 @@ class Login extends React.Component {
                 'You must enter a password to log in. Please try again.',
             );
         } else {
-            getFromKeychain(this.state.password, value => {
-                this.props.setPassword(this.state.password);
-                if (value) {
-                    var seed = getSeed(value, 0);
-                    login(seed);
-                } else {
-                    error();
-                }
-            });
+            keychain
+                .get()
+                .then(credentials => {
+                    this.props.setPassword(this.state.password);
+                    if (get(credentials, 'password')) {
+                        const seed = getSeed(credentials.password, 0);
+                        login(seed);
+                    } else {
+                        error();
+                    }
+                })
+                .catch(err => console.log(err)); // Dropdown
         }
 
         error = () => {
