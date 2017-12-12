@@ -64,8 +64,8 @@
     "copyToClipboard": {
         "seedCleared": "Tohum temizlendi",
         "seedClearedExplanation": "Tohum güvenliğiniz için pano'dan temizlendi.",
-        "seedCopied": "Oluşum panoya kopyalandı",
-        "seedCopiedExplanation": "\"Bitti\" ya da 60 saniye geçtiğinizde oluşum temizlenecektir.",
+        "seedCopied": "Cüzdan şifresi panoya kopyalandı",
+        "seedCopiedExplanation": "\"Bitti\" ya da 60 saniye geçtiğinizde cüzdan şifresi temizlenecektir.",
         "clickToCopy": "Aşağıdaki düğmeyi tıklayın ve cüzdan şifrenizi bir şifre yöneticisine kopyalayın.",
         "doNotStore": "Cüzdan şifresini düz metin halinde saklamayın.",
         "copyToClipboard": "Panoya kopyala"
@@ -74,7 +74,7 @@
         "invalidCharacters": "Cüzdan şifresi geçersiz karakterler içerir",
         "invalidCharactersExplanation": "Cüzdan şifreleri yalnızca A-Z büyük harflerinden ve 9 numaradan oluşabilir. Tohumunuz geçersiz karakterlere sahiptir. Lütfen tekrar deneyin.",
         "seedTooShort": "Cüzdan şifresi çok kısa",
-        "seedTooShortExplanation": "Cüzdan şifrenizin uzunluğu {{maxLength}} olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluğunda. Lütfen tekrar deneyin.",
+        "seedTooShortExplanation": "Cüzdan şifrenizin uzunluğu {{maxLength}} olmalıdır. Cüzdan şifreniz şu anda {{currentLength}} karakter uzunluğunda. Lütfen tekrar deneyin.",
         "seedExplanation": "Cüzdan şifreleri {{maxLength}} karakter uzunluğunda olmalı ve A-Z büyük harfleri veya sayı 9 olmalıdır. {{MaxLength}} karakterden uzun cüzdan şifrelerini kullanamazsınız.",
         "neverShare": "CÜZDAN ŞİFRENİZİ ASLA KİMSEYLE PAYLAŞMAYIN"
     },
