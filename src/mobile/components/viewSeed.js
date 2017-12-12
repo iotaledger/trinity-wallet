@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import {
     Image,
@@ -29,7 +30,7 @@ class ViewSeed extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (this.props.seedIndex != newProps.seedIndex) {
+        if (this.props.seedIndex !== newProps.seedIndex) {
             this.hideSeed();
         }
     }
@@ -44,12 +45,12 @@ class ViewSeed extends React.Component {
                     if (!data) {
                         throw 'Error';
                     } else {
-                        const seed = getSeed(value, this.props.seedIndex);
+                        const seed = getSeed(data, this.props.seedIndex);
                         this.setState({ seed });
                         this.setState({ showSeed: true });
                     }
                 })
-                .catch(err => error());
+                .catch(err => console.log(err));
         } else {
             this.props.onWrongPassword();
         }

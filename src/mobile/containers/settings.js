@@ -307,13 +307,13 @@ class Settings extends React.Component {
                         return ifNoKeychainDuplicates(seed, accountName);
                     } else {
                         if (hasDuplicateAccountName(credentials.data, accountName)) {
-                            return this.dropdown.alertWithType(
+                            return dropdown.alertWithType(
                                 'error',
                                 'Account name already in use',
                                 'This account name is already linked to your wallet. Please use a different one.',
                             );
                         } else if (hasDuplicateSeed(credentials.data, seed)) {
-                            return this.dropdown.alertWithType(
+                            return dropdown.alertWithType(
                                 'error',
                                 'Seed already in use',
                                 'This seed is already linked to your wallet. Please use a different one.',
@@ -431,7 +431,7 @@ class Settings extends React.Component {
                 this.props.setSetting('accountManagement');
                 dropdown.alertWithType('success', t('accountDeleted'), t('accountDeletedExplanation'));
             })
-            .catch(err => error());
+            .catch(err => console.log(err));
     }
 
     setModalContent(modalSetting) {
