@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { createRandomSeed } from 'libs/seedUtil';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import Template, { Content, Footer } from './Template';
 import { isValidSeed } from '../../../../shared/libs/util';
-import { createRandomSeed } from 'libs/seedUtil';
 import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
 import css from '../Layout/Onboarding.css';
@@ -25,13 +25,6 @@ class GenerateSeed extends React.PureComponent {
 
     state = {
         seed: this.props.seed,
-    };
-
-    generateNewSeed = () => {
-        const newSeed = createRandomSeed();
-        this.setState(() => ({
-            seed: newSeed,
-        }));
     };
 
     onUpdatedSeed = seed => {
@@ -54,6 +47,13 @@ class GenerateSeed extends React.PureComponent {
         clearSeeds(seed);
         addAndSelectSeed(seed);
         history.push('/seed/save');
+    };
+
+    generateNewSeed = () => {
+        const newSeed = createRandomSeed();
+        this.setState(() => ({
+            seed: newSeed,
+        }));
     };
 
     render() {

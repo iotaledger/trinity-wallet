@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getSecurelyPersistedSeeds } from 'libs/util';
 import { showError } from 'actions/notifications';
 import { loadSeeds } from 'actions/seeds';
-import Template, { Content, Footer } from '../Onboarding/Template';
+import Template, { Content, Footer } from 'components/Onboarding/Template';
 import PasswordInput from 'components/UI/PasswordInput';
 import Button from 'components/UI/Button';
 import css from '../Layout/Onboarding.css';
@@ -70,7 +70,7 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = () => ({
     // fullNode: state.settings.fullNode,
 });
 
