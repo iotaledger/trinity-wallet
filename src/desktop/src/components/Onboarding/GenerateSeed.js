@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { createRandomSeed } from 'libs/seedUtil';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';

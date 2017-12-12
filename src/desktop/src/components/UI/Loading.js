@@ -8,6 +8,6 @@ export default class Loading extends React.PureComponent {
             <div className={css.loading}>
                 <Logo width={168} className="animated" />
             </div>
-        </div>
-    );
+        );
+    }
 }
