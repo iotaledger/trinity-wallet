@@ -39,12 +39,17 @@ footer .button + .button {
     color: var(--color-button-danger);
 }
 
-.success {
+.success,
+.success-disabled {
     composes: button;
     color: var(--color-button-success);
     &:hover {
         background: var(--color-button-success-hover);
     }
+}
+.success-disabled {
+    opacity: 0.25;
+    pointer-events: none;
 }
 
 .extra,

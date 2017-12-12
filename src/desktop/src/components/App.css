@@ -63,11 +63,11 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow: hidden;
 }
 
 body {
-    background: url(images/bg-green.svg) center center no-repeat;
-    background-size: cover;
+    background: #244148;
     color: var(--color-text);
     font-family: 'Lato';
     font-weight: 200;

@@ -44,8 +44,8 @@ class GenerateSeed extends React.PureComponent {
 
         if (!seed || !isValidSeed(seed)) {
             return showError({
-                title: 'unknownError_title',
-                text: 'unknownError_text',
+                title: 'seedReentry:incorrectSeed',
+                text: 'seedReentry:incorrectSeedExplanation',
                 translate: true,
             });
         }
@@ -78,7 +78,7 @@ class GenerateSeed extends React.PureComponent {
                     <Button onClick={this.onRequestPrevious} variant="warning">
                         {t('global:back')}
                     </Button>
-                    <Button onClick={this.onRequestNext} variant="success">
+                    <Button onClick={this.onRequestNext} variant={seed ? 'success' : 'successDisabled'}>
                         {t('global:next')}
                     </Button>
                 </Footer>
