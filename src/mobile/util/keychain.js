@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
+import map from 'lodash/map';
+import filter from 'lodash/filter';
 import { serialize, parse } from '../../shared/libs/util';
 import * as Keychain from 'react-native-keychain';
 
@@ -68,10 +70,49 @@ export const hasDuplicateSeed = (data, seed) => {
     return some(parsed, hasDuplicate);
 };
 
-export function getSeed(value, index) {
+export const getSeed = (value, index) => {
     const parsed = parse(value);
 
     return parsed[index] ? parsed[index].seed : '';
-}
+};
+
+export const updateAccountNameInKeychain = async (replaceAtIndex, newAccountName, password) => {
+    const data = await keychain.get();
+    const accountInformation = get(data, 'data');
+
+    if (accountInformation) {
+        const parsed = parse(accountInformation);
+        const replace = (d, i) => {
+            if (i === replaceAtIndex) {
+                return {
+                    ...d,
+                    name: newAccountName,
+                };
+            }
+
+            return d;
+        };
+
+        const updatedAccountInfo = map(parsed, replace);
+        return keychain.set(password, serialize(updatedAccountInfo));
+    }
+
+    return keychain.set(password, accountInformation);
+};
+
+export const deleteFromKeychain = async (deleteFromIndex, password) => {
+    const data = await keychain.get();
+    const accountInformation = get(data, 'data');
+
+    if (accountInformation) {
+        const parsed = parse(accountInformation);
+        const remove = (d, i) => i !== deleteFromIndex;
+        const updatedAccountInfo = filter(parsed, remove);
+
+        return keychain.set(password, updatedAccountInfo);
+    }
+
+    return keychain.set(password, accountInformation);
+};
 
 export default keychain;
