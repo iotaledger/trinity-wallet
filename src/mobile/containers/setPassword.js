@@ -343,6 +343,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
     },
+    dropdownTitle: {
+        fontSize: width / 25.9,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
     dropdownTextContainer: {
         flex: 1,
         paddingLeft: width / 20,
