@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import Svg, { Rect, Defs, LinearGradient, Stop, RadialGradient, Path } from 'react-native-svg';
 
@@ -74,6 +75,17 @@ BorderShadow.defaultProps = {
     opacity: 1,
     inset: false,
     style: {},
+};
+
+BorderShadow.propTypes = {
+    side: PropTypes.string,
+    width: PropTypes.number,
+    color: PropTypes.string,
+    border: PropTypes.number,
+    opacity: PropTypes.number,
+    inset: PropTypes.bool,
+    style: PropTypes.object,
+    children: PropTypes.node.isRequired,
 };
 
 export default BorderShadow;
