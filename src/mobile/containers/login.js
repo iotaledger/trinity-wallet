@@ -86,7 +86,10 @@ class Login extends React.Component {
                 .get()
                 .then(credentials => {
                     this.props.setPassword(this.state.password);
-                    if (get(credentials, 'data')) {
+                    const hasData = get(credentials, 'data');
+                    const hasCorrectPassword = get(credentials, 'password') === this.state.password;
+
+                    if (hasData && hasCorrectPassword) {
                         const seed = getSeed(credentials.data, 0);
                         login(seed);
                     } else {
