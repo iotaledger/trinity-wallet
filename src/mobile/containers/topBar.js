@@ -97,6 +97,7 @@ class TopBar extends Component {
         const getBalance = currentIdx => {
             const seedStrings = Object.keys(accountInfo);
             const data = accountInfo[seedStrings[currentIdx]].addresses;
+            const balances = Object.values(data).map(x => x.balance);
 
             if (isEmpty(data)) {
                 return this.humanizeBalance(0); // no addresses
@@ -104,11 +105,10 @@ class TopBar extends Component {
 
             const calc = (res, value) => {
                 res += value;
-
                 return res;
             };
 
-            const balance = reduce(data, calc, 0);
+            const balance = reduce(balances, calc, 0);
             return this.humanizeBalance(balance);
         };
 

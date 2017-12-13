@@ -189,7 +189,7 @@ export function generateNewAddress(seed, seedName, addresses) {
                 // In case the newly created address is not part of the addresses object
                 // Add that as a key with a 0 balance.
                 if (!(addressNoChecksum in addresses)) {
-                    updatedAddresses[addressNoChecksum] = 0;
+                    updatedAddresses[addressNoChecksum] = { balance: 0, spent: false };
                 }
 
                 dispatch(updateAddresses(seedName, updatedAddresses));
@@ -300,7 +300,16 @@ export function checkForNewAddress(seedName, addressesWithBalance, txArray) {
             const addressNoChecksum = changeAddress.substring(0, MAX_SEED_LENGTH);
             // If current addresses does not include change address, add new address and balance
             if (!addresses.includes(addressNoChecksum)) {
-                addressesWithBalance[addressNoChecksum] = 0;
+                const addressArray = [addressNoChecksum];
+                // Check change address balance
+                iota.api.getBalances(addressArray, 1, (error, success) => {
+                    if (!error) {
+                        const addressBalance = parseInt(success.balances[0]);
+                        addressesWithBalance[addressNoChecksum] = { balance: addressBalance, spent: false };
+                    } else {
+                        addressesWithBalance[addressNoChecksum] = { balance: 0, spent: false };
+                    }
+                });
             }
             dispatch(updateAddresses(seedName, addressesWithBalance));
         }
