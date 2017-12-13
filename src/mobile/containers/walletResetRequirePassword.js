@@ -49,7 +49,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: COLORS.backgroundDarkGreen,
+                    screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 overrideBackPress: true,
             },
@@ -68,7 +68,7 @@ class WalletResetRequirePassword extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: COLORS.backgroundDarkGreen,
+                    screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 overrideBackPress: true,
             },
