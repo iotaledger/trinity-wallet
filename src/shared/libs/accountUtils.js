@@ -7,18 +7,63 @@ import reduce from 'lodash/reduce';
 import isNull from 'lodash/isNull';
 import { iota } from '../libs/iota';
 
-export const formatAddressBalances = (addresses, balances) => {
-    var addressesWithBalance = Object.assign({}, ...addresses.map((n, index) => ({ [n]: balances[index] })));
+export const formatAddressBalances = (addresses, balances, addressesSpendStatus) => {
+    var addressesWithBalance = Object.assign(
+        {},
+        ...addresses.map((n, index) => ({ [n]: { balance: balances[index], spent: addressesSpendStatus[index] } })),
+    );
     return addressesWithBalance;
 };
 
 export const formatAddressBalancesNewSeed = data => {
     var addresses = data.addresses;
-    var addressesWithBalance = Object.assign({}, ...addresses.map(n => ({ [n]: 0 })));
+    var addressesWithBalance = Object.assign({}, ...addresses.map(n => ({ [n]: { balance: 0, spent: false } })));
     for (var i = 0; i < data.inputs.length; i++) {
-        addressesWithBalance[data.inputs[i].address] = data.inputs[i].balance;
+        addressesWithBalance[data.inputs[i].address].balance = data.inputs[i].balance;
     }
     return addressesWithBalance;
+};
+
+export const categorizeTransfers = function(transfers, addresses) {
+    var categorized = {
+        sent: [],
+        received: [],
+    };
+
+    // Iterate over all bundles and sort them between incoming and outgoing transfers
+    transfers.forEach(function(bundle) {
+        var spentAlreadyAdded = false;
+
+        // Iterate over every bundle entry
+        bundle.forEach(function(bundleEntry, bundleIndex) {
+            // If bundle address in the list of addresses associated with the seed
+            // add the bundle to the
+            if (addresses.indexOf(bundleEntry.address) > -1) {
+                // Check if it's a remainder address
+                var isRemainder = bundleEntry.currentIndex === bundleEntry.lastIndex && bundleEntry.lastIndex !== 0;
+
+                // check if sent transaction
+                if (bundleEntry.value < 0 && !spentAlreadyAdded && !isRemainder) {
+                    categorized.sent.push(bundle);
+
+                    // too make sure we do not add transactions twice
+                    spentAlreadyAdded = true;
+                } else if (bundleEntry.value >= 0 && !spentAlreadyAdded && !isRemainder) {
+                    // check if received transaction, or 0 value (message)
+                    // also make sure that this is not a 2nd tx for spent inputs
+                    categorized.received.push(bundle);
+                }
+            }
+        });
+    });
+
+    return categorized;
+};
+
+export const markAddressSpend = addressesWithBalance => {
+    const balances = Object.values(addressesWithBalance).map(x => x.balance);
+    const addressesSpendStatus = Object.values(addressesWithBalance).map(x => x.spent);
+    const addresses = Object.keys(addressesWithBalance);
 };
 
 export const groupTransfersByBundle = transfers => {
@@ -96,7 +141,8 @@ export const addTransferValues = (transfers, addresses) => {
 export const calculateBalance = data => {
     let balance = 0;
     if (Object.keys(data).length > 0) {
-        balance = Object.values(data).reduce((a, b) => a + b);
+        let balanceArray = Object.values(data).map(x => x.balance);
+        balance = balanceArray.reduce((a, b) => a + b);
     }
     return balance;
 };

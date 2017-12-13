@@ -36,7 +36,7 @@ class ViewAddresses extends Component {
                                 </TouchableOpacity>
                                 <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
                                     <Text style={styles.balanceText}>
-                                        {formatValue(rowData)} {formatUnit(rowData)}
+                                        {formatValue(rowData.balance)} {formatUnit(rowData.balance)}
                                     </Text>
                                 </View>
                             </View>

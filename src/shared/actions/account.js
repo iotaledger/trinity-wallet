@@ -54,9 +54,9 @@ export function addAddresses(seedName, addresses) {
 export const getAccountInfoNewSeedAsync = (seed, seedName) => {
     return async dispatch => {
         const address = await iota.api.getNewAddressAsync(seed);
-        console.log('ADDRESS:', address);
+        //console.log('ADDRESS:', address);
         const accountData = await iota.api.getAccountDataAsync(seed);
-        console.log('ACCOUNT', accountData);
+        //console.log('ACCOUNT', accountData);
         const addressesWithBalance = formatAddressBalancesNewSeed(accountData);
         const balance = calculateBalance(addressesWithBalance);
         const transfers = formatTransfers(accountData.transfers, accountData.addresses);
@@ -71,7 +71,6 @@ export function getFullAccountInfo(seed, seedName, cb) {
             if (!error) {
                 // Combine addresses and balances
                 const addressesWithBalance = formatAddressBalancesNewSeed(success);
-
                 const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
                 const transfers = formatTransfers(transfersWithoutDuplicateBundles, success.addresses);
                 const balance = calculateBalance(addressesWithBalance);
@@ -101,7 +100,9 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
         // Current transfers
         const transfers = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers;
         // Array of old balances
-        const oldBalances = Object.values(addressesWithBalance);
+        const oldBalances = Object.values(addressesWithBalance).map(x => x.balance);
+        // Array of address spend status
+        const addressesSpendStatus = Object.values(addressesWithBalance).map(x => x.spent);
         // Array of current addresses
         const addresses = Object.keys(addressesWithBalance);
         // Get updated balances for current addresses
@@ -113,7 +114,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                 // Get address indexes where balance has changed
                 const indexesWithBalanceChange = getIndexesWithBalanceChange(newBalances, oldBalances);
                 // Pair new balances to addresses to add to store
-                addressesWithBalance = formatAddressBalances(addresses, newBalances);
+                addressesWithBalance = formatAddressBalances(addresses, newBalances, addressesSpendStatus);
                 // Calculate balance
                 const balance = calculateBalance(addressesWithBalance);
 
