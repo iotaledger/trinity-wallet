@@ -60,7 +60,7 @@ class Tabs extends Component {
 }
 
 Tabs.propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     onPress: PropTypes.func.isRequired,
     currentRoute: PropTypes.string.isRequired,
 };
