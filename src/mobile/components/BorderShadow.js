@@ -54,8 +54,6 @@ class BorderShadow extends Component {
                     <Rect x={0} y={0} width={width} height={lineWidth} fill={`url(#bottom${inset ? '-inset' : ''})`} />
                 </Svg>
             );
-        } else {
-            throw new Error("Wrong Type of Side! We just support 'top' and 'bottom'");
         }
 
         return (
