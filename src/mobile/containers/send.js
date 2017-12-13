@@ -199,7 +199,19 @@ class Send extends Component {
             .catch(err => console.log(err));
 
         const sendTx = seed =>
-            this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
+            this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message, () => cb());
+
+        cb = () => {
+            this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                if (error) this.onNodeError();
+            });
+        };
+    }
+
+    onNodeError() {
+        const dropdown = DropdownHolder.getDropdown();
+        const { t } = this.props;
+        dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
     }
 
     getUnitMultiplier() {
@@ -674,11 +686,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, currentSeedAccountInfo, seedName, address, value, message) => {
-        dispatch(sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message));
+    sendTransaction: (seed, currentSeedAccountInfo, seedName, address, value, message, cb) => {
+        dispatch(sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message, cb));
     },
-    getAccountInfo: (seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
+    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },
     sendTransferRequest: () => dispatch(sendTransferRequest()),
 });

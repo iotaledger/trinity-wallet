@@ -201,7 +201,7 @@ export function generateNewAddress(seed, seedName, addresses) {
     };
 }
 
-export function sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message, tag = 'IOTA') {
+export function sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message, cb) {
     return dispatch => {
         const verifyAndSend = (filtered, expectedOutputsLength, transfer, inputs) => {
             if (filtered.length !== expectedOutputsLength) {
@@ -224,6 +224,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                     dispatch(addPendingTransfer(seedName, transfers, success));
                     dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
                     dispatch(sendTransferSuccess(address, value));
+                    cb();
                 } else {
                     dispatch(sendTransferError());
                     dispatch(
@@ -268,6 +269,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                     );
                 }
 
+                const tag = 'IOTA';
                 const transfer = [
                     {
                         address: address,
