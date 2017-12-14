@@ -21,7 +21,7 @@ class ViewAddresses extends Component {
             <View style={styles.container}>
                 <View style={styles.listView}>
                     <ListView
-                        dataSource={ds.cloneWithRows(this.props.addressesWithBalance)}
+                        dataSource={ds.cloneWithRows(this.props.addressData)}
                         renderRow={(rowData, sectionID, rowID) => (
                             <View style={{ flexDirection: 'row', paddingHorizontal: width / 15 }}>
                                 <TouchableOpacity
