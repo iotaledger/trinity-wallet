@@ -214,13 +214,13 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                 );
             }
             // Send transfer with depth 4 and minWeightMagnitude 14
-            const addressesWithBalance = currentSeedAccountInfo.addresses;
+            const addressData = currentSeedAccountInfo.addresses;
             const transfers = currentSeedAccountInfo.transfers;
             const options = { inputs };
 
             return iota.api.sendTransfer(seed, 4, 14, transfer, options, (error, success) => {
                 if (!error) {
-                    dispatch(checkForNewAddress(seedName, addressesWithBalance, success));
+                    dispatch(checkForNewAddress(seedName, addressData, success));
                     dispatch(addPendingTransfer(seedName, transfers, success));
                     dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
                     dispatch(sendTransferSuccess(address, value));
@@ -292,12 +292,12 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
     };
 }
 
-export function checkForNewAddress(seedName, addressesWithBalance, txArray) {
+export function checkForNewAddress(seedName, addressData, txArray) {
     return dispatch => {
         // Check if 0 value transfer
         if (txArray[0].value != 0) {
             const changeAddress = txArray[txArray.length - 1].address;
-            const addresses = Object.keys(addressesWithBalance);
+            const addresses = Object.keys(addressData);
             // Remove checksum
             const addressNoChecksum = changeAddress.substring(0, MAX_SEED_LENGTH);
             // If current addresses does not include change address, add new address and balance
@@ -307,13 +307,13 @@ export function checkForNewAddress(seedName, addressesWithBalance, txArray) {
                 iota.api.getBalances(addressArray, 1, (error, success) => {
                     if (!error) {
                         const addressBalance = parseInt(success.balances[0]);
-                        addressesWithBalance[addressNoChecksum] = { balance: addressBalance, spent: false };
+                        addressData[addressNoChecksum] = { balance: addressBalance, spent: false };
                     } else {
-                        addressesWithBalance[addressNoChecksum] = { balance: 0, spent: false };
+                        addressData[addressNoChecksum] = { balance: 0, spent: false };
                     }
                 });
             }
-            dispatch(updateAddresses(seedName, addressesWithBalance));
+            dispatch(updateAddresses(seedName, addressData));
         }
     };
 }

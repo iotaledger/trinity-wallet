@@ -101,8 +101,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setBalance: addressesWithBalance => {
-        dispatch(setBalance(addressesWithBalance));
+    setBalance: addressData => {
+        dispatch(setBalance(addressData));
     },
     setFirstUse: boolean => {
         dispatch(setFirstUse(boolean));
