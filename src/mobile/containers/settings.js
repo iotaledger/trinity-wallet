@@ -79,7 +79,7 @@ class Settings extends React.Component {
         let accountInfo = this.props.account.accountInfo;
         let seedIndex = this.props.tempAccount.seedIndex;
         let currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-        let addressesWithBalance = currentSeedAccountInfo.addresses || {};
+        let addressData = currentSeedAccountInfo.addresses || {};
         let transfers = currentSeedAccountInfo.transfers || [];
         const dropdown = DropdownHolder.getDropdown();
 
@@ -129,7 +129,7 @@ class Settings extends React.Component {
             case 'viewAddresses':
                 return (
                     <ViewAddresses
-                        addressesWithBalance={addressesWithBalance}
+                        addressData={addressData}
                         backPress={() => this.props.setSetting('accountManagement')}
                     />
                 );
@@ -412,7 +412,7 @@ class Settings extends React.Component {
         const accountNames = this.props.account.seedNames;
         const currentAccountName = accountNames[seedIndex];
         let accountInfo = this.props.account.accountInfo;
-        let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        let addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
 
         let newAccountInfo = accountInfo;
         delete newAccountInfo[currentAccountName];
@@ -425,9 +425,9 @@ class Settings extends React.Component {
 
                 seedIndex = this.props.tempAccount.seedIndex;
                 accountInfo = this.props.account.accountInfo;
-                addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+                addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
 
-                this.props.setBalance(addressesWithBalance);
+                this.props.setBalance(addressData);
                 this.props.setSetting('accountManagement');
                 dropdown.alertWithType('success', t('accountDeleted'), t('accountDeletedExplanation'));
             })
