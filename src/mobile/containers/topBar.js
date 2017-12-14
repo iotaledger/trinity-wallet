@@ -385,7 +385,7 @@ const mapDispatchToProps = dispatch => ({
     toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
     getAccountInfo: (seedName, seedIndex, accountInfo, cb) =>
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb)),
-    setBalance: addressesWithBalance => dispatch(setBalance(addressesWithBalance)),
+    setBalance: addressData => dispatch(setBalance(addressData)),
     setSeedIndex: index => dispatch(setSeedIndex(index)),
     setReceiveAddress: string => dispatch(setReceiveAddress(string)),
 });

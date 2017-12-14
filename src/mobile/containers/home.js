@@ -72,9 +72,9 @@ class Home extends Component {
         this.startBackgroundProcesses();
         const accountInfo = this.props.account.accountInfo;
         const seedIndex = this.props.tempAccount.seedIndex;
-        const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        const addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         if (typeof accountInfo !== 'undefined') {
-            this.props.setBalance(addressesWithBalance);
+            this.props.setBalance(addressData);
         }
     }
 
@@ -639,8 +639,8 @@ const mapDispatchToProps = dispatch => ({
     setReceiveAddress: string => {
         dispatch(setReceiveAddress(string));
     },
-    setBalance: addressesWithBalance => {
-        dispatch(setBalance(addressesWithBalance));
+    setBalance: addressData => {
+        dispatch(setBalance(addressData));
     },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
     replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),

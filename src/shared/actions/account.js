@@ -3,14 +3,15 @@ import { getSelectedAccount } from '../selectors/account';
 import {
     addTransferValues,
     formatTransfers,
-    formatAddressBalances,
-    formatAddressBalancesNewSeed,
+    formatAddressData,
+    formatAddressDataNewSeed,
     calculateBalance,
     getIndexesWithBalanceChange,
     groupTransfersByBundle,
     getAddressesWithChangedBalance,
     mergeLatestTransfersInOld,
     deduplicateBundles,
+    markAddressSpend,
 } from '../libs/accountUtils';
 import { setReady, getTransfersRequest, getTransfersSuccess } from './tempAccount';
 import { generateAlert } from '../actions/alerts';
@@ -57,10 +58,10 @@ export const getAccountInfoNewSeedAsync = (seed, seedName) => {
         //console.log('ADDRESS:', address);
         const accountData = await iota.api.getAccountDataAsync(seed);
         //console.log('ACCOUNT', accountData);
-        const addressesWithBalance = formatAddressBalancesNewSeed(accountData);
-        const balance = calculateBalance(addressesWithBalance);
+        const addressData = formatAddressDataNewSeed(accountData);
+        const balance = calculateBalance(addressData);
         const transfers = formatTransfers(accountData.transfers, accountData.addresses);
-        dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance));
+        dispatch(setAccountInfo(seedName, addressData, transfers, balance));
         dispatch(setReady());
     };
 };
@@ -70,12 +71,14 @@ export function getFullAccountInfo(seed, seedName, cb) {
         iota.api.getAccountData(seed, (error, success) => {
             if (!error) {
                 // Combine addresses and balances
-                const addressesWithBalance = formatAddressBalancesNewSeed(success);
+                const addressData = formatAddressDataNewSeed(success);
                 const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
                 const transfers = formatTransfers(transfersWithoutDuplicateBundles, success.addresses);
-                const balance = calculateBalance(addressesWithBalance);
+                const balance = calculateBalance(addressData);
+
+                addressData = markAddressSpend(transfers, addressData);
                 // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
-                dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance));
+                dispatch(setAccountInfo(seedName, addressData, transfers, balance));
                 cb(null, success);
             } else {
                 cb(error);
@@ -85,8 +88,8 @@ export function getFullAccountInfo(seed, seedName, cb) {
     };
 }
 
-export function setBalance(addressesWithBalance) {
-    const balance = calculateBalance(addressesWithBalance);
+export function setBalance(addressData) {
+    const balance = calculateBalance(addressData);
     return {
         type: 'SET_BALANCE',
         payload: balance,
@@ -96,15 +99,15 @@ export function setBalance(addressesWithBalance) {
 export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
     return dispatch => {
         // Current addresses and their balances
-        let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        let addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         // Current transfers
         const transfers = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers;
         // Array of old balances
-        const oldBalances = Object.values(addressesWithBalance).map(x => x.balance);
+        const oldBalances = Object.values(addressData).map(x => x.balance);
         // Array of address spend status
-        const addressesSpendStatus = Object.values(addressesWithBalance).map(x => x.spent);
+        const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
         // Array of current addresses
-        const addresses = Object.keys(addressesWithBalance);
+        const addresses = Object.keys(addressData);
         // Get updated balances for current addresses
         iota.api.getBalances(addresses, 1, (error, success) => {
             if (!error) {
@@ -114,9 +117,9 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                 // Get address indexes where balance has changed
                 const indexesWithBalanceChange = getIndexesWithBalanceChange(newBalances, oldBalances);
                 // Pair new balances to addresses to add to store
-                addressesWithBalance = formatAddressBalances(addresses, newBalances, addressesSpendStatus);
+                addressData = formatAddressData(addresses, newBalances, addressesSpendStatus);
                 // Calculate balance
-                const balance = calculateBalance(addressesWithBalance);
+                const balance = calculateBalance(addressData);
 
                 if (indexesWithBalanceChange.length > 0) {
                     // Grab addresses where balance was updated.
@@ -126,13 +129,13 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                         indexesWithBalanceChange,
                     );
                     dispatch(getTransfersRequest());
-                    Promise.resolve(dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance))).then(
+                    Promise.resolve(dispatch(setAccountInfo(seedName, addressData, transfers, balance))).then(
                         dispatch(getTransfers(seedName, addressesWithChangedBalance)),
                     );
                 } else {
                     cb(null, success);
                     // Set account info, then finish loading
-                    dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance));
+                    dispatch(setAccountInfo(seedName, addressData, transfers, balance));
                 }
             } else {
                 cb(error);
