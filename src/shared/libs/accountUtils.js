@@ -34,7 +34,7 @@ export const markAddressSpend = function(transfers, addressData) {
         // Iterate over every bundle entry
         bundle.forEach(function(bundleEntry, bundleIndex) {
             // If bundle address in the list of addresses associated with the seed
-            // add the bundle to the sent array
+            // mark the address as sent
             if (addresses.indexOf(bundleEntry.address) > -1) {
                 // Check if it's a remainder address
                 var isRemainder = bundleEntry.currentIndex === bundleEntry.lastIndex && bundleEntry.lastIndex !== 0;
