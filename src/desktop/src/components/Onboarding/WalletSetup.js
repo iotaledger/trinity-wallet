@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Template, { Content, Footer } from './Template';
-import Button from '../UI/Button';
-import Infobox from '../UI/Infobox';
+import Template, { Content, Footer } from 'components/Onboarding/Template';
+import Button from 'components/UI/Button';
+import Infobox from 'components/UI/Infobox';
 
 class WalletSetup extends React.PureComponent {
     static propTypes = {
@@ -16,7 +16,9 @@ class WalletSetup extends React.PureComponent {
             <Template>
                 <Content>
                     <p>{t('walletSetup:okay')}</p>
-                    <p>{t('walletSetup:doYouAlreadyHaveASeed')}</p>
+                    <p>
+                        <strong>{t('walletSetup:doYouAlreadyHaveASeed')}</strong>
+                    </p>
                     <Infobox>
                         <p>{t('walletSetup:seedExplanation')}</p>
                         <p>

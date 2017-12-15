@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
-import { setOnboardingCompletionStatus } from 'actions/app';
 import { showError } from 'actions/notifications';
 import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from 'libs/util';
 import Template, { Content, Footer } from './Template';
-import { securelyPersistSeeds } from 'libs/util';
+import { securelyPersistSeeds } from 'libs/storage';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 import PasswordInput from '../UI/PasswordInput';
@@ -17,21 +16,15 @@ import css from '../Layout/Onboarding.css';
 class SecurityEnter extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired,
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
+        seeds: PropTypes.object,
         showError: PropTypes.func.isRequired,
-        setOnboardingCompletionStatus: PropTypes.func.isRequired,
     };
 
     state = {};
-
-    changeHandler = e => {
-        const { target: { name, value } } = e;
-        this.setState(() => ({
-            [name]: value,
-        }));
-    };
 
     onRequestNext = e => {
         e.preventDefault();
@@ -54,8 +47,14 @@ class SecurityEnter extends React.PureComponent {
 
         securelyPersistSeeds(password, seeds);
         clearSeeds();
-        setOnboardingCompletionStatus(true);
         history.push('/done');
+    };
+
+    changeHandler = e => {
+        const { target: { name, value } } = e;
+        this.setState(() => ({
+            [name]: value,
+        }));
     };
 
     render() {
@@ -100,10 +99,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    setOnboardingCompletionStatus,
     addAndSelectSeed,
     clearSeeds,
     showError,
 };
 
-export default translate('setPassword')(connect(null, mapDispatchToProps)(SecurityEnter));
+export default translate('setPassword')(connect(mapStateToProps, mapDispatchToProps)(SecurityEnter));
