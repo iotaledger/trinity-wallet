@@ -201,9 +201,15 @@ class Chart extends React.Component {
                     </VictoryChart>
                 </View>
                 <View style={styles.marketDataContainer}>
-                    <Text style={styles.marketFigure}>MCAP: $ {marketData.mcap}</Text>
-                    <Text style={styles.marketFigure}>Change: {marketData.change24h}%</Text>
-                    <Text style={styles.marketFigure}>Volume (24h): $ {marketData.volume}</Text>
+                    <Text style={styles.marketFigure}>
+                        <Text style={styles.marketFigureTitle}>MCAP</Text> $ {marketData.mcap}
+                    </Text>
+                    <Text style={styles.marketFigure}>
+                        <Text style={styles.marketFigureTitle}>Change</Text> {marketData.change24h}%
+                    </Text>
+                    <Text style={styles.marketFigure}>
+                        <Text style={styles.marketFigureTitle}>Volume (24h)</Text> $ {marketData.volume}
+                    </Text>
                 </View>
                 <View style={{ flex: 0.2 }} />
             </View>
@@ -275,6 +281,9 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
         fontSize: width / 37.6,
+    },
+    marketFigureTitle: {
+        fontWeight: 'bold',
     },
 });
 
