@@ -3,7 +3,7 @@
         "invalidResponse": "Ongeldig antwoord",
         "invalidResponseExplanation": "De node heeft een ongeldig antwoord teruggestuurd.",
         "invalidResponsePollingExplanation": "De node heeft een ongeldig antwoord teruggestuurd tijdens het pollen.",
-        "seed": "Zaad",
+        "seed": "Sleutel",
         "back": "Terug",
         "done": "GEREED",
         "next": "VOLGENDE",
@@ -27,7 +27,7 @@
         "unrecognisedPassword": "Niet herkend wachtwoord",
         "unrecognisedPasswordExplanation": "Het wachtwoord is niet herkend. Probeer het opnieuw.",
         "syncInProgress": "Bezig met synchroniseren",
-        "syncInProgressExplanation": "Een ogenblik geduld alstublieft terwijl het synchroniseren wordt voltooid.",
+        "syncInProgressExplanation": "Een ogenblik geduld alstublieft, het synchroniseren wordt voltooid.",
         "somethingWentWrong": "Er ging iets mis",
         "somethingWentWrongExplanation": "Start de app opnieuw."
     },
@@ -45,7 +45,7 @@
     },
     "changePassword": {
         "oops": "Oeps! Er is iets mis gegaan",
-        "oopsExplanation": "Het lijkt erop dat er iets fout gegaan tijdens het bijwerken van uw wachtwoord. Probeer het opnieuw.",
+        "oopsExplanation": "Het lijkt erop dat er iets fout is gegaan tijdens het bijwerken van uw wachtwoord. Probeer het opnieuw.",
         "passwordUpdated": "Wachtwoord gewijzigd",
         "passwordUpdatedExplanation": "Uw wachtwoord is succesvol gewijzigd.",
         "incorrectPassword": "Onjuist wachtwoord",
@@ -53,7 +53,7 @@
         "passwordsDoNotMatch": "Wachtwoorden komen niet overeen",
         "passwordsDoNotMatchExplanation": "Wachtwoorden komen niet overeen. Probeer het opnieuw.",
         "passwordTooShort": "Het wachtwoord is te kort",
-        "passwordTooShortExplanation": "Uw wachtwoord moet minstens 12 tekens bevatten. Probeer aub opnieuw.",
+        "passwordTooShortExplanation": "Uw wachtwoord moet minstens 12 tekens bevatten. Probeer opnieuw.",
         "oldPassword": "U kunt uw oude wachtwoord niet hergebruiken",
         "oldPasswordExplanation": "U kunt uw oude wachtwoord niet opnieuw gebruiken. Probeer het opnieuw met een ander wachtwoord.",
         "ensureStrongPassword": "Zorg ervoor dat u een sterk wachtwoord gebruikt van ten minste 12 karakters.",
@@ -98,13 +98,13 @@
     "loading": {
         "loadingFirstTime": "Sleutel voor de eerste keer laden.",
         "thisMayTake": "Dit kan een ogenblik duren.",
-        "youMayNotice": "U zult misschien een vertraging ervaren op uw apparaat."
+        "youMayNotice": "U kunt mogelijk een vertraging ervaren op uw apparaat."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Sleutel is niet gegenereerd",
         "seedNotGeneratedExplanation": "Klik op de knop genereer een nieuwe sleutel.",
         "pressForNewSeed": "DRUK VOOR EEN NIEUWE SLEUTEL",
-        "individualLetters": "Druk op individuele letters om deze willekeurig te maken."
+        "individualLetters": "Druk op individuele letters om deze te veranderen in een willekeurige letter."
     },
     "onboardingComplete": {
         "walletReady": "De portefeuille is nu ingesteld en klaar voor gebruik. Voor toekomstige wijzigingen kunt u het instellingen menu gebruiken."
