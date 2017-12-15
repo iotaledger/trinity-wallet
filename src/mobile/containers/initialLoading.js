@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Image, Text, StatusBar, BackHandler } from 'react-native';
-import { getAllItems, deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
+import keychain from '../util/keychain';
 import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
 import { width, height } from '../util/dimensions';
@@ -34,19 +34,9 @@ export default class InitialLoading extends Component {
     }
 
     clearKeychain() {
-        getAllItems().then(keys => {
-            if (isIOS) {
-                if (!keys[0].length) {
-                    return;
-                } else {
-                    let key = '';
-                    for (let i = 0; i < keys[0].length; i++) {
-                        key = keys[0][i].key;
-                        deleteFromKeyChain(key);
-                    }
-                }
-            }
-        });
+        if (isIOS) {
+            keychain.clear().catch(err => console.error(err));
+        }
     }
 
     onLoaded() {

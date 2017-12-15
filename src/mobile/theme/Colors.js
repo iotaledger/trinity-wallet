@@ -7,10 +7,10 @@ const BaseColors = {
     redLight: '#B21C17',
     redDark: '#A10702',
     white: '#FFFFFF',
-    backgroundGreen: '#1B4149',
+    backgroundGreen: '#1a373e',
     backgroundGray: '#3B3B3B',
     backgroundBlack: '#1A1A1A',
-    backgroundDarkGreen: '#0e2b32',
+    backgroundDarkGreen: '#0b282f',
 };
 
 export default {
