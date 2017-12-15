@@ -54,27 +54,27 @@
         "passwordsDoNotMatchExplanation": "비밀번호가 일치하지 않습니다. 다시 시도하십시오.",
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
         "passwordTooShortExplanation": "비밀번호는 최소 12 글자 수를 포함해야합니다. 다시 시도하십시오.",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPassword": "이전 암호를 설정할 수 없음",
+        "oldPasswordExplanation": "새 비밀번호로 이전 비밀번호를 사용할 수 없습니다. 새 비밀번호로 다시 시도하십시오.",
         "ensureStrongPassword": "최소 12글자로 이루어진 비밀번호를 사용하십시오.",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "현재 비밀번호",
+        "newPassword": "새 비밀번호",
+        "confirmPassword": "새 비밀번호 확인"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "seedCleared": "씨드 삭제됨",
+        "seedClearedExplanation": "보안을 위해 클립보드에서 씨드가 삭제되었습니다.",
+        "seedCopied": "씨드가 클립보드에 복사됨",
+        "seedCopiedExplanation": "'완료'를 클릭하거나 60초가 지나면 씨드가 삭제됩니다.",
+        "clickToCopy": "아래 버튼을 클릭하여 비밀번호 관리자에 씨드를 복사하십시오.",
+        "doNotStore": "씨드를 일반 텍스트로 저장하지 마십시오.",
+        "copyToClipboard": "클립보드에 복사"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharacters": "유효하지 않은 문자가 씨드에 포함되어 있음",
+        "invalidCharactersExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation": "씨드는 {{maxLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "다른 이와 절대로 씨드를 공유하지 마십시오."
     },
