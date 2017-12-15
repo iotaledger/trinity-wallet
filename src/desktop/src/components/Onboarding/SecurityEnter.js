@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { securelyPersistSeeds } from 'libs/util';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
-import { setOnboardingCompletionStatus } from 'actions/app';
 import { showError } from 'actions/notifications';
 import { seedsSelector } from 'selectors/seeds';
-import { isValidPassword } from '../../../../shared/libs/util';
+import { isValidPassword } from 'libs/util';
 import Template, { Content, Footer } from './Template';
+import { securelyPersistSeeds } from 'libs/storage';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
 import PasswordInput from '../UI/PasswordInput';
@@ -16,14 +15,13 @@ import css from '../Layout/Onboarding.css';
 
 class SecurityEnter extends React.PureComponent {
     static propTypes = {
+        t: PropTypes.func.isRequired,
         clearSeeds: PropTypes.func.isRequired,
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
         seeds: PropTypes.object,
         showError: PropTypes.func.isRequired,
-        setOnboardingCompletionStatus: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired,
     };
 
     state = {};
@@ -35,21 +33,20 @@ class SecurityEnter extends React.PureComponent {
 
         if (password !== passwordConfirm) {
             return showError({
-                title: t('error2_title'),
-                text: t('error2_text'),
+                title: t('changePassword:passwordsDoNotMatch'),
+                text: t('changePassword:passwordsDoNotMatchExplanation'),
             });
         }
 
         if (!isValidPassword(password)) {
             return showError({
-                title: t('error1_title'),
-                text: t('error1_text'),
+                title: t('changePassword:passwordTooShort'),
+                text: t('changePassword:passwordTooShortExplanation'),
             });
         }
 
         securelyPersistSeeds(password, seeds);
         clearSeeds();
-        setOnboardingCompletionStatus(true);
         history.push('/done');
     };
 
@@ -65,30 +62,31 @@ class SecurityEnter extends React.PureComponent {
         return (
             <Template type="form" onSubmit={this.onRequestNext}>
                 <Content>
-                    <p>{t('text')}</p>
+                    <p>{t('setPassword:nowWeNeedTo')}</p>
                     <div className={css.formGroup}>
-                        <PasswordInput placeholder={t('placeholder1')} name="password" onChange={this.changeHandler} />
+                        <PasswordInput
+                            placeholder={t('global:password')}
+                            name="password"
+                            onChange={this.changeHandler}
+                        />
                     </div>
                     <div className={css.formGroup}>
                         <PasswordInput
-                            placeholder={t('placeholder2')}
+                            placeholder={t('setPassword:retypePassword')}
                             name="passwordConfirm"
                             onChange={this.changeHandler}
                         />
                     </div>
                     <Infobox>
-                        <p>{t('explanation')}</p>
-                        <p>
-                            <strong>{t('reminder')}</strong>
-                        </p>
+                        <p>{t('setPassword:anEncryptedCopy')}</p>
                     </Infobox>
                 </Content>
                 <Footer>
                     <Button to="/seed/name" variant="warning">
-                        {t('button2')}
+                        {t('global:back')}
                     </Button>
                     <Button type="submit" variant="success">
-                        {t('button1')}
+                        {t('global:done')}
                     </Button>
                 </Footer>
             </Template>
@@ -101,7 +99,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    setOnboardingCompletionStatus,
     addAndSelectSeed,
     clearSeeds,
     showError,

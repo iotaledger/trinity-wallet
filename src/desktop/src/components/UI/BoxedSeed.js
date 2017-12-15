@@ -7,7 +7,7 @@ class BoxedSeed extends PureComponent {
     static propTypes = {
         seed: PropTypes.string.isRequired,
         color: PropTypes.oneOf(['default', 'black']),
-        size: PropTypes.oneOf(['default', 'large']),
+        size: PropTypes.oneOf(['default', 'small', 'large']),
     };
 
     getCopyableSeed = (seed = this.props.seed) => {
