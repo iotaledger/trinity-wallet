@@ -152,6 +152,28 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
     };
 }
 
+export function getNewTransfersAndAddresses(seed, index, callback) {
+    return dispatch => {
+        iota.api.getAccountData(seed, { start: index, end: index + 1 }, (error, success) => {
+            if (!error) {
+                // Combine addresses and balances
+                {
+                    /*const addressData = formatAddressDataNewSeed(success);
+              const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
+              const transfers = formatTransfers(transfersWithoutDuplicateBundles, success.addresses);
+              const balance = calculateBalance(addressData);
+              addressData = markAddressSpend(transfers, addressData);*/
+                }
+                // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
+                callback(null, success);
+            } else {
+                callback(error);
+                console.log(error);
+            }
+        });
+    };
+}
+
 export function getTransfers(seedName, addresses) {
     return (dispatch, getState) => {
         iota.api.findTransactionObjects({ addresses }, (error, success) => {
