@@ -1,13 +1,7 @@
-.wrapper {
-    display: flex;
-    justify-content: space-between;
+.input {
+    display: block;
+    position: relative;
     width: 100%;
-
-    > div {
-        display: block;
-        position: relative;
-        width: 100%;
-    }
 
     input {
         font-family: 'Lato';
@@ -40,24 +34,7 @@
             transition: all 0.2s ease-out;
         }
     }
-
     input:focus + small:after {
         max-width: 100%;
-    }
-
-    button {
-        padding: 0 10px;
-        flex: 1 0 auto;
-        height: 36px;
-        min-width: 0px;
-        font-size: 12px;
-        margin-left: 20px;
-        line-height: 21px;
-        min-width: 90px;
-        img {
-            width: 17px;
-            vertical-align: middle;
-            margin: -3px 5px 0 0;
-        }
     }
 }

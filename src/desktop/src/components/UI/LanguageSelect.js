@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Select from 'components/UI/Select';
 import i18next from 'libs/i18next';
 import { setLocale } from 'actions/settings';
 
@@ -8,6 +9,7 @@ class LanguageSelect extends React.PureComponent {
     static propTypes = {
         locale: PropTypes.string,
         setLocale: PropTypes.func.isRequired,
+        label: PropTypes.string,
     };
 
     static languages = {
@@ -24,10 +26,10 @@ class LanguageSelect extends React.PureComponent {
     };
 
     render() {
-        const { locale } = this.props;
+        const { locale, label } = this.props;
 
         return (
-            <select defaultValue={locale} onChange={this.changeHandler}>
+            <Select label={label} defaultValue={locale} onChange={this.changeHandler}>
                 <option value="en">English (International)</option>
                 <option value="ar">عربى - Arabic</option>
                 <option value="da">Dansk - Danish</option>
@@ -57,7 +59,7 @@ class LanguageSelect extends React.PureComponent {
                 <option value="ur">اردو - Urdu</option>
                 <option value="zh_CN">中文 (简体) - Chinese (Simplified)</option>
                 <option value="zh_TW">中文 (繁體) - Chinese (Traditional)</option>
-            </select>
+            </Select>
         );
     }
 }
