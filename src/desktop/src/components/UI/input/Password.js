@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import css from './PasswordInput.css';
+import css from './Password.css';
 import Button from 'components/UI/Button';
 
 import IconEye from 'images/eye.png';
@@ -18,6 +18,7 @@ export default class PasswordInput extends React.PureComponent {
     };
 
     toggleVisibility = e => {
+        console.log('wtf', e.target);
         e.preventDefault();
         this.setState(state => ({
             type: state.type === 'password' ? 'text' : 'password',
@@ -25,15 +26,15 @@ export default class PasswordInput extends React.PureComponent {
     };
 
     render() {
-        const { name, className, ...props } = this.props;
+        const { className } = this.props;
         const { type } = this.state;
         return (
             <div className={css.wrapper}>
                 <div>
-                    <input type={type} name={name} className={classNames(className, css.password)} {...props} />
+                    <input type={type} className={classNames(className, css.password)} {...this.props} />
                     <small />
                 </div>
-                <Button variant="default" onClick={this.toggleVisibility}>
+                <Button type="button" variant="default" onClick={this.toggleVisibility}>
                     {type === 'password' ? (
                         <span>
                             <img src={IconEye} alt="" /> Show
