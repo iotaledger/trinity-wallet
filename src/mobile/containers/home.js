@@ -19,6 +19,7 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import TopBar from './topBar';
+import keychain from '../util/keychain';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from 'iota-wallet-shared-modules/store';
 import {
@@ -139,7 +140,7 @@ class Home extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: COLORS.backgroundDarkGreen
+                    screenBackgroundColor: COLORS.backgroundGreen
 ,
                 },
                 overrideBackPress: true,
@@ -291,6 +292,7 @@ class Home extends Component {
                                                 width: width / 1.4,
                                             }}
                                             secureTextEntry={true}
+                                            onSubmitEditing={() => this.onLoginPress()}
                                         />
                                     </View>
                                     <View style={styles.loginBottomContainer}>

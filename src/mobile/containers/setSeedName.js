@@ -8,11 +8,11 @@ import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { storeSeedInKeychain, checkKeychainForDuplicates } from '../../shared/libs/cryptography';
 import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
 import { generateAlert } from '../../shared/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
+import keychain, { storeSeedInKeychain, hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
 import COLORS from '../theme/Colors';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
@@ -67,13 +67,36 @@ export class SetSeedName extends React.Component {
                     overrideBackPress: true,
                 });
             } else {
-                checkKeychainForDuplicates(
-                    this.props.tempAccount.password,
-                    this.props.tempAccount.seed,
-                    trimmedAccountName,
-                    (type, title, message) => dropdown.alertWithType(type, title, message),
-                    () => ifNoKeychainDuplicates(this.props.tempAccount.seed, trimmedAccountName),
-                );
+                keychain
+                    .get()
+                    .then(credentials => {
+                        if (isEmpty(credentials)) {
+                            return ifNoKeychainDuplicates(this.props.tempAccount.seed, trimmedAccountName);
+                        } else {
+                            if (hasDuplicateAccountName(credentials.password, trimmedAccountName)) {
+                                return this.dropdown.alertWithType(
+                                    'error',
+                                    'Account name already in use',
+                                    'This account name is already linked to your wallet. Please use a different one.',
+                                );
+                            } else if (hasDuplicateSeed(credentials.password, this.props.tempAccount.seed)) {
+                                return this.dropdown.alertWithType(
+                                    'error',
+                                    'Seed already in use',
+                                    'This seed is already linked to your wallet. Please use a different one.',
+                                );
+                            }
+
+                            return ifNoKeychainDuplicates(this.props.tempAccount.seed, trimmedAccountName);
+                        }
+                    })
+                    .catch(err => {
+                        this.dropdown.alertWithType(
+                            'error',
+                            'Something went wrong',
+                            'Something went wrong while setting your account name. Please try again.',
+                        );
+                    });
 
                 ifNoKeychainDuplicates = (seed, accountName) => {
                     this.props.setFirstUse(true);
@@ -99,7 +122,7 @@ export class SetSeedName extends React.Component {
                     this.props.navigator.pop({
                         animated: false,
                     });
-                    dropdown.alertWithType(
+                    this.dropdown.alertWithType(
                         'error',
                         t('global:invalidResponse'),
                         t('global:invalidResponseExplanation'),
@@ -109,11 +132,14 @@ export class SetSeedName extends React.Component {
 
                 onNodeSuccess = (seed, accountName) => {
                     this.props.clearTempData();
-                    storeSeedInKeychain(this.props.tempAccount.password, seed, accountName);
-                    this.props.increaseSeedCount();
-                    this.props.addAccountName(accountName);
-                    this.props.clearSeed();
-                    this.props.setReady();
+                    storeSeedInKeychain(this.props.tempAccount.password, seed, accountName)
+                        .then(() => {
+                            this.props.increaseSeedCount();
+                            this.props.addAccountName(accountName);
+                            this.props.clearSeed();
+                            this.props.setReady();
+                        })
+                        .catch(err => console.log(err)); // Have a dropdown alert
                 };
             }
         } else {
