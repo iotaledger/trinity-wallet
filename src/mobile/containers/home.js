@@ -111,6 +111,41 @@ class Home extends Component {
         }
     }
 
+    startAddressPolling() {
+        if (
+            !this.props.tempAccount.isGettingTransfers &&
+            !this.props.tempAccount.isSendingTransfer &&
+            !this.props.tempAccount.isSyncing
+        ) {
+            const accountInfo = this.props.account.accountInfo;
+            const seedIndex = this.props.tempAccount.seedIndex;
+            const addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+            const index = Object.keys(addressData).length + 1;
+
+            keychain
+                .get()
+                .then(credentials => {
+                    if (get(credentials, 'data')) {
+                        const seed = getSeed(credentials.data, seedIndex);
+                        getNewTransfersAndAddresses(seed, index);
+                    } else {
+                        console.log('error');
+                    }
+                })
+                .catch(err => console.log(err));
+
+            const getNewTransfersAndAddresses = (seed, index) => {
+                this.props.getNewTransfersAndAddresses(seed, index, (error, success) => {
+                    if (!error) {
+                        console.log(success);
+                    } else {
+                        console.log(error);
+                    }
+                });
+            };
+        }
+    }
+
     startChartPolling() {
         // 'console.log('POLLING CHART DATA')'
         if (
@@ -480,6 +515,7 @@ const mapDispatchToProps = dispatch => ({
     getMarketData: () => dispatch(getMarketData()),
     getPrice: () => dispatch(getPrice()),
     getChartData: () => dispatch(getChartData()),
+    getNewTransfersAndAddresses: (seed, index, cb) => dispatch(getNewTransfersAndAddresses(seed, index, cb)),
 });
 
 Home.propTypes = {
