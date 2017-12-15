@@ -5,6 +5,9 @@
         position: absolute;
         top: 0px;
         left: 0px;
+        &:not(:root) {
+            overflow: visible;
+        }
         circle {
             fill: #fff;
         }

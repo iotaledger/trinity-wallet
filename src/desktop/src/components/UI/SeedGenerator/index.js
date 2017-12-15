@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Letter from './Letter';
 import { createRandomSeed } from 'libs/seedUtil';
 import { MAX_SEED_LENGTH } from 'libs/util';
+import Letter from './Letter';
 
 import css from './SeedGenerator.css';
 
@@ -51,6 +51,12 @@ export default class SeedGenerator extends React.PureComponent {
         }
     };
 
+    onLetterPressed = e => {
+        e.preventDefault();
+        const { target: { dataset } } = e;
+        this.changeRandomLetterAtPosition(Number(dataset.index));
+    };
+
     changeRandomLetterAtPosition = position => {
         this.setState(state => {
             const seed = state.seed
@@ -68,12 +74,6 @@ export default class SeedGenerator extends React.PureComponent {
                 updateCounter,
             };
         });
-    };
-
-    onLetterPressed = e => {
-        e.preventDefault();
-        const { target: { dataset } } = e;
-        this.changeRandomLetterAtPosition(Number(dataset.index));
     };
 
     render() {
