@@ -118,6 +118,7 @@
         }
     },
     "dependencies": {
-        "react-textarea-autosize": "^5.2.1"
+        "react-textarea-autosize": "^5.2.1",
+        "victory": "^0.24.2"
     }
 }
