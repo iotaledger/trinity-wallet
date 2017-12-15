@@ -10,7 +10,7 @@ import { MAX_SEED_LENGTH } from 'libs/util';
 import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import Infobox from '../UI/Infobox';
-import SeedInput from 'components/UI/SeedInput';
+import SeedInput from 'components/UI/input/Seed';
 
 import css from '../Layout/Onboarding.css';
 

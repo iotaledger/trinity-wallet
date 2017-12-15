@@ -19,6 +19,15 @@
     &:active {
         opacity: 0.6;
     }
+
+    &.small {
+        padding: 0 16px 0 8px;
+        height: 26px;
+        font-size: var(--font-size-small);
+        line-height: 26px;
+        min-width: 30px;
+        border-radius: 4px;
+    }
 }
 
 footer .button + .button {
