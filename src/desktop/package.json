@@ -13,7 +13,7 @@
         "electron": "electron main.dev.js",
         "devserver": "node server.js",
         "build": "rm -rf ./dist && cross-env NODE_ENV=production webpack -p --env=production --config webpack.config",
-        "compile": "npm run compile:linux && npm run compile mac && compile:win",
+        "compile": "npm run compile:linux && npm run compile:mac && npm run compile:win",
         "compile:linux": "electron-builder --linux --x64 --ia32",
         "compile:mac": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false && electron-builder --mac --x64",
         "compile:win": "electron-builder --win --x64 --ia32",
@@ -21,6 +21,7 @@
         "compile:win32": "electron-builder --win --x32"
     },
     "devDependencies": {
+        "babel-polyfill": "^6.26.0",
         "babel-core": "^6.7.6",
         "babel-eslint": "^8.0.0",
         "babel-loader": "^6.2.4",
@@ -37,6 +38,7 @@
         "css-loader": "^0.23.1",
         "electron": "^1.7.9",
         "electron-builder": "^19.29.2",
+        "electron-rebuild": "^1.6.0",
         "electron-devtools-installer": "^2.2.1",
         "eslint": "^4.9.0",
         "express": "^4.13.4",
@@ -59,7 +61,6 @@
         "react-qr-reader": "^1.2.1",
         "react-redux": "^5.0.6",
         "react-router-dom": "^4.2.2",
-        "react-textarea-autosize": "^5.2.1",
         "react-transition-group": "^2.2.1",
         "redux": "^3.7.2",
         "redux-persist": "^4.9.1",
@@ -115,9 +116,5 @@
         "mac": {
             "category": "public.app-category.developer-tools"
         }
-    },
-    "dependencies": {
-        "babel-polyfill": "^6.26.0",
-        "electron-rebuild": "^1.6.0"
     }
 }
