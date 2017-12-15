@@ -4,7 +4,7 @@
         "invalidResponseExplanation": "El servidor devuelve una respuesta inválida.",
         "invalidResponsePollingExplanation": "El servidor devuelve una respuesta inválida durante la obtención de datos de cartera.",
         "seed": "Seed",
-        "back": "VOLVER",
+        "back": "ATRÁS",
         "done": "LISTO",
         "next": "SIGUIENTE",
         "manualCopy": "Write seed down",
@@ -225,7 +225,7 @@
         "reminder": "Puede tentarte saltar algunos pasos, pero te sugerimos seguir el proceso completo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Tu Seed tiene 81 caracteres leídos de izquierda a derecha. Anota tu seed y letras de comprobación y",
         "tripleCheck": "comprueba tres veces",
         "thatTheyAreCorrect": "that they are correct."
     },
@@ -233,6 +233,6 @@
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Dirección Copiada",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "La dirección se ha copiado al portapapeles."
     }
 }
