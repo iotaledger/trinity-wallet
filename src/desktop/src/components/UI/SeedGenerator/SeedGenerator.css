@@ -1,8 +1,16 @@
 .wrapper {
-    /*display: inline-block;*/
-    display: flex;
-    flex-wrap: wrap;
-    margin: auto;
+    display: block;
+    margin: 30px auto 0;
+    height: calc(100vh - 350px);
+    width: calc(100vh - 350px);
+    max-width: 450px;
+    max-height: 450px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+
+    &.disabled {
+        pointer-events: none;
+    }
 
     &:after {
         content: '';
@@ -14,23 +22,16 @@
 .letter {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 0px;
+    border-left: 0px;
     color: white;
     display: block;
-    flex: 1 0;
     float: left;
-    margin: 0;
-    min-width: 11.111%;
-    max-width: 50px;
-    padding: 0;
+    width: 11.111%;
+    height: 11.111%;
     position: relative;
     transition: 0.3s all ease;
     vertical-align: middle;
-
-    &:after {
-        content: '';
-        display: block;
-        padding-bottom: 100%;
-    }
 
     span {
         position: absolute;
@@ -43,6 +44,7 @@
 
     &:hover {
         cursor: pointer;
+        background: rgba(255, 255, 255, 0.05);
     }
 
     &:active,

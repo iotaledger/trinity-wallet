@@ -22,10 +22,7 @@ class MainSettings extends React.Component {
                     <TouchableOpacity onPress={event => this.props.onModePress()}>
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
-                                <Image
-                                    source={modeImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={modeImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Mode</Text>
                             </View>
                             <View style={styles.innerItemContainerRight}>
@@ -38,10 +35,7 @@ class MainSettings extends React.Component {
                     <TouchableOpacity onPress={event => this.props.onThemePress()}>
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
-                                <Image
-                                    source={themeImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={themeImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Theme</Text>
                             </View>
                             <View style={styles.innerItemContainerRight}>
@@ -54,10 +48,7 @@ class MainSettings extends React.Component {
                     <TouchableOpacity onPress={event => this.props.setSetting('currencySelection')}>
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
-                                <Image
-                                    source={currencyImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={currencyImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Currency</Text>
                             </View>
                             <View style={styles.innerItemContainerRight}>
@@ -70,10 +61,7 @@ class MainSettings extends React.Component {
                     <TouchableOpacity onPress={event => this.props.onLanguagePress()}>
                         <View style={styles.item}>
                             <View style={styles.innerItemContainerLeft}>
-                                <Image
-                                    source={languageImagePath}
-                                    style={styles.icon}
-                                />
+                                <Image source={languageImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Language</Text>
                             </View>
                             <View style={styles.innerItemContainerRight}>
@@ -90,10 +78,7 @@ class MainSettings extends React.Component {
                 <View style={styles.itemContainer}>
                     <TouchableOpacity onPress={event => this.props.setSetting('accountManagement')}>
                         <View style={styles.item}>
-                            <Image
-                                source={accountImagePath}
-                                style={styles.icon}
-                            />
+                            <Image source={accountImagePath} style={styles.icon} />
                             <Text style={styles.titleText}>Account management</Text>
                         </View>
                     </TouchableOpacity>
@@ -109,10 +94,7 @@ class MainSettings extends React.Component {
                 <View style={styles.itemContainer}>
                     <TouchableOpacity onPress={event => this.props.setSetting('changePassword')}>
                         <View style={styles.item}>
-                            <Image
-                                source={passwordImagePath}
-                                style={styles.icon}
-                            />
+                            <Image source={passwordImagePath} style={styles.icon} />
                             <Text style={styles.titleText}>Change password</Text>
                         </View>
                     </TouchableOpacity>
@@ -123,10 +105,7 @@ class MainSettings extends React.Component {
                 <View style={styles.itemContainer}>
                     <TouchableOpacity onPress={event => this.props.setSetting('advancedSettings')}>
                         <View style={styles.item}>
-                            <Image
-                                source={advancedImagePath}
-                                style={styles.icon}
-                            />
+                            <Image source={advancedImagePath} style={styles.icon} />
                             <Text style={styles.titleText}>Advanced settings</Text>
                         </View>
                     </TouchableOpacity>
@@ -134,10 +113,7 @@ class MainSettings extends React.Component {
                 <View style={styles.itemContainer}>
                     <TouchableOpacity onPress={event => this.props.setModalContent('logoutConfirmation')}>
                         <View style={styles.item}>
-                            <Image
-                                source={logoutImagePath}
-                                style={styles.icon}
-                            />
+                            <Image source={logoutImagePath} style={styles.icon} />
                             <Text style={styles.titleText}>Log out</Text>
                         </View>
                     </TouchableOpacity>

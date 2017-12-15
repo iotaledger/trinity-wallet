@@ -51,34 +51,15 @@ class App extends React.Component {
 
     componentWillMount() {
         persistStore(store, { blacklist: ['tempAccount', 'notifications', 'seeds'] }, () => {
-            // setTimeout(
-            //     () =>
-            //         this.setState(() => ({
-            //             initialized: true,
-            //         })),
-            //     2500,
-            // );
-            // TODO: re-add timeout to avoid flashes of the loading spinner. temporarily disabled for easier debugging
-            this.setState(() => ({
-                initialized: true,
-            }));
+            setTimeout(
+                () =>
+                    this.setState(() => ({
+                        initialized: true,
+                    })),
+                3200,
+            );
         });
     }
-
-    // TODO: this is not working on windows. Investigate why
-    // componentDidMount() {
-    //     const { remote } = require('electron');
-    //     const keytar = remote.require('keytar');
-    //     // const keytar = require('keytar');
-    //     keytar
-    //         .setPassword('iotaWallet', 'Main Wallet', 'AAABBBCCCC999')
-    //         .then(() => {
-    //             console.log('SAVED SEED');
-    //         })
-    //         .catch(err => {
-    //             console.log('ERROR WHILE SAVING', err);
-    //         });
-    // }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.settings.locale !== this.props.settings.locale) {

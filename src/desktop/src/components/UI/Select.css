@@ -1,0 +1,37 @@
+.select {
+    width: 100%;
+
+    select {
+        font-family: 'Lato';
+        border: none;
+        background: none;
+        color: white;
+        border-bottom: 1px solid white;
+        height: 50px;
+        width: 100%;
+        line-height: 50px;
+        font-size: var(--font-size-default);
+        -webkit-appearance: none;
+        -webkit-border-radius: 0px;
+        cursor: pointer;
+        &:focus {
+            outline: 0;
+        }
+    }
+    > div {
+        position: relative;
+        &:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 6px 4px 0 4px;
+            border-color: #fff transparent transparent transparent;
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            pointer-event: none;
+        }
+    }
+}
