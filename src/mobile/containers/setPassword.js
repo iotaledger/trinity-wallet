@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import { translate } from 'react-i18next';
 import {
@@ -13,10 +14,10 @@ import {
 import { connect } from 'react-redux';
 import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { clearTempData, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { storeSeedInKeychain, checkKeychainForDuplicates } from 'iota-wallet-shared-modules/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
+import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { isAndroid } from '../util/device';
@@ -39,34 +40,66 @@ class SetPassword extends React.Component {
 
     onDonePress() {
         const { t } = this.props;
-        if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
-            checkKeychainForDuplicates(
-                this.state.password,
-                this.props.tempAccount.seed,
-                this.props.tempAccount.seedName,
-                (type, title, message) => dropdown.alertWithType(type, title, message),
-                () =>
-                    ifNoKeychainDuplicates(
-                        this.state.password,
-                        this.props.tempAccount.seed,
-                        this.props.tempAccount.seedName,
-                    ),
-            );
-            ifNoKeychainDuplicates = (password, seed, accountName) => {
-                storeSeedInKeychain(password, seed, accountName), this.props.addAccountName(accountName);
-                this.props.increaseSeedCount();
-                this.props.clearTempData();
-                this.props.clearSeed();
-                this.props.setOnboardingComplete(true);
-                this.props.navigator.push({
-                    screen: 'onboardingComplete',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                    },
-                    animated: false,
-                    overrideBackPress: true,
+        if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password === this.state.reentry) {
+            keychain
+                .get()
+                .then(credentials => {
+                    if (isEmpty(credentials)) {
+                        return ifNoKeychainDuplicates(
+                            this.state.password,
+                            this.props.tempAccount.seed,
+                            this.props.tempAccount.seedName,
+                        );
+                    } else {
+                        if (hasDuplicateAccountName(credentials.data, this.props.tempAccount.seedName)) {
+                            return this.dropdown.alertWithType(
+                                'error',
+                                'Account name already in use',
+                                'This account name is already linked to your wallet. Please use a different one.',
+                            );
+                        } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
+                            return this.dropdown.alertWithType(
+                                'error',
+                                'Seed already in use',
+                                'This seed is already linked to your wallet. Please use a different one.',
+                            );
+                        }
+
+                        return ifNoKeychainDuplicates(
+                            this.state.password,
+                            this.props.tempAccount.seed,
+                            this.props.tempAccount.seedName,
+                        );
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Something went wrong',
+                        'Something went wrong while setting your account name. Please try again.',
+                    );
                 });
+
+            ifNoKeychainDuplicates = (password, seed, accountName) => {
+                storeSeedInKeychain(password, seed, accountName)
+                    .then(() => {
+                        this.props.addAccountName(accountName);
+                        this.props.increaseSeedCount();
+                        this.props.clearTempData();
+                        this.props.clearSeed();
+                        this.props.setOnboardingComplete(true);
+                        this.props.navigator.push({
+                            screen: 'onboardingComplete',
+                            navigatorStyle: {
+                                navBarHidden: true,
+                                navBarTransparent: true,
+                            },
+                            animated: false,
+                            overrideBackPress: true,
+                        });
+                    })
+                    .catch(err => console.log(err));
             };
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
@@ -301,6 +334,14 @@ const styles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
+    },
+    dropdownTitle: {
+        fontSize: width / 25.9,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
     },
     dropdownTitle: {
         fontSize: width / 25.9,

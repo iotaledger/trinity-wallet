@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
+import { getAccountInfoAsync, getNewAddressAsync } from 'actions/seeds';
 import Template, { Content } from './Template';
 // import Loading from '../UI/Loading';
 // import css from '../Layout/Main.css';
-
-import { getAccountInfoAsync, getNewAddressAsync } from 'actions/seeds';
 
 class Balance extends React.Component {
     static propTypes = {
@@ -36,6 +35,8 @@ class Balance extends React.Component {
     };
 
     render() {
+        // if (this.props.foo == 2) {
+        // }
         // const { t } = this.props;
         return (
             <Template>

@@ -63,11 +63,11 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow: hidden;
 }
 
 body {
-    background: url(images/bg-green.svg) center center no-repeat;
-    background-size: cover;
+    background: #244148;
     color: var(--color-text);
     font-family: 'Lato';
     font-weight: 200;
@@ -104,6 +104,9 @@ strong {
             flex: 1 0 auto;
             width: 50%;
             padding: 0 30px;
+        }
+        > aside {
+            max-width: 300px;
         }
         > aside nav button {
             display: block;

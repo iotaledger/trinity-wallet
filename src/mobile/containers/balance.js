@@ -21,7 +21,7 @@ class Balance extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
+        if (newProps.tempAccount.seedIndex !== this.props.tempAccount.seedIndex) {
             this.setState({ balanceIsShort: true });
         }
     }
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     },
     chartContainer: {
         flex: 5,
-        // paddingVertical: height / 100,
+        paddingVertical: height / 70,
         // justifyContent: 'flex-end',
         //paddingVertical: isAndroid ? height / 80 : 0,
     },
@@ -149,9 +149,8 @@ const styles = StyleSheet.create({
     },
     noTransactions: {
         color: 'white',
-        paddingTop: height / 150,
         fontFamily: 'Lato-Light',
-        fontSize: width / 40,
+        fontSize: width / 37.6,
         backgroundColor: 'transparent',
     },
     line: {
