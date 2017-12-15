@@ -8,7 +8,7 @@
         "done": "GEREED",
         "next": "VOLGENDE",
         "manualCopy": "Schrijf uw seed op",
-        "paperWallet": "Print uw seed uit",
+        "paperWallet": "Print een papieren kopie",
         "copyToClipboard": "Voeg uw seed toe aan uw wachtwoord manager",
         "qr": "QR",
         "notAvailable": "Deze functie is niet beschikbaar",
@@ -107,14 +107,14 @@
         "individualLetters": "Druk op individuele letters om deze te veranderen in een willekeurige letter."
     },
     "onboardingComplete": {
-        "walletReady": "De portefeuille is nu ingesteld en klaar voor gebruik. Voor toekomstige wijzigingen kunt u het instellingen menu gebruiken."
+        "walletReady": "De wallet is nu ingesteld en klaar voor gebruik. Voor toekomstige wijzigingen kunt u het instellingen menu gebruiken."
     },
     "paperWallet": {
         "clickToPrint": "Klik op de knop hieronder om een papieren kopie af te drukken van uw sleutel.",
         "storeSafely": "Sla deze veilig op.",
         "neverShare": "Deel uw sleutel met niemand.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPIEREN PORTEMONNEE"
+        "printWallet": "PRINT PAPIEREN WALLET"
     },
     "receive": {
         "addressCopied": "Adres gekopieerd",
@@ -183,7 +183,7 @@
         "changePassword": "Wijzig wachtwoord",
         "advanced": "Geavanceerde instellingen",
         "logout": "Uitloggen",
-        "reset": "Portemonnee opnieuw instellen",
+        "reset": "Wallet opnieuw instellen",
         "back": "Terug",
         "syncingComplete": "Synchroniseren voltooid",
         "syncingCompleteExplanation": "Uw account is succesvol bijgewerkt.",
@@ -196,7 +196,7 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
-        "warning1": "Alle gegevens in uw portefeuille waaronder",
+        "warning1": "Alle gegevens in uw wallet waaronder",
         "warning2": " sleutels, wachtwoorden, ",
         "warning3": "en",
         "warning4": " andere accountgegevens",
@@ -204,24 +204,24 @@
         "areYouSure": "Weet u zeker dat u wilt doorgaan?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Voer uw wachtwoord in om uw portemonnee opnieuw in te stellen.",
+        "enterPassword": "Voer uw wachtwoord in om uw wallet opnieuw in te stellen.",
         "cancel": "ANNULEREN",
         "reset": "RESET"
     },
     "walletSetup": {
-        "okay": "Oke. Laten we uw portemonnee instellen!",
+        "okay": "Oke. We gaan uw wallet instellen!",
         "doYouAlreadyHaveASeed": "Heeft u al een sleutel die u zou willen gebruiken?",
-        "seedExplanation": "De toegangscode van uw IOTA portemonnee is als een gebruikersnaam en wachtwoord samengevoegd in een sleutel van 81 karakters.",
+        "seedExplanation": "De toegangscode van uw IOTA wallet is als een gebruikersnaam en wachtwoord samengevoegd in een sleutel van 81 karakters.",
         "explanation1": "U kunt deze gebruiken voor toegang tot uw IOTA vanuit",
-        "explanation2": " elke portemonnee ",
+        "explanation2": " elke wallet ",
         "explanation3": "en op",
         "explanation4": " elk apparaat",
         "explanation5": ". Maar als u uw sleutel verliest, verliest u ook uw IOTA.",
         "keepSafe": "Houd uw sleutel veilig."
     },
     "welcome": {
-        "thankYou": "Bedankt voor het downloaden van de IOTA portemonnee.",
-        "weWillSpend": "We zullen een moment nodig hebben om uw portemonnee op te zetten.",
+        "thankYou": "Bedankt voor het downloaden van de IOTA wallet.",
+        "weWillSpend": "We zullen een moment nodig hebben om uw wallet op te zetten.",
         "reminder": "Het is belangrijk om dit proces helemaal te voltooien. Sla geen stappen over."
     },
     "writeSeedDown": {
