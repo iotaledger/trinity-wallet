@@ -163,7 +163,7 @@
         "nowWeNeedTo": "Oke, nu moeten we een wachtwoord instellen.",
         "anEncryptedCopy": "Een gecodeerde kopie van uw sleutel zal worden opgeslagen op uw apparaat. U gebruikt dit wachtwoord voor toegang tot uw portefeuille in de toekomst.",
         "ensure": "Zorg ervoor u een sterk wachtwoord gebruikt van ten minste 12 karakters.",
-        "retypePassword": "Wachtwoord herhalen"
+        "retypePassword": "Herhaal wachtwoord"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "U kunt meerdere sleutels gebruiken met deze portefeuille. Elke sleutel vereist een accountnaam.",
@@ -183,7 +183,7 @@
         "changePassword": "Wijzig wachtwoord",
         "advanced": "Geavanceerde instellingen",
         "logout": "Uitloggen",
-        "reset": "Reset portemonnee",
+        "reset": "Portemonnee opnieuw instellen",
         "back": "Terug",
         "syncingComplete": "Synchroniseren voltooid",
         "syncingCompleteExplanation": "Uw account is succesvol bijgewerkt.",
@@ -196,7 +196,7 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
-        "warning1": "Alle gegevens van uw portefeuille met inbegrip van uw",
+        "warning1": "Alle gegevens in uw portefeuille waaronder",
         "warning2": " sleutels, wachtwoorden, ",
         "warning3": "en",
         "warning4": " andere accountgegevens",
@@ -212,21 +212,21 @@
         "okay": "Oke. Laten we uw portemonnee instellen!",
         "doYouAlreadyHaveASeed": "Heeft u al een sleutel die u zou willen gebruiken?",
         "seedExplanation": "De toegangscode van uw IOTA portemonnee is als een gebruikersnaam en wachtwoord samengevoegd in een sleutel van 81 karakters.",
-        "explanation1": "U kunt deze gebruiken voor toegang tot uw fondsen",
+        "explanation1": "U kunt deze gebruiken voor toegang tot uw IOTA vanuit",
         "explanation2": " elke portemonnee ",
-        "explanation3": ", op",
+        "explanation3": "en op",
         "explanation4": " elk apparaat",
         "explanation5": ". Maar als u uw sleutel verliest, verliest u ook uw IOTA.",
         "keepSafe": "Houd uw sleutel veilig."
     },
     "welcome": {
         "thankYou": "Bedankt voor het downloaden van de IOTA portemonnee.",
-        "weWillSpend": "We zullen de volgende paar minuten het opzetten van uw portemonnee doorbrengen.",
-        "reminder": "U kan worden verleid om sommige stappen over te slaan, maar wij verzoeken u om het volledige proces te volgen."
+        "weWillSpend": "We zullen een moment nodig hebben om uw portemonnee op te zetten.",
+        "reminder": "Het is belangrijk om dit proces helemaal te voltooien. Sla geen stappen over."
     },
     "writeSeedDown": {
         "yourSeedIs": "Uw sleutel is 81 tekens van links naar rechts gelezen. Schrijf uw sleutel en controlesom op en",
-        "tripleCheck": "kijk even goed na",
+        "tripleCheck": "kijk goed na",
         "thatTheyAreCorrect": "of ze kloppen."
     },
     "history": {
