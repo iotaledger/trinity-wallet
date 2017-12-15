@@ -4,7 +4,7 @@ import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { MAX_SEED_LENGTH } from 'libs/util';
-import css from './SeedInput.css';
+import css from './Seed.css';
 import Button from 'components/UI/Button';
 import Modal from 'components/UI/Modal';
 
@@ -53,7 +53,7 @@ export default class SeedInput extends React.PureComponent {
         const { showScanner } = this.state;
 
         return (
-            <div className={css.seedInput}>
+            <div className={css.seed}>
                 <div>
                     <Textarea
                         value={seed}

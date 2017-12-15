@@ -22,14 +22,14 @@ export default class Button extends React.PureComponent {
 
         if (to) {
             return (
-                <Link {...this.props} className={classNames(className, css[variant])}>
+                <Link {...this.props} className={classNames(css[className], css[variant])}>
                     {children}
                 </Link>
             );
         }
 
         return (
-            <button {...this.props} className={classNames(className, css[variant])}>
+            <button {...this.props} className={classNames(css[className], css[variant])}>
                 {children}
             </button>
         );

@@ -14,6 +14,9 @@
     --color-green: #9dffaf;
     --color-darkgreen: green;
 
+    --color-bg: #16373e;
+    --color-item-bg: #0f242c;
+
     --color-label: var(--color-yellow);
     --color-button-warning: var(--color-yellow);
     --color-button-warning-hover: rgba(247, 208, 2, 0.1);
@@ -54,6 +57,11 @@
 }
 @font-face {
     font-family: 'Lato';
+    src: url(custom-fonts/Lato-Regular.ttf) format('truetype');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Lato';
     src: url(custom-fonts/Lato-Bold.ttf) format('truetype');
     font-weight: 700;
 }
@@ -67,7 +75,7 @@ body {
 }
 
 body {
-    background: #244148;
+    background: var(--color-bg);
     color: var(--color-text);
     font-family: 'Lato';
     font-weight: 200;
@@ -84,6 +92,7 @@ label {
     font-size: var(--font-size-small);
     display: block;
     margin-bottom: 8px;
+    text-align: left;
 }
 
 strong {
