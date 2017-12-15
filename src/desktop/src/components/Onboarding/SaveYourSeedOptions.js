@@ -10,7 +10,7 @@ import SeedCopyToClipboard from 'components/Onboarding/SeedCopyToClipboard';
 import SeedPaperWallet from 'components/Onboarding/SeedPaperWallet';
 import Button from 'components/UI/Button';
 
-import css from '../Layout/Onboarding.css';
+import css from 'components/Layout/Onboarding.css';
 
 class SaveYourSeedOptions extends PureComponent {
     static propTypes = {

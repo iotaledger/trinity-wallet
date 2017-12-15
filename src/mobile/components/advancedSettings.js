@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
+import nodeImagePath from 'iota-wallet-shared-modules/images/node.png';
+import syncImagePath from 'iota-wallet-shared-modules/images/sync.png';
+import crossImagePath from 'iota-wallet-shared-modules/images/cross.png';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
 class AdvancedSettings extends React.Component {
     render() {
