@@ -10,11 +10,6 @@ export default class Infobox extends React.PureComponent {
     render() {
         const { children } = this.props;
 
-        return (
-            <div className={css.wrapper}>
-                <span className={css.icon} />
-                {children}
-            </div>
-        );
+        return <div className={css.wrapper}>{children}</div>;
     }
 }

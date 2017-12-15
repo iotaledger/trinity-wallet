@@ -13,47 +13,30 @@
     --color-red: #ff6c69;
     --color-green: #9dffaf;
     --color-darkgreen: green;
-    --color-pale-darkgreen: #203c43;
-    --color-primary: #04a997;
 
     --color-label: var(--color-yellow);
     --color-button-warning: var(--color-yellow);
+    --color-button-warning-hover: rgba(247, 208, 2, 0.1);
     --color-button-danger: var(--color-red);
     --color-button-success: var(--color-green);
+    --color-button-success-hover: rgba(157, 255, 175, 0.1);
     --color-button-extra: var(--color-blue);
+    --color-button-extra-hover: rgba(139, 212, 255, 0.1);
     --color-button-cta: var(--color-darkgreen);
+    --color-button-cta-hover: rgb(5, 107, 5);
     --color-button-default: white;
-
-    --color-sidenav-text: #9eaaad;
-    --color-sidenav-text-active: white;
-    --color-sidenav-underline: transparent;
-    --color-sidenav-underline-active: var(--color-primary);
+    --color-button-default-hover: rgba(255, 255, 255, 0.1);
 
     /*--font-size-default: 1.8vh;*/
-    --font-size-medium: 14px;
+    --font-size-default: 14px;
     --font-size-small: 12px;
+    --font-size-large: 16px;
     --font-size-title: 20px;
-    --font-size-default: var(--font-size-medium);
 
     --z-index-modal: 2048;
     --z-index-overlay: 1024;
     --z-index-dropdown: 512;
     --z-index-elevated: 1;
-}
-
-@media print {
-    body {
-        color: black !important;
-        background: none !important;
-    }
-
-    :global(.printHidden) {
-        display: none;
-    }
-
-    button {
-        display: none;
-    }
 }
 
 * {
@@ -64,20 +47,30 @@
     }
 }
 
+@font-face {
+    font-family: 'Lato';
+    src: url(custom-fonts/Lato-Light.ttf) format('truetype');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url(custom-fonts/Lato-Bold.ttf) format('truetype');
+    font-weight: 700;
+}
+
 html,
 body {
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow: hidden;
 }
 
 body {
-    background-image: url(images/bg-blue.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment: fixed;
+    background: #244148;
     color: var(--color-text);
-    font-family: arial;
+    font-family: 'Lato';
+    font-weight: 200;
     font-size: var(--font-size-default);
     line-height: 1.5;
 }
@@ -88,57 +81,39 @@ h1 {
 
 label {
     color: var(--color-label);
+    font-size: var(--font-size-small);
     display: block;
     margin-bottom: 8px;
 }
 
-select {
-    &:focus {
-        outline: 0;
-    }
-    background: rgba(0, 0, 0, 0.2);
-    border: 0;
-    padding: 16px 4px;
-    width: 100%;
-    border-bottom: 2px solid white;
-    color: white;
+strong {
+    font-weight: 700;
 }
 
-option {
-    background: transparent;
-    color: black;
-    padding: 4px;
-}
+:global {
+    .columns {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100vw;
+        height: calc(100vh - 211px);
+        max-width: 1200px;
 
-input {
-    box-sizing: border-box;
-
-    &:focus {
-        outline: none;
-    }
-
-    &[type='text'],
-    &[type='email'],
-    &[type='tel'],
-    &[type='password'] {
-        background: rgba(0, 0, 0, 0.2);
-        border: 0;
-        border-bottom: 2px solid white;
-        color: white;
-        padding: 16px;
-        width: 100%;
-    }
-}
-
-textarea {
-    background: rgba(0, 0, 0, 0.2);
-    border: 0;
-    border-bottom: 2px solid white;
-    box-sizing: border-box;
-    color: white;
-    padding: 16px;
-    width: 100%;
-    &:focus {
-        outline: none;
+        > aside,
+        > section {
+            flex: 1 0 auto;
+            width: 50%;
+            padding: 0 30px;
+        }
+        > aside {
+            max-width: 300px;
+        }
+        > aside nav button {
+            display: block;
+            min-width: 200px;
+            max-width: 240px;
+            width: 100%;
+            margin: 20px auto 0;
+        }
     }
 }

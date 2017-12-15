@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { setOnboardingCompletionStatus } from 'actions/app';
 import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import css from '../Layout/Onboarding.css';
@@ -8,18 +10,31 @@ import css from '../Layout/Onboarding.css';
 class Done extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        setOnboardingCompletionStatus: PropTypes.func.isRequired,
+    };
+
+    onRequestNext = e => {
+        const { history, setOnboardingCompletionStatus } = this.props;
+
+        setOnboardingCompletionStatus(true);
+        history.push('/');
     };
 
     render() {
         const { t } = this.props;
         return (
-            <Template bodyClass={css.bodyDone}>
+            <Template bodyClass={css.bodyHome}>
                 <Content>
-                    <p>{t('text')}</p>
+                    <div>
+                        <p>{t('onboardingComplete:walletReady')}</p>
+                    </div>
                 </Content>
                 <Footer>
-                    <Button to="/" variant="success">
-                        {t('button')}
+                    <Button onClick={this.onRequestNext} variant="success">
+                        {t('global:done')}
                     </Button>
                 </Footer>
             </Template>
@@ -27,4 +42,10 @@ class Done extends React.PureComponent {
     }
 }
 
-export default translate('onboardingComplete')(Done);
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = {
+    setOnboardingCompletionStatus,
+};
+
+export default translate('onboardingComplete')(connect(mapStateToProps, mapDispatchToProps)(Done));

@@ -17,15 +17,11 @@
 }
 
 .wrapper {
-    left: 50%;
-    margin: auto;
-    /*max-width: 100%;*/
-    max-width: calc(100vw - 32px);
-    position: absolute;
+    margin: 0 auto;
+    max-width: 100%;
+    max-width: 512px;
     text-align: center;
-    transform: translate3d(-50%, 0, 0);
-    width: 768px;
-    /*width: 512px;*/
+    padding: 0 20px;
 
     > div,
     > section,
@@ -41,7 +37,6 @@
         > main,
         > footer {
             width: 100%;
-            padding: 0 16px;
         }
 
         > main {
@@ -54,21 +49,31 @@
         > header,
         > footer {
             flex: 0 1 auto;
-            padding: 16px;
+            padding: 20px 0;
         }
     }
 }
 
-.body-home {
-    background-image: url(images/hello-back.png), url(images/bg-blue.jpg);
-    background-size: contain, 100% 100%;
-    background-position: center;
-}
-
-.body-done {
-    background-image: url(images/balloons.png), url(images/bg-blue.jpg);
-    background-size: contain, 100% 100%;
-    background-position: center;
+.body-seed {
+    .wrapper {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        transform: none;
+        left: 0px;
+        position: relative;
+    }
+    @media print {
+        .wrapper {
+            aside,
+            footer,
+            header,
+            p,
+            button {
+                display: none;
+            }
+        }
+    }
 }
 
 .formGroup {
@@ -81,48 +86,6 @@
     font-size: 150%;
 }
 
-.qrScanner {
-    width: 640px;
-    max-width: 100%;
-    margin: auto;
-    transform: rotateY(180deg);
-    video {
-        max-width: 100%;
-    }
-}
-
-.seedGenerator {
-    margin: auto;
-    max-width: 384px;
-    width: 75%;
-}
-
-.saveYourSeed {
-}
-
-.seedWrapper {
-    background: white;
-    display: flex;
-    padding: 16px;
-
-    .seed {
-        flex: 1 1 calc(100% - 208px);
-        min-width: 208px;
-    }
-
-    .qr {
-        align-self: center;
-        flex: 1 1 208px;
-        padding-left: 16px;
-        text-align: right;
-        canvas {
-            height: auto !important;
-            image-rendering: pixelated;
-            max-width: 100%;
-        }
-    }
-}
-
 .pageTransition {
     opacity: 1;
     &-enter {
@@ -130,7 +93,7 @@
         animation-duration: 0.3s;
         animation-fill-mode: both;
         animation-timing-function: ease;
-        z-index: 1;
+        z-index: 2;
     }
 
     &-exit {
@@ -138,5 +101,6 @@
         animation-duration: 0.3s;
         animation-fill-mode: both;
         animation-timing-function: ease;
+        z-index: 1;
     }
 }
