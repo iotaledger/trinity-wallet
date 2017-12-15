@@ -138,86 +138,86 @@
     },
     "send": {
         "invalidAddress": "잘못된 주소",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
+        "invalidAddressExplanation1": "주소는 {{maxLength}} 글자 수를 포함해야하고 체크섬을 포함해야 합니다.",
+        "invalidAddressExplanation2": "주소에 유효하지 않은 문자가 포함되어 있습니다.",
+        "invalidAddressExplanation3": "주소에 유효하지 않은 체크섬이 포함되어 있습니다.",
+        "notEnoughFunds": "잔액 부족",
+        "notEnoughFundsExplanation": "거래를 완료를 하기 위해서는 현재 IOTA 잔액이 충분하지 않습니다.",
+        "keyReuse": "키 재사용",
+        "keyReuseExplanation": "입력한 주소는 이미 사용되었습니다. 다른 주소를 사용하십시오.",
+        "recipientAddress": "받는 이 주소",
         "amount": "금액",
-        "max": "MAX",
-        "message": "Message",
+        "max": "최대",
+        "message": "메시지",
         "send": "보내기",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmount": "잘못된 금액이 입력됨",
+        "invalidAmountExplanation": "거래 금액을 위한 숫자 값을 입력하십시오.",
+        "maximumSelected": "최대 금액 선택됨",
+        "iotaUnits": "IOTA 단위"
     },
     "setPassword": {
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "씨드는 최소 {{minLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
         "passwordMismatch": "비밀번호가 일치하지 않습니다.",
         "passwordMismatchExplanation": "입력한 비밀번호가 일치하지 않습니다. 다시 입력해주십시오.",
         "nowWeNeedTo": "이제 비밀번호를 설정해야합니다.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "귀하의 디바이스에 암호화된 씨드가 저장될 것입니다. 지갑에 엑세스하기 위해서 이 비밀번호를 사용하십시오.",
         "ensure": "최소 12글자로 이루어진 비밀번호를 사용하십시오.",
-        "retypePassword": "Retype Password"
+        "retypePassword": "비밀번호 다시 입력"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "이 지갑으로 여러 개의 씨드를 사용할 수 있습니다. 각각의 씨드는 계정 이름이 필요합니다.",
+        "youCanAdd": "설정 메뉴에서 씨드를 추가할 수 있습니다."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
-        "currency": "Currency",
+        "transferSending": "트랜스퍼 전송중",
+        "transferSendingExplanation": "트랜스퍼가 전송 완료될 때까지 기다려주십시오.",
+        "generatingAddress": "받는 주소 생성 중",
+        "generatingAddressExplanation": "주소가 생성 완료될 때까지 기다려주십시오.",
+        "mode": "모드",
+        "theme": "테마",
+        "currency": "통화",
         "language": "언어",
         "addNewSeed": "새 씨드 추가하기",
-        "twoFA": "Two-factor authentication",
+        "twoFA": "2단계 인증",
         "changePassword": "비밀번호 변경하기",
         "advanced": "고급 설정",
-        "logout": "Log out",
-        "reset": "Reset wallet",
-        "back": "Back",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "logout": "로그아웃",
+        "reset": "지갑 초기화",
+        "back": "뒤로가기",
+        "syncingComplete": "동기화 완료",
+        "syncingCompleteExplanation": "귀하의 계정이 성공적으로 동기화되었습니다.",
+        "nicknameChanged": "계정 이름 변경됨",
+        "nicknameChangedExplanation": "귀하의 계정 이름이 변경되었습니다.",
+        "accountDeleted": "계정 삭제됨",
+        "accountDeletedExplanation": "지갑에서 귀하의 계정이 삭제되었습니다.",
+        "cannotPerformAction": "작업 수행할 수 없음",
+        "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오."
     },
     "resetWalletConfirmation": {
-        "thisAction": "This action cannot be undone.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "thisAction": "이 작업은 취소할 수 없습니다.",
+        "warning1": "귀하의 모든 지갑 데이터들",
+        "warning2": " 씨드, 패스워드",
+        "warning3": "그리고",
+        "warning4": " 기타 계정 정보들은",
+        "warning5": " 삭제될 것입니다.",
+        "areYouSure": "계속하시겠습니까?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "지갑을 초기화하기 위해 비밀번호를 입력하십시오.",
+        "cancel": "취소",
+        "reset": "초기화"
     },
     "walletSetup": {
         "okay": "좋습니다. 이제 귀하의 지갑을 만듭시다!",
         "doYouAlreadyHaveASeed": "이미 당신이 사용하고 싶은 씨드가 있습니까?",
         "seedExplanation": "81자로 이루어진 IOTA 씨드는 귀하의 계정에 아이디 및 비밀번호와 같습니다.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
-        "explanation3": ", on",
-        "explanation4": " any device",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe."
+        "explanation1": "귀하의 자금이 보관된 장소들에 접근하기 위해 사용할 수 있습니다.",
+        "explanation2": " 모든 지갑 ",
+        "explanation3": "에",
+        "explanation4": " 모든 디바이스",
+        "explanation5": "하지만 만약 귀하의 씨드를 분실하는 경우, 귀하의 IOTA 또한 잃게 됩니다.",
+        "keepSafe": "반드시 씨드를 안전히 보관하십시오."
     },
     "welcome": {
         "thankYou": "IOTA 지갑을 다운로드 해주셔서 감사합니다.",
@@ -225,14 +225,14 @@
         "reminder": "몇 가지 단계를 건너 뛰길 원하시더라도, 모든 프로세스를 완벽히 따르길 권장합니다."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
-        "tripleCheck": "triple check",
-        "thatTheyAreCorrect": "that they are correct."
+        "yourSeedIs": "당신의 씨드는 왼쪽에서 오른쪽으로 읽히는 81글자입니다. 당신의 씨드 및 체크섬을 적어 놓고",
+        "tripleCheck": "여러 번 검사하십시오",
+        "thatTheyAreCorrect": "모든 정보가 올바른지."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "bundleHashCopied": "번들 해시 복사됨",
+        "bundleHashCopiedExplanation": "번들 해시가 클립보드에 복사되었습니다.",
+        "addressCopied": "주소가 복사됨",
+        "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다."
     }
 }
