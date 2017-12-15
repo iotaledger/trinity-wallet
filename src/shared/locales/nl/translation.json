@@ -75,8 +75,8 @@
         "invalidCharactersExplanation": "Sleutels kunnen alleen bestaan uit de hoofdletters A-Z en het getal 9. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Sleutel is te kort",
         "seedTooShortExplanation": "Sleutels moeten minstens {{maxLength}} tekens lang zijn. Uw sleutel is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
-        "seedExplanation": "Seeds moeten {{maxLength}} tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met meer dan {{maxLength}} tekens.",
-        "neverShare": "DEEL NOOIT JE SEED MET IEMAND"
+        "seedExplanation": "Sleutels moeten {{maxLength}} tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen sleutel gebruiken met meer dan {{maxLength}} tekens.",
+        "neverShare": "DEEL NOOIT JE SLEUTEL MET IEMAND"
     },
     "home": {
         "balance": "SALDO",
@@ -90,43 +90,43 @@
     },
     "login": {
         "emptyPassword": "Leeg wachtwoord",
-        "emptyPasswordExplanation": "U moet een wachtwoord ingeven om in te loggen. Probeer het opnieuw.",
-        "enterPassword": "Voer je wachtwoord in.",
-        "useSeed": "GEBRUIK SEED",
+        "emptyPasswordExplanation": "Voer een wachtwoord in om u aan te melden. Probeer het opnieuw.",
+        "enterPassword": "Voor uw wachtwoord in.",
+        "useSeed": "GEBRUIK SLEUTEL",
         "login": "Aanmelden"
     },
     "loading": {
-        "loadingFirstTime": "Het laden van de sleutel voor de eerste keer.",
-        "thisMayTake": "Dit kan een tijdje duren.",
-        "youMayNotice": "U kan een vertraging merken van uw systeem."
+        "loadingFirstTime": "Sleutel voor de eerste keer laden.",
+        "thisMayTake": "Dit kan een ogenblik duren.",
+        "youMayNotice": "U zult misschien een vertraging ervaren op uw apparaat."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Sleutel is niet gegenereerd",
         "seedNotGeneratedExplanation": "Klik op de knop genereer een nieuwe sleutel.",
         "pressForNewSeed": "DRUK VOOR EEN NIEUWE SLEUTEL",
-        "individualLetters": "Druk op individuele letters om deze te willekeurig te kiezen."
+        "individualLetters": "Druk op individuele letters om deze willekeurig te maken."
     },
     "onboardingComplete": {
-        "walletReady": "De portefeuille is nu ingesteld en klaar voor gebruik. Als je wijzigingen wil aanbrengen in de toekomst, kijk in het menu Extra."
+        "walletReady": "De portefeuille is nu ingesteld en klaar voor gebruik. Voor toekomstige wijzigingen kunt u het instellingen menu gebruiken."
     },
     "paperWallet": {
-        "clickToPrint": "Klik op de knop hieronder om een papieren kopie af te drukken van uw seed.",
+        "clickToPrint": "Klik op de knop hieronder om een papieren kopie af te drukken van uw sleutel.",
         "storeSafely": "Sla deze veilig op.",
-        "neverShare": "Deel nooit uw Seed met iemand.",
+        "neverShare": "Deel uw sleutel met niemand.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PORTEMONNEE VAN PAPIER AFDRUKKEN"
+        "printWallet": "PRINT PAPIEREN PORTEMONNEE"
     },
     "receive": {
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Uw adres is naar het Klembord gekopieerd.",
         "generateNewAddress": "GENEREER EEN NIEUW ADRES",
-        "message": "Optioneel bericht",
+        "message": "Bericht",
         "removeMessage": "VERWIJDER BERICHT"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed gewist",
-        "seedClearedExplanation": "De seed is gewist van het Klembord voor uw veiligheid.",
-        "mustSaveYourSeed": "U moet uw sleutel opslaan ",
+        "seedCleared": "Sleutel gewist",
+        "seedClearedExplanation": "De sleutel is voor uw veiligheid van het klembord gewist.",
+        "mustSaveYourSeed": "U moet uw sleutel opslaan met ",
         "atLeastOne": "ten minste een ",
         "ofTheOptions": "van de onderstaande opties."
     },
