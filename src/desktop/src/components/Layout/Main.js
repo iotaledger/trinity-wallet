@@ -1,15 +1,16 @@
 import React from 'react';
 // import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Switch, Route, withRouter } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import Welcome from '../Onboarding/Welcome';
-import Done from '../Onboarding/Done';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+// import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Balance from '../Main/Balance';
+import Send from '../Main/Send';
+import Login from '../Main/Login';
 
-import css from './Onboarding.css';
+// import css from './Main.css';
 
 export default withRouter(
-    class Onboarding extends React.PureComponent {
+    class Main extends React.PureComponent {
         static propTypes = {
             location: PropTypes.object,
         };
@@ -17,22 +18,15 @@ export default withRouter(
         render() {
             const { location } = this.props;
             return (
-                <TransitionGroup>
-                    <CSSTransition
-                        key={location.key}
-                        timeout={300}
-                        classNames={css.pageTransition}
-                        mountOnEnter={true}
-                        unmountOnExit={true}
-                    >
-                        <div className={css.wrapper}>
-                            <Switch location={location}>
-                                <Route path="/done" component={Done} />
-                                <Route path="/" component={Welcome} />
-                            </Switch>
-                        </div>
-                    </CSSTransition>
-                </TransitionGroup>
+                <Switch location={location}>
+                    <Route path="/login" component={Login} />
+                    <Route path="/balance" component={Balance} />
+                    <Route path="/send" component={Send} />
+                    <Route path="/receive" component={Balance} />
+                    <Route exact path="/settings" component={Balance} />
+                    <Route path="/settings/add-seed" component={Balance} />
+                    <Redirect from="/" to="/login" />
+                </Switch>
             );
         }
     },

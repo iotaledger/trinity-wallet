@@ -7,9 +7,9 @@
         "back": "ΠΙΣΩ",
         "done": "ΤΕΛΟΣ",
         "next": "ΕΠΟΜΕΝΟ",
-        "manualCopy": "Χειροκίνητη αντιγραφή",
-        "paperWallet": "Χάρτινο Πορτοφόλι",
-        "copyToClipboard": "Αντιγραφή στο πρόχειρο",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Αυτή η λειτουργία δεν είναι διαθέσιμη",
         "notAvailableExplanation": "Θα προστεθεί σε μεταγενέστερο στάδιο.",
@@ -69,12 +69,12 @@
     "copyToClipboard": {
         "seedCleared": "Σπόρος εκκαθαρίστηκε",
         "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
-        "seedCopied": "Σπόρος αντιγράφηκε",
-        "seedCopiedExplanation":
-            "Ο σπόρος έχει αντιγραφεί στο Πρόχειρο, και θα πρέπει να εκκαθαριστεί αφού πιέσετε το πλήκτρο «ΤΕΛΟΣ» ή 60 δευτερόλεπτα έχουν περάσει, όποιο συμβεί πρώτο.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy":
             "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
-        "doNotStore": "Do not store your seed in plain text."
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -135,6 +135,8 @@
         "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Πρέπει να αποθηκεύσετε το σπόρο σας με ",
         "atLeastOne": "τουλάχιστον μία ",
         "ofTheOptions": "από τις επιλογές που αναφέρονται παρακάτω."
@@ -143,8 +145,7 @@
         "incorrectSeed": "Λάθος σπόρος",
         "incorrectSeedExplanation": "Ο σπόρος που πληκτρολογήσατε είναι εσφαλμένος. Παρακαλώ δοκιμάστε ξανά.",
         "thisIsACheck": "Αυτό είναι ένας έλεγχος για να βεβαιωθείτε ότι έχετε αποθηκεύσει το σπόρο σας.",
-        "ifYouHaveNotSaved":
-            "Αν δεν έχετε αποθηκεύσει το σπόρο σας, παρακαλούμε πηγαίνετε πίσω στην προηγούμενη οθόνη και κάντε το."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Μη έγκυρη διεύθυνση",

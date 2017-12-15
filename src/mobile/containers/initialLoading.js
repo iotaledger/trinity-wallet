@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Image, ImageBackground, Text, StatusBar, BackHandler } from 'react-native';
-import { getAllItems, deleteFromKeyChain } from 'iota-wallet-shared-modules/libs/cryptography';
+import { StyleSheet, View, Image, Text, StatusBar, BackHandler } from 'react-native';
+import keychain from '../util/keychain';
 import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
+import COLORS from '../theme/Colors';
+import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 
 const version = getVersion();
 const build = getBuildNumber();
@@ -32,19 +34,9 @@ export default class InitialLoading extends Component {
     }
 
     clearKeychain() {
-        getAllItems().then(keys => {
-            if (isIOS) {
-                if (!keys[0].length) {
-                    return;
-                } else {
-                    let key = '';
-                    for (let i = 0; i < keys[0].length; i++) {
-                        key = keys[0][i].key;
-                        deleteFromKeyChain(key);
-                    }
-                }
-            }
-        });
+        if (isIOS) {
+            keychain.clear().catch(err => console.error(err));
+        }
     }
 
     onLoaded() {
@@ -70,15 +62,15 @@ export default class InitialLoading extends Component {
     render() {
         const currentYear = getCurrentYear();
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
-                    <Image source={require('iota-wallet-shared-modules/images/iota-white.png')} style={styles.logo} />
+                    <Image source={iotaWhiteImagePath} style={styles.logo} />
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>IOTA Alpha Wallet {FULL_VERSION}</Text>
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -88,6 +80,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: COLORS.backgroundGreen,
     },
     logoContainer: {
         flex: 1,

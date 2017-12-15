@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
@@ -16,14 +17,13 @@ import {
 } from 'react-native';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
-import {
-    getFromKeychain,
-    deleteFromKeyChain,
-    storeValueInKeychain,
-} from 'iota-wallet-shared-modules/libs/cryptography';
+import keychain from '../util/keychain';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
 import { width, height } from '../util/dimensions';
+import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
 class ChangePassword extends Component {
     constructor() {
@@ -50,7 +50,6 @@ class ChangePassword extends Component {
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,
-            returnKeyType: 'next',
             containerStyle: styles.textFieldContainer,
             secureTextEntry: true,
             label,
@@ -89,27 +88,33 @@ class ChangePassword extends Component {
                     'Looks like something went wrong while updating your password. Please try again.',
                 );
 
-            const updatePassword = value =>
-                Promise.resolve(storeValueInKeychain(newPassword, value))
-                    .then(() => {
-                        deleteFromKeyChain(password);
-                        setPassword(newPassword);
-                        this.fallbackToInitialState();
-                        // TODO:
-                        // We might need to rethink on having a global dropdown alerting system
-                        // via redux. Generally we should redirect user to the previous screen
-                        // on password update but we are kind of limited as we have to keep track
-                        // on dropdown reference inside this component.
-                        this.props.dropdown.alertWithType(
-                            'success',
-                            'Password updated',
-                            'Your password has been successfully updated.',
-                        );
-                        this.props.backPress();
-                    })
-                    .catch(throwErr);
+            keychain
+                .get()
+                .then(credentials => {
+                    const payload = get(credentials, 'data');
 
-            return getFromKeychain(password, value => (!isUndefined(value) ? updatePassword(value) : throwErr()));
+                    if (payload) {
+                        return keychain.set(newPassword, payload);
+                    }
+
+                    throw 'Error';
+                })
+                .then(() => {
+                    setPassword(newPassword);
+                    this.fallbackToInitialState();
+                    // TODO:
+                    // We might need to rethink on having a global dropdown alerting system
+                    // via redux. Generally we should redirect user to the previous screen
+                    // on password update but we are kind of limited as we have to keep track
+                    // on dropdown reference inside this component.
+                    this.props.dropdown.alertWithType(
+                        'success',
+                        'Password updated',
+                        'Your password has been successfully updated.',
+                    );
+                    this.props.backPress();
+                })
+                .catch(err => throwErr());
         }
 
         return this.renderInvalidSubmissionAlerts();
@@ -163,10 +168,7 @@ class ChangePassword extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={styles.infoTextWrapper}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/info.png')}
-                                style={styles.infoIcon}
-                            />
+                            <Image source={infoImagePath} style={styles.infoIcon} />
                             <Text style={styles.infoText}>
                                 Ensure you use a strong password of at least 12 characters.
                             </Text>
@@ -199,10 +201,7 @@ class ChangePassword extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
@@ -211,10 +210,7 @@ class ChangePassword extends Component {
                             confirmedNewPassword != '' && (
                                 <TouchableOpacity onPress={() => this.changePassword()}>
                                     <View style={styles.itemRight}>
-                                        <Image
-                                            source={require('iota-wallet-shared-modules/images/tick.png')}
-                                            style={styles.icon}
-                                        />
+                                        <Image source={tickImagePath} style={styles.icon} />
                                         <Text style={styles.titleText}>Save</Text>
                                     </View>
                                 </TouchableOpacity>
