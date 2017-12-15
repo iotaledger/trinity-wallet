@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Letter from './Letter';
+import classNames from 'classnames';
 import { createRandomSeed } from 'libs/seedUtil';
+import { MAX_SEED_LENGTH } from 'libs/util';
+import Letter from './Letter';
 
 import css from './SeedGenerator.css';
 
@@ -12,7 +14,7 @@ export default class SeedGenerator extends React.PureComponent {
     };
 
     state = {
-        seed: this.props.seed || createRandomSeed(),
+        seed: this.props.seed || null,
         updateCounter: {},
     };
 
@@ -49,6 +51,12 @@ export default class SeedGenerator extends React.PureComponent {
         }
     };
 
+    onLetterPressed = e => {
+        e.preventDefault();
+        const { target: { dataset } } = e;
+        this.changeRandomLetterAtPosition(Number(dataset.index));
+    };
+
     changeRandomLetterAtPosition = position => {
         this.setState(state => {
             const seed = state.seed
@@ -68,27 +76,26 @@ export default class SeedGenerator extends React.PureComponent {
         });
     };
 
-    onLetterPressed = e => {
-        e.preventDefault();
-        const { target: { dataset } } = e;
-        this.changeRandomLetterAtPosition(Number(dataset.index));
-    };
-
     render() {
         const { seed, updateCounter } = this.state;
+        const dummyArray = new Array(MAX_SEED_LENGTH).fill('');
         return (
-            <div className={css.wrapper}>
-                {seed.split('').map((letter, index) => {
-                    return (
-                        <Letter
-                            index={index}
-                            onClick={this.onLetterPressed}
-                            key={`${index}${letter}`}
-                            value={letter}
-                            updated={updateCounter[index] || 0}
-                        />
-                    );
-                })}
+            <div className={classNames(css.wrapper, seed ? css.enabled : css.disabled)}>
+                {seed
+                    ? seed.split('').map((letter, index) => {
+                          return (
+                              <Letter
+                                  index={index}
+                                  onClick={this.onLetterPressed}
+                                  key={`${index}${letter}`}
+                                  value={letter}
+                                  updated={updateCounter[index] || 0}
+                              />
+                          );
+                      })
+                    : Array(MAX_SEED_LENGTH)
+                          .fill('')
+                          .map((item, key) => <Letter key={key} updated={0} />)}
             </div>
         );
     }

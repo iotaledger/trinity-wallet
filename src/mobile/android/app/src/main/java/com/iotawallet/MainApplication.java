@@ -12,7 +12,6 @@ import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.tradle.react.UdpSocketsModule;
 import com.peel.react.TcpSocketsModule;
 import com.horcrux.svg.SvgPackage;
-import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.reactnativenavigation.bridge.NavigationReactPackage;
 import com.facebook.react.ReactNativeHost;
@@ -21,14 +20,17 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.reactnativenavigation.NavigationApplication;
 import com.horcrux.svg.SvgPackage;
-import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.rnfs.RNFSPackage;
 import java.util.Arrays;
 import java.util.List;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
+<<<<<<< src/mobile/android/app/src/main/java/com/iotawallet/MainApplication.java
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+=======
+import com.oblador.keychain.KeychainPackage;
+>>>>>>> src/mobile/android/app/src/main/java/com/iotawallet/MainApplication.java
 
 public class MainApplication extends NavigationApplication {
 
@@ -51,13 +53,13 @@ public class MainApplication extends NavigationApplication {
             new RNOSModule(),
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
-            new RNSensitiveInfoPackage(),
 	        new RCTCameraPackage(),
 	        new RNFSPackage(),
             new ExtraDimensionsPackage(),
             new RNDetectNavbarAndroidPackage(),
             new KCKeepAwakePackage(),
             new ReactNativePushNotificationPackage()
+            new KeychainPackage()
     );
   }
 

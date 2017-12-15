@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import LanguageSelect from '../UI/LanguageSelect';
 import css from '../Layout/Onboarding.css';
@@ -11,21 +11,20 @@ class Welcome extends React.PureComponent {
         t: PropTypes.func.isRequired,
     };
 
-    state = { modalOpen: false };
+    // state = { modalOpen: false };
 
     render() {
         const { t } = this.props;
         return (
             <Template bodyClass={css.bodyHome}>
-                <Main>
+                <Content>
                     <div className={css.formGroup}>
-                        <label>{t('dropdown_title')}</label>
-                        <LanguageSelect />
+                        <LanguageSelect label={t('languageSetup:language')} />
                     </div>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/instructions" variant="success">
-                        {t('button1')}
+                        {t('global:next')}
                     </Button>
                 </Footer>
             </Template>

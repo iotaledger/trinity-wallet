@@ -5,10 +5,10 @@ import css from './SeedGenerator.css';
 
 export default class Letter extends React.PureComponent {
     static propTypes = {
-        index: PropTypes.number.isRequired,
-        value: PropTypes.string.isRequired,
-        onClick: PropTypes.func.isRequired,
-        updated: PropTypes.number,
+        index: PropTypes.number,
+        value: PropTypes.string,
+        onClick: PropTypes.func,
+        updated: PropTypes.number.isRequired,
     };
 
     render() {

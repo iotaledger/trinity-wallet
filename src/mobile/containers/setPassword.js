@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import { translate } from 'react-i18next';
 import {
@@ -7,21 +8,23 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { clearTempData, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { storeSeedInKeychain, checkKeychainForDuplicates } from 'iota-wallet-shared-modules/libs/cryptography';
 import { TextField } from 'react-native-material-textfield';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
+import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { isAndroid } from '../util/device';
+import COLORS from '../theme/Colors';
 
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 const MIN_PASSWORD_LENGTH = 12;
 const StatusBarDefaultBarStyle = 'light-content';
@@ -37,34 +40,66 @@ class SetPassword extends React.Component {
 
     onDonePress() {
         const { t } = this.props;
-        if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password == this.state.reentry) {
-            checkKeychainForDuplicates(
-                this.state.password,
-                this.props.tempAccount.seed,
-                this.props.tempAccount.seedName,
-                (type, title, message) => dropdown.alertWithType(type, title, message),
-                () =>
-                    ifNoKeychainDuplicates(
-                        this.state.password,
-                        this.props.tempAccount.seed,
-                        this.props.tempAccount.seedName,
-                    ),
-            );
-            ifNoKeychainDuplicates = (password, seed, accountName) => {
-                storeSeedInKeychain(password, seed, accountName), this.props.addAccountName(accountName);
-                this.props.increaseSeedCount();
-                this.props.clearTempData();
-                this.props.clearSeed();
-                this.props.setOnboardingComplete(true);
-                this.props.navigator.push({
-                    screen: 'onboardingComplete',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                    },
-                    animated: false,
-                    overrideBackPress: true,
+        if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password === this.state.reentry) {
+            keychain
+                .get()
+                .then(credentials => {
+                    if (isEmpty(credentials)) {
+                        return ifNoKeychainDuplicates(
+                            this.state.password,
+                            this.props.tempAccount.seed,
+                            this.props.tempAccount.seedName,
+                        );
+                    } else {
+                        if (hasDuplicateAccountName(credentials.data, this.props.tempAccount.seedName)) {
+                            return this.dropdown.alertWithType(
+                                'error',
+                                'Account name already in use',
+                                'This account name is already linked to your wallet. Please use a different one.',
+                            );
+                        } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
+                            return this.dropdown.alertWithType(
+                                'error',
+                                'Seed already in use',
+                                'This seed is already linked to your wallet. Please use a different one.',
+                            );
+                        }
+
+                        return ifNoKeychainDuplicates(
+                            this.state.password,
+                            this.props.tempAccount.seed,
+                            this.props.tempAccount.seedName,
+                        );
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    this.dropdown.alertWithType(
+                        'error',
+                        'Something went wrong',
+                        'Something went wrong while setting your account name. Please try again.',
+                    );
                 });
+
+            ifNoKeychainDuplicates = (password, seed, accountName) => {
+                storeSeedInKeychain(password, seed, accountName)
+                    .then(() => {
+                        this.props.addAccountName(accountName);
+                        this.props.increaseSeedCount();
+                        this.props.clearTempData();
+                        this.props.clearSeed();
+                        this.props.setOnboardingComplete(true);
+                        this.props.navigator.push({
+                            screen: 'onboardingComplete',
+                            navigatorStyle: {
+                                navBarHidden: true,
+                                navBarTransparent: true,
+                            },
+                            animated: false,
+                            overrideBackPress: true,
+                        });
+                    })
+                    .catch(err => console.log(err));
             };
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
@@ -96,10 +131,7 @@ class SetPassword extends React.Component {
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                style={styles.iotaLogo}
-                            />
+                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
                                 <Text style={styles.greetingText}>{t('nowWeNeedTo')}</Text>
                             </View>
@@ -108,10 +140,7 @@ class SetPassword extends React.Component {
                             <View style={{ flex: 0.3 }} />
                             <View style={styles.infoTextWrapper}>
                                 <View style={styles.infoTextContainer}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/info.png')}
-                                        style={styles.infoIcon}
-                                    />
+                                    <Image source={infoImagePath} style={styles.infoIcon} />
                                     <Text style={styles.infoText}>{t('anEncryptedCopy')}</Text>
                                     <Text style={styles.warningText}>{t('ensure')}</Text>
                                 </View>
@@ -191,7 +220,7 @@ class SetPassword extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 {isAndroid && <View style={styles.container}>{this._renderContent()}</View>}
                 {!isAndroid && (
                     <KeyboardAwareScrollView
@@ -203,7 +232,7 @@ class SetPassword extends React.Component {
                         {this._renderContent()}
                     </KeyboardAwareScrollView>
                 )}
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -213,7 +242,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
@@ -305,6 +334,14 @@ const styles = StyleSheet.create({
     iotaLogo: {
         height: width / 5,
         width: width / 5,
+    },
+    dropdownTitle: {
+        fontSize: width / 25.9,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
     },
     dropdownTitle: {
         fontSize: width / 25.9,

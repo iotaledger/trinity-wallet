@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Template, { Main, Footer } from './Template';
-import Button from '../UI/Button';
-import Infobox from '../UI/Infobox';
+import Template, { Content, Footer } from 'components/Onboarding/Template';
+import Button from 'components/UI/Button';
+import Infobox from 'components/UI/Infobox';
 
 class WalletSetup extends React.PureComponent {
     static propTypes = {
@@ -14,23 +14,31 @@ class WalletSetup extends React.PureComponent {
         const { t } = this.props;
         return (
             <Template>
-                <Main>
-                    <p>{t('text1')}</p>
-                    <p>{t('text2')}</p>
+                <Content>
+                    <p>{t('walletSetup:okay')}</p>
+                    <p>
+                        <strong>{t('walletSetup:doYouAlreadyHaveASeed')}</strong>
+                    </p>
                     <Infobox>
-                        <p>{t('seed_explanation1')}</p>
-                        <p>{t('seed_explanation2')}</p>
+                        <p>{t('walletSetup:seedExplanation')}</p>
                         <p>
-                            <strong>{t('reminder')}</strong>
+                            {t('walletSetup:explanation1')}
+                            <strong>{t('walletSetup:explanation2')}</strong>
+                            {t('walletSetup:explanation3')}
+                            <strong>{t('walletSetup:explanation4')}</strong>
+                            {t('walletSetup:explanation5')}
+                        </p>
+                        <p>
+                            <strong>{t('walletSetup:keepSafe')}</strong>
                         </p>
                     </Infobox>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/seed/generate" variant="warning">
-                        {t('button2')}
+                        {t('global:no')}
                     </Button>
                     <Button to="/seed/enter" variant="success">
-                        {t('button1')}
+                        {t('global:yes')}
                     </Button>
                 </Footer>
             </Template>

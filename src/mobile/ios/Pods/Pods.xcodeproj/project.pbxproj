@@ -969,15 +969,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E7512C12CF6DD15011077B7E1FB2800E /* Build configuration list for PBXNativeTarget "ReactNativePermissions" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FFD445F7EE6EF4F6E9A42FE1524C75B4 /* Debug */,
-				04D644A2DEAB0B266E45E7095CE9D60C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 	};
 	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
