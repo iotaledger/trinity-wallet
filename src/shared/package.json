@@ -15,8 +15,6 @@
     "license": "MIT",
     "dependencies": {
         "bluebird": "^3.5.1",
-        "child_process": "^1.0.2",
-        "fs": "^0.0.1-security",
         "iota.lib.js": "git+https://github.com/laumair/iota.lib.js.git#f58beaa",
         "lodash": "^4.17.4",
         "moment": "^2.19.1",
