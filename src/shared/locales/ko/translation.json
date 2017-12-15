@@ -1,64 +1,61 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "invalidResponse": "잘못된 응답",
+        "invalidResponseExplanation": "노드가 잘못된 응답을 보냈습니다.",
+        "invalidResponsePollingExplanation": "노드가 폴링 중 잘못된 응답을 보냈습니다.",
         "seed": "씨드",
         "back": "뒤로",
         "done": "완료",
         "next": "다음",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "copyToClipboard": "Add to password manager",
+        "manualCopy": "씨드 기록하기",
+        "paperWallet": "종이 인쇄하기",
+        "copyToClipboard": "패스워드 관리자에 입력하기",
         "qr": "QR",
-        "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage.",
-        "enterSeed": "Please enter your seed.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "notAvailable": "이 기능은 사용할 수 없습니다.",
+        "notAvailableExplanation": "이 기능은 추후에 추가될 예정입니다.",
+        "enterSeed": "씨드를 입력하십시오.",
+        "mainWallet": "메인 계정",
+        "secondWallet": "두 번째 계정",
+        "thirdWallet": "세 번째 계정",
+        "fourthWallet": "네 번째 계정",
+        "fifthWallet": "다섯 번째 계정",
+        "sixthWallet": "여섯 번째 계정",
+        "otherWallet": "다른 계정",
         "yes": "예",
         "no": "아니오",
-        "password": "패스워드",
-        "unrecognisedPassword": "Unrecognised password",
+        "password": "비밀번호",
+        "unrecognisedPassword": "잘못된 비밀번호",
         "unrecognisedPasswordExplanation": "비밀번호가 옳지 않습니다. 재시도 해주십시오.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
-        "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "syncInProgress": "동기화 진행 중...",
+        "syncInProgressExplanation": "동기화가 완료될 때까지 기다려 주세요.",
+        "somethingWentWrong": "알 수 없는 오류가 발생하였습니다.",
+        "somethingWentWrongExplanation": "어플을 다시 실행하여 주십시오."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
+        "seedInvalidCharsExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "nameInUse": "Account name already in use",
-        "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
-        "accountName": "Account name",
-        "noNickname": "No account name entered",
-        "noNicknameExplanation": "Please enter an account name for your seed."
+        "seedTooShortExplanation": "씨드는 {{maxLength}} 의 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 의 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "nameInUse": "계정이 이미 존재합니다.",
+        "nameInUseExplanation": "씨드를 위한 고유 계정 이름을 사용하십시오.",
+        "enterAccountName": "계정 이름을 입력하십시오.",
+        "accountName": "계정 이름",
+        "noNickname": "계정 이름이 등록되지 않음",
+        "noNicknameExplanation": "씨드를 위한 계정 이름을 입력해주십시오."
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
-        "passwordUpdated": "Password updated",
-        "passwordUpdatedExplanation": "Your password has been successfully updated.",
-        "incorrectPassword": "Incorrect password",
-        "incorrectPasswordExplanation": "Your current password is incorrect. Please try again.",
+        "oops": "죄송합니다. 오류가 발생했습니다.",
+        "oopsExplanation": "패스워드 변경 중 오류가 발생하였습니다. 다시 시도하십시오.",
+        "passwordUpdated": "비밀번호 변경됨",
+        "passwordUpdatedExplanation": "비밀번호가 성공적으로 변경되었습니다.",
+        "incorrectPassword": "잘못된 비밀번호",
+        "incorrectPasswordExplanation": "현재 비밀번호가 올바르지 않습니다. 다시 시도하십시오.",
         "passwordsDoNotMatch": "비밀번호가 일치하지 않습니다.",
-        "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
+        "passwordsDoNotMatchExplanation": "비밀번호가 일치하지 않습니다. 다시 시도하십시오.",
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
-        "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
+        "passwordTooShortExplanation": "비밀번호는 최소 12 글자 수를 포함해야합니다. 다시 시도하십시오.",
         "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation":
-            "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "최소 12글자로 이루어진 비밀번호를 사용하십시오.",
         "currentPassword": "Current Password",
         "newPassword": "New Password",
@@ -75,13 +72,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation":
-            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "다른 이와 절대로 씨드를 공유하지 마십시오."
     },
     "home": {
@@ -113,8 +107,7 @@
         "individualLetters": "임의로 순서를 정하기 위해 개별 글자를 눌러주세요."
     },
     "onboardingComplete": {
-        "walletReady":
-            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
         "clickToPrint": "씨드를 인쇄하려면 아래 버튼을 클릭하십시오.",
@@ -151,8 +144,7 @@
         "notEnoughFunds": "Not enough funds",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
         "keyReuse": "Key reuse",
-        "keyReuseExplanation":
-            "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
         "amount": "금액",
         "max": "MAX",
@@ -165,13 +157,11 @@
     },
     "setPassword": {
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
-        "passwordTooShortExplanation":
-            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "비밀번호가 일치하지 않습니다.",
         "passwordMismatchExplanation": "입력한 비밀번호가 일치하지 않습니다. 다시 입력해주십시오.",
         "nowWeNeedTo": "이제 비밀번호를 설정해야합니다.",
-        "anEncryptedCopy":
-            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "최소 12글자로 이루어진 비밀번호를 사용하십시오.",
         "retypePassword": "Retype Password"
     },
