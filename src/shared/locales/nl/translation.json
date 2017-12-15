@@ -192,7 +192,7 @@
         "accountDeleted": "Account verwijderd",
         "accountDeletedExplanation": "Uw account is verwijderd uit de portefeuille.",
         "cannotPerformAction": "Kan actie niet uitvoeren",
-        "cannotPerformActionExplanation": "Ga naar de geavanceerde instellingen om uw portefeuille te resetten."
+        "cannotPerformActionExplanation": "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen."
     },
     "resetWalletConfirmation": {
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
@@ -204,30 +204,30 @@
         "areYouSure": "Weet u zeker dat u wilt doorgaan?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Voer wachtwoord om uw portemonnee opnieuw in te stellen.",
-        "cancel": "Annuleren",
+        "enterPassword": "Voer uw wachtwoord in om uw portemonnee opnieuw in te stellen.",
+        "cancel": "ANNULEREN",
         "reset": "RESET"
     },
     "walletSetup": {
-        "okay": "Oke. Laat we uw portemonnee instellen!",
-        "doYouAlreadyHaveASeed": "Heb je al een zaad dat u zou willen gebruiken?",
-        "seedExplanation": "De IOTA seed is zoals een gebruikersnaam en wachtwoord om toegang te verkrijgen tot je account, dit samengevoegd tot een tekenreeks van 81 karakters.",
+        "okay": "Oke. Laten we uw portemonnee instellen!",
+        "doYouAlreadyHaveASeed": "Heeft u al een sleutel die u zou willen gebruiken?",
+        "seedExplanation": "De toegangscode van uw IOTA portemonnee is als een gebruikersnaam en wachtwoord samengevoegd in een sleutel van 81 karakters.",
         "explanation1": "U kunt deze gebruiken voor toegang tot uw fondsen",
         "explanation2": " elke portemonnee ",
         "explanation3": ", op",
         "explanation4": " elk apparaat",
-        "explanation5": ". Maar als je uw sleutel verliest, verliest u ook uw IOTA.",
-        "keepSafe": "Houd uw seed veilig."
+        "explanation5": ". Maar als u uw sleutel verliest, verliest u ook uw IOTA.",
+        "keepSafe": "Houd uw sleutel veilig."
     },
     "welcome": {
-        "thankYou": "Dank u voor het downloaden van de IOTA-portefeuille.",
+        "thankYou": "Bedankt voor het downloaden van de IOTA portemonnee.",
         "weWillSpend": "We zullen de volgende paar minuten het opzetten van uw portemonnee doorbrengen.",
         "reminder": "U kan worden verleid om sommige stappen over te slaan, maar wij verzoeken u om het volledige proces te volgen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Uw sleutel is 81 tekens van links naar rechts gelezen. Schrijf uw sleutel en controlesom op",
-        "tripleCheck": "drievoudige controle",
-        "thatTheyAreCorrect": "dat ze correct zijn."
+        "yourSeedIs": "Uw sleutel is 81 tekens van links naar rechts gelezen. Schrijf uw sleutel en controlesom op en",
+        "tripleCheck": "kijk even goed na",
+        "thatTheyAreCorrect": "of ze kloppen."
     },
     "history": {
         "bundleHashCopied": "Bundel hash gekopieerd",
