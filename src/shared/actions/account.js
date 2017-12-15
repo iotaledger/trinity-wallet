@@ -51,6 +51,20 @@ export function addAddresses(seedName, addresses) {
     };
 }
 
+export const getAccountInfoNewSeedAsync = (seed, seedName) => {
+    return async dispatch => {
+        const address = await iota.api.getNewAddressAsync(seed);
+        console.log('ADDRESS:', address);
+        const accountData = await iota.api.getAccountDataAsync(seed);
+        console.log('ACCOUNT', accountData);
+        const addressesWithBalance = formatAddressBalancesNewSeed(accountData);
+        const balance = calculateBalance(addressesWithBalance);
+        const transfers = formatTransfers(accountData.transfers, accountData.addresses);
+        dispatch(setAccountInfo(seedName, addressesWithBalance, transfers, balance));
+        dispatch(setReady());
+    };
+};
+
 export function getFullAccountInfo(seed, seedName, cb) {
     return dispatch => {
         iota.api.getAccountData(seed, (error, success) => {
@@ -85,7 +99,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
         // Current addresses and their balances
         let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         // Current transfers
-        let transfers = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers;
+        const transfers = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers;
         // Array of old balances
         const oldBalances = Object.values(addressesWithBalance);
         // Array of current addresses
@@ -126,7 +140,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                     generateAlert(
                         'error',
                         'Invalid Response',
-                        `The node returned an invalid response while getting balance.`,
+                        'The node returned an invalid response while getting balance.',
                     ),
                 );
             }
@@ -168,7 +182,7 @@ export function getTransfers(seedName, addresses) {
                                     generateAlert(
                                         'error',
                                         'Invalid Response',
-                                        `The node returned an invalid response while getting transfers.`,
+                                        'The node returned an invalid response while getting transfers.',
                                     ),
                                 );
                             }
@@ -179,7 +193,7 @@ export function getTransfers(seedName, addresses) {
                             generateAlert(
                                 'error',
                                 'Invalid Response',
-                                `The node returned an invalid response while getting transfers.`,
+                                'The node returned an invalid response while getting transfers.',
                             ),
                         );
                     }
@@ -190,7 +204,7 @@ export function getTransfers(seedName, addresses) {
                     generateAlert(
                         'error',
                         'Invalid Response',
-                        `The node returned an invalid response while getting transfers.`,
+                        'The node returned an invalid response while getting transfers.',
                     ),
                 );
             }

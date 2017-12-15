@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { renameCurrentSeed } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
-import Template, { Main, Footer } from './Template';
+import { showError } from 'actions/notifications';
+import Template, { Content, Footer } from './Template';
 import Infobox from '../UI/Infobox';
 import Button from '../UI/Button';
+import Input from '../UI/Input';
 import css from '../Layout/Onboarding.css';
 
 class SeedName extends React.PureComponent {
@@ -23,15 +25,16 @@ class SeedName extends React.PureComponent {
         name: this.props.seed.name || '',
     };
 
-    setName = e => {
-        const { target } = e;
-        this.setState(() => ({
-            name: target.value,
-        }));
-    };
-
     onRequestNext = () => {
-        const { renameCurrentSeed, history, t } = this.props;
+        const { renameCurrentSeed, history, showError, t } = this.props;
+        const { name } = this.state;
+        if (!name.length) {
+            showError({
+                title: t('addAdditionalSeed:noNickname'),
+                text: t('addAdditionalSeed:noNicknameExplanation'),
+            });
+            return;
+        }
         if (this.state.name) {
             renameCurrentSeed(this.state.name);
         } else {
@@ -40,33 +43,34 @@ class SeedName extends React.PureComponent {
         history.push('/security/enter');
     };
 
+    setName = e => {
+        const { target } = e;
+        this.setState(() => ({
+            name: target.value,
+        }));
+    };
+
     render() {
         const { t } = this.props;
         const { name } = this.state;
         return (
             <Template>
-                <Main>
-                    <p>{t('text')}</p>
+                <Content>
+                    <p>{t('addAdditionalSeed:enterAccountName')}</p>
                     <div className={css.formGroup}>
-                        <label>{t('label')}</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={name}
-                            placeholder={t('placeholder')}
-                            onChange={this.setName}
-                        />
+                        <label>{t('addAdditionalSeed:accountName')}</label>
+                        <Input value={name} placeholder={t('addAdditionalSeed:accountName')} onChange={this.setName} />
                     </div>
                     <Infobox>
-                        <p>{t('explanation')}</p>
+                        <p>{t('setSeedName:canUseMultipleSeeds')}</p>
                     </Infobox>
-                </Main>
+                </Content>
                 <Footer>
                     <Button to="/seed/enter" variant="warning">
-                        {t('button2')}
+                        {t('global:back')}
                     </Button>
                     <Button onClick={this.onRequestNext} variant="success">
-                        {t('button1')}
+                        {t('global:done')}
                     </Button>
                 </Footer>
             </Template>
@@ -79,6 +83,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+    showError,
     renameCurrentSeed,
 };
 

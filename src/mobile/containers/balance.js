@@ -21,7 +21,7 @@ class Balance extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.tempAccount.seedIndex != this.props.tempAccount.seedIndex) {
+        if (newProps.tempAccount.seedIndex !== this.props.tempAccount.seedIndex) {
             this.setState({ balanceIsShort: true });
         }
     }
@@ -57,6 +57,8 @@ class Balance extends React.Component {
         const currencySymbol = getCurrencySymbol(this.props.settings.currency);
         const fiatBalance =
             this.props.account.balance * this.props.marketData.usdPrice / 1000000 * this.props.settings.conversionRate;
+        const recentTransactions = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4);
+        const hasTransactions = recentTransactions.length > 0;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
@@ -75,19 +77,23 @@ class Balance extends React.Component {
                     </View>
                     <View style={styles.transactionsContainer}>
                         <View style={styles.line} />
-                        <ListView
-                            dataSource={ds.cloneWithRows(
-                                accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4),
-                            )}
-                            renderRow={dataSource => (
-                                <SimpleTransactionRow addresses={addresses} rowData={dataSource} />
-                            )}
-                            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                            enableEmptySections
-                            contentContainerStyle={styles.listView}
-                            scrollEnabled={false}
-                            centerContent
-                        />
+                        {hasTransactions ? (
+                            <ListView
+                                dataSource={ds.cloneWithRows(recentTransactions)}
+                                renderRow={dataSource => (
+                                    <SimpleTransactionRow addresses={addresses} rowData={dataSource} />
+                                )}
+                                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                                enableEmptySections
+                                contentContainerStyle={styles.listView}
+                                scrollEnabled={false}
+                                centerContent
+                            />
+                        ) : (
+                            <View style={styles.listView}>
+                                <Text style={styles.noTransactions}>NO RECENT HISTORY</Text>
+                            </View>
+                        )}
                         <View style={styles.line} />
                     </View>
                     <View style={styles.chartContainer}>
@@ -112,7 +118,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     balanceContainer: {
-        flex: 2.5,
+        flex: 1.8,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -120,15 +126,18 @@ const styles = StyleSheet.create({
         flex: 2,
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginTop: 10,
     },
     chartContainer: {
-        flex: 5.5,
+        flex: 5,
+        paddingVertical: height / 70,
+        // justifyContent: 'flex-end',
         //paddingVertical: isAndroid ? height / 80 : 0,
     },
     iotaBalance: {
         color: 'white',
         fontFamily: 'Lato-Heavy',
-        fontSize: width / 9,
+        fontSize: width / 8,
         backgroundColor: 'transparent',
     },
     fiatBalance: {
@@ -138,10 +147,16 @@ const styles = StyleSheet.create({
         fontSize: width / 25,
         backgroundColor: 'transparent',
     },
+    noTransactions: {
+        color: 'white',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 37.6,
+        backgroundColor: 'transparent',
+    },
     line: {
-        borderBottomColor: 'white',
+        borderBottomColor: '#999',
         borderBottomWidth: height / 1000,
-        width: width / 1.15,
+        width: width / 1.2,
     },
     separator: {
         height: height / 120,
@@ -149,7 +164,8 @@ const styles = StyleSheet.create({
     },
     listView: {
         flex: 1,
-        paddingVertical: height / 70,
+        justifyContent: 'center',
+        paddingVertical: height / 50,
     },
 });
 

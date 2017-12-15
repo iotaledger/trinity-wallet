@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
-import Triangle from 'react-native-triangle';
 import { detectLocale, selectLocale } from '../components/locale';
 import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import setFirstUse from 'iota-wallet-shared-modules/actions/account';
 import Dropdown from '../components/dropdown';
+import COLORS from '../theme/Colors';
 
+import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundDarkGreen,
     },
     topContainer: {
         flex: 1,
@@ -93,18 +95,12 @@ class LanguageSetup extends Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={{ flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                 <View style={styles.container}>
-                    <Image
-                        style={styles.helloBackground}
-                        source={require('iota-wallet-shared-modules/images/hello-back.png')}
-                    />
+                    <Image style={styles.helloBackground} source={helloBackImagePath} />
                     <StatusBar barStyle="light-content" />
                     <View style={styles.topContainer}>
-                        <Image
-                            source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                            style={styles.iotaLogo}
-                        />
+                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     </View>
                     <View style={styles.midContainer}>
                         <View style={{ flex: 0.2 }} />
@@ -124,7 +120,7 @@ class LanguageSetup extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
