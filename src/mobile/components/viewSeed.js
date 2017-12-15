@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import {
     Image,
@@ -13,8 +14,9 @@ import {
 import Fonts from '../theme/Fonts';
 import Seedbox from '../components/seedBox.js';
 import { TextField } from 'react-native-material-textfield';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
 class ViewSeed extends React.Component {
     constructor() {
@@ -28,22 +30,27 @@ class ViewSeed extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (this.props.seedIndex != newProps.seedIndex) {
+        if (this.props.seedIndex !== newProps.seedIndex) {
             this.hideSeed();
         }
     }
 
     viewSeed() {
-        if (this.state.password == this.props.password) {
-            getFromKeychain(this.state.password, value => {
-                if (typeof value != 'undefined' && value != null) {
-                    const seed = getSeed(value, this.props.seedIndex);
-                    this.setState({ seed: seed });
-                    this.setState({ showSeed: true });
-                } else {
-                    error();
-                }
-            });
+        if (this.state.password === this.props.password) {
+            keychain
+                .get()
+                .then(credentials => {
+                    const data = get(credentials, 'data');
+
+                    if (!data) {
+                        throw 'Error';
+                    } else {
+                        const seed = getSeed(data, this.props.seedIndex);
+                        this.setState({ seed });
+                        this.setState({ showSeed: true });
+                    }
+                })
+                .catch(err => console.log(err));
         } else {
             this.props.onWrongPassword();
         }
@@ -147,10 +154,7 @@ class ViewSeed extends React.Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.item}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>

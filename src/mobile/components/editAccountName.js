@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { width, height } from '../util/dimensions';
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 
 class EditAccountName extends Component {
     static propTypes = {
@@ -60,19 +62,13 @@ class EditAccountName extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/arrow-left.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.props.saveAccountName(trim(this.state.accountName))}>
                             <View style={styles.itemRight}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/tick.png')}
-                                    style={styles.icon}
-                                />
+                                <Image source={tickImagePath} style={styles.icon} />
                                 <Text style={styles.titleText}>Save</Text>
                             </View>
                         </TouchableOpacity>

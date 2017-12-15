@@ -7,7 +7,7 @@ import { showError } from 'actions/notifications';
 import { getSelectedSeed } from 'selectors/seeds';
 import { isValidSeed } from 'libs/util';
 import { createRandomSeed } from 'libs/seedUtil';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 import SeedGenerator from '../UI/SeedGenerator';
 
@@ -18,19 +18,11 @@ class GenerateSeed extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        seed: PropTypes.string,
         showError: PropTypes.func.isRequired,
     };
 
     state = {
-        seed: this.props.seed,
-    };
-
-    generateNewSeed = () => {
-        const newSeed = createRandomSeed();
-        this.setState(() => ({
-            seed: newSeed,
-        }));
+        seed: null,
     };
 
     onUpdatedSeed = seed => {
@@ -45,34 +37,49 @@ class GenerateSeed extends React.PureComponent {
 
         if (!seed || !isValidSeed(seed)) {
             return showError({
-                title: 'unknownError_title',
-                text: 'unknownError_text',
+                title: 'seedReentry:incorrectSeed',
+                text: 'seedReentry:incorrectSeedExplanation',
                 translate: true,
             });
         }
         clearSeeds(seed);
         addAndSelectSeed(seed);
-        history.push('/seed/save');
+        history.push('/seed/save/manual');
+    };
+
+    onRequestPrevious = () => {
+        const { history, clearSeeds } = this.props;
+
+        clearSeeds();
+        history.push('/wallet-setup');
+    };
+
+    generateNewSeed = () => {
+        const newSeed = createRandomSeed();
+        this.setState(() => ({
+            seed: newSeed,
+        }));
     };
 
     render() {
         const { t } = this.props;
         const { seed } = this.state;
+
         return (
-            <Template headline={t('title')}>
-                <Main>
+            <Template>
+                <Content>
                     <Button type="button" onClick={this.generateNewSeed} variant="cta">
-                        {t('button1')}
+                        {t('newSeedSetup:pressForNewSeed')}
                     </Button>
                     <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
-                    <p>{t('text1')}</p>
-                </Main>
+                    <p>{this.state.seed ? t('newSeedSetup:individualLetters') : '\u00A0'}</p>
+                </Content>
                 <Footer>
-                    <Button to="/wallet-setup" variant="warning">
-                        {t('button3')}
+                    <Button onClick={this.onRequestPrevious} variant="warning">
+                        {t('global:back')}
                     </Button>
-                    <Button onClick={this.onRequestNext} variant="success">
-                        {t('button2')}
+                    <Button onClick={this.onRequestNext} variant={seed ? 'success' : 'successDisabled'}>
+                        {t('global:next')}
                     </Button>
                 </Footer>
             </Template>

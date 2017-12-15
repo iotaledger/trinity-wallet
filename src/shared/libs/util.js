@@ -80,7 +80,7 @@ export const isValidServerAddress = server => {
     return true;
 };
 
-export const isValidSeed = seed => /^[A-Z9]{MAX_SEED_LENGTH}$/.test(seed);
+export const isValidSeed = seed => seed.length === MAX_SEED_LENGTH && seed.match(VALID_SEED_REGEX);
 
 export const guid = () => {
     const s4 = () =>

@@ -9,7 +9,6 @@ import {
     TouchableWithoutFeedback,
     Image,
     ScrollView,
-    ImageBackground,
     StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
@@ -17,8 +16,11 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import COLORS from '../theme/Colors';
 
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 //import DropdownHolder from './dropdownHolder';
 
 import { width, height } from '../util/dimensions';
@@ -58,17 +60,14 @@ class SeedReentry extends React.Component {
         const { t } = this.props;
 
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                        style={styles.iotaLogo}
-                                    />
+                                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                 </View>
                                 <View style={styles.titleContainer}>
                                     <Text style={styles.title}>{t('global:enterSeed')}</Text>
@@ -125,7 +124,7 @@ class SeedReentry extends React.Component {
                     imageStyle={styles.dropdownImage}
                     inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -135,6 +134,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
