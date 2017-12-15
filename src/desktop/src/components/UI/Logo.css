@@ -74,7 +74,7 @@
             }
         }
     }
-    &.infinite {
+    &.loop {
         svg,
         svg circle {
             animation-iteration-count: infinite;
