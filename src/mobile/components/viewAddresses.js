@@ -17,11 +17,13 @@ class ViewAddresses extends Component {
     }
 
     render() {
+        let addressData = Object.entries(this.props.addressData);
+        addressData = addressData.reverse();
         return (
             <View style={styles.container}>
                 <View style={styles.listView}>
                     <ListView
-                        dataSource={ds.cloneWithRows(this.props.addressData)}
+                        dataSource={ds.cloneWithRows(addressData)}
                         renderRow={(rowData, sectionID, rowID) => (
                             <View style={{ flexDirection: 'row', paddingHorizontal: width / 15 }}>
                                 <TouchableOpacity
@@ -29,14 +31,20 @@ class ViewAddresses extends Component {
                                     style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}
                                 >
                                     <View>
-                                        <Text numberOfLines={2} style={styles.addressText}>
-                                            {rowID}
+                                        <Text
+                                            numberOfLines={2}
+                                            style={[
+                                                styles.addressText,
+                                                { textDecorationLine: rowData[1].spent ? 'line-through' : 'none' },
+                                            ]}
+                                        >
+                                            {rowData[0]}
                                         </Text>
                                     </View>
                                 </TouchableOpacity>
                                 <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
                                     <Text style={styles.balanceText}>
-                                        {formatValue(rowData.balance)} {formatUnit(rowData.balance)}
+                                        {formatValue(rowData[1].balance)} {formatUnit(rowData[1].balance)}
                                     </Text>
                                 </View>
                             </View>
@@ -101,6 +109,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Bold',
         fontSize: width / 29.6,
+        textDecorationStyle: 'solid',
+        color: 'white',
     },
     balanceText: {
         color: 'white',
