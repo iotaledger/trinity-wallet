@@ -15,20 +15,23 @@
     "license": "MIT",
     "dependencies": {
         "bluebird": "^3.5.1",
-        "iota.lib.js": "git+https://github.com/aquadestructor/iota.lib.js.git#269197a",
+        "child_process": "^1.0.2",
+        "fs": "^0.0.1-security",
+        "iota.lib.js": "git+https://github.com/laumair/iota.lib.js.git#f58beaa",
         "lodash": "^4.17.4",
         "moment": "^2.19.1",
         "redux": "^3.7.2",
         "redux-persist": "^4.10.1",
         "redux-thunk": "^2.2.0",
-        "reselect": "^3.0.1"
+        "reselect": "^3.0.1",
+        "url": "^0.11.0"
     },
     "devDependencies": {
         "babel-core": "^6.26.0",
         "babel-eslint": "^8.0.3",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-stage-2": "^6.24.1",
-        "babel-plugin-transform-object-rest-spread": "^6.26.0",
         "chai": "^4.1.2",
         "mocha": "^4.0.1"
     }
