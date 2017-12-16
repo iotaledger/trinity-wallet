@@ -4,7 +4,7 @@ import {
     addTransferValues,
     formatTransfers,
     formatAddressData,
-    formatAddressDataNewSeed,
+    formatFullAddressData,
     calculateBalance,
     getIndexesWithBalanceChange,
     groupTransfersByBundle,
@@ -58,7 +58,7 @@ export const getAccountInfoNewSeedAsync = (seed, seedName) => {
         //console.log('ADDRESS:', address);
         const accountData = await iota.api.getAccountDataAsync(seed);
         //console.log('ACCOUNT', accountData);
-        const addressData = formatAddressDataNewSeed(accountData);
+        const addressData = formatFullAddressData(accountData);
         const balance = calculateBalance(addressData);
         const transfers = formatTransfers(accountData.transfers, accountData.addresses);
         dispatch(setAccountInfo(seedName, addressData, transfers, balance));
@@ -71,7 +71,7 @@ export function getFullAccountInfo(seed, seedName, cb) {
         iota.api.getAccountData(seed, (error, success) => {
             if (!error) {
                 // Combine addresses and balances
-                const addressData = formatAddressDataNewSeed(success);
+                const addressData = formatFullAddressData(success);
                 const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
                 const transfers = formatTransfers(transfersWithoutDuplicateBundles, success.addresses);
                 const balance = calculateBalance(addressData);
@@ -152,19 +152,21 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
     };
 }
 
-export function getNewTransfersAndAddresses(seed, index, callback) {
+export function getNewTransfersAndAddresses(seed, index, accountName, addressData, oldTransfers, callback) {
     return dispatch => {
         iota.api.getAccountData(seed, { start: index, end: index + 1 }, (error, success) => {
             if (!error) {
-                // Combine addresses and balances
-                {
-                    /*const addressData = formatAddressDataNewSeed(success);
-              const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
-              const transfers = formatTransfers(transfersWithoutDuplicateBundles, success.addresses);
-              const balance = calculateBalance(addressData);
-              addressData = markAddressSpend(transfers, addressData);*/
-                }
-                // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
+                const oldAddressData = addressData;
+                let newAddressData = formatFullAddressData(success);
+                const addresses = Object.keys(newAddressData);
+                const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
+                const newTransfers = formatTransfers(transfersWithoutDuplicateBundles, addresses);
+                newAddressData = markAddressSpend(newTransfers, newAddressData);
+                let fullAddressData = Object.assign(oldAddressData, newAddressData);
+                const transfers = newTransfers.concat(oldTransfers);
+                const balance = calculateBalance(addressData);
+
+                dispatch(setAccountInfo(accountName, addressData, transfers, balance));
                 callback(null, success);
             } else {
                 callback(error);

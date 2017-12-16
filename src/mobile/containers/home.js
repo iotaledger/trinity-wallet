@@ -19,7 +19,7 @@ import Receive from './receive';
 import History from './history';
 import Settings from './settings';
 import TopBar from './topBar';
-import keychain from '../util/keychain';
+import keychain, { getSeed } from '../util/keychain';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { getTailTransactionHashesForPendingTransactions } from 'iota-wallet-shared-modules/store';
 import {
@@ -29,7 +29,12 @@ import {
     clearTempData,
     setPassword,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import {
+    getAccountInfo,
+    setBalance,
+    setFirstUse,
+    getNewTransfersAndAddresses,
+} from 'iota-wallet-shared-modules/actions/account';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
@@ -42,6 +47,7 @@ import { TextField } from 'react-native-material-textfield';
 import COLORS from '../theme/Colors';
 import Tabs from '../components/Tabs';
 import Tab from '../components/Tab';
+import get from 'lodash/get';
 
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
@@ -84,6 +90,7 @@ class Home extends Component {
     }
 
     startBackgroundProcesses() {
+        this.startAddressPolling();
         AppState.addEventListener('change', this._handleAppStateChange);
         timer.setInterval('polling', () => this.startAccountPolling(), 47000);
         timer.setInterval('chartPolling', () => this.startChartPolling(), 101000);
@@ -120,28 +127,37 @@ class Home extends Component {
             const accountInfo = this.props.account.accountInfo;
             const seedIndex = this.props.tempAccount.seedIndex;
             const addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
-            const index = Object.keys(addressData).length + 1;
+            const transfers = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers;
+            const accountName = this.props.account.seedNames[seedIndex];
 
+            const index = Object.keys(addressData).length - 1;
+            //console.log(transfers)
             keychain
                 .get()
                 .then(credentials => {
                     if (get(credentials, 'data')) {
                         const seed = getSeed(credentials.data, seedIndex);
-                        getNewTransfersAndAddresses(seed, index);
+                        getNewTransfersAndAddresses(seed);
                     } else {
                         console.log('error');
                     }
                 })
                 .catch(err => console.log(err));
 
-            const getNewTransfersAndAddresses = (seed, index) => {
-                this.props.getNewTransfersAndAddresses(seed, index, (error, success) => {
-                    if (!error) {
-                        console.log(success);
-                    } else {
-                        console.log(error);
-                    }
-                });
+            const getNewTransfersAndAddresses = seed => {
+                this.props.getNewTransfersAndAddresses(
+                    seed,
+                    index,
+                    accountName,
+                    addressData,
+                    transfers,
+                    (error, success) => {
+                        if (error) {
+                            console.log(error);
+                            this.onNodeErrorPolling();
+                        }
+                    },
+                );
             };
         }
     }
@@ -164,24 +180,6 @@ class Home extends Component {
         const { t } = this.props;
         dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
     }
-
-    /*logout(){
-        this.props.clearTempData();
-        this.props.setPassword('');
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: COLORS.backgroundGreen
-,
-                },
-                overrideBackPress: true,
-            },
-        });
-    }*/
 
     onLoginPress() {
         const dropdown = DropdownHolder.getDropdown();
@@ -515,7 +513,8 @@ const mapDispatchToProps = dispatch => ({
     getMarketData: () => dispatch(getMarketData()),
     getPrice: () => dispatch(getPrice()),
     getChartData: () => dispatch(getChartData()),
-    getNewTransfersAndAddresses: (seed, index, cb) => dispatch(getNewTransfersAndAddresses(seed, index, cb)),
+    getNewTransfersAndAddresses: (seed, index, accountName, oldAddressData, oldTransfers, callback) =>
+        dispatch(getNewTransfersAndAddresses(seed, index, accountName, oldAddressData, oldTransfers, callback)),
 });
 
 Home.propTypes = {
