@@ -5161,9 +5161,17 @@ react-native-navigation@^1.1.205:
   version "1.1.0"
   resolved "git+https://github.com/laumair/react-native-os.git#527b0aef4e30041b5230f5b901767dd9f54903fe"
 
+react-native-permissions@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-1.0.4.tgz#745240bbe4fd180265543ef5a5803150cfe8a842"
+
 react-native-print@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-print/-/react-native-print-0.3.0.tgz#870082cdd14cc1a064cf0fa3b7460932cb032768"
+
+react-native-push-notification@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-3.0.2.tgz#3fa7d654cfd915436597b0dd5ba8b0f898c4b0f5"
 
 react-native-qrcode-scanner@^0.0.22:
   version "0.0.22"
