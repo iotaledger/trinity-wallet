@@ -16,11 +16,7 @@ export const formatAddressData = (addresses, balances, addressesSpendStatus) => 
 };
 
 export const formatFullAddressData = data => {
-    var addresses = data.addresses;
-    const latestAddress = data.latestAddress;
-    if (addresses.indexOf(latestAddress) === -1) {
-        addresses.push(latestAddress);
-    }
+    const addresses = data.addresses;
     var addressData = Object.assign({}, ...addresses.map(n => ({ [n]: { balance: 0, spent: false } })));
     for (var i = 0; i < data.inputs.length; i++) {
         addressData[data.inputs[i].address].balance = data.inputs[i].balance;

@@ -90,7 +90,7 @@ class Home extends Component {
     }
 
     startBackgroundProcesses() {
-        this.startAddressPolling();
+        //this.startAddressPolling();
         AppState.addEventListener('change', this._handleAppStateChange);
         timer.setInterval('polling', () => this.startAccountPolling(), 47000);
         timer.setInterval('chartPolling', () => this.startChartPolling(), 101000);

@@ -154,7 +154,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
 
 export function getNewTransfersAndAddresses(seed, index, accountName, addressData, oldTransfers, callback) {
     return dispatch => {
-        iota.api.getAccountData(seed, { start: index, end: index + 1 }, (error, success) => {
+        iota.api.getAccountData(seed, { start: index }, (error, success) => {
             if (!error) {
                 const oldAddressData = addressData;
                 let newAddressData = formatFullAddressData(success);
@@ -165,8 +165,7 @@ export function getNewTransfersAndAddresses(seed, index, accountName, addressDat
                 let fullAddressData = Object.assign(oldAddressData, newAddressData);
                 const transfers = newTransfers.concat(oldTransfers);
                 const balance = calculateBalance(addressData);
-
-                dispatch(setAccountInfo(accountName, addressData, transfers, balance));
+                //  dispatch(setAccountInfo(accountName, addressData, transfers, balance));
                 callback(null, success);
             } else {
                 callback(error);
