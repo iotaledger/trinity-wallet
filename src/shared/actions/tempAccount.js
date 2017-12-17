@@ -12,6 +12,11 @@ import { MAX_SEED_LENGTH } from '../libs/util';
 
 /* eslint-disable no-console */
 
+export const ActionTypes = {
+    SET_REATTACHMENT_STATUS: 'IOTA/TEMP_ACCOUNT/SET_REATTACHMENT_STATUS',
+    SET_PROMOTION_STATUS: 'IOTA/TEMP_ACCOUNT/SET_PROMOTION_STATUS',
+};
+
 export function getTransfersRequest() {
     return {
         type: 'GET_TRANSFERS_REQUEST',
@@ -157,7 +162,7 @@ export function replayBundle(transactionHash, depth = 3, minWeightMagnitude = 14
                     generateAlert(
                         'error',
                         'Invalid Response',
-                        `The node returned an invalid response while auto-reattaching.`,
+                        'The node returned an invalid response while auto-reattaching.',
                     ),
                 );
             } else {
@@ -352,3 +357,13 @@ export function setSeedName(seedName) {
         payload: seedName,
     };
 }
+
+export const setReattachmentStatus = payload => ({
+    type: ActionTypes.SET_REATTACHMENT_STATUS,
+    payload,
+});
+
+export const setPromotionStatus = payload => ({
+    type: ActionTypes.SET_PROMOTION_STATUS,
+    payload,
+});

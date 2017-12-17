@@ -1,15 +1,24 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, View, ListView, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
+import PropTypes from 'prop-types';
+import { StyleSheet, View, ListView, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import {
+    getAddressesForSelectedAccountViaSeedIndex,
+    getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
+} from '../../shared/selectors/account';
 import TransactionRow from '../components/transactionRow';
-import Modal from 'react-native-modal';
 import DropdownHolder from '../components/dropdownHolder';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 import { width, height } from '../util/dimensions';
 
 class History extends React.Component {
+    static propTypes = {
+        addresses: PropTypes.array.isRequired,
+        transfers: PropTypes.array.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.state = { viewRef: null };
@@ -34,22 +43,16 @@ class History extends React.Component {
     }
 
     render() {
-        const { t } = this.props;
-        const accountInfo = this.props.account.accountInfo;
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-        const addresses = Object.keys(currentSeedAccountInfo.addresses);
-        const transactions = currentSeedAccountInfo.transfers;
-        const hasTransactions = transactions.length > 0;
+        const { t, addresses, transfers } = this.props;
+        const hasTransactions = transfers.length > 0;
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     {hasTransactions ? (
                         <View style={styles.listView}>
                             <ListView
-                                dataSource={ds.cloneWithRows(
-                                    accountInfo[Object.keys(accountInfo)[seedIndex]].transfers,
-                                )}
+                                dataSource={ds.cloneWithRows(transfers)}
                                 renderRow={dataSource => (
                                     <TransactionRow
                                         addresses={addresses}
@@ -106,9 +109,9 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
-    account: state.account,
-    tempAccount: state.tempAccount,
+const mapStateToProps = ({ tempAccount, account }) => ({
+    addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
+    transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
 });
 
 export default translate(['history', 'global'])(connect(mapStateToProps)(History));
