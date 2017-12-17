@@ -131,10 +131,10 @@
         "ofTheOptions": "下列其中一個選項。"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "錯誤種子",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤。請再試一遍。",
         "thisIsACheck": "本頁面提醒您檢查是否已儲存種子碼",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "假如你未儲存你的種子，請退回並儲存"
     },
     "send": {
         "invalidAddress": "無效的地址",
@@ -152,7 +152,7 @@
         "send": "傳送",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
+        "maximumSelected": "已選定最大的數額",
         "iotaUnits": "IOTA units"
     },
     "setPassword": {
