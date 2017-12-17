@@ -7,7 +7,7 @@
         "back": "返回",
         "done": "完成",
         "next": "下一步",
-        "manualCopy": "Write seed down",
+        "manualCopy": "寫下種子",
         "paperWallet": "列印副本",
         "copyToClipboard": "加入密碼管理器",
         "qr": "QR Code",
@@ -67,7 +67,7 @@
         "seedCopied": "Copied seed to clipboard",
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。",
-        "doNotStore": "Do not store your seed in plain text.",
+        "doNotStore": "不要儲存種子於ㄧ般文字",
         "copyToClipboard": "複製到剪貼簿"
     },
     "enterSeed": {
@@ -124,8 +124,8 @@
         "removeMessage": "移除訊息"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "種子已清除",
+        "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除",
         "mustSaveYourSeed": "您必須將種子碼存放 ",
         "atLeastOne": "於至少 ",
         "ofTheOptions": "下列其中一個選項。"
@@ -138,7 +138,7 @@
     },
     "send": {
         "invalidAddress": "無效的地址",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "地址應該為{{maxLength}} 字元長度且應有一個檢查碼",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
         "notEnoughFunds": "餘額不足",
@@ -150,10 +150,10 @@
         "max": "最大值",
         "message": "訊息",
         "send": "傳送",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
+        "invalidAmount": "錯誤數額填入",
+        "invalidAmountExplanation": "交易金額請填入數值",
         "maximumSelected": "已選定最大的數額",
-        "iotaUnits": "IOTA units"
+        "iotaUnits": "IOTA單位"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
