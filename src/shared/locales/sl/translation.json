@@ -1,8 +1,8 @@
 {
     "global": {
         "invalidResponse": "Neveljaven odziv",
-        "invalidResponseExplanation": "The node returned an invalid response.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "invalidResponseExplanation": "Vozlišče je vrnilo neveljaven odziv.",
+        "invalidResponsePollingExplanation": "Vozlišče ke vrnilo neveljaven odziv med pozivanjem.",
         "seed": "Generirano število",
         "back": "NAZAJ",
         "done": "OPRAVLJENO",
@@ -128,50 +128,50 @@
         "seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
         "mustSaveYourSeed": "Morate shraniti vašo generirano vrednost z ",
         "atLeastOne": "vsaj en ",
-        "ofTheOptions": "of the options listed below."
+        "ofTheOptions": "eno od možnosti navednih spodaj."
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "incorrectSeed": "Napačno generirano število",
+        "incorrectSeedExplanation": "Generirana vrednost ki ste jo vnesli ni pravila. Prosimo poskusite kasneje.",
+        "thisIsACheck": "To je test da preverite če ste shranili vašo generirano vrednost.",
+        "ifYouHaveNotSaved": "Če niste shranili vaše vrednosti prosimo pojdite nazaj in naredite to."
     },
     "send": {
-        "invalidAddress": "Invalid address",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
+        "invalidAddress": "Napačen naslov",
+        "invalidAddressExplanation1": "Naslov mora biti {{maxLenght}} znakov dolgo in mora biti preverjeno.",
+        "invalidAddressExplanation2": "Naslov vsebuje neveljavne znake.",
+        "invalidAddressExplanation3": "Naslov vsebuje nepreverjen znak.",
+        "notEnoughFunds": "Ni dovolj sredstev",
+        "notEnoughFundsExplanation": "Nimate dovolj IOTA za dokončanje tega prenosa.",
+        "keyReuse": "Ponovna uporaba ključa",
+        "keyReuseExplanation": "Ta naslov je že bil uporabljen. Poskusite drug naslov.",
+        "recipientAddress": "Prejemnikov naslov",
         "amount": "Količina",
-        "max": "MAX",
-        "message": "Message",
+        "max": "MAKSIMALNO",
+        "message": "Sporočilo",
         "send": "Pošlji",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmount": "Neveljavna vsota",
+        "invalidAmountExplanation": "Prosimo vnesite vrednost za znesek transakcije.",
+        "maximumSelected": "NAJVIŠJI izbrani znesek",
+        "iotaUnits": "IOTA enote"
     },
     "setPassword": {
         "passwordTooShort": "Geslo je prekratko",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "Vaše geslo mora biti vsaj {{minLenght}} znakov dolgo. Vaše trenutno geslo je {{currentLenght}} znakov dolgo. Prosimo poskusite ponovno.",
         "passwordMismatch": "Gesli se ne ujemata",
         "passwordMismatchExplanation": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
         "nowWeNeedTo": "Ok, zdaj moramo nastaviti geslo.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "Šifrirana kopija vaše generirane vrednosti bo shranjena v napravi. Uporabite geslo za dostop do vaše denarnice v prihodnosti.",
         "ensure": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
-        "retypePassword": "Retype Password"
+        "retypePassword": "Ponovno vnesite geslo"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
+        "youCanAdd": "Dodate lahko več generiranih vrednosti v meniju za nastavitve."
     },
     "settings": {
-        "transferSending": "Transfer sending",
-        "transferSendingExplanation": "Please wait until your transfer has been sent.",
+        "transferSending": "Prenos pošiljanja",
+        "transferSendingExplanation": "Prosimo počakajte dokler vaša transakcija ni poslana.",
         "generatingAddress": "Ustvarjanje prejemnega naslova",
         "generatingAddressExplanation": "Prosimo počakajte da se vaš naslov ustvari.",
         "mode": "Način",
