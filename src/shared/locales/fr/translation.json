@@ -7,9 +7,9 @@
         "back": "RETOUR",
         "done": "OK",
         "next": "SUIVANT",
-        "manualCopy": "Notez la seed",
-        "paperWallet": "Imprimez la copie papier",
-        "copyToClipboard": "Ajoutez à un gestionnaire de mot de passe",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR",
         "notAvailable": "Cette fonction n’est pas disponible",
         "notAvailableExplanation": "Elle sera ajoutée ultérieurement.",
@@ -64,11 +64,11 @@
     "copyToClipboard": {
         "seedCleared": "Seed effacée",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
-        "seedCopied": "Seed copié dans le presse-papier",
-        "seedCopiedExplanation": "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se soient écoulées.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez vos graines dans un gestionnaire de mot de passe.",
         "doNotStore": "Ne stockez pas votre seed en texte en clair.",
-        "copyToClipboard": "Copier dans le presse-papier"
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contient des caractères invalides",
@@ -124,8 +124,8 @@
         "removeMessage": "SUPPRIMER LE MESSAGE"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed effacée",
-        "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "Vous devez enregistrer votre seed avec ",
         "atLeastOne": "au moins une ",
         "ofTheOptions": "des options répertoriées ci-dessous."
@@ -134,7 +134,7 @@
         "incorrectSeed": "Seed incorrecte",
         "incorrectSeedExplanation": "La seed que vous avez entrée est incorrecte. Veuillez réessayer.",
         "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
-        "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir à l’écran précédent et le faire."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Adresse invalide",

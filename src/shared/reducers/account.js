@@ -4,7 +4,10 @@ import reduce from 'lodash/reduce';
 import map from 'lodash/map';
 import each from 'lodash/each';
 import keys from 'lodash/keys';
+import merge from 'lodash/merge';
+import omit from 'lodash/omit';
 import { iota } from '../libs/iota';
+import { ActionTypes } from '../actions/account';
 import { isMinutesAgo, convertUnixTimeToJSDate } from '../libs/dateUtils';
 
 const account = (
@@ -14,10 +17,42 @@ const account = (
         firstUse: true,
         onboardingComplete: false,
         balance: 0,
+        unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
+        lastPromotedBundleTails: {},
     },
     action,
 ) => {
     switch (action.type) {
+        case ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS:
+            return {
+                ...state,
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload),
+            };
+        case ActionTypes.REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS:
+            return {
+                ...state,
+                unconfirmedBundleTails: omit(state.unconfirmedBundleTails, action.payload),
+            };
+        case ActionTypes.UPDATE_LAST_PROMOTED_BUNDLE_TAILS:
+            return {
+                ...state,
+                lastPromotedBundleTails: merge({}, state.lastPromotedBundleTails, action.payload),
+            };
+        case ActionTypes.REMOVE_BUNDLE_FROM_LAST_PROMOTED_BUNDLE_TAILS:
+            return {
+                ...state,
+                lastPromotedBundleTails: omit(state.unconfirmedBundleTails, action.payload),
+            };
+        case ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS:
+            return {
+                ...state,
+                unconfirmedBundleTails: action.payload,
+            };
+        case ActionTypes.SET_NEW_LAST_PROMOTED_BUNDLE_TAILS:
+            return {
+                ...state,
+                lastPromotedBundleTails: action.payload,
+            };
         case 'SET_ACCOUNT_INFO':
             return {
                 ...state,
