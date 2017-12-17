@@ -7,7 +7,7 @@
         "back": "NAZAJ",
         "done": "Opravljeno",
         "next": "Naprej",
-        "manualCopy": "Write seed down",
+        "manualCopy": "Zapišite generirano vrednost",
         "paperWallet": "Natisnite kopijo",
         "copyToClipboard": "Dodajte v upravitelja gesel",
         "qr": "QR",
@@ -41,7 +41,7 @@
         "enterAccountName": "Vnesite ime računa.",
         "accountName": "Ime računa",
         "noNickname": "Niste vnesli imena računa",
-        "noNicknameExplanation": "Please enter an account name for your seed."
+        "noNicknameExplanation": "Prosimo vnesite ime računa za pridobitev generirane vrednosti."
     },
     "changePassword": {
         "oops": "Oops! Nekaj je šlo narobe",
@@ -62,9 +62,9 @@
         "confirmPassword": "Potrdite Novo Geslo"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Copied seed to clipboard",
+        "seedCleared": "Generirana vrednost zbrisana",
+        "seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
+        "seedCopied": "Kopirajte generirano vrednost v odložišce",
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Do not store your seed in plain text.",
