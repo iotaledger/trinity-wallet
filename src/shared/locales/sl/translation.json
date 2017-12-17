@@ -75,7 +75,7 @@
         "invalidCharactersExplanation": "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
         "seedTooShort": "Seed je prekratek",
         "seedTooShortExplanation": "Generirano vrednost mora biti {{maxLenght}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite ponovno.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedExplanation": "Generirana vrednost mora biti {{maxLenght}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLenght}}.",
         "neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
     },
     "home": {
@@ -83,31 +83,31 @@
         "send": "Pošlji",
         "receive": "Prejmi",
         "history": "Zgodovina",
-        "settings": "SETTINGS"
+        "settings": "NASTAVITVE"
     },
     "languageSetup": {
         "language": "Jezik"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "emptyPassword": "Prazno geslo",
+        "emptyPasswordExplanation": "Za prijavo morate vnesti geslo. Prosimo poskusite ponovno.",
         "enterPassword": "Prosimo vnesite vaše geslo.",
         "useSeed": "UPORABA SEEDA",
-        "login": "LOG IN"
+        "login": "PRIJAVA"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "Nalaganje generirane vrednosti prvič.",
+        "thisMayTake": "To lahko traja nekaj časa.",
+        "youMayNotice": "Opazite lahko upočasnjevanje naprave."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGenerated": "Generirana vrednost ni bila ustvarjena",
+        "seedNotGeneratedExplanation": "Kliknite gumb ustvari novo generirano seme.",
+        "pressForNewSeed": "PRITISNITE ZA NOVO VREDNOST",
         "individualLetters": "Pritisnite posamezne znake za jih ponaključit."
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "Denarnica je nastavljena in pripravljena za uporabo. Če želite boste v prihodnosti želeleli kaj spreminjati poglejte v meni za nastavitve."
     },
     "paperWallet": {
         "clickToPrint": "Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
@@ -117,16 +117,16 @@
         "printWallet": "Printanje papirnate denarnice"
     },
     "receive": {
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "addressCopied": "Naslov kopiran",
+        "addressCopiedExplanation": "Vaš naslov je bil kopiran v odložišče.",
         "generateNewAddress": "Ustvari nov naslov",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "Neobvezno sporočilo",
+        "removeMessage": "ODSTRANI SPOROČILO"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "mustSaveYourSeed": "You must save your seed with ",
+        "seedCleared": "Generiranava vrednost odstranjena",
+        "seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
+        "mustSaveYourSeed": "Morate shraniti vašo generirano vrednost z ",
         "atLeastOne": "vsaj en ",
         "ofTheOptions": "of the options listed below."
     },
