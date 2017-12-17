@@ -22,41 +22,31 @@ export const formatAddressBalancesNewSeed = data => {
 };
 
 export const groupTransfersByBundle = transfers => {
-    let groupedTransfers = [];
+    const groupedTransfers = [];
+
     transfers.forEach(tx => {
         if (!groupedTransfers.length) {
             groupedTransfers.push([tx]);
         } else {
             const i = groupedTransfers.findIndex(bundle => bundle[0].bundle === tx.bundle);
             if (i !== -1) {
-                const groupedRow = groupedTransfers[i];
-
-                for (let j = size(groupedRow); j--; ) {
-                    const transfer = groupedRow[j];
-                    if (get(tx, 'currentIndex') === get(transfer, 'currentIndex')) {
-                        if (get(tx, 'attachmentTimestamp') > get(transfer, 'attachmentTimestamp')) {
-                            groupedTransfers[i][j] = tx;
-                        }
-                        break;
-                    } else {
-                        if (j === 0) {
-                            groupedTransfers[i].push(tx); // Would break the loop anyways
-                        }
-                    }
-                }
+                groupedTransfers[i].push(tx);
             } else {
                 groupedTransfers.push([tx]);
             }
         }
     });
+
     // Order arrays of transfer object(s) by currentIndex
     groupedTransfers.forEach(arr => {
-        arr.sort(function(a, b) {
+        arr.sort((a, b) => {
             return a.currentIndex - b.currentIndex;
         });
     });
+
     return groupedTransfers;
 };
+
 export const formatTransfers = (transfers, addresses) => {
     // Order transfers from oldest to newest
     let sortedTransfers = transfers.sort((a, b) => {
@@ -124,8 +114,8 @@ export const getAddressesWithChangedBalance = (allAddresses, indicesWithChangedB
 };
 
 export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
-    let old = oldTransfers.slice(0);
-    let latest = latestTransfers.slice(0);
+    const old = oldTransfers.slice(0);
+    const latest = latestTransfers.slice(0);
 
     const maxOldTransfers = size(old);
     const maxLatestTransfers = size(latest);
@@ -144,28 +134,6 @@ export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
     }
 
     return size(latest) ? [...old, ...latest] : old;
-};
-
-export const deduplicateBundles = transfers => {
-    const deduplicate = (res, transfer) => {
-        const top = transfer[0];
-        const bundle = top.bundle;
-        const attachmentTimestamp = top.attachmentTimestamp;
-
-        if (get(res, bundle)) {
-            const timestampOnExistingTransfer = get(res[bundle], '[0].attachmentTimestamp');
-            if (attachmentTimestamp > timestampOnExistingTransfer) {
-                res[bundle] = transfer;
-            }
-        } else {
-            res = { ...res, ...{ [bundle]: transfer } };
-        }
-
-        return res;
-    };
-
-    const aggregated = reduce(transfers, deduplicate, {});
-    return map(aggregated, v => v);
 };
 
 export const filterSpentAddresses = inputs => {

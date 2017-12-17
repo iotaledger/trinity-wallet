@@ -2,6 +2,9 @@ import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import isString from 'lodash/isString';
+import keys from 'lodash/keys';
+import concat from 'lodash/concat';
+import filter from 'lodash/filter';
 
 export const MAX_SEED_LENGTH = 81;
 
@@ -147,4 +150,14 @@ export const parse = data => {
     } catch (err) {
         return data;
     }
+};
+
+export const rearrangeObjectKeys = (obj, prop) => {
+    const allKeys = keys(obj);
+    const withoutProp = filter(allKeys, k => k !== prop);
+    const withPropAsLastEl = concat([], withoutProp, prop);
+
+    const order = (newObj, key) => (newObj[key] = obj[key]);
+
+    return transform(withPropAsLastEl, order, {});
 };

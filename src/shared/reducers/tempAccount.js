@@ -14,6 +14,8 @@ const initialState = {
     isSyncing: false,
     currentSetting: 'mainSettings',
     copiedToClipboard: false,
+    isReattaching: false,
+    isPromoting: false,
 };
 
 export default (state = initialState, action) => {
