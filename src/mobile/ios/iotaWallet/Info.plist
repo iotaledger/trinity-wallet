@@ -52,8 +52,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Please allow access to the photo library. This will allow you to attach screenshots to bug reports.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>QR Scanner</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>IOTA Wallet</string>
 	<key>UIAppFonts</key>
@@ -65,10 +69,6 @@
 		<string>Lato-Regular.ttf</string>
 		<string>Inconsolata-Regular.ttf</string>
 		<string>Inconsolata-Bold.ttf</string>
-	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
