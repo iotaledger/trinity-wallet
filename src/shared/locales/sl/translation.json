@@ -1,6 +1,6 @@
 {
     "global": {
-        "invalidResponse": "Invalid response",
+        "invalidResponse": "Neveljaven odziv",
         "invalidResponseExplanation": "The node returned an invalid response.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "seed": "Seme",
@@ -14,8 +14,8 @@
         "notAvailable": "This function is not available",
         "notAvailableExplanation": "It will be added at a later stage.",
         "enterSeed": "Please enter your seed.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
+        "mainWallet": "Glavni račun",
+        "secondWallet": "Drugi račun",
         "thirdWallet": "THIRD ACCOUNT",
         "fourthWallet": "FOURTH ACCOUNT",
         "fifthWallet": "FIFTH ACCOUNT",
@@ -33,11 +33,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "Account name already in use",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
         "enterAccountName": "Enter an account name.",
@@ -57,8 +55,7 @@
         "passwordTooShort": "Geslo je prekratko",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation":
-            "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
         "currentPassword": "Current Password",
         "newPassword": "New Password",
@@ -75,13 +72,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation":
-            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
     },
     "home": {
@@ -113,8 +107,7 @@
         "individualLetters": "Pritisnite posamezne znake za jih ponaključit."
     },
     "onboardingComplete": {
-        "walletReady":
-            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
         "clickToPrint": "Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
@@ -151,8 +144,7 @@
         "notEnoughFunds": "Not enough funds",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
         "keyReuse": "Key reuse",
-        "keyReuseExplanation":
-            "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
         "amount": "Količina",
         "max": "MAX",
@@ -165,13 +157,11 @@
     },
     "setPassword": {
         "passwordTooShort": "Geslo je prekratko",
-        "passwordTooShortExplanation":
-            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "Gesli se ne ujemata",
         "passwordMismatchExplanation": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
         "nowWeNeedTo": "Ok, zdaj moramo nastaviti geslo.",
-        "anEncryptedCopy":
-            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
         "retypePassword": "Retype Password"
     },
