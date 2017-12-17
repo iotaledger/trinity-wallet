@@ -29,12 +29,19 @@ import {
     clearTempData,
     setPassword,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { iota } from '../../shared/libs/iota';
+import {
+    getAccountInfo,
+    setBalance,
+    setFirstUse,
+    getFullAccountInfo,
+} from 'iota-wallet-shared-modules/actions/account';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
 import Reattacher from '../components/reAttacher';
+import Promoter from './promoter';
 import { Navigation } from 'react-native-navigation';
 import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
@@ -232,6 +239,7 @@ class Home extends Component {
         const children = this.renderChildren(childRoute);
         let { password } = this.state;
 
+        console.log(this.props.account);
         return (
             <UserInactivity
                 timeForInactivity={300000}
@@ -307,10 +315,7 @@ class Home extends Component {
                         </View>
                     )}
                     {this.state.minimised && <View />}
-                    <Reattacher
-                        attachments={tailTransactionHashesForPendingTransactions}
-                        attach={this.props.replayBundle}
-                    />
+                    <Promoter />
                     <DropdownAlert
                         ref={ref => DropdownHolder.setDropdown(ref)}
                         elevation={120}
@@ -468,6 +473,7 @@ const mapDispatchToProps = dispatch => ({
     setBalance: addressesWithBalance => {
         dispatch(setBalance(addressesWithBalance));
     },
+    getFullAccountInfo: (seed, seedName, cb) => dispatch(getFullAccountInfo(seed, seedName, cb)),
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
     replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
     generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
