@@ -26,11 +26,7 @@ import java.util.List;
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
-<<<<<<< src/mobile/android/app/src/main/java/com/iotawallet/MainApplication.java
-import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
-=======
 import com.oblador.keychain.KeychainPackage;
->>>>>>> src/mobile/android/app/src/main/java/com/iotawallet/MainApplication.java
 
 public class MainApplication extends NavigationApplication {
 
@@ -58,7 +54,6 @@ public class MainApplication extends NavigationApplication {
             new ExtraDimensionsPackage(),
             new RNDetectNavbarAndroidPackage(),
             new KCKeepAwakePackage(),
-            new ReactNativePushNotificationPackage()
             new KeychainPackage()
     );
   }
