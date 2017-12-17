@@ -3,10 +3,10 @@
         "invalidResponse": "Neveljaven odziv",
         "invalidResponseExplanation": "The node returned an invalid response.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
-        "seed": "Seme",
+        "seed": "Generirano število",
         "back": "NAZAJ",
-        "done": "Opravljeno",
-        "next": "Naprej",
+        "done": "OPRAVLJENO",
+        "next": "NAPREJ",
         "manualCopy": "Zapišite generirano vrednost",
         "paperWallet": "Natisnite kopijo",
         "copyToClipboard": "Dodajte v upravitelja gesel",
@@ -209,14 +209,14 @@
         "reset": "PONASTAVI"
     },
     "walletSetup": {
-        "okay": "Okay. Let's set up your wallet!",
+        "okay": "Okej. Ustvarimo vašo denarnico!",
         "doYouAlreadyHaveASeed": "Ali že imate seed, ki bi ga želeli uporabiti?",
         "seedExplanation": "IOTA seed je kot uporabniško ime in geslo za vaš račun, združeni v enoten niz 81 znakov.",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
-        "explanation3": ", on",
-        "explanation4": " any device",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "explanation1": "Uporabljate jo lahko za dostop do vaših sredstev iz",
+        "explanation2": " katere koli denarnice ",
+        "explanation3": ", na",
+        "explanation4": " kateri koli napravi",
+        "explanation5": ". Ampak če izgubite vašo generirano vrednost boste izgubili tudi vaš IOTA.",
         "keepSafe": "Prosimo vas, da imate seed shranjen na varnem."
     },
     "welcome": {
@@ -225,14 +225,14 @@
         "reminder": "Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Vaše generirano število vsebuje 81 znakov od leve proti desni. Zapišite si ga in preverite",
         "tripleCheck": "tri krat preveri",
-        "thatTheyAreCorrect": "that they are correct."
+        "thatTheyAreCorrect": "da so pravilni."
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopied": "Naslov kopiran",
+        "addressCopiedExplanation": "Naslov je bil kopiran v odložišce."
     }
 }
