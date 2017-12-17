@@ -196,17 +196,17 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Tega dejanja ni mogoče razveljaviti.",
-        "warning1": "All your wallet data including your",
-        "warning2": " seeds, password, ",
-        "warning3": "and",
-        "warning4": " other account information",
-        "warning5": " will be lost.",
-        "areYouSure": "Are you sure you want to continue?"
+        "warning1": "Vsi vaši podatki o denarnici vlkjucno z vašim",
+        "warning2": " generiranim številom, geslom, ",
+        "warning3": "in",
+        "warning4": " ostali podatki o računu",
+        "warning5": " bodo izgubljeni.",
+        "areYouSure": "Ali ste prepričani da želite nadaljevati?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
-        "cancel": "CANCEL",
-        "reset": "RESET"
+        "enterPassword": "Vnesite geslo da ponastavitev denarnice.",
+        "cancel": "PREKLIČI",
+        "reset": "PONASTAVI"
     },
     "walletSetup": {
         "okay": "Okay. Let's set up your wallet!",
