@@ -8,7 +8,6 @@ target 'iotaWallet' do
   # Pods for iotaWallet
 pod 'Fabric'
 pod 'Crashlytics'
-pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
 
   target 'iotaWalletTests' do
     inherit! :search_paths
