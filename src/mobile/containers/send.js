@@ -282,9 +282,13 @@ class Send extends Component {
 
     onQRRead(data) {
         this.setState({
-            address: data.substring(0, 90),
-            message: data.substring(91),
+            address: data.address,
         });
+        if (data.message) {
+            this.setState({
+                message: data.message,
+            });
+        }
         this._hideModal();
     }
 
