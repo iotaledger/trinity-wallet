@@ -1,7 +1,5 @@
 import get from 'lodash/get';
-import each from 'lodash/each';
 import some from 'lodash/some';
-import transform from 'lodash/transform';
 import map from 'lodash/map';
 import head from 'lodash/head';
 import concat from 'lodash/concat';
@@ -22,15 +20,14 @@ import {
     getAddressesWithChangedBalance,
     mergeLatestTransfersInOld,
 } from '../libs/accountUtils';
+import { setReady, getTransfersRequest, getTransfersSuccess, setPromotionStatus } from './tempAccount';
 import {
-    setReady,
-    getTransfersRequest,
-    getTransfersSuccess,
-    setPromotionStatus,
-    setReattachmentStatus,
-} from './tempAccount';
+    isAboveMaxDepth,
+    getFirstConsistentTail,
+    isWithinAnHourAndTenMinutesAgo,
+    getBundleTailsForSentTransfers,
+} from '../libs/promoter';
 import { generateAlert } from '../actions/alerts';
-import { isMinutesAgo, convertUnixTimeToJSDate } from '../libs/dateUtils';
 import { rearrangeObjectKeys } from '../libs/util';
 
 export const ActionTypes = {
@@ -91,50 +88,6 @@ export const getAccountInfoNewSeedAsync = (seed, seedName) => {
     };
 };
 
-export const isAboveMaxDepth = timestamp => {
-    return timestamp < Date.now() && Math.floor(Date.now()) - parseInt(timestamp) < 14 * 2 * 60 * 1000;
-};
-
-export const getFirstConsistentTail = (tails, idx) => {
-    if (!tails[idx]) {
-        return Promise.resolve(false);
-    }
-
-    return iota.api.isPromotable(get(tails[idx], 'hash')).then(state => {
-        if (state && isAboveMaxDepth(get(tails[idx], 'attachmentTimestamp'))) {
-            return tails[idx];
-        }
-
-        return getFirstConsistentTail(tails, idx++);
-    });
-};
-
-export const isWithinADayAndTenMinutesAgo = timestamp =>
-    isMinutesAgo(convertUnixTimeToJSDate(timestamp), 10) && !isMinutesAgo(convertUnixTimeToJSDate(timestamp), 1440);
-
-export const getBundleTailsForSentTransfers = (transfers, addresses) => {
-    const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
-    const sentTransfers = get(categorizedTransfers, 'sent');
-
-    const grabTails = (payload, val) => {
-        each(val, v => {
-            const hasMadeTransactionWithinADay = isWithinADayAndTenMinutesAgo(v.timestamp);
-
-            if (v.persistence && v.currentIndex === 0 && v.value > 0) {
-                const bundle = v.bundle;
-
-                if (bundle in payload) {
-                    payload[bundle] = [...payload[bundle], v];
-                } else {
-                    payload[bundle] = [v];
-                }
-            }
-        });
-    };
-
-    return transform(sentTransfers, grabTails, {});
-};
-
 export const updateUnconfirmedBundleTails = payload => ({
     type: ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS,
     payload,
@@ -193,7 +146,6 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
     // Set flag to true so that the service should wait for this promotion to get completed.
     dispatch(setPromotionStatus(true));
 
-    console.log('HERE');
     // Create a copy so you can mutate easily
     let consistentTails = map(tails, clone);
     let allTails = map(tails, clone);
@@ -205,15 +157,104 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
         set: isPromotingLast ? setNewLastPromotedBundleTails : setNewUnconfirmedBundleTails,
     };
 
+    const alertArguments = (title, message, status = 'success') => [status, title, message];
+
+    const promote = tail => {
+        if (!isAboveMaxDepth(get(tail, 'attachmentTimestamp'))) {
+            consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
+
+            return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
+                if (!consistentTail) {
+                    const topTx = head(allTails);
+                    const txHash = get(topTx, 'hash');
+
+                    return iota.api.replayBundle(txHash, 3, 14, (err, newTxs) => {
+                        if (err) {
+                            console.error(err); // eslint-disable-line no-console
+                            return dispatch(setPromotionStatus(false));
+                        }
+
+                        dispatch(
+                            generateAlert(
+                                ...alertArguments(
+                                    'Autoreattaching to Tangle',
+                                    `Reattaching transaction with hash ${txHash}`,
+                                ),
+                            ),
+                        );
+
+                        const newTail = filter(newTxs, t => t.currentIndex === 0);
+                        // Update local copy for all tails
+                        allTails = concat([], newTail, allTails);
+
+                        consistentTails = concat([], newTail, consistentTails);
+
+                        const existingTailsInStore = isPromotingLast
+                            ? getState().account.lastPromotedBundleTails
+                            : getState().account.unconfirmedBundleTails;
+                        const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
+
+                        dispatchers.set(rearrangeObjectKeys(updatedTails, bundle));
+                        return dispatch(setPromotionStatus(false));
+                    });
+                }
+
+                return promote(consistentTail);
+            });
+        }
+
+        const spamTransfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }];
+
+        return iota.api.promoteTransaction(
+            tail.hash,
+            3,
+            14,
+            spamTransfer,
+            { interrupt: false, delay: 0 },
+            (err, res) => {
+                if (err && err.message.indexOf('Inconsistent subtangle') > -1) {
+                    consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
+
+                    return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
+                        if (!consistentTail) {
+                            // TODO: Generate an alert
+                            return dispatch(setPromotionStatus(false));
+                        }
+
+                        return promote(consistentTail);
+                    });
+                }
+
+                dispatch(
+                    generateAlert(
+                        ...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`),
+                    ),
+                );
+                dispatchers.remove(bundle);
+
+                const newBundle = get(res, `[${0}].bundle`);
+
+                if (isPromotingLast) {
+                    dispatchers.update({ [newBundle]: filter(res, r => r.currentIndex === 0) });
+                    return setPromotionStatus(false);
+                }
+
+                dispatchers.updateLastPromoted({ [newBundle]: filter(res, r => r.currentIndex === 0) });
+                return setPromotionStatus(false);
+            },
+        );
+    };
+
     return iota.api.findTransactionObjects({ bundles: [bundle] }, (err, txs) => {
         if (err) {
-            return console.error(err); // eslint-disable-line no-console
+            console.error(err); // eslint-disable-line no-console
+            return dispatch(setPromotionStatus(false));
         }
 
         const tailsFromLatestTransactionObjects = filter(txs, t => {
-            const hasMadeTransactionWithinADay = isWithinADayAndTenMinutesAgo(t.timestamp);
+            const hasMadeTransactionWithinAnHour = isWithinAnHourAndTenMinutesAgo(t.timestamp);
 
-            return t.persistence && t.currentIndex === 0 && t.value > 0;
+            return !t.persistence && t.currentIndex === 0 && t.value > 0 && hasMadeTransactionWithinAnHour;
         });
 
         if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
@@ -225,14 +266,18 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
 
         return iota.api.getLatestInclusion(map(allTails, t => t.hash), (err, states) => {
             if (err) {
-                return console.error(err); // eslint-disable-line no-console
+                console.error(err); // eslint-disable-line no-console
+                return dispatch(setPromotionStatus(false));
             }
 
             if (some(states, state => state)) {
-                return dispatchers.remove(bundle);
+                // TODO: Double check if you need to remove original bundle
+                dispatchers.remove(bundle);
+
+                return dispatch(setPromotionStatus(false));
             }
 
-            getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
+            return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
                 if (!consistentTail) {
                     // Grab any hash from tail to replay
                     const topTx = head(allTails);
@@ -240,8 +285,19 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
 
                     return iota.api.replayBundle(txHash, 3, 14, (err, newTxs) => {
                         if (err) {
-                            return console.error(err); // eslint-disable-line no-console
+                            console.error(err); // eslint-disable-line no-console
+
+                            return dispatch(setPromotionStatus(false));
                         }
+
+                        dispatch(
+                            generateAlert(
+                                ...alertArguments(
+                                    'Autoreattaching to Tangle',
+                                    `Reattaching transaction with hash ${txHash}`,
+                                ),
+                            ),
+                        );
 
                         const newTail = filter(newTxs, t => t.currentIndex === 0);
                         // Update local copy for all tails
@@ -249,86 +305,19 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
 
                         // Probably unnecessary at this point
                         consistentTails = concat([], newTail, consistentTails);
-
                         const existingTailsInStore = isPromotingLast
                             ? getState().account.lastPromotedBundleTails
                             : getState().account.unconfirmedBundleTails;
-                        const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
 
-                        return dispatchers.set(rearrangeObjectKeys(updatedTails, bundle));
+                        const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
+                        dispatchers.set(rearrangeObjectKeys(updatedTails, bundle));
+
+                        return dispatch(setPromotionStatus(false));
                     });
                 }
 
                 return promote(consistentTail);
             });
-
-            const promote = tail => {
-                if (!isAboveMaxDepth(get(tail, 'attachmentTimestamp'))) {
-                    consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
-
-                    return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
-                        if (!consistentTail) {
-                            const topTx = head(allTails);
-                            const txHash = get(topTx, 'hash');
-
-                            return iota.api.replayBundle(txHash, 3, 14, (err, newTxs) => {
-                                if (err) {
-                                    return console.error(err); // eslint-disable-line no-console
-                                }
-
-                                const newTail = filter(newTxs, t => t.currentIndex === 0);
-                                // Update local copy for all tails
-                                allTails = concat([], newTail, allTails);
-
-                                // Probably unnecessary at this point
-                                consistentTails = concat([], newTail, consistentTails);
-
-                                const existingTailsInStore = isPromotingLast
-                                    ? getState().account.lastPromotedBundleTails
-                                    : getState().account.unconfirmedBundleTails;
-                                const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
-
-                                return dispatchers.set(rearrangeObjectKeys(updatedTails, bundle));
-                            });
-                        }
-
-                        return promote(consistentTail);
-                    });
-                }
-
-                const spamTransfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }];
-
-                return iota.api.promoteTransaction(
-                    tail.hash,
-                    3,
-                    14,
-                    spamTransfer,
-                    { interrupt: false, delay: 0 },
-                    (err, res) => {
-                        if (err && err.message.indexOf('Inconsistent subtangle') > -1) {
-                            consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
-
-                            return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
-                                if (!consistentTail) {
-                                    // TODO: Generate an alert
-                                    return console.log('Something went wrong');
-                                }
-
-                                return promote(consistentTail);
-                            });
-                        }
-
-                        dispatchers.remove(bundle);
-                        const newBundle = get(res, `[${0}].bundle`);
-
-                        if (isPromotingLast) {
-                            return dispatchers.update({ [newBundle]: res });
-                        }
-
-                        return dispatchers.updateLastPromoted({ [newBundle]: res });
-                    },
-                );
-            };
         });
     });
 };

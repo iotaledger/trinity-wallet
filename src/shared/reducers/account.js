@@ -1,14 +1,6 @@
-import isEmpty from 'lodash/isEmpty';
-import get from 'lodash/get';
-import reduce from 'lodash/reduce';
-import map from 'lodash/map';
-import each from 'lodash/each';
-import keys from 'lodash/keys';
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
-import { iota } from '../libs/iota';
 import { ActionTypes } from '../actions/account';
-import { isMinutesAgo, convertUnixTimeToJSDate } from '../libs/dateUtils';
 
 const account = (
     state = {
@@ -131,38 +123,3 @@ const account = (
 };
 
 export default account;
-
-export const getTailTransactionHashesForPendingTransactions = (accountInfo, currentIndex) => {
-    const propKeys = keys(accountInfo);
-    const seedName = get(propKeys, `[${currentIndex}]`);
-    const currentSeedAccountInfo = get(accountInfo, seedName);
-    const addressesAsDict = get(currentSeedAccountInfo, 'addresses');
-    const transfers = get(currentSeedAccountInfo, 'transfers');
-
-    if (!isEmpty(transfers) && !isEmpty(addressesAsDict)) {
-        const normalize = (res, val) => {
-            each(val, v => {
-                if (
-                    !v.persistence &&
-                    v.currentIndex === 0 &&
-                    v.value > 0 &&
-                    isMinutesAgo(convertUnixTimeToJSDate(v.timestamp), 10) &&
-                    !isMinutesAgo(convertUnixTimeToJSDate(v.timestamp), 1440)
-                ) {
-                    res.push(v.hash);
-                }
-            });
-
-            return res;
-        };
-
-        const addresses = map(addressesAsDict, (v, k) => k);
-
-        const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
-        const sentTransfers = get(categorizedTransfers, 'sent');
-
-        return reduce(sentTransfers, normalize, []);
-    }
-
-    return [];
-};
