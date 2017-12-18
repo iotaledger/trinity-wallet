@@ -215,7 +215,7 @@ class TopBar extends Component {
             this.props.setSeedIndex(newSeedIdx);
             const seedStrings = Object.keys(accountInfo);
             const addressData = accountInfo[seedStrings[newSeedIdx]].addresses;
-            const balance = calculateBalance(balance);
+            const balance = calculateBalance(addressData);
             this.props.setBalance(balance);
             this.props.setReceiveAddress(' ');
 
