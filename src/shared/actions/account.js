@@ -109,7 +109,7 @@ export const getFirstConsistentTail = (tails, idx) => {
     });
 };
 
-const isWithinADay = timestamp =>
+export const isWithinADayAndTenMinutesAgo = timestamp =>
     isMinutesAgo(convertUnixTimeToJSDate(timestamp), 10) && !isMinutesAgo(convertUnixTimeToJSDate(timestamp), 1440);
 
 export const getBundleTailsForSentTransfers = (transfers, addresses) => {
@@ -118,10 +118,7 @@ export const getBundleTailsForSentTransfers = (transfers, addresses) => {
 
     const grabTails = (payload, val) => {
         each(val, v => {
-            const hasMadeTransactionWithinADay = isWithinADay(v.timestamp);
-            const hasTriedReattachmentWithinADay = isWithinADay(v.attachmentTimestamp);
-
-            const doesFallInRelevantTimeSpan = hasMadeTransactionWithinADay || hasTriedReattachmentWithinADay;
+            const hasMadeTransactionWithinADay = isWithinADayAndTenMinutesAgo(v.timestamp);
 
             if (v.persistence && v.currentIndex === 0 && v.value > 0) {
                 const bundle = v.bundle;
@@ -196,6 +193,7 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
     // Set flag to true so that the service should wait for this promotion to get completed.
     dispatch(setPromotionStatus(true));
 
+    console.log('HERE');
     // Create a copy so you can mutate easily
     let consistentTails = map(tails, clone);
     let allTails = map(tails, clone);
@@ -213,10 +211,7 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
         }
 
         const tailsFromLatestTransactionObjects = filter(txs, t => {
-            const hasMadeTransactionWithinADay = isWithinADay(t.timestamp);
-            const hasTriedReattachmentWithinADay = isWithinADay(t.attachmentTimestamp);
-
-            const doesFallInRelevantTimeSpan = hasMadeTransactionWithinADay || hasTriedReattachmentWithinADay;
+            const hasMadeTransactionWithinADay = isWithinADayAndTenMinutesAgo(t.timestamp);
 
             return t.persistence && t.currentIndex === 0 && t.value > 0;
         });
@@ -323,8 +318,8 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
                             });
                         }
 
-                        const newBundle = get(res, `[${0}].bundle`);
                         dispatchers.remove(bundle);
+                        const newBundle = get(res, `[${0}].bundle`);
 
                         if (isPromotingLast) {
                             return dispatchers.update({ [newBundle]: res });
