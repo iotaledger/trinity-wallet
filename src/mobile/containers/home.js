@@ -35,6 +35,7 @@ import {
     setFirstUse,
     getNewTransfersAndAddresses,
 } from 'iota-wallet-shared-modules/actions/account';
+import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
@@ -81,7 +82,8 @@ class Home extends Component {
         const seedIndex = this.props.tempAccount.seedIndex;
         const addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         if (typeof accountInfo !== 'undefined') {
-            this.props.setBalance(addressData);
+            const balance = calculateBalance(addressData);
+            this.props.setBalance(balance);
         }
     }
 

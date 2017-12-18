@@ -88,8 +88,7 @@ export function getFullAccountInfo(seed, seedName, cb) {
     };
 }
 
-export function setBalance(addressData) {
-    const balance = calculateBalance(addressData);
+export function setBalance(balance) {
     return {
         type: 'SET_BALANCE',
         payload: balance,
@@ -97,6 +96,47 @@ export function setBalance(addressData) {
 }
 
 export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
+    return dispatch => {
+        let addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        const addresses = Object.keys(addressData);
+        const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
+
+        // Get unspent addresses
+        let unspentAddresses = [];
+        for (var i = 0; i < addresses.length; i++) {
+            if (addressesSpendStatus[i] === false) {
+                unspentAddresses.push(addresses[i]);
+            }
+        }
+        // Get updated balances for current addresses
+        iota.api.getBalances(addresses, 1, (error, success) => {
+            if (!error) {
+                // Get updated balances for each address
+                let newBalances = success.balances;
+                newBalances = newBalances.map(Number);
+                // Calculate total balance
+                const totalBalance = newBalances.reduce((a, b) => a + b);
+                dispatch(setBalance(totalBalance));
+                dispatch(getTransfersRequest());
+                dispatch(getTransfers(seedName, unspentAddresses, cb));
+            } else {
+                cb(error);
+                console.log(error);
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Invalid Response',
+                        'The node returned an invalid response while getting balance.',
+                    ),
+                );
+            }
+        });
+    };
+}
+
+// Old getAccountInfo function. Pulls new transfers on balance change
+{
+    /*export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
     return dispatch => {
         // Current addresses and their balances
         let addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -120,6 +160,9 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                 addressData = formatAddressData(addresses, newBalances, addressesSpendStatus);
                 // Calculate balance
                 const balance = calculateBalance(addressData);
+
+                dispatch(getTransfersRequest());
+                dispatch(getTransfers(seedName, unspentAddresses));
 
                 if (indexesWithBalanceChange.length > 0) {
                     // Grab addresses where balance was updated.
@@ -150,11 +193,12 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
             }
         });
     };
+}*/
 }
 
 export function getNewTransfersAndAddresses(seed, index, accountName, addressData, oldTransfers, callback) {
     return dispatch => {
-        iota.api.getAccountData(seed, { start: index }, (error, success) => {
+        iota.api.getAccountData(seed, { start: index, end: index + 1 }, (error, success) => {
             if (!error) {
                 const oldAddressData = addressData;
                 let newAddressData = formatFullAddressData(success);
@@ -163,9 +207,9 @@ export function getNewTransfersAndAddresses(seed, index, accountName, addressDat
                 const newTransfers = formatTransfers(transfersWithoutDuplicateBundles, addresses);
                 newAddressData = markAddressSpend(newTransfers, newAddressData);
                 let fullAddressData = Object.assign(oldAddressData, newAddressData);
-                const transfers = newTransfers.concat(oldTransfers);
+                const fullTransfers = newTransfers.concat(oldTransfers);
                 const balance = calculateBalance(addressData);
-                //  dispatch(setAccountInfo(accountName, addressData, transfers, balance));
+                dispatch(setAccountInfo(accountName, fullAddressData, fullTransfers, balance));
                 callback(null, success);
             } else {
                 callback(error);
@@ -175,7 +219,7 @@ export function getNewTransfersAndAddresses(seed, index, accountName, addressDat
     };
 }
 
-export function getTransfers(seedName, addresses) {
+export function getTransfers(seedName, addresses, cb) {
     return (dispatch, getState) => {
         iota.api.findTransactionObjects({ addresses }, (error, success) => {
             if (!error) {
@@ -195,16 +239,16 @@ export function getTransfers(seedName, addresses) {
                                 // Sort transfers and add transfer value
                                 const selectedAccount = getSelectedAccount(seedName, getState().account.accountInfo);
                                 const oldTransfers = selectedAccount.transfers;
-
                                 transfers = mergeLatestTransfersInOld(oldTransfers, transfers);
                                 transfers = formatTransfers(transfers, addresses);
                                 // Update transfers then set ready
-                                Promise.resolve(dispatch(updateTransfers(seedName, transfers))).then(
-                                    dispatch(setReady()),
-                                );
+                                dispatch(updateTransfers(seedName, transfers));
+                                dispatch(setReady());
                                 dispatch(getTransfersSuccess());
+                                cb(null, success);
                             } else {
-                                console.log('SOMETHING WENT WRONG: ', error);
+                                cb(error);
+                                console.log(error);
                                 dispatch(
                                     generateAlert(
                                         'error',
@@ -215,7 +259,8 @@ export function getTransfers(seedName, addresses) {
                             }
                         });
                     } else {
-                        console.log('SOMETHING WENT WRONG: ', error);
+                        cb(error);
+                        console.log(error);
                         dispatch(
                             generateAlert(
                                 'error',
@@ -226,7 +271,8 @@ export function getTransfers(seedName, addresses) {
                     }
                 });
             } else {
-                console.log('SOMETHING WENT WRONG: ', error);
+                cb(error);
+                console.log(error);
                 dispatch(
                     generateAlert(
                         'error',
