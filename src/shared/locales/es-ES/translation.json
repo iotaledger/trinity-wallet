@@ -2,15 +2,14 @@
     "global": {
         "invalidResponse": "Respuesta inválida",
         "invalidResponseExplanation": "El servidor devuelve una respuesta inválida.",
-        "invalidResponsePollingExplanation":
-            "El servidor devuelve una respuesta inválida durante la obtención de datos de cartera.",
+        "invalidResponsePollingExplanation": "El servidor devuelve una respuesta inválida durante la obtención de datos de cartera.",
         "seed": "Seed",
-        "back": "VOLVER",
+        "back": "ATRÁS",
         "done": "LISTO",
         "next": "SIGUIENTE",
         "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
-        "copyToClipboard": "Add to password manager",
+        "copyToClipboard": "Agregar a administrador de contraseñas",
         "qr": "QR",
         "notAvailable": "Esta función no está disponible",
         "notAvailableExplanation": "Se añadirá más adelante.",
@@ -34,8 +33,7 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
-        "seedInvalidCharsExplanation":
-            "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
+        "seedInvalidCharsExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
         "seedTooShort": "La seed es demasiado corta",
         "seedTooShortExplanation":
             "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
@@ -68,22 +66,19 @@
     },
     "copyToClipboard": {
         "seedCleared": "Seed removida",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "seedClearedExplanation": "Tu seed ha sido bordada del portapapeles para tu seguridad.",
+        "seedCopied": "Seed copiada al portapapeles",
+        "seedCopiedExplanation": "La seed será borrada al presionar “Listo” o al osar 60 segundos.",
+        "clickToCopy": "Haz click en el botón y copia tu seed a un administrador de contraseñas.",
+        "doNotStore": "No almacenes tu seed en texto plano.",
+        "copyToClipboard": "Copiar al portapapeles"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contiene caracteres inválidos",
-        "invalidCharactersExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
         "seedTooShort": "La seed es demasiado corta",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation":
-            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
+        "seedExplanation": "Las seeds deben ser de {{maxLength}} caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar seeds de más de {{maxLength}} caracteres.",
         "neverShare": "NUNCA COMPARTAS TU SEED CON NADIE"
     },
     "home": {
@@ -97,8 +92,8 @@
         "language": "Idioma"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "emptyPassword": "Contraseña vacía",
+        "emptyPasswordExplanation": "Debe introducir una contraseña para iniciar sesión. Por favor, inténtelo de nuevo.",
         "enterPassword": "Por favor introduzca su contraseña.",
         "useSeed": "USAR SEED",
         "login": "INICIAR SESIÓN"
@@ -106,7 +101,7 @@
     "loading": {
         "loadingFirstTime": "Cargando la seed por primera vez.",
         "thisMayTake": "Esto puede tardar un rato.",
-        "youMayNotice": "You may notice your device slowing down."
+        "youMayNotice": "Puedes notar que se alenta tu dispositivo."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
@@ -115,8 +110,7 @@
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio."
     },
     "onboardingComplete": {
-        "walletReady":
-            "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "La billetera está configurada y lista para usar. Si necesitas hacer cambios en el futuro, busca en el menú de Preferencias."
     },
     "paperWallet": {
         "clickToPrint": "Pulsa el botón de abajo para imprimir una copia de tu seed.",
@@ -129,36 +123,35 @@
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "GENERAR NUEVA DIRECCIÓN",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "Mensaje opcional",
+        "removeMessage": "ELIMINAR MENSAJE"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Seed removida",
+        "seedClearedExplanation": "Tu seed ha sido bordada del portapapeles para tu seguridad.",
         "mustSaveYourSeed": "Debes guardar tu seed con ",
         "atLeastOne": "como mínimo con una ",
         "ofTheOptions": "of the options listed below."
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorrecta",
-        "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
+        "incorrectSeedExplanation": "La seed que ingresaste es incorrecta. Por favor vuelve a intentarlo.",
         "thisIsACheck": "This is a check to make sure you saved your seed.",
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
-        "invalidAddress": "Invalid address",
+        "invalidAddress": "Dirección inválida",
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
-        "invalidAddressExplanation2": "Address contains invalid characters.",
+        "invalidAddressExplanation2": "La dirección contiene caracteres inválidos.",
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "notEnoughFunds": "Not enough funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "notEnoughFunds": "No hay fondos suficientes",
+        "notEnoughFundsExplanation": "No tienes suficiente IOTA para completar esta transferencia.",
         "keyReuse": "Key reuse",
-        "keyReuseExplanation":
-            "The address you are trying to send to has already been used. Please try another address.",
-        "recipientAddress": "Recipient address",
+        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "recipientAddress": "Dirección del destinatario",
         "amount": "Monto",
         "max": "MAX",
-        "message": "Message",
+        "message": "Mensaje",
         "send": "ENVIAR",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
@@ -167,13 +160,11 @@
     },
     "setPassword": {
         "passwordTooShort": "La contraseña es demasiado corta",
-        "passwordTooShortExplanation":
-            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "Tu contraseña debe tener al menos {{minLength}} caracteres. Actualmente tiene {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
         "passwordMismatch": "Las contraseñas no coinciden",
         "passwordMismatchExplanation": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
         "nowWeNeedTo": "Ahora tenemos que configurar una contraseña.",
-        "anEncryptedCopy":
-            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "Asegúrate de utilizar una contraseña segura con al menos 12 caracteres.",
         "retypePassword": "Retype Password"
     },
@@ -223,8 +214,7 @@
     "walletSetup": {
         "okay": "Vale. ¡Vamos a configurar tu billetera!",
         "doYouAlreadyHaveASeed": "¿Ya tienes un seed que te gustaría usar?",
-        "seedExplanation":
-            "Una seed de IOTA funciona simultáneamente como nombre del usuario y contraseña para tu cuenta, combinados en una cadena de 81 caracteres.",
+        "seedExplanation": "Una seed de IOTA funciona simultáneamente como nombre del usuario y contraseña para tu cuenta, combinados en una cadena de 81 caracteres.",
         "explanation1": "You can use it to access your funds from",
         "explanation2": " any wallet ",
         "explanation3": ", on",
@@ -238,7 +228,7 @@
         "reminder": "Puede tentarte saltar algunos pasos, pero te sugerimos seguir el proceso completo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Tu Seed tiene 81 caracteres leídos de izquierda a derecha. Anota tu seed y letras de comprobación y",
         "tripleCheck": "comprueba tres veces",
         "thatTheyAreCorrect": "that they are correct."
     },
@@ -246,6 +236,6 @@
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Dirección Copiada",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "La dirección se ha copiado al portapapeles."
     }
 }

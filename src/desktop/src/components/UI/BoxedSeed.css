@@ -1,6 +1,10 @@
 .wrapper {
     border-radius: 7px;
     padding: 10px 8px;
+    user-select: none;
+    pointer-events: none;
+    max-width: 500px;
+    margin: 0 auto;
     &:before {
         background-image: url(images/arrow-white.png);
         background-size: contain;
