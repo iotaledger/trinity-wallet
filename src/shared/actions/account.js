@@ -100,7 +100,10 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
         let addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         const addresses = Object.keys(addressData);
         const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
-
+        if (addresses.length < 1) {
+            dispatch(setReady());
+            return;
+        }
         // Get unspent addresses
         let unspentAddresses = [];
         for (var i = 0; i < addresses.length; i++) {
@@ -109,6 +112,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
             }
         }
         // Get updated balances for current addresses
+
         iota.api.getBalances(addresses, 1, (error, success) => {
             if (!error) {
                 // Get updated balances for each address
