@@ -203,7 +203,10 @@ class Send extends Component {
 
         cb = () => {
             this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                if (error) this.onNodeError();
+                if (error) {
+                    console.log(error);
+                    this.onNodeError();
+                }
             });
         };
     }
