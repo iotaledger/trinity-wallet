@@ -47,6 +47,20 @@ export const groupTransfersByBundle = transfers => {
     return groupedTransfers;
 };
 
+export const sortWithProp = (array, prop) => {
+    return array.sort((left, right) => {
+        if (left[prop] > right[prop]) {
+            return -1;
+        }
+
+        if (left[prop] < right[prop]) {
+            return 1;
+        }
+
+        return 0;
+    });
+};
+
 export const formatTransfers = (transfers, addresses) => {
     // Order transfers from oldest to newest
     let sortedTransfers = transfers.sort((a, b) => {

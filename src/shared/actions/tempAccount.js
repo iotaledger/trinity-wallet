@@ -2,7 +2,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import size from 'lodash/size';
 import get from 'lodash/get';
 import { iota } from '../libs/iota';
-import { updateAddresses, addPendingTransfer } from '../actions/account';
+import { updateAddresses, addPendingTransfer, updateUnconfirmedBundleTails } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
 import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
 import { MAX_SEED_LENGTH } from '../libs/util';
@@ -229,6 +229,14 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                     dispatch(addPendingTransfer(seedName, transfers, success));
                     dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
                     dispatch(sendTransferSuccess(address, value));
+
+                    // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
+                    // Would be the tail anyways.
+                    // Also check if it was a value transfer
+                    if (value) {
+                        const bundle = get(success, `[${0}].bundle`);
+                        dispatch(updateUnconfirmedBundleTails({ [bundle]: success }));
+                    }
                 } else {
                     dispatch(sendTransferError());
                     dispatch(
