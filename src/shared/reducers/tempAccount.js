@@ -16,7 +16,6 @@ const initialState = {
     isSyncing: false,
     currentSetting: 'mainSettings',
     copiedToClipboard: false,
-    isReattaching: false,
     isPromoting: false,
 };
 
@@ -153,11 +152,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isPromoting: action.payload,
-            };
-        case ActionTypes.SET_REATTACHMENT_STATUS:
-            return {
-                ...state,
-                isReattaching: action.payload,
             };
         default:
             return state;

@@ -24,7 +24,6 @@ import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-m
 import { getTailTransactionHashesForPendingTransactions } from 'iota-wallet-shared-modules/store';
 import {
     setReceiveAddress,
-    replayBundle,
     setReady,
     clearTempData,
     setPassword,
@@ -40,7 +39,6 @@ import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-module
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
-import Reattacher from '../components/reAttacher';
 import Promoter from './promoter';
 import { Navigation } from 'react-native-navigation';
 import UserInactivity from 'react-native-user-inactivity';
@@ -457,7 +455,6 @@ const mapStateToProps = state => ({
     alerts: state.alerts,
     tempAccount: state.tempAccount,
     settings: state.settings,
-    tailTransactionHashesForPendingTransactions: getTailTransactionHashesForPendingTransactions(state),
     account: state.account,
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
@@ -475,7 +472,6 @@ const mapDispatchToProps = dispatch => ({
     },
     getFullAccountInfo: (seed, seedName, cb) => dispatch(getFullAccountInfo(seed, seedName, cb)),
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-    replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
     generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
     disposeOffAlert: () => dispatch(disposeOffAlert()),
     setFirstUse: boolean => dispatch(setFirstUse(boolean)),
@@ -493,7 +489,6 @@ Home.propTypes = {
     navigator: PropTypes.object.isRequired,
     childRoute: PropTypes.string.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
-    tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
     generateAlert: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
     isTopBarActive: PropTypes.bool.isRequired,
