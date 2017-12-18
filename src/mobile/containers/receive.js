@@ -171,6 +171,7 @@ class Receive extends Component {
                             baseColor="white"
                             tintColor="#F7D002"
                             enablesReturnKeyAutomatically={true}
+                            returnKeyType="done"
                             label={t('message')}
                             autoCorrect={false}
                             value={message}
