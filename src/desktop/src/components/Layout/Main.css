@@ -1,12 +1,5 @@
-/*body {
-    overflow: hidden;
-}*/
-
-.transitionGroupWrapper {
-}
-
 .wrapper {
-    --header-height: 80px;
+    --header-height: 100px;
     --sidebar-width: 80px;
 
     display: flex;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSecurelyPersistedSeeds } from 'libs/util';
+import { getSecurelyPersistedSeeds } from 'libs/storage';
 import { showError } from 'actions/notifications';
 import { loadSeeds } from 'actions/seeds';
 import Template, { Content, Footer } from 'components/Onboarding/Template';

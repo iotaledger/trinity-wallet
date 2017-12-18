@@ -2,24 +2,36 @@
     background: transparent;
     border: 1px solid;
     border-radius: 8px;
-    /* usually border-color: inherit; but safari fucks this whole thing up */
     border-color: inherit inherit;
     cursor: pointer;
     display: inline-block;
     font-size: var(--font-size-default);
     line-height: 1.15;
     margin: 4px;
-    padding: 16px 32px;
+    padding: 14px 32px;
+    min-width: 140px;
     text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 200;
     &:focus {
         outline: none;
     }
+    &:active {
+        opacity: 0.6;
+    }
+}
+
+footer .button + .button {
+    margin-left: 20px;
 }
 
 .default,
 .primary {
     composes: button;
     color: var(--color-button-default);
+    &:hover {
+        background: var(--color-button-default-hover);
+    }
 }
 
 .danger {
@@ -27,24 +39,41 @@
     color: var(--color-button-danger);
 }
 
-.success {
+.success,
+.success-disabled {
     composes: button;
     color: var(--color-button-success);
+    &:hover {
+        background: var(--color-button-success-hover);
+    }
+}
+.success-disabled {
+    opacity: 0.25;
+    pointer-events: none;
 }
 
 .extra,
 .info {
     composes: button;
     color: var(--color-button-extra);
+    &:hover {
+        background: var(--color-button-extra-hover);
+    }
 }
 
 .warning {
     composes: button;
     color: var(--color-button-warning);
+    &:hover {
+        background: var(--color-button-warning-hover);
+    }
 }
 
 .cta {
     composes: button;
     background: var(--color-button-cta);
     color: white;
+    &:hover {
+        background: var(--color-button-cta-hover);
+    }
 }
