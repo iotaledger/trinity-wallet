@@ -283,7 +283,7 @@ class Home extends Component {
                                     <View style={styles.loginMidContainer}>
                                         <TextField
                                             style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
+                                            labelTextSztyle={{ fontFamily: 'Lato-Light' }}
                                             labelFontSize={width / 31.8}
                                             fontSize={width / 20.7}
                                             labelPadding={3}

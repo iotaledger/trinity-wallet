@@ -22,12 +22,20 @@ export const deduplicateTransferBundles = transfers => {
     const deduplicate = (res, transfer) => {
         const top = transfer[0];
         const bundle = top.bundle;
-        const attachmentTimestamp = top.attachmentTimestamp;
+        const attachmentTimestampOnCurrentTx = top.attachmentTimestamp;
+        const persistenceOnCurrentTx = top.persistence;
 
-        if (get(res, bundle)) {
-            const timestampOnExistingTransfer = get(res[bundle], '[0].attachmentTimestamp');
-            if (attachmentTimestamp > timestampOnExistingTransfer) {
+        if (bundle in res) {
+            const timestampOnExistingTx = get(res[bundle], '[0].attachmentTimestamp');
+            const persistenceOnExistingTx = get(res[bundle], '[0].persistence');
+
+            // In case a tx is still unconfirmed.
+            if (!persistenceOnExistingTx && persistenceOnCurrentTx) {
                 res[bundle] = transfer;
+            } else if (!persistenceOnCurrentTx && !persistenceOnCurrentTx) {
+                if (attachmentTimestampOnCurrentTx < timestampOnExistingTx) {
+                    res[bundle] = transfer;
+                }
             }
         } else {
             res = { ...res, ...{ [bundle]: transfer } };
