@@ -72,8 +72,7 @@ export function getFullAccountInfo(seed, seedName, cb) {
             if (!error) {
                 // Combine addresses and balances
                 const addressData = formatFullAddressData(success);
-                const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
-                const transfers = formatTransfers(transfersWithoutDuplicateBundles, success.addresses);
+                const transfers = formatTransfers(success.transfers, success.addresses);
                 const balance = calculateBalance(addressData);
 
                 addressData = markAddressSpend(transfers, addressData);
