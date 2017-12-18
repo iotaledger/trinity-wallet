@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
+import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
@@ -213,7 +214,9 @@ class TopBar extends Component {
 
             this.props.setSeedIndex(newSeedIdx);
             const seedStrings = Object.keys(accountInfo);
-            this.props.setBalance(accountInfo[seedStrings[newSeedIdx]].addresses); // Dangerous
+            const addressData = accountInfo[seedStrings[newSeedIdx]].addresses;
+            const balance = calculateBalance(balance);
+            this.props.setBalance(balance);
             this.props.setReceiveAddress(' ');
 
             // Get new account info if not sending or getting transfers
@@ -385,7 +388,7 @@ const mapDispatchToProps = dispatch => ({
     toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
     getAccountInfo: (seedName, seedIndex, accountInfo, cb) =>
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb)),
-    setBalance: addressData => dispatch(setBalance(addressData)),
+    setBalance: balance => dispatch(setBalance(balance)),
     setSeedIndex: index => dispatch(setSeedIndex(index)),
     setReceiveAddress: string => dispatch(setReceiveAddress(string)),
 });
