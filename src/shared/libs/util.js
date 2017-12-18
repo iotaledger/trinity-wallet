@@ -5,6 +5,7 @@ import isString from 'lodash/isString';
 import keys from 'lodash/keys';
 import concat from 'lodash/concat';
 import filter from 'lodash/filter';
+import transform from 'lodash/transform';
 
 export const MAX_SEED_LENGTH = 81;
 
