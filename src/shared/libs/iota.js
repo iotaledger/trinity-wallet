@@ -29,3 +29,14 @@ export const getBalances = addresses => {
         }
     });
 };
+
+export const checkNode = cb => {
+    iota.api.getNodeInfo((error, success) => {
+        if (error) {
+            cb(error);
+            console.log(error);
+        } else {
+            cb(null, success);
+        }
+    });
+};

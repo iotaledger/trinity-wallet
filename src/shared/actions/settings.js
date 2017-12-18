@@ -67,24 +67,11 @@ export function setFullNode(fullNode) {
     };
 }
 
-export function addCustomNode(customNode = '') {
-    return (dispatch, getState) => {
-        const { settings } = getState();
-
-        if (!isValidServerAddress(customNode)) {
-            dispatch(invalidServerError());
-            return false;
-        }
-
-        if (settings.availableNodes.includes(customNode)) {
-            return true;
-        }
-
+export function addCustomNode(customNode) {
+    return dispatch => {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_NODE,
             payload: customNode,
         });
-
-        return true;
     };
 }

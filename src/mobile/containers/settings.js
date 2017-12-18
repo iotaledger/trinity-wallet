@@ -25,8 +25,9 @@ import {
     removeAccount,
     setBalance,
 } from 'iota-wallet-shared-modules/actions/account';
-import { setFullNode, getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
+import { setFullNode, getCurrencyData, addCustomNode } from 'iota-wallet-shared-modules/actions/settings';
 import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
+import { checkNode } from 'iota-wallet-shared-modules/libs/iota';
 import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
@@ -40,6 +41,7 @@ import ManualSync from '../components/manualSync.js';
 import DeleteAccount from '../components/deleteAccount.js';
 import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
+import AddCustomNode from '../components/addCustomNode.js';
 import LanguageSelection from '../components/languageSelection.js';
 import CurrencySelection from '../components/currencySelection.js';
 import MainSettings from '../components/mainSettings.js';
@@ -187,6 +189,23 @@ class Settings extends React.Component {
                     />
                 );
                 break;
+            case 'addCustomNode':
+                return (
+                    <AddCustomNode
+                        setNode={selectedNode => {
+                            changeIotaNode(selectedNode);
+                            this.props.setNode(selectedNode);
+                        }}
+                        nodes={this.props.settings.availableNodes}
+                        onDuplicateNodeError={() => this.onDuplicateNodeError()}
+                        checkNode={cb => checkNode(cb)}
+                        currentNode={this.props.settings.fullNode}
+                        onAddNodeError={() => this.onAddNodeError()}
+                        onAddNodeSuccess={customNode => this.onAddNodeSuccess(customNode)}
+                        backPress={() => this.props.setSetting('advancedSettings')}
+                    />
+                );
+                break;
             case 'currencySelection':
                 return (
                     <CurrencySelection
@@ -268,6 +287,22 @@ class Settings extends React.Component {
             dropdown.alertWithType('error', t('global:somethingWentWrong'), t('global:somethingWentWrongExplanation'));
         };
     }
+
+    onAddNodeError = () => {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'Custom node could not be added', 'The node returned an invalid response.');
+    };
+
+    onDuplicateNodeError = () => {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'Duplicate node', 'The custom node is already listed.');
+    };
+
+    onAddNodeSuccess = customNode => {
+        const dropdown = DropdownHolder.getDropdown();
+        this.props.addCustomNode(customNode);
+        dropdown.alertWithType('success', 'Custom node added', 'The custom node has been added successfully.');
+    };
 
     //UseExistingSeed method
     addExistingSeed(seed, accountName) {
@@ -663,6 +698,7 @@ const mapDispatchToProps = dispatch => ({
     manualSyncRequest: () => dispatch(manualSyncRequest()),
     manualSyncComplete: () => dispatch(manualSyncComplete()),
     setBalance: balance => dispatch(setBalance(balance)),
+    addCustomNode: customNode => dispatch(addCustomNode(customNode)),
 });
 
 const mapStateToProps = state => ({
