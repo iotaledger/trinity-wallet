@@ -1,13 +1,8 @@
-.wrapper {
+.loading {
     display: flex;
-    flex-direction: column;
+    position: relative;
+    width: 100vw;
     height: 100vh;
+    align-items: center;
     justify-content: center;
-    max-height: 100%;
-    text-align: center;
-}
-
-.animation {
-    composes: logo-spin from '../UI/Animations.css';
-    display: inline-block;
 }

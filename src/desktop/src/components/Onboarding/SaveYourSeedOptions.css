@@ -1,7 +1,0 @@
-/* TODO: refactor and move all this stuff to Layout/Onboarding.css */
-.main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}

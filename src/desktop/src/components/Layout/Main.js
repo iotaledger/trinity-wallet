@@ -6,7 +6,6 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import Balance from '../Main/Balance';
 import Send from '../Main/Send';
 import Login from '../Main/Login';
-import Done from '../Onboarding/Done';
 
 // import css from './Main.css';
 
@@ -20,7 +19,6 @@ export default withRouter(
             const { location } = this.props;
             return (
                 <Switch location={location}>
-                    <Route path="/done" component={Done} />
                     <Route path="/login" component={Login} />
                     <Route path="/balance" component={Balance} />
                     <Route path="/send" component={Send} />
