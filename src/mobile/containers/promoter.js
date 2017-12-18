@@ -12,8 +12,8 @@ import {
     setNewLastPromotedBundleTails,
     removeBundleFromLastPromotedBundleTails,
     removeBundleFromUnconfirmedBundleTails,
-    isWithinADayAndTenMinutesAgo,
 } from '../../shared/actions/account';
+import { isWithinAnHourAndTenMinutesAgo } from '../../shared/libs/promoter';
 import { isMinutesAgo, convertUnixTimeToJSDate } from '../../shared/libs/dateUtils';
 import { rearrangeObjectKeys } from '../../shared/libs/util';
 
@@ -21,7 +21,6 @@ class Promoter extends Component {
     static propTypes = {
         unconfirmedBundleTails: PropTypes.object.isRequired,
         lastPromotedBundleTails: PropTypes.object.isRequired,
-        isReattaching: PropTypes.bool.isRequired,
         isPromoting: PropTypes.bool.isRequired,
         startPromotionAfter: PropTypes.number,
         initializeTxPromotion: PropTypes.func.isRequired,
@@ -32,7 +31,7 @@ class Promoter extends Component {
     };
 
     static isReady(latestTail) {
-        return isWithinADayAndTenMinutesAgo(latestTail.timestamp);
+        return isWithinAnHourAndTenMinutesAgo(latestTail.timestamp);
     }
 
     constructor() {
@@ -52,19 +51,12 @@ class Promoter extends Component {
     }
 
     promote() {
-        const {
-            startPromotionAfter,
-            unconfirmedBundleTails,
-            lastPromotedBundleTails,
-            isPromoting,
-            isReattaching,
-        } = this.props;
+        const { startPromotionAfter, unconfirmedBundleTails, lastPromotedBundleTails, isPromoting } = this.props;
 
         this.timer = isNull(this.timer) && clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-            if (!isPromoting || !isReattaching) {
+            if (!isPromoting) {
                 if (!isEmpty(unconfirmedBundleTails)) {
-                    console.log('UNCONFIRMED BUNDLE TAILS', unconfirmedBundleTails);
                     const bundles = keys(unconfirmedBundleTails);
                     const top = bundles[0];
                     const tails = unconfirmedBundleTails[top];
@@ -73,21 +65,18 @@ class Promoter extends Component {
                     const tailsSortedWithTimestamp = sortWithProp(tails, 'timestamp');
 
                     if (Promoter.isReady(tailsSortedWithTimestamp[0])) {
-                        console.log('PROMOTER IS READY');
                         this.props.initializeTxPromotion(top, unconfirmedBundleTails[top], false);
                     } else {
                         // Check where it lies within the ten minutes
-                        if (!isMinutesAgo(convertUnixTimeToJSDate(tailsSortedWithTimestamp[0].timestamp), 10)) {
+                        if (!isMinutesAgo(convertUnixTimeToJSDate(tailsSortedWithTimestamp[0].timestamp), 1)) {
                             // Move the top transaction to the last
                             // Ignore if its the only bundle
-                            console.log('LIES WITHIN TEN MINUTES');
                             if (!isTheOnlyBundle) {
                                 this.props.setNewUnconfirmedBundleTails(
                                     rearrangeObjectKeys(unconfirmedBundleTails, top),
                                 );
                             }
                         } else if (isMinutesAgo(convertUnixTimeToJSDate(tailsSortedWithTimestamp[0]), 60)) {
-                            console.log('OLDDDD');
                             this.props.removeBundleFromUnconfirmedBundleTails(top);
                         }
                     }
@@ -102,7 +91,7 @@ class Promoter extends Component {
                     if (Promoter.isReady(tailsSortedWithTimestamp[0])) {
                         this.props.initializeTxPromotion(top, lastPromotedBundleTails[top], true);
                     } else {
-                        if (!isMinutesAgo(convertUnixTimeToJSDate(tailsSortedWithTimestamp[0].timestamp), 10)) {
+                        if (!isMinutesAgo(convertUnixTimeToJSDate(tailsSortedWithTimestamp[0].timestamp), 1)) {
                             if (!isTheOnlyBundle) {
                                 this.props.setNewLastPromotedBundleTails(
                                     rearrangeObjectKeys(lastPromotedBundleTails, top),
@@ -126,14 +115,13 @@ class Promoter extends Component {
 }
 
 Promoter.defaultProps = {
-    startPromotionAfter: 30000,
+    startPromotionAfter: 60000,
 };
 
 const mapStateToProps = ({ tempAccount, account }) => ({
     unconfirmedBundleTails: account.unconfirmedBundleTails,
     lastPromotedBundleTails: account.lastPromotedBundleTails,
-    isReattaching: tempAccount.isReattaching,
-    isPromoting: tempAccount.isReattaching,
+    isPromoting: tempAccount.isPromoting,
 });
 
 const mapDispatchToProps = dispatch => ({

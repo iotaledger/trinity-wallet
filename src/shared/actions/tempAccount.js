@@ -1,6 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
 import size from 'lodash/size';
 import get from 'lodash/get';
+import filter from 'lodash/filter';
 import { iota } from '../libs/iota';
 import { updateAddresses, addPendingTransfer, updateUnconfirmedBundleTails } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
@@ -13,7 +14,6 @@ import { MAX_SEED_LENGTH } from '../libs/util';
 /* eslint-disable no-console */
 
 export const ActionTypes = {
-    SET_REATTACHMENT_STATUS: 'IOTA/TEMP_ACCOUNT/SET_REATTACHMENT_STATUS',
     SET_PROMOTION_STATUS: 'IOTA/TEMP_ACCOUNT/SET_PROMOTION_STATUS',
 };
 
@@ -214,7 +214,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                     generateAlert(
                         'error',
                         'Key reuse',
-                        `You cannot send to an address that has already been spent from.`,
+                        'You cannot send to an address that has already been spent from.',
                     ),
                 );
             }
@@ -235,7 +235,9 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                     // Also check if it was a value transfer
                     if (value) {
                         const bundle = get(success, `[${0}].bundle`);
-                        dispatch(updateUnconfirmedBundleTails({ [bundle]: success }));
+                        dispatch(
+                            updateUnconfirmedBundleTails({ [bundle]: filter(success, tx => tx.currentIndex === 0) }),
+                        );
                     }
                 } else {
                     dispatch(sendTransferError());
@@ -243,7 +245,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                         generateAlert(
                             'error',
                             'Invalid Response',
-                            `The node returned an invalid response while sending transfer.`,
+                            'The node returned an invalid response while sending transfer.',
                         ),
                     );
                 }
@@ -365,11 +367,6 @@ export function setSeedName(seedName) {
         payload: seedName,
     };
 }
-
-export const setReattachmentStatus = payload => ({
-    type: ActionTypes.SET_REATTACHMENT_STATUS,
-    payload,
-});
 
 export const setPromotionStatus = payload => ({
     type: ActionTypes.SET_PROMOTION_STATUS,
