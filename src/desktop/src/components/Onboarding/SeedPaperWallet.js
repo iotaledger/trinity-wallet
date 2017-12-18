@@ -4,8 +4,8 @@ import QRCode from 'qrcode.react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
-import { MAX_SEED_LENGTH } from '../../../../shared/libs/util';
-import Template, { Content, Footer } from './Template';
+import { MAX_SEED_LENGTH } from 'libs/util';
+import Template, { Main, Footer } from './Template';
 import BoxedSeed from '../UI/BoxedSeed';
 import Button from '../UI/Button';
 import Steps from '../UI/Steps';
@@ -17,38 +17,33 @@ class SeedPaperWallet extends PureComponent {
         seed: PropTypes.string,
     };
 
+    print = e => {
+        window.print();
+    };
+
     render() {
         const { t, seed } = this.props;
 
         return (
-            <Template>
-                <Content>
-                    <Steps currentStep="paper" />
-                    <p>Click the button below to print a paper copy of your seed. Store it safely.</p>
-                    <div className={css.wrapper}>
-                        <div className={css.innerWrapper}>
-                            <BoxedSeed t={t} seed={seed} color="black" size="small" />
-                            <div className={css.midWrapper}>
-                                <span
-                                >{`Your seed is ${MAX_SEED_LENGTH} characters long. Please read from left to right.`}</span>
-                            </div>
-                            <div className={css.qrCodeWrapper}>
-                                <QRCode value={seed} />
-                            </div>
+            <div>
+                <p>{t('paperWallet:clickToPrint')}</p>
+                <div className={css.wrapper}>
+                    <div className={css.innerWrapper}>
+                        <BoxedSeed t={t} seed={seed} color="black" size="small" />
+                        <div className={css.midWrapper}>
+                            <span>{t('writeSeedDown:yourSeedIs')}</span>
+                        </div>
+                        <div className={css.qrCodeWrapper}>
+                            <QRCode value={seed} />
                         </div>
                     </div>
-                    <div className={css.printBtnWrapper}>
-                        <Button to="/" variant="cta">
-                            {t('button1')}
-                        </Button>
-                    </div>
-                </Content>
-                <Footer>
-                    <Button to="/seed/save" variant="success">
-                        {t('button2')}
+                </div>
+                <div className={css.printBtnWrapper}>
+                    <Button onClick={this.print} variant="cta">
+                        {t('paperWallet:printWallet')}
                     </Button>
-                </Footer>
-            </Template>
+                </div>
+            </div>
         );
     }
 }

@@ -19,13 +19,12 @@ class Welcome extends React.PureComponent {
             <Template bodyClass={css.bodyHome}>
                 <Content>
                     <div className={css.formGroup}>
-                        <label>{t('dropdown_title')}</label>
-                        <LanguageSelect />
+                        <LanguageSelect label={t('languageSetup:language')} />
                     </div>
                 </Content>
                 <Footer>
                     <Button to="/instructions" variant="success">
-                        {t('button1')}
+                        {t('global:next')}
                     </Button>
                 </Footer>
             </Template>
