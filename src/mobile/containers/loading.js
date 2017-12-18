@@ -4,7 +4,6 @@ import { StyleSheet, View, WebView, StatusBar, Text, ActivityIndicator } from 'r
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
-import { setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { Navigation } from 'react-native-navigation';
@@ -101,12 +100,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setBalance: addressData => {
-        dispatch(setBalance(addressData));
-    },
-    setFirstUse: boolean => {
-        dispatch(setFirstUse(boolean));
-    },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
     setSetting: setting => dispatch(setSetting(setting)),
 });

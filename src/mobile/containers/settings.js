@@ -26,6 +26,7 @@ import {
     setBalance,
 } from 'iota-wallet-shared-modules/actions/account';
 import { setFullNode, getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
+import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
@@ -426,8 +427,8 @@ class Settings extends React.Component {
                 seedIndex = this.props.tempAccount.seedIndex;
                 accountInfo = this.props.account.accountInfo;
                 addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
-
-                this.props.setBalance(addressData);
+                const balance = calculateBalance(addressData);
+                this.props.setBalance(balanace);
                 this.props.setSetting('accountManagement');
                 dropdown.alertWithType('success', t('accountDeleted'), t('accountDeletedExplanation'));
             })
@@ -661,7 +662,7 @@ const mapDispatchToProps = dispatch => ({
     setReady: () => dispatch(setReady()),
     manualSyncRequest: () => dispatch(manualSyncRequest()),
     manualSyncComplete: () => dispatch(manualSyncComplete()),
-    setBalance: address => dispatch(setBalance(address)),
+    setBalance: balance => dispatch(setBalance(balance)),
 });
 
 const mapStateToProps = state => ({

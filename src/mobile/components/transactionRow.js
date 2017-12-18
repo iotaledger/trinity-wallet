@@ -59,7 +59,7 @@ class TransactionRow extends React.Component {
                             style={{ flex: 7 }}
                         >
                             <Text style={styles.bundleHash} numberOfLines={2}>
-                                {this.props.rowData[0].bundle}
+                                {this.props.rowData[0].hash}
                             </Text>
                             <View style={{ flex: 1 }} />
                         </TouchableOpacity>
