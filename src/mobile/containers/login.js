@@ -55,7 +55,8 @@ class Login extends React.Component {
     _renderModalContent = () => (
         <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
             <View style={styles.modalContent}>
-                <Text style={styles.questionText}>Do you want to select a different node?</Text>
+                <Text style={styles.questionText}>Cannot connect to IOTA node.</Text>
+                <Text style={styles.infoText}>Do you want to select a different node?</Text>
                 <OnboardingButtons
                     onLeftButtonPress={() => this._hideModal()}
                     onRightButtonPress={() => this.navigateToNodeSelection()}
@@ -295,16 +296,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    questionText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.25,
-        textAlign: 'center',
-        paddingLeft: width / 7,
-        paddingRight: width / 7,
-        paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
+
     iotaLogo: {
         height: width / 5,
         width: width / 5,
@@ -353,6 +345,13 @@ const styles = StyleSheet.create({
         width: width / 1.15,
     },
     questionText: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 27.6,
+        paddingBottom: height / 40,
+    },
+    infoText: {
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
