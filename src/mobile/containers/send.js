@@ -363,6 +363,7 @@ class Send extends Component {
                                     baseColor="white"
                                     tintColor="#F7D002"
                                     enablesReturnKeyAutomatically={true}
+                                    returnKeyType="next"
                                     label={t('recipientAddress')}
                                     autoCorrect={false}
                                     value={address}
@@ -391,6 +392,7 @@ class Send extends Component {
                                     labelPadding={2}
                                     baseColor="white"
                                     enablesReturnKeyAutomatically={true}
+                                    returnKeyType="next"
                                     label={t('amount')}
                                     tintColor="#F7D002"
                                     autoCorrect={false}
@@ -436,6 +438,7 @@ class Send extends Component {
                                 labelPadding={2}
                                 baseColor="white"
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="send"
                                 label={t('message')}
                                 tintColor="#F7D002"
                                 autoCorrect={false}
