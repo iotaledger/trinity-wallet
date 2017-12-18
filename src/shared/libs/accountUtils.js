@@ -29,8 +29,6 @@ export const markAddressSpend = function(transfers, addressData) {
 
     // Iterate over all bundles and sort them between incoming and outgoing transfers
     transfers.forEach(function(bundle) {
-        var spentAlreadyAdded = false;
-
         // Iterate over every bundle entry
         bundle.forEach(function(bundleEntry, bundleIndex) {
             // If bundle address in the list of addresses associated with the seed
@@ -40,7 +38,7 @@ export const markAddressSpend = function(transfers, addressData) {
                 var isRemainder = bundleEntry.currentIndex === bundleEntry.lastIndex && bundleEntry.lastIndex !== 0;
 
                 // check if sent transaction
-                if (bundleEntry.value < 0 && !spentAlreadyAdded && !isRemainder) {
+                if (bundleEntry.value < 0 && !isRemainder) {
                     // Mark address as spent
                     addressData[bundleEntry.address].spent = true;
                 }
