@@ -1,42 +1,25 @@
 import React from 'react';
-import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory';
 import PropTypes from 'prop-types';
+import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory';
+import { getCurrencySymbol } from 'libs/currency';
+import imageChevron from 'images/chevron-down.png';
 import Button from 'components/UI/Button';
 import css from './Chart.css';
 
-import imageChewron from 'images/chevron-down.png';
-
-const getChartCurrencySymbol = currency => {
-    if (currency === 'BTC') {
-        return '₿';
-    } else if (currency === 'ETH') {
-        return 'Ξ';
-    }
-
-    return '$';
-};
-
-const timeframeFromCurrent = {
-    '24h': '7d',
-    '7d': '1m',
-    '1m': '1h',
-    '1h': '24h',
-};
-
-const nextCurrency = {
-    USD: 'BTC',
-    BTC: 'ETH',
-    ETH: 'USD',
-};
-
 export default class Chart extends React.Component {
-    constructor(props) {
-        super(props);
+    static propTypes = {
+        marketData: PropTypes.object.isRequired,
+        setTimeframe: PropTypes.func.isRequired,
+        setCurrency: PropTypes.func.isRequired,
+    };
 
-        this.state = {
-            price: props.marketData.usdPrice,
-        };
-    }
+    static defaultProps = {
+        marketData: {},
+    };
+
+    state = {
+        price: this.props.marketData.usdPrice,
+    };
 
     componentWillMount() {
         switch (this.props.marketData.currency) {
@@ -50,18 +33,6 @@ export default class Chart extends React.Component {
                 this.setState({ price: this.props.marketData.ethPrice });
                 break;
         }
-    }
-
-    changeCurrency() {
-        const { marketData, setCurrency } = this.props;
-        const newCurrency = nextCurrency[marketData.currency];
-        setCurrency(newCurrency);
-        this.setState({ price: marketData[`${newCurrency.toLowerCase()}Price`] });
-    }
-
-    changeTimeframe() {
-        const { marketData, setTimeframe } = this.props;
-        setTimeframe(timeframeFromCurrent[marketData.timeframe]);
     }
 
     getMaxY() {
@@ -121,6 +92,31 @@ export default class Chart extends React.Component {
         return x.toFixed(5);
     }
 
+    timeframeFromCurrent = {
+        '24h': '7d',
+        '7d': '1m',
+        '1m': '1h',
+        '1h': '24h',
+    };
+
+    nextCurrency = {
+        USD: 'BTC',
+        BTC: 'ETH',
+        ETH: 'USD',
+    };
+
+    changeCurrency() {
+        const { marketData, setCurrency } = this.props;
+        const newCurrency = this.nextCurrency[marketData.currency];
+        setCurrency(newCurrency);
+        this.setState({ price: marketData[`${newCurrency.toLowerCase()}Price`] });
+    }
+
+    changeTimeframe() {
+        const { marketData, setTimeframe } = this.props;
+        setTimeframe(this.timeframeFromCurrent[marketData.timeframe]);
+    }
+
     render() {
         const { price } = this.state;
         const { marketData } = this.props;
@@ -128,15 +124,15 @@ export default class Chart extends React.Component {
         return (
             <div className={css.chart}>
                 <nav>
-                    <Button variant="default" className="small" onClick={event => this.changeCurrency()}>
-                        <img src={imageChewron} />
+                    <Button variant="default" className="small" onClick={() => this.changeCurrency()}>
+                        <img src={imageChevron} />
                         {marketData.currency}
                     </Button>
                     <p>
-                        {getChartCurrencySymbol(marketData.currency)} {this.getPriceFormat(price)} / Mi
+                        {getCurrencySymbol(marketData.currency)} {this.getPriceFormat(price)} / Mi
                     </p>
-                    <Button variant="default" className="small" onClick={event => this.changeTimeframe()}>
-                        <img src={imageChewron} />
+                    <Button variant="default" className="small" onClick={() => this.changeTimeframe()}>
+                        <img src={imageChevron} />
                         {marketData.timeframe}
                     </Button>
                 </nav>
@@ -174,7 +170,7 @@ export default class Chart extends React.Component {
                                 tickLabels: { fill: 'white', fontSize: 9, fontFamily: 'Lato-Regular' },
                                 ticks: { padding: 0 },
                             }}
-                            gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.1 }} />}
+                            gridComponent={<Line type="grid" style={{ stroke: 'white', strokeWidth: 0.1 }} />}
                             tickLabelComponent={<VictoryLabel x={0} textAnchor="start" />}
                             tickValues={this.getTickValues()}
                             domain={{
