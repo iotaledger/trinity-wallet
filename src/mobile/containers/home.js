@@ -233,11 +233,10 @@ class Home extends Component {
 
     render() {
         const { t } = this.props;
-        const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
+        const { childRoute } = this.props;
         const children = this.renderChildren(childRoute);
         let { password } = this.state;
 
-        console.log(this.props.account);
         return (
             <UserInactivity
                 timeForInactivity={300000}
@@ -281,7 +280,7 @@ class Home extends Component {
                                     <View style={styles.loginMidContainer}>
                                         <TextField
                                             style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                            labelTextSztyle={{ fontFamily: 'Lato-Light' }}
+                                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                             labelFontSize={width / 31.8}
                                             fontSize={width / 20.7}
                                             labelPadding={3}
