@@ -150,6 +150,36 @@ export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
     return size(latest) ? [...old, ...latest] : old;
 };
 
+export const deduplicateTransferBundles = transfers => {
+    const deduplicate = (res, transfer) => {
+        const top = transfer[0];
+        const bundle = top.bundle;
+        const attachmentTimestampOnCurrentTx = top.attachmentTimestamp;
+        const persistenceOnCurrentTx = top.persistence;
+
+        if (bundle in res) {
+            const timestampOnExistingTx = get(res[bundle], '[0].attachmentTimestamp');
+            const persistenceOnExistingTx = get(res[bundle], '[0].persistence');
+
+            // In case a tx is still unconfirmed.
+            if (!persistenceOnExistingTx && persistenceOnCurrentTx) {
+                res[bundle] = transfer;
+            } else if (!persistenceOnCurrentTx && !persistenceOnCurrentTx) {
+                if (attachmentTimestampOnCurrentTx < timestampOnExistingTx) {
+                    res[bundle] = transfer;
+                }
+            }
+        } else {
+            res = { ...res, ...{ [bundle]: transfer } };
+        }
+
+        return res;
+    };
+
+    const aggregated = reduce(transfers, deduplicate, {});
+    return map(aggregated, v => v);
+};
+
 export const filterSpentAddresses = inputs => {
     return new Promise((resolve, reject) => {
         // Find transaction objects for addresses
