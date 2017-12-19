@@ -25,7 +25,7 @@ import {
     removeAccount,
     setBalance,
 } from 'iota-wallet-shared-modules/actions/account';
-import { setFullNode, getCurrencyData, addCustomNode } from 'iota-wallet-shared-modules/actions/settings';
+import { setFullNode, getCurrencyData, addCustomPoWNode } from 'iota-wallet-shared-modules/actions/settings';
 import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { checkNode } from 'iota-wallet-shared-modules/libs/iota';
 import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
@@ -184,7 +184,7 @@ class Settings extends React.Component {
                             this.props.setNode(selectedNode);
                         }}
                         node={this.props.settings.fullNode}
-                        nodes={this.props.settings.availableNodes}
+                        nodes={this.props.settings.availablePoWNodes}
                         backPress={() => this.props.setSetting('advancedSettings')}
                     />
                 );
@@ -196,7 +196,7 @@ class Settings extends React.Component {
                             changeIotaNode(selectedNode);
                             this.props.setNode(selectedNode);
                         }}
-                        nodes={this.props.settings.availableNodes}
+                        nodes={this.props.settings.availablePoWNodes}
                         onDuplicateNodeError={() => this.onDuplicateNodeError()}
                         checkNode={cb => checkNode(cb)}
                         currentNode={this.props.settings.fullNode}
@@ -300,7 +300,7 @@ class Settings extends React.Component {
 
     onAddNodeSuccess = customNode => {
         const dropdown = DropdownHolder.getDropdown();
-        this.props.addCustomNode(customNode);
+        this.props.addCustomPoWNode(customNode);
         dropdown.alertWithType('success', 'Custom node added', 'The custom node has been added successfully.');
     };
 
@@ -463,7 +463,7 @@ class Settings extends React.Component {
                 accountInfo = this.props.account.accountInfo;
                 addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
                 const balance = calculateBalance(addressData);
-                this.props.setBalance(balanace);
+                this.props.setBalance(balance);
                 this.props.setSetting('accountManagement');
                 dropdown.alertWithType('success', t('accountDeleted'), t('accountDeletedExplanation'));
             })
@@ -698,7 +698,7 @@ const mapDispatchToProps = dispatch => ({
     manualSyncRequest: () => dispatch(manualSyncRequest()),
     manualSyncComplete: () => dispatch(manualSyncComplete()),
     setBalance: balance => dispatch(setBalance(balance)),
-    addCustomNode: customNode => dispatch(addCustomNode(customNode)),
+    addCustomPoWNode: customNode => dispatch(addCustomPoWNode(customNode)),
 });
 
 const mapStateToProps = state => ({

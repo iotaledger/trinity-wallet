@@ -227,7 +227,7 @@ class Login extends React.Component {
                                     this.props.setFullNode(selectedNode);
                                 }}
                                 node={this.props.settings.fullNode}
-                                nodes={this.props.settings.availableNodes}
+                                nodes={this.props.settings.availablePoWNodes}
                                 backPress={() => this.setState({ changingNode: false })}
                             />
                         </View>
