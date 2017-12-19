@@ -67,6 +67,15 @@ export function setFullNode(fullNode) {
     };
 }
 
+export function addCustomPoWNode(customNode) {
+    return dispatch => {
+        dispatch({
+            type: ActionTypes.ADD_CUSTOM_POW_NODE,
+            payload: customNode,
+        });
+    };
+}
+
 export function addCustomNode(customNode) {
     return dispatch => {
         dispatch({

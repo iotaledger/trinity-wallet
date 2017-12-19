@@ -4,7 +4,17 @@ import { defaultNode as fullNode } from '../config';
 const initialState = {
     locale: 'en',
     fullNode,
+    availablePoWNodes: [
+        'https://iri2-api.iota.fm:443',
+        'https://iri3-api.iota.fm:443',
+        'https://ceres.iota.community:14600/',
+        'https://node.tangle.works:443',
+        'http://iotanode.us:443',
+        'http://astra2261.startdedicated.net:14265',
+        'http://iota.nck.nz:14265',
+    ],
     availableNodes: [
+        'https://iri2-api.iota.fm:443',
         'https://ceres.iota.community:14600/',
         'https://nodes.iota.cafe:443',
         'https://node.tangle.works:443',
@@ -95,6 +105,13 @@ const settingsReducer = (state = initialState, action) => {
                 availableNodes: state.availableNodes.includes(action.payload)
                     ? state.availableNodes
                     : [].concat(state.availableNodes, action.payload),
+            };
+        case ActionTypes.ADD_CUSTOM_POW_NODE:
+            return {
+                ...state,
+                availablePoWNodes: state.availablePoWNodes.includes(action.payload)
+                    ? state.availablePoWNodes
+                    : [].concat(state.availablePoWNodes, action.payload),
             };
         case ActionTypes.SET_MODE:
             return {

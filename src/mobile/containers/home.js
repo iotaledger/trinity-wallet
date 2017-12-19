@@ -94,7 +94,7 @@ class Home extends Component {
     startBackgroundProcesses() {
         AppState.addEventListener('change', this._handleAppStateChange);
 
-        time.setInterval('addressPolling', () => this.startAddressPolling(), 83000);
+        //  timer.setInterval('addressPolling', () => this.startAddressPolling(), 83000);
         timer.setInterval('polling', () => this.startAccountPolling(), 47000);
         timer.setInterval('chartPolling', () => this.startChartPolling(), 101000);
     }
@@ -112,7 +112,7 @@ class Home extends Component {
             !this.props.tempAccount.isSendingTransfer &&
             !this.props.tempAccount.isSyncing
         ) {
-            //console.log('POLLING TX HISTORY')
+            console.log('POLLING TX HISTORY');
             const seedIndex = this.props.tempAccount.seedIndex;
             const seedName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
@@ -128,6 +128,7 @@ class Home extends Component {
             !this.props.tempAccount.isSendingTransfer &&
             !this.props.tempAccount.isSyncing
         ) {
+            console.log('POLLING ADDRESSES');
             const accountInfo = this.props.account.accountInfo;
             const seedIndex = this.props.tempAccount.seedIndex;
             const addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
@@ -173,6 +174,7 @@ class Home extends Component {
             !this.props.settings.isGeneratingReceiveAddress &&
             !this.props.settings.isSendingTransfer
         ) {
+            console.log('POLLING MARKET DATA');
             this.props.getMarketData();
             this.props.getChartData();
             this.props.getPrice();
