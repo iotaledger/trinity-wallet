@@ -1,24 +1,25 @@
-.seed-input {
+.ammount-input {
     display: flex;
     justify-content: space-between;
     width: 100%;
     max-width: 512px;
-    margin: 0 auto 30px;
+    margin: 0 auto 50px;
+    position: relative;
     > div {
         display: block;
         position: relative;
-        width: calc(100% - 90px);
-        padding-bottom: 15px;
+        width: calc(100% - 70px);
     }
-    textarea {
+    input[type='text'] {
         font-family: 'Lato';
+        font-weight: 200;
         font-size: var(--font-size-default);
-        line-height: 21px;
+        line-height: 26px;
         width: 100%;
         border: none;
         background: none;
         color: #fff;
-        padding: 12px 0;
+        padding: 4px 0;
         font-size: 18px;
         resize: none;
         &:focus {
@@ -26,16 +27,16 @@
         }
     }
     button {
-        padding: 0 10px;
-        height: 36px;
+        padding: 0 8px;
+        height: 32px;
         min-width: 0px;
-        font-size: 12px;
-        margin-left: 20px;
-        line-height: 21px;
+        font-size: 11px;
+        margin: 1px 0 0;
+        line-height: 18px;
         img {
-            width: 17px;
+            width: 14px;
             vertical-align: middle;
-            margin: -3px 5px 0 0;
+            margin: -2px 4px 0 0;
         }
     }
     small {
@@ -45,7 +46,6 @@
         display: block;
         width: 100%;
         text-align: left;
-        padding-top: 8px;
         &:before,
         &:after {
             position: absolute;
@@ -62,20 +62,14 @@
             transition: all 0.2s ease-out;
         }
     }
-    textarea:focus + small:after {
+    input[type='number'] :focus + small:after {
         max-width: 100%;
     }
-}
 
-.qrScanner {
-    width: 640px;
-    max-width: 100%;
-    margin: auto;
-    text-align: center;
-    video {
-        transform: rotateY(180deg);
-        max-width: 100%;
-        margin-bottom: 50px;
-        border: 2px solid #fff;
+    button:last-of-type {
+        position: absolute;
+        bottom: -34px;
+        left: 0px;
+        height: 26px;
     }
 }
