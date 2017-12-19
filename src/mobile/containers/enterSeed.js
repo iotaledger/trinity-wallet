@@ -348,9 +348,6 @@ const styles = StyleSheet.create({
         height: width / 12,
         alignSelf: 'center',
     },
-    checksumContainer: {
-        flex: 1,
-    },
     checksum: {
         width: width / 8,
         height: height / 20,

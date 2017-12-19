@@ -128,7 +128,7 @@ class SetPassword extends React.Component {
 
         return (
             <View>
-                <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+                <TouchableWithoutFeedback style={{ flex: 1, width: width }} onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
