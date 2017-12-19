@@ -212,17 +212,21 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
             spamTransfer,
             { interrupt: false, delay: 0 },
             (err, res) => {
-                if (err && err.message.indexOf('Inconsistent subtangle') > -1) {
-                    consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
+                if (err) {
+                    if (err.message.indexOf('Inconsistent subtangle') > -1) {
+                        consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
 
-                    return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
-                        if (!consistentTail) {
-                            // TODO: Generate an alert
-                            return dispatch(setPromotionStatus(false));
-                        }
+                        return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
+                            if (!consistentTail) {
+                                // TODO: Generate an alert
+                                return dispatch(setPromotionStatus(false));
+                            }
 
-                        return promote(consistentTail);
-                    });
+                            return promote(consistentTail);
+                        });
+                    }
+
+                    return console.error(err); // eslint-disable-line no-console
                 }
 
                 dispatch(
