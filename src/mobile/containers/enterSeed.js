@@ -18,6 +18,7 @@ import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
@@ -72,7 +73,8 @@ class EnterSeed extends React.Component {
         });
     }
     onQRPress() {
-        this._showModal();
+        //this._showModal();
+        getChecksum(this.state.seed);
     }
 
     onQRRead(data) {
@@ -90,6 +92,18 @@ class EnterSeed extends React.Component {
         <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
     );
 
+    getChecksumValue() {
+        const { seed } = this.state;
+        let checksumValue = '...';
+
+        if (seed.length != 0 && seed.length < 81) {
+            checksumValue = '< 81';
+        } else if (seed.length == 81) {
+            checksumValue = getChecksum(seed);
+        }
+        return checksumValue;
+    }
+
     render() {
         const { seed } = this.state;
         const { t } = this.props;
@@ -103,12 +117,15 @@ class EnterSeed extends React.Component {
                                 <View style={styles.logoContainer}>
                                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                 </View>
-                                <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>{t('global:enterSeed')}</Text>
-                                </View>
                             </View>
                             <View style={styles.topMidContainer}>
-                                <View style={{ flexDirection: 'row' }}>
+                                <View style={{ flex: 1, justifyContent: 'center' }}>
+                                    <View style={{ flex: 0.3 }} />
+                                    <View style={styles.titleContainer}>
+                                        <Text style={styles.title}>{t('global:enterSeed')}</Text>
+                                    </View>
+                                </View>
+                                <View style={{ flex: 1, flexDirection: 'row' }}>
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
@@ -137,6 +154,9 @@ class EnterSeed extends React.Component {
                                             </View>
                                         </TouchableOpacity>
                                     </View>
+                                </View>
+                                <View style={styles.checksum}>
+                                    <Text style={styles.checksumText}>{this.getChecksumValue()}</Text>
                                 </View>
                             </View>
                             <View style={styles.bottomMidContainer}>
@@ -196,21 +216,20 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
-        flex: 1.2,
+        flex: 0.6,
         paddingTop: height / 22,
     },
     topMidContainer: {
-        flex: 1.9,
+        flex: 2.5,
         alignItems: 'center',
-        justifyContent: 'center',
     },
     bottomMidContainer: {
-        flex: 2.4,
+        flex: 2.8,
         alignItems: 'center',
         justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 1.2,
+        flex: 0.8,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -220,9 +239,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     titleContainer: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15,
     },
     title: {
         color: 'white',
@@ -296,7 +315,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         alignItems: 'center',
         paddingBottom: height / 90,
     },
@@ -328,6 +347,23 @@ const styles = StyleSheet.create({
         width: width / 12,
         height: width / 12,
         alignSelf: 'center',
+    },
+    checksumContainer: {
+        flex: 1,
+    },
+    checksum: {
+        width: width / 8,
+        height: height / 20,
+        borderRadius: 5,
+        borderColor: 'white',
+        borderWidth: height / 1000,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    checksumText: {
+        fontSize: width / 29.6,
+        color: 'white',
+        fontFamily: 'Lato-Regular',
     },
 });
 

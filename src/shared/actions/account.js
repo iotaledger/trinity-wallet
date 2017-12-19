@@ -246,8 +246,8 @@ export function getTransfers(seedName, addresses, cb) {
                                 let transfers = groupTransfersByBundle(success);
                                 // Sort transfers and add transfer value
                                 const selectedAccount = getSelectedAccount(seedName, getState().account.accountInfo);
-                                const oldTransfers = selectedAccount.transfers;
-                                transfers = mergeLatestTransfersInOld(oldTransfers, transfers);
+                                let oldTransfers = selectedAccount.transfers;
+                                //transfers = mergeLatestTransfersInOld(oldTransfers, transfers);
                                 transfers = formatTransfers(transfers, addresses);
                                 // Update transfers then set ready
                                 dispatch(updateTransfers(seedName, transfers));
