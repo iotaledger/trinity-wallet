@@ -194,7 +194,7 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
                             : getState().account.unconfirmedBundleTails;
                         const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
 
-                        dispatchers.set(rearrangeObjectKeys(updatedTails, bundle));
+                        dispatch(dispatchers.set(rearrangeObjectKeys(updatedTails, bundle)));
                         return dispatch(setPromotionStatus(false));
                     });
                 }
@@ -230,17 +230,18 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
                         ...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`),
                     ),
                 );
-                dispatchers.remove(bundle);
+
+                dispatch(dispatchers.remove(bundle));
 
                 const newBundle = get(res, `[${0}].bundle`);
 
                 if (isPromotingLast) {
-                    dispatchers.update({ [newBundle]: filter(res, r => r.currentIndex === 0) });
-                    return setPromotionStatus(false);
+                    dispatch(dispatchers.update({ [newBundle]: filter(res, r => r.currentIndex === 0) }));
+                    return dispatch(setPromotionStatus(false));
                 }
 
-                dispatchers.updateLastPromoted({ [newBundle]: filter(res, r => r.currentIndex === 0) });
-                return setPromotionStatus(false);
+                dispatch(dispatchers.updateLastPromoted({ [newBundle]: filter(res, r => r.currentIndex === 0) }));
+                return dispatch(setPromotionStatus(false));
             },
         );
     };
@@ -258,7 +259,7 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
         });
 
         if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
-            dispatchers.update({ [bundle]: tailsFromLatestTransactionObjects });
+            dispatch(dispatchers.update({ [bundle]: tailsFromLatestTransactionObjects }));
 
             // Assign updated tails to the local copy
             allTails = tailsFromLatestTransactionObjects;
@@ -272,7 +273,7 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
 
             if (some(states, state => state)) {
                 // TODO: Double check if you need to remove original bundle
-                dispatchers.remove(bundle);
+                dispatch(dispatchers.remove(bundle));
 
                 return dispatch(setPromotionStatus(false));
             }
@@ -286,7 +287,6 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
                     return iota.api.replayBundle(txHash, 3, 14, (err, newTxs) => {
                         if (err) {
                             console.error(err); // eslint-disable-line no-console
-
                             return dispatch(setPromotionStatus(false));
                         }
 
@@ -310,7 +310,7 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
                             : getState().account.unconfirmedBundleTails;
 
                         const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
-                        dispatchers.set(rearrangeObjectKeys(updatedTails, bundle));
+                        dispatch(dispatchers.set(rearrangeObjectKeys(updatedTails, bundle)));
 
                         return dispatch(setPromotionStatus(false));
                     });
