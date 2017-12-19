@@ -1,18 +1,17 @@
 import React from 'react';
-import Textarea from 'react-textarea-autosize';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { MAX_SEED_LENGTH } from 'libs/util';
-import css from './Seed.css';
+import { ADDRESS_LENGTH } from 'libs/util';
+import css from './Address.css';
 import Button from 'components/UI/Button';
 import Modal from 'components/UI/Modal';
 
 import Camera from 'images/camera.png';
 
-export default class SeedInput extends React.PureComponent {
+export default class AddressInput extends React.PureComponent {
     static propTypes = {
-        seed: PropTypes.string.isRequired,
+        address: PropTypes.string.isRequired,
         placeholder: PropTypes.string,
         closeLabel: PropTypes.string.isRequired,
     };
@@ -35,12 +34,12 @@ export default class SeedInput extends React.PureComponent {
         }));
     };
 
-    onScanEvent = seed => {
-        if (seed !== null) {
+    onScanEvent = address => {
+        if (address !== null) {
             this.setState(() => ({
                 showScanner: false,
             }));
-            this.props.onChange(seed);
+            this.props.onChange(address);
         }
     };
 
@@ -49,21 +48,20 @@ export default class SeedInput extends React.PureComponent {
     };
 
     render() {
-        const { seed, placeholder, closeLabel } = this.props;
+        const { address, placeholder, closeLabel } = this.props;
         const { showScanner } = this.state;
 
         return (
-            <div className={css.seedInput}>
+            <div className={css.addressInput}>
                 <div>
-                    <Textarea
-                        value={seed}
+                    <input
+                        type="text"
+                        value={address}
                         placeholder={placeholder}
                         onChange={e => this.props.onChange(e.target.value)}
-                        maxLength={MAX_SEED_LENGTH}
+                        maxLength={ADDRESS_LENGTH}
                     />
-                    <small>
-                        {seed.length}/{MAX_SEED_LENGTH}
-                    </small>
+                    <small />
                 </div>
                 <Button onClick={this.openScanner}>
                     <img src={Camera} alt="" /> QR

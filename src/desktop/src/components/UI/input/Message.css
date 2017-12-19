@@ -1,4 +1,4 @@
-.seed-input {
+.message-input {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -7,8 +7,7 @@
     > div {
         display: block;
         position: relative;
-        width: calc(100% - 90px);
-        padding-bottom: 15px;
+        width: 100%;
     }
     textarea {
         font-family: 'Lato';
@@ -23,19 +22,6 @@
         resize: none;
         &:focus {
             outline: none;
-        }
-    }
-    button {
-        padding: 0 10px;
-        height: 36px;
-        min-width: 0px;
-        font-size: 12px;
-        margin-left: 20px;
-        line-height: 21px;
-        img {
-            width: 17px;
-            vertical-align: middle;
-            margin: -3px 5px 0 0;
         }
     }
     small {
@@ -64,18 +50,5 @@
     }
     textarea:focus + small:after {
         max-width: 100%;
-    }
-}
-
-.qrScanner {
-    width: 640px;
-    max-width: 100%;
-    margin: auto;
-    text-align: center;
-    video {
-        transform: rotateY(180deg);
-        max-width: 100%;
-        margin-bottom: 50px;
-        border: 2px solid #fff;
     }
 }
