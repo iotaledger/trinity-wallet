@@ -29,12 +29,7 @@ import {
     setPassword,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { iota } from '../../shared/libs/iota';
-import {
-    getAccountInfo,
-    setBalance,
-    setFirstUse,
-    getFullAccountInfo,
-} from 'iota-wallet-shared-modules/actions/account';
+import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
@@ -469,7 +464,6 @@ const mapDispatchToProps = dispatch => ({
     setBalance: addressesWithBalance => {
         dispatch(setBalance(addressesWithBalance));
     },
-    getFullAccountInfo: (seed, seedName, cb) => dispatch(getFullAccountInfo(seed, seedName, cb)),
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
     generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
     disposeOffAlert: () => dispatch(disposeOffAlert()),
