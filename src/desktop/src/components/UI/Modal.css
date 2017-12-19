@@ -1,27 +1,38 @@
-:global(#modal) {
-    position: fixed;
-}
-
 .backdrop {
-    background: rgba(0, 0, 0, 0.7);
-    bottom: 0;
-    left: 0;
-    max-height: 100%;
-    padding: 36px;
-    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(22, 55, 62, 0.95);
     right: 0;
     top: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
     z-index: var(--z-index-modal);
+    &.confirm {
+        text-align: center;
+        h1 {
+            font-weight: 200;
+            margin-bottom: 20px;
+        }
+        :global {
+            h1.error {
+                color: var(--color-red);
+            }
+            h1.success {
+                color: var(--color-green);
+            }
+        }
+        strong {
+            max-width: 40vw;
+            word-wrap: break-word;
+        }
+        button {
+            margin: 20px;
+        }
+    }
 }
 
 .wrapper {
-    max-width: 640px;
-    margin: auto;
-    height: 100%;
-}
-
-.content {
-    max-width: 100%;
-    overflow: auto;
-    max-height: 100%;
+    max-width: 80vw;
 }
