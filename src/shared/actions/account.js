@@ -206,8 +206,7 @@ export function getNewTransfersAndAddresses(seed, index, accountName, addressDat
                 const oldAddressData = addressData;
                 let newAddressData = formatFullAddressData(success);
                 const addresses = Object.keys(newAddressData);
-                const transfersWithoutDuplicateBundles = deduplicateBundles(success.transfers);
-                const newTransfers = formatTransfers(transfersWithoutDuplicateBundles, addresses);
+                const newTransfers = formatTransfers(success.transfers, addresses);
                 newAddressData = markAddressSpend(newTransfers, newAddressData);
                 let fullAddressData = Object.assign(oldAddressData, newAddressData);
                 const fullTransfers = newTransfers.concat(oldTransfers);
@@ -230,6 +229,12 @@ export function getTransfers(seedName, addresses, cb) {
                 const bundles = [...new Set(success.map(tx => tx.bundle))];
                 iota.api.findTransactionObjects({ bundles }, (error, success) => {
                     if (!error) {
+                        // If no transfers, exit
+                        if (success.length < 1) {
+                            dispatch(setReady());
+                            dispatch(getTransfersSuccess());
+                            return;
+                        }
                         // Add persistence to transaction objects
                         iota.api.getLatestInclusion(success.map(tx => tx.hash), (error, inclusionStates) => {
                             if (!error) {

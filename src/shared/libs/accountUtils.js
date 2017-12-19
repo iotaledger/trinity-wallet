@@ -86,6 +86,7 @@ export const groupTransfersByBundle = transfers => {
 };
 export const formatTransfers = (transfers, addresses) => {
     // Order transfers from oldest to newest
+
     let sortedTransfers = transfers.sort((a, b) => {
         if (a[0].timestamp > b[0].timestamp) {
             return -1;
