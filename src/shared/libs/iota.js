@@ -40,3 +40,7 @@ export const checkNode = cb => {
         }
     });
 };
+
+export const getChecksum = seed => {
+    return iota.utils.addChecksum(seed, 3, false).substr(-3);
+};
