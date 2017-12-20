@@ -32,11 +32,8 @@ import { rearrangeObjectKeys } from '../libs/util';
 
 export const ActionTypes = {
     SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
-    SET_NEW_LAST_PROMOTED_BUNDLE_TAILS: 'IOTA/ACCOUNT/SET_NEW_LAST_PROMOTED_BUNDLE_TAILS',
     UPDATE_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/UPDATE_UNCONFIRMED_BUNDLE_TAILS',
-    UPDATE_LAST_PROMOTED_BUNDLE_TAILS: 'IOTA/ACCOUNT/UPDATE_LAST_PROMOTED_BUNDLE_TAILS',
     REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS',
-    REMOVE_BUNDLE_FROM_LAST_PROMOTED_BUNDLE_TAILS: 'IOTA/ACCOUNT/REMOVE_BUNDLE_FROM_LAST_PROMOTED_BUNDLE_TAILS',
 };
 
 export function setFirstUse(boolean) {
@@ -93,23 +90,8 @@ export const updateUnconfirmedBundleTails = payload => ({
     payload,
 });
 
-export const updateLastPromotedBundleTails = payload => ({
-    type: ActionTypes.UPDATE_LAST_PROMOTED_BUNDLE_TAILS,
-    payload,
-});
-
 export const setNewUnconfirmedBundleTails = payload => ({
     type: ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS,
-    payload,
-});
-
-export const setNewLastPromotedBundleTails = payload => ({
-    type: ActionTypes.SET_NEW_LAST_PROMOTED_BUNDLE_TAILS,
-    payload,
-});
-
-export const removeBundleFromLastPromotedBundleTails = payload => ({
-    type: ActionTypes.REMOVE_BUNDLE_FROM_LAST_PROMOTED_BUNDLE_TAILS,
     payload,
 });
 
@@ -142,20 +124,13 @@ export function getFullAccountInfo(seed, seedName, cb) {
     };
 }
 
-export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispatch, getState) => {
+export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => {
     // Set flag to true so that the service should wait for this promotion to get completed.
     dispatch(setPromotionStatus(true));
 
     // Create a copy so you can mutate easily
     let consistentTails = map(tails, clone);
     let allTails = map(tails, clone);
-
-    const dispatchers = {
-        update: isPromotingLast ? updateLastPromotedBundleTails : updateUnconfirmedBundleTails,
-        updateLastPromoted: updateLastPromotedBundleTails,
-        remove: isPromotingLast ? removeBundleFromLastPromotedBundleTails : removeBundleFromUnconfirmedBundleTails,
-        set: isPromotingLast ? setNewLastPromotedBundleTails : setNewUnconfirmedBundleTails,
-    };
 
     const alertArguments = (title, message, status = 'success') => [status, title, message];
 
@@ -189,12 +164,10 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
 
                         consistentTails = concat([], newTail, consistentTails);
 
-                        const existingTailsInStore = isPromotingLast
-                            ? getState().account.lastPromotedBundleTails
-                            : getState().account.unconfirmedBundleTails;
+                        const existingTailsInStore = getState().account.unconfirmedBundleTails;
                         const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
 
-                        dispatch(dispatchers.set(rearrangeObjectKeys(updatedTails, bundle)));
+                        dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedTails, bundle)));
                         return dispatch(setPromotionStatus(false));
                     });
                 }
@@ -205,49 +178,35 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
 
         const spamTransfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }];
 
-        return iota.api.promoteTransaction(
-            tail.hash,
-            3,
-            14,
-            spamTransfer,
-            { interrupt: false, delay: 0 },
-            (err, res) => {
-                if (err) {
-                    if (err.message.indexOf('Inconsistent subtangle') > -1) {
-                        consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
+        return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, err => {
+            if (err) {
+                if (err.message.indexOf('Inconsistent subtangle') > -1) {
+                    consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
 
-                        return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
-                            if (!consistentTail) {
-                                // TODO: Generate an alert
-                                return dispatch(setPromotionStatus(false));
-                            }
+                    return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
+                        if (!consistentTail) {
+                            // TODO: Generate an alert
+                            return dispatch(setPromotionStatus(false));
+                        }
 
-                            return promote(consistentTail);
-                        });
-                    }
-
-                    return console.error(err); // eslint-disable-line no-console
+                        return promote(consistentTail);
+                    });
                 }
 
-                dispatch(
-                    generateAlert(
-                        ...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`),
-                    ),
-                );
+                return console.error(err); // eslint-disable-line no-console
+            }
 
-                dispatch(dispatchers.remove(bundle));
+            dispatch(
+                generateAlert(...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`)),
+            );
 
-                const newBundle = get(res, `[${0}].bundle`);
+            const existingTailsInStore = getState().account.unconfirmedBundleTails;
+            const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
 
-                if (isPromotingLast) {
-                    dispatch(dispatchers.update({ [newBundle]: filter(res, r => r.currentIndex === 0) }));
-                    return dispatch(setPromotionStatus(false));
-                }
+            dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedTails, bundle)));
 
-                dispatch(dispatchers.updateLastPromoted({ [newBundle]: filter(res, r => r.currentIndex === 0) }));
-                return dispatch(setPromotionStatus(false));
-            },
-        );
+            return dispatch(setPromotionStatus(false));
+        });
     };
 
     return iota.api.findTransactionObjects({ bundles: [bundle] }, (err, txs) => {
@@ -263,7 +222,7 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
         });
 
         if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
-            dispatch(dispatchers.update({ [bundle]: tailsFromLatestTransactionObjects }));
+            dispatch(updateUnconfirmedBundleTails({ [bundle]: tailsFromLatestTransactionObjects }));
 
             // Assign updated tails to the local copy
             allTails = tailsFromLatestTransactionObjects;
@@ -276,8 +235,7 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
             }
 
             if (some(states, state => state)) {
-                // TODO: Double check if you need to remove original bundle
-                dispatch(dispatchers.remove(bundle));
+                dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
 
                 return dispatch(setPromotionStatus(false));
             }
@@ -309,12 +267,10 @@ export const initializeTxPromotion = (bundle, tails, isPromotingLast) => (dispat
 
                         // Probably unnecessary at this point
                         consistentTails = concat([], newTail, consistentTails);
-                        const existingTailsInStore = isPromotingLast
-                            ? getState().account.lastPromotedBundleTails
-                            : getState().account.unconfirmedBundleTails;
+                        const existingTailsInStore = getState().account.unconfirmedBundleTails;
 
                         const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
-                        dispatch(dispatchers.set(rearrangeObjectKeys(updatedTails, bundle)));
+                        dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedTails, bundle)));
 
                         return dispatch(setPromotionStatus(false));
                     });
