@@ -158,7 +158,6 @@ export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => 
             const updatedBundles = merge({}, existingBundlesInStore, { [bundle]: allTails });
 
             dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedBundles, bundle)));
-
             return dispatch(setPromotionStatus(false));
         });
     };
@@ -171,8 +170,7 @@ export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => 
 
         const tailsFromLatestTransactionObjects = filter(txs, t => {
             const attachmentTimestamp = get(t, 'attachmentTimestamp');
-            const hasMadeReattachmentWithinAnHour =
-                isWithinAnHour(attachmentTimestamp) || isWithinAnHour(attachmentTimestamp / 1000);
+            const hasMadeReattachmentWithinAnHour = isWithinAnHour(attachmentTimestamp);
 
             return !t.persistence && t.currentIndex === 0 && t.value > 0 && hasMadeReattachmentWithinAnHour;
         });

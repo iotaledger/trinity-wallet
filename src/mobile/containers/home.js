@@ -232,7 +232,6 @@ class Home extends Component {
         const children = this.renderChildren(childRoute);
         let { password } = this.state;
 
-        console.log(this.props.account);
         return (
             <UserInactivity
                 timeForInactivity={300000}
