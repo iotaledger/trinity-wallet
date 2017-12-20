@@ -22,6 +22,7 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import Modal from 'react-native-modal';
+import { Navigation } from 'react-native-navigation';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import NodeSelection from '../components/nodeSelection.js';
 import COLORS from '../theme/Colors';
@@ -110,22 +111,39 @@ class Login extends React.Component {
 
         login = value => {
             const seedIndex = this.props.tempAccount.seedIndex;
-            const seedName = this.props.account.seedNames[seedIndex];
+            const accountName = this.props.account.seedNames[seedIndex];
+            const accountInfo = this.props.account.accountInfo;
+            const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+            const addresses = currentSeedAccountInfo.addresses;
 
             this.getWalletData();
             this.props.changeHomeScreenRoute('balance');
-            this.props.navigator.push({
-                screen: 'loading',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                },
-                animated: false,
-                overrideBackPress: true,
-            });
+            if (addresses.length > 0) {
+                this.props.navigator.push({
+                    screen: 'loading',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                    },
+                    animated: false,
+                    overrideBackPress: true,
+                });
+            } else {
+                Navigation.startSingleScreenApp({
+                    screen: {
+                        screen: 'home',
+                        navigatorStyle: {
+                            navBarHidden: true,
+                            navBarTransparent: true,
+                            screenBackgroundColor: COLORS.backgroundGreen,
+                        },
+                        overrideBackPress: true,
+                    },
+                });
+            }
             this.props.getCurrencyData(this.props.settings.currency);
             if (this.props.account.firstUse) {
-                this.props.getFullAccountInfo(value, seedName, (error, success) => {
+                this.props.getFullAccountInfo(value, accountName, (error, success) => {
                     if (error) {
                         this.onNodeError();
                     } else {
@@ -133,14 +151,15 @@ class Login extends React.Component {
                     }
                 });
             } else {
-                const accountInfo = this.props.account.accountInfo;
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                    if (error) {
-                        this.onNodeError();
-                    } else {
-                        this.props.setReady();
-                    }
-                });
+                if (addresses.length > 0) {
+                    this.props.getAccountInfo(accountName, seedIndex, accountInfo, (error, success) => {
+                        if (error) {
+                            this.onNodeError();
+                        } else {
+                            this.props.setReady();
+                        }
+                    });
+                }
             }
         };
     }
@@ -390,11 +409,11 @@ const mapDispatchToProps = dispatch => ({
     setPassword: password => {
         dispatch(setPassword(password));
     },
-    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
+    getAccountInfo: (accountName, seedIndex, accountInfo, cb) => {
+        dispatch(getAccountInfo(accountName, seedIndex, accountInfo, cb));
     },
-    getFullAccountInfo: (seed, seedName, cb) => {
-        dispatch(getFullAccountInfo(seed, seedName, cb));
+    getFullAccountInfo: (seed, accountName, cb) => {
+        dispatch(getFullAccountInfo(seed, accountName, cb));
     },
     changeHomeScreenRoute: tab => {
         dispatch(changeHomeScreenRoute(tab));

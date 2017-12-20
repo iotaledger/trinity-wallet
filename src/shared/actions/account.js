@@ -99,10 +99,6 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
         let addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         const addresses = Object.keys(addressData);
         const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
-        if (addresses.length < 1) {
-            dispatch(setReady());
-            return;
-        }
         // Get unspent addresses
         let unspentAddresses = [];
         for (var i = 0; i < addresses.length; i++) {
@@ -121,6 +117,7 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                 const totalBalance = newBalances.reduce((a, b) => a + b);
                 dispatch(setBalance(totalBalance));
                 dispatch(getTransfersRequest());
+
                 dispatch(getTransfers(seedName, unspentAddresses, cb));
             } else {
                 cb(error);

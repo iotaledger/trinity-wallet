@@ -222,6 +222,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                 if (!error) {
                     dispatch(checkForNewAddress(seedName, addressData, success));
                     dispatch(addPendingTransfer(seedName, transfers, success));
+                    console.log(success);
                     dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
                     dispatch(sendTransferSuccess(address, value));
                     cb();
