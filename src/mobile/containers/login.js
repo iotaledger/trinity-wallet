@@ -113,8 +113,6 @@ class Login extends React.Component {
             const seedIndex = this.props.tempAccount.seedIndex;
             const accountName = this.props.account.seedNames[seedIndex];
             const accountInfo = this.props.account.accountInfo;
-            const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-            const addresses = currentSeedAccountInfo.addresses;
 
             this.getWalletData();
             this.props.changeHomeScreenRoute('balance');
@@ -129,6 +127,9 @@ class Login extends React.Component {
                     }
                 });
             } else {
+                const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+                const addresses = currentSeedAccountInfo.addresses;
+
                 if (addresses.length > 0) {
                     this.navigateToLoading();
                     this.props.getAccountInfo(accountName, seedIndex, accountInfo, (error, success) => {
