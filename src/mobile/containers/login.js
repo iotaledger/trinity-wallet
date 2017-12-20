@@ -118,31 +118,9 @@ class Login extends React.Component {
 
             this.getWalletData();
             this.props.changeHomeScreenRoute('balance');
-            if (addresses.length > 0) {
-                this.props.navigator.push({
-                    screen: 'loading',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                    },
-                    animated: false,
-                    overrideBackPress: true,
-                });
-            } else {
-                Navigation.startSingleScreenApp({
-                    screen: {
-                        screen: 'home',
-                        navigatorStyle: {
-                            navBarHidden: true,
-                            navBarTransparent: true,
-                            screenBackgroundColor: COLORS.backgroundGreen,
-                        },
-                        overrideBackPress: true,
-                    },
-                });
-            }
             this.props.getCurrencyData(this.props.settings.currency);
             if (this.props.account.firstUse) {
+                this.navigateToLoading();
                 this.props.getFullAccountInfo(value, accountName, (error, success) => {
                     if (error) {
                         this.onNodeError();
@@ -152,6 +130,7 @@ class Login extends React.Component {
                 });
             } else {
                 if (addresses.length > 0) {
+                    this.navigateToLoading();
                     this.props.getAccountInfo(accountName, seedIndex, accountInfo, (error, success) => {
                         if (error) {
                             this.onNodeError();
@@ -159,9 +138,37 @@ class Login extends React.Component {
                             this.props.setReady();
                         }
                     });
+                } else {
+                    this.navigateToHome();
                 }
             }
         };
+    }
+
+    navigateToLoading() {
+        this.props.navigator.push({
+            screen: 'loading',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            animated: false,
+            overrideBackPress: true,
+        });
+    }
+
+    navigateToHome() {
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: COLORS.backgroundGreen,
+                },
+                overrideBackPress: true,
+            },
+        });
     }
 
     onNodeError() {
@@ -171,21 +178,6 @@ class Login extends React.Component {
         });
         this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
         this._showModal();
-    }
-
-    onUseSeedPress() {
-        const { t } = this.props;
-        this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
-        {
-            /*this.props.navigator.push({
-            screen: 'useSeed',
-            navigatorStyle: {
-                navBarHidden: true,
-            },
-            animated: false,
-            overrideBackPress: true
-        });*/
-        }
     }
 
     render() {
