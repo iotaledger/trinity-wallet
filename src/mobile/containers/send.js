@@ -30,6 +30,7 @@ import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
+import GENERAL from '../theme/general';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import DropdownHolder from '../components/dropdownHolder';
@@ -579,7 +580,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 0.8,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6.5,
         height: height / 16,
     },
@@ -603,7 +604,7 @@ const styles = StyleSheet.create({
     sendIOTAButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 2,
         height: height / 13,
         justifyContent: 'center',
@@ -661,7 +662,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 0.8,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6,
         height: height / 16,
     },

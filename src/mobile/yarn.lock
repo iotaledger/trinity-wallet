@@ -5097,10 +5097,6 @@ react-native-fs@^2.8.1:
     base-64 "^0.1.0"
     utf8 "^2.1.1"
 
-react-native-gridview@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-gridview/-/react-native-gridview-0.1.1.tgz#0f9a3fadb95dfef186790cbf10176628199fa127"
-
 react-native-html-to-pdf@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/react-native-html-to-pdf/-/react-native-html-to-pdf-0.4.0.tgz#93a1af31db12c0e7f4ec51c569070d8e61177479"
@@ -5208,12 +5204,6 @@ react-native-shake-event@^4.0.1:
   resolved "https://registry.yarnpkg.com/react-native-shake-event/-/react-native-shake-event-4.0.1.tgz#b167e844b711eff50d44d029537fbb228b2ac6b2"
   dependencies:
     invariant "^2.2.2"
-
-react-native-super-grid@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-super-grid/-/react-native-super-grid-2.0.1.tgz#5220f3003781e67ef7c82c2d53b2fe2e21940093"
-  dependencies:
-    prop-types "^15.6.0"
 
 react-native-svg@^6.0.1-rc.1:
   version "6.0.1-rc.1"

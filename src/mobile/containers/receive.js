@@ -24,6 +24,7 @@ import {
 import { TextField } from 'react-native-material-textfield';
 import keychain, { getSeed } from '../util/keychain';
 import DropdownHolder from '../components/dropdownHolder';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
@@ -238,7 +239,7 @@ const styles = StyleSheet.create({
     receiveAddressContainer: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         height: width / 3.4,
         justifyContent: 'center',
         padding: width / 30,
@@ -259,7 +260,7 @@ const styles = StyleSheet.create({
     generateButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 2,
         height: height / 13,
         justifyContent: 'center',
@@ -283,7 +284,7 @@ const styles = StyleSheet.create({
     },
     qrContainer: {
         backgroundColor: 'white',
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         padding: width / 30,
         marginBottom: height / 40,
     },
@@ -294,7 +295,7 @@ const styles = StyleSheet.create({
     removeButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2.7,
         height: height / 17,
         justifyContent: 'center',
