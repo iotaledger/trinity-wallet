@@ -16,6 +16,7 @@ import { Navigation } from 'react-native-navigation';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
 import { Keyboard } from 'react-native';
 
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
     infoTextWrapper: {
         borderColor: COLORS.white,
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
