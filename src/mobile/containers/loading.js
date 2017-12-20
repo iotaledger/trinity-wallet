@@ -20,23 +20,6 @@ class Loading extends Component {
         this.props.setSetting('mainSettings');
     }
 
-    componentWillMount() {
-        const ready = this.props.tempAccount.ready;
-        if (ready) {
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'home',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        screenBackgroundColor: COLORS.backgroundGreen,
-                    },
-                    overrideBackPress: true,
-                },
-            });
-        }
-    }
-
     componentWillReceiveProps(newProps) {
         const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
         if (ready) {
