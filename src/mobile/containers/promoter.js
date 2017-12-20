@@ -92,7 +92,7 @@ class Promoter extends Component {
 }
 
 Promoter.defaultProps = {
-    startPromotionAfter: 30000,
+    startPromotionAfter: 300000,
 };
 
 const mapStateToProps = ({ tempAccount, account }) => ({
