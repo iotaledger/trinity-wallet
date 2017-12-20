@@ -24,7 +24,7 @@
     "https-browserify": "0.0.1",
     "i18next": "^10.1.0",
     "inherits": "^2.0.3",
-    "iota.lib.js": "git+https://github.com/laumair/iota.lib.js.git#f58beaa",
+    "iota.lib.js": "^0.4.5",
     "lodash": "^4.17.4",
     "os-browserify": "^0.1.2",
     "path-browserify": "0.0.0",

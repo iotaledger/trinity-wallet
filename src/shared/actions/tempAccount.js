@@ -1,8 +1,9 @@
 import cloneDeep from 'lodash/cloneDeep';
 import size from 'lodash/size';
 import get from 'lodash/get';
+import filter from 'lodash/filter';
 import { iota } from '../libs/iota';
-import { updateAddresses, addPendingTransfer } from '../actions/account';
+import { updateAddresses, addPendingTransfer, updateUnconfirmedBundleTails } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
 import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
 import { MAX_SEED_LENGTH } from '../libs/util';
@@ -11,6 +12,10 @@ import { MAX_SEED_LENGTH } from '../libs/util';
 // Should rather be dispatching an action.
 
 /* eslint-disable no-console */
+
+export const ActionTypes = {
+    SET_PROMOTION_STATUS: 'IOTA/TEMP_ACCOUNT/SET_PROMOTION_STATUS',
+};
 
 export function getTransfersRequest() {
     return {
@@ -157,7 +162,7 @@ export function replayBundle(transactionHash, depth = 3, minWeightMagnitude = 14
                     generateAlert(
                         'error',
                         'Invalid Response',
-                        `The node returned an invalid response while auto-reattaching.`,
+                        'The node returned an invalid response while auto-reattaching.',
                     ),
                 );
             } else {
@@ -209,7 +214,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                     generateAlert(
                         'error',
                         'Key reuse',
-                        `You cannot send to an address that has already been spent from.`,
+                        'You cannot send to an address that has already been spent from.',
                     ),
                 );
             }
@@ -226,13 +231,23 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                     dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
                     dispatch(sendTransferSuccess(address, value));
                     cb();
+
+                    // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
+                    // Would be the tail anyways.
+                    // Also check if it was a value transfer
+                    if (value) {
+                        const bundle = get(success, `[${0}].bundle`);
+                        dispatch(
+                            updateUnconfirmedBundleTails({ [bundle]: filter(success, tx => tx.currentIndex === 0) }),
+                        );
+                    }
                 } else {
                     dispatch(sendTransferError());
                     dispatch(
                         generateAlert(
                             'error',
                             'Invalid Response',
-                            `The node returned an invalid response while sending transfer.`,
+                            'The node returned an invalid response while sending transfer.',
                         ),
                     );
                 }
@@ -246,7 +261,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                     generateAlert(
                         'error',
                         'Transfer Error',
-                        `Something went wrong while sending your transfer. Please try again.`,
+                        'Something went wrong while sending your transfer. Please try again.',
                     ),
                 );
             } else {
@@ -265,7 +280,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                         generateAlert(
                             'error',
                             'Key reuse',
-                            `You cannot send to an address that has already been spent from.`,
+                            'You cannot send to an address that has already been spent from.',
                         ),
                     );
                 }
@@ -339,7 +354,7 @@ export function randomiseSeed(randomBytesFn) {
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);
-                dispatch(generateAlert('error', 'Something went wrong', `Please restart the app.`));
+                dispatch(generateAlert('error', 'Something went wrong', 'Please restart the app.'));
             }
         });
     };
@@ -364,3 +379,8 @@ export function setSeedName(seedName) {
         payload: seedName,
     };
 }
+
+export const setPromotionStatus = payload => ({
+    type: ActionTypes.SET_PROMOTION_STATUS,
+    payload,
+});
