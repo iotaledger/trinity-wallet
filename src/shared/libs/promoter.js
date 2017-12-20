@@ -29,15 +29,21 @@ export const getFirstConsistentTail = (tails, idx) => {
 export const isWithinAnHourAndTenMinutesAgo = timestamp =>
     isMinutesAgo(convertUnixTimeToJSDate(timestamp), 1) && !isMinutesAgo(convertUnixTimeToJSDate(timestamp), 60);
 
+export const isWithinAnHour = timestamp => !isMinutesAgo(convertUnixTimeToJSDate(timestamp), 60);
+
 export const getBundleTailsForSentTransfers = (transfers, addresses) => {
     const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
     const sentTransfers = get(categorizedTransfers, 'sent');
 
     const grabTails = (payload, val) => {
         each(val, v => {
-            const hasMadeTransactionWithinAnHour = isWithinAnHourAndTenMinutesAgo(v.timestamp);
+            const attachmentTimestamp = get(v, 'attachmentTimestamp');
 
-            if (!v.persistence && v.currentIndex === 0 && v.value > 0 && hasMadeTransactionWithinAnHour) {
+            // Pick all those transaction that were replayed with in the last hour
+            const hasMadeReattachmentWithinAnHour =
+                isWithinAnHour(attachmentTimestamp) || isWithinAnHour(attachmentTimestamp / 1000);
+
+            if (!v.persistence && v.currentIndex === 0 && v.value > 0 && hasMadeReattachmentWithinAnHour) {
                 const bundle = v.bundle;
 
                 if (bundle in payload) {
