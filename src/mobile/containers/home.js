@@ -24,17 +24,17 @@ import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-m
 import { getTailTransactionHashesForPendingTransactions } from 'iota-wallet-shared-modules/store';
 import {
     setReceiveAddress,
-    replayBundle,
     setReady,
     clearTempData,
     setPassword,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { iota } from '../../shared/libs/iota';
 import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
 import DropdownAlert from 'react-native-dropdownalert';
-import Reattacher from '../components/reAttacher';
+import Promoter from './promoter';
 import { Navigation } from 'react-native-navigation';
 import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
@@ -228,7 +228,7 @@ class Home extends Component {
 
     render() {
         const { t } = this.props;
-        const { childRoute, tailTransactionHashesForPendingTransactions } = this.props;
+        const { childRoute } = this.props;
         const children = this.renderChildren(childRoute);
         let { password } = this.state;
 
@@ -307,10 +307,7 @@ class Home extends Component {
                         </View>
                     )}
                     {this.state.minimised && <View />}
-                    <Reattacher
-                        attachments={tailTransactionHashesForPendingTransactions}
-                        attach={this.props.replayBundle}
-                    />
+                    <Promoter />
                     <DropdownAlert
                         ref={ref => DropdownHolder.setDropdown(ref)}
                         elevation={120}
@@ -452,7 +449,6 @@ const mapStateToProps = state => ({
     alerts: state.alerts,
     tempAccount: state.tempAccount,
     settings: state.settings,
-    tailTransactionHashesForPendingTransactions: getTailTransactionHashesForPendingTransactions(state),
     account: state.account,
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
@@ -469,7 +465,6 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setBalance(addressesWithBalance));
     },
     changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-    replayBundle: (transaction, depth, weight) => dispatch(replayBundle(transaction, depth, weight)),
     generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
     disposeOffAlert: () => dispatch(disposeOffAlert()),
     setFirstUse: boolean => dispatch(setFirstUse(boolean)),
@@ -487,7 +482,6 @@ Home.propTypes = {
     navigator: PropTypes.object.isRequired,
     childRoute: PropTypes.string.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
-    tailTransactionHashesForPendingTransactions: PropTypes.array.isRequired,
     generateAlert: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
     isTopBarActive: PropTypes.bool.isRequired,
