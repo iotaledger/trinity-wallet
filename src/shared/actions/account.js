@@ -21,12 +21,7 @@ import {
     mergeLatestTransfersInOld,
 } from '../libs/accountUtils';
 import { setReady, getTransfersRequest, getTransfersSuccess, setPromotionStatus } from './tempAccount';
-import {
-    isAboveMaxDepth,
-    getFirstConsistentTail,
-    isWithinAnHourAndTenMinutesAgo,
-    getBundleTailsForSentTransfers,
-} from '../libs/promoter';
+import { getFirstConsistentTail, isWithinAnHour, getBundleTailsForSentTransfers } from '../libs/promoter';
 import { generateAlert } from '../actions/alerts';
 import { rearrangeObjectKeys } from '../libs/util';
 
@@ -135,47 +130,6 @@ export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => 
     const alertArguments = (title, message, status = 'success') => [status, title, message];
 
     const promote = tail => {
-        if (!isAboveMaxDepth(get(tail, 'attachmentTimestamp'))) {
-            consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
-
-            return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
-                if (!consistentTail) {
-                    const topTx = head(allTails);
-                    const txHash = get(topTx, 'hash');
-
-                    return iota.api.replayBundle(txHash, 3, 14, (err, newTxs) => {
-                        if (err) {
-                            console.error(err); // eslint-disable-line no-console
-                            return dispatch(setPromotionStatus(false));
-                        }
-
-                        dispatch(
-                            generateAlert(
-                                ...alertArguments(
-                                    'Autoreattaching to Tangle',
-                                    `Reattaching transaction with hash ${txHash}`,
-                                ),
-                            ),
-                        );
-
-                        const newTail = filter(newTxs, t => t.currentIndex === 0);
-                        // Update local copy for all tails
-                        allTails = concat([], newTail, allTails);
-
-                        consistentTails = concat([], newTail, consistentTails);
-
-                        const existingTailsInStore = getState().account.unconfirmedBundleTails;
-                        const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
-
-                        dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedTails, bundle)));
-                        return dispatch(setPromotionStatus(false));
-                    });
-                }
-
-                return promote(consistentTail);
-            });
-        }
-
         const spamTransfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }];
 
         return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, err => {
@@ -200,10 +154,10 @@ export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => 
                 generateAlert(...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`)),
             );
 
-            const existingTailsInStore = getState().account.unconfirmedBundleTails;
-            const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
+            const existingBundlesInStore = getState().account.unconfirmedBundleTails;
+            const updatedBundles = merge({}, existingBundlesInStore, { [bundle]: allTails });
 
-            dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedTails, bundle)));
+            dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedBundles, bundle)));
 
             return dispatch(setPromotionStatus(false));
         });
@@ -216,9 +170,11 @@ export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => 
         }
 
         const tailsFromLatestTransactionObjects = filter(txs, t => {
-            const hasMadeTransactionWithinAnHour = isWithinAnHourAndTenMinutesAgo(t.timestamp);
+            const attachmentTimestamp = get(t, 'attachmentTimestamp');
+            const hasMadeReattachmentWithinAnHour =
+                isWithinAnHour(attachmentTimestamp) || isWithinAnHour(attachmentTimestamp / 1000);
 
-            return !t.persistence && t.currentIndex === 0 && t.value > 0 && hasMadeTransactionWithinAnHour;
+            return !t.persistence && t.currentIndex === 0 && t.value > 0 && hasMadeReattachmentWithinAnHour;
         });
 
         if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
@@ -242,7 +198,7 @@ export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => 
 
             return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
                 if (!consistentTail) {
-                    // Grab any hash from tail to replay
+                    // Grab hash from the top tail to replay
                     const topTx = head(allTails);
                     const txHash = get(topTx, 'hash');
 
@@ -267,10 +223,10 @@ export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => 
 
                         // Probably unnecessary at this point
                         consistentTails = concat([], newTail, consistentTails);
-                        const existingTailsInStore = getState().account.unconfirmedBundleTails;
+                        const existingBundlesInStore = getState().account.unconfirmedBundleTails;
 
-                        const updatedTails = merge({}, existingTailsInStore, { [bundle]: allTails });
-                        dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedTails, bundle)));
+                        const updateBundles = merge({}, existingBundlesInStore, { [bundle]: allTails });
+                        dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updateBundles, bundle)));
 
                         return dispatch(setPromotionStatus(false));
                     });

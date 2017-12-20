@@ -30,7 +30,11 @@ class Promoter extends Component {
     };
 
     static isReady(latestTail) {
-        return isWithinAnHourAndTenMinutesAgo(get(latestTail, 'timestamp'));
+        const attachmentTimestamp = get(latestTail, 'attachmentTimestamp');
+        return (
+            isWithinAnHourAndTenMinutesAgo(attachmentTimestamp) ||
+            isWithinAnHourAndTenMinutesAgo(attachmentTimestamp / 1000)
+        );
     }
 
     constructor() {
@@ -61,14 +65,26 @@ class Promoter extends Component {
                     const tails = unconfirmedBundleTails[top];
                     const isTheOnlyBundle = size(bundles) === 1;
 
-                    const tailsSortedWithTimestamp = sortWithProp(tails, 'timestamp');
+                    const tailsSortedWithAttachmentTimestamp = sortWithProp(tails, 'attachmentTimestamp');
+                    const tailWithMostRecentTimestamp = get(tailsSortedWithAttachmentTimestamp, '[0]');
 
-                    if (Promoter.isReady(tailsSortedWithTimestamp[0])) {
-                        this.props.initializeTxPromotion(top, unconfirmedBundleTails[top], false);
+                    if (Promoter.isReady(tailWithMostRecentTimestamp)) {
+                        this.props.initializeTxPromotion(top, unconfirmedBundleTails[top]);
                     } else {
-                        const latestTimestamp = get(tailsSortedWithTimestamp, '[0].timestamp');
                         // Check where it lies within the ten minutes
-                        if (!isMinutesAgo(convertUnixTimeToJSDate(latestTimestamp), 1)) {
+                        if (
+                            !isMinutesAgo(
+                                convertUnixTimeToJSDate(
+                                    get(tailWithMostRecentTimestamp, 'attachmentTimestamp') ||
+                                        !isMinutesAgo(
+                                            convertUnixTimeToJSDate(
+                                                get(tailWithMostRecentTimestamp, 'attachmentTimestamp') / 1000,
+                                            ),
+                                        ),
+                                ),
+                                1,
+                            )
+                        ) {
                             // Move the top transaction to the last
                             // Ignore if its the only bundle
                             if (!isTheOnlyBundle) {
@@ -76,7 +92,16 @@ class Promoter extends Component {
                                     rearrangeObjectKeys(unconfirmedBundleTails, top),
                                 );
                             }
-                        } else if (isMinutesAgo(convertUnixTimeToJSDate(latestTimestamp), 60)) {
+                        } else if (
+                            isMinutesAgo(
+                                convertUnixTimeToJSDate(get(tailWithMostRecentTimestamp, 'attachmentTimestamp')),
+                                60,
+                            ) ||
+                            isMinutesAgo(
+                                convertUnixTimeToJSDate(get(tailWithMostRecentTimestamp, 'attachmentTimestamp') / 1000),
+                                60,
+                            )
+                        ) {
                             this.props.removeBundleFromUnconfirmedBundleTails(top);
                         }
                     }
