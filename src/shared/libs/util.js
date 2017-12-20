@@ -156,9 +156,13 @@ export const parse = data => {
 export const rearrangeObjectKeys = (obj, prop) => {
     const allKeys = keys(obj);
     const withoutProp = filter(allKeys, k => k !== prop);
-    const withPropAsLastEl = concat([], withoutProp, prop);
+    const withPropAsLastEl = withoutProp.concat([prop]);
 
-    const order = (newObj, key) => (newObj[key] = obj[key]);
+    const order = (newObj, key) => {
+        newObj[key] = obj[key];
 
-    return transform(withPropAsLastEl, order, {});
+        return newObj;
+    };
+
+    return reduce(withPropAsLastEl, order, {});
 };
