@@ -1,3 +1,5 @@
+import { ActionTypes } from '../actions/tempAccount';
+
 const initialState = {
     ready: false,
     receiveAddress: ' ',
@@ -14,6 +16,7 @@ const initialState = {
     isSyncing: false,
     currentSetting: 'mainSettings',
     copiedToClipboard: false,
+    isPromoting: false,
 };
 
 export default (state = initialState, action) => {
@@ -144,6 +147,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 copiedToClipboard: action.payload,
+            };
+        case ActionTypes.SET_PROMOTION_STATUS:
+            return {
+                ...state,
+                isPromoting: action.payload,
             };
         default:
             return state;
