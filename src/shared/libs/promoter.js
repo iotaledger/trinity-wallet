@@ -5,7 +5,7 @@ import { isMinutesAgo, convertUnixTimeToJSDate } from '../libs/dateUtils';
 import { iota } from '../libs/iota';
 
 export const isAboveMaxDepth = timestamp => {
-    return timestamp < Date.now() && Math.floor(Date.now()) - parseInt(timestamp) < 14 * 2 * 60 * 1000;
+    return timestamp < Date.now() && Date.now() - parseInt(timestamp) < 11 * 60 * 1000;
 };
 
 export const getFirstConsistentTail = (tails, idx) => {
@@ -13,14 +13,17 @@ export const getFirstConsistentTail = (tails, idx) => {
         return Promise.resolve(false);
     }
 
-    return iota.api.isPromotable(get(tails[idx], 'hash')).then(state => {
-        if (state && isAboveMaxDepth(get(tails[idx], 'attachmentTimestamp'))) {
-            return tails[idx];
-        }
+    return iota.api
+        .isPromotable(get(tails[idx], 'hash'))
+        .then(state => {
+            if (state && isAboveMaxDepth(get(tails[idx], 'attachmentTimestamp'))) {
+                return tails[idx];
+            }
 
-        idx += 1;
-        return getFirstConsistentTail(tails, idx);
-    });
+            idx += 1;
+            return getFirstConsistentTail(tails, idx);
+        })
+        .catch(() => false);
 };
 
 export const isWithinAnHourAndTenMinutesAgo = timestamp =>
