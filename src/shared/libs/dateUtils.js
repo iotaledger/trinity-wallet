@@ -22,6 +22,8 @@ export const isMinutesAgo = (time, minutes) => {
     return moment(time).isBefore(moment().subtract(minutes, 'minutes'));
 };
 
+export const isValid = (dateString, format = 'YYYY MMM DD') => moment(dateString, format).isValid();
+
 export const getCurrentYear = () => new Date().getFullYear();
 
 export const formatTime = ts => {

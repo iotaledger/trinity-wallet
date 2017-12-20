@@ -21,11 +21,12 @@ import COLORS from '../theme/Colors';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-//import DropdownHolder from './dropdownHolder';
+// import DropdownHolder from './dropdownHolder';
 
 import { width, height } from '../util/dimensions';
+
 const StatusBarDefaultBarStyle = 'light-content';
-//const dropdown = DropdownHolder.getDropDown();
+// const dropdown = DropdownHolder.getDropDown();
 
 class SeedReentry extends React.Component {
     constructor(props) {
@@ -85,7 +86,7 @@ class SeedReentry extends React.Component {
                                     tintColor="#F7D002"
                                     autoCapitalize={'characters'}
                                     autoCorrect={false}
-                                    enablesReturnKeyAutomatically={true}
+                                    enablesReturnKeyAutomatically
                                     returnKeyType="done"
                                     value={seed}
                                     onChangeText={seed => this.setState({ seed })}
@@ -95,10 +96,7 @@ class SeedReentry extends React.Component {
                                     onSubmitEditing={() => this.onDonePress()}
                                 />
                                 <View style={styles.infoTextContainer}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/info.png')}
-                                        style={styles.infoIcon}
-                                    />
+                                    <Image source={infoImagePath} style={styles.infoIcon} />
                                     <Text style={styles.infoText}>{t('thisIsACheck')}</Text>
                                     <Text style={styles.infoText}>{t('ifYouHaveNotSaved')}</Text>
                                 </View>
