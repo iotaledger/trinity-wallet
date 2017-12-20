@@ -73,8 +73,7 @@ class EnterSeed extends React.Component {
         });
     }
     onQRPress() {
-        //this._showModal();
-        getChecksum(this.state.seed);
+        this._showModal();
     }
 
     onQRRead(data) {
