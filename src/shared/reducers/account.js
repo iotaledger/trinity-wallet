@@ -1,11 +1,6 @@
-import isEmpty from 'lodash/isEmpty';
-import get from 'lodash/get';
-import reduce from 'lodash/reduce';
-import map from 'lodash/map';
-import each from 'lodash/each';
-import keys from 'lodash/keys';
-import { iota } from '../libs/iota';
-import { isMinutesAgo, convertUnixTimeToJSDate } from '../libs/dateUtils';
+import merge from 'lodash/merge';
+import omit from 'lodash/omit';
+import { ActionTypes } from '../actions/account';
 
 const account = (
     state = {
@@ -14,10 +9,26 @@ const account = (
         firstUse: true,
         onboardingComplete: false,
         balance: 0,
+        unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
     },
     action,
 ) => {
     switch (action.type) {
+        case ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS:
+            return {
+                ...state,
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload),
+            };
+        case ActionTypes.REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS:
+            return {
+                ...state,
+                unconfirmedBundleTails: omit(state.unconfirmedBundleTails, action.payload),
+            };
+        case ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS:
+            return {
+                ...state,
+                unconfirmedBundleTails: action.payload,
+            };
         case 'SET_ACCOUNT_INFO':
             return {
                 ...state,
@@ -96,38 +107,3 @@ const account = (
 };
 
 export default account;
-
-export const getTailTransactionHashesForPendingTransactions = (accountInfo, currentIndex) => {
-    const propKeys = keys(accountInfo);
-    const seedName = get(propKeys, `[${currentIndex}]`);
-    const currentSeedAccountInfo = get(accountInfo, seedName);
-    const addressesAsDict = get(currentSeedAccountInfo, 'addresses');
-    const transfers = get(currentSeedAccountInfo, 'transfers');
-
-    if (!isEmpty(transfers) && !isEmpty(addressesAsDict)) {
-        const normalize = (res, val) => {
-            each(val, v => {
-                if (
-                    !v.persistence &&
-                    v.currentIndex === 0 &&
-                    v.value > 0 &&
-                    isMinutesAgo(convertUnixTimeToJSDate(v.timestamp), 10) &&
-                    !isMinutesAgo(convertUnixTimeToJSDate(v.timestamp), 1440)
-                ) {
-                    res.push(v.hash);
-                }
-            });
-
-            return res;
-        };
-
-        const addresses = map(addressesAsDict, (v, k) => k);
-
-        const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
-        const sentTransfers = get(categorizedTransfers, 'sent');
-
-        return reduce(sentTransfers, normalize, []);
-    }
-
-    return [];
-};

@@ -1,1 +1,1 @@
-export const defaultNode = 'http://148.251.181.105:14265/';
+export const defaultNode = 'http://astra2261.startdedicated.net:14265';
