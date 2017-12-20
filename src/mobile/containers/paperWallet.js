@@ -17,6 +17,7 @@ import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox
 import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked.png';
 import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import GENERAL from '../theme/general';
 
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
@@ -429,7 +430,7 @@ const styles = StyleSheet.create({
     optionButton: {
         borderColor: '#8BD4FF',
         borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
@@ -462,7 +463,7 @@ const styles = StyleSheet.create({
     doneButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -482,7 +483,7 @@ const styles = StyleSheet.create({
     printButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2.5,
         height: height / 16,
         justifyContent: 'center',
@@ -508,7 +509,7 @@ const styles = StyleSheet.create({
     seedBox: {
         borderColor: 'black',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 3.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -584,7 +585,7 @@ const styles = StyleSheet.create({
     checksum: {
         width: width / 12,
         height: height / 35,
-        borderRadius: 4,
+        borderRadius: GENERAL.borderRadiusSmall,
         borderColor: 'black',
         borderWidth: height / 1000,
         justifyContent: 'center',

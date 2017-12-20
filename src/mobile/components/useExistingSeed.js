@@ -12,6 +12,7 @@ import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import arrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 
@@ -245,7 +246,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 0.8,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6.5,
         height: height / 16,
     },
@@ -314,7 +315,7 @@ const styles = StyleSheet.create({
     checksum: {
         width: width / 8,
         height: height / 20,
-        borderRadius: 5,
+        borderRadius: GENERAL.borderRadiusSmall,
         borderColor: 'white',
         borderWidth: height / 1000,
         justifyContent: 'center',

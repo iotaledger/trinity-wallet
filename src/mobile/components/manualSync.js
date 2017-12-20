@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Fonts from '../theme/Fonts';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     syncButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2.7,
         height: height / 17,
         justifyContent: 'center',

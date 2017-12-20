@@ -12,6 +12,8 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import { Navigation } from 'react-native-navigation';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
+
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
 
@@ -178,7 +180,7 @@ class NewSeedSetup extends Component {
                                 style={{
                                     borderColor: '#9DFFAF',
                                     borderWidth: 1.2,
-                                    borderRadius: 10,
+                                    borderRadius: GENERAL.borderRadius,
                                     width: width / 3,
                                     height: height / 14,
                                     alignItems: 'center',
@@ -274,7 +276,7 @@ const styles = StyleSheet.create({
     generateButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2.2,
         height: height / 16,
         justifyContent: 'center',
@@ -302,7 +304,7 @@ const styles = StyleSheet.create({
     leftButton: {
         borderColor: '#F7D002',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',

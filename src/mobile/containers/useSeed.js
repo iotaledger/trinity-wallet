@@ -22,6 +22,7 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { storeSeedInKeychain } from '../util/keychain';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
 //import DropdownHolder from './dropdownHolder';
 
@@ -225,7 +226,7 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         height: height / 3.7,
         alignItems: 'center',
@@ -271,7 +272,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6,
         height: height / 16,
     },
