@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     rightButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
     leftButton: {
         borderColor: '#F7D002',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',

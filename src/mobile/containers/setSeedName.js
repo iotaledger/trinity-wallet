@@ -14,6 +14,8 @@ import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/ac
 import { width, height } from '../util/dimensions';
 import keychain, { storeSeedInKeychain, hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
+
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 const StatusBarDefaultBarStyle = 'light-content';
@@ -266,7 +268,7 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         alignItems: 'center',
         justifyContent: 'center',

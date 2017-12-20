@@ -22,6 +22,7 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { isAndroid } from '../util/device';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
@@ -281,7 +282,7 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.5,
         alignItems: 'center',
         justifyContent: 'flex-start',

@@ -3,6 +3,7 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
@@ -62,7 +63,6 @@ class Welcome extends React.Component {
                         leftText={t('global:back')}
                         rightText={t('global:next')}
                     />*/}
-
                 </View>
             </View>
         );
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     nextButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     nextButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
