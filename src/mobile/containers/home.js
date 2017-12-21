@@ -28,12 +28,7 @@ import {
     clearTempData,
     setPassword,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
-import {
-    getAccountInfo,
-    setBalance,
-    setFirstUse,
-    getNewTransfersAndAddresses,
-} from 'iota-wallet-shared-modules/actions/account';
+import { getAccountInfo, setBalance, setFirstUse, getNewAddressData } from 'iota-wallet-shared-modules/actions/account';
 import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { iota } from '../../shared/libs/iota';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
@@ -93,81 +88,58 @@ class Home extends Component {
 
     startBackgroundProcesses() {
         AppState.addEventListener('change', this._handleAppStateChange);
-
-        //  timer.setInterval('addressPolling', () => this.startAddressPolling(), 83000);
-        timer.setInterval('polling', () => this.startAccountPolling(), 47000);
-        timer.setInterval('chartPolling', () => this.startChartPolling(), 101000);
+        timer.setInterval('polling', () => this.pollForNewAddressesAndTransfers(), 47000);
+        timer.setInterval('chartPolling', () => this.pollForMarketData(), 101000);
     }
 
     endBackgroundProcesses() {
         AppState.removeEventListener('change', this._handleAppStateChange);
         timer.clearInterval('polling');
         timer.clearInterval('chartPolling');
-        timer.clearInterval('addressPolling');
     }
 
-    startAccountPolling() {
+    pollForNewAddressesAndTransfers() {
         if (
             !this.props.tempAccount.isGettingTransfers &&
             !this.props.tempAccount.isSendingTransfer &&
             !this.props.tempAccount.isSyncing
         ) {
-            console.log('POLLING TX HISTORY');
-            const seedIndex = this.props.tempAccount.seedIndex;
-            const seedName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-            this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                if (error) this.onNodeErrorPolling();
-            });
-        }
-    }
-
-    startAddressPolling() {
-        if (
-            !this.props.tempAccount.isGettingTransfers &&
-            !this.props.tempAccount.isSendingTransfer &&
-            !this.props.tempAccount.isSyncing
-        ) {
-            console.log('POLLING ADDRESSES');
+            console.log('POLLING');
             const accountInfo = this.props.account.accountInfo;
             const seedIndex = this.props.tempAccount.seedIndex;
             const addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
-            const transfers = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers;
             const accountName = this.props.account.seedNames[seedIndex];
-
-            const index = Object.keys(addressData).length - 1;
-            //console.log(transfers)
             keychain
                 .get()
                 .then(credentials => {
                     if (get(credentials, 'data')) {
                         const seed = getSeed(credentials.data, seedIndex);
-                        getNewTransfersAndAddresses(seed);
+                        getNewAddressData(seed);
                     } else {
                         console.log('error');
                     }
                 })
                 .catch(err => console.log(err));
 
-            const getNewTransfersAndAddresses = seed => {
-                this.props.getNewTransfersAndAddresses(
-                    seed,
-                    index,
-                    accountName,
-                    addressData,
-                    transfers,
-                    (error, success) => {
-                        if (error) {
-                            console.log(error);
-                            this.onNodeErrorPolling();
-                        }
-                    },
-                );
+            const getNewAddressData = seed => {
+                this.props.getNewAddressData(seed, accountName, addressData, (error, success) => {
+                    if (error) {
+                        this.onNodeErrorPolling();
+                    } else {
+                        getNewTransfers();
+                    }
+                });
+            };
+            const getNewTransfers = () => {
+                const newAccountInfo = this.props.account.accountInfo;
+                this.props.getAccountInfo(accountName, seedIndex, newAccountInfo, (error, success) => {
+                    if (error) this.onNodeErrorPolling();
+                });
             };
         }
     }
 
-    startChartPolling() {
+    pollForMarketData() {
         // 'console.log('POLLING CHART DATA')'
         if (
             !this.props.settings.isSyncing &&
@@ -514,8 +486,8 @@ const mapDispatchToProps = dispatch => ({
     getMarketData: () => dispatch(getMarketData()),
     getPrice: () => dispatch(getPrice()),
     getChartData: () => dispatch(getChartData()),
-    getNewTransfersAndAddresses: (seed, index, accountName, oldAddressData, oldTransfers, callback) =>
-        dispatch(getNewTransfersAndAddresses(seed, index, accountName, oldAddressData, oldTransfers, callback)),
+    getNewAddressData: (seed, accountName, addressData, callback) =>
+        dispatch(getNewAddressData(seed, accountName, addressData, callback)),
 });
 
 Home.propTypes = {
