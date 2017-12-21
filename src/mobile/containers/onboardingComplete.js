@@ -32,17 +32,14 @@ class OnboardingComplete extends React.Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Text style={styles.infoText}>
-                            The wallet is now set up and ready to use. If you need to make any changes in the future,
-                            look in the Settings menu.
-                        </Text>
+                        <Text style={styles.infoText}>{t('walletReady')}</Text>
                     </View>
                     <Image source={balloonsImagePath} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onNextPress()}>
                         <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>NEXT</Text>
+                            <Text style={styles.nextText}>{t('global:next')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -118,4 +115,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default OnboardingComplete;
+export default translate(['onboardingComplete', 'global'])(OnboardingComplete);
