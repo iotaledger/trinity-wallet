@@ -209,6 +209,26 @@ export const deduplicateTransferBundles = transfers => {
     return map(aggregated, v => v);
 };
 
+// getAccountData returns flatly structures list of tx objects
+// Traverse through the transfer objects and group them wrt bundle
+export const aggregateAccountDataTransferBundles = transfers => {
+    const aggregate = (res, transfer) => {
+        const top = transfer[0];
+        const bundle = top.bundle;
+
+        if (bundle in res) {
+            res[bundle] = transfer.concat(res[bundle]);
+        } else {
+            res = { ...res, ...{ [bundle]: transfer } };
+        }
+
+        return res;
+    };
+
+    const aggregated = reduce(transfers, aggregate, {});
+    return map(aggregated, tx => tx);
+};
+
 export const filterSpentAddresses = inputs => {
     return new Promise((resolve, reject) => {
         // Find transaction objects for addresses
