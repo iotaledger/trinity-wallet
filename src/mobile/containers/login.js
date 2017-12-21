@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import React from 'react';
 import {
     StyleSheet,
@@ -6,29 +7,27 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    ImageBackground,
     ScrollView,
     StatusBar,
     Keyboard,
 } from 'react-native';
-import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, clearTempData, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import keychain, { getSeed } from '../util/keychain';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import DropdownHolder from '../components/dropdownHolder';
-import ExtraDimensions from 'react-native-extra-dimensions-android';
-import IOTA from 'iota.lib.js';
 import Modal from 'react-native-modal';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import NodeSelection from '../components/nodeSelection.js';
+import COLORS from '../theme/Colors';
 
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 const StatusBarDefaultBarStyle = 'light-content';
 
 import { width, height } from '../util/dimensions';
@@ -54,20 +53,17 @@ class Login extends React.Component {
     }
 
     _renderModalContent = () => (
-        <ImageBackground
-            source={require('iota-wallet-shared-modules/images/bg-blue.png')}
-            style={{ width: width / 1.15, alignItems: 'center' }}
-        >
+        <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
             <View style={styles.modalContent}>
-                <Text style={styles.questionText}>Do you want to select a different node?</Text>
+                <Text style={styles.questionText}>{t('selectDifferentNode')}</Text>
                 <OnboardingButtons
                     onLeftButtonPress={() => this._hideModal()}
                     onRightButtonPress={() => this.navigateToNodeSelection()}
-                    leftText={'NO'}
-                    rightText={'YES'}
+                    leftText={t('global:no')}
+                    rightText={t('global:yes')}
                 />
             </View>
-        </ImageBackground>
+        </View>
     );
 
     getWalletData() {
@@ -78,29 +74,32 @@ class Login extends React.Component {
 
     onLoginPress() {
         const { t } = this.props;
+        Keyboard.dismiss;
         if (!this.state.password) {
-            this.dropdown.alertWithType(
-                'error',
-                'Empty password',
-                'You must enter a password to log in. Please try again.',
-            );
+            this.dropdown.alertWithType('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
-            getFromKeychain(this.state.password, value => {
-                this.props.setPassword(this.state.password);
-                if (value) {
-                    var seed = getSeed(value, 0);
-                    login(seed);
-                } else {
-                    error();
-                }
-            });
+            keychain
+                .get()
+                .then(credentials => {
+                    this.props.setPassword(this.state.password);
+                    const hasData = get(credentials, 'data');
+                    const hasCorrectPassword = get(credentials, 'password') === this.state.password;
+
+                    if (hasData && hasCorrectPassword) {
+                        const seed = getSeed(credentials.data, 0);
+                        login(seed);
+                    } else {
+                        error();
+                    }
+                })
+                .catch(err => console.log(err)); // Dropdown
         }
 
         error = () => {
             this.dropdown.alertWithType(
                 'error',
-                'Unrecognised password',
-                'The password was not recognised. Please try again.',
+                t('global:unrecognisedPassword'),
+                t('global:unrecognisedPasswordExplanation'),
             );
         };
 
@@ -146,13 +145,13 @@ class Login extends React.Component {
         this.props.navigator.pop({
             animated: false,
         });
-        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        this.dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
         this._showModal();
     }
 
     onUseSeedPress() {
         const { t } = this.props;
-        this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        this.dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
         {
             /*this.props.navigator.push({
             screen: 'useSeed',
@@ -169,18 +168,15 @@ class Login extends React.Component {
         let { password } = this.state;
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 {!this.state.changingNode && (
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <View>
                             <View style={styles.topContainer}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                                    style={styles.iotaLogo}
-                                />
+                                <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your password.</Text>
+                                    <Text style={styles.title}>{t('enterPassword')}</Text>
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
@@ -191,7 +187,7 @@ class Login extends React.Component {
                                     fontSize={width / 20.7}
                                     labelPadding={3}
                                     baseColor="white"
-                                    label="Password"
+                                    label={t('global:password')}
                                     tintColor="#F7D002"
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
@@ -203,13 +199,13 @@ class Login extends React.Component {
                                         width: width / 1.4,
                                     }}
                                     secureTextEntry={true}
-                                    onSubmitEditing={() => Keyboard.dismiss}
+                                    onSubmitEditing={() => this.onLoginPress()}
                                 />
                             </View>
                             <View style={styles.bottomContainer}>
                                 <TouchableOpacity onPress={event => this.onLoginPress()}>
                                     <View style={styles.loginButton}>
-                                        <Text style={styles.loginText}>LOGIN</Text>
+                                        <Text style={styles.loginText}>{t('login')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -258,7 +254,7 @@ class Login extends React.Component {
                 >
                     {this._renderModalContent()}
                 </Modal>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -268,7 +264,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#102e36',
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
@@ -415,4 +411,4 @@ const mapDispatchToProps = dispatch => ({
     setFullNode: node => dispatch(setFullNode(node)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));

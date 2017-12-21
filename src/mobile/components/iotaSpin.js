@@ -1,5 +1,6 @@
 import React from 'react';
 import { Animated, Easing } from 'react-native';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 class IotaSpin extends React.Component {
     constructor() {
@@ -67,7 +68,7 @@ class IotaSpin extends React.Component {
                 style={{
                     transform: [{ scale: scale }, { rotate: spin }],
                 }}
-                source={require('iota-wallet-shared-modules/images/iota-glow.png')}
+                source={iotaGlowImagePath}
             />
         );
     }

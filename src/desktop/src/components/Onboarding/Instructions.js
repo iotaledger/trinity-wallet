@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import Template, { Main, Footer } from './Template';
+import Template, { Content, Footer } from './Template';
 import Button from '../UI/Button';
 
 export default translate('welcome1')(
@@ -14,19 +14,19 @@ export default translate('welcome1')(
             const { t } = this.props;
             return (
                 <Template>
-                    <Main>
-                        <p>{t('text1')}</p>
-                        <p>{t('text2')}</p>
+                    <Content>
+                        <p>{t('welcome:thankYou')}</p>
+                        <p>{t('welcome:weWillSpend')}</p>
                         <p>
-                            <strong>{t('reminder')}</strong>
+                            <strong>{t('welcome:reminder')}</strong>
                         </p>
-                    </Main>
+                    </Content>
                     <Footer>
                         <Button to="/" variant="warning">
-                            {t('button2')}
+                            {t('global:back')}
                         </Button>
                         <Button to="/wallet-setup" variant="success">
-                            {t('button1')}
+                            {t('global:next')}
                         </Button>
                     </Footer>
                 </Template>

@@ -5,31 +5,34 @@ import { persistStore } from 'redux-persist';
 import { withRouter } from 'react-router-dom';
 import store from 'store';
 import i18next from 'libs/i18next';
-import Loading from 'components/Layout/Loading';
+import Loading from 'components/UI/Loading';
 import Onboarding from 'components/Layout/Onboarding';
+import Main from 'components/Layout/Main';
 import Notifications from 'components/UI/Notifications';
 
 import './App.css';
 
-class ErrorBoundary extends React.Component {
-    static propTypes = {
-        children: PropTypes.node,
-    };
+// should be used later:
 
-    state = {};
-
-    componentDidCatch(error) {
-        this.setState(() => ({
-            error,
-        }));
-    }
-    render() {
-        if (this.state.error) {
-            return <p>{this.state.error.message}</p>;
-        }
-        return this.props.children;
-    }
-}
+// class ErrorBoundary extends React.Component {
+//     static propTypes = {
+//         children: PropTypes.node,
+//     };
+//
+//     state = {};
+//
+//     componentDidCatch(error) {
+//         this.setState(() => ({
+//             error,
+//         }));
+//     }
+//     render() {
+//         if (this.state.error) {
+//             return <p>{this.state.error.message}</p>;
+//         }
+//         return this.props.children;
+//     }
+// }
 
 class App extends React.Component {
     static propTypes = {
@@ -53,7 +56,7 @@ class App extends React.Component {
                     this.setState(() => ({
                         initialized: true,
                     })),
-                2500,
+                3200,
             );
         });
     }
@@ -81,7 +84,7 @@ class App extends React.Component {
             <div>
                 {this.state.error && <p>{this.state.error.message}</p>}
                 <Notifications />
-                {app.isOnboardingCompleted ? <div /> : <Onboarding />}
+                {app.isOnboardingCompleted ? <Main /> : <Onboarding />}
             </div>
         );
     }

@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import css from './Button.css';
 
 export default class Button extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
-        variant: PropTypes.oneOf(['default', 'success', 'warning', 'danger', 'info', 'extra', 'cta']).isRequired,
+        className: PropTypes.string,
+        variant: PropTypes.oneOf(['default', 'success', 'warning', 'danger', 'info', 'extra', 'cta', 'successDisabled'])
+            .isRequired,
         to: PropTypes.string,
     };
 
@@ -15,18 +18,18 @@ export default class Button extends React.PureComponent {
     };
 
     render() {
-        const { children, to, variant } = this.props;
+        const { children, className, to, variant } = this.props;
 
         if (to) {
             return (
-                <Link {...this.props} className={css[variant]}>
+                <Link {...this.props} className={classNames(className, css[variant])}>
                     {children}
                 </Link>
             );
         }
 
         return (
-            <button {...this.props} className={css[variant]}>
+            <button {...this.props} className={classNames(className, css[variant])}>
                 {children}
             </button>
         );
