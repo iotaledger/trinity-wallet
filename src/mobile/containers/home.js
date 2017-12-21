@@ -15,6 +15,7 @@ import {
     setPassword,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
@@ -24,6 +25,7 @@ import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
 import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
 
 import TopBar from './topBar';
+import withUserActivity from '../components/withUserActivity';
 import DropdownHolder from '../components/dropdownHolder';
 import Promoter from './promoter';
 import COLORS from '../theme/Colors';
@@ -86,16 +88,6 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
-    constructor() {
-        super();
-        this.state = {
-            mode: 'STANDARD',
-            // TODO Move this state to some redux state
-            inactive: false,
-            minimised: false,
-        };
-    }
-
     componentDidMount() {
         this.props.setFirstUse(false);
         const accountInfo = this.props.account.accountInfo;
@@ -146,23 +138,6 @@ class Home extends Component {
         });
     } */
 
-    // TODO Move all these state changing methods to some redux actions
-    onInactive() {
-        this.setState({ inactive: true });
-    }
-
-    onActive() {
-        this.setState({ inactive: false });
-    }
-
-    onMinimise() {
-        this.setState({ minimised: true });
-    }
-
-    onMaximise() {
-        this.setState({ minimised: false });
-    }
-
     startChartPolling() {
         // 'console.log('POLLING CHART DATA')'
         if (
@@ -193,6 +168,11 @@ class Home extends Component {
         }
     }
 
+    handleInactivity() {
+        const { setUserActivity } = this.props;
+        setUserActivity({ inactive: true });
+    }
+
     componentWillReceiveProps(newProps) {
         const didNotHaveAlertPreviously =
             !this.props.alerts.category && !this.props.alerts.title && !this.props.alerts.message;
@@ -206,22 +186,21 @@ class Home extends Component {
     }
 
     render() {
-        const { t, navigator } = this.props;
+        const { t, navigator, inactive, minimised, startBackgroundProcesses, endBackgroundProcesses } = this.props;
 
         return (
-            <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={() => this.onInActive()}>
+            <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={this.handleInactivity}>
                 <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
                     <StatusBar barStyle="light-content" />
-                    {!this.state.inactive &&
-                        !this.state.minimised && (
+                    {!inactive &&
+                        !minimised && (
                             <View style={{ flex: 1 }}>
                                 <View style={styles.topContainer} />
                                 <View style={styles.midContainer}>
                                     <TabContent
                                         navigator={navigator}
-                                        onMinimise={this.onMinimise}
-                                        onMaximise={this.onMaximise}
-                                        onInactive={this.onInactive}
+                                        startBackgroundProcesses={startBackgroundProcesses}
+                                        endBackgroundProcesses={endBackgroundProcesses}
                                     />
                                 </View>
                                 <View style={styles.bottomContainer}>
@@ -236,7 +215,7 @@ class Home extends Component {
                                 <TopBar />
                             </View>
                         )}
-                    {this.state.inactive && (
+                    {inactive && (
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <EnterPassword
                                 onLoginPress={this.onLoginPress}
@@ -246,7 +225,7 @@ class Home extends Component {
                             />
                         </View>
                     )}
-                    {this.state.minimised && <View />}
+                    {minimised && <View />}
                     <Promoter />
                     <DropdownAlert
                         ref={DropdownHolder.setDropdown}
@@ -274,6 +253,8 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     settings: state.settings,
     account: state.account,
+    inactive: state.app.inactive,
+    minimised: state.app.minimised,
 });
 
 const mapDispatchToProps = {
@@ -289,6 +270,7 @@ const mapDispatchToProps = {
     getMarketData,
     getPrice,
     getChartData,
+    setUserActivity,
 };
 
 Home.propTypes = {
@@ -298,6 +280,13 @@ Home.propTypes = {
     navigator: PropTypes.object.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
+    setUserActivity: PropTypes.func.isRequired,
+    startBackgroundProcesses: PropTypes.func.isRequired,
+    endBackgroundProcesses: PropTypes.func.isRequired,
+    inactive: PropTypes.bool.isRequired,
+    minimised: PropTypes.bool.isRequired,
 };
 
-export default translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default withUserActivity()(
+    translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home)),
+);
