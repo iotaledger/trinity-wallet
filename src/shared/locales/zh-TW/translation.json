@@ -41,7 +41,9 @@
         "enterAccountName": "輸入帳戶名稱",
         "accountName": "帳戶名稱",
         "noNickname": "尚未輸入帳戶名稱",
-        "noNicknameExplanation": "請輸入種子碼帳戶名稱"
+        "noNicknameExplanation": "請輸入種子碼帳戶名稱",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "糟糕！出錯了",
@@ -93,7 +95,8 @@
         "emptyPasswordExplanation": "您必須輸入密碼以登入。請再試一遍。",
         "enterPassword": "請輸入您的密碼。",
         "useSeed": "使用種子碼",
-        "login": "登入"
+        "login": "登入",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "首次載入種子碼。",
@@ -192,7 +195,9 @@
         "accountDeleted": "帳戶已刪除",
         "accountDeletedExplanation": "您的帳戶已從錢包中刪除。",
         "cannotPerformAction": "無法執行操作",
-        "cannotPerformActionExplanation": "轉到進階設定中重置錢包。"
+        "cannotPerformActionExplanation": "轉到進階設定中重置錢包。",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "此向操作無法復原",
@@ -204,7 +209,7 @@
         "areYouSure": "您確定要繼續嗎？"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "輸入密碼以重新設置您的錢包。",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "取消",
         "reset": "重設"
     },
