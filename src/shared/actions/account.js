@@ -7,22 +7,25 @@ import clone from 'lodash/clone';
 import size from 'lodash/size';
 import merge from 'lodash/merge';
 import filter from 'lodash/filter';
+import each from 'lodash/each';
+import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
 import { iota } from '../libs/iota';
 import { getSelectedAccount } from '../selectors/account';
 import {
-    addTransferValues,
     formatTransfers,
-    formatAddressData,
     formatFullAddressData,
     calculateBalance,
-    getIndexesWithBalanceChange,
-    groupTransfersByBundle,
-    getAddressesWithChangedBalance,
     mergeLatestTransfersInOld,
-    deduplicateBundles,
     markAddressSpend,
 } from '../libs/accountUtils';
-import { setReady, getTransfersRequest, getTransfersSuccess, setPromotionStatus } from './tempAccount';
+import {
+    setReady,
+    getTransfersRequest,
+    getTransfersSuccess,
+    getTransfersError,
+    setPromotionStatus,
+} from './tempAccount';
 import { getFirstConsistentTail, isWithinAnHour, getBundleTailsForSentTransfers } from '../libs/promoter';
 import { generateAlert } from '../actions/alerts';
 import { rearrangeObjectKeys } from '../libs/util';
@@ -153,8 +156,11 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                 // Calculate total balance
                 const totalBalance = newBalances.reduce((a, b) => a + b);
                 dispatch(setBalance(totalBalance));
-                dispatch(getTransfersRequest());
-                dispatch(getTransfers(seedName, unspentAddresses, cb));
+
+                // Only fetch latest transfers if there exists unspent addresses
+                if (!isEmpty(unspentAddresses)) {
+                    dispatch(getTransfers(seedName, unspentAddresses, cb));
+                }
             } else {
                 cb(error);
                 console.log(error);
@@ -172,71 +178,103 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
 
 export function getTransfers(seedName, addresses, cb) {
     return (dispatch, getState) => {
-        iota.api.findTransactionObjects({ addresses }, (error, success) => {
+        // Set flag to true so that polling waits for these network calls to complete.
+        dispatch(getTransfersRequest());
+
+        const errorCallback = err => {
+            dispatch(getTransfersError());
+            cb(err);
+            dispatch(
+                generateAlert(
+                    'error',
+                    'Invalid Response',
+                    'The node returned an invalid response while getting transfers.',
+                ),
+            );
+        };
+
+        iota.api.findTransactionObjects({ addresses }, (error, txObjects) => {
             if (!error) {
-                // Get full bundles
-                const bundles = [...new Set(success.map(tx => tx.bundle))];
-                iota.api.findTransactionObjects({ bundles }, (error, success) => {
-                    if (!error) {
+                const tailTransactionHashes = [];
+                const nonTailBundleHashes = [];
+                const bundles = [];
+
+                const pushIfNotExists = (pushTo, value) => {
+                    if (!includes(pushTo, value)) {
+                        pushTo.push(value);
+                    }
+                };
+
+                each(txObjects, tx => {
+                    if (tx.currentIndex === 0) {
+                        pushIfNotExists(tailTransactionHashes, tx.hash);
+                    } else {
+                        pushIfNotExists(nonTailBundleHashes, tx.bundle);
+                    }
+                });
+
+                iota.api.findTransactionObjects({ bundles: nonTailBundleHashes }, (err, fullTxObjects) => {
+                    if (!err) {
                         // If no transfers, exit
-                        if (success.length < 1) {
+                        // FIXME: setReady might be unnecessary at this point
+                        if (fullTxObjects.length < 1) {
                             dispatch(setReady());
                             dispatch(getTransfersSuccess());
                             return;
                         }
-                        // Add persistence to transaction objects
-                        iota.api.getLatestInclusion(success.map(tx => tx.hash), (error, inclusionStates) => {
-                            if (!error) {
-                                success.map((tx, i) => {
-                                    tx.persistence = inclusionStates[i];
-                                    return tx;
-                                });
-                                // Group transfers into bundles
-                                let transfers = groupTransfersByBundle(success);
-                                // Sort transfers and add transfer value
-                                const selectedAccount = getSelectedAccount(seedName, getState().account.accountInfo);
-                                let oldTransfers = selectedAccount.transfers;
-                                //transfers = mergeLatestTransfersInOld(oldTransfers, transfers);
-                                transfers = formatTransfers(transfers, addresses);
-                                // Update transfers then set ready
-                                //dispatch(updateTransfers(seedName, transfers));
-                                dispatch(setReady());
-                                dispatch(getTransfersSuccess());
-                                cb(null, success);
+
+                        each(fullTxObjects, tx => {
+                            if (tx.currentIndex === 0) {
+                                pushIfNotExists(tailTransactionHashes, tx.hash);
+                            }
+                        });
+
+                        const next = () => {
+                            const selectedAccount = getSelectedAccount(seedName, getState().account.accountInfo);
+                            const existingTransfers = selectedAccount.transfers;
+
+                            const updatedTransfers = mergeLatestTransfersInOld(existingTransfers, bundles);
+                            const updatedTransfersWithFormatting = formatTransfers(updatedTransfers, addresses);
+
+                            dispatch(updateTransfers(seedName, updatedTransfersWithFormatting));
+                            dispatch(setReady());
+                            dispatch(getTransfersSuccess());
+                            cb(null, bundles);
+                        };
+
+                        iota.api.getLatestInclusion(tailTransactionHashes, (e, inclusionStates) => {
+                            if (!e) {
+                                let tailsProcessed = 0;
+
+                                const getBundle = (tailTxHash, idx) => {
+                                    iota.api.getBundle(tailTxHash, (getBundleErr, bundle) => {
+                                        tailsProcessed += 1;
+
+                                        if (!getBundleErr) {
+                                            each(bundle, bundleTx => {
+                                                bundleTx.persistence = inclusionStates[idx];
+                                            });
+
+                                            bundles.push(bundle);
+
+                                            if (tailsProcessed === tailTransactionHashes.length) {
+                                                next();
+                                            }
+                                        }
+                                    });
+                                };
+
+                                each(tailTransactionHashes, getBundle);
                             } else {
-                                cb(error);
-                                console.log(error);
-                                dispatch(
-                                    generateAlert(
-                                        'error',
-                                        'Invalid Response',
-                                        'The node returned an invalid response while getting transfers.',
-                                    ),
-                                );
+                                errorCallback(e);
                             }
                         });
                     } else {
-                        cb(error);
-                        console.log(error);
-                        dispatch(
-                            generateAlert(
-                                'error',
-                                'Invalid Response',
-                                'The node returned an invalid response while getting transfers.',
-                            ),
-                        );
+                        errorCallback(err);
                     }
                 });
             } else {
-                cb(error);
-                console.log(error);
-                dispatch(
-                    generateAlert(
-                        'error',
-                        'Invalid Response',
-                        'The node returned an invalid response while getting transfers.',
-                    ),
-                );
+                errorCallback(error);
             }
         });
     };
@@ -265,68 +303,6 @@ export function getNewAddressData(seed, accountName, addressData, callback) {
             }
         });
     };
-}
-
-// Old getAccountInfo function. Pulls new transfers on balance change
-{
-    /*export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
-    return dispatch => {
-        // Current addresses and their balances
-        let addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
-        // Current transfers
-        const transfers = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers;
-        // Array of old balances
-        const oldBalances = Object.values(addressData).map(x => x.balance);
-        // Array of address spend status
-        const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
-        // Array of current addresses
-        const addresses = Object.keys(addressData);
-        // Get updated balances for current addresses
-        iota.api.getBalances(addresses, 1, (error, success) => {
-            if (!error) {
-                // Array of updated balances
-                let newBalances = success.balances;
-                newBalances = newBalances.map(Number);
-                // Get address indexes where balance has changed
-                const indexesWithBalanceChange = getIndexesWithBalanceChange(newBalances, oldBalances);
-                // Pair new balances to addresses to add to store
-                addressData = formatAddressData(addresses, newBalances, addressesSpendStatus);
-                // Calculate balance
-                const balance = calculateBalance(addressData);
-
-                dispatch(getTransfersRequest());
-                dispatch(getTransfers(seedName, unspentAddresses));
-
-                if (indexesWithBalanceChange.length > 0) {
-                    // Grab addresses where balance was updated.
-                    // Use these addresses to fetch latest transactions objects.
-                    const addressesWithChangedBalance = getAddressesWithChangedBalance(
-                        addresses,
-                        indexesWithBalanceChange,
-                    );
-                    dispatch(getTransfersRequest());
-                    Promise.resolve(dispatch(setAccountInfo(seedName, addressData, transfers, balance))).then(
-                        dispatch(getTransfers(seedName, addressesWithChangedBalance)),
-                    );
-                } else {
-                    cb(null, success);
-                    // Set account info, then finish loading
-                    dispatch(setAccountInfo(seedName, addressData, transfers, balance));
-                }
-            } else {
-                cb(error);
-                console.log(error);
-                dispatch(
-                    generateAlert(
-                        'error',
-                        'Invalid Response',
-                        'The node returned an invalid response while getting balance.',
-                    ),
-                );
-            }
-        });
-    };
-}*/
 }
 
 export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => {
