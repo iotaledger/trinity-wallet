@@ -41,7 +41,9 @@
         "enterAccountName": "Veuillez saisir un nom de compte.",
         "accountName": "Nom du compte",
         "noNickname": "Aucun nom de compte entré",
-        "noNicknameExplanation": "Veuillez entrer un nom de compte pour votre seed."
+        "noNicknameExplanation": "Veuillez entrer un nom de compte pour votre seed.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Oups. Une erreur est survenue",
@@ -93,7 +95,8 @@
         "emptyPasswordExplanation": "Un mot de passe est requis pour la connexion. Veuillez réessayer.",
         "enterPassword": "Veuillez renseigner votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
-        "login": "SE CONNECTER"
+        "login": "SE CONNECTER",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
@@ -192,7 +195,9 @@
         "accountDeleted": "Compte supprimé",
         "accountDeletedExplanation": "Votre compte a été supprimé du wallet.",
         "cannotPerformAction": "Impossible d’effectuer cette action",
-        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet."
+        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Cette action est irréversible.",
@@ -204,7 +209,7 @@
         "areYouSure": "Êtes-vous sûr(e) de vouloir continuer ?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Entrez le mot de passe pour réinitialiser votre wallet.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "ANNULER",
         "reset": "RÉINITIALISER"
     },
