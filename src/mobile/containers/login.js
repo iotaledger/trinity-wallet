@@ -1,25 +1,25 @@
 import get from 'lodash/get';
 import React from 'react';
+import Modal from 'react-native-modal';
 import { StyleSheet, View, Text, StatusBar, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
+
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, clearTempData, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import keychain, { getSeed } from '../util/keychain';
-import { TextField } from 'react-native-material-textfield';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import Modal from 'react-native-modal';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
-import NodeSelection from '../components/nodeSelection.js';
-import COLORS from '../theme/Colors';
+
+import OnboardingButtons from '../components/onboardingButtons';
+import NodeSelection from '../components/nodeSelection';
 import EnterPassword from '../components/EnterPassword';
+import keychain, { getSeed } from '../util/keychain';
+import COLORS from '../theme/Colors';
+import { width, height } from '../util/dimensions';
 
 const StatusBarDefaultBarStyle = 'light-content';
-
-import { width, height } from '../util/dimensions';
 
 class Login extends React.Component {
     constructor(props) {
