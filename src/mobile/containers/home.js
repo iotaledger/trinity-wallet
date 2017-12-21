@@ -159,7 +159,8 @@ class Home extends Component {
                     t('global:unrecognisedPasswordExplanation'),
                 );
             } else {
-                this.setState({ inactive: false, password: '' });
+                this.enterPassword.clearPassword();
+                this.setState({ inactive: false });
             }
         }
     }
@@ -261,7 +262,7 @@ class Home extends Component {
                         )}
                     {this.state.inactive && (
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <EnterPassword onLoginPress={this.onLoginPress} />
+                            <EnterPassword onLoginPress={this.onLoginPress} ref={c => (this.enterPassword = c)} />
                         </View>
                     )}
                     {this.state.minimised && <View />}
