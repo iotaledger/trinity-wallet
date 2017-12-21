@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
