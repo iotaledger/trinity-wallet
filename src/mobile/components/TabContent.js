@@ -21,7 +21,6 @@ const routeToComponent = {
 };
 
 class TabContent extends Component {
-    // todo use static func
     handleCloseTopBar = () => {
         const { isTopBarActive, toggleTopBarDisplay } = this.props;
         if (isTopBarActive) toggleTopBarDisplay();
