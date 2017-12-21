@@ -75,8 +75,6 @@ class EnterPassword extends Component {
         onLoginPress(password);
     };
 
-    clearPassword = () => this.setState({ password: '' });
-
     render() {
         const { password } = this.state;
         const { t } = this.props;
