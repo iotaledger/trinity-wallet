@@ -15,17 +15,26 @@ import { MAX_SEED_LENGTH } from '../libs/util';
 
 export const ActionTypes = {
     SET_PROMOTION_STATUS: 'IOTA/TEMP_ACCOUNT/SET_PROMOTION_STATUS',
+    GET_TRANSFERS_REQUEST: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_REQUEST',
+    GET_TRANSFERS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_SUCCESS',
+    GET_TRANSFERS_ERROR: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_ERROR',
 };
 
 export function getTransfersRequest() {
     return {
-        type: 'GET_TRANSFERS_REQUEST',
+        type: ActionTypes.GET_TRANSFERS_REQUEST,
     };
 }
 
 export function getTransfersSuccess() {
     return {
-        type: 'GET_TRANSFERS_SUCCESS',
+        type: ActionTypes.GET_TRANSFERS_SUCCESS,
+    };
+}
+
+export function getTransfersError() {
+    return {
+        type: ActionTypes.GET_TRANSFERS_ERROR,
     };
 }
 
