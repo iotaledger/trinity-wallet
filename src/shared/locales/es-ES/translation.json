@@ -41,7 +41,9 @@
         "enterAccountName": "Introduzca un nombre de cuenta.",
         "accountName": "Nombre de cuenta",
         "noNickname": "Falta ingresar un nombre de la cuenta",
-        "noNicknameExplanation": "Por favor ingresa un nombre para la cuenta de tu seed."
+        "noNicknameExplanation": "Por favor ingresa un nombre para la cuenta de tu seed.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "¡Ay! Algo salió mal",
@@ -93,7 +95,8 @@
         "emptyPasswordExplanation": "Debe introducir una contraseña para iniciar sesión. Por favor, inténtelo de nuevo.",
         "enterPassword": "Por favor introduzca su contraseña.",
         "useSeed": "USAR SEED",
-        "login": "INICIAR SESIÓN"
+        "login": "INICIAR SESIÓN",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Cargando la seed por primera vez.",
@@ -192,7 +195,9 @@
         "accountDeleted": "Account deleted",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
@@ -204,7 +209,7 @@
         "areYouSure": "Are you sure you want to continue?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "CANCEL",
         "reset": "RESET"
     },
