@@ -119,7 +119,7 @@ export function getFullAccountInfo(seed, seedName, cb) {
             if (!error) {
                 // Combine addresses and balances
                 let addressData = formatFullAddressData(success);
-                console.log('direct', success.transfers);
+
                 const transfers = formatTransfers(success.transfers, success.addresses);
                 const balance = calculateBalance(addressData);
 
