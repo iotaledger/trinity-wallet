@@ -15,6 +15,7 @@ import Modal from 'react-native-modal';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import NodeSelection from '../components/nodeSelection.js';
 import COLORS from '../theme/Colors';
+import EnterPassword from '../components/EnterPassword.js';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
