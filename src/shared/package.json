@@ -14,7 +14,6 @@
     },
     "license": "MIT",
     "dependencies": {
-        "async": "^2.6.0",
         "bluebird": "^3.5.1",
         "iota.lib.js": "^0.4.5",
         "lodash": "^4.17.4",
