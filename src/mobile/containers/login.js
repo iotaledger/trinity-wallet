@@ -1,16 +1,6 @@
 import get from 'lodash/get';
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Image,
-    ScrollView,
-    StatusBar,
-    Keyboard,
-} from 'react-native';
+import { StyleSheet, View, Text, StatusBar, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
@@ -286,32 +276,18 @@ const mapStateToProps = state => ({
     settings: state.settings,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setPassword: password => {
-        dispatch(setPassword(password));
-    },
-    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
-    },
-    getFullAccountInfo: (seed, seedName, cb) => {
-        dispatch(getFullAccountInfo(seed, seedName, cb));
-    },
-    changeHomeScreenRoute: tab => {
-        dispatch(changeHomeScreenRoute(tab));
-    },
-    getMarketData: () => {
-        dispatch(getMarketData());
-    },
-    getPrice: () => {
-        dispatch(getPrice());
-    },
-    getChartData: () => {
-        dispatch(getChartData());
-    },
-    clearTempData: () => dispatch(clearTempData()),
-    getCurrencyData: currency => dispatch(getCurrencyData(currency)),
-    setReady: () => dispatch(setReady()),
-    setFullNode: node => dispatch(setFullNode(node)),
-});
+const mapDispatchToProps = {
+    setPassword,
+    getAccountInfo,
+    getFullAccountInfo,
+    changeHomeScreenRoute,
+    getMarketData,
+    getPrice,
+    getChartData,
+    clearTempData,
+    getCurrencyData,
+    setReady,
+    setFullNode,
+};
 
 export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Login));

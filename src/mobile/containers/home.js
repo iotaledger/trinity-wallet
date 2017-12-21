@@ -346,28 +346,22 @@ const mapStateToProps = state => ({
     isTopBarActive: state.home.isTopBarActive,
 });
 
-const mapDispatchToProps = dispatch => ({
-    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
-    },
-    setReceiveAddress: string => {
-        dispatch(setReceiveAddress(string));
-    },
-    setBalance: addressesWithBalance => {
-        dispatch(setBalance(addressesWithBalance));
-    },
-    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-    generateAlert: (type, title, message) => dispatch(generateAlert(type, title, message)),
-    disposeOffAlert: () => dispatch(disposeOffAlert()),
-    setFirstUse: boolean => dispatch(setFirstUse(boolean)),
-    setReady: boolean => dispatch(setReady(boolean)),
-    clearTempData: () => dispatch(clearTempData()),
-    toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
-    setPassword: () => dispatch(setPassword()),
-    getMarketData: () => dispatch(getMarketData()),
-    getPrice: () => dispatch(getPrice()),
-    getChartData: () => dispatch(getChartData()),
-});
+const mapDispatchToProps = {
+    getAccountInfo,
+    setReceiveAddress,
+    setBalance,
+    changeHomeScreenRoute,
+    generateAlert,
+    disposeOffAlert,
+    setFirstUse,
+    setReady,
+    clearTempData,
+    toggleTopBarDisplay,
+    setPassword,
+    getMarketData,
+    getPrice,
+    getChartData,
+};
 
 Home.propTypes = {
     alerts: PropTypes.object.isRequired,
