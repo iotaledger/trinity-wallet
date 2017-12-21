@@ -67,7 +67,8 @@
         "seedCleared": "Seme cancellato",
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
         "seedCopied": "Copiato il seme negli appunti",
-        "seedCopiedExplanation": "Il seme verrà cancellato una volta che si preme \"FINE\" o che sono trascorsi 60 secondi.",
+        "seedCopiedExplanation":
+            "Il seme verrà cancellato una volta che si preme \"FINE\" o che sono trascorsi 60 secondi.",
         "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password.",
         "doNotStore": "Non salvare il tuo seme in un file non crittografato.",
         "copyToClipboard": "Copia negli appunti"

@@ -23,6 +23,9 @@ import {
 } from 'react-native';
 import DropdownHolder from '../components/dropdownHolder';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import COLORS from '../theme/Colors';
+import chevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up.png';
+import chevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down.png';
 
 const { height, width } = Dimensions.get('window');
 
@@ -30,12 +33,12 @@ class TopBar extends Component {
     static getIconPath(isActive) {
         if (isActive) {
             return {
-                source: require('iota-wallet-shared-modules/images/chevron-up.png'),
+                source: chevronUpImagePath,
             };
         }
 
         return {
-            source: require('iota-wallet-shared-modules/images/chevron-down.png'),
+            source: chevronDownImagePath,
         };
     }
 
@@ -299,8 +302,8 @@ const styles = StyleSheet.create({
         paddingTop: height / 25,
         paddingBottom: height / 50,
         opacity: 0.98,
-        backgroundColor: '#071f28',
-        shadowColor: '#071f28',
+        backgroundColor: COLORS.backgroundDarkGreen,
+        shadowColor: COLORS.backgroundDarkGreen,
         shadowOffset: {
             width: 0,
             height: -1,

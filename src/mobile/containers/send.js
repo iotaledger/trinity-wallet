@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
 import React, { Component } from 'react';
@@ -21,7 +22,7 @@ import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
 import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
-import { getFromKeychain, getSeed } from 'iota-wallet-shared-modules/libs/cryptography';
+import keychain, { getSeed } from '../util/keychain';
 import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
 import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
@@ -30,6 +31,7 @@ import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import DropdownHolder from '../components/dropdownHolder';
 import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
@@ -186,12 +188,15 @@ class Send extends Component {
         const message = this.state.message;
 
         this.props.sendTransferRequest();
-        getFromKeychain(this.props.tempAccount.password, value => {
-            if (value) {
-                const seed = getSeed(value, this.props.tempAccount.seedIndex);
-                sendTx(seed);
-            }
-        });
+        keychain
+            .get()
+            .then(credentials => {
+                if (get(credentials, 'data')) {
+                    const seed = getSeed(credentials.data, this.props.tempAccount.seedIndex);
+                    sendTx(seed);
+                }
+            })
+            .catch(err => console.log(err));
 
         const sendTx = seed =>
             this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
@@ -276,10 +281,15 @@ class Send extends Component {
     }
 
     onQRRead(data) {
+        data = JSON.parse(data);
         this.setState({
-            address: data.substring(0, 90),
-            message: data.substring(91),
+            address: data.address,
         });
+        if (data.message) {
+            this.setState({
+                message: data.message,
+            });
+        }
         this._hideModal();
     }
 
@@ -358,6 +368,7 @@ class Send extends Component {
                                     baseColor="white"
                                     tintColor="#F7D002"
                                     enablesReturnKeyAutomatically={true}
+                                    returnKeyType="next"
                                     label={t('recipientAddress')}
                                     autoCorrect={false}
                                     value={address}
@@ -386,6 +397,7 @@ class Send extends Component {
                                     labelPadding={2}
                                     baseColor="white"
                                     enablesReturnKeyAutomatically={true}
+                                    returnKeyType="next"
                                     label={t('amount')}
                                     tintColor="#F7D002"
                                     autoCorrect={false}
@@ -431,6 +443,7 @@ class Send extends Component {
                                 labelPadding={2}
                                 baseColor="white"
                                 enablesReturnKeyAutomatically={true}
+                                returnKeyType="send"
                                 label={t('message')}
                                 tintColor="#F7D002"
                                 autoCorrect={false}
@@ -474,10 +487,7 @@ class Send extends Component {
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                         >
                             <View style={styles.info}>
-                                <Image
-                                    source={require('iota-wallet-shared-modules/images/info.png')}
-                                    style={styles.infoIcon}
-                                />
+                                <Image source={infoImagePath} style={styles.infoIcon} />
                                 <Text style={styles.infoText}>{t('iotaUnits')}</Text>
                             </View>
                         </TouchableOpacity>
