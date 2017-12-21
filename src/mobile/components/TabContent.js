@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 
+import withUserActivity from './withUserActivity';
 import Balance from '../containers/balance';
 import Send from '../containers/send';
 import Receive from '../containers/receive';
@@ -63,4 +64,4 @@ TabContent.propTypes = {
     endBackgroundProcesses: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TabContent);
+export default withUserActivity()(connect(mapStateToProps, mapDispatchToProps)(TabContent));
