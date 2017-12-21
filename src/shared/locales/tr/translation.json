@@ -41,7 +41,9 @@
         "enterAccountName": "Bir hesap adı girin.",
         "accountName": "Hesap adı",
         "noNickname": "Hiçbir hesap adı girilmedi",
-        "noNicknameExplanation": "Lütfen tohumunuz için benzersiz bir hesap adı kullanın."
+        "noNicknameExplanation": "Lütfen tohumunuz için benzersiz bir hesap adı kullanın.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Eyvah. Bir sorun oluştu",
@@ -93,7 +95,8 @@
         "emptyPasswordExplanation": "Giriş yapmak için bir şifre girmelisin. Lütfen tekrar dene.",
         "enterPassword": "Lütfen şifrenizi girin.",
         "useSeed": "CÜZDAN ŞİFRESİNİ KULLAN",
-        "login": "GİRİŞ YAP"
+        "login": "GİRİŞ YAP",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Cüzdan şifresi ilk kez yükleniyor.",
@@ -192,7 +195,9 @@
         "accountDeleted": "Hesap silindi",
         "accountDeletedExplanation": "Hesabınız cüzdandan kaldırıldı.",
         "cannotPerformAction": "İşlem gerçekleştirilemiyor",
-        "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin."
+        "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Bu işlem geri alınamaz.",
@@ -204,7 +209,7 @@
         "areYouSure": "Devam etmek istediğine emin misin?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Cüzdanınızı sıfırlamak için şifreyi girin.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "İPTAL",
         "reset": "SIFIRLA"
     },
