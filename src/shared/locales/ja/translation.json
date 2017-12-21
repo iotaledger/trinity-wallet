@@ -41,7 +41,9 @@
         "enterAccountName": "アカウント名を入力して下さい。",
         "accountName": "アカウント名",
         "noNickname": "アカウント名が入力されていません。",
-        "noNicknameExplanation": "Seedのアカウント名を入力して下さい。"
+        "noNicknameExplanation": "Seedのアカウント名を入力して下さい。",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "不具合が発生しました。",
@@ -75,8 +77,7 @@
         "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
         "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation":
-            "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedExplanation": "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -94,7 +95,8 @@
         "emptyPasswordExplanation": "ログインするにはパスワードを入力する必要があります。もう一度やり直して下さい。",
         "enterPassword": "パスワードを入力して下さい。",
         "useSeed": "Seedでログイン",
-        "login": "ログイン"
+        "login": "ログイン",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "初めてのSeedを読み込んでいます。",
@@ -193,7 +195,9 @@
         "accountDeleted": "アカウントは削除されました。",
         "accountDeletedExplanation": "アカウントはウォレットから削除されました。",
         "cannotPerformAction": "操作を実行できません。",
-        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。"
+        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",
@@ -205,7 +209,7 @@
         "areYouSure": "本当に続行しますか？"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "キャンセル",
         "reset": "リセット"
     },
