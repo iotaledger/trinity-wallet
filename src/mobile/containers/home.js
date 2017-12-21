@@ -123,8 +123,8 @@ class Home extends Component {
     } */
 
     onLoginPress(password) {
+        const { t, tempAccount, setUserActivity } = this.props;
         const dropdown = DropdownHolder.getDropdown();
-        const { t, tempAccount } = this.props;
         if (!password) {
             dropdown.alertWithType('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else if (password !== tempAccount.password) {
@@ -135,7 +135,7 @@ class Home extends Component {
             );
         } else {
             this.enterPassword.clearPassword();
-            this.onActive();
+            setUserActivity({ inactive: false });
         }
     }
 
