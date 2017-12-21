@@ -41,7 +41,9 @@
         "enterAccountName": "Vnesite ime računa.",
         "accountName": "Ime računa",
         "noNickname": "Niste vnesli imena računa",
-        "noNicknameExplanation": "Prosimo vnesite ime računa za pridobitev generirane vrednosti."
+        "noNicknameExplanation": "Prosimo vnesite ime računa za pridobitev generirane vrednosti.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Oops! Nekaj je šlo narobe",
@@ -93,7 +95,8 @@
         "emptyPasswordExplanation": "Za prijavo morate vnesti geslo. Prosimo poskusite ponovno.",
         "enterPassword": "Prosimo vnesite vaše geslo.",
         "useSeed": "UPORABA SEEDA",
-        "login": "PRIJAVA"
+        "login": "PRIJAVA",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Nalaganje generirane vrednosti prvič.",
@@ -192,7 +195,9 @@
         "accountDeleted": "Račun izbrisan",
         "accountDeletedExplanation": "Vaš račun je bil odstranjen iz denarnice.",
         "cannotPerformAction": "Dejanja ni mogoče izvesti",
-        "cannotPerformActionExplanation": "Pojdite v napredne nastavitve za ponastavitev denarnice."
+        "cannotPerformActionExplanation": "Pojdite v napredne nastavitve za ponastavitev denarnice.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Tega dejanja ni mogoče razveljaviti.",
@@ -204,7 +209,7 @@
         "areYouSure": "Ali ste prepričani da želite nadaljevati?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Vnesite geslo da ponastavitev denarnice.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "PREKLIČI",
         "reset": "PONASTAVI"
     },
