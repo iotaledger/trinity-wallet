@@ -121,6 +121,8 @@ class EnterPassword extends Component {
         const { onLoginPress } = this.props;
         onLoginPress(password);
     };
+
+    clearPassword = () => this.setState({ password: '' });
 }
 
 EnterPassword.propTypes = {
