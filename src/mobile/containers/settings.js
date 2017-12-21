@@ -226,7 +226,7 @@ class Settings extends React.Component {
 
     onGetCurrencyDataError() {
         const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', 'Poor connection', 'Failed to change currency due to a poor connection.');
+        dropdown.alertWithType('error', t('poorConnection'), t('poorConnectionExplanation'));
     }
 
     onManualSyncPress() {
@@ -309,14 +309,14 @@ class Settings extends React.Component {
                         if (hasDuplicateAccountName(credentials.data, accountName)) {
                             return dropdown.alertWithType(
                                 'error',
-                                'Account name already in use',
-                                'This account name is already linked to your wallet. Please use a different one.',
+                                t('addAdditionalSeed:nameInUse'),
+                                t('addAdditionalSeed:nameInUseExplanation'),
                             );
                         } else if (hasDuplicateSeed(credentials.data, seed)) {
                             return dropdown.alertWithType(
                                 'error',
-                                'Seed already in use',
-                                'This seed is already linked to your wallet. Please use a different one.',
+                                t('addAdditionalSeed:seedInUse'),
+                                t('addAdditionalSeed:seedInUseExplanation'),
                             );
                         }
 
