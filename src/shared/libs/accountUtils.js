@@ -103,12 +103,12 @@ export const formatTransfers = (transfers, addresses) => {
 
     // add transaction values to transactions
     sortedTransfers = addTransferValues(sortedTransfers, addresses);
+
     return sortedTransfers;
 };
 
 export const addTransferValues = (transfers, addresses) => {
     // Add transaction value property to each transaction object
-    // FIXME: We should never mutate parameters at any level.
     return transfers.map(arr => {
         /* eslint-disable no-param-reassign */
         arr[0].transferValue = 0;
@@ -157,26 +157,34 @@ export const getAddressesWithChangedBalance = (allAddresses, indicesWithChangedB
 };
 
 export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
-    const old = oldTransfers.slice(0);
-    const latest = latestTransfers.slice(0);
+    // Transform both old and latest into dictionaries with bundle as prop
+    const toDict = (res, transfer) => {
+        const top = transfer[0];
+        const bundle = top.bundle;
 
-    const maxOldTransfers = size(old);
-    const maxLatestTransfers = size(latest);
-
-    for (let i = maxLatestTransfers; i--; ) {
-        const latestTxTop = head(latest[i]);
-        const latestTxBundle = get(latestTxTop, 'bundle');
-        for (let j = maxOldTransfers; j--; ) {
-            const oldTxTop = head(old[j]);
-            const oldTxBundle = get(oldTxTop, 'bundle');
-            if (oldTxBundle === latestTxBundle) {
-                old[j] = latest[i];
-                latest.splice(i, 1);
-            }
+        if (bundle in res) {
+            res[bundle] = [...res[bundle], transfer];
+        } else {
+            res[bundle] = [transfer];
         }
-    }
 
-    return size(latest) ? [...old, ...latest] : old;
+        return res;
+    };
+
+    const override = (res, bundleObject, key) => {
+        if (key in transformedLatestTransfers) {
+            each(transformedLatestTransfers[key], value => res.push(value)); // Just replace old bundle objects with latest
+        } else {
+            each(transformedOldTransfers[key], value => res.push(value)); // Otherwise just keep the old ones
+        }
+
+        return res;
+    };
+
+    const transformedOldTransfers = reduce(oldTransfers, toDict, {});
+    const transformedLatestTransfers = reduce(latestTransfers, toDict, {});
+
+    return reduce(transformedOldTransfers, override, []);
 };
 
 export const deduplicateTransferBundles = transfers => {
@@ -207,26 +215,6 @@ export const deduplicateTransferBundles = transfers => {
 
     const aggregated = reduce(transfers, deduplicate, {});
     return map(aggregated, v => v);
-};
-
-// getAccountData returns flatly structures list of tx objects
-// Traverse through the transfer objects and group them wrt bundle
-export const aggregateAccountDataTransferBundles = transfers => {
-    const aggregate = (res, transfer) => {
-        const top = transfer[0];
-        const bundle = top.bundle;
-
-        if (bundle in res) {
-            res[bundle] = transfer.concat(res[bundle]);
-        } else {
-            res = { ...res, ...{ [bundle]: transfer } };
-        }
-
-        return res;
-    };
-
-    const aggregated = reduce(transfers, aggregate, {});
-    return map(aggregated, tx => tx);
 };
 
 export const filterSpentAddresses = inputs => {
