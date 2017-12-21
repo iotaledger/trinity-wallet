@@ -99,11 +99,11 @@ class EnterPassword extends Component {
                                 width: width / 1.4,
                             }}
                             secureTextEntry
-                            onSubmitEditing={this.handleSubmitEditing}
+                            onSubmitEditing={this.handleLogin}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={() => onLoginPress()}>
+                        <TouchableOpacity onPress={this.handleLogin}>
                             <View style={styles.loginButton}>
                                 <Text style={styles.loginText}>{t('login')}</Text>
                             </View>
@@ -116,7 +116,7 @@ class EnterPassword extends Component {
 
     handleChangeText = password => this.setState({ password });
 
-    handleSubmitEditing = () => {
+    handleLogin = () => {
         const { password } = this.state;
         const { onLoginPress } = this.props;
         onLoginPress(password);
