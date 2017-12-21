@@ -76,14 +76,14 @@ export class SetSeedName extends React.Component {
                             if (hasDuplicateAccountName(credentials.password, trimmedAccountName)) {
                                 return this.dropdown.alertWithType(
                                     'error',
-                                    'Account name already in use',
-                                    'This account name is already linked to your wallet. Please use a different one.',
+                                    t('addAdditionalSeed:nameInUse'),
+                                    t('addAdditionalSeed:nameInUseExplanation'),
                                 );
                             } else if (hasDuplicateSeed(credentials.password, this.props.tempAccount.seed)) {
                                 return this.dropdown.alertWithType(
                                     'error',
-                                    'Seed already in use',
-                                    'This seed is already linked to your wallet. Please use a different one.',
+                                    t('addAdditionalSeed:seedInUse'),
+                                    t('addAdditionalSeed:seedInUseExplanation'),
                                 );
                             }
 
@@ -93,8 +93,8 @@ export class SetSeedName extends React.Component {
                     .catch(err => {
                         this.dropdown.alertWithType(
                             'error',
-                            'Something went wrong',
-                            'Something went wrong while setting your account name. Please try again.',
+                            t('global:somethingWentWrong'),
+                            t('global:somethingWentWrongExplanation'),
                         );
                     });
 

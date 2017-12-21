@@ -93,15 +93,15 @@ class WalletResetRequirePassword extends Component {
                 .catch(error => {
                     this.dropdown.alertWithType(
                         'error',
-                        'Something went wrong',
-                        'Something went wrong while resetting your wallet. Please try again.',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongExplanation'),
                     );
                 });
         } else {
             this.dropdown.alertWithType(
                 'error',
-                'Unrecognised password',
-                'The password was not recognised. Please try again.',
+                t('global:unrecognisedPassword'),
+                t('global:unrecognisedPasswordExplanation'),
             );
         }
     }
@@ -118,7 +118,7 @@ class WalletResetRequirePassword extends Component {
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midWrapper}>
-                            <Text style={styles.generalText}>Enter password to reset your wallet.</Text>
+                            <Text style={styles.generalText}>{t('enterPassword')}</Text>
                             <TextField
                                 style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
@@ -126,7 +126,7 @@ class WalletResetRequirePassword extends Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Password"
+                                label={t('global:password')}
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -145,8 +145,8 @@ class WalletResetRequirePassword extends Component {
                                 style={onboardingButtonsOverride}
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.resetWallet}
-                                leftText={toUpper('cancel')}
-                                rightText={toUpper('reset')}
+                                leftText={t('cancel')}
+                                rightText={t('reset')}
                             />
                         </View>
                     </View>
@@ -301,4 +301,6 @@ WalletResetRequirePassword.propTypes = {
     resetWallet: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WalletResetRequirePassword);
+export default translate(['resetWalletRequirePassword', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(WalletResetRequirePassword),
+);
