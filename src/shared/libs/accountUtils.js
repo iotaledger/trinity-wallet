@@ -8,7 +8,7 @@ import isNull from 'lodash/isNull';
 import { iota } from '../libs/iota';
 
 export const formatAddressData = (addresses, balances, addressesSpendStatus) => {
-    var addressData = Object.assign(
+    const addressData = Object.assign(
         {},
         ...addresses.map((n, index) => ({ [n]: { balance: balances[index], spent: addressesSpendStatus[index] } })),
     );
@@ -17,26 +17,25 @@ export const formatAddressData = (addresses, balances, addressesSpendStatus) => 
 
 export const formatFullAddressData = data => {
     const addresses = data.addresses;
-    var addressData = Object.assign({}, ...addresses.map(n => ({ [n]: { balance: 0, spent: false } })));
-    for (var i = 0; i < data.inputs.length; i++) {
+    const addressData = Object.assign({}, ...addresses.map(n => ({ [n]: { balance: 0, spent: false } })));
+    for (let i = 0; i < data.inputs.length; i++) {
         addressData[data.inputs[i].address].balance = data.inputs[i].balance;
     }
     return addressData;
 };
 
-export const markAddressSpend = function(transfers, addressData) {
+export const markAddressSpend = (transfers, addressData) => {
     const addresses = Object.keys(addressData);
 
     // Iterate over all bundles and sort them between incoming and outgoing transfers
-    transfers.forEach(function(bundle) {
+    transfers.forEach(bundle => {
         // Iterate over every bundle entry
-        bundle.forEach(function(bundleEntry, bundleIndex) {
+        bundle.forEach(bundleEntry => {
             // If bundle address in the list of addresses associated with the seed
             // mark the address as sent
             if (addresses.indexOf(bundleEntry.address) > -1) {
                 // Check if it's a remainder address
-                var isRemainder = bundleEntry.currentIndex === bundleEntry.lastIndex && bundleEntry.lastIndex !== 0;
-
+                const isRemainder = bundleEntry.currentIndex === bundleEntry.lastIndex && bundleEntry.lastIndex !== 0;
                 // check if sent transaction
                 if (bundleEntry.value < 0 && !isRemainder) {
                     // Mark address as spent
