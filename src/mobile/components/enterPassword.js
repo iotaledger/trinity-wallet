@@ -69,7 +69,7 @@ class EnterPassword extends Component {
 
     render() {
         const { password } = this.state;
-        const { t, onLoginPress } = this.props;
+        const { t } = this.props;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
@@ -94,12 +94,12 @@ class EnterPassword extends Component {
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
                             value={password}
-                            onChangeText={password => this.setState({ password })}
+                            onChangeText={this.handleChangeText}
                             containerStyle={{
                                 width: width / 1.4,
                             }}
                             secureTextEntry
-                            onSubmitEditing={() => onLoginPress()}
+                            onSubmitEditing={this.handleSubmitEditing}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -113,6 +113,14 @@ class EnterPassword extends Component {
             </TouchableWithoutFeedback>
         );
     }
+
+    handleChangeText = password => this.setState({ password });
+
+    handleSubmitEditing = () => {
+        const { password } = this.state;
+        const { onLoginPress } = this.props;
+        onLoginPress(password);
+    };
 }
 
 EnterPassword.propTypes = {
