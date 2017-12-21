@@ -24,8 +24,9 @@ export function resetWallet() {
     };
 }
 
-export function setUserActivity() {
+export function setUserActivity(payload) {
     return {
         type: ActionTypes.SET_USER_ACTIVITY,
+        payload,
     };
 }
