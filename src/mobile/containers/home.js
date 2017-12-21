@@ -19,6 +19,7 @@ import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
 import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
 
 import TopBar from './topBar';
+import withUserActivity from '../components/withUserActivity';
 import DropdownHolder from '../components/dropdownHolder';
 import Promoter from './promoter';
 import COLORS from '../theme/Colors';
@@ -144,7 +145,7 @@ class Home extends Component {
     }
 
     render() {
-        const { t, navigator, inactive, minimised } = this.props;
+        const { t, navigator, inactive, minimised, startBackgroundProcesses, endBackgroundProcesses } = this.props;
 
         return (
             <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={this.handleInactivity}>
@@ -155,7 +156,11 @@ class Home extends Component {
                             <View style={{ flex: 1 }}>
                                 <View style={styles.topContainer} />
                                 <View style={styles.midContainer}>
-                                    <TabContent navigator={navigator} />
+                                    <TabContent
+                                        navigator={navigator}
+                                        startBackgroundProcesses={startBackgroundProcesses}
+                                        endBackgroundProcesses={endBackgroundProcesses}
+                                    />
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <Tabs onPress={name => this.props.changeHomeScreenRoute(name)}>
@@ -226,6 +231,10 @@ Home.propTypes = {
     setUserActivity: PropTypes.func.isRequired,
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,
+    startBackgroundProcesses: PropTypes.func.isRequired,
+    endBackgroundProcesses: PropTypes.func.isRequired,
 };
 
-export default translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default withUserActivity()(
+    translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home)),
+);
