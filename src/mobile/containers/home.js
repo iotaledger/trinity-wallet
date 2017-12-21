@@ -122,7 +122,7 @@ class Home extends Component {
         });
     } */
 
-    onLoginPress(password) {
+    onLoginPress = password => {
         const { t, tempAccount, setUserActivity } = this.props;
         const dropdown = DropdownHolder.getDropdown();
         if (!password) {
@@ -137,7 +137,7 @@ class Home extends Component {
             this.enterPassword.clearPassword();
             setUserActivity({ inactive: false });
         }
-    }
+    };
 
     handleInactivity() {
         const { setUserActivity } = this.props;
