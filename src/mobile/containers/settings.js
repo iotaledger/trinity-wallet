@@ -1,9 +1,12 @@
+import get from 'lodash/get';
+import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
+import COLORS from '../theme/Colors';
 import {
     clearTempData,
     setPassword,
@@ -43,17 +46,15 @@ import AdvancedSettings from '../components/advancedSettings.js';
 import AccountManagement from '../components/accountManagement.js';
 import { logoutFromWallet } from 'iota-wallet-shared-modules/actions/app';
 import { parse } from 'iota-wallet-shared-modules/libs/util';
-import {
-    getFromKeychain,
-    storeSeedInKeychain,
-    checkKeychainForDuplicates,
-    deleteSeed,
-    deleteFromKeyChain,
-    replaceKeychainValue,
+import keychain, {
+    hasDuplicateAccountName,
+    hasDuplicateSeed,
     getSeed,
-} from '../../shared/libs/cryptography';
+    updateAccountNameInKeychain,
+    deleteFromKeychain,
+    storeSeedInKeychain,
+} from '../util/keychain';
 import DropdownHolder from '../components/dropdownHolder';
-
 import { width, height } from '../util/dimensions';
 
 class Settings extends React.Component {
@@ -193,6 +194,7 @@ class Settings extends React.Component {
                         currencies={this.props.settings.availableCurrencies}
                         backPress={() => this.props.setSetting('mainSettings')}
                         setCurrencySetting={currency => this.setState({ selectedCurrency: currency })}
+                        onGetCurrencyDataError={() => this.onGetCurrencyDataError()}
                     />
                 );
                 break;
@@ -222,26 +224,34 @@ class Settings extends React.Component {
         }
     };
 
+    onGetCurrencyDataError() {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', t('poorConnection'), t('poorConnectionExplanation'));
+    }
+
     onManualSyncPress() {
         const dropdown = DropdownHolder.getDropdown();
         const { t } = this.props;
         this.props.manualSyncRequest();
-        getFromKeychain(this.props.tempAccount.password, value => {
-            if (typeof value != 'undefined' && value != null) {
-                const seedIndex = this.props.tempAccount.seedIndex;
-                const accountName = this.props.account.seedNames[seedIndex];
-                const seed = getSeed(value, seedIndex);
-                this.props.getFullAccountInfo(seed, accountName, (error, success) => {
-                    if (error) {
-                        onNodeError(dropdown);
-                    } else {
-                        onNodeSuccess(dropdown);
-                    }
-                });
-            } else {
-                error(dropdown);
-            }
-        });
+        keychain
+            .get()
+            .then(credentials => {
+                if (get(credentials, 'data')) {
+                    const seedIndex = this.props.tempAccount.seedIndex;
+                    const accountName = this.props.account.seedNames[seedIndex];
+                    const seed = getSeed(credentials.data, seedIndex);
+                    this.props.getFullAccountInfo(seed, accountName, (error, success) => {
+                        if (error) {
+                            onNodeError(dropdown);
+                        } else {
+                            onNodeSuccess(dropdown);
+                        }
+                    });
+                } else {
+                    error(dropdown);
+                }
+            })
+            .catch(err => console.log(err));
 
         onNodeError = dropdown => {
             this.props.manualSyncComplete();
@@ -290,13 +300,30 @@ class Settings extends React.Component {
                 t('addAdditionalSeed:nameInUseExplanation'),
             );
         } else {
-            checkKeychainForDuplicates(
-                this.props.tempAccount.password,
-                seed,
-                accountName,
-                (type, title, message) => dropdown.alertWithType(type, title, message),
-                () => ifNoKeychainDuplicates(seed, accountName),
-            );
+            keychain
+                .get()
+                .then(credentials => {
+                    if (isNull(credentials)) {
+                        return ifNoKeychainDuplicates(seed, accountName);
+                    } else {
+                        if (hasDuplicateAccountName(credentials.data, accountName)) {
+                            return dropdown.alertWithType(
+                                'error',
+                                t('addAdditionalSeed:nameInUse'),
+                                t('addAdditionalSeed:nameInUseExplanation'),
+                            );
+                        } else if (hasDuplicateSeed(credentials.data, seed)) {
+                            return dropdown.alertWithType(
+                                'error',
+                                t('addAdditionalSeed:seedInUse'),
+                                t('addAdditionalSeed:seedInUseExplanation'),
+                            );
+                        }
+
+                        return ifNoKeychainDuplicates(seed, accountName);
+                    }
+                })
+                .catch(err => console.log(err));
 
             ifNoKeychainDuplicates = (seed, accountName) => {
                 this.props.setFirstUse(true);
@@ -328,10 +355,13 @@ class Settings extends React.Component {
 
             onNodeSuccess = (seed, accountName) => {
                 this.props.clearTempData();
-                storeSeedInKeychain(this.props.tempAccount.password, seed, accountName);
-                this.props.increaseSeedCount();
-                this.props.addAccountName(accountName);
-                this.props.setReady();
+                storeSeedInKeychain(this.props.tempAccount.password, seed, accountName)
+                    .then(() => {
+                        this.props.increaseSeedCount();
+                        this.props.addAccountName(accountName);
+                        this.props.setReady();
+                    })
+                    .catch(err => console.log(err));
             };
         }
     }
@@ -352,22 +382,18 @@ class Settings extends React.Component {
             );
         } else {
             // Update keychain
-            getFromKeychain(this.props.tempAccount.password, value => {
-                if (typeof value != 'undefined' && value != null) {
-                    let seeds = parse(value);
-                    seeds[seedIndex].name = accountName;
-                    replaceKeychainValue(this.props.tempAccount.password, seeds);
-                }
-            });
+            updateAccountNameInKeychain(seedIndex, accountName, this.props.tempAccount.password)
+                .then(() => {
+                    const currentAccountName = accountNameArray[seedIndex];
+                    const keyMap = { [currentAccountName]: accountName };
+                    const newAccountInfo = renameKeys(accountInfo, keyMap);
+                    accountNameArray[seedIndex] = accountName;
+                    this.props.changeAccountName(newAccountInfo, accountNameArray);
 
-            const currentAccountName = accountNameArray[seedIndex];
-            const keyMap = { [currentAccountName]: accountName };
-            const newAccountInfo = renameKeys(accountInfo, keyMap);
-            accountNameArray[seedIndex] = accountName;
-            this.props.changeAccountName(newAccountInfo, accountNameArray);
-
-            this.props.setSetting('accountManagement');
-            dropdown.alertWithType('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
+                    this.props.setSetting('accountManagement');
+                    dropdown.alertWithType('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
+                })
+                .catch(err => console.log(err));
         }
     }
 
@@ -392,9 +418,8 @@ class Settings extends React.Component {
         delete newAccountInfo[currentAccountName];
         accountNames.splice(seedIndex, 1);
 
-        getFromKeychain(this.props.tempAccount.password, value => {
-            if (typeof value != 'undefined' && value != null) {
-                deleteSeed(value, this.props.tempAccount.password, seedIndex);
+        deleteFromKeychain(seedIndex, this.props.tempAccount.password)
+            .then(() => {
                 this.props.setSeedIndex(0);
                 this.props.removeAccount(newAccountInfo, accountNames);
 
@@ -405,10 +430,8 @@ class Settings extends React.Component {
                 this.props.setBalance(addressesWithBalance);
                 this.props.setSetting('accountManagement');
                 dropdown.alertWithType('success', t('accountDeleted'), t('accountDeletedExplanation'));
-            } else {
-                error();
-            }
-        });
+            })
+            .catch(err => console.log(err));
     }
 
     setModalContent(modalSetting) {
@@ -471,7 +494,7 @@ class Settings extends React.Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 overrideBackPress: true,
             },
@@ -492,7 +515,7 @@ class Settings extends React.Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: '#102e36',
+                    screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 overrideBackPress: true,
             },

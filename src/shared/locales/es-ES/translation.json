@@ -35,7 +35,8 @@
         "seedInvalidChars": "La seed contiene caracteres inválidos",
         "seedInvalidCharsExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
         "seedTooShort": "La seed es demasiado corta",
-        "seedTooShortExplanation": "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
+        "seedTooShortExplanation":
+            "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
         "nameInUse": "Nombre de cuenta ya está en uso",
         "nameInUseExplanation": "Por favor, usa un nombre de cuenta único para tu seed.",
         "enterAccountName": "Introduzca un nombre de cuenta.",
@@ -55,9 +56,11 @@
         "passwordsDoNotMatch": "Las contraseñas no coinciden",
         "passwordsDoNotMatchExplanation": "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.",
         "passwordTooShort": "La contraseña es demasiado corta",
-        "passwordTooShortExplanation": "La contraseña debe tener al menos 12 caracteres. Por favor, inténtalo de nuevo.",
+        "passwordTooShortExplanation":
+            "La contraseña debe tener al menos 12 caracteres. Por favor, inténtalo de nuevo.",
         "oldPassword": "No puedes reusar una vieja contraseña",
-        "oldPasswordExplanation": "No puedes reusar la contraseña anterior como una nueva. Por favor inténtalo de nuevo con una distinta.",
+        "oldPasswordExplanation":
+            "No puedes reusar la contraseña anterior como una nueva. Por favor inténtalo de nuevo con una distinta.",
         "ensureStrongPassword": "Asegúrate de utilizar una contraseña segura con al menos 12 caracteres.",
         "currentPassword": "Contraseña actual",
         "newPassword": "Contraseña nueva",
