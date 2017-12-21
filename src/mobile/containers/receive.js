@@ -135,7 +135,7 @@ class Receive extends Component {
                     >
                         <View style={[styles.qrContainer, { opacity: this.getQrOpacity() }]}>
                             <QRCode
-                                value={receiveAddress + ':' + message}
+                                value={JSON.stringify({ address: receiveAddress, message: message })}
                                 size={height / 5}
                                 bgColor="#000"
                                 fgColor="#FFF"
