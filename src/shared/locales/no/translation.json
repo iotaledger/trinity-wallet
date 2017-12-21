@@ -41,7 +41,9 @@
         "enterAccountName": "Angi et kontonavn.",
         "accountName": "Kontonavn",
         "noNickname": "Ingen kontonavn angitt",
-        "noNicknameExplanation": "Vennligst skriv inn et kontonavn for hovednøkkelen."
+        "noNicknameExplanation": "Vennligst skriv inn et kontonavn for hovednøkkelen.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Au da. Noe gikk galt",
@@ -93,7 +95,8 @@
         "emptyPasswordExplanation": "Du må angi et passord for å logge inn. Prøv på nytt.",
         "enterPassword": "Skriv inn passord.",
         "useSeed": "BRUK HOVEDNØKKEL",
-        "login": "LOGG INN"
+        "login": "LOGG INN",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -192,7 +195,9 @@
         "accountDeleted": "Konto slettet",
         "accountDeletedExplanation": "Kontoen er fjernet fra lommeboken.",
         "cannotPerformAction": "Kan ikke utføre handling",
-        "cannotPerformActionExplanation": "Gå til avanserte innstillinger for å tilbakestille lommeboken."
+        "cannotPerformActionExplanation": "Gå til avanserte innstillinger for å tilbakestille lommeboken.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denne handlingen kan ikke angres.",
@@ -204,7 +209,7 @@
         "areYouSure": "Er du sikker på at du vil fortsette?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Angi passord for å tilbakestille lommeboken.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "AVBRYT",
         "reset": "TILBAKESTILL"
     },
