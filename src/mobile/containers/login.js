@@ -61,7 +61,7 @@ class Login extends React.Component {
 
     onLoginPress(password) {
         const { t, setPassword } = this.props;
-        Keyboard.dismiss;
+        Keyboard.dismiss();
         if (!password) {
             this.dropdown.alertWithType('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
