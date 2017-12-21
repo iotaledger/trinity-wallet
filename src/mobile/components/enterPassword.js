@@ -67,6 +67,16 @@ class EnterPassword extends Component {
         };
     }
 
+    handleChangeText = password => this.setState({ password });
+
+    handleLogin = () => {
+        const { password } = this.state;
+        const { onLoginPress } = this.props;
+        onLoginPress(password);
+    };
+
+    clearPassword = () => this.setState({ password: '' });
+
     render() {
         const { password } = this.state;
         const { t } = this.props;
@@ -113,16 +123,6 @@ class EnterPassword extends Component {
             </TouchableWithoutFeedback>
         );
     }
-
-    handleChangeText = password => this.setState({ password });
-
-    handleLogin = () => {
-        const { password } = this.state;
-        const { onLoginPress } = this.props;
-        onLoginPress(password);
-    };
-
-    clearPassword = () => this.setState({ password: '' });
 }
 
 EnterPassword.propTypes = {
