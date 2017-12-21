@@ -1,42 +1,31 @@
 import get from 'lodash/get';
+import { translate } from 'react-i18next';
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Image,
-    ScrollView,
-    StatusBar,
-    Keyboard,
-} from 'react-native';
+import Modal from 'react-native-modal';
+import { StyleSheet, View, Text, StatusBar, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
+
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, clearTempData, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import keychain, { getSeed } from '../util/keychain';
-import { TextField } from 'react-native-material-textfield';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import Modal from 'react-native-modal';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
-import NodeSelection from '../components/nodeSelection.js';
+
+import OnboardingButtons from '../components/onboardingButtons';
+import NodeSelection from '../components/nodeSelection';
+import EnterPassword from '../components/enterPassword';
+import keychain, { getSeed } from '../util/keychain';
 import COLORS from '../theme/Colors';
-
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-const StatusBarDefaultBarStyle = 'light-content';
-
 import { width, height } from '../util/dimensions';
+
+const StatusBarDefaultBarStyle = 'light-content';
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            password: '',
             isModalVisible: false,
         };
         this.onLoginPress = this.onLoginPress.bind(this);
@@ -52,19 +41,22 @@ class Login extends React.Component {
         this.setState({ changingNode: true });
     }
 
-    _renderModalContent = () => (
-        <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
-            <View style={styles.modalContent}>
-                <Text style={styles.questionText}>{t('selectDifferentNode')}</Text>
-                <OnboardingButtons
-                    onLeftButtonPress={() => this._hideModal()}
-                    onRightButtonPress={() => this.navigateToNodeSelection()}
-                    leftText={t('global:no')}
-                    rightText={t('global:yes')}
-                />
+    _renderModalContent = () => {
+        const { t } = this.props;
+        return (
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+                <View style={styles.modalContent}>
+                    <Text style={styles.questionText}>{t('selectDifferentNode')}</Text>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this._hideModal()}
+                        onRightButtonPress={() => this.navigateToNodeSelection()}
+                        leftText={t('global:no')}
+                        rightText={t('global:yes')}
+                    />
+                </View>
             </View>
-        </View>
-    );
+        );
+    };
 
     getWalletData() {
         this.props.getChartData();
@@ -72,18 +64,18 @@ class Login extends React.Component {
         this.props.getMarketData();
     }
 
-    onLoginPress() {
-        const { t } = this.props;
-        Keyboard.dismiss;
-        if (!this.state.password) {
+    onLoginPress(password) {
+        const { t, setPassword } = this.props;
+        Keyboard.dismiss();
+        if (!password) {
             this.dropdown.alertWithType('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
             keychain
                 .get()
                 .then(credentials => {
-                    this.props.setPassword(this.state.password);
+                    setPassword(password);
                     const hasData = get(credentials, 'data');
-                    const hasCorrectPassword = get(credentials, 'password') === this.state.password;
+                    const hasCorrectPassword = get(credentials, 'password') === password;
 
                     if (hasData && hasCorrectPassword) {
                         const seed = getSeed(credentials.data, 0);
@@ -153,65 +145,24 @@ class Login extends React.Component {
         const { t } = this.props;
         this.dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
         {
-            /*this.props.navigator.push({
+            /* this.props.navigator.push({
             screen: 'useSeed',
             navigatorStyle: {
                 navBarHidden: true,
             },
             animated: false,
             overrideBackPress: true
-        });*/
+        }); */
         }
     }
 
     render() {
-        let { password } = this.state;
+        const { password } = this.state;
         const { t } = this.props;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                {!this.state.changingNode && (
-                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                        <View>
-                            <View style={styles.topContainer}>
-                                <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                                <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>{t('enterPassword')}</Text>
-                                </View>
-                            </View>
-                            <View style={styles.midContainer}>
-                                <TextField
-                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor="white"
-                                    label={t('global:password')}
-                                    tintColor="#F7D002"
-                                    autoCapitalize={'none'}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically={true}
-                                    returnKeyType="done"
-                                    value={password}
-                                    onChangeText={password => this.setState({ password })}
-                                    containerStyle={{
-                                        width: width / 1.4,
-                                    }}
-                                    secureTextEntry={true}
-                                    onSubmitEditing={() => this.onLoginPress()}
-                                />
-                            </View>
-                            <View style={styles.bottomContainer}>
-                                <TouchableOpacity onPress={event => this.onLoginPress()}>
-                                    <View style={styles.loginButton}>
-                                        <Text style={styles.loginText}>{t('login')}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </TouchableWithoutFeedback>
-                )}
+                {!this.state.changingNode && <EnterPassword onLoginPress={this.onLoginPress} />}
                 {this.state.changingNode && (
                     <View>
                         <View style={{ flex: 0.8 }} />
@@ -266,34 +217,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: COLORS.backgroundGreen,
     },
-    topContainer: {
-        flex: 1.2,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-    },
-    midContainer: {
-        flex: 4.8,
-        alignItems: 'center',
-        paddingTop: height / 4.2,
-    },
-    bottomContainer: {
-        flex: 0.7,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 15,
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
     questionText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
@@ -303,10 +226,6 @@ const styles = StyleSheet.create({
         paddingRight: width / 7,
         paddingTop: height / 25,
         backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
@@ -337,11 +256,6 @@ const styles = StyleSheet.create({
         height: width / 12,
         alignSelf: 'center',
     },
-    buttonsContainer: {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        flexDirection: 'row',
-    },
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -358,22 +272,6 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         paddingBottom: height / 16,
     },
-    loginButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    loginText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
 });
 
 const mapStateToProps = state => ({
@@ -383,32 +281,18 @@ const mapStateToProps = state => ({
     settings: state.settings,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setPassword: password => {
-        dispatch(setPassword(password));
-    },
-    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
-    },
-    getFullAccountInfo: (seed, seedName, cb) => {
-        dispatch(getFullAccountInfo(seed, seedName, cb));
-    },
-    changeHomeScreenRoute: tab => {
-        dispatch(changeHomeScreenRoute(tab));
-    },
-    getMarketData: () => {
-        dispatch(getMarketData());
-    },
-    getPrice: () => {
-        dispatch(getPrice());
-    },
-    getChartData: () => {
-        dispatch(getChartData());
-    },
-    clearTempData: () => dispatch(clearTempData()),
-    getCurrencyData: currency => dispatch(getCurrencyData(currency)),
-    setReady: () => dispatch(setReady()),
-    setFullNode: node => dispatch(setFullNode(node)),
-});
+const mapDispatchToProps = {
+    setPassword,
+    getAccountInfo,
+    getFullAccountInfo,
+    changeHomeScreenRoute,
+    getMarketData,
+    getPrice,
+    getChartData,
+    clearTempData,
+    getCurrencyData,
+    setReady,
+    setFullNode,
+};
 
-export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
