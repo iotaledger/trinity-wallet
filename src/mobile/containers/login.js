@@ -55,12 +55,12 @@ class Login extends React.Component {
     _renderModalContent = () => (
         <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
             <View style={styles.modalContent}>
-                <Text style={styles.questionText}>Do you want to select a different node?</Text>
+                <Text style={styles.questionText}>{t('selectDifferentNode')}</Text>
                 <OnboardingButtons
                     onLeftButtonPress={() => this._hideModal()}
                     onRightButtonPress={() => this.navigateToNodeSelection()}
-                    leftText={'NO'}
-                    rightText={'YES'}
+                    leftText={t('global:no')}
+                    rightText={t('global:yes')}
                 />
             </View>
         </View>
@@ -76,11 +76,7 @@ class Login extends React.Component {
         const { t } = this.props;
         Keyboard.dismiss;
         if (!this.state.password) {
-            this.dropdown.alertWithType(
-                'error',
-                'Empty password',
-                'You must enter a password to log in. Please try again.',
-            );
+            this.dropdown.alertWithType('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
             keychain
                 .get()
@@ -102,8 +98,8 @@ class Login extends React.Component {
         error = () => {
             this.dropdown.alertWithType(
                 'error',
-                'Unrecognised password',
-                'The password was not recognised. Please try again.',
+                t('global:unrecognisedPassword'),
+                t('global:unrecognisedPasswordExplanation'),
             );
         };
 
@@ -149,13 +145,13 @@ class Login extends React.Component {
         this.props.navigator.pop({
             animated: false,
         });
-        this.dropdown.alertWithType('error', 'Invalid response', `The node returned an invalid response.`);
+        this.dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
         this._showModal();
     }
 
     onUseSeedPress() {
         const { t } = this.props;
-        this.dropdown.alertWithType('error', 'This function is not available', 'It will be added at a later stage.');
+        this.dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
         {
             /*this.props.navigator.push({
             screen: 'useSeed',
@@ -180,7 +176,7 @@ class Login extends React.Component {
                             <View style={styles.topContainer}>
                                 <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>Please enter your password.</Text>
+                                    <Text style={styles.title}>{t('enterPassword')}</Text>
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
@@ -191,7 +187,7 @@ class Login extends React.Component {
                                     fontSize={width / 20.7}
                                     labelPadding={3}
                                     baseColor="white"
-                                    label="Password"
+                                    label={t('global:password')}
                                     tintColor="#F7D002"
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
@@ -209,7 +205,7 @@ class Login extends React.Component {
                             <View style={styles.bottomContainer}>
                                 <TouchableOpacity onPress={event => this.onLoginPress()}>
                                     <View style={styles.loginButton}>
-                                        <Text style={styles.loginText}>LOGIN</Text>
+                                        <Text style={styles.loginText}>{t('login')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -415,4 +411,4 @@ const mapDispatchToProps = dispatch => ({
     setFullNode: node => dispatch(setFullNode(node)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
