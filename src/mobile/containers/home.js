@@ -3,40 +3,87 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import TopBar from './topBar';
-import keychain from '../util/keychain';
+import UserInactivity from 'react-native-user-inactivity';
+import KeepAwake from 'react-native-keep-awake';
+import DropdownAlert from 'react-native-dropdownalert';
+
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import { getTailTransactionHashesForPendingTransactions } from 'iota-wallet-shared-modules/store';
 import {
     setReceiveAddress,
     setReady,
     clearTempData,
     setPassword,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { iota } from '../../shared/libs/iota';
 import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import DropdownHolder from '../components/dropdownHolder';
-import DropdownAlert from 'react-native-dropdownalert';
-import Promoter from './promoter';
-import UserInactivity from 'react-native-user-inactivity';
-import KeepAwake from 'react-native-keep-awake';
-import COLORS from '../theme/Colors';
-import Tabs from '../components/Tabs';
-import Tab from '../components/Tab';
-import TabContent from '../components/TabContent';
-import EnterPassword from '../components/EnterPassword.js';
-
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
 import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
 import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
 import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
 import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
 
+import TopBar from './topBar';
+import DropdownHolder from '../components/dropdownHolder';
+import Promoter from './promoter';
+import COLORS from '../theme/Colors';
+import Tabs from '../components/Tabs';
+import Tab from '../components/Tab';
+import TabContent from '../components/TabContent';
+import EnterPassword from '../components/EnterPassword';
 import { width, height } from '../util/dimensions';
 
 const StatusBarDefaultBarStyle = 'light-content';
+
+const styles = StyleSheet.create({
+    topContainer: {
+        flex: 0.8,
+        marginBottom: height / 100,
+    },
+    balance: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.9,
+        paddingTop: height / 150,
+    },
+    midContainer: {
+        flex: 4.62,
+        zIndex: 0,
+    },
+    bottomContainer: {
+        flex: 0.68,
+    },
+    dropdownTitle: {
+        fontSize: width / 25.9,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+    },
+    dropdownTextContainer: {
+        flex: 1,
+        paddingLeft: width / 20,
+        paddingRight: width / 15,
+        paddingVertical: height / 30,
+    },
+    dropdownMessage: {
+        fontSize: width / 29.6,
+        textAlign: 'left',
+        fontWeight: 'normal',
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        paddingTop: height / 60,
+    },
+    dropdownImage: {
+        marginLeft: width / 25,
+        width: width / 12,
+        height: width / 12,
+        alignSelf: 'center',
+    },
+});
 
 class Home extends Component {
     constructor() {
@@ -72,19 +119,6 @@ class Home extends Component {
             this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
                 if (error) this.onNodeErrorPolling();
             });
-        }
-    }
-
-    startChartPolling() {
-        // 'console.log('POLLING CHART DATA')'
-        if (
-            !this.props.settings.isSyncing &&
-            !this.props.settings.isGeneratingReceiveAddress &&
-            !this.props.settings.isSendingTransfer
-        ) {
-            this.props.getMarketData();
-            this.props.getChartData();
-            this.props.getPrice();
         }
     }
 
@@ -127,6 +161,19 @@ class Home extends Component {
 
     onMaximise() {
         this.setState({ minimised: false });
+    }
+
+    startChartPolling() {
+        // 'console.log('POLLING CHART DATA')'
+        if (
+            !this.props.settings.isSyncing &&
+            !this.props.settings.isGeneratingReceiveAddress &&
+            !this.props.settings.isSendingTransfer
+        ) {
+            this.props.getMarketData();
+            this.props.getChartData();
+            this.props.getPrice();
+        }
     }
 
     onLoginPress(password) {
@@ -222,56 +269,6 @@ class Home extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    topContainer: {
-        flex: 0.8,
-        marginBottom: height / 100,
-    },
-    balance: {
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 27.9,
-        paddingTop: height / 150,
-    },
-    midContainer: {
-        flex: 4.62,
-        zIndex: 0,
-    },
-    bottomContainer: {
-        flex: 0.68,
-    },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
-    },
-});
-
 const mapStateToProps = state => ({
     alerts: state.alerts,
     tempAccount: state.tempAccount,
@@ -295,6 +292,8 @@ const mapDispatchToProps = {
 };
 
 Home.propTypes = {
+    setFirstUse: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
     alerts: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,

@@ -15,7 +15,7 @@ import Modal from 'react-native-modal';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import NodeSelection from '../components/nodeSelection.js';
 import COLORS from '../theme/Colors';
-import EnterPassword from '../components/EnterPassword.js';
+import EnterPassword from '../components/EnterPassword';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -141,19 +141,19 @@ class Login extends React.Component {
         const { t } = this.props;
         this.dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
         {
-            /*this.props.navigator.push({
+            /* this.props.navigator.push({
             screen: 'useSeed',
             navigatorStyle: {
                 navBarHidden: true,
             },
             animated: false,
             overrideBackPress: true
-        });*/
+        }); */
         }
     }
 
     render() {
-        let { password } = this.state;
+        const { password } = this.state;
         const { t } = this.props;
         return (
             <View style={styles.container}>
