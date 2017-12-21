@@ -33,6 +33,7 @@ import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modu
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
+import EnterPassword from '../components/enterPassword.js';
 import DropdownAlert from 'react-native-dropdownalert';
 import Promoter from './promoter';
 import { Navigation } from 'react-native-navigation';
@@ -43,13 +44,11 @@ import COLORS from '../theme/Colors';
 import Tabs from '../components/Tabs';
 import Tab from '../components/Tab';
 
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
 import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
 import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
 import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
 import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 const StatusBarDefaultBarStyle = 'light-content';
 import { width, height } from '../util/dimensions';
@@ -63,7 +62,6 @@ class Home extends Component {
             appState: AppState.currentState,
             timeWentInactive: null,
             inactive: false,
-            password: '',
             minimised: false,
         };
     }
@@ -148,13 +146,13 @@ class Home extends Component {
         });
     }*/
 
-    onLoginPress() {
+    onLoginPress(password) {
         const dropdown = DropdownHolder.getDropdown();
-        const { t } = this.props;
-        if (!this.state.password) {
+        const { t, tempAccount } = this.props;
+        if (!password) {
             dropdown.alertWithType('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else {
-            if (this.state.password != this.props.tempAccount.password) {
+            if (password != tempAccount.password) {
                 dropdown.alertWithType(
                     'error',
                     t('global:unrecognisedPassword'),
@@ -230,7 +228,6 @@ class Home extends Component {
         const { t } = this.props;
         const { childRoute } = this.props;
         const children = this.renderChildren(childRoute);
-        let { password } = this.state;
 
         return (
             <UserInactivity
@@ -264,46 +261,7 @@ class Home extends Component {
                         )}
                     {this.state.inactive && (
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                                <View>
-                                    <View style={styles.loginTopContainer}>
-                                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                                        <View style={styles.loginTitleContainer}>
-                                            <Text style={styles.loginTitle}>Please enter your password.</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.loginMidContainer}>
-                                        <TextField
-                                            style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                            labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                            labelFontSize={width / 31.8}
-                                            fontSize={width / 20.7}
-                                            labelPadding={3}
-                                            baseColor="white"
-                                            label={t('global:password')}
-                                            tintColor="#F7D002"
-                                            autoCapitalize={'none'}
-                                            autoCorrect={false}
-                                            enablesReturnKeyAutomatically={true}
-                                            returnKeyType="done"
-                                            value={password}
-                                            onChangeText={password => this.setState({ password })}
-                                            containerStyle={{
-                                                width: width / 1.4,
-                                            }}
-                                            secureTextEntry={true}
-                                            onSubmitEditing={() => this.onLoginPress()}
-                                        />
-                                    </View>
-                                    <View style={styles.loginBottomContainer}>
-                                        <TouchableOpacity onPress={event => this.onLoginPress()}>
-                                            <View style={styles.loginButton}>
-                                                <Text style={styles.loginText}>{t('login:login')}</Text>
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </TouchableWithoutFeedback>
+                            <EnterPassword onLoginPress={this.onLoginPress} />
                         </View>
                     )}
                     {this.state.minimised && <View />}
@@ -333,24 +291,6 @@ const styles = StyleSheet.create({
     topContainer: {
         flex: 0.8,
         marginBottom: height / 100,
-    },
-    titlebarContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingBottom: height / 50,
-        justifyContent: 'space-between',
-        paddingHorizontal: width / 6.5,
-    },
-    titleContainer: {
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingHorizontal: width / 8,
-    },
-    title: {
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 24.4,
     },
     balance: {
         color: 'white',
@@ -394,54 +334,6 @@ const styles = StyleSheet.create({
         width: width / 12,
         height: width / 12,
         alignSelf: 'center',
-    },
-    loginTopContainer: {
-        flex: 1.2,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: height / 22,
-    },
-    loginMidContainer: {
-        flex: 4.8,
-        alignItems: 'center',
-        paddingTop: height / 4.2,
-    },
-    loginBottomContainer: {
-        flex: 0.7,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    loginTitleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 15,
-    },
-    loginTitle: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    loginButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    loginText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
     },
 });
 
