@@ -108,14 +108,12 @@ export function getFullAccountInfo(seed, seedName, cb) {
     return dispatch => {
         iota.api.getAccountData(seed, (error, success) => {
             if (!error) {
-                // Combine addresses and balances
                 let addressData = formatFullAddressData(success);
                 const transfers = formatTransfers(success.transfers, success.addresses);
                 const balance = calculateBalance(addressData);
 
                 addressData = markAddressSpend(transfers, addressData);
                 const unconfirmedTails = getBundleTailsForSentTransfers(transfers, success.addresses); // Should really be ordered.
-                // Dispatch setAccountInfo action, set first use to false, and set ready to end loading
                 dispatch(setAccountInfo(seedName, addressData, transfers, balance));
                 dispatch(updateUnconfirmedBundleTails(unconfirmedTails));
                 cb(null, success);
@@ -129,7 +127,7 @@ export function getFullAccountInfo(seed, seedName, cb) {
 
 export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
     return dispatch => {
-        let addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        const addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         const addresses = Object.keys(addressData);
 
         if (addresses.length < 1) {
@@ -139,8 +137,8 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
 
         const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
         // Get unspent addresses
-        let unspentAddresses = [];
-        for (var i = 0; i < addresses.length; i++) {
+        const unspentAddresses = [];
+        for (let i = 0; i < addresses.length; i++) {
             if (addressesSpendStatus[i] === false) {
                 unspentAddresses.push(addresses[i]);
             }
@@ -156,7 +154,6 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                 const totalBalance = newBalances.reduce((a, b) => a + b);
                 dispatch(setBalance(totalBalance));
                 dispatch(getTransfersRequest());
-
                 dispatch(getTransfers(seedName, unspentAddresses, cb));
             } else {
                 cb(error);
@@ -168,6 +165,103 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                         'The node returned an invalid response while getting balance.',
                     ),
                 );
+            }
+        });
+    };
+}
+
+export function getTransfers(seedName, addresses, cb) {
+    return (dispatch, getState) => {
+        iota.api.findTransactionObjects({ addresses }, (error, success) => {
+            if (!error) {
+                // Get full bundles
+                const bundles = [...new Set(success.map(tx => tx.bundle))];
+                iota.api.findTransactionObjects({ bundles }, (error, success) => {
+                    if (!error) {
+                        // If no transfers, exit
+                        if (success.length < 1) {
+                            dispatch(setReady());
+                            dispatch(getTransfersSuccess());
+                            return;
+                        }
+                        // Add persistence to transaction objects
+                        iota.api.getLatestInclusion(success.map(tx => tx.hash), (error, inclusionStates) => {
+                            if (!error) {
+                                success.map((tx, i) => {
+                                    tx.persistence = inclusionStates[i];
+                                    return tx;
+                                });
+                                // Group transfers into bundles
+                                let transfers = groupTransfersByBundle(success);
+                                // Sort transfers and add transfer value
+                                const selectedAccount = getSelectedAccount(seedName, getState().account.accountInfo);
+                                let oldTransfers = selectedAccount.transfers;
+                                //transfers = mergeLatestTransfersInOld(oldTransfers, transfers);
+                                transfers = formatTransfers(transfers, addresses);
+                                // Update transfers then set ready
+                                //dispatch(updateTransfers(seedName, transfers));
+                                dispatch(setReady());
+                                dispatch(getTransfersSuccess());
+                                cb(null, success);
+                            } else {
+                                cb(error);
+                                console.log(error);
+                                dispatch(
+                                    generateAlert(
+                                        'error',
+                                        'Invalid Response',
+                                        'The node returned an invalid response while getting transfers.',
+                                    ),
+                                );
+                            }
+                        });
+                    } else {
+                        cb(error);
+                        console.log(error);
+                        dispatch(
+                            generateAlert(
+                                'error',
+                                'Invalid Response',
+                                'The node returned an invalid response while getting transfers.',
+                            ),
+                        );
+                    }
+                });
+            } else {
+                cb(error);
+                console.log(error);
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Invalid Response',
+                        'The node returned an invalid response while getting transfers.',
+                    ),
+                );
+            }
+        });
+    };
+}
+
+export function getNewAddressData(seed, accountName, addressData, callback) {
+    return dispatch => {
+        const oldAddressData = addressData;
+        const index = Object.keys(oldAddressData).length - 1;
+        iota.api.getInputs(seed, { start: index }, (error, success) => {
+            if (!error) {
+                if (success.inputs.length > 0) {
+                    let newAddressData = success.inputs.reduce((obj, x) => {
+                        obj[x.address] = { balance: x.balance, spent: false };
+                        return obj;
+                    }, {});
+                    let fullAddressData = Object.assign(oldAddressData, newAddressData);
+                    dispatch(updateAddresses(fullAddressData));
+                    callback(null, success);
+                } else {
+                    callback(null, success);
+                }
+            } else {
+                callback(error);
+                console.log(error);
             }
         });
     };
@@ -351,100 +445,6 @@ export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => 
         });
     });
 };
-
-export function getNewTransfersAndAddresses(seed, index, accountName, addressData, oldTransfers, callback) {
-    return dispatch => {
-        iota.api.getAccountData(seed, { start: index, end: index + 1 }, (error, success) => {
-            if (!error) {
-                const oldAddressData = addressData;
-                let newAddressData = formatFullAddressData(success);
-                const addresses = Object.keys(newAddressData);
-                const newTransfers = formatTransfers(success.transfers, addresses);
-                newAddressData = markAddressSpend(newTransfers, newAddressData);
-                let fullAddressData = Object.assign(oldAddressData, newAddressData);
-                const fullTransfers = newTransfers.concat(oldTransfers);
-                const balance = calculateBalance(addressData);
-                dispatch(setAccountInfo(accountName, fullAddressData, fullTransfers, balance));
-                callback(null, success);
-            } else {
-                callback(error);
-                console.log(error);
-            }
-        });
-    };
-}
-
-export function getTransfers(seedName, addresses, cb) {
-    return (dispatch, getState) => {
-        iota.api.findTransactionObjects({ addresses }, (error, success) => {
-            if (!error) {
-                // Get full bundles
-                const bundles = [...new Set(success.map(tx => tx.bundle))];
-                iota.api.findTransactionObjects({ bundles }, (error, success) => {
-                    if (!error) {
-                        // If no transfers, exit
-                        if (success.length < 1) {
-                            dispatch(setReady());
-                            dispatch(getTransfersSuccess());
-                            return;
-                        }
-                        // Add persistence to transaction objects
-                        iota.api.getLatestInclusion(success.map(tx => tx.hash), (error, inclusionStates) => {
-                            if (!error) {
-                                success.map((tx, i) => {
-                                    tx.persistence = inclusionStates[i];
-                                    return tx;
-                                });
-                                // Group transfers into bundles
-                                let transfers = groupTransfersByBundle(success);
-                                // Sort transfers and add transfer value
-                                const selectedAccount = getSelectedAccount(seedName, getState().account.accountInfo);
-                                let oldTransfers = selectedAccount.transfers;
-                                //transfers = mergeLatestTransfersInOld(oldTransfers, transfers);
-                                transfers = formatTransfers(transfers, addresses);
-                                // Update transfers then set ready
-                                dispatch(updateTransfers(seedName, transfers));
-                                dispatch(setReady());
-                                dispatch(getTransfersSuccess());
-                                cb(null, success);
-                            } else {
-                                cb(error);
-                                console.log(error);
-                                dispatch(
-                                    generateAlert(
-                                        'error',
-                                        'Invalid Response',
-                                        'The node returned an invalid response while getting transfers.',
-                                    ),
-                                );
-                            }
-                        });
-                    } else {
-                        cb(error);
-                        console.log(error);
-                        dispatch(
-                            generateAlert(
-                                'error',
-                                'Invalid Response',
-                                'The node returned an invalid response while getting transfers.',
-                            ),
-                        );
-                    }
-                });
-            } else {
-                cb(error);
-                console.log(error);
-                dispatch(
-                    generateAlert(
-                        'error',
-                        'Invalid Response',
-                        'The node returned an invalid response while getting transfers.',
-                    ),
-                );
-            }
-        });
-    };
-}
 
 export function addPendingTransfer(seedName, transfers, success) {
     return dispatch => {
