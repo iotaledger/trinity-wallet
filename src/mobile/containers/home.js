@@ -33,7 +33,6 @@ import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modu
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
-import EnterPassword from '../components/enterPassword.js';
 import DropdownAlert from 'react-native-dropdownalert';
 import Promoter from './promoter';
 import { Navigation } from 'react-native-navigation';
@@ -43,6 +42,8 @@ import { TextField } from 'react-native-material-textfield';
 import COLORS from '../theme/Colors';
 import Tabs from '../components/Tabs';
 import Tab from '../components/Tab';
+import TabContent from '../components/TabContent';
+import EnterPassword from '../components/EnterPassword.js';
 
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
 import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
@@ -268,7 +269,7 @@ class Home extends Component {
                     {this.state.minimised && <View />}
                     <Promoter />
                     <DropdownAlert
-                        ref={ref => DropdownHolder.setDropdown(ref)}
+                        ref={DropdownHolder.setDropdown}
                         elevation={120}
                         successColor="#009f3f"
                         errorColor="#A10702"
