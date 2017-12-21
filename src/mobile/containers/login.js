@@ -15,7 +15,7 @@ import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 
 import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
-import EnterPassword from '../components/EnterPassword';
+import EnterPassword from '../components/enterPassword';
 import keychain, { getSeed } from '../util/keychain';
 import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
