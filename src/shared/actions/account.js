@@ -9,8 +9,8 @@ import merge from 'lodash/merge';
 import filter from 'lodash/filter';
 import each from 'lodash/each';
 import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
 import { iota } from '../libs/iota';
-import async from 'async';
 import { getSelectedAccount } from '../selectors/account';
 import {
     addTransferValues,
@@ -26,7 +26,13 @@ import {
     markAddressSpend,
     aggregateAccountDataTransferBundles,
 } from '../libs/accountUtils';
-import { setReady, getTransfersRequest, getTransfersSuccess, setPromotionStatus } from './tempAccount';
+import {
+    setReady,
+    getTransfersRequest,
+    getTransfersSuccess,
+    getTransfersError,
+    setPromotionStatus,
+} from './tempAccount';
 import { getFirstConsistentTail, isWithinAnHour, getBundleTailsForSentTransfers } from '../libs/promoter';
 import { generateAlert } from '../actions/alerts';
 import { rearrangeObjectKeys } from '../libs/util';
@@ -161,9 +167,11 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
                 // Calculate total balance
                 const totalBalance = newBalances.reduce((a, b) => a + b);
                 dispatch(setBalance(totalBalance));
-                dispatch(getTransfersRequest());
 
-                dispatch(getTransfers(seedName, unspentAddresses, cb));
+                // Only fetch latest transfers if there exists unspent addresses
+                if (!isEmpty(unspentAddresses)) {
+                    dispatch(getTransfers(seedName, unspentAddresses, cb));
+                }
             } else {
                 cb(error);
                 console.log(error);
@@ -320,6 +328,21 @@ export function getNewTransfersAndAddresses(seed, index, accountName, addressDat
 
 export function getTransfers(seedName, addresses, cb) {
     return (dispatch, getState) => {
+        // Set flag to true so that polling waits for these network calls to complete.
+        dispatch(getTransfersRequest());
+
+        const errorCallback = err => {
+            dispatch(getTransfersError());
+            cb(err);
+            dispatch(
+                generateAlert(
+                    'error',
+                    'Invalid Response',
+                    'The node returned an invalid response while getting transfers.',
+                ),
+            );
+        };
+
         iota.api.findTransactionObjects({ addresses }, (error, txObjects) => {
             if (!error) {
                 const tailTransactionHashes = [];
@@ -340,9 +363,10 @@ export function getTransfers(seedName, addresses, cb) {
                     }
                 });
 
-                iota.api.findTransactionObjects({ bundles: nonTailBundleHashes }, (error, fullTxObjects) => {
-                    if (!error) {
+                iota.api.findTransactionObjects({ bundles: nonTailBundleHashes }, (err, fullTxObjects) => {
+                    if (!err) {
                         // If no transfers, exit
+                        // TODO: setReady might be unnecessary at this point
                         if (fullTxObjects.length < 1) {
                             dispatch(setReady());
                             dispatch(getTransfersSuccess());
@@ -371,14 +395,14 @@ export function getTransfers(seedName, addresses, cb) {
                             cb(null, bundles);
                         };
 
-                        // Add persistence to transaction objects
-                        iota.api.getLatestInclusion(tailTransactionHashes, (error, inclusionStates) => {
-                            if (!error) {
-                                let itemsProcessed = 0;
+                        iota.api.getLatestInclusion(tailTransactionHashes, (e, inclusionStates) => {
+                            if (!e) {
+                                let tailsProcessed = 0;
 
                                 const getBundle = (tailTxHash, idx) => {
                                     iota.api.getBundle(tailTxHash, (err, bundle) => {
-                                        itemsProcessed += 1;
+                                        tailsProcessed += 1;
+
                                         if (!err) {
                                             each(bundle, bundleTx => {
                                                 bundleTx.persistence = inclusionStates[idx];
@@ -386,7 +410,7 @@ export function getTransfers(seedName, addresses, cb) {
 
                                             bundles.push(bundle);
 
-                                            if (itemsProcessed === idx + 1) {
+                                            if (tailsProcessed === idx + 1) {
                                                 next();
                                             }
                                         }
@@ -395,39 +419,15 @@ export function getTransfers(seedName, addresses, cb) {
 
                                 each(tailTransactionHashes, getBundle);
                             } else {
-                                cb(error);
-                                console.log(error);
-                                dispatch(
-                                    generateAlert(
-                                        'error',
-                                        'Invalid Response',
-                                        'The node returned an invalid response while getting transfers.',
-                                    ),
-                                );
+                                errorCallback(e);
                             }
                         });
                     } else {
-                        cb(error);
-                        console.log(error);
-                        dispatch(
-                            generateAlert(
-                                'error',
-                                'Invalid Response',
-                                'The node returned an invalid response while getting transfers.',
-                            ),
-                        );
+                        errorCallback(err);
                     }
                 });
             } else {
-                cb(error);
-                console.log(error);
-                dispatch(
-                    generateAlert(
-                        'error',
-                        'Invalid Response',
-                        'The node returned an invalid response while getting transfers.',
-                    ),
-                );
+                errorCallback(error);
             }
         });
     };
