@@ -22,10 +22,10 @@ import TopBar from './topBar';
 import DropdownHolder from '../components/dropdownHolder';
 import Promoter from './promoter';
 import COLORS from '../theme/Colors';
-import Tabs from '../components/Tabs';
-import Tab from '../components/Tab';
-import TabContent from '../components/TabContent';
-import EnterPassword from '../components/EnterPassword';
+import Tabs from '../components/tabs';
+import Tab from '../components/tab';
+import TabContent from '../components/tabContent';
+import EnterPassword from '../components/enterPassword';
 import { width, height } from '../util/dimensions';
 
 const StatusBarDefaultBarStyle = 'light-content';

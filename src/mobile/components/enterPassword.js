@@ -60,12 +60,9 @@ const styles = StyleSheet.create({
 });
 
 class EnterPassword extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            password: '',
-        };
-    }
+    state = {
+        password: '',
+    };
 
     handleChangeText = password => this.setState({ password });
 
