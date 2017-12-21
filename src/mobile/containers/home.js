@@ -8,15 +8,9 @@ import KeepAwake from 'react-native-keep-awake';
 import DropdownAlert from 'react-native-dropdownalert';
 
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import {
-    setReceiveAddress,
-    setReady,
-    clearTempData,
-    setPassword,
-} from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
-import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
 import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
@@ -25,7 +19,6 @@ import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
 import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
 
 import TopBar from './topBar';
-import withUserActivity from '../components/withUserActivity';
 import DropdownHolder from '../components/dropdownHolder';
 import Promoter from './promoter';
 import COLORS from '../theme/Colors';
@@ -89,35 +82,26 @@ const styles = StyleSheet.create({
 
 class Home extends Component {
     componentDidMount() {
-        this.props.setFirstUse(false);
-        const accountInfo = this.props.account.accountInfo;
-        const seedIndex = this.props.tempAccount.seedIndex;
+        const { setFirstUse, account, tempAccount, setBalance } = this.props;
+        setFirstUse(false);
+        const accountInfo = account.accountInfo;
+        const seedIndex = tempAccount.seedIndex;
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         if (typeof accountInfo !== 'undefined') {
-            this.props.setBalance(addressesWithBalance);
+            setBalance(addressesWithBalance);
         }
     }
 
-    startAccountPolling() {
-        if (
-            !this.props.tempAccount.isGettingTransfers &&
-            !this.props.tempAccount.isSendingTransfer &&
-            !this.props.tempAccount.isSyncing
-        ) {
-            // console.log('POLLING TX HISTORY')
-            const seedIndex = this.props.tempAccount.seedIndex;
-            const seedName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-            this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                if (error) this.onNodeErrorPolling();
-            });
-        }
-    }
+    componentWillReceiveProps(newProps) {
+        const { alerts } = this.props;
+        const didNotHaveAlertPreviously = !alerts.category && !alerts.title && !alerts.message;
+        const hasANewAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
+        const shouldGenerateAlert = hasANewAlert && didNotHaveAlertPreviously;
 
-    onNodeErrorPolling() {
-        const dropdown = DropdownHolder.getDropdown();
-        const { t } = this.props;
-        dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
+        if (shouldGenerateAlert) {
+            const dropdown = DropdownHolder.getDropdown();
+            dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
+        }
     }
 
     /* logout(){
@@ -137,19 +121,6 @@ class Home extends Component {
             },
         });
     } */
-
-    startChartPolling() {
-        // 'console.log('POLLING CHART DATA')'
-        if (
-            !this.props.settings.isSyncing &&
-            !this.props.settings.isGeneratingReceiveAddress &&
-            !this.props.settings.isSendingTransfer
-        ) {
-            this.props.getMarketData();
-            this.props.getChartData();
-            this.props.getPrice();
-        }
-    }
 
     onLoginPress(password) {
         const dropdown = DropdownHolder.getDropdown();
@@ -173,20 +144,8 @@ class Home extends Component {
         setUserActivity({ inactive: true });
     }
 
-    componentWillReceiveProps(newProps) {
-        const didNotHaveAlertPreviously =
-            !this.props.alerts.category && !this.props.alerts.title && !this.props.alerts.message;
-        const hasANewAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
-        const shouldGenerateAlert = hasANewAlert && didNotHaveAlertPreviously;
-
-        if (shouldGenerateAlert) {
-            const dropdown = DropdownHolder.getDropdown();
-            dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
-        }
-    }
-
     render() {
-        const { t, navigator, inactive, minimised, startBackgroundProcesses, endBackgroundProcesses } = this.props;
+        const { t, navigator, inactive, minimised } = this.props;
 
         return (
             <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={this.handleInactivity}>
@@ -197,11 +156,7 @@ class Home extends Component {
                             <View style={{ flex: 1 }}>
                                 <View style={styles.topContainer} />
                                 <View style={styles.midContainer}>
-                                    <TabContent
-                                        navigator={navigator}
-                                        startBackgroundProcesses={startBackgroundProcesses}
-                                        endBackgroundProcesses={endBackgroundProcesses}
-                                    />
+                                    <TabContent navigator={navigator} />
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <Tabs onPress={name => this.props.changeHomeScreenRoute(name)}>
@@ -258,18 +213,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    getAccountInfo,
-    setReceiveAddress,
     setBalance,
     changeHomeScreenRoute,
     disposeOffAlert,
     setFirstUse,
-    setReady,
     clearTempData,
     setPassword,
-    getMarketData,
-    getPrice,
-    getChartData,
     setUserActivity,
 };
 
@@ -281,12 +230,8 @@ Home.propTypes = {
     changeHomeScreenRoute: PropTypes.func.isRequired,
     disposeOffAlert: PropTypes.func.isRequired,
     setUserActivity: PropTypes.func.isRequired,
-    startBackgroundProcesses: PropTypes.func.isRequired,
-    endBackgroundProcesses: PropTypes.func.isRequired,
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,
 };
 
-export default withUserActivity()(
-    translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home)),
-);
+export default translate(['home', 'global', 'login'])(connect(mapStateToProps, mapDispatchToProps)(Home));
