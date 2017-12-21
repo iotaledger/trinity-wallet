@@ -56,11 +56,15 @@ const mapDispatchToProps = {
 
 TabContent.propTypes = {
     navigator: PropTypes.object.isRequired,
-    currentRoute: PropTypes.string.isRequired,
+    currentRoute: PropTypes.oneOf(Object.keys(routeToComponent)),
     isTopBarActive: PropTypes.bool.isRequired,
     toggleTopBarDisplay: PropTypes.func.isRequired,
     startBackgroundProcesses: PropTypes.func.isRequired,
     endBackgroundProcesses: PropTypes.func.isRequired,
+};
+
+TabContent.defaultProps = {
+    currentRoute: 'balance',
 };
 
 export default withUserActivity()(connect(mapStateToProps, mapDispatchToProps)(TabContent));
