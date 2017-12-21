@@ -33,22 +33,21 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seedet indeholder ugyldige tegn",
-        "seedInvalidCharsExplanation":
-            "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "seedInvalidCharsExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
         "seedTooShort": "Seedet er for kort",
-        "seedTooShortExplanation":
-            "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
+        "seedTooShortExplanation": "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
         "nameInUse": "Kontonavnet er allerede i brug",
         "nameInUseExplanation": "Brug venligst et unikt kontonavn til dit seed.",
         "enterAccountName": "Indtast et kontonavn.",
         "accountName": "Kontonavn",
         "noNickname": "Intet kontonavn angivet",
-        "noNicknameExplanation": "Indtast venligst et kontonavn til dit seed."
+        "noNicknameExplanation": "Indtast venligst et kontonavn til dit seed.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Ups! Der gik noget galt",
-        "oopsExplanation":
-            "Det ser ud til, at der gik noget galt under opdateringen af din adgangskode. Prøv venligst igen.",
+        "oopsExplanation": "Det ser ud til, at der gik noget galt under opdateringen af din adgangskode. Prøv venligst igen.",
         "passwordUpdated": "Adgangskode opdateret",
         "passwordUpdatedExplanation": "Din adgangskode er blevet opdateret.",
         "incorrectPassword": "Forkert adgangskode",
@@ -58,8 +57,7 @@
         "passwordTooShort": "Adgangskoden er for kort",
         "passwordTooShortExplanation": "Din adgangskode skal være mindst 12 tegn lang. Prøv venligst igen.",
         "oldPassword": "Kan ikke bruge en gammel adgangskode",
-        "oldPasswordExplanation":
-            "Du kan ikke bruge den gamle adgangskode som din nye adgangskode. Prøv venligst igen med en ny adgangskode.",
+        "oldPasswordExplanation": "Du kan ikke bruge den gamle adgangskode som din nye adgangskode. Prøv venligst igen med en ny adgangskode.",
         "ensureStrongPassword": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
         "currentPassword": "Nuværende adgangskode",
         "newPassword": "Ny adgangskode",
@@ -76,13 +74,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seedet indeholder ugyldige tegn",
-        "invalidCharactersExplanation":
-            "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "invalidCharactersExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
         "seedTooShort": "Seedet er for kort",
-        "seedTooShortExplanation":
-            "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
-        "seedExplanation":
-            "Seeds bør indeholde {{maxLength}} tegn og skal indeholde de store bogstaver A-Z eller tallet 9. Du kan ikke bruge seeds, som indeholder flere end {{maxLength}} tegn.",
+        "seedTooShortExplanation": "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
+        "seedExplanation": "Seeds bør indeholde {{maxLength}} tegn og skal indeholde de store bogstaver A-Z eller tallet 9. Du kan ikke bruge seeds, som indeholder flere end {{maxLength}} tegn.",
         "neverShare": "DEL ALDRIG DIT SEED MED NOGEN"
     },
     "home": {
@@ -100,7 +95,8 @@
         "emptyPasswordExplanation": "Du skal indtaste en adgangskode for at logge ind. Prøv venligst igen.",
         "enterPassword": "Indtast venligst din adgangskode.",
         "useSeed": "BRUG SEED",
-        "login": "LOG IND"
+        "login": "LOG IND",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Indlæser seed for første gang.",
@@ -114,8 +110,7 @@
         "individualLetters": "Tryk på individuelle bogstaver for at vælge nye tilfældigt."
     },
     "onboardingComplete": {
-        "walletReady":
-            "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
+        "walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
     },
     "paperWallet": {
         "clickToPrint": "Klik på knappen nedenfor for at udskrive en papirkopi af dit seed.",
@@ -152,8 +147,7 @@
         "notEnoughFunds": "Ikke nok penge",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne overførsel.",
         "keyReuse": "Nøglegenbrug",
-        "keyReuseExplanation":
-            "Adressen, du forsøger at sende til, er allerede blevet brugt. Prøv venligst en anden adresse.",
+        "keyReuseExplanation": "Adressen, du forsøger at sende til, er allerede blevet brugt. Prøv venligst en anden adresse.",
         "recipientAddress": "Modtageradresse",
         "amount": "Beløb",
         "max": "MAKS.",
@@ -166,13 +160,11 @@
     },
     "setPassword": {
         "passwordTooShort": "Adgangskoden er for kort",
-        "passwordTooShortExplanation":
-            "Din adgangskode skal indeholde mindst {{minLength}} tegn. Den indeholder i øjeblikket {{currentLength}} tegn. Prøv venligst igen.",
+        "passwordTooShortExplanation": "Din adgangskode skal indeholde mindst {{minLength}} tegn. Den indeholder i øjeblikket {{currentLength}} tegn. Prøv venligst igen.",
         "passwordMismatch": "Adgangskoderne er ikke ens",
         "passwordMismatchExplanation": "Adgangskoderne, du har indtastet, er ikke ens. Prøv venligst igen.",
         "nowWeNeedTo": "Nu skal vi opsætte en adgangskode.",
-        "anEncryptedCopy":
-            "En krypteret kopi af dit seed bliver opbevaret på din enhed. Denne adgangskode skal bruges til at tilgå din tegnebog fremover.",
+        "anEncryptedCopy": "En krypteret kopi af dit seed bliver opbevaret på din enhed. Denne adgangskode skal bruges til at tilgå din tegnebog fremover.",
         "ensure": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
         "retypePassword": "Gentag adgangskode"
     },
@@ -203,7 +195,9 @@
         "accountDeleted": "Konto slettet",
         "accountDeletedExplanation": "Din konto er blevet fjernet fra tegnebogen.",
         "cannotPerformAction": "Kan ikke udføre handling",
-        "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen."
+        "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denne handling kan ikke fortrydes.",
@@ -215,15 +209,14 @@
         "areYouSure": "Er du sikker på, du vil fortsætte?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Indtast adgangskode for at nulstille din tegnebog.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "ANNULLER",
         "reset": "NULSTIL"
     },
     "walletSetup": {
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouAlreadyHaveASeed": "Har du allerede et seed, du gerne vil bruge?",
-        "seedExplanation":
-            "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
+        "seedExplanation": "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
         "explanation1": "Du kan bruge det til at tilgå dine midler fra",
         "explanation2": " enhver tegnebog ",
         "explanation3": "på",
@@ -234,12 +227,10 @@
     "welcome": {
         "thankYou": "Tak fordi du downloadede IOTA-tegnebogen.",
         "weWillSpend": "Vi bruger de næste par minutter på at opsætte din tegnebog.",
-        "reminder":
-            "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
+        "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og",
+        "yourSeedIs": "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og",
         "tripleCheck": "trippeltjek",
         "thatTheyAreCorrect": "at de er korrekt skrevet ned."
     },
