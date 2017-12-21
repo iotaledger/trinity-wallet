@@ -131,6 +131,12 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
     return dispatch => {
         let addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         const addresses = Object.keys(addressData);
+
+        if (addresses.length < 1) {
+            dispatch(setReady());
+            return;
+        }
+
         const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
         // Get unspent addresses
         let unspentAddresses = [];
