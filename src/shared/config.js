@@ -1,1 +1,1 @@
-export const defaultNode = 'https://iri3-api.iota.fm:443';
+export const defaultNode = 'http://5.9.137.199:14265';
