@@ -139,10 +139,10 @@ class Home extends Component {
         }
     };
 
-    handleInactivity() {
+    handleInactivity = () => {
         const { setUserActivity } = this.props;
         setUserActivity({ inactive: true });
-    }
+    };
 
     render() {
         const { t, navigator, inactive, minimised, startBackgroundProcesses, endBackgroundProcesses } = this.props;
