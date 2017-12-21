@@ -281,6 +281,7 @@ class Send extends Component {
     }
 
     onQRRead(data) {
+        data = JSON.parse(data);
         this.setState({
             address: data.address,
         });
