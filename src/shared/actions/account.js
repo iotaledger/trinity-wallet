@@ -24,7 +24,6 @@ import {
     mergeLatestTransfersInOld,
     deduplicateBundles,
     markAddressSpend,
-    aggregateAccountDataTransferBundles,
 } from '../libs/accountUtils';
 import {
     setReady,
@@ -121,7 +120,6 @@ export function getFullAccountInfo(seed, seedName, cb) {
                 // Combine addresses and balances
                 let addressData = formatFullAddressData(success);
                 console.log('direct', success.transfers);
-                console.log('DIRECT GROUPING', aggregateAccountDataTransferBundles(success.transfers));
                 const transfers = formatTransfers(success.transfers, success.addresses);
                 const balance = calculateBalance(addressData);
 
@@ -366,7 +364,7 @@ export function getTransfers(seedName, addresses, cb) {
                 iota.api.findTransactionObjects({ bundles: nonTailBundleHashes }, (err, fullTxObjects) => {
                     if (!err) {
                         // If no transfers, exit
-                        // TODO: setReady might be unnecessary at this point
+                        // FIXME: setReady might be unnecessary at this point
                         if (fullTxObjects.length < 1) {
                             dispatch(setReady());
                             dispatch(getTransfersSuccess());
@@ -380,16 +378,13 @@ export function getTransfers(seedName, addresses, cb) {
                         });
 
                         const next = () => {
-                            console.log('New transfers', bundles);
                             const selectedAccount = getSelectedAccount(seedName, getState().account.accountInfo);
                             const existingTransfers = selectedAccount.transfers;
 
-                            console.log('Existing transfers', existingTransfers);
-                            //transfers = mergeLatestTransfersInOld(oldTransfers, transfers);
-                            // Sort transfers and add transfer value
-                            //transfers = formatTransfers(transfers, addresses);
-                            // Update transfers then set ready
-                            //dispatch(updateTransfers(seedName, transfers));
+                            const updatedTransfers = mergeLatestTransfersInOld(existingTransfers, bundles);
+                            const updatedTransfersWithFormatting = formatTransfers(updatedTransfers, addresses);
+
+                            dispatch(updateTransfers(seedName, updatedTransfersWithFormatting));
                             dispatch(setReady());
                             dispatch(getTransfersSuccess());
                             cb(null, bundles);
@@ -400,17 +395,17 @@ export function getTransfers(seedName, addresses, cb) {
                                 let tailsProcessed = 0;
 
                                 const getBundle = (tailTxHash, idx) => {
-                                    iota.api.getBundle(tailTxHash, (err, bundle) => {
+                                    iota.api.getBundle(tailTxHash, (getBundleErr, bundle) => {
                                         tailsProcessed += 1;
 
-                                        if (!err) {
+                                        if (!getBundleErr) {
                                             each(bundle, bundleTx => {
                                                 bundleTx.persistence = inclusionStates[idx];
                                             });
 
                                             bundles.push(bundle);
 
-                                            if (tailsProcessed === idx + 1) {
+                                            if (tailsProcessed === tailTransactionHashes.length) {
                                                 next();
                                             }
                                         }
