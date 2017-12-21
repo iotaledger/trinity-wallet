@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { translate } from 'react-i18next';
 import React from 'react';
 import Modal from 'react-native-modal';
 import { StyleSheet, View, Text, StatusBar, Keyboard } from 'react-native';
@@ -40,19 +41,22 @@ class Login extends React.Component {
         this.setState({ changingNode: true });
     }
 
-    _renderModalContent = () => (
-        <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
-            <View style={styles.modalContent}>
-                <Text style={styles.questionText}>{t('selectDifferentNode')}</Text>
-                <OnboardingButtons
-                    onLeftButtonPress={() => this._hideModal()}
-                    onRightButtonPress={() => this.navigateToNodeSelection()}
-                    leftText={t('global:no')}
-                    rightText={t('global:yes')}
-                />
+    _renderModalContent = () => {
+        const { t } = this.props;
+        return (
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+                <View style={styles.modalContent}>
+                    <Text style={styles.questionText}>{t('selectDifferentNode')}</Text>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this._hideModal()}
+                        onRightButtonPress={() => this.navigateToNodeSelection()}
+                        leftText={t('global:no')}
+                        rightText={t('global:yes')}
+                    />
+                </View>
             </View>
-        </View>
-    );
+        );
+    };
 
     getWalletData() {
         this.props.getChartData();
