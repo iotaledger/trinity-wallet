@@ -36,7 +36,6 @@ import {
 } from 'iota-wallet-shared-modules/actions/account';
 import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { iota } from '../../shared/libs/iota';
-import { getAccountInfo, setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { generateAlert, disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import DropdownHolder from '../components/dropdownHolder';
