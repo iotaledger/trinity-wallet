@@ -7,6 +7,8 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -40,10 +42,7 @@ class WalletSetup extends React.Component {
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.topMidContainer}>
@@ -54,10 +53,7 @@ class WalletSetup extends React.Component {
                     </View>
                     <View style={styles.bottomMidContainer}>
                         <View style={styles.infoTextContainer}>
-                            <Image
-                                source={require('iota-wallet-shared-modules/images/info.png')}
-                                style={styles.infoIcon}
-                            />
+                            <Image source={infoImagePath} style={styles.infoIcon} />
                             <Text style={styles.infoText}>{t('seedExplanation')}</Text>
                             <Text style={styles.infoText}>
                                 <Text style={styles.infoTextLight}>{t('explanation1')}</Text>
