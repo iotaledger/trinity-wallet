@@ -43,7 +43,7 @@
         "noNickname": "Nessun nome di conto inserito",
         "noNicknameExplanation": "Si prega di assegnare un nome di conto al tuo seme.",
         "seedInUse": "Seme già in uso",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUseExplanation": "Questo seme è già collegato al tuo portafoglio. Si prega di utilizzare un seme diverso."
     },
     "changePassword": {
         "oops": "Ops! Qualcosa è andato storto",
@@ -96,7 +96,7 @@
         "enterPassword": "Inserisci la tua password.",
         "useSeed": "USA IL SEME",
         "login": "ACCEDI",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Vuoi selezionare un nodo diverso?"
     },
     "loading": {
         "loadingFirstTime": "Carico il seme per la prima volta.",
