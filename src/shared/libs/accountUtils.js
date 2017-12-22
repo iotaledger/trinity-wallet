@@ -183,7 +183,19 @@ export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
     const transformedOldTransfers = reduce(oldTransfers, toDict, {});
     const transformedLatestTransfers = reduce(latestTransfers, toDict, {});
 
-    return reduce(transformedOldTransfers, override, []);
+    const overrideMissing = (res, bundleObject, key) => {
+        // Add new bundle entry to transfers
+        if (!(key in transformedOldTransfers)) {
+            each(transformedLatestTransfers[key], value => res.push(value));
+        }
+
+        return res;
+    };
+
+    const oldUpdatedTransfers = reduce(transformedOldTransfers, override, []);
+    const newTransfers = reduce(transformedLatestTransfers, overrideMissing, []);
+
+    return [...oldUpdatedTransfers, ...newTransfers];
 };
 
 export const deduplicateTransferBundles = transfers => {
