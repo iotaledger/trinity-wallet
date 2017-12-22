@@ -1,5 +1,6 @@
 import { Platform } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
+
 const device = DeviceInfo.getModel();
 
 export const isAndroid = Platform.OS === 'android';

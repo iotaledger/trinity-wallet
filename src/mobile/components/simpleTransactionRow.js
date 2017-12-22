@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
+import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
+import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -30,10 +32,7 @@ const styles = StyleSheet.create({
 class SimpleTransactionRow extends Component {
     render() {
         const { t, rowData, addresses } = this.props;
-        const icon =
-            rowData[0].transferValue < 0
-                ? require('iota-wallet-shared-modules/images/send.png')
-                : require('iota-wallet-shared-modules/images/receive.png');
+        const icon = rowData[0].transferValue < 0 ? sendImagePath : receiveImagePath;
         const sign = rowData[0].transferValue < 0 ? '-' : '+';
         const address = get(rowData, '[0].address');
         const sendOrReceive = addresses.includes(address);

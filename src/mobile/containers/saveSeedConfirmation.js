@@ -4,6 +4,10 @@ import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, Statu
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
+import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked.png';
+import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -11,7 +15,7 @@ class SaveSeedConfirmation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            checkboxImage: require('iota-wallet-shared-modules/images/checkbox-unchecked.png'),
+            checkboxImage: checkboxUncheckedImagePath,
             hasSavedSeed: false,
             iotaLogoVisibility: 'hidden',
             showCheckbox: false,
@@ -49,15 +53,15 @@ class SaveSeedConfirmation extends React.Component {
     }
 
     onCheckboxPress() {
-        if (this.state.checkboxImage == require('iota-wallet-shared-modules/images/checkbox-checked.png')) {
+        if (this.state.checkboxImage === checkboxCheckedImagePath) {
             this.setState({
-                checkboxImage: require('iota-wallet-shared-modules/images/checkbox-unchecked.png'),
+                checkboxImage: checkboxUncheckedImagePath,
                 hasSavedSeed: false,
                 iotaLogoVisibility: 'hidden',
             });
         } else {
             this.setState({
-                checkboxImage: require('iota-wallet-shared-modules/images/checkbox-checked.png'),
+                checkboxImage: checkboxCheckedImagePath,
                 hasSavedSeed: true,
                 iotaLogoVisibility: 'visible',
             });
@@ -67,13 +71,10 @@ class SaveSeedConfirmation extends React.Component {
     render() {
         const { t } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.topMidContainer}>
