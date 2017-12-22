@@ -88,7 +88,7 @@ class Home extends Component {
 
     startBackgroundProcesses() {
         AppState.addEventListener('change', this._handleAppStateChange);
-        timer.setInterval('polling', () => this.pollForNewAddressesAndTransfers(), 47000);
+        timer.setInterval('polling', () => this.pollForNewAddressesAndTransfers(), 59000);
         timer.setInterval('chartPolling', () => this.pollForMarketData(), 101000);
     }
 
