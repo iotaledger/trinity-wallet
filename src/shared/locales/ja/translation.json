@@ -196,8 +196,8 @@
         "accountDeletedExplanation": "アカウントはウォレットから削除されました。",
         "cannotPerformAction": "操作を実行できません。",
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnection": "接続不良",
+        "poorConnectionExplanation": "接続不良により通貨を変更できませんでした。"
     },
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",
@@ -209,7 +209,7 @@
         "areYouSure": "本当に続行しますか？"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
         "cancel": "キャンセル",
         "reset": "リセット"
     },
