@@ -196,8 +196,8 @@
         "accountDeletedExplanation": "Il tuo conto è stato rimosso dal portafoglio.",
         "cannotPerformAction": "Non è possibile eseguire l'azione",
         "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnection": "Connessione scadente",
+        "poorConnectionExplanation": "Impossibile modificare la valuta a causa di una cattiva connessione."
     },
     "resetWalletConfirmation": {
         "thisAction": "Questa azione non può essere annullata.",
@@ -209,7 +209,7 @@
         "areYouSure": "Sei sicuro di voler continuare?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Immetti la tua password per reimpostare il tuo portafoglio.",
         "cancel": "ANNULLA",
         "reset": "REIMPOSTA"
     },
