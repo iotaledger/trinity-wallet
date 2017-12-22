@@ -25,6 +25,8 @@ import {
 import DropdownHolder from '../components/dropdownHolder';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import COLORS from '../theme/Colors';
+import chevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up.png';
+import chevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down.png';
 
 const { height, width } = Dimensions.get('window');
 
@@ -32,12 +34,12 @@ class TopBar extends Component {
     static getIconPath(isActive) {
         if (isActive) {
             return {
-                source: require('iota-wallet-shared-modules/images/chevron-up.png'),
+                source: chevronUpImagePath,
             };
         }
 
         return {
-            source: require('iota-wallet-shared-modules/images/chevron-down.png'),
+            source: chevronDownImagePath,
         };
     }
 
