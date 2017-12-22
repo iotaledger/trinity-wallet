@@ -4,6 +4,7 @@ import { width, height } from '../util/dimensions';
 import nodeImagePath from 'iota-wallet-shared-modules/images/node.png';
 import syncImagePath from 'iota-wallet-shared-modules/images/sync.png';
 import crossImagePath from 'iota-wallet-shared-modules/images/cross.png';
+import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
 class AdvancedSettings extends React.Component {
@@ -11,7 +12,7 @@ class AdvancedSettings extends React.Component {
         const { t } = this.props;
         return (
             <View style={styles.container}>
-                <View style={{ flex: 3.5 }}>
+                <View style={{ flex: 4.5 }}>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('nodeSelection')}>
                             <View style={styles.item}>
@@ -20,6 +21,14 @@ class AdvancedSettings extends React.Component {
                                 <Text numberOfLines={1} style={styles.settingText}>
                                     {this.props.node}
                                 </Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('addCustomNode')}>
+                            <View style={styles.item}>
+                                <Image source={addImagePath} style={styles.icon} />
+                                <Text style={styles.titleText}>Add custom node</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -38,13 +47,13 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.onResetWalletPress()}>
                             <View style={styles.item}>
                                 <Image source={crossImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Reset Wallet</Text>
+                                <Text style={styles.titleText}>Reset wallet</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={{ flex: 6.5, justifyContent: 'flex-end' }}>
-                    <View style={{ flex: 5.5 }} />
+                <View style={{ flex: 5.5, justifyContent: 'flex-end' }}>
+                    <View style={{ flex: 4.5 }} />
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>

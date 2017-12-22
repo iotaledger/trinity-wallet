@@ -5,6 +5,7 @@ import Modal from 'react-native-modal';
 import { StyleSheet, View, Text, StatusBar, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
+import { Navigation } from 'react-native-navigation';
 
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
@@ -18,6 +19,7 @@ import NodeSelection from '../components/nodeSelection';
 import EnterPassword from '../components/enterPassword';
 import keychain, { getSeed } from '../util/keychain';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
 const StatusBarDefaultBarStyle = 'light-content';
@@ -32,6 +34,10 @@ class Login extends React.Component {
         this.onNodeError = this.onNodeError.bind(this);
     }
 
+    componentDidMount() {
+        this.getWalletData();
+    }
+
     _showModal = data => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });
@@ -42,16 +48,16 @@ class Login extends React.Component {
     }
 
     _renderModalContent = () => {
-        const { t } = this.props;
         return (
             <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
                 <View style={styles.modalContent}>
-                    <Text style={styles.questionText}>{t('selectDifferentNode')}</Text>
+                    <Text style={styles.questionText}>Cannot connect to IOTA node.</Text>
+                    <Text style={styles.infoText}>Do you want to select a different node?</Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this._hideModal()}
                         onRightButtonPress={() => this.navigateToNodeSelection()}
-                        leftText={t('global:no')}
-                        rightText={t('global:yes')}
+                        leftText={'NO'}
+                        rightText={'YES'}
                     />
                 </View>
             </View>
@@ -97,22 +103,13 @@ class Login extends React.Component {
 
         login = value => {
             const seedIndex = this.props.tempAccount.seedIndex;
-            const seedName = this.props.account.seedNames[seedIndex];
-
-            this.getWalletData();
+            const accountName = this.props.account.seedNames[seedIndex];
+            const accountInfo = this.props.account.accountInfo;
             this.props.changeHomeScreenRoute('balance');
-            this.props.navigator.push({
-                screen: 'loading',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                },
-                animated: false,
-                overrideBackPress: true,
-            });
             this.props.getCurrencyData(this.props.settings.currency);
             if (this.props.account.firstUse) {
-                this.props.getFullAccountInfo(value, seedName, (error, success) => {
+                this.navigateToLoading();
+                this.props.getFullAccountInfo(value, accountName, (error, success) => {
                     if (error) {
                         this.onNodeError();
                     } else {
@@ -120,16 +117,48 @@ class Login extends React.Component {
                     }
                 });
             } else {
-                const accountInfo = this.props.account.accountInfo;
-                this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                    if (error) {
-                        this.onNodeError();
-                    } else {
-                        this.props.setReady();
-                    }
-                });
+                const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+                const addresses = currentSeedAccountInfo.addresses;
+                if (addresses.length > 0) {
+                    this.navigateToLoading();
+                    this.props.getAccountInfo(accountName, seedIndex, accountInfo, (error, success) => {
+                        if (error) {
+                            this.onNodeError();
+                        } else {
+                            this.props.setReady();
+                        }
+                    });
+                } else {
+                    this.navigateToHome();
+                }
             }
         };
+    }
+
+    navigateToLoading() {
+        this.props.navigator.push({
+            screen: 'loading',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            animated: false,
+            overrideBackPress: true,
+        });
+    }
+
+    navigateToHome() {
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: COLORS.backgroundGreen,
+                },
+                overrideBackPress: true,
+            },
+        });
     }
 
     onNodeError() {
@@ -139,21 +168,6 @@ class Login extends React.Component {
         });
         this.dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
         this._showModal();
-    }
-
-    onUseSeedPress() {
-        const { t } = this.props;
-        this.dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
-        {
-            /* this.props.navigator.push({
-            screen: 'useSeed',
-            navigatorStyle: {
-                navBarHidden: true,
-            },
-            animated: false,
-            overrideBackPress: true
-        }); */
-        }
     }
 
     render() {
@@ -173,7 +187,7 @@ class Login extends React.Component {
                                     this.props.setFullNode(selectedNode);
                                 }}
                                 node={this.props.settings.fullNode}
-                                nodes={this.props.settings.availableNodes}
+                                nodes={this.props.settings.availablePoWNodes}
                                 backPress={() => this.setState({ changingNode: false })}
                             />
                         </View>
@@ -217,16 +231,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: COLORS.backgroundGreen,
     },
-    questionText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.25,
-        textAlign: 'center',
-        paddingLeft: width / 7,
-        paddingRight: width / 7,
-        paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
     dropdownTitle: {
         fontSize: width / 25.9,
         textAlign: 'left',
@@ -259,13 +263,20 @@ const styles = StyleSheet.create({
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 18,
         width: width / 1.15,
     },
     questionText: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 27.6,
+        paddingBottom: height / 40,
+    },
+    infoText: {
         color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
