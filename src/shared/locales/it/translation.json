@@ -42,7 +42,7 @@
         "accountName": "Nome di conto",
         "noNickname": "Nessun nome di conto inserito",
         "noNicknameExplanation": "Si prega di assegnare un nome di conto al tuo seme.",
-        "seedInUse": "Seed already in use",
+        "seedInUse": "Seme già in uso",
         "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
@@ -67,8 +67,7 @@
         "seedCleared": "Seme cancellato",
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
         "seedCopied": "Copiato il seme negli appunti",
-        "seedCopiedExplanation":
-            "Il seme verrà cancellato una volta che si preme \"FINE\" o che sono trascorsi 60 secondi.",
+        "seedCopiedExplanation": "Il seme verrà cancellato una volta che si preme \"FINE\" o che sono trascorsi 60 secondi.",
         "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password.",
         "doNotStore": "Non salvare il tuo seme in un file non crittografato.",
         "copyToClipboard": "Copia negli appunti"
