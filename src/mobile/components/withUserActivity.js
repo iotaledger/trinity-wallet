@@ -1,11 +1,18 @@
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import timer from 'react-native-timer';
 import { AppState } from 'react-native';
 import { connect } from 'react-redux';
+import keychain, { getSeed } from '../util/keychain';
 
-import { getAccountInfo, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import {
+    getAccountInfo,
+    setFirstUse,
+    getNewTransfers,
+    getNewAddressData,
+} from 'iota-wallet-shared-modules/actions/account';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
 
@@ -25,6 +32,7 @@ const mapDispatchToProps = {
     getPrice,
     getChartData,
     setUserActivity,
+    getNewAddressData,
 };
 
 export default () => C => {
@@ -37,13 +45,25 @@ export default () => C => {
             this.endBackgroundProcesses();
         }
 
+        startBackgroundProcesses = () => {
+            AppState.addEventListener('change', this.handleAppStateChange);
+            timer.setInterval('polling', () => this.pollForNewAddressesAndTransfers(), 59000);
+            timer.setInterval('chartPolling', () => this.pollForMarketData(), 101000);
+        };
+
+        endBackgroundProcesses = () => {
+            AppState.removeEventListener('change', this.handleAppStateChange);
+            timer.clearInterval('polling');
+            timer.clearInterval('chartPolling');
+        };
+
         onNodeErrorPolling = () => {
             const dropdown = DropdownHolder.getDropdown();
             const { t } = this.props;
             dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
         };
 
-        startChartPolling = () => {
+        pollForMarketData = () => {
             const { settings, getMarketData, getChartData, getPrice } = this.props;
             // 'console.log('POLLING CHART DATA')'
             if (!settings.isSyncing && !settings.isGeneratingReceiveAddress && !settings.isSendingTransfer) {
@@ -53,30 +73,43 @@ export default () => C => {
             }
         };
 
-        startAccountPolling = () => {
-            const { tempAccount, account, getAccountInfo } = this.props;
+        pollForNewAddressesAndTransfers() {
+            const { tempAccount, account, getNewTransfers, getNewAddressData, getAccountInfo } = this.props;
             if (!tempAccount.isGettingTransfers && !tempAccount.isSendingTransfer && !tempAccount.isSyncing) {
-                // console.log('POLLING TX HISTORY')
-                const seedIndex = tempAccount.seedIndex;
-                const seedName = account.seedNames[seedIndex];
+                console.log('POLLING');
                 const accountInfo = account.accountInfo;
-                getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
-                    if (error) this.onNodeErrorPolling();
-                });
+                const seedIndex = tempAccount.seedIndex;
+                const addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+                const accountName = account.seedNames[seedIndex];
+                keychain
+                    .get()
+                    .then(credentials => {
+                        if (get(credentials, 'data')) {
+                            const seed = getSeed(credentials.data, seedIndex);
+                            getAddressData(seed);
+                        } else {
+                            console.log('error');
+                        }
+                    })
+                    .catch(err => console.log(err));
+
+                const getAddressData = seed => {
+                    getNewAddressData(seed, accountName, addressData, (error, success) => {
+                        if (error) {
+                            this.onNodeErrorPolling();
+                        } else {
+                            getTransfers();
+                        }
+                    });
+                };
+                const getTransfers = () => {
+                    const newAccountInfo = account.accountInfo;
+                    getAccountInfo(accountName, seedIndex, newAccountInfo, (error, success) => {
+                        if (error) this.onNodeErrorPolling();
+                    });
+                };
             }
-        };
-
-        startBackgroundProcesses = () => {
-            AppState.addEventListener('change', this.handleAppStateChange);
-            timer.setInterval('polling', () => this.startAccountPolling(), 47000);
-            timer.setInterval('chartPolling', () => this.startChartPolling(), 101000);
-        };
-
-        endBackgroundProcesses = () => {
-            AppState.removeEventListener('change', this.handleAppStateChange);
-            timer.clearInterval('polling');
-            timer.clearInterval('chartPolling');
-        };
+        }
 
         handleAppStateChange = nextAppState => {
             const { setUserActivity } = this.props;
@@ -109,6 +142,7 @@ export default () => C => {
     withUserActivity.propTypes = {
         setUserActivity: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
+        getNewAddressData: PropTypes.func.isRequired,
         getMarketData: PropTypes.func.isRequired,
         getChartData: PropTypes.func.isRequired,
         getPrice: PropTypes.func.isRequired,

@@ -24,6 +24,7 @@ import { width, height } from '../util/dimensions';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import GENERAL from '../theme/general';
 
 class ChangePassword extends Component {
     constructor() {
@@ -248,7 +249,7 @@ const styles = StyleSheet.create({
     infoTextWrapper: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadius,
         width: width / 1.6,
         alignItems: 'center',
         justifyContent: 'center',
