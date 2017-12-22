@@ -17,6 +17,7 @@ import { TextField } from 'react-native-material-textfield';
 import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import GENERAL from '../theme/general';
 
 class ViewSeed extends React.Component {
     constructor() {
@@ -232,7 +233,7 @@ const styles = StyleSheet.create({
     viewButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2.7,
         height: height / 17,
         justifyContent: 'center',

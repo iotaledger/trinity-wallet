@@ -12,6 +12,8 @@ import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAl
 import { Navigation } from 'react-native-navigation';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
+
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
 
@@ -27,13 +29,13 @@ class NewSeedSetup extends Component {
         super(props);
         this.state = {
             randomised: false,
-            infoTextHeight: 0,
+            infoTextColor: 'transparent',
         };
     }
 
     onGeneratePress() {
         this.props.randomiseSeed(randomBytes);
-        this.setState({ randomised: true, infoTextHeight: height / 38 });
+        this.setState({ randomised: true, infoTextColor: 'white' });
     }
 
     onNextPress() {
@@ -112,6 +114,7 @@ class NewSeedSetup extends Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <View style={{ flex: 150 }} />
                     <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
                         <View style={styles.generateButton}>
                             <Text style={styles.generateText}>{t('pressForNewSeed')}</Text>
@@ -119,6 +122,7 @@ class NewSeedSetup extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.midContainer}>
+                    <View style={{ flex: isIPhoneX ? 100 : 30 }} />
                     <ListView
                         contentContainerStyle={styles.list}
                         dataSource={ds.cloneWithRows(split(seed, ''))}
@@ -126,19 +130,17 @@ class NewSeedSetup extends Component {
                             <TouchableHighlight
                                 key={sectionID}
                                 onPress={event => this.onItemPress(sectionID)}
+                                style={styles.tileContainer}
                                 underlayColor="#F7D002"
                             >
                                 <View style={styles.tile}>
                                     <Text
                                         style={{
-                                            backgroundColor: 'white',
-                                            width: width / 14.5,
-                                            height: width / 14.5,
+                                            backgroundColor: 'transparent',
                                             color: '#1F4A54',
                                             fontFamily: 'Lato-Bold',
                                             fontSize: width / 28.9,
                                             textAlign: 'center',
-                                            paddingTop: height / 130,
                                             opacity: this.state.randomised ? 1 : 0.1,
                                         }}
                                     >
@@ -152,22 +154,21 @@ class NewSeedSetup extends Component {
                         scrollEnabled={false}
                         enableEmptySections
                     />
-                </View>
-                <View style={styles.bottomContainer}>
-                    <View style={{ justifyContent: 'center', flex: 0.4 }}>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 100 }}>
                         <Text
                             style={{
-                                color: 'white',
+                                color: this.state.infoTextColor,
                                 fontFamily: 'Lato-Light',
                                 textAlign: 'center',
                                 fontSize: width / 27.6,
                                 backgroundColor: 'transparent',
-                                height: this.state.infoTextHeight,
                             }}
                         >
                             {t('individualLetters')}
                         </Text>
                     </View>
+                </View>
+                <View style={styles.bottomContainer}>
                     <View style={styles.buttonsContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.leftButton}>
@@ -179,7 +180,7 @@ class NewSeedSetup extends Component {
                                 style={{
                                     borderColor: '#9DFFAF',
                                     borderWidth: 1.2,
-                                    borderRadius: 10,
+                                    borderRadius: GENERAL.borderRadius,
                                     width: width / 3,
                                     height: height / 14,
                                     alignItems: 'center',
@@ -227,32 +228,37 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4,
+        flex: 5.55,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
     },
     bottomContainer: {
-        flex: 1.3,
+        flex: 0.75,
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
     list: {
-        justifyContent: isIPhoneX ? 'flex-start' : 'center',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        height: isIPhoneX ? width / 1.1 : width / 1.15,
-        width: isIPhoneX ? width / 1.1 : width / 1.15,
-        flex: 1,
+        //height: isIPhoneX ? width / 1.1 : width / 1.15,
+        paddingHorizontal: width / 20,
     },
-
     gridContainer: {
-        height: width / 1.15,
-        width: width / 1.15,
+        //  flex: 1
     },
     tile: {
-        padding: height / 150,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    tileContainer: {
+        width: width / 14.5,
+        height: width / 14.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        margin: width / 80,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -270,7 +276,7 @@ const styles = StyleSheet.create({
     generateButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2.2,
         height: height / 16,
         justifyContent: 'center',
@@ -298,7 +304,7 @@ const styles = StyleSheet.create({
     leftButton: {
         borderColor: '#F7D002',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',

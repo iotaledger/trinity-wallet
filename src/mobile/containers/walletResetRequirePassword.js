@@ -20,6 +20,7 @@ import {
     StatusBar,
 } from 'react-native';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -49,7 +50,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: COLORS.backgroundDarkGreen,
+                    screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 overrideBackPress: true,
             },
@@ -68,7 +69,7 @@ class WalletResetRequirePassword extends Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: COLORS.backgroundDarkGreen,
+                    screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 overrideBackPress: true,
             },
@@ -220,7 +221,7 @@ const styles = StyleSheet.create({
     newSeedButton: {
         borderColor: COLORS.orangeDark,
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 1.65,
         height: height / 17,
         alignItems: 'center',

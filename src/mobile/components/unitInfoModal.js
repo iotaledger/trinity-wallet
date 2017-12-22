@@ -5,6 +5,7 @@ import { TextWithLetterSpacing } from './textWithLetterSpacing';
 import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import { width, height } from '../util/dimensions';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
 class UnitInfoModal extends React.Component {
     render() {
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     modalContent: {
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingBottom: height / 30,

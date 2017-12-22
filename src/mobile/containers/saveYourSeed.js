@@ -8,6 +8,7 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
     optionButton: {
         borderColor: '#8BD4FF',
         borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.36,
         height: height / 14,
         alignItems: 'center',
