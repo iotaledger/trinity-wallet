@@ -243,8 +243,7 @@ export function getTransfers(seedName, addresses, cb) {
                         };
                         dispatch(getTransfersSuccess());
 
-                        {
-                            /*iota.api.getLatestInclusion(tailTransactionHashes, (e, inclusionStates) => {
+                        iota.api.getLatestInclusion(tailTransactionHashes, (e, inclusionStates) => {
                             if (!e) {
                                 let tailsProcessed = 0;
 
@@ -270,8 +269,7 @@ export function getTransfers(seedName, addresses, cb) {
                             } else {
                                 errorCallback(e);
                             }
-                        });*/
-                        }
+                        });
                     } else {
                         errorCallback(err);
                     }
