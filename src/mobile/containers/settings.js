@@ -25,7 +25,9 @@ import {
     removeAccount,
     setBalance,
 } from 'iota-wallet-shared-modules/actions/account';
-import { setFullNode, getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
+import { setFullNode, getCurrencyData, addCustomPoWNode } from 'iota-wallet-shared-modules/actions/settings';
+import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
+import { checkNode } from 'iota-wallet-shared-modules/libs/iota';
 import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
@@ -39,6 +41,7 @@ import ManualSync from '../components/manualSync.js';
 import DeleteAccount from '../components/deleteAccount.js';
 import EditAccountName from '../components/editAccountName.js';
 import NodeSelection from '../components/nodeSelection.js';
+import AddCustomNode from '../components/addCustomNode.js';
 import LanguageSelection from '../components/languageSelection.js';
 import CurrencySelection from '../components/currencySelection.js';
 import MainSettings from '../components/mainSettings.js';
@@ -79,7 +82,7 @@ class Settings extends React.Component {
         let accountInfo = this.props.account.accountInfo;
         let seedIndex = this.props.tempAccount.seedIndex;
         let currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-        let addressesWithBalance = currentSeedAccountInfo.addresses || {};
+        let addressData = currentSeedAccountInfo.addresses || {};
         let transfers = currentSeedAccountInfo.transfers || [];
         const dropdown = DropdownHolder.getDropdown();
 
@@ -129,7 +132,7 @@ class Settings extends React.Component {
             case 'viewAddresses':
                 return (
                     <ViewAddresses
-                        addressesWithBalance={addressesWithBalance}
+                        addressData={addressData}
                         backPress={() => this.props.setSetting('accountManagement')}
                     />
                 );
@@ -181,7 +184,24 @@ class Settings extends React.Component {
                             this.props.setNode(selectedNode);
                         }}
                         node={this.props.settings.fullNode}
-                        nodes={this.props.settings.availableNodes}
+                        nodes={this.props.settings.availablePoWNodes}
+                        backPress={() => this.props.setSetting('advancedSettings')}
+                    />
+                );
+                break;
+            case 'addCustomNode':
+                return (
+                    <AddCustomNode
+                        setNode={selectedNode => {
+                            changeIotaNode(selectedNode);
+                            this.props.setNode(selectedNode);
+                        }}
+                        nodes={this.props.settings.availablePoWNodes}
+                        onDuplicateNodeError={() => this.onDuplicateNodeError()}
+                        checkNode={cb => checkNode(cb)}
+                        currentNode={this.props.settings.fullNode}
+                        onAddNodeError={() => this.onAddNodeError()}
+                        onAddNodeSuccess={customNode => this.onAddNodeSuccess(customNode)}
                         backPress={() => this.props.setSetting('advancedSettings')}
                     />
                 );
@@ -267,6 +287,22 @@ class Settings extends React.Component {
             dropdown.alertWithType('error', t('global:somethingWentWrong'), t('global:somethingWentWrongExplanation'));
         };
     }
+
+    onAddNodeError = () => {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'Custom node could not be added', 'The node returned an invalid response.');
+    };
+
+    onDuplicateNodeError = () => {
+        const dropdown = DropdownHolder.getDropdown();
+        dropdown.alertWithType('error', 'Duplicate node', 'The custom node is already listed.');
+    };
+
+    onAddNodeSuccess = customNode => {
+        const dropdown = DropdownHolder.getDropdown();
+        this.props.addCustomPoWNode(customNode);
+        dropdown.alertWithType('success', 'Custom node added', 'The custom node has been added successfully.');
+    };
 
     //UseExistingSeed method
     addExistingSeed(seed, accountName) {
@@ -412,7 +448,7 @@ class Settings extends React.Component {
         const accountNames = this.props.account.seedNames;
         const currentAccountName = accountNames[seedIndex];
         let accountInfo = this.props.account.accountInfo;
-        let addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+        let addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
 
         let newAccountInfo = accountInfo;
         delete newAccountInfo[currentAccountName];
@@ -425,9 +461,9 @@ class Settings extends React.Component {
 
                 seedIndex = this.props.tempAccount.seedIndex;
                 accountInfo = this.props.account.accountInfo;
-                addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
-
-                this.props.setBalance(addressesWithBalance);
+                addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
+                const balance = calculateBalance(addressData);
+                this.props.setBalance(balance);
                 this.props.setSetting('accountManagement');
                 dropdown.alertWithType('success', t('accountDeleted'), t('accountDeletedExplanation'));
             })
@@ -661,7 +697,8 @@ const mapDispatchToProps = dispatch => ({
     setReady: () => dispatch(setReady()),
     manualSyncRequest: () => dispatch(manualSyncRequest()),
     manualSyncComplete: () => dispatch(manualSyncComplete()),
-    setBalance: address => dispatch(setBalance(address)),
+    setBalance: balance => dispatch(setBalance(balance)),
+    addCustomPoWNode: customNode => dispatch(addCustomPoWNode(customNode)),
 });
 
 const mapStateToProps = state => ({

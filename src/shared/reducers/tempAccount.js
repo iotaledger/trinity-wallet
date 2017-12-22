@@ -123,12 +123,13 @@ export default (state = initialState, action) => {
                 currentSetting: 'mainSettings',
                 copiedToClipboard: false,
             };
-        case 'GET_TRANSFERS_REQUEST':
+        case ActionTypes.GET_TRANSFERS_REQUEST:
             return {
                 ...state,
                 isGettingTransfers: true,
             };
-        case 'GET_TRANSFERS_SUCCESS':
+        case ActionTypes.GET_TRANSFERS_SUCCESS:
+        case ActionTypes.GET_TRANSFERS_ERROR:
             return {
                 ...state,
                 isGettingTransfers: false,
