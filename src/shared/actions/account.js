@@ -241,31 +241,28 @@ export function getTransfers(seedName, addresses, cb) {
                             dispatch(getTransfersSuccess());
                             cb(null, bundles);
                         };
-                        dispatch(getTransfersSuccess());
 
                         iota.api.getLatestInclusion(tailTransactionHashes, (e, inclusionStates) => {
                             if (!e) {
-                                let tailsProcessed = 0;
-
-                                const getBundle = (tailTxHash, idx) => {
-                                    iota.api.getBundle(tailTxHash, (getBundleErr, bundle) => {
-                                        tailsProcessed += 1;
-
+                                const getBundle = (tailTxHashes, idx) => {
+                                    iota.api.getBundle(tailTxHashes[idx], (getBundleErr, bundle) => {
+                                        idx += 1;
                                         if (!getBundleErr) {
                                             each(bundle, bundleTx => {
                                                 bundleTx.persistence = inclusionStates[idx];
                                             });
 
                                             bundles.push(bundle);
-
-                                            if (tailsProcessed === tailTransactionHashes.length) {
-                                                next();
+                                            if (idx === tailTxHashes.length) {
+                                                setTimeout(next);
+                                            } else {
+                                                setTimeout(() => getBundle(tailTxHashes, idx), 500);
                                             }
                                         }
                                     });
                                 };
 
-                                each(tailTransactionHashes, getBundle);
+                                getBundle(tailTransactionHashes, 0);
                             } else {
                                 errorCallback(e);
                             }
