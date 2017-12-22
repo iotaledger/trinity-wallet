@@ -188,6 +188,8 @@ export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
         if (!(key in transformedOldTransfers)) {
             each(transformedLatestTransfers[key], value => res.push(value));
         }
+
+        return res;
     };
 
     const oldUpdatedTransfers = reduce(transformedOldTransfers, override, []);
