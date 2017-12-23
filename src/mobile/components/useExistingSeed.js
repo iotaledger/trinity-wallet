@@ -11,6 +11,8 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import arrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right.png';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 
@@ -71,6 +73,18 @@ class UseExistingSeed extends React.Component {
         <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
     );
 
+    getChecksumValue() {
+        const { seed } = this.state;
+        let checksumValue = '...';
+
+        if (seed.length != 0 && seed.length < 81) {
+            checksumValue = '< 81';
+        } else if (seed.length == 81) {
+            checksumValue = getChecksum(seed);
+        }
+        return checksumValue;
+    }
+
     render() {
         const { seed, accountName } = this.state;
         const { t } = this.props;
@@ -80,9 +94,11 @@ class UseExistingSeed extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={styles.seedContainer}>
+                            <View style={{ flex: 0.5 }} />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.title}>Please enter your seed.</Text>
+                                <Text style={styles.title}>Please enter a seed and account name.</Text>
                             </View>
+                            <View style={{ flex: 1 }} />
                             <View style={{ flexDirection: 'row' }}>
                                 <View style={styles.textFieldContainer}>
                                     <TextField
@@ -111,12 +127,13 @@ class UseExistingSeed extends React.Component {
                                     </TouchableOpacity>
                                 </View>
                             </View>
+                            <View style={{ flex: 1 }} />
+                            <View style={styles.checksum}>
+                                <Text style={styles.checksumText}>{this.getChecksumValue()}</Text>
+                            </View>
                         </View>
                         <View style={{ flex: 1 }} />
                         <View style={styles.accountNameContainer}>
-                            <View style={styles.subtitleContainer}>
-                                <Text style={styles.title}>Enter an account name.</Text>
-                            </View>
                             <TextField
                                 ref="accountName"
                                 style={styles.textField}
@@ -131,7 +148,7 @@ class UseExistingSeed extends React.Component {
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 value={accountName}
-                                containerStyle={{ width: width / 1.36 }}
+                                containerStyle={{ width: width / 1.2 }}
                                 onChangeText={accountName => this.setState({ accountName })}
                             />
                         </View>
@@ -196,7 +213,6 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 25,
         paddingBottom: height / 30,
     },
     subtitleContainer: {
@@ -230,7 +246,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 0.8,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6.5,
         height: height / 16,
     },
@@ -243,6 +259,7 @@ const styles = StyleSheet.create({
     textFieldContainer: {
         flex: 1,
         paddingRight: width / 30,
+        justifyContent: 'center',
     },
     textField: {
         color: 'white',
@@ -255,9 +272,11 @@ const styles = StyleSheet.create({
     },
     accountNameContainer: {
         flex: 4,
+        alignItems: 'center',
     },
     seedContainer: {
-        flex: 4,
+        flex: 6.5,
+        alignItems: 'center',
     },
     titleTextLeft: {
         color: 'white',
@@ -292,6 +311,20 @@ const styles = StyleSheet.create({
     iconRight: {
         width: width / 22,
         height: width / 22,
+    },
+    checksum: {
+        width: width / 8,
+        height: height / 20,
+        borderRadius: GENERAL.borderRadiusSmall,
+        borderColor: 'white',
+        borderWidth: height / 1000,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    checksumText: {
+        fontSize: width / 29.6,
+        color: 'white',
+        fontFamily: 'Lato-Regular',
     },
 });
 

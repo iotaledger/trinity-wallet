@@ -6,6 +6,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'reac
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
     yesButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -187,7 +188,7 @@ const styles = StyleSheet.create({
     noButton: {
         borderColor: '#F7D002',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',

@@ -4,6 +4,7 @@ import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -187,7 +188,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 30,
         borderColor: 'rgba(255, 255, 255, 0.25)',
         borderWidth: 0.5,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 1.2,
         height: height / 10,
         backgroundColor: 'rgba(255, 255, 255, 0.08)',
@@ -261,7 +262,7 @@ const styles = StyleSheet.create({
         width: width / 1.15,
         padding: width / 25,
         justifyContent: 'center',
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
     },
