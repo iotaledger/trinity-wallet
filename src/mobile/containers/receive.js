@@ -21,23 +21,34 @@ import {
     generateNewAddressRequest,
     generateNewAddressError,
 } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { TextField } from 'react-native-material-textfield';
 import keychain, { getSeed } from '../util/keychain';
-import DropdownHolder from '../components/dropdownHolder';
 import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
-const StatusBarDefaultBarStyle = 'light-content';
 
 class Receive extends Component {
+    static propTypes = {
+        tempAccount: PropTypes.object.isRequired,
+        generateNewAddress: PropTypes.func.isRequired,
+        setReceiveAddress: PropTypes.func.isRequired,
+        generateNewAddressRequest: PropTypes.func.isRequired,
+        generateNewAddressError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+    };
+
     constructor() {
         super();
+
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
         this.state = {
             dataSource: ds.cloneWithRows([]),
             message: '',
         };
+
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
@@ -53,12 +64,10 @@ class Receive extends Component {
     }
 
     onGeneratePress() {
-        const dropdown = DropdownHolder.getDropdown();
         const { t } = this.props;
 
         if (this.props.tempAccount.isSyncing) {
-            dropdown.alertWithType('error', 'Syncing in process', 'Please wait until syncing is complete.');
-            return;
+            return this.props.generateAlert('error', 'Syncing in process', 'Please wait until syncing is complete.');
         }
 
         this.props.generateNewAddressRequest();
@@ -67,7 +76,19 @@ class Receive extends Component {
         const accountInfo = this.props.account.accountInfo;
         const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
         const addresses = currentSeedAccountInfo.addresses;
-        keychain
+
+        const generate = (seed, accountName, addresses) => this.props.generateNewAddress(seed, accountName, addresses);
+
+        const error = () => {
+            this.props.generateNewAddressError();
+            this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongExplanation'),
+            );
+        };
+
+        return keychain
             .get()
             .then(credentials => {
                 if (get(credentials, 'data')) {
@@ -78,22 +99,14 @@ class Receive extends Component {
                 }
             })
             .catch(err => console.log(err));
-
-        const generate = (seed, accountName, addresses) => this.props.generateNewAddress(seed, accountName, addresses);
-
-        const error = () => {
-            this.props.generateNewAddressError();
-            dropdown.alertWithType('error', t('global:somethingWentWrong'), t('global:somethingWentWrongExplanation'));
-        };
     }
 
     onAddressPress(address) {
-        const dropdown = DropdownHolder.getDropdown();
         const { t } = this.props;
 
         if (address !== ' ') {
             Clipboard.setString(address);
-            dropdown.alertWithType('success', t('addressCopied'), t('addressCopiedExplanation'));
+            this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
         }
     }
 
@@ -116,6 +129,7 @@ class Receive extends Component {
     }
 
     clearInteractions() {
+        // FIXME: Unresolved method.
         this.props.closeTopBar();
         Keyboard.dismiss();
     }
@@ -315,17 +329,12 @@ const mapStateToProps = state => ({
     account: state.account,
 });
 
-const mapDispatchToProps = dispatch => ({
-    generateNewAddress: (seed, seedName, addresses) => dispatch(generateNewAddress(seed, seedName, addresses)),
-    setReceiveAddress: payload => dispatch(setReceiveAddress(payload)),
-    generateNewAddressRequest: () => dispatch(generateNewAddressRequest()),
-    generateNewAddressError: () => dispatch(generateNewAddressError()),
-});
-
-Receive.propTypes = {
-    tempAccount: PropTypes.object.isRequired,
-    generateNewAddress: PropTypes.func.isRequired,
-    setReceiveAddress: PropTypes.func.isRequired,
+const mapDispatchToProps = {
+    generateNewAddress,
+    setReceiveAddress,
+    generateNewAddressRequest,
+    generateNewAddressError,
+    generateAlert,
 };
 
 export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));

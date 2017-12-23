@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class StatefulDropdown extends Component {
+class StatefulDropdownAlert extends Component {
     static propTypes = {
         alerts: PropTypes.object.isRequired,
         disposeOffAlert: PropTypes.func.isRequired,
@@ -84,4 +84,4 @@ const mapStateToProps = ({ alerts }) => ({ alerts });
 
 const mapDispatchToProps = { disposeOffAlert };
 
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(StatefulDropdown));
+export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(StatefulDropdownAlert));

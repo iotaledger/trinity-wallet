@@ -3,7 +3,7 @@ import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, View, Text, TouchableOpacity, StatusBar } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import COLORS from '../theme/Colors';
@@ -57,12 +57,12 @@ import keychain, {
     deleteFromKeychain,
     storeSeedInKeychain,
 } from '../util/keychain';
-import DropdownHolder from '../components/dropdownHolder';
 import { width, height } from '../util/dimensions';
 
-class Settings extends React.Component {
-    constructor(props) {
-        super(props);
+class Settings extends Component {
+    constructor() {
+        super();
+
         this.state = {
             isModalVisible: false,
             modalSetting: 'addNewSeed',

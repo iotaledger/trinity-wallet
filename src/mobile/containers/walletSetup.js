@@ -1,4 +1,3 @@
-import merge from 'lodash/merge';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
 import React from 'react';
