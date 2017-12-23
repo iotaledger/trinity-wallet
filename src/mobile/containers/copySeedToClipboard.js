@@ -2,18 +2,19 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Clipboard, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import StatefulDropdown from './statefulDropdown';
 import PropTypes from 'prop-types';
 import Seedbox from '../components/seedBox.js';
 import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import GENERAL from '../theme/general';
 
-const StatusBarDefaultBarStyle = 'light-content';
-
 class CopySeedToClipboard extends React.Component {
+    static propTypes = {};
+
     constructor() {
         super();
 
@@ -21,11 +22,9 @@ class CopySeedToClipboard extends React.Component {
     }
 
     generateClipboardClearAlert() {
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
 
-        if (this.dropdown) {
-            this.dropdown.alertWithType('info', t('seedCleared'), t('seedClearedExplanation'));
-        }
+        return generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
     }
 
     componentWillUnmount() {
@@ -50,10 +49,12 @@ class CopySeedToClipboard extends React.Component {
     }
 
     onCopyPress() {
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
 
         Clipboard.setString(this.props.tempAccount.seed);
-        this.dropdown.alertWithType('success', t('seedCopied'), t('seedCopiedExplanation'));
+
+        generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
+
         this.timeout = setTimeout(() => {
             Clipboard.setString('');
             this.generateClipboardClearAlert();
@@ -85,16 +86,7 @@ class CopySeedToClipboard extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
+                <StatefulDropdown />
             </View>
         );
     }
@@ -230,9 +222,10 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setCopiedToClipboard: boolean => dispatch(setCopiedToClipboard(boolean)),
-});
+const mapDispatchToProps = {
+    setCopiedToClipboard,
+    generateAlert,
+};
 
 export default translate(['copyToClipboard', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(CopySeedToClipboard),
