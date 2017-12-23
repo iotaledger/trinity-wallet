@@ -31,52 +31,83 @@ import { generateAlert } from '../actions/alerts';
 import { rearrangeObjectKeys } from '../libs/util';
 
 export const ActionTypes = {
+    SET_FIRST_USE: 'IOTA/ACCOUNT/SET_FIRST_USE',
+    UPDATE_TRANSFERS: 'IOTA/ACCOUNT/UPDATE_TRANSFERS',
+    UPDATE_ADDRESSES: 'IOTA/ACCOUNT/UPDATE_ADDRESSES',
+    SET_ACCOUNT_INFO: 'IOTA/ACCOUNT/SET_ACCOUNT_INFO',
+    CHANGE_ACCOUNT_NAME: 'IOTA/ACCOUNT/CHANGE_ACCOUNT_NAME',
+    REMOVE_ACCOUNT: 'IOTA/ACCOUNT/REMOVE_ACCOUNT',
+    SET_ONBOARDING_COMPLETE: 'IOTA/ACCOUNT/SET_ONBOARDING_COMPLETE',
+    INCREASE_SEED_COUNT: 'IOTA/ACCOUNT/INCREASE_SEED_COUNT',
+    ADD_SEED_NAME: 'IOTA/ACCOUNT/ADD_SEED_NAME',
+    ADD_ADDRESSES: 'IOTA/ACCOUNT/ADD_ADDRESSES',
+    SET_BALANCE: 'IOTA/ACCOUNT/SET_BALANCE',
     SET_NEW_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/SET_NEW_UNCONFIRMED_BUNDLE_TAILS',
     UPDATE_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/UPDATE_UNCONFIRMED_BUNDLE_TAILS',
     REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS: 'IOTA/ACCOUNT/REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS',
 };
 
-export function setFirstUse(boolean) {
-    return {
-        type: 'SET_FIRST_USE',
-        payload: boolean,
-    };
-}
+export const setFirstUse = payload => ({
+    type: ActionTypes.SET_FIRST_USE,
+    payload,
+});
 
-export function setOnboardingComplete(boolean) {
-    return {
-        type: 'SET_ONBOARDING_COMPLETE',
-        payload: boolean,
-    };
-}
+export const updateTransfers = (seedName, transfers) => ({
+    type: ActionTypes.UPDATE_TRANSFERS,
+    seedName,
+    transfers,
+});
 
-export function increaseSeedCount() {
-    return {
-        type: 'INCREASE_SEED_COUNT',
-    };
-}
+export const updateAddresses = (seedName, addresses) => ({
+    type: ActionTypes.UPDATE_ADDRESSES,
+    seedName,
+    addresses,
+});
 
-export function addAccountName(seedName) {
-    return {
-        type: 'ADD_SEED_NAME',
-        seedName: seedName,
-    };
-}
+export const setAccountInfo = (seedName, addresses, transfers, balance) => ({
+    type: ActionTypes.SET_ACCOUNT_INFO,
+    seedName,
+    addresses,
+    transfers,
+    balance,
+});
 
-export function addAddresses(seedName, addresses) {
-    return {
-        type: 'ADD_ADDRESSES',
-        seedName: seedName,
-        addresses: addresses,
-    };
-}
+export const changeAccountName = (accountInfo, accountNames) => ({
+    type: ActionTypes.CHANGE_ACCOUNT_NAME,
+    accountInfo,
+    accountNames,
+});
 
-export function setBalance(balance) {
-    return {
-        type: 'SET_BALANCE',
-        payload: balance,
-    };
-}
+export const removeAccount = (accountInfo, accountNames) => ({
+    type: ActionTypes.REMOVE_ACCOUNT,
+    accountInfo,
+    accountNames,
+});
+
+export const setOnboardingComplete = payload => ({
+    type: ActionTypes.SET_ONBOARDING_COMPLETE,
+    payload,
+});
+
+export const increaseSeedCount = () => ({
+    type: ActionTypes.INCREASE_SEED_COUNT,
+});
+
+export const addAccountName = seedName => ({
+    type: ActionTypes.ADD_SEED_NAME,
+    seedName,
+});
+
+export const addAddresses = (seedName, addresses) => ({
+    type: ActionTypes.ADD_ADDRESSES,
+    seedName,
+    addresses,
+});
+
+export const setBalance = balance => ({
+    type: ActionTypes.SET_BALANCE,
+    balance,
+});
 
 export const updateUnconfirmedBundleTails = payload => ({
     type: ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS,
@@ -107,21 +138,22 @@ export const getAccountInfoNewSeedAsync = (seed, seedName) => {
     };
 };
 
-export function getFullAccountInfo(seed, accountName, cb) {
+export function getFullAccountInfo(seed, accountName) {
     return dispatch => {
-        iota.api.getAccountData(seed, (error, success) => {
+        iota.api.getAccountData(seed, (error, data) => {
             if (!error) {
-                let addressData = formatFullAddressData(success);
-                const transfers = formatTransfers(success.transfers, success.addresses);
+                const transfers = formatTransfers(data.transfers, data.addresses);
+
+                const addressData = formatFullAddressData(data);
                 const balance = calculateBalance(addressData);
-                addressData = markAddressSpend(transfers, addressData);
-                const unconfirmedTails = getBundleTailsForSentTransfers(transfers, success.addresses); // Should really be ordered.
-                dispatch(setAccountInfo(accountName, addressData, transfers, balance));
-                console.log(accountName);
+
+                const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
+                const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
+
+                dispatch(setAccountInfo(accountName, addressDataWithSpentFlag, transfers, balance));
                 dispatch(updateUnconfirmedBundleTails(unconfirmedTails));
-                cb(null, success);
             } else {
-                cb(error);
+                // TODO: dispatch an alert.
                 console.log(error);
             }
         });
@@ -427,47 +459,5 @@ export function addPendingTransfer(seedName, transfers, success) {
         // Add pending transfer at front of transfers array
         transfers.unshift(success);
         dispatch(updateTransfers(seedName, transfers));
-    };
-}
-
-export function updateTransfers(seedName, transfers) {
-    return {
-        type: 'UPDATE_TRANSFERS',
-        seedName,
-        transfers,
-    };
-}
-
-export function updateAddresses(seedName, addresses) {
-    return {
-        type: 'UPDATE_ADDRESSES',
-        seedName,
-        addresses,
-    };
-}
-
-export function setAccountInfo(seedName, addresses, transfers, balance) {
-    return {
-        type: 'SET_ACCOUNT_INFO',
-        seedName,
-        addresses,
-        transfers,
-        balance,
-    };
-}
-
-export function changeAccountName(accountInfo, accountNames) {
-    return {
-        type: 'CHANGE_ACCOUNT_NAME',
-        accountInfo,
-        accountNames,
-    };
-}
-
-export function removeAccount(accountInfo, accountNames) {
-    return {
-        type: 'REMOVE_ACCOUNT',
-        accountInfo,
-        accountNames,
     };
 }

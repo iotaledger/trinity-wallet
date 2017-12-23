@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
@@ -6,7 +6,7 @@ import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import { RNPrint } from 'NativeModules';
 import QRCode from 'react-native-qrcode-svg';
 import RNFS from 'react-native-fs';
-import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html.js';
+import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { isAndroid, isIOS } from '../util/device';
 import { width, height } from '../util/dimensions';
@@ -23,15 +23,17 @@ const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
 let results = '';
 
-class PaperWallet extends React.Component {
-    constructor(props) {
-        super(props);
+class PaperWallet extends Component {
+    constructor() {
+        super();
+
         this.state = {
             checkboxImage: checkboxCheckedImagePath,
             showIotaLogo: true,
             iotaLogoVisibility: 'visible',
             pressedPrint: false,
         };
+
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
@@ -224,7 +226,7 @@ class PaperWallet extends React.Component {
     }
 
     onCheckboxPress() {
-        if (this.state.checkboxImage == checkboxCheckedImagePath) {
+        if (this.state.checkboxImage === checkboxCheckedImagePath) {
             this.setState({
                 checkboxImage: checkboxUncheckedImagePath,
                 showIotaLogo: false,

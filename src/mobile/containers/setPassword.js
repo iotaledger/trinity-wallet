@@ -1,24 +1,17 @@
 import isEmpty from 'lodash/isEmpty';
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Image,
-    ScrollView,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { clearTempData, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { isAndroid } from '../util/device';
 import COLORS from '../theme/Colors';
@@ -28,11 +21,20 @@ import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 const MIN_PASSWORD_LENGTH = 12;
-const StatusBarDefaultBarStyle = 'light-content';
 
-class SetPassword extends React.Component {
-    constructor(props) {
-        super(props);
+class SetPassword extends Component {
+    static propTypes = {
+        setOnboardingComplete: PropTypes.func.isRequired,
+        clearTempData: PropTypes.func.isRequired,
+        clearSeed: PropTypes.func.isRequired,
+        increaseSeedCount: PropTypes.func.isRequired,
+        addAccountName: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+    };
+
+    constructor() {
+        super();
+
         this.state = {
             password: '',
             reentry: '',
@@ -53,13 +55,13 @@ class SetPassword extends React.Component {
                         );
                     } else {
                         if (hasDuplicateAccountName(credentials.data, this.props.tempAccount.seedName)) {
-                            return this.dropdown.alertWithType(
+                            return this.props.generateAlert(
                                 'error',
                                 t('addAdditionalSeed:nameInUse'),
                                 t('addAdditionalSeed:nameInUseExplanation'),
                             );
                         } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
-                            return this.dropdown.alertWithType(
+                            return this.props.generateAlert(
                                 'error',
                                 t('addAdditionalSeed:seedInUse'),
                                 t('addAdditionalSeed:seedInUseExplanation'),
@@ -73,9 +75,8 @@ class SetPassword extends React.Component {
                         );
                     }
                 })
-                .catch(err => {
-                    console.log(err);
-                    this.dropdown.alertWithType(
+                .catch(() => {
+                    this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
                         t('global:somethingWentWrongExplanation'),
@@ -104,7 +105,7 @@ class SetPassword extends React.Component {
             };
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
-                this.dropdown.alertWithType(
+                this.props.generateAlert(
                     'error',
                     t('passwordTooShort'),
                     t('passwordTooShortExplanation', {
@@ -113,10 +114,11 @@ class SetPassword extends React.Component {
                     }),
                 );
             } else if (!(this.state.password === this.state.reentry)) {
-                this.dropdown.alertWithType('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
+                this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
             }
         }
     }
+
     onBackPress() {
         this.props.navigator.pop({
             animated: false,
@@ -203,16 +205,6 @@ class SetPassword extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
             </View>
         );
     }
@@ -233,6 +225,7 @@ class SetPassword extends React.Component {
                         {this._renderContent()}
                     </KeyboardAwareScrollView>
                 )}
+                <StatefulDropdownAlert />
             </View>
         );
     }
@@ -380,24 +373,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setOnboardingComplete: boolean => {
-        dispatch(setOnboardingComplete(boolean));
-    },
-    storeSeedInKeychain: password => {
-        dispatch(storeSeedInKeychain(password));
-    },
-    clearTempData: () => {
-        dispatch(clearTempData());
-    },
-    clearSeed: () => {
-        dispatch(clearSeed());
-    },
-    increaseSeedCount: () => {
-        dispatch(increaseSeedCount());
-    },
-    addAccountName: newSeed => {
-        dispatch(addAccountName(newSeed));
-    },
+    setOnboardingComplete,
+    clearTempData,
+    clearSeed,
+    increaseSeedCount,
+    addAccountName,
+    generateAlert,
 });
 
 export default translate(['setPassword', 'global', 'addAdditionalSeed'])(

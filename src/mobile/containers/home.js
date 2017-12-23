@@ -5,14 +5,14 @@ import { StyleSheet, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
-import DropdownAlert from 'react-native-dropdownalert';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
 import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
-import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
 import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
 import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
@@ -21,7 +21,6 @@ import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
 
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
-import DropdownHolder from '../components/dropdownHolder';
 import Promoter from './promoter';
 import COLORS from '../theme/Colors';
 import Tabs from '../components/tabs';
@@ -29,8 +28,6 @@ import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
 import EnterPassword from '../components/enterPassword';
 import { width, height } from '../util/dimensions';
-
-const StatusBarDefaultBarStyle = 'light-content';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -95,29 +92,13 @@ class Home extends Component {
         }
     }
 
-    componentWillReceiveProps(newProps) {
-        const { alerts } = this.props;
-        const didNotHaveAlertPreviously = !alerts.category && !alerts.title && !alerts.message;
-        const hasANewAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
-        const shouldGenerateAlert = hasANewAlert && didNotHaveAlertPreviously;
-
-        if (shouldGenerateAlert) {
-            const dropdown = DropdownHolder.getDropdown();
-            dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
-        }
-    }
-
     onLoginPress = password => {
-        const { t, tempAccount, setUserActivity } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
+        const { t, tempAccount, setUserActivity, generateAlert } = this.props;
+
         if (!password) {
-            dropdown.alertWithType('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
+            generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else if (password !== tempAccount.password) {
-            dropdown.alertWithType(
-                'error',
-                t('global:unrecognisedPassword'),
-                t('global:unrecognisedPasswordExplanation'),
-            );
+            generateAlert('error', t('global:unrecognisedPassword'), t('global:unrecognisedPasswordExplanation'));
         } else {
             setUserActivity({ inactive: false });
         }
@@ -165,20 +146,7 @@ class Home extends Component {
                     )}
                     {minimised && <View />}
                     <Promoter />
-                    <DropdownAlert
-                        ref={DropdownHolder.setDropdown}
-                        elevation={120}
-                        successColor="#009f3f"
-                        errorColor="#A10702"
-                        titleStyle={styles.dropdownTitle}
-                        defaultTextContainer={styles.dropdownTextContainer}
-                        messageStyle={styles.dropdownMessage}
-                        imageStyle={styles.dropdownImage}
-                        inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                        onCancel={this.props.disposeOffAlert}
-                        onClose={this.props.disposeOffAlert}
-                        closeInterval={5500}
-                    />
+                    <StatefulDropdownAlert />
                     <KeepAwake />
                 </View>
             </UserInactivity>
@@ -198,7 +166,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     setBalance,
     changeHomeScreenRoute,
-    disposeOffAlert,
+    generateAlert,
     setFirstUse,
     clearTempData,
     setPassword,
@@ -211,7 +179,7 @@ Home.propTypes = {
     alerts: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
-    disposeOffAlert: PropTypes.func.isRequired,
+    generateAlert: PropTypes.func.isRequired,
     setUserActivity: PropTypes.func.isRequired,
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,

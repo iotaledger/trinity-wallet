@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Image, Text, StatusBar, BackHandler } from 'react-native';
+import { StyleSheet, View, Image, Text, StatusBar } from 'react-native';
 import keychain from '../util/keychain';
-import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
 import store from 'iota-wallet-shared-modules/store';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
@@ -20,17 +19,12 @@ const FULL_VERSION = 'v' + version + ' (' + build + ')';
 export default class InitialLoading extends Component {
     constructor() {
         super();
+
         console.ignoredYellowBox = ['Setting a timer'];
     }
 
     componentDidMount() {
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
-    }
-
-    componentWillUnmount() {}
-
-    handleBackButton() {
-        return false;
     }
 
     clearKeychain() {
@@ -60,7 +54,6 @@ export default class InitialLoading extends Component {
     }
 
     render() {
-        const currentYear = getCurrentYear();
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />

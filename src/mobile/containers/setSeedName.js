@@ -1,15 +1,16 @@
 import isEmpty from 'lodash/isEmpty';
 import trim from 'lodash/trim';
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
-import { generateAlert } from '../../shared/actions/alerts';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
 import keychain, { storeSeedInKeychain, hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
@@ -18,11 +19,23 @@ import GENERAL from '../theme/general';
 
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-const StatusBarDefaultBarStyle = 'light-content';
 
-export class SetSeedName extends React.Component {
-    constructor(props) {
-        super(props);
+export class SetSeedName extends Component {
+    static propTypes = {
+        increaseSeedCount: PropTypes.func.isRequired,
+        setSeedName: PropTypes.func.isRequired,
+        clearSeed: PropTypes.func.isRequired,
+        setReady: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        setFirstUse: PropTypes.func.isRequired,
+        clearTempData: PropTypes.func.isRequired,
+        addAccountName: PropTypes.func.isRequired,
+        getFullAccountInfo: PropTypes.func.isRequired,
+    };
+
+    constructor() {
+        super();
+
         this.state = {
             accountName: this.getDefaultAccountName(),
         };
@@ -30,19 +43,19 @@ export class SetSeedName extends React.Component {
 
     getDefaultAccountName() {
         const { t } = this.props;
-        if (this.props.account.seedCount == 0) {
+        if (this.props.account.seedCount === 0) {
             return t('global:mainWallet');
-        } else if (this.props.account.seedCount == 1) {
+        } else if (this.props.account.seedCount === 1) {
             return t('global:secondWallet');
-        } else if (this.props.account.seedCount == 2) {
+        } else if (this.props.account.seedCount === 2) {
             return t('global:thirdWallet');
-        } else if (this.props.account.seedCount == 3) {
+        } else if (this.props.account.seedCount === 3) {
             return t('global:fourthWallet');
-        } else if (this.props.account.seedCount == 4) {
+        } else if (this.props.account.seedCount === 4) {
             return t('global:fifthWallet');
-        } else if (this.props.account.seedCount == 5) {
+        } else if (this.props.account.seedCount === 5) {
             return t('global:sixthWallet');
-        } else if (this.props.account.seedCount == 6) {
+        } else if (this.props.account.seedCount === 6) {
             return t('global:otherWallet');
         } else {
             return '';
@@ -76,13 +89,13 @@ export class SetSeedName extends React.Component {
                             return ifNoKeychainDuplicates(this.props.tempAccount.seed, trimmedAccountName);
                         } else {
                             if (hasDuplicateAccountName(credentials.password, trimmedAccountName)) {
-                                return this.dropdown.alertWithType(
+                                return this.props.generateAlert(
                                     'error',
                                     t('addAdditionalSeed:nameInUse'),
                                     t('addAdditionalSeed:nameInUseExplanation'),
                                 );
                             } else if (hasDuplicateSeed(credentials.password, this.props.tempAccount.seed)) {
-                                return this.dropdown.alertWithType(
+                                return this.props.generateAlert(
                                     'error',
                                     t('addAdditionalSeed:seedInUse'),
                                     t('addAdditionalSeed:seedInUseExplanation'),
@@ -93,7 +106,7 @@ export class SetSeedName extends React.Component {
                         }
                     })
                     .catch(err => {
-                        this.dropdown.alertWithType(
+                        this.props.generateAlert(
                             'error',
                             t('global:somethingWentWrong'),
                             t('global:somethingWentWrongExplanation'),
@@ -124,7 +137,7 @@ export class SetSeedName extends React.Component {
                     this.props.navigator.pop({
                         animated: false,
                     });
-                    this.dropdown.alertWithType(
+                    this.props.generateAlert(
                         'error',
                         t('global:invalidResponse'),
                         t('global:invalidResponseExplanation'),
@@ -145,7 +158,7 @@ export class SetSeedName extends React.Component {
                 };
             }
         } else {
-            this.dropdown.alertWithType(
+            this.props.generateAlert(
                 'error',
                 t('addAdditionalSeed:noNickname'),
                 t('addAdditionalSeed:noNicknameExplanation'),
@@ -213,16 +226,7 @@ export class SetSeedName extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
+                <StatefulDropdownAlert />
             </View>
         );
     }
@@ -353,33 +357,17 @@ const mapStateToProps = state => ({
     account: state.account,
 });
 
-const mapDispatchToProps = dispatch => ({
-    increaseSeedCount: () => {
-        dispatch(increaseSeedCount());
-    },
-    setSeedName: accountName => {
-        dispatch(setSeedName(accountName));
-    },
-    clearSeed: () => {
-        dispatch(clearSeed());
-    },
-    setReady: () => dispatch(setReady()),
-    generateAlert: (error, title, message) => {
-        dispatch(generateAlert(error, title, message));
-    },
-    setFirstUse: boolean => {
-        dispatch(setFirstUse(boolean));
-    },
-    clearTempData: () => {
-        dispatch(clearTempData());
-    },
-    addAccountName: newSeed => {
-        dispatch(addAccountName(newSeed));
-    },
-    getFullAccountInfo: (seed, accountName, cb) => {
-        dispatch(getFullAccountInfo(seed, accountName, cb));
-    },
-});
+const mapDispatchToProps = {
+    increaseSeedCount,
+    setSeedName,
+    clearSeed,
+    setReady,
+    generateAlert,
+    setFirstUse,
+    clearTempData,
+    addAccountName,
+    getFullAccountInfo,
+};
 
 export default translate(['setSeedName', 'global', 'addAdditionalSeed'])(
     connect(mapStateToProps, mapDispatchToProps)(SetSeedName),

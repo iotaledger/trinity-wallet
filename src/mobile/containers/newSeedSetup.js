@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableHighlight, ListView, TouchableOpacity, Image, StatusBar } from 'react-native';
-import OnboardingButtons from '../components/onboardingButtons.js';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { randomBytes } from 'react-native-randombytes';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Navigation } from 'react-native-navigation';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import COLORS from '../theme/Colors';
@@ -17,16 +17,15 @@ import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
 
-const StatusBarDefaultBarStyle = 'light-content';
-
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable global-require */
 
 class NewSeedSetup extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+
         this.state = {
             randomised: false,
             infoTextColor: 'transparent',
@@ -48,7 +47,7 @@ class NewSeedSetup extends Component {
                 overrideBackPress: true,
             });
         } else {
-            this.dropdown.alertWithType('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
+            generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
         }
     }
 
@@ -193,16 +192,7 @@ class NewSeedSetup extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
+                <StatefulDropdownAlert />
             </View>
         );
     }
@@ -363,16 +353,11 @@ const mapStateToProps = state => ({
     account: state.account,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setSeed: seed => {
-        dispatch(setSeed(seed));
-    },
-    clearSeed: () => {
-        dispatch(clearSeed());
-    },
-    randomiseSeed: randomBytes => {
-        dispatch(randomiseSeed(randomBytes));
-    },
-});
+const mapDispatchToProps = {
+    setSeed,
+    clearSeed,
+    randomiseSeed,
+    generateAlert,
+};
 
 export default translate(['newSeedSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup));

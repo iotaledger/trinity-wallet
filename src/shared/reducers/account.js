@@ -29,7 +29,7 @@ const account = (
                 ...state,
                 unconfirmedBundleTails: action.payload,
             };
-        case 'SET_ACCOUNT_INFO':
+        case ActionTypes.SET_ACCOUNT_INFO:
             return {
                 ...state,
                 balance: action.balance,
@@ -41,20 +41,20 @@ const account = (
                     },
                 },
             };
-        case 'CHANGE_ACCOUNT_NAME':
+        case ActionTypes.CHANGE_ACCOUNT_NAME:
             return {
                 ...state,
                 seedNames: action.accountNames,
                 accountInfo: action.accountInfo,
             };
-        case 'REMOVE_ACCOUNT':
+        case ActionTypes.REMOVE_ACCOUNT:
             return {
                 ...state,
                 accountInfo: action.accountInfo,
                 seedNames: action.accountNames,
                 seedCount: state.seedCount - 1,
             };
-        case 'UPDATE_ADDRESSES':
+        case ActionTypes.UPDATE_ADDRESSES:
             return {
                 ...state,
                 accountInfo: {
@@ -65,7 +65,7 @@ const account = (
                     },
                 },
             };
-        case 'UPDATE_TRANSFERS':
+        case ActionTypes.UPDATE_TRANSFERS:
             return {
                 ...state,
                 accountInfo: {
@@ -76,27 +76,27 @@ const account = (
                     },
                 },
             };
-        case 'SET_FIRST_USE':
+        case ActionTypes.SET_FIRST_USE:
             return {
                 ...state,
                 firstUse: action.payload,
             };
-        case 'SET_BALANCE':
+        case ActionTypes.SET_BALANCE:
             return {
                 ...state,
                 balance: action.payload,
             };
-        case 'SET_ONBOARDING_COMPLETE':
+        case ActionTypes.SET_ONBOARDING_COMPLETE:
             return {
                 ...state,
                 onboardingComplete: action.payload,
             };
-        case 'INCREASE_SEED_COUNT':
+        case ActionTypes.INCREASE_SEED_COUNT:
             return {
                 ...state,
                 seedCount: state.seedCount + 1,
             };
-        case 'ADD_SEED_NAME':
+        case ActionTypes.ADD_SEED_NAME:
             return {
                 ...state,
                 seedNames: [...state.seedNames, action.seedName],
