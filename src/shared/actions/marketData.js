@@ -122,7 +122,11 @@ export function getChartData() {
                 )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
                 return fetch(url)
                     .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
-                    .then(json => dispatch(setChartData(json, currency, timeframe)));
+                    .then(json => {
+                        if (json) {
+                            dispatch(setChartData(json, currency, timeframe));
+                        }
+                    });
             });
         });
     };

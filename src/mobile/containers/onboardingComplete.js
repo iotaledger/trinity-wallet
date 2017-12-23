@@ -2,7 +2,7 @@ import React from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import COLORS from '../theme/Colors';
-
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     nextButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',

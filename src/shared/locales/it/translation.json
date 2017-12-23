@@ -42,8 +42,8 @@
         "accountName": "Nome di conto",
         "noNickname": "Nessun nome di conto inserito",
         "noNicknameExplanation": "Si prega di assegnare un nome di conto al tuo seme.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "Seme già in uso",
+        "seedInUseExplanation": "Questo seme è già collegato al tuo portafoglio. Si prega di utilizzare un seme diverso."
     },
     "changePassword": {
         "oops": "Ops! Qualcosa è andato storto",
@@ -67,8 +67,7 @@
         "seedCleared": "Seme cancellato",
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
         "seedCopied": "Copiato il seme negli appunti",
-        "seedCopiedExplanation":
-            "Il seme verrà cancellato una volta che si preme \"FINE\" o che sono trascorsi 60 secondi.",
+        "seedCopiedExplanation": "Il seme verrà cancellato una volta che si preme \"FINE\" o che sono trascorsi 60 secondi.",
         "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password.",
         "doNotStore": "Non salvare il tuo seme in un file non crittografato.",
         "copyToClipboard": "Copia negli appunti"
@@ -97,7 +96,7 @@
         "enterPassword": "Inserisci la tua password.",
         "useSeed": "USA IL SEME",
         "login": "ACCEDI",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Vuoi selezionare un nodo diverso?"
     },
     "loading": {
         "loadingFirstTime": "Carico il seme per la prima volta.",
@@ -197,8 +196,8 @@
         "accountDeletedExplanation": "Il tuo conto è stato rimosso dal portafoglio.",
         "cannotPerformAction": "Non è possibile eseguire l'azione",
         "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnection": "Connessione scadente",
+        "poorConnectionExplanation": "Impossibile modificare la valuta a causa di una cattiva connessione."
     },
     "resetWalletConfirmation": {
         "thisAction": "Questa azione non può essere annullata.",
@@ -210,7 +209,7 @@
         "areYouSure": "Sei sicuro di voler continuare?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Immetti la tua password per reimpostare il tuo portafoglio.",
         "cancel": "ANNULLA",
         "reset": "REIMPOSTA"
     },

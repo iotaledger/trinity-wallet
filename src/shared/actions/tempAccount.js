@@ -15,17 +15,26 @@ import { MAX_SEED_LENGTH } from '../libs/util';
 
 export const ActionTypes = {
     SET_PROMOTION_STATUS: 'IOTA/TEMP_ACCOUNT/SET_PROMOTION_STATUS',
+    GET_TRANSFERS_REQUEST: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_REQUEST',
+    GET_TRANSFERS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_SUCCESS',
+    GET_TRANSFERS_ERROR: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_ERROR',
 };
 
 export function getTransfersRequest() {
     return {
-        type: 'GET_TRANSFERS_REQUEST',
+        type: ActionTypes.GET_TRANSFERS_REQUEST,
     };
 }
 
 export function getTransfersSuccess() {
     return {
-        type: 'GET_TRANSFERS_SUCCESS',
+        type: ActionTypes.GET_TRANSFERS_SUCCESS,
+    };
+}
+
+export function getTransfersError() {
+    return {
+        type: ActionTypes.GET_TRANSFERS_ERROR,
     };
 }
 
@@ -194,7 +203,7 @@ export function generateNewAddress(seed, seedName, addresses) {
                 // In case the newly created address is not part of the addresses object
                 // Add that as a key with a 0 balance.
                 if (!(addressNoChecksum in addresses)) {
-                    updatedAddresses[addressNoChecksum] = 0;
+                    updatedAddresses[addressNoChecksum] = { balance: 0, spent: false };
                 }
 
                 dispatch(updateAddresses(seedName, updatedAddresses));
@@ -206,7 +215,7 @@ export function generateNewAddress(seed, seedName, addresses) {
     };
 }
 
-export function sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message, tag = 'IOTA') {
+export function sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message, cb) {
     return dispatch => {
         const verifyAndSend = (filtered, expectedOutputsLength, transfer, inputs) => {
             if (filtered.length !== expectedOutputsLength) {
@@ -219,16 +228,18 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                 );
             }
             // Send transfer with depth 4 and minWeightMagnitude 14
-            const addressesWithBalance = currentSeedAccountInfo.addresses;
+            const addressData = currentSeedAccountInfo.addresses;
             const transfers = currentSeedAccountInfo.transfers;
             const options = { inputs };
 
             return iota.api.sendTransfer(seed, 4, 14, transfer, options, (error, success) => {
                 if (!error) {
-                    dispatch(checkForNewAddress(seedName, addressesWithBalance, success));
+                    dispatch(checkForNewAddress(seedName, addressData, success));
                     dispatch(addPendingTransfer(seedName, transfers, success));
+                    console.log(success);
                     dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
                     dispatch(sendTransferSuccess(address, value));
+                    cb();
 
                     // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
                     // Would be the tail anyways.
@@ -259,7 +270,7 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                     generateAlert(
                         'error',
                         'Transfer Error',
-                        `Something went wrong while sending your transfer. Please try again.`,
+                        'Something went wrong while sending your transfer. Please try again.',
                     ),
                 );
             } else {
@@ -278,11 +289,12 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                         generateAlert(
                             'error',
                             'Key reuse',
-                            `You cannot send to an address that has already been spent from.`,
+                            'You cannot send to an address that has already been spent from.',
                         ),
                     );
                 }
 
+                const tag = 'IOTA';
                 const transfer = [
                     {
                         address: address,
@@ -305,19 +317,28 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
     };
 }
 
-export function checkForNewAddress(seedName, addressesWithBalance, txArray) {
+export function checkForNewAddress(seedName, addressData, txArray) {
     return dispatch => {
         // Check if 0 value transfer
         if (txArray[0].value != 0) {
             const changeAddress = txArray[txArray.length - 1].address;
-            const addresses = Object.keys(addressesWithBalance);
+            const addresses = Object.keys(addressData);
             // Remove checksum
             const addressNoChecksum = changeAddress.substring(0, MAX_SEED_LENGTH);
             // If current addresses does not include change address, add new address and balance
             if (!addresses.includes(addressNoChecksum)) {
-                addressesWithBalance[addressNoChecksum] = 0;
+                const addressArray = [addressNoChecksum];
+                // Check change address balance
+                iota.api.getBalances(addressArray, 1, (error, success) => {
+                    if (!error) {
+                        const addressBalance = parseInt(success.balances[0]);
+                        addressData[addressNoChecksum] = { balance: addressBalance, spent: false };
+                    } else {
+                        addressData[addressNoChecksum] = { balance: 0, spent: false };
+                    }
+                });
             }
-            dispatch(updateAddresses(seedName, addressesWithBalance));
+            dispatch(updateAddresses(seedName, addressData));
         }
     };
 }
@@ -342,7 +363,7 @@ export function randomiseSeed(randomBytesFn) {
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);
-                dispatch(generateAlert('error', 'Something went wrong', `Please restart the app.`));
+                dispatch(generateAlert('error', 'Something went wrong', 'Please restart the app.'));
             }
         });
     };
