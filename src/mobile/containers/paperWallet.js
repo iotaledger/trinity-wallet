@@ -16,6 +16,8 @@ import iotaFullImagePath from 'iota-wallet-shared-modules/images/iota-full.png';
 import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked.png';
 import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked.png';
 import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import GENERAL from '../theme/general';
 
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
@@ -56,10 +58,11 @@ class PaperWallet extends React.Component {
     }
 
     async onPrintPress() {
+        const seed = this.props.tempAccount.seed;
         this.getDataURL();
         this.setState({ pressedPrint: true });
         const qrPathOverride = isAndroid ? `file://${qrPath}` : qrPath;
-
+        const checksum = getChecksum(seed);
         const options = {
             html: `
         <html>
@@ -67,54 +70,57 @@ class PaperWallet extends React.Component {
         <img id="arrow" src="${arrow}" />
         <table id="seedBox">
             <tr>
-                <td>${this.props.tempAccount.seed.substring(0, 3)}</td>
-                <td>${this.props.tempAccount.seed.substring(3, 6)}</td>
-                <td>${this.props.tempAccount.seed.substring(6, 9)}</td>
-                <td>${this.props.tempAccount.seed.substring(9, 12)}</td>
+                <td>${seed.substring(0, 3)}</td>
+                <td>${seed.substring(3, 6)}</td>
+                <td>${seed.substring(6, 9)}</td>
+                <td>${seed.substring(9, 12)}</td>
             </tr>
             <tr>
-                <td>${this.props.tempAccount.seed.substring(12, 15)}</td>
-                <td>${this.props.tempAccount.seed.substring(15, 18)}</td>
-                <td>${this.props.tempAccount.seed.substring(18, 21)}</td>
-                <td>${this.props.tempAccount.seed.substring(21, 24)}</td>
+                <td>${seed.substring(12, 15)}</td>
+                <td>${seed.substring(15, 18)}</td>
+                <td>${seed.substring(18, 21)}</td>
+                <td>${seed.substring(21, 24)}</td>
             </tr>
             <tr>
-                <td>${this.props.tempAccount.seed.substring(24, 27)}</td>
-                <td>${this.props.tempAccount.seed.substring(27, 30)}</td>
-                <td>${this.props.tempAccount.seed.substring(30, 33)}</td>
-                <td>${this.props.tempAccount.seed.substring(33, 36)}</td>
+                <td>${seed.substring(24, 27)}</td>
+                <td>${seed.substring(27, 30)}</td>
+                <td>${seed.substring(30, 33)}</td>
+                <td>${seed.substring(33, 36)}</td>
             </tr>
             <tr>
-                <td>${this.props.tempAccount.seed.substring(36, 39)}</td>
-                <td>${this.props.tempAccount.seed.substring(39, 42)}</td>
-                <td>${this.props.tempAccount.seed.substring(42, 45)}</td>
-                <td>${this.props.tempAccount.seed.substring(45, 48)}</td>
+                <td>${seed.substring(36, 39)}</td>
+                <td>${seed.substring(39, 42)}</td>
+                <td>${seed.substring(42, 45)}</td>
+                <td>${seed.substring(45, 48)}</td>
             </tr>
             <tr>
-                <td>${this.props.tempAccount.seed.substring(48, 51)}</td>
-                <td>${this.props.tempAccount.seed.substring(51, 54)}</td>
-                <td>${this.props.tempAccount.seed.substring(54, 57)}</td>
-                <td>${this.props.tempAccount.seed.substring(57, 60)}</td>
+                <td>${seed.substring(48, 51)}</td>
+                <td>${seed.substring(51, 54)}</td>
+                <td>${seed.substring(54, 57)}</td>
+                <td>${seed.substring(57, 60)}</td>
             </tr>
             <tr>
-                <td>${this.props.tempAccount.seed.substring(60, 63)}</td>
-                <td>${this.props.tempAccount.seed.substring(63, 66)}</td>
-                <td>${this.props.tempAccount.seed.substring(66, 69)}</td>
-                <td>${this.props.tempAccount.seed.substring(69, 72)}</td>
+                <td>${seed.substring(60, 63)}</td>
+                <td>${seed.substring(63, 66)}</td>
+                <td>${seed.substring(66, 69)}</td>
+                <td>${seed.substring(69, 72)}</td>
             </tr>
             <tr>
-                <td>${this.props.tempAccount.seed.substring(72, 75)}</td>
-                <td>${this.props.tempAccount.seed.substring(75, 78)}</td>
-                <td>${this.props.tempAccount.seed.substring(78, MAX_SEED_LENGTH)}</td>
+                <td>${seed.substring(72, 75)}</td>
+                <td>${seed.substring(75, 78)}</td>
+                <td>${seed.substring(78, MAX_SEED_LENGTH)}</td>
             </tr>
         </table>
         </div>
         <div id="midItem">
             <img id="iotaLogo" src="${iotaLogo}" />
             <p id="text">Never share your<br />seed with anyone.</p>
+            <div id="checksumContainer">
+                <p id="checksum">${checksum}</p>
+            </div>
         </div>
         <div id="item">
-            <img src="${qrPathOverride}" width="235" height="235" />
+            <img src="${qrPathOverride}" width="226" height="226" />
         </div>
         <style>
             #seedBox {
@@ -133,21 +139,41 @@ class PaperWallet extends React.Component {
                 font-family: "Lato";
                 font-size: 20px;
                 text-align: center;
-                padding-top: 37px
+                padding-top: 42px;
+                margin-bottom: 57px;
+
+            }
+            #checksumContainer {
+                text-align: center;
+                marginTop: 100px;
+            }
+            #checksum {
+                font-family: "Lato";
+                font-size: 20px;
+                margin-top: 100px;
+                border: solid #000;
+                border-width: 2px;
+                border-radius: 9px;
+                padding-top: 7px;
+                padding-bottom: 7px;
+                padding-right: 10px;
+                padding-left: 10px;
+                display: inline;
+                text-align: center;
             }
             #item {
                 float: left;
             }
             #midItem {
                 float: left;
-                margin: 25px
+                margin: 25px;
             }
             #iotaLogo {
                 width: 109.1px;
                 height: 36.73px;
                 position: absolute;
-                left: 315px;
-                top: 5px;
+                left: 310px;
+                top: 18px;
                 visibility: ${this.state.iotaLogoVisibility}
             }
             td {
@@ -187,9 +213,13 @@ class PaperWallet extends React.Component {
 
     _renderIotaLogo() {
         if (this.state.showIotaLogo) {
-            return <Image style={styles.paperWalletLogo} source={iotaFullImagePath} />;
+            return (
+                <View style={{ flex: 0.5 }}>
+                    <Image style={styles.paperWalletLogo} source={iotaFullImagePath} />
+                </View>
+            );
         } else {
-            return null;
+            return <View style={{ flex: 0.5 }} />;
         }
     }
 
@@ -219,6 +249,7 @@ class PaperWallet extends React.Component {
 
     render() {
         const { t } = this.props;
+        const checksum = getChecksum(this.props.tempAccount.seed);
 
         return (
             <View style={styles.container}>
@@ -333,8 +364,11 @@ class PaperWallet extends React.Component {
                         <View style={styles.paperWalletTextContainer}>
                             {this._renderIotaLogo()}
                             <Text style={styles.paperWalletText}>{t('neverShare')}</Text>
+                            <View style={styles.checksum}>
+                                <Text style={styles.checksumText}>{checksum}</Text>
+                            </View>
                         </View>
-                        <QRCode value={this.props.tempAccount.seed} getRef={c => (this.svg = c)} size={width / 3.5} />
+                        <QRCode value={this.props.tempAccount.seed} getRef={c => (this.svg = c)} size={width / 3.4} />
                     </View>
                     <TouchableOpacity style={styles.checkboxContainer} onPress={event => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
@@ -396,7 +430,7 @@ const styles = StyleSheet.create({
     optionButton: {
         borderColor: '#8BD4FF',
         borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
@@ -429,7 +463,7 @@ const styles = StyleSheet.create({
     doneButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -449,7 +483,7 @@ const styles = StyleSheet.create({
     printButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2.5,
         height: height / 16,
         justifyContent: 'center',
@@ -475,7 +509,7 @@ const styles = StyleSheet.create({
     seedBox: {
         borderColor: 'black',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 3.4,
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -512,25 +546,23 @@ const styles = StyleSheet.create({
     },
     paperWalletTextContainer: {
         width: width / 5,
-        height: height / 6.5,
-        justifyContent: 'flex-start',
+        height: height / 6,
+        justifyContent: 'space-between',
         alignItems: 'center',
-        paddingBottom: height / 4,
     },
     paperWalletText: {
         color: 'black',
         fontSize: width / 40,
         fontFamily: 'Lato-Regular',
         textAlign: 'center',
-        position: 'absolute',
-        paddingTop: height / 9.5,
         backgroundColor: 'transparent',
+        paddingBottom: height / 80,
     },
     paperWalletLogo: {
         resizeMode: 'contain',
         width: width / 7,
-        height: height / 20,
-        paddingBottom: height / 10,
+        height: height / 18,
+        paddingBottom: height / 20,
     },
     checkboxContainer: {
         height: height / 15,
@@ -549,6 +581,20 @@ const styles = StyleSheet.create({
         color: 'white',
         backgroundColor: 'transparent',
         paddingLeft: width / 80,
+    },
+    checksum: {
+        width: width / 12,
+        height: height / 35,
+        borderRadius: GENERAL.borderRadiusSmall,
+        borderColor: 'black',
+        borderWidth: height / 1000,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    checksumText: {
+        fontSize: width / 37.6,
+        color: 'black',
+        fontFamily: 'Lato-Regular',
     },
 });
 

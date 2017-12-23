@@ -10,6 +10,7 @@ import DropdownAlert from 'react-native-dropdownalert';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
 import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
@@ -89,7 +90,8 @@ class Home extends Component {
         const seedIndex = tempAccount.seedIndex;
         const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         if (typeof accountInfo !== 'undefined') {
-            setBalance(addressesWithBalance);
+            const balance = calculateBalance(addressesWithBalance);
+            setBalance(balance);
         }
     }
 
@@ -104,24 +106,6 @@ class Home extends Component {
             dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
         }
     }
-
-    /* logout(){
-        this.props.clearTempData();
-        this.props.setPassword('');
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: COLORS.backgroundGreen
-,
-                },
-                overrideBackPress: true,
-            },
-        });
-    } */
 
     onLoginPress = password => {
         const { t, tempAccount, setUserActivity } = this.props;
