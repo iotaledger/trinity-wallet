@@ -38,6 +38,7 @@ class Welcome extends React.Component {
 
     render() {
         const { t } = this.props;
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -57,12 +58,6 @@ class Welcome extends React.Component {
                             <Text style={styles.nextText}>{t('global:next')}</Text>
                         </View>
                     </TouchableOpacity>
-                    {/*}<OnboardingButtons
-                        onLeftButtonPress={() => this.onBackPress()}
-                        onRightButtonPress={() => this.onNextPress()}
-                        leftText={t('global:back')}
-                        rightText={t('global:next')}
-                    />*/}
                 </View>
             </View>
         );

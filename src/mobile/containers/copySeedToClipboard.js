@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Clipboard, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import StatefulDropdown from './statefulDropdown';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import PropTypes from 'prop-types';
 import Seedbox from '../components/seedBox.js';
 import COLORS from '../theme/Colors';
@@ -12,8 +12,11 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import GENERAL from '../theme/general';
 
-class CopySeedToClipboard extends React.Component {
-    static propTypes = {};
+class CopySeedToClipboard extends Component {
+    static propTypes = {
+        setCopiedToClipboard: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+    };
 
     constructor() {
         super();
@@ -86,7 +89,7 @@ class CopySeedToClipboard extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <StatefulDropdown />
+                <StatefulDropdownAlert />
             </View>
         );
     }

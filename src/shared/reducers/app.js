@@ -5,6 +5,7 @@ const initialState = {
     inactive: false,
     minimised: false,
     mode: 'STANDARD',
+    root: 'initialLoading',
 };
 
 export default (state = initialState, action) => {

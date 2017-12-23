@@ -22,6 +22,7 @@ class Loading extends Component {
 
     componentWillReceiveProps(newProps) {
         const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+
         if (ready) {
             Navigation.startSingleScreenApp({
                 screen: {
