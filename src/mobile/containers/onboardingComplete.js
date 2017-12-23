@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     party: {
         justifyContent: 'center',
         width: width,
-        height: width,
+        height: width, // FIXME: Might have been assigned incorrectly.
         position: 'absolute',
         top: -height / 10,
     },
