@@ -13,10 +13,9 @@ import {
     getNewTransfers,
     getNewAddressData,
 } from 'iota-wallet-shared-modules/actions/account';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
-
-import DropdownHolder from './dropdownHolder';
 
 const mapStateToProps = state => ({
     alerts: state.alerts,
@@ -33,6 +32,7 @@ const mapDispatchToProps = {
     getChartData,
     setUserActivity,
     getNewAddressData,
+    generateAlert,
 };
 
 export default () => C => {
@@ -58,14 +58,13 @@ export default () => C => {
         };
 
         onNodeErrorPolling = () => {
-            const dropdown = DropdownHolder.getDropdown();
             const { t } = this.props;
-            dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
+            this.props.generateAlert('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
         };
 
         pollForMarketData = () => {
             const { settings, getMarketData, getChartData, getPrice } = this.props;
-            // 'console.log('POLLING CHART DATA')'
+
             if (!settings.isSyncing && !settings.isGeneratingReceiveAddress && !settings.isSendingTransfer) {
                 getMarketData();
                 getChartData();
@@ -147,6 +146,7 @@ export default () => C => {
         getChartData: PropTypes.func.isRequired,
         getPrice: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
     };
 
     return translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(withUserActivity));

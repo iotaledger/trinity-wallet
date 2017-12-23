@@ -24,7 +24,6 @@ import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-w
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import keychain, { getSeed } from '../util/keychain';
 import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
-import DropdownAlert from 'react-native-dropdownalert';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
@@ -128,7 +127,7 @@ class Send extends Component {
 
         if (size(address) !== 90) {
             return dropdown.alertWithType(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
-        } else if (address.match(VALID_SEED_REGEX) == null) {
+        } else if (address.match(VALID_SEED_REGEX) === null) {
             return dropdown.alertWithType(...props, t('invalidAddressExplanation2'));
         }
 
