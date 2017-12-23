@@ -20,18 +20,14 @@ import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-// import DropdownHolder from './dropdownHolder';
 
 import { width, height } from '../util/dimensions';
 
-const StatusBarDefaultBarStyle = 'light-content';
-// const dropdown = DropdownHolder.getDropDown();
-
 class SeedReentry extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+
         this.state = {
             seed: '',
         };
@@ -39,7 +35,7 @@ class SeedReentry extends React.Component {
 
     onDonePress() {
         const { t } = this.props;
-        if (this.state.seed == this.props.tempAccount.seed) {
+        if (this.state.seed === this.props.tempAccount.seed) {
             this.props.navigator.push({
                 screen: 'setSeedName',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },

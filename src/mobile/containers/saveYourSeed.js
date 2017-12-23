@@ -1,26 +1,32 @@
-import merge from 'lodash/merge';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 
 class SaveYourSeed extends Component {
+    static propTypes = {
+        navigator: PropTypes.object.isRequired,
+        setCopiedToClipboard: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+    };
+
     componentWillReceiveProps(newProps) {
         const { t } = this.props;
         if (newProps.tempAccount.copiedToClipboard) {
             this.timeout = setTimeout(() => {
-                this.dropdown.alertWithType('info', t('seedCleared'), t('seedClearedExplanation'));
+                this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
             }, 500);
+
             this.props.setCopiedToClipboard(false);
         }
     }
@@ -66,6 +72,7 @@ class SaveYourSeed extends Component {
 
     render() {
         const { t } = this.props;
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -108,15 +115,7 @@ class SaveYourSeed extends Component {
                         rightText={t('global:done')}
                     />
                 </View>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                />
+                <StatefulDropdownAlert />
             </View>
         );
     }
@@ -238,12 +237,9 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setCopiedToClipboard: boolean => dispatch(setCopiedToClipboard(boolean)),
-});
-
-SaveYourSeed.propTypes = {
-    navigator: PropTypes.object.isRequired,
+const mapDispatchToProps = {
+    setCopiedToClipboard,
+    generateAlert,
 };
 
 export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));

@@ -1,4 +1,3 @@
-import merge from 'lodash/merge';
 import React from 'react';
 import { translate } from 'react-i18next';
 import {
@@ -12,13 +11,14 @@ import {
     StatusBar,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
@@ -48,11 +48,11 @@ class EnterSeed extends React.Component {
     };
 
     onDonePress() {
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
         if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length == MAX_SEED_LENGTH) {
-            this.dropdown.alertWithType('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
+            generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         } else if (this.state.seed.length < MAX_SEED_LENGTH) {
-            this.dropdown.alertWithType(
+            generateAlert(
                 'error',
                 t('seedTooShort'),
                 t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: this.state.seed.length }),
@@ -179,16 +179,7 @@ class EnterSeed extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
+                <StatefulDropdownAlert />
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -370,10 +361,9 @@ const mapStateToProps = state => ({
     account: state.account,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setSeed: seed => {
-        dispatch(setSeed(seed));
-    },
-});
+const mapDispatchToProps = {
+    setSeed,
+    generateAlert,
+};
 
 export default translate(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));
