@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
+import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
@@ -99,6 +100,7 @@ class TopBar extends Component {
         const getBalance = currentIdx => {
             const seedStrings = Object.keys(accountInfo);
             const data = accountInfo[seedStrings[currentIdx]].addresses;
+            const balances = Object.values(data).map(x => x.balance);
 
             if (isEmpty(data)) {
                 return this.humanizeBalance(0); // no addresses
@@ -106,11 +108,10 @@ class TopBar extends Component {
 
             const calc = (res, value) => {
                 res += value;
-
                 return res;
             };
 
-            const balance = reduce(data, calc, 0);
+            const balance = reduce(balances, calc, 0);
             return this.humanizeBalance(balance);
         };
 
@@ -215,7 +216,9 @@ class TopBar extends Component {
 
             this.props.setSeedIndex(newSeedIdx);
             const seedStrings = Object.keys(accountInfo);
-            this.props.setBalance(accountInfo[seedStrings[newSeedIdx]].addresses); // Dangerous
+            const addressData = accountInfo[seedStrings[newSeedIdx]].addresses;
+            const balance = calculateBalance(addressData);
+            this.props.setBalance(balance);
             this.props.setReceiveAddress(' ');
 
             // Get new account info if not sending or getting transfers
@@ -387,7 +390,7 @@ const mapDispatchToProps = dispatch => ({
     toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
     getAccountInfo: (seedName, seedIndex, accountInfo, cb) =>
         dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb)),
-    setBalance: addressesWithBalance => dispatch(setBalance(addressesWithBalance)),
+    setBalance: balance => dispatch(setBalance(balance)),
     setSeedIndex: index => dispatch(setSeedIndex(index)),
     setReceiveAddress: string => dispatch(setReceiveAddress(string)),
 });

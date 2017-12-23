@@ -30,6 +30,7 @@ import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
+import GENERAL from '../theme/general';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import DropdownHolder from '../components/dropdownHolder';
@@ -199,7 +200,22 @@ class Send extends Component {
             .catch(err => console.log(err));
 
         const sendTx = seed =>
-            this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
+            this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message, () => cb());
+
+        cb = () => {
+            this.props.getAccountInfo(seedName, seedIndex, accountInfo, (error, success) => {
+                if (error) {
+                    console.log(error);
+                    this.onNodeError();
+                }
+            });
+        };
+    }
+
+    onNodeError() {
+        const dropdown = DropdownHolder.getDropdown();
+        const { t } = this.props;
+        dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
     }
 
     getUnitMultiplier() {
@@ -569,7 +585,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 0.8,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6.5,
         height: height / 16,
     },
@@ -593,7 +609,7 @@ const styles = StyleSheet.create({
     sendIOTAButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 2,
         height: height / 13,
         justifyContent: 'center',
@@ -651,7 +667,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 0.8,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6,
         height: height / 16,
     },
@@ -682,11 +698,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, currentSeedAccountInfo, seedName, address, value, message) => {
-        dispatch(sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message));
+    sendTransaction: (seed, currentSeedAccountInfo, seedName, address, value, message, cb) => {
+        dispatch(sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message, cb));
     },
-    getAccountInfo: (seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
+    getAccountInfo: (seedName, seedIndex, accountInfo, cb) => {
+        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb));
     },
     sendTransferRequest: () => dispatch(sendTransferRequest()),
 });

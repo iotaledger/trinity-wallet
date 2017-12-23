@@ -9,6 +9,7 @@ import { TextField } from 'react-native-material-textfield';
 import COLORS from '../theme/Colors';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
+import GENERAL from '../theme/general';
 
 class DeleteAccount extends React.Component {
     constructor(props) {
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 18,

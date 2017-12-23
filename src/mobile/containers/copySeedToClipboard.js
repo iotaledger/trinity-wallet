@@ -9,6 +9,7 @@ import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import GENERAL from '../theme/general';
 
 const StatusBarDefaultBarStyle = 'light-content';
 
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     optionButton: {
         borderColor: '#8BD4FF',
         borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     doneButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
     copyButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 13,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2,
         height: height / 12,
         justifyContent: 'center',
