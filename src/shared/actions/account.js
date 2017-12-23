@@ -138,7 +138,7 @@ export const getAccountInfoNewSeedAsync = (seed, seedName) => {
     };
 };
 
-export function getFullAccountInfo(seed, accountName) {
+export const getFullAccountInfo = (seed, accountName) => {
     return dispatch => {
         iota.api.getAccountData(seed, (error, data) => {
             if (!error) {
@@ -158,9 +158,9 @@ export function getFullAccountInfo(seed, accountName) {
             }
         });
     };
-}
+};
 
-export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
+export const getAccountInfo = (seedName, seedIndex, accountInfo, cb) => {
     return dispatch => {
         const addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
         const addresses = Object.keys(addressData);
@@ -206,9 +206,9 @@ export function getAccountInfo(seedName, seedIndex, accountInfo, cb) {
             }
         });
     };
-}
+};
 
-export function getTransfers(seedName, addresses, cb) {
+export const getTransfers = (seedName, addresses, cb) => {
     return (dispatch, getState) => {
         // Set flag to true so that polling waits for these network calls to complete.
         dispatch(getTransfersRequest());
@@ -308,9 +308,9 @@ export function getTransfers(seedName, addresses, cb) {
             }
         });
     };
-}
+};
 
-export function getNewAddressData(seed, accountName, addressData, callback) {
+export const getNewAddressData = (seed, accountName, addressData, callback) => {
     return dispatch => {
         const oldAddressData = addressData;
         const index = Object.keys(oldAddressData).length - 1;
@@ -333,7 +333,7 @@ export function getNewAddressData(seed, accountName, addressData, callback) {
             }
         });
     };
-}
+};
 
 export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => {
     // Set flag to true so that the service should wait for this promotion to get completed.
@@ -452,7 +452,7 @@ export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => 
     });
 };
 
-export function addPendingTransfer(seedName, transfers, success) {
+export const addPendingTransfer = (seedName, transfers, success) => {
     return dispatch => {
         success[0].transferValue = -success[0].value;
         success[0].persistence = false;
@@ -460,4 +460,4 @@ export function addPendingTransfer(seedName, transfers, success) {
         transfers.unshift(success);
         dispatch(updateTransfers(seedName, transfers));
     };
-}
+};
