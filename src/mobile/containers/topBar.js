@@ -10,6 +10,7 @@ import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
 import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import PropTypes from 'prop-types';
 import {
@@ -22,7 +23,6 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
 } from 'react-native';
-import DropdownHolder from '../components/dropdownHolder';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import COLORS from '../theme/Colors';
 import chevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up.png';
@@ -58,6 +58,7 @@ class TopBar extends Component {
         setBalance: PropTypes.func.isRequired,
         setSeedIndex: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -74,6 +75,7 @@ class TopBar extends Component {
                 this.props.toggleTopBarDisplay();
             }
         }
+
         if (this.props.currentSetting !== newProps.currentSetting) {
             // Detects if navigating across screens
             if (this.props.isTopBarActive) {
@@ -223,18 +225,9 @@ class TopBar extends Component {
 
             // Get new account info if not sending or getting transfers
             if (!isSendingTransfer && !isGettingTransfers) {
-                this.props.getAccountInfo(seedName, newSeedIdx, accountInfo, error => {
-                    if (error) {
-                        this.onNodeError();
-                    }
-                });
+                this.props.getAccountInfo(seedName, newSeedIdx, accountInfo);
             }
         }
-    }
-
-    onNodeError() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
     }
 
     humanizeBalance(balance) {
@@ -386,13 +379,13 @@ const mapStateToProps = state => ({
     isTopBarActive: state.home.isTopBarActive,
 });
 
-const mapDispatchToProps = dispatch => ({
-    toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
-    getAccountInfo: (seedName, seedIndex, accountInfo, cb) =>
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb)),
-    setBalance: balance => dispatch(setBalance(balance)),
-    setSeedIndex: index => dispatch(setSeedIndex(index)),
-    setReceiveAddress: string => dispatch(setReceiveAddress(string)),
-});
+const mapDispatchToProps = {
+    toggleTopBarDisplay,
+    getAccountInfo,
+    setBalance,
+    setSeedIndex,
+    setReceiveAddress,
+    generateAlert,
+};
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));
