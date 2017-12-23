@@ -73,8 +73,9 @@ export const generateNewAddressRequest = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_REQUEST,
 });
 
-export const generateNewAddressSuccess = () => ({
+export const generateNewAddressSuccess = payload => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS,
+    payload,
 });
 
 export const generateNewAddressError = () => ({
@@ -97,8 +98,9 @@ export const sendTransferRequest = () => ({
     type: ActionTypes.SEND_TRANSFER_REQUEST,
 });
 
-export const sendTransferSuccess = () => ({
+export const sendTransferSuccess = payload => ({
     type: ActionTypes.SEND_TRANSFER_SUCCESS,
+    payload,
 });
 
 export const sendTransferError = () => ({
@@ -196,7 +198,7 @@ export const sendTransaction = (seed, currentSeedAccountInfo, seedName, address,
                     dispatch(addPendingTransfer(seedName, transfers, success));
                     console.log(success);
                     dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
-                    dispatch(sendTransferSuccess(address, value));
+                    dispatch(sendTransferSuccess({ address, value }));
                     cb();
 
                     // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
