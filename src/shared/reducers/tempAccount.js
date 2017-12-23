@@ -21,95 +21,86 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_SEED':
+        case ActionTypes.SET_SEED:
             return {
                 ...state,
                 seed: action.payload,
             };
-        case 'SET_SEED_NAME':
+        case ActionTypes.SET_SEED_NAME:
             return {
                 ...state,
                 seedName: action.payload,
             };
-        case 'SET_PASSWORD':
+        case ActionTypes.SET_PASSWORD:
             return {
                 ...state,
                 password: action.payload,
             };
-        case 'SET_RECEIVE_ADDRESS':
+        case ActionTypes.SET_RECEIVE_ADDRESS:
             return {
                 ...state,
                 receiveAddress: action.payload,
             };
-        case 'GENERATE_NEW_ADDRESS_REQUEST':
+        case ActionTypes.GENERATE_NEW_ADDRESS_REQUEST:
             return {
                 ...state,
                 isGeneratingReceiveAddress: true,
             };
-        case 'GENERATE_NEW_ADDRESS_SUCCESS':
+        case ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS:
             return {
                 ...state,
                 isGeneratingReceiveAddress: false,
                 receiveAddress: action.payload,
             };
-        case 'MANUAL_SYNC_REQUEST':
-            return {
-                ...state,
-                isSyncing: true,
-            };
-        case 'MANUAL_SYNC_COMPLETE':
-            return {
-                ...state,
-                isSyncing: false,
-            };
-        case 'GENERATE_NEW_ADDRESS_ERROR':
+        case ActionTypes.GENERATE_NEW_ADDRESS_ERROR:
             return {
                 ...state,
                 isGeneratingReceiveAddress: false,
             };
-        case 'SEND_TRANSFER_REQUEST':
+        case ActionTypes.MANUAL_SYNC_REQUEST:
+            return {
+                ...state,
+                isSyncing: true,
+            };
+        case ActionTypes.MANUAL_SYNC_SUCCESS:
+        case ActionTypes.MANUAL_SYNC_ERROR:
+            return {
+                ...state,
+                isSyncing: false,
+            };
+        case ActionTypes.SEND_TRANSFER_REQUEST:
             return {
                 ...state,
                 isSendingTransfer: true,
             };
-        case 'SEND_TRANSFER_SUCCESS':
+        case ActionTypes.SEND_TRANSFER_SUCCESS:
             return {
                 ...state,
                 isSendingTransfer: false,
-                lastTxAddress: action.address,
-                lastTxValue: action.value,
+                lastTxAddress: action.payload.address,
+                lastTxValue: action.payload.value,
             };
-        case 'SEND_TRANSFER_ERROR':
+        case ActionTypes.SEND_TRANSFER_ERROR:
             return {
                 ...state,
                 isSendingTransfer: false,
             };
-        case 'SET_READY':
+        case ActionTypes.SET_READY:
             return {
                 ...state,
                 ready: action.payload,
             };
-        case 'INCREMENT_SEED_INDEX':
-            return {
-                ...state,
-                seedIndex: state.seedIndex + 1,
-            };
-        case 'DECREMENT_SEED_INDEX':
-            return {
-                ...state,
-                seedIndex: state.seedIndex - 1,
-            };
-        case 'SET_SEED_INDEX':
+        case ActionTypes.SET_SEED_INDEX:
             return {
                 ...state,
                 seedIndex: action.payload,
             };
-        case 'SET_USED_SEED_TO_LOGIN':
+        case ActionTypes.SET_USED_SEED_TO_LOGIN:
             return {
                 ...state,
                 usedSeedToLogin: action.payload,
             };
-        case 'CLEAR_TEMP_DATA':
+        case ActionTypes.CLEAR_TEMP_DATA:
             return {
                 ...state,
                 ready: false,
@@ -134,17 +125,17 @@ export default (state = initialState, action) => {
                 ...state,
                 isGettingTransfers: false,
             };
-        case 'CLEAR_SEED':
+        case ActionTypes.CLEAR_SEED:
             return {
                 ...state,
                 seed: action.payload,
             };
-        case 'SET_SETTING':
+        case ActionTypes.SET_SETTING:
             return {
                 ...state,
                 currentSetting: action.payload,
             };
-        case 'SET_COPIED_TO_CLIPBOARD':
+        case ActionTypes.SET_COPIED_TO_CLIPBOARD:
             return {
                 ...state,
                 copiedToClipboard: action.payload,
