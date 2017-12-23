@@ -8,7 +8,7 @@ import deleteImagePath from 'iota-wallet-shared-modules/images/delete.png';
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
-class AdvancedSettings extends React.Component {
+class AdvancedSettings extends Component {
     render() {
         const { t } = this.props;
         return (

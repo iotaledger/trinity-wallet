@@ -36,7 +36,7 @@ import UseExistingSeed from '../components/useExistingSeed';
 import ChangePassword from '../components/changePassword';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal.js';
 import ViewSeed from '../components/viewSeed.js';
-import ViewAddresses from '../components/viewAddresses.js';
+import ViewAddresses from './viewAddresses.js';
 import ManualSync from '../components/manualSync.js';
 import DeleteAccount from '../components/deleteAccount.js';
 import EditAccountName from '../components/editAccountName.js';
