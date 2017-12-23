@@ -13,6 +13,7 @@ import GENERAL from '../theme/general';
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
+const StatusBarDefaultBarStyle = 'light-content';
 
 class SaveYourSeed extends Component {
     componentWillReceiveProps(newProps) {
@@ -116,6 +117,7 @@ class SaveYourSeed extends Component {
                     defaultTextContainer={styles.dropdownTextContainer}
                     messageStyle={styles.dropdownMessage}
                     imageStyle={styles.dropdownImage}
+                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 />
             </View>
         );
