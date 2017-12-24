@@ -141,6 +141,11 @@
     "vm": "vm-browserify",
     "tls": false
   },
+  "rnpm": {
+    "android": {
+      "mainFilePath": "src/main/java/com/iotawallet/MainApplication.java"
+    }
+  },
   "browser": {
     "zlib": "browserify-zlib",
     "console": "console-browserify",
