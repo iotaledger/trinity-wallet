@@ -18,6 +18,7 @@ class MainSettings extends Component {
     static propTypes = {
         currency: PropTypes.string.isRequired,
         theme: PropTypes.string.isRequired,
+        mode: PropTypes.string.isRequired,
         onModePress: PropTypes.func.isRequired,
         onLanguagePress: PropTypes.func.isRequired,
         setSetting: PropTypes.func.isRequired,

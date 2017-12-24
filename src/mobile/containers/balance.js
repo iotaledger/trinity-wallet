@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
-import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
