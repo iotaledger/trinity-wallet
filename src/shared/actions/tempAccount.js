@@ -7,6 +7,7 @@ import { updateAddresses, addPendingTransfer, updateUnconfirmedBundleTails } fro
 import { generateAlert } from '../actions/alerts';
 import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
 import { MAX_SEED_LENGTH } from '../libs/util';
+import { getSelectedAccount } from '../selectors/account';
 
 /* eslint-disable no-console */
 
@@ -176,8 +177,10 @@ export const generateNewAddress = (seed, seedName, addresses) => {
     };
 };
 
-export const sendTransaction = (seed, currentSeedAccountInfo, seedName, address, value, message, cb) => {
-    return dispatch => {
+export const sendTransaction = (seed, address, value, message, accountName) => {
+    return (dispatch, getState) => {
+        dispatch(sendTransferRequest());
+
         const verifyAndSend = (filtered, expectedOutputsLength, transfer, inputs) => {
             if (filtered.length !== expectedOutputsLength) {
                 return dispatch(
@@ -188,19 +191,20 @@ export const sendTransaction = (seed, currentSeedAccountInfo, seedName, address,
                     ),
                 );
             }
-            // Send transfer with depth 4 and minWeightMagnitude 14
-            const addressData = currentSeedAccountInfo.addresses;
-            const transfers = currentSeedAccountInfo.transfers;
+
+            const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+            const addressData = selectedAccount.addresses;
+            const transfers = selectedAccount.transfers;
+
             const options = { inputs };
 
+            // Send transfer with depth 4 and minWeightMagnitude 14
             return iota.api.sendTransfer(seed, 4, 14, transfer, options, (error, success) => {
                 if (!error) {
-                    dispatch(checkForNewAddress(seedName, addressData, success));
-                    dispatch(addPendingTransfer(seedName, transfers, success));
-                    console.log(success);
+                    dispatch(checkForNewAddress(accountName, addressData, success));
+                    dispatch(addPendingTransfer(accountName, transfers, success));
                     dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
                     dispatch(sendTransferSuccess({ address, value }));
-                    cb();
 
                     // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
                     // Would be the tail anyways.
@@ -281,7 +285,7 @@ export const sendTransaction = (seed, currentSeedAccountInfo, seedName, address,
 export const checkForNewAddress = (seedName, addressData, txArray) => {
     return dispatch => {
         // Check if 0 value transfer
-        if (txArray[0].value != 0) {
+        if (txArray[0].value !== 0) {
             const changeAddress = txArray[txArray.length - 1].address;
             const addresses = Object.keys(addressData);
             // Remove checksum

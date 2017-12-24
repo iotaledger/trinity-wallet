@@ -11,6 +11,7 @@ const account = (
         seedNames: [],
         firstUse: true,
         onboardingComplete: false,
+        accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
     },
     action,
@@ -34,12 +35,12 @@ const account = (
         case ActionTypes.SET_ACCOUNT_INFO:
             return {
                 ...state,
-                balance: action.balance,
                 accountInfo: {
                     ...state.accountInfo,
                     [action.seedName]: {
                         addresses: action.addresses,
                         transfers: action.transfers,
+                        balance: action.balance,
                     },
                 },
             };
@@ -136,12 +137,12 @@ const account = (
         case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
-                balance: action.payload.balance,
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
                         addresses: action.payload.addresses,
                         transfers: action.payload.transfers,
+                        balance: action.payload.balance,
                     },
                 },
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
@@ -151,12 +152,12 @@ const account = (
                 ...state,
                 seedCount: state.seedCount + 1,
                 seedNames: [...state.seedNames, action.payload.accountName],
-                balance: action.payload.balance,
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
                         addresses: action.payload.addresses,
                         transfers: action.payload.transfers,
+                        balance: action.payload.balance,
                     },
                 },
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
