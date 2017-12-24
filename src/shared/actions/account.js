@@ -53,7 +53,26 @@ export const ActionTypes = {
     FULL_ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FETCH_REQUEST',
     FULL_ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
     FULL_ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FETCH_ERROR',
+    NEW_ADDRESS_DATA_FETCH_REQUEST: 'IOTA/ACCOUNT/NEW_ADDRESS_DATA_FETCH_REQUEST',
+    NEW_ADDRESS_DATA_FETCH_SUCCESS: 'IOTA/ACCOUNT/NEW_ADDRESS_DATA_FETCH_SUCCESS',
+    NEW_ADDRESS_DATA_FETCH_ERROR: 'IOTA/ACCOUNT/NEW_ADDRESS_DATA_FETCH_ERROR',
+    MANUAL_SYNC_REQUEST: 'IOTA/ACCOUNT/MANUAL_SYNC_REQUEST',
+    MANUAL_SYNC_SUCCESS: 'IOTA/ACCOUNT/MANUAL_SYNC_SUCCESS',
+    MANUAL_SYNC_ERROR: 'IOTA/ACCOUNT/MANUAL_SYNC_ERROR',
 };
+
+export const manualSyncRequest = () => ({
+    type: ActionTypes.MANUAL_SYNC_REQUEST,
+});
+
+export const manualSyncSuccess = payload => ({
+    type: ActionTypes.MANUAL_SYNC_SUCCESS,
+    payload,
+});
+
+export const manualSyncError = () => ({
+    type: ActionTypes.MANUAL_SYNC_ERROR,
+});
 
 export const fullAccountInfoForFirstUseFetchRequest = () => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST,
@@ -79,6 +98,19 @@ export const fullAccountInfoFetchSuccess = payload => ({
 
 export const fullAccountInfoFetchError = () => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR,
+});
+
+export const newAddressDataFetchRequest = () => ({
+    type: ActionTypes.NEW_ADDRESS_DATA_FETCH_REQUEST,
+});
+
+export const newAddressDataFetchSuccess = payload => ({
+    type: ActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS,
+    payload,
+});
+
+export const newAddressDataFetchError = () => ({
+    type: ActionTypes.NEW_ADDRESS_DATA_FETCH_ERROR,
 });
 
 export const setFirstUse = payload => ({
@@ -112,10 +144,9 @@ export const changeAccountName = (accountInfo, accountNames) => ({
     accountNames,
 });
 
-export const removeAccount = (accountInfo, accountNames) => ({
+export const removeAccount = payload => ({
     type: ActionTypes.REMOVE_ACCOUNT,
-    accountInfo,
-    accountNames,
+    payload,
 });
 
 export const setOnboardingComplete = payload => ({
@@ -250,9 +281,42 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
     };
 };
 
+export const manuallySyncAccount = (seed, accountName) => dispatch => {
+    dispatch(manualSyncRequest());
+
+    iota.api.getAccountData(seed, (error, data) => {
+        if (!error) {
+            const transfers = formatTransfers(data.transfers, data.addresses);
+
+            const addressData = formatFullAddressData(data);
+            const balance = calculateBalance(addressData);
+
+            const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
+            const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
+
+            const payload = {
+                accountName,
+                transfers,
+                addresses: addressDataWithSpentFlag,
+                balance,
+                unconfirmedTails,
+            };
+            dispatch(manualSyncSuccess(payload));
+            dispatch(generateAlert('success', 'syncing complete', 'Account sync is complete.'));
+        } else {
+            dispatch(manualSyncError());
+            dispatch(generateAlert('error', 'invalid response', 'Received an invalid response from node.'));
+        }
+    });
+};
+
 export const getAccountInfo = (accountName, navigator = null) => {
     return (dispatch, getState) => {
+        console.log('acc name', accountName);
+        console.log('acc names', getState().account.accountInfo);
         const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+        console.log('acc namSSSe', selectedAccount);
+
         const addresses = Object.keys(selectedAccount.addresses);
 
         const unspentAddresses = getUnspentAddresses(selectedAccount.addresses);
@@ -268,7 +332,11 @@ export const getAccountInfo = (accountName, navigator = null) => {
 
                 // Only fetch latest transfers if there exists unspent addresses
                 if (!isEmpty(unspentAddresses)) {
+                    console.log('Will fetch');
                     dispatch(getTransfers(accountName, unspentAddresses));
+                } else {
+                    console.log('Will not fetch');
+                    dispatch(setReady()); // In case unspent addresses are empty, just set the UI ready and navigate to home
                 }
             } else {
                 if (navigator) {
@@ -355,7 +423,7 @@ export const getTransfers = (accountName, addresses) => {
                                             if (idx === tailTxHashes.length) {
                                                 setTimeout(next);
                                             } else {
-                                                setTimeout(() => getBundle(tailTxHashes, idx), 500);
+                                                setTimeout(() => getBundle(tailTxHashes, idx));
                                             }
                                         }
                                     });
@@ -377,26 +445,26 @@ export const getTransfers = (accountName, addresses) => {
     };
 };
 
-export const getNewAddressData = (seed, accountName, addressData, callback) => {
-    return dispatch => {
-        const oldAddressData = addressData;
-        const index = Object.keys(oldAddressData).length - 1;
+export const getNewAddressData = (seed, accountName) => {
+    return (dispatch, getState) => {
+        dispatch(newAddressDataFetchRequest());
+
+        const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+        const index = Object.keys(selectedAccount.addresses).length - 1;
+
         iota.api.getInputs(seed, { start: index }, (error, success) => {
             if (!error) {
                 if (success.inputs.length > 0) {
-                    let newAddressData = success.inputs.reduce((obj, x) => {
+                    const newAddressData = success.inputs.reduce((obj, x) => {
                         obj[x.address] = { balance: x.balance, spent: false };
                         return obj;
                     }, {});
-                    let fullAddressData = Object.assign(oldAddressData, newAddressData);
-                    dispatch(updateAddresses(fullAddressData));
-                    callback(null, success);
-                } else {
-                    callback(null, success);
+
+                    const fullAddressData = Object.assign({}, selectedAccount.addresses, newAddressData);
+                    dispatch(newAddressDataFetchSuccess({ accountName, addresses: fullAddressData }));
                 }
             } else {
-                callback(error);
-                console.log(error);
+                dispatch(newAddressDataFetchError()); // Also generate an alert
             }
         });
     };
@@ -527,4 +595,9 @@ export const addPendingTransfer = (seedName, transfers, success) => {
         transfers.unshift(success);
         dispatch(updateTransfers(seedName, transfers));
     };
+};
+
+export const deleteAccount = accountName => dispatch => {
+    dispatch(removeAccount(accountName));
+    dispatch(generateAlert('success', 'Account Deleted', 'Successfully deleted account')); // TODO: Need to verify exact translated message
 };
