@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
 import keyImagePath from 'iota-wallet-shared-modules/images/key.png';
@@ -9,6 +10,11 @@ import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
 class AdvancedSettings extends Component {
+    static propTypes = {
+        setSetting: PropTypes.func.isRequired,
+        onDeleteAccountPress: PropTypes.func.isRequired,
+    };
+
     render() {
         const { t } = this.props;
         return (

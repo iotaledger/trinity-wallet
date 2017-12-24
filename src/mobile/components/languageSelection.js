@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
@@ -62,8 +63,14 @@ const currentLocale = i18next.language;
 const currentLanguageLabel = selectLocale(currentLocale);
 
 class LanguageSelection extends Component {
-    constructor(props) {
-        super(props);
+    static propTypes = {
+        backPress: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+    };
+
+    constructor() {
+        super();
+
         this.languageSelected = currentLanguageLabel;
     }
 

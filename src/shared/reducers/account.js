@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
+import filter from 'lodash/filter';
 import isEmpty from 'lodash/isEmpty';
 import { ActionTypes } from '../actions/account';
 import { ActionTypes as TempAccountActionTypes } from '../actions/tempAccount';
@@ -10,7 +11,6 @@ const account = (
         seedNames: [],
         firstUse: true,
         onboardingComplete: false,
-        balance: 0,
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
     },
     action,
@@ -52,9 +52,20 @@ const account = (
         case ActionTypes.REMOVE_ACCOUNT:
             return {
                 ...state,
-                accountInfo: action.accountInfo,
-                seedNames: action.accountNames,
+                accountInfo: omit(state.accountInfo, action.payload),
+                seedNames: filter(state.seedNames, name => name !== action.payload),
                 seedCount: state.seedCount - 1,
+            };
+        case ActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS:
+            return {
+                ...state,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.payload.accountName]: {
+                        ...state.accountInfo[action.payload.accountName],
+                        addresses: action.payload.addresses,
+                    },
+                },
             };
         case ActionTypes.UPDATE_ADDRESSES:
             return {
@@ -121,9 +132,21 @@ const account = (
                 ...state,
                 firstUse: true,
             };
+        case ActionTypes.MANUAL_SYNC_SUCCESS:
         case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+            return {
+                ...state,
+                balance: action.payload.balance,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.payload.accountName]: {
+                        addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
+                    },
+                },
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+            };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
-            console.log('PAYLOAD', action.payload);
             return {
                 ...state,
                 seedCount: state.seedCount + 1,
@@ -131,7 +154,7 @@ const account = (
                 balance: action.payload.balance,
                 accountInfo: {
                     ...state.accountInfo,
-                    [action.seedName]: {
+                    [action.payload.accountName]: {
                         addresses: action.payload.addresses,
                         transfers: action.payload.transfers,
                     },

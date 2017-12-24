@@ -11,18 +11,20 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class ViewAddresses extends Component {
     static propTypes = {
+        addressData: PropTypes.object.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
     };
 
     copy(address) {
         Clipboard.setString(address);
-
         return this.props.generateAlert('success', 'Address copied', 'The address has been copied to the clipboard.');
     }
 
     render() {
         let addressData = Object.entries(this.props.addressData);
         addressData = addressData.reverse();
+
         return (
             <View style={styles.container}>
                 <View style={styles.listView}>
