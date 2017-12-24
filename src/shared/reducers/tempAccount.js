@@ -1,4 +1,5 @@
 import { ActionTypes } from '../actions/tempAccount';
+import { ActionTypes as AccountActionTypes } from '../actions/account';
 
 const initialState = {
     ready: false,
@@ -17,6 +18,7 @@ const initialState = {
     currentSetting: 'mainSettings',
     copiedToClipboard: false,
     isPromoting: false,
+    hasErrorFetchingAccountInfoOnLogin: false,
 };
 
 export default (state = initialState, action) => {
@@ -120,6 +122,11 @@ export default (state = initialState, action) => {
                 isGettingTransfers: true,
             };
         case ActionTypes.GET_TRANSFERS_SUCCESS:
+            return {
+                ...state,
+                ready: true,
+                isGettingTransfers: false,
+            };
         case ActionTypes.GET_TRANSFERS_ERROR:
             return {
                 ...state,
@@ -144,6 +151,27 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isPromoting: action.payload,
+            };
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
+            return {
+                ...state,
+                ready: true,
+                seed: Array(82).join(' '),
+            };
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
+            return {
+                ...state,
+                hasErrorFetchingAccountInfoOnLogin: false,
+            };
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+            return {
+                ...state,
+                ready: true,
+            };
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR:
+            return {
+                ...state,
+                hasErrorFetchingAccountInfoOnLogin: true,
             };
         default:
             return state;
