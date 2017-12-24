@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
 import { selectLocale } from '../components/locale';
@@ -13,9 +14,19 @@ import passwordImagePath from 'iota-wallet-shared-modules/images/password.png';
 import advancedImagePath from 'iota-wallet-shared-modules/images/advanced.png';
 import logoutImagePath from 'iota-wallet-shared-modules/images/logout.png';
 
-class MainSettings extends React.Component {
+class MainSettings extends Component {
+    static propTypes = {
+        currency: PropTypes.string.isRequired,
+        theme: PropTypes.string.isRequired,
+        onModePress: PropTypes.func.isRequired,
+        onLanguagePress: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
+        setModalContent: PropTypes.func.isRequired,
+        on2FASetupPress: PropTypes.func.isRequired,
+        onThemePress: PropTypes.func.isRequired,
+    };
+
     render() {
-        const { t } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.itemContainer}>

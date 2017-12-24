@@ -25,6 +25,7 @@ class UseExistingSeed extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             seed: '',
             accountName: this.getDefaultAccountName(),
@@ -33,21 +34,19 @@ class UseExistingSeed extends React.Component {
     }
 
     getDefaultAccountName() {
-        const { t } = this.props;
-
-        if (this.props.seedCount == 0) {
+        if (this.props.seedCount === 0) {
             return 'MAIN ACCOUNT';
-        } else if (this.props.seedCount == 1) {
+        } else if (this.props.seedCount === 1) {
             return 'SECOND ACCOUNT';
-        } else if (this.props.seedCount == 2) {
+        } else if (this.props.seedCount === 2) {
             return 'THIRD ACCOUNT';
-        } else if (this.props.seedCount == 3) {
+        } else if (this.props.seedCount === 3) {
             return 'FOURTH ACCOUNT';
-        } else if (this.props.seedCount == 4) {
+        } else if (this.props.seedCount === 4) {
             return 'FIFTH ACCOUNT';
-        } else if (this.props.seedCount == 5) {
+        } else if (this.props.seedCount === 5) {
             return 'SIXTH ACCOUNT';
-        } else if (this.props.seedCount == 6) {
+        } else if (this.props.seedCount === 6) {
             return 'OTHER ACCOUNT';
         } else {
             return '';
@@ -62,6 +61,7 @@ class UseExistingSeed extends React.Component {
         this.setState({
             seed: data,
         });
+
         this._hideModal();
     }
 
@@ -77,9 +77,9 @@ class UseExistingSeed extends React.Component {
         const { seed } = this.state;
         let checksumValue = '...';
 
-        if (seed.length != 0 && seed.length < 81) {
+        if (seed.length !== 0 && seed.length < 81) {
             checksumValue = '< 81';
-        } else if (seed.length == 81) {
+        } else if (seed.length === 81) {
             checksumValue = getChecksum(seed);
         }
         return checksumValue;
@@ -87,7 +87,6 @@ class UseExistingSeed extends React.Component {
 
     render() {
         const { seed, accountName } = this.state;
-        const { t } = this.props;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
