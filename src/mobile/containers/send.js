@@ -32,7 +32,6 @@ import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import GENERAL from '../theme/general';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import DropdownHolder from '../components/dropdownHolder';
 import { width, height } from '../util/dimensions';
 const StatusBarDefaultBarStyle = 'light-content';
 
