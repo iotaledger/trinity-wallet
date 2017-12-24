@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import map from 'lodash/map';
 import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
@@ -17,6 +18,7 @@ import {
     deleteAccount,
     setBalance,
     manuallySyncAccount,
+    fetchFullAccountInfoForFirstUse,
 } from 'iota-wallet-shared-modules/actions/account';
 import {
     getSelectedAccountViaSeedIndex,
@@ -196,18 +198,32 @@ class Settings extends Component {
         dropdown.alertWithType('success', 'Custom node added', 'The custom node has been added successfully.');
     };
 
-    //UseExistingSeed method
+    fetchAccountInfo(seed, accountName, password, promise, navigator) {
+        navigator.push({
+            screen: 'loading',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            animated: false,
+            overrideBackPress: true,
+        });
+
+        return this.props.fetchFullAccountInfoForFirstUse(seed, accountName, password, promise, navigator);
+    }
+
+    // UseExistingSeed method
     addExistingSeed(seed, accountName) {
-        const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
-        if (!seed.match(VALID_SEED_REGEX) && seed.length == MAX_SEED_LENGTH) {
-            dropdown.alertWithType(
+        const { t, generateAlert, seedNames, password, navigator } = this.props;
+
+        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
+            generateAlert(
                 'error',
                 t('addAdditionalSeed:seedInvalidChars'),
                 t('addAdditionalSeed:seedInvalidCharsExplanation'),
             );
         } else if (seed.length < MAX_SEED_LENGTH) {
-            dropdown.alertWithType(
+            generateAlert(
                 'error',
                 t('addAdditionalSeed:seedTooShort'),
                 t('addAdditionalSeed:seedTooShortExplanation', {
@@ -216,116 +232,71 @@ class Settings extends Component {
                 }),
             );
         } else if (!(accountName.length > 0)) {
-            dropdown.alertWithType(
-                'error',
-                t('addAdditionalSeed:noNickname'),
-                t('addAdditionalSeed:noNicknameExplanation'),
-            );
-        } else if (this.props.account.seedNames.includes(accountName)) {
-            dropdown.alertWithType(
-                'error',
-                t('addAdditionalSeed:nameInUse'),
-                t('addAdditionalSeed:nameInUseExplanation'),
-            );
+            generateAlert('error', t('addAdditionalSeed:noNickname'), t('addAdditionalSeed:noNicknameExplanation'));
+        } else if (seedNames.includes(accountName)) {
+            generateAlert('error', t('addAdditionalSeed:nameInUse'), t('addAdditionalSeed:nameInUseExplanation'));
         } else {
             keychain
                 .get()
                 .then(credentials => {
                     if (isNull(credentials)) {
-                        return ifNoKeychainDuplicates(seed, accountName);
+                        return this.fetchAccountInfo(seed, accountName, password, storeSeedInKeychain, navigator);
                     } else {
                         if (hasDuplicateAccountName(credentials.data, accountName)) {
-                            return dropdown.alertWithType(
+                            return generateAlert(
                                 'error',
                                 t('addAdditionalSeed:nameInUse'),
                                 t('addAdditionalSeed:nameInUseExplanation'),
                             );
                         } else if (hasDuplicateSeed(credentials.data, seed)) {
-                            return dropdown.alertWithType(
+                            return generateAlert(
                                 'error',
                                 t('addAdditionalSeed:seedInUse'),
                                 t('addAdditionalSeed:seedInUseExplanation'),
                             );
                         }
 
-                        return ifNoKeychainDuplicates(seed, accountName);
+                        return this.fetchAccountInfo(seed, accountName, password, storeSeedInKeychain, navigator);
                     }
                 })
                 .catch(err => console.log(err));
-
-            ifNoKeychainDuplicates = (seed, accountName) => {
-                this.props.setFirstUse(true);
-                this.props.navigator.push({
-                    screen: 'loading',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                    },
-                    animated: false,
-                    overrideBackPress: true,
-                });
-                this.props.getFullAccountInfo(seed, accountName, (error, success) => {
-                    if (error) {
-                        onNodeError();
-                    } else {
-                        onNodeSuccess(seed, accountName);
-                    }
-                });
-            };
-
-            onNodeError = () => {
-                this.props.navigator.pop({
-                    animated: false,
-                });
-                dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
-                this.props.setFirstUse(false);
-            };
-
-            onNodeSuccess = (seed, accountName) => {
-                this.props.clearTempData();
-                storeSeedInKeychain(this.props.tempAccount.password, seed, accountName)
-                    .then(() => {
-                        this.props.increaseSeedCount();
-                        this.props.addAccountName(accountName);
-                        this.props.setReady();
-                    })
-                    .catch(err => console.log(err));
-            };
         }
     }
 
-    //EditAccountName method
+    // EditAccountName method
     saveAccountName(accountName) {
-        const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
-        let accountInfo = this.props.account.accountInfo;
-        let accountNameArray = this.props.account.seedNames;
-        let seedIndex = this.props.tempAccount.seedIndex;
+        const { seedIndex, seedNames, password, selectedAccountName, t, generateAlert } = this.props;
 
-        if (accountNameArray.includes(accountName)) {
-            dropdown.alertWithType(
-                'error',
-                t('addAdditionalSeed:nameInUse'),
-                t('addAdditionalSeed:nameInUseExplanation'),
-            );
+        let accountInfo = this.props.account.accountInfo;
+
+        if (seedNames.includes(accountName)) {
+            generateAlert('error', t('addAdditionalSeed:nameInUse'), t('addAdditionalSeed:nameInUseExplanation'));
         } else {
             // Update keychain
-            updateAccountNameInKeychain(seedIndex, accountName, this.props.tempAccount.password)
+            updateAccountNameInKeychain(seedIndex, accountName, password)
                 .then(() => {
-                    const currentAccountName = accountNameArray[seedIndex];
-                    const keyMap = { [currentAccountName]: accountName };
+                    const keyMap = { [selectedAccountName]: accountName };
                     const newAccountInfo = renameKeys(accountInfo, keyMap);
-                    accountNameArray[seedIndex] = accountName;
-                    this.props.changeAccountName(newAccountInfo, accountNameArray);
 
+                    const updateName = (name, idx) => {
+                        if (idx === seedIndex) {
+                            return accountName;
+                        }
+
+                        return name;
+                    };
+
+                    const updatedSeedNames = map(seedNames, updateName);
+                    this.props.changeAccountName(newAccountInfo, updatedSeedNames);
                     this.props.setSetting('accountManagement');
-                    dropdown.alertWithType('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
+
+                    generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
                 })
                 .catch(err => console.log(err));
         }
     }
 
-    //EditAccountName and ViewSeed method
+    // EditAccountName and ViewSeed method
     onWrongPassword() {
         const { t, generateAlert } = this.props;
 
@@ -374,21 +345,21 @@ class Settings extends Component {
     }
 
     featureUnavailable() {
-        const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
+        const { t, generateAlert } = this.props;
+
+        return generateAlert('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
     }
 
     onThemePress() {
-        const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
+        const { t, generateAlert } = this.props;
+
+        return generateAlert('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
     }
 
     on2FASetupPress() {
-        const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
+        const { t, generateAlert } = this.props;
+
+        return generateAlert('error', t('global:notAvailable'), t('global:notAvailableExplanation'));
     }
 
     onResetWalletPress() {
@@ -563,8 +534,7 @@ const mapDispatchToProps = {
     getCurrencyData,
     setPassword,
     setReady,
-    manualSyncRequest,
-    manualSyncComplete,
+    fetchFullAccountInfoForFirstUse,
     setBalance,
     addCustomPoWNode,
     generateAlert,
