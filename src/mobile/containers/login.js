@@ -119,7 +119,6 @@ class Login extends Component {
 
                         this.props.getCurrencyData(currency);
 
-                        console.log('FIRST USE', firstUse);
                         if (firstUse) {
                             this.navigateToLoading();
                             this.props.getFullAccountInfo(seed, selectedAccountName, this.props.navigator);
@@ -128,7 +127,7 @@ class Login extends Component {
 
                             if (!isEmpty(addresses)) {
                                 this.navigateToLoading();
-                                this.props.getAccountInfo();
+                                this.props.getAccountInfo(selectedAccountName, this.props.navigator);
                             } else {
                                 this.navigateToHome();
                             }

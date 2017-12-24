@@ -216,6 +216,21 @@ export const deduplicateTransferBundles = transfers => {
     return map(aggregated, v => v);
 };
 
+export const getUnspentAddresses = addressData => {
+    const addresses = Object.keys(addressData);
+    const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
+
+    const unspentAddresses = [];
+
+    for (let i = 0; i < addresses.length; i++) {
+        if (addressesSpendStatus[i] === false) {
+            unspentAddresses.push(addresses[i]);
+        }
+    }
+
+    return unspentAddresses;
+};
+
 export const filterSpentAddresses = inputs => {
     return new Promise((resolve, reject) => {
         // Find transaction objects for addresses

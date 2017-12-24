@@ -1,6 +1,8 @@
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
+import isEmpty from 'lodash/isEmpty';
 import { ActionTypes } from '../actions/account';
+import { ActionTypes as TempAccountActionTypes } from '../actions/tempAccount';
 
 const account = (
     state = {
@@ -76,6 +78,19 @@ const account = (
                     },
                 },
             };
+        case TempAccountActionTypes.GET_TRANSFERS_SUCCESS:
+            return {
+                ...state,
+                accountInfo: isEmpty(action.payload)
+                    ? state.accountInfo
+                    : {
+                          ...state.accountInfo,
+                          [action.payload.accountName]: {
+                              ...state.accountInfo[action.payload.accountName],
+                              transfers: action.payload.transfers,
+                          },
+                      },
+            };
         case ActionTypes.SET_FIRST_USE:
             return {
                 ...state,
@@ -100,6 +115,33 @@ const account = (
             return {
                 ...state,
                 seedNames: [...state.seedNames, action.seedName],
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST:
+            return {
+                ...state,
+                firstUse: true,
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
+            console.log('PAYLOAD', action.payload);
+            return {
+                ...state,
+                seedCount: state.seedCount + 1,
+                seedNames: [...state.seedNames, action.payload.accountName],
+                balance: action.payload.balance,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.seedName]: {
+                        addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
+                    },
+                },
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR:
+            return {
+                ...state,
+                firstUse: false,
             };
         default:
             return state;
