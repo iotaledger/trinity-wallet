@@ -41,8 +41,9 @@ export const getTransfersRequest = () => ({
     type: ActionTypes.GET_TRANSFERS_REQUEST,
 });
 
-export const getTransfersSuccess = () => ({
+export const getTransfersSuccess = payload => ({
     type: ActionTypes.GET_TRANSFERS_SUCCESS,
+    payload,
 });
 
 export const getTransfersError = () => ({
