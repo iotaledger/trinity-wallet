@@ -105,6 +105,37 @@ const styles = StyleSheet.create({
 });
 
 class Settings extends Component {
+    static propTypes = {
+        navigator: PropTypes.object.isRequired,
+        accountInfo: PropTypes.object.isRequired,
+        selectedAccount: PropTypes.object.isRequired,
+        selectedAccountName: PropTypes.string.isRequired,
+        currentSetting: PropTypes.string.isRequired,
+        seedIndex: PropTypes.number.isRequired,
+        password: PropTypes.string.isRequired,
+        seedNames: PropTypes.array.isRequired,
+        seedCount: PropTypes.number.isRequired,
+        currency: PropTypes.string.isRequired,
+        mode: PropTypes.string.isRequired,
+        availableCurrencies: PropTypes.array.isRequired,
+        fullNode: PropTypes.string.isRequired,
+        availablePoWNodes: PropTypes.array.isRequired,
+        theme: PropTypes.string.isRequired,
+        isSyncing: PropTypes.bool.isRequired,
+        t: PropTypes.func.isRequired,
+        manuallySyncAccount: PropTypes.func.isRequired,
+        setSetting: PropTypes.func.isRequired,
+        setFullNode: PropTypes.func.isRequired,
+        getCurrencyData: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        clearTempData: PropTypes.func.isRequired,
+        changeAccountName: PropTypes.func.isRequired,
+        deleteAccount: PropTypes.func.isRequired,
+        setPassword: PropTypes.func.isRequired,
+        fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
+        addCustomPoWNode: PropTypes.func.isRequired,
+    };
+
     constructor(props) {
         super(props);
 
@@ -124,6 +155,7 @@ class Settings extends Component {
                 on2FASetupPress: () => this.featureUnavailable(),
                 onThemePress: () => this.featureUnavailable(),
                 onModePress: () => this.featureUnavailable(),
+                mode: this.props.mode,
                 onLanguagePress: () => this.featureUnavailable(),
                 theme: this.props.theme,
                 currency: this.props.currency,
@@ -243,7 +275,7 @@ class Settings extends Component {
                     );
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable no-console
+            .catch(err => console.error(err)); // eslint-disable-line no-console
     }
 
     onAddNodeError() {
@@ -368,7 +400,7 @@ class Settings extends Component {
 
                     this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
                 })
-                .catch(err => console.log(err));
+                .catch(err => console.log(err)); // eslint-disable-line no-console
         }
     }
 
@@ -536,42 +568,13 @@ const mapStateToProps = state => ({
     accountInfo: state.account.accountInfo,
     seedCount: state.account.seedCount,
     currency: state.settings.currency,
+    mode: state.settings.mode,
     availableCurrencies: state.settings.availableCurrencies,
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
     theme: state.settings.theme,
     isSyncing: state.tempAccount.isSyncing,
 });
-
-Settings.propTypes = {
-    navigator: PropTypes.object.isRequired,
-    accountInfo: PropTypes.object.isRequired,
-    selectedAccount: PropTypes.object.isRequired,
-    selectedAccountName: PropTypes.string.isRequired,
-    currentSetting: PropTypes.string.isRequired,
-    seedIndex: PropTypes.number.isRequired,
-    password: PropTypes.string.isRequired,
-    seedNames: PropTypes.array.isRequired,
-    seedCount: PropTypes.number.isRequired,
-    currency: PropTypes.string.isRequired,
-    availableCurrencies: PropTypes.array.isRequired,
-    fullNode: PropTypes.string.isRequired,
-    availablePoWNodes: PropTypes.array.isRequired,
-    theme: PropTypes.string.isRequired,
-    isSyncing: PropTypes.bool.isRequired,
-    t: PropTypes.func.isRequired,
-    manuallySyncAccount: PropTypes.func.isRequired,
-    setSetting: PropTypes.func.isRequired,
-    setFullNode: PropTypes.func.isRequired,
-    getCurrencyData: PropTypes.func.isRequired,
-    generateAlert: PropTypes.func.isRequired,
-    clearTempData: PropTypes.func.isRequired,
-    changeAccountName: PropTypes.func.isRequired,
-    deleteAccount: PropTypes.func.isRequired,
-    setPassword: PropTypes.func.isRequired,
-    fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
-    addCustomPoWNode: PropTypes.func.isRequired,
-};
 
 export default translate(['settings', 'global', 'addAdditionalSeed'])(
     connect(mapStateToProps, mapDispatchToProps)(Settings),

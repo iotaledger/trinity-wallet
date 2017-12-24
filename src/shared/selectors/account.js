@@ -29,6 +29,11 @@ export const getSelectedAccountViaSeedIndex = createSelector(currentAccountSelec
 
 export const getSelectedAccountNameViaSeedIndex = createSelector(currentAccountNameSelectorBySeedIndex, name => name);
 
+export const getBalanceForSelectedAccountViaSeedIndex = createSelector(
+    currentAccountNameSelectorBySeedIndex,
+    account => get(account, 'balance') || 0,
+);
+
 export const getAddressesForSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, account =>
     Object.keys(get(account, 'addresses')),
 );
