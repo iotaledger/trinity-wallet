@@ -19,10 +19,15 @@ import { isIPhoneX } from '../util/device';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable global-require */
-
 class NewSeedSetup extends Component {
+    static propTypes = {
+        navigator: PropTypes.object.isRequired,
+        tempAccount: PropTypes.object.isRequired,
+        setSeed: PropTypes.func.isRequired,
+        randomiseSeed: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+    };
+
     constructor() {
         super();
 
@@ -39,6 +44,7 @@ class NewSeedSetup extends Component {
 
     onNextPress() {
         const { t } = this.props;
+
         if (this.state.randomised) {
             this.props.navigator.push({
                 screen: 'saveYourSeed',
@@ -47,7 +53,7 @@ class NewSeedSetup extends Component {
                 overrideBackPress: true,
             });
         } else {
-            generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
+            this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
         }
     }
 
@@ -197,13 +203,6 @@ class NewSeedSetup extends Component {
         );
     }
 }
-
-NewSeedSetup.propTypes = {
-    navigator: PropTypes.object.isRequired,
-    tempAccount: PropTypes.object.isRequired,
-    setSeed: PropTypes.func.isRequired,
-    randomiseSeed: PropTypes.func.isRequired,
-};
 
 const styles = StyleSheet.create({
     container: {
