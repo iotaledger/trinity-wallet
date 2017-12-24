@@ -24,8 +24,8 @@ const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 let results = '';
 
 class PaperWallet extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             checkboxImage: checkboxCheckedImagePath,

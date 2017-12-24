@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, WebView, StatusBar, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, StatusBar, Text, ActivityIndicator } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { Navigation } from 'react-native-navigation';
-import Home from './home';
 import IotaSpin from '../components/iotaSpin';
 import COLORS from '../theme/Colors';
 
@@ -60,14 +59,14 @@ class Loading extends Component {
                     <View style={{ flex: 1 }} />
                 </View>
             );
-        } else if (!this.props.account.firstUse) {
-            return (
-                <View style={styles.container}>
-                    <StatusBar barStyle="light-content" />
-                    <IotaSpin duration={3000} />
-                </View>
-            );
         }
+
+        return (
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <IotaSpin duration={3000} />
+            </View>
+        );
     }
 }
 

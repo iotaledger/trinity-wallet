@@ -9,7 +9,13 @@ import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import { getFullAccountInfo, setFirstUse, increaseSeedCount, addAccountName } from '../../shared/actions/account';
+import {
+    fetchFullAccountInfoForFirstUse,
+    getFullAccountInfo,
+    setFirstUse,
+    increaseSeedCount,
+    addAccountName,
+} from '../../shared/actions/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
@@ -31,10 +37,11 @@ export class SetSeedName extends Component {
         clearTempData: PropTypes.func.isRequired,
         addAccountName: PropTypes.func.isRequired,
         getFullAccountInfo: PropTypes.func.isRequired,
+        fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             accountName: this.getDefaultAccountName(),
@@ -68,25 +75,45 @@ export class SetSeedName extends Component {
         }
     }
 
+    navigateTo(screen) {
+        return this.props.navigator.push({
+            screen,
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            animated: false,
+            overrideBackPress: true,
+        });
+    }
+
     onDonePress() {
         const { t } = this.props;
         const trimmedAccountName = trim(this.state.accountName);
 
+        const fetch = (seed, accountName, password, promise, navigator) => {
+            this.navigateTo('loading');
+
+            this.props.fetchFullAccountInfoForFirstUse(seed, accountName, password, promise, navigator);
+        };
+
         if (!isEmpty(this.state.accountName)) {
             if (!this.props.account.onboardingComplete) {
                 this.props.setSeedName(trimmedAccountName);
-                this.props.navigator.push({
-                    screen: 'setPassword',
-                    navigatorStyle: { navBarHidden: true, navBarTransparent: true },
-                    animated: false,
-                    overrideBackPress: true,
-                });
+
+                this.navigateTo('setPassword');
             } else {
                 keychain
                     .get()
                     .then(credentials => {
                         if (isEmpty(credentials)) {
-                            return ifNoKeychainDuplicates(this.props.tempAccount.seed, trimmedAccountName);
+                            return fetch(
+                                this.props.tempAccount.seed,
+                                trimmedAccountName,
+                                this.props.tempAccount.password,
+                                storeSeedInKeychain,
+                                this.props.navigator,
+                            );
                         } else {
                             if (hasDuplicateAccountName(credentials.password, trimmedAccountName)) {
                                 return this.props.generateAlert(
@@ -102,60 +129,22 @@ export class SetSeedName extends Component {
                                 );
                             }
 
-                            return ifNoKeychainDuplicates(this.props.tempAccount.seed, trimmedAccountName);
+                            return fetch(
+                                this.props.tempAccount.seed,
+                                trimmedAccountName,
+                                this.props.tempAccount.password,
+                                storeSeedInKeychain,
+                                this.props.navigator,
+                            );
                         }
                     })
-                    .catch(err => {
+                    .catch(() => {
                         this.props.generateAlert(
                             'error',
                             t('global:somethingWentWrong'),
                             t('global:somethingWentWrongExplanation'),
                         );
                     });
-
-                ifNoKeychainDuplicates = (seed, accountName) => {
-                    this.props.setFirstUse(true);
-                    this.props.navigator.push({
-                        screen: 'loading',
-                        navigatorStyle: {
-                            navBarHidden: true,
-                            navBarTransparent: true,
-                        },
-                        animated: false,
-                        overrideBackPress: true,
-                    });
-                    this.props.getFullAccountInfo(seed, accountName, (error, success) => {
-                        if (error) {
-                            onNodeError();
-                        } else {
-                            onNodeSuccess(seed, accountName);
-                        }
-                    });
-                };
-
-                onNodeError = () => {
-                    this.props.navigator.pop({
-                        animated: false,
-                    });
-                    this.props.generateAlert(
-                        'error',
-                        t('global:invalidResponse'),
-                        t('global:invalidResponseExplanation'),
-                    );
-                    this.props.setFirstUse(false);
-                };
-
-                onNodeSuccess = (seed, accountName) => {
-                    this.props.clearTempData();
-                    storeSeedInKeychain(this.props.tempAccount.password, seed, accountName)
-                        .then(() => {
-                            this.props.increaseSeedCount();
-                            this.props.addAccountName(accountName);
-                            this.props.clearSeed();
-                            this.props.setReady();
-                        })
-                        .catch(err => console.log(err)); // Have a dropdown alert
-                };
             }
         } else {
             this.props.generateAlert(
@@ -367,6 +356,7 @@ const mapDispatchToProps = {
     clearTempData,
     addAccountName,
     getFullAccountInfo,
+    fetchFullAccountInfoForFirstUse,
 };
 
 export default translate(['setSeedName', 'global', 'addAdditionalSeed'])(

@@ -27,11 +27,10 @@ import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
-const StatusBarDefaultBarStyle = 'light-content';
-
 class Login extends Component {
     static propTypes = {
         firstUse: PropTypes.bool.isRequired,
+        hasErrorFetchingAccountInfoOnLogin: PropTypes.bool.isRequired,
         selectedAccount: PropTypes.object.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         fullNode: PropTypes.string.isRequired,
@@ -56,11 +55,16 @@ class Login extends Component {
         };
 
         this.onLoginPress = this.onLoginPress.bind(this);
-        this.onNodeError = this.onNodeError.bind(this);
     }
 
     componentDidMount() {
         this.getWalletData();
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.hasErrorFetchingAccountInfoOnLogin && !this.props.hasErrorFetchingAccountInfoOnLogin) {
+            this._showModal();
+        }
     }
 
     _showModal = data => this.setState({ isModalVisible: true });
@@ -106,7 +110,7 @@ class Login extends Component {
             keychain
                 .get()
                 .then(credentials => {
-                    setPassword(password);
+                    setPassword(password); // Don't know why is this being dispatched without a check.
                     const hasData = get(credentials, 'data');
                     const hasCorrectPassword = get(credentials, 'password') === password;
 
@@ -115,9 +119,10 @@ class Login extends Component {
 
                         this.props.getCurrencyData(currency);
 
+                        console.log('FIRST USE', firstUse);
                         if (firstUse) {
                             this.navigateToLoading();
-                            this.props.getFullAccountInfo(seed, selectedAccountName);
+                            this.props.getFullAccountInfo(seed, selectedAccountName, this.props.navigator);
                         } else {
                             const addresses = get(selectedAccount, 'addresses');
 
@@ -166,20 +171,7 @@ class Login extends Component {
         });
     }
 
-    onNodeError() {
-        const { t, generateAlert } = this.props;
-        this.props.navigator.pop({
-            animated: false,
-        });
-
-        generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
-
-        this._showModal();
-    }
-
     render() {
-        const { password } = this.state;
-        const { t } = this.props;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -289,6 +281,7 @@ const mapStateToProps = state => ({
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
     currency: state.settings.currency,
+    hasErrorFetchingAccountInfoOnLogin: state.tempAccount.hasErrorFetchingAccountInfoOnLogin,
 });
 
 const mapDispatchToProps = {

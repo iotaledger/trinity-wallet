@@ -43,10 +43,14 @@ class SetPassword extends Component {
 
     onDonePress() {
         const { t } = this.props;
+
+        console.log('HETSSS');
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password === this.state.reentry) {
+            console.log('HAA');
             keychain
                 .get()
                 .then(credentials => {
+                    console.log('GOT iT', credentials);
                     if (isEmpty(credentials)) {
                         return ifNoKeychainDuplicates(
                             this.state.password,
@@ -86,6 +90,7 @@ class SetPassword extends Component {
             ifNoKeychainDuplicates = (password, seed, accountName) => {
                 storeSeedInKeychain(password, seed, accountName)
                     .then(() => {
+                        console.log('THEN');
                         this.props.addAccountName(accountName);
                         this.props.increaseSeedCount();
                         this.props.clearTempData();
@@ -101,7 +106,7 @@ class SetPassword extends Component {
                             overrideBackPress: true,
                         });
                     })
-                    .catch(err => console.log(err));
+                    .catch(err => console.log('ERRRRR', err));
             };
         } else {
             if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
@@ -214,8 +219,9 @@ class SetPassword extends Component {
 
         return (
             <View style={styles.container}>
-                {isAndroid && <View style={styles.container}>{this._renderContent()}</View>}
-                {!isAndroid && (
+                {isAndroid ? (
+                    <View style={styles.container}>{this._renderContent()}</View>
+                ) : (
                     <KeyboardAwareScrollView
                         resetScrollToCoords={{ x: 0, y: 0 }}
                         contentContainerStyle={styles.container}
@@ -329,57 +335,20 @@ const styles = StyleSheet.create({
         height: width / 5,
         width: width / 5,
     },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
-    },
 });
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = {
     setOnboardingComplete,
     clearTempData,
     clearSeed,
     increaseSeedCount,
     addAccountName,
     generateAlert,
-});
+};
 
 export default translate(['setPassword', 'global', 'addAdditionalSeed'])(
     connect(mapStateToProps, mapDispatchToProps)(SetPassword),
