@@ -1,20 +1,7 @@
 import get from 'lodash/get';
-import isUndefined from 'lodash/isUndefined';
-import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    ScrollView,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image } from 'react-native';
 import Colors from '../theme/Colors';
 import Fonts from '../theme/Fonts';
 import keychain from '../util/keychain';
@@ -27,8 +14,16 @@ import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png
 import GENERAL from '../theme/general';
 
 class ChangePassword extends Component {
+    static propTypes = {
+        password: PropTypes.string.isRequired,
+        setPassword: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+    };
+
     constructor() {
         super();
+
         this.state = {
             currentPassword: '',
             newPassword: '',
@@ -65,7 +60,7 @@ class ChangePassword extends Component {
 
     isValid() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { password, t } = this.props;
+        const { password } = this.props;
 
         return (
             currentPassword === password &&
@@ -78,12 +73,12 @@ class ChangePassword extends Component {
 
     changePassword() {
         const isValid = this.isValid();
-        const { password, setPassword, t } = this.props;
+        const { password, setPassword, generateAlert } = this.props;
         const { newPassword } = this.state;
 
         if (isValid) {
             const throwErr = () =>
-                this.props.dropdown.alertWithType(
+                generateAlert(
                     'error',
                     'Oops! Something went wrong',
                     'Looks like something went wrong while updating your password. Please try again.',
@@ -103,16 +98,9 @@ class ChangePassword extends Component {
                 .then(() => {
                     setPassword(newPassword);
                     this.fallbackToInitialState();
-                    // TODO:
-                    // We might need to rethink on having a global dropdown alerting system
-                    // via redux. Generally we should redirect user to the previous screen
-                    // on password update but we are kind of limited as we have to keep track
-                    // on dropdown reference inside this component.
-                    this.props.dropdown.alertWithType(
-                        'success',
-                        'Password updated',
-                        'Your password has been successfully updated.',
-                    );
+
+                    generateAlert('success', 'Password updated', 'Your password has been successfully updated.');
+
                     this.props.backPress();
                 })
                 .catch(err => throwErr());
@@ -123,28 +111,24 @@ class ChangePassword extends Component {
 
     renderInvalidSubmissionAlerts() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { password, t } = this.props;
+        const { password, generateAlert } = this.props;
 
         if (currentPassword !== password) {
-            return this.props.dropdown.alertWithType(
+            return generateAlert(
                 'error',
                 'Incorrect password',
                 'Your current password is incorrect. Please try again.',
             );
         } else if (newPassword !== confirmedNewPassword) {
-            return this.props.dropdown.alertWithType(
-                'error',
-                'Password mismatch',
-                'Passwords do not match. Please try again.',
-            );
+            return generateAlert('error', 'Password mismatch', 'Passwords do not match. Please try again.');
         } else if (newPassword.length < 12 || confirmedNewPassword.length < 12) {
-            return this.props.dropdown.alertWithType(
+            return generateAlert(
                 'error',
                 'Password is too short',
                 'Your password must be at least 12 characters. Please try again.',
             );
         } else if (newPassword === currentPassword) {
-            return this.props.dropdown.alertWithType(
+            return generateAlert(
                 'error',
                 'Cannot set old password',
                 'You cannot use the old password as your new password. Please try again with a new password.',
@@ -162,7 +146,6 @@ class ChangePassword extends Component {
 
     render() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { t } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -206,9 +189,9 @@ class ChangePassword extends Component {
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
-                        {currentPassword != '' &&
-                            newPassword != '' &&
-                            confirmedNewPassword != '' && (
+                        {currentPassword !== '' &&
+                            newPassword !== '' &&
+                            confirmedNewPassword !== '' && (
                                 <TouchableOpacity onPress={() => this.changePassword()}>
                                     <View style={styles.itemRight}>
                                         <Image source={tickImagePath} style={styles.icon} />
@@ -301,10 +284,5 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
 });
-
-ChangePassword.propTypes = {
-    password: PropTypes.string.isRequired,
-    setPassword: PropTypes.func.isRequired,
-};
 
 export default ChangePassword;

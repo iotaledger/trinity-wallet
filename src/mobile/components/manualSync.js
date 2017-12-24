@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
-import {
-    Image,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Keyboard,
-    TouchableWithoutFeedback,
-    ActivityIndicator,
-} from 'react-native';
-import Fonts from '../theme/Fonts';
+import PropTypes from 'prop-types';
+import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import GENERAL from '../theme/general';
-
 import { width, height } from '../util/dimensions';
 
-class ManualSync extends React.Component {
-    render() {
-        const { t } = this.props;
+class ManualSync extends Component {
+    static propTypes = {
+        isSyncing: PropTypes.bool.isRequired,
+        backPress: PropTypes.func.isRequired,
+        onManualSyncPress: PropTypes.func.isRequired,
+    };
 
+    render() {
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
@@ -47,7 +41,7 @@ class ManualSync extends React.Component {
                             <Text style={styles.infoText}>This may take a while.</Text>
                             <Text style={styles.infoText}>You may notice your device slowing down.</Text>
                             <ActivityIndicator
-                                animating={this.props.syncing}
+                                animating={this.props.isSyncing}
                                 style={styles.activityIndicator}
                                 size="large"
                                 color="#F7D002"
