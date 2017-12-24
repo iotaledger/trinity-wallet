@@ -126,8 +126,9 @@ class Login extends Component {
                             const addresses = get(selectedAccount, 'addresses');
 
                             if (!isEmpty(addresses)) {
-                                this.navigateToLoading();
-                                this.props.getAccountInfo(selectedAccountName, this.props.navigator);
+                                this.navigateToHome();
+                                //this.navigateToLoading();
+                                // this.props.getAccountInfo(selectedAccountName, this.props.navigator);
                             } else {
                                 this.navigateToHome();
                             }

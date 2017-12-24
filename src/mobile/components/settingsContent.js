@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MainSettings from './mainSettings';
 import AdvancedSettings from './advancedSettings';
@@ -35,9 +35,9 @@ const SETTINGS_COMPONENTS = {
 };
 
 const SettingsContent = ({ component, ...props }) => {
-    const Component = SETTINGS_COMPONENTS[component];
+    const EnhancedComponent = SETTINGS_COMPONENTS[component];
 
-    return <Component {...props} />;
+    return <EnhancedComponent {...props} />;
 };
 
 SettingsContent.propTypes = {
