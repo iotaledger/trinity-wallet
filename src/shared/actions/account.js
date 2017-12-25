@@ -366,6 +366,9 @@ export const getTransfers = (accountName, addresses) => {
                 const nonTailBundleHashes = [];
                 const bundles = [];
 
+                const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+                const existingTransfers = selectedAccount.transfers;
+
                 const pushIfNotExists = (pushTo, value) => {
                     if (!includes(pushTo, value)) {
                         pushTo.push(value);
@@ -384,7 +387,7 @@ export const getTransfers = (accountName, addresses) => {
                     if (!err) {
                         // If no transfers, exit
                         if (fullTxObjects.length < 1) {
-                            dispatch(getTransfersSuccess({})); // Just send an empty payload
+                            dispatch(getTransfersSuccess({ accountName, transfers: existingTransfers })); // Just send an empty payload
                             return;
                         }
 
@@ -395,9 +398,6 @@ export const getTransfers = (accountName, addresses) => {
                         });
 
                         const next = () => {
-                            const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-                            const existingTransfers = selectedAccount.transfers;
-
                             const updatedTransfers = mergeLatestTransfersInOld(existingTransfers, bundles);
                             const updatedTransfersWithFormatting = formatTransfers(updatedTransfers, addresses);
 
@@ -449,15 +449,12 @@ export const getNewAddressData = (seed, accountName) => {
 
         iota.api.getInputs(seed, { start: index }, (error, success) => {
             if (!error) {
-                if (success.inputs.length > 0) {
-                    const newAddressData = success.inputs.reduce((obj, x) => {
-                        obj[x.address] = { balance: x.balance, spent: false };
-                        return obj;
-                    }, {});
+                const newAddressData = success.inputs.reduce((obj, x) => {
+                    obj[x.address] = { balance: x.balance, spent: false };
+                    return obj;
+                }, {});
 
-                    const fullAddressData = Object.assign({}, selectedAccount.addresses, newAddressData);
-                    dispatch(newAddressDataFetchSuccess({ accountName, addresses: fullAddressData }));
-                }
+                dispatch(newAddressDataFetchSuccess({ accountName, addresses: newAddressData }));
             } else {
                 dispatch(newAddressDataFetchError()); // Also generate an alert
             }
