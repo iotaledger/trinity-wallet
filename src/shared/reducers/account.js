@@ -1,7 +1,6 @@
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import filter from 'lodash/filter';
-import isEmpty from 'lodash/isEmpty';
 import { ActionTypes } from '../actions/account';
 import { ActionTypes as TempAccountActionTypes } from '../actions/tempAccount';
 
@@ -60,13 +59,11 @@ const account = (
         case ActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS:
             return {
                 ...state,
-                accountInfo: {
-                    ...state.accountInfo,
+                accountInfo: merge({}, state.accountInfo, {
                     [action.payload.accountName]: {
-                        ...state.accountInfo[action.payload.accountName],
                         addresses: action.payload.addresses,
                     },
-                },
+                }),
             };
         case ActionTypes.UPDATE_ADDRESSES:
             return {
@@ -93,15 +90,11 @@ const account = (
         case TempAccountActionTypes.GET_TRANSFERS_SUCCESS:
             return {
                 ...state,
-                accountInfo: isEmpty(action.payload)
-                    ? state.accountInfo
-                    : {
-                          ...state.accountInfo,
-                          [action.payload.accountName]: {
-                              ...state.accountInfo[action.payload.accountName],
-                              transfers: action.payload.transfers,
-                          },
-                      },
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        transfers: action.payload.transfers,
+                    },
+                }),
             };
         case ActionTypes.SET_FIRST_USE:
             return {
@@ -143,14 +136,13 @@ const account = (
         case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
-                accountInfo: {
-                    ...state.accountInfo,
+                accountInfo: merge({}, state.accountInfo, {
                     [action.payload.accountName]: {
                         addresses: action.payload.addresses,
                         transfers: action.payload.transfers,
                         balance: action.payload.balance,
                     },
-                },
+                }),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
@@ -158,14 +150,13 @@ const account = (
                 ...state,
                 seedCount: state.seedCount + 1,
                 seedNames: [...state.seedNames, action.payload.accountName],
-                accountInfo: {
-                    ...state.accountInfo,
+                accountInfo: merge({}, state.accountInfo, {
                     [action.payload.accountName]: {
                         addresses: action.payload.addresses,
                         transfers: action.payload.transfers,
                         balance: action.payload.balance,
                     },
-                },
+                }),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR:
