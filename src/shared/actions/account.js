@@ -312,13 +312,8 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
 
 export const getAccountInfo = (accountName, navigator = null) => {
     return (dispatch, getState) => {
-        console.log('acc name', accountName);
-        console.log('acc names', getState().account.accountInfo);
         const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-        console.log('acc namSSSe', selectedAccount);
-
         const addresses = Object.keys(selectedAccount.addresses);
-
         const unspentAddresses = getUnspentAddresses(selectedAccount.addresses);
 
         iota.api.getBalances(addresses, 1, (error, success) => {
@@ -328,7 +323,7 @@ export const getAccountInfo = (accountName, navigator = null) => {
 
                 // Calculate total balance
                 const totalBalance = newBalances.reduce((a, b) => a + b);
-                dispatch(setBalance(totalBalance));
+                dispatch(setBalance({ accountName, balance: totalBalance }));
 
                 // Only fetch latest transfers if there exists unspent addresses
                 if (!isEmpty(unspentAddresses)) {
