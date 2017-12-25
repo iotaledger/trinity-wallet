@@ -52,7 +52,6 @@ export default () => C => {
 
         componentWillReceiveProps(newProps) {
             if (this.shouldPollForTransfers(newProps)) {
-                console.log('POLL');
                 this.pollForTransfers();
             }
         }
@@ -65,6 +64,9 @@ export default () => C => {
             const isDoneFetchingNewAddressData =
                 this.props.isFetchingNewAddressData && !newProps.isFetchingNewAddressData;
 
+            console.log('new', newProps.isFetchingNewAddressData);
+            console.log('old', this.props.isFetchingNewAddressData);
+            console.log('err', newProps.hasErrorFetchingNewAddressData);
             return isDoneFetchingNewAddressData && !newProps.hasErrorFetchingNewAddressData;
         }
 
