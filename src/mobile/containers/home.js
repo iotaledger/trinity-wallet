@@ -9,7 +9,7 @@ import StatefulDropdownAlert from './statefulDropdownAlert';
 
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { setFirstUse } from 'iota-wallet-shared-modules/actions/account';
 import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -81,15 +81,7 @@ const styles = StyleSheet.create({
 
 class Home extends Component {
     componentDidMount() {
-        const { setFirstUse, account, tempAccount, setBalance } = this.props;
-        setFirstUse(false);
-        const accountInfo = account.accountInfo;
-        const seedIndex = tempAccount.seedIndex;
-        const addressesWithBalance = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
-        if (typeof accountInfo !== 'undefined') {
-            const balance = calculateBalance(addressesWithBalance);
-            setBalance(balance);
-        }
+        this.props.setFirstUse(false); // TODO: Make sure we know why we are calling this prop method here.
     }
 
     onLoginPress = password => {
@@ -164,7 +156,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    setBalance,
     changeHomeScreenRoute,
     generateAlert,
     setFirstUse,
