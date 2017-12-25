@@ -111,7 +111,13 @@ const account = (
         case ActionTypes.SET_BALANCE:
             return {
                 ...state,
-                balance: action.payload,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.payload.accountName]: {
+                        ...state.accountInfo[action.payload.accountName],
+                        balance: action.payload.balance,
+                    },
+                },
             };
         case ActionTypes.SET_ONBOARDING_COMPLETE:
             return {
