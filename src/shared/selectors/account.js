@@ -30,7 +30,7 @@ export const getSelectedAccountViaSeedIndex = createSelector(currentAccountSelec
 export const getSelectedAccountNameViaSeedIndex = createSelector(currentAccountNameSelectorBySeedIndex, name => name);
 
 export const getBalanceForSelectedAccountViaSeedIndex = createSelector(
-    currentAccountNameSelectorBySeedIndex,
+    currentAccountSelectorBySeedIndex,
     account => get(account, 'balance') || 0,
 );
 
