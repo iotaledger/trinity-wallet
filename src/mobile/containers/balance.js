@@ -10,6 +10,7 @@ import Chart from '../components/chart';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
+    getBalanceForSelectedAccountViaSeedIndex,
 } from '../../shared/selectors/account';
 
 import { width, height } from '../util/dimensions';
@@ -194,7 +195,7 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,
     isSyncing: tempAccount.isSyncing,
     seedIndex: tempAccount.seedIndex,
-    balance: account.balance,
+    balance: getBalanceForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     settings,

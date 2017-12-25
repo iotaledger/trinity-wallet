@@ -150,6 +150,7 @@ export const setPromotionStatus = payload => ({
 
 export const generateNewAddress = (seed, seedName, addresses) => {
     return dispatch => {
+        dispatch(generateNewAddressRequest());
         let index = 0;
 
         size(addresses) === 0 ? (index = 0) : (index = size(addresses) - 1);
