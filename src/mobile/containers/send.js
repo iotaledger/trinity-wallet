@@ -397,7 +397,7 @@ class Send extends Component {
                                     onSubmitEditing={() => this.refs.message.focus()}
                                 />
                             </View>
-                            {denomination !== this.props.settings.currencySymbol && ( // FIXME: currencySymbol is not defined in reducers
+                            {denomination !== this.props.currencySymbol && ( // FIXME: currencySymbol is not defined in reducers
                                 <Text style={styles.conversionText}>
                                     {' '}
                                     {this.state.denomination === currencySymbol
