@@ -15,13 +15,12 @@ import {
 } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { connect } from 'react-redux';
-import {
-    generateNewAddress,
-    setReceiveAddress,
-    generateNewAddressRequest,
-    generateNewAddressError,
-} from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import {
+    getSelectedAccountViaSeedIndex,
+    getSelectedAccountNameViaSeedIndex,
+} from 'iota-wallet-shared-modules/selectors/account';
 import { TextField } from 'react-native-material-textfield';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
@@ -29,20 +28,23 @@ import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
 
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
 class Receive extends Component {
     static propTypes = {
-        tempAccount: PropTypes.object.isRequired,
+        selectedAccount: PropTypes.object.isRequired,
+        selectedAccountName: PropTypes.string.isRequired,
+        isSyncing: PropTypes.bool.isRequired,
+        seedIndex: PropTypes.number.isRequired,
+        receiveAddress: PropTypes.string.isRequired,
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         generateNewAddress: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
-        generateNewAddressRequest: PropTypes.func.isRequired,
-        generateNewAddressError: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
-
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
         this.state = {
             dataSource: ds.cloneWithRows([]),
@@ -57,30 +59,20 @@ class Receive extends Component {
     }
 
     resetAddress() {
-        const { tempAccount: { receiveAddress } } = this.props;
+        const { receiveAddress } = this.props;
         if (receiveAddress) {
             this.props.setReceiveAddress(' ');
         }
     }
 
     onGeneratePress() {
-        const { t } = this.props;
+        const { t, seedIndex, selectedAccount, selectedAccountName, isSyncing } = this.props;
 
-        if (this.props.tempAccount.isSyncing) {
+        if (isSyncing) {
             return this.props.generateAlert('error', 'Syncing in process', 'Please wait until syncing is complete.');
         }
 
-        this.props.generateNewAddressRequest();
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const accountName = this.props.account.seedNames[seedIndex];
-        const accountInfo = this.props.account.accountInfo;
-        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-        const addresses = currentSeedAccountInfo.addresses;
-
-        const generate = (seed, accountName, addresses) => this.props.generateNewAddress(seed, accountName, addresses);
-
         const error = () => {
-            this.props.generateNewAddressError();
             this.props.generateAlert(
                 'error',
                 t('global:somethingWentWrong'),
@@ -93,7 +85,7 @@ class Receive extends Component {
             .then(credentials => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
-                    generate(seed, accountName, addresses);
+                    this.props.generateNewAddress(seed, selectedAccountName, selectedAccount.addresses);
                 } else {
                     error();
                 }
@@ -111,8 +103,8 @@ class Receive extends Component {
     }
 
     getOpacity() {
-        const { tempAccount: { receiveAddress } } = this.props;
-        if (receiveAddress == ' ') {
+        const { receiveAddress } = this.props;
+        if (receiveAddress === ' ') {
             return 0.1;
         } else {
             return 1;
@@ -120,8 +112,8 @@ class Receive extends Component {
     }
 
     getQrOpacity() {
-        const { tempAccount: { receiveAddress } } = this.props;
-        if (receiveAddress == ' ' && isAndroid) {
+        const { receiveAddress } = this.props;
+        if (receiveAddress === ' ' && isAndroid) {
             return 0.1;
         } else {
             return 1;
@@ -135,7 +127,7 @@ class Receive extends Component {
     }
 
     render() {
-        const { tempAccount: { receiveAddress, isGeneratingReceiveAddress }, t } = this.props;
+        const { receiveAddress, isGeneratingReceiveAddress, t } = this.props;
         const message = this.state.message;
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -325,15 +317,17 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    tempAccount: state.tempAccount,
-    account: state.account,
+    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    isSyncing: state.tempAccount.isSyncing,
+    seedIndex: state.tempAccount.seedIndex,
+    receiveAddress: state.tempAccount.receiveAddress,
+    isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
 });
 
 const mapDispatchToProps = {
     generateNewAddress,
     setReceiveAddress,
-    generateNewAddressRequest,
-    generateNewAddressError,
     generateAlert,
 };
 
