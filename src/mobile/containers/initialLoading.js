@@ -35,7 +35,7 @@ class InitialLoading extends Component {
         if (!this.props.onboardingComplete) {
             this.clearKeychain();
             this.props.navigator.push({
-                screen: 'welcome',
+                screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
                 overrideBackPress: true,
