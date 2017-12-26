@@ -114,7 +114,11 @@
       "../"
     ],
     "setupTestFrameworkScriptFile": "./testConfig.js",
-    "testPathIgnorePatterns": ["/node_modules/", "/containers/.*", "/shared/"]
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/containers/.*",
+      "/shared/"
+    ]
   },
   "react-native": {
     "zlib": "browserify-zlib",
