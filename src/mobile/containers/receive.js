@@ -21,6 +21,11 @@ import {
     getSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
+import {
+    getFromKeychainRequest,
+    getFromKeychainSuccess,
+    getFromKeychainError,
+} from 'iota-wallet-shared-modules/actions/keychain';
 import { TextField } from 'react-native-material-textfield';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
@@ -38,9 +43,13 @@ class Receive extends Component {
         seedIndex: PropTypes.number.isRequired,
         receiveAddress: PropTypes.string.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        isGettingSensitiveInfoToGenerateAddress: PropTypes.bool.isRequired,
         generateNewAddress: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        getFromKeychainRequest: PropTypes.func.isRequired,
+        getFromKeychainSuccess: PropTypes.func.isRequired,
+        getFromKeychainError: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -58,10 +67,12 @@ class Receive extends Component {
         this.resetAddress();
     }
 
-    resetAddress() {
-        const { receiveAddress } = this.props;
-        if (receiveAddress) {
-            this.props.setReceiveAddress(' ');
+    onAddressPress(address) {
+        const { t } = this.props;
+
+        if (address !== ' ') {
+            Clipboard.setString(address);
+            this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
         }
     }
 
@@ -73,6 +84,7 @@ class Receive extends Component {
         }
 
         const error = () => {
+            this.props.getFromKeychainError('receive', 'addressGeneration');
             this.props.generateAlert(
                 'error',
                 t('global:somethingWentWrong'),
@@ -80,10 +92,12 @@ class Receive extends Component {
             );
         };
 
+        this.props.getFromKeychainRequest('receive', 'addressGeneration');
         return keychain
             .get()
             .then(credentials => {
                 if (get(credentials, 'data')) {
+                    this.props.getFromKeychainSuccess('receive', 'addressGeneration');
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.generateNewAddress(seed, selectedAccountName, selectedAccount.addresses);
                 } else {
@@ -93,30 +107,28 @@ class Receive extends Component {
             .catch(err => console.log(err));
     }
 
-    onAddressPress(address) {
-        const { t } = this.props;
-
-        if (address !== ' ') {
-            Clipboard.setString(address);
-            this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
-        }
-    }
-
     getOpacity() {
         const { receiveAddress } = this.props;
         if (receiveAddress === ' ') {
             return 0.1;
-        } else {
-            return 1;
         }
+
+        return 1;
     }
 
     getQrOpacity() {
         const { receiveAddress } = this.props;
         if (receiveAddress === ' ' && isAndroid) {
             return 0.1;
-        } else {
-            return 1;
+        }
+
+        return 1;
+    }
+
+    resetAddress() {
+        const { receiveAddress } = this.props;
+        if (receiveAddress) {
+            this.props.setReceiveAddress(' ');
         }
     }
 
@@ -127,7 +139,7 @@ class Receive extends Component {
     }
 
     render() {
-        const { receiveAddress, isGeneratingReceiveAddress, t } = this.props;
+        const { receiveAddress, isGeneratingReceiveAddress, isGettingSensitiveInfoToGenerateAddress, t } = this.props;
         const message = this.state.message;
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -142,7 +154,7 @@ class Receive extends Component {
                     >
                         <View style={[styles.qrContainer, { opacity: this.getQrOpacity() }]}>
                             <QRCode
-                                value={JSON.stringify({ address: receiveAddress, message: message })}
+                                value={JSON.stringify({ address: receiveAddress, message })}
                                 size={height / 5}
                                 bgColor="#000"
                                 fgColor="#FFF"
@@ -189,7 +201,7 @@ class Receive extends Component {
                     </View>
                     <View style={{ flex: 0.5, justifyContent: 'center' }}>
                         {receiveAddress === ' ' &&
-                            !isGeneratingReceiveAddress && (
+                            (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
                                 <TouchableOpacity
                                     onPress={() => {
                                         // Check if there's already a network call in progress.
@@ -203,10 +215,10 @@ class Receive extends Component {
                                     </View>
                                 </TouchableOpacity>
                             )}
-                        {isGeneratingReceiveAddress && (
+                        {(isGettingSensitiveInfoToGenerateAddress || isGeneratingReceiveAddress) && (
                             <View style={{ height: height / 10 }}>
                                 <ActivityIndicator
-                                    animating={isGeneratingReceiveAddress}
+                                    animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
                                     style={styles.activityIndicator}
                                     size="large"
                                     color="#F7D002"
@@ -323,12 +335,16 @@ const mapStateToProps = state => ({
     seedIndex: state.tempAccount.seedIndex,
     receiveAddress: state.tempAccount.receiveAddress,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
+    isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
 });
 
 const mapDispatchToProps = {
     generateNewAddress,
     setReceiveAddress,
     generateAlert,
+    getFromKeychainRequest,
+    getFromKeychainSuccess,
+    getFromKeychainError,
 };
 
 export default translate(['receive', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Receive));
