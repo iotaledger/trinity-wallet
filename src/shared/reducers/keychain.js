@@ -6,6 +6,9 @@ const initialState = {
         receive: {
             addressGeneration: false,
         },
+        send: {
+            makeTransaction: false,
+        },
     },
 };
 
