@@ -289,15 +289,22 @@ class Send extends Component {
         }
     }
 
-    onQRRead(serializedData) {
-        const data = parse(serializedData);
-
-        this.setState({
-            address: data.address,
-        });
-        if (data.message) {
+    onQRRead(data) {
+        if (data.match(/{/)) {
+            // For codes containing JSON (iotaledger and Trinity)
+            data = JSON.parse(data);
             this.setState({
-                message: data.message,
+                address: data.address,
+            });
+            if (data.message) {
+                this.setState({
+                    message: data.message,
+                });
+            }
+        } else {
+            // For codes with plain text (Bitfinex and Binance)
+            this.setState({
+                address: data,
             });
         }
 

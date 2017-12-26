@@ -44,8 +44,8 @@
         "accountName": "Nom du compte",
         "noNickname": "Aucun nom de compte entré",
         "noNicknameExplanation": "Veuillez entrer un nom de compte pour votre seed.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "Seed déjà utilisée",
+        "seedInUseExplanation": "Cette seed est déjà liée à votre porte-monnaie. Veuillez en utiliser une autre."
     },
     "changePassword": {
         "oops": "Oups. Une erreur est survenue",
@@ -69,9 +69,9 @@
     "copyToClipboard": {
         "seedCleared": "Seed effacée",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
-        "seedCopied": "Seed copié dans le presse-papier",
+        "seedCopied": "Seed copiée dans le presse-papier",
         "seedCopiedExplanation":
-            "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se soient écoulées.",
+            "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez vos graines dans un gestionnaire de mot de passe.",
         "doNotStore": "Ne stockez pas votre seed en texte en clair.",
         "copyToClipboard": "Copier dans le presse-papier"
@@ -103,7 +103,7 @@
         "enterPassword": "Veuillez renseigner votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
         "login": "SE CONNECTER",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Voulez-vous sélectionner un node différent ?"
     },
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
@@ -145,8 +145,7 @@
         "incorrectSeed": "Seed incorrecte",
         "incorrectSeedExplanation": "La seed que vous avez entrée est incorrecte. Veuillez réessayer.",
         "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
-        "ifYouHaveNotSaved":
-            "Si vous n’avez pas enregistré votre seed, veuillez revenir à l’écran précédent et le faire."
+        "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire."
     },
     "send": {
         "invalidAddress": "Adresse invalide",
@@ -211,8 +210,8 @@
         "accountDeletedExplanation": "Votre compte a été supprimé du wallet.",
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnection": "Mauvaise connexion",
+        "poorConnectionExplanation": "Impossible de changer de monnaie à cause de la mauvaise connexion."
     },
     "resetWalletConfirmation": {
         "thisAction": "Cette action est irréversible.",
@@ -224,7 +223,7 @@
         "areYouSure": "Êtes-vous sûr(e) de vouloir continuer ?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Entrez votre mot de passe pour réinitialiser votre wallet.",
         "cancel": "ANNULER",
         "reset": "RÉINITIALISER"
     },
