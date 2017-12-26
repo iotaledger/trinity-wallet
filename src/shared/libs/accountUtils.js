@@ -1,11 +1,10 @@
 import each from 'lodash/each';
-import size from 'lodash/size';
-import head from 'lodash/head';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import isNull from 'lodash/isNull';
 import { iota } from '../libs/iota';
+import { getBundleTailsForSentTransfers } from './promoter';
 
 export const formatAddressData = (addresses, balances, addressesSpendStatus) => {
     const addressData = Object.assign(
@@ -343,4 +342,22 @@ export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
             })
             .catch(err => callback(err));
     });
+};
+
+export const organizeAccountInfo = (accountName, data) => {
+    const transfers = formatTransfers(data.transfers, data.addresses);
+
+    const addressData = formatFullAddressData(data);
+    const balance = calculateBalance(addressData);
+
+    const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
+    const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
+
+    return {
+        accountName,
+        transfers,
+        addresses: addressDataWithSpentFlag,
+        balance,
+        unconfirmedTails,
+    };
 };
