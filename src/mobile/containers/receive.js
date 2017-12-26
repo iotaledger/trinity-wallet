@@ -96,15 +96,16 @@ class Receive extends Component {
         return keychain
             .get()
             .then(credentials => {
+                this.props.getFromKeychainSuccess('receive', 'addressGeneration');
+
                 if (get(credentials, 'data')) {
-                    this.props.getFromKeychainSuccess('receive', 'addressGeneration');
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.generateNewAddress(seed, selectedAccountName, selectedAccount.addresses);
                 } else {
                     error();
                 }
             })
-            .catch(err => console.log(err));
+            .catch(() => this.props.getFromKeychainError('receive', 'addressGeneration'));
     }
 
     getOpacity() {
