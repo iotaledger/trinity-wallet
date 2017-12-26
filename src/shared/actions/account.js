@@ -13,11 +13,11 @@ import isEmpty from 'lodash/isEmpty';
 import { iota } from '../libs/iota';
 import { getSelectedAccount } from '../selectors/account';
 import {
+    organizeAccountInfo,
     formatTransfers,
     formatFullAddressData,
     calculateBalance,
     mergeLatestTransfersInOld,
-    markAddressSpend,
     getUnspentAddresses,
 } from '../libs/accountUtils';
 import {
@@ -28,7 +28,7 @@ import {
     setPromotionStatus,
     clearTempData,
 } from './tempAccount';
-import { getFirstConsistentTail, isWithinAnHour, getBundleTailsForSentTransfers } from '../libs/promoter';
+import { getFirstConsistentTail, isWithinAnHour } from '../libs/promoter';
 import { generateAlert, generateDefaultNodeAlert } from '../actions/alerts';
 import { rearrangeObjectKeys } from '../libs/util';
 
@@ -218,22 +218,7 @@ export const fetchFullAccountInfoForFirstUse = (
 
             storeInKeychainPromise(password, seed, accountName)
                 .then(() => {
-                    const transfers = formatTransfers(data.transfers, data.addresses);
-
-                    const addressData = formatFullAddressData(data);
-                    const balance = calculateBalance(addressData);
-
-                    const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
-                    const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
-
-                    const payload = {
-                        accountName,
-                        transfers,
-                        addresses: addressDataWithSpentFlag,
-                        balance,
-                        unconfirmedTails,
-                    };
-
+                    const payload = organizeAccountInfo(accountName, data);
                     dispatch(fullAccountInfoForFirstUseFetchSuccess(payload));
                 })
                 .catch(err => console.error(err)); // Have a dropdown alert
@@ -253,21 +238,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
         dispatch(fullAccountInfoFetchRequest());
         iota.api.getAccountData(seed, (error, data) => {
             if (!error) {
-                const transfers = formatTransfers(data.transfers, data.addresses);
-
-                const addressData = formatFullAddressData(data);
-                const balance = calculateBalance(addressData);
-
-                const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
-                const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
-
-                const payload = {
-                    accountName,
-                    transfers,
-                    addresses: addressDataWithSpentFlag,
-                    balance,
-                    unconfirmedTails,
-                };
+                const payload = organizeAccountInfo(accountName, data);
                 dispatch(fullAccountInfoFetchSuccess(payload));
             } else {
                 if (navigator) {
@@ -286,21 +257,8 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
 
     iota.api.getAccountData(seed, (error, data) => {
         if (!error) {
-            const transfers = formatTransfers(data.transfers, data.addresses);
+            const payload = organizeAccountInfo(accountName, data);
 
-            const addressData = formatFullAddressData(data);
-            const balance = calculateBalance(addressData);
-
-            const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
-            const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
-
-            const payload = {
-                accountName,
-                transfers,
-                addresses: addressDataWithSpentFlag,
-                balance,
-                unconfirmedTails,
-            };
             dispatch(manualSyncSuccess(payload));
             dispatch(generateAlert('success', 'syncing complete', 'Account sync is complete.'));
         } else {
