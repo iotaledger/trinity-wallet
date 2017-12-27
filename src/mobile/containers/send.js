@@ -53,6 +53,7 @@ class Send extends Component {
         currency: PropTypes.string.isRequired,
         balance: PropTypes.number.isRequired,
         isSyncing: PropTypes.bool.isRequired,
+        isGettingTransfers: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         conversionRate: PropTypes.number.isRequired,
@@ -185,11 +186,14 @@ class Send extends Component {
     }
 
     sendTransfer() {
-        const { t, seedIndex, selectedAccountName } = this.props;
+        const { t, seedIndex, selectedAccountName, isSyncing, isGettingTransfers } = this.props;
 
-        // TODO: Should probably also check for other props receiving etc.
-        if (this.props.isSyncing) {
+        if (isSyncing) {
             this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
+            return;
+        }
+        if (isGettingTransfers) {
+            this.props.generateAlert('error', 'Updating transfers', 'Please try again in a moment.');
             return;
         }
 
@@ -699,6 +703,7 @@ const mapStateToProps = state => ({
     balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     isSyncing: state.tempAccount.isSyncing,
+    isGettingTransfers: state.tempAccount.isGettingTransfers,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
     seedIndex: state.tempAccount.seedIndex,
     conversionRate: state.settings.conversionRate,
