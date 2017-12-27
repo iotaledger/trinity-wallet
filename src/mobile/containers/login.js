@@ -57,6 +57,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        const { currency } = this.props;
         this.getWalletData();
         this.props.getCurrencyData(currency);
     }
@@ -100,7 +101,7 @@ class Login extends Component {
     }
 
     onLoginPress(password) {
-        const { firstUse, currency, t, setPassword, selectedAccount, selectedAccountName } = this.props;
+        const { firstUse, t, setPassword, selectedAccount, selectedAccountName } = this.props;
 
         Keyboard.dismiss();
 
