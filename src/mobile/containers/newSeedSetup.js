@@ -114,6 +114,7 @@ class NewSeedSetup extends Component {
 
     render() {
         const { tempAccount: { seed }, t } = this.props;
+        const viewOpacity = this.state.randomised ? 1 : 0.1;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -129,7 +130,7 @@ class NewSeedSetup extends Component {
                 <View style={styles.midContainer}>
                     <View style={{ flex: isIPhoneX ? 100 : 30 }} />
                     <ListView
-                        contentContainerStyle={styles.list}
+                        contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
                         dataSource={ds.cloneWithRows(split(seed, ''))}
                         renderRow={(rowData, rowID, sectionID) => (
                             <TouchableHighlight
@@ -146,7 +147,7 @@ class NewSeedSetup extends Component {
                                             fontFamily: 'Lato-Bold',
                                             fontSize: width / 28.9,
                                             textAlign: 'center',
-                                            opacity: this.state.randomised ? 1 : 0.1,
+                                            opacity: viewOpacity,
                                         }}
                                     >
                                         {rowData}
