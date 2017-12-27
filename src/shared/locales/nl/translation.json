@@ -41,7 +41,9 @@
         "enterAccountName": "Voer een account naam in.",
         "accountName": "Accountnaam",
         "noNickname": "Geen accountnaam ingevoerd",
-        "noNicknameExplanation": "Voer een account naam in voor uw sleutel."
+        "noNicknameExplanation": "Voer een account naam in voor uw sleutel.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Oeps! Er is iets mis gegaan",
@@ -93,7 +95,8 @@
         "emptyPasswordExplanation": "Voer een wachtwoord in om u aan te melden. Probeer het opnieuw.",
         "enterPassword": "Voor uw wachtwoord in.",
         "useSeed": "GEBRUIK SLEUTEL",
-        "login": "Aanmelden"
+        "login": "Aanmelden",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Sleutel voor de eerste keer laden.",
@@ -195,7 +198,9 @@
         "accountDeleted": "Account verwijderd",
         "accountDeletedExplanation": "Uw account is verwijderd uit de portefeuille.",
         "cannotPerformAction": "Kan actie niet uitvoeren",
-        "cannotPerformActionExplanation": "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen."
+        "cannotPerformActionExplanation": "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
@@ -207,7 +212,7 @@
         "areYouSure": "Weet u zeker dat u wilt doorgaan?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Voer uw wachtwoord in om uw wallet opnieuw in te stellen.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "ANNULEREN",
         "reset": "RESET"
     },

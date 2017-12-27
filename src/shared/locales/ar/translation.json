@@ -41,7 +41,9 @@
         "enterAccountName": "Enter an account name.",
         "accountName": "Account name",
         "noNickname": "No account name entered",
-        "noNicknameExplanation": "Please enter an account name for your seed."
+        "noNicknameExplanation": "Please enter an account name for your seed.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Oops! Something went wrong",
@@ -93,7 +95,8 @@
         "emptyPasswordExplanation": "يجب إدخال كلمة مرور لتسجيل الدخول. الرجاء المحاولة مرة أخرى.",
         "enterPassword": "الرجاء إدخال كلمة المرور.",
         "useSeed": "استخدم سييد",
-        "login": "تسجيل الدخول"
+        "login": "تسجيل الدخول",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "تحميل البذور لأول مرة.",
@@ -192,7 +195,9 @@
         "accountDeleted": "Account deleted",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "This action cannot be undone.",
@@ -204,7 +209,7 @@
         "areYouSure": "Are you sure you want to continue?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter password to reset your wallet.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "إلغاء",
         "reset": "RESET"
     },

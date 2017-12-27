@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { width, height } from '../util/dimensions';
 import Dropdown from './dropdown';
@@ -52,6 +53,14 @@ const styles = StyleSheet.create({
 });
 
 class CurrencySelection extends Component {
+    static propTypes = {
+        getCurrencyData: PropTypes.func.isRequired,
+        currency: PropTypes.string.isRequired,
+        currencies: PropTypes.array.isRequired,
+        backPress: PropTypes.func.isRequired,
+        setCurrencySetting: PropTypes.func.isRequired,
+    };
+
     saveCurrencySelection(currency) {
         const { backPress, setCurrencySetting, getCurrencyData } = this.props;
 
