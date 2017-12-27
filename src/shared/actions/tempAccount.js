@@ -7,9 +7,7 @@ import { updateAddresses, addPendingTransfer, updateUnconfirmedBundleTails } fro
 import { generateAlert } from '../actions/alerts';
 import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
 import { MAX_SEED_LENGTH } from '../libs/util';
-
-// FIXME: Hacking no-console linting.
-// Should rather be dispatching an action.
+import { getSelectedAccount } from '../selectors/account';
 
 /* eslint-disable no-console */
 
@@ -18,179 +16,144 @@ export const ActionTypes = {
     GET_TRANSFERS_REQUEST: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_REQUEST',
     GET_TRANSFERS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_SUCCESS',
     GET_TRANSFERS_ERROR: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_ERROR',
+    GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_REQUEST',
+    GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_SUCCESS',
+    GENERATE_NEW_ADDRESS_ERROR: 'IOTA/TEMP_ACCOUNT/GENERATE_NEW_ADDRESS_ERROR',
+    MANUAL_SYNC_REQUEST: 'IOTA/TEMP_ACCOUNT/MANUAL_SYNC_REQUEST',
+    MANUAL_SYNC_SUCCESS: 'IOTA/TEMP_ACCOUNT/MANUAL_SYNC_SUCCESS',
+    MANUAL_SYNC_ERROR: 'IOTA/TEMP_ACCOUNT/MANUAL_SYNC_ERROR',
+    SEND_TRANSFER_REQUEST: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_REQUEST',
+    SEND_TRANSFER_SUCCESS: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_SUCCESS',
+    SEND_TRANSFER_ERROR: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_ERROR',
+    SET_COPIED_TO_CLIPBOARD: 'IOTA/TEMP_ACCOUNT/SET_COPIED_TO_CLIPBOARD',
+    SET_RECEIVE_ADDRESS: 'IOTA/TEMP_ACCOUNT/SET_RECEIVE_ADDRESS',
+    SET_SEED_NAME: 'IOTA/TEMP_ACCOUNT/SET_SEED_NAME',
+    SET_PASSWORD: 'IOTA/TEMP_ACCOUNT/SET_PASSWORD',
+    CLEAR_TEMP_DATA: 'IOTA/TEMP_ACCOUNT/CLEAR_TEMP_DATA',
+    SET_USED_SEED_TO_LOGIN: 'IOTA/TEMP_ACCOUNT/SET_USED_SEED_TO_LOGIN',
+    SET_SEED_INDEX: 'IOTA/TEMP_ACCOUNT/SET_SEED_INDEX',
+    SET_READY: 'IOTA/TEMP_ACCOUNT/SET_READY',
+    SET_SEED: 'IOTA/TEMP_ACCOUNT/SET_SEED',
+    CLEAR_SEED: 'IOTA/TEMP_ACCOUNT/CLEAR_SEED',
+    SET_SETTING: 'IOTA/TEMP_ACCOUNT/SET_SETTING',
 };
 
-export function getTransfersRequest() {
-    return {
-        type: ActionTypes.GET_TRANSFERS_REQUEST,
-    };
-}
+export const getTransfersRequest = () => ({
+    type: ActionTypes.GET_TRANSFERS_REQUEST,
+});
 
-export function getTransfersSuccess() {
-    return {
-        type: ActionTypes.GET_TRANSFERS_SUCCESS,
-    };
-}
+export const getTransfersSuccess = payload => ({
+    type: ActionTypes.GET_TRANSFERS_SUCCESS,
+    payload,
+});
 
-export function getTransfersError() {
-    return {
-        type: ActionTypes.GET_TRANSFERS_ERROR,
-    };
-}
+export const getTransfersError = () => ({
+    type: ActionTypes.GET_TRANSFERS_ERROR,
+});
 
-export function setCopiedToClipboard(boolean) {
-    return {
-        type: 'SET_COPIED_TO_CLIPBOARD',
-        payload: boolean,
-    };
-}
+export const setCopiedToClipboard = payload => ({
+    type: ActionTypes.SET_COPIED_TO_CLIPBOARD,
+    payload,
+});
 
-export function setReceiveAddress(payload) {
-    return {
-        type: 'SET_RECEIVE_ADDRESS',
-        payload,
-    };
-}
+export const setReceiveAddress = payload => ({
+    type: ActionTypes.SET_RECEIVE_ADDRESS,
+    payload,
+});
 
-export function setUsedSeedToLogin() {
-    return {
-        type: 'SET_USED_SEED_TO_LOGIN',
-        payload: true,
-    };
-}
+export const setUsedSeedToLogin = () => ({
+    type: ActionTypes.SET_USED_SEED_TO_LOGIN,
+    payload: true,
+});
 
-// TODO: Remove this
-// Depcreated in favor of setSeedIndex
-export function incrementSeedIndex() {
-    return {
-        type: 'INCREMENT_SEED_INDEX',
-    };
-}
+export const setSeedIndex = payload => ({
+    type: ActionTypes.SET_SEED_INDEX,
+    payload,
+});
 
-// TODO: Remove this
-// Depcreated in favor of setSeedIndex
-export function decrementSeedIndex() {
-    return {
-        type: 'DECREMENT_SEED_INDEX',
-    };
-}
+export const generateNewAddressRequest = () => ({
+    type: ActionTypes.GENERATE_NEW_ADDRESS_REQUEST,
+});
 
-export function setSeedIndex(payload) {
-    return {
-        type: 'SET_SEED_INDEX',
-        payload,
-    };
-}
+export const generateNewAddressSuccess = payload => ({
+    type: ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS,
+    payload,
+});
 
-export function generateNewAddressRequest() {
-    return {
-        type: 'GENERATE_NEW_ADDRESS_REQUEST',
-    };
-}
+export const generateNewAddressError = () => ({
+    type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
+});
 
-export function generateNewAddressSuccess(payload) {
-    return {
-        type: 'GENERATE_NEW_ADDRESS_SUCCESS',
-        payload,
-    };
-}
+export const manualSyncRequest = () => ({
+    type: ActionTypes.MANUAL_SYNC_REQUEST,
+});
 
-export function generateNewAddressError() {
-    return {
-        type: 'GENERATE_NEW_ADDRESS_ERROR',
-    };
-}
+export const manualSyncSuccess = () => ({
+    type: ActionTypes.MANUAL_SYNC_SUCCESS,
+});
 
-export function manualSyncRequest() {
-    return {
-        type: 'MANUAL_SYNC_REQUEST',
-    };
-}
+export const manualSyncError = () => ({
+    type: ActionTypes.MANUAL_SYNC_ERROR,
+});
 
-export function manualSyncComplete() {
-    return {
-        type: 'MANUAL_SYNC_COMPLETE',
-    };
-}
+export const sendTransferRequest = () => ({
+    type: ActionTypes.SEND_TRANSFER_REQUEST,
+});
 
-export function sendTransferRequest() {
-    return {
-        type: 'SEND_TRANSFER_REQUEST',
-    };
-}
+export const sendTransferSuccess = payload => ({
+    type: ActionTypes.SEND_TRANSFER_SUCCESS,
+    payload,
+});
 
-export function sendTransferSuccess(address, value) {
-    return {
-        type: 'SEND_TRANSFER_SUCCESS',
-        address,
-        value,
-    };
-}
+export const sendTransferError = () => ({
+    type: ActionTypes.SEND_TRANSFER_ERROR,
+});
 
-export function sendTransferError() {
-    return {
-        type: 'SEND_TRANSFER_ERROR',
-    };
-}
+export const setReady = () => ({
+    type: ActionTypes.SET_READY,
+    payload: true,
+});
 
-export function setReady() {
-    return {
-        type: 'SET_READY',
-        payload: true,
-    };
-}
+export const setSeed = payload => ({
+    type: ActionTypes.SET_SEED,
+    payload,
+});
 
-export function setSeed(payload) {
-    return {
-        type: 'SET_SEED',
-        payload,
-    };
-}
+export const clearSeed = () => ({
+    type: ActionTypes.CLEAR_SEED,
+    payload: Array(82).join(' '),
+});
 
-export function clearSeed() {
-    return {
-        type: 'CLEAR_SEED',
-        payload: Array(82).join(' '),
-    };
-}
+export const setSetting = payload => ({
+    type: ActionTypes.SET_SETTING,
+    payload,
+});
 
-export function setSetting(setting) {
-    return {
-        type: 'SET_SETTING',
-        payload: setting,
-    };
-}
+export const clearTempData = () => ({
+    type: ActionTypes.CLEAR_TEMP_DATA,
+});
 
-export function replayBundle(transactionHash, depth = 3, minWeightMagnitude = 14) {
+export const setPassword = payload => ({
+    type: ActionTypes.SET_PASSWORD,
+    payload,
+});
+
+export const setSeedName = payload => ({
+    type: ActionTypes.SET_SEED_NAME,
+    payload,
+});
+
+export const setPromotionStatus = payload => ({
+    type: ActionTypes.SET_PROMOTION_STATUS,
+    payload,
+});
+
+export const generateNewAddress = (seed, seedName, addresses) => {
     return dispatch => {
-        // Should be fire and forget
-        return iota.api.replayBundle(transactionHash, depth, minWeightMagnitude, err => {
-            if (err) {
-                console.log(err);
-                dispatch(
-                    generateAlert(
-                        'error',
-                        'Invalid Response',
-                        'The node returned an invalid response while auto-reattaching.',
-                    ),
-                );
-            } else {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        'Autoreattaching to Tangle',
-                        `Reattaching transaction with hash ${transactionHash}`,
-                    ),
-                );
-            }
-        });
-    };
-}
-
-export function generateNewAddress(seed, seedName, addresses) {
-    return dispatch => {
+        dispatch(generateNewAddressRequest());
         let index = 0;
-        size(addresses) == 0 ? (index = 0) : (index = size(addresses) - 1);
+
+        size(addresses) === 0 ? (index = 0) : (index = size(addresses) - 1);
         const options = { checksum: true, index };
 
         iota.api.getNewAddress(seed, options, (error, address) => {
@@ -213,10 +176,12 @@ export function generateNewAddress(seed, seedName, addresses) {
             }
         });
     };
-}
+};
 
-export function sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message, cb) {
-    return dispatch => {
+export const sendTransaction = (seed, address, value, message, accountName) => {
+    return (dispatch, getState) => {
+        dispatch(sendTransferRequest());
+
         const verifyAndSend = (filtered, expectedOutputsLength, transfer, inputs) => {
             if (filtered.length !== expectedOutputsLength) {
                 return dispatch(
@@ -227,19 +192,20 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
                     ),
                 );
             }
-            // Send transfer with depth 4 and minWeightMagnitude 14
-            const addressData = currentSeedAccountInfo.addresses;
-            const transfers = currentSeedAccountInfo.transfers;
+
+            const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+            const addressData = selectedAccount.addresses;
+            const transfers = selectedAccount.transfers;
+
             const options = { inputs };
 
+            // Send transfer with depth 4 and minWeightMagnitude 14
             return iota.api.sendTransfer(seed, 4, 14, transfer, options, (error, success) => {
                 if (!error) {
-                    dispatch(checkForNewAddress(seedName, addressData, success));
-                    dispatch(addPendingTransfer(seedName, transfers, success));
-                    console.log(success);
+                    dispatch(checkForNewAddress(accountName, addressData, success));
+                    dispatch(addPendingTransfer(accountName, transfers, success));
                     dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
-                    dispatch(sendTransferSuccess(address, value));
-                    cb();
+                    dispatch(sendTransferSuccess({ address, value }));
 
                     // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
                     // Would be the tail anyways.
@@ -315,12 +281,12 @@ export function sendTransaction(seed, currentSeedAccountInfo, seedName, address,
 
         return getUnspentInputs(seed, 0, value, null, unspentInputs);
     };
-}
+};
 
-export function checkForNewAddress(seedName, addressData, txArray) {
+export const checkForNewAddress = (seedName, addressData, txArray) => {
     return dispatch => {
         // Check if 0 value transfer
-        if (txArray[0].value != 0) {
+        if (txArray[0].value !== 0) {
             const changeAddress = txArray[txArray.length - 1].address;
             const addresses = Object.keys(addressData);
             // Remove checksum
@@ -341,9 +307,9 @@ export function checkForNewAddress(seedName, addressData, txArray) {
             dispatch(updateAddresses(seedName, addressData));
         }
     };
-}
+};
 
-export function randomiseSeed(randomBytesFn) {
+export const randomiseSeed = randomBytesFn => {
     return dispatch => {
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
         let seed = '';
@@ -367,29 +333,4 @@ export function randomiseSeed(randomBytesFn) {
             }
         });
     };
-}
-
-export function clearTempData() {
-    return {
-        type: 'CLEAR_TEMP_DATA',
-    };
-}
-
-export function setPassword(password) {
-    return {
-        type: 'SET_PASSWORD',
-        payload: password,
-    };
-}
-
-export function setSeedName(seedName) {
-    return {
-        type: 'SET_SEED_NAME',
-        payload: seedName,
-    };
-}
-
-export const setPromotionStatus = payload => ({
-    type: ActionTypes.SET_PROMOTION_STATUS,
-    payload,
-});
+};
