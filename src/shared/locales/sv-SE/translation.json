@@ -41,7 +41,9 @@
         "enterAccountName": "Ange ditt kontonamn.",
         "accountName": "Kontonamn",
         "noNickname": "Inget kontonamn angivet",
-        "noNicknameExplanation": "Vänligen ange ett namn för din Sseed."
+        "noNicknameExplanation": "Vänligen ange ett namn för din Sseed.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Ops! Något gick snett",
@@ -93,7 +95,8 @@
         "emptyPasswordExplanation": "Du måste ange ett lösenord för att logga in. Vänligen försök igen.",
         "enterPassword": "Vänligen ange ditt lösenord.",
         "useSeed": "ANVÄND DIN SEED",
-        "login": "LOGGA IN"
+        "login": "LOGGA IN",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Laddar din adress för första gången.",
@@ -192,7 +195,9 @@
         "accountDeleted": "Kontot har tagits bort",
         "accountDeletedExplanation": "Ditt konto har tagits bort från plånboken.",
         "cannotPerformAction": "Kan inte utföra åtgärden",
-        "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken."
+        "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denna åtgärd kan inte ångras.",
@@ -204,7 +209,7 @@
         "areYouSure": "Är du säker på att du vill fortsätta?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Ange lösenord för att återställa din plånbok.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "AVBRYT",
         "reset": "ÅTERSTÄLL"
     },
