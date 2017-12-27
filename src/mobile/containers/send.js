@@ -64,6 +64,7 @@ class Send extends Component {
         getFromKeychainRequest: PropTypes.func.isRequired,
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
+        closeTopBar: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -330,7 +331,7 @@ class Send extends Component {
     }
 
     clearInteractions() {
-        this.props.closeTopBar(); // FIXME: Unresolved method
+        this.props.closeTopBar();
         Keyboard.dismiss();
     }
 
@@ -425,14 +426,12 @@ class Send extends Component {
                                     onSubmitEditing={() => this.refs.message.focus()}
                                 />
                             </View>
-                            {denomination !== this.props.currencySymbol && ( // FIXME: currencySymbol is not defined in reducers
-                                <Text style={styles.conversionText}>
-                                    {' '}
-                                    {this.state.denomination === currencySymbol
-                                        ? this.getConversionTextFiat()
-                                        : this.getConversionTextIota()}{' '}
-                                </Text>
-                            )}
+                            <Text style={styles.conversionText}>
+                                {' '}
+                                {this.state.denomination === currencySymbol
+                                    ? this.getConversionTextFiat()
+                                    : this.getConversionTextIota()}{' '}
+                            </Text>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity onPress={event => this.onDenominationPress()}>
                                     <View style={styles.button}>
@@ -506,7 +505,6 @@ class Send extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            style={styles.infoButton} // FIXME: Unresolved
                             onPress={() => this.setModalContent('unitInfo')}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                         >
