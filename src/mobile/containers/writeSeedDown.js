@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
@@ -10,11 +10,7 @@ import GENERAL from '../theme/general';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 
-class WriteSeedDown extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+class WriteSeedDown extends Component {
     onDonePress() {
         this.props.navigator.pop({
             animated: false,
