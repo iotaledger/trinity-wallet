@@ -45,6 +45,7 @@ class Receive extends Component {
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isGettingSensitiveInfoToGenerateAddress: PropTypes.bool.isRequired,
         generateNewAddress: PropTypes.func.isRequired,
+        closeTopBar: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         getFromKeychainRequest: PropTypes.func.isRequired,
@@ -134,7 +135,6 @@ class Receive extends Component {
     }
 
     clearInteractions() {
-        // FIXME: Unresolved method.
         this.props.closeTopBar();
         Keyboard.dismiss();
     }
