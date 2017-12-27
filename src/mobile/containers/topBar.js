@@ -5,13 +5,14 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
-import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
+import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
-import PropTypes from 'prop-types';
+import { getBalanceForSelectedAccountViaSeedIndex } from '../../shared/selectors/account';
 import {
     View,
     Text,
@@ -22,7 +23,6 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
 } from 'react-native';
-import DropdownHolder from '../components/dropdownHolder';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import COLORS from '../theme/Colors';
 import chevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up.png';
@@ -44,6 +44,7 @@ class TopBar extends Component {
     }
 
     static propTypes = {
+        balance: PropTypes.number.isRequired,
         seedNames: PropTypes.array.isRequired,
         accountInfo: PropTypes.object.isRequired,
         seedIndex: PropTypes.number.isRequired,
@@ -51,11 +52,11 @@ class TopBar extends Component {
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGettingTransfers: PropTypes.bool.isRequired,
+        isSyncing: PropTypes.bool.isRequired,
         childRoute: PropTypes.string.isRequired,
         isTopBarActive: PropTypes.bool.isRequired,
         toggleTopBarDisplay: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
-        setBalance: PropTypes.func.isRequired,
         setSeedIndex: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
     };
@@ -74,6 +75,7 @@ class TopBar extends Component {
                 this.props.toggleTopBarDisplay();
             }
         }
+
         if (this.props.currentSetting !== newProps.currentSetting) {
             // Detects if navigating across screens
             if (this.props.isTopBarActive) {
@@ -203,38 +205,20 @@ class TopBar extends Component {
     }
 
     onChange(newSeedIdx) {
-        const {
-            isGeneratingReceiveAddress,
-            accountInfo,
-            isSendingTransfer,
-            isGettingTransfers,
-            seedNames,
-        } = this.props;
+        const { isGeneratingReceiveAddress, isSendingTransfer, isGettingTransfers, seedNames } = this.props;
 
+        // TODO: Not sure why we are checking for address generation on change
         if (!isGeneratingReceiveAddress) {
             const seedName = seedNames[newSeedIdx];
 
             this.props.setSeedIndex(newSeedIdx);
-            const seedStrings = Object.keys(accountInfo);
-            const addressData = accountInfo[seedStrings[newSeedIdx]].addresses;
-            const balance = calculateBalance(addressData);
-            this.props.setBalance(balance);
             this.props.setReceiveAddress(' ');
 
             // Get new account info if not sending or getting transfers
             if (!isSendingTransfer && !isGettingTransfers) {
-                this.props.getAccountInfo(seedName, newSeedIdx, accountInfo, error => {
-                    if (error) {
-                        this.onNodeError();
-                    }
-                });
+                this.props.getAccountInfo(seedName); // TODO: There might be no need to fetch account information at this point
             }
         }
-    }
-
-    onNodeError() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
     }
 
     humanizeBalance(balance) {
@@ -373,8 +357,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     seedNames: state.account.seedNames,
-    balance: state.account.balance,
     accountInfo: state.account.accountInfo,
     currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
@@ -386,13 +370,11 @@ const mapStateToProps = state => ({
     isTopBarActive: state.home.isTopBarActive,
 });
 
-const mapDispatchToProps = dispatch => ({
-    toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
-    getAccountInfo: (seedName, seedIndex, accountInfo, cb) =>
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb)),
-    setBalance: balance => dispatch(setBalance(balance)),
-    setSeedIndex: index => dispatch(setSeedIndex(index)),
-    setReceiveAddress: string => dispatch(setReceiveAddress(string)),
-});
+const mapDispatchToProps = {
+    toggleTopBarDisplay,
+    getAccountInfo,
+    setSeedIndex,
+    setReceiveAddress,
+};
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));
