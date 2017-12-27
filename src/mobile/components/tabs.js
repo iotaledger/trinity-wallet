@@ -1,9 +1,10 @@
 import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
+import { connect } from 'react-redux';
 import { isAndroid } from '../util/device';
 import COLORS from '../theme/Colors';
-import BorderShadow from '../components/BorderShadow';
+import BorderShadow from './borderShadow';
 
 import { width, height } from '../util/dimensions';
 
@@ -65,4 +66,8 @@ Tabs.propTypes = {
     currentRoute: PropTypes.string.isRequired,
 };
 
-export default Tabs;
+const mapStateToProps = state => ({
+    currentRoute: state.home.childRoute,
+});
+
+export default connect(mapStateToProps)(Tabs);

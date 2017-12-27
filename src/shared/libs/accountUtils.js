@@ -1,11 +1,10 @@
 import each from 'lodash/each';
-import size from 'lodash/size';
-import head from 'lodash/head';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import isNull from 'lodash/isNull';
 import { iota } from '../libs/iota';
+import { getBundleTailsForSentTransfers } from './promoter';
 
 export const formatAddressData = (addresses, balances, addressesSpendStatus) => {
     const addressData = Object.assign(
@@ -228,6 +227,21 @@ export const deduplicateTransferBundles = transfers => {
     return map(aggregated, v => v);
 };
 
+export const getUnspentAddresses = addressData => {
+    const addresses = Object.keys(addressData);
+    const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
+
+    const unspentAddresses = [];
+
+    for (let i = 0; i < addresses.length; i++) {
+        if (addressesSpendStatus[i] === false) {
+            unspentAddresses.push(addresses[i]);
+        }
+    }
+
+    return unspentAddresses;
+};
+
 export const filterSpentAddresses = inputs => {
     return new Promise((resolve, reject) => {
         // Find transaction objects for addresses
@@ -340,4 +354,22 @@ export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
             })
             .catch(err => callback(err));
     });
+};
+
+export const organizeAccountInfo = (accountName, data) => {
+    const transfers = formatTransfers(data.transfers, data.addresses);
+
+    const addressData = formatFullAddressData(data);
+    const balance = calculateBalance(addressData);
+
+    const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
+    const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
+
+    return {
+        accountName,
+        transfers,
+        addresses: addressDataWithSpentFlag,
+        balance,
+        unconfirmedTails,
+    };
 };
