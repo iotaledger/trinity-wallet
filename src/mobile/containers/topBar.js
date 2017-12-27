@@ -27,6 +27,7 @@ import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/l
 import COLORS from '../theme/Colors';
 import chevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up.png';
 import chevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down.png';
+import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 
 const { height, width } = Dimensions.get('window');
 
@@ -59,6 +60,7 @@ class TopBar extends Component {
         getAccountInfo: PropTypes.func.isRequired,
         setSeedIndex: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
+        selectedAccount: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
@@ -205,7 +207,14 @@ class TopBar extends Component {
     }
 
     onChange(newSeedIdx) {
-        const { isGeneratingReceiveAddress, isSendingTransfer, isGettingTransfers, seedNames } = this.props;
+        const {
+            isGeneratingReceiveAddress,
+            isSendingTransfer,
+            isGettingTransfers,
+            seedNames,
+            selectedAccount,
+        } = this.props;
+        const hasAddresses = Object.keys(this.props.selectedAccount.addresses).length > 0;
 
         // TODO: Not sure why we are checking for address generation on change
         if (!isGeneratingReceiveAddress) {
@@ -215,7 +224,7 @@ class TopBar extends Component {
             this.props.setReceiveAddress(' ');
 
             // Get new account info if not sending or getting transfers
-            if (!isSendingTransfer && !isGettingTransfers) {
+            if (!isSendingTransfer && !isGettingTransfers && hasAddresses) {
                 this.props.getAccountInfo(seedName); // TODO: There might be no need to fetch account information at this point
             }
         }
@@ -368,6 +377,7 @@ const mapStateToProps = state => ({
     isSyncing: state.tempAccount.isSyncing,
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
+    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
 });
 
 const mapDispatchToProps = {
