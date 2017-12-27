@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import { StyleSheet, View, Text, StatusBar, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Navigation } from 'react-native-navigation';
-
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -22,6 +20,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
 import EnterPassword from '../components/enterPassword';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain, { getSeed } from '../util/keychain';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
@@ -43,7 +42,7 @@ class Login extends Component {
         getPrice: PropTypes.func.isRequired,
         getChartData: PropTypes.func.isRequired,
         getCurrencyData: PropTypes.func.isRequired,
-        setReady: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         setFullNode: PropTypes.func.isRequired,
     };
 
@@ -100,12 +99,12 @@ class Login extends Component {
     }
 
     onLoginPress(password) {
-        const { firstUse, currency, t, setPassword, selectedAccount, selectedAccountName, generateAlert } = this.props;
+        const { firstUse, currency, t, setPassword, selectedAccount, selectedAccountName } = this.props;
 
         Keyboard.dismiss();
 
         if (!password) {
-            generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
+            this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
             keychain
                 .get()
@@ -126,15 +125,14 @@ class Login extends Component {
                             const addresses = get(selectedAccount, 'addresses');
 
                             if (!isEmpty(addresses)) {
-                                this.navigateToHome();
-                                //this.navigateToLoading();
-                                // this.props.getAccountInfo(selectedAccountName, this.props.navigator);
+                                this.navigateToLoading();
+                                this.props.getAccountInfo(selectedAccountName, this.props.navigator);
                             } else {
                                 this.navigateToHome();
                             }
                         }
                     } else {
-                        generateAlert(
+                        this.props.generateAlert(
                             'error',
                             t('global:unrecognisedPassword'),
                             t('global:unrecognisedPasswordExplanation'),

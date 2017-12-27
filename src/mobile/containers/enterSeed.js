@@ -7,34 +7,31 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
-    ScrollView,
     StatusBar,
+    Keyboard,
 } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
-import StatefulDropdownAlert from './statefulDropdownAlert';
-import QRScanner from '../components/qrScanner.js';
-import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+import Modal from 'react-native-modal';
+import { TextField } from 'react-native-material-textfield';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import Modal from 'react-native-modal';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import COLORS from '../theme/Colors';
-import GENERAL from '../theme/general';
-
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
+import StatefulDropdownAlert from './statefulDropdownAlert';
+import QRScanner from '../components/qrScanner';
+import OnboardingButtons from '../components/onboardingButtons';
+import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
-const StatusBarDefaultBarStyle = 'light-content';
 
 class EnterSeed extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             seed: '',
             isModalVisible: false,
@@ -48,11 +45,11 @@ class EnterSeed extends React.Component {
     };
 
     onDonePress() {
-        const { t, generateAlert } = this.props;
+        const { t } = this.props;
         if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length == MAX_SEED_LENGTH) {
-            generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
+            this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         } else if (this.state.seed.length < MAX_SEED_LENGTH) {
-            generateAlert(
+            this.props.generateAlert(
                 'error',
                 t('seedTooShort'),
                 t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: this.state.seed.length }),

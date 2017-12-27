@@ -14,7 +14,7 @@ const dispose = () => ({ type: ActionTypes.HIDE });
 
 export const generateAlert = (category, title, message) => dispatch => dispatch(generate(category, title, message));
 
-export const generateDefaultNodeAlert = () => dispatch =>
+export const generateAccountInfoErrorAlert = () => dispatch =>
     dispatch(
         generateAlert(
             'error',
