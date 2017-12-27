@@ -42,7 +42,7 @@ class InitialLoading extends Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'newSeedSetup',
+                screen: 'login',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
                 overrideBackPress: true,
