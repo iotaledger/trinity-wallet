@@ -285,10 +285,8 @@ export const getAccountInfo = (accountName, navigator = null) => {
 
                 // Only fetch latest transfers if there exists unspent addresses
                 if (!isEmpty(unspentAddresses)) {
-                    console.log('Will fetch');
                     dispatch(getTransfers(accountName, unspentAddresses));
                 } else {
-                    console.log('Will not fetch');
                     dispatch(setReady()); // In case unspent addresses are empty, just set the UI ready and navigate to home
                 }
             } else {
