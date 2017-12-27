@@ -18,8 +18,6 @@ export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {
 };
 
 const currentAccountNameSelectorBySeedIndex = (seedIndex, seedNames) => {
-    console.log(seedIndex);
-    console.log(seedNames);
     return seedNames[seedIndex];
 };
 
