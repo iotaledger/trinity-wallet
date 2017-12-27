@@ -77,10 +77,6 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
-    componentDidMount() {
-        this.props.setFirstUse(false); // TODO: Make sure we know why we are calling this prop method here.
-    }
-
     onLoginPress = password => {
         const { t, tempAccount } = this.props;
 
