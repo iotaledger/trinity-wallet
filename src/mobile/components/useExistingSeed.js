@@ -95,10 +95,10 @@ class UseExistingSeed extends React.Component {
                         <View style={styles.seedContainer}>
                             <View style={{ flex: 0.5 }} />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.title}>Please enter a seed and account name.</Text>
+                                <Text style={styles.title}>Enter a seed and account name.</Text>
                             </View>
                             <View style={{ flex: 1 }} />
-                            <View style={{ flexDirection: 'row' }}>
+                            <View style={{ flexDirection: 'row', width: width / 1.4 }}>
                                 <View style={styles.textFieldContainer}>
                                     <TextField
                                         style={styles.textField}
@@ -147,7 +147,7 @@ class UseExistingSeed extends React.Component {
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 value={accountName}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.4 }}
                                 onChangeText={accountName => this.setState({ accountName })}
                             />
                         </View>
