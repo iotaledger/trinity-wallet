@@ -132,7 +132,6 @@ const account = (
                 ...state,
                 firstUse: true,
             };
-        case ActionTypes.MANUAL_SYNC_SUCCESS:
         case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
@@ -158,11 +157,12 @@ const account = (
                     },
                 }),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+                firstUse: false,
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR:
             return {
                 ...state,
-                firstUse: false,
+                firstUse: true,
             };
         default:
             return state;
