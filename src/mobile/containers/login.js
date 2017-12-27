@@ -58,6 +58,7 @@ class Login extends Component {
 
     componentDidMount() {
         this.getWalletData();
+        this.props.getCurrencyData(currency);
     }
 
     componentWillReceiveProps(newProps) {
@@ -116,8 +117,6 @@ class Login extends Component {
                         setPassword(password);
 
                         const seed = getSeed(credentials.data, 0);
-
-                        this.props.getCurrencyData(currency);
 
                         if (firstUse) {
                             this.navigateToLoading();
