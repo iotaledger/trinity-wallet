@@ -1,16 +1,15 @@
 import get from 'lodash/get';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image } from 'react-native';
-import Colors from '../theme/Colors';
-import Fonts from '../theme/Fonts';
-import keychain from '../util/keychain';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import { Keyboard } from 'react-native';
-import { width, height } from '../util/dimensions';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import Colors from '../theme/Colors';
+import Fonts from '../theme/Fonts';
+import keychain from '../util/keychain';
+import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 
 class ChangePassword extends Component {
@@ -29,33 +28,6 @@ class ChangePassword extends Component {
             newPassword: '',
             confirmedNewPassword: '',
         };
-    }
-
-    renderTextField(ref, value, label, onChangeText, returnKeyType, onSubmitEditing) {
-        // This should be abstracted away as an independent component
-        // We are using almost the same field styles and props
-        // across all app
-        const props = {
-            ref: ref,
-            style: styles.textField,
-            labelTextStyle: { fontFamily: Fonts.tertiary },
-            labelFontSize: height / 55,
-            fontSize: height / 40,
-            baseColor: Colors.white,
-            tintColor: Colors.orangeDark,
-            autoCapitalize: 'none',
-            autoCorrect: false,
-            enablesReturnKeyAutomatically: true,
-            containerStyle: styles.textFieldContainer,
-            secureTextEntry: true,
-            label,
-            value,
-            onChangeText,
-            returnKeyType,
-            onSubmitEditing,
-        };
-
-        return <TextField {...props} />;
     }
 
     isValid() {
@@ -103,10 +75,45 @@ class ChangePassword extends Component {
 
                     this.props.backPress();
                 })
-                .catch(err => throwErr());
+                .catch(() => throwErr());
         }
 
         return this.renderInvalidSubmissionAlerts();
+    }
+
+    fallbackToInitialState() {
+        this.setState({
+            currentPassword: '',
+            newPassword: '',
+            confirmedNewPassword: '',
+        });
+    }
+
+    renderTextField(ref, value, label, onChangeText, returnKeyType, onSubmitEditing) {
+        // This should be abstracted away as an independent component
+        // We are using almost the same field styles and props
+        // across all app
+        const props = {
+            ref: ref,
+            style: styles.textField,
+            labelTextStyle: { fontFamily: Fonts.tertiary },
+            labelFontSize: height / 55,
+            fontSize: height / 40,
+            baseColor: Colors.white,
+            tintColor: Colors.orangeDark,
+            autoCapitalize: 'none',
+            autoCorrect: false,
+            enablesReturnKeyAutomatically: true,
+            containerStyle: styles.textFieldContainer,
+            secureTextEntry: true,
+            label,
+            value,
+            onChangeText,
+            returnKeyType,
+            onSubmitEditing,
+        };
+
+        return <TextField {...props} />;
     }
 
     renderInvalidSubmissionAlerts() {
@@ -134,14 +141,6 @@ class ChangePassword extends Component {
                 'You cannot use the old password as your new password. Please try again with a new password.',
             );
         }
-    }
-
-    fallbackToInitialState() {
-        this.setState({
-            currentPassword: '',
-            newPassword: '',
-            confirmedNewPassword: '',
-        });
     }
 
     render() {
@@ -214,7 +213,7 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width: width,
+        width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',

@@ -5,12 +5,9 @@ import { StyleSheet, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
-import StatefulDropdownAlert from './statefulDropdownAlert';
-
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { setFirstUse } from 'iota-wallet-shared-modules/actions/account';
-import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
@@ -18,7 +15,7 @@ import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
 import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
 import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
 import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
-
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
 import Promoter from './promoter';
@@ -85,14 +82,18 @@ class Home extends Component {
     }
 
     onLoginPress = password => {
-        const { t, tempAccount, setUserActivity, generateAlert } = this.props;
+        const { t, tempAccount } = this.props;
 
         if (!password) {
-            generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
+            this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
         } else if (password !== tempAccount.password) {
-            generateAlert('error', t('global:unrecognisedPassword'), t('global:unrecognisedPasswordExplanation'));
+            this.props.generateAlert(
+                'error',
+                t('global:unrecognisedPassword'),
+                t('global:unrecognisedPasswordExplanation'),
+            );
         } else {
-            setUserActivity({ inactive: false });
+            this.props.setUserActivity({ inactive: false });
         }
     };
 
@@ -147,7 +148,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-    alerts: state.alerts,
     tempAccount: state.tempAccount,
     settings: state.settings,
     account: state.account,
@@ -167,7 +167,6 @@ const mapDispatchToProps = {
 Home.propTypes = {
     setFirstUse: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    alerts: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
     generateAlert: PropTypes.func.isRequired,

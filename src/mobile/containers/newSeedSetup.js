@@ -231,7 +231,6 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        //height: isIPhoneX ? width / 1.1 : width / 1.15,
         paddingHorizontal: width / 20,
     },
     gridContainer: {
