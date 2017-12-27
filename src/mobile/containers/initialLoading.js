@@ -49,11 +49,6 @@ class InitialLoading extends Component {
             });
         }
     }
-    
-    handleBackButton() {
-        return false;
-    }
-
 
     clearKeychain() {
         if (isIOS) {
