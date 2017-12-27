@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, StatusBar, Text, ActivityIndicator } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
+import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
+import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import keychain, { getSeed } from '../util/keychain';
 import { Navigation } from 'react-native-navigation';
 import IotaSpin from '../components/iotaSpin';
 import COLORS from '../theme/Colors';
@@ -17,6 +19,19 @@ class Loading extends Component {
     componentDidMount() {
         this.props.changeHomeScreenRoute('balance');
         this.props.setSetting('mainSettings');
+        const { firstUse, selectedAccountName } = this.props;
+
+        keychain
+            .get()
+            .then(credentials => {
+                const seed = getSeed(credentials.data, 0);
+                if (firstUse) {
+                    this.props.getFullAccountInfo(seed, selectedAccountName, this.props.navigator);
+                } else {
+                    this.props.getAccountInfo(selectedAccountName, this.props.navigator);
+                }
+            })
+            .catch(err => console.log(err)); // Dropdown
     }
 
     componentWillReceiveProps(newProps) {
@@ -94,21 +109,29 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+    firstUse: state.account.firstUse,
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     marketData: state.marketData,
     tempAccount: state.tempAccount,
     account: state.account,
 });
 
-const mapDispatchToProps = dispatch => ({
-    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-    setSetting: setting => dispatch(setSetting(setting)),
-});
+const mapDispatchToProps = {
+    changeHomeScreenRoute,
+    setSetting,
+    getAccountInfo,
+    getFullAccountInfo,
+};
 
 Loading.propTypes = {
+    firstUse: PropTypes.bool.isRequired,
     marketData: PropTypes.object.isRequired,
     tempAccount: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
+    getAccountInfo: PropTypes.func.isRequired,
+    getFullAccountInfo: PropTypes.func.isRequired,
+    selectedAccountName: PropTypes.string.isRequired,
 };
 
 export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));
