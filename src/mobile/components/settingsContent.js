@@ -41,7 +41,7 @@ const SettingsContent = ({ component, ...props }) => {
 };
 
 SettingsContent.propTypes = {
-    component: PropTypes.string.isRequired, // TODO: oneOfType
+    component: PropTypes.oneOf(Object.keys(SETTINGS_COMPONENTS)).isRequired, // TODO: oneOfType
 };
 
 export default SettingsContent;

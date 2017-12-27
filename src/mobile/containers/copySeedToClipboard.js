@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Clipboard, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import StatefulDropdownAlert from './statefulDropdownAlert';
 import PropTypes from 'prop-types';
-import Seedbox from '../components/seedBox.js';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import StatefulDropdownAlert from './statefulDropdownAlert';
+import Seedbox from '../components/seedBox';
 import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import GENERAL from '../theme/general';
 
 class CopySeedToClipboard extends Component {
     static propTypes = {
+        tempAccount: PropTypes.object.isRequired,
+        navigator: PropTypes.object.isRequired,
         setCopiedToClipboard: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -24,21 +27,9 @@ class CopySeedToClipboard extends Component {
         this.timeout = null;
     }
 
-    generateClipboardClearAlert() {
-        const { t, generateAlert } = this.props;
-
-        return generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
-    }
-
     componentWillUnmount() {
         this.clearTimeout();
         Clipboard.setString('');
-    }
-
-    clearTimeout() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
     }
 
     onDonePress() {
@@ -52,16 +43,28 @@ class CopySeedToClipboard extends Component {
     }
 
     onCopyPress() {
-        const { t, generateAlert } = this.props;
+        const { t } = this.props;
 
         Clipboard.setString(this.props.tempAccount.seed);
 
-        generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
+        this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
 
         this.timeout = setTimeout(() => {
             Clipboard.setString('');
             this.generateClipboardClearAlert();
         }, 60000);
+    }
+
+    generateClipboardClearAlert() {
+        const { t } = this.props;
+
+        return this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
+    }
+
+    clearTimeout() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
     }
 
     render() {

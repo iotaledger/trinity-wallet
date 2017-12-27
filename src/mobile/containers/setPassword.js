@@ -2,28 +2,30 @@ import isEmpty from 'lodash/isEmpty';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { connect } from 'react-redux';
 import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { clearTempData, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { TextField } from 'react-native-material-textfield';
-import { Keyboard } from 'react-native';
 import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
-import OnboardingButtons from '../components/onboardingButtons.js';
+import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { isAndroid } from '../util/device';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
-
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
+
 const MIN_PASSWORD_LENGTH = 12;
 
 class SetPassword extends Component {
     static propTypes = {
+        tempAccount: PropTypes.object.isRequired,
+        navigator: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired,
         setOnboardingComplete: PropTypes.func.isRequired,
         clearTempData: PropTypes.func.isRequired,
         clearSeed: PropTypes.func.isRequired,
@@ -44,40 +46,58 @@ class SetPassword extends Component {
     onDonePress() {
         const { t } = this.props;
 
-        console.log('HETSSS');
+        const ifNoKeychainDuplicates = (password, seed, accountName) => {
+            storeSeedInKeychain(password, seed, accountName)
+                .then(() => {
+                    this.props.addAccountName(accountName);
+                    this.props.increaseSeedCount();
+                    this.props.clearTempData();
+                    this.props.clearSeed();
+                    this.props.setOnboardingComplete(true);
+                    this.props.navigator.push({
+                        screen: 'onboardingComplete',
+                        navigatorStyle: {
+                            navBarHidden: true,
+                            navBarTransparent: true,
+                        },
+                        animated: false,
+                        overrideBackPress: true,
+                    });
+                })
+                .catch(err => console.error(err));
+        };
+
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password === this.state.reentry) {
-            console.log('HAA');
             keychain
                 .get()
                 .then(credentials => {
-                    console.log('GOT iT', credentials);
                     if (isEmpty(credentials)) {
                         return ifNoKeychainDuplicates(
                             this.state.password,
                             this.props.tempAccount.seed,
                             this.props.tempAccount.seedName,
                         );
-                    } else {
-                        if (hasDuplicateAccountName(credentials.data, this.props.tempAccount.seedName)) {
-                            return this.props.generateAlert(
-                                'error',
-                                t('addAdditionalSeed:nameInUse'),
-                                t('addAdditionalSeed:nameInUseExplanation'),
-                            );
-                        } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
-                            return this.props.generateAlert(
-                                'error',
-                                t('addAdditionalSeed:seedInUse'),
-                                t('addAdditionalSeed:seedInUseExplanation'),
-                            );
-                        }
+                    }
 
-                        return ifNoKeychainDuplicates(
-                            this.state.password,
-                            this.props.tempAccount.seed,
-                            this.props.tempAccount.seedName,
+                    if (hasDuplicateAccountName(credentials.data, this.props.tempAccount.seedName)) {
+                        return this.props.generateAlert(
+                            'error',
+                            t('addAdditionalSeed:nameInUse'),
+                            t('addAdditionalSeed:nameInUseExplanation'),
+                        );
+                    } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
+                        return this.props.generateAlert(
+                            'error',
+                            t('addAdditionalSeed:seedInUse'),
+                            t('addAdditionalSeed:seedInUseExplanation'),
                         );
                     }
+
+                    return ifNoKeychainDuplicates(
+                        this.state.password,
+                        this.props.tempAccount.seed,
+                        this.props.tempAccount.seedName,
+                    );
                 })
                 .catch(() => {
                     this.props.generateAlert(
@@ -86,41 +106,20 @@ class SetPassword extends Component {
                         t('global:somethingWentWrongExplanation'),
                     );
                 });
-
-            ifNoKeychainDuplicates = (password, seed, accountName) => {
-                storeSeedInKeychain(password, seed, accountName)
-                    .then(() => {
-                        console.log('THEN');
-                        this.props.addAccountName(accountName);
-                        this.props.increaseSeedCount();
-                        this.props.clearTempData();
-                        this.props.clearSeed();
-                        this.props.setOnboardingComplete(true);
-                        this.props.navigator.push({
-                            screen: 'onboardingComplete',
-                            navigatorStyle: {
-                                navBarHidden: true,
-                                navBarTransparent: true,
-                            },
-                            animated: false,
-                            overrideBackPress: true,
-                        });
-                    })
-                    .catch(err => console.log('ERRRRR', err));
-            };
-        } else {
-            if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
-                this.props.generateAlert(
-                    'error',
-                    t('passwordTooShort'),
-                    t('passwordTooShortExplanation', {
-                        minLength: MIN_PASSWORD_LENGTH,
-                        currentLength: this.state.password.length,
-                    }),
-                );
-            } else if (!(this.state.password === this.state.reentry)) {
-                this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
-            }
+        } else if (
+            this.state.password.length < MIN_PASSWORD_LENGTH ||
+            this.state.reentry.length < MIN_PASSWORD_LENGTH
+        ) {
+            this.props.generateAlert(
+                'error',
+                t('passwordTooShort'),
+                t('passwordTooShortExplanation', {
+                    minLength: MIN_PASSWORD_LENGTH,
+                    currentLength: this.state.password.length,
+                }),
+            );
+        } else if (!(this.state.password === this.state.reentry)) {
+            this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
         }
     }
 
@@ -132,11 +131,11 @@ class SetPassword extends Component {
 
     _renderContent() {
         const { t } = this.props;
-        let { password, reentry } = this.state;
+        const { password, reentry } = this.state;
 
         return (
             <View>
-                <TouchableWithoutFeedback style={{ flex: 1, width: width }} onPress={Keyboard.dismiss}>
+                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />

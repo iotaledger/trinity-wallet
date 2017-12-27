@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, ListView, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
 } from '../../shared/selectors/account';
 import TransactionRow from '../components/transactionRow';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { width, height } from '../util/dimensions';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-import { width, height } from '../util/dimensions';
 
 class History extends Component {
     static propTypes = {
@@ -25,6 +25,7 @@ class History extends Component {
         this.state = { viewRef: null };
     }
 
+    // FIXME: findNodeHangle is not defined
     imageLoaded() {
         this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
     }
@@ -45,6 +46,7 @@ class History extends Component {
         const { t, addresses, transfers } = this.props;
         const hasTransactions = transfers.length > 0;
 
+        // FIXME: closeTopBar is not defined
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>

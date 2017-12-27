@@ -3,16 +3,14 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import OnboardingButtons from '../components/onboardingButtons.js';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
-
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
-const StatusBarDefaultBarStyle = 'light-content';
 
 class SaveYourSeed extends Component {
     static propTypes = {
