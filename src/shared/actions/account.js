@@ -29,7 +29,7 @@ import {
     clearTempData,
 } from './tempAccount';
 import { getFirstConsistentTail, isWithinAnHour } from '../libs/promoter';
-import { generateAlert, generateDefaultNodeAlert } from '../actions/alerts';
+import { generateAlert, generateAccountInfoErrorAlert } from '../actions/alerts';
 import { rearrangeObjectKeys } from '../libs/util';
 
 export const ActionTypes = {
@@ -227,7 +227,7 @@ export const fetchFullAccountInfoForFirstUse = (
                 navigator.pop({ animated: false });
             }
 
-            dispatch(generateDefaultNodeAlert());
+            dispatch(generateAccountInfoErrorAlert());
             dispatch(fullAccountInfoForFirstUseFetchError());
         }
     });
@@ -245,7 +245,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
                     navigator.pop({ animated: false });
                 }
 
-                dispatch(generateDefaultNodeAlert());
+                dispatch(generateAccountInfoErrorAlert());
                 dispatch(fullAccountInfoFetchError());
             }
         });
@@ -296,7 +296,7 @@ export const getAccountInfo = (accountName, navigator = null) => {
                     navigator.pop({ animated: false });
                 }
 
-                dispatch(generateDefaultNodeAlert());
+                dispatch(generateAccountInfoErrorAlert());
             }
         });
     };
