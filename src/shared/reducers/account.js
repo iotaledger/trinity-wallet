@@ -12,6 +12,7 @@ const account = (
         onboardingComplete: false,
         accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
+        unspentAddressesHashes: {},
     },
     action,
 ) => {
@@ -143,6 +144,9 @@ const account = (
                     },
                 }),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+                unspentAddressesHashes: merge({}, state.unspentAddressesHashes, {
+                    [action.payload.accountName]: action.payload.hashes,
+                }),
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
             return {
@@ -157,6 +161,9 @@ const account = (
                     },
                 }),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+                unspentAddressesHashes: merge({}, state.unspentAddressesHashes, {
+                    [action.payload.accountName]: action.payload.hashes,
+                }),
                 firstUse: false,
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR:

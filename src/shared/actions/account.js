@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import some from 'lodash/some';
 import map from 'lodash/map';
@@ -215,39 +216,78 @@ export const fetchFullAccountInfoForFirstUse = (
     return iota.api.getAccountData(seed, (error, data) => {
         if (!error) {
             dispatch(clearTempData()); // Clean up partial state for reducer anyways.
+            const payload = organizeAccountInfo(accountName, data);
+            const unspentAddresses = getUnspentAddresses(payload.addresses);
 
-            storeInKeychainPromise(password, seed, accountName)
-                .then(() => {
-                    const payload = organizeAccountInfo(accountName, data);
-                    dispatch(fullAccountInfoForFirstUseFetchSuccess(payload));
-                })
-                .catch(err => console.error(err)); // Have a dropdown alert
-        } else {
-            if (navigator) {
-                navigator.pop({ animated: false });
+            if (!isEmpty(unspentAddresses)) {
+                return iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
+                    if (err) {
+                        dispatch(fullAccountInfoForFirstUseFetchError());
+                        return dispatch(generateAccountInfoErrorAlert());
+                    }
+
+                    console.log('Hashes', hashes);
+                    return storeInKeychainPromise(password, seed, accountName)
+                        .then(() => {
+                            const payloadWithHashes = assign({}, payload, { hashes });
+                            return dispatch(fullAccountInfoForFirstUseFetchSuccess(payloadWithHashes));
+                        })
+                        .catch(() => {
+                            dispatch(generateAccountInfoErrorAlert());
+                            return dispatch(fullAccountInfoForFirstUseFetchError());
+                        });
+                });
             }
 
-            dispatch(generateAccountInfoErrorAlert());
-            dispatch(fullAccountInfoForFirstUseFetchError());
+            return storeInKeychainPromise(password, seed, accountName)
+                .then(() => {
+                    dispatch(fullAccountInfoForFirstUseFetchSuccess(payload));
+                })
+                .catch(() => {
+                    dispatch(generateAccountInfoErrorAlert());
+                    return dispatch(fullAccountInfoForFirstUseFetchError());
+                });
         }
+
+        if (navigator) {
+            navigator.pop({ animated: false });
+        }
+
+        dispatch(generateAccountInfoErrorAlert());
+        return dispatch(fullAccountInfoForFirstUseFetchError());
     });
 };
 
 export const getFullAccountInfo = (seed, accountName, navigator = null) => {
     return dispatch => {
         dispatch(fullAccountInfoFetchRequest());
-        iota.api.getAccountData(seed, (error, data) => {
+
+        return iota.api.getAccountData(seed, (error, data) => {
             if (!error) {
                 const payload = organizeAccountInfo(accountName, data);
-                dispatch(fullAccountInfoFetchSuccess(payload));
-            } else {
-                if (navigator) {
-                    navigator.pop({ animated: false });
+                const unspentAddresses = getUnspentAddresses(payload.addresses);
+
+                if (!isEmpty(unspentAddresses)) {
+                    return iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
+                        if (err) {
+                            dispatch(generateAccountInfoErrorAlert());
+                            return dispatch(fullAccountInfoFetchError());
+                        }
+
+                        const payloadWithHashes = assign({}, payload, { hashes });
+                        return dispatch(fullAccountInfoFetchSuccess(payloadWithHashes));
+                    });
                 }
 
-                dispatch(generateAccountInfoErrorAlert());
-                dispatch(fullAccountInfoFetchError());
+                return dispatch(fullAccountInfoFetchSuccess(assign({}, payload, { hashes: [] })));
             }
+
+            if (navigator) {
+                navigator.pop({ animated: false });
+            }
+
+            dispatch(generateAccountInfoErrorAlert());
+            return dispatch(fullAccountInfoFetchError());
         });
     };
 };
@@ -258,13 +298,27 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
     iota.api.getAccountData(seed, (error, data) => {
         if (!error) {
             const payload = organizeAccountInfo(accountName, data);
+            const unspentAddresses = getUnspentAddresses(payload.addresses);
 
-            dispatch(manualSyncSuccess(payload));
-            dispatch(generateAlert('success', 'syncing complete', 'Account sync is complete.'));
-        } else {
-            dispatch(manualSyncError());
-            dispatch(generateAlert('error', 'invalid response', 'Received an invalid response from node.'));
+            if (!isEmpty(unspentAddresses)) {
+                return iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
+                    if (err) {
+                        dispatch(generateAccountInfoErrorAlert());
+                        return dispatch(fullAccountInfoFetchError());
+                    }
+
+                    const payloadWithHashes = assign({}, payload, { hashes });
+
+                    dispatch(generateAlert('success', 'syncing complete', 'Account sync is complete.'));
+                    return dispatch(manualSyncSuccess(payloadWithHashes));
+                });
+            }
+
+            return dispatch(manualSyncSuccess(assign({}, payload, { hashes: [] })));
         }
+
+        dispatch(generateAlert('error', 'invalid response', 'Received an invalid response from node.'));
+        return dispatch(manualSyncError());
     });
 };
 
