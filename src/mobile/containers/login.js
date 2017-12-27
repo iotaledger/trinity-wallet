@@ -109,11 +109,12 @@ class Login extends Component {
             keychain
                 .get()
                 .then(credentials => {
-                    setPassword(password); // Don't know why is this being dispatched without a check.
                     const hasData = get(credentials, 'data');
                     const hasCorrectPassword = get(credentials, 'password') === password;
 
                     if (hasData && hasCorrectPassword) {
+                        setPassword(password);
+
                         const seed = getSeed(credentials.data, 0);
 
                         this.props.getCurrencyData(currency);
