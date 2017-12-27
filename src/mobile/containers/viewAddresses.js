@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ListView, Clipboard } from 'react-native';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
-import DropdownHolder from '../components/dropdownHolder';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
 class ViewAddresses extends Component {
+    static propTypes = {
+        addressData: PropTypes.object.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+    };
+
     copy(address) {
-        const dropdown = DropdownHolder.getDropdown();
         Clipboard.setString(address);
-        if (dropdown) {
-            // Just to be sure
-            dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
-        }
+        return this.props.generateAlert('success', 'Address copied', 'The address has been copied to the clipboard.');
     }
 
     render() {
         let addressData = Object.entries(this.props.addressData);
         addressData = addressData.reverse();
+
         return (
             <View style={styles.container}>
                 <View style={styles.listView}>
@@ -110,7 +116,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Inconsolata-Bold',
         fontSize: width / 29.6,
         textDecorationStyle: 'solid',
-        color: 'white',
     },
     balanceText: {
         color: 'white',
@@ -130,4 +135,8 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ViewAddresses;
+const mapDispatchToProps = {
+    generateAlert,
+};
+
+export default connect(null, mapDispatchToProps)(ViewAddresses);

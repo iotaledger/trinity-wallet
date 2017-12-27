@@ -11,9 +11,10 @@ import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import GENERAL from '../theme/general';
 
-class DeleteAccount extends React.Component {
-    constructor(props) {
-        super(props);
+class DeleteAccount extends Component {
+    constructor() {
+        super();
+
         this.state = {
             isModalVisible: false,
             pressedContinue: false,

@@ -13,16 +13,24 @@ import {
     getNewTransfers,
     getNewAddressData,
 } from 'iota-wallet-shared-modules/actions/account';
+import {
+    getSelectedAccountViaSeedIndex,
+    getSelectedAccountNameViaSeedIndex,
+} from 'iota-wallet-shared-modules/selectors/account';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
 
-import DropdownHolder from './dropdownHolder';
-
 const mapStateToProps = state => ({
-    alerts: state.alerts,
-    tempAccount: state.tempAccount,
-    settings: state.settings,
-    account: state.account,
+    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    isGettingTransfers: state.tempAccount.isGettingTransfers,
+    isSendingTransfer: state.tempAccount.isSendingTransfer,
+    isSyncing: state.tempAccount.isSyncing,
+    isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
+    seedIndex: state.tempAccount.seedIndex,
+    isFetchingNewAddressData: state.tempAccount.isFetchingNewAddressData,
+    hasErrorFetchingNewAddressData: state.tempAccount.hasErrorFetchingNewAddressData,
 });
 
 const mapDispatchToProps = {
@@ -33,6 +41,7 @@ const mapDispatchToProps = {
     getChartData,
     setUserActivity,
     getNewAddressData,
+    generateAlert,
 };
 
 export default () => C => {
@@ -41,8 +50,21 @@ export default () => C => {
             this.startBackgroundProcesses();
         }
 
+        componentWillReceiveProps(newProps) {
+            if (this.shouldPollForTransfers(newProps)) {
+                this.pollForTransfers();
+            }
+        }
+
         componentWillUnmount() {
             this.endBackgroundProcesses();
+        }
+
+        shouldPollForTransfers(newProps) {
+            const isDoneFetchingNewAddressData =
+                this.props.isFetchingNewAddressData && !newProps.isFetchingNewAddressData;
+
+            return isDoneFetchingNewAddressData && !newProps.hasErrorFetchingNewAddressData;
         }
 
         startBackgroundProcesses = () => {
@@ -57,16 +79,21 @@ export default () => C => {
             timer.clearInterval('chartPolling');
         };
 
-        onNodeErrorPolling = () => {
-            const dropdown = DropdownHolder.getDropdown();
-            const { t } = this.props;
-            dropdown.alertWithType('error', t('global:invalidResponse'), t('invalidResponsePollingExplanation'));
-        };
+        pollForTransfers() {
+            return this.props.getAccountInfo(this.props.selectedAccountName, this.props.navigator);
+        }
 
         pollForMarketData = () => {
-            const { settings, getMarketData, getChartData, getPrice } = this.props;
-            // 'console.log('POLLING CHART DATA')'
-            if (!settings.isSyncing && !settings.isGeneratingReceiveAddress && !settings.isSendingTransfer) {
+            const {
+                isSyncing,
+                isGeneratingReceiveAddress,
+                isSendingTransfer,
+                getMarketData,
+                getChartData,
+                getPrice,
+            } = this.props;
+
+            if (!isSyncing && !isGeneratingReceiveAddress && !isSendingTransfer) {
                 getMarketData();
                 getChartData();
                 getPrice();
@@ -74,40 +101,27 @@ export default () => C => {
         };
 
         pollForNewAddressesAndTransfers() {
-            const { tempAccount, account, getNewTransfers, getNewAddressData, getAccountInfo } = this.props;
-            if (!tempAccount.isGettingTransfers && !tempAccount.isSendingTransfer && !tempAccount.isSyncing) {
+            const {
+                isGettingTransfers,
+                isSendingTransfer,
+                isSyncing,
+                seedIndex,
+                selectedAccountName,
+                getNewAddressData,
+            } = this.props;
+
+            if (!isGettingTransfers && !isSendingTransfer && !isSyncing) {
                 console.log('POLLING');
-                const accountInfo = account.accountInfo;
-                const seedIndex = tempAccount.seedIndex;
-                const addressData = accountInfo[Object.keys(accountInfo)[seedIndex]].addresses;
-                const accountName = account.seedNames[seedIndex];
+
                 keychain
                     .get()
                     .then(credentials => {
                         if (get(credentials, 'data')) {
                             const seed = getSeed(credentials.data, seedIndex);
-                            getAddressData(seed);
-                        } else {
-                            console.log('error');
+                            getNewAddressData(seed, selectedAccountName);
                         }
                     })
                     .catch(err => console.log(err));
-
-                const getAddressData = seed => {
-                    getNewAddressData(seed, accountName, addressData, (error, success) => {
-                        if (error) {
-                            this.onNodeErrorPolling();
-                        } else {
-                            getTransfers();
-                        }
-                    });
-                };
-                const getTransfers = () => {
-                    const newAccountInfo = account.accountInfo;
-                    getAccountInfo(accountName, seedIndex, newAccountInfo, (error, success) => {
-                        if (error) this.onNodeErrorPolling();
-                    });
-                };
             }
         }
 
@@ -140,6 +154,15 @@ export default () => C => {
     }
 
     withUserActivity.propTypes = {
+        selectedAccount: PropTypes.object.isRequired,
+        selectedAccountName: PropTypes.string.isRequired,
+        isGettingTransfers: PropTypes.bool.isRequired,
+        isSendingTransfer: PropTypes.bool.isRequired,
+        isSyncing: PropTypes.bool.isRequired,
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        seedIndex: PropTypes.number.isRequired,
+        isFetchingNewAddressData: PropTypes.bool.isRequired,
+        hasErrorFetchingNewAddressData: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         getNewAddressData: PropTypes.func.isRequired,
@@ -147,6 +170,7 @@ export default () => C => {
         getChartData: PropTypes.func.isRequired,
         getPrice: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
     };
 
     return translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(withUserActivity));
