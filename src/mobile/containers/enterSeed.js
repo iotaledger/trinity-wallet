@@ -1,4 +1,3 @@
-import merge from 'lodash/merge';
 import React from 'react';
 import { translate } from 'react-i18next';
 import {
@@ -8,32 +7,31 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
-    ScrollView,
     StatusBar,
+    Keyboard,
 } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import QRScanner from '../components/qrScanner.js';
-import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+import Modal from 'react-native-modal';
+import { TextField } from 'react-native-material-textfield';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
-import Modal from 'react-native-modal';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import COLORS from '../theme/Colors';
-
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
+import StatefulDropdownAlert from './statefulDropdownAlert';
+import QRScanner from '../components/qrScanner';
+import OnboardingButtons from '../components/onboardingButtons';
+import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
-const StatusBarDefaultBarStyle = 'light-content';
 
 class EnterSeed extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             seed: '',
             isModalVisible: false,
@@ -49,9 +47,9 @@ class EnterSeed extends React.Component {
     onDonePress() {
         const { t } = this.props;
         if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length == MAX_SEED_LENGTH) {
-            this.dropdown.alertWithType('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
+            this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         } else if (this.state.seed.length < MAX_SEED_LENGTH) {
-            this.dropdown.alertWithType(
+            this.props.generateAlert(
                 'error',
                 t('seedTooShort'),
                 t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: this.state.seed.length }),
@@ -178,16 +176,7 @@ class EnterSeed extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
+                <StatefulDropdownAlert />
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -252,7 +241,7 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -295,7 +284,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 0.8,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6.5,
         height: height / 16,
     },
@@ -350,7 +339,7 @@ const styles = StyleSheet.create({
     checksum: {
         width: width / 8,
         height: height / 20,
-        borderRadius: 5,
+        borderRadius: GENERAL.borderRadiusSmall,
         borderColor: 'white',
         borderWidth: height / 1000,
         justifyContent: 'center',
@@ -369,10 +358,9 @@ const mapStateToProps = state => ({
     account: state.account,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setSeed: seed => {
-        dispatch(setSeed(seed));
-    },
-});
+const mapDispatchToProps = {
+    setSeed,
+    generateAlert,
+};
 
 export default translate(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));
