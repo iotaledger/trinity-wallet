@@ -10,18 +10,14 @@ import { Navigation } from 'react-native-navigation';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
-import {
-    getSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
 import EnterPassword from '../components/enterPassword';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import keychain, { getSeed } from '../util/keychain';
+import keychain from '../util/keychain';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -31,13 +27,10 @@ class Login extends Component {
         firstUse: PropTypes.bool.isRequired,
         hasErrorFetchingAccountInfoOnLogin: PropTypes.bool.isRequired,
         selectedAccount: PropTypes.object.isRequired,
-        selectedAccountName: PropTypes.string.isRequired,
         fullNode: PropTypes.string.isRequired,
         availablePoWNodes: PropTypes.array.isRequired,
         currency: PropTypes.string.isRequired,
         setPassword: PropTypes.func.isRequired,
-        getAccountInfo: PropTypes.func.isRequired,
-        getFullAccountInfo: PropTypes.func.isRequired,
         getMarketData: PropTypes.func.isRequired,
         getPrice: PropTypes.func.isRequired,
         getChartData: PropTypes.func.isRequired,
@@ -101,7 +94,7 @@ class Login extends Component {
     }
 
     onLoginPress(password) {
-        const { firstUse, t, setPassword, selectedAccount, selectedAccountName } = this.props;
+        const { firstUse, t, setPassword, selectedAccount } = this.props;
 
         Keyboard.dismiss();
 
@@ -113,21 +106,14 @@ class Login extends Component {
                 .then(credentials => {
                     const hasData = get(credentials, 'data');
                     const hasCorrectPassword = get(credentials, 'password') === password;
-
                     if (hasData && hasCorrectPassword) {
                         setPassword(password);
-
-                        const seed = getSeed(credentials.data, 0);
-
                         if (firstUse) {
                             this.navigateToLoading();
-                            this.props.getFullAccountInfo(seed, selectedAccountName, this.props.navigator);
                         } else {
                             const addresses = get(selectedAccount, 'addresses');
-
                             if (!isEmpty(addresses)) {
                                 this.navigateToLoading();
-                                this.props.getAccountInfo(selectedAccountName, this.props.navigator);
                             } else {
                                 this.navigateToHome();
                             }
@@ -276,7 +262,6 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     firstUse: state.account.firstUse,
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
     currency: state.settings.currency,
@@ -286,8 +271,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     generateAlert,
     setPassword,
-    getAccountInfo,
-    getFullAccountInfo,
     getMarketData,
     getPrice,
     getChartData,
