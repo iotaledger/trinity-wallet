@@ -1,41 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Clipboard, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import PropTypes from 'prop-types';
-import Seedbox from '../components/seedBox.js';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import StatefulDropdownAlert from './statefulDropdownAlert';
+import Seedbox from '../components/seedBox';
 import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import GENERAL from '../theme/general';
 
-const StatusBarDefaultBarStyle = 'light-content';
+class CopySeedToClipboard extends Component {
+    static propTypes = {
+        tempAccount: PropTypes.object.isRequired,
+        navigator: PropTypes.object.isRequired,
+        setCopiedToClipboard: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+    };
 
-class CopySeedToClipboard extends React.Component {
     constructor() {
         super();
 
         this.timeout = null;
     }
 
-    generateClipboardClearAlert() {
-        const { t } = this.props;
-
-        if (this.dropdown) {
-            this.dropdown.alertWithType('info', t('seedCleared'), t('seedClearedExplanation'));
-        }
-    }
-
     componentWillUnmount() {
         this.clearTimeout();
         Clipboard.setString('');
-    }
-
-    clearTimeout() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
     }
 
     onDonePress() {
@@ -52,11 +46,25 @@ class CopySeedToClipboard extends React.Component {
         const { t } = this.props;
 
         Clipboard.setString(this.props.tempAccount.seed);
-        this.dropdown.alertWithType('success', t('seedCopied'), t('seedCopiedExplanation'));
+
+        this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
+
         this.timeout = setTimeout(() => {
             Clipboard.setString('');
             this.generateClipboardClearAlert();
         }, 60000);
+    }
+
+    generateClipboardClearAlert() {
+        const { t } = this.props;
+
+        return this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
+    }
+
+    clearTimeout() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
     }
 
     render() {
@@ -84,16 +92,7 @@ class CopySeedToClipboard extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
+                <StatefulDropdownAlert />
             </View>
         );
     }
@@ -134,7 +133,7 @@ const styles = StyleSheet.create({
     optionButton: {
         borderColor: '#8BD4FF',
         borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
@@ -161,7 +160,7 @@ const styles = StyleSheet.create({
     doneButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -181,7 +180,7 @@ const styles = StyleSheet.create({
     copyButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 13,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2,
         height: height / 12,
         justifyContent: 'center',
@@ -229,9 +228,10 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setCopiedToClipboard: boolean => dispatch(setCopiedToClipboard(boolean)),
-});
+const mapDispatchToProps = {
+    setCopiedToClipboard,
+    generateAlert,
+};
 
 export default translate(['copyToClipboard', 'global'])(
     connect(mapStateToProps, mapDispatchToProps)(CopySeedToClipboard),

@@ -1,26 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
-import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 
-class Welcome extends React.Component {
+class Welcome extends Component {
     constructor(props) {
         super(props);
-    }
-
-    onBackPress() {
-        this.props.navigator.pop({
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-            },
-            animated: false,
-        });
     }
 
     onNextPress() {
@@ -37,6 +26,7 @@ class Welcome extends React.Component {
 
     render() {
         const { t } = this.props;
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -56,13 +46,6 @@ class Welcome extends React.Component {
                             <Text style={styles.nextText}>{t('global:next')}</Text>
                         </View>
                     </TouchableOpacity>
-                    {/*}<OnboardingButtons
-                        onLeftButtonPress={() => this.onBackPress()}
-                        onRightButtonPress={() => this.onNextPress()}
-                        leftText={t('global:back')}
-                        rightText={t('global:next')}
-                    />*/}
-
                 </View>
             </View>
         );
@@ -95,7 +78,7 @@ const styles = StyleSheet.create({
     nextButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -131,22 +114,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         paddingTop: height / 30,
         textAlign: 'center',
-    },
-    nextButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    nextText: {
-        color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
     },
 });
 

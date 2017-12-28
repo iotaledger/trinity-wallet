@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Animated, Easing } from 'react-native';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
-class IotaSpin extends React.Component {
+export default class IotaSpin extends Component {
     constructor() {
         super();
 
@@ -73,5 +73,3 @@ class IotaSpin extends React.Component {
         );
     }
 }
-
-module.exports = IotaSpin;

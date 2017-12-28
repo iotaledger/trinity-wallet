@@ -1,10 +1,10 @@
-import { isValidServerAddress } from '../libs/util';
 import { showError } from './notifications';
 
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
     SET_FULLNODE: 'IOTA/SETTINGS/FULLNODE',
     ADD_CUSTOM_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_NODE',
+    ADD_CUSTOM_POW_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_POW_NODE',
     SET_MODE: 'IOTA/SETTINGS/SET_MODE',
     SET_THEME: 'IOTA/SETTINGS/SET_THEME',
     SET_LANGUAGE: 'IOTA/SETTINGS/SET_LANGUAGE',
@@ -27,7 +27,7 @@ export function setCurrencyData(conversionRate, currency) {
 }
 
 export function getCurrencyData(currency) {
-    const url = `https://api.fixer.io/latest?base=USD`;
+    const url = 'https://api.fixer.io/latest?base=USD';
     return dispatch => {
         return fetch(url)
             .then(
@@ -67,24 +67,20 @@ export function setFullNode(fullNode) {
     };
 }
 
-export function addCustomNode(customNode = '') {
-    return (dispatch, getState) => {
-        const { settings } = getState();
+export function addCustomPoWNode(customNode) {
+    return dispatch => {
+        dispatch({
+            type: ActionTypes.ADD_CUSTOM_POW_NODE,
+            payload: customNode,
+        });
+    };
+}
 
-        if (!isValidServerAddress(customNode)) {
-            dispatch(invalidServerError());
-            return false;
-        }
-
-        if (settings.availableNodes.includes(customNode)) {
-            return true;
-        }
-
+export function addCustomNode(customNode) {
+    return dispatch => {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_NODE,
             payload: customNode,
         });
-
-        return true;
     };
 }
