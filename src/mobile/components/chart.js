@@ -4,6 +4,7 @@ import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
+import GENERAL from '../theme/general';
 
 const chartWidth = width * 0.98;
 const chartHeight = height * 0.4;
@@ -223,7 +224,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderColor: '#f2f2f2',
         borderWidth: height / 2000,
-        borderRadius: 5,
+        borderRadius: GENERAL.borderRadiusSmall,
         paddingHorizontal: width / 40,
         paddingVertical: height / 110,
     },

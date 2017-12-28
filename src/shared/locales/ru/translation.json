@@ -41,7 +41,9 @@
         "enterAccountName": "Введите свой ник.",
         "accountName": "Ваш ник",
         "noNickname": "Вы не ввели ник от аккаунта",
-        "noNicknameExplanation": "Пожалуйста, введите ник для вашего ключа."
+        "noNicknameExplanation": "Пожалуйста, введите ник для вашего ключа.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Упс! Произошла какая-то ошибка",
@@ -98,7 +100,8 @@
         "emptyPasswordExplanation": "Вам необходимо ввести пароль для входа. Пожалуйста, попробуйте еще раз.",
         "enterPassword": "Пожалуйста, введите пароль.",
         "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
-        "login": "ВОЙТИ"
+        "login": "ВОЙТИ",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
@@ -194,7 +197,17 @@
         "advanced": "Расширенные настройки",
         "logout": "Выход",
         "reset": "Сбросить кошелек",
-        "back": "Назад"
+        "back": "Назад",
+        "syncingComplete": "Syncing complete",
+        "syncingCompleteExplanation": "Your account has synced successfully.",
+        "nicknameChanged": "Account name changed",
+        "nicknameChangedExplanation": "Your account name has been changed.",
+        "accountDeleted": "Account deleted",
+        "accountDeletedExplanation": "Your account has been removed from the wallet.",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Это действие нельзя будет отменить.",
@@ -206,7 +219,7 @@
         "areYouSure": "Вы уверены, что хотите продолжить?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Введите пароль, чтобы сбросить ваш кошелек.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "ОТМЕНА",
         "reset": "СБРОС"
     },

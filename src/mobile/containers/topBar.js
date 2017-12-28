@@ -5,12 +5,14 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
-import { getAccountInfo, setBalance } from 'iota-wallet-shared-modules/actions/account';
+import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
+import { calculateBalance } from 'iota-wallet-shared-modules/libs/accountUtils';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/tempAccount';
-import PropTypes from 'prop-types';
+import { getBalanceForSelectedAccountViaSeedIndex } from '../../shared/selectors/account';
 import {
     View,
     Text,
@@ -21,9 +23,11 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
 } from 'react-native';
-import DropdownHolder from '../components/dropdownHolder';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import COLORS from '../theme/Colors';
+import chevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up.png';
+import chevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down.png';
+import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 
 const { height, width } = Dimensions.get('window');
 
@@ -31,16 +35,17 @@ class TopBar extends Component {
     static getIconPath(isActive) {
         if (isActive) {
             return {
-                source: require('iota-wallet-shared-modules/images/chevron-up.png'),
+                source: chevronUpImagePath,
             };
         }
 
         return {
-            source: require('iota-wallet-shared-modules/images/chevron-down.png'),
+            source: chevronDownImagePath,
         };
     }
 
     static propTypes = {
+        balance: PropTypes.number.isRequired,
         seedNames: PropTypes.array.isRequired,
         accountInfo: PropTypes.object.isRequired,
         seedIndex: PropTypes.number.isRequired,
@@ -48,13 +53,14 @@ class TopBar extends Component {
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGettingTransfers: PropTypes.bool.isRequired,
+        isSyncing: PropTypes.bool.isRequired,
         childRoute: PropTypes.string.isRequired,
         isTopBarActive: PropTypes.bool.isRequired,
         toggleTopBarDisplay: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
-        setBalance: PropTypes.func.isRequired,
         setSeedIndex: PropTypes.func.isRequired,
         setReceiveAddress: PropTypes.func.isRequired,
+        selectedAccount: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
@@ -71,6 +77,7 @@ class TopBar extends Component {
                 this.props.toggleTopBarDisplay();
             }
         }
+
         if (this.props.currentSetting !== newProps.currentSetting) {
             // Detects if navigating across screens
             if (this.props.isTopBarActive) {
@@ -97,6 +104,7 @@ class TopBar extends Component {
         const getBalance = currentIdx => {
             const seedStrings = Object.keys(accountInfo);
             const data = accountInfo[seedStrings[currentIdx]].addresses;
+            const balances = Object.values(data).map(x => x.balance);
 
             if (isEmpty(data)) {
                 return this.humanizeBalance(0); // no addresses
@@ -104,11 +112,10 @@ class TopBar extends Component {
 
             const calc = (res, value) => {
                 res += value;
-
                 return res;
             };
 
-            const balance = reduce(data, calc, 0);
+            const balance = reduce(balances, calc, 0);
             return this.humanizeBalance(balance);
         };
 
@@ -202,34 +209,25 @@ class TopBar extends Component {
     onChange(newSeedIdx) {
         const {
             isGeneratingReceiveAddress,
-            accountInfo,
             isSendingTransfer,
             isGettingTransfers,
             seedNames,
+            selectedAccount,
         } = this.props;
+        const hasAddresses = Object.keys(this.props.selectedAccount.addresses).length > 0;
 
+        // TODO: Not sure why we are checking for address generation on change
         if (!isGeneratingReceiveAddress) {
             const seedName = seedNames[newSeedIdx];
 
             this.props.setSeedIndex(newSeedIdx);
-            const seedStrings = Object.keys(accountInfo);
-            this.props.setBalance(accountInfo[seedStrings[newSeedIdx]].addresses); // Dangerous
             this.props.setReceiveAddress(' ');
 
             // Get new account info if not sending or getting transfers
-            if (!isSendingTransfer && !isGettingTransfers) {
-                this.props.getAccountInfo(seedName, newSeedIdx, accountInfo, error => {
-                    if (error) {
-                        this.onNodeError();
-                    }
-                });
+            if (!isSendingTransfer && !isGettingTransfers && hasAddresses) {
+                this.props.getAccountInfo(seedName); // TODO: There might be no need to fetch account information at this point
             }
         }
-    }
-
-    onNodeError() {
-        const dropdown = DropdownHolder.getDropdown();
-        dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
     }
 
     humanizeBalance(balance) {
@@ -368,8 +366,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     seedNames: state.account.seedNames,
-    balance: state.account.balance,
     accountInfo: state.account.accountInfo,
     currentSetting: state.tempAccount.currentSetting,
     seedIndex: state.tempAccount.seedIndex,
@@ -379,15 +377,14 @@ const mapStateToProps = state => ({
     isSyncing: state.tempAccount.isSyncing,
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,
+    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
 });
 
-const mapDispatchToProps = dispatch => ({
-    toggleTopBarDisplay: () => dispatch(toggleTopBarDisplay()),
-    getAccountInfo: (seedName, seedIndex, accountInfo, cb) =>
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo, cb)),
-    setBalance: addressesWithBalance => dispatch(setBalance(addressesWithBalance)),
-    setSeedIndex: index => dispatch(setSeedIndex(index)),
-    setReceiveAddress: string => dispatch(setReceiveAddress(string)),
-});
+const mapDispatchToProps = {
+    toggleTopBarDisplay,
+    getAccountInfo,
+    setSeedIndex,
+    setReceiveAddress,
+};
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));

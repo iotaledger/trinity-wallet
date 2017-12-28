@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2.5,
         height: height / 15,
         justifyContent: 'center',

@@ -43,7 +43,9 @@
         "enterAccountName": "Εισάγετε ένα όνομα λογαριασμού.",
         "accountName": "Όνομα λογαριασμού",
         "noNickname": "Δεν έγινε εισαγωγή ονόματος λογαριασμού",
-        "noNicknameExplanation": "Παρακαλούμε εισάγετε ένα όνομα λογαριασμού για το σπόρο σας."
+        "noNicknameExplanation": "Παρακαλούμε εισάγετε ένα όνομα λογαριασμού για το σπόρο σας.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Ωχ! Κάτι πήγε στραβά",
@@ -103,7 +105,8 @@
             "Πρέπει να εισαγάγετε έναν κωδικό πρόσβασης για να συνδεθείτε. Παρακαλώ δοκιμάστε ξανά.",
         "enterPassword": "Παρακαλώ εισάγετε τον κωδικό σας.",
         "useSeed": "ΧΡΗΣΗ ΣΠΟΡΟΥ",
-        "login": "ΣΥΝΔΕΣΗ"
+        "login": "ΣΥΝΔΕΣΗ",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Φόρτωση σπόρου για πρώτη φορά.",
@@ -209,7 +212,9 @@
         "accountDeleted": "Account deleted",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
@@ -221,7 +226,7 @@
         "areYouSure": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Εισάγετε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι σας.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "ΑΚΥΡΟ",
         "reset": "ΕΠΑΝΑΦΟΡΑ"
     },

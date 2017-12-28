@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 // import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Balance from '../Main/Balance';
+import Receive from '../Main/Receive';
 import Send from '../Main/Send';
 import Login from '../Main/Login';
 
@@ -22,7 +23,7 @@ export default withRouter(
                     <Route path="/login" component={Login} />
                     <Route path="/balance" component={Balance} />
                     <Route path="/send" component={Send} />
-                    <Route path="/receive" component={Balance} />
+                    <Route path="/receive" component={Receive} />
                     <Route exact path="/settings" component={Balance} />
                     <Route path="/settings/add-seed" component={Balance} />
                     <Redirect from="/" to="/login" />

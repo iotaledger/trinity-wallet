@@ -7,9 +7,9 @@
         "back": "返回",
         "done": "完成",
         "next": "下一步",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "copyToClipboard": "Add to password manager",
+        "manualCopy": "寫下種子",
+        "paperWallet": "列印副本",
+        "copyToClipboard": "加入密碼管理器",
         "qr": "QR Code",
         "notAvailable": "此功能尚未開放",
         "notAvailableExplanation": "此功能將於稍後加入。",
@@ -26,8 +26,8 @@
         "password": "密碼",
         "unrecognisedPassword": "未知的密碼",
         "unrecognisedPasswordExplanation": "此為未知密碼，請再試一遍。",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "syncInProgress": "同步進行中",
+        "syncInProgressExplanation": "請等候至同步完成",
         "somethingWentWrong": "出現錯誤",
         "somethingWentWrongExplanation": "請重新啟動程式"
     },
@@ -42,7 +42,9 @@
         "enterAccountName": "輸入帳戶名稱",
         "accountName": "帳戶名稱",
         "noNickname": "尚未輸入帳戶名稱",
-        "noNicknameExplanation": "請輸入種子碼帳戶名稱"
+        "noNicknameExplanation": "請輸入種子碼帳戶名稱",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "糟糕！出錯了",
@@ -68,8 +70,8 @@
         "seedCopied": "Copied seed to clipboard",
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "doNotStore": "不要儲存種子於ㄧ般文字",
+        "copyToClipboard": "複製到剪貼簿"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
@@ -96,7 +98,8 @@
         "emptyPasswordExplanation": "您必須輸入密碼以登入。請再試一遍。",
         "enterPassword": "請輸入您的密碼。",
         "useSeed": "使用種子碼",
-        "login": "登入"
+        "login": "登入",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "首次載入種子碼。",
@@ -123,25 +126,25 @@
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
         "generateNewAddress": "產生新地址",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "選擇性訊息",
+        "removeMessage": "移除訊息"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "種子已清除",
+        "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除",
         "mustSaveYourSeed": "您必須將種子碼存放 ",
         "atLeastOne": "於至少 ",
         "ofTheOptions": "下列其中一個選項。"
     },
     "seedReentry": {
-        "incorrectSeed": "Incorrect seed",
+        "incorrectSeed": "錯誤種子",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤。請再試一遍。",
         "thisIsACheck": "本頁面提醒您檢查是否已儲存種子碼",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "假如你未儲存你的種子，請退回並儲存"
     },
     "send": {
         "invalidAddress": "無效的地址",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "地址應該為{{maxLength}} 字元長度且應有一個檢查碼",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
         "notEnoughFunds": "餘額不足",
@@ -153,10 +156,10 @@
         "max": "最大值",
         "message": "訊息",
         "send": "傳送",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmount": "錯誤數額填入",
+        "invalidAmountExplanation": "交易金額請填入數值",
+        "maximumSelected": "已選定最大的數額",
+        "iotaUnits": "IOTA單位"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
@@ -189,14 +192,16 @@
         "logout": "登出",
         "reset": "重設錢包",
         "back": "返回",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "syncingComplete": "同步完成",
+        "syncingCompleteExplanation": "您的帳戶已成功同步。",
+        "nicknameChanged": "帳戶名稱已更改",
+        "nicknameChangedExplanation": "您的帳戶已變更",
+        "accountDeleted": "帳戶已刪除",
+        "accountDeletedExplanation": "您的帳戶已從錢包中刪除。",
+        "cannotPerformAction": "無法執行操作",
+        "cannotPerformActionExplanation": "轉到進階設定中重置錢包。",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "此向操作無法復原",
@@ -208,7 +213,7 @@
         "areYouSure": "您確定要繼續嗎？"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "輸入密碼以重新設置您的錢包。",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "取消",
         "reset": "重設"
     },
@@ -216,8 +221,8 @@
         "okay": "好囉。來建置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否已有希望使用的種子碼?",
         "seedExplanation": "IOTA種子碼是由您帳戶的名稱和密碼結合成為81個字元長的字串。",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
+        "explanation1": "您可以使用它來存取您的資金從",
+        "explanation2": " 任何錢包 ",
         "explanation3": ", on",
         "explanation4": " any device",
         "explanation5": ". But if you lose your seed, you also lose your IOTA.",
