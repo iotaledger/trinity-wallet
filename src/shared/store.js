@@ -10,6 +10,7 @@ import seeds from './reducers/seeds';
 import notifications from './reducers/notifications';
 import alerts from './reducers/alerts';
 import home from './reducers/home';
+import keychain from './reducers/keychain';
 import { ActionTypes } from './actions/app';
 
 const reducers = combineReducers({
@@ -22,6 +23,7 @@ const reducers = combineReducers({
     seeds,
     notifications,
     home,
+    keychain,
 });
 
 const rootReducer = (state, action) => {
