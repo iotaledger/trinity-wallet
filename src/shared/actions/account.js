@@ -306,17 +306,6 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
     });
 };
 
-// var promise = new Promise(function(res, rej) {
-//     self.sendCommand(command, function(err, isConsistent) {
-//         if (err) {
-//           rej(err)
-//         }
-//         res(isConsistent.state);
-//     });
-// });
-// return promise.then(function(val) {
-//     return val;
-// });
 const getTotalBalance = (addresses, threshold = 1) => {
     const promise = new Promise((resolve, reject) => {
         iota.api.getBalances(addresses, threshold, (err, data) => {
