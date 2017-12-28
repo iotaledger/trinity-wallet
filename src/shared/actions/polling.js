@@ -1,14 +1,16 @@
+import assign from 'lodash/assign';
 import difference from 'lodash/difference';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+import filter from 'lodash/filter';
 import reduce from 'lodash/reduce';
 import size from 'lodash/size';
 import { getUrlTimeFormat, getUrlNumberFormat, setPrice, setChartData, setMarketData } from './marketData';
 import { setBalance } from './account';
 import { generateAccountInfoErrorAlert } from './alerts';
-import { getSelectedAccount } from '../selectors/account';
+import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
 import { iota } from '../libs/iota';
-import { getUnspentAddresses, getExistingUnspentAddressesHashes } from '../libs/accountUtils';
+import { getUnspentAddresses, mergeLatestTransfersInOld, formatTransfers } from '../libs/accountUtils';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
@@ -213,16 +215,62 @@ const getTransactionsObjects = hashes => {
     });
 };
 
+const getInclusionWithHashes = hashes => {
+    return new Promise((resolve, reject) => {
+        iota.api.getLatestInclusion(hashes, (err, states) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(states, hashes);
+            }
+        });
+    });
+};
+
+const getBundleWithPersistence = (tailTxHash, persistence) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getBundles(tailTxHash, (err, bundle) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(assign({}, bundle, { persistence }));
+            }
+        });
+    });
+};
+
+const getBundlesWithPersistence = (inclusionStates, hashes) => {
+    return reduce(
+        hashes,
+        (promise, hash, idx) => {
+            return promise
+                .then(result => {
+                    return getBundleWithPersistence(hash, inclusionStates[idx]).then(bundle => result.concat(bundle));
+                })
+                .catch(console.error);
+        },
+        Promise.resolve([]),
+    );
+};
+
 export const getAccountInfo = (seed, accountName) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
         const addresses = Object.keys(selectedAccount.addresses);
+
         const existingHashes = getExistingUnspentAddressesHashes(
             accountName,
             getState().account.unspentAddressesHashes,
         );
+
+        let payload = {
+            accountName,
+            addresses: selectedAccount.addresses,
+            unspentAddressesHashes: existingHashes,
+            transfers: selectedAccount.transfers,
+        };
 
         return getTotalBalance(addresses)
             .then(balance => {
@@ -236,34 +284,36 @@ export const getAccountInfo = (seed, accountName) => {
                 const unspentAddresses = getUnspentAddresses(selectedAccount.addresses);
 
                 if (isEmpty(unspentAddresses)) {
-                    return dispatch(
-                        accountInfoFetchSuccess({
-                            accountName,
-                            addresses: addressData,
-                            unspentAddressesHashes: existingHashes,
-                        }),
-                    );
+                    payload = assign({}, payload, { addresses: addressData });
+
+                    return dispatch(accountInfoFetchSuccess(payload));
                 }
 
                 return getTransactionHashes(unspentAddresses);
             })
             .then(latestHashes => {
-                const existingHashes = getExistingUnspentAddressesHashes(
-                    accountName,
-                    getState().account.unspentAddressesHashes,
-                );
-
                 const hasNewHashes = size(latestHashes) > size(existingHashes);
+
                 if (hasNewHashes) {
                     const diff = difference(existingHashes, latestHashes);
 
                     return getTransactionsObjects(diff);
                 }
 
-                return console.log('No diff.');
+                return dispatch(accountInfoFetchSuccess(payload));
             })
             .then(txs => {
-                console.log('New tx objects', txs);
+                const tailTxs = filter(txs, t => t.currentIndex === 0);
+
+                return getInclusionWithHashes(map(tailTxs, t => t.hash));
+            })
+            .then(getBundlesWithPersistence)
+            .then(bundles => {
+                const updatedTransfers = mergeLatestTransfersInOld(selectedAccount.transfers, bundles);
+                const updatedTransfersWithFormatting = formatTransfers(updatedTransfers, addresses);
+
+                payload = assign({}, payload, { transfers: updatedTransfersWithFormatting });
+                return dispatch(accountInfoFetchSuccess(payload));
             })
             .catch(err => {
                 dispatch(accountInfoFetchError());
