@@ -11,6 +11,7 @@ import notifications from './reducers/notifications';
 import alerts from './reducers/alerts';
 import home from './reducers/home';
 import keychain from './reducers/keychain';
+import polling from './reducers/polling';
 import { ActionTypes } from './actions/app';
 
 const reducers = combineReducers({
@@ -24,6 +25,7 @@ const reducers = combineReducers({
     notifications,
     home,
     keychain,
+    polling,
 });
 
 const rootReducer = (state, action) => {

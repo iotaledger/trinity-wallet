@@ -7,7 +7,6 @@ import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { setFirstUse } from 'iota-wallet-shared-modules/actions/account';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
@@ -19,6 +18,7 @@ import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
 import Promoter from './promoter';
+import Poll from './poll';
 import COLORS from '../theme/Colors';
 import Tabs from '../components/tabs';
 import Tab from '../components/tab';
@@ -99,7 +99,7 @@ class Home extends Component {
     };
 
     render() {
-        const { t, navigator, inactive, minimised, startBackgroundProcesses, endBackgroundProcesses } = this.props;
+        const { t, navigator, inactive, minimised } = this.props;
 
         return (
             <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={this.handleInactivity}>
@@ -110,11 +110,7 @@ class Home extends Component {
                             <View style={{ flex: 1 }}>
                                 <View style={styles.topContainer} />
                                 <View style={styles.midContainer}>
-                                    <TabContent
-                                        navigator={navigator}
-                                        startBackgroundProcesses={startBackgroundProcesses}
-                                        endBackgroundProcesses={endBackgroundProcesses}
-                                    />
+                                    <TabContent navigator={navigator} />
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <Tabs onPress={name => this.props.changeHomeScreenRoute(name)}>
@@ -135,6 +131,7 @@ class Home extends Component {
                     )}
                     {minimised && <View />}
                     <Promoter />
+                    <Poll />
                     <StatefulDropdownAlert />
                     <KeepAwake />
                 </View>
@@ -154,14 +151,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     changeHomeScreenRoute,
     generateAlert,
-    setFirstUse,
     clearTempData,
     setPassword,
     setUserActivity,
 };
 
 Home.propTypes = {
-    setFirstUse: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     navigator: PropTypes.object.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
@@ -169,8 +164,6 @@ Home.propTypes = {
     setUserActivity: PropTypes.func.isRequired,
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,
-    startBackgroundProcesses: PropTypes.func.isRequired,
-    endBackgroundProcesses: PropTypes.func.isRequired,
 };
 
 export default withUserActivity()(
