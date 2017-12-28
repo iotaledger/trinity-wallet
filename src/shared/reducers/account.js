@@ -58,7 +58,7 @@ const account = (
                 seedNames: filter(state.seedNames, name => name !== action.payload),
                 seedCount: state.seedCount - 1,
             };
-        case ActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS:
+        case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 accountInfo: merge({}, state.accountInfo, {
