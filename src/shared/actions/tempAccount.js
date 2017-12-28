@@ -8,6 +8,12 @@ import { generateAlert } from '../actions/alerts';
 import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
 import { MAX_SEED_LENGTH } from '../libs/util';
 import { getSelectedAccount } from '../selectors/account';
+import i18next from 'i18next';
+
+const { t } = i18next.t;
+
+// FIXME: Hacking no-console linting.
+// Should rather be dispatching an action.
 
 /* eslint-disable no-console */
 
@@ -243,11 +249,7 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                 if (get(inputs, 'allBalance') < value) {
                     dispatch(sendTransferError());
                     return dispatch(
-                        generateAlert(
-                            'error',
-                            'Not enough balance',
-                            'You do not have enough IOTA to complete this transfer.',
-                        ),
+                        generateAlert('error', t('send:notEnoughFunds'), t('send:notEnoughFundsExplanation')),
                     );
                 } else if (get(inputs, 'totalBalance') < value) {
                     dispatch(sendTransferError());
