@@ -1,41 +1,64 @@
 import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 import { translate } from 'react-i18next';
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import { StyleSheet, View, Text, StatusBar, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { Navigation } from 'react-native-navigation';
-
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
-import { setPassword, clearTempData, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
-import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
+import { setPassword, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
-
+import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
 import EnterPassword from '../components/enterPassword';
-import keychain, { getSeed } from '../util/keychain';
+import StatefulDropdownAlert from './statefulDropdownAlert';
+import keychain from '../util/keychain';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
-const StatusBarDefaultBarStyle = 'light-content';
+class Login extends Component {
+    static propTypes = {
+        firstUse: PropTypes.bool.isRequired,
+        hasErrorFetchingAccountInfoOnLogin: PropTypes.bool.isRequired,
+        selectedAccount: PropTypes.object.isRequired,
+        fullNode: PropTypes.string.isRequired,
+        availablePoWNodes: PropTypes.array.isRequired,
+        currency: PropTypes.string.isRequired,
+        setPassword: PropTypes.func.isRequired,
+        getMarketData: PropTypes.func.isRequired,
+        getPrice: PropTypes.func.isRequired,
+        getChartData: PropTypes.func.isRequired,
+        getCurrencyData: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        setFullNode: PropTypes.func.isRequired,
+    };
 
-class Login extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+
         this.state = {
             isModalVisible: false,
         };
+
         this.onLoginPress = this.onLoginPress.bind(this);
-        this.onNodeError = this.onNodeError.bind(this);
     }
 
     componentDidMount() {
+        const { currency } = this.props;
         this.getWalletData();
+        this.props.getCurrencyData(currency);
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.hasErrorFetchingAccountInfoOnLogin && !this.props.hasErrorFetchingAccountInfoOnLogin) {
+            this._showModal();
+        }
     }
 
     _showModal = data => this.setState({ isModalVisible: true });
@@ -71,68 +94,40 @@ class Login extends React.Component {
     }
 
     onLoginPress(password) {
-        const { t, setPassword } = this.props;
+        const { firstUse, t, setPassword, selectedAccount } = this.props;
+
         Keyboard.dismiss();
+
         if (!password) {
-            this.dropdown.alertWithType('error', t('emptyPassword'), t('emptyPasswordExplanation'));
+            this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
             keychain
                 .get()
                 .then(credentials => {
-                    setPassword(password);
                     const hasData = get(credentials, 'data');
                     const hasCorrectPassword = get(credentials, 'password') === password;
-
                     if (hasData && hasCorrectPassword) {
-                        const seed = getSeed(credentials.data, 0);
-                        login(seed);
+                        setPassword(password);
+                        if (firstUse) {
+                            this.navigateToLoading();
+                        } else {
+                            const addresses = get(selectedAccount, 'addresses');
+                            if (!isEmpty(addresses)) {
+                                this.navigateToLoading();
+                            } else {
+                                this.navigateToHome();
+                            }
+                        }
                     } else {
-                        error();
+                        this.props.generateAlert(
+                            'error',
+                            t('global:unrecognisedPassword'),
+                            t('global:unrecognisedPasswordExplanation'),
+                        );
                     }
                 })
                 .catch(err => console.log(err)); // Dropdown
         }
-
-        error = () => {
-            this.dropdown.alertWithType(
-                'error',
-                t('global:unrecognisedPassword'),
-                t('global:unrecognisedPasswordExplanation'),
-            );
-        };
-
-        login = value => {
-            const seedIndex = this.props.tempAccount.seedIndex;
-            const accountName = this.props.account.seedNames[seedIndex];
-            const accountInfo = this.props.account.accountInfo;
-            this.props.changeHomeScreenRoute('balance');
-            this.props.getCurrencyData(this.props.settings.currency);
-            if (this.props.account.firstUse) {
-                this.navigateToLoading();
-                this.props.getFullAccountInfo(value, accountName, (error, success) => {
-                    if (error) {
-                        this.onNodeError();
-                    } else {
-                        this.props.setReady();
-                    }
-                });
-            } else {
-                const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-                const addresses = currentSeedAccountInfo.addresses;
-                if (addresses.length > 0) {
-                    this.navigateToLoading();
-                    this.props.getAccountInfo(accountName, seedIndex, accountInfo, (error, success) => {
-                        if (error) {
-                            this.onNodeError();
-                        } else {
-                            this.props.setReady();
-                        }
-                    });
-                } else {
-                    this.navigateToHome();
-                }
-            }
-        };
     }
 
     navigateToLoading() {
@@ -161,18 +156,7 @@ class Login extends React.Component {
         });
     }
 
-    onNodeError() {
-        const { t } = this.props;
-        this.props.navigator.pop({
-            animated: false,
-        });
-        this.dropdown.alertWithType('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
-        this._showModal();
-    }
-
     render() {
-        const { password } = this.state;
-        const { t } = this.props;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -194,17 +178,7 @@ class Login extends React.Component {
                         <View style={{ flex: 0.2 }} />
                     </View>
                 )}
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                    closeInterval={6000}
-                />
+                <StatefulDropdownAlert />
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -286,21 +260,20 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    tempAccount: state.tempAccount,
-    account: state.account,
-    marketData: state.marketData,
-    settings: state.settings,
+    firstUse: state.account.firstUse,
+    selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    fullNode: state.settings.fullNode,
+    availablePoWNodes: state.settings.availablePoWNodes,
+    currency: state.settings.currency,
+    hasErrorFetchingAccountInfoOnLogin: state.tempAccount.hasErrorFetchingAccountInfoOnLogin,
 });
 
 const mapDispatchToProps = {
+    generateAlert,
     setPassword,
-    getAccountInfo,
-    getFullAccountInfo,
-    changeHomeScreenRoute,
     getMarketData,
     getPrice,
     getChartData,
-    clearTempData,
     getCurrencyData,
     setReady,
     setFullNode,

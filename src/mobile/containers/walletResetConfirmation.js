@@ -1,24 +1,12 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Image,
-    ScrollView,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
-
-import { Keyboard } from 'react-native';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
