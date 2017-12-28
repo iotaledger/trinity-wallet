@@ -1,4 +1,3 @@
-import { isValidServerAddress } from '../libs/util';
 import { showError } from './notifications';
 
 export const ActionTypes = {
@@ -28,7 +27,7 @@ export function setCurrencyData(conversionRate, currency) {
 }
 
 export function getCurrencyData(currency) {
-    const url = `https://api.fixer.io/latest?base=USD`;
+    const url = 'https://api.fixer.io/latest?base=USD';
     return dispatch => {
         return fetch(url)
             .then(
