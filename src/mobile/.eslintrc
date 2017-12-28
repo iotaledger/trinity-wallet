@@ -4,6 +4,7 @@
     "prettier",
     "prettier/react"
   ],
+  "parser": "babel-eslint",
   "plugins": [
     "babel",
     "react",
@@ -11,7 +12,8 @@
     "jsx-a11y"
   ],
   "rules": {
+    "import/no-named-as-default": 1,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/forbid-prop-types": ["error", { "forbid": ["any", "array"] }]
+    "react/forbid-prop-types": ["error", { "forbid": ["any"] }]
   }
 }

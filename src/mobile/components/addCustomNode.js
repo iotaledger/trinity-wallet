@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import Dropdown from '../components/dropdown';
 import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
@@ -54,8 +54,16 @@ const styles = StyleSheet.create({
 });
 
 class AddCustomNode extends Component {
-    constructor(props) {
-        super(props);
+    static propTypes = {
+        nodes: PropTypes.array.isRequired,
+        currentNode: PropTypes.string.isRequired,
+        onDuplicateNodeError: PropTypes.func.isRequired,
+        checkNode: PropTypes.func.isRequired,
+    };
+
+    constructor() {
+        super();
+
         this.state = {
             customNode: '',
         };
