@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
@@ -6,13 +6,11 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Seedbox from '../components/seedBox.js';
 import { width, height } from '../util/dimensions';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 
-class WriteSeedDown extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+class WriteSeedDown extends Component {
     onDonePress() {
         this.props.navigator.pop({
             animated: false,
@@ -21,6 +19,7 @@ class WriteSeedDown extends React.Component {
 
     render() {
         const { t } = this.props;
+        const checksum = getChecksum(this.props.tempAccount.seed);
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
@@ -36,6 +35,9 @@ class WriteSeedDown extends React.Component {
                         <Text style={styles.infoTextNormal}>they are correct.</Text>
                     </Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
+                    <View style={styles.checksum}>
+                        <Text style={styles.checksumText}>{checksum}</Text>
+                    </View>
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
     optionButton: {
         borderColor: '#8BD4FF',
         borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         height: height / 14,
         alignItems: 'center',
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'left',
         paddingTop: height / 25,
-        paddingBottom: height / 40,
+        marginBottom: height / 30,
         paddingHorizontal: width / 7,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
     doneButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -137,12 +139,11 @@ const styles = StyleSheet.create({
     seedBox: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.65,
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: height / 80,
-        marginTop: height / 60,
     },
     seedBoxTextContainer: {
         width: width / 1.65,
@@ -174,6 +175,21 @@ const styles = StyleSheet.create({
     arrow: {
         width: width / 2,
         height: height / 80,
+    },
+    checksum: {
+        width: width / 8,
+        height: height / 20,
+        borderRadius: GENERAL.borderRadiusSmall,
+        borderColor: 'white',
+        borderWidth: height / 1000,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: height / 30,
+    },
+    checksumText: {
+        fontSize: width / 29.6,
+        color: 'white',
+        fontFamily: 'Lato-Regular',
     },
 });
 

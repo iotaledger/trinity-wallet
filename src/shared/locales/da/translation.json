@@ -43,7 +43,9 @@
         "enterAccountName": "Indtast et kontonavn.",
         "accountName": "Kontonavn",
         "noNickname": "Intet kontonavn angivet",
-        "noNicknameExplanation": "Indtast venligst et kontonavn til dit seed."
+        "noNicknameExplanation": "Indtast venligst et kontonavn til dit seed.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Ups! Der gik noget galt",
@@ -100,7 +102,8 @@
         "emptyPasswordExplanation": "Du skal indtaste en adgangskode for at logge ind. Prøv venligst igen.",
         "enterPassword": "Indtast venligst din adgangskode.",
         "useSeed": "BRUG SEED",
-        "login": "LOG IND"
+        "login": "LOG IND",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Indlæser seed for første gang.",
@@ -203,7 +206,9 @@
         "accountDeleted": "Konto slettet",
         "accountDeletedExplanation": "Din konto er blevet fjernet fra tegnebogen.",
         "cannotPerformAction": "Kan ikke udføre handling",
-        "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen."
+        "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Denne handling kan ikke fortrydes.",
@@ -215,7 +220,7 @@
         "areYouSure": "Er du sikker på, du vil fortsætte?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Indtast adgangskode for at nulstille din tegnebog.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "ANNULLER",
         "reset": "NULSTIL"
     },

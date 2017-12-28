@@ -43,7 +43,9 @@
         "enterAccountName": "Entre um nome de conta.",
         "accountName": "Nome da Conta",
         "noNickname": "Não foi inserido nenhum nome de conta",
-        "noNicknameExplanation": "Por favor, insira um nome de conta para a sua Seed."
+        "noNicknameExplanation": "Por favor, insira um nome de conta para a sua Seed.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Uups! Aconteceu algum problema",
@@ -100,7 +102,8 @@
         "emptyPasswordExplanation": "Deve inserir uma palavra-passe para iniciar a sessão, Por favor, tente de novo.",
         "enterPassword": "Por favor, insira a sua palavra-passe.",
         "useSeed": "USAR A SEED",
-        "login": "Iniciar sessão"
+        "login": "Iniciar sessão",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "A carregar a Seed pela primeira vez.",
@@ -203,7 +206,9 @@
         "accountDeleted": "Account deleted",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Esta ação não pode ser anulada.",
@@ -215,7 +220,7 @@
         "areYouSure": "Tem a certeza que deseja continuar?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Insira a sua palavra-passe para reiniciar a sua carteira.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "CANCELAR",
         "reset": "RECONFIGURAR COMPLETAMENTE"
     },

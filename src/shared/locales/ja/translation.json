@@ -41,7 +41,9 @@
         "enterAccountName": "アカウント名を入力して下さい。",
         "accountName": "アカウント名",
         "noNickname": "アカウント名が入力されていません。",
-        "noNicknameExplanation": "Seedのアカウント名を入力して下さい。"
+        "noNicknameExplanation": "Seedのアカウント名を入力して下さい。",
+        "seedInUse": "このseedはすでに使われています。",
+        "seedInUseExplanation": "このseedは既にウォレットにリンクされています。違うseedをご使用下さい。"
     },
     "changePassword": {
         "oops": "不具合が発生しました。",
@@ -94,7 +96,8 @@
         "emptyPasswordExplanation": "ログインするにはパスワードを入力する必要があります。もう一度やり直して下さい。",
         "enterPassword": "パスワードを入力して下さい。",
         "useSeed": "Seedでログイン",
-        "login": "ログイン"
+        "login": "ログイン",
+        "selectDifferentNode": "別のノードを選択しますか？"
     },
     "loading": {
         "loadingFirstTime": "初めてのSeedを読み込んでいます。",
@@ -193,7 +196,9 @@
         "accountDeleted": "アカウントは削除されました。",
         "accountDeletedExplanation": "アカウントはウォレットから削除されました。",
         "cannotPerformAction": "操作を実行できません。",
-        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。"
+        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
+        "poorConnection": "接続不良",
+        "poorConnectionExplanation": "接続不良により通貨を変更できませんでした。"
     },
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",

@@ -1,11 +1,8 @@
-import isEmpty from 'lodash/isEmpty';
-import get from 'lodash/get';
-import reduce from 'lodash/reduce';
-import map from 'lodash/map';
-import each from 'lodash/each';
-import keys from 'lodash/keys';
-import { iota } from '../libs/iota';
-import { isMinutesAgo, convertUnixTimeToJSDate } from '../libs/dateUtils';
+import merge from 'lodash/merge';
+import omit from 'lodash/omit';
+import filter from 'lodash/filter';
+import { ActionTypes } from '../actions/account';
+import { ActionTypes as TempAccountActionTypes } from '../actions/tempAccount';
 
 const account = (
     state = {
@@ -13,37 +10,62 @@ const account = (
         seedNames: [],
         firstUse: true,
         onboardingComplete: false,
-        balance: 0,
+        accountInfo: {},
+        unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
     },
     action,
 ) => {
     switch (action.type) {
-        case 'SET_ACCOUNT_INFO':
+        case ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS:
             return {
                 ...state,
-                balance: action.balance,
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload),
+            };
+        case ActionTypes.REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS:
+            return {
+                ...state,
+                unconfirmedBundleTails: omit(state.unconfirmedBundleTails, action.payload),
+            };
+        case ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS:
+            return {
+                ...state,
+                unconfirmedBundleTails: action.payload,
+            };
+        case ActionTypes.SET_ACCOUNT_INFO:
+            return {
+                ...state,
                 accountInfo: {
                     ...state.accountInfo,
                     [action.seedName]: {
                         addresses: action.addresses,
                         transfers: action.transfers,
+                        balance: action.balance,
                     },
                 },
             };
-        case 'CHANGE_ACCOUNT_NAME':
+        case ActionTypes.CHANGE_ACCOUNT_NAME:
             return {
                 ...state,
                 seedNames: action.accountNames,
                 accountInfo: action.accountInfo,
             };
-        case 'REMOVE_ACCOUNT':
+        case ActionTypes.REMOVE_ACCOUNT:
             return {
                 ...state,
-                accountInfo: action.accountInfo,
-                seedNames: action.accountNames,
+                accountInfo: omit(state.accountInfo, action.payload),
+                seedNames: filter(state.seedNames, name => name !== action.payload),
                 seedCount: state.seedCount - 1,
             };
-        case 'UPDATE_ADDRESSES':
+        case ActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS:
+            return {
+                ...state,
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        addresses: action.payload.addresses,
+                    },
+                }),
+            };
+        case ActionTypes.UPDATE_ADDRESSES:
             return {
                 ...state,
                 accountInfo: {
@@ -54,7 +76,7 @@ const account = (
                     },
                 },
             };
-        case 'UPDATE_TRANSFERS':
+        case ActionTypes.UPDATE_TRANSFERS:
             return {
                 ...state,
                 accountInfo: {
@@ -65,30 +87,82 @@ const account = (
                     },
                 },
             };
-        case 'SET_FIRST_USE':
+        case TempAccountActionTypes.GET_TRANSFERS_SUCCESS:
+            return {
+                ...state,
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        transfers: action.payload.transfers,
+                    },
+                }),
+            };
+        case ActionTypes.SET_FIRST_USE:
             return {
                 ...state,
                 firstUse: action.payload,
             };
-        case 'SET_BALANCE':
+        case ActionTypes.SET_BALANCE:
             return {
                 ...state,
-                balance: action.payload,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.payload.accountName]: {
+                        ...state.accountInfo[action.payload.accountName],
+                        balance: action.payload.balance,
+                    },
+                },
             };
-        case 'SET_ONBOARDING_COMPLETE':
+        case ActionTypes.SET_ONBOARDING_COMPLETE:
             return {
                 ...state,
                 onboardingComplete: action.payload,
             };
-        case 'INCREASE_SEED_COUNT':
+        case ActionTypes.INCREASE_SEED_COUNT:
             return {
                 ...state,
                 seedCount: state.seedCount + 1,
             };
-        case 'ADD_SEED_NAME':
+        case ActionTypes.ADD_SEED_NAME:
             return {
                 ...state,
                 seedNames: [...state.seedNames, action.seedName],
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST:
+            return {
+                ...state,
+                firstUse: true,
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+            return {
+                ...state,
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
+                        balance: action.payload.balance,
+                    },
+                }),
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
+            return {
+                ...state,
+                seedCount: state.seedCount + 1,
+                seedNames: [...state.seedNames, action.payload.accountName],
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
+                        balance: action.payload.balance,
+                    },
+                }),
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+                firstUse: false,
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR:
+            return {
+                ...state,
+                firstUse: true,
             };
         default:
             return state;
@@ -96,38 +170,3 @@ const account = (
 };
 
 export default account;
-
-export const getTailTransactionHashesForPendingTransactions = (accountInfo, currentIndex) => {
-    const propKeys = keys(accountInfo);
-    const seedName = get(propKeys, `[${currentIndex}]`);
-    const currentSeedAccountInfo = get(accountInfo, seedName);
-    const addressesAsDict = get(currentSeedAccountInfo, 'addresses');
-    const transfers = get(currentSeedAccountInfo, 'transfers');
-
-    if (!isEmpty(transfers) && !isEmpty(addressesAsDict)) {
-        const normalize = (res, val) => {
-            each(val, v => {
-                if (
-                    !v.persistence &&
-                    v.currentIndex === 0 &&
-                    v.value > 0 &&
-                    isMinutesAgo(convertUnixTimeToJSDate(v.timestamp), 10) &&
-                    !isMinutesAgo(convertUnixTimeToJSDate(v.timestamp), 1440)
-                ) {
-                    res.push(v.hash);
-                }
-            });
-
-            return res;
-        };
-
-        const addresses = map(addressesAsDict, (v, k) => k);
-
-        const categorizedTransfers = iota.utils.categorizeTransfers(transfers, addresses);
-        const sentTransfers = get(categorizedTransfers, 'sent');
-
-        return reduce(sentTransfers, normalize, []);
-    }
-
-    return [];
-};

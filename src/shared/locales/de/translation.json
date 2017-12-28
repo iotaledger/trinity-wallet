@@ -44,7 +44,9 @@
         "enterAccountName": "Gib einen Kontonamen ein.",
         "accountName": "Kontoname",
         "noNickname": "Kein Kontoname eingegeben",
-        "noNicknameExplanation": "Bitte gib einen Kontonamen für deinen Seed ein."
+        "noNicknameExplanation": "Bitte gib einen Kontonamen für deinen Seed ein.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Ups! Etwas ist schiefgegangen",
@@ -101,7 +103,8 @@
         "emptyPasswordExplanation": "Du musst ein Passwort eingeben um dich anzumelden. Bitte versuche es verneut.",
         "enterPassword": "Bitte gib dein Passwort ein.",
         "useSeed": "SEED BENUTZEN",
-        "login": "ANMELDEN"
+        "login": "ANMELDEN",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Lade Seed zum ersten Mal.",
@@ -205,7 +208,9 @@
         "accountDeleted": "Account entfernt",
         "accountDeletedExplanation": "Dein Account wurde von der Wallet entfernt.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
-        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um die Wallet zurückzusetzen."
+        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um die Wallet zurückzusetzen.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
@@ -217,7 +222,7 @@
         "areYouSure": "Bist du sicher, dass du fortfahren möchtest?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "ABBRECHEN",
         "reset": "ZURÜCKSETZEN"
     },
