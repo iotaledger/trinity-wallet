@@ -5,13 +5,7 @@ import { connect } from 'react-redux';
 import timer from 'react-native-timer';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 
-import {
-    fetchMarketData,
-    fetchChartData,
-    fetchPrice,
-    setPollFor,
-    getNewAddressData,
-} from '../../shared/actions/polling';
+import { fetchMarketData, fetchChartData, fetchPrice, setPollFor, getAccountInfo } from '../../shared/actions/polling';
 import keychain, { getSeed } from '../util/keychain';
 
 export class Poll extends Component {
@@ -21,7 +15,7 @@ export class Poll extends Component {
         isFetchingPrice: PropTypes.bool.isRequired,
         isFetchingChartData: PropTypes.bool.isRequired,
         isFetchingMarketData: PropTypes.bool.isRequired,
-        isFetchingNewAddressData: PropTypes.bool.isRequired,
+        isFetchingAccountInfo: PropTypes.bool.isRequired,
         isSyncing: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
@@ -31,13 +25,13 @@ export class Poll extends Component {
         fetchMarketData: PropTypes.func.isRequired,
         fetchPrice: PropTypes.func.isRequired,
         fetchChartData: PropTypes.func.isRequired,
-        getNewAddressData: PropTypes.func.isRequired,
+        getAccountInfo: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
 
-        this.fetchNewAddressData = this.fetchNewAddressData.bind(this);
+        this.fetchLatestAccountInfo = this.fetchLatestAccountInfo.bind(this);
     }
 
     componentDidMount() {
@@ -58,7 +52,7 @@ export class Poll extends Component {
             props.isFetchingPrice ||
             props.isFetchingChartData ||
             props.isFetchingMarketData ||
-            props.isFetchingNewAddressData;
+            props.isFetchingAccountInfo;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
@@ -72,14 +66,14 @@ export class Poll extends Component {
             marketData: this.props.fetchMarketData,
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
-            newAddressData: this.fetchNewAddressData,
+            accountInfo: this.fetchLatestAccountInfo,
         };
 
         // In case something messed up, reinitialize
         return dict[service] ? dict[service]() : this.props.setPollFor(this.props.setPollFor[0]); // eslint-disable-line consistent-return
     }
 
-    fetchNewAddressData() {
+    fetchLatestAccountInfo() {
         const { seedIndex, selectedAccountName } = this.props;
 
         keychain
@@ -87,7 +81,7 @@ export class Poll extends Component {
             .then(credentials => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
-                    this.props.getNewAddressData(seed, selectedAccountName);
+                    this.props.getAccountInfo(seed, selectedAccountName);
                 }
             })
             .catch(err => console.error(err)); // eslint-disable-line no-console
@@ -109,7 +103,7 @@ const mapStateToProps = state => ({
     isFetchingPrice: state.polling.isFetchingPrice,
     isFetchingChartData: state.polling.isFetchingChartData,
     isFetchingMarketData: state.polling.isFetchingMarketData,
-    isFetchingNewAddressData: state.polling.isFetchingNewAddressData,
+    isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
     isSyncing: state.tempAccount.isSyncing,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
@@ -122,7 +116,7 @@ const mapDispatchToProps = {
     fetchChartData,
     fetchPrice,
     setPollFor,
-    getNewAddressData,
+    getAccountInfo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);

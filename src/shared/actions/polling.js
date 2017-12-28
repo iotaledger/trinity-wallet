@@ -1,4 +1,8 @@
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
 import { getUrlTimeFormat, getUrlNumberFormat, setPrice, setChartData, setMarketData } from './marketData';
+import { setBalance } from './account';
+import { generateAccountInfoErrorAlert } from './alerts';
 import { getSelectedAccount } from '../selectors/account';
 import { iota } from '../libs/iota';
 
@@ -13,9 +17,9 @@ export const ActionTypes = {
     FETCH_MARKET_DATA_REQUEST: 'IOTA/POLLING/FETCH_MARKET_DATA_REQUEST',
     FETCH_MARKET_DATA_SUCCESS: 'IOTA/POLLING/FETCH_MARKET_DATA_SUCCESS',
     FETCH_MARKET_DATA_ERROR: 'IOTA/POLLING/FETCH_MARKET_DATA_ERROR',
-    NEW_ADDRESS_DATA_FETCH_REQUEST: 'IOTA/POLLING/NEW_ADDRESS_DATA_FETCH_REQUEST',
-    NEW_ADDRESS_DATA_FETCH_SUCCESS: 'IOTA/POLLING/NEW_ADDRESS_DATA_FETCH_SUCCESS',
-    NEW_ADDRESS_DATA_FETCH_ERROR: 'IOTA/POLLING/NEW_ADDRESS_DATA_FETCH_ERROR',
+    ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_REQUEST',
+    ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_SUCCESS',
+    ACCOUNT_INFO_FETCH_ERROR: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_ERROR',
 };
 
 const fetchPriceRequest = () => ({
@@ -54,17 +58,17 @@ const fetchMarketDataError = () => ({
     type: ActionTypes.FETCH_MARKET_DATA_ERROR,
 });
 
-const newAddressDataFetchRequest = () => ({
-    type: ActionTypes.NEW_ADDRESS_DATA_FETCH_REQUEST,
+const accountInfoFetchRequest = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
 });
 
-const newAddressDataFetchSuccess = payload => ({
-    type: ActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS,
+const accountInfoFetchSuccess = payload => ({
+    type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
     payload,
 });
 
-const newAddressDataFetchError = () => ({
-    type: ActionTypes.NEW_ADDRESS_DATA_FETCH_ERROR,
+const accountInfoFetchError = () => ({
+    type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
 export const setPollFor = payload => ({
@@ -138,24 +142,70 @@ export const fetchChartData = () => {
     };
 };
 
-export const getNewAddressData = (seed, accountName) => {
-    return (dispatch, getState) => {
-        dispatch(newAddressDataFetchRequest());
-
-        const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-        const index = Object.keys(selectedAccount.addresses).length - 1;
-
-        iota.api.getInputs(seed, { start: index }, (error, success) => {
-            if (!error) {
-                const newAddressData = success.inputs.reduce((obj, x) => {
-                    obj[x.address] = { balance: x.balance, spent: false };
-                    return obj;
-                }, {});
-
-                dispatch(newAddressDataFetchSuccess({ accountName, addresses: newAddressData }));
+const getTotalBalance = (addresses, threshold = 1) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getBalances(addresses, threshold, (err, data) => {
+            if (err) {
+                reject(err);
             } else {
-                dispatch(newAddressDataFetchError()); // Also generate an alert
+                const newBalances = map(data.balances, Number);
+                const totalBalance = reduce(
+                    newBalances,
+                    (res, val) => {
+                        res = res + val;
+                        return res;
+                    },
+                    0,
+                );
+
+                resolve(totalBalance);
             }
         });
+    });
+};
+
+const getLatestAddresses = (seed, index) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getInputs(seed, { start: index }, (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                const addresses = reduce(
+                    data.inputs,
+                    (obj, x) => {
+                        obj[x.address] = { balance: x.balance, spent: false };
+                        return obj;
+                    },
+                    {},
+                );
+
+                resolve(addresses);
+            }
+        });
+    });
+};
+
+export const getAccountInfo = (seed, accountName) => {
+    return (dispatch, getState) => {
+        dispatch(accountInfoFetchRequest());
+
+        const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+        const addresses = Object.keys(selectedAccount.addresses);
+
+        return getTotalBalance(addresses)
+            .then(balance => {
+                dispatch(setBalance({ accountName, balance }));
+
+                const index = addresses.length ? addresses.length - 1 : 0;
+
+                return getLatestAddresses(seed, index);
+            })
+            .then(addressData => {
+                dispatch(accountInfoFetchSuccess({ accountName, addresses: addressData }));
+            })
+            .catch(err => {
+                dispatch(accountInfoFetchError());
+                dispatch(generateAccountInfoErrorAlert());
+            });
     };
 };
