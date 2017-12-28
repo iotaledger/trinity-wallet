@@ -250,5 +250,12 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
+    },
+    "accountManagement":{
+    "viewSeed": "View seed",
+    "viewAddresses": "View addresses",
+    "editAccountName": "Edit account name",
+    "deleteAccount": "Delete account",
+    "addNewAccount": "Add new account"
     }
 }
