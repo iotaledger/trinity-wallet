@@ -3,6 +3,7 @@ import omit from 'lodash/omit';
 import filter from 'lodash/filter';
 import { ActionTypes } from '../actions/account';
 import { ActionTypes as TempAccountActionTypes } from '../actions/tempAccount';
+import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
 const account = (
     state = {
