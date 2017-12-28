@@ -1,10 +1,8 @@
-import merge from 'lodash/merge';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import i18next from 'i18next';
-import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import OnboardingButtons from '../components/onboardingButtons.js';
+import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
+import OnboardingButtons from '../components/onboardingButtons';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
@@ -12,7 +10,12 @@ import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 
 import { width, height } from '../util/dimensions';
 
-class WalletSetup extends React.Component {
+class WalletSetup extends Component {
+    static propTypes = {
+        navigator: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired,
+    };
+
     onYesPress() {
         this.props.navigator.push({
             screen: 'enterSeed',
@@ -24,6 +27,7 @@ class WalletSetup extends React.Component {
             overrideBackPress: true,
         });
     }
+
     onNoPress() {
         this.props.navigator.push({
             screen: 'newSeedSetup',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -11,9 +11,10 @@ import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 import { width, height } from '../util/dimensions';
 
-class SaveSeedConfirmation extends React.Component {
-    constructor(props) {
-        super(props);
+class SaveSeedConfirmation extends Component {
+    constructor() {
+        super();
+
         this.state = {
             checkboxImage: checkboxUncheckedImagePath,
             hasSavedSeed: false,

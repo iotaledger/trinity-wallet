@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
 import keyImagePath from 'iota-wallet-shared-modules/images/key.png';
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import arrowLeftPath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
-class AddNewAccount extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+class AddNewAccount extends Component {
+    static propTypes = {
+        addExistingSeed: PropTypes.func.isRequired,
+        addNewSeed: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+    };
+
     onNewSeedPress() {
         this.props.addNewSeed();
     }
