@@ -306,35 +306,73 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
     });
 };
 
-export const getAccountInfo = (accountName, navigator = null) => {
+// var promise = new Promise(function(res, rej) {
+//     self.sendCommand(command, function(err, isConsistent) {
+//         if (err) {
+//           rej(err)
+//         }
+//         res(isConsistent.state);
+//     });
+// });
+// return promise.then(function(val) {
+//     return val;
+// });
+const getTotalBalance = (addresses, threshold = 1) => {
+    const promise = new Promise((resolve, reject) => {
+        iota.api.getBalances(addresses, threshold, (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                const newBalances = data.balances.map(Number);
+                resolve(newBalances);
+            }
+        });
+    });
+
+    return promise.then(balances => balances.reduce((a, b) => a + b));
+};
+
+const getLatestAddresses = (seed, index) => {
+    const promise = new Promise((resolve, reject) => {
+        iota.api.getInputs(seed, { start: index }, (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data.inputs);
+            }
+        });
+
+        return promise.then(inputs => {
+            return inputs.reduce((obj, x) => {
+                obj[x.address] = { balance: x.balance, spent: false };
+                return obj;
+            }, {});
+        });
+    });
+};
+
+export const getAccountInfo = (seed, accountName, navigator = null) => {
     return (dispatch, getState) => {
         const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
         const addresses = Object.keys(selectedAccount.addresses);
-        const unspentAddresses = getUnspentAddresses(selectedAccount.addresses);
+        getTotalBalance(addresses)
+            .then(balance => {
+                dispatch(setBalance({ accountName, balance }));
 
-        iota.api.getBalances(addresses, 1, (error, success) => {
-            if (!error) {
-                // Get updated balances for each address
-                const newBalances = success.balances.map(Number);
+                const index = Object.keys(addresses).length - 1;
 
-                // Calculate total balance
-                const totalBalance = newBalances.reduce((a, b) => a + b);
-                dispatch(setBalance({ accountName, balance: totalBalance }));
-
-                // Only fetch latest transfers if there exists unspent addresses
-                if (!isEmpty(unspentAddresses)) {
-                    dispatch(getTransfers(accountName, unspentAddresses));
-                } else {
-                    dispatch(setReady()); // In case unspent addresses are empty, just set the UI ready and navigate to home
-                }
-            } else {
+                return getLatestAddresses(seed, index);
+            })
+            .then(addresses => {
+                console.log('Addresses', addresses);
+            })
+            .catch(() => {
                 if (navigator) {
                     navigator.pop({ animated: false });
                 }
 
                 dispatch(generateAccountInfoErrorAlert());
-            }
-        });
+            });
     };
 };
 
