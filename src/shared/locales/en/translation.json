@@ -257,5 +257,9 @@
     "editAccountName": "Edit account name",
     "deleteAccount": "Delete account",
     "addNewAccount": "Add new account"
+    },
+    "addCustomNode":{
+    "customNode": "Custom node",
+    "add": "Add"
     }
 }
