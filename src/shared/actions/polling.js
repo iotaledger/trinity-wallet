@@ -1,10 +1,14 @@
+import difference from 'lodash/difference';
+import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
+import size from 'lodash/size';
 import { getUrlTimeFormat, getUrlNumberFormat, setPrice, setChartData, setMarketData } from './marketData';
 import { setBalance } from './account';
 import { generateAccountInfoErrorAlert } from './alerts';
 import { getSelectedAccount } from '../selectors/account';
 import { iota } from '../libs/iota';
+import { getUnspentAddresses, getExistingUnspentAddressesHashes } from '../libs/accountUtils';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
@@ -132,8 +136,8 @@ export const fetchChartData = () => {
                             dispatch(setChartData(json, currency, timeframe));
                         }
 
+                        // Dirty hack
                         if (i === currencies.length - 1 && j === timeframes.length - 1) {
-                            // Dirty hack
                             dispatch(fetchChartDataSuccess());
                         }
                     });
@@ -185,12 +189,40 @@ const getLatestAddresses = (seed, index) => {
     });
 };
 
+const getTransactionHashes = addresses => {
+    return new Promise((resolve, reject) => {
+        iota.api.findTransactions({ addresses }, (err, hashes) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(hashes);
+            }
+        });
+    });
+};
+
+const getTransactionsObjects = hashes => {
+    return new Promise((resolve, reject) => {
+        iota.api.getTransactionsObjects(hashes, (err, txs) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(txs);
+            }
+        });
+    });
+};
+
 export const getAccountInfo = (seed, accountName) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
         const addresses = Object.keys(selectedAccount.addresses);
+        const existingHashes = getExistingUnspentAddressesHashes(
+            accountName,
+            getState().account.unspentAddressesHashes,
+        );
 
         return getTotalBalance(addresses)
             .then(balance => {
@@ -201,7 +233,37 @@ export const getAccountInfo = (seed, accountName) => {
                 return getLatestAddresses(seed, index);
             })
             .then(addressData => {
-                dispatch(accountInfoFetchSuccess({ accountName, addresses: addressData }));
+                const unspentAddresses = getUnspentAddresses(selectedAccount.addresses);
+
+                if (isEmpty(unspentAddresses)) {
+                    return dispatch(
+                        accountInfoFetchSuccess({
+                            accountName,
+                            addresses: addressData,
+                            unspentAddressesHashes: existingHashes,
+                        }),
+                    );
+                }
+
+                return getTransactionHashes(unspentAddresses);
+            })
+            .then(latestHashes => {
+                const existingHashes = getExistingUnspentAddressesHashes(
+                    accountName,
+                    getState().account.unspentAddressesHashes,
+                );
+
+                const hasNewHashes = size(latestHashes) > size(existingHashes);
+                if (hasNewHashes) {
+                    const diff = difference(existingHashes, latestHashes);
+
+                    return getTransactionsObjects(diff);
+                }
+
+                return console.log('No diff.');
+            })
+            .then(txs => {
+                console.log('New tx objects', txs);
             })
             .catch(err => {
                 dispatch(accountInfoFetchError());
