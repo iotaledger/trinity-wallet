@@ -25,7 +25,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('viewSeed')}>
                             <View style={styles.item}>
                                 <Image source={keyImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>View seed</Text>
+                                <Text style={styles.titleText}>{t('viewSeed')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -33,7 +33,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('viewAddresses')}>
                             <View style={styles.item}>
                                 <Image source={addressesImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>View addresses</Text>
+                                <Text style={styles.titleText}>{t('viewAddresses')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -41,7 +41,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('editAccountName')}>
                             <View style={styles.item}>
                                 <Image source={editImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Edit account name</Text>
+                                <Text style={styles.titleText}>{t('editAccountName')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -49,7 +49,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.onDeleteAccountPress()}>
                             <View style={styles.item}>
                                 <Image source={deleteImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Delete account</Text>
+                                <Text style={styles.titleText}>{t('deleteAccount')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -60,7 +60,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('addNewAccount')}>
                             <View style={styles.item}>
                                 <Image source={addImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Add new account</Text>
+                                <Text style={styles.titleText}>{t('addNewAccount')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -71,7 +71,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Text style={styles.titleText}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -140,4 +140,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AdvancedSettings;
+export default translate(['accountmanagement', 'global'])(AdvancedSettings);
