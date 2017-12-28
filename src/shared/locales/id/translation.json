@@ -43,7 +43,9 @@
         "enterAccountName": "Masukkan nama akun.",
         "accountName": "Nama akun",
         "noNickname": "Tidak ada nama akun yang dimasukkan",
-        "noNicknameExplanation": "Silahkan masukkan nama akun untuk Seed Anda."
+        "noNicknameExplanation": "Silahkan masukkan nama akun untuk Seed Anda.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "Ups! Terjadi kesalahan",
@@ -99,7 +101,8 @@
         "emptyPasswordExplanation": "Anda harus memasukkan kata sandi untuk masuk ke menu. Silakan coba lagi.",
         "enterPassword": "Silahkan masukan kata sandi Anda.",
         "useSeed": "GUNAKAN SEED",
-        "login": "MASUK"
+        "login": "MASUK",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "Menyiapkan Seed untuk pertama kalinya.",
@@ -202,7 +205,9 @@
         "accountDeleted": "Hapus akun",
         "accountDeletedExplanation": "Akun anda telah dihapus dari dompet ini.",
         "cannotPerformAction": "Tidak dapat melakukan aksi ini",
-        "cannotPerformActionExplanation": "Klik aturan lanjut untuk menghapus dompet."
+        "cannotPerformActionExplanation": "Klik aturan lanjut untuk menghapus dompet.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "Tindakan ini tidak dapat diulang.",
@@ -214,7 +219,7 @@
         "areYouSure": "Anda yakin ingin melanjutkan?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Masukkan kata sandi untuk menghapus dompet anda.",
+        "enterPassword": "Enter your password to reset your wallet.",
         "cancel": "BATAL",
         "reset": "HAPUS"
     },

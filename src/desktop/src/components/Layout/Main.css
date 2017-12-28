@@ -43,7 +43,7 @@
 
 .sidebar {
     background: var(--color-item-bg);
-    flex: 1 1 var(--sidebar-width);
+    flex: 1 0 var(--sidebar-width);
     height: calc(100vh - var(--header-height));
     overflow: auto;
     text-align: center;

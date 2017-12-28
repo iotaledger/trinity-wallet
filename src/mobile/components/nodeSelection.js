@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import Dropdown from '../components/dropdown';
 import { width, height } from '../util/dimensions';
@@ -52,6 +53,13 @@ const styles = StyleSheet.create({
 });
 
 class NodeSelection extends Component {
+    static propTypes = {
+        node: PropTypes.string.isRequired,
+        nodes: PropTypes.array.isRequired,
+        backPress: PropTypes.func.isRequired,
+        setNode: PropTypes.func.isRequired,
+    };
+
     saveNodeSelection() {
         const { setNode, backPress } = this.props;
 
@@ -60,7 +68,7 @@ class NodeSelection extends Component {
     }
 
     render() {
-        const { node, nodes, backPress, t } = this.props;
+        const { node, nodes, backPress } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={() => this.dropdown.closeDropdown()}>
