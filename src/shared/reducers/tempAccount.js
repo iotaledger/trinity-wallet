@@ -19,8 +19,6 @@ const initialState = {
     copiedToClipboard: false,
     isPromoting: false,
     hasErrorFetchingAccountInfoOnLogin: false,
-    isFetchingNewAddressData: false,
-    hasErrorFetchingNewAddressData: false,
 };
 
 export default (state = initialState, action) => {
@@ -163,23 +161,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 hasErrorFetchingAccountInfoOnLogin: true,
-            };
-        case AccountActionTypes.NEW_ADDRESS_DATA_FETCH_REQUEST:
-            return {
-                ...state,
-                isFetchingNewAddressData: true,
-                hasErrorFetchingNewAddressData: false,
-            };
-        case AccountActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS:
-            return {
-                ...state,
-                isFetchingNewAddressData: false,
-            };
-        case AccountActionTypes.NEW_ADDRESS_DATA_FETCH_ERROR:
-            return {
-                ...state,
-                isFetchingNewAddressData: false,
-                hasErrorFetchingNewAddressData: true,
             };
         case AccountActionTypes.REMOVE_ACCOUNT:
             return {
