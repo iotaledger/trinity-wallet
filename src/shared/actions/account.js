@@ -54,9 +54,6 @@ export const ActionTypes = {
     FULL_ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FETCH_REQUEST',
     FULL_ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FETCH_SUCCESS',
     FULL_ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNT/FULL_ACCOUNT_INFO_FETCH_ERROR',
-    NEW_ADDRESS_DATA_FETCH_REQUEST: 'IOTA/ACCOUNT/NEW_ADDRESS_DATA_FETCH_REQUEST',
-    NEW_ADDRESS_DATA_FETCH_SUCCESS: 'IOTA/ACCOUNT/NEW_ADDRESS_DATA_FETCH_SUCCESS',
-    NEW_ADDRESS_DATA_FETCH_ERROR: 'IOTA/ACCOUNT/NEW_ADDRESS_DATA_FETCH_ERROR',
     MANUAL_SYNC_REQUEST: 'IOTA/ACCOUNT/MANUAL_SYNC_REQUEST',
     MANUAL_SYNC_SUCCESS: 'IOTA/ACCOUNT/MANUAL_SYNC_SUCCESS',
     MANUAL_SYNC_ERROR: 'IOTA/ACCOUNT/MANUAL_SYNC_ERROR',
@@ -99,19 +96,6 @@ export const fullAccountInfoFetchSuccess = payload => ({
 
 export const fullAccountInfoFetchError = () => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FETCH_ERROR,
-});
-
-export const newAddressDataFetchRequest = () => ({
-    type: ActionTypes.NEW_ADDRESS_DATA_FETCH_REQUEST,
-});
-
-export const newAddressDataFetchSuccess = payload => ({
-    type: ActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS,
-    payload,
-});
-
-export const newAddressDataFetchError = () => ({
-    type: ActionTypes.NEW_ADDRESS_DATA_FETCH_ERROR,
 });
 
 export const setFirstUse = payload => ({
@@ -445,28 +429,6 @@ export const getTransfers = (accountName, addresses) => {
                 });
             } else {
                 errorCallback();
-            }
-        });
-    };
-};
-
-export const getNewAddressData = (seed, accountName) => {
-    return (dispatch, getState) => {
-        dispatch(newAddressDataFetchRequest());
-
-        const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-        const index = Object.keys(selectedAccount.addresses).length - 1;
-
-        iota.api.getInputs(seed, { start: index }, (error, success) => {
-            if (!error) {
-                const newAddressData = success.inputs.reduce((obj, x) => {
-                    obj[x.address] = { balance: x.balance, spent: false };
-                    return obj;
-                }, {});
-
-                dispatch(newAddressDataFetchSuccess({ accountName, addresses: newAddressData }));
-            } else {
-                dispatch(newAddressDataFetchError()); // Also generate an alert
             }
         });
     };
