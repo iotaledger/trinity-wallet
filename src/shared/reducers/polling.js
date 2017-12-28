@@ -40,13 +40,13 @@ const setNextPollIfUnsuccessful = state => {
 
 const polling = (
     state = {
-        allPollingServices: ['marketData', 'price', 'chartData', 'newAddressData'],
-        pollFor: 'marketData',
+        allPollingServices: ['marketData', 'price', 'chartData', 'accountInfo'],
+        pollFor: 'accountInfo',
         retryCount: 0,
         isFetchingPrice: false,
         isFetchingChartData: false,
         isFetchingMarketData: false,
-        isFetchingNewAddressData: false,
+        isFetchingAccountInfo: false,
     },
     action,
 ) => {
@@ -102,21 +102,21 @@ const polling = (
                 isFetchingMarketData: false,
                 ...setNextPollIfUnsuccessful(state),
             };
-        case ActionTypes.NEW_ADDRESS_DATA_FETCH_REQUEST:
+        case ActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
-                isFetchingNewAddressData: true,
+                isFetchingAccountInfo: true,
             };
-        case ActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS:
+        case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
-                isFetchingNewAddressData: false,
+                isFetchingAccountInfo: false,
                 ...setNextPollIfSuccessful(state),
             };
-        case ActionTypes.NEW_ADDRESS_DATA_FETCH_ERROR:
+        case ActionTypes.ACCOUNT_INFO_FETCH_ERROR:
             return {
                 ...state,
-                isFetchingNewAddressData: false,
+                isFetchingAccountInfo: false,
                 ...setNextPollIfUnsuccessful(state),
             };
         default:
