@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
 import nodeImagePath from 'iota-wallet-shared-modules/images/node.png';
@@ -7,9 +8,14 @@ import crossImagePath from 'iota-wallet-shared-modules/images/cross.png';
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
-class AdvancedSettings extends React.Component {
+class AdvancedSettings extends Component {
+    static propTypes = {
+        setSetting: PropTypes.func.isRequired,
+        onResetWalletPress: PropTypes.func.isRequired,
+        node: PropTypes.string.isRequired,
+    };
+
     render() {
-        const { t } = this.props;
         return (
             <View style={styles.container}>
                 <View style={{ flex: 4.5 }}>

@@ -113,7 +113,12 @@
     "roots": [
       "../"
     ],
-    "setupTestFrameworkScriptFile": "./testConfig.js"
+    "setupTestFrameworkScriptFile": "./testConfig.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/containers/.*",
+      "/shared/"
+    ]
   },
   "react-native": {
     "zlib": "browserify-zlib",
@@ -140,6 +145,11 @@
     "tty": "tty-browserify",
     "vm": "vm-browserify",
     "tls": false
+  },
+  "rnpm": {
+    "android": {
+      "mainFilePath": "src/main/java/com/iotawallet/MainApplication.java"
+    }
   },
   "browser": {
     "zlib": "browserify-zlib",

@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
-class OnboardingComplete extends React.Component {
+class OnboardingComplete extends Component {
     onNextPress() {
         this.props.navigator.push({
             screen: 'login',
@@ -109,7 +108,7 @@ const styles = StyleSheet.create({
     party: {
         justifyContent: 'center',
         width: width,
-        height: width,
+        height: width, // FIXME: Might have been assigned incorrectly.
         position: 'absolute',
         top: -height / 10,
     },

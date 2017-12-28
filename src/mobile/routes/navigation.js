@@ -25,11 +25,12 @@ import { isIPhoneX } from '../util/device';
 function getGenerator(screen) {
     if (isIPhoneX) {
         return withSafeAreaView(screen);
-    } else {
-        return screen;
     }
+
+    return screen;
 }
-export function registerScreens(store, Provider) {
+
+export default function registerScreens(store, Provider) {
     Navigation.registerComponent('initialLoading', () => getGenerator(InitialLoading), store, Provider);
     Navigation.registerComponent('home', () => getGenerator(Home), store, Provider);
     Navigation.registerComponent('loading', () => getGenerator(Loading), store, Provider);
