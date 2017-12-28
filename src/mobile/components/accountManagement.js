@@ -7,6 +7,7 @@ import editImagePath from 'iota-wallet-shared-modules/images/edit.png';
 import deleteImagePath from 'iota-wallet-shared-modules/images/delete.png';
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import { translate } from 'react-i18next';
 
 class AdvancedSettings extends React.Component {
     render() {
