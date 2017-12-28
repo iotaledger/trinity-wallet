@@ -1,51 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, ListView, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
 } from '../../shared/selectors/account';
 import TransactionRow from '../components/transactionRow';
-import DropdownHolder from '../components/dropdownHolder';
-
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 import { width, height } from '../util/dimensions';
 
-class History extends React.Component {
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
+class History extends Component {
     static propTypes = {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
     };
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+
         this.state = { viewRef: null };
     }
 
+    // FIXME: findNodeHangle is not defined
     imageLoaded() {
         this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
     }
 
     copyBundleHash(item) {
         const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
         Clipboard.setString(item);
-        dropdown.alertWithType('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
+        generateAlert('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
     }
 
     copyAddress(item) {
         const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
         Clipboard.setString(item);
-        dropdown.alertWithType('success', t('addressCopied'), t('addressCopiedExplanation'));
+        generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
     render() {
         const { t, addresses, transfers } = this.props;
         const hasTransactions = transfers.length > 0;
 
+        // FIXME: closeTopBar is not defined
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
@@ -114,4 +115,8 @@ const mapStateToProps = ({ tempAccount, account }) => ({
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
 });
 
-export default translate(['history', 'global'])(connect(mapStateToProps)(History));
+const mapDispatchToProps = {
+    generateAlert,
+};
+
+export default translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History));

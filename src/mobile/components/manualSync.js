@@ -1,74 +1,9 @@
-import React, { Component } from 'react';
-import {
-    Image,
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Keyboard,
-    TouchableWithoutFeedback,
-    ActivityIndicator,
-} from 'react-native';
-import Fonts from '../theme/Fonts';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import GENERAL from '../theme/general';
-
 import { width, height } from '../util/dimensions';
-
-class ManualSync extends React.Component {
-    render() {
-        const { t } = this.props;
-
-        return (
-            <View style={styles.container}>
-                <View style={styles.topContainer}>
-                    <View style={{ flex: 0.5 }} />
-                    {!this.props.isSyncing && (
-                        <View style={styles.innerContainer}>
-                            <Text style={styles.infoText}>Press the button below to sync your account.</Text>
-                            <Text style={styles.infoText}>This may take a while.</Text>
-                            <Text style={styles.infoText}>You may notice your device slowing down.</Text>
-                            <View style={styles.syncButtonContainer}>
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        this.props.onManualSyncPress();
-                                    }}
-                                >
-                                    <View style={styles.syncButton}>
-                                        <Text style={styles.syncButtonText}>SYNC ACCOUNT</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    )}
-                    {this.props.isSyncing && (
-                        <View style={styles.innerContainer}>
-                            <Text style={styles.infoText}>Syncing your account.</Text>
-                            <Text style={styles.infoText}>This may take a while.</Text>
-                            <Text style={styles.infoText}>You may notice your device slowing down.</Text>
-                            <ActivityIndicator
-                                animating={this.props.syncing}
-                                style={styles.activityIndicator}
-                                size="large"
-                                color="#F7D002"
-                            />
-                        </View>
-                    )}
-                </View>
-                <View style={styles.bottomContainer}>
-                    {!this.props.isSyncing && (
-                        <TouchableOpacity onPress={event => this.props.backPress()}>
-                            <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                </View>
-            </View>
-        );
-    }
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -83,7 +18,7 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width: width,
+        width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -150,5 +85,60 @@ const styles = StyleSheet.create({
         marginTop: height / 40,
     },
 });
+
+const ManualSync = props => (
+    <View style={styles.container}>
+        <View style={styles.topContainer}>
+            <View style={{ flex: 0.5 }} />
+            {!props.isSyncing && (
+                <View style={styles.innerContainer}>
+                    <Text style={styles.infoText}>Press the button below to sync your account.</Text>
+                    <Text style={styles.infoText}>This may take a while.</Text>
+                    <Text style={styles.infoText}>You may notice your device slowing down.</Text>
+                    <View style={styles.syncButtonContainer}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                props.onManualSyncPress();
+                            }}
+                        >
+                            <View style={styles.syncButton}>
+                                <Text style={styles.syncButtonText}>SYNC ACCOUNT</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            )}
+            {props.isSyncing && (
+                <View style={styles.innerContainer}>
+                    <Text style={styles.infoText}>Syncing your account.</Text>
+                    <Text style={styles.infoText}>This may take a while.</Text>
+                    <Text style={styles.infoText}>You may notice your device slowing down.</Text>
+                    <ActivityIndicator
+                        animating={props.isSyncing}
+                        style={styles.activityIndicator}
+                        size="large"
+                        color="#F7D002"
+                    />
+                </View>
+            )}
+        </View>
+        <View style={styles.bottomContainer}>
+            {!props.isSyncing && (
+                <TouchableOpacity onPress={() => props.backPress()}>
+                    <View style={styles.item}>
+                        <Image source={arrowLeftImagePath} style={styles.icon} />
+                        <Text style={styles.titleText}>Back</Text>
+                    </View>
+                </TouchableOpacity>
+            )}
+        </View>
+    </View>
+);
+
+ManualSync.propTypes = {
+    isSyncing: PropTypes.bool.isRequired,
+    backPress: PropTypes.func.isRequired,
+    onManualSyncPress: PropTypes.func.isRequired,
+};
 
 export default ManualSync;
