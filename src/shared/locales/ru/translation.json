@@ -7,9 +7,9 @@
         "back": "НАЗАД",
         "done": "ГОТОВО",
         "next": "ДАЛЕЕ",
-        "manualCopy": "Ручное копирование",
-        "paperWallet": "Бумажный кошелек",
-        "copyToClipboard": "Скопировать в буфер обмена",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
         "qr": "QR-код",
         "notAvailable": "Эта функция не доступна",
         "notAvailableExplanation": "Это будет добавлено на более поздней стадии.",
@@ -27,7 +27,9 @@
         "unrecognisedPassword": "Пароль не распознан",
         "unrecognisedPasswordExplanation": "Некорректный пароль. Повторите попытку.",
         "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete."
+        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "somethingWentWrong": "Произошла ошибка",
+        "somethingWentWrongExplanation": "Пожалуйста, перезапустите приложение."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -64,10 +66,11 @@
     "copyToClipboard": {
         "seedCleared": "Ключ очищен",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
-        "seedCopied": "Ключ скопирован",
-        "seedCopiedExplanation":
-            "Ключ скопирован в буфер обмена на 60 секунд. По прошествии этого времени (или после нажатия \"ГОТОВО\") буфер обмена будет очищен.",
-        "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей."
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей.",
+        "doNotStore": "Do not store your seed in plain text.",
+        "copyToClipboard": "Copy to clipboard"
     },
     "enterSeed": {
         "invalidCharacters": "Ключ содержит недопустимые символы",
@@ -117,8 +120,6 @@
         "printWallet": "РАСПЕЧАТАННЫЙ В БУМАЖНОМ ВИДЕ КОШЕЛЕК"
     },
     "receive": {
-        "somethingWentWrong": "Произошла ошибка",
-        "somethingWentWrongExplanation": "Пожалуйста, перезапустите приложение.",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
         "generateNewAddress": "СГЕНЕРИРОВАТЬ НОВЫЙ АДРЕС",
@@ -126,15 +127,17 @@
         "removeMessage": "REMOVE MESSAGE"
     },
     "saveYourSeed": {
+        "seedCleared": "Seed cleared",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "You must save your seed with ",
         "atLeastOne": "по крайней мере один ",
         "ofTheOptions": "из представленных вариантов."
     },
     "seedReentry": {
-        "incorrectSeed": "Неверный ключ.",
+        "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
         "thisIsACheck": "Это проверка, чтобы убедиться, что вы сохранили свой ключ.",
-        "ifYouHaveNotSaved": "Если вы не сохранили свой ключ, пожалуйста, вернитесь на предыдущий экран и сделайте это."
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Неверный адрес",
@@ -206,7 +209,7 @@
         "areYouSure": "Вы уверены, что хотите продолжить?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ОТМЕНА",
         "reset": "СБРОС"
     },
@@ -230,5 +233,11 @@
         "yourSeedIs": "Ваш ключ имеет длину 81 символ, которые читаются слева направо. Запишите свой ключ и контрольную сумму и",
         "tripleCheck": "трижды проверьте,",
         "thatTheyAreCorrect": "что они правильны."
+    },
+    "history": {
+        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "addressCopied": "Адрес скопирован",
+        "addressCopiedExplanation": "The address has been copied to the clipboard."
     }
 }

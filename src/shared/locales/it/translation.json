@@ -209,7 +209,7 @@
         "areYouSure": "Sei sicuro di voler continuare?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Immetti la tua password per reimpostare il tuo portafoglio.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ANNULLA",
         "reset": "REIMPOSTA"
     },
