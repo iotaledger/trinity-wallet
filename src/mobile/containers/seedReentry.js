@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
@@ -20,6 +20,8 @@ class SeedReentry extends Component {
     static propTypes = {
         generateAlert: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
+        negativeColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -52,10 +54,10 @@ class SeedReentry extends Component {
 
     render() {
         const { seed } = this.state;
-        const { t } = this.props;
+        const { t, backgroundColor, negativeColor } = this.props;
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -77,7 +79,7 @@ class SeedReentry extends Component {
                                     labelPadding={3}
                                     baseColor="white"
                                     label={t('global:seed')}
-                                    tintColor="#F7D002"
+                                    tintColor={THEMES.getHSL(negativeColor)}
                                     autoCapitalize={'characters'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically
@@ -117,7 +119,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
@@ -224,6 +225,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
 const mapDispatchToProps = {

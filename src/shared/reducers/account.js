@@ -147,6 +147,7 @@ const account = (
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
             return {
                 ...state,
+                firstUse: false,
                 seedCount: state.seedCount + 1,
                 seedNames: [...state.seedNames, action.payload.accountName],
                 accountInfo: merge({}, state.accountInfo, {
@@ -157,7 +158,6 @@ const account = (
                     },
                 }),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-                firstUse: false,
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR:
             return {
