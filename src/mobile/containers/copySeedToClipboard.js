@@ -11,6 +11,7 @@ import COLORS from '../theme/Colors';
 import { width, height } from '../util/dimensions';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 class CopySeedToClipboard extends Component {
     static propTypes = {
@@ -68,9 +69,9 @@ class CopySeedToClipboard extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, positiveColor, backgroundColor, ctaColor } = this.props;
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -80,15 +81,17 @@ class CopySeedToClipboard extends Component {
                     <Text style={styles.infoTextBold}>{t('doNotStore')}</Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ marginTop: height / 22 }}>
-                        <View style={styles.copyButton}>
+                        <View style={[styles.copyButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
                             <Text style={styles.copyText}>{t('copyToClipboard').toUpperCase()}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
-                        <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, { borderColor: THEMES.getHSL(positiveColor) }]}>
+                            <Text style={[styles.doneText, { color: THEMES.getHSL(positiveColor) }]}>
+                                {t('global:done')}
+                            </Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -103,7 +106,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 0.4,
@@ -158,7 +160,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 40,
     },
     doneButton: {
-        borderColor: '#9DFFAF',
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
         width: width / 3,
@@ -168,7 +169,6 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     doneText: {
-        color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
@@ -185,7 +185,6 @@ const styles = StyleSheet.create({
         height: height / 12,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#009f3f',
     },
     copyText: {
         color: 'white',
@@ -226,6 +225,10 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    backgroundColor: state.settings.theme.backgroundColor,
+    positiveColor: state.settings.theme.positiveColor,
+    negativeColor: state.settings.theme.negativeColor,
+    ctaColor: state.settings.theme.ctaColor,
 });
 
 const mapDispatchToProps = {

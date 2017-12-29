@@ -18,7 +18,7 @@ import NodeSelection from '../components/nodeSelection';
 import EnterPassword from '../components/enterPassword';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain from '../util/keychain';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
@@ -37,6 +37,9 @@ class Login extends Component {
         getCurrencyData: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         setFullNode: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        positiveColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -71,8 +74,11 @@ class Login extends Component {
     }
 
     _renderModalContent = () => {
+        const { backgroundColor } = this.props;
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+            <View
+                style={{ width: width / 1.15, alignItems: 'center', backgroundColor: THEMES.getHSL(backgroundColor) }}
+            >
                 <View style={styles.modalContent}>
                     <Text style={styles.questionText}>Cannot connect to IOTA node.</Text>
                     <Text style={styles.infoText}>Do you want to select a different node?</Text>
@@ -136,6 +142,7 @@ class Login extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
             overrideBackPress: true,
@@ -149,7 +156,7 @@ class Login extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: COLORS.backgroundGreen,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 overrideBackPress: true,
             },
@@ -157,10 +164,18 @@ class Login extends Component {
     }
 
     render() {
+        const { backgroundColor, positiveColor, negativeColor } = this.props;
         return (
-            <View style={styles.container}>
+            <View style={[styles.container]}>
                 <StatusBar barStyle="light-content" />
-                {!this.state.changingNode && <EnterPassword onLoginPress={this.onLoginPress} />}
+                {!this.state.changingNode && (
+                    <EnterPassword
+                        backgroundColor={backgroundColor}
+                        negativeColor={negativeColor}
+                        positiveColor={positiveColor}
+                        onLoginPress={this.onLoginPress}
+                    />
+                )}
                 {this.state.changingNode && (
                     <View>
                         <View style={{ flex: 0.8 }} />
@@ -170,8 +185,8 @@ class Login extends Component {
                                     changeIotaNode(selectedNode);
                                     this.props.setFullNode(selectedNode);
                                 }}
-                                node={this.props.settings.fullNode}
-                                nodes={this.props.settings.availablePoWNodes}
+                                node={this.props.fullNode}
+                                nodes={this.props.availablePoWNodes}
                                 backPress={() => this.setState({ changingNode: false })}
                             />
                         </View>
@@ -203,7 +218,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
@@ -266,6 +280,9 @@ const mapStateToProps = state => ({
     availablePoWNodes: state.settings.availablePoWNodes,
     currency: state.settings.currency,
     hasErrorFetchingAccountInfoOnLogin: state.tempAccount.hasErrorFetchingAccountInfoOnLogin,
+    backgroundColor: state.settings.theme.backgroundColor,
+    positiveColor: state.settings.theme.positiveColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
 const mapDispatchToProps = {

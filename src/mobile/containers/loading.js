@@ -10,7 +10,7 @@ import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/s
 import keychain, { getSeed } from '../util/keychain';
 import { Navigation } from 'react-native-navigation';
 import IotaSpin from '../components/iotaSpin';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
@@ -44,7 +44,7 @@ class Loading extends Component {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: COLORS.backgroundGreen,
+                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                     },
                     overrideBackPress: true,
                 },
@@ -53,11 +53,18 @@ class Loading extends Component {
     }
 
     render() {
-        const { tempAccount: { ready }, account: { firstUse }, navigator, t } = this.props;
+        const {
+            tempAccount: { ready },
+            account: { firstUse },
+            navigator,
+            t,
+            negativeColor,
+            backgroundColor,
+        } = this.props;
 
         if (this.props.account.firstUse) {
             return (
-                <View style={styles.container}>
+                <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -68,7 +75,7 @@ class Loading extends Component {
                             animating={true}
                             style={styles.activityIndicator}
                             size="large"
-                            color="#F7D002"
+                            color={THEMES.getHSL(negativeColor)}
                         />
                     </View>
                     <View style={{ flex: 1 }} />
@@ -90,7 +97,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     infoText: {
         color: 'white',
@@ -114,6 +120,8 @@ const mapStateToProps = state => ({
     marketData: state.marketData,
     tempAccount: state.tempAccount,
     account: state.account,
+    backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
 const mapDispatchToProps = {
@@ -125,13 +133,14 @@ const mapDispatchToProps = {
 
 Loading.propTypes = {
     firstUse: PropTypes.bool.isRequired,
-    marketData: PropTypes.object.isRequired,
     tempAccount: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     getAccountInfo: PropTypes.func.isRequired,
     getFullAccountInfo: PropTypes.func.isRequired,
     selectedAccountName: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.object.isRequired,
 };
 
 export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));

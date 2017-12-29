@@ -8,16 +8,19 @@ import { width, height } from '../util/dimensions';
 
 class QRScanner extends Component {
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor, ctaColor } = this.props;
 
         return (
             <View style={styles.modalContent}>
-                <View style={{ alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+                <View style={{ alignItems: 'center', backgroundColor: backgroundColor }}>
                     <View style={{ height: height / 12 }} />
                     <Text style={styles.qrInfoText}>Scan your QR Code</Text>
                     <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
-                        <TouchableOpacity style={styles.closeButton} onPress={() => this.props.hideModal()}>
+                        <TouchableOpacity
+                            style={[styles.closeButton, { backgroundColor: ctaColor }]}
+                            onPress={() => this.props.hideModal()}
+                        >
                             <Text style={styles.closeButtonText}>CLOSE</Text>
                         </TouchableOpacity>
                     </View>
