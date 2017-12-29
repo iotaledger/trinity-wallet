@@ -10,8 +10,9 @@ import { randomBytes } from 'react-native-randombytes';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Navigation } from 'react-native-navigation';
+import OnboardingButtons from '../components/onboardingButtons';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
@@ -26,6 +27,9 @@ class NewSeedSetup extends Component {
         setSeed: PropTypes.func.isRequired,
         randomiseSeed: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -77,8 +81,7 @@ class NewSeedSetup extends Component {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundImageName: 'bg-blue.png',
-                        screenBackgroundColor: COLORS.backgroundGreen,
+                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                     },
                     overrideBackPress: true,
                 },
@@ -113,15 +116,16 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { tempAccount: { seed }, t } = this.props;
+        const { tempAccount: { seed }, t, ctaColor, backgroundColor, negativeColor } = this.props;
+        const viewOpacity = this.state.randomised ? 1 : 0.1;
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     <View style={{ flex: 150 }} />
                     <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
-                        <View style={styles.generateButton}>
+                        <View style={[styles.generateButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
                             <Text style={styles.generateText}>{t('pressForNewSeed')}</Text>
                         </View>
                     </TouchableOpacity>
@@ -129,24 +133,24 @@ class NewSeedSetup extends Component {
                 <View style={styles.midContainer}>
                     <View style={{ flex: isIPhoneX ? 100 : 30 }} />
                     <ListView
-                        contentContainerStyle={styles.list}
+                        contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
                         dataSource={ds.cloneWithRows(split(seed, ''))}
                         renderRow={(rowData, rowID, sectionID) => (
                             <TouchableHighlight
                                 key={sectionID}
                                 onPress={event => this.onItemPress(sectionID)}
                                 style={styles.tileContainer}
-                                underlayColor="#F7D002"
+                                underlayColor={THEMES.getHSL(negativeColor)}
                             >
                                 <View style={styles.tile}>
                                     <Text
                                         style={{
                                             backgroundColor: 'transparent',
-                                            color: '#1F4A54',
+                                            color: THEMES.getHSL(backgroundColor),
                                             fontFamily: 'Lato-Bold',
                                             fontSize: width / 28.9,
                                             textAlign: 'center',
-                                            opacity: this.state.randomised ? 1 : 0.1,
+                                            opacity: viewOpacity,
                                         }}
                                     >
                                         {rowData}
@@ -174,29 +178,12 @@ class NewSeedSetup extends Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <View style={styles.buttonsContainer}>
-                        <TouchableOpacity onPress={event => this.onBackPress()}>
-                            <View style={styles.leftButton}>
-                                <Text style={styles.leftText}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onNextPress()}>
-                            <View
-                                style={{
-                                    borderColor: '#9DFFAF',
-                                    borderWidth: 1.2,
-                                    borderRadius: GENERAL.borderRadius,
-                                    width: width / 3,
-                                    height: height / 14,
-                                    alignItems: 'center',
-                                    justifyContent: 'space-around',
-                                    opacity: this.state.randomised ? 1 : 0.3,
-                                }}
-                            >
-                                <Text style={styles.rightText}>{t('global:next')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this.onBackPress()}
+                        onRightButtonPress={() => this.onNextPress()}
+                        leftText={t('global:back')}
+                        rightText={t('global:next')}
+                    />
                 </View>
                 <StatefulDropdownAlert />
             </View>
@@ -208,7 +195,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 2.1,
@@ -269,7 +255,6 @@ const styles = StyleSheet.create({
         height: height / 16,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#009f3f',
     },
     generateText: {
         color: 'white',
@@ -349,6 +334,9 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
+    backgroundColor: state.settings.theme.backgroundColor,
+    ctaColor: state.settings.theme.ctaColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
 const mapDispatchToProps = {

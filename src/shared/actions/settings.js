@@ -9,6 +9,7 @@ export const ActionTypes = {
     SET_THEME: 'IOTA/SETTINGS/SET_THEME',
     SET_LANGUAGE: 'IOTA/SETTINGS/SET_LANGUAGE',
     SET_CURRENCY_DATA: 'IOTA/SETTINGS/SET_CURRENCY',
+    UPDATE_THEME: 'IOTA/SETTINGS/UPDATE_THEME',
 };
 
 export function setLocale(locale) {
@@ -81,6 +82,16 @@ export function addCustomNode(customNode) {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_NODE,
             payload: customNode,
+        });
+    };
+}
+
+export function updateTheme(theme, themeName) {
+    return dispatch => {
+        dispatch({
+            type: ActionTypes.UPDATE_THEME,
+            theme: theme,
+            themeName: themeName,
         });
     };
 }
