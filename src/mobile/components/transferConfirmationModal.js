@@ -20,7 +20,7 @@ class TransferConfirmationModal extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor } = this.props;
         let transferContents = null;
         if (this.props.amount === 0) {
             transferContents = <Text style={styles.iotaText}>a message</Text>;
@@ -33,7 +33,7 @@ class TransferConfirmationModal extends Component {
             );
         }
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
