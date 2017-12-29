@@ -265,5 +265,10 @@
     "addNewAccount":{
     "useExistingSeed": "Use existing seed",
     "createNewSeed": "Create new seed"
+    },
+    "advancedSettings":{
+    "selectNode": "Select node",
+    "addCustomNode": "Add custom node",
+    "manualSync": "Manual sync"
     }
 }
