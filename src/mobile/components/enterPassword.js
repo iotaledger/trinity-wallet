@@ -71,9 +71,9 @@ class EnterPassword extends Component {
 
     render() {
         const { password } = this.state;
-        const { t } = this.props;
-        const borderColor = { borderColor: THEMES.getHSL(this.props.positiveColor) };
-        const textColor = { color: THEMES.getHSL(this.props.positiveColor) };
+        const { t, positiveColor } = this.props;
+        const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
+        const textColor = { color: THEMES.getHSL(positiveColor) };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -123,6 +123,7 @@ class EnterPassword extends Component {
 EnterPassword.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
+    positiveColor: PropTypes.object.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPassword);

@@ -21,6 +21,8 @@ const initialState = {
     hasErrorFetchingAccountInfoOnLogin: false,
     isFetchingNewAddressData: false,
     hasErrorFetchingNewAddressData: false,
+    inactive: false,
+    minimised: false,
 };
 
 export default (state = initialState, action) => {
@@ -201,6 +203,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isSyncing: false,
+            };
+        case ActionTypes.SET_USER_ACTIVITY:
+            return {
+                ...state,
+                ...action.payload,
             };
         default:
             return state;
