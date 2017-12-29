@@ -808,10 +808,6 @@ home-or-tmp@^2.0.0:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.1"
 
-i18next@^10.2.1:
-  version "10.2.1"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.2.1.tgz#bec61a98d7976c3084147cc2cd2bafdeff9088f2"
-
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"

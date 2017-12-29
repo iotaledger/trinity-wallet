@@ -209,7 +209,7 @@
         "areYouSure": "계속하시겠습니까?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "취소",
         "reset": "초기화"
     },

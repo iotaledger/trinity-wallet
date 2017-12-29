@@ -19,7 +19,7 @@ import {
 } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
-import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
+import { setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 
 const mapStateToProps = state => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),

@@ -14,10 +14,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        backgroundColor: COLORS.backgroundDarkGreen,
         opacity: 0.98,
         paddingBottom: height / 65,
-        shadowColor: COLORS.backgroundDarkGreen,
         shadowRadius: 4,
         shadowOffset: {
             width: 0,
@@ -38,7 +36,11 @@ class Tabs extends Component {
             }),
         );
 
-        const tabContainer = <View style={styles.tabBar}>{childComponents}</View>;
+        const tabContainer = (
+            <View style={[styles.tabBar, { backgroundColor: this.props.barColor, shadowColor: this.props.barColor }]}>
+                {childComponents}
+            </View>
+        );
 
         if (isAndroid) {
             return (

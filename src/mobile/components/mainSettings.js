@@ -107,7 +107,7 @@ const MainSettings = props => (
                         <Text style={styles.titleText}>Theme</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
-                        <Text style={styles.settingText}>{props.theme}</Text>
+                        <Text style={styles.settingText}>{props.themeName}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -191,7 +191,7 @@ const MainSettings = props => (
 
 MainSettings.propTypes = {
     currency: PropTypes.string.isRequired,
-    theme: PropTypes.string.isRequired,
+    themeName: PropTypes.string.isRequired,
     mode: PropTypes.string.isRequired,
     onModePress: PropTypes.func.isRequired,
     onLanguagePress: PropTypes.func.isRequired,

@@ -209,7 +209,7 @@
         "areYouSure": "Devam etmek istediğine emin misin?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "İPTAL",
         "reset": "SIFIRLA"
     },
