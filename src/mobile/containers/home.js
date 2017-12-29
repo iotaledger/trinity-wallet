@@ -101,6 +101,7 @@ class Home extends Component {
     render() {
         const { t, navigator, inactive, minimised } = this.props;
 
+        console.log(this.props.account);
         return (
             <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={this.handleInactivity}>
                 <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>

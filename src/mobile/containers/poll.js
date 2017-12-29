@@ -88,7 +88,7 @@ export class Poll extends Component {
     }
 
     startBackgroundProcesses() {
-        timer.setInterval('polling', () => this.fetch(this.props.pollFor), 10000);
+        timer.setInterval('polling', () => this.fetch(this.props.pollFor), 1000);
     }
 
     render() {
