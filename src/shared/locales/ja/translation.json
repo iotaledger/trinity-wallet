@@ -209,7 +209,7 @@
         "areYouSure": "本当に続行しますか？"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "キャンセル",
         "reset": "リセット"
     },

@@ -209,7 +209,7 @@
         "areYouSure": "Är du säker på att du vill fortsätta?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "AVBRYT",
         "reset": "ÅTERSTÄLL"
     },
