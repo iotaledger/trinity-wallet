@@ -1,22 +1,39 @@
 import assign from 'lodash/assign';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import clone from 'lodash/clone';
+import concat from 'lodash/concat';
+import merge from 'lodash/merge';
 import difference from 'lodash/difference';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import reduce from 'lodash/reduce';
 import size from 'lodash/size';
+import some from 'lodash/some';
 import includes from 'lodash/includes';
 import { getUrlTimeFormat, getUrlNumberFormat, setPrice, setChartData, setMarketData } from './marketData';
-import { setBalance } from './account';
-import { generateAccountInfoErrorAlert } from './alerts';
-import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
+import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
+import {
+    setNewUnconfirmedBundleTails,
+    updateUnconfirmedBundleTails,
+    removeBundleFromUnconfirmedBundleTails,
+} from './account';
+import { getFirstConsistentTail, isWithinAnHour } from '../libs/promoter';
+import {
+    getSelectedAccount,
+    getExistingUnspentAddressesHashes,
+    getPendingTxTailsHashesForSelectedAccount,
+} from '../selectors/account';
 import { iota } from '../libs/iota';
 import {
     getUnspentAddresses,
     mergeLatestTransfersInOld,
     formatTransfers,
     markTransfersConfirmed,
+    getPendingTxTailsHahses,
 } from '../libs/accountUtils';
+import { rearrangeObjectKeys } from '../libs/util';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
@@ -32,6 +49,9 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_REQUEST',
     ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_SUCCESS',
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/POLLING/ACCOUNT_INFO_FETCH_ERROR',
+    PROMOTE_TRANSACTION_REQUEST: 'IOTA/POLLING/PROMOTE_TRANSACTION_REQUEST',
+    PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
+    PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
 };
 
 const fetchPriceRequest = () => ({
@@ -81,6 +101,18 @@ const accountInfoFetchSuccess = payload => ({
 
 const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
+});
+
+const promoteTransactionRequest = () => ({
+    type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+});
+
+const promoteTransactionSuccess = () => ({
+    type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
+});
+
+const promoteTransactionError = () => ({
+    type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
 });
 
 export const setPollFor = payload => ({
@@ -198,6 +230,8 @@ const getLatestAddresses = (seed, index) => {
 };
 
 const getTransactionHashes = addresses => {
+    console.log('GET TRANSACTION OBJECTS', addresses);
+
     return new Promise((resolve, reject) => {
         iota.api.findTransactions({ addresses }, (err, hashes) => {
             if (err) {
@@ -210,6 +244,7 @@ const getTransactionHashes = addresses => {
 };
 
 const getTransactionsObjects = hashes => {
+    console.log('GET TX OBJECTS', hashes);
     return new Promise((resolve, reject) => {
         iota.api.getTransactionsObjects(hashes, (err, txs) => {
             if (err) {
@@ -222,36 +257,46 @@ const getTransactionsObjects = hashes => {
 };
 
 const getInclusionWithHashes = hashes => {
+    console.log('GET INCLUSION WITH HAHSES', hashes);
     return new Promise((resolve, reject) => {
         iota.api.getLatestInclusion(hashes, (err, states) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(states, hashes);
+                resolve({ states, hashes });
             }
         });
     });
 };
 
 const getBundleWithPersistence = (tailTxHash, persistence) => {
+    console.log('UMAIRS');
+    console.log('TAIL TX HASHES', tailTxHash);
     return new Promise((resolve, reject) => {
-        iota.api.getBundles(tailTxHash, (err, bundle) => {
+        iota.api.getBundle(tailTxHash, (err, bundle) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(assign({}, bundle, { persistence }));
+                console.log('WHAT', bundle);
+                resolve(map(bundle, tx => assign({}, tx, { persistence })));
             }
         });
     });
 };
 
 const getBundlesWithPersistence = (inclusionStates, hashes) => {
+    console.log('SARFRAZ', inclusionStates);
+    console.log('SARFRAZ', hashes);
     return reduce(
         hashes,
         (promise, hash, idx) => {
             return promise
                 .then(result => {
-                    return getBundleWithPersistence(hash, inclusionStates[idx]).then(bundle => result.concat(bundle));
+                    return getBundleWithPersistence(hash, inclusionStates[idx]).then(bundle => {
+                        result.push(bundle);
+
+                        return result;
+                    });
                 })
                 .catch(console.error);
         },
@@ -277,7 +322,10 @@ export const getAccountInfo = (seed, accountName) => {
             getState().account.unspentAddressesHashes,
         );
 
-        const pendingTxTailsHashes = getState().account.pendingTxTailsHashes;
+        const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
+            accountName,
+            getState().account.pendingTxTailsHashes,
+        );
 
         let payload = {
             accountName,
@@ -330,7 +378,7 @@ export const getAccountInfo = (seed, accountName) => {
 
                 return getInclusionWithHashes(map(tailTxs, t => t.hash));
             })
-            .then(getBundlesWithPersistence)
+            .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
             .then(bundles => {
                 console.log('Bundles', bundles);
 
@@ -345,7 +393,7 @@ export const getAccountInfo = (seed, accountName) => {
 
                 return getInclusionWithHashes(pendingTxTailsHashes);
             })
-            .then(getConfirmedTxTailsHashes)
+            .then(({ states, hashes }) => getConfirmedTxTailsHashes(states, hashes))
             .then(confirmedHashes => {
                 if (isEmpty(confirmedHashes)) {
                     throw new Error('intentionally break chain');
@@ -369,4 +417,116 @@ export const getAccountInfo = (seed, accountName) => {
                 }
             });
     };
+};
+
+export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
+    dispatch(promoteTransactionRequest());
+
+    // Create a copy so you can mutate easily
+    let consistentTails = map(tails, clone);
+    let allTails = map(tails, clone);
+
+    const alertArguments = (title, message, status = 'success') => [status, title, message];
+
+    const promote = tail => {
+        const spamTransfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }];
+
+        return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, err => {
+            if (err) {
+                if (err.message.indexOf('Inconsistent subtangle') > -1) {
+                    consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
+
+                    return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
+                        if (!consistentTail) {
+                            return dispatch(promoteTransactionError());
+                        }
+
+                        return promote(consistentTail);
+                    });
+                }
+
+                return dispatch(promoteTransactionError());
+            }
+
+            dispatch(
+                generateAlert(...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`)),
+            );
+
+            const existingBundlesInStore = getState().account.unconfirmedBundleTails;
+            const updatedBundles = merge({}, existingBundlesInStore, { [bundle]: allTails });
+
+            dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedBundles, bundle)));
+            return dispatch(promoteTransactionSuccess());
+        });
+    };
+
+    return iota.api.findTransactionObjects({ bundles: [bundle] }, (err, txs) => {
+        if (err) {
+            return dispatch(promoteTransactionError());
+        }
+
+        const tailsFromLatestTransactionObjects = filter(txs, t => {
+            const attachmentTimestamp = get(t, 'attachmentTimestamp');
+            const hasMadeReattachmentWithinAnHour = isWithinAnHour(attachmentTimestamp);
+
+            return !t.persistence && t.currentIndex === 0 && t.value > 0 && hasMadeReattachmentWithinAnHour;
+        });
+
+        if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
+            dispatch(updateUnconfirmedBundleTails({ [bundle]: tailsFromLatestTransactionObjects }));
+
+            // Assign updated tails to the local copy
+            allTails = tailsFromLatestTransactionObjects;
+        }
+
+        return iota.api.getLatestInclusion(map(allTails, t => t.hash), (err, states) => {
+            if (err) {
+                return dispatch(promoteTransactionError());
+            }
+
+            if (some(states, state => state)) {
+                dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
+
+                return dispatch(promoteTransactionSuccess()); // In case the transaction is approved, no need to go further and promote it.
+            }
+
+            return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
+                if (!consistentTail) {
+                    // Grab hash from the top tail to replay
+                    const topTx = head(allTails);
+                    const txHash = get(topTx, 'hash');
+
+                    return iota.api.replayBundle(txHash, 3, 14, (err, newTxs) => {
+                        if (err) {
+                            return dispatch(promoteTransactionError());
+                        }
+
+                        dispatch(
+                            generateAlert(
+                                ...alertArguments(
+                                    'Autoreattaching to Tangle',
+                                    `Reattaching transaction with hash ${txHash}`,
+                                ),
+                            ),
+                        );
+
+                        const newTail = filter(newTxs, t => t.currentIndex === 0);
+                        // Update local copy for all tails
+                        allTails = concat([], newTail, allTails);
+
+                        // Probably unnecessary at this point
+                        consistentTails = concat([], newTail, consistentTails);
+                        const existingBundlesInStore = getState().account.unconfirmedBundleTails;
+
+                        const updateBundles = merge({}, existingBundlesInStore, { [bundle]: allTails });
+                        dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updateBundles, bundle)));
+
+                        return dispatch(promoteTransactionError());
+                    });
+                }
+
+                return promote(consistentTail);
+            });
+        });
+    });
 };

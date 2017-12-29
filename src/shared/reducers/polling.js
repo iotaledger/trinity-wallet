@@ -40,13 +40,14 @@ const setNextPollIfUnsuccessful = state => {
 
 const polling = (
     state = {
-        allPollingServices: ['marketData', 'price', 'chartData', 'accountInfo'],
+        allPollingServices: ['marketData', 'price', 'chartData', 'accountInfo', 'promotion'],
         pollFor: 'accountInfo',
         retryCount: 0,
         isFetchingPrice: false,
         isFetchingChartData: false,
         isFetchingMarketData: false,
         isFetchingAccountInfo: false,
+        isPromoting: false,
     },
     action,
 ) => {
@@ -117,6 +118,23 @@ const polling = (
             return {
                 ...state,
                 isFetchingAccountInfo: false,
+                ...setNextPollIfUnsuccessful(state),
+            };
+        case ActionTypes.PROMOTE_TRANSACTION_REQUEST:
+            return {
+                ...state,
+                isPromoting: true,
+            };
+        case ActionTypes.PROMOTE_TRANSACTION_SUCCESS:
+            return {
+                ...state,
+                isPromoting: false,
+                ...setNextPollIfSuccessful(state),
+            };
+        case ActionTypes.PROMOTE_TRANSACTION_ERROR:
+            return {
+                ...state,
+                isPromoting: false,
                 ...setNextPollIfUnsuccessful(state),
             };
         default:
