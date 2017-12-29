@@ -7,6 +7,7 @@ import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 class EditAccountName extends Component {
     static propTypes = {
@@ -45,7 +46,7 @@ class EditAccountName extends Component {
                                 labelPadding={3}
                                 baseColor="white"
                                 label="Account name"
-                                tintColor="#F7D002"
+                                tintColor={THEMES.getHSL(this.props.negativeColor)}
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}

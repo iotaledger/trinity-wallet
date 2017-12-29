@@ -5,6 +5,7 @@ import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import { TextField } from 'react-native-material-textfield';
+import THEMES from '../theme/themes';
 
 const styles = StyleSheet.create({
     container: {
@@ -114,7 +115,7 @@ class AddCustomNode extends Component {
                             labelPadding={3}
                             baseColor="white"
                             label="Custom node"
-                            tintColor="#F7D002"
+                            tintColor={THEMES.getHSL(this.props.negativeColor)}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically={true}

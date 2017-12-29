@@ -11,6 +11,7 @@ import Fonts from '../theme/Fonts';
 import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 class ChangePassword extends Component {
     static propTypes = {
@@ -100,7 +101,7 @@ class ChangePassword extends Component {
             labelFontSize: height / 55,
             fontSize: height / 40,
             baseColor: Colors.white,
-            tintColor: Colors.orangeDark,
+            tintColor: THEMES.getHSL(this.props.negativeColor),
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,

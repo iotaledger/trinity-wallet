@@ -11,7 +11,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { persistor } from '../store';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar } from 'react-native';
 import COLORS from '../theme/Colors';
-import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -31,6 +31,8 @@ class WalletResetRequirePassword extends Component {
         clearTempData: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -52,7 +54,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: COLORS.backgroundGreen,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 overrideBackPress: true,
             },
@@ -70,8 +72,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: COLORS.backgroundGreen,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 overrideBackPress: true,
             },
@@ -111,10 +112,27 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, negativeColor } = this.props;
+        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+
+        const onboardingButtonsOverride = {
+            rightButton: {
+                borderColor: COLORS.red,
+            },
+            rightText: {
+                color: COLORS.red,
+                fontFamily: Fonts.secondary,
+            },
+            leftButton: {
+                borderColor: THEMES.getHSL(negativeColor),
+            },
+            leftText: {
+                color: THEMES.getHSL(negativeColor),
+            },
+        };
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, backgroundColor]}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -161,22 +179,11 @@ class WalletResetRequirePassword extends Component {
     }
 }
 
-const onboardingButtonsOverride = StyleSheet.create({
-    rightButton: {
-        borderColor: COLORS.red,
-    },
-    rightText: {
-        color: COLORS.red,
-        fontFamily: Fonts.secondary,
-    },
-});
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topWrapper: {
         flex: 1.3,
@@ -210,22 +217,6 @@ const styles = StyleSheet.create({
         paddingLeft: width / 7,
         paddingRight: width / 7,
         paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
-    newSeedButton: {
-        borderColor: COLORS.orangeDark,
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginRight: width / 10,
-    },
-    newSeedText: {
-        color: COLORS.orangeDark,
-        fontFamily: Fonts.tertiary,
-        fontSize: width / 25.3,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -280,6 +271,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     password: state.tempAccount.password,
+    negativeColor: state.settings.theme.negativeColor,
+    backgroundColor: state.settings.theme.backgroundColor,
 });
 
 const mapDispatchToProps = {

@@ -17,6 +17,7 @@ class History extends Component {
     static propTypes = {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
+        closeTopBar: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -46,7 +47,6 @@ class History extends Component {
         const { t, addresses, transfers } = this.props;
         const hasTransactions = transfers.length > 0;
 
-        // FIXME: closeTopBar is not defined
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>

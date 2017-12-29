@@ -11,7 +11,7 @@ class LogoutConfirmationModal extends Component {
         const { t } = this.props;
 
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={styles.modalContent}>
                     <Text style={styles.questionText}>Are you sure you want to log out?</Text>
                     <OnboardingButtons
