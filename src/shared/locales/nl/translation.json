@@ -209,7 +209,7 @@
         "areYouSure": "Weet u zeker dat u wilt doorgaan?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Voer uw wachtwoord in om uw wallet opnieuw in te stellen.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ANNULEREN",
         "reset": "RESET"
     },
