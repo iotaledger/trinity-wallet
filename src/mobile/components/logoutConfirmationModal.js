@@ -8,7 +8,7 @@ import { width, height } from '../util/dimensions';
 
 class LogoutConfirmationModal extends Component {
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor } = this.props;
 
         return (
             <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
