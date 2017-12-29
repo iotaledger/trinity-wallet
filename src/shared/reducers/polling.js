@@ -137,6 +137,11 @@ const polling = (
                 isPromoting: false,
                 ...setNextPollIfUnsuccessful(state),
             };
+        case ActionTypes.SET_POLL_FOR:
+            return {
+                ...state,
+                pollFor: action.payload,
+            };
         default:
             return state;
     }
