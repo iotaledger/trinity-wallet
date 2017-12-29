@@ -283,19 +283,6 @@ const styles = StyleSheet.create({
         flex: 6.5,
         alignItems: 'center',
     },
-    titleTextLeft: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-    },
-    titleTextRight: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-        marginRight: width / 25,
-    },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -309,13 +296,26 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     iconLeft: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
+    },
+    titleTextLeft: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
     },
     iconRight: {
-        width: width / 22,
-        height: width / 22,
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
     },
     checksum: {
         width: width / 8,
