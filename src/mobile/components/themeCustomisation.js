@@ -18,6 +18,7 @@ import chevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import Triangle from 'react-native-triangle';
+import cloneDeep from 'lodash/cloneDeep';
 
 class ThemeCustomisation extends React.Component {
     constructor(props) {
@@ -30,7 +31,13 @@ class ThemeCustomisation extends React.Component {
     }
 
     onApplyPress(theme, themeName) {
-        this.props.updateTheme(theme, themeName);
+        const newTheme = cloneDeep(theme);
+        const newThemeName = cloneDeep(themeName);
+        this.props.updateTheme(newTheme, newThemeName);
+    }
+
+    onAdvancedPress() {
+        this.props.onAdvancedPress();
     }
 
     render() {
@@ -51,7 +58,12 @@ class ThemeCustomisation extends React.Component {
                             defaultOption={themeName}
                             options={themes}
                             saveSelection={t => {
-                                this.setState({ themeName: t, theme: THEMES.themes[t] });
+                                const newTHEMES = cloneDeep(THEMES);
+                                let newTheme = newTHEMES.themes[t];
+                                if (t === 'Custom' && this.props.themeName === 'Custom') {
+                                    newTheme = this.props.theme;
+                                }
+                                this.setState({ themeName: t, theme: newTheme });
                             }}
                         />
                     </View>
@@ -110,21 +122,21 @@ class ThemeCustomisation extends React.Component {
                             </View>
                         </View>
                     </View>
-                    <TouchableOpacity onPress={() => this.props.onAdvancedPress()} style={styles.advancedButton}>
+                    <TouchableOpacity onPress={() => this.onAdvancedPress()} style={styles.advancedButton}>
                         <Text style={styles.advancedText}>ADVANCED</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.props.backPress()}>
                         <View style={styles.itemLeft}>
-                            <Image source={arrowLeftImagePath} style={[styles.icon, { marginRight: width / 25 }]} />
-                            <Text style={styles.titleText}>Back</Text>
+                            <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                            <Text style={styles.titleTextLeft}>Back</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.onApplyPress(theme, themeName)}>
                         <View style={styles.itemRight}>
-                            <Text style={[styles.titleText, { marginRight: width / 25 }]}>Apply</Text>
-                            <Image source={tickImagePath} style={styles.icon} />
+                            <Text style={styles.titleTextRight}>Apply</Text>
+                            <Image source={tickImagePath} style={styles.iconRight} />
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -194,15 +206,27 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
-    titleText: {
+    titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+    },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
     },
     advancedButton: {
         borderColor: 'rgba(255, 255, 255, 0.6)',
