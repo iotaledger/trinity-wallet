@@ -7,7 +7,6 @@ import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { setFirstUse } from 'iota-wallet-shared-modules/actions/account';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
@@ -19,7 +18,7 @@ import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
 import Promoter from './promoter';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
@@ -77,10 +76,6 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
-    componentDidMount() {
-        this.props.setFirstUse(false); // TODO: Make sure we know why we are calling this prop method here.
-    }
-
     onLoginPress = password => {
         const { t, tempAccount } = this.props;
 
@@ -97,17 +92,30 @@ class Home extends Component {
         }
     };
 
+    componentDidMount() {
+        console.log(this.props.account.firstUse);
+    }
+
     handleInactivity = () => {
         const { setUserActivity } = this.props;
-        setUserActivity({ inactive: true });
+        //setUserActivity({ inactive: true });
     };
 
     render() {
-        const { t, navigator, inactive, minimised, startBackgroundProcesses, endBackgroundProcesses } = this.props;
+        const {
+            t,
+            navigator,
+            inactive,
+            minimised,
+            startBackgroundProcesses,
+            endBackgroundProcesses,
+            barColor,
+            backgroundColor,
+        } = this.props;
 
         return (
             <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={this.handleInactivity}>
-                <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
+                <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
                     <StatusBar barStyle="light-content" />
                     {!inactive &&
                         !minimised && (
@@ -121,7 +129,10 @@ class Home extends Component {
                                     />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <Tabs onPress={name => this.props.changeHomeScreenRoute(name)}>
+                                    <Tabs
+                                        onPress={name => this.props.changeHomeScreenRoute(name)}
+                                        barColor={THEMES.getHSL(barColor)}
+                                    >
                                         <Tab name="balance" icon={balanceImagePath} text={t('home:balance')} />
                                         <Tab name="send" icon={sendImagePath} text={t('home:send')} />
                                         <Tab name="receive" icon={receiveImagePath} text={t('home:receive')} />
@@ -153,19 +164,19 @@ const mapStateToProps = state => ({
     account: state.account,
     inactive: state.app.inactive,
     minimised: state.app.minimised,
+    barColor: state.settings.theme.barColor,
+    backgroundColor: state.settings.theme.backgroundColor,
 });
 
 const mapDispatchToProps = {
     changeHomeScreenRoute,
     generateAlert,
-    setFirstUse,
     clearTempData,
     setPassword,
     setUserActivity,
 };
 
 Home.propTypes = {
-    setFirstUse: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     navigator: PropTypes.object.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
@@ -175,6 +186,8 @@ Home.propTypes = {
     minimised: PropTypes.bool.isRequired,
     startBackgroundProcesses: PropTypes.func.isRequired,
     endBackgroundProcesses: PropTypes.func.isRequired,
+    backgroundColor: PropTypes.object.isRequired,
+    barColor: PropTypes.object.isRequired,
 };
 
 export default withUserActivity()(

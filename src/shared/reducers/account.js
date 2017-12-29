@@ -132,7 +132,6 @@ const account = (
                 ...state,
                 firstUse: true,
             };
-        case ActionTypes.MANUAL_SYNC_SUCCESS:
         case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
@@ -148,6 +147,7 @@ const account = (
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
             return {
                 ...state,
+                firstUse: false,
                 seedCount: state.seedCount + 1,
                 seedNames: [...state.seedNames, action.payload.accountName],
                 accountInfo: merge({}, state.accountInfo, {
@@ -162,7 +162,7 @@ const account = (
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR:
             return {
                 ...state,
-                firstUse: false,
+                firstUse: true,
             };
         default:
             return state;

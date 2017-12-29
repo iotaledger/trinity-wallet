@@ -61,17 +61,6 @@ export default (state = initialState, action) => {
                 ...state,
                 isGeneratingReceiveAddress: false,
             };
-        case ActionTypes.MANUAL_SYNC_REQUEST:
-            return {
-                ...state,
-                isSyncing: true,
-            };
-        case ActionTypes.MANUAL_SYNC_SUCCESS:
-        case ActionTypes.MANUAL_SYNC_ERROR:
-            return {
-                ...state,
-                isSyncing: false,
-            };
         case ActionTypes.SEND_TRANSFER_REQUEST:
             return {
                 ...state,
@@ -203,8 +192,12 @@ export default (state = initialState, action) => {
                 ...state,
                 isSyncing: true,
             };
-        case AccountActionTypes.MANUAL_SYNC_ERROR:
         case AccountActionTypes.MANUAL_SYNC_SUCCESS:
+            return {
+                ...state,
+                isSyncing: false,
+            };
+        case ActionTypes.MANUAL_SYNC_ERROR:
             return {
                 ...state,
                 isSyncing: false,

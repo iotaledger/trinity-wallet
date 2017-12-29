@@ -9,6 +9,7 @@ import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import { clearTempData, setPassword, setSetting } from '../../shared/actions/tempAccount';
 import {
     changeAccountName,
@@ -20,7 +21,12 @@ import {
     getSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
 } from 'iota-wallet-shared-modules/selectors/account';
-import { setFullNode, getCurrencyData, addCustomPoWNode } from 'iota-wallet-shared-modules/actions/settings';
+import {
+    setFullNode,
+    getCurrencyData,
+    addCustomPoWNode,
+    updateTheme,
+} from 'iota-wallet-shared-modules/actions/settings';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
@@ -120,7 +126,6 @@ class Settings extends Component {
         availableCurrencies: PropTypes.array.isRequired,
         fullNode: PropTypes.string.isRequired,
         availablePoWNodes: PropTypes.array.isRequired,
-        theme: PropTypes.string.isRequired,
         isSyncing: PropTypes.bool.isRequired,
         t: PropTypes.func.isRequired,
         manuallySyncAccount: PropTypes.func.isRequired,
@@ -134,6 +139,15 @@ class Settings extends Component {
         setPassword: PropTypes.func.isRequired,
         fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
         addCustomPoWNode: PropTypes.func.isRequired,
+        updateTheme: PropTypes.func.isRequired,
+        theme: PropTypes.object.isRequired,
+        themeName: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        barColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.object.isRequired,
+        positiveColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
+        extraColor: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -153,11 +167,11 @@ class Settings extends Component {
                 setSetting: setting => this.props.setSetting(setting),
                 setModalContent: content => this.setModalContent(content),
                 on2FASetupPress: () => this.featureUnavailable(),
-                onThemePress: () => this.featureUnavailable(),
+                onThemePress: () => this.props.setSetting('themeCustomisation'),
                 onModePress: () => this.featureUnavailable(),
                 mode: this.props.mode,
                 onLanguagePress: () => this.featureUnavailable(),
-                theme: this.props.theme,
+                themeName: this.props.themeName,
                 currency: this.props.currency,
             },
             advancedSettings: {
@@ -174,6 +188,7 @@ class Settings extends Component {
                 password: this.props.password,
                 backPress: () => this.props.setSetting('accountManagement'),
                 onWrongPassword: () => this.onWrongPassword(),
+                negativeColor: this.props.negativeColor,
             },
             viewAddresses: {
                 addressData: this.props.selectedAccount.addresses,
@@ -184,6 +199,7 @@ class Settings extends Component {
                 accountName: this.props.selectedAccountName,
                 saveAccountName: accountName => this.saveAccountName(accountName),
                 backPress: () => this.props.setSetting('accountManagement'),
+                negativeColor: this.props.negativeColor,
             },
             deleteAccount: {
                 backPress: () => this.props.setSetting('accountManagement'),
@@ -191,6 +207,8 @@ class Settings extends Component {
                 onWrongPassword: () => this.onWrongPassword(),
                 deleteAccount: () => this.deleteAccount(),
                 currentAccountName: this.props.selectedAccountName,
+                negativeColor: this.props.negativeColor,
+                backgroundColor: this.props.backgroundColor,
             },
             addNewAccount: {
                 addExistingSeed: () => this.props.setSetting('addExistingSeed'),
@@ -201,6 +219,9 @@ class Settings extends Component {
                 seedCount: this.props.seedCount,
                 addAccount: (seed, accountName) => this.addExistingSeed(seed, accountName),
                 backPress: () => this.props.setSetting('addNewAccount'),
+                negativeColor: this.props.negativeColor,
+                backgroundColor: this.props.backgroundColor,
+                ctaColor: this.props.ctaColor,
             },
             nodeSelection: {
                 setNode: selectedNode => {
@@ -223,6 +244,7 @@ class Settings extends Component {
                 onAddNodeError: () => this.onAddNodeError(),
                 onAddNodeSuccess: customNode => this.onAddNodeSuccess(customNode),
                 backPress: () => this.props.setSetting('advancedSettings'),
+                negativeColor: this.props.negativeColor,
             },
             currencySelection: {
                 getCurrencyData: currency => this.props.getCurrencyData(currency),
@@ -239,11 +261,30 @@ class Settings extends Component {
                 setPassword: password => this.props.setPassword(password),
                 backPress: () => this.props.setSetting('mainSettings'),
                 generateAlert: this.props.generateAlert,
+                negativeColor: this.props.negativeColor,
             },
             manualSync: {
                 onManualSyncPress: () => this.onManualSyncPress(),
                 backPress: () => this.props.setSetting('advancedSettings'),
                 isSyncing: this.props.isSyncing,
+            },
+            themeCustomisation: {
+                backPress: () => this.props.setSetting('mainSettings'),
+                onAdvancedPress: () => this.props.setSetting('advancedThemeCustomisation'),
+                backgroundColor: this.props.backgroundColor,
+                theme: this.props.theme,
+                themeName: this.props.themeName,
+                updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
+            },
+            advancedThemeCustomisation: {
+                updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
+                backgroundColor: this.props.backgroundColor,
+                barColor: this.props.barColor,
+                ctaColor: this.props.ctaColor,
+                positiveColor: this.props.positiveColor,
+                negativeColor: this.props.negativeColor,
+                extraColor: this.props.extraColor,
+                backPress: () => this.props.setSetting('themeCustomisation'),
             },
         };
 
@@ -302,6 +343,7 @@ class Settings extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
             overrideBackPress: true,
@@ -433,6 +475,7 @@ class Settings extends Component {
                         style={{ flex: 1 }}
                         hideModal={() => this.hideModal()}
                         logout={() => this.logout()}
+                        backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
                     />
                 );
                 break;
@@ -473,8 +516,7 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: COLORS.backgroundGreen,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 overrideBackPress: true,
             },
@@ -490,7 +532,6 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-blue.png',
                     screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 overrideBackPress: true,
@@ -504,6 +545,7 @@ class Settings extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
             overrideBackPress: true,
@@ -556,6 +598,7 @@ const mapDispatchToProps = {
     addCustomPoWNode,
     generateAlert,
     manuallySyncAccount,
+    updateTheme,
 };
 
 const mapStateToProps = state => ({
@@ -572,8 +615,15 @@ const mapStateToProps = state => ({
     availableCurrencies: state.settings.availableCurrencies,
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
-    theme: state.settings.theme,
+    themeName: state.settings.themeName,
     isSyncing: state.tempAccount.isSyncing,
+    theme: state.settings.theme,
+    backgroundColor: state.settings.theme.backgroundColor,
+    barColor: state.settings.theme.barColor,
+    ctaColor: state.settings.theme.ctaColor,
+    positiveColor: state.settings.theme.positiveColor,
+    negativeColor: state.settings.theme.negativeColor,
+    extraColor: state.settings.theme.extraColor,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed'])(
