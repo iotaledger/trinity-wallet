@@ -6,8 +6,7 @@ import { connect } from 'react-redux';
 import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
+import { clearTempData, setPassword, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
 import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
@@ -107,6 +106,8 @@ class Home extends Component {
             endBackgroundProcesses,
             barColor,
             backgroundColor,
+            negativeColor,
+            positiveColor,
         } = this.props;
 
         return (
@@ -141,7 +142,12 @@ class Home extends Component {
                         )}
                     {inactive && (
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <EnterPassword onLoginPress={this.onLoginPress} />
+                            <EnterPassword
+                                onLoginPress={this.onLoginPress}
+                                backgroundColor={backgroundColor}
+                                negativeColor={negativeColor}
+                                positiveColor={positiveColor}
+                            />
                         </View>
                     )}
                     {minimised && <View />}
@@ -158,10 +164,12 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     settings: state.settings,
     account: state.account,
-    inactive: state.app.inactive,
+    inactive: state.tempAccount.inactive,
     minimised: state.app.minimised,
     barColor: state.settings.theme.barColor,
     backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
+    positiveColor: state.settings.theme.positiveColor,
 });
 
 const mapDispatchToProps = {
@@ -184,6 +192,9 @@ Home.propTypes = {
     endBackgroundProcesses: PropTypes.func.isRequired,
     backgroundColor: PropTypes.object.isRequired,
     barColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.object.isRequired,
+    positiveColor: PropTypes.object.isRequired,
+    tempAccount: PropTypes.object.isRequired,
 };
 
 export default withUserActivity()(
