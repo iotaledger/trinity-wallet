@@ -25,6 +25,14 @@ const themes = {
         negativeColor: tinycolor(`#F7D002`).toHsl(),
         extraColor: tinycolor(`#88D4FF`).toHsl(),
     },
+    Custom: {
+        backgroundColor: tinycolor(`#1a373e`).toHsl(),
+        barColor: tinycolor(`#0b282f`).toHsl(),
+        ctaColor: tinycolor(`#009f3f`).toHsl(),
+        positiveColor: tinycolor(`#9DFFAF`).toHsl(),
+        negativeColor: tinycolor(`#F7D002`).toHsl(),
+        extraColor: tinycolor(`#88D4FF`).toHsl(),
+    },
 };
 
 const getHSL = color => {

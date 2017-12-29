@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         zIndex: 1,
-        paddingVertical: height / 20,
+        paddingVertical: height / 40,
     },
     advancedSettingsContainer: {
         flex: 1,
@@ -278,6 +278,7 @@ class Settings extends Component {
             },
             advancedThemeCustomisation: {
                 updateTheme: (theme, themeName) => this.props.updateTheme(theme, themeName),
+                theme: this.props.theme,
                 backgroundColor: this.props.backgroundColor,
                 barColor: this.props.barColor,
                 ctaColor: this.props.ctaColor,
