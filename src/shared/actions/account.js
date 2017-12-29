@@ -1,13 +1,4 @@
 import assign from 'lodash/assign';
-import get from 'lodash/get';
-import some from 'lodash/some';
-import map from 'lodash/map';
-import head from 'lodash/head';
-import concat from 'lodash/concat';
-import clone from 'lodash/clone';
-import size from 'lodash/size';
-import merge from 'lodash/merge';
-import filter from 'lodash/filter';
 import each from 'lodash/each';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
@@ -29,9 +20,7 @@ import {
     setPromotionStatus,
     clearTempData,
 } from './tempAccount';
-import { getFirstConsistentTail, isWithinAnHour } from '../libs/promoter';
 import { generateAlert, generateAccountInfoErrorAlert } from '../actions/alerts';
-import { rearrangeObjectKeys } from '../libs/util';
 
 export const ActionTypes = {
     SET_FIRST_USE: 'IOTA/ACCOUNT/SET_FIRST_USE',
@@ -458,123 +447,6 @@ export const getTransfers = (accountName, addresses) => {
             }
         });
     };
-};
-
-export const initializeTxPromotion = (bundle, tails) => (dispatch, getState) => {
-    // Set flag to true so that the service should wait for this promotion to get completed.
-    dispatch(setPromotionStatus(true));
-
-    // Create a copy so you can mutate easily
-    let consistentTails = map(tails, clone);
-    let allTails = map(tails, clone);
-
-    const alertArguments = (title, message, status = 'success') => [status, title, message];
-
-    const promote = tail => {
-        const spamTransfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }];
-
-        return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, err => {
-            if (err) {
-                if (err.message.indexOf('Inconsistent subtangle') > -1) {
-                    consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
-
-                    return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
-                        if (!consistentTail) {
-                            // TODO: Generate an alert
-                            return dispatch(setPromotionStatus(false));
-                        }
-
-                        return promote(consistentTail);
-                    });
-                }
-
-                return console.error(err); // eslint-disable-line no-console
-            }
-
-            dispatch(
-                generateAlert(...alertArguments('Promoting transfer', `Promoting transaction with hash ${tail.hash}`)),
-            );
-
-            const existingBundlesInStore = getState().account.unconfirmedBundleTails;
-            const updatedBundles = merge({}, existingBundlesInStore, { [bundle]: allTails });
-
-            dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updatedBundles, bundle)));
-            return dispatch(setPromotionStatus(false));
-        });
-    };
-
-    return iota.api.findTransactionObjects({ bundles: [bundle] }, (err, txs) => {
-        if (err) {
-            console.error(err); // eslint-disable-line no-console
-            return dispatch(setPromotionStatus(false));
-        }
-
-        const tailsFromLatestTransactionObjects = filter(txs, t => {
-            const attachmentTimestamp = get(t, 'attachmentTimestamp');
-            const hasMadeReattachmentWithinAnHour = isWithinAnHour(attachmentTimestamp);
-
-            return !t.persistence && t.currentIndex === 0 && t.value > 0 && hasMadeReattachmentWithinAnHour;
-        });
-
-        if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
-            dispatch(updateUnconfirmedBundleTails({ [bundle]: tailsFromLatestTransactionObjects }));
-
-            // Assign updated tails to the local copy
-            allTails = tailsFromLatestTransactionObjects;
-        }
-
-        return iota.api.getLatestInclusion(map(allTails, t => t.hash), (err, states) => {
-            if (err) {
-                console.error(err); // eslint-disable-line no-console
-                return dispatch(setPromotionStatus(false));
-            }
-
-            if (some(states, state => state)) {
-                dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
-
-                return dispatch(setPromotionStatus(false));
-            }
-
-            return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
-                if (!consistentTail) {
-                    // Grab hash from the top tail to replay
-                    const topTx = head(allTails);
-                    const txHash = get(topTx, 'hash');
-
-                    return iota.api.replayBundle(txHash, 3, 14, (err, newTxs) => {
-                        if (err) {
-                            console.error(err); // eslint-disable-line no-console
-                            return dispatch(setPromotionStatus(false));
-                        }
-
-                        dispatch(
-                            generateAlert(
-                                ...alertArguments(
-                                    'Autoreattaching to Tangle',
-                                    `Reattaching transaction with hash ${txHash}`,
-                                ),
-                            ),
-                        );
-
-                        const newTail = filter(newTxs, t => t.currentIndex === 0);
-                        // Update local copy for all tails
-                        allTails = concat([], newTail, allTails);
-
-                        // Probably unnecessary at this point
-                        consistentTails = concat([], newTail, consistentTails);
-                        const existingBundlesInStore = getState().account.unconfirmedBundleTails;
-
-                        const updateBundles = merge({}, existingBundlesInStore, { [bundle]: allTails });
-                        dispatch(setNewUnconfirmedBundleTails(rearrangeObjectKeys(updateBundles, bundle)));
-
-                        return dispatch(setPromotionStatus(false));
-                    });
-                }
-
-                return promote(consistentTail);
-            });
-        });
-    });
 };
 
 export const addPendingTransfer = (seedName, transfers, success) => {
