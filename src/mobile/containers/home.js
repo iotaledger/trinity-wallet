@@ -165,7 +165,7 @@ const mapStateToProps = state => ({
     settings: state.settings,
     account: state.account,
     inactive: state.tempAccount.inactive,
-    minimised: state.app.minimised,
+    minimised: state.tempAccount.minimised,
     barColor: state.settings.theme.barColor,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
