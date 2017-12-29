@@ -70,11 +70,11 @@ const styles = StyleSheet.create({
     },
     dropdownInnerContainer: {
         shadowOffset: {
-            width: -1,
-            height: -2,
+            width: 0,
+            height: 2,
         },
         shadowRadius: 4,
-        shadowOpacity: 1.0,
+        shadowOpacity: 0.6,
     },
     selected: {
         color: 'white',
