@@ -30,7 +30,7 @@ class Balance extends Component {
         settings: PropTypes.object.isRequired,
         setCurrency: PropTypes.func.isRequired,
         setTimeframe: PropTypes.func.isRequired,
-        positiveColor: PropTypes.object.isRequired,
+        extraColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
     };
 
@@ -79,7 +79,7 @@ class Balance extends Component {
             isGeneratingReceiveAddress,
             isSyncing,
             negativeColor,
-            positiveColor,
+            extraColor,
         } = this.props;
 
         const shortenedBalance =
@@ -110,7 +110,7 @@ class Balance extends Component {
                                 renderRow={dataSource => (
                                     <SimpleTransactionRow
                                         negativeColor={THEMES.getHSL(negativeColor)}
-                                        positiveColor={THEMES.getHSL(positiveColor)}
+                                        extraColor={THEMES.getHSL(extraColor)}
                                         addresses={addresses}
                                         rowData={dataSource}
                                     />
@@ -210,7 +210,7 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     settings,
     negativeColor: settings.theme.negativeColor,
-    positiveColor: settings.theme.positiveColor,
+    extraColor: settings.theme.extraColor,
 });
 
 const mapDispatchToProps = dispatch => ({

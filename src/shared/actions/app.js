@@ -2,7 +2,6 @@ export const ActionTypes = {
     SET_ONBOARDING_COMPLETED: 'IOTA/APP/ONBOARDING/COMPLETE',
     WALLET_LOGOUT: 'IOTA/APP/WALLET/LOGOUT',
     WALLET_RESET: 'IOTA/APP/WALLET/RESET',
-    SET_USER_ACTIVITY: 'IOTA/APP/WALLET/ACTIVITY',
 };
 
 export function setOnboardingCompletionStatus(isCompleted = false) {
@@ -21,12 +20,5 @@ export function logoutFromWallet() {
 export function resetWallet() {
     return {
         type: ActionTypes.WALLET_RESET,
-    };
-}
-
-export function setUserActivity(payload) {
-    return {
-        type: ActionTypes.SET_USER_ACTIVITY,
-        payload,
     };
 }
