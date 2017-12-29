@@ -14,6 +14,7 @@ const account = (
         accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
         unspentAddressesHashes: {},
+        pendingTxTailsHashes: {},
     },
     action,
 ) => {
@@ -63,8 +64,16 @@ const account = (
                 ...state,
                 accountInfo: merge({}, state.accountInfo, {
                     [action.payload.accountName]: {
+                        balance: action.payload.balance,
                         addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
                     },
+                }),
+                unspentAddressesHashes: merge({}, state.unspentAddressesHashes, {
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
+                }),
+                pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
+                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),
             };
         case ActionTypes.UPDATE_ADDRESSES:
@@ -148,6 +157,9 @@ const account = (
                 unspentAddressesHashes: merge({}, state.unspentAddressesHashes, {
                     [action.payload.accountName]: action.payload.hashes,
                 }),
+                pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
+                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
+                }),
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
             return {
@@ -164,6 +176,9 @@ const account = (
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 unspentAddressesHashes: merge({}, state.unspentAddressesHashes, {
                     [action.payload.accountName]: action.payload.hashes,
+                }),
+                pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
+                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),
                 firstUse: false,
             };
