@@ -63,7 +63,7 @@ class AdvancedSettings extends Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
+                                <Image source={arrowLeftImagePath} style={styles.backIcon} />
                                 <Text style={styles.titleText}>Back</Text>
                             </View>
                         </TouchableOpacity>
@@ -105,6 +105,11 @@ const styles = StyleSheet.create({
         width: width / 22,
         height: width / 22,
         marginRight: width / 25,
+    },
+    backIcon: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
     titleText: {
         color: 'white',

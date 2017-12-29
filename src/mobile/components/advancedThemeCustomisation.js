@@ -13,6 +13,7 @@ import tinycolor from 'tinycolor2';
 import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
+import cloneDeep from 'lodash/cloneDeep';
 
 class AdvancedThemeCustomisation extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class AdvancedThemeCustomisation extends React.Component {
     }
 
     onApplyPress() {
-        let theme = this.props.theme;
+        let theme = cloneDeep(this.props.theme);
         theme.backgroundColor = this.state.backgroundColor;
         theme.barColor = this.state.barColor;
         this.props.updateTheme(theme, 'Custom');
