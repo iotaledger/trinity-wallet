@@ -38,16 +38,27 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
-    titleText: {
+    titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+    },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
     },
     dropdownWidth: {
         width: width / 1.5,
@@ -131,15 +142,15 @@ class AddCustomNode extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Text style={styles.titleTextLeft}>Back</Text>
                             </View>
                         </TouchableOpacity>
                         {this.state.customNode.startsWith('http') && (
                             <TouchableOpacity onPress={() => this.addNode()}>
                                 <View style={styles.itemRight}>
-                                    <Image source={addImagePath} style={styles.icon} />
-                                    <Text style={styles.titleText}>Add</Text>
+                                    <Text style={styles.titleTextRight}>Add</Text>
+                                    <Image source={addImagePath} style={styles.iconRight} />
                                 </View>
                             </TouchableOpacity>
                         )}
