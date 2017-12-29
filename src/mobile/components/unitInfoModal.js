@@ -4,16 +4,15 @@ import OnboardingButtons from './onboardingButtons.js';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
 import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import { width, height } from '../util/dimensions';
-import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 
 class UnitInfoModal extends React.Component {
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor } = this.props;
 
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
-                <View style={styles.modalContent}>
+                <View style={[styles.modalContent, { backgroundColor: backgroundColor }]}>
                     <Image source={iotaWhiteImagePath} style={styles.iotaIcon} />
                     <TextWithLetterSpacing spacing={4} textStyle={styles.iotaText}>
                         IOTA
@@ -95,7 +94,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 30,
         paddingTop: height / 50,
         width: width / 1.15,
-        backgroundColor: COLORS.backgroundDarkGreen,
         alignItems: 'center',
         justifyContent: 'center',
     },
