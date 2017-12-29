@@ -68,8 +68,7 @@
         "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
         "seedCopied": "Copied seed to clipboard",
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy":
-            "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
+        "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
         "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "Copy to clipboard"
     },
@@ -210,7 +209,7 @@
         "areYouSure": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ΑΚΥΡΟ",
         "reset": "ΕΠΑΝΑΦΟΡΑ"
     },
