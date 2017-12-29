@@ -5,12 +5,18 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import reduce from 'lodash/reduce';
 import size from 'lodash/size';
+import includes from 'lodash/includes';
 import { getUrlTimeFormat, getUrlNumberFormat, setPrice, setChartData, setMarketData } from './marketData';
 import { setBalance } from './account';
 import { generateAccountInfoErrorAlert } from './alerts';
 import { getSelectedAccount, getExistingUnspentAddressesHashes } from '../selectors/account';
 import { iota } from '../libs/iota';
-import { getUnspentAddresses, mergeLatestTransfersInOld, formatTransfers } from '../libs/accountUtils';
+import {
+    getUnspentAddresses,
+    mergeLatestTransfersInOld,
+    formatTransfers,
+    markTransfersConfirmed,
+} from '../libs/accountUtils';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
@@ -253,6 +259,12 @@ const getBundlesWithPersistence = (inclusionStates, hashes) => {
     );
 };
 
+const getConfirmedTxTailsHashes = (states, hashes) => {
+    const confirmedHashes = filter(hashes, (hash, idx) => states[idx]);
+
+    return new Promise((resolve, reject) => resolve(confirmedHashes));
+};
+
 export const getAccountInfo = (seed, accountName) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
@@ -265,16 +277,21 @@ export const getAccountInfo = (seed, accountName) => {
             getState().account.unspentAddressesHashes,
         );
 
+        const pendingTxTailsHashes = getState().account.pendingTxTailsHashes;
+
         let payload = {
             accountName,
+            balance: selectedAccount.balance,
             addresses: selectedAccount.addresses,
             unspentAddressesHashes: existingHashes,
+            pendingTxTailsHashes,
             transfers: selectedAccount.transfers,
         };
 
         return getTotalBalance(addresses)
             .then(balance => {
-                dispatch(setBalance({ accountName, balance }));
+                console.log('balance', balance);
+                payload = assign({}, payload, { balance });
 
                 const index = addresses.length ? addresses.length - 1 : 0;
 
@@ -283,15 +300,18 @@ export const getAccountInfo = (seed, accountName) => {
             .then(addressData => {
                 const unspentAddresses = getUnspentAddresses(selectedAccount.addresses);
 
+                console.log('Unspent addresses', unspentAddresses);
                 if (isEmpty(unspentAddresses)) {
                     payload = assign({}, payload, { addresses: addressData });
 
-                    return dispatch(accountInfoFetchSuccess(payload));
+                    throw new Error('intentionally break chain');
                 }
 
                 return getTransactionHashes(unspentAddresses);
             })
             .then(latestHashes => {
+                console.log('Latest hashes', latestHashes);
+
                 const hasNewHashes = size(latestHashes) > size(existingHashes);
 
                 if (hasNewHashes) {
@@ -300,24 +320,53 @@ export const getAccountInfo = (seed, accountName) => {
                     return getTransactionsObjects(diff);
                 }
 
-                return dispatch(accountInfoFetchSuccess(payload));
+                // throw new Error('intentionally break chain');
+                return getTransactionsObjects(latestHashes);
             })
             .then(txs => {
+                console.log('New txs', txs);
+
                 const tailTxs = filter(txs, t => t.currentIndex === 0);
 
                 return getInclusionWithHashes(map(tailTxs, t => t.hash));
             })
             .then(getBundlesWithPersistence)
             .then(bundles => {
+                console.log('Bundles', bundles);
+
                 const updatedTransfers = mergeLatestTransfersInOld(selectedAccount.transfers, bundles);
                 const updatedTransfersWithFormatting = formatTransfers(updatedTransfers, addresses);
 
                 payload = assign({}, payload, { transfers: updatedTransfersWithFormatting });
+
+                if (isEmpty(pendingTxTailsHashes)) {
+                    throw new Error('intentionally break chain');
+                }
+
+                return getInclusionWithHashes(pendingTxTailsHashes);
+            })
+            .then(getConfirmedTxTailsHashes)
+            .then(confirmedHashes => {
+                if (isEmpty(confirmedHashes)) {
+                    throw new Error('intentionally break chain');
+                }
+
+                payload = assign({}, payload, {
+                    transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
+                    pendingTxTailsHashes: filter(payload.pendingTxTailsHashes, tx => !includes(confirmedHashes, tx)),
+                });
+
                 return dispatch(accountInfoFetchSuccess(payload));
             })
             .catch(err => {
-                dispatch(accountInfoFetchError());
-                dispatch(generateAccountInfoErrorAlert());
+                console.log('Err', err);
+                console.log('ERRR', err.message);
+                if (err && err.message === 'intentionally break chain') {
+                    dispatch(accountInfoFetchSuccess(payload));
+                } else {
+                    dispatch(accountInfoFetchError());
+                    dispatch(generateAccountInfoErrorAlert());
+                }
             });
     };
 };

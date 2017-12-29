@@ -210,7 +210,6 @@ export const fetchFullAccountInfoForFirstUse = (
                         return dispatch(generateAccountInfoErrorAlert());
                     }
 
-                    console.log('Hashes', hashes);
                     return storeInKeychainPromise(password, seed, accountName)
                         .then(() => {
                             const payloadWithHashes = assign({}, payload, { hashes });

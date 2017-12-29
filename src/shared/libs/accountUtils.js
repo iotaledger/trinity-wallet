@@ -1,8 +1,10 @@
+import assign from 'lodash/assign';
 import each from 'lodash/each';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import isNull from 'lodash/isNull';
+import includes from 'lodash/includes';
 import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
 
@@ -344,6 +346,36 @@ export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
     });
 };
 
+export const getPendingTxTailsHahses = transfers => {
+    const grabTails = (res, val) => {
+        each(val, v => {
+            if (!v.persistence && v.currentIndex === 0) {
+                res.push(v.hash);
+            }
+        });
+
+        return res;
+    };
+
+    return reduce(transfers, grabTails, []);
+};
+
+export const markTransfersConfirmed = (transfers, tailHashes) => {
+    return map(transfers, txObjects =>
+        map(txObjects, tx => {
+            const isTail = tx.currentIndex === 0;
+            const hash = tx.hash;
+            const isUnconfirmed = !tx.persistence;
+
+            if (isTail && includes(tailHashes, hash) && isUnconfirmed) {
+                return assign({}, tx, { persistence: true });
+            }
+
+            return tx;
+        }),
+    );
+};
+
 export const organizeAccountInfo = (accountName, data) => {
     const transfers = formatTransfers(data.transfers, data.addresses);
 
@@ -352,6 +384,7 @@ export const organizeAccountInfo = (accountName, data) => {
 
     const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
     const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
+    const pendingTxTailsHashes = getPendingTxTailsHahses(transfers);
 
     return {
         accountName,
@@ -359,5 +392,6 @@ export const organizeAccountInfo = (accountName, data) => {
         addresses: addressDataWithSpentFlag,
         balance,
         unconfirmedTails,
+        pendingTxTailsHashes,
     };
 };
