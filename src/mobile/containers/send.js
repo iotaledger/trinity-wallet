@@ -636,8 +636,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 110,
     },
     sendIOTAButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
         borderRadius: GENERAL.borderRadiusLarge,
         width: width / 2,
         height: height / 13,

@@ -25,7 +25,11 @@ class AdvancedThemeCustomisation extends React.Component {
     }
 
     onApplyPress() {
-        //this.props.updateColors(this.state.backgroundColor, this.state.barColor);
+        let theme = this.props.theme;
+        theme.backgroundColor = this.state.backgroundColor;
+        theme.barColor = this.state.barColor;
+        this.props.updateTheme(theme, 'Custom');
+        this.props.backPress();
     }
 
     render() {
@@ -146,7 +150,8 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
     },
     colorString: {
-        fontSize: 34,
+        fontSize: width / 20.7,
+        fontFamily: 'Lato-Regular',
     },
     bottomContainer: {
         flex: 1,

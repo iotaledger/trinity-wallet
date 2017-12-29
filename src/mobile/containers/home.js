@@ -92,13 +92,9 @@ class Home extends Component {
         }
     };
 
-    componentDidMount() {
-        console.log(this.props.account.firstUse);
-    }
-
     handleInactivity = () => {
         const { setUserActivity } = this.props;
-        //setUserActivity({ inactive: true });
+        setUserActivity({ inactive: true });
     };
 
     render() {
