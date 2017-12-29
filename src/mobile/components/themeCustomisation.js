@@ -13,7 +13,7 @@ import tinycolor from 'tinycolor2';
 import { width, height } from '../util/dimensions';
 import Dropdown from '../components/dropdown';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
+import arrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right.png';
 import chevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down.png';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
@@ -22,12 +22,11 @@ import Triangle from 'react-native-triangle';
 class ThemeCustomisation extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
+        const themes = (this.state = {
             theme: props.theme,
             themeName: props.themeName,
             themes: Object.keys(THEMES.themes),
-        };
+        });
     }
 
     onApplyPress(theme, themeName) {
@@ -40,44 +39,13 @@ class ThemeCustomisation extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
-                    {/*}<View style={styles.swatchesContainer}>
-                    {swatches.map((swatch, index) => (
-                      <View
-                        key={index}
-                        style={[
-                          styles.swatch,
-                          {
-                            borderColor: tinycolor(swatch).isDark() ? 'white' : 'black',
-                            backgroundColor: tinycolor(swatch).toHslString(),
-                            marginRight: index < swatches.length - 1 ? width / 30 : 0
-                          }
-                        ]}
-                      />
-                ))}
-                </View>
-                <Dropdown
-                    ref={c => {
-                        this.dropdown = c;
-                    }}
-                    title='Theme'
-                    dropdownWidth={styles.dropdownWidth}
-                    dropdownHeight={styles.dropdownWidth}
-                    defaultOption={currentTheme}
-                    options={themes}
-                    saveSelection={language => {
-                        this.languageSelected = language;
-                    }}
-                />
-                <TouchableOpacity onPress={() => this.props.onAdvancedPress()} style={styles.advancedButton}>
-                    <Text style={styles.advancedText}>ADVANCED</Text>
-                </TouchableOpacity>*/}
                     <View style={{ zIndex: 2 }}>
                         <Dropdown
                             ref={c => {
                                 this.dropdown = c;
                             }}
                             title="Theme"
-                            dropdownWidth={{ width: width / 1.5 }}
+                            dropdownWidth={{ width: width / 1.45 }}
                             background
                             shadow
                             defaultOption={themeName}
@@ -102,38 +70,40 @@ class ThemeCustomisation extends React.Component {
                             <Text style={styles.frameBarTitle}>Frame Bar</Text>
                             <Image style={styles.chevron} source={chevronDownImagePath} />
                         </View>
-                        {/*<View style={styles.dropdownContainer}>
-                        <Text style={styles.dropdownTitle}>Label Text</Text>
-                        <View style={styles.dropdownButtonContainer}>
-                            <View style={styles.dropdownButton}>
-                                <Text numberOfLines={1} style={styles.dropdownSelected}>
-                                    FIELD TEXT
-                                </Text>
-                                <Triangle
-                                    width={10}
-                                    height={10}
-                                    color={'white'}
-                                    direction='down'
-                                    style={{ marginBottom: height / 80 }}
-                                />
+                        {/*
+                        <View style={styles.dropdownContainer}>
+                            <Text style={styles.dropdownTitle}>Label Text</Text>
+                            <View style={styles.dropdownButtonContainer}>
+                                <View style={styles.dropdownButton}>
+                                    <Text numberOfLines={1} style={styles.dropdownSelected}>
+                                        FIELD TEXT
+                                    </Text>
+                                    <Triangle
+                                        width={10}
+                                        height={10}
+                                        color={'white'}
+                                        direction='down'
+                                        style={{ marginBottom: height / 80 }}
+                                    />
+                                </View>
                             </View>
                         </View>
-                    </View>*/}
+                        */}
                         <View style={styles.buttonsContainer}>
-                            <View style={[styles.negativeButton, { borderColor: THEMES.getHSL(negativeColor) }]}>
-                                <Text style={[styles.negativeText, { color: THEMES.getHSL(negativeColor) }]}>
+                            <View style={[styles.button, { borderColor: THEMES.getHSL(negativeColor) }]}>
+                                <Text style={[styles.buttonText, { color: THEMES.getHSL(negativeColor) }]}>
                                     NEGATIVE
                                 </Text>
                             </View>
-                            <View style={[styles.positiveButton, { borderColor: THEMES.getHSL(positiveColor) }]}>
-                                <Text style={[styles.positiveText, { color: THEMES.getHSL(positiveColor) }]}>
+                            <View style={[styles.button, { borderColor: THEMES.getHSL(positiveColor) }]}>
+                                <Text style={[styles.buttonText, { color: THEMES.getHSL(positiveColor) }]}>
                                     POSITIVE
                                 </Text>
                             </View>
                         </View>
                         <View style={styles.buttonsContainer}>
-                            <View style={[styles.extraButton, { borderColor: THEMES.getHSL(extraColor) }]}>
-                                <Text style={[styles.extraText, { color: THEMES.getHSL(extraColor) }]}>EXTRA</Text>
+                            <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
+                                <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>EXTRA</Text>
                             </View>
                             <View style={[styles.ctaButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
                                 <Text style={styles.ctaText}>CTA</Text>
@@ -147,14 +117,14 @@ class ThemeCustomisation extends React.Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.props.backPress()}>
                         <View style={styles.itemLeft}>
-                            <Image source={arrowLeftImagePath} style={styles.icon} />
+                            <Image source={arrowLeftImagePath} style={[styles.icon, { marginRight: width / 25 }]} />
                             <Text style={styles.titleText}>Back</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.onApplyPress(theme, themeName)}>
                         <View style={styles.itemRight}>
-                            <Image source={tickImagePath} style={styles.icon} />
-                            <Text style={styles.titleText}>Apply</Text>
+                            <Text style={[styles.titleText, { marginRight: width / 25 }]}>Apply</Text>
+                            <Image source={arrowRightImagePath} style={styles.icon} />
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -190,14 +160,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: height / 30,
         position: 'absolute',
-        top: height / 13.5,
+        top: height / 10.5,
         zIndex: 1,
         shadowOffset: {
             width: 0,
-            height: -1,
+            height: 4,
         },
         shadowRadius: 4,
-        shadowOpacity: 1.0,
+        shadowOpacity: 0.6,
     },
     bottomContainer: {
         flex: 1,
@@ -227,7 +197,6 @@ const styles = StyleSheet.create({
     icon: {
         width: width / 22,
         height: width / 22,
-        marginRight: width / 25,
     },
     titleText: {
         color: 'white',
@@ -263,7 +232,7 @@ const styles = StyleSheet.create({
         opacity: 0.98,
         shadowOffset: {
             width: 0,
-            height: -1,
+            height: 1,
         },
         shadowRadius: 4,
         shadowOpacity: 1.0,
@@ -320,7 +289,7 @@ const styles = StyleSheet.create({
         marginTop: height / 35,
         width: width / 1.5,
     },
-    negativeButton: {
+    button: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
         width: width / 3.4,
@@ -328,40 +297,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    negativeText: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
-    positiveButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3.4,
-        height: height / 15,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    positiveText: {
-        fontFamily: 'Lato-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
-    extraButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3.4,
-        height: height / 15,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    extraText: {
-        fontFamily: 'Lato-Light',
+    buttonText: {
+        fontFamily: 'Lato-Regular',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
     ctaButton: {
-        borderColor: 'white',
-        borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
         width: width / 3.4,
         height: height / 15,

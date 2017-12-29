@@ -10,6 +10,7 @@ import {
 } from '../../shared/selectors/account';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
+import THEMES from '../theme/themes';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -18,6 +19,10 @@ class History extends Component {
         addresses: PropTypes.array.isRequired,
         transfers: PropTypes.array.isRequired,
         closeTopBar: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        positiveColor: PropTypes.object.isRequired,
+        extraColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -44,7 +49,7 @@ class History extends Component {
     }
 
     render() {
-        const { t, addresses, transfers } = this.props;
+        const { t, addresses, transfers, positiveColor, negativeColor, backgroundColor, extraColor } = this.props;
         const hasTransactions = transfers.length > 0;
 
         return (
@@ -62,6 +67,10 @@ class History extends Component {
                                         onPress={event => this._showModal()}
                                         copyAddress={item => this.copyAddress(item)}
                                         copyBundleHash={item => this.copyBundleHash(item)}
+                                        positiveColor={THEMES.getHSL(positiveColor)}
+                                        negativeColor={THEMES.getHSL(negativeColor)}
+                                        extraColor={THEMES.getHSL(extraColor)}
+                                        backgroundColor={THEMES.getHSL(backgroundColor)}
                                     />
                                 )}
                                 renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
@@ -110,9 +119,13 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = ({ tempAccount, account }) => ({
+const mapStateToProps = ({ tempAccount, account, settings }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
+    negativeColor: settings.theme.negativeColor,
+    positiveColor: settings.theme.positiveColor,
+    backgroundColor: settings.theme.backgroundColor,
+    extraColor: settings.theme.extraColor,
 });
 
 const mapDispatchToProps = {
