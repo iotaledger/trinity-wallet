@@ -8,7 +8,7 @@ import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
@@ -17,6 +17,8 @@ class SaveYourSeed extends Component {
         navigator: PropTypes.object.isRequired,
         setCopiedToClipboard: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        extraColor: PropTypes.object.isRequired,
     };
 
     componentWillReceiveProps(newProps) {
@@ -32,7 +34,7 @@ class SaveYourSeed extends Component {
     onDonePress() {
         this.props.navigator.push({
             screen: 'saveSeedConfirmation',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true },
             animated: false,
             overrideBackPress: true,
         });
@@ -47,7 +49,7 @@ class SaveYourSeed extends Component {
     onWriteClick() {
         this.props.navigator.push({
             screen: 'writeSeedDown',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true },
             animated: false,
             overrideBackPress: true,
         });
@@ -55,7 +57,7 @@ class SaveYourSeed extends Component {
     onPrintClick() {
         this.props.navigator.push({
             screen: 'paperWallet',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true },
             animated: false,
             overrideBackPress: true,
         });
@@ -63,17 +65,19 @@ class SaveYourSeed extends Component {
     onCopyClick() {
         this.props.navigator.push({
             screen: 'copySeedToClipboard',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
+            navigatorStyle: { navBarHidden: true, navBarTransparent: true },
             animated: false,
             overrideBackPress: true,
         });
     }
 
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor, extraColor } = this.props;
+        const extraColorText = { color: THEMES.getHSL(extraColor) };
+        const extraColorBorder = { borderColor: THEMES.getHSL(extraColor) };
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -86,22 +90,28 @@ class SaveYourSeed extends Component {
                 <View style={styles.midContainer}>
                     <View style={{ paddingTop: height / 20 }}>
                         <TouchableOpacity onPress={event => this.onWriteClick()}>
-                            <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>{t('global:manualCopy').toUpperCase()}</Text>
+                            <View style={[styles.optionButton, extraColorBorder]}>
+                                <Text style={[styles.optionButtonText, extraColorText]}>
+                                    {t('global:manualCopy').toUpperCase()}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onPrintClick()}>
-                            <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>{t('global:paperWallet').toUpperCase()}</Text>
+                            <View style={[styles.optionButton, extraColorBorder]}>
+                                <Text style={[styles.optionButtonText, extraColorText]}>
+                                    {t('global:paperWallet').toUpperCase()}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onCopyClick()}>
-                            <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>{t('global:copyToClipboard').toUpperCase()}</Text>
+                            <View style={[styles.optionButton, extraColorBorder]}>
+                                <Text style={[styles.optionButtonText, extraColorText]}>
+                                    {t('global:copyToClipboard').toUpperCase()}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -125,7 +135,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,
@@ -145,14 +154,12 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     optionButtonText: {
-        color: '#88D4FF',
         fontFamily: 'Lato-Regular',
         fontSize: width / 25.3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     optionButton: {
-        borderColor: '#8BD4FF',
         borderWidth: 1.5,
         borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.36,
@@ -234,6 +241,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    backgroundColor: state.settings.theme.backgroundColor,
+    extraColor: state.settings.theme.extraColor,
 });
 
 const mapDispatchToProps = {

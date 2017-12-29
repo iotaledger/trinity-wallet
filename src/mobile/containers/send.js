@@ -39,6 +39,7 @@ import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import { width, height } from '../util/dimensions';
@@ -65,6 +66,10 @@ class Send extends Component {
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
         closeTopBar: PropTypes.func.isRequired,
+        ctaColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        barColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -253,13 +258,20 @@ class Send extends Component {
             }
         });
 
-    _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
+    _renderModalContent = () => <View>{this.state.modalContent}</View>;
 
     setModalContent(selectedSetting) {
         let modalContent;
         switch (selectedSetting) {
             case 'qrScanner':
-                modalContent = <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />;
+                modalContent = (
+                    <QRScanner
+                        onQRRead={data => this.onQRRead(data)}
+                        hideModal={() => this._hideModal()}
+                        backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
+                        ctaColor={THEMES.getHSL(this.props.ctaColor)}
+                    />
+                );
                 this.setState({
                     selectedSetting,
                     modalContent,
@@ -275,6 +287,7 @@ class Send extends Component {
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
                         hideModal={callback => this._hideModal(callback)}
+                        backgroundColor={THEMES.getHSL(this.props.barColor)}
                     />
                 );
                 this.setState({
@@ -284,7 +297,12 @@ class Send extends Component {
                 this.onSendPress();
                 break;
             case 'unitInfo':
-                modalContent = <UnitInfoModal hideModal={() => this._hideModal()} />;
+                modalContent = (
+                    <UnitInfoModal
+                        backgroundColor={THEMES.getHSL(this.props.barColor)}
+                        hideModal={() => this._hideModal()}
+                    />
+                );
                 this.setState({
                     selectedSetting,
                     modalContent,
@@ -364,8 +382,8 @@ class Send extends Component {
     }
 
     render() {
-        const { amount, address, message, denomination } = this.state;
-        const { t } = this.props;
+        const { amount, address, message } = this.state;
+        const { t, ctaColor, backgroundColor, negativeColor } = this.props;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -386,7 +404,7 @@ class Send extends Component {
                                     height={height / 24}
                                     labelPadding={2}
                                     baseColor="white"
-                                    tintColor="#F7D002"
+                                    tintColor={THEMES.getHSL(negativeColor)}
                                     enablesReturnKeyAutomatically={true}
                                     returnKeyType="next"
                                     label={t('recipientAddress')}
@@ -419,7 +437,7 @@ class Send extends Component {
                                     enablesReturnKeyAutomatically={true}
                                     returnKeyType="next"
                                     label={t('amount')}
-                                    tintColor="#F7D002"
+                                    tintColor={THEMES.getHSL(negativeColor)}
                                     autoCorrect={false}
                                     value={amount}
                                     onChangeText={amount => this.onAmountType(amount)}
@@ -463,7 +481,7 @@ class Send extends Component {
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="send"
                                 label={t('message')}
-                                tintColor="#F7D002"
+                                tintColor={THEMES.getHSL(negativeColor)}
                                 autoCorrect={false}
                                 value={message}
                                 onChangeText={message => this.setState({ message })}
@@ -483,7 +501,12 @@ class Send extends Component {
                                             this.refs.message.blur();
                                         }}
                                     >
-                                        <View style={styles.sendIOTAButton}>
+                                        <View
+                                            style={[
+                                                styles.sendIOTAButton,
+                                                { backgroundColor: THEMES.getHSL(ctaColor) },
+                                            ]}
+                                        >
                                             <Text style={styles.sendIOTAText}>{t('send')}</Text>
                                         </View>
                                     </TouchableOpacity>
@@ -521,7 +544,7 @@ class Send extends Component {
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={'#102832'}
+                        backdropColor={THEMES.getHSL(backgroundColor)}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                     >
@@ -620,7 +643,6 @@ const styles = StyleSheet.create({
         height: height / 13,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#009f3f',
     },
     sendIOTAText: {
         color: 'white',
@@ -707,6 +729,10 @@ const mapStateToProps = state => ({
     conversionRate: state.settings.conversionRate,
     usdPrice: state.marketData.usdPrice,
     isGettingSensitiveInfoToMakeTransaction: state.keychain.isGettingSensitiveInfo.send.makeTransaction,
+    ctaColor: state.settings.theme.ctaColor,
+    backgroundColor: state.settings.theme.backgroundColor,
+    barColor: state.settings.theme.barColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
 const mapDispatchToProps = {

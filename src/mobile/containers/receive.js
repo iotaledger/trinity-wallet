@@ -29,6 +29,7 @@ import {
 import { TextField } from 'react-native-material-textfield';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
@@ -51,6 +52,8 @@ class Receive extends Component {
         getFromKeychainRequest: PropTypes.func.isRequired,
         getFromKeychainSuccess: PropTypes.func.isRequired,
         getFromKeychainError: PropTypes.func.isRequired,
+        ctaColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -140,7 +143,14 @@ class Receive extends Component {
     }
 
     render() {
-        const { receiveAddress, isGeneratingReceiveAddress, isGettingSensitiveInfoToGenerateAddress, t } = this.props;
+        const {
+            receiveAddress,
+            isGeneratingReceiveAddress,
+            isGettingSensitiveInfoToGenerateAddress,
+            t,
+            ctaColor,
+            negativeColor,
+        } = this.props;
         const message = this.state.message;
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -189,7 +199,7 @@ class Receive extends Component {
                             fontSize={height / 40}
                             labelPadding={3}
                             baseColor="white"
-                            tintColor="#F7D002"
+                            tintColor={THEMES.getHSL(negativeColor)}
                             enablesReturnKeyAutomatically={true}
                             returnKeyType="done"
                             label={t('message')}
@@ -211,7 +221,7 @@ class Receive extends Component {
                                         }
                                     }}
                                 >
-                                    <View style={styles.generateButton}>
+                                    <View style={[styles.generateButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
                                         <Text style={styles.generateText}>{t('generateNewAddress')}</Text>
                                     </View>
                                 </TouchableOpacity>
@@ -284,7 +294,6 @@ const styles = StyleSheet.create({
         height: height / 13,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#009f3f',
     },
     generateText: {
         color: 'white',
@@ -337,6 +346,8 @@ const mapStateToProps = state => ({
     receiveAddress: state.tempAccount.receiveAddress,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
+    ctaColor: state.settings.theme.ctaColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
 const mapDispatchToProps = {
