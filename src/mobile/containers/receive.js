@@ -287,8 +287,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     generateButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
         borderRadius: GENERAL.borderRadiusLarge,
         width: width / 2,
         height: height / 13,
