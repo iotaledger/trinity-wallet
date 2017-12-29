@@ -55,6 +55,7 @@ export class Poll extends Component {
         super();
 
         this.fetchLatestAccountInfo = this.fetchLatestAccountInfo.bind(this);
+        this.promote = this.promote.bind(this);
     }
 
     componentDidMount() {
@@ -152,6 +153,8 @@ export class Poll extends Component {
             const index = allPollingServices.indexOf(pollFor);
             const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
 
+            console.log('What is next', next);
+            console.log('NExt', allPollingServices[next]);
             this.props.setPollFor(allPollingServices[next]);
         }
     }
