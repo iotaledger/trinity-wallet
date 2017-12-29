@@ -13,7 +13,7 @@ import tinycolor from 'tinycolor2';
 import { width, height } from '../util/dimensions';
 import Dropdown from '../components/dropdown';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import arrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right.png';
+import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import chevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down.png';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
@@ -124,7 +124,7 @@ class ThemeCustomisation extends React.Component {
                     <TouchableOpacity onPress={() => this.onApplyPress(theme, themeName)}>
                         <View style={styles.itemRight}>
                             <Text style={[styles.titleText, { marginRight: width / 25 }]}>Apply</Text>
-                            <Image source={arrowRightImagePath} style={styles.icon} />
+                            <Image source={tickImagePath} style={styles.icon} />
                         </View>
                     </TouchableOpacity>
                 </View>
