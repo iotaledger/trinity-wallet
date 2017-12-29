@@ -12,7 +12,6 @@ import { getSelectedAccount } from '../selectors/account';
 /* eslint-disable no-console */
 
 export const ActionTypes = {
-    SET_PROMOTION_STATUS: 'IOTA/TEMP_ACCOUNT/SET_PROMOTION_STATUS',
     GET_TRANSFERS_REQUEST: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_REQUEST',
     GET_TRANSFERS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_SUCCESS',
     GET_TRANSFERS_ERROR: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_ERROR',
@@ -140,11 +139,6 @@ export const setPassword = payload => ({
 
 export const setSeedName = payload => ({
     type: ActionTypes.SET_SEED_NAME,
-    payload,
-});
-
-export const setPromotionStatus = payload => ({
-    type: ActionTypes.SET_PROMOTION_STATUS,
     payload,
 });
 

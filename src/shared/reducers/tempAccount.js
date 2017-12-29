@@ -17,7 +17,6 @@ const initialState = {
     isSyncing: false,
     currentSetting: 'mainSettings',
     copiedToClipboard: false,
-    isPromoting: false,
     hasErrorFetchingAccountInfoOnLogin: false,
 };
 
@@ -135,11 +134,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 copiedToClipboard: action.payload,
-            };
-        case ActionTypes.SET_PROMOTION_STATUS:
-            return {
-                ...state,
-                isPromoting: action.payload,
             };
         case AccountActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
             return {
