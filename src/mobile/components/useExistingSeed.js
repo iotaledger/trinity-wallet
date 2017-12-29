@@ -13,6 +13,7 @@ import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png
 import arrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
 
@@ -70,7 +71,12 @@ class UseExistingSeed extends React.Component {
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
+        <QRScanner
+            ctaColor={THEMES.getHSL(this.props.ctaColor)}
+            backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
+            onQRRead={data => this.onQRRead(data)}
+            hideModal={() => this._hideModal()}
+        />
     );
 
     getChecksumValue() {
@@ -95,10 +101,10 @@ class UseExistingSeed extends React.Component {
                         <View style={styles.seedContainer}>
                             <View style={{ flex: 0.5 }} />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.title}>Please enter a seed and account name.</Text>
+                                <Text style={styles.title}>Enter a seed and account name.</Text>
                             </View>
                             <View style={{ flex: 1 }} />
-                            <View style={{ flexDirection: 'row' }}>
+                            <View style={{ flexDirection: 'row', width: width / 1.4 }}>
                                 <View style={styles.textFieldContainer}>
                                     <TextField
                                         style={styles.textField}
@@ -107,7 +113,7 @@ class UseExistingSeed extends React.Component {
                                         fontSize={width / 20.7}
                                         labelPadding={3}
                                         baseColor="white"
-                                        tintColor="#F7D002"
+                                        tintColor={THEMES.getHSL(this.props.negativeColor)}
                                         enablesReturnKeyAutomatically={true}
                                         label="Seed"
                                         autoCorrect={false}
@@ -141,13 +147,13 @@ class UseExistingSeed extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                tintColor="#F7D002"
+                                tintColor={THEMES.getHSL(this.props.negativeColor)}
                                 enablesReturnKeyAutomatically={true}
                                 label="Account name"
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 value={accountName}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.4 }}
                                 onChangeText={accountName => this.setState({ accountName })}
                             />
                         </View>

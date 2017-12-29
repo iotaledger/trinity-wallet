@@ -63,8 +63,9 @@ export default () => C => {
         shouldPollForTransfers(newProps) {
             const isDoneFetchingNewAddressData =
                 this.props.isFetchingNewAddressData && !newProps.isFetchingNewAddressData;
+            const hasAddresses = Object.keys(this.props.selectedAccount.addresses).length > 0;
 
-            return isDoneFetchingNewAddressData && !newProps.hasErrorFetchingNewAddressData;
+            return isDoneFetchingNewAddressData && !newProps.hasErrorFetchingNewAddressData && hasAddresses;
         }
 
         startBackgroundProcesses = () => {

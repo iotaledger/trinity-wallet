@@ -10,19 +10,15 @@ import { Navigation } from 'react-native-navigation';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
-import {
-    getSelectedAccountViaSeedIndex,
-    getSelectedAccountNameViaSeedIndex,
-} from 'iota-wallet-shared-modules/selectors/account';
+import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
 import EnterPassword from '../components/enterPassword';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import keychain, { getSeed } from '../util/keychain';
-import COLORS from '../theme/Colors';
+import keychain from '../util/keychain';
+import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
@@ -31,19 +27,19 @@ class Login extends Component {
         firstUse: PropTypes.bool.isRequired,
         hasErrorFetchingAccountInfoOnLogin: PropTypes.bool.isRequired,
         selectedAccount: PropTypes.object.isRequired,
-        selectedAccountName: PropTypes.string.isRequired,
         fullNode: PropTypes.string.isRequired,
         availablePoWNodes: PropTypes.array.isRequired,
         currency: PropTypes.string.isRequired,
         setPassword: PropTypes.func.isRequired,
-        getAccountInfo: PropTypes.func.isRequired,
-        getFullAccountInfo: PropTypes.func.isRequired,
         getMarketData: PropTypes.func.isRequired,
         getPrice: PropTypes.func.isRequired,
         getChartData: PropTypes.func.isRequired,
         getCurrencyData: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         setFullNode: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        positiveColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -57,6 +53,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        const { currency } = this.props;
         this.getWalletData();
         this.props.getCurrencyData(currency);
     }
@@ -77,8 +74,11 @@ class Login extends Component {
     }
 
     _renderModalContent = () => {
+        const { backgroundColor } = this.props;
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+            <View
+                style={{ width: width / 1.15, alignItems: 'center', backgroundColor: THEMES.getHSL(backgroundColor) }}
+            >
                 <View style={styles.modalContent}>
                     <Text style={styles.questionText}>Cannot connect to IOTA node.</Text>
                     <Text style={styles.infoText}>Do you want to select a different node?</Text>
@@ -100,7 +100,7 @@ class Login extends Component {
     }
 
     onLoginPress(password) {
-        const { firstUse, currency, t, setPassword, selectedAccount, selectedAccountName } = this.props;
+        const { firstUse, t, setPassword, selectedAccount } = this.props;
 
         Keyboard.dismiss();
 
@@ -112,21 +112,14 @@ class Login extends Component {
                 .then(credentials => {
                     const hasData = get(credentials, 'data');
                     const hasCorrectPassword = get(credentials, 'password') === password;
-
                     if (hasData && hasCorrectPassword) {
                         setPassword(password);
-
-                        const seed = getSeed(credentials.data, 0);
-
                         if (firstUse) {
                             this.navigateToLoading();
-                            this.props.getFullAccountInfo(seed, selectedAccountName, this.props.navigator);
                         } else {
                             const addresses = get(selectedAccount, 'addresses');
-
                             if (!isEmpty(addresses)) {
                                 this.navigateToLoading();
-                                this.props.getAccountInfo(selectedAccountName, this.props.navigator);
                             } else {
                                 this.navigateToHome();
                             }
@@ -149,6 +142,7 @@ class Login extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
             overrideBackPress: true,
@@ -162,7 +156,7 @@ class Login extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: COLORS.backgroundGreen,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 overrideBackPress: true,
             },
@@ -170,10 +164,18 @@ class Login extends Component {
     }
 
     render() {
+        const { backgroundColor, positiveColor, negativeColor } = this.props;
         return (
-            <View style={styles.container}>
+            <View style={[styles.container]}>
                 <StatusBar barStyle="light-content" />
-                {!this.state.changingNode && <EnterPassword onLoginPress={this.onLoginPress} />}
+                {!this.state.changingNode && (
+                    <EnterPassword
+                        backgroundColor={backgroundColor}
+                        negativeColor={negativeColor}
+                        positiveColor={positiveColor}
+                        onLoginPress={this.onLoginPress}
+                    />
+                )}
                 {this.state.changingNode && (
                     <View>
                         <View style={{ flex: 0.8 }} />
@@ -183,8 +185,8 @@ class Login extends Component {
                                     changeIotaNode(selectedNode);
                                     this.props.setFullNode(selectedNode);
                                 }}
-                                node={this.props.settings.fullNode}
-                                nodes={this.props.settings.availablePoWNodes}
+                                node={this.props.fullNode}
+                                nodes={this.props.availablePoWNodes}
                                 backPress={() => this.setState({ changingNode: false })}
                             />
                         </View>
@@ -216,7 +218,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
@@ -275,18 +276,18 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     firstUse: state.account.firstUse,
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     fullNode: state.settings.fullNode,
     availablePoWNodes: state.settings.availablePoWNodes,
     currency: state.settings.currency,
     hasErrorFetchingAccountInfoOnLogin: state.tempAccount.hasErrorFetchingAccountInfoOnLogin,
+    backgroundColor: state.settings.theme.backgroundColor,
+    positiveColor: state.settings.theme.positiveColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     setPassword,
-    getAccountInfo,
-    getFullAccountInfo,
     getMarketData,
     getPrice,
     getChartData,
