@@ -13,7 +13,7 @@ if (os.type() === 'Linux') {
     ) {
         console.log(data);
     });
-} else if (os.type() === 'Windows') {
+} else if (os.type() === 'Windows' || os.type() === 'Windows_NT') {
     cmd.get('cd src/desktop && yarn && cd ../shared && yarn && cd ../mobile && yarn', function(err, data, stderr) {
         console.log(data);
     });
