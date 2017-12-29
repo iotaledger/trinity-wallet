@@ -178,8 +178,6 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     copyButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
         width: width / 2,
         height: height / 12,
