@@ -17,7 +17,6 @@ import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
-import Promoter from './promoter';
 import Poll from './poll';
 import COLORS from '../theme/Colors';
 import Tabs from '../components/tabs';
@@ -131,7 +130,6 @@ class Home extends Component {
                         </View>
                     )}
                     {minimised && <View />}
-                    <Promoter />
                     <Poll />
                     <StatefulDropdownAlert />
                     <KeepAwake />
