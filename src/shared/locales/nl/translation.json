@@ -7,9 +7,9 @@
         "back": "Terug",
         "done": "GEREED",
         "next": "VOLGENDE",
-        "manualCopy": "Schrijf uw seed op",
+        "manualCopy": "Schrijf uw sleutel op",
         "paperWallet": "Print een papieren kopie",
-        "copyToClipboard": "Voeg uw seed toe aan uw wachtwoord manager",
+        "copyToClipboard": "Voeg uw sleutel toe aan uw wachtwoord manager",
         "qr": "QR",
         "notAvailable": "Deze functie is niet beschikbaar",
         "notAvailableExplanation": "In een later stadium zal het worden toegevoegd.",
@@ -42,8 +42,8 @@
         "accountName": "Accountnaam",
         "noNickname": "Geen accountnaam ingevoerd",
         "noNicknameExplanation": "Voer een account naam in voor uw sleutel.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "Sleutel al in gebruik",
+        "seedInUseExplanation": "Deze sleutel is al gekoppeld aan uw wallet. Gebruik een andere."
     },
     "changePassword": {
         "oops": "Oeps! Er is iets mis gegaan",
@@ -96,7 +96,7 @@
         "enterPassword": "Voor uw wachtwoord in.",
         "useSeed": "GEBRUIK SLEUTEL",
         "login": "Aanmelden",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Wilt u een andere node selecteren?"
     },
     "loading": {
         "loadingFirstTime": "Sleutel voor de eerste keer laden.",
@@ -160,19 +160,16 @@
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
-        "passwordTooShortExplanation":
-            "Uw wachtwoord moet minstens ${MIN_PASSWORD_LENGTH} tekens lang zijn. Het is momenteel ${this.state.password.length} tekens lang. Probeer het opnieuw.",
+        "passwordTooShortExplanation": "Uw wachtwoord moet minstens ${MIN_PASSWORD_LENGTH} tekens lang zijn. Het is momenteel ${this.state.password.length} tekens lang. Probeer het opnieuw.",
         "passwordMismatch": "Wachtwoorden komen niet overeen",
         "passwordMismatchExplanation": "Het ingevoerde wachtwoord is onjuist. Probeer het nog eens.",
         "nowWeNeedTo": "Oke, nu moeten we een wachtwoord instellen.",
-        "anEncryptedCopy":
-            "Een gecodeerde kopie van uw sleutel zal worden opgeslagen op uw apparaat. U gebruikt dit wachtwoord voor toegang tot uw portefeuille in de toekomst.",
+        "anEncryptedCopy": "Een gecodeerde kopie van uw sleutel zal worden opgeslagen op uw apparaat. U gebruikt dit wachtwoord voor toegang tot uw portefeuille in de toekomst.",
         "ensure": "Zorg ervoor u een sterk wachtwoord gebruikt van ten minste 12 karakters.",
         "retypePassword": "Herhaal wachtwoord"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "U kunt meerdere sleutels gebruiken met deze portefeuille. Elke sleutel vereist een accountnaam.",
+        "canUseMultipleSeeds": "U kunt meerdere sleutels gebruiken met deze portefeuille. Elke sleutel vereist een accountnaam.",
         "youCanAdd": "U kunt meer sleutels toevoegen in het menu instellingen."
     },
     "settings": {
@@ -199,8 +196,8 @@
         "accountDeletedExplanation": "Uw account is verwijderd uit de portefeuille.",
         "cannotPerformAction": "Kan actie niet uitvoeren",
         "cannotPerformActionExplanation": "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnection": "Slechte verbinding",
+        "poorConnectionExplanation": "Van munt wisselen niet gelukt door slechte verbinding."
     },
     "resetWalletConfirmation": {
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
@@ -212,7 +209,7 @@
         "areYouSure": "Weet u zeker dat u wilt doorgaan?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ANNULEREN",
         "reset": "RESET"
     },

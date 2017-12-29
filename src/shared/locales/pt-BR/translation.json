@@ -209,7 +209,7 @@
         "areYouSure": "Tem a certeza que deseja continuar?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "CANCELAR",
         "reset": "RECONFIGURAR COMPLETAMENTE"
     },

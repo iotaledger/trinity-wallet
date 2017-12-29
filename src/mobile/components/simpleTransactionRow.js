@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
 
 class SimpleTransactionRow extends Component {
     render() {
-        const { t, rowData, addresses } = this.props;
+        const { t, rowData, addresses, negativeColor, extraColor } = this.props;
         const icon = rowData[0].transferValue < 0 ? sendImagePath : receiveImagePath;
         const sign = rowData[0].transferValue < 0 ? '-' : '+';
         const address = get(rowData, '[0].address');
         const sendOrReceive = addresses.includes(address);
-        const titleColour = sendOrReceive ? '#72BBE8' : '#F7D002';
+        const titleColour = sendOrReceive ? extraColor : negativeColor;
 
         return (
             <View style={styles.container}>

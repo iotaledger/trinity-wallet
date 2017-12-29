@@ -6,6 +6,7 @@ import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import { TextField } from 'react-native-material-textfield';
 import { translate } from 'react-i18next';
+import THEMES from '../theme/themes';
 
 const styles = StyleSheet.create({
     container: {
@@ -114,8 +115,7 @@ class AddCustomNode extends Component {
                             fontSize={width / 20.7}
                             labelPadding={3}
                             baseColor="white"
-                            label={t('customNode')}
-                            tintColor="#F7D002"
+                            label={t('customNode')}                 tintColor={THEMES.getHSL(this.props.negativeColor)}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically={true}
