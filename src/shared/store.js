@@ -1,6 +1,8 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+
 import marketData from './reducers/marketData';
 import tempAccount from './reducers/tempAccount';
 import account from './reducers/account';
@@ -39,7 +41,7 @@ const rootReducer = (state, action) => {
 const store = createStore(
     rootReducer,
     compose(
-        applyMiddleware(thunk),
+        applyMiddleware(thunk, logger),
         autoRehydrate(),
         typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
     ),
