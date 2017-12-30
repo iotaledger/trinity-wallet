@@ -31,7 +31,8 @@
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
         "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrongExplanation": "Please restart the app.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
