@@ -7,6 +7,8 @@
         "back": "BACK",
         "done": "DONE",
         "next": "NEXT",
+        "apply": "APPLY",
+        "save": "SAVE",
         "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
         "copyToClipboard": "Add to password manager",
@@ -273,7 +275,9 @@
     },
     "advancedThemeCustomisation":{
     "background": "Background",
-    "frame": "Frame",
-    "apply": "Apply"
+    "frame": "Frame"
+    },
+    "currencySelection":{
+    "currency": "Currency"
     }
 }

@@ -114,7 +114,7 @@ class AdvancedThemeCustomisation extends React.Component {
                     <TouchableOpacity onPress={() => this.onApplyPress()}>
                         <View style={styles.itemRight}>
                             <Image source={tickImagePath} style={styles.icon} />
-                            <Text style={styles.titleText}>{t('apply')}</Text>
+                            <Text style={styles.titleText}>{t('global:apply')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
