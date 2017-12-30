@@ -278,5 +278,7 @@
     },
     "currencySelection":{
     "currency": "Currency"
-    }
+    },
+    "logoutConfirmationModal":{
+    "logoutConfirmation": "
 }
