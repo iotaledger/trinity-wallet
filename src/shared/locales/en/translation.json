@@ -9,6 +9,7 @@
         "next": "NEXT",
         "apply": "APPLY",
         "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
         "copyToClipboard": "Add to password manager",
@@ -281,5 +282,9 @@
     "currency": "Currency"
     },
     "logoutConfirmationModal":{
-    "logoutConfirmation": "
+    "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner":{
+    "scan": "Scan your QR code"
+    }
 }
