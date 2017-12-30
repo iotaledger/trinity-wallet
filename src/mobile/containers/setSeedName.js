@@ -76,15 +76,26 @@ export class SetSeedName extends Component {
     }
 
     navigateTo(screen) {
-        return this.props.navigator.push({
-            screen,
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
+        if (screen === 'loading') {
+            return this.props.navigator.push({
+                screen,
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                },
+                animated: false,
+                overrideBackPress: true,
+            });
+        } else {
+            return this.props.navigator.push({
+                screen,
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                },
+                animated: false,
+            });
+        }
     }
 
     onDonePress() {
