@@ -166,7 +166,7 @@ class Login extends Component {
     render() {
         const { backgroundColor, positiveColor, negativeColor } = this.props;
         return (
-            <View style={[styles.container]}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 {!this.state.changingNode && (
                     <EnterPassword
