@@ -205,6 +205,23 @@ const account = (
                 ...state,
                 firstUse: true,
             };
+        case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
+            return {
+                ...state,
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        transfers: action.payload.transfers,
+                        addresses: action.payload.addresses,
+                    },
+                }),
+                unspentAddressesHashes: merge({}, state.unspentAddressesHashes, {
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
+                }),
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+                pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
+                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
+                }),
+            };
         default:
             return state;
     }

@@ -1,9 +1,8 @@
 import cloneDeep from 'lodash/cloneDeep';
 import size from 'lodash/size';
 import get from 'lodash/get';
-import filter from 'lodash/filter';
 import { iota } from '../libs/iota';
-import { updateAddresses, addPendingTransfer, updateUnconfirmedBundleTails } from '../actions/account';
+import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
 import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
 import { MAX_SEED_LENGTH } from '../libs/util';
@@ -189,7 +188,6 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
 
             const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
             const addressData = selectedAccount.addresses;
-            const transfers = selectedAccount.transfers;
 
             const options = { inputs };
 
@@ -197,19 +195,9 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
             return iota.api.sendTransfer(seed, 4, 14, transfer, options, (error, success) => {
                 if (!error) {
                     dispatch(checkForNewAddress(accountName, addressData, success));
-                    dispatch(addPendingTransfer(accountName, transfers, success));
+                    dispatch(updateAccountInfo(accountName, success, value));
                     dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
                     dispatch(sendTransferSuccess({ address, value }));
-
-                    // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
-                    // Would be the tail anyways.
-                    // Also check if it was a value transfer
-                    if (value) {
-                        const bundle = get(success, `[${0}].bundle`);
-                        dispatch(
-                            updateUnconfirmedBundleTails({ [bundle]: filter(success, tx => tx.currentIndex === 0) }),
-                        );
-                    }
                 } else {
                     dispatch(sendTransferError());
                     dispatch(
