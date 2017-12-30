@@ -31,7 +31,13 @@ import {
     mergeLatestTransfersInOld,
     formatTransfers,
     markTransfersConfirmed,
-    getPendingTxTailsHahses,
+    getTotalBalance,
+    getLatestAddresses,
+    getTransactionHashes,
+    getTransactionsObjects,
+    getInclusionWithHashes,
+    getConfirmedTxTailsHashes,
+    getBundlesWithPersistence,
 } from '../libs/accountUtils';
 import { rearrangeObjectKeys } from '../libs/util';
 
@@ -186,130 +192,6 @@ export const fetchChartData = () => {
     };
 };
 
-const getTotalBalance = (addresses, threshold = 1) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getBalances(addresses, threshold, (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                const newBalances = map(data.balances, Number);
-                const totalBalance = reduce(
-                    newBalances,
-                    (res, val) => {
-                        res = res + val;
-                        return res;
-                    },
-                    0,
-                );
-
-                resolve(totalBalance);
-            }
-        });
-    });
-};
-
-const getLatestAddresses = (seed, index) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getInputs(seed, { start: index }, (err, data) => {
-            if (err) {
-                reject(err);
-            } else {
-                const addresses = reduce(
-                    data.inputs,
-                    (obj, x) => {
-                        obj[x.address] = { balance: x.balance, spent: false };
-                        return obj;
-                    },
-                    {},
-                );
-
-                resolve(addresses);
-            }
-        });
-    });
-};
-
-const getTransactionHashes = addresses => {
-    console.log('GET TRANSACTION OBJECTS', addresses);
-
-    return new Promise((resolve, reject) => {
-        iota.api.findTransactions({ addresses }, (err, hashes) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(hashes);
-            }
-        });
-    });
-};
-
-const getTransactionsObjects = hashes => {
-    console.log('GET TX OBJECTS', hashes);
-    return new Promise((resolve, reject) => {
-        iota.api.getTransactionsObjects(hashes, (err, txs) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(txs);
-            }
-        });
-    });
-};
-
-const getInclusionWithHashes = hashes => {
-    console.log('GET INCLUSION WITH HAHSES', hashes);
-    return new Promise((resolve, reject) => {
-        iota.api.getLatestInclusion(hashes, (err, states) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ states, hashes });
-            }
-        });
-    });
-};
-
-const getBundleWithPersistence = (tailTxHash, persistence) => {
-    console.log('UMAIRS');
-    console.log('TAIL TX HASHES', tailTxHash);
-    return new Promise((resolve, reject) => {
-        iota.api.getBundle(tailTxHash, (err, bundle) => {
-            if (err) {
-                reject(err);
-            } else {
-                console.log('WHAT', bundle);
-                resolve(map(bundle, tx => assign({}, tx, { persistence })));
-            }
-        });
-    });
-};
-
-const getBundlesWithPersistence = (inclusionStates, hashes) => {
-    console.log('SARFRAZ', inclusionStates);
-    console.log('SARFRAZ', hashes);
-    return reduce(
-        hashes,
-        (promise, hash, idx) => {
-            return promise
-                .then(result => {
-                    return getBundleWithPersistence(hash, inclusionStates[idx]).then(bundle => {
-                        result.push(bundle);
-
-                        return result;
-                    });
-                })
-                .catch(console.error);
-        },
-        Promise.resolve([]),
-    );
-};
-
-const getConfirmedTxTailsHashes = (states, hashes) => {
-    const confirmedHashes = filter(hashes, (hash, idx) => states[idx]);
-
-    return new Promise((resolve, reject) => resolve(confirmedHashes));
-};
-
 export const getAccountInfo = (seed, accountName) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
@@ -338,7 +220,6 @@ export const getAccountInfo = (seed, accountName) => {
 
         return getTotalBalance(addresses)
             .then(balance => {
-                console.log('balance', balance);
                 payload = assign({}, payload, { balance });
 
                 const index = addresses.length ? addresses.length - 1 : 0;
@@ -348,7 +229,6 @@ export const getAccountInfo = (seed, accountName) => {
             .then(addressData => {
                 const unspentAddresses = getUnspentAddresses(selectedAccount.addresses);
 
-                console.log('Unspent addresses', unspentAddresses);
                 if (isEmpty(unspentAddresses)) {
                     payload = assign({}, payload, { addresses: addressData });
 
@@ -358,33 +238,33 @@ export const getAccountInfo = (seed, accountName) => {
                 return getTransactionHashes(unspentAddresses);
             })
             .then(latestHashes => {
-                console.log('Latest hashes', latestHashes);
-
                 const hasNewHashes = size(latestHashes) > size(existingHashes);
 
                 if (hasNewHashes) {
-                    const diff = difference(existingHashes, latestHashes);
+                    console.log('Found new hashes', latestHashes);
+                    console.log('Old hashes', existingHashes);
+                    const diff = difference(latestHashes, existingHashes);
 
+                    console.log('Diff', diff);
                     return getTransactionsObjects(diff);
                 }
 
-                // throw new Error('intentionally break chain');
-                return getTransactionsObjects(latestHashes);
+                throw new Error('intentionally break chain');
             })
             .then(txs => {
-                console.log('New txs', txs);
-
                 const tailTxs = filter(txs, t => t.currentIndex === 0);
 
+                console.log('TXS', txs);
                 return getInclusionWithHashes(map(tailTxs, t => t.hash));
             })
             .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
             .then(bundles => {
-                console.log('Bundles', bundles);
-
-                const updatedTransfers = mergeLatestTransfersInOld(selectedAccount.transfers, bundles);
+                console.log('BUNDLES', bundles);
+                const updatedTransfers = [...selectedAccount.transfers, ...bundles];
                 const updatedTransfersWithFormatting = formatTransfers(updatedTransfers, addresses);
 
+                console.log('Previous txs', selectedAccount.transfers);
+                console.log('nEw txs', updatedTransfers);
                 payload = assign({}, payload, { transfers: updatedTransfersWithFormatting });
 
                 if (isEmpty(pendingTxTailsHashes)) {
@@ -393,8 +273,13 @@ export const getAccountInfo = (seed, accountName) => {
 
                 return getInclusionWithHashes(pendingTxTailsHashes);
             })
-            .then(({ states, hashes }) => getConfirmedTxTailsHashes(states, hashes))
+            .then(({ states, hashes }) => {
+                console.log('Pending States', states);
+                console.log('Hashes', hashes);
+                return getConfirmedTxTailsHashes(states, hashes);
+            })
             .then(confirmedHashes => {
+                console.log('Confirmed Hashes', confirmedHashes);
                 if (isEmpty(confirmedHashes)) {
                     throw new Error('intentionally break chain');
                 }
@@ -407,8 +292,6 @@ export const getAccountInfo = (seed, accountName) => {
                 return dispatch(accountInfoFetchSuccess(payload));
             })
             .catch(err => {
-                console.log('Err', err);
-                console.log('ERRR', err.message);
                 if (err && err.message === 'intentionally break chain') {
                     dispatch(accountInfoFetchSuccess(payload));
                 } else {
