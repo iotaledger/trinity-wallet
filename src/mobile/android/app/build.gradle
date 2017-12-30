@@ -174,3 +174,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+project.ext.react = [
+        nodeExecutableAndArgs : ["/usr/local/bin/node"]
+];
