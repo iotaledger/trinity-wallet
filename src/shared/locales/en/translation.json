@@ -199,7 +199,6 @@
         "advanced": "Advanced settings",
         "logout": "Log out",
         "reset": "Reset wallet",
-        "back": "Back",
         "syncingComplete": "Syncing complete",
         "syncingCompleteExplanation": "Your account has synced successfully.",
         "nicknameChanged": "Account name changed",
