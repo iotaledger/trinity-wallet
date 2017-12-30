@@ -46,7 +46,7 @@ class Loading extends Component {
                         navBarTransparent: true,
                         screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                     },
-                    overrideBackPress: true,
+                    //overrideBackPress: true,
                 },
             });
         }

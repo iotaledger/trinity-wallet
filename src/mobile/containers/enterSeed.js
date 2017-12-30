@@ -60,7 +60,6 @@ class EnterSeed extends React.Component {
                 screen: 'setSeedName',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
-                overrideBackPress: true,
             });
         }
     }
