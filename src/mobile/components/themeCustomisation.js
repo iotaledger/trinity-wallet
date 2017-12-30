@@ -73,13 +73,18 @@ class ThemeCustomisation extends React.Component {
                             { backgroundColor: THEMES.getHSL(backgroundColor), shadowColor: THEMES.getHSL(barColor) },
                         ]}
                     >
+                        <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: height / 44 }}>
+                            <Text style={{ fontFamily: 'Lato-Regular', fontSize: width / 29.6, color: 'white' }}>
+                                MOCKUP
+                            </Text>
+                        </View>
                         <View
                             style={[
                                 styles.frameBar,
                                 { backgroundColor: THEMES.getHSL(barColor), shadowColor: THEMES.getHSL(barColor) },
                             ]}
                         >
-                            <Text style={styles.frameBarTitle}>Frame Bar</Text>
+                            <Text style={styles.frameBarTitle}>MAIN ACCOUNT</Text>
                             <Image style={styles.chevron} source={chevronDownImagePath} />
                         </View>
                         {/*
@@ -103,22 +108,18 @@ class ThemeCustomisation extends React.Component {
                         */}
                         <View style={styles.buttonsContainer}>
                             <View style={[styles.button, { borderColor: THEMES.getHSL(negativeColor) }]}>
-                                <Text style={[styles.buttonText, { color: THEMES.getHSL(negativeColor) }]}>
-                                    NEGATIVE
-                                </Text>
+                                <Text style={[styles.buttonText, { color: THEMES.getHSL(negativeColor) }]}>BACK</Text>
                             </View>
                             <View style={[styles.button, { borderColor: THEMES.getHSL(positiveColor) }]}>
-                                <Text style={[styles.buttonText, { color: THEMES.getHSL(positiveColor) }]}>
-                                    POSITIVE
-                                </Text>
+                                <Text style={[styles.buttonText, { color: THEMES.getHSL(positiveColor) }]}>NEXT</Text>
                             </View>
                         </View>
                         <View style={styles.buttonsContainer}>
                             <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
-                                <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>EXTRA</Text>
+                                <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>SAVE</Text>
                             </View>
                             <View style={[styles.ctaButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
-                                <Text style={styles.ctaText}>CTA</Text>
+                                <Text style={styles.ctaText}>SEND</Text>
                             </View>
                         </View>
                     </View>
@@ -164,7 +165,9 @@ const styles = StyleSheet.create({
         zIndex: 2,
     },
     demoContainer: {
-        padding: height / 26,
+        paddingTop: height / 44,
+        paddingHorizontal: height / 26,
+        paddingBottom: height / 26,
         borderRadius: GENERAL.borderRadius,
         borderWidth: 1.5,
         borderStyle: 'dotted',
@@ -323,7 +326,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontFamily: 'Lato-Regular',
-        fontSize: width / 24.4,
+        fontSize: width / 25.9,
         backgroundColor: 'transparent',
     },
     ctaButton: {
@@ -336,7 +339,7 @@ const styles = StyleSheet.create({
     ctaText: {
         color: 'white',
         fontFamily: 'Lato-Bold',
-        fontSize: width / 24.4,
+        fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
 });
