@@ -270,5 +270,10 @@
     "selectNode": "Select node",
     "addCustomNode": "Add custom node",
     "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation":{
+    "background": "Background",
+    "frame": "Frame",
+    "apply": "Apply"
     }
 }
