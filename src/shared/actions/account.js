@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
+import get from 'lodash/get';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
 import difference from 'lodash/difference';
@@ -26,11 +27,13 @@ import {
     getBundlesWithPersistence,
     getConfirmedTxTailsHashes,
     markTransfersConfirmed,
+    markAddressSpend,
 } from '../libs/accountUtils';
 import { setReady, clearTempData } from './tempAccount';
 import { generateAlert, generateAccountInfoErrorAlert } from '../actions/alerts';
 
 export const ActionTypes = {
+    UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
     SET_FIRST_USE: 'IOTA/ACCOUNT/SET_FIRST_USE',
     UPDATE_TRANSFERS: 'IOTA/ACCOUNT/UPDATE_TRANSFERS',
     UPDATE_ADDRESSES: 'IOTA/ACCOUNT/UPDATE_ADDRESSES',
@@ -185,6 +188,11 @@ const accountInfoFetchSuccess = payload => ({
 
 const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
+});
+
+const updateAccountInfoAfterSpending = payload => ({
+    type: ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
+    payload,
 });
 
 export const getAccountInfoNewSeedAsync = (seed, seedName) => {
@@ -429,4 +437,67 @@ export const addPendingTransfer = (seedName, transfers, success) => {
 export const deleteAccount = accountName => dispatch => {
     dispatch(removeAccount(accountName));
     dispatch(generateAlert('success', 'Account Deleted', 'Successfully deleted account')); // TODO: Need to verify exact translated message
+};
+
+// Aim to update local transfers, addresses, hashes in store after a new transaction is made.
+export const updateAccountInfo = (accountName, newTransferBundle, value) => (dispatch, getState) => {
+    console.log('New Transfers Bundle', newTransferBundle);
+
+    const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+    const existingAddressData = selectedAccount.addresses;
+    const existingTransfers = selectedAccount.transfers;
+    const existingUnspentAddressesHashes = getExistingUnspentAddressesHashes(
+        accountName,
+        getState().account.unspentAddressesHashes,
+    );
+    const pendingTxTailsHashes = getPendingTxTailsHashesForSelectedAccount(
+        accountName,
+        getState().account.pendingTxTailsHashes,
+    );
+    const existingUnconfirmedBundleTails = getState().account.unconfirmedBundleTails;
+
+    const newTransferBundleWithPersistenceAndTransferValue = map(newTransferBundle, bundle => ({
+        ...bundle,
+        ...{ transferValue: -bundle.value, persistence: false },
+    }));
+    const updatedTransfers = [...[newTransferBundleWithPersistenceAndTransferValue], ...existingTransfers];
+    const updatedAddressData = markAddressSpend([newTransferBundle], existingAddressData);
+    const updatedUnspentAddresses = getUnspentAddresses(updatedAddressData);
+    const bundle = get(newTransferBundle, `[${0}].bundle`);
+
+    // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
+    // Also check if it was a value transfer
+    const tail = filter(newTransferBundle, tx => tx.currentIndex === 0);
+    const updatedUnconfirmedBundleTails = value ? { [bundle]: tail } : existingUnconfirmedBundleTails;
+    const updatedPendingTxTailsHashes = [...pendingTxTailsHashes, ...map(tail, t => t.hash)];
+
+    if (!isEmpty(updatedUnspentAddresses)) {
+        iota.api.findTransactions({ addresses: updatedUnspentAddresses }, (err, hashes) => {
+            if (err) {
+                console.error(err);
+            } else {
+                dispatch(
+                    updateAccountInfoAfterSpending({
+                        accountName,
+                        transfers: updatedTransfers,
+                        addresses: updatedAddressData,
+                        unspentAddressesHashes: hashes,
+                        unconfirmedBundleTails: updatedUnconfirmedBundleTails,
+                        pendingTxTailsHashes: updatedPendingTxTailsHashes,
+                    }),
+                );
+            }
+        });
+    } else {
+        dispatch(
+            updateAccountInfoAfterSpending({
+                accountName,
+                transfers: updatedTransfers,
+                addresses: updatedAddressData,
+                unspentAddressesHashes: existingUnspentAddressesHashes,
+                unconfirmedBundleTails: updatedUnconfirmedBundleTails,
+                pendingTxTailsHashes: updatedPendingTxTailsHashes,
+            }),
+        );
+    }
 };
