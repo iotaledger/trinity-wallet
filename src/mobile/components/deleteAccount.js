@@ -10,6 +10,7 @@ import THEMES from '../theme/themes';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import GENERAL from '../theme/general';
+import { translate } from 'react-i18next';
 
 class DeleteAccount extends Component {
     constructor() {
