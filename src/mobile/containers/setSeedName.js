@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import OnboardingButtons from '../components/onboardingButtons.js';
+import OnboardingButtons from '../components/onboardingButtons';
 import {
     fetchFullAccountInfoForFirstUse,
     getFullAccountInfo,
@@ -48,43 +48,10 @@ export class SetSeedName extends Component {
         };
     }
 
-    getDefaultAccountName() {
-        const { t } = this.props;
-        if (this.props.account.seedCount === 0) {
-            return t('global:mainWallet');
-        } else if (this.props.account.seedCount === 1) {
-            return t('global:secondWallet');
-        } else if (this.props.account.seedCount === 2) {
-            return t('global:thirdWallet');
-        } else if (this.props.account.seedCount === 3) {
-            return t('global:fourthWallet');
-        } else if (this.props.account.seedCount === 4) {
-            return t('global:fifthWallet');
-        } else if (this.props.account.seedCount === 5) {
-            return t('global:sixthWallet');
-        } else if (this.props.account.seedCount === 6) {
-            return t('global:otherWallet');
-        } else {
-            return '';
-        }
-    }
-
     componentDidMount() {
         if (this.nameInput) {
             this.nameInput.focus();
         }
-    }
-
-    navigateTo(screen) {
-        return this.props.navigator.push({
-            screen,
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
     }
 
     onDonePress() {
@@ -158,6 +125,39 @@ export class SetSeedName extends Component {
     onBackPress() {
         this.props.navigator.pop({
             animated: false,
+        });
+    }
+
+    getDefaultAccountName() {
+        const { t } = this.props;
+        if (this.props.account.seedCount === 0) {
+            return t('global:mainWallet');
+        } else if (this.props.account.seedCount === 1) {
+            return t('global:secondWallet');
+        } else if (this.props.account.seedCount === 2) {
+            return t('global:thirdWallet');
+        } else if (this.props.account.seedCount === 3) {
+            return t('global:fourthWallet');
+        } else if (this.props.account.seedCount === 4) {
+            return t('global:fifthWallet');
+        } else if (this.props.account.seedCount === 5) {
+            return t('global:sixthWallet');
+        } else if (this.props.account.seedCount === 6) {
+            return t('global:otherWallet');
+        } else {
+            return '';
+        }
+    }
+
+    navigateTo(screen) {
+        return this.props.navigator.push({
+            screen,
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            animated: false,
+            overrideBackPress: true,
         });
     }
 

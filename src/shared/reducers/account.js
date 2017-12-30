@@ -2,7 +2,6 @@ import merge from 'lodash/merge';
 import omit from 'lodash/omit';
 import filter from 'lodash/filter';
 import { ActionTypes } from '../actions/account';
-import { ActionTypes as TempAccountActionTypes } from '../actions/tempAccount';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
 const account = (
@@ -76,6 +75,34 @@ const account = (
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),
             };
+        case ActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
+            return {
+                ...state,
+                firstUse: false,
+            };
+        case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+            return {
+                ...state,
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        balance: action.payload.balance,
+                        addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
+                    },
+                }),
+                unspentAddressesHashes: merge({}, state.unspentAddressesHashes, {
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
+                }),
+                pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
+                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
+                }),
+                firstUse: true,
+            };
+        case ActionTypes.ACCOUNT_INFO_FETCH_ERROR:
+            return {
+                ...state,
+                firstUse: false,
+            };
         case ActionTypes.UPDATE_ADDRESSES:
             return {
                 ...state,
@@ -97,15 +124,6 @@ const account = (
                         transfers: action.transfers,
                     },
                 },
-            };
-        case TempAccountActionTypes.GET_TRANSFERS_SUCCESS:
-            return {
-                ...state,
-                accountInfo: merge({}, state.accountInfo, {
-                    [action.payload.accountName]: {
-                        transfers: action.payload.transfers,
-                    },
-                }),
             };
         case ActionTypes.SET_FIRST_USE:
             return {
