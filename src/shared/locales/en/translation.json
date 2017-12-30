@@ -33,7 +33,8 @@
         "syncInProgressExplanation": "Please wait until syncing is complete.",
         "somethingWentWrong": "Something went wrong",
         "somethingWentWrongExplanation": "Please restart the app.",
-        "node": "Node"
+        "node": "Node",
+        "iota": "IOTA",
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -286,5 +287,13 @@
     },
     "qrScanner":{
     "scan": "Scan your QR code"
+    },
+    "unitInfoModal":{
+    "unitSystem": "UNIT SYSTEM",
+    "trillion": "Trillion",
+    "billion": "Billion",
+    "million": "Million",
+    "thousand": "Thousand",
+    "one": "One"
     }
 }
