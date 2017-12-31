@@ -102,61 +102,6 @@ export const calculateBalance = data => {
     return balance;
 };
 
-export const getAddressesWithChangedBalance = (allAddresses, indicesWithChangedBalance) => {
-    const addressesWithChangedBalance = [];
-
-    each(indicesWithChangedBalance, idx => {
-        if (allAddresses[idx]) {
-            addressesWithChangedBalance.push(allAddresses[idx]);
-        }
-    });
-
-    return addressesWithChangedBalance;
-};
-
-export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
-    // Transform both old and latest into dictionaries with bundle as prop
-    const toDict = (res, transfer) => {
-        const top = transfer[0];
-        const bundle = top.bundle;
-
-        if (bundle in res) {
-            res[bundle] = [...res[bundle], transfer];
-        } else {
-            res[bundle] = [transfer];
-        }
-
-        return res;
-    };
-
-    const override = (res, bundleObject, key) => {
-        if (key in transformedLatestTransfers) {
-            each(transformedLatestTransfers[key], value => res.push(value)); // Just replace old bundle objects with latest
-        } else {
-            each(transformedOldTransfers[key], value => res.push(value)); // Otherwise just keep the old ones
-        }
-
-        return res;
-    };
-
-    const transformedOldTransfers = reduce(oldTransfers, toDict, {});
-    const transformedLatestTransfers = reduce(latestTransfers, toDict, {});
-
-    const overrideMissing = (res, bundleObject, key) => {
-        // Add new bundle entry to transfers
-        if (!(key in transformedOldTransfers)) {
-            each(transformedLatestTransfers[key], value => res.push(value));
-        }
-
-        return res;
-    };
-
-    const oldUpdatedTransfers = reduce(transformedOldTransfers, override, []);
-    const newTransfers = reduce(transformedLatestTransfers, overrideMissing, []);
-
-    return [...oldUpdatedTransfers, ...newTransfers];
-};
-
 export const deduplicateTransferBundles = transfers => {
     const deduplicate = (res, transfer) => {
         const top = transfer[0];
@@ -427,7 +372,6 @@ export const getTransactionsObjects = hashes => {
             if (err) {
                 reject(err);
             } else {
-                console.log('Txssss', txs);
                 resolve(txs);
             }
         });
