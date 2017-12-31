@@ -6,7 +6,7 @@ import i18n from '../i18n';
 import { translate } from 'react-i18next';
 
 const context = {
-  i18next
+  i18n
 };
 
 describe('translate', () => {
