@@ -340,7 +340,7 @@ export const organizeAccountInfo = (accountName, data) => {
     const addressData = formatFullAddressData(data);
     const balance = calculateBalance(addressData);
 
-    const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
+    const unconfirmedBundleTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
     const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
     const pendingTxTailsHashes = getPendingTxTailsHashes(transfers);
 
@@ -349,7 +349,7 @@ export const organizeAccountInfo = (accountName, data) => {
         transfers,
         addresses: addressDataWithSpentFlag,
         balance,
-        unconfirmedTails,
+        unconfirmedBundleTails,
         pendingTxTailsHashes,
     };
 };
