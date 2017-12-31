@@ -68,8 +68,8 @@
 		"confirmPassword": "Confirm New Password"
 	},
 	"copyToClipboard": {
-		"seedCleared": "Seed cleared",
-		"seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+		"seedCleared": "تم مسح القيم",
+		"seedClearedExplanation": "تم مسح القيم من الحافظة لأمنك.",
 		"seedCopied": "Copied seed to clipboard",
 		"seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
 		"clickToCopy": "Click the button below and copy your seed to a password manager.",
