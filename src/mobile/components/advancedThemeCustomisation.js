@@ -13,6 +13,7 @@ import tinycolor from 'tinycolor2';
 import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
+import { translate } from 'react-i18next';
 
 class AdvancedThemeCustomisation extends React.Component {
     constructor(props) {
@@ -33,6 +34,7 @@ class AdvancedThemeCustomisation extends React.Component {
     }
 
     render() {
+    const { t } = this.props;
         const backgroundTextColor = tinycolor(this.state.backgroundColor).isDark() ? '#FAFAFA' : '#222';
         const barTextColor = tinycolor(this.state.barColor).isDark() ? '#FAFAFA' : '#222';
         return (
@@ -45,7 +47,7 @@ class AdvancedThemeCustomisation extends React.Component {
                                 { backgroundColor: tinycolor(this.state.backgroundColor).toHslString() },
                             ]}
                         >
-                            <Text style={[styles.colorString, { color: backgroundTextColor }]}>Background</Text>
+                            <Text style={[styles.colorString, { color: backgroundTextColor }]}>{t('background')}</Text>
                         </View>
                         <HueSlider
                             style={styles.sliderRow}
@@ -78,7 +80,7 @@ class AdvancedThemeCustomisation extends React.Component {
                                 { backgroundColor: tinycolor(this.state.barColor).toHslString() },
                             ]}
                         >
-                            <Text style={[styles.colorString, { color: barTextColor }]}>Frame</Text>
+                            <Text style={[styles.colorString, { color: barTextColor }]}>{t('frame')}</Text>
                         </View>
                         <HueSlider
                             style={styles.sliderRow}
@@ -106,13 +108,13 @@ class AdvancedThemeCustomisation extends React.Component {
                     <TouchableOpacity onPress={() => this.props.backPress()}>
                         <View style={styles.itemLeft}>
                             <Image source={arrowLeftImagePath} style={styles.icon} />
-                            <Text style={styles.titleText}>Back</Text>
+                            <Text style={styles.titleText}>{t('global:back')}</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.onApplyPress()}>
                         <View style={styles.itemRight}>
                             <Image source={tickImagePath} style={styles.icon} />
-                            <Text style={styles.titleText}>Apply</Text>
+                            <Text style={styles.titleText}>{t('global:apply')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -190,4 +192,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AdvancedThemeCustomisation;
+export default translate(['advancedThemeCustomisation', 'global'])(AdvancedThemeCustomisation);
