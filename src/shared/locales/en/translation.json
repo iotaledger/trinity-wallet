@@ -7,6 +7,9 @@
         "back": "BACK",
         "done": "DONE",
         "next": "NEXT",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
         "copyToClipboard": "Add to password manager",
@@ -29,7 +32,9 @@
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
         "somethingWentWrong": "Something went wrong",
-        "somethingWentWrongExplanation": "Please restart the app."
+        "somethingWentWrongExplanation": "Please restart the app.",
+        "node": "Node",
+        "iota": "IOTA",
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -197,7 +202,6 @@
         "advanced": "Advanced settings",
         "logout": "Log out",
         "reset": "Reset wallet",
-        "back": "Back",
         "syncingComplete": "Syncing complete",
         "syncingCompleteExplanation": "Your account has synced successfully.",
         "nicknameChanged": "Account name changed",
@@ -250,5 +254,46 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
+    },
+    "accountManagement":{
+    "viewSeed": "View seed",
+    "viewAddresses": "View addresses",
+    "editAccountName": "Edit account name",
+    "deleteAccount": "Delete account",
+    "addNewAccount": "Add new account"
+    },
+    "addCustomNode":{
+    "customNode": "Custom node",
+    "add": "Add"
+    },
+    "addNewAccount":{
+    "useExistingSeed": "Use existing seed",
+    "createNewSeed": "Create new seed"
+    },
+    "advancedSettings":{
+    "selectNode": "Select node",
+    "addCustomNode": "Add custom node",
+    "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation":{
+    "background": "Background",
+    "frame": "Frame"
+    },
+    "currencySelection":{
+    "currency": "Currency"
+    },
+    "logoutConfirmationModal":{
+    "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner":{
+    "scan": "Scan your QR code"
+    },
+    "unitInfoModal":{
+    "unitSystem": "UNIT SYSTEM",
+    "trillion": "Trillion",
+    "billion": "Billion",
+    "million": "Million",
+    "thousand": "Thousand",
+    "one": "One"
     }
 }

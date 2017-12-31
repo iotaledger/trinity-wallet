@@ -7,6 +7,7 @@ import syncImagePath from 'iota-wallet-shared-modules/images/sync.png';
 import crossImagePath from 'iota-wallet-shared-modules/images/cross.png';
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import { translate } from 'react-i18next';
 
 class AdvancedSettings extends Component {
     static propTypes = {
@@ -16,6 +17,7 @@ class AdvancedSettings extends Component {
     };
 
     render() {
+    const { t } = this.props;
         return (
             <View style={styles.container}>
                 <View style={{ flex: 4.5 }}>
@@ -23,7 +25,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('nodeSelection')}>
                             <View style={styles.item}>
                                 <Image source={nodeImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Select node</Text>
+                                <Text style={styles.titleText}>{t('selectNode')}</Text>
                                 <Text numberOfLines={1} style={styles.settingText}>
                                     {this.props.node}
                                 </Text>
@@ -34,7 +36,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('addCustomNode')}>
                             <View style={styles.item}>
                                 <Image source={addImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Add custom node</Text>
+                                <Text style={styles.titleText}>{t('addCustomNode')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -42,7 +44,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('manualSync')}>
                             <View style={styles.item}>
                                 <Image source={syncImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Manual sync</Text>
+                                <Text style={styles.titleText}>{t('manualSync')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -53,7 +55,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.onResetWalletPress()}>
                             <View style={styles.item}>
                                 <Image source={crossImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Reset wallet</Text>
+                                <Text style={styles.titleText}>{t('settings:reset')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -64,7 +66,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Text style={styles.titleText}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -132,4 +134,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AdvancedSettings;
+export default translate(['advancedSettings','settings', 'global'])(AdvancedSettings);
