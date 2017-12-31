@@ -7,6 +7,8 @@ import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
+import { translate } from 'react-i18next';
 
 class EditAccountName extends Component {
     static propTypes = {
@@ -44,8 +46,8 @@ class EditAccountName extends Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Account name"
-                                tintColor="#F7D002"
+                                label={t('accountName')}
+                                tintColor={THEMES.getHSL(this.props.negativeColor)}
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
@@ -64,13 +66,13 @@ class EditAccountName extends Component {
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Text style={styles.titleText}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.props.saveAccountName(trim(this.state.accountName))}>
                             <View style={styles.itemRight}>
                                 <Image source={tickImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Save</Text>
+                                <Text style={styles.titleText}>{t('global:save')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -149,4 +151,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default EditAccountName;
+export default translate(['addAdditionalSeed', 'global'])(EditAccountName);

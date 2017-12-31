@@ -6,10 +6,11 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { width, height } from '../util/dimensions';
 import Modal from 'react-native-modal';
 import { TextField } from 'react-native-material-textfield';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import GENERAL from '../theme/general';
+import { translate } from 'react-i18next';
 
 class DeleteAccount extends Component {
     constructor() {
@@ -56,7 +57,13 @@ class DeleteAccount extends Component {
     }
 
     _renderModalContent = (titleColour, sendOrReceive) => (
-        <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+        <View
+            style={{
+                width: width / 1.15,
+                alignItems: 'center',
+                backgroundColor: THEMES.getHSL(this.props.backgroundColor),
+            }}
+        >
             <View style={styles.modalContent}>
                 <Text style={[styles.infoText, { paddingBottom: height / 16 }]}>
                     Are you sure you want to delete your account called {this.props.currentAccountName}?
@@ -72,7 +79,7 @@ class DeleteAccount extends Component {
     );
 
     render() {
-        const { t } = this.props;
+        const { t, negativeColor } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -83,7 +90,9 @@ class DeleteAccount extends Component {
                             <View style={styles.textContainer}>
                                 <Text style={styles.infoText}>Are you sure you want to delete this account?</Text>
                                 <Text style={styles.infoText}>Your seed and transaction history will be removed.</Text>
-                                <Text style={styles.warningText}>This action cannot be undone.</Text>
+                                <Text style={[styles.warningText, { color: THEMES.getHSL(negativeColor) }]}>
+                                    This action cannot be undone.
+                                </Text>
                             </View>
                         )}
                         {this.state.pressedContinue && (
@@ -97,7 +106,7 @@ class DeleteAccount extends Component {
                                     labelPadding={3}
                                     baseColor="white"
                                     label="Password"
-                                    tintColor="#F7D002"
+                                    tintColor={THEMES.getHSL(negativeColor)}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically={true}

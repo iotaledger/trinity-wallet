@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Seedbox from '../components/seedBox.js';
 import { width, height } from '../util/dimensions';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
@@ -18,10 +18,14 @@ class WriteSeedDown extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, positiveColor, backgroundColor } = this.props;
         const checksum = getChecksum(this.props.tempAccount.seed);
+
+        const positiveColorText = { color: THEMES.getHSL(positiveColor) };
+        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
+
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -41,8 +45,8 @@ class WriteSeedDown extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
-                        <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>DONE</Text>
+                        <View style={[styles.doneButton, positiveColorBorder]}>
+                            <Text style={[styles.doneText, positiveColorText]}>DONE</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -56,7 +60,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 0.5,
@@ -117,7 +120,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     doneButton: {
-        borderColor: '#9DFFAF',
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
         width: width / 3,
@@ -127,7 +129,6 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     doneText: {
-        color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
@@ -195,6 +196,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    backgroundColor: state.settings.theme.backgroundColor,
+    positiveColor: state.settings.theme.positiveColor,
 });
 
 export default connect(mapStateToProps)(WriteSeedDown);

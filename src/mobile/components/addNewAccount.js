@@ -5,6 +5,7 @@ import { width, height } from '../util/dimensions';
 import keyImagePath from 'iota-wallet-shared-modules/images/key.png';
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import arrowLeftPath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import { translate } from 'react-i18next';
 
 class AddNewAccount extends Component {
     static propTypes = {
@@ -22,6 +23,7 @@ class AddNewAccount extends Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <View style={styles.container}>
                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
@@ -29,7 +31,7 @@ class AddNewAccount extends Component {
                         <TouchableOpacity onPress={event => this.onExistingSeedPress()}>
                             <View style={styles.item}>
                                 <Image source={keyImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Use existing seed</Text>
+                                <Text style={styles.titleText}>{t('useExistingSeed')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -37,7 +39,7 @@ class AddNewAccount extends Component {
                         <TouchableOpacity onPress={event => this.onNewSeedPress()}>
                             <View style={styles.item}>
                                 <Image source={addImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Create new seed</Text>
+                                <Text style={styles.titleText}>{t('createNewSeed')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -47,7 +49,7 @@ class AddNewAccount extends Component {
                     <TouchableOpacity onPress={event => this.props.backPress()}>
                         <View style={styles.item}>
                             <Image source={arrowLeftPath} style={styles.icon} />
-                            <Text style={styles.titleText}>Back</Text>
+                            <Text style={styles.titleText}>{t('global:back')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -87,4 +89,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddNewAccount;
+export default translate(['addNewAccount', 'global'])(AddNewAccount);

@@ -5,6 +5,8 @@ import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import { TextField } from 'react-native-material-textfield';
+import { translate } from 'react-i18next';
+import THEMES from '../theme/themes';
 
 const styles = StyleSheet.create({
     container: {
@@ -113,8 +115,8 @@ class AddCustomNode extends Component {
                             fontSize={width / 20.7}
                             labelPadding={3}
                             baseColor="white"
-                            label="Custom node"
-                            tintColor="#F7D002"
+                            label={t('customNode')}
+                            tintColor={THEMES.getHSL(this.props.negativeColor)}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically={true}
@@ -131,14 +133,14 @@ class AddCustomNode extends Component {
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Text style={styles.titleText}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         {this.state.customNode.startsWith('http') && (
                             <TouchableOpacity onPress={() => this.addNode()}>
                                 <View style={styles.itemRight}>
                                     <Image source={addImagePath} style={styles.icon} />
-                                    <Text style={styles.titleText}>Add</Text>
+                                    <Text style={styles.titleText}>{t('add')}</Text>
                                 </View>
                             </TouchableOpacity>
                         )}
@@ -149,4 +151,4 @@ class AddCustomNode extends Component {
     }
 }
 
-export default AddCustomNode;
+export default translate(['addCustomNode', 'global'])(AddCustomNode);
