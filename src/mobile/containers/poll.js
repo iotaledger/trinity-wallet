@@ -139,9 +139,7 @@ export class Poll extends Component {
                 /* eslint-disable no-lonely-if */
                 // Check where it lies within the ten minutes
 
-                console.log('HERE');
                 if (!isTenMinutesAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
-                    console.log('T');
                     this.props.setPollFor(allPollingServices[next]);
 
                     // Move the top transaction to the last
@@ -152,7 +150,6 @@ export class Poll extends Component {
                 }
 
                 if (isAnHourAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
-                    console.log('S');
                     this.props.removeBundleFromUnconfirmedBundleTails(top);
                     this.props.setPollFor(allPollingServices[next]);
                 }
@@ -161,14 +158,11 @@ export class Poll extends Component {
             }
         } else {
             // In case there are no unconfirmed bundle tails, move to the next service item
-            console.log('What is next', next);
-            console.log('NExt', allPollingServices[next]);
             this.props.setPollFor(allPollingServices[next]);
         }
     }
 
     render() {
-        console.log(this.props.pollFor);
         return null;
     }
 }

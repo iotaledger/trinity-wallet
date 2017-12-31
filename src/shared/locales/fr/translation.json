@@ -7,6 +7,9 @@
         "back": "RETOUR",
         "done": "OK",
         "next": "SUIVANT",
+        "apply": "",
+        "save": "",
+        "close": "",
         "manualCopy": "Notez la seed",
         "paperWallet": "Imprimez la copie papier",
         "copyToClipboard": "Ajoutez à un gestionnaire de mot de passe",
@@ -29,7 +32,8 @@
         "syncInProgress": "Synchronisation en cours",
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
-        "somethingWentWrongExplanation": "Veuillez redémarrer l'application."
+        "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
+        "node": ""
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -201,7 +205,6 @@
         "advanced": "Réglages avancés",
         "logout": "Déconnexion",
         "reset": "Réinitialiser le wallet",
-        "back": "Retour",
         "syncingComplete": "Synchronisation terminée",
         "syncingCompleteExplanation": "Votre compte a été synchronisé avec succès.",
         "nicknameChanged": "Nom de compte modifié",
@@ -223,7 +226,7 @@
         "areYouSure": "Êtes-vous sûr(e) de vouloir continuer ?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Entrez votre mot de passe pour réinitialiser votre wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ANNULER",
         "reset": "RÉINITIALISER"
     },
@@ -255,5 +258,46 @@
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papiers.",
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papiers."
+    },
+    "accountManagement": {
+        "viewSeed": "",
+        "viewAddresses": "",
+        "editAccountName": "",
+        "deleteAccount": "",
+        "addNewAccount": ""
+    },
+    "addCustomNode": {
+        "customNode": "",
+        "add": ""
+    },
+    "addNewAccount": {
+        "useExistingSeed": "",
+        "createNewSeed": ""
+    },
+    "advancedSettings": {
+        "selectNode": "",
+        "addCustomNode": "",
+        "manualSync": ""
+    },
+    "advancedThemeCustomisation": {
+        "background": "",
+        "frame": ""
+    },
+    "currencySelection": {
+        "currency": ""
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": ""
+    },
+    "qrScanner": {
+        "scan": ""
+    },
+    "unitInfoModal": {
+        "unitSystem": "",
+        "trillion": "",
+        "billion": "",
+        "million": "",
+        "thousand": "",
+        "one": ""
     }
 }

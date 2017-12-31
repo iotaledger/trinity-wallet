@@ -7,6 +7,9 @@
         "back": "WSTECZ",
         "done": "GOTOWE",
         "next": "DALEJ",
+        "apply": "",
+        "save": "",
+        "close": "",
         "manualCopy": "Zanotuj seeda",
         "paperWallet": "Wydrukuj wersje papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
@@ -29,13 +32,16 @@
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
-        "somethingWentWrongExplanation": "Uruchom ponownie aplikację."
+        "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
+        "node": ""
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
-        "seedInvalidCharsExplanation": "Seed może składać się tylko z wielkich liter A-Z i oraz cyfr 9. Twój Seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
+        "seedInvalidCharsExplanation":
+            "Seed może składać się tylko z wielkich liter A-Z i oraz cyfr 9. Twój Seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
-        "seedTooShortExplanation": "Seed musi zawierać co najmniej {{maxLength}} znaków. Twój Seed ma {{currentLength}} znaków. Proszę spróbować ponownie.",
+        "seedTooShortExplanation":
+            "Seed musi zawierać co najmniej {{maxLength}} znaków. Twój Seed ma {{currentLength}} znaków. Proszę spróbować ponownie.",
         "nameInUse": "Ta nazwa konta jest już w użyciu",
         "nameInUseExplanation": "Użyj unikalnej nazwy konta dla twojego Seeda.",
         "enterAccountName": "Wprowadź nazwę konta.",
@@ -74,10 +80,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
-        "invalidCharactersExplanation": "Seed może składać się tylko z wielkich liter A-Z i oraz cyfr 9. Twój Seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
+        "invalidCharactersExplanation":
+            "Seed może składać się tylko z wielkich liter A-Z i oraz cyfr 9. Twój Seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
-        "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Twój Seed ma {{currentLength}} znaków. Proszę spróbować ponownie.",
-        "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
+        "seedTooShortExplanation":
+            "Seed musi zawierać {{maxLength}} znaków. Twój Seed ma {{currentLength}} znaków. Proszę spróbować ponownie.",
+        "seedExplanation":
+            "Seed powinien składać się z {{maxLength}} znaków i powinien zawierać wielkie litery A-Z lub cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
         "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO SEEDA"
     },
     "home": {
@@ -110,7 +119,8 @@
         "individualLetters": "Kliknij poszczególne litery żeby dokonać losowego wyboru."
     },
     "onboardingComplete": {
-        "walletReady": "Portfel jest skonfigurowany i gotowy do użycia. W przypadku konieczności wprowadzenia zmian w przyszłości, skorzystaj z menu Narzędzia."
+        "walletReady":
+            "Portfel jest skonfigurowany i gotowy do użycia. W przypadku konieczności wprowadzenia zmian w przyszłości, skorzystaj z menu Narzędzia."
     },
     "paperWallet": {
         "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie twojego seeda.",
@@ -160,11 +170,13 @@
     },
     "setPassword": {
         "passwordTooShort": "Hasło jest zbyt krótkie",
-        "passwordTooShortExplanation": "Hasło musi mieć przynajmniej ${MIN_PASSWORD_LENGTH} znaków. Obecna długość to ${this.state.password.length} znaków. Proszę spróbować ponownie.",
+        "passwordTooShortExplanation":
+            "Hasło musi mieć przynajmniej ${MIN_PASSWORD_LENGTH} znaków. Obecna długość to ${this.state.password.length} znaków. Proszę spróbować ponownie.",
         "passwordMismatch": "Hasła nie są zgodne",
         "passwordMismatchExplanation": "Mieć wpisane hasła nie pasują. Proszę spróbować ponownie.",
         "nowWeNeedTo": "Teraz musimy ustawić hasło.",
-        "anEncryptedCopy": "Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
+        "anEncryptedCopy":
+            "Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
         "ensure": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "retypePassword": "Wpisz hasło ponownie"
     },
@@ -187,7 +199,6 @@
         "advanced": "Ustawienia zaawansowane",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
-        "back": "Wstecz",
         "syncingComplete": "Synchronizacja zakończona",
         "syncingCompleteExplanation": "Twoje konto zostało pomyślnie zsynchronizowane.",
         "nicknameChanged": "Zmieniono nazwę konta",
@@ -209,14 +220,15 @@
         "areYouSure": "Czy na pewno chcesz kontynuować?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ANULUJ",
         "reset": "RESET"
     },
     "walletSetup": {
         "okay": "Okay. Ustawmy twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
-        "seedExplanation": "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
+        "seedExplanation":
+            "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
         "explanation1": "Można go używać w celu uzyskania dostępu do swoich środków z",
         "explanation2": " dowolny portfel ",
         "explanation3": ", na",
@@ -239,5 +251,46 @@
         "bundleHashCopiedExplanation": "Bundle hash został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Adres został skopiowany do schowka."
+    },
+    "accountManagement": {
+        "viewSeed": "",
+        "viewAddresses": "",
+        "editAccountName": "",
+        "deleteAccount": "",
+        "addNewAccount": ""
+    },
+    "addCustomNode": {
+        "customNode": "",
+        "add": ""
+    },
+    "addNewAccount": {
+        "useExistingSeed": "",
+        "createNewSeed": ""
+    },
+    "advancedSettings": {
+        "selectNode": "",
+        "addCustomNode": "",
+        "manualSync": ""
+    },
+    "advancedThemeCustomisation": {
+        "background": "",
+        "frame": ""
+    },
+    "currencySelection": {
+        "currency": ""
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": ""
+    },
+    "qrScanner": {
+        "scan": ""
+    },
+    "unitInfoModal": {
+        "unitSystem": "",
+        "trillion": "",
+        "billion": "",
+        "million": "",
+        "thousand": "",
+        "one": ""
     }
 }

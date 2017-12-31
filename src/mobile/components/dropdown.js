@@ -9,6 +9,8 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import Triangle from 'react-native-triangle';
+import THEMES from '../theme/themes';
+import { connect } from 'react-redux';
 
 import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -31,11 +33,28 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
     },
+    dropdownContainer: {
+        justifyContent: 'flex-start',
+        paddingLeft: 2,
+        paddingRight: 2,
+        paddingBottom: 2,
+    },
     dropdownTitle: {
-        color: '#F7D002',
         fontFamily: 'Lato-Regular',
         fontSize: width / 33,
         backgroundColor: 'transparent',
+        paddingLeft: width / 100,
+    },
+    dropdownItemContainer: {
+        flex: 1,
+        height: height / 22.4,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        paddingLeft: width / 100,
+    },
+    listView: {
+        flex: 1,
+        justifyContent: 'flex-start',
     },
     dropdownItem: {
         color: 'white',
@@ -49,12 +68,21 @@ const styles = StyleSheet.create({
     dropdownButtonContainer: {
         marginTop: height / 150,
     },
+    dropdownInnerContainer: {
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowRadius: 4,
+        shadowOpacity: 0.6,
+    },
     selected: {
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingBottom: height / 150,
+        paddingLeft: width / 100,
     },
     dropdownButton: {
         flexDirection: 'row',
@@ -64,6 +92,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.7,
         width: width / 3,
         height: height / 22,
+    },
+    additionalPadding: {
+        height: height / 78,
+    },
+    triangle: {
+        marginBottom: height / 80,
+        marginRight: width / 100,
     },
 });
 
@@ -106,18 +141,26 @@ class Dropdown extends Component {
     }
 
     render() {
-        const { options, title, dropdownWidth } = this.props;
+        const { options, title, dropdownWidth, background, shadow, negativeColor, barColor } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
-        const dropdownHeight = isDropdownOpen ? height / 3.2 : 0;
+        const heightValue = options.length < 7 ? height / 22.4 * options.length + height / 70 : height / 3.2;
+        const dropdownHeight = isDropdownOpen ? heightValue : 0;
+        const shadowColor = shadow ? { shadowColor: THEMES.getHSL(barColor) } : { shadowColor: 'transparent' };
+        const backgroundColor = background
+            ? { backgroundColor: THEMES.getHSL(this.props.backgroundColor) }
+            : { backgroundColor: 'transparent' };
+        const lastItem = options.length - 1;
 
         return (
-            <View style={styles.container}>
-                <Text style={styles.dropdownTitle}>{title}</Text>
+            <View style={[styles.container, dropdownWidth]}>
+                <Text style={[styles.dropdownTitle, { color: THEMES.getHSL(negativeColor) }, dropdownWidth]}>
+                    {title}
+                </Text>
                 <View style={styles.dropdownButtonContainer}>
                     <TouchableWithoutFeedback onPress={() => this.onDropdownTitlePress()}>
                         <View style={[styles.dropdownButton, dropdownWidth]}>
-                            <Text numberOfLines={1} style={styles.selected}>
+                            <Text numberOfLines={1} style={[styles.selected, dropdownWidth]}>
                                 {selectedOption}
                             </Text>
                             <Triangle
@@ -125,51 +168,89 @@ class Dropdown extends Component {
                                 height={10}
                                 color={'white'}
                                 direction={triangleDirection}
-                                style={{ marginBottom: height / 80 }}
+                                style={styles.triangle}
                             />
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
                 <View
-                    style={[
-                        {
-                            height: dropdownHeight,
-                            overflow: 'hidden',
-                            backgroundColor: 'transparent',
-                            alignItems: 'flex-start',
-                            justifyContent: 'flex-start',
-                        },
-                        dropdownWidth,
-                    ]}
+                    style={{
+                        height: dropdownHeight,
+                        overflow: 'hidden',
+                        backgroundColor: 'transparent',
+                        alignItems: 'flex-start',
+                        justifyContent: 'flex-start',
+                    }}
                 >
-                    <ListView
-                        dataSource={ds.cloneWithRows(options)}
-                        renderRow={rowData => (
-                            <TouchableOpacity
-                                onPress={() => this.onOptionPress(rowData)}
-                                style={{ alignItems: 'flex-start', flex: 1 }}
-                            >
-                                <View
-                                    style={{
-                                        flex: 1,
-                                        height: height / 22.4,
-                                        alignItems: 'stretch',
-                                        justifyContent: 'center',
-                                    }}
-                                >
-                                    <Text numberOfLines={1} style={[styles.dropdownItem, dropdownWidth]}>
-                                        {rowData}
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                        )}
-                        contentContainerView={{ flex: 1, justifyContent: 'flex-start' }}
-                        enableEmptySections
-                    />
+                    <View style={[styles.dropdownContainer, dropdownWidth]}>
+                        <View style={[styles.dropdownInnerContainer, shadowColor]}>
+                            <ListView
+                                dataSource={ds.cloneWithRows(options)}
+                                renderRow={(rowData, sectionId, rowId) => {
+                                    if (rowId.toString() === lastItem.toString()) {
+                                        return (
+                                            <View>
+                                                <TouchableOpacity
+                                                    onPress={() => this.onOptionPress(rowData)}
+                                                    style={{ alignItems: 'flex-start', flex: 1 }}
+                                                >
+                                                    <View
+                                                        style={[
+                                                            styles.dropdownItemContainer,
+                                                            backgroundColor,
+                                                            dropdownWidth,
+                                                        ]}
+                                                    >
+                                                        <Text
+                                                            numberOfLines={1}
+                                                            style={[styles.dropdownItem, dropdownWidth]}
+                                                        >
+                                                            {rowData}
+                                                        </Text>
+                                                    </View>
+                                                </TouchableOpacity>
+                                                <View style={[styles.additionalPadding, backgroundColor]} />
+                                            </View>
+                                        );
+                                    } else {
+                                        return (
+                                            <TouchableOpacity
+                                                onPress={() => this.onOptionPress(rowData)}
+                                                style={{ alignItems: 'flex-start', flex: 1 }}
+                                            >
+                                                <View
+                                                    style={[
+                                                        styles.dropdownItemContainer,
+                                                        backgroundColor,
+                                                        dropdownWidth,
+                                                    ]}
+                                                >
+                                                    <Text
+                                                        numberOfLines={1}
+                                                        style={[styles.dropdownItem, dropdownWidth]}
+                                                    >
+                                                        {rowData}
+                                                    </Text>
+                                                </View>
+                                            </TouchableOpacity>
+                                        );
+                                    }
+                                }}
+                                contentContainerView={styles.listView}
+                                enableEmptySections
+                            />
+                        </View>
+                    </View>
                 </View>
             </View>
         );
     }
 }
 
-export default Dropdown;
+const mapStateToProps = state => ({
+    barColor: state.settings.theme.barColor,
+    backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
+});
+
+export default connect(mapStateToProps)(Dropdown);

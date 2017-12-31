@@ -3,22 +3,26 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
+import { translate } from 'react-i18next';
 
 import { width, height } from '../util/dimensions';
 
 class QRScanner extends Component {
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor, ctaColor } = this.props;
 
         return (
             <View style={styles.modalContent}>
-                <View style={{ alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+                <View style={{ alignItems: 'center', backgroundColor: backgroundColor }}>
                     <View style={{ height: height / 12 }} />
-                    <Text style={styles.qrInfoText}>Scan your QR Code</Text>
+                    <Text style={styles.qrInfoText}>{t('scan')}</Text>
                     <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
-                        <TouchableOpacity style={styles.closeButton} onPress={() => this.props.hideModal()}>
-                            <Text style={styles.closeButtonText}>CLOSE</Text>
+                        <TouchableOpacity
+                            style={[styles.closeButton, { backgroundColor: ctaColor }]}
+                            onPress={() => this.props.hideModal()}
+                        >
+                            <Text style={styles.closeButtonText}>{t('global:close')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -36,8 +40,6 @@ const styles = StyleSheet.create({
     },
     closeButton: {
         flexDirection: 'row',
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
         width: width / 2.5,
         height: height / 15,
@@ -58,3 +60,4 @@ const styles = StyleSheet.create({
 });
 
 module.exports = QRScanner;
+//TODO: translate(['qrScanner', 'global'])
