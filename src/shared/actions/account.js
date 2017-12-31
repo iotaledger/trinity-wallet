@@ -440,16 +440,6 @@ export const getAccountInfo = (seed, accountName) => {
     };
 };
 
-export const addPendingTransfer = (seedName, transfers, success) => {
-    return dispatch => {
-        success[0].transferValue = -success[0].value;
-        success[0].persistence = false;
-        // Add pending transfer at front of transfers array
-        transfers.unshift(success);
-        dispatch(updateTransfers(seedName, transfers));
-    };
-};
-
 export const deleteAccount = accountName => dispatch => {
     dispatch(removeAccount(accountName));
     dispatch(generateAlert('success', 'Account Deleted', 'Successfully deleted account')); // TODO: Need to verify exact translated message
@@ -457,8 +447,6 @@ export const deleteAccount = accountName => dispatch => {
 
 // Aim to update local transfers, addresses, hashes in store after a new transaction is made.
 export const updateAccountInfo = (accountName, newTransferBundle, value) => (dispatch, getState) => {
-    console.log('New Transfers Bundle', newTransferBundle);
-
     const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
     const existingAddressData = selectedAccount.addresses;
     const existingTransfers = selectedAccount.transfers;
