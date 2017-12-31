@@ -8,6 +8,7 @@ import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import Dropdown from '../components/dropdown';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundDarkGreen,
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     nextButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',

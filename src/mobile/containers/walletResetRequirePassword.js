@@ -1,38 +1,43 @@
-import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import keychain from '../util/keychain';
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
 import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
-import PropTypes from 'prop-types';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { persistor } from '../store';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Image,
-    ScrollView,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar } from 'react-native';
 import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import Fonts from '../theme/Fonts';
 import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Keyboard } from 'react-native';
-import DropdownHolder from '../components/dropdownHolder';
-import DropdownAlert from 'react-native-dropdownalert';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 import { width, height } from '../util/dimensions';
 
 class WalletResetRequirePassword extends Component {
+    static propTypes = {
+        password: PropTypes.string.isRequired,
+        navigator: PropTypes.object.isRequired,
+        resetWallet: PropTypes.func.isRequired,
+        setFirstUse: PropTypes.func.isRequired,
+        setOnboardingComplete: PropTypes.func.isRequired,
+        clearTempData: PropTypes.func.isRequired,
+        setPassword: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
+    };
+
     constructor() {
         super();
+
         this.state = {
             password: '',
         };
@@ -42,14 +47,14 @@ class WalletResetRequirePassword extends Component {
     }
 
     goBack() {
-        // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
+        // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: COLORS.backgroundDarkGreen,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 overrideBackPress: true,
             },
@@ -67,8 +72,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: COLORS.backgroundDarkGreen,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 overrideBackPress: true,
             },
@@ -77,7 +81,8 @@ class WalletResetRequirePassword extends Component {
 
     resetWallet() {
         const isAuthenticated = this.isAuthenticated();
-        const { password, resetWallet, t } = this.props;
+        const { t } = this.props;
+
         if (isAuthenticated) {
             persistor
                 .purge()
@@ -91,14 +96,14 @@ class WalletResetRequirePassword extends Component {
                     this.props.resetWallet();
                 })
                 .catch(error => {
-                    this.dropdown.alertWithType(
+                    this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
                         t('global:somethingWentWrongExplanation'),
                     );
                 });
         } else {
-            this.dropdown.alertWithType(
+            this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
                 t('global:unrecognisedPasswordExplanation'),
@@ -107,10 +112,27 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, negativeColor } = this.props;
+        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+
+        const onboardingButtonsOverride = {
+            rightButton: {
+                borderColor: COLORS.red,
+            },
+            rightText: {
+                color: COLORS.red,
+                fontFamily: Fonts.secondary,
+            },
+            leftButton: {
+                borderColor: THEMES.getHSL(negativeColor),
+            },
+            leftText: {
+                color: THEMES.getHSL(negativeColor),
+            },
+        };
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, backgroundColor]}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -151,37 +173,17 @@ class WalletResetRequirePassword extends Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor={COLORS.dropdown.success}
-                    errorColor={COLORS.dropdown.error}
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle="light-content"
-                />
+                <StatefulDropdownAlert />
             </View>
         );
     }
 }
-
-const onboardingButtonsOverride = StyleSheet.create({
-    rightButton: {
-        borderColor: COLORS.red,
-    },
-    rightText: {
-        color: COLORS.red,
-        fontFamily: Fonts.secondary,
-    },
-});
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topWrapper: {
         flex: 1.3,
@@ -215,22 +217,6 @@ const styles = StyleSheet.create({
         paddingLeft: width / 7,
         paddingRight: width / 7,
         paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
-    newSeedButton: {
-        borderColor: COLORS.orangeDark,
-        borderWidth: 1.2,
-        borderRadius: 10,
-        width: width / 1.65,
-        height: height / 17,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginRight: width / 10,
-    },
-    newSeedText: {
-        color: COLORS.orangeDark,
-        fontFamily: Fonts.tertiary,
-        fontSize: width / 25.3,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -285,20 +271,17 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     password: state.tempAccount.password,
+    negativeColor: state.settings.theme.negativeColor,
+    backgroundColor: state.settings.theme.backgroundColor,
 });
 
-const mapDispatchToProps = dispatch => ({
-    resetWallet: () => dispatch(resetWallet()),
-    setFirstUse: boolean => dispatch(setFirstUse(boolean)),
-    setOnboardingComplete: boolean => dispatch(setOnboardingComplete(boolean)),
-    clearTempData: () => dispatch(clearTempData()),
-    setPassword: password => dispatch(setPassword(password)),
-});
-
-WalletResetRequirePassword.propTypes = {
-    password: PropTypes.string.isRequired,
-    navigator: PropTypes.object.isRequired,
-    resetWallet: PropTypes.func.isRequired,
+const mapDispatchToProps = {
+    resetWallet,
+    setFirstUse,
+    setOnboardingComplete,
+    clearTempData,
+    setPassword,
+    generateAlert,
 };
 
 export default translate(['resetWalletRequirePassword', 'global'])(

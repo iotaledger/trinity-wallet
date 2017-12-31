@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
 import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked.png';
 import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked.png';
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import { connect } from 'react-redux';
 
 import { width, height } from '../util/dimensions';
 
-class SaveSeedConfirmation extends React.Component {
-    constructor(props) {
-        super(props);
+class SaveSeedConfirmation extends Component {
+    constructor() {
+        super();
+
         this.state = {
             checkboxImage: checkboxUncheckedImagePath,
             hasSavedSeed: false,
@@ -68,9 +71,9 @@ class SaveSeedConfirmation extends React.Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, negativeColor, backgroundColor } = this.props;
         return (
-            <ImageBackground source={blueBackgroundImagePath} style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -107,13 +110,13 @@ class SaveSeedConfirmation extends React.Component {
                     )}
                     {!this.state.hasSavedSeed && (
                         <TouchableOpacity onPress={() => this.onBackPress()}>
-                            <View style={styles.backButton}>
-                                <Text style={styles.backText}>BACK</Text>
+                            <View style={[styles.backButton, { borderColor: THEMES.getHSL(negativeColor) }]}>
+                                <Text style={[styles.backText, { color: THEMES.getHSL(negativeColor) }]}>BACK</Text>
                             </View>
                         </TouchableOpacity>
                     )}
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -123,7 +126,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundDarkGreen,
     },
     topContainer: {
         flex: 1,
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     backButton: {
         borderColor: '#F7D002',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -209,4 +211,9 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SaveSeedConfirmation;
+const mapStateToProps = state => ({
+    backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
+});
+
+export default connect(mapStateToProps)(SaveSeedConfirmation);
