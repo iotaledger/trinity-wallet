@@ -119,7 +119,8 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/containers/.*",
-      "/shared/"
+      "/shared/",
+      "/__tests__/i18n.js"
     ]
   },
   "react-native": {
