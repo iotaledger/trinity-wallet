@@ -131,8 +131,8 @@
 		"removeMessage": "FJERN BESKED"
 	},
 	"saveYourSeed": {
-		"seedCleared": "Seed cleared",
-		"seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+		"seedCleared": "Seed ryddet",
+		"seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
 		"mustSaveYourSeed": "Du skal gemme dit seed med ",
 		"atLeastOne": "mindst én ",
 		"ofTheOptions": "én af valgmulighederne angivet nedenfor."
