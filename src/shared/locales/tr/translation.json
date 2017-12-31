@@ -1,243 +1,287 @@
 {
-    "global": {
-        "invalidResponse": "Geçersiz yanıt",
-        "invalidResponseExplanation": "Düğümü geçersiz yanıt döndürdü.",
-        "invalidResponsePollingExplanation": "Düğüm yoklama sırasında geçersiz bir yanıt döndürdü.",
-        "seed": "Tohum",
-        "back": "Geri",
-        "done": "Tamamlandı",
-        "next": "SONRAKİ",
-        "manualCopy": "Cüzdan şifreni yaz",
-        "paperWallet": "Kağıdın bir kopyasını al",
-        "copyToClipboard": "Şifre yöneticisine ekle",
-        "qr": "QR",
-        "notAvailable": "Bu işlev kullanılabilir değil",
-        "notAvailableExplanation": "Daha sonraki bir aşamada eklenecektir.",
-        "enterSeed": "Lütfen tohumunuzu giriniz.",
-        "mainWallet": "Ana Hesap",
-        "secondWallet": "İKİNCİ HESAP",
-        "thirdWallet": "ÜÇÜNCÜ HESAP",
-        "fourthWallet": "DÖRDÜNCÜ HESAP",
-        "fifthWallet": "BEŞİNCİ HESAP",
-        "sixthWallet": "ALTINCI HESAP",
-        "otherWallet": "DİĞER HESAP",
-        "yes": "EVET",
-        "no": "HAYIR",
-        "password": "Şifre",
-        "unrecognisedPassword": "Tanınmayan şifre",
-        "unrecognisedPasswordExplanation": "Şifre tanımlı değil. Lütfen yeniden deneyin.",
-        "syncInProgress": "Eşitleme sürüyor",
-        "syncInProgressExplanation": "Senkronizasyonu tamamlanana kadar bekleyin.",
-        "somethingWentWrong": "Bir şeyler yanlış gitti",
-        "somethingWentWrongExplanation": "Lütfen uygulamayı yeniden başlatın."
-    },
-    "addAdditionalSeed": {
-        "seedInvalidChars": "Geçersiz karakterler içeriyor",
-        "seedInvalidCharsExplanation": "Tohum yalnızca büyük harf A-Z ve 9 numara oluşabilir. Tohumunuz geçersiz karakterler içeriyor. Lütfen yeniden deneyin.",
-        "seedTooShort": "Tohum çok kısa",
-        "seedTooShortExplanation": "Tohumlar {{maxLength}} karakter uzunluğunda olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluktadır. Lütfen yeniden deneyin.",
-        "nameInUse": "Hesap adı zaten kullanılıyor",
-        "nameInUseExplanation": "Lütfen tohumunuz için benzersiz bir hesap adı kullanın.",
-        "enterAccountName": "Bir hesap adı girin.",
-        "accountName": "Hesap adı",
-        "noNickname": "Hiçbir hesap adı girilmedi",
-        "noNicknameExplanation": "Lütfen tohumunuz için benzersiz bir hesap adı kullanın.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
-    },
-    "changePassword": {
-        "oops": "Eyvah. Bir sorun oluştu",
-        "oopsExplanation": "Parolanızı güncelleştirilirken bir şeyler ters gitmiş gibi görünüyor. Lütfen yeniden deneyin.",
-        "passwordUpdated": "Parola güncellendi",
-        "passwordUpdatedExplanation": "Şifren başarıyla güncellendi.",
-        "incorrectPassword": "Yanlış parola",
-        "incorrectPasswordExplanation": "Geçerli parolanız doğru değil. Lütfen yeniden deneyin.",
-        "passwordsDoNotMatch": "Parolalar eşleşmiyor",
-        "passwordsDoNotMatchExplanation": "Parolalar uyuşmuyor. Lütfen yeniden deneyin.",
-        "passwordTooShort": "Parola çok kısa",
-        "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
-        "oldPassword": "Eski parola ayarlayamazsınız",
-        "oldPasswordExplanation": "Yeni şifreniz olarak eski parolayı kullanamazsınız. Lütfen yeni bir parola ile yeniden deneyin.",
-        "ensureStrongPassword": "En az 12 karakter uzunluğunda güçlü bir parola kullandığınızdan emin olun.",
-        "currentPassword": "Geçerli Şifre",
-        "newPassword": "Yeni Şifre",
-        "confirmPassword": "Yeni Şifreyi Onayla"
-    },
-    "copyToClipboard": {
-        "seedCleared": "Tohum temizlendi",
-        "seedClearedExplanation": "Tohum güvenliğiniz için pano'dan temizlendi.",
-        "seedCopied": "Cüzdan şifresi panoya kopyalandı",
-        "seedCopiedExplanation": "\"Bitti\" ya da 60 saniye geçtiğinizde cüzdan şifresi temizlenecektir.",
-        "clickToCopy": "Aşağıdaki düğmeyi tıklayın ve cüzdan şifrenizi bir şifre yöneticisine kopyalayın.",
-        "doNotStore": "Cüzdan şifresini düz metin halinde saklamayın.",
-        "copyToClipboard": "Panoya kopyala"
-    },
-    "enterSeed": {
-        "invalidCharacters": "Cüzdan şifresi geçersiz karakterler içerir",
-        "invalidCharactersExplanation": "Cüzdan şifreleri yalnızca A-Z büyük harflerinden ve 9 numaradan oluşabilir. Tohumunuz geçersiz karakterlere sahiptir. Lütfen tekrar deneyin.",
-        "seedTooShort": "Cüzdan şifresi çok kısa",
-        "seedTooShortExplanation": "Cüzdan şifrenizin uzunluğu {{maxLength}} olmalıdır. Cüzdan şifreniz şu anda {{currentLength}} karakter uzunluğunda. Lütfen tekrar deneyin.",
-        "seedExplanation": "Cüzdan şifreleri {{maxLength}} karakter uzunluğunda olmalı ve A-Z büyük harfleri veya sayı 9 olmalıdır. {{MaxLength}} karakterden uzun cüzdan şifrelerini kullanamazsınız.",
-        "neverShare": "CÜZDAN ŞİFRENİZİ ASLA KİMSEYLE PAYLAŞMAYIN"
-    },
-    "home": {
-        "balance": "BAKİYE",
-        "send": "GÖNDER",
-        "receive": "AL",
-        "history": "GEÇMİŞ",
-        "settings": "AYARLAR"
-    },
-    "languageSetup": {
-        "language": "Dil"
-    },
-    "login": {
-        "emptyPassword": "Şifre boş",
-        "emptyPasswordExplanation": "Giriş yapmak için bir şifre girmelisin. Lütfen tekrar dene.",
-        "enterPassword": "Lütfen şifrenizi girin.",
-        "useSeed": "CÜZDAN ŞİFRESİNİ KULLAN",
-        "login": "GİRİŞ YAP",
-        "selectDifferentNode": "Do you want to select a different node?"
-    },
-    "loading": {
-        "loadingFirstTime": "Cüzdan şifresi ilk kez yükleniyor.",
-        "thisMayTake": "Bu biraz sürebilir.",
-        "youMayNotice": "Cihazınızın yavaşladığını fark edebilirsiniz."
-    },
-    "newSeedSetup": {
-        "seedNotGenerated": "Cüzdan şifresi üretilmedi",
-        "seedNotGeneratedExplanation": "Lütfen Yeni Cüzdan şifresi Yarat düğmesini tıklayın.",
-        "pressForNewSeed": "YENİ CÜZDAN ŞİFRESİ İÇİN TIKLAYIN",
-        "individualLetters": "Randomize etmek için tek tek harflere basın."
-    },
-    "onboardingComplete": {
-        "walletReady": "Cüzdan kuruldu ve kullanıma hazır. Gelecekte herhangi bir değişiklik yapmanız gerekirse, Ayarlar menüsüne bakın."
-    },
-    "paperWallet": {
-        "clickToPrint": "Cüzdan şifrelerinizin bir kopyasını basmak için aşağıdaki düğmeyi tıklayın.",
-        "storeSafely": "Güvenle saklayın.",
-        "neverShare": "Cüzdan şifrenizi sakın kimseyle paylaşmayın.",
-        "iotaLogo": "IOTA logosu",
-        "printWallet": "KAĞIT CÜZDANI YAZDIR"
-    },
-    "receive": {
-        "addressCopied": "Adres kopyalandı",
-        "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
-        "generateNewAddress": "YENİ ADRES OLUŞTUR",
-        "message": "İsteğe bağlı mesaj",
-        "removeMessage": "MESAJI SİL"
-    },
-    "saveYourSeed": {
-        "seedCleared": "Cüzdan şifresi temizlendi",
-        "seedClearedExplanation": "Güvenliğiniz için cüzdan şifresi panodan temizlendi.",
-        "mustSaveYourSeed": "Cüzdan şifreni... ile kurtarmalısın ",
-        "atLeastOne": "en az 1 ",
-        "ofTheOptions": "aşağıda listelenen seçeneklerden biri."
-    },
-    "seedReentry": {
-        "incorrectSeed": "Yanlış cüzdan şifresi",
-        "incorrectSeedExplanation": "Bu cüzdan şifresi yanlış girildi. Lütfen tekrar deneyin.",
-        "thisIsACheck": "Bu, cüzdan şifresini kurduğunuzdan emin olmak için yapılan bir kontrol.",
-        "ifYouHaveNotSaved": "Cüzdan şifrenizi kurtarmadıysanız, lütfen geri dönüp onu halledin."
-    },
-    "send": {
-        "invalidAddress": "Geçersiz adres",
-        "invalidAddressExplanation1": "Adres {{maxLength}} karakter uzunluğunda olmalı ve bir sağlama toplamı olmalıdır.",
-        "invalidAddressExplanation2": "Adres geçersiz karakterler içeriyor.",
-        "invalidAddressExplanation3": "Adres geçersiz bir sağlama toplamı içeryor.",
-        "notEnoughFunds": "Yetersiz fon",
-        "notEnoughFundsExplanation": "Bu aktarımı tamamlamak için yeterli Iota'nız yok.",
-        "keyReuse": "Anahtar tekrar kullanımı",
-        "keyReuseExplanation": "Göndermeye çalıştığınız adres zaten kullanılıyor. Lütfen başka bir adres deneyin.",
-        "recipientAddress": "Alıcı adresi",
-        "amount": "Tutar",
-        "max": "MAKS",
-        "message": "Mesaj",
-        "send": "Gönder",
-        "invalidAmount": "Yanlış tutar girildi",
-        "invalidAmountExplanation": "Lütfen sayısal bir transfer tutarı girin.",
-        "maximumSelected": "En fazla tutar seçildi",
-        "iotaUnits": "Iota birimleri"
-    },
-    "setPassword": {
-        "passwordTooShort": "Parola çok kısa",
-        "passwordTooShortExplanation": "Tohumlar {{minLength}} karakter uzunluğunda olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluktadır. Lütfen yeniden deneyin.",
-        "passwordMismatch": "Parolalar eşleşmiyor",
-        "passwordMismatchExplanation": "Girdiğiniz parolalar eşleşmiyor. Lütfen tekrar girin.",
-        "nowWeNeedTo": "Şimdi bir parola ayarlamanız gerekir.",
-        "anEncryptedCopy": "Senin tohum şifrelenmiş bir kopyasını cihazınızda saklanacaktır. Cüzdanını gelecekte erişmek için bu parolayı kullanır.",
-        "ensure": "En az 12 karakter uzunluğunda bir güçlü parola kullandığınızdan emin olun.",
-        "retypePassword": "Şifrenizi tekrar girin"
-    },
-    "setSeedName": {
-        "canUseMultipleSeeds": "Bu cüzdanı ile birden çok tohum kullanabilirsiniz. Her tohum bir hesap adı gerektirir.",
-        "youCanAdd": "Ayarlar menüsünden daha fazla tohum ekleyebilirsiniz."
-    },
-    "settings": {
-        "transferSending": "Transfer gönderiliyor",
-        "transferSendingExplanation": "Lütfen transfer gönderilinceye kadar bekleyin.",
-        "generatingAddress": "Alıcı adresi üretiliyor",
-        "generatingAddressExplanation": "Lütfen transfer gönderilinceye kadar bekleyin.",
-        "mode": "Mod",
-        "theme": "Tema",
-        "currency": "Kur",
-        "language": "Dil",
-        "addNewSeed": "Yeni tohum ekleyin",
-        "twoFA": "İki aşamalı doğrulama",
-        "changePassword": "Parola Değiştir",
-        "advanced": "Gelişmiş ayarlar",
-        "logout": "Çıkış yap",
-        "reset": "Cüzdanı Sıfırla",
-        "back": "Geri",
-        "syncingComplete": "Senkronizasyon Tamamlandı",
-        "syncingCompleteExplanation": "Hesabınız başarıyla güncellendi.",
-        "nicknameChanged": "Hesap ismi değiştirildi",
-        "nicknameChangedExplanation": "Hesap adınız değişti.",
-        "accountDeleted": "Hesap silindi",
-        "accountDeletedExplanation": "Hesabınız cüzdandan kaldırıldı.",
-        "cannotPerformAction": "İşlem gerçekleştirilemiyor",
-        "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
-    },
-    "resetWalletConfirmation": {
-        "thisAction": "Bu işlem geri alınamaz.",
-        "warning1": "Tüm cüzdan verileriniz sizinkileri içerir",
-        "warning2": " cüzdan şifreleri, şifreler ",
-        "warning3": "ve",
-        "warning4": " diğer hesap bilgileri",
-        "warning5": " boşa gidecek.",
-        "areYouSure": "Devam etmek istediğine emin misin?"
-    },
-    "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "İPTAL",
-        "reset": "SIFIRLA"
-    },
-    "walletSetup": {
-        "okay": "Tamam. Cüzdanını ayarlayabilirsin!",
-        "doYouAlreadyHaveASeed": "Kullanmak istediğiniz bir cüzdan şifreniz var mı?",
-        "seedExplanation": "IOTA cüzdan şifresi, hesabınız için bir kullanıcı adı ve şifre gibi, 81 karakterden oluşan bir diziyle birleştirilmiştir.",
-        "explanation1": "Hesabınızdaki kaynaklara erişmek için bunu kullanabilirsiniz",
-        "explanation2": " her hangi bir cüzdan ",
-        "explanation3": ", üstünde",
-        "explanation4": " her hangi bir cihaz",
-        "explanation5": ". Fakat cüzdan şifrenizi kaybederseniz, IOTA'nızı da kaybedersiniz.",
-        "keepSafe": "Lütfen cüzdan şifrenizi güvende tutun."
-    },
-    "welcome": {
-        "thankYou": "IOTA cüzdanını indirdiğiniz için teşekkür ederiz.",
-        "weWillSpend": "Önümüzdeki bir kaç dakikayı cüzdanınızı ayarlamak için harcayacağız.",
-        "reminder": "Bazı adımları geçebilirsin, ama tüm işlemi takip etmeni tavsiye ederim."
-    },
-    "writeSeedDown": {
-        "yourSeedIs": "Cüzdan şifreniz soldan sağa okunan 81 karakterdir. Cüzdan şifrenizi ve sağlama toplamasını yazın ve",
-        "tripleCheck": "3 kere kontrol edin",
-        "thatTheyAreCorrect": "doğru olup olmadıklarını."
-    },
-    "history": {
-        "bundleHashCopied": "Paket karması kopyalanır",
-        "bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
-        "addressCopied": "Adres kopyalandı",
-        "addressCopiedExplanation": "Adres panoya kopyalanmış."
-    }
+	"global": {
+		"invalidResponse": "Geçersiz yanıt",
+		"invalidResponseExplanation": "Düğümü geçersiz yanıt döndürdü.",
+		"invalidResponsePollingExplanation": "Düğüm yoklama sırasında geçersiz bir yanıt döndürdü.",
+		"seed": "Tohum",
+		"back": "Geri",
+		"done": "Tamamlandı",
+		"next": "SONRAKİ",
+		"apply": "",
+		"save": "",
+		"close": "",
+		"manualCopy": "Cüzdan şifreni yaz",
+		"paperWallet": "Kağıdın bir kopyasını al",
+		"copyToClipboard": "Şifre yöneticisine ekle",
+		"qr": "QR",
+		"notAvailable": "Bu işlev kullanılabilir değil",
+		"notAvailableExplanation": "Daha sonraki bir aşamada eklenecektir.",
+		"enterSeed": "Lütfen tohumunuzu giriniz.",
+		"mainWallet": "Ana Hesap",
+		"secondWallet": "İKİNCİ HESAP",
+		"thirdWallet": "ÜÇÜNCÜ HESAP",
+		"fourthWallet": "DÖRDÜNCÜ HESAP",
+		"fifthWallet": "BEŞİNCİ HESAP",
+		"sixthWallet": "ALTINCI HESAP",
+		"otherWallet": "DİĞER HESAP",
+		"yes": "EVET",
+		"no": "HAYIR",
+		"password": "Şifre",
+		"unrecognisedPassword": "Tanınmayan şifre",
+		"unrecognisedPasswordExplanation": "Şifre tanımlı değil. Lütfen yeniden deneyin.",
+		"syncInProgress": "Eşitleme sürüyor",
+		"syncInProgressExplanation": "Senkronizasyonu tamamlanana kadar bekleyin.",
+		"somethingWentWrong": "Bir şeyler yanlış gitti",
+		"somethingWentWrongExplanation": "Lütfen uygulamayı yeniden başlatın.",
+		"node": ""
+	},
+	"addAdditionalSeed": {
+		"seedInvalidChars": "Geçersiz karakterler içeriyor",
+		"seedInvalidCharsExplanation": "Tohum yalnızca büyük harf A-Z ve 9 numara oluşabilir. Tohumunuz geçersiz karakterler içeriyor. Lütfen yeniden deneyin.",
+		"seedTooShort": "Tohum çok kısa",
+		"seedTooShortExplanation": "Tohumlar {{maxLength}} karakter uzunluğunda olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluktadır. Lütfen yeniden deneyin.",
+		"nameInUse": "Hesap adı zaten kullanılıyor",
+		"nameInUseExplanation": "Lütfen tohumunuz için benzersiz bir hesap adı kullanın.",
+		"enterAccountName": "Bir hesap adı girin.",
+		"accountName": "Hesap adı",
+		"noNickname": "Hiçbir hesap adı girilmedi",
+		"noNicknameExplanation": "Lütfen tohumunuz için benzersiz bir hesap adı kullanın.",
+		"seedInUse": "Seed already in use",
+		"seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+	},
+	"changePassword": {
+		"oops": "Eyvah. Bir sorun oluştu",
+		"oopsExplanation": "Parolanızı güncelleştirilirken bir şeyler ters gitmiş gibi görünüyor. Lütfen yeniden deneyin.",
+		"passwordUpdated": "Parola güncellendi",
+		"passwordUpdatedExplanation": "Şifren başarıyla güncellendi.",
+		"incorrectPassword": "Yanlış parola",
+		"incorrectPasswordExplanation": "Geçerli parolanız doğru değil. Lütfen yeniden deneyin.",
+		"passwordsDoNotMatch": "Parolalar eşleşmiyor",
+		"passwordsDoNotMatchExplanation": "Parolalar uyuşmuyor. Lütfen yeniden deneyin.",
+		"passwordTooShort": "Parola çok kısa",
+		"passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
+		"oldPassword": "Eski parola ayarlayamazsınız",
+		"oldPasswordExplanation": "Yeni şifreniz olarak eski parolayı kullanamazsınız. Lütfen yeni bir parola ile yeniden deneyin.",
+		"ensureStrongPassword": "En az 12 karakter uzunluğunda güçlü bir parola kullandığınızdan emin olun.",
+		"currentPassword": "Geçerli Şifre",
+		"newPassword": "Yeni Şifre",
+		"confirmPassword": "Yeni Şifreyi Onayla"
+	},
+	"copyToClipboard": {
+		"seedCleared": "Tohum temizlendi",
+		"seedClearedExplanation": "Tohum güvenliğiniz için pano'dan temizlendi.",
+		"seedCopied": "Cüzdan şifresi panoya kopyalandı",
+		"seedCopiedExplanation": "\"Bitti\" ya da 60 saniye geçtiğinizde cüzdan şifresi temizlenecektir.",
+		"clickToCopy": "Aşağıdaki düğmeyi tıklayın ve cüzdan şifrenizi bir şifre yöneticisine kopyalayın.",
+		"doNotStore": "Cüzdan şifresini düz metin halinde saklamayın.",
+		"copyToClipboard": "Panoya kopyala"
+	},
+	"enterSeed": {
+		"invalidCharacters": "Cüzdan şifresi geçersiz karakterler içerir",
+		"invalidCharactersExplanation": "Cüzdan şifreleri yalnızca A-Z büyük harflerinden ve 9 numaradan oluşabilir. Tohumunuz geçersiz karakterlere sahiptir. Lütfen tekrar deneyin.",
+		"seedTooShort": "Cüzdan şifresi çok kısa",
+		"seedTooShortExplanation": "Cüzdan şifrenizin uzunluğu {{maxLength}} olmalıdır. Cüzdan şifreniz şu anda {{currentLength}} karakter uzunluğunda. Lütfen tekrar deneyin.",
+		"seedExplanation": "Cüzdan şifreleri {{maxLength}} karakter uzunluğunda olmalı ve A-Z büyük harfleri veya sayı 9 olmalıdır. {{MaxLength}} karakterden uzun cüzdan şifrelerini kullanamazsınız.",
+		"neverShare": "CÜZDAN ŞİFRENİZİ ASLA KİMSEYLE PAYLAŞMAYIN"
+	},
+	"home": {
+		"balance": "BAKİYE",
+		"send": "GÖNDER",
+		"receive": "AL",
+		"history": "GEÇMİŞ",
+		"settings": "AYARLAR"
+	},
+	"languageSetup": {
+		"language": "Dil"
+	},
+	"login": {
+		"emptyPassword": "Şifre boş",
+		"emptyPasswordExplanation": "Giriş yapmak için bir şifre girmelisin. Lütfen tekrar dene.",
+		"enterPassword": "Lütfen şifrenizi girin.",
+		"useSeed": "CÜZDAN ŞİFRESİNİ KULLAN",
+		"login": "GİRİŞ YAP",
+		"selectDifferentNode": "Do you want to select a different node?"
+	},
+	"loading": {
+		"loadingFirstTime": "Cüzdan şifresi ilk kez yükleniyor.",
+		"thisMayTake": "Bu biraz sürebilir.",
+		"youMayNotice": "Cihazınızın yavaşladığını fark edebilirsiniz."
+	},
+	"newSeedSetup": {
+		"seedNotGenerated": "Cüzdan şifresi üretilmedi",
+		"seedNotGeneratedExplanation": "Lütfen Yeni Cüzdan şifresi Yarat düğmesini tıklayın.",
+		"pressForNewSeed": "YENİ CÜZDAN ŞİFRESİ İÇİN TIKLAYIN",
+		"individualLetters": "Randomize etmek için tek tek harflere basın."
+	},
+	"onboardingComplete": {
+		"walletReady": "Cüzdan kuruldu ve kullanıma hazır. Gelecekte herhangi bir değişiklik yapmanız gerekirse, Ayarlar menüsüne bakın."
+	},
+	"paperWallet": {
+		"clickToPrint": "Cüzdan şifrelerinizin bir kopyasını basmak için aşağıdaki düğmeyi tıklayın.",
+		"storeSafely": "Güvenle saklayın.",
+		"neverShare": "Cüzdan şifrenizi sakın kimseyle paylaşmayın.",
+		"iotaLogo": "IOTA logosu",
+		"printWallet": "KAĞIT CÜZDANI YAZDIR"
+	},
+	"receive": {
+		"addressCopied": "Adres kopyalandı",
+		"addressCopiedExplanation": "Adresin panoya kopyalanmış.",
+		"generateNewAddress": "YENİ ADRES OLUŞTUR",
+		"message": "İsteğe bağlı mesaj",
+		"removeMessage": "MESAJI SİL"
+	},
+	"saveYourSeed": {
+		"seedCleared": "Cüzdan şifresi temizlendi",
+		"seedClearedExplanation": "Güvenliğiniz için cüzdan şifresi panodan temizlendi.",
+		"mustSaveYourSeed": "Cüzdan şifreni... ile kurtarmalısın ",
+		"atLeastOne": "en az 1 ",
+		"ofTheOptions": "aşağıda listelenen seçeneklerden biri."
+	},
+	"seedReentry": {
+		"incorrectSeed": "Yanlış cüzdan şifresi",
+		"incorrectSeedExplanation": "Bu cüzdan şifresi yanlış girildi. Lütfen tekrar deneyin.",
+		"thisIsACheck": "Bu, cüzdan şifresini kurduğunuzdan emin olmak için yapılan bir kontrol.",
+		"ifYouHaveNotSaved": "Cüzdan şifrenizi kurtarmadıysanız, lütfen geri dönüp onu halledin."
+	},
+	"send": {
+		"invalidAddress": "Geçersiz adres",
+		"invalidAddressExplanation1": "Adres {{maxLength}} karakter uzunluğunda olmalı ve bir sağlama toplamı olmalıdır.",
+		"invalidAddressExplanation2": "Adres geçersiz karakterler içeriyor.",
+		"invalidAddressExplanation3": "Adres geçersiz bir sağlama toplamı içeryor.",
+		"notEnoughFunds": "Yetersiz fon",
+		"notEnoughFundsExplanation": "Bu aktarımı tamamlamak için yeterli Iota'nız yok.",
+		"keyReuse": "Anahtar tekrar kullanımı",
+		"keyReuseExplanation": "Göndermeye çalıştığınız adres zaten kullanılıyor. Lütfen başka bir adres deneyin.",
+		"recipientAddress": "Alıcı adresi",
+		"amount": "Tutar",
+		"max": "MAKS",
+		"message": "Mesaj",
+		"send": "Gönder",
+		"invalidAmount": "Yanlış tutar girildi",
+		"invalidAmountExplanation": "Lütfen sayısal bir transfer tutarı girin.",
+		"maximumSelected": "En fazla tutar seçildi",
+		"iotaUnits": "Iota birimleri"
+	},
+	"setPassword": {
+		"passwordTooShort": "Parola çok kısa",
+		"passwordTooShortExplanation": "Tohumlar {{minLength}} karakter uzunluğunda olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluktadır. Lütfen yeniden deneyin.",
+		"passwordMismatch": "Parolalar eşleşmiyor",
+		"passwordMismatchExplanation": "Girdiğiniz parolalar eşleşmiyor. Lütfen tekrar girin.",
+		"nowWeNeedTo": "Şimdi bir parola ayarlamanız gerekir.",
+		"anEncryptedCopy": "Senin tohum şifrelenmiş bir kopyasını cihazınızda saklanacaktır. Cüzdanını gelecekte erişmek için bu parolayı kullanır.",
+		"ensure": "En az 12 karakter uzunluğunda bir güçlü parola kullandığınızdan emin olun.",
+		"retypePassword": "Şifrenizi tekrar girin"
+	},
+	"setSeedName": {
+		"canUseMultipleSeeds": "Bu cüzdanı ile birden çok tohum kullanabilirsiniz. Her tohum bir hesap adı gerektirir.",
+		"youCanAdd": "Ayarlar menüsünden daha fazla tohum ekleyebilirsiniz."
+	},
+	"settings": {
+		"transferSending": "Transfer gönderiliyor",
+		"transferSendingExplanation": "Lütfen transfer gönderilinceye kadar bekleyin.",
+		"generatingAddress": "Alıcı adresi üretiliyor",
+		"generatingAddressExplanation": "Lütfen transfer gönderilinceye kadar bekleyin.",
+		"mode": "Mod",
+		"theme": "Tema",
+		"currency": "Kur",
+		"language": "Dil",
+		"addNewSeed": "Yeni tohum ekleyin",
+		"twoFA": "İki aşamalı doğrulama",
+		"changePassword": "Parola Değiştir",
+		"advanced": "Gelişmiş ayarlar",
+		"logout": "Çıkış yap",
+		"reset": "Cüzdanı Sıfırla",
+		"syncingComplete": "Senkronizasyon Tamamlandı",
+		"syncingCompleteExplanation": "Hesabınız başarıyla güncellendi.",
+		"nicknameChanged": "Hesap ismi değiştirildi",
+		"nicknameChangedExplanation": "Hesap adınız değişti.",
+		"accountDeleted": "Hesap silindi",
+		"accountDeletedExplanation": "Hesabınız cüzdandan kaldırıldı.",
+		"cannotPerformAction": "İşlem gerçekleştirilemiyor",
+		"cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin.",
+		"poorConnection": "Poor connection",
+		"poorConnectionExplanation": "Failed to change currency due to a poor connection."
+	},
+	"resetWalletConfirmation": {
+		"thisAction": "Bu işlem geri alınamaz.",
+		"warning1": "Tüm cüzdan verileriniz sizinkileri içerir",
+		"warning2": " cüzdan şifreleri, şifreler ",
+		"warning3": "ve",
+		"warning4": " diğer hesap bilgileri",
+		"warning5": " boşa gidecek.",
+		"areYouSure": "Devam etmek istediğine emin misin?"
+	},
+	"resetWalletRequirePassword": {
+		"enterPassword": "Enter your password to reset the wallet.",
+		"cancel": "İPTAL",
+		"reset": "SIFIRLA"
+	},
+	"walletSetup": {
+		"okay": "Tamam. Cüzdanını ayarlayabilirsin!",
+		"doYouAlreadyHaveASeed": "Kullanmak istediğiniz bir cüzdan şifreniz var mı?",
+		"seedExplanation": "IOTA cüzdan şifresi, hesabınız için bir kullanıcı adı ve şifre gibi, 81 karakterden oluşan bir diziyle birleştirilmiştir.",
+		"explanation1": "Hesabınızdaki kaynaklara erişmek için bunu kullanabilirsiniz",
+		"explanation2": " her hangi bir cüzdan ",
+		"explanation3": ", üstünde",
+		"explanation4": " her hangi bir cihaz",
+		"explanation5": ". Fakat cüzdan şifrenizi kaybederseniz, IOTA'nızı da kaybedersiniz.",
+		"keepSafe": "Lütfen cüzdan şifrenizi güvende tutun."
+	},
+	"welcome": {
+		"thankYou": "IOTA cüzdanını indirdiğiniz için teşekkür ederiz.",
+		"weWillSpend": "Önümüzdeki bir kaç dakikayı cüzdanınızı ayarlamak için harcayacağız.",
+		"reminder": "Bazı adımları geçebilirsin, ama tüm işlemi takip etmeni tavsiye ederim."
+	},
+	"writeSeedDown": {
+		"yourSeedIs": "Cüzdan şifreniz soldan sağa okunan 81 karakterdir. Cüzdan şifrenizi ve sağlama toplamasını yazın ve",
+		"tripleCheck": "3 kere kontrol edin",
+		"thatTheyAreCorrect": "doğru olup olmadıklarını."
+	},
+	"history": {
+		"bundleHashCopied": "Paket karması kopyalanır",
+		"bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
+		"addressCopied": "Adres kopyalandı",
+		"addressCopiedExplanation": "Adres panoya kopyalanmış."
+	},
+	"accountManagement": {
+		"viewSeed": "",
+		"viewAddresses": "",
+		"editAccountName": "",
+		"deleteAccount": "",
+		"addNewAccount": ""
+	},
+	"addCustomNode": {
+		"customNode": "",
+		"add": ""
+	},
+	"addNewAccount": {
+		"useExistingSeed": "",
+		"createNewSeed": ""
+	},
+	"advancedSettings": {
+		"selectNode": "",
+		"addCustomNode": "",
+		"manualSync": ""
+	},
+	"advancedThemeCustomisation": {
+		"background": "",
+		"frame": ""
+	},
+	"currencySelection": {
+		"currency": ""
+	},
+	"logoutConfirmationModal": {
+		"logoutConfirmation": ""
+	},
+	"qrScanner": {
+		"scan": ""
+	},
+	"unitInfoModal": {
+		"unitSystem": "",
+		"trillion": "",
+		"billion": "",
+		"million": "",
+		"thousand": "",
+		"one": ""
+	}
 }
