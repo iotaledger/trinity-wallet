@@ -131,8 +131,8 @@
 		"removeMessage": "REMOVE MESSAGE"
 	},
 	"saveYourSeed": {
-		"seedCleared": "Seed cleared",
-		"seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+		"seedCleared": "Ключ очищен",
+		"seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
 		"mustSaveYourSeed": "You must save your seed with ",
 		"atLeastOne": "по крайней мере один ",
 		"ofTheOptions": "из представленных вариантов."
