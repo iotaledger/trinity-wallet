@@ -8,7 +8,7 @@ import difference from 'lodash/difference';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
-import reduce from 'lodash/reduce';
+import union from 'lodash/union';
 import size from 'lodash/size';
 import some from 'lodash/some';
 import includes from 'lodash/includes';
@@ -28,7 +28,7 @@ import {
 import { iota } from '../libs/iota';
 import {
     getUnspentAddresses,
-    mergeLatestTransfersInOld,
+    getPendingTxTailsHashes,
     formatTransfers,
     markTransfersConfirmed,
     getTotalBalance,
@@ -197,7 +197,6 @@ export const getAccountInfo = (seed, accountName) => {
         dispatch(accountInfoFetchRequest());
 
         const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-        const addresses = Object.keys(selectedAccount.addresses);
 
         const existingHashes = getExistingUnspentAddressesHashes(
             accountName,
@@ -218,20 +217,48 @@ export const getAccountInfo = (seed, accountName) => {
             transfers: selectedAccount.transfers,
         };
 
-        return getTotalBalance(addresses)
+        const checkConfirmationForPendingTxs = () => {
+            if (isEmpty(pendingTxTailsHashes)) {
+                return Promise.resolve(getTotalBalance(Object.keys(payload.addresses)));
+            }
+
+            return Promise.resolve(getInclusionWithHashes(pendingTxTailsHashes))
+                .then(({ states, hashes }) => {
+                    console.log('Pending States', states);
+                    console.log('Hashes', hashes);
+                    return getConfirmedTxTailsHashes(states, hashes);
+                })
+                .then(confirmedHashes => {
+                    console.log('Confirmed Hashes', confirmedHashes);
+                    if (!isEmpty(confirmedHashes)) {
+                        payload = assign({}, payload, {
+                            transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
+                            pendingTxTailsHashes: filter(
+                                payload.pendingTxTailsHashes,
+                                tx => !includes(confirmedHashes, tx),
+                            ),
+                        });
+                    }
+
+                    return Promise.resolve(getTotalBalance(Object.keys(payload.addresses)));
+                });
+        };
+
+        return checkConfirmationForPendingTxs()
             .then(balance => {
                 payload = assign({}, payload, { balance });
 
-                const index = addresses.length ? addresses.length - 1 : 0;
+                const index = Object.keys(payload.addresses).length ? Object.keys(payload.addresses).length - 1 : 0;
 
                 return getLatestAddresses(seed, index);
             })
             .then(addressData => {
-                const unspentAddresses = getUnspentAddresses(selectedAccount.addresses);
+                console.log('Address Data', addressData);
+                payload = merge({}, payload, { addresses: addressData });
 
+                const unspentAddresses = getUnspentAddresses(payload.addresses);
+                console.log('Unspent addresses', unspentAddresses);
                 if (isEmpty(unspentAddresses)) {
-                    payload = assign({}, payload, { addresses: addressData });
-
                     throw new Error('intentionally break chain');
                 }
 
@@ -244,8 +271,11 @@ export const getAccountInfo = (seed, accountName) => {
                     console.log('Found new hashes', latestHashes);
                     console.log('Old hashes', existingHashes);
                     const diff = difference(latestHashes, existingHashes);
-
                     console.log('Diff', diff);
+
+                    payload = assign({}, payload, {
+                        unspentAddressesHashes: union(existingHashes, latestHashes),
+                    });
                     return getTransactionsObjects(diff);
                 }
 
@@ -260,33 +290,17 @@ export const getAccountInfo = (seed, accountName) => {
             .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
             .then(bundles => {
                 console.log('BUNDLES', bundles);
-                const updatedTransfers = [...selectedAccount.transfers, ...bundles];
-                const updatedTransfersWithFormatting = formatTransfers(updatedTransfers, addresses);
+                const updatedTransfers = [...payload.transfers, ...bundles];
+                const updatedTransfersWithFormatting = formatTransfers(
+                    updatedTransfers,
+                    Object.keys(payload.addresses),
+                );
 
                 console.log('Previous txs', selectedAccount.transfers);
                 console.log('nEw txs', updatedTransfers);
-                payload = assign({}, payload, { transfers: updatedTransfersWithFormatting });
-
-                if (isEmpty(pendingTxTailsHashes)) {
-                    throw new Error('intentionally break chain');
-                }
-
-                return getInclusionWithHashes(pendingTxTailsHashes);
-            })
-            .then(({ states, hashes }) => {
-                console.log('Pending States', states);
-                console.log('Hashes', hashes);
-                return getConfirmedTxTailsHashes(states, hashes);
-            })
-            .then(confirmedHashes => {
-                console.log('Confirmed Hashes', confirmedHashes);
-                if (isEmpty(confirmedHashes)) {
-                    throw new Error('intentionally break chain');
-                }
-
                 payload = assign({}, payload, {
-                    transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
-                    pendingTxTailsHashes: filter(payload.pendingTxTailsHashes, tx => !includes(confirmedHashes, tx)),
+                    transfers: updatedTransfersWithFormatting,
+                    pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)), // Update pending transfers copy with new transfers.
                 });
 
                 return dispatch(accountInfoFetchSuccess(payload));
