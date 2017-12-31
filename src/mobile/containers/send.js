@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import {
@@ -11,38 +12,69 @@ import {
     Text,
     Image,
     TouchableOpacity,
-    LayoutAnimation,
     ListView,
-    ScrollView,
     StatusBar,
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { connect } from 'react-redux';
-import { round, MAX_SEED_LENGTH, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { round, VALID_SEED_REGEX, ADDRESS_LENGTH, parse } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import keychain, { getSeed } from '../util/keychain';
-import { sendTransaction, sendTransferRequest } from 'iota-wallet-shared-modules/actions/tempAccount';
-import DropdownAlert from 'react-native-dropdownalert';
+import {
+    getFromKeychainRequest,
+    getFromKeychainSuccess,
+    getFromKeychainError,
+} from 'iota-wallet-shared-modules/actions/keychain';
+import { sendTransaction } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import {
+    getBalanceForSelectedAccountViaSeedIndex,
+    getSelectedAccountNameViaSeedIndex,
+} from '../../shared/selectors/account';
 import Modal from 'react-native-modal';
 import QRScanner from '../components/qrScanner.js';
 import TransferConfirmationModal from '../components/transferConfirmationModal';
 import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
+import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import DropdownHolder from '../components/dropdownHolder';
 import { width, height } from '../util/dimensions';
-const StatusBarDefaultBarStyle = 'light-content';
 
 let sentDenomination = '';
 let currencySymbol = '';
 
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
 class Send extends Component {
+    static propTypes = {
+        currency: PropTypes.string.isRequired,
+        balance: PropTypes.number.isRequired,
+        isSyncing: PropTypes.bool.isRequired,
+        isGettingTransfers: PropTypes.bool.isRequired,
+        seedIndex: PropTypes.number.isRequired,
+        selectedAccountName: PropTypes.string.isRequired,
+        conversionRate: PropTypes.number.isRequired,
+        usdPrice: PropTypes.number.isRequired,
+        isGettingSensitiveInfoToMakeTransaction: PropTypes.bool.isRequired,
+        sendTransaction: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        getFromKeychainRequest: PropTypes.func.isRequired,
+        getFromKeychainSuccess: PropTypes.func.isRequired,
+        getFromKeychainError: PropTypes.func.isRequired,
+        closeTopBar: PropTypes.func.isRequired,
+        ctaColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        barColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
+    };
+
     constructor() {
         super();
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
         this.state = {
             denomination: 'i',
             amount: '',
@@ -55,8 +87,9 @@ class Send extends Component {
     }
 
     componentWillMount() {
-        currencySymbol = getCurrencySymbol(this.props.settings.currency);
+        currencySymbol = getCurrencySymbol(this.props.currency);
     }
+
     onDenominationPress() {
         switch (this.state.denomination) {
             case 'Mi':
@@ -81,7 +114,8 @@ class Send extends Component {
     }
 
     onMaxPress() {
-        let max = (this.props.account.balance / this.getUnitMultiplier()).toString();
+        const max = (this.props.balance / this.getUnitMultiplier()).toString();
+
         this.setState({
             amount: max,
             maxPressed: true,
@@ -102,18 +136,14 @@ class Send extends Component {
         return address.match(VALID_SEED_REGEX);
     }
 
-    isValidMessage(message) {
-        //return this.state.message.match(VALID_SEED_REGEX);
-        return true;
-    }
-
     isValidAmount(amount) {
-        var value = parseFloat(amount);
+        const value = parseFloat(amount);
+
         return !isNaN(value);
     }
 
     enoughBalance() {
-        if (parseFloat(this.state.amount) * this.getUnitMultiplier() > this.props.account.balance) {
+        if (parseFloat(this.state.amount) * this.getUnitMultiplier() > this.props.balance) {
             return false;
         } else {
             return true;
@@ -123,83 +153,74 @@ class Send extends Component {
     renderInvalidAddressErrors(address) {
         const { t } = this.props;
         const props = ['error', t('invalidAddress')];
-        const dropdown = DropdownHolder.getDropdown();
 
         if (size(address) !== 90) {
-            return dropdown.alertWithType(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
-        } else if (address.match(VALID_SEED_REGEX) == null) {
-            return dropdown.alertWithType(...props, t('invalidAddressExplanation2'));
+            return this.props.generateAlert(...props, t('invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
+        } else if (address.match(VALID_SEED_REGEX) === null) {
+            return this.props.generateAlert(...props, t('invalidAddressExplanation2'));
         }
 
-        return dropdown.alertWithType(...props, t('invalidAddressExplanation3'));
+        return this.props.generateAlert(...props, t('invalidAddressExplanation3'));
     }
 
     onSendPress() {
         const { t } = this.props;
         const address = this.state.address;
         const amount = this.state.amount;
-        const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
-        const message = this.state.message;
 
         const addressIsValid = this.isValidAddress(address);
-        const messageIsValid = this.isValidMessage(message);
+
         const enoughBalance = this.enoughBalance();
         const amountIsValid = this.isValidAmount(amount);
         const addressCharsAreValid = this.isValidAddressChars(address);
 
-        if (addressIsValid && messageIsValid && enoughBalance && amountIsValid && addressCharsAreValid) {
-            this._showModal();
+        if (addressIsValid && enoughBalance && amountIsValid && addressCharsAreValid) {
+            return this._showModal();
         }
 
         if (!enoughBalance) {
-            const dropdown = DropdownHolder.getDropdown();
-            return dropdown.alertWithType('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
+            return this.props.generateAlert('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
         }
+
         if (!addressIsValid) {
             this.renderInvalidAddressErrors(address);
         }
 
         if (!amountIsValid) {
-            const dropdown = DropdownHolder.getDropdown();
-            return dropdown.alertWithType('error', t('invalidAmount'), t('invalidAmountExplanation'));
-        }
-
-        if (!messageIsValid) {
-            console.log('invalid message');
+            return this.props.generateAlert('error', t('invalidAmount'), t('invalidAmountExplanation'));
         }
     }
 
     sendTransfer() {
-        const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
-        if (this.props.tempAccount.isSyncing) {
-            dropdown.alertWithType('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
+        const { t, seedIndex, selectedAccountName, isSyncing, isGettingTransfers } = this.props;
+
+        if (isSyncing) {
+            this.props.generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
             return;
         }
-        sentDenomination = this.state.denomination;
+        if (isGettingTransfers) {
+            this.props.generateAlert('error', 'Updating transfers', 'Please try again in a moment.');
+            return;
+        }
 
-        const accountInfo = this.props.account.accountInfo;
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const seedName = this.props.account.seedNames[seedIndex];
-        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
+        sentDenomination = this.state.denomination;
 
         const address = this.state.address;
         const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
         const message = this.state.message;
 
-        this.props.sendTransferRequest();
+        this.props.getFromKeychainRequest('send', 'makeTransaction');
         keychain
             .get()
             .then(credentials => {
+                this.props.getFromKeychainSuccess('send', 'makeTransaction');
+
                 if (get(credentials, 'data')) {
-                    const seed = getSeed(credentials.data, this.props.tempAccount.seedIndex);
-                    sendTx(seed);
+                    const seed = getSeed(credentials.data, seedIndex);
+                    this.props.sendTransaction(seed, address, value, message, selectedAccountName);
                 }
             })
-            .catch(err => console.log(err));
-
-        const sendTx = seed =>
-            this.props.sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message);
+            .catch(() => this.props.getFromKeychainError('send', 'makeTransaction'));
     }
 
     getUnitMultiplier() {
@@ -220,7 +241,7 @@ class Send extends Component {
                 multiplier = 1000000000000;
                 break;
             case currencySymbol:
-                multiplier = 1000000 * this.props.settings.conversionRate;
+                multiplier = 1000000 * this.props.conversionRate;
                 break;
         }
         return multiplier;
@@ -233,19 +254,24 @@ class Send extends Component {
             const callable = fn => isFunction(fn);
 
             if (callable(callback)) {
-                setTimeout(() => {
-                    callback();
-                });
+                setTimeout(callback);
             }
         });
 
-    _renderModalContent = () => <View style={styles.modalContent}>{this.state.modalContent}</View>;
+    _renderModalContent = () => <View>{this.state.modalContent}</View>;
 
     setModalContent(selectedSetting) {
         let modalContent;
         switch (selectedSetting) {
             case 'qrScanner':
-                modalContent = <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />;
+                modalContent = (
+                    <QRScanner
+                        onQRRead={data => this.onQRRead(data)}
+                        hideModal={() => this._hideModal()}
+                        backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
+                        ctaColor={THEMES.getHSL(this.props.ctaColor)}
+                    />
+                );
                 this.setState({
                     selectedSetting,
                     modalContent,
@@ -261,6 +287,7 @@ class Send extends Component {
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
                         hideModal={callback => this._hideModal(callback)}
+                        backgroundColor={THEMES.getHSL(this.props.barColor)}
                     />
                 );
                 this.setState({
@@ -270,7 +297,12 @@ class Send extends Component {
                 this.onSendPress();
                 break;
             case 'unitInfo':
-                modalContent = <UnitInfoModal hideModal={() => this._hideModal()} />;
+                modalContent = (
+                    <UnitInfoModal
+                        backgroundColor={THEMES.getHSL(this.props.barColor)}
+                        hideModal={() => this._hideModal()}
+                    />
+                );
                 this.setState({
                     selectedSetting,
                     modalContent,
@@ -281,15 +313,24 @@ class Send extends Component {
     }
 
     onQRRead(data) {
-        data = JSON.parse(data);
-        this.setState({
-            address: data.address,
-        });
-        if (data.message) {
+        if (data.match(/{/)) {
+            // For codes containing JSON (iotaledger and Trinity)
+            data = JSON.parse(data);
             this.setState({
-                message: data.message,
+                address: data.address,
+            });
+            if (data.message) {
+                this.setState({
+                    message: data.message,
+                });
+            }
+        } else {
+            // For codes with plain text (Bitfinex and Binance)
+            this.setState({
+                address: data,
             });
         }
+
         this._hideModal();
     }
 
@@ -313,10 +354,7 @@ class Send extends Component {
     }
 
     getConversionTextFiat() {
-        const convertedValue = round(
-            this.state.amount / this.props.marketData.usdPrice / this.props.settings.conversionRate,
-            2,
-        );
+        const convertedValue = round(this.state.amount / this.props.usdPrice / this.props.conversionRate, 2);
         let conversionText = '';
         if (0 < convertedValue && convertedValue < 0.01) {
             conversionText = '< 0.01 Mi';
@@ -328,10 +366,10 @@ class Send extends Component {
     getConversionTextIota() {
         const convertedValue = round(
             parseFloat(this.isValidAmount(this.state.amount) ? this.state.amount : 0) *
-                this.props.marketData.usdPrice /
+                this.props.usdPrice /
                 1000000 *
                 this.getUnitMultiplier() *
-                this.props.settings.conversionRate,
+                this.props.conversionRate,
             10,
         );
         let conversionText = '';
@@ -344,9 +382,9 @@ class Send extends Component {
     }
 
     render() {
-        let { amount, address, message, denomination } = this.state;
-        const { t } = this.props;
-        const maxHeight = this.state.maxPressed ? height / 10 : 0;
+        const { amount, address, message } = this.state;
+        const { t, ctaColor, backgroundColor, negativeColor } = this.props;
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
@@ -366,7 +404,7 @@ class Send extends Component {
                                     height={height / 24}
                                     labelPadding={2}
                                     baseColor="white"
-                                    tintColor="#F7D002"
+                                    tintColor={THEMES.getHSL(negativeColor)}
                                     enablesReturnKeyAutomatically={true}
                                     returnKeyType="next"
                                     label={t('recipientAddress')}
@@ -399,23 +437,21 @@ class Send extends Component {
                                     enablesReturnKeyAutomatically={true}
                                     returnKeyType="next"
                                     label={t('amount')}
-                                    tintColor="#F7D002"
+                                    tintColor={THEMES.getHSL(negativeColor)}
                                     autoCorrect={false}
                                     value={amount}
                                     onChangeText={amount => this.onAmountType(amount)}
                                     onSubmitEditing={() => this.refs.message.focus()}
                                 />
                             </View>
-                            {denomination != this.props.settings.currencySymbol && (
-                                <Text style={styles.conversionText}>
-                                    {' '}
-                                    {this.state.denomination == currencySymbol
-                                        ? this.getConversionTextFiat()
-                                        : this.getConversionTextIota()}{' '}
-                                </Text>
-                            )}
+                            <Text style={styles.conversionText}>
+                                {' '}
+                                {this.state.denomination === currencySymbol
+                                    ? this.getConversionTextFiat()
+                                    : this.getConversionTextIota()}{' '}
+                            </Text>
                             <View style={styles.buttonContainer}>
-                                <TouchableOpacity onPress={ebent => this.onDenominationPress()}>
+                                <TouchableOpacity onPress={event => this.onDenominationPress()}>
                                     <View style={styles.button}>
                                         <Text style={styles.buttonText}> {this.state.denomination} </Text>
                                     </View>
@@ -445,7 +481,7 @@ class Send extends Component {
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="send"
                                 label={t('message')}
-                                tintColor="#F7D002"
+                                tintColor={THEMES.getHSL(negativeColor)}
                                 autoCorrect={false}
                                 value={message}
                                 onChangeText={message => this.setState({ message })}
@@ -454,26 +490,36 @@ class Send extends Component {
                         </View>
                     </View>
                     <View style={styles.midContainer}>
-                        {!this.props.tempAccount.isSendingTransfer && (
-                            <View style={styles.sendIOTAButtonContainer}>
-                                <TouchableOpacity
-                                    onPress={event => {
-                                        this.setModalContent('transferConfirmation');
-                                        this.refs.address.blur();
-                                        this.refs.amount.blur();
-                                        this.refs.message.blur();
-                                    }}
-                                >
-                                    <View style={styles.sendIOTAButton}>
-                                        <Text style={styles.sendIOTAText}>{t('send')}</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        )}
-                        {this.props.tempAccount.isSendingTransfer &&
+                        {!this.props.isSendingTransfer &&
+                            !this.props.isGettingSensitiveInfoToMakeTransaction && (
+                                <View style={styles.sendIOTAButtonContainer}>
+                                    <TouchableOpacity
+                                        onPress={event => {
+                                            this.setModalContent('transferConfirmation');
+                                            this.refs.address.blur();
+                                            this.refs.amount.blur();
+                                            this.refs.message.blur();
+                                        }}
+                                    >
+                                        <View
+                                            style={[
+                                                styles.sendIOTAButton,
+                                                { backgroundColor: THEMES.getHSL(ctaColor) },
+                                            ]}
+                                        >
+                                            <Text style={styles.sendIOTAText}>{t('send')}</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                            )}
+                        {(this.props.isGettingSensitiveInfoToMakeTransaction || this.props.isSendingTransfer) &&
                             !this.state.isModalVisible && (
                                 <ActivityIndicator
-                                    animating={this.props.tempAccount.isSendingTransfer && !this.state.isModalVisible}
+                                    animating={
+                                        (this.props.isGettingSensitiveInfoToMakeTransaction ||
+                                            this.props.isSendingTransfer) &&
+                                        !this.state.isModalVisible
+                                    }
                                     style={styles.activityIndicator}
                                     size="large"
                                     color="#F7D002"
@@ -482,7 +528,6 @@ class Send extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            style={styles.infoButton}
                             onPress={() => this.setModalContent('unitInfo')}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                         >
@@ -499,7 +544,7 @@ class Send extends Component {
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={'#102832'}
+                        backdropColor={THEMES.getHSL(backgroundColor)}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                     >
@@ -569,7 +614,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 0.8,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6.5,
         height: height / 16,
     },
@@ -591,14 +636,11 @@ const styles = StyleSheet.create({
         paddingBottom: height / 110,
     },
     sendIOTAButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 2,
         height: height / 13,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#009f3f',
     },
     sendIOTAText: {
         color: 'white',
@@ -651,7 +693,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 0.8,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6,
         height: height / 16,
     },
@@ -675,20 +717,28 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    marketData: state.marketData,
-    tempAccount: state.tempAccount,
-    account: state.account,
-    settings: state.settings,
+    currency: state.settings.currency,
+    balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    isSyncing: state.tempAccount.isSyncing,
+    isGettingTransfers: state.tempAccount.isGettingTransfers,
+    isSendingTransfer: state.tempAccount.isSendingTransfer,
+    seedIndex: state.tempAccount.seedIndex,
+    conversionRate: state.settings.conversionRate,
+    usdPrice: state.marketData.usdPrice,
+    isGettingSensitiveInfoToMakeTransaction: state.keychain.isGettingSensitiveInfo.send.makeTransaction,
+    ctaColor: state.settings.theme.ctaColor,
+    backgroundColor: state.settings.theme.backgroundColor,
+    barColor: state.settings.theme.barColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
-const mapDispatchToProps = dispatch => ({
-    sendTransaction: (seed, currentSeedAccountInfo, seedName, address, value, message) => {
-        dispatch(sendTransaction(seed, currentSeedAccountInfo, seedName, address, value, message));
-    },
-    getAccountInfo: (seedName, seedIndex, accountInfo) => {
-        dispatch(getAccountInfo(seedName, seedIndex, accountInfo));
-    },
-    sendTransferRequest: () => dispatch(sendTransferRequest()),
-});
+const mapDispatchToProps = {
+    sendTransaction,
+    generateAlert,
+    getFromKeychainRequest,
+    getFromKeychainSuccess,
+    getFromKeychainError,
+};
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));

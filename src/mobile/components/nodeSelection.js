@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import Dropdown from '../components/dropdown';
 import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
+import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -52,6 +54,13 @@ const styles = StyleSheet.create({
 });
 
 class NodeSelection extends Component {
+    static propTypes = {
+        node: PropTypes.string.isRequired,
+        nodes: PropTypes.array.isRequired,
+        backPress: PropTypes.func.isRequired,
+        setNode: PropTypes.func.isRequired,
+    };
+
     saveNodeSelection() {
         const { setNode, backPress } = this.props;
 
@@ -71,7 +80,7 @@ class NodeSelection extends Component {
                             ref={c => {
                                 this.dropdown = c;
                             }}
-                            title="Node"
+                            title={t('global:node')}
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={node}
                             options={nodes}
@@ -81,13 +90,13 @@ class NodeSelection extends Component {
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Text style={styles.titleText}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveNodeSelection()}>
                             <View style={styles.itemRight}>
                                 <Image source={tickImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Save</Text>
+                                <Text style={styles.titleText}>{t('global:save')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -97,4 +106,4 @@ class NodeSelection extends Component {
     }
 }
 
-export default NodeSelection;
+export default translate('global')(NodeSelection);

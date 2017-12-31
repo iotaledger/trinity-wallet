@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import i18next from 'i18next';
 import { translate } from 'react-i18next';
@@ -62,8 +63,14 @@ const currentLocale = i18next.language;
 const currentLanguageLabel = selectLocale(currentLocale);
 
 class LanguageSelection extends Component {
-    constructor(props) {
-        super(props);
+    static propTypes = {
+        backPress: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+    };
+
+    constructor() {
+        super();
+
         this.languageSelected = currentLanguageLabel;
     }
 
@@ -85,7 +92,7 @@ class LanguageSelection extends Component {
                             ref={c => {
                                 this.dropdown = c;
                             }}
-                            title={this.languageSelected}
+                            title={this.languageSelected} //TODO: Ask if this is correct
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={currentLanguageLabel}
                             options={I18N_LOCALE_LABELS}
@@ -98,13 +105,13 @@ class LanguageSelection extends Component {
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Text style={styles.titleText}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveLanguageSelection()}>
                             <View style={styles.itemRight}>
                                 <Image source={tickImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Save</Text>
+                                <Text style={styles.titleText}>{t('global:save')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
