@@ -1,243 +1,287 @@
 {
-    "global": {
-        "invalidResponse": "Neveljaven odziv",
-        "invalidResponseExplanation": "Vozlišče je vrnilo neveljaven odziv.",
-        "invalidResponsePollingExplanation": "Vozlišče ke vrnilo neveljaven odziv med pozivanjem.",
-        "seed": "Generirano število",
-        "back": "NAZAJ",
-        "done": "OPRAVLJENO",
-        "next": "NAPREJ",
-        "manualCopy": "Zapišite generirano vrednost",
-        "paperWallet": "Natisnite kopijo",
-        "copyToClipboard": "Dodajte v upravitelja gesel",
-        "qr": "QR",
-        "notAvailable": "Ta funkcija ni na voljo",
-        "notAvailableExplanation": "Dodano bo na kasnjejši stopnji.",
-        "enterSeed": "Prosimo vpišite generirano vrednost.",
-        "mainWallet": "GLAVNI RAČUN",
-        "secondWallet": "DRUGI RAČUN",
-        "thirdWallet": "TRETJI RAČUN",
-        "fourthWallet": "ČETRTI RAČUN",
-        "fifthWallet": "PETI RAČUN",
-        "sixthWallet": "ŠESTI RAČUN",
-        "otherWallet": "DRUGI RAČUNI",
-        "yes": "DA",
-        "no": "NE",
-        "password": "Geslo",
-        "unrecognisedPassword": "Neprepoznano geslo",
-        "unrecognisedPasswordExplanation": "Geslo ni bilo prepoznano. Prosimo, poskusite ponovno.",
-        "syncInProgress": "Sinhronizacija v teku",
-        "syncInProgressExplanation": "Prosimo počakajte dokler sinhronizacija ni končana.",
-        "somethingWentWrong": "Nekaj je šlo narobe",
-        "somethingWentWrongExplanation": "Prosimo ponovno zaženite aplikacijo."
-    },
-    "addAdditionalSeed": {
-        "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
-        "seedInvalidCharsExplanation": "Generirana vrednost lahko vsebuje samo črke od A-Z in številko 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite ponovno.",
-        "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation": "Generirana vrednost mora biti {{maxLenght}} znakov dolga. Vaša generirana vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite znova.",
-        "nameInUse": "Ime računa je že v uporabi",
-        "nameInUseExplanation": "Prosimo vnesite edinstveno ime računa za pridobitev generirane vrednosti.",
-        "enterAccountName": "Vnesite ime računa.",
-        "accountName": "Ime računa",
-        "noNickname": "Niste vnesli imena računa",
-        "noNicknameExplanation": "Prosimo vnesite ime računa za pridobitev generirane vrednosti.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
-    },
-    "changePassword": {
-        "oops": "Oops! Nekaj je šlo narobe",
-        "oopsExplanation": "Izgleda kot da je nekaj šlo narobe pri posodabljanju vašega gesla. Prosimo poskusite ponovno.",
-        "passwordUpdated": "Geslo posodobljeno",
-        "passwordUpdatedExplanation": "Vaše geslo je bilo uspešno posodobljeno.",
-        "incorrectPassword": "Napačno geslo",
-        "incorrectPasswordExplanation": "Vaše geslo je napačno. Poskusite ponovno.",
-        "passwordsDoNotMatch": "Gesli se ne ujemata",
-        "passwordsDoNotMatchExplanation": "Gesli se ne ujemata. Prosimo poskusite ponovno.",
-        "passwordTooShort": "Geslo je prekratko",
-        "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
-        "oldPassword": "Ni mogoče nastavite starega gesla",
-        "oldPasswordExplanation": "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
-        "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
-        "currentPassword": "Trenutno Geslo",
-        "newPassword": "Novo Geslo",
-        "confirmPassword": "Potrdite Novo Geslo"
-    },
-    "copyToClipboard": {
-        "seedCleared": "Generirana vrednost zbrisana",
-        "seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
-        "seedCopied": "Kopirajte generirano vrednost v odložišce",
-        "seedCopiedExplanation": "Generirana vrednost bo izbrisana ko pritisnete \"KONČANO\" ali mine 60 sekund.",
-        "clickToCopy": "Pritisnite gumb spodaj in kopirajte generirano vrednost v svojega upravitelja gesel.",
-        "doNotStore": "Ne spravljajte generirane vrednost samo v tekst.",
-        "copyToClipboard": "Kopiraj v odložišče"
-    },
-    "enterSeed": {
-        "invalidCharacters": "Generirana vrednost vsebuje beveljavne znake",
-        "invalidCharactersExplanation": "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
-        "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation": "Generirano vrednost mora biti {{maxLenght}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite ponovno.",
-        "seedExplanation": "Generirana vrednost mora biti {{maxLenght}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLenght}}.",
-        "neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
-    },
-    "home": {
-        "balance": "Sredstva",
-        "send": "Pošlji",
-        "receive": "Prejmi",
-        "history": "Zgodovina",
-        "settings": "NASTAVITVE"
-    },
-    "languageSetup": {
-        "language": "Jezik"
-    },
-    "login": {
-        "emptyPassword": "Prazno geslo",
-        "emptyPasswordExplanation": "Za prijavo morate vnesti geslo. Prosimo poskusite ponovno.",
-        "enterPassword": "Prosimo vnesite vaše geslo.",
-        "useSeed": "UPORABA SEEDA",
-        "login": "PRIJAVA",
-        "selectDifferentNode": "Do you want to select a different node?"
-    },
-    "loading": {
-        "loadingFirstTime": "Nalaganje generirane vrednosti prvič.",
-        "thisMayTake": "To lahko traja nekaj časa.",
-        "youMayNotice": "Opazite lahko upočasnjevanje naprave."
-    },
-    "newSeedSetup": {
-        "seedNotGenerated": "Generirana vrednost ni bila ustvarjena",
-        "seedNotGeneratedExplanation": "Kliknite gumb ustvari novo generirano seme.",
-        "pressForNewSeed": "PRITISNITE ZA NOVO VREDNOST",
-        "individualLetters": "Pritisnite posamezne znake za jih ponaključit."
-    },
-    "onboardingComplete": {
-        "walletReady": "Denarnica je nastavljena in pripravljena za uporabo. Če želite boste v prihodnosti želeleli kaj spreminjati poglejte v meni za nastavitve."
-    },
-    "paperWallet": {
-        "clickToPrint": "Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
-        "storeSafely": "Shranite ga varno.",
-        "neverShare": "Nikoli z nikomer ne delite svojega seeda.",
-        "iotaLogo": "IOTA logotip",
-        "printWallet": "Printanje papirnate denarnice"
-    },
-    "receive": {
-        "addressCopied": "Naslov kopiran",
-        "addressCopiedExplanation": "Vaš naslov je bil kopiran v odložišče.",
-        "generateNewAddress": "Ustvari nov naslov",
-        "message": "Neobvezno sporočilo",
-        "removeMessage": "ODSTRANI SPOROČILO"
-    },
-    "saveYourSeed": {
-        "seedCleared": "Generiranava vrednost odstranjena",
-        "seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
-        "mustSaveYourSeed": "Morate shraniti vašo generirano vrednost z ",
-        "atLeastOne": "vsaj en ",
-        "ofTheOptions": "eno od možnosti navednih spodaj."
-    },
-    "seedReentry": {
-        "incorrectSeed": "Napačno generirano število",
-        "incorrectSeedExplanation": "Generirana vrednost ki ste jo vnesli ni pravila. Prosimo poskusite kasneje.",
-        "thisIsACheck": "To je test da preverite če ste shranili vašo generirano vrednost.",
-        "ifYouHaveNotSaved": "Če niste shranili vaše vrednosti prosimo pojdite nazaj in naredite to."
-    },
-    "send": {
-        "invalidAddress": "Napačen naslov",
-        "invalidAddressExplanation1": "Naslov mora biti {{maxLenght}} znakov dolgo in mora biti preverjeno.",
-        "invalidAddressExplanation2": "Naslov vsebuje neveljavne znake.",
-        "invalidAddressExplanation3": "Naslov vsebuje nepreverjen znak.",
-        "notEnoughFunds": "Ni dovolj sredstev",
-        "notEnoughFundsExplanation": "Nimate dovolj IOTA za dokončanje tega prenosa.",
-        "keyReuse": "Ponovna uporaba ključa",
-        "keyReuseExplanation": "Ta naslov je že bil uporabljen. Poskusite drug naslov.",
-        "recipientAddress": "Prejemnikov naslov",
-        "amount": "Količina",
-        "max": "MAKSIMALNO",
-        "message": "Sporočilo",
-        "send": "Pošlji",
-        "invalidAmount": "Neveljavna vsota",
-        "invalidAmountExplanation": "Prosimo vnesite vrednost za znesek transakcije.",
-        "maximumSelected": "NAJVIŠJI izbrani znesek",
-        "iotaUnits": "IOTA enote"
-    },
-    "setPassword": {
-        "passwordTooShort": "Geslo je prekratko",
-        "passwordTooShortExplanation": "Vaše geslo mora biti vsaj {{minLenght}} znakov dolgo. Vaše trenutno geslo je {{currentLenght}} znakov dolgo. Prosimo poskusite ponovno.",
-        "passwordMismatch": "Gesli se ne ujemata",
-        "passwordMismatchExplanation": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
-        "nowWeNeedTo": "Ok, zdaj moramo nastaviti geslo.",
-        "anEncryptedCopy": "Šifrirana kopija vaše generirane vrednosti bo shranjena v napravi. Uporabite geslo za dostop do vaše denarnice v prihodnosti.",
-        "ensure": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
-        "retypePassword": "Ponovno vnesite geslo"
-    },
-    "setSeedName": {
-        "canUseMultipleSeeds": "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
-        "youCanAdd": "Dodate lahko več generiranih vrednosti v meniju za nastavitve."
-    },
-    "settings": {
-        "transferSending": "Prenos pošiljanja",
-        "transferSendingExplanation": "Prosimo počakajte dokler vaša transakcija ni poslana.",
-        "generatingAddress": "Ustvarjanje prejemnega naslova",
-        "generatingAddressExplanation": "Prosimo počakajte da se vaš naslov ustvari.",
-        "mode": "Način",
-        "theme": "Tema",
-        "currency": "Valuta",
-        "language": "Jezik",
-        "addNewSeed": "Dodaj nov seed",
-        "twoFA": "Overovitev v dveh korakih",
-        "changePassword": "Zamenjaj geslo",
-        "advanced": "Napredne nastavitve",
-        "logout": "Izpis",
-        "reset": "Ponastavitev denarnice",
-        "back": "Nazaj",
-        "syncingComplete": "Sinhronizacija končana",
-        "syncingCompleteExplanation": "Vaš račun je bil uspešno sinhroniziran.",
-        "nicknameChanged": "Ime računa spremenjeno",
-        "nicknameChangedExplanation": "Ime vašega računa je bilo spremenjeno.",
-        "accountDeleted": "Račun izbrisan",
-        "accountDeletedExplanation": "Vaš račun je bil odstranjen iz denarnice.",
-        "cannotPerformAction": "Dejanja ni mogoče izvesti",
-        "cannotPerformActionExplanation": "Pojdite v napredne nastavitve za ponastavitev denarnice.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
-    },
-    "resetWalletConfirmation": {
-        "thisAction": "Tega dejanja ni mogoče razveljaviti.",
-        "warning1": "Vsi vaši podatki o denarnici vlkjucno z vašim",
-        "warning2": " generiranim številom, geslom, ",
-        "warning3": "in",
-        "warning4": " ostali podatki o računu",
-        "warning5": " bodo izgubljeni.",
-        "areYouSure": "Ali ste prepričani da želite nadaljevati?"
-    },
-    "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "PREKLIČI",
-        "reset": "PONASTAVI"
-    },
-    "walletSetup": {
-        "okay": "Okej. Ustvarimo vašo denarnico!",
-        "doYouAlreadyHaveASeed": "Ali že imate seed, ki bi ga želeli uporabiti?",
-        "seedExplanation": "IOTA seed je kot uporabniško ime in geslo za vaš račun, združeni v enoten niz 81 znakov.",
-        "explanation1": "Uporabljate jo lahko za dostop do vaših sredstev iz",
-        "explanation2": " katere koli denarnice ",
-        "explanation3": ", na",
-        "explanation4": " kateri koli napravi",
-        "explanation5": ". Ampak če izgubite vašo generirano vrednost boste izgubili tudi vaš IOTA.",
-        "keepSafe": "Prosimo vas, da imate seed shranjen na varnem."
-    },
-    "welcome": {
-        "thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice.",
-        "weWillSpend": "Naslednjih nekaj minut bomo porabili za nastavitve vaše denarnice.",
-        "reminder": "Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces."
-    },
-    "writeSeedDown": {
-        "yourSeedIs": "Vaše generirano število vsebuje 81 znakov od leve proti desni. Zapišite si ga in preverite",
-        "tripleCheck": "tri krat preveri",
-        "thatTheyAreCorrect": "da so pravilni."
-    },
-    "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Naslov kopiran",
-        "addressCopiedExplanation": "Naslov je bil kopiran v odložišce."
-    }
+	"global": {
+		"invalidResponse": "Neveljaven odziv",
+		"invalidResponseExplanation": "Vozlišče je vrnilo neveljaven odziv.",
+		"invalidResponsePollingExplanation": "Vozlišče ke vrnilo neveljaven odziv med pozivanjem.",
+		"seed": "Generirano število",
+		"back": "NAZAJ",
+		"done": "OPRAVLJENO",
+		"next": "NAPREJ",
+		"apply": "",
+		"save": "",
+		"close": "",
+		"manualCopy": "Zapišite generirano vrednost",
+		"paperWallet": "Natisnite kopijo",
+		"copyToClipboard": "Dodajte v upravitelja gesel",
+		"qr": "QR",
+		"notAvailable": "Ta funkcija ni na voljo",
+		"notAvailableExplanation": "Dodano bo na kasnjejši stopnji.",
+		"enterSeed": "Prosimo vpišite generirano vrednost.",
+		"mainWallet": "GLAVNI RAČUN",
+		"secondWallet": "DRUGI RAČUN",
+		"thirdWallet": "TRETJI RAČUN",
+		"fourthWallet": "ČETRTI RAČUN",
+		"fifthWallet": "PETI RAČUN",
+		"sixthWallet": "ŠESTI RAČUN",
+		"otherWallet": "DRUGI RAČUNI",
+		"yes": "DA",
+		"no": "NE",
+		"password": "Geslo",
+		"unrecognisedPassword": "Neprepoznano geslo",
+		"unrecognisedPasswordExplanation": "Geslo ni bilo prepoznano. Prosimo, poskusite ponovno.",
+		"syncInProgress": "Sinhronizacija v teku",
+		"syncInProgressExplanation": "Prosimo počakajte dokler sinhronizacija ni končana.",
+		"somethingWentWrong": "Nekaj je šlo narobe",
+		"somethingWentWrongExplanation": "Prosimo ponovno zaženite aplikacijo.",
+		"node": ""
+	},
+	"addAdditionalSeed": {
+		"seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
+		"seedInvalidCharsExplanation": "Generirana vrednost lahko vsebuje samo črke od A-Z in številko 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite ponovno.",
+		"seedTooShort": "Seed je prekratek",
+		"seedTooShortExplanation": "Generirana vrednost mora biti {{maxLenght}} znakov dolga. Vaša generirana vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite znova.",
+		"nameInUse": "Ime računa je že v uporabi",
+		"nameInUseExplanation": "Prosimo vnesite edinstveno ime računa za pridobitev generirane vrednosti.",
+		"enterAccountName": "Vnesite ime računa.",
+		"accountName": "Ime računa",
+		"noNickname": "Niste vnesli imena računa",
+		"noNicknameExplanation": "Prosimo vnesite ime računa za pridobitev generirane vrednosti.",
+		"seedInUse": "Seed already in use",
+		"seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+	},
+	"changePassword": {
+		"oops": "Oops! Nekaj je šlo narobe",
+		"oopsExplanation": "Izgleda kot da je nekaj šlo narobe pri posodabljanju vašega gesla. Prosimo poskusite ponovno.",
+		"passwordUpdated": "Geslo posodobljeno",
+		"passwordUpdatedExplanation": "Vaše geslo je bilo uspešno posodobljeno.",
+		"incorrectPassword": "Napačno geslo",
+		"incorrectPasswordExplanation": "Vaše geslo je napačno. Poskusite ponovno.",
+		"passwordsDoNotMatch": "Gesli se ne ujemata",
+		"passwordsDoNotMatchExplanation": "Gesli se ne ujemata. Prosimo poskusite ponovno.",
+		"passwordTooShort": "Geslo je prekratko",
+		"passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
+		"oldPassword": "Ni mogoče nastavite starega gesla",
+		"oldPasswordExplanation": "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
+		"ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
+		"currentPassword": "Trenutno Geslo",
+		"newPassword": "Novo Geslo",
+		"confirmPassword": "Potrdite Novo Geslo"
+	},
+	"copyToClipboard": {
+		"seedCleared": "Generirana vrednost zbrisana",
+		"seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
+		"seedCopied": "Kopirajte generirano vrednost v odložišce",
+		"seedCopiedExplanation": "Generirana vrednost bo izbrisana ko pritisnete \"KONČANO\" ali mine 60 sekund.",
+		"clickToCopy": "Pritisnite gumb spodaj in kopirajte generirano vrednost v svojega upravitelja gesel.",
+		"doNotStore": "Ne spravljajte generirane vrednost samo v tekst.",
+		"copyToClipboard": "Kopiraj v odložišče"
+	},
+	"enterSeed": {
+		"invalidCharacters": "Generirana vrednost vsebuje beveljavne znake",
+		"invalidCharactersExplanation": "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
+		"seedTooShort": "Seed je prekratek",
+		"seedTooShortExplanation": "Generirano vrednost mora biti {{maxLenght}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite ponovno.",
+		"seedExplanation": "Generirana vrednost mora biti {{maxLenght}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLenght}}.",
+		"neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
+	},
+	"home": {
+		"balance": "Sredstva",
+		"send": "Pošlji",
+		"receive": "Prejmi",
+		"history": "Zgodovina",
+		"settings": "NASTAVITVE"
+	},
+	"languageSetup": {
+		"language": "Jezik"
+	},
+	"login": {
+		"emptyPassword": "Prazno geslo",
+		"emptyPasswordExplanation": "Za prijavo morate vnesti geslo. Prosimo poskusite ponovno.",
+		"enterPassword": "Prosimo vnesite vaše geslo.",
+		"useSeed": "UPORABA SEEDA",
+		"login": "PRIJAVA",
+		"selectDifferentNode": "Do you want to select a different node?"
+	},
+	"loading": {
+		"loadingFirstTime": "Nalaganje generirane vrednosti prvič.",
+		"thisMayTake": "To lahko traja nekaj časa.",
+		"youMayNotice": "Opazite lahko upočasnjevanje naprave."
+	},
+	"newSeedSetup": {
+		"seedNotGenerated": "Generirana vrednost ni bila ustvarjena",
+		"seedNotGeneratedExplanation": "Kliknite gumb ustvari novo generirano seme.",
+		"pressForNewSeed": "PRITISNITE ZA NOVO VREDNOST",
+		"individualLetters": "Pritisnite posamezne znake za jih ponaključit."
+	},
+	"onboardingComplete": {
+		"walletReady": "Denarnica je nastavljena in pripravljena za uporabo. Če želite boste v prihodnosti želeleli kaj spreminjati poglejte v meni za nastavitve."
+	},
+	"paperWallet": {
+		"clickToPrint": "Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
+		"storeSafely": "Shranite ga varno.",
+		"neverShare": "Nikoli z nikomer ne delite svojega seeda.",
+		"iotaLogo": "IOTA logotip",
+		"printWallet": "Printanje papirnate denarnice"
+	},
+	"receive": {
+		"addressCopied": "Naslov kopiran",
+		"addressCopiedExplanation": "Vaš naslov je bil kopiran v odložišče.",
+		"generateNewAddress": "Ustvari nov naslov",
+		"message": "Neobvezno sporočilo",
+		"removeMessage": "ODSTRANI SPOROČILO"
+	},
+	"saveYourSeed": {
+		"seedCleared": "Generiranava vrednost odstranjena",
+		"seedClearedExplanation": "Generirana vrednost je bila izbrisana iz odložišča za vašo varnost.",
+		"mustSaveYourSeed": "Morate shraniti vašo generirano vrednost z ",
+		"atLeastOne": "vsaj en ",
+		"ofTheOptions": "eno od možnosti navednih spodaj."
+	},
+	"seedReentry": {
+		"incorrectSeed": "Napačno generirano število",
+		"incorrectSeedExplanation": "Generirana vrednost ki ste jo vnesli ni pravila. Prosimo poskusite kasneje.",
+		"thisIsACheck": "To je test da preverite če ste shranili vašo generirano vrednost.",
+		"ifYouHaveNotSaved": "Če niste shranili vaše vrednosti prosimo pojdite nazaj in naredite to."
+	},
+	"send": {
+		"invalidAddress": "Napačen naslov",
+		"invalidAddressExplanation1": "Naslov mora biti {{maxLenght}} znakov dolgo in mora biti preverjeno.",
+		"invalidAddressExplanation2": "Naslov vsebuje neveljavne znake.",
+		"invalidAddressExplanation3": "Naslov vsebuje nepreverjen znak.",
+		"notEnoughFunds": "Ni dovolj sredstev",
+		"notEnoughFundsExplanation": "Nimate dovolj IOTA za dokončanje tega prenosa.",
+		"keyReuse": "Ponovna uporaba ključa",
+		"keyReuseExplanation": "Ta naslov je že bil uporabljen. Poskusite drug naslov.",
+		"recipientAddress": "Prejemnikov naslov",
+		"amount": "Količina",
+		"max": "MAKSIMALNO",
+		"message": "Sporočilo",
+		"send": "Pošlji",
+		"invalidAmount": "Neveljavna vsota",
+		"invalidAmountExplanation": "Prosimo vnesite vrednost za znesek transakcije.",
+		"maximumSelected": "NAJVIŠJI izbrani znesek",
+		"iotaUnits": "IOTA enote"
+	},
+	"setPassword": {
+		"passwordTooShort": "Geslo je prekratko",
+		"passwordTooShortExplanation": "Vaše geslo mora biti vsaj {{minLenght}} znakov dolgo. Vaše trenutno geslo je {{currentLenght}} znakov dolgo. Prosimo poskusite ponovno.",
+		"passwordMismatch": "Gesli se ne ujemata",
+		"passwordMismatchExplanation": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
+		"nowWeNeedTo": "Ok, zdaj moramo nastaviti geslo.",
+		"anEncryptedCopy": "Šifrirana kopija vaše generirane vrednosti bo shranjena v napravi. Uporabite geslo za dostop do vaše denarnice v prihodnosti.",
+		"ensure": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
+		"retypePassword": "Ponovno vnesite geslo"
+	},
+	"setSeedName": {
+		"canUseMultipleSeeds": "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
+		"youCanAdd": "Dodate lahko več generiranih vrednosti v meniju za nastavitve."
+	},
+	"settings": {
+		"transferSending": "Prenos pošiljanja",
+		"transferSendingExplanation": "Prosimo počakajte dokler vaša transakcija ni poslana.",
+		"generatingAddress": "Ustvarjanje prejemnega naslova",
+		"generatingAddressExplanation": "Prosimo počakajte da se vaš naslov ustvari.",
+		"mode": "Način",
+		"theme": "Tema",
+		"currency": "Valuta",
+		"language": "Jezik",
+		"addNewSeed": "Dodaj nov seed",
+		"twoFA": "Overovitev v dveh korakih",
+		"changePassword": "Zamenjaj geslo",
+		"advanced": "Napredne nastavitve",
+		"logout": "Izpis",
+		"reset": "Ponastavitev denarnice",
+		"syncingComplete": "Sinhronizacija končana",
+		"syncingCompleteExplanation": "Vaš račun je bil uspešno sinhroniziran.",
+		"nicknameChanged": "Ime računa spremenjeno",
+		"nicknameChangedExplanation": "Ime vašega računa je bilo spremenjeno.",
+		"accountDeleted": "Račun izbrisan",
+		"accountDeletedExplanation": "Vaš račun je bil odstranjen iz denarnice.",
+		"cannotPerformAction": "Dejanja ni mogoče izvesti",
+		"cannotPerformActionExplanation": "Pojdite v napredne nastavitve za ponastavitev denarnice.",
+		"poorConnection": "Poor connection",
+		"poorConnectionExplanation": "Failed to change currency due to a poor connection."
+	},
+	"resetWalletConfirmation": {
+		"thisAction": "Tega dejanja ni mogoče razveljaviti.",
+		"warning1": "Vsi vaši podatki o denarnici vlkjucno z vašim",
+		"warning2": " generiranim številom, geslom, ",
+		"warning3": "in",
+		"warning4": " ostali podatki o računu",
+		"warning5": " bodo izgubljeni.",
+		"areYouSure": "Ali ste prepričani da želite nadaljevati?"
+	},
+	"resetWalletRequirePassword": {
+		"enterPassword": "Enter your password to reset the wallet.",
+		"cancel": "PREKLIČI",
+		"reset": "PONASTAVI"
+	},
+	"walletSetup": {
+		"okay": "Okej. Ustvarimo vašo denarnico!",
+		"doYouAlreadyHaveASeed": "Ali že imate seed, ki bi ga želeli uporabiti?",
+		"seedExplanation": "IOTA seed je kot uporabniško ime in geslo za vaš račun, združeni v enoten niz 81 znakov.",
+		"explanation1": "Uporabljate jo lahko za dostop do vaših sredstev iz",
+		"explanation2": " katere koli denarnice ",
+		"explanation3": ", na",
+		"explanation4": " kateri koli napravi",
+		"explanation5": ". Ampak če izgubite vašo generirano vrednost boste izgubili tudi vaš IOTA.",
+		"keepSafe": "Prosimo vas, da imate seed shranjen na varnem."
+	},
+	"welcome": {
+		"thankYou": "Zahvaljujemo se vam za prenos IOTA denarnice.",
+		"weWillSpend": "Naslednjih nekaj minut bomo porabili za nastavitve vaše denarnice.",
+		"reminder": "Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces."
+	},
+	"writeSeedDown": {
+		"yourSeedIs": "Vaše generirano število vsebuje 81 znakov od leve proti desni. Zapišite si ga in preverite",
+		"tripleCheck": "tri krat preveri",
+		"thatTheyAreCorrect": "da so pravilni."
+	},
+	"history": {
+		"bundleHashCopied": "Bundle hash copied",
+		"bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+		"addressCopied": "Naslov kopiran",
+		"addressCopiedExplanation": "Naslov je bil kopiran v odložišce."
+	},
+	"accountManagement": {
+		"viewSeed": "",
+		"viewAddresses": "",
+		"editAccountName": "",
+		"deleteAccount": "",
+		"addNewAccount": ""
+	},
+	"addCustomNode": {
+		"customNode": "",
+		"add": ""
+	},
+	"addNewAccount": {
+		"useExistingSeed": "",
+		"createNewSeed": ""
+	},
+	"advancedSettings": {
+		"selectNode": "",
+		"addCustomNode": "",
+		"manualSync": ""
+	},
+	"advancedThemeCustomisation": {
+		"background": "",
+		"frame": ""
+	},
+	"currencySelection": {
+		"currency": ""
+	},
+	"logoutConfirmationModal": {
+		"logoutConfirmation": ""
+	},
+	"qrScanner": {
+		"scan": ""
+	},
+	"unitInfoModal": {
+		"unitSystem": "",
+		"trillion": "",
+		"billion": "",
+		"million": "",
+		"thousand": "",
+		"one": ""
+	}
 }
