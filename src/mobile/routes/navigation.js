@@ -19,18 +19,18 @@ import WalletResetConfirmation from '../containers/walletResetConfirmation';
 import WalletResetRequirePassword from '../containers/walletResetRequirePassword';
 import OnboardingComplete from '../containers/onboardingComplete';
 import SetSeedName from '../containers/setSeedName';
-import UseSeed from '../containers/useSeed';
 import SeedReentry from '../containers/seedReentry';
 import { isIPhoneX } from '../util/device';
 
 function getGenerator(screen) {
     if (isIPhoneX) {
         return withSafeAreaView(screen);
-    } else {
-        return screen;
     }
+
+    return screen;
 }
-export function registerScreens(store, Provider) {
+
+export default function registerScreens(store, Provider) {
     Navigation.registerComponent('initialLoading', () => getGenerator(InitialLoading), store, Provider);
     Navigation.registerComponent('home', () => getGenerator(Home), store, Provider);
     Navigation.registerComponent('loading', () => getGenerator(Loading), store, Provider);
@@ -48,7 +48,6 @@ export function registerScreens(store, Provider) {
     Navigation.registerComponent('walletResetConfirm', () => WalletResetConfirmation, store, Provider);
     Navigation.registerComponent('walletResetRequirePassword', () => WalletResetRequirePassword, store, Provider);
     Navigation.registerComponent('onboardingComplete', () => OnboardingComplete, store, Provider);
-    Navigation.registerComponent('useSeed', () => UseSeed, store, Provider);
     Navigation.registerComponent('setSeedName', () => SetSeedName, store, Provider);
     Navigation.registerComponent('seedReentry', () => SeedReentry, store, Provider);
     Navigation.registerComponent('saveSeedConfirmation', () => SaveSeedConfirmation, store, Provider);

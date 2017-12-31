@@ -1,6 +1,8 @@
 import merge from 'lodash/merge';
 import omit from 'lodash/omit';
+import filter from 'lodash/filter';
 import { ActionTypes } from '../actions/account';
+import { ActionTypes as TempAccountActionTypes } from '../actions/tempAccount';
 
 const account = (
     state = {
@@ -8,7 +10,7 @@ const account = (
         seedNames: [],
         firstUse: true,
         onboardingComplete: false,
-        balance: 0,
+        accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
     },
     action,
@@ -29,32 +31,41 @@ const account = (
                 ...state,
                 unconfirmedBundleTails: action.payload,
             };
-        case 'SET_ACCOUNT_INFO':
+        case ActionTypes.SET_ACCOUNT_INFO:
             return {
                 ...state,
-                balance: action.balance,
                 accountInfo: {
                     ...state.accountInfo,
                     [action.seedName]: {
                         addresses: action.addresses,
                         transfers: action.transfers,
+                        balance: action.balance,
                     },
                 },
             };
-        case 'CHANGE_ACCOUNT_NAME':
+        case ActionTypes.CHANGE_ACCOUNT_NAME:
             return {
                 ...state,
                 seedNames: action.accountNames,
                 accountInfo: action.accountInfo,
             };
-        case 'REMOVE_ACCOUNT':
+        case ActionTypes.REMOVE_ACCOUNT:
             return {
                 ...state,
-                accountInfo: action.accountInfo,
-                seedNames: action.accountNames,
+                accountInfo: omit(state.accountInfo, action.payload),
+                seedNames: filter(state.seedNames, name => name !== action.payload),
                 seedCount: state.seedCount - 1,
             };
-        case 'UPDATE_ADDRESSES':
+        case ActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS:
+            return {
+                ...state,
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        addresses: action.payload.addresses,
+                    },
+                }),
+            };
+        case ActionTypes.UPDATE_ADDRESSES:
             return {
                 ...state,
                 accountInfo: {
@@ -65,7 +76,7 @@ const account = (
                     },
                 },
             };
-        case 'UPDATE_TRANSFERS':
+        case ActionTypes.UPDATE_TRANSFERS:
             return {
                 ...state,
                 accountInfo: {
@@ -76,30 +87,82 @@ const account = (
                     },
                 },
             };
-        case 'SET_FIRST_USE':
+        case TempAccountActionTypes.GET_TRANSFERS_SUCCESS:
+            return {
+                ...state,
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        transfers: action.payload.transfers,
+                    },
+                }),
+            };
+        case ActionTypes.SET_FIRST_USE:
             return {
                 ...state,
                 firstUse: action.payload,
             };
-        case 'SET_BALANCE':
+        case ActionTypes.SET_BALANCE:
             return {
                 ...state,
-                balance: action.payload,
+                accountInfo: {
+                    ...state.accountInfo,
+                    [action.payload.accountName]: {
+                        ...state.accountInfo[action.payload.accountName],
+                        balance: action.payload.balance,
+                    },
+                },
             };
-        case 'SET_ONBOARDING_COMPLETE':
+        case ActionTypes.SET_ONBOARDING_COMPLETE:
             return {
                 ...state,
                 onboardingComplete: action.payload,
             };
-        case 'INCREASE_SEED_COUNT':
+        case ActionTypes.INCREASE_SEED_COUNT:
             return {
                 ...state,
                 seedCount: state.seedCount + 1,
             };
-        case 'ADD_SEED_NAME':
+        case ActionTypes.ADD_SEED_NAME:
             return {
                 ...state,
                 seedNames: [...state.seedNames, action.seedName],
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST:
+            return {
+                ...state,
+                firstUse: true,
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+            return {
+                ...state,
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
+                        balance: action.payload.balance,
+                    },
+                }),
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
+            return {
+                ...state,
+                firstUse: false,
+                seedCount: state.seedCount + 1,
+                seedNames: [...state.seedNames, action.payload.accountName],
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
+                        balance: action.payload.balance,
+                    },
+                }),
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR:
+            return {
+                ...state,
+                firstUse: true,
             };
         default:
             return state;

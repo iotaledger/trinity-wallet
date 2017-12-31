@@ -1,27 +1,35 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ListView, Clipboard } from 'react-native';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { width, height } from '../util/dimensions';
-import DropdownHolder from '../components/dropdownHolder';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
 class ViewAddresses extends Component {
+    static propTypes = {
+        addressData: PropTypes.object.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+    };
+
     copy(address) {
-        const dropdown = DropdownHolder.getDropdown();
         Clipboard.setString(address);
-        if (dropdown) {
-            // Just to be sure
-            dropdown.alertWithType('success', 'Address copied', 'The address has been copied to the clipboard.');
-        }
+        return this.props.generateAlert('success', 'Address copied', 'The address has been copied to the clipboard.');
     }
 
     render() {
+        let addressData = Object.entries(this.props.addressData);
+        addressData = addressData.reverse();
+
         return (
             <View style={styles.container}>
                 <View style={styles.listView}>
                     <ListView
-                        dataSource={ds.cloneWithRows(this.props.addressesWithBalance)}
+                        dataSource={ds.cloneWithRows(addressData)}
                         renderRow={(rowData, sectionID, rowID) => (
                             <View style={{ flexDirection: 'row', paddingHorizontal: width / 15 }}>
                                 <TouchableOpacity
@@ -29,14 +37,20 @@ class ViewAddresses extends Component {
                                     style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}
                                 >
                                     <View>
-                                        <Text numberOfLines={2} style={styles.addressText}>
-                                            {rowID}
+                                        <Text
+                                            numberOfLines={2}
+                                            style={[
+                                                styles.addressText,
+                                                { textDecorationLine: rowData[1].spent ? 'line-through' : 'none' },
+                                            ]}
+                                        >
+                                            {rowData[0]}
                                         </Text>
                                     </View>
                                 </TouchableOpacity>
                                 <View style={{ alignItems: 'flex-end', flex: 2, justifyContent: 'center' }}>
                                     <Text style={styles.balanceText}>
-                                        {formatValue(rowData)} {formatUnit(rowData)}
+                                        {formatValue(rowData[1].balance)} {formatUnit(rowData[1].balance)}
                                     </Text>
                                 </View>
                             </View>
@@ -101,6 +115,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Bold',
         fontSize: width / 29.6,
+        textDecorationStyle: 'solid',
     },
     balanceText: {
         color: 'white',
@@ -120,4 +135,8 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ViewAddresses;
+const mapDispatchToProps = {
+    generateAlert,
+};
+
+export default connect(null, mapDispatchToProps)(ViewAddresses);

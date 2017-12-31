@@ -1,24 +1,49 @@
 import each from 'lodash/each';
-import size from 'lodash/size';
-import head from 'lodash/head';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import isNull from 'lodash/isNull';
 import { iota } from '../libs/iota';
+import { getBundleTailsForSentTransfers } from './promoter';
 
-export const formatAddressBalances = (addresses, balances) => {
-    var addressesWithBalance = Object.assign({}, ...addresses.map((n, index) => ({ [n]: balances[index] })));
-    return addressesWithBalance;
+export const formatAddressData = (addresses, balances, addressesSpendStatus) => {
+    const addressData = Object.assign(
+        {},
+        ...addresses.map((n, index) => ({ [n]: { balance: balances[index], spent: addressesSpendStatus[index] } })),
+    );
+    return addressData;
 };
 
-export const formatAddressBalancesNewSeed = data => {
-    var addresses = data.addresses;
-    var addressesWithBalance = Object.assign({}, ...addresses.map(n => ({ [n]: 0 })));
-    for (var i = 0; i < data.inputs.length; i++) {
-        addressesWithBalance[data.inputs[i].address] = data.inputs[i].balance;
+export const formatFullAddressData = data => {
+    const addresses = data.addresses;
+    const addressData = Object.assign({}, ...addresses.map(n => ({ [n]: { balance: 0, spent: false } })));
+    for (let i = 0; i < data.inputs.length; i++) {
+        addressData[data.inputs[i].address].balance = data.inputs[i].balance;
     }
-    return addressesWithBalance;
+    return addressData;
+};
+
+export const markAddressSpend = (transfers, addressData) => {
+    const addresses = Object.keys(addressData);
+
+    // Iterate over all bundles and sort them between incoming and outgoing transfers
+    transfers.forEach(bundle => {
+        // Iterate over every bundle entry
+        bundle.forEach(bundleEntry => {
+            // If bundle address in the list of addresses associated with the seed
+            // mark the address as sent
+            if (addresses.indexOf(bundleEntry.address) > -1) {
+                // Check if it's a remainder address
+                const isRemainder = bundleEntry.currentIndex === bundleEntry.lastIndex && bundleEntry.lastIndex !== 0;
+                // check if sent transaction
+                if (bundleEntry.value < 0 && !isRemainder) {
+                    // Mark address as spent
+                    addressData[bundleEntry.address].spent = true;
+                }
+            }
+        });
+    });
+    return addressData;
 };
 
 export const groupTransfersByBundle = transfers => {
@@ -63,6 +88,7 @@ export const sortWithProp = (array, prop) => {
 
 export const formatTransfers = (transfers, addresses) => {
     // Order transfers from oldest to newest
+
     let sortedTransfers = transfers.sort((a, b) => {
         if (a[0].timestamp > b[0].timestamp) {
             return -1;
@@ -75,12 +101,12 @@ export const formatTransfers = (transfers, addresses) => {
 
     // add transaction values to transactions
     sortedTransfers = addTransferValues(sortedTransfers, addresses);
+
     return sortedTransfers;
 };
 
 export const addTransferValues = (transfers, addresses) => {
     // Add transaction value property to each transaction object
-    // FIXME: We should never mutate parameters at any level.
     return transfers.map(arr => {
         /* eslint-disable no-param-reassign */
         arr[0].transferValue = 0;
@@ -100,7 +126,8 @@ export const addTransferValues = (transfers, addresses) => {
 export const calculateBalance = data => {
     let balance = 0;
     if (Object.keys(data).length > 0) {
-        balance = Object.values(data).reduce((a, b) => a + b);
+        let balanceArray = Object.values(data).map(x => x.balance);
+        balance = balanceArray.reduce((a, b) => a + b);
     }
     return balance;
 };
@@ -128,26 +155,46 @@ export const getAddressesWithChangedBalance = (allAddresses, indicesWithChangedB
 };
 
 export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
-    const old = oldTransfers.slice(0);
-    const latest = latestTransfers.slice(0);
+    // Transform both old and latest into dictionaries with bundle as prop
+    const toDict = (res, transfer) => {
+        const top = transfer[0];
+        const bundle = top.bundle;
 
-    const maxOldTransfers = size(old);
-    const maxLatestTransfers = size(latest);
-
-    for (let i = maxLatestTransfers; i--; ) {
-        const latestTxTop = head(latest[i]);
-        const latestTxBundle = get(latestTxTop, 'bundle');
-        for (let j = maxOldTransfers; j--; ) {
-            const oldTxTop = head(old[j]);
-            const oldTxBundle = get(oldTxTop, 'bundle');
-            if (oldTxBundle === latestTxBundle) {
-                old[j] = latest[i];
-                latest.splice(i, 1);
-            }
+        if (bundle in res) {
+            res[bundle] = [...res[bundle], transfer];
+        } else {
+            res[bundle] = [transfer];
         }
-    }
 
-    return size(latest) ? [...old, ...latest] : old;
+        return res;
+    };
+
+    const override = (res, bundleObject, key) => {
+        if (key in transformedLatestTransfers) {
+            each(transformedLatestTransfers[key], value => res.push(value)); // Just replace old bundle objects with latest
+        } else {
+            each(transformedOldTransfers[key], value => res.push(value)); // Otherwise just keep the old ones
+        }
+
+        return res;
+    };
+
+    const transformedOldTransfers = reduce(oldTransfers, toDict, {});
+    const transformedLatestTransfers = reduce(latestTransfers, toDict, {});
+
+    const overrideMissing = (res, bundleObject, key) => {
+        // Add new bundle entry to transfers
+        if (!(key in transformedOldTransfers)) {
+            each(transformedLatestTransfers[key], value => res.push(value));
+        }
+
+        return res;
+    };
+
+    const oldUpdatedTransfers = reduce(transformedOldTransfers, override, []);
+    const newTransfers = reduce(transformedLatestTransfers, overrideMissing, []);
+
+    return [...oldUpdatedTransfers, ...newTransfers];
 };
 
 export const deduplicateTransferBundles = transfers => {
@@ -178,6 +225,21 @@ export const deduplicateTransferBundles = transfers => {
 
     const aggregated = reduce(transfers, deduplicate, {});
     return map(aggregated, v => v);
+};
+
+export const getUnspentAddresses = addressData => {
+    const addresses = Object.keys(addressData);
+    const addressesSpendStatus = Object.values(addressData).map(x => x.spent);
+
+    const unspentAddresses = [];
+
+    for (let i = 0; i < addresses.length; i++) {
+        if (addressesSpendStatus[i] === false) {
+            unspentAddresses.push(addresses[i]);
+        }
+    }
+
+    return unspentAddresses;
 };
 
 export const filterSpentAddresses = inputs => {
@@ -292,4 +354,22 @@ export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
             })
             .catch(err => callback(err));
     });
+};
+
+export const organizeAccountInfo = (accountName, data) => {
+    const transfers = formatTransfers(data.transfers, data.addresses);
+
+    const addressData = formatFullAddressData(data);
+    const balance = calculateBalance(addressData);
+
+    const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
+    const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
+
+    return {
+        accountName,
+        transfers,
+        addresses: addressDataWithSpentFlag,
+        balance,
+        unconfirmedTails,
+    };
 };

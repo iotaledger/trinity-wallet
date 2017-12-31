@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, WebView, StatusBar, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, StatusBar, Text, ActivityIndicator } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
-import { setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
+import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import keychain, { getSeed } from '../util/keychain';
 import { Navigation } from 'react-native-navigation';
-import Home from './home';
 import IotaSpin from '../components/iotaSpin';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
@@ -19,10 +19,24 @@ class Loading extends Component {
     componentDidMount() {
         this.props.changeHomeScreenRoute('balance');
         this.props.setSetting('mainSettings');
+        const { firstUse, selectedAccountName } = this.props;
+
+        keychain
+            .get()
+            .then(credentials => {
+                const seed = getSeed(credentials.data, 0);
+                if (firstUse) {
+                    this.props.getFullAccountInfo(seed, selectedAccountName, this.props.navigator);
+                } else {
+                    this.props.getAccountInfo(selectedAccountName, this.props.navigator);
+                }
+            })
+            .catch(err => console.log(err)); // Dropdown
     }
 
     componentWillReceiveProps(newProps) {
         const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+
         if (ready) {
             Navigation.startSingleScreenApp({
                 screen: {
@@ -30,7 +44,7 @@ class Loading extends Component {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: COLORS.backgroundGreen,
+                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                     },
                     overrideBackPress: true,
                 },
@@ -39,11 +53,18 @@ class Loading extends Component {
     }
 
     render() {
-        const { tempAccount: { ready }, account: { firstUse }, navigator, t } = this.props;
+        const {
+            tempAccount: { ready },
+            account: { firstUse },
+            navigator,
+            t,
+            negativeColor,
+            backgroundColor,
+        } = this.props;
 
         if (this.props.account.firstUse) {
             return (
-                <View style={styles.container}>
+                <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -54,20 +75,20 @@ class Loading extends Component {
                             animating={true}
                             style={styles.activityIndicator}
                             size="large"
-                            color="#F7D002"
+                            color={THEMES.getHSL(negativeColor)}
                         />
                     </View>
                     <View style={{ flex: 1 }} />
                 </View>
             );
-        } else if (!this.props.account.firstUse) {
-            return (
-                <View style={styles.container}>
-                    <StatusBar barStyle="light-content" />
-                    <IotaSpin duration={3000} />
-                </View>
-            );
         }
+
+        return (
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <IotaSpin duration={3000} />
+            </View>
+        );
     }
 }
 
@@ -76,7 +97,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     infoText: {
         color: 'white',
@@ -95,27 +115,32 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
+    firstUse: state.account.firstUse,
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     marketData: state.marketData,
     tempAccount: state.tempAccount,
     account: state.account,
+    backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setBalance: addressesWithBalance => {
-        dispatch(setBalance(addressesWithBalance));
-    },
-    setFirstUse: boolean => {
-        dispatch(setFirstUse(boolean));
-    },
-    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-    setSetting: setting => dispatch(setSetting(setting)),
-});
+const mapDispatchToProps = {
+    changeHomeScreenRoute,
+    setSetting,
+    getAccountInfo,
+    getFullAccountInfo,
+};
 
 Loading.propTypes = {
-    marketData: PropTypes.object.isRequired,
+    firstUse: PropTypes.bool.isRequired,
     tempAccount: PropTypes.object.isRequired,
     account: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
+    getAccountInfo: PropTypes.func.isRequired,
+    getFullAccountInfo: PropTypes.func.isRequired,
+    selectedAccountName: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.object.isRequired,
 };
 
 export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));
