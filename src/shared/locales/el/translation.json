@@ -131,8 +131,8 @@
 		"removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ"
 	},
 	"saveYourSeed": {
-		"seedCleared": "Seed cleared",
-		"seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+		"seedCleared": "Σπόρος εκκαθαρίστηκε",
+		"seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
 		"mustSaveYourSeed": "Πρέπει να αποθηκεύσετε το σπόρο σας με ",
 		"atLeastOne": "τουλάχιστον μία ",
 		"ofTheOptions": "από τις επιλογές που αναφέρονται παρακάτω."
