@@ -3,6 +3,7 @@ import { View, Image, StyleSheet } from 'react-native';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
 import arrowWhiteImagePath from 'iota-wallet-shared-modules/images/arrow-white.png';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     seedBox: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.65,
         alignItems: 'center',
         justifyContent: 'center',

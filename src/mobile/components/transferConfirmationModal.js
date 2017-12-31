@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
 import { width, height } from '../util/dimensions';
 
@@ -19,7 +20,7 @@ class TransferConfirmationModal extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor } = this.props;
         let transferContents = null;
         if (this.props.amount === 0) {
             transferContents = <Text style={styles.iotaText}>a message</Text>;
@@ -32,7 +33,7 @@ class TransferConfirmationModal extends Component {
             );
         }
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 30,

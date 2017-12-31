@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
 import keyImagePath from 'iota-wallet-shared-modules/images/key.png';
@@ -7,8 +8,14 @@ import editImagePath from 'iota-wallet-shared-modules/images/edit.png';
 import deleteImagePath from 'iota-wallet-shared-modules/images/delete.png';
 import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import { translate } from 'react-i18next';
 
-class AdvancedSettings extends React.Component {
+class AdvancedSettings extends Component {
+    static propTypes = {
+        setSetting: PropTypes.func.isRequired,
+        onDeleteAccountPress: PropTypes.func.isRequired,
+    };
+
     render() {
         const { t } = this.props;
         return (
@@ -18,7 +25,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('viewSeed')}>
                             <View style={styles.item}>
                                 <Image source={keyImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>View seed</Text>
+                                <Text style={styles.titleText}>{t('viewSeed')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -26,7 +33,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('viewAddresses')}>
                             <View style={styles.item}>
                                 <Image source={addressesImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>View addresses</Text>
+                                <Text style={styles.titleText}>{t('viewAddresses')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -34,7 +41,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('editAccountName')}>
                             <View style={styles.item}>
                                 <Image source={editImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Edit account name</Text>
+                                <Text style={styles.titleText}>{t('editAccountName')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -42,7 +49,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.onDeleteAccountPress()}>
                             <View style={styles.item}>
                                 <Image source={deleteImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Delete account</Text>
+                                <Text style={styles.titleText}>{t('deleteAccount')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -53,7 +60,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('addNewAccount')}>
                             <View style={styles.item}>
                                 <Image source={addImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Add new account</Text>
+                                <Text style={styles.titleText}>{t('addNewAccount')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -64,7 +71,7 @@ class AdvancedSettings extends React.Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Text style={styles.titleText}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -133,4 +140,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AdvancedSettings;
+export default translate(['accountmanagement', 'global'])(AdvancedSettings);

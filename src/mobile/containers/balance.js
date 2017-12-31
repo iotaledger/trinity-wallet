@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
-import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
@@ -11,7 +10,9 @@ import Chart from '../components/chart';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
+    getBalanceForSelectedAccountViaSeedIndex,
 } from '../../shared/selectors/account';
+import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -29,6 +30,8 @@ class Balance extends Component {
         settings: PropTypes.object.isRequired,
         setCurrency: PropTypes.func.isRequired,
         setTimeframe: PropTypes.func.isRequired,
+        extraColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -75,6 +78,8 @@ class Balance extends Component {
             isSendingTransfer,
             isGeneratingReceiveAddress,
             isSyncing,
+            negativeColor,
+            extraColor,
         } = this.props;
 
         const shortenedBalance =
@@ -103,7 +108,12 @@ class Balance extends Component {
                             <ListView
                                 dataSource={ds.cloneWithRows(recentTransactions)}
                                 renderRow={dataSource => (
-                                    <SimpleTransactionRow addresses={addresses} rowData={dataSource} />
+                                    <SimpleTransactionRow
+                                        negativeColor={THEMES.getHSL(negativeColor)}
+                                        extraColor={THEMES.getHSL(extraColor)}
+                                        addresses={addresses}
+                                        rowData={dataSource}
+                                    />
                                 )}
                                 renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                                 enableEmptySections
@@ -195,10 +205,12 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,
     isSyncing: tempAccount.isSyncing,
     seedIndex: tempAccount.seedIndex,
-    balance: account.balance,
+    balance: getBalanceForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     settings,
+    negativeColor: settings.theme.negativeColor,
+    extraColor: settings.theme.extraColor,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,9 +1,10 @@
 import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
+import { connect } from 'react-redux';
 import { isAndroid } from '../util/device';
 import COLORS from '../theme/Colors';
-import BorderShadow from '../components/BorderShadow';
+import BorderShadow from './borderShadow';
 
 import { width, height } from '../util/dimensions';
 
@@ -13,10 +14,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        backgroundColor: COLORS.backgroundDarkGreen,
         opacity: 0.98,
         paddingBottom: height / 65,
-        shadowColor: COLORS.backgroundDarkGreen,
         shadowRadius: 4,
         shadowOffset: {
             width: 0,
@@ -37,7 +36,11 @@ class Tabs extends Component {
             }),
         );
 
-        const tabContainer = <View style={styles.tabBar}>{childComponents}</View>;
+        const tabContainer = (
+            <View style={[styles.tabBar, { backgroundColor: this.props.barColor, shadowColor: this.props.barColor }]}>
+                {childComponents}
+            </View>
+        );
 
         if (isAndroid) {
             return (
@@ -65,4 +68,8 @@ Tabs.propTypes = {
     currentRoute: PropTypes.string.isRequired,
 };
 
-export default Tabs;
+const mapStateToProps = state => ({
+    currentRoute: state.home.childRoute,
+});
+
+export default connect(mapStateToProps)(Tabs);

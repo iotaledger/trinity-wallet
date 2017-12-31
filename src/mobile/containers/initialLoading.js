@@ -1,50 +1,42 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Image, Text, StatusBar, BackHandler } from 'react-native';
+import { StyleSheet, View, Image, Text, StatusBar } from 'react-native';
+import { getVersion, getBuildNumber } from 'react-native-device-info';
+import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+
 import keychain from '../util/keychain';
-import { getCurrentYear } from 'iota-wallet-shared-modules/libs/dateUtils';
-import store from 'iota-wallet-shared-modules/store';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
-import { getVersion, getBuildNumber } from 'react-native-device-info';
-import COLORS from '../theme/Colors';
-import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import THEMES from '../theme/themes';
 
 const version = getVersion();
 const build = getBuildNumber();
-const FULL_VERSION = 'v' + version + ' (' + build + ')';
 
-/* eslint-disable global-require */
-/* eslint-disable react/jsx-filename-extension */
-export default class InitialLoading extends Component {
+const FULL_VERSION = `v ${version}  ( ${build} )`;
+
+class InitialLoading extends Component {
+    static propTypes = {
+        navigator: PropTypes.object.isRequired,
+        onboardingComplete: PropTypes.bool.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+    };
+
     constructor() {
         super();
-        console.ignoredYellowBox = ['Setting a timer'];
+
+        console.ignoredYellowBox = ['Setting a timer']; // eslint-disable-line no-console
     }
 
     componentDidMount() {
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
     }
 
-    componentWillUnmount() {}
-
-    handleBackButton() {
-        return false;
-    }
-
-    clearKeychain() {
-        if (isIOS) {
-            keychain.clear().catch(err => console.error(err));
-        }
-    }
-
     onLoaded() {
-        const state = store.getState();
-        if (!state.account.onboardingComplete) {
+        if (!this.props.onboardingComplete) {
             this.clearKeychain();
             this.props.navigator.push({
-                screen: 'welcome',
+                screen: 'languageSetup',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
                 overrideBackPress: true,
@@ -52,17 +44,27 @@ export default class InitialLoading extends Component {
         } else {
             this.props.navigator.push({
                 screen: 'login',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
                 animated: false,
                 overrideBackPress: true,
             });
         }
     }
 
+    clearKeychain() {
+        if (isIOS) {
+            keychain.clear().catch(err => console.error(err)); // eslint-disable-line no-console
+        }
+    }
+
     render() {
-        const currentYear = getCurrentYear();
+        const { backgroundColor } = this.props;
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
                     <Image source={iotaWhiteImagePath} style={styles.logo} />
@@ -80,7 +82,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     logoContainer: {
         flex: 1,
@@ -104,6 +105,9 @@ const styles = StyleSheet.create({
     },
 });
 
-InitialLoading.propTypes = {
-    navigator: PropTypes.object.isRequired,
-};
+const mapStateToProps = state => ({
+    onboardingComplete: state.account.onboardingComplete,
+    backgroundColor: state.settings.theme.backgroundColor,
+});
+
+export default connect(mapStateToProps, null)(InitialLoading);
