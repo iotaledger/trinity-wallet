@@ -224,12 +224,9 @@ export const getAccountInfo = (seed, accountName) => {
 
             return Promise.resolve(getInclusionWithHashes(pendingTxTailsHashes))
                 .then(({ states, hashes }) => {
-                    console.log('Pending States', states);
-                    console.log('Hashes', hashes);
                     return getConfirmedTxTailsHashes(states, hashes);
                 })
                 .then(confirmedHashes => {
-                    console.log('Confirmed Hashes', confirmedHashes);
                     if (!isEmpty(confirmedHashes)) {
                         payload = assign({}, payload, {
                             transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
@@ -253,11 +250,9 @@ export const getAccountInfo = (seed, accountName) => {
                 return getLatestAddresses(seed, index);
             })
             .then(addressData => {
-                console.log('Address Data', addressData);
                 payload = merge({}, payload, { addresses: addressData });
 
                 const unspentAddresses = getUnspentAddresses(payload.addresses);
-                console.log('Unspent addresses', unspentAddresses);
                 if (isEmpty(unspentAddresses)) {
                     throw new Error('intentionally break chain');
                 }
@@ -268,10 +263,7 @@ export const getAccountInfo = (seed, accountName) => {
                 const hasNewHashes = size(latestHashes) > size(existingHashes);
 
                 if (hasNewHashes) {
-                    console.log('Found new hashes', latestHashes);
-                    console.log('Old hashes', existingHashes);
                     const diff = difference(latestHashes, existingHashes);
-                    console.log('Diff', diff);
 
                     payload = assign({}, payload, {
                         unspentAddressesHashes: union(existingHashes, latestHashes),
@@ -284,20 +276,16 @@ export const getAccountInfo = (seed, accountName) => {
             .then(txs => {
                 const tailTxs = filter(txs, t => t.currentIndex === 0);
 
-                console.log('TXS', txs);
                 return getInclusionWithHashes(map(tailTxs, t => t.hash));
             })
             .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
             .then(bundles => {
-                console.log('BUNDLES', bundles);
                 const updatedTransfers = [...payload.transfers, ...bundles];
                 const updatedTransfersWithFormatting = formatTransfers(
                     updatedTransfers,
                     Object.keys(payload.addresses),
                 );
 
-                console.log('Previous txs', selectedAccount.transfers);
-                console.log('nEw txs', updatedTransfers);
                 payload = assign({}, payload, {
                     transfers: updatedTransfersWithFormatting,
                     pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)), // Update pending transfers copy with new transfers.

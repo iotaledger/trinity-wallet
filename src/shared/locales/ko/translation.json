@@ -7,6 +7,9 @@
         "back": "뒤로",
         "done": "완료",
         "next": "다음",
+        "apply": "",
+        "save": "",
+        "close": "",
         "manualCopy": "씨드 기록하기",
         "paperWallet": "종이 인쇄하기",
         "copyToClipboard": "패스워드 관리자에 입력하기",
@@ -29,13 +32,15 @@
         "syncInProgress": "동기화 진행 중...",
         "syncInProgressExplanation": "동기화가 완료될 때까지 기다려 주세요.",
         "somethingWentWrong": "알 수 없는 오류가 발생하였습니다.",
-        "somethingWentWrongExplanation": "어플을 다시 실행하여 주십시오."
+        "somethingWentWrongExplanation": "어플을 다시 실행하여 주십시오.",
+        "node": ""
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
         "seedInvalidCharsExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "씨드는 {{maxLength}} 의 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 의 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "seedTooShortExplanation":
+            "씨드는 {{maxLength}} 의 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 의 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
         "nameInUse": "계정이 이미 존재합니다.",
         "nameInUseExplanation": "씨드를 위한 고유 계정 이름을 사용하십시오.",
         "enterAccountName": "계정 이름을 입력하십시오.",
@@ -74,10 +79,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "유효하지 않은 문자가 씨드에 포함되어 있음",
-        "invalidCharactersExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
+        "invalidCharactersExplanation":
+            "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "씨드는 {{maxLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
-        "seedExplanation": "씨드는 {{maxLength}} 자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. {{maxLength}} 자 이상의 씨드는 사용할 수 없습니다.",
+        "seedTooShortExplanation":
+            "씨드는 {{maxLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "seedExplanation":
+            "씨드는 {{maxLength}} 자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. {{maxLength}} 자 이상의 씨드는 사용할 수 없습니다.",
         "neverShare": "다른 이와 절대로 씨드를 공유하지 마십시오."
     },
     "home": {
@@ -160,7 +168,8 @@
     },
     "setPassword": {
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
-        "passwordTooShortExplanation": "씨드는 최소 {{minLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "passwordTooShortExplanation":
+            "씨드는 최소 {{minLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
         "passwordMismatch": "비밀번호가 일치하지 않습니다.",
         "passwordMismatchExplanation": "입력한 비밀번호가 일치하지 않습니다. 다시 입력해주십시오.",
         "nowWeNeedTo": "이제 비밀번호를 설정해야합니다.",
@@ -187,7 +196,6 @@
         "advanced": "고급 설정",
         "logout": "로그아웃",
         "reset": "지갑 초기화",
-        "back": "뒤로가기",
         "syncingComplete": "동기화 완료",
         "syncingCompleteExplanation": "귀하의 계정이 성공적으로 동기화되었습니다.",
         "nicknameChanged": "계정 이름 변경됨",
@@ -209,7 +217,7 @@
         "areYouSure": "계속하시겠습니까?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "취소",
         "reset": "초기화"
     },
@@ -239,5 +247,46 @@
         "bundleHashCopiedExplanation": "번들 해시가 클립보드에 복사되었습니다.",
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다."
+    },
+    "accountManagement": {
+        "viewSeed": "",
+        "viewAddresses": "",
+        "editAccountName": "",
+        "deleteAccount": "",
+        "addNewAccount": ""
+    },
+    "addCustomNode": {
+        "customNode": "",
+        "add": ""
+    },
+    "addNewAccount": {
+        "useExistingSeed": "",
+        "createNewSeed": ""
+    },
+    "advancedSettings": {
+        "selectNode": "",
+        "addCustomNode": "",
+        "manualSync": ""
+    },
+    "advancedThemeCustomisation": {
+        "background": "",
+        "frame": ""
+    },
+    "currencySelection": {
+        "currency": ""
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": ""
+    },
+    "qrScanner": {
+        "scan": ""
+    },
+    "unitInfoModal": {
+        "unitSystem": "",
+        "trillion": "",
+        "billion": "",
+        "million": "",
+        "thousand": "",
+        "one": ""
     }
 }

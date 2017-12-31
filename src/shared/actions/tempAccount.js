@@ -34,6 +34,7 @@ export const ActionTypes = {
     SET_SEED: 'IOTA/TEMP_ACCOUNT/SET_SEED',
     CLEAR_SEED: 'IOTA/TEMP_ACCOUNT/CLEAR_SEED',
     SET_SETTING: 'IOTA/TEMP_ACCOUNT/SET_SETTING',
+    SET_USER_ACTIVITY: 'IOTA/TEMP_ACCOUNT/SET_USER_ACTIVITY',
 };
 
 export const getTransfersRequest = () => ({
@@ -316,3 +317,10 @@ export const randomiseSeed = randomBytesFn => {
         });
     };
 };
+
+export function setUserActivity(payload) {
+    return {
+        type: ActionTypes.SET_USER_ACTIVITY,
+        payload,
+    };
+}

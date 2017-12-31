@@ -6,6 +6,8 @@ import filter from 'lodash/filter';
 import size from 'lodash/size';
 import difference from 'lodash/difference';
 import isEmpty from 'lodash/isEmpty';
+import union from 'lodash/union';
+import merge from 'lodash/merge';
 import { iota } from '../libs/iota';
 import {
     getSelectedAccount,
@@ -17,7 +19,6 @@ import {
     formatTransfers,
     formatFullAddressData,
     calculateBalance,
-    mergeLatestTransfersInOld,
     getUnspentAddresses,
     getTotalBalance,
     getLatestAddresses,
@@ -28,6 +29,7 @@ import {
     getConfirmedTxTailsHashes,
     markTransfersConfirmed,
     markAddressSpend,
+    getPendingTxTailsHashes,
 } from '../libs/accountUtils';
 import { setReady, clearTempData } from './tempAccount';
 import { generateAlert, generateAccountInfoErrorAlert } from '../actions/alerts';
@@ -326,12 +328,11 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
     });
 };
 
-export const getAccountInfo = (seed, accountName, navigator = null) => {
+export const getAccountInfo = (seed, accountName) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-        const addresses = Object.keys(selectedAccount.addresses);
 
         const existingHashes = getExistingUnspentAddressesHashes(
             accountName,
@@ -352,20 +353,43 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             transfers: selectedAccount.transfers,
         };
 
-        return getTotalBalance(addresses)
+        const checkConfirmationForPendingTxs = () => {
+            if (isEmpty(pendingTxTailsHashes)) {
+                return Promise.resolve(getTotalBalance(Object.keys(payload.addresses)));
+            }
+
+            return Promise.resolve(getInclusionWithHashes(pendingTxTailsHashes))
+                .then(({ states, hashes }) => {
+                    return getConfirmedTxTailsHashes(states, hashes);
+                })
+                .then(confirmedHashes => {
+                    if (!isEmpty(confirmedHashes)) {
+                        payload = assign({}, payload, {
+                            transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
+                            pendingTxTailsHashes: filter(
+                                payload.pendingTxTailsHashes,
+                                tx => !includes(confirmedHashes, tx),
+                            ),
+                        });
+                    }
+
+                    return Promise.resolve(getTotalBalance(Object.keys(payload.addresses)));
+                });
+        };
+
+        return checkConfirmationForPendingTxs()
             .then(balance => {
                 payload = assign({}, payload, { balance });
 
-                const index = addresses.length ? addresses.length - 1 : 0;
+                const index = Object.keys(payload.addresses).length ? Object.keys(payload.addresses).length - 1 : 0;
 
                 return getLatestAddresses(seed, index);
             })
             .then(addressData => {
-                const unspentAddresses = getUnspentAddresses(selectedAccount.addresses);
+                payload = merge({}, payload, { addresses: addressData });
 
+                const unspentAddresses = getUnspentAddresses(payload.addresses);
                 if (isEmpty(unspentAddresses)) {
-                    payload = assign({}, payload, { addresses: addressData });
-
                     throw new Error('intentionally break chain');
                 }
 
@@ -375,8 +399,11 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
                 const hasNewHashes = size(latestHashes) > size(existingHashes);
 
                 if (hasNewHashes) {
-                    const diff = difference(existingHashes, latestHashes);
+                    const diff = difference(latestHashes, existingHashes);
 
+                    payload = assign({}, payload, {
+                        unspentAddressesHashes: union(existingHashes, latestHashes),
+                    });
                     return getTransactionsObjects(diff);
                 }
 
@@ -389,26 +416,15 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             })
             .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
             .then(bundles => {
-                const updatedTransfers = mergeLatestTransfersInOld(selectedAccount.transfers, bundles);
-                const updatedTransfersWithFormatting = formatTransfers(updatedTransfers, addresses);
-
-                payload = assign({}, payload, { transfers: updatedTransfersWithFormatting });
-
-                if (isEmpty(pendingTxTailsHashes)) {
-                    throw new Error('intentionally break chain');
-                }
-
-                return getInclusionWithHashes(pendingTxTailsHashes);
-            })
-            .then(({ states, hashes }) => getConfirmedTxTailsHashes(states, hashes))
-            .then(confirmedHashes => {
-                if (isEmpty(confirmedHashes)) {
-                    throw new Error('intentionally break chain');
-                }
+                const updatedTransfers = [...payload.transfers, ...bundles];
+                const updatedTransfersWithFormatting = formatTransfers(
+                    updatedTransfers,
+                    Object.keys(payload.addresses),
+                );
 
                 payload = assign({}, payload, {
-                    transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
-                    pendingTxTailsHashes: filter(payload.pendingTxTailsHashes, tx => !includes(confirmedHashes, tx)),
+                    transfers: updatedTransfersWithFormatting,
+                    pendingTxTailsHashes: union(payload.pendingTxTailsHashes, getPendingTxTailsHashes(bundles)), // Update pending transfers copy with new transfers.
                 });
 
                 return dispatch(accountInfoFetchSuccess(payload));
@@ -416,7 +432,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
             .catch(err => {
                 if (err && err.message === 'intentionally break chain') {
                     dispatch(accountInfoFetchSuccess(payload));
-                } else if (!err && navigator) {
+                } else {
                     dispatch(accountInfoFetchError());
                     dispatch(generateAccountInfoErrorAlert());
                 }

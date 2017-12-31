@@ -182,6 +182,7 @@ const account = (
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
             return {
                 ...state,
+                firstUse: false,
                 seedCount: state.seedCount + 1,
                 seedNames: [...state.seedNames, action.payload.accountName],
                 accountInfo: merge({}, state.accountInfo, {
@@ -198,7 +199,6 @@ const account = (
                 pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),
-                firstUse: false,
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR:
             return {

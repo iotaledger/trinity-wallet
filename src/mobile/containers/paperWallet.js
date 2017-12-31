@@ -10,7 +10,6 @@ import { iotaLogo, arrow } from 'iota-wallet-shared-modules/libs/html';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { isAndroid, isIOS } from '../util/device';
 import { width, height } from '../util/dimensions';
-import COLORS from '../theme/Colors';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import iotaFullImagePath from 'iota-wallet-shared-modules/images/iota-full.png';
 import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked.png';
@@ -18,6 +17,7 @@ import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkb
 import arrowBlackImagePath from 'iota-wallet-shared-modules/images/arrow-black.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 const qrPath = RNFS.DocumentDirectoryPath + '/qr.png';
 
@@ -250,11 +250,13 @@ class PaperWallet extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor, positiveColor, ctaColor } = this.props;
         const checksum = getChecksum(this.props.tempAccount.seed);
+        const positiveColorText = { color: THEMES.getHSL(positiveColor) };
+        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -378,7 +380,7 @@ class PaperWallet extends Component {
                     </TouchableOpacity>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onPrintPress()}>
-                            <View style={styles.printButton}>
+                            <View style={[styles.printButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
                                 <Text style={styles.printText}>{t('printWallet')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -386,8 +388,8 @@ class PaperWallet extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
-                        <View style={styles.doneButton}>
-                            <Text style={styles.doneText}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, positiveColorBorder]}>
+                            <Text style={[styles.doneText, positiveColorText]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -401,7 +403,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
@@ -442,7 +443,6 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 29,
-        textAlign: 'left',
         paddingTop: height / 8,
         paddingHorizontal: width / 8,
         textAlign: 'center',
@@ -463,7 +463,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     doneButton: {
-        borderColor: '#9DFFAF',
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
         width: width / 3,
@@ -473,7 +472,6 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     doneText: {
-        color: '#9DFFAF',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
@@ -483,8 +481,6 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     printButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
         width: width / 2.5,
         height: height / 16,
@@ -602,6 +598,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    backgroundColor: state.settings.theme.backgroundColor,
+    positiveColor: state.settings.theme.positiveColor,
+    ctaColor: state.settings.theme.ctaColor,
 });
 
 export default translate(['paperWallet', 'global'])(connect(mapStateToProps)(PaperWallet));

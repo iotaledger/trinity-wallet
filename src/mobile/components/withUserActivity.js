@@ -5,7 +5,7 @@ import timer from 'react-native-timer';
 import { AppState } from 'react-native';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
+import { setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 
 const mapDispatchToProps = {
     setUserActivity,

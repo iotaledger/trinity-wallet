@@ -3,22 +3,23 @@ import { View, Text, StyleSheet } from 'react-native';
 import OnboardingButtons from './onboardingButtons.js';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
+import { translate } from 'react-i18next';
 
 import { width, height } from '../util/dimensions';
 
 class LogoutConfirmationModal extends Component {
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor } = this.props;
 
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={styles.modalContent}>
-                    <Text style={styles.questionText}>Are you sure you want to log out?</Text>
+                    <Text style={styles.questionText}>{t('logoutConfirmation')}</Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.props.logout()}
-                        leftText={'NO'}
-                        rightText={'YES'}
+                        leftText={t('global:no')}
+                        rightText={t('global:yes')}
                     />
                 </View>
             </View>
@@ -45,4 +46,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LogoutConfirmationModal;
+export default translate(['logoutConfirmationModal', 'global'])(LogoutConfirmationModal);

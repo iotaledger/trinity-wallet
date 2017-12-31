@@ -3,23 +3,24 @@ import { Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import OnboardingButtons from './onboardingButtons.js';
 import { TextWithLetterSpacing } from './textWithLetterSpacing';
 import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import { translate } from 'react-i18next';
 import { width, height } from '../util/dimensions';
-import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 
 class UnitInfoModal extends React.Component {
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor } = this.props;
 
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
-                <View style={styles.modalContent}>
+                <View style={[styles.modalContent, { backgroundColor: backgroundColor }]}>
                     <Image source={iotaWhiteImagePath} style={styles.iotaIcon} />
                     <TextWithLetterSpacing spacing={4} textStyle={styles.iotaText}>
                         IOTA
                     </TextWithLetterSpacing>
+                    //TODO: use interpolation instead
                     <TextWithLetterSpacing spacing={6} textStyle={styles.titleText}>
-                        UNIT SYSTEM
+                        {t('unitSystem')}
                     </TextWithLetterSpacing>
                     <View style={styles.unitsContainer}>
                         <View style={{ alignItems: 'flex-start', paddingHorizontal: width / 60 }}>
@@ -42,19 +43,19 @@ class UnitInfoModal extends React.Component {
                         <View style={styles.line} />
                         <View style={{ alignItems: 'flex-start', paddingHorizontal: width / 60 }}>
                             <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                Trillion
+                                {t('trillion')}
                             </TextWithLetterSpacing>
                             <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                Billion
+                                {t('billion')}
                             </TextWithLetterSpacing>
                             <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                Million
+                                {t('million')}
                             </TextWithLetterSpacing>
                             <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                Thousand
+                                {t('thousand')}
                             </TextWithLetterSpacing>
                             <TextWithLetterSpacing spacing={2} textStyle={styles.numberText}>
-                                One
+                                {t('one')}
                             </TextWithLetterSpacing>
                         </View>
                         <View style={styles.line} />
@@ -95,7 +96,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 30,
         paddingTop: height / 50,
         width: width / 1.15,
-        backgroundColor: COLORS.backgroundDarkGreen,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -145,4 +145,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default UnitInfoModal;
+export default translate(['unitInfoModal', 'global'])(UnitInfoModal);
