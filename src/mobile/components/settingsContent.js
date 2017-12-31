@@ -15,6 +15,8 @@ import CurrencySelection from './currencySelection';
 import LanguageSelection from './languageSelection';
 import ChangePassword from './changePassword';
 import ManualSync from './manualSync';
+import ThemeCustomisation from './themeCustomisation';
+import AdvancedThemeCustomisation from './advancedThemeCustomisation';
 
 const SETTINGS_COMPONENTS = {
     mainSettings: MainSettings,
@@ -32,6 +34,8 @@ const SETTINGS_COMPONENTS = {
     languageSelection: LanguageSelection,
     changePassword: ChangePassword,
     manualSync: ManualSync,
+    themeCustomisation: ThemeCustomisation,
+    advancedThemeCustomisation: AdvancedThemeCustomisation,
 };
 
 const SettingsContent = ({ component, ...props }) => {

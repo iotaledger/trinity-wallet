@@ -7,6 +7,9 @@
         "back": "返回",
         "done": "完成",
         "next": "下一步",
+        "apply": "",
+        "save": "",
+        "close": "",
         "manualCopy": "寫下種子",
         "paperWallet": "列印副本",
         "copyToClipboard": "加入密碼管理器",
@@ -29,13 +32,15 @@
         "syncInProgress": "同步進行中",
         "syncInProgressExplanation": "請等候至同步完成",
         "somethingWentWrong": "出現錯誤",
-        "somethingWentWrongExplanation": "請重新啟動程式"
+        "somethingWentWrongExplanation": "請重新啟動程式",
+        "node": ""
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
         "seedInvalidCharsExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短。",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "此帳戶已有人使用",
         "nameInUseExplanation": "種子碼請使用獨特帳戶名稱",
         "enterAccountName": "輸入帳戶名稱",
@@ -76,8 +81,10 @@
         "invalidCharacters": "種子碼包含無效字元",
         "invalidCharactersExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation":
+            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation":
+            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
@@ -160,7 +167,8 @@
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation":
+            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "密碼不符",
         "passwordMismatchExplanation": "您輸入的密碼不符。請再試一遍。",
         "nowWeNeedTo": "現在需要設置密碼。",
@@ -187,7 +195,6 @@
         "advanced": "進階設定",
         "logout": "登出",
         "reset": "重設錢包",
-        "back": "返回",
         "syncingComplete": "同步完成",
         "syncingCompleteExplanation": "您的帳戶已成功同步。",
         "nicknameChanged": "帳戶名稱已更改",
@@ -209,7 +216,7 @@
         "areYouSure": "您確定要繼續嗎？"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "取消",
         "reset": "重設"
     },
@@ -239,5 +246,46 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
+    },
+    "accountManagement": {
+        "viewSeed": "",
+        "viewAddresses": "",
+        "editAccountName": "",
+        "deleteAccount": "",
+        "addNewAccount": ""
+    },
+    "addCustomNode": {
+        "customNode": "",
+        "add": ""
+    },
+    "addNewAccount": {
+        "useExistingSeed": "",
+        "createNewSeed": ""
+    },
+    "advancedSettings": {
+        "selectNode": "",
+        "addCustomNode": "",
+        "manualSync": ""
+    },
+    "advancedThemeCustomisation": {
+        "background": "",
+        "frame": ""
+    },
+    "currencySelection": {
+        "currency": ""
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": ""
+    },
+    "qrScanner": {
+        "scan": ""
+    },
+    "unitInfoModal": {
+        "unitSystem": "",
+        "trillion": "",
+        "billion": "",
+        "million": "",
+        "thousand": "",
+        "one": ""
     }
 }

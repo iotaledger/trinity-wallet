@@ -7,6 +7,9 @@
         "back": "TILBAKE",
         "done": "FERDIG",
         "next": "NESTE",
+        "apply": "",
+        "save": "",
+        "close": "",
         "manualCopy": "Skriv ned hovednøkkelen",
         "paperWallet": "Skriv ut papirkopi",
         "copyToClipboard": "Legg til i passord-lagrings program",
@@ -29,7 +32,8 @@
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vent til synkronisering er fullført.",
         "somethingWentWrong": "Noe gikk galt",
-        "somethingWentWrongExplanation": "Start programmet på nytt."
+        "somethingWentWrongExplanation": "Start programmet på nytt.",
+        "node": ""
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -59,7 +63,8 @@
         "passwordTooShort": "Passordet er for kort",
         "passwordTooShortExplanation": "Passordet ditt må være minst 12 tegn. Prøv igjen.",
         "oldPassword": "Kan ikke angi gammelt passord",
-        "oldPasswordExplanation": "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
+        "oldPasswordExplanation":
+            "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
         "ensureStrongPassword": "Sjekk at du bruker et sterkt passord med minst 12 tegn.",
         "currentPassword": "Nåværende passord",
         "newPassword": "Nytt passord",
@@ -197,7 +202,6 @@
         "advanced": "Avanserte innstillinger",
         "logout": "Logg ut",
         "reset": "Tilbakestill lommeboken",
-        "back": "Tilbake",
         "syncingComplete": "Synkronisering fullført",
         "syncingCompleteExplanation": "Din konto har blitt vellykket sybkronisert.",
         "nicknameChanged": "Kontonavnet er endret",
@@ -219,7 +223,7 @@
         "areYouSure": "Er du sikker på at du vil fortsette?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "AVBRYT",
         "reset": "TILBAKESTILL"
     },
@@ -252,5 +256,46 @@
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen."
+    },
+    "accountManagement": {
+        "viewSeed": "",
+        "viewAddresses": "",
+        "editAccountName": "",
+        "deleteAccount": "",
+        "addNewAccount": ""
+    },
+    "addCustomNode": {
+        "customNode": "",
+        "add": ""
+    },
+    "addNewAccount": {
+        "useExistingSeed": "",
+        "createNewSeed": ""
+    },
+    "advancedSettings": {
+        "selectNode": "",
+        "addCustomNode": "",
+        "manualSync": ""
+    },
+    "advancedThemeCustomisation": {
+        "background": "",
+        "frame": ""
+    },
+    "currencySelection": {
+        "currency": ""
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": ""
+    },
+    "qrScanner": {
+        "scan": ""
+    },
+    "unitInfoModal": {
+        "unitSystem": "",
+        "trillion": "",
+        "billion": "",
+        "million": "",
+        "thousand": "",
+        "one": ""
     }
 }

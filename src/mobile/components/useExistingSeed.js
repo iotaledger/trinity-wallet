@@ -13,6 +13,7 @@ import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png
 import arrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
 
@@ -70,7 +71,12 @@ class UseExistingSeed extends React.Component {
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
+        <QRScanner
+            ctaColor={THEMES.getHSL(this.props.ctaColor)}
+            backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
+            onQRRead={data => this.onQRRead(data)}
+            hideModal={() => this._hideModal()}
+        />
     );
 
     getChecksumValue() {
@@ -107,7 +113,7 @@ class UseExistingSeed extends React.Component {
                                         fontSize={width / 20.7}
                                         labelPadding={3}
                                         baseColor="white"
-                                        tintColor="#F7D002"
+                                        tintColor={THEMES.getHSL(this.props.negativeColor)}
                                         enablesReturnKeyAutomatically={true}
                                         label="Seed"
                                         autoCorrect={false}
@@ -141,7 +147,7 @@ class UseExistingSeed extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                tintColor="#F7D002"
+                                tintColor={THEMES.getHSL(this.props.negativeColor)}
                                 enablesReturnKeyAutomatically={true}
                                 label="Account name"
                                 autoCapitalize="words"
