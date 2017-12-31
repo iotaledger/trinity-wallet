@@ -130,29 +130,37 @@ export class Poll extends Component {
             const tailsSortedWithAttachmentTimestamp = sortWithProp(tails, 'attachmentTimestamp');
             const tailWithMostRecentTimestamp = get(tailsSortedWithAttachmentTimestamp, '[0]');
 
+            const index = allPollingServices.indexOf(pollFor);
+            const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
+
             if (Poll.shouldPromote(tailWithMostRecentTimestamp)) {
                 this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
             } else {
                 /* eslint-disable no-lonely-if */
                 // Check where it lies within the ten minutes
 
+                console.log('HERE');
                 if (!isTenMinutesAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
+                    console.log('T');
+                    this.props.setPollFor(allPollingServices[next]);
+
                     // Move the top transaction to the last
                     // Ignore if its the only bundle
                     if (!isTheOnlyBundle) {
                         this.props.setNewUnconfirmedBundleTails(rearrangeObjectKeys(unconfirmedBundleTails, top));
                     }
-                } else if (isAnHourAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
+                }
+
+                if (isAnHourAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
+                    console.log('S');
                     this.props.removeBundleFromUnconfirmedBundleTails(top);
+                    this.props.setPollFor(allPollingServices[next]);
                 }
 
                 /* eslint-enable no-lonely-if */
             }
         } else {
             // In case there are no unconfirmed bundle tails, move to the next service item
-            const index = allPollingServices.indexOf(pollFor);
-            const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
-
             console.log('What is next', next);
             console.log('NExt', allPollingServices[next]);
             this.props.setPollFor(allPollingServices[next]);
