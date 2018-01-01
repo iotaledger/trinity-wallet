@@ -13,7 +13,7 @@ import THEMES from '../theme/themes';
 const version = getVersion();
 const build = getBuildNumber();
 
-const FULL_VERSION = `v ${version}  ( ${build} )`;
+const FULL_VERSION = `v ${version}  (${build})`;
 
 class InitialLoading extends Component {
     static propTypes = {

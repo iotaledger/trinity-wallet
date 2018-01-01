@@ -12,6 +12,7 @@ import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
+import { translate } from 'react-i18next';
 
 class ChangePassword extends Component {
     static propTypes = {
@@ -46,16 +47,11 @@ class ChangePassword extends Component {
 
     changePassword() {
         const isValid = this.isValid();
-        const { password, setPassword, generateAlert } = this.props;
+        const { password, setPassword, generateAlert, t } = this.props;
         const { newPassword } = this.state;
 
         if (isValid) {
-            const throwErr = () =>
-                generateAlert(
-                    'error',
-                    'Oops! Something went wrong',
-                    'Looks like something went wrong while updating your password. Please try again.',
-                );
+            const throwErr = () => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongExplanation'));
 
             keychain
                 .get()
@@ -72,7 +68,7 @@ class ChangePassword extends Component {
                     setPassword(newPassword);
                     this.fallbackToInitialState();
 
-                    generateAlert('success', 'Password updated', 'Your password has been successfully updated.');
+                    generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
 
                     this.props.backPress();
                 })
@@ -119,33 +115,22 @@ class ChangePassword extends Component {
 
     renderInvalidSubmissionAlerts() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { password, generateAlert } = this.props;
+        const { password, generateAlert, t } = this.props;
 
         if (currentPassword !== password) {
-            return generateAlert(
-                'error',
-                'Incorrect password',
-                'Your current password is incorrect. Please try again.',
-            );
+            return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
         } else if (newPassword !== confirmedNewPassword) {
-            return generateAlert('error', 'Password mismatch', 'Passwords do not match. Please try again.');
+            return generateAlert('error', t('passwordsDoNotMatch'), t('passwordsDoNotMatchExplanation'));
         } else if (newPassword.length < 12 || confirmedNewPassword.length < 12) {
-            return generateAlert(
-                'error',
-                'Password is too short',
-                'Your password must be at least 12 characters. Please try again.',
-            );
+            return generateAlert('error', t('passwordTooShort'), t('passwordTooShortExplanation'));
         } else if (newPassword === currentPassword) {
-            return generateAlert(
-                'error',
-                'Cannot set old password',
-                'You cannot use the old password as your new password. Please try again with a new password.',
-            );
+            return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
         }
     }
 
     render() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
+        const { t } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -153,14 +138,12 @@ class ChangePassword extends Component {
                     <View style={styles.topContainer}>
                         <View style={styles.infoTextWrapper}>
                             <Image source={infoImagePath} style={styles.infoIcon} />
-                            <Text style={styles.infoText}>
-                                Ensure you use a strong password of at least 12 characters.
-                            </Text>
+                            <Text style={styles.infoText}>{t('ensureStrongPassword')}</Text>
                         </View>
                         {this.renderTextField(
                             'currentPassword',
                             currentPassword,
-                            'Current Password',
+                            t('currentPassword'),
                             currentPassword => this.setState({ currentPassword }),
                             'next',
                             onSubmitEditing => this.refs.newPassword.focus(),
@@ -168,7 +151,7 @@ class ChangePassword extends Component {
                         {this.renderTextField(
                             'newPassword',
                             newPassword,
-                            'New Password',
+                            t('newPassword'),
                             newPassword => this.setState({ newPassword }),
                             'next',
                             onSubmitEditing => this.refs.confirmedNewPassword.focus(),
@@ -176,7 +159,7 @@ class ChangePassword extends Component {
                         {this.renderTextField(
                             'confirmedNewPassword',
                             confirmedNewPassword,
-                            'Confirm New Password',
+                            t('confirmPassword'),
                             confirmedNewPassword => this.setState({ confirmedNewPassword }),
                             'done',
                             onSubmitEditing => this.changePassword(),
@@ -186,7 +169,7 @@ class ChangePassword extends Component {
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Text style={styles.titleText}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         {currentPassword !== '' &&
@@ -195,7 +178,7 @@ class ChangePassword extends Component {
                                 <TouchableOpacity onPress={() => this.changePassword()}>
                                     <View style={styles.itemRight}>
                                         <Image source={tickImagePath} style={styles.icon} />
-                                        <Text style={styles.titleText}>Save</Text>
+                                        <Text style={styles.titleText}>{t('global:save')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             )}
@@ -285,4 +268,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ChangePassword;
+export default translate(['changePassword', 'global'])(ChangePassword);
