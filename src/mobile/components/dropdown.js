@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Dropdown extends Component {
+export class Dropdown extends Component {
     static propTypes = {
         onRef: PropTypes.func,
     };
