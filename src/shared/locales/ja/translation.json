@@ -7,9 +7,9 @@
         "back": "戻る",
         "done": "完了",
         "next": "次へ",
-        "apply": "",
-        "save": "",
-        "close": "",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Seedを書き写す",
         "paperWallet": "印刷する",
         "copyToClipboard": "パスワード マネージャーに追加",
@@ -33,7 +33,7 @@
         "syncInProgressExplanation": "同期が完了するまでお待ち下さい。",
         "somethingWentWrong": "何かが間違っています。",
         "somethingWentWrongExplanation": "アプリを再起動して下さい。",
-        "node": ""
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -245,44 +245,44 @@
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。"
     },
     "accountManagement": {
-        "viewSeed": "",
-        "viewAddresses": "",
-        "editAccountName": "",
-        "deleteAccount": "",
-        "addNewAccount": ""
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
     },
     "addCustomNode": {
-        "customNode": "",
-        "add": ""
+        "customNode": "Custom node",
+        "add": "Add"
     },
     "addNewAccount": {
-        "useExistingSeed": "",
-        "createNewSeed": ""
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
     },
     "advancedSettings": {
-        "selectNode": "",
-        "addCustomNode": "",
-        "manualSync": ""
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
     },
     "advancedThemeCustomisation": {
-        "background": "",
-        "frame": ""
+        "background": "Background",
+        "frame": "Frame"
     },
     "currencySelection": {
-        "currency": ""
+        "currency": "Currency"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": ""
+        "logoutConfirmation": "Are you sure you want to log out?"
     },
     "qrScanner": {
-        "scan": ""
+        "scan": "Scan your QR code"
     },
     "unitInfoModal": {
-        "unitSystem": "",
-        "trillion": "",
-        "billion": "",
-        "million": "",
-        "thousand": "",
-        "one": ""
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }
