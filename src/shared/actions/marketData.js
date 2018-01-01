@@ -27,7 +27,7 @@ export function setTimeframe(timeframe) {
 
 export function setMarketData(data) {
     const usdPrice = get(data, 'RAW.IOT.USD.PRICE') || 0;
-    const volume24Hours = get(data, 'RAW.IOT.USD.VOLUME24HOUR') || 0;
+    const volume24Hours = get(data, 'RAW.IOT.USD.TOTALVOLUME24HTO') || 0;
     const changePct24Hours = get(data, 'RAW.IOT.USD.CHANGEPCT24HOUR') || 0;
     const mcap = Math.round(usdPrice * 2779530283)
         .toString()

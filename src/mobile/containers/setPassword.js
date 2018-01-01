@@ -61,7 +61,6 @@ class SetPassword extends Component {
                             navBarTransparent: true,
                         },
                         animated: false,
-                        overrideBackPress: true,
                     });
                 })
                 .catch(err => console.error(err));

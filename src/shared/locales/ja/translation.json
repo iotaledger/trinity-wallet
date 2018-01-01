@@ -7,9 +7,9 @@
         "back": "戻る",
         "done": "完了",
         "next": "次へ",
-        "apply": "APPLY",
-        "save": "SAVE",
-        "close": "CLOSE",
+        "apply": "適用",
+        "save": "保存",
+        "close": "閉じる",
         "manualCopy": "Seedを書き写す",
         "paperWallet": "印刷する",
         "copyToClipboard": "パスワード マネージャーに追加",
@@ -33,7 +33,7 @@
         "syncInProgressExplanation": "同期が完了するまでお待ち下さい。",
         "somethingWentWrong": "何かが間違っています。",
         "somethingWentWrongExplanation": "アプリを再起動して下さい。",
-        "node": "Node"
+        "node": "ノード"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -245,44 +245,44 @@
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Seedを表示",
+        "viewAddresses": "アドレスを表示",
+        "editAccountName": "アカウント名を編集",
+        "deleteAccount": "アカウントを削除",
+        "addNewAccount": "新しいアカウントを追加"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "カスタムノード",
+        "add": "追加"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "既存のseedを使用",
+        "createNewSeed": "新しいseedを作成"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "ノードを選択",
+        "addCustomNode": "カスタムノードの追加",
+        "manualSync": "手動同期"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "背景",
+        "frame": "フレーム"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "通貨"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "ログアウトしてもよろしいですか？"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "QRコード読み取り"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "単位",
+        "trillion": "一兆",
+        "billion": "十億",
+        "million": "百万",
+        "thousand": "千",
+        "one": "一"
     }
 }

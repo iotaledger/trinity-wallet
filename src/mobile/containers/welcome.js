@@ -16,7 +16,6 @@ class Welcome extends Component {
                 navBarTransparent: true,
             },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
