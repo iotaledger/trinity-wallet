@@ -54,6 +54,29 @@ export class SetSeedName extends Component {
         }
     }
 
+    navigateTo(screen) {
+        if (screen === 'loading') {
+            return this.props.navigator.push({
+                screen,
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                },
+                animated: false,
+                overrideBackPress: true,
+            });
+        } else {
+            return this.props.navigator.push({
+                screen,
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                },
+                animated: false,
+            });
+        }
+    }
+
     onDonePress() {
         const { t } = this.props;
         const trimmedAccountName = trim(this.state.accountName);
