@@ -277,11 +277,11 @@
         "scan": "Scan your QR code"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "SYSTÈME D’UNITÉS",
         "trillion": "Trillion",
         "billion": "Billion",
         "million": "Million",
         "thousand": "Thousand",
-        "one": "One"
+        "one": "Un"
     }
 }
