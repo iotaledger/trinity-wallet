@@ -3150,7 +3150,7 @@ https-browserify@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-0.0.1.tgz#3f91365cabe60b77ed0ebba24b454e3e09d95a82"
 
-i18next@^10.1.0:
+i18next@^10.1.0, i18next@^10.2.2:
   version "10.2.2"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.2.2.tgz#1f2dc55ca2e8d7e071f7aff9f78654ef7f003c0e"
 
@@ -3238,6 +3238,7 @@ iota-wallet-shared-modules@../shared/:
   version "0.0.0"
   dependencies:
     bluebird "^3.5.1"
+    i18next "^10.2.2"
     iota.lib.js "^0.4.5"
     lodash "^4.17.4"
     moment "^2.19.1"
