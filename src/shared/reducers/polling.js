@@ -6,7 +6,7 @@ import { ActionTypes } from '../actions/polling';
 export const setNextPollIfSuccessful = state => {
     const { allPollingServices, pollFor } = state;
 
-    const currentIndex = findIndex(allPollingServices, svc => pollFor === svc);
+    const currentIndex = findIndex(allPollingServices, service => pollFor === service);
 
     if (isNumber(currentIndex)) {
         if (currentIndex === size(allPollingServices) - 1) {
@@ -26,7 +26,7 @@ export const setNextPollIfUnsuccessful = state => {
         return { retryCount: retryCount + 1 };
     }
 
-    const currentIndex = findIndex(allPollingServices, svc => pollFor === svc);
+    const currentIndex = findIndex(allPollingServices, service => pollFor === service);
 
     if (isNumber(currentIndex)) {
         if (currentIndex === size(allPollingServices) - 1) {
