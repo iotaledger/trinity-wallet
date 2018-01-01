@@ -7,6 +7,9 @@
         "back": "NAZAJ",
         "done": "OPRAVLJENO",
         "next": "NAPREJ",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Zapišite generirano vrednost",
         "paperWallet": "Natisnite kopijo",
         "copyToClipboard": "Dodajte v upravitelja gesel",
@@ -29,7 +32,8 @@
         "syncInProgress": "Sinhronizacija v teku",
         "syncInProgressExplanation": "Prosimo počakajte dokler sinhronizacija ni končana.",
         "somethingWentWrong": "Nekaj je šlo narobe",
-        "somethingWentWrongExplanation": "Prosimo ponovno zaženite aplikacijo."
+        "somethingWentWrongExplanation": "Prosimo ponovno zaženite aplikacijo.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
@@ -198,7 +202,6 @@
         "advanced": "Napredne nastavitve",
         "logout": "Izpis",
         "reset": "Ponastavitev denarnice",
-        "back": "Nazaj",
         "syncingComplete": "Sinhronizacija končana",
         "syncingCompleteExplanation": "Vaš račun je bil uspešno sinhroniziran.",
         "nicknameChanged": "Ime računa spremenjeno",
@@ -250,5 +253,46 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Naslov kopiran",
         "addressCopiedExplanation": "Naslov je bil kopiran v odložišce."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }

@@ -7,6 +7,9 @@
         "back": "ΠΙΣΩ",
         "done": "ΤΕΛΟΣ",
         "next": "ΕΠΟΜΕΝΟ",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
         "copyToClipboard": "Add to password manager",
@@ -29,7 +32,8 @@
         "syncInProgress": "Συγχρονισμός σε εξέλιξη",
         "syncInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί ο συγχρονισμός.",
         "somethingWentWrong": "Κάτι πήγε στραβά",
-        "somethingWentWrongExplanation": "Παρακαλώ επανεκκινήστε την εφαρμογή."
+        "somethingWentWrongExplanation": "Παρακαλώ επανεκκινήστε την εφαρμογή.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -138,8 +142,8 @@
         "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Σπόρος εκκαθαρίστηκε",
+        "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
         "mustSaveYourSeed": "Πρέπει να αποθηκεύσετε το σπόρο σας με ",
         "atLeastOne": "τουλάχιστον μία ",
         "ofTheOptions": "από τις επιλογές που αναφέρονται παρακάτω."
@@ -204,7 +208,6 @@
         "advanced": "Ρυθμίσεις για προχωρημένους",
         "logout": "Αποσύνδεση",
         "reset": "Επαναφέρετε το πορτοφόλι",
-        "back": "Πίσω",
         "syncingComplete": "Syncing complete",
         "syncingCompleteExplanation": "Your account has synced successfully.",
         "nicknameChanged": "Account name changed",
@@ -259,5 +262,46 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }
