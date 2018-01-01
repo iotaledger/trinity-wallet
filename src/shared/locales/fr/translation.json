@@ -7,6 +7,9 @@
         "back": "RETOUR",
         "done": "OK",
         "next": "SUIVANT",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Notez la seed",
         "paperWallet": "Imprimez la copie papier",
         "copyToClipboard": "Ajoutez à un gestionnaire de mot de passe",
@@ -29,7 +32,8 @@
         "syncInProgress": "Synchronisation en cours",
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
-        "somethingWentWrongExplanation": "Veuillez redémarrer l'application."
+        "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -201,7 +205,6 @@
         "advanced": "Réglages avancés",
         "logout": "Déconnexion",
         "reset": "Réinitialiser le wallet",
-        "back": "Retour",
         "syncingComplete": "Synchronisation terminée",
         "syncingCompleteExplanation": "Votre compte a été synchronisé avec succès.",
         "nicknameChanged": "Nom de compte modifié",
@@ -255,5 +258,46 @@
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papiers.",
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papiers."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }
