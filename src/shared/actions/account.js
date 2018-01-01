@@ -31,6 +31,7 @@ import {
 import { getFirstConsistentTail, isWithinAnHour } from '../libs/promoter';
 import { generateAlert, generateAccountInfoErrorAlert } from '../actions/alerts';
 import { rearrangeObjectKeys } from '../libs/util';
+import i18next from 'i18next';
 
 export const ActionTypes = {
     SET_FIRST_USE: 'IOTA/ACCOUNT/SET_FIRST_USE',
@@ -260,10 +261,16 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
             const payload = organizeAccountInfo(accountName, data);
 
             dispatch(manualSyncSuccess(payload));
-            dispatch(generateAlert('success', 'syncing complete', 'Account sync is complete.'));
+            dispatch(generateAlert('success', 'Syncing complete', 'Account sync is complete.'));
         } else {
             dispatch(manualSyncError());
-            dispatch(generateAlert('error', 'invalid response', 'Received an invalid response from node.'));
+            dispatch(
+                generateAlert(
+                    'error',
+                    i18next.t('global:invalidResponse'),
+                    i18next.t('global:invalidResponseExplanation'),
+                ),
+            );
         }
     });
 };
