@@ -10,8 +10,9 @@ import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import { translate } from 'react-i18next';
 
-class EditAccountName extends Component {
+export class EditAccountName extends Component {
     static propTypes = {
+        t: PropTypes.func.isRequired,
         seedIndex: PropTypes.number.isRequired,
         accountName: PropTypes.string.isRequired,
         saveAccountName: PropTypes.func.isRequired,
