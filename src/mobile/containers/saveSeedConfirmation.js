@@ -50,7 +50,6 @@ class SaveSeedConfirmation extends Component {
                 navBarTransparent: true,
             },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
