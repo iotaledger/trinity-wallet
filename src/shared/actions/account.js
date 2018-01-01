@@ -39,7 +39,6 @@ export const ActionTypes = {
     SET_FIRST_USE: 'IOTA/ACCOUNT/SET_FIRST_USE',
     UPDATE_TRANSFERS: 'IOTA/ACCOUNT/UPDATE_TRANSFERS',
     UPDATE_ADDRESSES: 'IOTA/ACCOUNT/UPDATE_ADDRESSES',
-    SET_ACCOUNT_INFO: 'IOTA/ACCOUNT/SET_ACCOUNT_INFO',
     CHANGE_ACCOUNT_NAME: 'IOTA/ACCOUNT/CHANGE_ACCOUNT_NAME',
     REMOVE_ACCOUNT: 'IOTA/ACCOUNT/REMOVE_ACCOUNT',
     SET_ONBOARDING_COMPLETE: 'IOTA/ACCOUNT/SET_ONBOARDING_COMPLETE',
@@ -120,14 +119,6 @@ export const updateAddresses = (seedName, addresses) => ({
     addresses,
 });
 
-export const setAccountInfo = (seedName, addresses, transfers, balance) => ({
-    type: ActionTypes.SET_ACCOUNT_INFO,
-    seedName,
-    addresses,
-    transfers,
-    balance,
-});
-
 export const changeAccountName = (accountInfo, accountNames) => ({
     type: ActionTypes.CHANGE_ACCOUNT_NAME,
     accountInfo,
@@ -206,7 +197,6 @@ export const getAccountInfoNewSeedAsync = (seed, seedName) => {
         const addressData = formatFullAddressData(accountData);
         const balance = calculateBalance(addressData);
         const transfers = formatTransfers(accountData.transfers, accountData.addresses);
-        dispatch(setAccountInfo(seedName, addressData, transfers, balance));
         dispatch(setReady());
     };
 };
@@ -315,11 +305,11 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
 
                     const payloadWithHashes = assign({}, payload, { hashes });
 
-                    dispatch(generateAlert('success', 'syncing complete', 'Account sync is complete.'));
                     return dispatch(manualSyncSuccess(payloadWithHashes));
                 });
             }
 
+            dispatch(generateAlert('success', 'Syncing complete', 'Account sync is completed.'));
             return dispatch(manualSyncSuccess(assign({}, payload, { hashes: [] })));
         }
 
@@ -328,7 +318,7 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
     });
 };
 
-export const getAccountInfo = (seed, accountName) => {
+export const getAccountInfo = (seed, accountName, navigator = null) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
@@ -433,6 +423,10 @@ export const getAccountInfo = (seed, accountName) => {
                 if (err && err.message === 'intentionally break chain') {
                     dispatch(accountInfoFetchSuccess(payload));
                 } else {
+                    if (navigator) {
+                        navigator.pop({ animated: false });
+                    }
+
                     dispatch(accountInfoFetchError());
                     dispatch(generateAccountInfoErrorAlert());
                 }

@@ -55,16 +55,9 @@ class Loading extends Component {
     }
 
     render() {
-        const {
-            tempAccount: { ready },
-            account: { firstUse },
-            navigator,
-            t,
-            negativeColor,
-            backgroundColor,
-        } = this.props;
+        const { firstUse, t, negativeColor, backgroundColor } = this.props;
 
-        if (this.props.account.firstUse) {
+        if (firstUse) {
             return (
                 <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                     <StatusBar barStyle="light-content" />
