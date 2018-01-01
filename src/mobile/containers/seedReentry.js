@@ -39,7 +39,6 @@ class SeedReentry extends Component {
                 screen: 'setSeedName',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
-                overrideBackPress: true,
             });
         } else {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));

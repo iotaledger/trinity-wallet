@@ -81,7 +81,8 @@
         "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
         "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation": "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedExplanation":
+            "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {

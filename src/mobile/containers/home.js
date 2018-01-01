@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, StatusBar } from 'react-native';
+import { StyleSheet, View, StatusBar, BackHandler, ToastAndroid } from 'react-native';
 import { connect } from 'react-redux';
 import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
+import { Navigation } from 'react-native-navigation';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -75,6 +76,30 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
+    componentDidMount() {
+        BackHandler.addEventListener('homeBackPress', () => {
+            if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+                Navigation.startSingleScreenApp({
+                    screen: {
+                        screen: 'login',
+                        navigatorStyle: {
+                            navBarHidden: true,
+                            navBarTransparent: true,
+                        },
+                        overrideBackPress: true,
+                    },
+                });
+            }
+            this.lastBackPressed = Date.now();
+            ToastAndroid.show('Press back again to log out', ToastAndroid.SHORT);
+            return true;
+        });
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('homeBackPress');
+    }
+
     onLoginPress = password => {
         const { t, tempAccount } = this.props;
 
