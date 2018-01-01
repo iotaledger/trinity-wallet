@@ -7,6 +7,9 @@
         "back": "ANTERIOR",
         "done": "CONCLUÍDO",
         "next": "SEGUINTE",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Anote a Seed",
         "paperWallet": "Imprima uma cópia em papel",
         "copyToClipboard": "Adicionar ao gestor de palavras-passe",
@@ -29,7 +32,8 @@
         "syncInProgress": "Sincronizando",
         "syncInProgressExplanation": "Aguarde até que a sincronização seja concluída.",
         "somethingWentWrong": "Ocorreu um problema",
-        "somethingWentWrongExplanation": "Por favor, reinicie a aplicação."
+        "somethingWentWrongExplanation": "Por favor, reinicie a aplicação.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -197,7 +201,6 @@
         "advanced": "Configurações avançadas",
         "logout": "Terminar sessão",
         "reset": "Reiniciar completamente a carteira",
-        "back": "Anterior",
         "syncingComplete": "Syncing complete",
         "syncingCompleteExplanation": "Your account has synced successfully.",
         "nicknameChanged": "Account name changed",
@@ -251,5 +254,46 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }

@@ -1,34 +1,36 @@
 package com.iota.wallet;
 
-import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
-import com.rnprint.RNPrint.RNPrintPackage;
-import com.facebook.react.ReactApplication;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.jadsonlourenco.RNShakeEvent.RNShakeEventPackage;
-import com.peel.react.rnos.RNOSModule;
-import com.lwansbrough.RCTCamera.RCTCameraPackage;
-import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
-import com.tradle.react.UdpSocketsModule;
-import com.peel.react.TcpSocketsModule;
-import com.horcrux.svg.SvgPackage;
 import com.bitgo.randombytes.RandomBytesPackage;
-import com.reactnativenavigation.bridge.NavigationReactPackage;
-import com.facebook.react.ReactNativeHost;
+import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
+import com.corbt.keepawake.KCKeepAwakePackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.facebook.soloader.SoLoader;
-import com.reactnativenavigation.NavigationApplication;
 import com.horcrux.svg.SvgPackage;
+import com.jadsonlourenco.RNShakeEvent.RNShakeEventPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import com.oblador.keychain.KeychainPackage;
+import com.peel.react.rnos.RNOSModule;
+import com.reactnativenavigation.NavigationApplication;
+import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.rnfs.RNFSPackage;
+import com.rnprint.RNPrint.RNPrintPackage;
+
 import java.util.Arrays;
 import java.util.List;
+
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
-import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
-import com.corbt.keepawake.KCKeepAwakePackage;
-import com.oblador.keychain.KeychainPackage;
 
 public class MainApplication extends NavigationApplication {
+
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(this);
+  }
 
   @Override
   public boolean isDebug() {

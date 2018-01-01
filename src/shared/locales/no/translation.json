@@ -7,6 +7,9 @@
         "back": "TILBAKE",
         "done": "FERDIG",
         "next": "NESTE",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Skriv ned hovednøkkelen",
         "paperWallet": "Skriv ut papirkopi",
         "copyToClipboard": "Legg til i passord-lagrings program",
@@ -29,7 +32,8 @@
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vent til synkronisering er fullført.",
         "somethingWentWrong": "Noe gikk galt",
-        "somethingWentWrongExplanation": "Start programmet på nytt."
+        "somethingWentWrongExplanation": "Start programmet på nytt.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -198,7 +202,6 @@
         "advanced": "Avanserte innstillinger",
         "logout": "Logg ut",
         "reset": "Tilbakestill lommeboken",
-        "back": "Tilbake",
         "syncingComplete": "Synkronisering fullført",
         "syncingCompleteExplanation": "Din konto har blitt vellykket sybkronisert.",
         "nicknameChanged": "Kontonavnet er endret",
@@ -253,5 +256,46 @@
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }

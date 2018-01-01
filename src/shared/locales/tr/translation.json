@@ -7,6 +7,9 @@
         "back": "Geri",
         "done": "Tamamlandı",
         "next": "SONRAKİ",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Cüzdan şifreni yaz",
         "paperWallet": "Kağıdın bir kopyasını al",
         "copyToClipboard": "Şifre yöneticisine ekle",
@@ -29,7 +32,8 @@
         "syncInProgress": "Eşitleme sürüyor",
         "syncInProgressExplanation": "Senkronizasyonu tamamlanana kadar bekleyin.",
         "somethingWentWrong": "Bir şeyler yanlış gitti",
-        "somethingWentWrongExplanation": "Lütfen uygulamayı yeniden başlatın."
+        "somethingWentWrongExplanation": "Lütfen uygulamayı yeniden başlatın.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -198,7 +202,6 @@
         "advanced": "Gelişmiş ayarlar",
         "logout": "Çıkış yap",
         "reset": "Cüzdanı Sıfırla",
-        "back": "Geri",
         "syncingComplete": "Senkronizasyon Tamamlandı",
         "syncingCompleteExplanation": "Hesabınız başarıyla güncellendi.",
         "nicknameChanged": "Hesap ismi değiştirildi",
@@ -252,5 +255,46 @@
         "bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adres panoya kopyalanmış."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }
