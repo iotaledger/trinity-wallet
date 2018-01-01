@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { Dropdown } from '../../components/dropdown';
 
-jest.mock('react-native-device-info');
-
 const getProps = overrides =>
     assign(
         {},
