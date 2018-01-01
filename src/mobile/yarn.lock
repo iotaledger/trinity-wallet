@@ -3151,8 +3151,8 @@ https-browserify@0.0.1:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-0.0.1.tgz#3f91365cabe60b77ed0ebba24b454e3e09d95a82"
 
 i18next@^10.1.0:
-  version "10.2.1"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.2.1.tgz#bec61a98d7976c3084147cc2cd2bafdeff9088f2"
+  version "10.2.2"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.2.2.tgz#1f2dc55ca2e8d7e071f7aff9f78654ef7f003c0e"
 
 iconv-lite@0.4.11:
   version "0.4.11"
