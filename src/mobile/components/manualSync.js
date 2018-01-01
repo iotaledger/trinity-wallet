@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
     titleText: {
         color: 'white',

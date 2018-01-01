@@ -9,7 +9,7 @@ import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { persistor } from '../store';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar, BackHandler } from 'react-native';
 import COLORS from '../theme/Colors';
 import THEMES from '../theme/themes';
 import Fonts from '../theme/Fonts';
@@ -46,6 +46,17 @@ class WalletResetRequirePassword extends Component {
         this.resetWallet = this.resetWallet.bind(this);
     }
 
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            this.goBack();
+            return true;
+        });
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress');
+    }
+
     goBack() {
         // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
@@ -56,7 +67,6 @@ class WalletResetRequirePassword extends Component {
                     navBarTransparent: true,
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
-                overrideBackPress: true,
             },
         });
     }
@@ -68,7 +78,7 @@ class WalletResetRequirePassword extends Component {
     redirectToInitialScreen() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'welcome',
+                screen: 'languageSetup',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
