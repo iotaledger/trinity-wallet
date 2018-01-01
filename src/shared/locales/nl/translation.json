@@ -7,6 +7,9 @@
         "back": "Terug",
         "done": "GEREED",
         "next": "VOLGENDE",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Schrijf uw sleutel op",
         "paperWallet": "Print een papieren kopie",
         "copyToClipboard": "Voeg uw sleutel toe aan uw wachtwoord manager",
@@ -29,7 +32,8 @@
         "syncInProgress": "Bezig met synchroniseren",
         "syncInProgressExplanation": "Een ogenblik geduld alstublieft, het synchroniseren wordt voltooid.",
         "somethingWentWrong": "Er ging iets mis",
-        "somethingWentWrongExplanation": "Start de app opnieuw."
+        "somethingWentWrongExplanation": "Start de app opnieuw.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De sleutel bevat ongeldige tekens",
@@ -199,7 +203,6 @@
         "advanced": "Geavanceerde instellingen",
         "logout": "Uitloggen",
         "reset": "Wallet opnieuw instellen",
-        "back": "Terug",
         "syncingComplete": "Synchroniseren voltooid",
         "syncingCompleteExplanation": "Uw account is succesvol bijgewerkt.",
         "nicknameChanged": "Accountnaam veranderd",
@@ -253,5 +256,46 @@
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het Klembord.",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Het adres is naar het Klembord gekopieerd."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }

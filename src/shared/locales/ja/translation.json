@@ -7,6 +7,9 @@
         "back": "戻る",
         "done": "完了",
         "next": "次へ",
+        "apply": "適用",
+        "save": "保存",
+        "close": "閉じる",
         "manualCopy": "Seedを書き写す",
         "paperWallet": "印刷する",
         "copyToClipboard": "パスワード マネージャーに追加",
@@ -29,7 +32,8 @@
         "syncInProgress": "同期中...",
         "syncInProgressExplanation": "同期が完了するまでお待ち下さい。",
         "somethingWentWrong": "何かが間違っています。",
-        "somethingWentWrongExplanation": "アプリを再起動して下さい。"
+        "somethingWentWrongExplanation": "アプリを再起動して下さい。",
+        "node": "ノード"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -77,7 +81,8 @@
         "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
         "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation": "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedExplanation":
+            "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -187,7 +192,6 @@
         "advanced": "詳細設定",
         "logout": "ログアウト",
         "reset": "ウォレットをリセットします。",
-        "back": "戻る",
         "syncingComplete": "同期が完了しました。",
         "syncingCompleteExplanation": "アカウントは正常に同期しました。",
         "nicknameChanged": "アカウント名が変更されました。",
@@ -239,5 +243,46 @@
         "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。"
+    },
+    "accountManagement": {
+        "viewSeed": "Seedを表示",
+        "viewAddresses": "アドレスを表示",
+        "editAccountName": "アカウント名を編集",
+        "deleteAccount": "アカウントを削除",
+        "addNewAccount": "新しいアカウントを追加"
+    },
+    "addCustomNode": {
+        "customNode": "カスタムノード",
+        "add": "追加"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "既存のseedを使用",
+        "createNewSeed": "新しいseedを作成"
+    },
+    "advancedSettings": {
+        "selectNode": "ノードを選択",
+        "addCustomNode": "カスタムノードの追加",
+        "manualSync": "手動同期"
+    },
+    "advancedThemeCustomisation": {
+        "background": "背景",
+        "frame": "フレーム"
+    },
+    "currencySelection": {
+        "currency": "通貨"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "ログアウトしてもよろしいですか？"
+    },
+    "qrScanner": {
+        "scan": "QRコード読み取り"
+    },
+    "unitInfoModal": {
+        "unitSystem": "単位",
+        "trillion": "一兆",
+        "billion": "十億",
+        "million": "百万",
+        "thousand": "千",
+        "one": "一"
     }
 }

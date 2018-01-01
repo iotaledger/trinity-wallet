@@ -5,6 +5,7 @@ import { width, height } from '../util/dimensions';
 import Dropdown from './dropdown';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
+import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -81,7 +82,7 @@ class CurrencySelection extends Component {
     }
 
     render() {
-        const { currency, currencies, backPress } = this.props;
+        const { currency, currencies, backPress, t } = this.props;
         return (
             <TouchableWithoutFeedback onPress={() => this.dropdown.closeDropdown()}>
                 <View style={styles.container}>
@@ -91,7 +92,7 @@ class CurrencySelection extends Component {
                             ref={c => {
                                 this.dropdown = c;
                             }}
-                            title="Currency"
+                            title={t('currency')}
                             options={currencies}
                             defaultOption={currency}
                             dropdownWidth={styles.dropdownWidth}
@@ -101,12 +102,12 @@ class CurrencySelection extends Component {
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>Back</Text>
+                                <Text style={styles.titleTextLeft}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveCurrencySelection(this.dropdown.getSelected())}>
                             <View style={styles.itemRight}>
-                                <Text style={styles.titleTextRight}>Save</Text>
+                                <Text style={styles.titleTextRight}>{t('global:save')}</Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
@@ -117,4 +118,4 @@ class CurrencySelection extends Component {
     }
 }
 
-export default CurrencySelection;
+export default translate(['currencySelection', 'global'])(CurrencySelection);
