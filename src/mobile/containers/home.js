@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import UserInactivity from 'react-native-user-inactivity';
 import KeepAwake from 'react-native-keep-awake';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { clearTempData, setPassword, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';

@@ -13,7 +13,6 @@ const initialState = {
     lastTxAddress: '',
     lastTxValue: 0,
     isSendingTransfer: false,
-    isGettingTransfers: false,
     isSyncing: false,
     currentSetting: 'mainSettings',
     copiedToClipboard: false,
@@ -106,22 +105,6 @@ export default (state = initialState, action) => {
                 currentSetting: 'mainSettings',
                 copiedToClipboard: false,
             };
-        case ActionTypes.GET_TRANSFERS_REQUEST:
-            return {
-                ...state,
-                isGettingTransfers: true,
-            };
-        case ActionTypes.GET_TRANSFERS_SUCCESS:
-            return {
-                ...state,
-                ready: true,
-                isGettingTransfers: false,
-            };
-        case ActionTypes.GET_TRANSFERS_ERROR:
-            return {
-                ...state,
-                isGettingTransfers: false,
-            };
         case ActionTypes.CLEAR_SEED:
             return {
                 ...state,
@@ -137,6 +120,11 @@ export default (state = initialState, action) => {
                 ...state,
                 copiedToClipboard: action.payload,
             };
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST:
+            return {
+                ...state,
+                ready: false,
+            };
         case AccountActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
             return {
                 ...state,
@@ -147,6 +135,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 hasErrorFetchingAccountInfoOnLogin: false,
+                ready: false,
             };
         case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
@@ -157,6 +146,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 hasErrorFetchingAccountInfoOnLogin: true,
+            };
+        case AccountActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
+            return {
+                ...state,
+                ready: false,
+            };
+        case AccountActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+            return {
+                ...state,
+                ready: true,
             };
         case AccountActionTypes.REMOVE_ACCOUNT:
             return {
@@ -170,10 +169,6 @@ export default (state = initialState, action) => {
                 isSyncing: true,
             };
         case AccountActionTypes.MANUAL_SYNC_SUCCESS:
-            return {
-                ...state,
-                isSyncing: false,
-            };
         case ActionTypes.MANUAL_SYNC_ERROR:
             return {
                 ...state,
