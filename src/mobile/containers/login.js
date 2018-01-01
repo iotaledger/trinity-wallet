@@ -119,10 +119,8 @@ class Login extends Component {
                         } else {
                             const addresses = get(selectedAccount, 'addresses');
                             if (!isEmpty(addresses)) {
-                                console.log('HEREEEE');
                                 this.navigateToLoading();
                             } else {
-                                console.log('HEREEEEDD');
                                 this.navigateToHome();
                             }
                         }
