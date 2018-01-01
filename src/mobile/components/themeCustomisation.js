@@ -37,40 +37,50 @@ class ThemeCustomisation extends React.Component {
         const { themes, theme, themeName } = this.state;
         const { backgroundColor, barColor, ctaColor, positiveColor, negativeColor, extraColor } = this.state.theme;
         return (
-            <View style={styles.container}>
-                <View style={styles.topContainer}>
-                    <View style={{ zIndex: 2 }}>
-                        <Dropdown
-                            ref={c => {
-                                this.dropdown = c;
-                            }}
-                            title="Theme"
-                            dropdownWidth={{ width: width / 1.45 }}
-                            background
-                            shadow
-                            defaultOption={themeName}
-                            options={themes}
-                            saveSelection={t => {
-                                this.setState({ themeName: t, theme: THEMES.themes[t] });
-                            }}
-                        />
-                    </View>
-                    <View
-                        style={[
-                            styles.demoContainer,
-                            { backgroundColor: THEMES.getHSL(backgroundColor), shadowColor: THEMES.getHSL(barColor) },
-                        ]}
-                    >
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    if (this.dropdown) {
+                        this.dropdown.closeDropdown();
+                    }
+                }}
+            >
+                <View style={styles.container}>
+                    <View style={styles.topContainer}>
+                        <View style={{ zIndex: 2 }}>
+                            <Dropdown
+                                onRef={c => {
+                                    this.dropdown = c;
+                                }}
+                                title="Theme"
+                                dropdownWidth={{ width: width / 1.45 }}
+                                background
+                                shadow
+                                defaultOption={themeName}
+                                options={themes}
+                                saveSelection={t => {
+                                    this.setState({ themeName: t, theme: THEMES.themes[t] });
+                                }}
+                            />
+                        </View>
                         <View
                             style={[
-                                styles.frameBar,
-                                { backgroundColor: THEMES.getHSL(barColor), shadowColor: THEMES.getHSL(barColor) },
+                                styles.demoContainer,
+                                {
+                                    backgroundColor: THEMES.getHSL(backgroundColor),
+                                    shadowColor: THEMES.getHSL(barColor),
+                                },
                             ]}
                         >
-                            <Text style={styles.frameBarTitle}>Frame Bar</Text>
-                            <Image style={styles.chevron} source={chevronDownImagePath} />
-                        </View>
-                        {/*
+                            <View
+                                style={[
+                                    styles.frameBar,
+                                    { backgroundColor: THEMES.getHSL(barColor), shadowColor: THEMES.getHSL(barColor) },
+                                ]}
+                            >
+                                <Text style={styles.frameBarTitle}>Frame Bar</Text>
+                                <Image style={styles.chevron} source={chevronDownImagePath} />
+                            </View>
+                            {/*
                         <View style={styles.dropdownContainer}>
                             <Text style={styles.dropdownTitle}>Label Text</Text>
                             <View style={styles.dropdownButtonContainer}>
@@ -89,46 +99,47 @@ class ThemeCustomisation extends React.Component {
                             </View>
                         </View>
                         */}
-                        <View style={styles.buttonsContainer}>
-                            <View style={[styles.button, { borderColor: THEMES.getHSL(negativeColor) }]}>
-                                <Text style={[styles.buttonText, { color: THEMES.getHSL(negativeColor) }]}>
-                                    NEGATIVE
-                                </Text>
+                            <View style={styles.buttonsContainer}>
+                                <View style={[styles.button, { borderColor: THEMES.getHSL(negativeColor) }]}>
+                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(negativeColor) }]}>
+                                        NEGATIVE
+                                    </Text>
+                                </View>
+                                <View style={[styles.button, { borderColor: THEMES.getHSL(positiveColor) }]}>
+                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(positiveColor) }]}>
+                                        POSITIVE
+                                    </Text>
+                                </View>
                             </View>
-                            <View style={[styles.button, { borderColor: THEMES.getHSL(positiveColor) }]}>
-                                <Text style={[styles.buttonText, { color: THEMES.getHSL(positiveColor) }]}>
-                                    POSITIVE
-                                </Text>
+                            <View style={styles.buttonsContainer}>
+                                <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
+                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>EXTRA</Text>
+                                </View>
+                                <View style={[styles.ctaButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
+                                    <Text style={styles.ctaText}>CTA</Text>
+                                </View>
                             </View>
                         </View>
-                        <View style={styles.buttonsContainer}>
-                            <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
-                                <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>EXTRA</Text>
-                            </View>
-                            <View style={[styles.ctaButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
-                                <Text style={styles.ctaText}>CTA</Text>
-                            </View>
-                        </View>
+                        <TouchableOpacity onPress={() => this.props.onAdvancedPress()} style={styles.advancedButton}>
+                            <Text style={styles.advancedText}>ADVANCED</Text>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity onPress={() => this.props.onAdvancedPress()} style={styles.advancedButton}>
-                        <Text style={styles.advancedText}>ADVANCED</Text>
-                    </TouchableOpacity>
+                    <View style={styles.bottomContainer}>
+                        <TouchableOpacity onPress={() => this.props.backPress()}>
+                            <View style={styles.itemLeft}>
+                                <Image source={arrowLeftImagePath} style={[styles.icon, { marginRight: width / 25 }]} />
+                                <Text style={styles.titleText}>Back</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.onApplyPress(theme, themeName)}>
+                            <View style={styles.itemRight}>
+                                <Text style={[styles.titleText, { marginRight: width / 25 }]}>Apply</Text>
+                                <Image source={tickImagePath} style={styles.icon} />
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.props.backPress()}>
-                        <View style={styles.itemLeft}>
-                            <Image source={arrowLeftImagePath} style={[styles.icon, { marginRight: width / 25 }]} />
-                            <Text style={styles.titleText}>Back</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.onApplyPress(theme, themeName)}>
-                        <View style={styles.itemRight}>
-                            <Text style={[styles.titleText, { marginRight: width / 25 }]}>Apply</Text>
-                            <Image source={tickImagePath} style={styles.icon} />
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
