@@ -7,6 +7,9 @@
         "back": "KEMBALI",
         "done": "SELESAI",
         "next": "BERIKUTNYA",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Tulis Seed Anda",
         "paperWallet": "Cetak ke printer",
         "copyToClipboard": "Tambahkan ke manajer kata sandi",
@@ -29,7 +32,8 @@
         "syncInProgress": "Sinkronisasi sedang berlangsung",
         "syncInProgressExplanation": "Silahkan tunggu sampai sinkronisasi selesai.",
         "somethingWentWrong": "Terjadi kesalahan",
-        "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali."
+        "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -197,7 +201,6 @@
         "advanced": "Pengaturan Lanjutan",
         "logout": "Keluar",
         "reset": "Hapus dompet",
-        "back": "Kembali",
         "syncingComplete": "Sinkronisasi selesai",
         "syncingCompleteExplanation": "Akun Anda telah disinkronisasi.",
         "nicknameChanged": "Ubah nama akun",
@@ -251,5 +254,46 @@
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat telah disalin ke papan klip."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }

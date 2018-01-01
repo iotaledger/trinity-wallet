@@ -7,6 +7,9 @@
         "back": "INDIETRO",
         "done": "FINE",
         "next": "AVANTI",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Annota il seme",
         "paperWallet": "Stampa copia cartacea",
         "copyToClipboard": "Aggiungi al gestore di password",
@@ -29,7 +32,8 @@
         "syncInProgress": "Sincronizzazione in corso",
         "syncInProgressExplanation": "Si prega di attendere che la sincronizzazione sia completa.",
         "somethingWentWrong": "Si è verificato un errore",
-        "somethingWentWrongExplanation": "Si prega di riavviare l'applicazione."
+        "somethingWentWrongExplanation": "Si prega di riavviare l'applicazione.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -201,7 +205,6 @@
         "advanced": "Impostazioni avanzate",
         "logout": "Esci",
         "reset": "Reimposta il portafoglio",
-        "back": "Indietro",
         "syncingComplete": "Sincronizzazione completata",
         "syncingCompleteExplanation": "Il tuo account è stato sincronizzato correttamente.",
         "nicknameChanged": "Nome di conto modificato",
@@ -255,5 +258,46 @@
         "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "L'indirizzo è stato copiato negli Appunti."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }
