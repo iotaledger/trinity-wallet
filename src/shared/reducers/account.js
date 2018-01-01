@@ -33,18 +33,6 @@ const account = (
                 ...state,
                 unconfirmedBundleTails: action.payload,
             };
-        case ActionTypes.SET_ACCOUNT_INFO:
-            return {
-                ...state,
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.seedName]: {
-                        addresses: action.addresses,
-                        transfers: action.transfers,
-                        balance: action.balance,
-                    },
-                },
-            };
         case ActionTypes.CHANGE_ACCOUNT_NAME:
             return {
                 ...state,
@@ -57,28 +45,6 @@ const account = (
                 accountInfo: omit(state.accountInfo, action.payload),
                 seedNames: filter(state.seedNames, name => name !== action.payload),
                 seedCount: state.seedCount - 1,
-            };
-        case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
-            return {
-                ...state,
-                accountInfo: merge({}, state.accountInfo, {
-                    [action.payload.accountName]: {
-                        balance: action.payload.balance,
-                        addresses: action.payload.addresses,
-                        transfers: action.payload.transfers,
-                    },
-                }),
-                unspentAddressesHashes: merge({}, state.unspentAddressesHashes, {
-                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
-                }),
-                pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
-                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
-                }),
-            };
-        case ActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
-            return {
-                ...state,
-                firstUse: false,
             };
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
             return {
@@ -96,12 +62,6 @@ const account = (
                 pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),
-                firstUse: true,
-            };
-        case ActionTypes.ACCOUNT_INFO_FETCH_ERROR:
-            return {
-                ...state,
-                firstUse: false,
             };
         case ActionTypes.UPDATE_ADDRESSES:
             return {
@@ -156,12 +116,7 @@ const account = (
                 ...state,
                 seedNames: [...state.seedNames, action.seedName],
             };
-        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST:
-            return {
-                ...state,
-                firstUse: true,
-            };
-        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+        case ActionTypes.MANUAL_SYNC_SUCCESS:
             return {
                 ...state,
                 accountInfo: merge({}, state.accountInfo, {
@@ -178,6 +133,30 @@ const account = (
                 pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
+            return {
+                ...state,
+                firstUse: false,
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
+                        balance: action.payload.balance,
+                    },
+                }),
+                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+                unspentAddressesHashes: merge({}, state.unspentAddressesHashes, {
+                    [action.payload.accountName]: action.payload.hashes,
+                }),
+                pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
+                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
+                }),
+            };
+        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST:
+            return {
+                ...state,
+                firstUse: true,
             };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
             return {
@@ -200,11 +179,6 @@ const account = (
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),
             };
-        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_ERROR:
-            return {
-                ...state,
-                firstUse: true,
-            };
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
             return {
                 ...state,
@@ -218,6 +192,23 @@ const account = (
                     [action.payload.accountName]: action.payload.unspentAddressesHashes,
                 }),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
+                pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
+                    [action.payload.accountName]: action.payload.pendingTxTailsHashes,
+                }),
+            };
+        case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+            return {
+                ...state,
+                accountInfo: merge({}, state.accountInfo, {
+                    [action.payload.accountName]: {
+                        balance: action.payload.balance,
+                        addresses: action.payload.addresses,
+                        transfers: action.payload.transfers,
+                    },
+                }),
+                unspentAddressesHashes: merge({}, state.unspentAddressesHashes, {
+                    [action.payload.accountName]: action.payload.unspentAddressesHashes,
+                }),
                 pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),

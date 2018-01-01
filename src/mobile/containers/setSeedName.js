@@ -60,7 +60,6 @@ export class SetSeedName extends Component {
 
         const fetch = (seed, accountName, password, promise, navigator) => {
             this.navigateTo('loading');
-
             this.props.fetchFullAccountInfoForFirstUse(seed, accountName, password, promise, navigator);
         };
 
