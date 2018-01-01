@@ -1,287 +1,287 @@
 {
-	"global": {
-		"invalidResponse": "Ugyldigt svar",
-		"invalidResponseExplanation": "Noden returnerede et ugyldigt svar.",
-		"invalidResponsePollingExplanation": "Noden returnerede et ugyldigt svar under polling.",
-		"seed": "Seed",
-		"back": "TILBAGE",
-		"done": "FÆRDIG",
-		"next": "NÆSTE",
-		"apply": "",
-		"save": "",
-		"close": "",
-		"manualCopy": "Write seed down",
-		"paperWallet": "Print paper copy",
-		"copyToClipboard": "Add to password manager",
-		"qr": "QR",
-		"notAvailable": "Denne funktion er ikke tilgængelig",
-		"notAvailableExplanation": "Den bliver tilføjet på et senere tidspunkt.",
-		"enterSeed": "Indtast venligst dit seed.",
-		"mainWallet": "HOVEDKONTO",
-		"secondWallet": "2. KONTO",
-		"thirdWallet": "3. KONTO",
-		"fourthWallet": "4. KONTO",
-		"fifthWallet": "5. KONTO",
-		"sixthWallet": "6. KONTO",
-		"otherWallet": "ANDEN KONTO",
-		"yes": "JA",
-		"no": "NEJ",
-		"password": "Adgangskode",
-		"unrecognisedPassword": "Ukendt adgangskode",
-		"unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
-		"syncInProgress": "Synkronisering i gang",
-		"syncInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
-		"somethingWentWrong": "Der gik noget galt",
-		"somethingWentWrongExplanation": "Genstart venligst appen.",
-		"node": ""
-	},
-	"addAdditionalSeed": {
-		"seedInvalidChars": "Seedet indeholder ugyldige tegn",
-		"seedInvalidCharsExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
-		"seedTooShort": "Seedet er for kort",
-		"seedTooShortExplanation": "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
-		"nameInUse": "Kontonavnet er allerede i brug",
-		"nameInUseExplanation": "Brug venligst et unikt kontonavn til dit seed.",
-		"enterAccountName": "Indtast et kontonavn.",
-		"accountName": "Kontonavn",
-		"noNickname": "Intet kontonavn angivet",
-		"noNicknameExplanation": "Indtast venligst et kontonavn til dit seed.",
-		"seedInUse": "Seed already in use",
-		"seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
-	},
-	"changePassword": {
-		"oops": "Ups! Der gik noget galt",
-		"oopsExplanation": "Det ser ud til, at der gik noget galt under opdateringen af din adgangskode. Prøv venligst igen.",
-		"passwordUpdated": "Adgangskode opdateret",
-		"passwordUpdatedExplanation": "Din adgangskode er blevet opdateret.",
-		"incorrectPassword": "Forkert adgangskode",
-		"incorrectPasswordExplanation": "Din nuværende adgangskode er forkert. Prøv venligst igen.",
-		"passwordsDoNotMatch": "Adgangskoderne er ikke ens",
-		"passwordsDoNotMatchExplanation": "Adgangskoderne er ikke ens. Prøv venligst igen.",
-		"passwordTooShort": "Adgangskoden er for kort",
-		"passwordTooShortExplanation": "Din adgangskode skal være mindst 12 tegn lang. Prøv venligst igen.",
-		"oldPassword": "Kan ikke bruge en gammel adgangskode",
-		"oldPasswordExplanation": "Du kan ikke bruge den gamle adgangskode som din nye adgangskode. Prøv venligst igen med en ny adgangskode.",
-		"ensureStrongPassword": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
-		"currentPassword": "Nuværende adgangskode",
-		"newPassword": "Ny adgangskode",
-		"confirmPassword": "Bekræft ny adgangskode"
-	},
-	"copyToClipboard": {
-		"seedCleared": "Seed ryddet",
-		"seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
-		"seedCopied": "Copied seed to clipboard",
-		"seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-		"clickToCopy": "Klik på knappen nedenfor for at kopiere dit seed til en adgangskodemanager.",
-		"doNotStore": "Opbevar ikke dit seed i klartekst.",
-		"copyToClipboard": "Copy to clipboard"
-	},
-	"enterSeed": {
-		"invalidCharacters": "Seedet indeholder ugyldige tegn",
-		"invalidCharactersExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
-		"seedTooShort": "Seedet er for kort",
-		"seedTooShortExplanation": "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
-		"seedExplanation": "Seeds bør indeholde {{maxLength}} tegn og skal indeholde de store bogstaver A-Z eller tallet 9. Du kan ikke bruge seeds, som indeholder flere end {{maxLength}} tegn.",
-		"neverShare": "DEL ALDRIG DIT SEED MED NOGEN"
-	},
-	"home": {
-		"balance": "SALDO",
-		"send": "SEND",
-		"receive": "MODTAG",
-		"history": "HISTORIK",
-		"settings": "INDSTILLINGER"
-	},
-	"languageSetup": {
-		"language": "Sprog"
-	},
-	"login": {
-		"emptyPassword": "Tom adgangskode",
-		"emptyPasswordExplanation": "Du skal indtaste en adgangskode for at logge ind. Prøv venligst igen.",
-		"enterPassword": "Indtast venligst din adgangskode.",
-		"useSeed": "BRUG SEED",
-		"login": "LOG IND",
-		"selectDifferentNode": "Do you want to select a different node?"
-	},
-	"loading": {
-		"loadingFirstTime": "Indlæser seed for første gang.",
-		"thisMayTake": "Dette kan tage noget tid.",
-		"youMayNotice": "Dette kan reducere hastigheden på din enhed."
-	},
-	"newSeedSetup": {
-		"seedNotGenerated": "Seedet er ikke blevet genereret",
-		"seedNotGeneratedExplanation": "Klik venligst på knappen \"Generer nyt seed\".",
-		"pressForNewSeed": "TRYK FOR AT FÅ ET NYT SEED",
-		"individualLetters": "Tryk på individuelle bogstaver for at vælge nye tilfældigt."
-	},
-	"onboardingComplete": {
-		"walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
-	},
-	"paperWallet": {
-		"clickToPrint": "Klik på knappen nedenfor for at udskrive en papirkopi af dit seed.",
-		"storeSafely": "Opbevar den sikkert.",
-		"neverShare": "Del aldrig dit seed med nogen.",
-		"iotaLogo": "IOTA-logo",
-		"printWallet": "UDSKRIV PAPIRTEGNEBOG"
-	},
-	"receive": {
-		"addressCopied": "Adresse kopieret",
-		"addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
-		"generateNewAddress": "GENERER NY ADRESSE",
-		"message": "Valgfri besked",
-		"removeMessage": "FJERN BESKED"
-	},
-	"saveYourSeed": {
-		"seedCleared": "Seed ryddet",
-		"seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
-		"mustSaveYourSeed": "Du skal gemme dit seed med ",
-		"atLeastOne": "mindst én ",
-		"ofTheOptions": "én af valgmulighederne angivet nedenfor."
-	},
-	"seedReentry": {
-		"incorrectSeed": "Forkert seed",
-		"incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
-		"thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
-		"ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
-	},
-	"send": {
-		"invalidAddress": "Ugyldig adresse",
-		"invalidAddressExplanation1": "Adressen bør indeholde {{maxLength}} tegn og skal have en kontrolsum.",
-		"invalidAddressExplanation2": "Adressen indeholder ugyldige tegn.",
-		"invalidAddressExplanation3": "Adressen indeholder en ugyldig kontrolsum.",
-		"notEnoughFunds": "Ikke nok penge",
-		"notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne overførsel.",
-		"keyReuse": "Nøglegenbrug",
-		"keyReuseExplanation": "Adressen, du forsøger at sende til, er allerede blevet brugt. Prøv venligst en anden adresse.",
-		"recipientAddress": "Modtageradresse",
-		"amount": "Beløb",
-		"max": "MAKS.",
-		"message": "Besked",
-		"send": "SEND",
-		"invalidAmount": "Forkert beløb indtastet",
-		"invalidAmountExplanation": "Indtast venligst en numerisk værdi som transaktionsbeløbet.",
-		"maximumSelected": "MAKSIMALT beløb valgt",
-		"iotaUnits": "IOTA-enheder"
-	},
-	"setPassword": {
-		"passwordTooShort": "Adgangskoden er for kort",
-		"passwordTooShortExplanation": "Din adgangskode skal indeholde mindst {{minLength}} tegn. Den indeholder i øjeblikket {{currentLength}} tegn. Prøv venligst igen.",
-		"passwordMismatch": "Adgangskoderne er ikke ens",
-		"passwordMismatchExplanation": "Adgangskoderne, du har indtastet, er ikke ens. Prøv venligst igen.",
-		"nowWeNeedTo": "Nu skal vi opsætte en adgangskode.",
-		"anEncryptedCopy": "En krypteret kopi af dit seed bliver opbevaret på din enhed. Denne adgangskode skal bruges til at tilgå din tegnebog fremover.",
-		"ensure": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
-		"retypePassword": "Gentag adgangskode"
-	},
-	"setSeedName": {
-		"canUseMultipleSeeds": "Du kan bruge adskillige seeds med denne tegnebog. Hvert seed kræver et kontonavn.",
-		"youCanAdd": "Du kan tilføje flere seeds i menuen \"Indstillinger\"."
-	},
-	"settings": {
-		"transferSending": "Overførsel sendes",
-		"transferSendingExplanation": "Vent venligst, indtil din overførsel er blevet sendt.",
-		"generatingAddress": "Genererer modtageradresse",
-		"generatingAddressExplanation": "Vent venligst, indtil din adresse er blevet genereret.",
-		"mode": "Tilstand",
-		"theme": "Tema",
-		"currency": "Valuta",
-		"language": "Sprog",
-		"addNewSeed": "Tilføj nyt seed",
-		"twoFA": "Totrinsbekræftelse",
-		"changePassword": "Skift adgangskode",
-		"advanced": "Avancerede indstillinger",
-		"logout": "Log ud",
-		"reset": "Nulstil tegnebog",
-		"syncingComplete": "Synkronisering fuldført",
-		"syncingCompleteExplanation": "Din konto er synkroniseret.",
-		"nicknameChanged": "Kontonavn ændret",
-		"nicknameChangedExplanation": "Dit kontonavn er blevet ændret.",
-		"accountDeleted": "Konto slettet",
-		"accountDeletedExplanation": "Din konto er blevet fjernet fra tegnebogen.",
-		"cannotPerformAction": "Kan ikke udføre handling",
-		"cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen.",
-		"poorConnection": "Poor connection",
-		"poorConnectionExplanation": "Failed to change currency due to a poor connection."
-	},
-	"resetWalletConfirmation": {
-		"thisAction": "Denne handling kan ikke fortrydes.",
-		"warning1": "Alle dine tegnebogsdata herunder dit",
-		"warning2": " seed, din adgangskode ",
-		"warning3": "og",
-		"warning4": " andre kontooplysninger",
-		"warning5": " mistes.",
-		"areYouSure": "Er du sikker på, du vil fortsætte?"
-	},
-	"resetWalletRequirePassword": {
-		"enterPassword": "Enter your password to reset the wallet.",
-		"cancel": "ANNULLER",
-		"reset": "NULSTIL"
-	},
-	"walletSetup": {
-		"okay": "Okay. Lad os opsætte din tegnebog!",
-		"doYouAlreadyHaveASeed": "Har du allerede et seed, du gerne vil bruge?",
-		"seedExplanation": "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
-		"explanation1": "Du kan bruge det til at tilgå dine midler fra",
-		"explanation2": " enhver tegnebog ",
-		"explanation3": "på",
-		"explanation4": " enhver enhed",
-		"explanation5": ". Men hvis du mister dit seed, mister du også dine IOTA.",
-		"keepSafe": "Du bedes opbevare dit seed sikkert."
-	},
-	"welcome": {
-		"thankYou": "Tak fordi du downloadede IOTA-tegnebogen.",
-		"weWillSpend": "Vi bruger de næste par minutter på at opsætte din tegnebog.",
-		"reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
-	},
-	"writeSeedDown": {
-		"yourSeedIs": "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og",
-		"tripleCheck": "trippeltjek",
-		"thatTheyAreCorrect": "at de er korrekt skrevet ned."
-	},
-	"history": {
-		"bundleHashCopied": "Bundt-hash kopieret",
-		"bundleHashCopiedExplanation": "Bundt-hashet er blevet kopiret til udklipsholderen.",
-		"addressCopied": "Adresse kopieret",
-		"addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen."
-	},
-	"accountManagement": {
-		"viewSeed": "",
-		"viewAddresses": "",
-		"editAccountName": "",
-		"deleteAccount": "",
-		"addNewAccount": ""
-	},
-	"addCustomNode": {
-		"customNode": "",
-		"add": ""
-	},
-	"addNewAccount": {
-		"useExistingSeed": "",
-		"createNewSeed": ""
-	},
-	"advancedSettings": {
-		"selectNode": "",
-		"addCustomNode": "",
-		"manualSync": ""
-	},
-	"advancedThemeCustomisation": {
-		"background": "",
-		"frame": ""
-	},
-	"currencySelection": {
-		"currency": ""
-	},
-	"logoutConfirmationModal": {
-		"logoutConfirmation": ""
-	},
-	"qrScanner": {
-		"scan": ""
-	},
-	"unitInfoModal": {
-		"unitSystem": "",
-		"trillion": "",
-		"billion": "",
-		"million": "",
-		"thousand": "",
-		"one": ""
-	}
+    "global": {
+        "invalidResponse": "Ugyldigt svar",
+        "invalidResponseExplanation": "Noden returnerede et ugyldigt svar.",
+        "invalidResponsePollingExplanation": "Noden returnerede et ugyldigt svar under polling.",
+        "seed": "Seed",
+        "back": "TILBAGE",
+        "done": "FÆRDIG",
+        "next": "NÆSTE",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "copyToClipboard": "Add to password manager",
+        "qr": "QR",
+        "notAvailable": "Denne funktion er ikke tilgængelig",
+        "notAvailableExplanation": "Den bliver tilføjet på et senere tidspunkt.",
+        "enterSeed": "Indtast venligst dit seed.",
+        "mainWallet": "HOVEDKONTO",
+        "secondWallet": "2. KONTO",
+        "thirdWallet": "3. KONTO",
+        "fourthWallet": "4. KONTO",
+        "fifthWallet": "5. KONTO",
+        "sixthWallet": "6. KONTO",
+        "otherWallet": "ANDEN KONTO",
+        "yes": "JA",
+        "no": "NEJ",
+        "password": "Adgangskode",
+        "unrecognisedPassword": "Ukendt adgangskode",
+        "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
+        "syncInProgress": "Synkronisering i gang",
+        "syncInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
+        "somethingWentWrong": "Der gik noget galt",
+        "somethingWentWrongExplanation": "Genstart venligst appen.",
+        "node": "Node"
+    },
+    "addAdditionalSeed": {
+        "seedInvalidChars": "Seedet indeholder ugyldige tegn",
+        "seedInvalidCharsExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "seedTooShort": "Seedet er for kort",
+        "seedTooShortExplanation": "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
+        "nameInUse": "Kontonavnet er allerede i brug",
+        "nameInUseExplanation": "Brug venligst et unikt kontonavn til dit seed.",
+        "enterAccountName": "Indtast et kontonavn.",
+        "accountName": "Kontonavn",
+        "noNickname": "Intet kontonavn angivet",
+        "noNicknameExplanation": "Indtast venligst et kontonavn til dit seed.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+    },
+    "changePassword": {
+        "oops": "Ups! Der gik noget galt",
+        "oopsExplanation": "Det ser ud til, at der gik noget galt under opdateringen af din adgangskode. Prøv venligst igen.",
+        "passwordUpdated": "Adgangskode opdateret",
+        "passwordUpdatedExplanation": "Din adgangskode er blevet opdateret.",
+        "incorrectPassword": "Forkert adgangskode",
+        "incorrectPasswordExplanation": "Din nuværende adgangskode er forkert. Prøv venligst igen.",
+        "passwordsDoNotMatch": "Adgangskoderne er ikke ens",
+        "passwordsDoNotMatchExplanation": "Adgangskoderne er ikke ens. Prøv venligst igen.",
+        "passwordTooShort": "Adgangskoden er for kort",
+        "passwordTooShortExplanation": "Din adgangskode skal være mindst 12 tegn lang. Prøv venligst igen.",
+        "oldPassword": "Kan ikke bruge en gammel adgangskode",
+        "oldPasswordExplanation": "Du kan ikke bruge den gamle adgangskode som din nye adgangskode. Prøv venligst igen med en ny adgangskode.",
+        "ensureStrongPassword": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
+        "currentPassword": "Nuværende adgangskode",
+        "newPassword": "Ny adgangskode",
+        "confirmPassword": "Bekræft ny adgangskode"
+    },
+    "copyToClipboard": {
+        "seedCleared": "Seed ryddet",
+        "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
+        "seedCopied": "Copied seed to clipboard",
+        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "clickToCopy": "Klik på knappen nedenfor for at kopiere dit seed til en adgangskodemanager.",
+        "doNotStore": "Opbevar ikke dit seed i klartekst.",
+        "copyToClipboard": "Copy to clipboard"
+    },
+    "enterSeed": {
+        "invalidCharacters": "Seedet indeholder ugyldige tegn",
+        "invalidCharactersExplanation": "Seeds må kun indeholde de store bogstaver A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "seedTooShort": "Seedet er for kort",
+        "seedTooShortExplanation": "Seeds skal indeholde {{maxLength}} tegn. Dit seed er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
+        "seedExplanation": "Seeds bør indeholde {{maxLength}} tegn og skal indeholde de store bogstaver A-Z eller tallet 9. Du kan ikke bruge seeds, som indeholder flere end {{maxLength}} tegn.",
+        "neverShare": "DEL ALDRIG DIT SEED MED NOGEN"
+    },
+    "home": {
+        "balance": "SALDO",
+        "send": "SEND",
+        "receive": "MODTAG",
+        "history": "HISTORIK",
+        "settings": "INDSTILLINGER"
+    },
+    "languageSetup": {
+        "language": "Sprog"
+    },
+    "login": {
+        "emptyPassword": "Tom adgangskode",
+        "emptyPasswordExplanation": "Du skal indtaste en adgangskode for at logge ind. Prøv venligst igen.",
+        "enterPassword": "Indtast venligst din adgangskode.",
+        "useSeed": "BRUG SEED",
+        "login": "LOG IND",
+        "selectDifferentNode": "Do you want to select a different node?"
+    },
+    "loading": {
+        "loadingFirstTime": "Indlæser seed for første gang.",
+        "thisMayTake": "Dette kan tage noget tid.",
+        "youMayNotice": "Dette kan reducere hastigheden på din enhed."
+    },
+    "newSeedSetup": {
+        "seedNotGenerated": "Seedet er ikke blevet genereret",
+        "seedNotGeneratedExplanation": "Klik venligst på knappen \"Generer nyt seed\".",
+        "pressForNewSeed": "TRYK FOR AT FÅ ET NYT SEED",
+        "individualLetters": "Tryk på individuelle bogstaver for at vælge nye tilfældigt."
+    },
+    "onboardingComplete": {
+        "walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
+    },
+    "paperWallet": {
+        "clickToPrint": "Klik på knappen nedenfor for at udskrive en papirkopi af dit seed.",
+        "storeSafely": "Opbevar den sikkert.",
+        "neverShare": "Del aldrig dit seed med nogen.",
+        "iotaLogo": "IOTA-logo",
+        "printWallet": "UDSKRIV PAPIRTEGNEBOG"
+    },
+    "receive": {
+        "addressCopied": "Adresse kopieret",
+        "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
+        "generateNewAddress": "GENERER NY ADRESSE",
+        "message": "Valgfri besked",
+        "removeMessage": "FJERN BESKED"
+    },
+    "saveYourSeed": {
+        "seedCleared": "Seed ryddet",
+        "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
+        "mustSaveYourSeed": "Du skal gemme dit seed med ",
+        "atLeastOne": "mindst én ",
+        "ofTheOptions": "én af valgmulighederne angivet nedenfor."
+    },
+    "seedReentry": {
+        "incorrectSeed": "Forkert seed",
+        "incorrectSeedExplanation": "Seedet, du indtastede, er forkert. Prøv venligst igen.",
+        "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit seed.",
+        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+    },
+    "send": {
+        "invalidAddress": "Ugyldig adresse",
+        "invalidAddressExplanation1": "Adressen bør indeholde {{maxLength}} tegn og skal have en kontrolsum.",
+        "invalidAddressExplanation2": "Adressen indeholder ugyldige tegn.",
+        "invalidAddressExplanation3": "Adressen indeholder en ugyldig kontrolsum.",
+        "notEnoughFunds": "Ikke nok penge",
+        "notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne overførsel.",
+        "keyReuse": "Nøglegenbrug",
+        "keyReuseExplanation": "Adressen, du forsøger at sende til, er allerede blevet brugt. Prøv venligst en anden adresse.",
+        "recipientAddress": "Modtageradresse",
+        "amount": "Beløb",
+        "max": "MAKS.",
+        "message": "Besked",
+        "send": "SEND",
+        "invalidAmount": "Forkert beløb indtastet",
+        "invalidAmountExplanation": "Indtast venligst en numerisk værdi som transaktionsbeløbet.",
+        "maximumSelected": "MAKSIMALT beløb valgt",
+        "iotaUnits": "IOTA-enheder"
+    },
+    "setPassword": {
+        "passwordTooShort": "Adgangskoden er for kort",
+        "passwordTooShortExplanation": "Din adgangskode skal indeholde mindst {{minLength}} tegn. Den indeholder i øjeblikket {{currentLength}} tegn. Prøv venligst igen.",
+        "passwordMismatch": "Adgangskoderne er ikke ens",
+        "passwordMismatchExplanation": "Adgangskoderne, du har indtastet, er ikke ens. Prøv venligst igen.",
+        "nowWeNeedTo": "Nu skal vi opsætte en adgangskode.",
+        "anEncryptedCopy": "En krypteret kopi af dit seed bliver opbevaret på din enhed. Denne adgangskode skal bruges til at tilgå din tegnebog fremover.",
+        "ensure": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
+        "retypePassword": "Gentag adgangskode"
+    },
+    "setSeedName": {
+        "canUseMultipleSeeds": "Du kan bruge adskillige seeds med denne tegnebog. Hvert seed kræver et kontonavn.",
+        "youCanAdd": "Du kan tilføje flere seeds i menuen \"Indstillinger\"."
+    },
+    "settings": {
+        "transferSending": "Overførsel sendes",
+        "transferSendingExplanation": "Vent venligst, indtil din overførsel er blevet sendt.",
+        "generatingAddress": "Genererer modtageradresse",
+        "generatingAddressExplanation": "Vent venligst, indtil din adresse er blevet genereret.",
+        "mode": "Tilstand",
+        "theme": "Tema",
+        "currency": "Valuta",
+        "language": "Sprog",
+        "addNewSeed": "Tilføj nyt seed",
+        "twoFA": "Totrinsbekræftelse",
+        "changePassword": "Skift adgangskode",
+        "advanced": "Avancerede indstillinger",
+        "logout": "Log ud",
+        "reset": "Nulstil tegnebog",
+        "syncingComplete": "Synkronisering fuldført",
+        "syncingCompleteExplanation": "Din konto er synkroniseret.",
+        "nicknameChanged": "Kontonavn ændret",
+        "nicknameChangedExplanation": "Dit kontonavn er blevet ændret.",
+        "accountDeleted": "Konto slettet",
+        "accountDeletedExplanation": "Din konto er blevet fjernet fra tegnebogen.",
+        "cannotPerformAction": "Kan ikke udføre handling",
+        "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+    },
+    "resetWalletConfirmation": {
+        "thisAction": "Denne handling kan ikke fortrydes.",
+        "warning1": "Alle dine tegnebogsdata herunder dit",
+        "warning2": " seed, din adgangskode ",
+        "warning3": "og",
+        "warning4": " andre kontooplysninger",
+        "warning5": " mistes.",
+        "areYouSure": "Er du sikker på, du vil fortsætte?"
+    },
+    "resetWalletRequirePassword": {
+        "enterPassword": "Enter your password to reset the wallet.",
+        "cancel": "ANNULLER",
+        "reset": "NULSTIL"
+    },
+    "walletSetup": {
+        "okay": "Okay. Lad os opsætte din tegnebog!",
+        "doYouAlreadyHaveASeed": "Har du allerede et seed, du gerne vil bruge?",
+        "seedExplanation": "Dit IOTA seed fungerer ligesom din kontos brugernavn og adgangskode, og det består af en kombineret streng på 81 tegn.",
+        "explanation1": "Du kan bruge det til at tilgå dine midler fra",
+        "explanation2": " enhver tegnebog ",
+        "explanation3": "på",
+        "explanation4": " enhver enhed",
+        "explanation5": ". Men hvis du mister dit seed, mister du også dine IOTA.",
+        "keepSafe": "Du bedes opbevare dit seed sikkert."
+    },
+    "welcome": {
+        "thankYou": "Tak fordi du downloadede IOTA-tegnebogen.",
+        "weWillSpend": "Vi bruger de næste par minutter på at opsætte din tegnebog.",
+        "reminder": "Det kan være fristende at springe et par trin over, men vi opfordrer på det kraftigste, at du følger hele processen."
+    },
+    "writeSeedDown": {
+        "yourSeedIs": "Dit seed er 81 tegn langt og læses fra venstre mod højre. Skriv dit seed og din kontrolsum ned og",
+        "tripleCheck": "trippeltjek",
+        "thatTheyAreCorrect": "at de er korrekt skrevet ned."
+    },
+    "history": {
+        "bundleHashCopied": "Bundt-hash kopieret",
+        "bundleHashCopiedExplanation": "Bundt-hashet er blevet kopiret til udklipsholderen.",
+        "addressCopied": "Adresse kopieret",
+        "addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEMa",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
+    }
 }
