@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import i18next from 'i18next';
-// import locale from 'react-native-locale-detector';
 
 export function detectLocale(locale) {
     var adaptedLocale = locale.substring(0, 2);
