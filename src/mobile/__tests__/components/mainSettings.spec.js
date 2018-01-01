@@ -22,14 +22,10 @@ const getProps = overrides =>
         overrides,
     );
 
-describe('Testing MainSettings component', () => {
+describe.only('Testing MainSettings component', () => {
     describe('propTypes', () => {
         it('should require a currency string as a prop', () => {
             expect(MainSettings.propTypes.currency).toBe(PropTypes.string.isRequired);
-        });
-
-        it('should require a theme string as a prop', () => {
-            expect(MainSettings.propTypes.theme).toBe(PropTypes.string.isRequired);
         });
 
         it('should require a mode string as a prop', () => {
