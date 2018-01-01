@@ -7,9 +7,9 @@
         "back": "RETOUR",
         "done": "OK",
         "next": "SUIVANT",
-        "apply": "APPLY",
-        "save": "SAVE",
-        "close": "CLOSE",
+        "apply": "APPLIQUER",
+        "save": "ENREGISTRER",
+        "close": "FERMER",
         "manualCopy": "Notez la seed",
         "paperWallet": "Imprimez la copie papier",
         "copyToClipboard": "Ajoutez à un gestionnaire de mot de passe",
@@ -212,7 +212,7 @@
         "areYouSure": "Êtes-vous sûr(e) de vouloir continuer ?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Entrez votre mot de passe pour réinitialiser le wallet.",
         "cancel": "ANNULER",
         "reset": "RÉINITIALISER"
     },
@@ -244,44 +244,44 @@
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papiers."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Consulter la seed",
+        "viewAddresses": "Consulter les adresses",
+        "editAccountName": "Modifier le nom du compte",
+        "deleteAccount": "Supprimer le compte",
+        "addNewAccount": "Ajouter un nouveau compte"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Node personnalisé",
+        "add": "Ajouter"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Utiliser une seed existante",
+        "createNewSeed": "Créer une nouvelle seed"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Choisir un node",
+        "addCustomNode": "Ajouter un node personnalisé",
+        "manualSync": "Synchro manuelle"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Arrière-plan",
+        "frame": "Contours"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Devise"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Êtes-vous sûr de vouloir vous déconnecter?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Scannez votre QR code"
     },
     "unitInfoModal": {
         "unitSystem": "SYSTÈME D’UNITÉS",
         "trillion": "Trillion",
         "billion": "Billion",
         "million": "Million",
-        "thousand": "Thousand",
+        "thousand": "Mille",
         "one": "Un"
     }
 }
