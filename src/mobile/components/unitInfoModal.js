@@ -145,4 +145,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default translate(['unitInfoModal', 'global'])UnitInfoModal;
+export default translate(['unitInfoModal', 'global'])(UnitInfoModal);
