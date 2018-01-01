@@ -378,7 +378,7 @@ export const getTransactionsObjects = hashes => {
     });
 };
 
-export const getInclusionWithHashes = hashes => {
+export const getHashesWithPersistence = hashes => {
     return new Promise((resolve, reject) => {
         iota.api.getLatestInclusion(hashes, (err, states) => {
             if (err) {
