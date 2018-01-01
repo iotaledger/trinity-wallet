@@ -278,8 +278,8 @@
     },
     "unitInfoModal": {
         "unitSystem": "SYSTÈME D’UNITÉS",
-        "trillion": "Trillion",
-        "billion": "Billion",
+        "trillion": "Billion",
+        "billion": "Milliard",
         "million": "Million",
         "thousand": "Mille",
         "one": "Un"
