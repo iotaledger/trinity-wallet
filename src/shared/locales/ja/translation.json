@@ -278,10 +278,10 @@
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "trillion": "１兆",
+        "billion": "十億",
+        "million": "百万",
+        "thousand": "千",
+        "one": "一"
     }
 }
