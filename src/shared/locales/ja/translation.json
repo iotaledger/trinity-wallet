@@ -7,7 +7,7 @@
         "back": "戻る",
         "done": "完了",
         "next": "次へ",
-        "apply": "APPLY",
+        "apply": "適用",
         "save": "保存",
         "close": "閉じる",
         "manualCopy": "Seedを書き写す",
@@ -251,16 +251,16 @@
         "addNewAccount": "新しいアカウントを追加"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
+        "customNode": "カスタムノード",
         "add": "追加"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "既存のseedを使用",
+        "createNewSeed": "新しいseedを作成"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
+        "selectNode": "ノードを選択",
+        "addCustomNode": "カスタムノードの追加",
         "manualSync": "手動同期"
     },
     "advancedThemeCustomisation": {
