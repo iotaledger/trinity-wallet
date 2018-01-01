@@ -7,6 +7,9 @@
         "back": "TILBAGE",
         "done": "FÆRDIG",
         "next": "NÆSTE",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
         "copyToClipboard": "Add to password manager",
@@ -29,7 +32,8 @@
         "syncInProgress": "Synkronisering i gang",
         "syncInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
         "somethingWentWrong": "Der gik noget galt",
-        "somethingWentWrongExplanation": "Genstart venligst appen."
+        "somethingWentWrongExplanation": "Genstart venligst appen.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seedet indeholder ugyldige tegn",
@@ -135,8 +139,8 @@
         "removeMessage": "FJERN BESKED"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Seed ryddet",
+        "seedClearedExplanation": "Seedet er blevet ryddet fra udklipsholderen for at øge din sikkerhed.",
         "mustSaveYourSeed": "Du skal gemme dit seed med ",
         "atLeastOne": "mindst én ",
         "ofTheOptions": "én af valgmulighederne angivet nedenfor."
@@ -198,7 +202,6 @@
         "advanced": "Avancerede indstillinger",
         "logout": "Log ud",
         "reset": "Nulstil tegnebog",
-        "back": "Tilbage",
         "syncingComplete": "Synkronisering fuldført",
         "syncingCompleteExplanation": "Din konto er synkroniseret.",
         "nicknameChanged": "Kontonavn ændret",
@@ -253,5 +256,46 @@
         "bundleHashCopiedExplanation": "Bundt-hashet er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }

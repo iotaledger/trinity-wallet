@@ -103,7 +103,7 @@ class LanguageSelection extends Component {
                             ref={c => {
                                 this.dropdown = c;
                             }}
-                            title={this.languageSelected}
+                            title={this.languageSelected} //TODO: Ask if this is correct
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={currentLanguageLabel}
                             options={I18N_LOCALE_LABELS}
@@ -116,12 +116,12 @@ class LanguageSelection extends Component {
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>Back</Text>
+                                <Text style={styles.titleTextLeft}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveLanguageSelection()}>
                             <View style={styles.itemRight}>
-                                <Text style={styles.titleTextRight}>Save</Text>
+                                <Text style={styles.titleTextRight}>{t('global:save')}</Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
