@@ -120,6 +120,9 @@ export class Poll extends Component {
     promote() {
         const { unconfirmedBundleTails, allPollingServices, pollFor } = this.props;
 
+        const index = allPollingServices.indexOf(pollFor);
+        const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
+
         if (!isEmpty(unconfirmedBundleTails)) {
             const bundles = keys(unconfirmedBundleTails);
             const top = bundles[0];
@@ -129,9 +132,6 @@ export class Poll extends Component {
 
             const tailsSortedWithAttachmentTimestamp = sortWithProp(tails, 'attachmentTimestamp');
             const tailWithMostRecentTimestamp = get(tailsSortedWithAttachmentTimestamp, '[0]');
-
-            const index = allPollingServices.indexOf(pollFor);
-            const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
 
             if (Poll.shouldPromote(tailWithMostRecentTimestamp)) {
                 this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
