@@ -19,16 +19,18 @@ class Loading extends Component {
     componentDidMount() {
         this.props.changeHomeScreenRoute('balance');
         this.props.setSetting('mainSettings');
+
         const { firstUse, selectedAccountName } = this.props;
 
         keychain
             .get()
             .then(credentials => {
                 const seed = getSeed(credentials.data, 0);
+
                 if (firstUse) {
                     this.props.getFullAccountInfo(seed, selectedAccountName, this.props.navigator);
                 } else {
-                    this.props.getAccountInfo(selectedAccountName, this.props.navigator);
+                    this.props.getAccountInfo(seed, selectedAccountName, this.props.navigator);
                 }
             })
             .catch(err => console.log(err)); // Dropdown
@@ -53,16 +55,9 @@ class Loading extends Component {
     }
 
     render() {
-        const {
-            tempAccount: { ready },
-            account: { firstUse },
-            navigator,
-            t,
-            negativeColor,
-            backgroundColor,
-        } = this.props;
+        const { firstUse, t, negativeColor, backgroundColor } = this.props;
 
-        if (this.props.account.firstUse) {
+        if (firstUse) {
             return (
                 <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                     <StatusBar barStyle="light-content" />

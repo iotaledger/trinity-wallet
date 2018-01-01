@@ -67,7 +67,7 @@ export function setPrice(data) {
     };
 }
 
-function getUrlTimeFormat(timeframe) {
+export function getUrlTimeFormat(timeframe) {
     // Used for setting correct CryptoCompare URL when fetching chart data
     switch (timeframe) {
         case '24h':
@@ -85,7 +85,7 @@ function getUrlTimeFormat(timeframe) {
     }
 }
 
-function getUrlNumberFormat(timeframe) {
+export function getUrlNumberFormat(timeframe) {
     // Used for setting correct CryptoCompare URL when fetching chart data
     switch (timeframe) {
         case '24h':
@@ -132,7 +132,7 @@ export function getChartData() {
     };
 }
 
-function setChartData(json, currency, timeframe) {
+export function setChartData(json, currency, timeframe) {
     const timeValue = getUrlNumberFormat(timeframe);
     const response = get(json, 'Data');
     const hasDataPoints = size(response);

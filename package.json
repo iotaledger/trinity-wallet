@@ -6,8 +6,8 @@
     "main": "index.js",
     "scripts": {
         "format": "prettier --write \"**/*.{js,json,css}\"",
-        "precommit": "lint-staged",
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "precommit": "lint-staged && yarn test:all",
+        "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../",
         "full-setup": "yarn && node full-setup.js",
         "start:desktop": "cd src/desktop && yarn start",
         "start:mobile": "cd src/mobile && yarn start"
