@@ -271,7 +271,9 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         height: width / 3.4,
         justifyContent: 'center',
-        padding: width / 30,
+        paddingTop: width / 30,
+        paddingHorizontal: width / 30,
+        paddingBottom: isAndroid ? width / 22 : width / 30,
     },
     activityIndicator: {
         flex: 1,
@@ -285,6 +287,8 @@ const styles = StyleSheet.create({
         color: 'white',
         backgroundColor: 'transparent',
         textAlign: 'center',
+        height: width / 20,
+        justifyContent: 'center',
     },
     generateButton: {
         borderRadius: GENERAL.borderRadiusLarge,
