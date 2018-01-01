@@ -22,7 +22,7 @@ const getProps = overrides =>
         overrides,
     );
 
-describe.only('Testing MainSettings component', () => {
+describe('Testing MainSettings component', () => {
     describe('propTypes', () => {
         it('should require a currency string as a prop', () => {
             expect(MainSettings.propTypes.currency).toBe(PropTypes.string.isRequired);
