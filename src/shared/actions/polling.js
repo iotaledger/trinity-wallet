@@ -35,7 +35,7 @@ import {
     getLatestAddresses,
     getTransactionHashes,
     getTransactionsObjects,
-    getInclusionWithHashes,
+    getHashesWithPersistence,
     getConfirmedTxTailsHashes,
     getBundlesWithPersistence,
 } from '../libs/accountUtils';
@@ -222,7 +222,7 @@ export const getAccountInfo = (seed, accountName) => {
                 return Promise.resolve(getTotalBalance(Object.keys(payload.addresses)));
             }
 
-            return Promise.resolve(getInclusionWithHashes(pendingTxTailsHashes))
+            return Promise.resolve(getHashesWithPersistence(pendingTxTailsHashes))
                 .then(({ states, hashes }) => {
                     return getConfirmedTxTailsHashes(states, hashes);
                 })
@@ -276,7 +276,7 @@ export const getAccountInfo = (seed, accountName) => {
             .then(txs => {
                 const tailTxs = filter(txs, t => t.currentIndex === 0);
 
-                return getInclusionWithHashes(map(tailTxs, t => t.hash));
+                return getHashesWithPersistence(map(tailTxs, t => t.hash));
             })
             .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
             .then(bundles => {
