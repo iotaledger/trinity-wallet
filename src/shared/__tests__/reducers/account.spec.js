@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import reducer from '../../reducers/account';
 import * as actions from '../../actions/account';
-import * as tempAccountActions from '../../actions/tempAccount';
 
 describe('Reducer: account', () => {
     it('should have an initial state', () => {

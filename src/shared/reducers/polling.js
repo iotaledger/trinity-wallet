@@ -1,14 +1,15 @@
 import findIndex from 'lodash/findIndex';
 import isNumber from 'lodash/isNumber';
+import size from 'lodash/size';
 import { ActionTypes } from '../actions/polling';
 
-const setNextPollIfSuccessful = state => {
+export const setNextPollIfSuccessful = state => {
     const { allPollingServices, pollFor } = state;
 
     const currentIndex = findIndex(allPollingServices, svc => pollFor === svc);
 
     if (isNumber(currentIndex)) {
-        if (currentIndex === allPollingServices.length - 1) {
+        if (currentIndex === size(allPollingServices) - 1) {
             return { pollFor: allPollingServices[0], retryCount: 0 };
         }
 
@@ -18,7 +19,7 @@ const setNextPollIfSuccessful = state => {
     return { pollFor: allPollingServices[0], retryCount: 0 }; // In case something bad happens, restart fresh
 };
 
-const setNextPollIfUnsuccessful = state => {
+export const setNextPollIfUnsuccessful = state => {
     const { allPollingServices, pollFor, retryCount } = state;
 
     if (retryCount < 3) {
@@ -28,7 +29,7 @@ const setNextPollIfUnsuccessful = state => {
     const currentIndex = findIndex(allPollingServices, svc => pollFor === svc);
 
     if (isNumber(currentIndex)) {
-        if (currentIndex === allPollingServices.length - 1) {
+        if (currentIndex === size(allPollingServices) - 1) {
             return { pollFor: allPollingServices[0], retryCount: 0 };
         }
 
