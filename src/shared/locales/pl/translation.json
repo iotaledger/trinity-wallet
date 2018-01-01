@@ -7,6 +7,9 @@
         "back": "WSTECZ",
         "done": "GOTOWE",
         "next": "DALEJ",
+        "apply": "APPLY",
+        "save": "SAVE",
+        "close": "CLOSE",
         "manualCopy": "Zanotuj seeda",
         "paperWallet": "Wydrukuj wersje papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
@@ -29,7 +32,8 @@
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
-        "somethingWentWrongExplanation": "Uruchom ponownie aplikację."
+        "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
+        "node": "Node"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -195,7 +199,6 @@
         "advanced": "Ustawienia zaawansowane",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
-        "back": "Wstecz",
         "syncingComplete": "Synchronizacja zakończona",
         "syncingCompleteExplanation": "Twoje konto zostało pomyślnie zsynchronizowane.",
         "nicknameChanged": "Zmieniono nazwę konta",
@@ -248,5 +251,46 @@
         "bundleHashCopiedExplanation": "Bundle hash został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Adres został skopiowany do schowka."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
     }
 }
