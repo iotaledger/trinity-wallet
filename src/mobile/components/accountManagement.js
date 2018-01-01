@@ -140,4 +140,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default translate(['accountmanagement', 'global'])(AdvancedSettings);
+export default translate(['accountManagement', 'global'])(AdvancedSettings);
