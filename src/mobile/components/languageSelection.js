@@ -84,12 +84,18 @@ class LanguageSelection extends Component {
         const { backPress, t } = this.props;
 
         return (
-            <TouchableWithoutFeedback onPress={() => this.dropdown.closeDropdown()}>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    if (this.dropdown) {
+                        this.dropdown.closeDropdown();
+                    }
+                }}
+            >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.2 }} />
                         <Dropdown
-                            ref={c => {
+                            onRef={c => {
                                 this.dropdown = c;
                             }}
                             title={this.languageSelected} //TODO: Ask if this is correct
