@@ -17,7 +17,7 @@ import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
-import Promoter from './promoter';
+import Poll from './poll';
 import THEMES from '../theme/themes';
 import Tabs from '../components/tabs';
 import Tab from '../components/tab';
@@ -127,8 +127,6 @@ class Home extends Component {
             navigator,
             inactive,
             minimised,
-            startBackgroundProcesses,
-            endBackgroundProcesses,
             barColor,
             backgroundColor,
             negativeColor,
@@ -144,11 +142,7 @@ class Home extends Component {
                             <View style={{ flex: 1 }}>
                                 <View style={styles.topContainer} />
                                 <View style={styles.midContainer}>
-                                    <TabContent
-                                        navigator={navigator}
-                                        startBackgroundProcesses={startBackgroundProcesses}
-                                        endBackgroundProcesses={endBackgroundProcesses}
-                                    />
+                                    <TabContent navigator={navigator} />
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <Tabs
@@ -176,7 +170,7 @@ class Home extends Component {
                         </View>
                     )}
                     {minimised && <View />}
-                    <Promoter />
+                    <Poll />
                     <StatefulDropdownAlert />
                     <KeepAwake />
                 </View>
@@ -213,8 +207,6 @@ Home.propTypes = {
     setUserActivity: PropTypes.func.isRequired,
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,
-    startBackgroundProcesses: PropTypes.func.isRequired,
-    endBackgroundProcesses: PropTypes.func.isRequired,
     backgroundColor: PropTypes.object.isRequired,
     barColor: PropTypes.object.isRequired,
     negativeColor: PropTypes.object.isRequired,
