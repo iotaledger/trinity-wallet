@@ -28,10 +28,6 @@ describe('Testing MainSettings component', () => {
             expect(MainSettings.propTypes.currency).toBe(PropTypes.string.isRequired);
         });
 
-        it('should require a theme string as a prop', () => {
-            expect(MainSettings.propTypes.theme).toBe(PropTypes.string.isRequired);
-        });
-
         it('should require a mode string as a prop', () => {
             expect(MainSettings.propTypes.mode).toBe(PropTypes.string.isRequired);
         });

@@ -13,6 +13,7 @@ import tinycolor from 'tinycolor2';
 import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
+import cloneDeep from 'lodash/cloneDeep';
 import { translate } from 'react-i18next';
 
 class AdvancedThemeCustomisation extends React.Component {
@@ -26,7 +27,7 @@ class AdvancedThemeCustomisation extends React.Component {
     }
 
     onApplyPress() {
-        let theme = this.props.theme;
+        let theme = cloneDeep(this.props.theme);
         theme.backgroundColor = this.state.backgroundColor;
         theme.barColor = this.state.barColor;
         this.props.updateTheme(theme, 'Custom');
@@ -34,7 +35,7 @@ class AdvancedThemeCustomisation extends React.Component {
     }
 
     render() {
-    const { t } = this.props;
+        const { t } = this.props;
         const backgroundTextColor = tinycolor(this.state.backgroundColor).isDark() ? '#FAFAFA' : '#222';
         const barTextColor = tinycolor(this.state.barColor).isDark() ? '#FAFAFA' : '#222';
         return (
@@ -107,14 +108,14 @@ class AdvancedThemeCustomisation extends React.Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.props.backPress()}>
                         <View style={styles.itemLeft}>
-                            <Image source={arrowLeftImagePath} style={styles.icon} />
-                            <Text style={styles.titleText}>{t('global:back')}</Text>
+                            <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                            <Text style={styles.titleTextLeft}>Back</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.onApplyPress()}>
                         <View style={styles.itemRight}>
-                            <Image source={tickImagePath} style={styles.icon} />
-                            <Text style={styles.titleText}>{t('global:apply')}</Text>
+                            <Text style={styles.titleTextRight}>Apply</Text>
+                            <Image source={tickImagePath} style={styles.iconRight} />
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -179,16 +180,27 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
-    titleText: {
+    titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+    },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
     },
 });
 
