@@ -152,7 +152,7 @@
         "invalidAddressExplanation1": "Adressen bør indeholde {{maxLength}} tegn og skal have en kontrolsum.",
         "invalidAddressExplanation2": "Adressen indeholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressen indeholder en ugyldig kontrolsum.",
-        "notEnoughFunds": "Ikke nok penge",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til at gennemføre denne overførsel.",
         "keyReuse": "Nøglegenbrug",
         "keyReuseExplanation": "Adressen, du forsøger at sende til, er allerede blevet brugt. Prøv venligst en anden adresse.",
