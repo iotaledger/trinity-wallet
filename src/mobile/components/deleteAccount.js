@@ -56,27 +56,30 @@ class DeleteAccount extends Component {
         this._hideModal();
     }
 
-    _renderModalContent = (titleColour, sendOrReceive) => (
-        <View
-            style={{
-                width: width / 1.15,
-                alignItems: 'center',
-                backgroundColor: THEMES.getHSL(this.props.backgroundColor),
-            }}
-        >
-            <View style={styles.modalContent}>
-                <Text style={[styles.infoText, { paddingBottom: height / 16 }]}>
-                    Are you sure you want to delete your account called {this.props.currentAccountName}?
-                </Text>
-                <OnboardingButtons
-                    onLeftButtonPress={() => this.onNoPress()}
-                    onRightButtonPress={() => this.onYesPress()}
-                    leftText={t('global:no')}
-                    rightText={t('global:yes')}
-                />
+    _renderModalContent = (titleColour, sendOrReceive) => {
+        const { t } = this.props;
+        return (
+            <View
+                style={{
+                    width: width / 1.15,
+                    alignItems: 'center',
+                    backgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                }}
+            >
+                <View style={styles.modalContent}>
+                    <Text style={[styles.infoText, { paddingBottom: height / 16 }]}>
+                        Are you sure you want to delete your account called {this.props.currentAccountName}?
+                    </Text>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this.onNoPress()}
+                        onRightButtonPress={() => this.onYesPress()}
+                        leftText={t('global:no')}
+                        rightText={t('global:yes')}
+                    />
+                </View>
             </View>
-        </View>
-    );
+        );
+    };
 
     render() {
         const { t, negativeColor } = this.props;
@@ -125,14 +128,14 @@ class DeleteAccount extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.onContinuePress()}>
                             <View style={styles.itemRight}>
-                                <Image source={tickImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>{t('global:continue')}</Text>
+                                <Text style={styles.titleTextRight}>{t('global:continue')}</Text>
+                                <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
                     </View>
