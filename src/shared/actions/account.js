@@ -33,6 +33,7 @@ import {
 } from '../libs/accountUtils';
 import { setReady, clearTempData } from './tempAccount';
 import { generateAlert, generateAccountInfoErrorAlert } from '../actions/alerts';
+import i18next from 'i18next';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -313,7 +314,7 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
             return dispatch(manualSyncSuccess(assign({}, payload, { hashes: [] })));
         }
 
-        dispatch(generateAlert('error', 'invalid response', 'Received an invalid response from node.'));
+        dispatch(generateAlert('error', 'Invalid response', 'Received an invalid response from node.'));
         return dispatch(manualSyncError());
     });
 };
