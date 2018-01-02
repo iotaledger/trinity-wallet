@@ -523,7 +523,6 @@ class Settings extends Component {
                 },
             },
         });
-        BackHandler.removeEventListener('homeBackPress');
     }
 
     logout() {
