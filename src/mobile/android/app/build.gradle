@@ -165,7 +165,6 @@ dependencies {
   	compile project(':react-native-svg')
   	compile project(':react-native-camera')
     compile project(':react-native-fs')
-    compile project(':react-native-keep-awake')
     compile project(':react-native-keychain')
     compile("com.crashlytics.sdk.android:crashlytics:2.6.4@aar") {
             transitive = true;

@@ -28,12 +28,12 @@ export default () => C => {
                 timer.setTimeout(
                     'background',
                     () => {
-                        setUserActivity({ inactive: true });
+                        this.props.setUserActivity({ inactive: true });
                     },
                     30000,
                 );
             } else if (nextAppState === 'active') {
-                setUserActivity({ minimised: false });
+                this.props.setUserActivity({ minimised: false });
                 timer.clearTimeout('background');
             }
         };
