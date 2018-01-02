@@ -628,6 +628,6 @@ const mapStateToProps = state => ({
     extraColor: state.settings.theme.extraColor,
 });
 
-export default translate(['settings', 'global', 'addAdditionalSeed'])(
+export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(
     connect(mapStateToProps, mapDispatchToProps)(Settings),
 );

@@ -95,9 +95,9 @@ const ManualSync = props => (
                 <View style={{ flex: 0.5 }} />
                 {!props.isSyncing && (
                     <View style={styles.innerContainer}>
-                        <Text style={styles.infoText}>{t('pressToSync')}</Text>
-                        <Text style={styles.infoText}>{t('thisMayTake')}</Text>
-                        <Text style={styles.infoText}>{t('youMayNotice')}</Text>
+                        <Text style={styles.infoText}>{t('manualSync:pressToSync')}</Text>
+                        <Text style={styles.infoText}>{t('manualSync:thisMayTake')}</Text>
+                        <Text style={styles.infoText}>{t('manualSync:youMayNotice')}</Text>
                         <View style={styles.syncButtonContainer}>
                             <TouchableOpacity
                                 onPress={() => {
@@ -105,7 +105,7 @@ const ManualSync = props => (
                                 }}
                             >
                                 <View style={styles.syncButton}>
-                                    <Text style={styles.syncButtonText}>{t('syncAccount')}</Text>
+                                    <Text style={styles.syncButtonText}>{t('manualSync:syncAccount')}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -113,9 +113,9 @@ const ManualSync = props => (
                 )}
                 {props.isSyncing && (
                     <View style={styles.innerContainer}>
-                        <Text style={styles.infoText}>{t('syncingYourAccount')}</Text>
-                        <Text style={styles.infoText}>{t('thisMayTake')}</Text>
-                        <Text style={styles.infoText}>{t('youMayNotice')}</Text>
+                        <Text style={styles.infoText}>{t('manualSync:syncingYourAccount')}</Text>
+                        <Text style={styles.infoText}>{t('manualSync:thisMayTake')}</Text>
+                        <Text style={styles.infoText}>{t('manualSync:youMayNotice')}</Text>
                         <ActivityIndicator
                             animating={props.isSyncing}
                             style={styles.activityIndicator}
