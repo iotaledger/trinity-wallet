@@ -24,7 +24,6 @@ class WalletSetup extends Component {
                 navBarTransparent: true,
             },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -36,7 +35,6 @@ class WalletSetup extends Component {
                 navBarTransparent: true,
             },
             animated: false,
-            overrideBackPress: true,
         });
     }
 

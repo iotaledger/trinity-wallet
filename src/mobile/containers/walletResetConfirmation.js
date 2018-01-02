@@ -1,7 +1,7 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, Image, StatusBar, BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -22,6 +22,17 @@ class WalletResetConfirmation extends Component {
         this.requirePassword = this.requirePassword.bind(this);
     }
 
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            this.goBack();
+            return true;
+        });
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress');
+    }
+
     navigateTo(url) {
         this.props.navigator.push({
             screen: url,
@@ -31,7 +42,6 @@ class WalletResetConfirmation extends Component {
                 screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -45,7 +55,6 @@ class WalletResetConfirmation extends Component {
                     navBarTransparent: true,
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
-                overrideBackPress: true,
             },
         });
     }
