@@ -50,7 +50,6 @@ class InitialLoading extends Component {
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 animated: false,
-                overrideBackPress: true,
             });
         }
     }

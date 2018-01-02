@@ -17,7 +17,7 @@ class AdvancedSettings extends Component {
     };
 
     render() {
-    const { t } = this.props;
+        const { t } = this.props;
         return (
             <View style={styles.container}>
                 <View style={{ flex: 4.5 }}>
@@ -65,7 +65,7 @@ class AdvancedSettings extends Component {
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
+                                <Image source={arrowLeftImagePath} style={styles.backIcon} />
                                 <Text style={styles.titleText}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
@@ -108,6 +108,11 @@ const styles = StyleSheet.create({
         height: width / 22,
         marginRight: width / 25,
     },
+    backIcon: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
+    },
     titleText: {
         color: 'white',
         fontFamily: 'Lato-Regular',
@@ -134,4 +139,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default translate(['advancedSettings','settings', 'global'])(AdvancedSettings);
+export default translate(['advancedSettings', 'settings', 'global'])(AdvancedSettings);

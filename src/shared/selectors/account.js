@@ -21,6 +21,14 @@ const currentAccountNameSelectorBySeedIndex = (seedIndex, seedNames) => {
     return seedNames[seedIndex];
 };
 
+const unspentAddressesHashesSelector = (seedName, hashesDict) => get(hashesDict, seedName);
+
+const pendingTxTailsHashesSelector = (accountName, hashesDict) => get(hashesDict, accountName);
+
+export const getExistingUnspentAddressesHashes = createSelector(unspentAddressesHashesSelector, hashes => hashes);
+
+export const getPendingTxTailsHashesForSelectedAccount = createSelector(pendingTxTailsHashesSelector, hashes => hashes);
+
 export const getSelectedAccount = createSelector(currentAccountSelector, account => account);
 
 export const getSelectedAccountViaSeedIndex = createSelector(currentAccountSelectorBySeedIndex, account => account);

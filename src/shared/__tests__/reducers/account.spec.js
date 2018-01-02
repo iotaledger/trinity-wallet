@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import reducer from '../../reducers/account';
 import * as actions from '../../actions/account';
-import * as tempAccountActions from '../../actions/tempAccount';
 
 describe('Reducer: account', () => {
     it('should have an initial state', () => {
@@ -12,6 +11,8 @@ describe('Reducer: account', () => {
             onboardingComplete: false,
             accountInfo: {},
             unconfirmedBundleTails: {},
+            unspentAddressesHashes: {},
+            pendingTxTailsHashes: {},
         };
 
         expect(reducer(undefined, {})).to.eql(initialState);
@@ -60,27 +61,6 @@ describe('Reducer: account', () => {
         const newState = reducer(initialState, action);
         const expectedState = {
             unconfirmedBundleTails: { foo: null, baz: null },
-        };
-
-        expect(newState).to.eql(expectedState);
-    });
-
-    it('SET_ACCOUNT_INFO should set addresses, transfers and balance to "seedName" in "accountInfo"', () => {
-        const initialState = {
-            accountInfo: {
-                foo: { addresses: {}, transfers: [], balance: 0 },
-                baz: { addresses: {}, transfers: [{}], balance: 0 },
-            },
-        };
-
-        const action = actions.setAccountInfo('foo', { bar: {} }, [{}], 100);
-
-        const newState = reducer(initialState, action);
-        const expectedState = {
-            accountInfo: {
-                foo: { addresses: { bar: {} }, transfers: [{}], balance: 100 },
-                baz: { addresses: {}, transfers: [{}], balance: 0 },
-            },
         };
 
         expect(newState).to.eql(expectedState);
@@ -146,51 +126,6 @@ describe('Reducer: account', () => {
         };
 
         expect(newState.seedCount).to.eql(expectedState.seedCount);
-    });
-
-    it('NEW_ADDRESS_DATA_FETCH_SUCCESS should merge addresses in payload to accountName in accountInfo', () => {
-        const initialState = {
-            accountInfo: {
-                foo: { addresses: { foo: {}, baz: {} } },
-                bar: { addresses: {} },
-            },
-        };
-
-        const action = actions.newAddressDataFetchSuccess({ accountName: 'foo', addresses: { baz: { balance: 0 } } });
-
-        const newState = reducer(initialState, action);
-        const expectedState = {
-            accountInfo: {
-                foo: { addresses: { foo: {}, baz: { balance: 0 } } },
-                bar: { addresses: {} },
-            },
-        };
-
-        expect(newState).to.eql(expectedState);
-    });
-
-    it('GET_TRANSFERS_SUCCESS should merge transfers in payload to accountName in accountInfo', () => {
-        const initialState = {
-            accountInfo: {
-                foo: { transfers: [] },
-                bar: { transfers: [] },
-            },
-        };
-
-        const action = tempAccountActions.getTransfersSuccess({
-            accountName: 'foo',
-            transfers: [{}, {}],
-        });
-
-        const newState = reducer(initialState, action);
-        const expectedState = {
-            accountInfo: {
-                foo: { transfers: [{}, {}] },
-                bar: { transfers: [] },
-            },
-        };
-
-        expect(newState).to.eql(expectedState);
     });
 
     it('SET_FIRST_USE should set firstUse to payload', () => {

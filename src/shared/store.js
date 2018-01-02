@@ -1,6 +1,8 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+
 import marketData from './reducers/marketData';
 import tempAccount from './reducers/tempAccount';
 import account from './reducers/account';
@@ -11,6 +13,7 @@ import notifications from './reducers/notifications';
 import alerts from './reducers/alerts';
 import home from './reducers/home';
 import keychain from './reducers/keychain';
+import polling from './reducers/polling';
 import { ActionTypes } from './actions/app';
 
 const reducers = combineReducers({
@@ -24,6 +27,7 @@ const reducers = combineReducers({
     notifications,
     home,
     keychain,
+    polling,
 });
 
 const rootReducer = (state, action) => {
@@ -37,7 +41,7 @@ const rootReducer = (state, action) => {
 const store = createStore(
     rootReducer,
     compose(
-        applyMiddleware(thunk),
+        applyMiddleware(thunk, logger),
         autoRehydrate(),
         typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
     ),
