@@ -23,6 +23,7 @@ import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
 import EnterPassword from '../components/enterPassword';
+import KeepAwake from 'react-native-keep-awake';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
 
 class Home extends Component {
     componentDidMount() {
+        KeepAwake.deactivate();
         BackHandler.addEventListener('homeBackPress', () => {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
                 Navigation.startSingleScreenApp({
