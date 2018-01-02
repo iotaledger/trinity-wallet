@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
     View,
     Text,
@@ -102,13 +103,29 @@ const styles = StyleSheet.create({
     },
 });
 
-class Dropdown extends Component {
+export class Dropdown extends Component {
+    static propTypes = {
+        onRef: PropTypes.func,
+    };
+
     constructor(props) {
         super(props);
+
         this.state = {
             isDropdownOpen: false,
             selectedOption: this.props.defaultOption,
         };
+    }
+
+    componentDidMount() {
+        if (this.props.onRef) {
+            this.props.onRef(this);
+        }
+    }
+    componentWillUnmount() {
+        if (this.props.onRef) {
+            this.props.onRef(null);
+        }
     }
 
     onOptionPress(option) {
