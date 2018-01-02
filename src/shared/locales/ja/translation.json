@@ -152,7 +152,7 @@
         "invalidAddressExplanation1": "アドレスは{{maxLength}}文字にする必要があり、チェックサムを持っている必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
-        "notEnoughFunds": "残高不足です。",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "送金を完了するための十分なIOTAが有りません。",
         "keyReuse": "キーの再使用",
         "keyReuseExplanation": "送金しようとしているアドレスは既に使用されています。別のアドレスをお試しください。",
