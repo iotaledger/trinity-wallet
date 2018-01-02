@@ -152,7 +152,7 @@
         "invalidAddressExplanation1": "地址應該為{{maxLength}} 字元長度且應有一個檢查碼",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
-        "notEnoughFunds": "餘額不足",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "您的IOTA不足以完成本次交易。",
         "keyReuse": "重新使用加密鑰匙",
         "keyReuseExplanation": "您欲發送的接收地址已有人使用。請輸入別的地址。",
