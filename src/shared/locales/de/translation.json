@@ -161,7 +161,7 @@
         "invalidAddressExplanation1": "Die Adresse sollte {{maxLength}} Zeichen lang sein und eine Prüfsumme haben.",
         "invalidAddressExplanation2": "Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
-        "notEnoughFunds": "Zu niedriges Guthaben",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
         "keyReuse": "Key Wiederverwendung",
         "keyReuseExplanation":

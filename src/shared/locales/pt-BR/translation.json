@@ -160,7 +160,7 @@
         "invalidAddressExplanation1": "O endereço deve ter {{maxLength}} caracteres e o código de verificação.",
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
         "invalidAddressExplanation3": "O endereço contém um código de verificação incorreto.",
-        "notEnoughFunds": "Fundos insuficientes",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Não contém fundos suficientes para realizar esta transferência.",
         "keyReuse": "Reutilização da chave",
         "keyReuseExplanation":
