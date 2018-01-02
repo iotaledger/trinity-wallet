@@ -18,7 +18,6 @@ import com.reactnativenavigation.NavigationApplication;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.rnfs.RNFSPackage;
 import com.rnprint.RNPrint.RNPrintPackage;
-import com.corbt.keepawake.KCKeepAwakePackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,8 +56,7 @@ public class MainApplication extends NavigationApplication {
             new ExtraDimensionsPackage(),
             new RNDetectNavbarAndroidPackage(),
             new KCKeepAwakePackage(),
-            new KeychainPackage(),
-            new KCKeepAwakePackage()
+            new KeychainPackage()
     );
   }
 
