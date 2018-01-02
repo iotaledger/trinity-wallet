@@ -296,4 +296,4 @@ const mapDispatchToProps = {
     setFullNode,
 };
 
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
