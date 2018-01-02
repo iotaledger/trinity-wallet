@@ -152,7 +152,7 @@
         "invalidAddressExplanation1": "L'indirizzo deve essere {{maxLength}} caratteri e deve avere un valore di checksum.",
         "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
         "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
-        "notEnoughFunds": "Fondi insufficenti",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Non hai abbastanza IOTA per completare questo trasferimento.",
         "keyReuse": "Riutilizzo di chiave",
         "keyReuseExplanation": "L'indirizzo al quale stai tentando di inviare a è già stato utilizzato. Si prega di provare un altro indirizzo.",
