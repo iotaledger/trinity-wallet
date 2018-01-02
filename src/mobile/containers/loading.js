@@ -18,6 +18,7 @@ const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
 class Loading extends Component {
     componentDidMount() {
+        KeepAwake.activate();
         this.props.changeHomeScreenRoute('balance');
         this.props.setSetting('mainSettings');
 
@@ -41,6 +42,7 @@ class Loading extends Component {
         const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
 
         if (ready) {
+            KeepAwake.deactivate();
             Navigation.startSingleScreenApp({
                 screen: {
                     screen: 'home',
@@ -49,14 +51,9 @@ class Loading extends Component {
                         navBarTransparent: true,
                         screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                     },
-                    //overrideBackPress: true,
                 },
             });
         }
-    }
-
-    componentDidMount(){
-        KeepAwake.activate();
     }
 
     render() {

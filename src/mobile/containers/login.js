@@ -20,6 +20,8 @@ import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain from '../util/keychain';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { width, height } from '../util/dimensions';
 
 class Login extends Component {
@@ -150,6 +152,8 @@ class Login extends Component {
     }
 
     navigateToHome() {
+        this.props.changeHomeScreenRoute('balance');
+        this.props.setSetting('mainSettings');
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
@@ -158,7 +162,6 @@ class Login extends Component {
                     navBarTransparent: true,
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
-                overrideBackPress: true,
             },
         });
     }
@@ -294,6 +297,8 @@ const mapDispatchToProps = {
     getCurrencyData,
     setReady,
     setFullNode,
+    changeHomeScreenRoute,
+    setSetting,
 };
 
 export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
