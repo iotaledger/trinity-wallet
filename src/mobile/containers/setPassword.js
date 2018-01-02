@@ -62,6 +62,7 @@ class SetPassword extends Component {
                             screenBackgroundColor: COLORS.backgroundGreen,
                         },
                         animated: false,
+                        overrideBackPress: true
                     });
                 })
                 .catch(err => console.error(err));
