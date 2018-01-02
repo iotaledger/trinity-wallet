@@ -85,109 +85,114 @@ const styles = StyleSheet.create({
     },
 });
 
+var t;
+
 const MainSettings = props => (
-    <View style={styles.container}>
-        <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.onModePress()}>
-                <View style={styles.item}>
-                    <View style={styles.innerItemContainerLeft}>
-                        <Image source={modeImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>Mode</Text>
+    (t = props.t),
+    (
+        <View style={styles.container}>
+            <View style={styles.itemContainer}>
+                <TouchableOpacity onPress={() => props.onModePress()}>
+                    <View style={styles.item}>
+                        <View style={styles.innerItemContainerLeft}>
+                            <Image source={modeImagePath} style={styles.icon} />
+                            <Text style={styles.titleText}>{t('mode')}</Text>
+                        </View>
+                        <View style={styles.innerItemContainerRight}>
+                            <Text style={styles.settingText}>{props.mode}</Text>
+                        </View>
                     </View>
-                    <View style={styles.innerItemContainerRight}>
-                        <Text style={styles.settingText}>{props.mode}</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.itemContainer}>
+                <TouchableOpacity onPress={() => props.onThemePress()}>
+                    <View style={styles.item}>
+                        <View style={styles.innerItemContainerLeft}>
+                            <Image source={themeImagePath} style={styles.icon} />
+                            <Text style={styles.titleText}>{t('theme')}</Text>
+                        </View>
+                        <View style={styles.innerItemContainerRight}>
+                            <Text style={styles.settingText}>{props.themeName}</Text>
+                        </View>
                     </View>
-                </View>
-            </TouchableOpacity>
-        </View>
-        <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.onThemePress()}>
-                <View style={styles.item}>
-                    <View style={styles.innerItemContainerLeft}>
-                        <Image source={themeImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>Theme</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.itemContainer}>
+                <TouchableOpacity onPress={() => props.setSetting('currencySelection')}>
+                    <View style={styles.item}>
+                        <View style={styles.innerItemContainerLeft}>
+                            <Image source={currencyImagePath} style={styles.icon} />
+                            <Text style={styles.titleText}>{t('currency')}</Text>
+                        </View>
+                        <View style={styles.innerItemContainerRight}>
+                            <Text style={styles.settingText}>{props.currency}</Text>
+                        </View>
                     </View>
-                    <View style={styles.innerItemContainerRight}>
-                        <Text style={styles.settingText}>{props.themeName}</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.itemContainer}>
+                <TouchableOpacity onPress={() => props.onLanguagePress()}>
+                    <View style={styles.item}>
+                        <View style={styles.innerItemContainerLeft}>
+                            <Image source={languageImagePath} style={styles.icon} />
+                            <Text style={styles.titleText}>{t('language')}</Text>
+                        </View>
+                        <View style={styles.innerItemContainerRight}>
+                            <Text numberOfLines={1} style={styles.settingText}>
+                                {selectLocale(i18next.language)}
+                            </Text>
+                        </View>
                     </View>
-                </View>
-            </TouchableOpacity>
-        </View>
-        <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.setSetting('currencySelection')}>
-                <View style={styles.item}>
-                    <View style={styles.innerItemContainerLeft}>
-                        <Image source={currencyImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>Currency</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.separatorContainer}>
+                <View style={styles.separator} />
+            </View>
+            <View style={styles.itemContainer}>
+                <TouchableOpacity onPress={() => props.setSetting('accountManagement')}>
+                    <View style={styles.item}>
+                        <Image source={accountImagePath} style={styles.icon} />
+                        <Text style={styles.titleText}>{t('accountManagement')}</Text>
                     </View>
-                    <View style={styles.innerItemContainerRight}>
-                        <Text style={styles.settingText}>{props.currency}</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.itemContainer}>
+                <TouchableOpacity onPress={() => props.on2FASetupPress()}>
+                    <View style={styles.item}>
+                        <Image source={twoFactorAuthImagePath} style={styles.icon} />
+                        <Text style={styles.titleText}>{t('twoFA')}</Text>
                     </View>
-                </View>
-            </TouchableOpacity>
-        </View>
-        <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.onLanguagePress()}>
-                <View style={styles.item}>
-                    <View style={styles.innerItemContainerLeft}>
-                        <Image source={languageImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>Language</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.itemContainer}>
+                <TouchableOpacity onPress={() => props.setSetting('changePassword')}>
+                    <View style={styles.item}>
+                        <Image source={passwordImagePath} style={styles.icon} />
+                        <Text style={styles.titleText}>{t('changePassword')}</Text>
                     </View>
-                    <View style={styles.innerItemContainerRight}>
-                        <Text numberOfLines={1} style={styles.settingText}>
-                            {selectLocale(i18next.language)}
-                        </Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.separatorContainer}>
+                <View style={styles.separator} />
+            </View>
+            <View style={styles.itemContainer}>
+                <TouchableOpacity onPress={() => props.setSetting('advancedSettings')}>
+                    <View style={styles.item}>
+                        <Image source={advancedImagePath} style={styles.icon} />
+                        <Text style={styles.titleText}>{t('advanced')}</Text>
                     </View>
-                </View>
-            </TouchableOpacity>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.itemContainer}>
+                <TouchableOpacity onPress={() => props.setModalContent('logoutConfirmation')}>
+                    <View style={styles.item}>
+                        <Image source={logoutImagePath} style={styles.icon} />
+                        <Text style={styles.titleText}>{t('logout')}</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         </View>
-        <View style={styles.separatorContainer}>
-            <View style={styles.separator} />
-        </View>
-        <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.setSetting('accountManagement')}>
-                <View style={styles.item}>
-                    <Image source={accountImagePath} style={styles.icon} />
-                    <Text style={styles.titleText}>Account management</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
-        <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.on2FASetupPress()}>
-                <View style={styles.item}>
-                    <Image source={twoFactorAuthImagePath} style={styles.icon} />
-                    <Text style={styles.titleText}>Two-factor authentication</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
-        <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.setSetting('changePassword')}>
-                <View style={styles.item}>
-                    <Image source={passwordImagePath} style={styles.icon} />
-                    <Text style={styles.titleText}>Change password</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
-        <View style={styles.separatorContainer}>
-            <View style={styles.separator} />
-        </View>
-        <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.setSetting('advancedSettings')}>
-                <View style={styles.item}>
-                    <Image source={advancedImagePath} style={styles.icon} />
-                    <Text style={styles.titleText}>Advanced settings</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
-        <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.setModalContent('logoutConfirmation')}>
-                <View style={styles.item}>
-                    <Image source={logoutImagePath} style={styles.icon} />
-                    <Text style={styles.titleText}>Log out</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
-    </View>
+    )
 );
 
 MainSettings.propTypes = {

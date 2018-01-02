@@ -115,7 +115,8 @@ class AddCustomNode extends Component {
                             fontSize={width / 20.7}
                             labelPadding={3}
                             baseColor="white"
-                            label={t('customNode')}                 tintColor={THEMES.getHSL(this.props.negativeColor)}
+                            label={t('customNode')}
+                            tintColor={THEMES.getHSL(this.props.negativeColor)}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically={true}
