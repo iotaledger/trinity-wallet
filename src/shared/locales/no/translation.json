@@ -152,7 +152,7 @@
         "invalidAddressExplanation1": "Adressen bør være {{maxLength}} tegn og ha kontrolltegn.",
         "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
-        "notEnoughFunds": "Ikke nok midler",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til å fullføre denne overføringen.",
         "keyReuse": "Privatnøkkelen er brukt før",
         "keyReuseExplanation": "Adressen du prøver å sende til er allerede brukt. Prøv en annen adresse.",
