@@ -161,7 +161,7 @@
             "Adres {{maxLength}} karakter uzunluğunda olmalı ve bir sağlama toplamı olmalıdır.",
         "invalidAddressExplanation2": "Adres geçersiz karakterler içeriyor.",
         "invalidAddressExplanation3": "Adres geçersiz bir sağlama toplamı içeryor.",
-        "notEnoughFunds": "Yetersiz fon",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Bu aktarımı tamamlamak için yeterli Iota'nız yok.",
         "keyReuse": "Anahtar tekrar kullanımı",
         "keyReuseExplanation": "Göndermeye çalıştığınız adres zaten kullanılıyor. Lütfen başka bir adres deneyin.",
