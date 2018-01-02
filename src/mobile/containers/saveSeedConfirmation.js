@@ -48,6 +48,7 @@ class SaveSeedConfirmation extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
         });

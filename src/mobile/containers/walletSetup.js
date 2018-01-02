@@ -22,6 +22,7 @@ class WalletSetup extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
             animated: false,
         });
@@ -33,6 +34,7 @@ class WalletSetup extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
             animated: false,
         });
