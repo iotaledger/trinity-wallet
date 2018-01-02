@@ -297,10 +297,10 @@
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "pressToSync": "アカウントを同期するには下のボタンを押して下さい。",
+        "thisMayTake": "少々お待ち下さい。",
+        "youMayNotice": "デバイスが遅くなることがあります。",
+        "syncAccount": "同期アカウント",
+        "syncingYourAccount": "アカウントを同期中"
     }
 }
