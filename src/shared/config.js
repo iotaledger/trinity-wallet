@@ -1,1 +1,1 @@
-export const defaultNode = 'https://iri2-api.iota.fm:443';
+export const defaultNode = 'http://iota.nck.nz:14265';

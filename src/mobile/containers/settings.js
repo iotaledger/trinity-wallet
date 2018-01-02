@@ -4,7 +4,7 @@ import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, StatusBar } from 'react-native';
+import { StyleSheet, View, StatusBar, BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
@@ -171,7 +171,7 @@ class Settings extends Component {
                 onThemePress: () => this.props.setSetting('themeCustomisation'),
                 onModePress: () => this.featureUnavailable(),
                 mode: this.props.mode,
-                onLanguagePress: () => this.featureUnavailable(),
+                onLanguagePress: () => this.props.setSetting('languageSelection'),
                 themeName: this.props.themeName,
                 currency: this.props.currency,
             },
@@ -520,9 +520,9 @@ class Settings extends Component {
                     navBarTransparent: true,
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
-                overrideBackPress: true,
             },
         });
+        BackHandler.removeEventListener('homeBackPress');
     }
 
     logout() {
@@ -534,7 +534,6 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundColor: COLORS.backgroundGreen,
                 },
                 overrideBackPress: true,
             },
@@ -542,16 +541,16 @@ class Settings extends Component {
     }
 
     navigateNewSeed() {
-        this.props.navigator.push({
-            screen: 'newSeedSetup',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'newSeedSetup',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                },
             },
-            animated: false,
-            overrideBackPress: true,
         });
+        BackHandler.removeEventListener('homeBackPress');
     }
 
     renderModalContent() {
