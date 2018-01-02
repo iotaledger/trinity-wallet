@@ -152,7 +152,7 @@
         "invalidAddressExplanation1": "Adres moet {{maxLength}} tekens lang zijn en moet een controle bevatten.",
         "invalidAddressExplanation2": "Adres bevat ongeldige tekens.",
         "invalidAddressExplanation3": "Adres bevat een ongeldige controlesom.",
-        "notEnoughFunds": "Onvoldoende saldo",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "U hoeft niet genoeg IOTA om deze overdracht te voltooien.",
         "keyReuse": "Sleutel hergebruik",
         "keyReuseExplanation": "Het adres waar u naar probeert te versturen is al een keer gebruikt. Probeer een ander adres.",
