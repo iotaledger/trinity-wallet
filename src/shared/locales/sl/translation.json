@@ -160,7 +160,7 @@
         "invalidAddressExplanation1": "Naslov mora biti {{maxLenght}} znakov dolgo in mora biti preverjeno.",
         "invalidAddressExplanation2": "Naslov vsebuje neveljavne znake.",
         "invalidAddressExplanation3": "Naslov vsebuje nepreverjen znak.",
-        "notEnoughFunds": "Ni dovolj sredstev",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Nimate dovolj IOTA za dokončanje tega prenosa.",
         "keyReuse": "Ponovna uporaba ključa",
         "keyReuseExplanation": "Ta naslov je že bil uporabljen. Poskusite drug naslov.",
