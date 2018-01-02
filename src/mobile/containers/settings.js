@@ -265,6 +265,7 @@ class Settings extends Component {
                 negativeColor: this.props.negativeColor,
             },
             manualSync: {
+                t: this.props.t,
                 onManualSyncPress: () => this.onManualSyncPress(),
                 backPress: () => this.props.setSetting('advancedSettings'),
                 isSyncing: this.props.isSyncing,
