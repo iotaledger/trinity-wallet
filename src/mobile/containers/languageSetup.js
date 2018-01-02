@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
@@ -95,32 +95,41 @@ class LanguageSetup extends Component {
     render() {
         const { t } = this.props;
         return (
-            <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
-                <View style={styles.container}>
-                    <Image style={styles.helloBackground} source={helloBackImagePath} />
-                    <StatusBar barStyle="light-content" />
-                    <View style={styles.topContainer}>
-                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                    </View>
-                    <View style={styles.midContainer}>
-                        <View style={{ flex: 0.2 }} />
-                        <Dropdown
-                            title={t('language')}
-                            dropdownWidth={styles.dropdownWidth}
-                            defaultOption={defaultLanguageLabel}
-                            options={I18N_LOCALE_LABELS}
-                            saveSelection={language => this.clickDropdownItem(language)}
-                        />
-                    </View>
-                    <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={() => this.onNextPress()}>
-                            <View style={styles.nextButton}>
-                                <Text style={styles.nextText}>{t('global:next')}</Text>
-                            </View>
-                        </TouchableOpacity>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    if (this.dropdown) {
+                        this.dropdown.closeDropdown();
+                    }
+                }}
+            >
+                <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
+                    <View style={styles.container}>
+                        <Image style={styles.helloBackground} source={helloBackImagePath} />
+                        <StatusBar barStyle="light-content" />
+                        <View style={styles.topContainer}>
+                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                        </View>
+                        <View style={styles.midContainer}>
+                            <View style={{ flex: 0.2 }} />
+                            <Dropdown
+                                onRef={c => (this.dropdown = c)}
+                                title={t('language')}
+                                dropdownWidth={styles.dropdownWidth}
+                                defaultOption={defaultLanguageLabel}
+                                options={I18N_LOCALE_LABELS}
+                                saveSelection={language => this.clickDropdownItem(language)}
+                            />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <TouchableOpacity onPress={() => this.onNextPress()}>
+                                <View style={styles.nextButton}>
+                                    <Text style={styles.nextText}>{t('global:next')}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }

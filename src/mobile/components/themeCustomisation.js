@@ -44,50 +44,63 @@ class ThemeCustomisation extends React.Component {
         const { themes, theme, themeName } = this.state;
         const { backgroundColor, barColor, ctaColor, positiveColor, negativeColor, extraColor } = this.state.theme;
         return (
-            <View style={styles.container}>
-                <View style={styles.topContainer}>
-                    <View style={{ zIndex: 2 }}>
-                        <Dropdown
-                            ref={c => {
-                                this.dropdown = c;
-                            }}
-                            title="Theme"
-                            dropdownWidth={{ width: width / 1.45 }}
-                            background
-                            shadow
-                            defaultOption={themeName}
-                            options={themes}
-                            saveSelection={t => {
-                                const newTHEMES = cloneDeep(THEMES);
-                                let newTheme = newTHEMES.themes[t];
-                                if (t === 'Custom' && this.props.themeName === 'Custom') {
-                                    newTheme = this.props.theme;
-                                }
-                                this.setState({ themeName: t, theme: newTheme });
-                            }}
-                        />
-                    </View>
-                    <View
-                        style={[
-                            styles.demoContainer,
-                            { backgroundColor: THEMES.getHSL(backgroundColor), shadowColor: THEMES.getHSL(barColor) },
-                        ]}
-                    >
-                        <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: height / 44 }}>
-                            <Text style={{ fontFamily: 'Lato-Regular', fontSize: width / 29.6, color: 'white' }}>
-                                MOCKUP
-                            </Text>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    if (this.dropdown) {
+                        this.dropdown.closeDropdown();
+                    }
+                }}
+            >
+                <View style={styles.container}>
+                    <View style={styles.topContainer}>
+                        <View style={{ zIndex: 2 }}>
+                            <Dropdown
+                                onRef={c => {
+                                    this.dropdown = c;
+                                }}
+                                title="Theme"
+                                dropdownWidth={{ width: width / 1.45 }}
+                                background
+                                shadow
+                                defaultOption={themeName}
+                                options={themes}
+                                saveSelection={t => {
+                                    const newTHEMES = cloneDeep(THEMES);
+                                    let newTheme = newTHEMES.themes[t];
+                                    if (t === 'Custom' && this.props.themeName === 'Custom') {
+                                        newTheme = this.props.theme;
+                                    }
+                                    this.setState({ themeName: t, theme: newTheme });
+                                }}
+                            />
                         </View>
                         <View
                             style={[
-                                styles.frameBar,
-                                { backgroundColor: THEMES.getHSL(barColor), shadowColor: THEMES.getHSL(barColor) },
+                                styles.demoContainer,
+                                {
+                                    backgroundColor: THEMES.getHSL(backgroundColor),
+                                    shadowColor: THEMES.getHSL(barColor),
+                                },
                             ]}
                         >
-                            <Text style={styles.frameBarTitle}>MAIN ACCOUNT</Text>
-                            <Image style={styles.chevron} source={chevronDownImagePath} />
-                        </View>
-                        {/*
+                            <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: height / 44 }}>
+                                <Text style={{ fontFamily: 'Lato-Regular', fontSize: width / 29.6, color: 'white' }}>
+                                    MOCKUP
+                                </Text>
+                            </View>
+                            <View
+                                style={[
+                                    styles.frameBar,
+                                    {
+                                        backgroundColor: THEMES.getHSL(backgroundColor),
+                                        shadowColor: THEMES.getHSL(barColor),
+                                    },
+                                ]}
+                            >
+                                <Text style={styles.frameBarTitle}>MAIN ACCOUNT</Text>
+                                <Image style={styles.chevron} source={chevronDownImagePath} />
+                            </View>
+                            {/*
                         <View style={styles.dropdownContainer}>
                             <Text style={styles.dropdownTitle}>Label Text</Text>
                             <View style={styles.dropdownButtonContainer}>
@@ -106,42 +119,47 @@ class ThemeCustomisation extends React.Component {
                             </View>
                         </View>
                         */}
-                        <View style={styles.buttonsContainer}>
-                            <View style={[styles.button, { borderColor: THEMES.getHSL(negativeColor) }]}>
-                                <Text style={[styles.buttonText, { color: THEMES.getHSL(negativeColor) }]}>BACK</Text>
+                            <View style={styles.buttonsContainer}>
+                                <View style={[styles.button, { borderColor: THEMES.getHSL(negativeColor) }]}>
+                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(negativeColor) }]}>
+                                        BACK
+                                    </Text>
+                                </View>
+                                <View style={[styles.button, { borderColor: THEMES.getHSL(positiveColor) }]}>
+                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(positiveColor) }]}>
+                                        NEXT
+                                    </Text>
+                                </View>
                             </View>
-                            <View style={[styles.button, { borderColor: THEMES.getHSL(positiveColor) }]}>
-                                <Text style={[styles.buttonText, { color: THEMES.getHSL(positiveColor) }]}>NEXT</Text>
+                            <View style={styles.buttonsContainer}>
+                                <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
+                                    <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>SAVE</Text>
+                                </View>
+                                <View style={[styles.ctaButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
+                                    <Text style={styles.ctaText}>SEND</Text>
+                                </View>
                             </View>
                         </View>
-                        <View style={styles.buttonsContainer}>
-                            <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
-                                <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>SAVE</Text>
-                            </View>
-                            <View style={[styles.ctaButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
-                                <Text style={styles.ctaText}>SEND</Text>
-                            </View>
-                        </View>
+                        <TouchableOpacity onPress={() => this.onAdvancedPress()} style={styles.advancedButton}>
+                            <Text style={styles.advancedText}>ADVANCED</Text>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity onPress={() => this.onAdvancedPress()} style={styles.advancedButton}>
-                        <Text style={styles.advancedText}>ADVANCED</Text>
-                    </TouchableOpacity>
+                    <View style={styles.bottomContainer}>
+                        <TouchableOpacity onPress={() => this.props.backPress()}>
+                            <View style={styles.itemLeft}>
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Text style={styles.titleTextLeft}>Back</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.onApplyPress(theme, themeName)}>
+                            <View style={styles.itemRight}>
+                                <Text style={styles.titleTextRight}>Apply</Text>
+                                <Image source={tickImagePath} style={styles.iconRight} />
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.props.backPress()}>
-                        <View style={styles.itemLeft}>
-                            <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                            <Text style={styles.titleTextLeft}>Back</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.onApplyPress(theme, themeName)}>
-                        <View style={styles.itemRight}>
-                            <Text style={styles.titleTextRight}>Apply</Text>
-                            <Image source={tickImagePath} style={styles.iconRight} />
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
