@@ -171,7 +171,7 @@ class Settings extends Component {
                 onThemePress: () => this.props.setSetting('themeCustomisation'),
                 onModePress: () => this.featureUnavailable(),
                 mode: this.props.mode,
-                onLanguagePress: () => this.props.setSetting('languageSelection'),
+                onLanguagePress: () => this.featureUnavailable(),
                 themeName: this.props.themeName,
                 currency: this.props.currency,
             },
