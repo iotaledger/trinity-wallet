@@ -87,52 +87,55 @@ const styles = StyleSheet.create({
 });
 
 const ManualSync = props => (
-    <View style={styles.container}>
-        <View style={styles.topContainer}>
-            <View style={{ flex: 0.5 }} />
-            {!props.isSyncing && (
-                <View style={styles.innerContainer}>
-                    <Text style={styles.infoText}>Press the button below to sync your account.</Text>
-                    <Text style={styles.infoText}>This may take a while.</Text>
-                    <Text style={styles.infoText}>You may notice your device slowing down.</Text>
-                    <View style={styles.syncButtonContainer}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                props.onManualSyncPress();
-                            }}
-                        >
-                            <View style={styles.syncButton}>
-                                <Text style={styles.syncButtonText}>SYNC ACCOUNT</Text>
-                            </View>
-                        </TouchableOpacity>
+    (t = props.t),
+    (
+        <View style={styles.container}>
+            <View style={styles.topContainer}>
+                <View style={{ flex: 0.5 }} />
+                {!props.isSyncing && (
+                    <View style={styles.innerContainer}>
+                        <Text style={styles.infoText}>{t('pressToSync')}</Text>
+                        <Text style={styles.infoText}>{t('thisMayTake')}</Text>
+                        <Text style={styles.infoText}>{t('youMayNotice')}</Text>
+                        <View style={styles.syncButtonContainer}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    props.onManualSyncPress();
+                                }}
+                            >
+                                <View style={styles.syncButton}>
+                                    <Text style={styles.syncButtonText}>{t('syncAccount')}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
-            )}
-            {props.isSyncing && (
-                <View style={styles.innerContainer}>
-                    <Text style={styles.infoText}>Syncing your account.</Text>
-                    <Text style={styles.infoText}>This may take a while.</Text>
-                    <Text style={styles.infoText}>You may notice your device slowing down.</Text>
-                    <ActivityIndicator
-                        animating={props.isSyncing}
-                        style={styles.activityIndicator}
-                        size="large"
-                        color="#F7D002"
-                    />
-                </View>
-            )}
-        </View>
-        <View style={styles.bottomContainer}>
-            {!props.isSyncing && (
-                <TouchableOpacity onPress={() => props.backPress()}>
-                    <View style={styles.item}>
-                        <Image source={arrowLeftImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>Back</Text>
+                )}
+                {props.isSyncing && (
+                    <View style={styles.innerContainer}>
+                        <Text style={styles.infoText}>{t('syncingYourAccount')}</Text>
+                        <Text style={styles.infoText}>{t('thisMayTake')}</Text>
+                        <Text style={styles.infoText}>{t('youMayNotice')}</Text>
+                        <ActivityIndicator
+                            animating={props.isSyncing}
+                            style={styles.activityIndicator}
+                            size="large"
+                            color="#F7D002"
+                        />
                     </View>
-                </TouchableOpacity>
-            )}
+                )}
+            </View>
+            <View style={styles.bottomContainer}>
+                {!props.isSyncing && (
+                    <TouchableOpacity onPress={() => props.backPress()}>
+                        <View style={styles.item}>
+                            <Image source={arrowLeftImagePath} style={styles.icon} />
+                            <Text style={styles.titleText}>{t('global:back')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                )}
+            </View>
         </View>
-    </View>
+    )
 );
 
 ManualSync.propTypes = {
