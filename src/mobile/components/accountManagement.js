@@ -71,7 +71,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.backIcon} />
-                                <Text style={styles.titleText}>{t('global:back')}</Text>
+                                <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

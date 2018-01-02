@@ -129,7 +129,7 @@ const ManualSync = props => (
                     <TouchableOpacity onPress={() => props.backPress()}>
                         <View style={styles.item}>
                             <Image source={arrowLeftImagePath} style={styles.icon} />
-                            <Text style={styles.titleText}>{t('global:back')}</Text>
+                            <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
                 )}
