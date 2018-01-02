@@ -11,6 +11,7 @@ import keychain, { getSeed } from '../util/keychain';
 import { Navigation } from 'react-native-navigation';
 import IotaSpin from '../components/iotaSpin';
 import THEMES from '../theme/themes';
+import KeepAwake from 'react-native-keep-awake';
 
 import { width, height } from '../util/dimensions';
 const logoSpin = require('../logo-spin/logo-spin-glow.html');
@@ -52,6 +53,10 @@ class Loading extends Component {
                 },
             });
         }
+    }
+
+    componentDidMount(){
+        KeepAwake.activate();
     }
 
     render() {
