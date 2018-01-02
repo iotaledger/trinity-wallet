@@ -94,6 +94,7 @@ class NewSeedSetup extends Component {
                 screen: 'saveYourSeed',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             });
         } else {
             this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));

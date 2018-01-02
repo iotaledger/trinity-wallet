@@ -61,6 +61,7 @@ export class SetSeedName extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 animated: false,
                 overrideBackPress: true,
@@ -71,6 +72,7 @@ export class SetSeedName extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 animated: false,
             });

@@ -14,6 +14,7 @@ class Welcome extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
             animated: false,
         });
