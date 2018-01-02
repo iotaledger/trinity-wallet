@@ -291,9 +291,9 @@
     },
     "deleteAccount": {
         "areYouSure": "このアカウントを削除しますか？",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "yourSeedWillBeRemoved": "seedとトランザクションの履歴を削除します。",
+        "thisAction": "この操作は元に戻せません。",
+        "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
     },
     "manualSync": {
         "pressToSync": "Press the button below to sync your account.",
