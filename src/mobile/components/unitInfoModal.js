@@ -18,7 +18,6 @@ class UnitInfoModal extends React.Component {
                     <TextWithLetterSpacing spacing={4} textStyle={styles.iotaText}>
                         IOTA
                     </TextWithLetterSpacing>
-                    //TODO: use interpolation instead
                     <TextWithLetterSpacing spacing={6} textStyle={styles.titleText}>
                         {t('unitSystem')}
                     </TextWithLetterSpacing>
