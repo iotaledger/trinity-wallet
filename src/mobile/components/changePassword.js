@@ -168,8 +168,8 @@ class ChangePassword extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         {currentPassword !== '' &&
@@ -177,8 +177,8 @@ class ChangePassword extends Component {
                             confirmedNewPassword !== '' && (
                                 <TouchableOpacity onPress={() => this.changePassword()}>
                                     <View style={styles.itemRight}>
-                                        <Image source={tickImagePath} style={styles.icon} />
-                                        <Text style={styles.titleText}>{t('global:save')}</Text>
+                                        <Text style={styles.titleTextRight}>{t('global:save')}</Text>
+                                        <Image source={tickImagePath} style={styles.iconRight} />
                                     </View>
                                 </TouchableOpacity>
                             )}
