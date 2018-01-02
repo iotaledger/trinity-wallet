@@ -159,7 +159,7 @@
         "invalidAddressExplanation1": "Alamat harus {{maxLength}} karakter dan memiliki cek jumlah.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
-        "notEnoughFunds": "Dana tidak mencukupi",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
         "keyReuse": "Kunci kembali digunakan",
         "keyReuseExplanation": "Alamat yang anda tuju telah digunakan. Silahkan coba alamat yang lain.",
