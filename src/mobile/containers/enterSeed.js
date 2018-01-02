@@ -58,7 +58,11 @@ class EnterSeed extends React.Component {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: COLORS.backgroundGreen,
+                },
                 animated: false,
             });
         }

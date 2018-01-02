@@ -14,6 +14,7 @@ class OnboardingComplete extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
             animated: false,
             overrideBackPress: true,

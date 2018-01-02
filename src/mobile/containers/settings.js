@@ -535,6 +535,7 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 overrideBackPress: true,
             },
@@ -548,6 +549,7 @@ class Settings extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
             },
         });

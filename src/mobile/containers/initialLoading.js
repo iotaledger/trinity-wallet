@@ -37,7 +37,11 @@ class InitialLoading extends Component {
             this.clearKeychain();
             this.props.navigator.push({
                 screen: 'welcome',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
                 animated: false,
                 overrideBackPress: true,
             });
