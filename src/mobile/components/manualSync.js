@@ -4,6 +4,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } fr
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
