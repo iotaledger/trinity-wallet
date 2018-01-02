@@ -161,7 +161,7 @@
             "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
         "invalidAddressExplanation2": "La Seed contient des caractères invalides.",
         "invalidAddressExplanation3": "La Seed contient un code de vérification invalide.",
-        "notEnoughFunds": "Fonds insuffisants",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
         "keyReuse": "Réutilisation de clé",
         "keyReuseExplanation":

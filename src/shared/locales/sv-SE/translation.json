@@ -159,7 +159,7 @@
         "invalidAddressExplanation1": "Din seed bör vara {{maxLength}} tecken långt och ska ha en kontrollsumma.",
         "invalidAddressExplanation2": "Adressen innehåller ogiltiga tecken.",
         "invalidAddressExplanation3": "Adress innehåller en felaktig kontrollsumma.",
-        "notEnoughFunds": "Inte tillräckligt med pengar",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Du har inte tillräckligt IOTA att slutföra denna överföring.",
         "keyReuse": "Nyckelåteranvändning",
         "keyReuseExplanation": "Den adress som du försöker skicka till har redan använts. Försök med en annan adress.",
