@@ -49,7 +49,7 @@ class AddNewAccount extends Component {
                     <TouchableOpacity onPress={event => this.props.backPress()}>
                         <View style={styles.item}>
                             <Image source={arrowLeftPath} style={styles.backIcon} />
-                            <Text style={styles.titleText}>{t('global:back')}</Text>
+                            <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

@@ -164,6 +164,7 @@ class Settings extends Component {
     getChildrenProps(child) {
         const props = {
             mainSettings: {
+                t: this.props.t,
                 setSetting: setting => this.props.setSetting(setting),
                 setModalContent: content => this.setModalContent(content),
                 on2FASetupPress: () => this.featureUnavailable(),
