@@ -5,7 +5,7 @@
         "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
         "seed": "Seed",
         "back": "戻る",
-        "backLowercase": "Back",
+        "backLowercase": "戻る",
         "done": "完了",
         "next": "次へ",
         "apply": "Apply",
