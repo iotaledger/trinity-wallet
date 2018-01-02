@@ -15,7 +15,7 @@ import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selec
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
-import EnterPassword from '../components/enterPassword';
+import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain from '../util/keychain';
 import THEMES from '../theme/themes';
@@ -52,6 +52,7 @@ class Login extends Component {
         };
 
         this.onLoginPress = this.onLoginPress.bind(this);
+        this.navigateToNodeSelection = this.navigateToNodeSelection.bind(this);
     }
 
     componentDidMount() {
@@ -172,11 +173,12 @@ class Login extends Component {
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 {!this.state.changingNode && (
-                    <EnterPassword
+                    <EnterPasswordOnLogin
                         backgroundColor={backgroundColor}
                         negativeColor={negativeColor}
                         positiveColor={positiveColor}
                         onLoginPress={this.onLoginPress}
+                        navigateToNodeSelection={this.navigateToNodeSelection}
                     />
                 )}
                 {this.state.changingNode && (
