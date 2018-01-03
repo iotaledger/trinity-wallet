@@ -10,12 +10,7 @@ import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import THEMES from '../theme/themes';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
-import {
-    changeAccountName,
-    deleteAccount,
-    manuallySyncAccount,
-    fetchFullAccountInfoForFirstUse,
-} from 'iota-wallet-shared-modules/actions/account';
+import { changeAccountName, deleteAccount, manuallySyncAccount } from 'iota-wallet-shared-modules/actions/account';
 import {
     getSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
@@ -38,7 +33,6 @@ import keychain, {
     getSeed,
     updateAccountNameInKeychain,
     deleteFromKeychain,
-    storeSeedInKeychain,
 } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 
@@ -136,7 +130,6 @@ class Settings extends Component {
         changeAccountName: PropTypes.func.isRequired,
         deleteAccount: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
-        fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
         addCustomPoWNode: PropTypes.func.isRequired,
         updateTheme: PropTypes.func.isRequired,
         setAdditionalAccountInfo: PropTypes.func.isRequired,
@@ -609,7 +602,6 @@ const mapDispatchToProps = {
     setFullNode,
     getCurrencyData,
     setPassword,
-    fetchFullAccountInfoForFirstUse,
     addCustomPoWNode,
     generateAlert,
     manuallySyncAccount,
