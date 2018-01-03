@@ -313,11 +313,19 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
                 });
             }
 
-            dispatch(generateAlert('success', 'Syncing complete', 'Account sync is completed.'));
+            dispatch(
+                generateAlert(
+                    'success',
+                    i18next.t('settings:syncingComplete'),
+                    i18next.t('settings:syncingCompleteExplanation'),
+                ),
+            );
             return dispatch(manualSyncSuccess(assign({}, payload, { hashes: [] })));
         }
 
-        dispatch(generateAlert('error', 'Invalid response', 'Received an invalid response from node.'));
+        dispatch(
+            generateAlert('error', i18next.t('global:invalidResponse'), i18next.t('global:invalidResponseExplanation')),
+        );
         return dispatch(manualSyncError());
     });
 };
@@ -440,7 +448,9 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
 
 export const deleteAccount = accountName => dispatch => {
     dispatch(removeAccount(accountName));
-    dispatch(generateAlert('success', 'Account Deleted', 'Successfully deleted account')); // TODO: Need to verify exact translated message
+    dispatch(
+        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
+    );
 };
 
 // Aim to update local transfers, addresses, hashes in store after a new transaction is made.
