@@ -9,7 +9,6 @@ const account = (
         seedCount: 0,
         seedNames: [],
         firstUse: true,
-        addingFirstSeed: true,
         onboardingComplete: false,
         accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
@@ -154,15 +153,9 @@ const account = (
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),
             };
-        case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST:
-            return {
-                ...state,
-                firstUse: true,
-            };
         case ActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
             return {
                 ...state,
-                firstUse: false,
                 seedCount: state.seedCount + 1,
                 seedNames: [...state.seedNames, action.payload.accountName],
                 accountInfo: merge({}, state.accountInfo, {
