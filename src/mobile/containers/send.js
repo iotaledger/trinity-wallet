@@ -40,6 +40,7 @@ import UnitInfoModal from '../components/unitInfoModal';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
+import KeepAwake from 'react-native-keep-awake';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import { width, height } from '../util/dimensions';
@@ -69,6 +70,7 @@ class Send extends Component {
         backgroundColor: PropTypes.object.isRequired,
         barColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
+        isSendingTransfer: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -87,6 +89,14 @@ class Send extends Component {
 
     componentWillMount() {
         currencySymbol = getCurrencySymbol(this.props.currency);
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (!this.props.isSendingTransfer && newProps.isSendingTransfer) {
+            KeepAwake.activate();
+        } else if (this.props.isSendingTransfer && !newProps.isSendingTransfer) {
+            KeepAwake.deactivate();
+        }
     }
 
     onDenominationPress() {
