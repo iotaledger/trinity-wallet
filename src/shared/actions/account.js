@@ -448,7 +448,9 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
 
 export const deleteAccount = accountName => dispatch => {
     dispatch(removeAccount(accountName));
-    dispatch(generateAlert('success', 'Account Deleted', 'Successfully deleted account')); // TODO: Need to verify exact translated message
+    dispatch(
+        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
+    );
 };
 
 // Aim to update local transfers, addresses, hashes in store after a new transaction is made.
