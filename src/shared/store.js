@@ -41,7 +41,7 @@ const rootReducer = (state, action) => {
 const store = createStore(
     rootReducer,
     compose(
-        applyMiddleware(thunk),
+        applyMiddleware(thunk, logger),
         autoRehydrate(),
         typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
     ),
