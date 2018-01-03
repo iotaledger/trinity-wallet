@@ -87,6 +87,9 @@ class Home extends Component {
                         },
                         overrideBackPress: true,
                     },
+                    appStyle: {
+                        orientation: 'portrait',
+                    },
                 });
             }
             this.lastBackPressed = Date.now();
