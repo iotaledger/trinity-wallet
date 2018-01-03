@@ -17,7 +17,13 @@ import {
     addAccountName,
 } from '../../shared/actions/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
+import {
+    clearTempData,
+    setSeedName,
+    clearSeed,
+    setReady,
+    setAdditionalAccountInfo,
+} from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
 import keychain, { storeSeedInKeychain, hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
 import THEMES from '../theme/themes';
@@ -38,6 +44,7 @@ export class SetSeedName extends Component {
         addAccountName: PropTypes.func.isRequired,
         getFullAccountInfo: PropTypes.func.isRequired,
         fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -83,9 +90,13 @@ export class SetSeedName extends Component {
         const { t } = this.props;
         const trimmedAccountName = trim(this.state.accountName);
 
-        const fetch = (seed, accountName, password, promise, navigator) => {
+        const fetch = accountName => {
+            this.props.setAdditionalAccountInfo({
+                addingAdditionalAccount: true,
+                additionalAccountName: accountName,
+            });
+
             this.navigateTo('loading');
-            this.props.fetchFullAccountInfoForFirstUse(seed, accountName, password, promise, navigator);
         };
 
         if (!isEmpty(this.state.accountName)) {
@@ -98,13 +109,7 @@ export class SetSeedName extends Component {
                     .get()
                     .then(credentials => {
                         if (isEmpty(credentials)) {
-                            return fetch(
-                                this.props.tempAccount.seed,
-                                trimmedAccountName,
-                                this.props.tempAccount.password,
-                                storeSeedInKeychain,
-                                this.props.navigator,
-                            );
+                            return fetch(trimmedAccountName);
                         } else {
                             if (hasDuplicateAccountName(credentials.password, trimmedAccountName)) {
                                 return this.props.generateAlert(
@@ -120,13 +125,7 @@ export class SetSeedName extends Component {
                                 );
                             }
 
-                            return fetch(
-                                this.props.tempAccount.seed,
-                                trimmedAccountName,
-                                this.props.tempAccount.password,
-                                storeSeedInKeychain,
-                                this.props.navigator,
-                            );
+                            return fetch(trimmedAccountName);
                         }
                     })
                     .catch(() => {
@@ -382,6 +381,7 @@ const mapDispatchToProps = {
     addAccountName,
     getFullAccountInfo,
     fetchFullAccountInfoForFirstUse,
+    setAdditionalAccountInfo,
 };
 
 export default translate(['setSeedName', 'global', 'addAdditionalSeed'])(

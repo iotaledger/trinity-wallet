@@ -9,6 +9,7 @@ const account = (
         seedCount: 0,
         seedNames: [],
         firstUse: true,
+        addingFirstSeed: true,
         onboardingComplete: false,
         accountInfo: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
