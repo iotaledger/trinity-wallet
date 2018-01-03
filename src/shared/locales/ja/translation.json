@@ -328,8 +328,8 @@
     "saveSeedConfirmation": {
         "alreadyHave": "私はSeedを保管しました",
         "reenter": "Seedを再入力するよう求められます。",
-        "reenterWarningOne": "If your device fails and you have not saved",
-        "reenterWarningTwo": "your seed, you will lose your IOTA."
+        "reenterWarningOne": "Seedを保存せずにデバイスを停止すると、",
+        "reenterWarningTwo": "IOTAを失います。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "この操作は元に戻せません。",
