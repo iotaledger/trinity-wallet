@@ -32,7 +32,7 @@
     &--info {
         composes: notification;
         background-color: var(--color-extra);
-        color: black;
+        color: white;
     }
 
     &--error {
