@@ -1,12 +1,28 @@
 {
     "global": {
+        "send": "SEND",
+        "cancel": "CANCEL",
+        "continue?": "Are you sure you want to continue?",
+        "noTransactions": "NO RECENT HISTORY",
+        "qr": "QR",
+        "balanceError": "Not enough balance",
+        "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
+        "transferError": "Transfer Error",
+        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferSent": "Transfer sent",
+        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "keyReuse": "Key reuse",
+        "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Respuesta inválida",
         "invalidResponseExplanation": "El servidor devuelve una respuesta inválida.",
         "invalidResponsePollingExplanation": "El servidor devuelve una respuesta inválida durante la obtención de datos de cartera.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
         "seed": "Seed",
         "back": "ATRÁS",
         "backLowercase": "Back",
         "done": "LISTO",
+        "doneLowercase": "Done",
         "next": "SIGUIENTE",
         "apply": "Apply",
         "save": "Save",
@@ -15,7 +31,6 @@
         "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
         "copyToClipboard": "Agregar a administrador de contraseñas",
-        "qr": "QR",
         "notAvailable": "Esta función no está disponible",
         "notAvailableExplanation": "Se añadirá más adelante.",
         "enterSeed": "Por favor, introduzca tu seed.",
@@ -238,7 +253,7 @@
         "reminder": "Puede tentarte saltar algunos pasos, pero te sugerimos seguir el proceso completo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Tu Seed tiene 81 caracteres leídos de izquierda a derecha. Anota tu seed y letras de comprobación y",
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "comprueba tres veces",
         "thatTheyAreCorrect": "that they are correct."
     },
@@ -301,5 +316,31 @@
         "youMayNotice": "You may notice your device slowing down.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
+    },
+    "useExistingSeed": {
+        "title": "Enter a seed and account name."
+    },
+    "viewSeed": {
+        "enterPassword": "Enter password to view your seed.",
+        "viewSeed": "VIEW SEED",
+        "hideSeed": "HIDE SEED"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "I have saved my seed",
+        "reenter": "You will now be asked to re-enter your seed.",
+        "reenterWarningOne": "If your device fails and you have not saved",
+        "reenterWarningTwo": "your seed, you will lose your IOTA."
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "infoTextOne": "All your wallet data including your",
+        "infoTextTwo": "seeds, password",
+        "infoTextThree": "and",
+        "infoTextFour": "other account information",
+        "infoTextFive": "will be lost."
+    },
+    "transferConfirmation": {
+        "youAreAbout": "You are about to send {{contents}} to the address",
+        "aMessage": "a message"
     }
 }
