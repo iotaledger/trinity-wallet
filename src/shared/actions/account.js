@@ -313,11 +313,19 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
                 });
             }
 
-            dispatch(generateAlert('success', 'Syncing complete', 'Account sync is completed.'));
+            dispatch(
+                generateAlert(
+                    'success',
+                    i18next.t('settings:syncingComplete'),
+                    i18next.t('settings:syncingCompleteExplanation'),
+                ),
+            );
             return dispatch(manualSyncSuccess(assign({}, payload, { hashes: [] })));
         }
 
-        dispatch(generateAlert('error', 'Invalid response', 'Received an invalid response from node.'));
+        dispatch(
+            generateAlert('error', i18next.t('global:invalidResponse'), i18next.t('global:invalidResponseExplanation')),
+        );
         return dispatch(manualSyncError());
     });
 };
