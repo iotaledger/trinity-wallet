@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
-import { connect } from 'react-redux';
-import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
-import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
-import SimpleTransactionRow from '../components/simpleTransactionRow';
-import Chart from '../components/chart';
+import React, { Component } from 'react'
+import { translate } from 'react-i18next'
+import PropTypes from 'prop-types'
+import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native'
+import { connect } from 'react-redux'
+import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData'
+import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util'
+import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency'
+import SimpleTransactionRow from '../components/simpleTransactionRow'
+import Chart from '../components/chart'
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
     getBalanceForSelectedAccountViaSeedIndex,
-} from '../../shared/selectors/account';
-import THEMES from '../theme/themes';
+} from '../../shared/selectors/account'
+import THEMES from '../theme/themes'
 
-import { width, height } from '../util/dimensions';
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+import { width, height } from '../util/dimensions'
+
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
 
 class Balance extends Component {
     static propTypes = {
@@ -32,39 +34,39 @@ class Balance extends Component {
         setTimeframe: PropTypes.func.isRequired,
         extraColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
-    };
+    }
 
     constructor() {
-        super();
+        super()
 
         this.state = {
             balanceIsShort: true,
-        };
+        }
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps.seedIndex !== this.props.seedIndex) {
-            this.setState({ balanceIsShort: true });
+            this.setState({ balanceIsShort: true })
         }
     }
 
     onBalanceClick() {
         if (this.state.balanceIsShort) {
-            this.setState({ balanceIsShort: false });
+            this.setState({ balanceIsShort: false })
         } else {
-            this.setState({ balanceIsShort: true });
+            this.setState({ balanceIsShort: true })
         }
     }
 
     getDecimalPlaces(n) {
-        const s = '' + +n;
-        const match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
+        const s = `${+n}`
+        const match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s)
 
         if (!match) {
-            return 0;
+            return 0
         }
 
-        return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
+        return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0))
     }
 
     render() {
@@ -80,15 +82,15 @@ class Balance extends Component {
             isSyncing,
             negativeColor,
             extraColor,
-        } = this.props;
+        } = this.props
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
-            (balance < 1000 || this.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
-        const currencySymbol = getCurrencySymbol(settings.currency);
-        const fiatBalance = balance * marketData.usdPrice / 1000000 * settings.conversionRate;
-        const recentTransactions = transfers.slice(0, 4);
-        const hasTransactions = recentTransactions.length > 0;
+            (balance < 1000 || this.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+')
+        const currencySymbol = getCurrencySymbol(settings.currency)
+        const fiatBalance = balance * marketData.usdPrice / 1000000 * settings.conversionRate
+        const recentTransactions = transfers.slice(0, 4)
+        const hasTransactions = recentTransactions.length > 0
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
@@ -123,7 +125,7 @@ class Balance extends Component {
                             />
                         ) : (
                             <View style={styles.listView}>
-                                <Text style={styles.noTransactions}>NO RECENT HISTORY</Text>
+                                <Text style={styles.noTransactions}>{t('balance:noTransactions')}</Text>
                             </View>
                         )}
                         <View style={styles.line} />
@@ -140,7 +142,7 @@ class Balance extends Component {
                     </View>
                 </View>
             </TouchableWithoutFeedback>
-        );
+        )
     }
 }
 
@@ -197,7 +199,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingVertical: height / 50,
     },
-});
+})
 
 const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     marketData,
@@ -211,15 +213,15 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     settings,
     negativeColor: settings.theme.negativeColor,
     extraColor: settings.theme.extraColor,
-});
+})
 
 const mapDispatchToProps = dispatch => ({
     setCurrency: currency => {
-        dispatch(setCurrency(currency));
+        dispatch(setCurrency(currency))
     },
     setTimeframe: timeframe => {
-        dispatch(setTimeframe(timeframe));
+        dispatch(setTimeframe(timeframe))
     },
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Balance);
+export default translate(['viewSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Balance))
