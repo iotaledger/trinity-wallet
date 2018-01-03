@@ -328,5 +328,10 @@
     },
     "useExistingSeed": {
         "title": "Enter a seed and account name."
+    },
+    "viewSeed": {
+        "enterPassword": "Enter password to view your seed.",
+        "viewSeed": "VIEW SEED",
+        "hideSeed": "HIDE SEED"
     }
 }
