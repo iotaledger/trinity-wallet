@@ -5,7 +5,6 @@ import '../shim';
 import registerScreens from './navigation';
 import store from '../store';
 import i18 from '../i18next';
-import COLORS from '../theme/Colors';
 
 registerScreens(store, Provider);
 translate.setI18n(i18);
@@ -18,5 +17,8 @@ Navigation.startSingleScreenApp({
             navBarTransparent: true,
         },
         overrideBackPress: true,
+    },
+    appStyle: {
+        orientation: 'portrait',
     },
 });

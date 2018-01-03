@@ -1,9 +1,9 @@
+import i18next from 'i18next';
 import cloneDeep from 'lodash/cloneDeep';
 import size from 'lodash/size';
 import get from 'lodash/get';
-import filter from 'lodash/filter';
 import { iota } from '../libs/iota';
-import { updateAddresses, addPendingTransfer, updateUnconfirmedBundleTails } from '../actions/account';
+import { updateAddresses, updateAccountInfo } from '../actions/account';
 import { generateAlert } from '../actions/alerts';
 import { filterSpentAddresses, getUnspentInputs } from '../libs/accountUtils';
 import { MAX_SEED_LENGTH } from '../libs/util';
@@ -12,7 +12,6 @@ import { getSelectedAccount } from '../selectors/account';
 /* eslint-disable no-console */
 
 export const ActionTypes = {
-    SET_PROMOTION_STATUS: 'IOTA/TEMP_ACCOUNT/SET_PROMOTION_STATUS',
     GET_TRANSFERS_REQUEST: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_REQUEST',
     GET_TRANSFERS_SUCCESS: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_SUCCESS',
     GET_TRANSFERS_ERROR: 'IOTA/TEMP_ACCOUNT/GET_TRANSFERS_ERROR',
@@ -37,6 +36,7 @@ export const ActionTypes = {
     CLEAR_SEED: 'IOTA/TEMP_ACCOUNT/CLEAR_SEED',
     SET_SETTING: 'IOTA/TEMP_ACCOUNT/SET_SETTING',
     SET_USER_ACTIVITY: 'IOTA/TEMP_ACCOUNT/SET_USER_ACTIVITY',
+    SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/TEMP_ACCOUNT/SET_ADDITIONAL_ACCOUNT_INFO',
 };
 
 export const getTransfersRequest = () => ({
@@ -144,8 +144,8 @@ export const setSeedName = payload => ({
     payload,
 });
 
-export const setPromotionStatus = payload => ({
-    type: ActionTypes.SET_PROMOTION_STATUS,
+export const setAdditionalAccountInfo = payload => ({
+    type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
     payload,
 });
 
@@ -186,17 +186,12 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
         const verifyAndSend = (filtered, expectedOutputsLength, transfer, inputs) => {
             if (filtered.length !== expectedOutputsLength) {
                 return dispatch(
-                    generateAlert(
-                        'error',
-                        'Key reuse',
-                        'You cannot send to an address that has already been spent from.',
-                    ),
+                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                 );
             }
 
             const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
             const addressData = selectedAccount.addresses;
-            const transfers = selectedAccount.transfers;
 
             const options = { inputs };
 
@@ -204,26 +199,22 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
             return iota.api.sendTransfer(seed, 4, 14, transfer, options, (error, success) => {
                 if (!error) {
                     dispatch(checkForNewAddress(accountName, addressData, success));
-                    dispatch(addPendingTransfer(accountName, transfers, success));
-                    dispatch(generateAlert('success', 'Transfer sent', 'Your transfer has been sent to the Tangle.'));
+                    dispatch(updateAccountInfo(accountName, success, value));
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:transferSent'),
+                            i18next.t('global:transferSentMessage'),
+                        ),
+                    );
                     dispatch(sendTransferSuccess({ address, value }));
-
-                    // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
-                    // Would be the tail anyways.
-                    // Also check if it was a value transfer
-                    if (value) {
-                        const bundle = get(success, `[${0}].bundle`);
-                        dispatch(
-                            updateUnconfirmedBundleTails({ [bundle]: filter(success, tx => tx.currentIndex === 0) }),
-                        );
-                    }
                 } else {
                     dispatch(sendTransferError());
                     dispatch(
                         generateAlert(
                             'error',
-                            'Invalid Response',
-                            'The node returned an invalid response while sending transfer.',
+                            i18next.t('global:invalidResponse'),
+                            i18next.t('global:invalidResponseSendingTransfer'),
                         ),
                     );
                 }
@@ -234,50 +225,37 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
             if (err && err.message !== 'Not enough balance') {
                 dispatch(sendTransferError());
                 return dispatch(
-                    generateAlert(
-                        'error',
-                        'Transfer Error',
-                        'Something went wrong while sending your transfer. Please try again.',
-                    ),
-                );
-            } else {
-                if (get(inputs, 'allBalance') < value) {
-                    dispatch(sendTransferError());
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            'Not enough balance',
-                            'You do not have enough IOTA to complete this transfer.',
-                        ),
-                    );
-                } else if (get(inputs, 'totalBalance') < value) {
-                    dispatch(sendTransferError());
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            'Key reuse',
-                            'You cannot send to an address that has already been spent from.',
-                        ),
-                    );
-                }
-
-                const tag = 'IOTA';
-                const transfer = [
-                    {
-                        address: address,
-                        value: value,
-                        message: iota.utils.toTrytes(message),
-                        tag: iota.utils.toTrytes(tag),
-                    },
-                ];
-
-                const outputsToCheck = transfer.map(t => ({ address: iota.utils.noChecksum(t.address) }));
-
-                // Check to make sure user is not sending to an already used address
-                return filterSpentAddresses(outputsToCheck).then(filtered =>
-                    verifyAndSend(filtered, outputsToCheck.length, transfer, get(inputs, 'inputs')),
+                    generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
                 );
             }
+            if (get(inputs, 'allBalance') < value) {
+                dispatch(sendTransferError());
+                return dispatch(
+                    generateAlert('error', i18next.t('global:balanceError'), i18next.t('global:balanceErrorMessage')),
+                );
+            } else if (get(inputs, 'totalBalance') < value) {
+                dispatch(sendTransferError());
+                return dispatch(
+                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                );
+            }
+
+            const tag = 'IOTA';
+            const transfer = [
+                {
+                    address: address,
+                    value: value,
+                    message: iota.utils.toTrytes(message),
+                    tag: iota.utils.toTrytes(tag),
+                },
+            ];
+
+            const outputsToCheck = transfer.map(t => ({ address: iota.utils.noChecksum(t.address) }));
+
+            // Check to make sure user is not sending to an already used address
+            return filterSpentAddresses(outputsToCheck).then(filtered =>
+                verifyAndSend(filtered, outputsToCheck.length, transfer, get(inputs, 'inputs')),
+            );
         };
 
         return getUnspentInputs(seed, 0, value, null, unspentInputs);
@@ -312,6 +290,7 @@ export const checkForNewAddress = (seedName, addressData, txArray) => {
 
 export const randomiseSeed = randomBytesFn => {
     return dispatch => {
+        // TODO move this to an iota util file
         const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
         let seed = '';
         // uncomment for synchronous API, uses SJCL
@@ -330,7 +309,13 @@ export const randomiseSeed = randomBytesFn => {
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);
-                dispatch(generateAlert('error', 'Something went wrong', 'Please restart the app.'));
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:somethingWentWrong'),
+                        i18next.t('global:somethingWentWrongExplanation'),
+                    ),
+                );
             }
         });
     };

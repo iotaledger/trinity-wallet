@@ -8,19 +8,15 @@ import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 
 class Welcome extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     onNextPress() {
         this.props.navigator.push({
             screen: 'walletSetup',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
             animated: false,
-            overrideBackPress: true,
         });
     }
 

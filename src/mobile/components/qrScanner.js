@@ -59,5 +59,4 @@ const styles = StyleSheet.create({
     },
 });
 
-module.exports = QRScanner;
-//TODO: translate(['qrScanner', 'global'])
+export default translate(['qrScanner', 'global'])(QRScanner);

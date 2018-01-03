@@ -59,6 +59,7 @@ class SetPassword extends Component {
                         navigatorStyle: {
                             navBarHidden: true,
                             navBarTransparent: true,
+                            screenBackgroundColor: COLORS.backgroundGreen,
                         },
                         animated: false,
                         overrideBackPress: true,
@@ -170,7 +171,7 @@ class SetPassword extends Component {
                                     onChangeText={password => this.setState({ password })}
                                     onSubmitEditing={() => this.reentry.focus()}
                                     containerStyle={{
-                                        width: width / 1.36,
+                                        width: width / 1.4,
                                     }}
                                     secureTextEntry={true}
                                 />
@@ -192,7 +193,7 @@ class SetPassword extends Component {
                                     returnKeyType="done"
                                     value={reentry}
                                     onChangeText={reentry => this.setState({ reentry })}
-                                    containerStyle={{ width: width / 1.36 }}
+                                    containerStyle={{ width: width / 1.4 }}
                                     secureTextEntry={true}
                                     onSubmitEditing={() => this.onDonePress()}
                                 />
@@ -253,6 +254,7 @@ const styles = StyleSheet.create({
         flex: 4.8,
         justifyContent: 'space-around',
         alignItems: 'center',
+        width,
     },
     textfieldsContainer: {
         justifyContent: 'center',

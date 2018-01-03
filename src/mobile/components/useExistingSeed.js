@@ -1,5 +1,6 @@
 import trim from 'lodash/trim';
 import React from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Image } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
@@ -49,9 +50,8 @@ class UseExistingSeed extends React.Component {
             return 'SIXTH ACCOUNT';
         } else if (this.props.seedCount === 6) {
             return 'OTHER ACCOUNT';
-        } else {
-            return '';
         }
+        return '';
     }
 
     onQRPress() {
@@ -92,6 +92,7 @@ class UseExistingSeed extends React.Component {
     }
 
     render() {
+        const { t } = this.props;
         const { seed, accountName } = this.state;
 
         return (
@@ -101,7 +102,7 @@ class UseExistingSeed extends React.Component {
                         <View style={styles.seedContainer}>
                             <View style={{ flex: 0.5 }} />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.title}>Enter a seed and account name.</Text>
+                                <Text style={styles.title}>{t('useExistingSeed:title')}</Text>
                             </View>
                             <View style={{ flex: 1 }} />
                             <View style={{ flexDirection: 'row', width: width / 1.4 }}>
@@ -114,7 +115,7 @@ class UseExistingSeed extends React.Component {
                                         labelPadding={3}
                                         baseColor="white"
                                         tintColor={THEMES.getHSL(this.props.negativeColor)}
-                                        enablesReturnKeyAutomatically={true}
+                                        enablesReturnKeyAutomatically
                                         label="Seed"
                                         autoCorrect={false}
                                         value={seed}
@@ -127,7 +128,7 @@ class UseExistingSeed extends React.Component {
                                     <TouchableOpacity onPress={() => this.onQRPress()}>
                                         <View style={styles.qrButton}>
                                             <Image source={cameraImagePath} style={styles.qrImage} />
-                                            <Text style={styles.qrText}> QR </Text>
+                                            <Text style={styles.qrText}>{` ${t('global:qr')} `}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -148,8 +149,8 @@ class UseExistingSeed extends React.Component {
                                 labelPadding={3}
                                 baseColor="white"
                                 tintColor={THEMES.getHSL(this.props.negativeColor)}
-                                enablesReturnKeyAutomatically={true}
-                                label="Account name"
+                                enablesReturnKeyAutomatically
+                                label={t('addAdditionalSeed:accountName')}
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 value={accountName}
@@ -162,7 +163,7 @@ class UseExistingSeed extends React.Component {
                         <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>Back</Text>
+                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
@@ -170,7 +171,7 @@ class UseExistingSeed extends React.Component {
                             style={{ flex: 1 }}
                         >
                             <View style={styles.itemRight}>
-                                <Text style={styles.titleTextRight}>Done</Text>
+                                <Text style={styles.titleTextRight}>{t('global:doneLowercase')}</Text>
                                 <Image source={arrowRightImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
@@ -283,19 +284,6 @@ const styles = StyleSheet.create({
         flex: 6.5,
         alignItems: 'center',
     },
-    titleTextLeft: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-    },
-    titleTextRight: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-        marginRight: width / 25,
-    },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -309,13 +297,26 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     iconLeft: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
+    },
+    titleTextLeft: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
     },
     iconRight: {
-        width: width / 22,
-        height: width / 22,
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
     },
     checksum: {
         width: width / 8,
@@ -333,4 +334,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default UseExistingSeed;
+export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(UseExistingSeed);
