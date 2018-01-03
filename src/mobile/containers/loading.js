@@ -3,43 +3,63 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, StatusBar, Text, ActivityIndicator } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getAccountInfo, getFullAccountInfo } from 'iota-wallet-shared-modules/actions/account';
+import {
+    getAccountInfo,
+    getFullAccountInfo,
+    fetchFullAccountInfoForFirstUse,
+} from 'iota-wallet-shared-modules/actions/account';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
-import keychain, { getSeed } from '../util/keychain';
+import keychain, { getSeed, storeSeedInKeychain } from '../util/keychain';
 import { Navigation } from 'react-native-navigation';
 import IotaSpin from '../components/iotaSpin';
 import THEMES from '../theme/themes';
 import KeepAwake from 'react-native-keep-awake';
 
 import { width, height } from '../util/dimensions';
-const logoSpin = require('../logo-spin/logo-spin-glow.html');
 
 class Loading extends Component {
     componentDidMount() {
         KeepAwake.activate();
+
         this.props.changeHomeScreenRoute('balance');
         this.props.setSetting('mainSettings');
 
-        const { firstUse, selectedAccountName } = this.props;
+        const {
+            firstUse,
+            addingAdditionalAccount,
+            additionalAccountName,
+            selectedAccountName,
+            seed,
+            password,
+            navigator,
+        } = this.props;
 
         keychain
             .get()
             .then(credentials => {
-                const seed = getSeed(credentials.data, 0);
+                const firstSeed = getSeed(credentials.data, 0);
 
-                if (firstUse) {
-                    this.props.getFullAccountInfo(seed, selectedAccountName, this.props.navigator);
+                if (firstUse && !addingAdditionalAccount) {
+                    this.props.getFullAccountInfo(firstSeed, selectedAccountName, navigator);
+                } else if (!firstUse && addingAdditionalAccount) {
+                    this.props.fetchFullAccountInfoForFirstUse(
+                        seed,
+                        additionalAccountName,
+                        password,
+                        storeSeedInKeychain,
+                        navigator,
+                    );
                 } else {
-                    this.props.getAccountInfo(seed, selectedAccountName, this.props.navigator);
+                    this.props.getAccountInfo(firstSeed, selectedAccountName, navigator);
                 }
             })
             .catch(err => console.log(err)); // Dropdown
     }
 
     componentWillReceiveProps(newProps) {
-        const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+        const ready = !this.props.ready && newProps.ready;
 
         if (ready) {
             KeepAwake.deactivate();
@@ -57,9 +77,9 @@ class Loading extends Component {
     }
 
     render() {
-        const { firstUse, t, negativeColor, backgroundColor } = this.props;
+        const { firstUse, t, addingAdditionalAccount, negativeColor, backgroundColor } = this.props;
 
-        if (firstUse) {
+        if (firstUse || addingAdditionalAccount) {
             return (
                 <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                     <StatusBar barStyle="light-content" />
@@ -114,9 +134,11 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     firstUse: state.account.firstUse,
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
-    marketData: state.marketData,
-    tempAccount: state.tempAccount,
-    account: state.account,
+    addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
+    additionalAccountName: state.tempAccount.additionalAccountName,
+    seed: state.tempAccount.seed,
+    ready: state.tempAccount.ready,
+    password: state.tempAccount.password,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
 });
@@ -126,15 +148,15 @@ const mapDispatchToProps = {
     setSetting,
     getAccountInfo,
     getFullAccountInfo,
+    fetchFullAccountInfoForFirstUse,
 };
 
 Loading.propTypes = {
     firstUse: PropTypes.bool.isRequired,
-    tempAccount: PropTypes.object.isRequired,
-    account: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
     getAccountInfo: PropTypes.func.isRequired,
     getFullAccountInfo: PropTypes.func.isRequired,
+    fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
     selectedAccountName: PropTypes.string.isRequired,
     backgroundColor: PropTypes.object.isRequired,
     negativeColor: PropTypes.object.isRequired,
