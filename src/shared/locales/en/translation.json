@@ -1,5 +1,6 @@
 {
     "global": {
+        "noTransactions": "NO RECENT HISTORY",
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
@@ -333,8 +334,5 @@
         "enterPassword": "Enter password to view your seed.",
         "viewSeed": "VIEW SEED",
         "hideSeed": "HIDE SEED"
-    },
-    "balance": {
-        "noTransactions": "NO RECENT HISTORY"
     }
 }
