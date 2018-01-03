@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: height / 8,
+        width,
     },
     bottomContainer: {
         flex: 1.7,
