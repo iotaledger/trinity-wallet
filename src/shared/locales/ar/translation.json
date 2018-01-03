@@ -1,7 +1,7 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
+        "send": "إرسال",
+        "cancel": "إلغاء",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
         "qr": "رمز QR",
@@ -11,7 +11,7 @@
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
-        "keyReuse": "Key reuse",
+        "keyReuse": "إعادة الاستخدام المفتاح",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "استجابة غير صالحة",
         "invalidResponseExplanation": "الخادم اعاد ردا غير صالحا.",
@@ -26,7 +26,7 @@
         "next": "التالي",
         "apply": "Apply",
         "save": "Save",
-        "close": "CLOSE",
+        "close": "إغلاق",
         "continue": "Continue",
         "manualCopy": "اكتب القيمة الأولية",
         "paperWallet": "اطبع نسخة ورقية",
@@ -50,17 +50,15 @@
         "syncInProgressExplanation": "Please wait until syncing is complete.",
         "somethingWentWrong": "Something went wrong",
         "somethingWentWrongExplanation": "Please restart the app.",
-        "node": "Node",
+        "node": "عقدة",
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
-        "seedInvalidCharsExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "seedInvalidCharsExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "السييد قصير جداً",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "Account name already in use",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
         "enterAccountName": "Enter an account name.",
@@ -82,8 +80,7 @@
         "passwordTooShort": "كلمة المرور قصيرة جدا",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation":
-            "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
         "currentPassword": "Current Password",
         "newPassword": "New Password",
@@ -100,13 +97,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation":
-            "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "السييد قصير جداً",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation":
-            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص"
     },
     "home": {
@@ -139,8 +133,7 @@
         "individualLetters": "اضغط على الأحرف بشكل فردي لكي تكن عشوائية."
     },
     "onboardingComplete": {
-        "walletReady":
-            "تم إعداد المحفظة الآن وجاهزة للاستخدام. إذا كنت بحاجة إلى إجراء أية تغييرات في المستقبل، فابحث في قائمة الإعدادات."
+        "walletReady": "تم إعداد المحفظة الآن وجاهزة للاستخدام. إذا كنت بحاجة إلى إجراء أية تغييرات في المستقبل، فابحث في قائمة الإعدادات."
     },
     "paperWallet": {
         "clickToPrint": "اضغط الزر أدناه لطباعة نسخه ورقية من السييد الخاصة بك.",
@@ -177,8 +170,7 @@
         "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
         "keyReuse": "إعادة الاستخدام المفتاح",
-        "keyReuseExplanation":
-            "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
         "amount": "الكمية",
         "max": "أقصى",
@@ -191,13 +183,11 @@
     },
     "setPassword": {
         "passwordTooShort": "كلمة المرور قصيرة جدا",
-        "passwordTooShortExplanation":
-            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "كلمتي المرور لا تتطابق",
         "passwordMismatchExplanation": "كلمتي المرور المدخلة لا تتطابق، يرجى المحاولة مرة أخرى.",
         "nowWeNeedTo": "الآن نحن بحاجة إلى إعداد كلمة مرور.",
-        "anEncryptedCopy":
-            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
         "retypePassword": "Retype Password"
     },
@@ -249,8 +239,7 @@
     "walletSetup": {
         "okay": "حسنًا. لنقم بإعداد محفظتك!",
         "doYouAlreadyHaveASeed": "هل لديك seed ترغب في استخدامه؟",
-        "seedExplanation":
-            "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
+        "seedExplanation": "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
         "explanation1": "You can use it to access your funds from",
         "explanation2": " any wallet ",
         "explanation3": ", on",
@@ -323,8 +312,8 @@
     },
     "manualSync": {
         "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down.",
+        "thisMayTake": "قد يستغرق هذا بعض الوقت.",
+        "youMayNotice": "ستلاحظ بطء الجهاز الخاص بك.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
     },
@@ -346,9 +335,9 @@
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
         "infoTextOne": "All your wallet data including your",
         "infoTextTwo": "seeds, password",
-        "infoTextThree": "and",
+        "infoTextThree": "و",
         "infoTextFour": "other account information",
-        "infoTextFive": "will be lost."
+        "infoTextFive": "سيضيع."
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
