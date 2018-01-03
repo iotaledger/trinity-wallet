@@ -1,12 +1,28 @@
 {
     "global": {
+        "send": "SEND",
+        "cancel": "CANCEL",
+        "continue?": "Are you sure you want to continue?",
+        "noTransactions": "NO RECENT HISTORY",
+        "qr": "QR",
+        "balanceError": "Not enough balance",
+        "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
+        "transferError": "Transfer Error",
+        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferSent": "Transfer sent",
+        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "keyReuse": "Key reuse",
+        "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Risposta non valida",
         "invalidResponseExplanation": "Il nodo ha restituito una risposta non valida.",
         "invalidResponsePollingExplanation": "Il nodo ha restituito una risposta non valida durante il polling.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
         "seed": "Seme",
         "back": "INDIETRO",
         "backLowercase": "Back",
         "done": "FINE",
+        "doneLowercase": "Done",
         "next": "AVANTI",
         "apply": "Apply",
         "save": "Save",
@@ -15,7 +31,6 @@
         "manualCopy": "Annota il seme",
         "paperWallet": "Stampa copia cartacea",
         "copyToClipboard": "Aggiungi al gestore di password",
-        "qr": "QR",
         "notAvailable": "Questa funzione non è disponibile",
         "notAvailableExplanation": "Verrà aggiunta in una fase successiva.",
         "enterSeed": "Inserisci il tuo seme.",
@@ -238,7 +253,7 @@
         "reminder": "Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Il tuo seme è composto da 81 caratteri letti da sinistra a destra. Annota il tuo seme e la relativa checksum, e",
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "controlla tre volte",
         "thatTheyAreCorrect": "che siano corretti."
     },
@@ -301,5 +316,31 @@
         "youMayNotice": "You may notice your device slowing down.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
+    },
+    "useExistingSeed": {
+        "title": "Enter a seed and account name."
+    },
+    "viewSeed": {
+        "enterPassword": "Enter password to view your seed.",
+        "viewSeed": "VIEW SEED",
+        "hideSeed": "HIDE SEED"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "I have saved my seed",
+        "reenter": "You will now be asked to re-enter your seed.",
+        "reenterWarningOne": "If your device fails and you have not saved",
+        "reenterWarningTwo": "your seed, you will lose your IOTA."
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "infoTextOne": "All your wallet data including your",
+        "infoTextTwo": "seeds, password",
+        "infoTextThree": "and",
+        "infoTextFour": "other account information",
+        "infoTextFive": "will be lost."
+    },
+    "transferConfirmation": {
+        "youAreAbout": "You are about to send {{contents}} to the address",
+        "aMessage": "a message"
     }
 }
