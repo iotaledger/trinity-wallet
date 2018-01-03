@@ -58,9 +58,12 @@ class EnterSeed extends React.Component {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: COLORS.backgroundGreen,
+                },
                 animated: false,
-                overrideBackPress: true,
             });
         }
     }
@@ -86,7 +89,12 @@ class EnterSeed extends React.Component {
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
+        <QRScanner
+            backgroundColor={COLORS.backgroundGreen}
+            ctaColor={COLORS.greenLight}
+            onQRRead={data => this.onQRRead(data)}
+            hideModal={() => this._hideModal()}
+        />
     );
 
     getChecksumValue() {

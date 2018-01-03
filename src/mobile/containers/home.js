@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, StatusBar } from 'react-native';
+import { StyleSheet, View, StatusBar, BackHandler, ToastAndroid } from 'react-native';
 import { connect } from 'react-redux';
 import UserInactivity from 'react-native-user-inactivity';
-import KeepAwake from 'react-native-keep-awake';
+import { Navigation } from 'react-native-navigation';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
-import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
-import { setFirstUse } from 'iota-wallet-shared-modules/actions/account';
-import { setUserActivity } from 'iota-wallet-shared-modules/actions/app';
+import { clearTempData, setPassword, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
 import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
@@ -18,8 +16,8 @@ import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
-import Promoter from './promoter';
-import COLORS from '../theme/Colors';
+import Poll from './poll';
+import THEMES from '../theme/themes';
 import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
@@ -77,6 +75,30 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
+    componentDidMount() {
+        BackHandler.addEventListener('homeBackPress', () => {
+            if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+                Navigation.startSingleScreenApp({
+                    screen: {
+                        screen: 'login',
+                        navigatorStyle: {
+                            navBarHidden: true,
+                            navBarTransparent: true,
+                        },
+                        overrideBackPress: true,
+                    },
+                });
+            }
+            this.lastBackPressed = Date.now();
+            ToastAndroid.show('Press back again to log out', ToastAndroid.SHORT);
+            return true;
+        });
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('homeBackPress');
+    }
+
     onLoginPress = password => {
         const { t, tempAccount } = this.props;
 
@@ -99,25 +121,33 @@ class Home extends Component {
     };
 
     render() {
-        const { t, navigator, inactive, minimised, startBackgroundProcesses, endBackgroundProcesses } = this.props;
+        const {
+            t,
+            navigator,
+            inactive,
+            minimised,
+            barColor,
+            backgroundColor,
+            negativeColor,
+            positiveColor,
+        } = this.props;
 
         return (
             <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={this.handleInactivity}>
-                <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
+                <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
                     <StatusBar barStyle="light-content" />
                     {!inactive &&
                         !minimised && (
                             <View style={{ flex: 1 }}>
                                 <View style={styles.topContainer} />
                                 <View style={styles.midContainer}>
-                                    <TabContent
-                                        navigator={navigator}
-                                        startBackgroundProcesses={startBackgroundProcesses}
-                                        endBackgroundProcesses={endBackgroundProcesses}
-                                    />
+                                    <TabContent navigator={navigator} />
                                 </View>
                                 <View style={styles.bottomContainer}>
-                                    <Tabs onPress={name => this.props.changeHomeScreenRoute(name)}>
+                                    <Tabs
+                                        onPress={name => this.props.changeHomeScreenRoute(name)}
+                                        barColor={THEMES.getHSL(barColor)}
+                                    >
                                         <Tab name="balance" icon={balanceImagePath} text={t('home:balance')} />
                                         <Tab name="send" icon={sendImagePath} text={t('home:send')} />
                                         <Tab name="receive" icon={receiveImagePath} text={t('home:receive')} />
@@ -130,13 +160,17 @@ class Home extends Component {
                         )}
                     {inactive && (
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <EnterPassword onLoginPress={this.onLoginPress} />
+                            <EnterPassword
+                                onLoginPress={this.onLoginPress}
+                                backgroundColor={backgroundColor}
+                                negativeColor={negativeColor}
+                                positiveColor={positiveColor}
+                            />
                         </View>
                     )}
                     {minimised && <View />}
-                    <Promoter />
+                    <Poll />
                     <StatefulDropdownAlert />
-                    <KeepAwake />
                 </View>
             </UserInactivity>
         );
@@ -147,21 +181,23 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     settings: state.settings,
     account: state.account,
-    inactive: state.app.inactive,
-    minimised: state.app.minimised,
+    inactive: state.tempAccount.inactive,
+    minimised: state.tempAccount.minimised,
+    barColor: state.settings.theme.barColor,
+    backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
+    positiveColor: state.settings.theme.positiveColor,
 });
 
 const mapDispatchToProps = {
     changeHomeScreenRoute,
     generateAlert,
-    setFirstUse,
     clearTempData,
     setPassword,
     setUserActivity,
 };
 
 Home.propTypes = {
-    setFirstUse: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     navigator: PropTypes.object.isRequired,
     changeHomeScreenRoute: PropTypes.func.isRequired,
@@ -169,8 +205,11 @@ Home.propTypes = {
     setUserActivity: PropTypes.func.isRequired,
     inactive: PropTypes.bool.isRequired,
     minimised: PropTypes.bool.isRequired,
-    startBackgroundProcesses: PropTypes.func.isRequired,
-    endBackgroundProcesses: PropTypes.func.isRequired,
+    backgroundColor: PropTypes.object.isRequired,
+    barColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.object.isRequired,
+    positiveColor: PropTypes.object.isRequired,
+    tempAccount: PropTypes.object.isRequired,
 };
 
 export default withUserActivity()(
