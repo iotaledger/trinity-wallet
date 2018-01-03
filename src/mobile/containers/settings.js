@@ -30,7 +30,7 @@ import {
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
-
+import KeepAwake from 'react-native-keep-awake';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal';
 import SettingsContent from '../components/settingsContent';
 import keychain, {
@@ -159,6 +159,14 @@ class Settings extends Component {
             modalContent: <LogoutConfirmationModal />,
             selectedCurrency: this.props.currency,
         };
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (!this.props.isSyncing && newProps.isSyncing) {
+            KeepAwake.activate();
+        } else if (this.props.isSyncing && !newProps.isSyncing) {
+            KeepAwake.deactivate();
+        }
     }
 
     getChildrenProps(child) {
