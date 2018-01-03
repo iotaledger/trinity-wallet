@@ -17,10 +17,10 @@
         }
         :global {
             h1.error {
-                color: var(--color-red);
+                color: var(--color-warning);
             }
             h1.success {
-                color: var(--color-green);
+                color: var(--color-valid);
             }
         }
         strong {

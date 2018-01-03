@@ -50,10 +50,15 @@ class SecurityEnter extends React.PureComponent {
         history.push('/done');
     };
 
-    changeHandler = e => {
-        const { target: { name, value } } = e;
+    updatePassword = value => {
         this.setState(() => ({
-            [name]: value,
+            password: value,
+        }));
+    };
+
+    confirmPassword = value => {
+        this.setState(() => ({
+            passwordConfirm: value,
         }));
     };
 
@@ -63,26 +68,14 @@ class SecurityEnter extends React.PureComponent {
             <Template type="form" onSubmit={this.onRequestNext}>
                 <Content>
                     <p>{t('setPassword:nowWeNeedTo')}</p>
-                    <div className={css.formGroup}>
-                        <PasswordInput
-                            placeholder={t('global:password')}
-                            name="password"
-                            onChange={this.changeHandler}
-                        />
-                    </div>
-                    <div className={css.formGroup}>
-                        <PasswordInput
-                            placeholder={t('setPassword:retypePassword')}
-                            name="passwordConfirm"
-                            onChange={this.changeHandler}
-                        />
-                    </div>
+                    <PasswordInput label={t('global:password')} onChange={this.updatePassword} />
+                    <PasswordInput label={t('setPassword:retypePassword')} onChange={this.confirmPassword} />
                     <Infobox>
                         <p>{t('setPassword:anEncryptedCopy')}</p>
                     </Infobox>
                 </Content>
                 <Footer>
-                    <Button to="/seed/name" variant="warning">
+                    <Button to="/seed/name" variant="secondary">
                         {t('global:back')}
                     </Button>
                     <Button type="submit" variant="success">

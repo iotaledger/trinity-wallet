@@ -39,7 +39,7 @@ class SeedPaperWallet extends PureComponent {
                     </div>
                 </div>
                 <div className={css.printBtnWrapper}>
-                    <Button onClick={this.print} variant="cta">
+                    <Button onClick={this.print} variant="secondary">
                         {t('paperWallet:printWallet')}
                     </Button>
                 </div>

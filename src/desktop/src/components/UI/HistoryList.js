@@ -10,7 +10,7 @@ import css from './HistoryList.css';
 class HistoryList extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
-        limit: PropTypes.number.isRequired,
+        limit: PropTypes.number,
         transfers: PropTypes.array.isRequired,
         addresses: PropTypes.array.isRequired,
     };
@@ -18,10 +18,12 @@ class HistoryList extends React.PureComponent {
     render() {
         const { transfers, addresses, limit } = this.props;
 
+        const transferLimit = limit ? limit : transfers.length;
+
         return (
             <ul className={css.historyList}>
-                {transfers ? (
-                    transfers.slice(0, limit).map((transfer, key) => {
+                {transfers && transfers.length ? (
+                    transfers.slice(0, transferLimit).map((transfer, key) => {
                         const isReceived = addresses.includes(transfer.address);
                         const isConfirmed = transfer.hasPersistence;
 
