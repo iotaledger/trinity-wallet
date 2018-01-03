@@ -12,12 +12,14 @@ const getProps = overrides =>
             currency: 'USD',
             theme: 'general',
             mode: 'standard',
+            themeName: 'custom',
             onModePress: noop,
             onLanguagePress: noop,
             setSetting: noop,
             setModalContent: noop,
             on2FASetupPress: noop,
             onThemePress: noop,
+            t: arg => arg,
         },
         overrides,
     );
@@ -54,6 +56,10 @@ describe('Testing MainSettings component', () => {
 
         it('should require a onThemePress function as a prop', () => {
             expect(MainSettings.propTypes.onThemePress).toBe(PropTypes.func.isRequired);
+        });
+
+        it('should require a t function as a prop', () => {
+            expect(MainSettings.propTypes.t).toBe(PropTypes.func.isRequired);
         });
     });
 
