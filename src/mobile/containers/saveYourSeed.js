@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar, BackHandler } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -8,6 +8,7 @@ import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
+import { Navigation } from 'react-native-navigation';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
@@ -19,7 +20,23 @@ class SaveYourSeed extends Component {
         generateAlert: PropTypes.func.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         extraColor: PropTypes.object.isRequired,
+        onboardingComplete: PropTypes.bool.isRequired,
     };
+
+    componentDidMount() {
+        if (this.props.onboardingComplete) {
+            BackHandler.addEventListener('saveYourSeedBackPress', () => {
+                this.onBackPress();
+                return true;
+            });
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.props.onboardingComplete) {
+            BackHandler.removeEventListener('saveYourSeedBackPress');
+        }
+    }
 
     componentWillReceiveProps(newProps) {
         const { t } = this.props;
@@ -27,16 +44,18 @@ class SaveYourSeed extends Component {
             this.timeout = setTimeout(() => {
                 this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
             }, 500);
-
             this.props.setCopiedToClipboard(false);
         }
     }
     onDonePress() {
         this.props.navigator.push({
             screen: 'saveSeedConfirmation',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+            },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -49,25 +68,34 @@ class SaveYourSeed extends Component {
     onWriteClick() {
         this.props.navigator.push({
             screen: 'writeSeedDown',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+            },
             animated: false,
-            overrideBackPress: true,
         });
     }
     onPrintClick() {
         this.props.navigator.push({
             screen: 'paperWallet',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+            },
             animated: false,
-            overrideBackPress: true,
         });
     }
     onCopyClick() {
         this.props.navigator.push({
             screen: 'copySeedToClipboard',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+            },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -243,6 +271,7 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     extraColor: state.settings.theme.extraColor,
+    onboardingComplete: state.account.onboardingComplete,
 });
 
 const mapDispatchToProps = {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -23,7 +24,7 @@ class TransferConfirmationModal extends Component {
         const { t, backgroundColor } = this.props;
         let transferContents = null;
         if (this.props.amount === 0) {
-            transferContents = <Text style={styles.iotaText}>a message</Text>;
+            transferContents = <Text style={styles.iotaText}>{t('transferConfirmation:aMessage')}</Text>;
         } else {
             transferContents = (
                 <Text style={styles.iotaText}>
@@ -33,13 +34,13 @@ class TransferConfirmationModal extends Component {
             );
         }
         return (
-            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
+            <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
-                            <Text style={styles.regularText}>You are about to send </Text>
-                            {transferContents}
-                            <Text style={styles.middleText}> to the address:</Text>
+                            <Text style={styles.regularText}>
+                                {t('transferConfirmation:youAreAbout', { contents: transferContents })}
+                            </Text>
                         </Text>
                         <Text numberOfLines={3} style={styles.addressText}>
                             {this.props.address}
@@ -48,8 +49,8 @@ class TransferConfirmationModal extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.onSendPress()}
-                        leftText={'CANCEL'}
-                        rightText={'SEND'}
+                        leftText={t('global:cancel')}
+                        rightText={t('global:send')}
                     />
                 </View>
             </View>
@@ -107,4 +108,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default TransferConfirmationModal;
+export default translate(['transferConfirmation', 'global'])(TransferConfirmationModal);

@@ -1,3 +1,5 @@
+import i18next from 'i18next';
+
 export const ActionTypes = {
     SHOW: 'IOTA/ALERTS/SHOW',
     HIDE: 'IOTA/ALERTS/HIDE',
@@ -18,8 +20,8 @@ export const generateAccountInfoErrorAlert = () => dispatch =>
     dispatch(
         generateAlert(
             'error',
-            'Invalid Response',
-            'The node returned an invalid response while fetching your account information.', // Or could just say communicating with your selected IOTA node.
+            i18next.t('global:invalidResponse'),
+            i18next.t('global:invalidResponseFetchingAccount'), // Or could just say communicating with your selected IOTA node.
         ),
     );
 

@@ -21,24 +21,20 @@ const routeToComponent = {
 
 class TabContent extends Component {
     handleCloseTopBar = () => {
-        const { isTopBarActive, toggleTopBarDisplay } = this.props;
-        if (isTopBarActive) toggleTopBarDisplay();
+        const { isTopBarActive } = this.props;
+        if (isTopBarActive) {
+            this.props.toggleTopBarDisplay();
+        }
     };
 
     render() {
-        const { currentRoute, navigator, startBackgroundProcesses, endBackgroundProcesses } = this.props;
+        const { currentRoute, navigator } = this.props;
 
         const Content = routeToComponent[currentRoute];
 
         return (
             <View style={{ flex: 1 }}>
-                <Content
-                    type={currentRoute}
-                    navigator={navigator}
-                    closeTopBar={this.handleCloseTopBar}
-                    startBackgroundProcesses={currentRoute === 'settings' ? startBackgroundProcesses : null}
-                    endBackgroundProcesses={currentRoute === 'settings' ? endBackgroundProcesses : null}
-                />
+                <Content type={currentRoute} navigator={navigator} closeTopBar={this.handleCloseTopBar} />
             </View>
         );
     }
@@ -58,8 +54,6 @@ TabContent.propTypes = {
     currentRoute: PropTypes.oneOf(Object.keys(routeToComponent)),
     isTopBarActive: PropTypes.bool.isRequired,
     toggleTopBarDisplay: PropTypes.func.isRequired,
-    startBackgroundProcesses: PropTypes.func.isRequired,
-    endBackgroundProcesses: PropTypes.func.isRequired,
 };
 
 TabContent.defaultProps = {
