@@ -31,8 +31,11 @@ export class Poll extends Component {
         isFetchingAccountInfo: PropTypes.bool.isRequired,
         isPromoting: PropTypes.bool.isRequired,
         isSyncing: PropTypes.bool.isRequired,
+        inactive: PropTypes.bool.isRequired,
+        addingAdditionalAccount: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,
@@ -70,7 +73,11 @@ export class Poll extends Component {
         const props = this.props;
 
         const isAlreadyDoingSomeHeavyLifting =
-            props.isSyncing || props.isSendingTransfer || props.isGeneratingReceiveAddress;
+            props.isSyncing ||
+            props.isSendingTransfer ||
+            props.isGeneratingReceiveAddress ||
+            props.isFetchingLatestAccountInfoOnLogin || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
+            props.addingAdditionalAccount;
 
         const isAlreadyPollingSomething =
             props.isFetchingPrice ||
@@ -79,7 +86,7 @@ export class Poll extends Component {
             props.isFetchingAccountInfo ||
             props.isPromoting;
 
-        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
+        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething || props.inactive; // Stop polling if the app goes to an inactive state.
     }
 
     fetch(service) {
@@ -176,8 +183,11 @@ const mapStateToProps = state => ({
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
     isPromoting: state.polling.isPromoting,
     isSyncing: state.tempAccount.isSyncing,
+    inactive: state.tempAccount.inactive,
+    addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
+    isFetchingLatestAccountInfoOnLogin: state.tempAccount.isFetchingLatestAccountInfoOnLogin,
     seedIndex: state.tempAccount.seedIndex,
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     unconfirmedBundleTails: state.account.unconfirmedBundleTails,

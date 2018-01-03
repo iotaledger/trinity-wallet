@@ -118,10 +118,11 @@
     "setupTestFrameworkScriptFile": "./testConfig.js",
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "/containers/.*",
-      "/shared/",
-      "/__tests__/i18n.js"
-    ]
+      "/shared/"
+    ],
+      "transformIgnorePatterns": [
+          "node_modules/?!(react-native|iota-wallet-shared-modules)"
+      ]
   },
   "react-native": {
     "zlib": "browserify-zlib",
