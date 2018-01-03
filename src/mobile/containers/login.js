@@ -23,6 +23,7 @@ import GENERAL from '../theme/general';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { width, height } from '../util/dimensions';
+import KeepAwake from 'react-native-keep-awake';
 
 class Login extends Component {
     static propTypes = {
@@ -59,6 +60,7 @@ class Login extends Component {
         const { currency } = this.props;
         this.getWalletData();
         this.props.getCurrencyData(currency);
+        KeepAwake.deactivate();
     }
 
     componentWillReceiveProps(newProps) {
