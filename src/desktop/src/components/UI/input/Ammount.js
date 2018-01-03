@@ -3,8 +3,9 @@ import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getCurrencySymbol } from 'libs/currency';
-import css from './Ammount.css';
-import Button from 'components/UI/Button';
+import css from './Input.css';
+
+import Chevron from 'images/chevron-down.png';
 
 const units = ['$', 'i', 'Ki', 'Mi', 'Gi', 'Ti'];
 
@@ -13,6 +14,8 @@ export default class AddressInput extends React.PureComponent {
         ammount: PropTypes.string.isRequired,
         balance: PropTypes.number.isRequired,
         settings: PropTypes.object.isRequired,
+        label: PropTypes.string.isRequired,
+        labelMax: PropTypes.string.isRequired,
     };
 
     state = {
@@ -67,21 +70,31 @@ export default class AddressInput extends React.PureComponent {
     }
 
     render() {
-        const { ammount, settings } = this.props;
+        const { ammount, balance, settings, label, labelMax } = this.props;
         const { unit } = this.state;
 
         return (
-            <div className={css.ammountInput}>
-                <div>
+            <div className={css.input}>
+                <fieldset>
+                    <a onClick={this.unitChange}>
+                        <span>
+                            {unit === '$' ? getCurrencySymbol(settings.currency) : unit}
+                            <img src={Chevron} />
+                        </span>
+                    </a>
                     <input
                         type="text"
                         value={ammount / this.getUnitMultiplier() + (ammount[ammount.length - 1] === '.' ? '.' : '')}
                         onChange={e => this.onChange(e.target.value)}
                     />
-                    <small />
-                </div>
-                <Button onClick={this.unitChange}>{unit === '$' ? getCurrencySymbol(settings.currency) : unit}</Button>
-                <Button onClick={this.maxAmmount}>Max</Button>
+                    <small>{label}</small>
+                </fieldset>
+                <a
+                    className={classNames(css.checkbox, parseInt(ammount) === balance ? css.on : css.off)}
+                    onClick={this.maxAmmount}
+                >
+                    {labelMax}
+                </a>
             </div>
         );
     }

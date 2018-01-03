@@ -10,7 +10,6 @@ import GenerateSeed from '../Onboarding/GenerateSeed';
 import SeedEnter from '../Onboarding/SeedEnter';
 import SeedName from '../Onboarding/SeedName';
 import SaveYourSeedOptions from '../Onboarding/SaveYourSeedOptions';
-import SecurityIntro from '../Onboarding/SecurityIntro';
 import SecurityEnter from '../Onboarding/SecurityEnter';
 import Done from '../Onboarding/Done';
 
@@ -42,7 +41,6 @@ export default withRouter(
                                 <Route exact path="/seed/save/:type" component={SaveYourSeedOptions} />
                                 <Route path="/seed/enter" component={SeedEnter} />
                                 <Route path="/seed/name" component={SeedName} />
-                                <Route path="/security/intro" component={SecurityIntro} />
                                 <Route path="/security/enter" component={SecurityEnter} />
                                 <Route exact path="/security/extra" component={() => {}} />
                                 <Route path="/security/extra/authenticator" component={() => {}} />

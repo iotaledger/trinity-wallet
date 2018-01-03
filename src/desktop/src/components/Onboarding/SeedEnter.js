@@ -88,7 +88,7 @@ class SeedEnter extends React.PureComponent {
                     <SeedInput
                         seed={seed}
                         onChange={this.onChange}
-                        placeholder={t('global:seed')}
+                        label={t('global:seed')}
                         closeLabel={t('global:back')}
                     />
                     <Infobox>
@@ -97,7 +97,7 @@ class SeedEnter extends React.PureComponent {
                     </Infobox>
                 </Content>
                 <Footer>
-                    <Button to={seedValid ? '/seed/save/manual' : '/wallet-setup'} variant="warning">
+                    <Button to={seedValid ? '/seed/save/manual' : '/wallet-setup'} variant="secondary">
                         {t('global:back')}
                     </Button>
                     <Button type="submit" variant="success">

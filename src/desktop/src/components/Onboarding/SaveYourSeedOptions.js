@@ -66,7 +66,7 @@ class SaveYourSeedOptions extends PureComponent {
                     </div>
                 </Content>
                 <Footer>
-                    <Button to="/seed/generate" variant="warning">
+                    <Button to="/seed/generate" variant="secondary">
                         {t('global:back')}
                     </Button>
                     {/* TODO: Remove the console log and think of a solution when to actually clear the seeds */}

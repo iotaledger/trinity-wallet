@@ -7,30 +7,17 @@
 @custom-media --xl (max-width: 1440px);
 
 :root {
-    --color-text: white;
-    --color-yellow: #f7d002;
-    --color-blue: #8bd4ff;
-    --color-red: #ff6c69;
-    --color-green: #9dffaf;
-    --color-darkgreen: green;
+    --color-body: #ffffff;
+    --color-highlight: #f7d002;
 
     --color-bg: #16373e;
-    --color-item-bg: #0f242c;
+    --color-bg-secondary: #1a1b1b;
 
-    --color-label: var(--color-yellow);
-    --color-button-warning: var(--color-yellow);
-    --color-button-warning-hover: rgba(247, 208, 2, 0.1);
-    --color-button-danger: var(--color-red);
-    --color-button-success: var(--color-green);
-    --color-button-success-hover: rgba(157, 255, 175, 0.1);
-    --color-button-extra: var(--color-blue);
-    --color-button-extra-hover: rgba(139, 212, 255, 0.1);
-    --color-button-cta: var(--color-darkgreen);
-    --color-button-cta-hover: rgb(5, 107, 5);
-    --color-button-default: white;
-    --color-button-default-hover: rgba(255, 255, 255, 0.1);
+    --color-valid: #009a33;
+    --color-extra: #008b9a;
+    --color-warning: var(--color-highlight);
+    --color-error: #ff6c69;
 
-    /*--font-size-default: 1.8vh;*/
     --font-size-default: 14px;
     --font-size-small: 12px;
     --font-size-large: 16px;
@@ -76,7 +63,7 @@ body {
 
 body {
     background: var(--color-bg);
-    color: var(--color-text);
+    color: var(--color-body);
     font-family: 'Lato';
     font-weight: 200;
     font-size: var(--font-size-default);

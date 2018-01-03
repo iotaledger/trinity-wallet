@@ -68,17 +68,17 @@ class GenerateSeed extends React.PureComponent {
         return (
             <Template>
                 <Content>
-                    <Button type="button" onClick={this.generateNewSeed} variant="cta">
+                    <Button type="button" onClick={this.generateNewSeed} variant="primary">
                         {t('newSeedSetup:pressForNewSeed')}
                     </Button>
                     <SeedGenerator seed={seed} onUpdatedSeed={this.onUpdatedSeed} />
                     <p>{this.state.seed ? t('newSeedSetup:individualLetters') : '\u00A0'}</p>
                 </Content>
                 <Footer>
-                    <Button onClick={this.onRequestPrevious} variant="warning">
+                    <Button onClick={this.onRequestPrevious} variant="secondary">
                         {t('global:back')}
                     </Button>
-                    <Button onClick={this.onRequestNext} variant={seed ? 'success' : 'successDisabled'}>
+                    <Button onClick={this.onRequestNext} disabled={!seed} variant="success">
                         {t('global:next')}
                     </Button>
                 </Footer>

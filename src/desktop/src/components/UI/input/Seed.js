@@ -1,19 +1,17 @@
 import React from 'react';
-import Textarea from 'react-textarea-autosize';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { MAX_SEED_LENGTH } from 'libs/util';
-import css from './Seed.css';
-import Button from 'components/UI/Button';
+import css from './Input.css';
 import Modal from 'components/UI/Modal';
 
 import Camera from 'images/camera.png';
 
-export default class SeedInput extends React.PureComponent {
+export default class SeedInout extends React.PureComponent {
     static propTypes = {
         seed: PropTypes.string.isRequired,
-        placeholder: PropTypes.string,
+        label: PropTypes.string.isRequired,
         closeLabel: PropTypes.string.isRequired,
     };
 
@@ -35,12 +33,12 @@ export default class SeedInput extends React.PureComponent {
         }));
     };
 
-    onScanEvent = seed => {
-        if (seed !== null) {
+    onScanEvent = address => {
+        if (address !== null) {
             this.setState(() => ({
                 showScanner: false,
             }));
-            this.props.onChange(seed);
+            this.props.onChange(address);
         }
     };
 
@@ -49,31 +47,28 @@ export default class SeedInput extends React.PureComponent {
     };
 
     render() {
-        const { seed, placeholder, closeLabel } = this.props;
+        const { seed, label, closeLabel } = this.props;
         const { showScanner } = this.state;
 
         return (
-            <div className={css.seedInput}>
-                <div>
-                    <Textarea
+            <div className={css.input}>
+                <fieldset>
+                    <a onClick={this.openScanner}>
+                        <img src={Camera} alt="" />
+                    </a>
+                    <input
+                        type="text"
                         value={seed}
-                        placeholder={placeholder}
                         onChange={e => this.props.onChange(e.target.value)}
                         maxLength={MAX_SEED_LENGTH}
                     />
-                    <small>
-                        {seed.length}/{MAX_SEED_LENGTH}
-                    </small>
-                </div>
-                <Button onClick={this.openScanner}>
-                    <img src={Camera} alt="" /> QR
-                </Button>
-
+                    <small>{label}</small>
+                </fieldset>
                 {showScanner && (
                     <Modal isOpen={true} onStateChange={showScanner => this.setState({ showScanner })} hideCloseButton>
                         <div className={css.qrScanner}>
                             <QrReader delay={350} onError={this.onScanError} onScan={this.onScanEvent} />
-                            <Button type="button" onClick={this.closeScanner} variant="cta">
+                            <Button type="button" onClick={this.closeScanner} variant="secondary">
                                 {closeLabel}
                             </Button>
                         </div>
