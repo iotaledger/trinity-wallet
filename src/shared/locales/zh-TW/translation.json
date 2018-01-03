@@ -5,8 +5,13 @@
         "invalidResponsePollingExplanation": "節點於輪詢程序時回傳無效回應。",
         "seed": "種子碼",
         "back": "返回",
+        "backLowercase": "Back",
         "done": "完成",
         "next": "下一步",
+        "apply": "Apply",
+        "save": "Save",
+        "close": "CLOSE",
+        "continue": "Continue",
         "manualCopy": "寫下種子",
         "paperWallet": "列印副本",
         "copyToClipboard": "加入密碼管理器",
@@ -29,7 +34,10 @@
         "syncInProgress": "同步進行中",
         "syncInProgressExplanation": "請等候至同步完成",
         "somethingWentWrong": "出現錯誤",
-        "somethingWentWrongExplanation": "請重新啟動程式"
+        "somethingWentWrongExplanation": "請重新啟動程式",
+        "node": "Node",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -147,7 +155,7 @@
         "invalidAddressExplanation1": "地址應該為{{maxLength}} 字元長度且應有一個檢查碼",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
-        "notEnoughFunds": "餘額不足",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "您的IOTA不足以完成本次交易。",
         "keyReuse": "重新使用加密鑰匙",
         "keyReuseExplanation": "您欲發送的接收地址已有人使用。請輸入別的地址。",
@@ -185,13 +193,13 @@
         "theme": "佈景主題",
         "currency": "貨幣",
         "language": "語言",
+        "accountManagement": "Account management",
         "addNewSeed": "增加新的種子碼",
         "twoFA": "雙因素身分驗證",
         "changePassword": "修改密碼",
         "advanced": "進階設定",
         "logout": "登出",
         "reset": "重設錢包",
-        "back": "返回",
         "syncingComplete": "同步完成",
         "syncingCompleteExplanation": "您的帳戶已成功同步。",
         "nicknameChanged": "帳戶名稱已更改",
@@ -213,7 +221,7 @@
         "areYouSure": "您確定要繼續嗎？"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "取消",
         "reset": "重設"
     },
@@ -243,5 +251,59 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "The address has been copied to the clipboard."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
+    },
+    "deleteAccount": {
+        "areYouSure": "Are you sure you want to delete this account?",
+        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "thisAction": "This action cannot be undone.",
+        "enterPassword": "Enter your password to delete this account."
+    },
+    "manualSync": {
+        "pressToSync": "Press the button below to sync your account.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down.",
+        "syncAccount": "SYNC ACCOUNT",
+        "syncingYourAccount": "Syncing your account."
     }
 }

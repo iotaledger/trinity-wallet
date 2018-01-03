@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
 import StatefulDropdownAlert from './statefulDropdownAlert';
-import OnboardingButtons from '../components/onboardingButtons.js';
+import OnboardingButtons from '../components/onboardingButtons';
 import {
     fetchFullAccountInfoForFirstUse,
     getFullAccountInfo,
@@ -20,7 +20,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { clearTempData, setSeedName, clearSeed, setReady } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
 import keychain, { storeSeedInKeychain, hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
@@ -48,27 +48,6 @@ export class SetSeedName extends Component {
         };
     }
 
-    getDefaultAccountName() {
-        const { t } = this.props;
-        if (this.props.account.seedCount === 0) {
-            return t('global:mainWallet');
-        } else if (this.props.account.seedCount === 1) {
-            return t('global:secondWallet');
-        } else if (this.props.account.seedCount === 2) {
-            return t('global:thirdWallet');
-        } else if (this.props.account.seedCount === 3) {
-            return t('global:fourthWallet');
-        } else if (this.props.account.seedCount === 4) {
-            return t('global:fifthWallet');
-        } else if (this.props.account.seedCount === 5) {
-            return t('global:sixthWallet');
-        } else if (this.props.account.seedCount === 6) {
-            return t('global:otherWallet');
-        } else {
-            return '';
-        }
-    }
-
     componentDidMount() {
         if (this.nameInput) {
             this.nameInput.focus();
@@ -76,15 +55,28 @@ export class SetSeedName extends Component {
     }
 
     navigateTo(screen) {
-        return this.props.navigator.push({
-            screen,
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-            },
-            animated: false,
-            overrideBackPress: true,
-        });
+        if (screen === 'loading') {
+            return this.props.navigator.push({
+                screen,
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
+                animated: false,
+                overrideBackPress: true,
+            });
+        } else {
+            return this.props.navigator.push({
+                screen,
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
+                animated: false,
+            });
+        }
     }
 
     onDonePress() {
@@ -93,7 +85,6 @@ export class SetSeedName extends Component {
 
         const fetch = (seed, accountName, password, promise, navigator) => {
             this.navigateTo('loading');
-
             this.props.fetchFullAccountInfoForFirstUse(seed, accountName, password, promise, navigator);
         };
 
@@ -161,11 +152,44 @@ export class SetSeedName extends Component {
         });
     }
 
+    getDefaultAccountName() {
+        const { t } = this.props;
+        if (this.props.account.seedCount === 0) {
+            return t('global:mainWallet');
+        } else if (this.props.account.seedCount === 1) {
+            return t('global:secondWallet');
+        } else if (this.props.account.seedCount === 2) {
+            return t('global:thirdWallet');
+        } else if (this.props.account.seedCount === 3) {
+            return t('global:fourthWallet');
+        } else if (this.props.account.seedCount === 4) {
+            return t('global:fifthWallet');
+        } else if (this.props.account.seedCount === 5) {
+            return t('global:sixthWallet');
+        } else if (this.props.account.seedCount === 6) {
+            return t('global:otherWallet');
+        } else {
+            return '';
+        }
+    }
+
+    navigateTo(screen) {
+        return this.props.navigator.push({
+            screen,
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            animated: false,
+            overrideBackPress: true,
+        });
+    }
+
     render() {
         let { accountName } = this.state;
-        const { t } = this.props;
+        const { t, backgroundColor, negativeColor } = this.props;
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
@@ -184,7 +208,7 @@ export class SetSeedName extends Component {
                                 labelPadding={3}
                                 baseColor="white"
                                 label={t('addAdditionalSeed:accountName')}
-                                tintColor="#F7D002"
+                                tintColor={THEMES.getHSL(negativeColor)}
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
@@ -226,7 +250,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
@@ -344,6 +367,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
+    backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
 const mapDispatchToProps = {

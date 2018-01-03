@@ -5,6 +5,7 @@ import { width, height } from '../util/dimensions';
 import Dropdown from './dropdown';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
+import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -36,16 +37,27 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
-    titleText: {
+    titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+    },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
     },
     dropdownWidth: {
         width: width / 2,
@@ -70,17 +82,23 @@ class CurrencySelection extends Component {
     }
 
     render() {
-        const { currency, currencies, backPress } = this.props;
+        const { currency, currencies, backPress, t } = this.props;
         return (
-            <TouchableWithoutFeedback onPress={() => this.dropdown.closeDropdown()}>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    if (this.dropdown) {
+                        this.dropdown.closeDropdown();
+                    }
+                }}
+            >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.2 }} />
                         <Dropdown
-                            ref={c => {
+                            onRef={c => {
                                 this.dropdown = c;
                             }}
-                            title="Currency"
+                            title={t('currency')}
                             options={currencies}
                             defaultOption={currency}
                             dropdownWidth={styles.dropdownWidth}
@@ -89,14 +107,14 @@ class CurrencySelection extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveCurrencySelection(this.dropdown.getSelected())}>
                             <View style={styles.itemRight}>
-                                <Image source={tickImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Save</Text>
+                                <Text style={styles.titleTextRight}>{t('global:save')}</Text>
+                                <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -106,4 +124,4 @@ class CurrencySelection extends Component {
     }
 }
 
-export default CurrencySelection;
+export default translate(['currencySelection', 'global'])(CurrencySelection);

@@ -5,8 +5,13 @@
         "invalidResponsePollingExplanation": "Node mengembalikan response yang tidak valid ketika memungut suara.",
         "seed": "Benih",
         "back": "KEMBALI",
+        "backLowercase": "Back",
         "done": "SELESAI",
         "next": "BERIKUTNYA",
+        "apply": "Apply",
+        "save": "Save",
+        "close": "CLOSE",
+        "continue": "Continue",
         "manualCopy": "Tulis Seed Anda",
         "paperWallet": "Cetak ke printer",
         "copyToClipboard": "Tambahkan ke manajer kata sandi",
@@ -29,7 +34,10 @@
         "syncInProgress": "Sinkronisasi sedang berlangsung",
         "syncInProgressExplanation": "Silahkan tunggu sampai sinkronisasi selesai.",
         "somethingWentWrong": "Terjadi kesalahan",
-        "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali."
+        "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali.",
+        "node": "Node",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -44,8 +52,8 @@
         "accountName": "Nama akun",
         "noNickname": "Tidak ada nama akun yang dimasukkan",
         "noNicknameExplanation": "Silahkan masukkan nama akun untuk Seed Anda.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "Seed sudah digunakan",
+        "seedInUseExplanation": "Seed ini sudah terhubung ke dompet anda. Silahkan coba yang lain."
     },
     "changePassword": {
         "oops": "Ups! Terjadi kesalahan",
@@ -102,7 +110,7 @@
         "enterPassword": "Silahkan masukan kata sandi Anda.",
         "useSeed": "GUNAKAN SEED",
         "login": "MASUK",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Apakah Anda ingin memilih node yang berbeda?"
     },
     "loading": {
         "loadingFirstTime": "Menyiapkan Seed untuk pertama kalinya.",
@@ -151,7 +159,7 @@
         "invalidAddressExplanation1": "Alamat harus {{maxLength}} karakter dan memiliki cek jumlah.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
-        "notEnoughFunds": "Dana tidak mencukupi",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
         "keyReuse": "Kunci kembali digunakan",
         "keyReuseExplanation": "Alamat yang anda tuju telah digunakan. Silahkan coba alamat yang lain.",
@@ -191,13 +199,13 @@
         "theme": "Tema",
         "currency": "Mata Uang",
         "language": "Bahasa",
+        "accountManagement": "Account management",
         "addNewSeed": "Tambahkan Seed baru",
         "twoFA": "Autentikasi dua faktor",
         "changePassword": "Ubah Kata Sandi",
         "advanced": "Pengaturan Lanjutan",
         "logout": "Keluar",
         "reset": "Hapus dompet",
-        "back": "Kembali",
         "syncingComplete": "Sinkronisasi selesai",
         "syncingCompleteExplanation": "Akun Anda telah disinkronisasi.",
         "nicknameChanged": "Ubah nama akun",
@@ -206,8 +214,8 @@
         "accountDeletedExplanation": "Akun anda telah dihapus dari dompet ini.",
         "cannotPerformAction": "Tidak dapat melakukan aksi ini",
         "cannotPerformActionExplanation": "Klik aturan lanjut untuk menghapus dompet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnection": "Sambungan lemah",
+        "poorConnectionExplanation": "Gagal untuk mengubah mata uang karena koneksi lemah."
     },
     "resetWalletConfirmation": {
         "thisAction": "Tindakan ini tidak dapat diulang.",
@@ -219,7 +227,7 @@
         "areYouSure": "Anda yakin ingin melanjutkan?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "BATAL",
         "reset": "HAPUS"
     },
@@ -251,5 +259,59 @@
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat telah disalin ke papan klip."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
+    },
+    "deleteAccount": {
+        "areYouSure": "Are you sure you want to delete this account?",
+        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "thisAction": "This action cannot be undone.",
+        "enterPassword": "Enter your password to delete this account."
+    },
+    "manualSync": {
+        "pressToSync": "Press the button below to sync your account.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down.",
+        "syncAccount": "SYNC ACCOUNT",
+        "syncingYourAccount": "Syncing your account."
     }
 }

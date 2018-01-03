@@ -3150,9 +3150,9 @@ https-browserify@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-0.0.1.tgz#3f91365cabe60b77ed0ebba24b454e3e09d95a82"
 
-i18next@^10.1.0:
-  version "10.2.1"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.2.1.tgz#bec61a98d7976c3084147cc2cd2bafdeff9088f2"
+i18next@^10.1.0, i18next@^10.2.2:
+  version "10.2.2"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-10.2.2.tgz#1f2dc55ca2e8d7e071f7aff9f78654ef7f003c0e"
 
 iconv-lite@0.4.11:
   version "0.4.11"
@@ -3238,6 +3238,7 @@ iota-wallet-shared-modules@../shared/:
   version "0.0.0"
   dependencies:
     bluebird "^3.5.1"
+    i18next "^10.2.2"
     iota.lib.js "^0.4.5"
     lodash "^4.17.4"
     moment "^2.19.1"
@@ -5058,6 +5059,14 @@ react-native-clipboard@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-native-clipboard/-/react-native-clipboard-0.0.5.tgz#3e3f57f32f6785fff05453f88fbcc0a34ed47828"
 
+react-native-color@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/react-native-color/-/react-native-color-0.0.10.tgz#9cbc0da191c67ae4fc3a04bef7bc54a685784c7d"
+  dependencies:
+    prop-types "^15.6.0"
+    react-native-slider "^0.11.0"
+    tinycolor2 "^1.4.1"
+
 react-native-crypto@^2.0.2:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-native-crypto/-/react-native-crypto-2.1.1.tgz#4b06271a0f6ec0b90389b5b567b738b57ca66a1e"
@@ -5224,6 +5233,12 @@ react-native-shake-event@^4.0.1:
   resolved "https://registry.yarnpkg.com/react-native-shake-event/-/react-native-shake-event-4.0.1.tgz#b167e844b711eff50d44d029537fbb228b2ac6b2"
   dependencies:
     invariant "^2.2.2"
+
+react-native-slider@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/react-native-slider/-/react-native-slider-0.11.0.tgz#b68a0bc43c8422b24cd57947cc5ac2bcdb58fadc"
+  dependencies:
+    prop-types "^15.5.6"
 
 react-native-svg@^6.0.1-rc.1:
   version "6.0.1-rc.1"
@@ -6226,6 +6241,10 @@ timers-browserify@^1.4.2:
 tiny-queue@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/tiny-queue/-/tiny-queue-0.2.0.tgz#c49fcb5c87555be1b4a5df7eb87101d5b78bc9dc"
+
+tinycolor2@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
 
 tmp@^0.0.33:
   version "0.0.33"

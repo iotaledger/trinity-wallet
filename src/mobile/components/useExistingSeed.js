@@ -13,6 +13,7 @@ import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png
 import arrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
 
@@ -70,7 +71,12 @@ class UseExistingSeed extends React.Component {
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
+        <QRScanner
+            ctaColor={THEMES.getHSL(this.props.ctaColor)}
+            backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
+            onQRRead={data => this.onQRRead(data)}
+            hideModal={() => this._hideModal()}
+        />
     );
 
     getChecksumValue() {
@@ -107,7 +113,7 @@ class UseExistingSeed extends React.Component {
                                         fontSize={width / 20.7}
                                         labelPadding={3}
                                         baseColor="white"
-                                        tintColor="#F7D002"
+                                        tintColor={THEMES.getHSL(this.props.negativeColor)}
                                         enablesReturnKeyAutomatically={true}
                                         label="Seed"
                                         autoCorrect={false}
@@ -141,7 +147,7 @@ class UseExistingSeed extends React.Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                tintColor="#F7D002"
+                                tintColor={THEMES.getHSL(this.props.negativeColor)}
                                 enablesReturnKeyAutomatically={true}
                                 label="Account name"
                                 autoCapitalize="words"
@@ -277,19 +283,6 @@ const styles = StyleSheet.create({
         flex: 6.5,
         alignItems: 'center',
     },
-    titleTextLeft: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-    },
-    titleTextRight: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-        marginRight: width / 25,
-    },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -303,13 +296,26 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     iconLeft: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
+    },
+    titleTextLeft: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
     },
     iconRight: {
-        width: width / 22,
-        height: width / 22,
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
     },
     checksum: {
         width: width / 8,

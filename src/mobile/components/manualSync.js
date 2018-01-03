@@ -4,6 +4,7 @@ import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } fr
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -39,9 +40,9 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
     titleText: {
         color: 'white',
@@ -87,52 +88,55 @@ const styles = StyleSheet.create({
 });
 
 const ManualSync = props => (
-    <View style={styles.container}>
-        <View style={styles.topContainer}>
-            <View style={{ flex: 0.5 }} />
-            {!props.isSyncing && (
-                <View style={styles.innerContainer}>
-                    <Text style={styles.infoText}>Press the button below to sync your account.</Text>
-                    <Text style={styles.infoText}>This may take a while.</Text>
-                    <Text style={styles.infoText}>You may notice your device slowing down.</Text>
-                    <View style={styles.syncButtonContainer}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                props.onManualSyncPress();
-                            }}
-                        >
-                            <View style={styles.syncButton}>
-                                <Text style={styles.syncButtonText}>SYNC ACCOUNT</Text>
-                            </View>
-                        </TouchableOpacity>
+    (t = props.t),
+    (
+        <View style={styles.container}>
+            <View style={styles.topContainer}>
+                <View style={{ flex: 0.5 }} />
+                {!props.isSyncing && (
+                    <View style={styles.innerContainer}>
+                        <Text style={styles.infoText}>{t('manualSync:pressToSync')}</Text>
+                        <Text style={styles.infoText}>{t('manualSync:thisMayTake')}</Text>
+                        <Text style={styles.infoText}>{t('manualSync:youMayNotice')}</Text>
+                        <View style={styles.syncButtonContainer}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    props.onManualSyncPress();
+                                }}
+                            >
+                                <View style={styles.syncButton}>
+                                    <Text style={styles.syncButtonText}>{t('manualSync:syncAccount')}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
-            )}
-            {props.isSyncing && (
-                <View style={styles.innerContainer}>
-                    <Text style={styles.infoText}>Syncing your account.</Text>
-                    <Text style={styles.infoText}>This may take a while.</Text>
-                    <Text style={styles.infoText}>You may notice your device slowing down.</Text>
-                    <ActivityIndicator
-                        animating={props.isSyncing}
-                        style={styles.activityIndicator}
-                        size="large"
-                        color="#F7D002"
-                    />
-                </View>
-            )}
-        </View>
-        <View style={styles.bottomContainer}>
-            {!props.isSyncing && (
-                <TouchableOpacity onPress={() => props.backPress()}>
-                    <View style={styles.item}>
-                        <Image source={arrowLeftImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>Back</Text>
+                )}
+                {props.isSyncing && (
+                    <View style={styles.innerContainer}>
+                        <Text style={styles.infoText}>{t('manualSync:syncingYourAccount')}</Text>
+                        <Text style={styles.infoText}>{t('manualSync:thisMayTake')}</Text>
+                        <Text style={styles.infoText}>{t('manualSync:youMayNotice')}</Text>
+                        <ActivityIndicator
+                            animating={props.isSyncing}
+                            style={styles.activityIndicator}
+                            size="large"
+                            color="#F7D002"
+                        />
                     </View>
-                </TouchableOpacity>
-            )}
+                )}
+            </View>
+            <View style={styles.bottomContainer}>
+                {!props.isSyncing && (
+                    <TouchableOpacity onPress={() => props.backPress()}>
+                        <View style={styles.item}>
+                            <Image source={arrowLeftImagePath} style={styles.icon} />
+                            <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                )}
+            </View>
         </View>
-    </View>
+    )
 );
 
 ManualSync.propTypes = {
