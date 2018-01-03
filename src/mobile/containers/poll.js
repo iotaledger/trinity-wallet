@@ -35,6 +35,7 @@ export class Poll extends Component {
         addingAdditionalAccount: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,
@@ -75,6 +76,7 @@ export class Poll extends Component {
             props.isSyncing ||
             props.isSendingTransfer ||
             props.isGeneratingReceiveAddress ||
+            props.isFetchingLatestAccountInfoOnLogin || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
             props.addingAdditionalAccount;
 
         const isAlreadyPollingSomething =
@@ -185,6 +187,7 @@ const mapStateToProps = state => ({
     addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: state.tempAccount.isSendingTransfer,
+    isFetchingLatestAccountInfoOnLogin: state.tempAccount.isFetchingLatestAccountInfoOnLogin,
     seedIndex: state.tempAccount.seedIndex,
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     unconfirmedBundleTails: state.account.unconfirmedBundleTails,
