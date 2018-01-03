@@ -1,12 +1,28 @@
 {
     "global": {
+        "send": "SEND",
+        "cancel": "CANCEL",
+        "continue?": "Are you sure you want to continue?",
+        "noTransactions": "NO RECENT HISTORY",
+        "qr": "QR Code",
+        "balanceError": "Not enough balance",
+        "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
+        "transferError": "Transfer Error",
+        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferSent": "Transfer sent",
+        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "keyReuse": "Key reuse",
+        "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "無效的回應",
         "invalidResponseExplanation": "節點回傳無效回應。",
         "invalidResponsePollingExplanation": "節點於輪詢程序時回傳無效回應。",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
         "seed": "種子碼",
         "back": "返回",
         "backLowercase": "Back",
         "done": "完成",
+        "doneLowercase": "Done",
         "next": "下一步",
         "apply": "Apply",
         "save": "Save",
@@ -15,7 +31,6 @@
         "manualCopy": "寫下種子",
         "paperWallet": "列印副本",
         "copyToClipboard": "加入密碼管理器",
-        "qr": "QR Code",
         "notAvailable": "此功能尚未開放",
         "notAvailableExplanation": "此功能將於稍後加入。",
         "enterSeed": "請輸入您的種子碼",
@@ -238,7 +253,7 @@
         "reminder": "您或許希望跳過一些步驟，但我們建議您按完整程序設置。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "您的種子碼是由左至右。寫下您的種子碼和檢查碼，並",
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "再三確認",
         "thatTheyAreCorrect": "兩者皆正確"
     },
@@ -301,5 +316,31 @@
         "youMayNotice": "You may notice your device slowing down.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
+    },
+    "useExistingSeed": {
+        "title": "Enter a seed and account name."
+    },
+    "viewSeed": {
+        "enterPassword": "Enter password to view your seed.",
+        "viewSeed": "VIEW SEED",
+        "hideSeed": "HIDE SEED"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "I have saved my seed",
+        "reenter": "You will now be asked to re-enter your seed.",
+        "reenterWarningOne": "If your device fails and you have not saved",
+        "reenterWarningTwo": "your seed, you will lose your IOTA."
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "infoTextOne": "All your wallet data including your",
+        "infoTextTwo": "seeds, password",
+        "infoTextThree": "and",
+        "infoTextFour": "other account information",
+        "infoTextFive": "will be lost."
+    },
+    "transferConfirmation": {
+        "youAreAbout": "You are about to send {{contents}} to the address",
+        "aMessage": "a message"
     }
 }
