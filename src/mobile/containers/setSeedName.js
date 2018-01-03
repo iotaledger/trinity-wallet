@@ -216,7 +216,7 @@ export class SetSeedName extends Component {
                                 value={accountName}
                                 onChangeText={accountName => this.setState({ accountName })}
                                 containerStyle={{
-                                    width: width / 1.36,
+                                    width: width / 1.4,
                                 }}
                                 ref={input => {
                                     this.nameInput = input;
@@ -262,6 +262,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingTop: height / 8,
         alignItems: 'center',
+        width,
     },
     bottomContainer: {
         flex: 0.7,
