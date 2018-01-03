@@ -51,8 +51,8 @@
         "somethingWentWrong": "Κάτι πήγε στραβά",
         "somethingWentWrongExplanation": "Παρακαλώ επανεκκινήστε την εφαρμογή.",
         "node": "Κόμβος",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
+        "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -65,8 +65,8 @@
         "accountName": "Όνομα λογαριασμού",
         "noNickname": "Δεν έγινε εισαγωγή ονόματος λογαριασμού",
         "noNicknameExplanation": "Παρακαλούμε εισάγετε ένα όνομα λογαριασμού για το σπόρο σας.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "Σπόρος ήδη σε χρήση",
+        "seedInUseExplanation": "Αυτός ο σπόρος είναι ήδη συνδεδεμένος στο πορτοφόλι σας. Παρακαλούμε να χρησιμοποιήσετε έναν άλλο."
     },
     "changePassword": {
         "oops": "Ωχ! Κάτι πήγε στραβά",
@@ -89,7 +89,7 @@
     "copyToClipboard": {
         "seedCleared": "Σπόρος εκκαθαρίστηκε",
         "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
-        "seedCopied": "Copied seed to clipboard",
+        "seedCopied": "Ο σπόρος αντιγράφηκε στο πρόχειρο",
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
         "doNotStore": "Do not store your seed in plain text.",
