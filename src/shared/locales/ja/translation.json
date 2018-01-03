@@ -5,8 +5,13 @@
         "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
         "seed": "Seed",
         "back": "戻る",
+        "backLowercase": "戻る",
         "done": "完了",
         "next": "次へ",
+        "apply": "決定",
+        "save": "保存",
+        "close": "閉じる",
+        "continue": "次へ",
         "manualCopy": "Seedを書き写す",
         "paperWallet": "印刷する",
         "copyToClipboard": "パスワード マネージャーに追加",
@@ -29,7 +34,10 @@
         "syncInProgress": "同期中...",
         "syncInProgressExplanation": "同期が完了するまでお待ち下さい。",
         "somethingWentWrong": "何かが間違っています。",
-        "somethingWentWrongExplanation": "アプリを再起動して下さい。"
+        "somethingWentWrongExplanation": "アプリを再起動して下さい。",
+        "node": "ノード",
+        "cannotPerformAction": "操作を実行できません。",
+        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -145,7 +153,7 @@
         "invalidAddressExplanation1": "アドレスは{{maxLength}}文字にする必要があり、チェックサムを持っている必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
-        "notEnoughFunds": "残高不足です。",
+        "notEnoughFunds": "残高不足",
         "notEnoughFundsExplanation": "送金を完了するための十分なIOTAが有りません。",
         "keyReuse": "キーの再使用",
         "keyReuseExplanation": "送金しようとしているアドレスは既に使用されています。別のアドレスをお試しください。",
@@ -182,13 +190,13 @@
         "theme": "テーマ",
         "currency": "通貨",
         "language": "言語",
+        "accountManagement": "アカウント設定",
         "addNewSeed": "新しいSeedを追加",
         "twoFA": "2要素認証",
         "changePassword": "パスワード変更",
         "advanced": "詳細設定",
         "logout": "ログアウト",
         "reset": "ウォレットをリセットします。",
-        "back": "戻る",
         "syncingComplete": "同期が完了しました。",
         "syncingCompleteExplanation": "アカウントは正常に同期しました。",
         "nicknameChanged": "アカウント名が変更されました。",
@@ -240,5 +248,59 @@
         "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。"
+    },
+    "accountManagement": {
+        "viewSeed": "Seedを表示",
+        "viewAddresses": "アドレスを表示",
+        "editAccountName": "アカウント名を編集",
+        "deleteAccount": "アカウントを削除",
+        "addNewAccount": "新しいアカウントを追加"
+    },
+    "addCustomNode": {
+        "customNode": "カスタムノード",
+        "add": "追加"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "既存のseedを使用",
+        "createNewSeed": "新しいseedを作成"
+    },
+    "advancedSettings": {
+        "selectNode": "ノードを選択",
+        "addCustomNode": "カスタムノードの追加",
+        "manualSync": "手動同期"
+    },
+    "advancedThemeCustomisation": {
+        "background": "背景",
+        "frame": "フレーム"
+    },
+    "currencySelection": {
+        "currency": "通貨"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "ログアウトしてもよろしいですか？"
+    },
+    "qrScanner": {
+        "scan": "QRコード読み取り"
+    },
+    "unitInfoModal": {
+        "unitSystem": "単位",
+        "trillion": "一兆",
+        "billion": "十億",
+        "million": "百万",
+        "thousand": "千",
+        "one": "一"
+    },
+    "deleteAccount": {
+        "areYouSure": "このアカウントを削除しますか？",
+        "yourSeedWillBeRemoved": "seedとトランザクションの履歴を削除します。",
+        "thisAction": "この操作は元に戻せません。",
+        "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
+    },
+    "manualSync": {
+        "pressToSync": "アカウントを同期するには下のボタンを押して下さい。",
+        "thisMayTake": "少々お待ち下さい。",
+        "youMayNotice": "デバイスが遅くなることがあります。",
+        "syncAccount": "同期アカウント",
+        "syncingYourAccount": "アカウントを同期中"
     }
 }

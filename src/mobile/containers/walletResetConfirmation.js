@@ -1,7 +1,7 @@
 import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, Image, StatusBar, BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -11,13 +11,26 @@ import GENERAL from '../theme/general';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
+import THEMES from '../theme/themes';
+import { connect } from 'react-redux';
 
-export default class WalletResetConfirmation extends Component {
+class WalletResetConfirmation extends Component {
     constructor() {
         super();
 
         this.goBack = this.goBack.bind(this);
         this.requirePassword = this.requirePassword.bind(this);
+    }
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            this.goBack();
+            return true;
+        });
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress');
     }
 
     navigateTo(url) {
@@ -26,11 +39,9 @@ export default class WalletResetConfirmation extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
-                screenBackgroundImageName: 'bg-blue.png',
-                screenBackgroundColor: COLORS.brand.primary,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -42,10 +53,8 @@ export default class WalletResetConfirmation extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    screenBackgroundImageName: 'bg-blue.png',
-                    screenBackgroundColor: COLORS.backgroundGreen,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
-                overrideBackPress: true,
             },
         });
     }
@@ -56,16 +65,20 @@ export default class WalletResetConfirmation extends Component {
 
     render() {
         const { t } = this.props;
+        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+        const negativeColor = { color: THEMES.getHSL(this.props.negativeColor) };
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, backgroundColor]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topWrapper}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={styles.subHeaderWrapper}>
-                        <Text style={styles.subHeaderText}>{toUpper('this action cannot be undone.')}</Text>
+                        <Text style={[styles.subHeaderText, negativeColor]}>
+                            {toUpper('this action cannot be undone.')}
+                        </Text>
                     </View>
                     <View style={styles.infoTextWrapper}>
                         <Image source={infoImagePath} style={styles.infoIcon} />
@@ -99,7 +112,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topWrapper: {
         flex: 1.3,
@@ -124,7 +136,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 10,
     },
     subHeaderText: {
-        color: COLORS.orangeDark,
         fontFamily: Fonts.secondary,
         fontSize: width / 22.7,
         textAlign: 'center',
@@ -182,3 +193,11 @@ const styles = StyleSheet.create({
 WalletResetConfirmation.propTypes = {
     navigator: PropTypes.object.isRequired,
 };
+
+const mapStateToProps = state => ({
+    backgroundColor: state.settings.theme.backgroundColor,
+    positiveColor: state.settings.theme.positiveColor,
+    negativeColor: state.settings.theme.negativeColor,
+});
+
+export default connect(mapStateToProps)(WalletResetConfirmation);

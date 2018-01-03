@@ -6,10 +6,11 @@ import OnboardingButtons from '../components/onboardingButtons.js';
 import { width, height } from '../util/dimensions';
 import Modal from 'react-native-modal';
 import { TextField } from 'react-native-material-textfield';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import GENERAL from '../theme/general';
+import { translate } from 'react-i18next';
 
 class DeleteAccount extends Component {
     constructor() {
@@ -55,24 +56,33 @@ class DeleteAccount extends Component {
         this._hideModal();
     }
 
-    _renderModalContent = (titleColour, sendOrReceive) => (
-        <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: COLORS.backgroundGreen }}>
-            <View style={styles.modalContent}>
-                <Text style={[styles.infoText, { paddingBottom: height / 16 }]}>
-                    Are you sure you want to delete your account called {this.props.currentAccountName}?
-                </Text>
-                <OnboardingButtons
-                    onLeftButtonPress={() => this.onNoPress()}
-                    onRightButtonPress={() => this.onYesPress()}
-                    leftText={'NO'}
-                    rightText={'YES'}
-                />
+    _renderModalContent = (titleColour, sendOrReceive) => {
+        const { t } = this.props;
+        return (
+            <View
+                style={{
+                    width: width / 1.15,
+                    alignItems: 'center',
+                    backgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                }}
+            >
+                <View style={styles.modalContent}>
+                    <Text style={[styles.infoText, { paddingBottom: height / 16 }]}>
+                        Are you sure you want to delete your account called {this.props.currentAccountName}?
+                    </Text>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this.onNoPress()}
+                        onRightButtonPress={() => this.onYesPress()}
+                        leftText={t('global:no')}
+                        rightText={t('global:yes')}
+                    />
+                </View>
             </View>
-        </View>
-    );
+        );
+    };
 
     render() {
-        const { t } = this.props;
+        const { t, negativeColor } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -81,14 +91,16 @@ class DeleteAccount extends Component {
                         <View style={{ flex: 0.3 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <Text style={styles.infoText}>Are you sure you want to delete this account?</Text>
-                                <Text style={styles.infoText}>Your seed and transaction history will be removed.</Text>
-                                <Text style={styles.warningText}>This action cannot be undone.</Text>
+                                <Text style={styles.infoText}>{t('areYouSure')}</Text>
+                                <Text style={styles.infoText}>{t('yourSeedWillBeRemoved')}</Text>
+                                <Text style={[styles.warningText, { color: THEMES.getHSL(negativeColor) }]}>
+                                    {t('thisAction')}
+                                </Text>
                             </View>
                         )}
                         {this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <Text style={styles.infoText}>Enter your password to delete this account.</Text>
+                                <Text style={styles.infoText}>{t('enterPassword')}</Text>
                                 <TextField
                                     style={{ color: 'white', fontFamily: 'Lato-Light' }}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
@@ -96,8 +108,8 @@ class DeleteAccount extends Component {
                                     fontSize={width / 20.7}
                                     labelPadding={3}
                                     baseColor="white"
-                                    label="Password"
-                                    tintColor="#F7D002"
+                                    label={t('global:password')}
+                                    tintColor={THEMES.getHSL(negativeColor)}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically={true}
@@ -116,14 +128,14 @@ class DeleteAccount extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.onContinuePress()}>
                             <View style={styles.itemRight}>
-                                <Image source={tickImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Continue</Text>
+                                <Text style={styles.titleTextRight}>{t('global:continue')}</Text>
+                                <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -193,16 +205,27 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
-    titleText: {
+    titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+    },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
     },
     infoText: {
         color: 'white',
@@ -220,4 +243,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default DeleteAccount;
+export default translate(['deleteAccount', 'global'])(DeleteAccount);

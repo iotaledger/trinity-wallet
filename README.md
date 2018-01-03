@@ -1,9 +1,9 @@
-# IOTA Wallet
+# IOTA Trinity Wallet
 
 [![Build Status](https://www.bitrise.io/app/e1c71066b5c75521/status.svg?token=NytmjW1aEHEu-1kNaMRuiQ&branch=develop)](https://www.bitrise.io/app/e1c71066b5c75521)
 
 
-This is the shared repository for the IOTA mobile and desktop wallets. The apps are based on React and built with React-Native (mobile) and Electron (desktop).
+This is the shared repository for the IOTA Trinity mobile and desktop wallets. The apps are based on React and built with React-Native (mobile) and Electron (desktop).
 
 ## Prerequisites
 
@@ -30,6 +30,8 @@ yarn full-setup
 ## Branches
 
 To create a new feature or bugfix (or chore) please create a new branch and use a prefix (e.g `feature/my-awesome-new-feature` or `bugfix/something-not-working`). The prefixes we use are `bugfix`, `feature`, `chore` and `hotfix`. Please don't use anything else.
+
+If you are adding any text in your work, please follow the instructions in LOCALIZATION.md. 
 
 When creating a new branch try to always branch off from `master`! Avoid branching off from other branches unless it's absolutely necessary.
 

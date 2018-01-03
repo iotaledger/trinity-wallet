@@ -14,6 +14,7 @@ class OnboardingComplete extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
             animated: false,
             overrideBackPress: true,
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     party: {
         justifyContent: 'center',
         width: width,
-        height: width, // FIXME: Might have been assigned incorrectly.
+        height: width,
         position: 'absolute',
         top: -height / 10,
     },

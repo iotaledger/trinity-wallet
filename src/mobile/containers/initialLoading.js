@@ -8,17 +8,18 @@ import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png
 import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
 
 const version = getVersion();
 const build = getBuildNumber();
 
-const FULL_VERSION = `v ${version}  ( ${build} )`;
+const FULL_VERSION = `v ${version}  (${build})`;
 
 class InitialLoading extends Component {
     static propTypes = {
         navigator: PropTypes.object.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -35,17 +36,24 @@ class InitialLoading extends Component {
         if (!this.props.onboardingComplete) {
             this.clearKeychain();
             this.props.navigator.push({
-                screen: 'languageSetup',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                screen: 'welcome',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
                 animated: false,
                 overrideBackPress: true,
             });
         } else {
             this.props.navigator.push({
                 screen: 'login',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
                 animated: false,
-                overrideBackPress: true,
             });
         }
     }
@@ -57,8 +65,9 @@ class InitialLoading extends Component {
     }
 
     render() {
+        const { backgroundColor } = this.props;
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
                     <Image source={iotaWhiteImagePath} style={styles.logo} />
@@ -76,7 +85,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     logoContainer: {
         flex: 1,
@@ -102,6 +110,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     onboardingComplete: state.account.onboardingComplete,
+    backgroundColor: state.settings.theme.backgroundColor,
 });
 
 export default connect(mapStateToProps, null)(InitialLoading);
