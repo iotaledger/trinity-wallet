@@ -13,7 +13,6 @@ import twoFactorAuthImagePath from 'iota-wallet-shared-modules/images/2fa.png';
 import passwordImagePath from 'iota-wallet-shared-modules/images/password.png';
 import advancedImagePath from 'iota-wallet-shared-modules/images/advanced.png';
 import logoutImagePath from 'iota-wallet-shared-modules/images/logout.png';
-import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -200,6 +199,7 @@ MainSettings.propTypes = {
     setModalContent: PropTypes.func.isRequired,
     on2FASetupPress: PropTypes.func.isRequired,
     onThemePress: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
 };
 
 export default MainSettings;
