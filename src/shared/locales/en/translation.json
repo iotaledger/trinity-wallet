@@ -1,5 +1,7 @@
 {
     "global": {
+        "send": "SEND",
+        "cancel": "CANCEL",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
         "qr": "QR",
@@ -350,5 +352,10 @@
         "infoTextThree": "and",
         "infoTextFour": "other account information",
         "infoTextFive": "will be lost."
+    },
+    "transferConfirmation": {
+        "youAreAbout": "You are about to send",
+        "toTheAddress": "to the address",
+        "aMessage": "a message"
     }
 }
