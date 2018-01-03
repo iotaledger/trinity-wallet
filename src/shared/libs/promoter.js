@@ -79,7 +79,6 @@ export const getBundleTailsForSentTransfers = (transfers, addresses) => {
 
             // Pick all those transaction that were replayed with in the last hour
             const hasMadeReattachmentWithinAnHour = isWithinAnHour(attachmentTimestamp);
-
             if (!v.persistence && v.currentIndex === 0 && v.value > 0 && hasMadeReattachmentWithinAnHour) {
                 const bundle = v.bundle;
 

@@ -43,16 +43,27 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
-    titleText: {
+    titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
+    },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
     },
     dropdownWidth: {
         width: width / 1.5,
@@ -84,15 +95,21 @@ class LanguageSelection extends Component {
         const { backPress, t } = this.props;
 
         return (
-            <TouchableWithoutFeedback onPress={() => this.dropdown.closeDropdown()}>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    if (this.dropdown) {
+                        this.dropdown.closeDropdown();
+                    }
+                }}
+            >
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.2 }} />
                         <Dropdown
-                            ref={c => {
+                            onRef={c => {
                                 this.dropdown = c;
                             }}
-                            title={this.languageSelected}
+                            title={this.languageSelected} //TODO: Ask if this is correct
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={currentLanguageLabel}
                             options={I18N_LOCALE_LABELS}
@@ -104,14 +121,14 @@ class LanguageSelection extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveLanguageSelection()}>
                             <View style={styles.itemRight}>
-                                <Image source={tickImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Save</Text>
+                                <Text style={styles.titleTextRight}>{t('global:save')}</Text>
+                                <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
                     </View>

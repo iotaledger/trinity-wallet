@@ -5,8 +5,13 @@
         "invalidResponsePollingExplanation": "Node zwrócił nieprawidłową odpowiedź podczas pullingu.",
         "seed": "Seed",
         "back": "WSTECZ",
+        "backLowercase": "Back",
         "done": "GOTOWE",
         "next": "DALEJ",
+        "apply": "Apply",
+        "save": "Save",
+        "close": "CLOSE",
+        "continue": "Continue",
         "manualCopy": "Zanotuj seeda",
         "paperWallet": "Wydrukuj wersje papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
@@ -29,7 +34,10 @@
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
-        "somethingWentWrongExplanation": "Uruchom ponownie aplikację."
+        "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
+        "node": "Node",
+        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -150,7 +158,7 @@
         "invalidAddressExplanation1": "Adres powinien składać się z {{maxLength}} znaków i posiadać sumę kontrolną.",
         "invalidAddressExplanation2": "Adres zawiera nieprawidłowe znaki.",
         "invalidAddressExplanation3": "Adres zawiera nieprawidłową sume kontrolną.",
-        "notEnoughFunds": "Brak wystarczających środków",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Nie masz wystarczająco dużo IOTA, aby zakończyć ten transfer.",
         "keyReuse": "Ponowne użycie klucza",
         "keyReuseExplanation": "Adres na który próbujesz wysłać został już użyty. Spróbuj użyć innego adresu.",
@@ -189,13 +197,13 @@
         "theme": "Motyw",
         "currency": "Waluta",
         "language": "Język",
+        "accountManagement": "Account management",
         "addNewSeed": "Dodaj nowego seeda",
         "twoFA": "Uwierzytelnienie dwuetapowe",
         "changePassword": "Zmiana hasła",
         "advanced": "Ustawienia zaawansowane",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
-        "back": "Wstecz",
         "syncingComplete": "Synchronizacja zakończona",
         "syncingCompleteExplanation": "Twoje konto zostało pomyślnie zsynchronizowane.",
         "nicknameChanged": "Zmieniono nazwę konta",
@@ -217,7 +225,7 @@
         "areYouSure": "Czy na pewno chcesz kontynuować?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset your wallet.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "ANULUJ",
         "reset": "RESET"
     },
@@ -248,5 +256,59 @@
         "bundleHashCopiedExplanation": "Bundle hash został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Adres został skopiowany do schowka."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "Currency"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
+    },
+    "deleteAccount": {
+        "areYouSure": "Are you sure you want to delete this account?",
+        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "thisAction": "This action cannot be undone.",
+        "enterPassword": "Enter your password to delete this account."
+    },
+    "manualSync": {
+        "pressToSync": "Press the button below to sync your account.",
+        "thisMayTake": "This may take a while.",
+        "youMayNotice": "You may notice your device slowing down.",
+        "syncAccount": "SYNC ACCOUNT",
+        "syncingYourAccount": "Syncing your account."
     }
 }

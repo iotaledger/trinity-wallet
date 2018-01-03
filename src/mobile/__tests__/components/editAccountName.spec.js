@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import EditAccountName from '../../components/editAccountName';
+import { EditAccountName } from '../../components/editAccountName';
 
 jest.mock('react-native-device-info');
 
@@ -11,6 +11,7 @@ const getProps = overrides =>
     assign(
         {},
         {
+            t: () => 'foo',
             seedIndex: 0,
             accountName: 'foo',
             saveAccountName: noop,
@@ -21,6 +22,10 @@ const getProps = overrides =>
 
 describe('Testing EditAccountName component', () => {
     describe('propTypes', () => {
+        it('should require a t function as a prop', () => {
+            expect(EditAccountName.propTypes.t).toBe(PropTypes.func.isRequired);
+        });
+
         it('should require a seedIndex number as a prop', () => {
             expect(EditAccountName.propTypes.seedIndex).toBe(PropTypes.number.isRequired);
         });

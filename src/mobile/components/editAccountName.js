@@ -7,9 +7,12 @@ import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
+import { translate } from 'react-i18next';
 
-class EditAccountName extends Component {
+export class EditAccountName extends Component {
     static propTypes = {
+        t: PropTypes.func.isRequired,
         seedIndex: PropTypes.number.isRequired,
         accountName: PropTypes.string.isRequired,
         saveAccountName: PropTypes.func.isRequired,
@@ -44,8 +47,8 @@ class EditAccountName extends Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor="white"
-                                label="Account name"
-                                tintColor="#F7D002"
+                                label={t('accountName')}
+                                tintColor={THEMES.getHSL(this.props.negativeColor)}
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically={true}
@@ -63,14 +66,14 @@ class EditAccountName extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.props.saveAccountName(trim(this.state.accountName))}>
                             <View style={styles.itemRight}>
-                                <Image source={tickImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Save</Text>
+                                <Text style={styles.titleTextRight}>{t('global:save')}</Text>
+                                <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -136,17 +139,28 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
-    titleText: {
+    titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
     },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
+    },
 });
 
-export default EditAccountName;
+export default translate(['addAdditionalSeed', 'global'])(EditAccountName);

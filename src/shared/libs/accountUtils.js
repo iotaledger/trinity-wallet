@@ -1,18 +1,13 @@
+import assign from 'lodash/assign';
 import each from 'lodash/each';
 import get from 'lodash/get';
 import map from 'lodash/map';
+import filter from 'lodash/filter';
 import reduce from 'lodash/reduce';
 import isNull from 'lodash/isNull';
+import includes from 'lodash/includes';
 import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
-
-export const formatAddressData = (addresses, balances, addressesSpendStatus) => {
-    const addressData = Object.assign(
-        {},
-        ...addresses.map((n, index) => ({ [n]: { balance: balances[index], spent: addressesSpendStatus[index] } })),
-    );
-    return addressData;
-};
 
 export const formatFullAddressData = data => {
     const addresses = data.addresses;
@@ -43,33 +38,8 @@ export const markAddressSpend = (transfers, addressData) => {
             }
         });
     });
+
     return addressData;
-};
-
-export const groupTransfersByBundle = transfers => {
-    const groupedTransfers = [];
-
-    transfers.forEach(tx => {
-        if (!groupedTransfers.length) {
-            groupedTransfers.push([tx]);
-        } else {
-            const i = groupedTransfers.findIndex(bundle => bundle[0].bundle === tx.bundle);
-            if (i !== -1) {
-                groupedTransfers[i].push(tx);
-            } else {
-                groupedTransfers.push([tx]);
-            }
-        }
-    });
-
-    // Order arrays of transfer object(s) by currentIndex
-    groupedTransfers.forEach(arr => {
-        arr.sort((a, b) => {
-            return a.currentIndex - b.currentIndex;
-        });
-    });
-
-    return groupedTransfers;
 };
 
 export const sortWithProp = (array, prop) => {
@@ -126,63 +96,10 @@ export const addTransferValues = (transfers, addresses) => {
 export const calculateBalance = data => {
     let balance = 0;
     if (Object.keys(data).length > 0) {
-        let balanceArray = Object.values(data).map(x => x.balance);
+        const balanceArray = Object.values(data).map(x => x.balance);
         balance = balanceArray.reduce((a, b) => a + b);
     }
     return balance;
-};
-
-export const getIndexesWithBalanceChange = (a, b) => {
-    let indexes = [];
-    for (var i = 0; i < a.length; i++) {
-        if (a[i] != b[i]) {
-            indexes.push(i);
-        }
-    }
-    return indexes;
-};
-
-export const getAddressesWithChangedBalance = (allAddresses, indicesWithChangedBalance) => {
-    const addressesWithChangedBalance = [];
-
-    each(indicesWithChangedBalance, idx => {
-        if (allAddresses[idx]) {
-            addressesWithChangedBalance.push(allAddresses[idx]);
-        }
-    });
-
-    return addressesWithChangedBalance;
-};
-
-export const mergeLatestTransfersInOld = (oldTransfers, latestTransfers) => {
-    // Transform both old and latest into dictionaries with bundle as prop
-    const toDict = (res, transfer) => {
-        const top = transfer[0];
-        const bundle = top.bundle;
-
-        if (bundle in res) {
-            res[bundle] = [...res[bundle], transfer];
-        } else {
-            res[bundle] = [transfer];
-        }
-
-        return res;
-    };
-
-    const override = (res, bundleObject, key) => {
-        if (key in transformedLatestTransfers) {
-            each(transformedLatestTransfers[key], value => res.push(value)); // Just replace old bundle objects with latest
-        } else {
-            each(transformedOldTransfers[key], value => res.push(value)); // Otherwise just keep the old ones
-        }
-
-        return res;
-    };
-
-    const transformedOldTransfers = reduce(oldTransfers, toDict, {});
-    const transformedLatestTransfers = reduce(latestTransfers, toDict, {});
-
-    return reduce(transformedOldTransfers, override, []);
 };
 
 export const deduplicateTransferBundles = transfers => {
@@ -344,20 +261,167 @@ export const getUnspentInputs = (seed, start, threshold, inputs, callback) => {
     });
 };
 
+export const getPendingTxTailsHashes = transfers => {
+    const grabTails = (res, val) => {
+        each(val, v => {
+            if (!v.persistence && v.currentIndex === 0) {
+                res.push(v.hash);
+            }
+        });
+
+        return res;
+    };
+
+    return reduce(transfers, grabTails, []);
+};
+
+export const markTransfersConfirmed = (transfers, tailHashes) => {
+    return map(transfers, txObjects =>
+        map(txObjects, tx => {
+            const isTail = tx.currentIndex === 0;
+            const hash = tx.hash;
+            const isUnconfirmed = !tx.persistence;
+
+            if (isTail && includes(tailHashes, hash) && isUnconfirmed) {
+                return assign({}, tx, { persistence: true });
+            }
+
+            return tx;
+        }),
+    );
+};
+
 export const organizeAccountInfo = (accountName, data) => {
     const transfers = formatTransfers(data.transfers, data.addresses);
 
     const addressData = formatFullAddressData(data);
     const balance = calculateBalance(addressData);
 
-    const unconfirmedTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
+    const unconfirmedBundleTails = getBundleTailsForSentTransfers(transfers, data.addresses); // Should really be ordered.
     const addressDataWithSpentFlag = markAddressSpend(transfers, addressData);
+    const pendingTxTailsHashes = getPendingTxTailsHashes(transfers);
 
     return {
         accountName,
         transfers,
         addresses: addressDataWithSpentFlag,
         balance,
-        unconfirmedTails,
+        unconfirmedBundleTails,
+        pendingTxTailsHashes,
     };
+};
+
+export const getTotalBalance = (addresses, threshold = 1) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getBalances(addresses, threshold, (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                const newBalances = map(data.balances, Number);
+                const totalBalance = reduce(
+                    newBalances,
+                    (res, val) => {
+                        res = res + val;
+                        return res;
+                    },
+                    0,
+                );
+
+                resolve(totalBalance);
+            }
+        });
+    });
+};
+
+export const getLatestAddresses = (seed, index) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getInputs(seed, { start: index }, (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                const addresses = reduce(
+                    data.inputs,
+                    (obj, x) => {
+                        obj[x.address] = { balance: x.balance, spent: false };
+                        return obj;
+                    },
+                    {},
+                );
+
+                resolve(addresses);
+            }
+        });
+    });
+};
+
+export const getTransactionHashes = addresses => {
+    return new Promise((resolve, reject) => {
+        iota.api.findTransactions({ addresses }, (err, hashes) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(hashes);
+            }
+        });
+    });
+};
+
+export const getTransactionsObjects = hashes => {
+    return new Promise((resolve, reject) => {
+        iota.api.getTransactionsObjects(hashes, (err, txs) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(txs);
+            }
+        });
+    });
+};
+
+export const getHashesWithPersistence = hashes => {
+    return new Promise((resolve, reject) => {
+        iota.api.getLatestInclusion(hashes, (err, states) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve({ states, hashes });
+            }
+        });
+    });
+};
+
+export const getBundleWithPersistence = (tailTxHash, persistence) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getBundle(tailTxHash, (err, bundle) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(map(bundle, tx => assign({}, tx, { persistence })));
+            }
+        });
+    });
+};
+
+export const getBundlesWithPersistence = (inclusionStates, hashes) => {
+    return reduce(
+        hashes,
+        (promise, hash, idx) => {
+            return promise
+                .then(result => {
+                    return getBundleWithPersistence(hash, inclusionStates[idx]).then(bundle => {
+                        result.push(bundle);
+
+                        return result;
+                    });
+                })
+                .catch(console.error);
+        },
+        Promise.resolve([]),
+    );
+};
+
+export const getConfirmedTxTailsHashes = (states, hashes) => {
+    const confirmedHashes = filter(hashes, (hash, idx) => states[idx]);
+
+    return new Promise((resolve, reject) => resolve(confirmedHashes));
 };

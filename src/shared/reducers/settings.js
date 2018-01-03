@@ -1,5 +1,6 @@
 import { ActionTypes } from '../actions/settings.js';
 import { defaultNode as fullNode } from '../config';
+import assign from 'lodash/assign';
 
 const initialState = {
     locale: 'en',
@@ -9,7 +10,7 @@ const initialState = {
         'https://iri3-api.iota.fm:443',
         'https://ceres.iota.community:14600/',
         'https://node.tangle.works:443',
-        'http://iotanode.us:443',
+        'https://iotanode.us:443',
         'http://astra2261.startdedicated.net:14265',
         'http://iota.nck.nz:14265',
     ],
@@ -20,7 +21,7 @@ const initialState = {
         'https://node.tangle.works:443',
         'http://148.251.181.105:14265/',
         'https://n1.iota.nu:443',
-        'http://iotanode.us:443',
+        'https://iotanode.us:443',
         'http://node.lukaseder.de:14265',
         'http://eugene.iotasupport.com:14999',
         'http://node02.iotatoken.nl:14265',
@@ -39,7 +40,6 @@ const initialState = {
         'http://iota.bitfinex.com:80',
     ],
     mode: 'Standard',
-    theme: 'Standard',
     language: 'English (International)',
     currency: 'USD',
     availableCurrencies: [
@@ -77,6 +77,45 @@ const initialState = {
         'ZAR',
     ],
     conversionRate: 1,
+    themeName: 'Standard',
+    theme: {
+        backgroundColor: {
+            h: 191.66666666666663,
+            s: 0.4090909090909091,
+            l: 0.17254901960784313,
+            a: 1,
+        },
+        barColor: {
+            h: 191.66666666666669,
+            s: 0.6206896551724137,
+            l: 0.11372549019607844,
+            a: 1,
+        },
+        ctaColor: {
+            h: 143.77358490566039,
+            s: 1,
+            l: 0.31176470588235294,
+            a: 1,
+        },
+        positiveColor: {
+            h: 131.0204081632653,
+            s: 1,
+            l: 0.807843137254902,
+            a: 1,
+        },
+        negativeColor: {
+            h: 50.44897959183674,
+            s: 0.9839357429718876,
+            l: 0.48823529411764705,
+            a: 1,
+        },
+        extraColor: {
+            h: 201.68067226890756,
+            s: 1,
+            l: 0.7666666666666666,
+            a: 1,
+        },
+    },
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -133,6 +172,12 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 currency: action.currency,
                 conversionRate: action.conversionRate,
+            };
+        case ActionTypes.UPDATE_THEME:
+            return {
+                ...state,
+                theme: action.theme,
+                themeName: action.themeName,
             };
     }
 

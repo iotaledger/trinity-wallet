@@ -18,6 +18,7 @@ import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 
 class ViewSeed extends React.Component {
     constructor() {
@@ -102,7 +103,7 @@ class ViewSeed extends React.Component {
                                     labelPadding={3}
                                     baseColor="white"
                                     label="Password"
-                                    tintColor="#F7D002"
+                                    tintColor={THEMES.getHSL(this.props.negativeColor)}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
                                     enablesReturnKeyAutomatically={true}
@@ -220,9 +221,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
     },
     icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
     titleText: {
         color: 'white',
