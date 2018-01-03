@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, StatusBar, BackHandler, ToastAndroid } from 'react-native';
 import { connect } from 'react-redux';
 import UserInactivity from 'react-native-user-inactivity';
-import KeepAwake from 'react-native-keep-awake';
 import { Navigation } from 'react-native-navigation';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
