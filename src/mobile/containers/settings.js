@@ -527,6 +527,9 @@ class Settings extends Component {
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
             },
+            appStyle: {
+                orientation: 'portrait',
+            },
         });
     }
 
@@ -543,6 +546,9 @@ class Settings extends Component {
                 },
                 overrideBackPress: true,
             },
+            appStyle: {
+                orientation: 'portrait',
+            },
         });
     }
 
@@ -555,6 +561,9 @@ class Settings extends Component {
                     navBarTransparent: true,
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
+            },
+            appStyle: {
+                orientation: 'portrait',
             },
         });
         BackHandler.removeEventListener('homeBackPress');
