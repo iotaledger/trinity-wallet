@@ -19,10 +19,17 @@ const initialState = {
     hasErrorFetchingAccountInfoOnLogin: false,
     inactive: false,
     minimised: false,
+    addingAdditionalAccount: false,
+    additionalAccountName: '',
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO:
+            return {
+                ...state,
+                ...action.payload,
+            };
         case ActionTypes.SET_SEED:
             return {
                 ...state,
