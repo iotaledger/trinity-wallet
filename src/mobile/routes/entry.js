@@ -18,4 +18,7 @@ Navigation.startSingleScreenApp({
         },
         overrideBackPress: true,
     },
+    appStyle: {
+        orientation: 'portrait',
+    },
 });
