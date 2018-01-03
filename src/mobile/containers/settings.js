@@ -8,9 +8,8 @@ import { StyleSheet, View, StatusBar, BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
-import COLORS from '../theme/Colors';
 import THEMES from '../theme/themes';
-import { clearTempData, setPassword, setSetting } from '../../shared/actions/tempAccount';
+import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import {
     changeAccountName,
     deleteAccount,
@@ -140,6 +139,7 @@ class Settings extends Component {
         fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
         addCustomPoWNode: PropTypes.func.isRequired,
         updateTheme: PropTypes.func.isRequired,
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
         themeName: PropTypes.string.isRequired,
         backgroundColor: PropTypes.object.isRequired,
@@ -348,8 +348,14 @@ class Settings extends Component {
         return this.props.generateAlert('success', 'Custom node added', 'The custom node has been added successfully.');
     }
 
-    fetchAccountInfo(seed, accountName, password, promise, navigator) {
-        navigator.push({
+    fetchAccountInfo(seed, accountName) {
+        this.props.setAdditionalAccountInfo({
+            addingAdditionalAccount: true,
+            additionalAccountName: accountName,
+            seed,
+        });
+
+        this.props.navigator.push({
             screen: 'loading',
             navigatorStyle: {
                 navBarHidden: true,
@@ -359,8 +365,6 @@ class Settings extends Component {
             animated: false,
             overrideBackPress: true,
         });
-
-        return this.props.fetchFullAccountInfoForFirstUse(seed, accountName, password, promise, navigator);
     }
 
     // UseExistingSeed method
@@ -399,7 +403,7 @@ class Settings extends Component {
                 .get()
                 .then(credentials => {
                     if (isNull(credentials)) {
-                        this.fetchAccountInfo(seed, accountName, password, storeSeedInKeychain, navigator);
+                        this.fetchAccountInfo(seed, accountName);
                     } else {
                         if (hasDuplicateAccountName(credentials.data, accountName)) {
                             this.props.generateAlert(
@@ -414,7 +418,7 @@ class Settings extends Component {
                                 t('addAdditionalSeed:seedInUseExplanation'),
                             );
                         } else {
-                            this.fetchAccountInfo(seed, accountName, password, storeSeedInKeychain, navigator);
+                            this.fetchAccountInfo(seed, accountName);
                         }
                     }
                 })
@@ -610,6 +614,7 @@ const mapDispatchToProps = {
     generateAlert,
     manuallySyncAccount,
     updateTheme,
+    setAdditionalAccountInfo,
 };
 
 const mapStateToProps = state => ({
