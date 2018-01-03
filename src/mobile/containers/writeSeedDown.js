@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
-import { connect } from 'react-redux';
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import Seedbox from '../components/seedBox.js';
-import { width, height } from '../util/dimensions';
-import THEMES from '../theme/themes';
-import GENERAL from '../theme/general';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import React, { Component } from 'react'
+import { translate } from 'react-i18next'
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native'
+import { connect } from 'react-redux'
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util'
+import Seedbox from '../components/seedBox.js'
+import { width, height } from '../util/dimensions'
+import THEMES from '../theme/themes'
+import GENERAL from '../theme/general'
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png'
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota'
 
 class WriteSeedDown extends Component {
     onDonePress() {
         this.props.navigator.pop({
             animated: false,
-        });
+        })
     }
 
     render() {
-        const { t, positiveColor, backgroundColor } = this.props;
-        const checksum = getChecksum(this.props.tempAccount.seed);
+        const { t, positiveColor, backgroundColor } = this.props
+        const checksum = getChecksum(this.props.tempAccount.seed)
 
-        const positiveColorText = { color: THEMES.getHSL(positiveColor) };
-        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
+        const positiveColorText = { color: THEMES.getHSL(positiveColor) }
+        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) }
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
@@ -33,10 +33,10 @@ class WriteSeedDown extends Component {
                 <View style={styles.midContainer}>
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>
-                            {`Your seed is ${MAX_SEED_LENGTH} characters read from left to right. Write down your seed and checksum and`}
+                            {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
                         </Text>
-                        <Text style={styles.infoTextBold}> triple check </Text>
-                        <Text style={styles.infoTextNormal}>they are correct.</Text>
+                        <Text style={styles.infoTextBold}>{` ${t('writeSeedDown:tripleCheck')} `}</Text>
+                        <Text style={styles.infoTextNormal}>{t('writeSeedDown:thatTheyAreCorrect')}</Text>
                     </Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
                     <View style={styles.checksum}>
@@ -46,12 +46,12 @@ class WriteSeedDown extends Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={[styles.doneButton, positiveColorBorder]}>
-                            <Text style={[styles.doneText, positiveColorText]}>DONE</Text>
+                            <Text style={[styles.doneText, positiveColorText]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
             </View>
-        );
+        )
     }
 }
 
@@ -192,12 +192,12 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Regular',
     },
-});
+})
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
-});
+})
 
-export default connect(mapStateToProps)(WriteSeedDown);
+export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown))

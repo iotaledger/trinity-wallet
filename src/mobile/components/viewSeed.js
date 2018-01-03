@@ -1,5 +1,6 @@
-import get from 'lodash/get';
-import React, { Component } from 'react';
+import get from 'lodash/get'
+import React, { Component } from 'react'
+import { translate } from 'react-i18next'
 import {
     Image,
     View,
@@ -10,30 +11,30 @@ import {
     Keyboard,
     TouchableWithoutFeedback,
     AppState,
-} from 'react-native';
-import Fonts from '../theme/Fonts';
-import Seedbox from '../components/seedBox.js';
-import { TextField } from 'react-native-material-textfield';
-import keychain, { getSeed } from '../util/keychain';
-import { width, height } from '../util/dimensions';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import GENERAL from '../theme/general';
-import THEMES from '../theme/themes';
+} from 'react-native'
+import Fonts from '../theme/Fonts'
+import Seedbox from '../components/seedBox.js'
+import { TextField } from 'react-native-material-textfield'
+import keychain, { getSeed } from '../util/keychain'
+import { width, height } from '../util/dimensions'
+import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png'
+import GENERAL from '../theme/general'
+import THEMES from '../theme/themes'
 
-class ViewSeed extends React.Component {
+class ViewSeed extends Component {
     constructor() {
-        super();
+        super()
         this.state = {
             password: '',
             showSeed: false,
             seed: '',
             appState: AppState.currentState,
-        };
+        }
     }
 
     componentWillReceiveProps(newProps) {
         if (this.props.seedIndex !== newProps.seedIndex) {
-            this.hideSeed();
+            this.hideSeed()
         }
     }
 
@@ -42,47 +43,47 @@ class ViewSeed extends React.Component {
             keychain
                 .get()
                 .then(credentials => {
-                    const data = get(credentials, 'data');
+                    const data = get(credentials, 'data')
 
                     if (!data) {
-                        throw 'Error';
+                        throw 'Error'
                     } else {
-                        const seed = getSeed(data, this.props.seedIndex);
-                        this.setState({ seed });
-                        this.setState({ showSeed: true });
+                        const seed = getSeed(data, this.props.seedIndex)
+                        this.setState({ seed })
+                        this.setState({ showSeed: true })
                     }
                 })
-                .catch(err => console.log(err));
+                .catch(err => console.log(err))
         } else {
-            this.props.onWrongPassword();
+            this.props.onWrongPassword()
         }
     }
 
     componentDidMount() {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this._handleAppStateChange)
     }
 
     componentWillUnmount() {
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        AppState.removeEventListener('change', this._handleAppStateChange)
     }
 
     _handleAppStateChange = nextAppState => {
         if (nextAppState.match(/inactive|background/)) {
-            this.hideSeed();
+            this.hideSeed()
         }
-        this.setState({ appState: nextAppState });
-    };
+        this.setState({ appState: nextAppState })
+    }
 
     hideSeed() {
         this.setState({
             seed: '',
             showSeed: false,
             password: '',
-        });
+        })
     }
 
     render() {
-        const { t } = this.props;
+        const { t } = this.props
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -90,7 +91,7 @@ class ViewSeed extends React.Component {
                     <View style={styles.topContainer}>
                         {!this.state.showSeed && (
                             <View style={styles.passwordTextContainer}>
-                                <Text style={styles.generalText}>Enter password to view your seed.</Text>
+                                <Text style={styles.generalText}>{t('viewSeed:enterPassword')}</Text>
                             </View>
                         )}
                         {!this.state.showSeed && (
@@ -106,14 +107,14 @@ class ViewSeed extends React.Component {
                                     tintColor={THEMES.getHSL(this.props.negativeColor)}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
-                                    enablesReturnKeyAutomatically={true}
+                                    enablesReturnKeyAutomatically
                                     returnKeyType="done"
                                     value={this.state.password}
                                     onChangeText={password => this.setState({ password })}
                                     containerStyle={{
                                         width: width / 1.4,
                                     }}
-                                    secureTextEntry={true}
+                                    secureTextEntry
                                 />
                             </View>
                         )}
@@ -122,11 +123,11 @@ class ViewSeed extends React.Component {
                                 <View style={styles.viewButtonContainer}>
                                     <TouchableOpacity
                                         onPress={() => {
-                                            this.viewSeed();
+                                            this.viewSeed()
                                         }}
                                     >
                                         <View style={styles.viewButton}>
-                                            <Text style={styles.viewText}>VIEW SEED</Text>
+                                            <Text style={styles.viewText}>{t('viewSeed:viewSeed')}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -142,11 +143,11 @@ class ViewSeed extends React.Component {
                                 <View style={styles.hideButtonContainer}>
                                     <TouchableOpacity
                                         onPress={() => {
-                                            this.hideSeed();
+                                            this.hideSeed()
                                         }}
                                     >
                                         <View style={styles.viewButton}>
-                                            <Text style={styles.viewText}>HIDE SEED</Text>
+                                            <Text style={styles.viewText}>{t('viewSeed:hideSeed')}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -157,13 +158,13 @@ class ViewSeed extends React.Component {
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
-        );
+        )
     }
 }
 
@@ -217,7 +218,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: height / 50,
         justifyContent: 'flex-start',
-        width: width,
+        width,
         paddingHorizontal: width / 15,
     },
     icon: {
@@ -247,6 +248,6 @@ const styles = StyleSheet.create({
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
-});
+})
 
-export default ViewSeed;
+export default translate(['viewSeed', 'global'])(ViewSeed)
