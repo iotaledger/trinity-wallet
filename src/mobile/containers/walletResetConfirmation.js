@@ -1,37 +1,37 @@
-import toUpper from 'lodash/toUpper'
-import { translate } from 'react-i18next'
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { StyleSheet, View, Text, Image, StatusBar, BackHandler } from 'react-native'
-import { Navigation } from 'react-native-navigation'
-import Fonts from '../theme/Fonts'
-import OnboardingButtons from '../components/onboardingButtons.js'
-import COLORS from '../theme/Colors'
-import GENERAL from '../theme/general'
+import toUpper from 'lodash/toUpper';
+import { translate } from 'react-i18next';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, View, Text, Image, StatusBar, BackHandler } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import Fonts from '../theme/Fonts';
+import OnboardingButtons from '../components/onboardingButtons.js';
+import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png'
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png'
-import { width, height } from '../util/dimensions'
-import THEMES from '../theme/themes'
-import { connect } from 'react-redux'
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import { width, height } from '../util/dimensions';
+import THEMES from '../theme/themes';
+import { connect } from 'react-redux';
 
 class WalletResetConfirmation extends Component {
     constructor() {
-        super()
+        super();
 
-        this.goBack = this.goBack.bind(this)
-        this.requirePassword = this.requirePassword.bind(this)
+        this.goBack = this.goBack.bind(this);
+        this.requirePassword = this.requirePassword.bind(this);
     }
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', () => {
-            this.goBack()
-            return true
-        })
+            this.goBack();
+            return true;
+        });
     }
 
     componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress')
+        BackHandler.removeEventListener('hardwareBackPress');
     }
 
     navigateTo(url) {
@@ -43,7 +43,7 @@ class WalletResetConfirmation extends Component {
                 screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
-        })
+        });
     }
 
     goBack() {
@@ -64,13 +64,13 @@ class WalletResetConfirmation extends Component {
     }
 
     requirePassword() {
-        this.navigateTo('walletResetRequirePassword')
+        this.navigateTo('walletResetRequirePassword');
     }
 
     render() {
-        const { t } = this.props
-        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) }
-        const negativeColor = { color: THEMES.getHSL(this.props.negativeColor) }
+        const { t } = this.props;
+        const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+        const negativeColor = { color: THEMES.getHSL(this.props.negativeColor) };
 
         return (
             <View style={[styles.container, backgroundColor]}>
@@ -88,12 +88,10 @@ class WalletResetConfirmation extends Component {
                         <Image source={infoImagePath} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
                             <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextOne')}</Text>
-                            <Text style={styles.infoTextRegular}>{` ${t('walletResetConfirmation:infoTextTwo')}`}</Text>
-                            <Text style={styles.infoTextLight}>{` ${t('walletResetConfirmation:infoTextThree')}`}</Text>
-                            <Text style={styles.infoTextRegular}>{` ${t(
-                                'walletResetConfirmation:infoTextFour',
-                            )}`}</Text>
-                            <Text style={styles.infoTextLight}>{` ${t('walletResetConfirmation:infoTextFive')}`}</Text>
+                            <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextTwo')}}</Text>
+                            <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextThree')}</Text>
+                            <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextFour')}</Text>
+                            <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextFive')}}</Text>
                         </Text>
                     </View>
                     <View style={styles.confirmationTextWrapper}>
@@ -109,7 +107,7 @@ class WalletResetConfirmation extends Component {
                     />
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -194,16 +192,16 @@ const styles = StyleSheet.create({
         height: width / 5,
         width: width / 5,
     },
-})
+});
 
 WalletResetConfirmation.propTypes = {
     navigator: PropTypes.object.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
-})
+});
 
-export default translate(['global'])(connect(mapStateToProps)(WalletResetConfirmation))
+export default translate(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation));
