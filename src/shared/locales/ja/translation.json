@@ -3,7 +3,7 @@
         "send": "送金",
         "cancel": "キャンセル",
         "continue?": "本当に続行しますか？",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "最近の履歴なし",
         "qr": "QRコード",
         "balanceError": "残高が足りません",
         "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
