@@ -5,6 +5,7 @@
         line-height: 16px;
         text-decoration: none;
         margin-bottom: 16px;
+        cursor: pointer;
         &:hover,
         &[aria-current='true'] {
             color: var(--color-highlight);
