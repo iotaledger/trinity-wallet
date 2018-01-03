@@ -1,46 +1,46 @@
-import React, { Component } from 'react'
-import { translate } from 'react-i18next'
-import { View, Text, StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
-import OnboardingButtons from '../components/onboardingButtons.js'
-import COLORS from '../theme/Colors'
-import GENERAL from '../theme/general'
+import React, { Component } from 'react';
+import { translate } from 'react-i18next';
+import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import OnboardingButtons from '../components/onboardingButtons.js';
+import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
-import { width, height } from '../util/dimensions'
+import { width, height } from '../util/dimensions';
 
 class TransferConfirmationModal extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     onSendPress() {
         this.props.hideModal(() => {
-            this.props.sendTransfer()
-            this.props.clearOnSend()
-        })
+            this.props.sendTransfer();
+            this.props.clearOnSend();
+        });
     }
 
     render() {
-        const { t, backgroundColor } = this.props
-        let transferContents = null
+        const { t, backgroundColor } = this.props;
+        let transferContents = null;
         if (this.props.amount === 0) {
-            transferContents = <Text style={styles.iotaText}>{t('transferConfirmation:aMessage')}</Text>
+            transferContents = <Text style={styles.iotaText}>{t('transferConfirmation:aMessage')}</Text>;
         } else {
             transferContents = (
                 <Text style={styles.iotaText}>
                     {' '}
                     {this.props.amount} {this.props.denomination}{' '}
                 </Text>
-            )
+            );
         }
         return (
             <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
-                            <Text style={styles.regularText}>{t('transferConfirmation:youAreAbout')} </Text>
-                            {transferContents}
-                            <Text style={styles.middleText}> {t('transferConfirmation:toTheAddress')}:</Text>
+                            <Text style={styles.regularText}>
+                                {t('transferConfirmation:youAreAbout', { contents: transferContents })}
+                            </Text>
                         </Text>
                         <Text numberOfLines={3} style={styles.addressText}>
                             {this.props.address}
@@ -54,7 +54,7 @@ class TransferConfirmationModal extends Component {
                     />
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -106,6 +106,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
     },
-})
+});
 
-export default translate(['transferConfirmation', 'global'])(TransferConfirmationModal)
+export default translate(['transferConfirmation', 'global'])(TransferConfirmationModal);
