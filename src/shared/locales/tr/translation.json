@@ -1,12 +1,28 @@
 {
     "global": {
+        "send": "SEND",
+        "cancel": "CANCEL",
+        "continue?": "Are you sure you want to continue?",
+        "noTransactions": "NO RECENT HISTORY",
+        "qr": "QR",
+        "balanceError": "Not enough balance",
+        "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
+        "transferError": "Transfer Error",
+        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferSent": "Transfer sent",
+        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "keyReuse": "Key reuse",
+        "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Geçersiz yanıt",
         "invalidResponseExplanation": "Düğümü geçersiz yanıt döndürdü.",
         "invalidResponsePollingExplanation": "Düğüm yoklama sırasında geçersiz bir yanıt döndürdü.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
         "seed": "Tohum",
         "back": "Geri",
         "backLowercase": "Back",
         "done": "Tamamlandı",
+        "doneLowercase": "Done",
         "next": "SONRAKİ",
         "apply": "Apply",
         "save": "Save",
@@ -15,7 +31,6 @@
         "manualCopy": "Cüzdan şifreni yaz",
         "paperWallet": "Kağıdın bir kopyasını al",
         "copyToClipboard": "Şifre yöneticisine ekle",
-        "qr": "QR",
         "notAvailable": "Bu işlev kullanılabilir değil",
         "notAvailableExplanation": "Daha sonraki bir aşamada eklenecektir.",
         "enterSeed": "Lütfen tohumunuzu giriniz.",
@@ -238,7 +253,7 @@
         "reminder": "Bazı adımları geçebilirsin, ama tüm işlemi takip etmeni tavsiye ederim."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Cüzdan şifreniz soldan sağa okunan 81 karakterdir. Cüzdan şifrenizi ve sağlama toplamasını yazın ve",
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "3 kere kontrol edin",
         "thatTheyAreCorrect": "doğru olup olmadıklarını."
     },
@@ -301,5 +316,31 @@
         "youMayNotice": "You may notice your device slowing down.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
+    },
+    "useExistingSeed": {
+        "title": "Enter a seed and account name."
+    },
+    "viewSeed": {
+        "enterPassword": "Enter password to view your seed.",
+        "viewSeed": "VIEW SEED",
+        "hideSeed": "HIDE SEED"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "I have saved my seed",
+        "reenter": "You will now be asked to re-enter your seed.",
+        "reenterWarningOne": "If your device fails and you have not saved",
+        "reenterWarningTwo": "your seed, you will lose your IOTA."
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "infoTextOne": "All your wallet data including your",
+        "infoTextTwo": "seeds, password",
+        "infoTextThree": "and",
+        "infoTextFour": "other account information",
+        "infoTextFive": "will be lost."
+    },
+    "transferConfirmation": {
+        "youAreAbout": "You are about to send {{contents}} to the address",
+        "aMessage": "a message"
     }
 }
