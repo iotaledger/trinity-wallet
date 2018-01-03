@@ -21,6 +21,7 @@ const initialState = {
     minimised: false,
     addingAdditionalAccount: false,
     additionalAccountName: '',
+    isFetchingLatestAccountInfoOnLogin: false,
 };
 
 export default (state = initialState, action) => {
@@ -137,6 +138,8 @@ export default (state = initialState, action) => {
                 ...state,
                 ready: true,
                 seed: Array(82).join(' '),
+                addingAdditionalAccount: false,
+                additionalAccountName: '',
             };
         case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
             return {
@@ -158,11 +161,18 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ready: false,
+                isFetchingLatestAccountInfoOnLogin: true,
             };
         case AccountActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
+                isFetchingLatestAccountInfoOnLogin: false,
+            };
+        case AccountActionTypes.ACCOUNT_INFO_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingLatestAccountInfoOnLogin: false,
             };
         case AccountActionTypes.REMOVE_ACCOUNT:
             return {
