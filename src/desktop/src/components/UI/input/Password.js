@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import css from './Password.css';
-import Button from 'components/UI/Button';
+import css from './Input.css';
 
 import IconEye from 'images/eye.png';
 
 export default class PasswordInput extends React.PureComponent {
     static propTypes = {
         name: PropTypes.string,
-        value: PropTypes.string,
-        className: PropTypes.string,
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
     };
 
     state = {
@@ -18,7 +17,6 @@ export default class PasswordInput extends React.PureComponent {
     };
 
     toggleVisibility = e => {
-        console.log('wtf', e.target);
         e.preventDefault();
         this.setState(state => ({
             type: state.type === 'password' ? 'text' : 'password',
@@ -26,25 +24,17 @@ export default class PasswordInput extends React.PureComponent {
     };
 
     render() {
-        const { className } = this.props;
+        const { className, label, value } = this.props;
         const { type } = this.state;
         return (
-            <div className={css.wrapper}>
-                <div>
-                    <input type={type} className={classNames(className, css.password)} {...this.props} />
-                    <small />
-                </div>
-                <Button type="button" variant="default" onClick={this.toggleVisibility}>
-                    {type === 'password' ? (
-                        <span>
-                            <img src={IconEye} alt="" /> Show
-                        </span>
-                    ) : (
-                        <span>
-                            <img src={IconEye} alt="" /> Hide
-                        </span>
-                    )}
-                </Button>
+            <div className={css.input}>
+                <fieldset>
+                    <a className={type === 'text' ? css.strike : null} onClick={this.toggleVisibility}>
+                        <img src={IconEye} alt="" />
+                    </a>
+                    <input type={type} value={value} onChange={e => this.props.onChange(e.target.value)} />
+                    <small>{label}</small>
+                </fieldset>
             </div>
         );
     }

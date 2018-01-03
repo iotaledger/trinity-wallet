@@ -33,14 +33,14 @@
     }
 
     .received {
-        color: var(--color-blue);
+        color: var(--color-info);
         > span:nth-child(1):before {
             background: url('images/receive.png') center;
             background-size: cover;
         }
     }
     .sent {
-        color: var(--color-yellow);
+        color: var(--color-highlight);
     }
 
     .empty {

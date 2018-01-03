@@ -124,14 +124,14 @@ export default class Chart extends React.Component {
         return (
             <div className={css.chart}>
                 <nav>
-                    <Button variant="default" className="small" onClick={() => this.changeCurrency()}>
+                    <Button variant="secondary" className="small" onClick={() => this.changeCurrency()}>
                         <img src={imageChevron} />
                         {marketData.currency}
                     </Button>
                     <p>
                         {getCurrencySymbol(marketData.currency)} {this.getPriceFormat(price)} / Mi
                     </p>
-                    <Button variant="default" className="small" onClick={() => this.changeTimeframe()}>
+                    <Button variant="secondary" className="small" onClick={() => this.changeTimeframe()}>
                         <img src={imageChevron} />
                         {marketData.timeframe}
                     </Button>

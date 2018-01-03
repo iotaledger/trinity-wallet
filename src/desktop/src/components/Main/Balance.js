@@ -60,7 +60,9 @@ class Balance extends React.Component {
         const accountInfo = account.accountInfo[seed.name];
 
         const currencySymbol = getCurrencySymbol(settings.currency);
-        const fiatBalance = round(account.balance * marketData.usdPrice / 1000000 * settings.conversionRate).toFixed(2);
+        const fiatBalance = round(
+            accountInfo.balance * marketData.usdPrice / 1000000 * settings.conversionRate,
+        ).toFixed(2);
 
         return (
             <Template>
@@ -68,11 +70,11 @@ class Balance extends React.Component {
                     <section className={css.balance}>
                         <div>
                             <h1>Balance</h1>
-                            <strong>{`${formatValue(account.balance)} ${formatUnit(account.balance)}`}</strong>
+                            <strong>{`${formatValue(accountInfo.balance)} ${formatUnit(accountInfo.balance)}`}</strong>
                             <small>{`${currencySymbol} ${fiatBalance}`}</small>
                         </div>
                         <HistoryList
-                            transfers={accountInfo.transfers[0]}
+                            transfers={accountInfo.transfers.length ? accountInfo.transfers : []}
                             limit={10}
                             addresses={Object.keys(accountInfo.addresses)}
                         />

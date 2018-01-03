@@ -30,44 +30,32 @@ class Login extends React.Component {
 
     state = {
         loading: false,
+        password: '',
     };
 
-    changeHandler = e => {
-        const { target: { name, value } } = e;
-        this.setState(() => ({
-            [name]: value,
-        }));
+    setPassword = password => {
+        this.setState({
+            password: password,
+        });
     };
+
+    componentWillReceiveProps(newProps) {
+        const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+        if (ready) {
+            this.setState({
+                loading: false,
+            });
+            this.props.history.push('/balance');
+        }
+    }
 
     setupAccount(seed, seedIndex) {
         const { t, account, getFullAccountInfo, getAccountInfo, showError, setFirstUse } = this.props;
 
         if (account.firstUse) {
-            getFullAccountInfo(seed.seed, seed.name, (error, success) => {
-                this.setState({
-                    loading: false,
-                });
-                if (error) {
-                    showError({
-                        title: t('global:invalidResponse'),
-                        text: t('global:invalidResponseExplanation'),
-                    });
-                } else {
-                    setFirstUse(false);
-                    this.props.history.push('/balance');
-                }
-            });
+            getFullAccountInfo(seed.seed, seed.name);
         } else {
-            getAccountInfo(seed.name, seedIndex, account.accountInfo, (error, success) => {
-                if (error) {
-                    showError({
-                        title: t('global:invalidResponse'),
-                        text: t('global:invalidResponseExplanation'),
-                    });
-                } else {
-                    this.props.history.push('/balance');
-                }
-            });
+            getAccountInfo(seed.name, seedIndex, account.accountInfo);
         }
     }
 
@@ -110,14 +98,18 @@ class Login extends React.Component {
             <div className={css.wrapper}>
                 <Template type="form" onSubmit={this.handleSubmit}>
                     <Content>
-                        <label>Password:</label>
-                        <PasswordInput name="password" onChange={this.changeHandler} />
+                        <PasswordInput
+                            value={this.state.password}
+                            label={t('global:password')}
+                            name="password"
+                            onChange={this.setPassword}
+                        />
                     </Content>
                     <Footer>
-                        <Button to="/seedlogin" variant="warning">
-                            USE SEED
+                        <Button to="/seedlogin" variant="secondary">
+                            {t('login:useSeed')}
                         </Button>
-                        <Button variant="success">DONE</Button>
+                        <Button variant="success">{t('login:login')}</Button>
                     </Footer>
                 </Template>
             </div>
@@ -127,6 +119,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => ({
     account: state.account,
+    tempAccount: state.tempAccount,
 });
 
 const mapDispatchToProps = {

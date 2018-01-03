@@ -5,7 +5,7 @@
     flex-direction: column;
     min-height: 100vh;
     > header {
-        background: var(--color-item-bg);
+        background: var(--color-bg-secondary);
         display: flex;
         height: var(--header-height);
         position: fixed;
@@ -42,7 +42,7 @@
 }
 
 .sidebar {
-    background: var(--color-item-bg);
+    background: var(--color-bg-secondary);
     flex: 1 0 var(--sidebar-width);
     height: calc(100vh - var(--header-height));
     overflow: auto;
@@ -116,7 +116,7 @@
             border-top: 3px solid transparent;
         }
         &.active:after {
-            border-bottom: 3px solid var(--color-yellow);
+            border-bottom: 3px solid var(--color-highlight);
             box-shadow: 0 2px 2px rgba(247, 208, 2, 0.2);
         }
     }

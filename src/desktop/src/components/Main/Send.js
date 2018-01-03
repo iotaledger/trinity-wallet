@@ -13,6 +13,7 @@ import AmmountInput from 'components/UI/input/Ammount';
 import MessageInput from 'components/UI/input/Message';
 import Button from 'components/UI/Button';
 import Modal from 'components/UI/Modal';
+import css from './Send.css';
 
 class Send extends React.PureComponent {
     static propTypes = {
@@ -107,52 +108,55 @@ class Send extends React.PureComponent {
     };
 
     render() {
-        const { t, settings, account } = this.props;
+        const { t, settings, account, seeds } = this.props;
         const { address, ammount, message, isModalVisible } = this.state;
+
+        const seedInfo = seeds.items[seeds.selectedSeedIndex];
+        const accountInfo = account.accountInfo[seedInfo.name];
 
         return (
             <Template>
                 <Content>
-                    <section>
-                        <Modal
-                            className="confirm"
-                            isOpen={isModalVisible}
-                            onClose={this.toggleConfirmation}
-                            hideCloseButton={true}
-                        >
-                            <h1>
-                                You are about to send{' '}
-                                <strong>{`${formatValue(ammount)} ${formatUnit(ammount)}`}</strong> to the address:{' '}
-                                <br />
-                                <strong>{address}</strong>
-                            </h1>
-                            <Button onClick={this.toggleConfirmation} variant="warning">
-                                {t('global:no')}
+                    <section className={css.send}>
+                        <div>
+                            <Modal
+                                className="confirm"
+                                isOpen={isModalVisible}
+                                onClose={this.toggleConfirmation}
+                                hideCloseButton={true}
+                            >
+                                <h1>
+                                    You are about to send{' '}
+                                    <strong>{`${formatValue(ammount)} ${formatUnit(ammount)}`}</strong> to the address:{' '}
+                                    <br />
+                                    <strong>{address}</strong>
+                                </h1>
+                                <Button onClick={this.toggleConfirmation} variant="warning">
+                                    {t('global:no')}
+                                </Button>
+                                <Button onClick={this.sendTransfer} variant="success">
+                                    {t('global:yes')}
+                                </Button>
+                            </Modal>
+                            <AddressInput
+                                address={address}
+                                onChange={this.onAddressChange}
+                                label={t('send:recipientAddress')}
+                                closeLabel={t('global:back')}
+                            />
+                            <AmmountInput
+                                ammount={ammount}
+                                settings={settings}
+                                label={t('send:amount')}
+                                labelMax={t('send:max')}
+                                balance={accountInfo.balance}
+                                onChange={this.onAmmountChange}
+                            />
+                            <MessageInput message={message} label={t('send:message')} onChange={this.onMessageChange} />
+                            <Button onClick={this.send} variant="success">
+                                {t('send:send')}
                             </Button>
-                            <Button onClick={this.sendTransfer} variant="success">
-                                {t('global:yes')}
-                            </Button>
-                        </Modal>
-                        <AddressInput
-                            address={address}
-                            onChange={this.onAddressChange}
-                            placeholder={t('send:recipientAddress')}
-                            closeLabel={t('global:back')}
-                        />
-                        <AmmountInput
-                            ammount={ammount}
-                            settings={settings}
-                            balance={account.balance}
-                            onChange={this.onAmmountChange}
-                        />
-                        <MessageInput
-                            message={message}
-                            placeholder={t('send:message')}
-                            onChange={this.onMessageChange}
-                        />
-                        <Button onClick={this.send} variant="success">
-                            {t('send:send')}
-                        </Button>
+                        </div>
                     </section>
                     <section />
                 </Content>

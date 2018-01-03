@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { formatValue, formatUnit, round } from 'libs/util';
-import { getSeedItems, getSelectedIndex } from 'selectors/seeds';
+import { getSeedItems, getSelectedIndex, getSelectedSeed } from 'selectors/seeds';
 import { selectSeed } from 'actions/seeds';
 import Logo from 'components/UI/Logo';
 import css from 'components/Layout/Main.css';
@@ -16,7 +16,10 @@ class Header extends React.PureComponent {
     };
 
     render() {
-        const { seeds, selectedSeedIndex, selectSeed, account } = this.props;
+        const { seeds, seed, selectedSeedIndex, selectSeed, account } = this.props;
+
+        const accountInfo = account.accountInfo[seed.name];
+
         return (
             <header>
                 <div className={css.logo}>
@@ -32,7 +35,7 @@ class Header extends React.PureComponent {
                                     onClick={() => selectSeed(index)}
                                 >
                                     <h1>{seed.name}</h1>
-                                    <h2>{`${formatValue(account.balance)} ${formatUnit(account.balance)}`}</h2>
+                                    <h2>{`${formatValue(accountInfo.balance)} ${formatUnit(accountInfo.balance)}`}</h2>
                                 </li>
                             );
                         })}
@@ -46,6 +49,7 @@ class Header extends React.PureComponent {
 const mapStateToProps = state => ({
     account: state.account,
     seeds: getSeedItems(state),
+    seed: getSelectedSeed(state),
     selectedSeedIndex: getSelectedIndex(state),
 });
 
