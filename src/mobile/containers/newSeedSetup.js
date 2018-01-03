@@ -2,7 +2,17 @@ import split from 'lodash/split';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableHighlight, ListView, TouchableOpacity, Image, StatusBar } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableHighlight,
+    ListView,
+    TouchableOpacity,
+    Image,
+    StatusBar,
+    BackHandler,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
@@ -30,6 +40,7 @@ class NewSeedSetup extends Component {
         backgroundColor: PropTypes.object.isRequired,
         ctaColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
+        onboardingComplete: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -39,6 +50,38 @@ class NewSeedSetup extends Component {
             randomised: false,
             infoTextColor: 'transparent',
         };
+    }
+
+    componentDidMount() {
+        if (this.props.onboardingComplete) {
+            BackHandler.addEventListener('newSeedSetupBackPress', () => {
+                this.goBack();
+                return true;
+            });
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.props.onboardingComplete) {
+            BackHandler.removeEventListener('newSeedSetupBackPress');
+        }
+    }
+
+    goBack() {
+        // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
+            },
+            appStyle: {
+                orientation: 'portrait',
+            },
+        });
     }
 
     onGeneratePress() {
@@ -54,7 +97,7 @@ class NewSeedSetup extends Component {
                 screen: 'saveYourSeed',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
-                overrideBackPress: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             });
         } else {
             this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
@@ -64,14 +107,8 @@ class NewSeedSetup extends Component {
     onBackPress() {
         this.props.clearSeed();
         if (!this.props.account.onboardingComplete) {
-            this.props.navigator.push({
-                screen: 'walletSetup',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                },
+            this.props.navigator.pop({
                 animated: false,
-                overrideBackPress: true,
             });
         } else {
             // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
@@ -83,7 +120,6 @@ class NewSeedSetup extends Component {
                         navBarTransparent: true,
                         screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                     },
-                    overrideBackPress: true,
                 },
             });
         }
@@ -248,8 +284,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     generateButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
         width: width / 2.2,
         height: height / 16,
@@ -337,6 +371,7 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     ctaColor: state.settings.theme.ctaColor,
     negativeColor: state.settings.theme.negativeColor,
+    onboardingComplete: state.account.onboardingComplete,
 });
 
 const mapDispatchToProps = {

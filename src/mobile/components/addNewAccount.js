@@ -23,7 +23,7 @@ class AddNewAccount extends Component {
     }
 
     render() {
-    const { t } = this.props;
+        const { t } = this.props;
         return (
             <View style={styles.container}>
                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
@@ -48,8 +48,8 @@ class AddNewAccount extends Component {
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <TouchableOpacity onPress={event => this.props.backPress()}>
                         <View style={styles.item}>
-                            <Image source={arrowLeftPath} style={styles.icon} />
-                            <Text style={styles.titleText}>{t('global:back')}</Text>
+                            <Image source={arrowLeftPath} style={styles.backIcon} />
+                            <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -82,6 +82,11 @@ const styles = StyleSheet.create({
         width: width / 22,
         height: width / 22,
         marginRight: width / 25,
+    },
+    backIcon: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
     itemContainer: {
         flex: 1,

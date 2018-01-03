@@ -13,20 +13,24 @@ const initialState = {
     lastTxAddress: '',
     lastTxValue: 0,
     isSendingTransfer: false,
-    isGettingTransfers: false,
     isSyncing: false,
     currentSetting: 'mainSettings',
     copiedToClipboard: false,
-    isPromoting: false,
     hasErrorFetchingAccountInfoOnLogin: false,
-    isFetchingNewAddressData: false,
-    hasErrorFetchingNewAddressData: false,
     inactive: false,
     minimised: false,
+    addingAdditionalAccount: false,
+    additionalAccountName: '',
+    isFetchingLatestAccountInfoOnLogin: false,
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO:
+            return {
+                ...state,
+                ...action.payload,
+            };
         case ActionTypes.SET_SEED:
             return {
                 ...state,
@@ -109,22 +113,6 @@ export default (state = initialState, action) => {
                 currentSetting: 'mainSettings',
                 copiedToClipboard: false,
             };
-        case ActionTypes.GET_TRANSFERS_REQUEST:
-            return {
-                ...state,
-                isGettingTransfers: true,
-            };
-        case ActionTypes.GET_TRANSFERS_SUCCESS:
-            return {
-                ...state,
-                ready: true,
-                isGettingTransfers: false,
-            };
-        case ActionTypes.GET_TRANSFERS_ERROR:
-            return {
-                ...state,
-                isGettingTransfers: false,
-            };
         case ActionTypes.CLEAR_SEED:
             return {
                 ...state,
@@ -140,21 +128,24 @@ export default (state = initialState, action) => {
                 ...state,
                 copiedToClipboard: action.payload,
             };
-        case ActionTypes.SET_PROMOTION_STATUS:
+        case AccountActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST:
             return {
                 ...state,
-                isPromoting: action.payload,
+                ready: false,
             };
         case AccountActionTypes.FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_SUCCESS:
             return {
                 ...state,
                 ready: true,
                 seed: Array(82).join(' '),
+                addingAdditionalAccount: false,
+                additionalAccountName: '',
             };
         case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
                 hasErrorFetchingAccountInfoOnLogin: false,
+                ready: false,
             };
         case AccountActionTypes.FULL_ACCOUNT_INFO_FETCH_SUCCESS:
             return {
@@ -166,22 +157,22 @@ export default (state = initialState, action) => {
                 ...state,
                 hasErrorFetchingAccountInfoOnLogin: true,
             };
-        case AccountActionTypes.NEW_ADDRESS_DATA_FETCH_REQUEST:
+        case AccountActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
                 ...state,
-                isFetchingNewAddressData: true,
-                hasErrorFetchingNewAddressData: false,
+                ready: false,
+                isFetchingLatestAccountInfoOnLogin: true,
             };
-        case AccountActionTypes.NEW_ADDRESS_DATA_FETCH_SUCCESS:
+        case AccountActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
-                isFetchingNewAddressData: false,
+                ready: true,
+                isFetchingLatestAccountInfoOnLogin: false,
             };
-        case AccountActionTypes.NEW_ADDRESS_DATA_FETCH_ERROR:
+        case AccountActionTypes.ACCOUNT_INFO_FETCH_ERROR:
             return {
                 ...state,
-                isFetchingNewAddressData: false,
-                hasErrorFetchingNewAddressData: true,
+                isFetchingLatestAccountInfoOnLogin: false,
             };
         case AccountActionTypes.REMOVE_ACCOUNT:
             return {
@@ -195,10 +186,6 @@ export default (state = initialState, action) => {
                 isSyncing: true,
             };
         case AccountActionTypes.MANUAL_SYNC_SUCCESS:
-            return {
-                ...state,
-                isSyncing: false,
-            };
         case ActionTypes.MANUAL_SYNC_ERROR:
             return {
                 ...state,

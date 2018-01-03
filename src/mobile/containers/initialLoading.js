@@ -13,7 +13,7 @@ import THEMES from '../theme/themes';
 const version = getVersion();
 const build = getBuildNumber();
 
-const FULL_VERSION = `v ${version}  ( ${build} )`;
+const FULL_VERSION = `v ${version}  (${build})`;
 
 class InitialLoading extends Component {
     static propTypes = {
@@ -37,7 +37,11 @@ class InitialLoading extends Component {
             this.clearKeychain();
             this.props.navigator.push({
                 screen: 'languageSetup',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
                 animated: false,
                 overrideBackPress: true,
             });
@@ -50,7 +54,6 @@ class InitialLoading extends Component {
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 animated: false,
-                overrideBackPress: true,
             });
         }
     }
