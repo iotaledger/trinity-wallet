@@ -58,9 +58,12 @@ class EnterSeed extends React.Component {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: COLORS.backgroundGreen,
+                },
                 animated: false,
-                overrideBackPress: true,
             });
         }
     }
@@ -127,7 +130,7 @@ class EnterSeed extends React.Component {
                                         <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                     </View>
                                 </View>
-                                <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <View style={{ flex: 1, flexDirection: 'row', width: width / 1.4 }}>
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
@@ -215,6 +218,7 @@ const styles = StyleSheet.create({
     topMidContainer: {
         flex: 2.5,
         alignItems: 'center',
+        width,
     },
     bottomMidContainer: {
         flex: 2.8,

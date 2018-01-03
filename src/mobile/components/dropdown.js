@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
     View,
     Text,
@@ -11,6 +12,7 @@ import {
 import Triangle from 'react-native-triangle';
 import THEMES from '../theme/themes';
 import { connect } from 'react-redux';
+import { isAndroid } from '../util/device';
 
 import { width, height } from '../util/dimensions';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -83,6 +85,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         paddingBottom: height / 150,
         paddingLeft: width / 100,
+        flex: 1,
     },
     dropdownButton: {
         flexDirection: 'row',
@@ -102,13 +105,29 @@ const styles = StyleSheet.create({
     },
 });
 
-class Dropdown extends Component {
+export class Dropdown extends Component {
+    static propTypes = {
+        onRef: PropTypes.func,
+    };
+
     constructor(props) {
         super(props);
+
         this.state = {
             isDropdownOpen: false,
             selectedOption: this.props.defaultOption,
         };
+    }
+
+    componentDidMount() {
+        if (this.props.onRef) {
+            this.props.onRef(this);
+        }
+    }
+    componentWillUnmount() {
+        if (this.props.onRef) {
+            this.props.onRef(null);
+        }
     }
 
     onOptionPress(option) {
@@ -154,18 +173,24 @@ class Dropdown extends Component {
 
         return (
             <View style={[styles.container, dropdownWidth]}>
-                <Text style={[styles.dropdownTitle, { color: THEMES.getHSL(negativeColor) }, dropdownWidth]}>
+                <Text
+                    style={[
+                        styles.dropdownTitle,
+                        { color: THEMES.getHSL(negativeColor) },
+                        isAndroid ? null : dropdownWidth,
+                    ]}
+                >
                     {title}
                 </Text>
                 <View style={styles.dropdownButtonContainer}>
                     <TouchableWithoutFeedback onPress={() => this.onDropdownTitlePress()}>
                         <View style={[styles.dropdownButton, dropdownWidth]}>
-                            <Text numberOfLines={1} style={[styles.selected, dropdownWidth]}>
+                            <Text numberOfLines={1} style={[styles.selected]}>
                                 {selectedOption}
                             </Text>
                             <Triangle
-                                width={10}
-                                height={10}
+                                width={width / 40}
+                                height={width / 40}
                                 color={'white'}
                                 direction={triangleDirection}
                                 style={styles.triangle}

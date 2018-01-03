@@ -15,12 +15,15 @@ import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selec
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
-import EnterPassword from '../components/enterPassword';
+import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain from '../util/keychain';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
+import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { width, height } from '../util/dimensions';
+import KeepAwake from 'react-native-keep-awake';
 
 class Login extends Component {
     static propTypes = {
@@ -50,12 +53,14 @@ class Login extends Component {
         };
 
         this.onLoginPress = this.onLoginPress.bind(this);
+        this.navigateToNodeSelection = this.navigateToNodeSelection.bind(this);
     }
 
     componentDidMount() {
         const { currency } = this.props;
         this.getWalletData();
         this.props.getCurrencyData(currency);
+        KeepAwake.deactivate();
     }
 
     componentWillReceiveProps(newProps) {
@@ -150,6 +155,8 @@ class Login extends Component {
     }
 
     navigateToHome() {
+        this.props.changeHomeScreenRoute('balance');
+        this.props.setSetting('mainSettings');
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'home',
@@ -158,7 +165,9 @@ class Login extends Component {
                     navBarTransparent: true,
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
-                overrideBackPress: true,
+            },
+            appStyle: {
+                orientation: 'portrait',
             },
         });
     }
@@ -166,14 +175,15 @@ class Login extends Component {
     render() {
         const { backgroundColor, positiveColor, negativeColor } = this.props;
         return (
-            <View style={[styles.container]}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 {!this.state.changingNode && (
-                    <EnterPassword
+                    <EnterPasswordOnLogin
                         backgroundColor={backgroundColor}
                         negativeColor={negativeColor}
                         positiveColor={positiveColor}
                         onLoginPress={this.onLoginPress}
+                        navigateToNodeSelection={this.navigateToNodeSelection}
                     />
                 )}
                 {this.state.changingNode && (
@@ -294,6 +304,8 @@ const mapDispatchToProps = {
     getCurrencyData,
     setReady,
     setFullNode,
+    changeHomeScreenRoute,
+    setSetting,
 };
 
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
