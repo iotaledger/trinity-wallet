@@ -1,5 +1,6 @@
 {
     "global": {
+        "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
         "transferError": "Transfer Error",
@@ -18,6 +19,7 @@
         "back": "BACK",
         "backLowercase": "Back",
         "done": "DONE",
+        "doneLowercase": "Done",
         "next": "NEXT",
         "apply": "Apply",
         "save": "Save",
@@ -323,5 +325,8 @@
         "youMayNotice": "You may notice your device slowing down.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
+    },
+    "useExistingSeed": {
+        "title": "Enter a seed and account name."
     }
 }
