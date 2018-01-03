@@ -264,7 +264,8 @@
         "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is 81 characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs":
+            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "triple check",
         "thatTheyAreCorrect": "that they are correct."
     },
