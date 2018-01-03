@@ -36,6 +36,7 @@ export const ActionTypes = {
     CLEAR_SEED: 'IOTA/TEMP_ACCOUNT/CLEAR_SEED',
     SET_SETTING: 'IOTA/TEMP_ACCOUNT/SET_SETTING',
     SET_USER_ACTIVITY: 'IOTA/TEMP_ACCOUNT/SET_USER_ACTIVITY',
+    SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/TEMP_ACCOUNT/SET_ADDITIONAL_ACCOUNT_INFO',
 };
 
 export const getTransfersRequest = () => ({
@@ -140,6 +141,11 @@ export const setPassword = payload => ({
 
 export const setSeedName = payload => ({
     type: ActionTypes.SET_SEED_NAME,
+    payload,
+});
+
+export const setAdditionalAccountInfo = payload => ({
+    type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
     payload,
 });
 
