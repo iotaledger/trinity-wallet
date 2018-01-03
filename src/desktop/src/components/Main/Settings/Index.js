@@ -1,9 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, NavLink } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
+import { clearTempData } from 'actions/tempAccount';
+import { clearSeeds } from 'actions/seeds';
+import { showNotification } from 'actions/notifications';
 import Template, { Content } from 'components/Main/Template';
+import Confirm from 'components/UI/Confirm';
+
+import Language from './Language';
 
 import css from './Index.css';
 
@@ -17,48 +24,96 @@ import icoPassword from 'images/password.png';
 import icoAdvanced from 'images/advanced.png';
 import icoLogout from 'images/logout.png';
 
-class Settings extends React.Component {
+class Settings extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
+        location: PropTypes.object,
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
+        clearTempData: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired,
+    };
+
+    state = {
+        modalLogout: false,
+    };
+
+    toggleLogout = e => {
+        this.setState({
+            modalLogout: !this.state.modalLogout,
+        });
+    };
+
+    doLogout = e => {
+        this.props.clearTempData();
+        this.props.clearSeeds();
+        this.props.history.push('/login');
+    };
+
+    featureUnavailable = () => {
+        const { t } = this.props;
+
+        return this.props.showNotification({
+            timeout: 2000,
+            title: t('global:notAvailable'),
+            text: t('global:notAvailableExplanation'),
+        });
     };
 
     render() {
-        const { t } = this.props;
+        const { t, location } = this.props;
+        const { modalLogout } = this.state;
 
         return (
             <Template>
                 <Content>
                     <section>
                         <nav className={css.nav}>
-                            <NavLink to="/settings/mode">
+                            <a onClick={this.featureUnavailable}>
                                 <img src={icoMode} /> {t('settings:mode')}
-                            </NavLink>
-                            <NavLink to="/settings/theme">
+                            </a>
+                            <a onClick={this.featureUnavailable}>
                                 <img src={icoTheme} /> {t('settings:theme')}
-                            </NavLink>
-                            <NavLink to="/settings/currency">
+                            </a>
+                            <a onClick={this.featureUnavailable}>
                                 <img src={icoCurrency} /> {t('settings:currency')}
-                            </NavLink>
+                            </a>
                             <NavLink to="/settings/language">
                                 <img src={icoLanguage} /> {t('settings:language')}
                             </NavLink>
                             <hr />
-                            <NavLink to="/settings/2fa">
+                            <a onClick={this.featureUnavailable}>
                                 <img src={ico2fa} /> {t('settings:twoFA')}
-                            </NavLink>
-                            <NavLink to="/settings/password">
+                            </a>
+                            <a onClick={this.featureUnavailable}>
                                 <img src={icoPassword} /> {t('settings:changePassword')}
-                            </NavLink>
+                            </a>
                             <hr />
-                            <NavLink to="/settings/advanced">
+                            <a onClick={this.featureUnavailable}>
                                 <img src={icoAdvanced} /> {t('settings:advanced')}
-                            </NavLink>
-                            <NavLink to="/settings/logout">
+                            </a>
+                            <a onClick={this.toggleLogout}>
                                 <img src={icoLogout} /> {t('settings:logout')}
-                            </NavLink>
+                            </a>
                         </nav>
                     </section>
-                    <section />
+                    <section>
+                        <Confirm
+                            isOpen={modalLogout}
+                            content={{
+                                title: t('logoutConfirmationModal:logoutConfirmation'),
+                                confirm: t('global:yes'),
+                                cancel: t('global:no'),
+                            }}
+                            onCancel={this.toggleLogout}
+                            onConfirm={this.doLogout}
+                        />
+                        <Switch location={location}>
+                            <Route path="/settings/language" component={Language} />
+                            <Route exact path="/settings/" component={Language} />
+                        </Switch>
+                    </section>
                 </Content>
             </Template>
         );
@@ -67,6 +122,10 @@ class Settings extends React.Component {
 
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    showNotification,
+    clearTempData,
+    clearSeeds,
+};
 
 export default translate('settings')(connect(mapStateToProps, mapDispatchToProps)(Settings));
