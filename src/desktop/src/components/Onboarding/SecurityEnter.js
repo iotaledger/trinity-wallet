@@ -68,8 +68,16 @@ class SecurityEnter extends React.PureComponent {
             <Template type="form" onSubmit={this.onRequestNext}>
                 <Content>
                     <p>{t('setPassword:nowWeNeedTo')}</p>
-                    <PasswordInput label={t('global:password')} onChange={this.updatePassword} />
-                    <PasswordInput label={t('setPassword:retypePassword')} onChange={this.confirmPassword} />
+                    <PasswordInput
+                        value={this.state.password}
+                        label={t('global:password')}
+                        onChange={this.updatePassword}
+                    />
+                    <PasswordInput
+                        value={this.state.passwordConfirm}
+                        label={t('setPassword:retypePassword')}
+                        onChange={this.confirmPassword}
+                    />
                     <Infobox>
                         <p>{t('setPassword:anEncryptedCopy')}</p>
                     </Infobox>

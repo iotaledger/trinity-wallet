@@ -23,7 +23,8 @@ class HistoryList extends React.PureComponent {
         return (
             <ul className={css.historyList}>
                 {transfers && transfers.length ? (
-                    transfers.slice(0, transferLimit).map((transfer, key) => {
+                    transfers.slice(0, transferLimit).map((transferRow, key) => {
+                        const transfer = transferRow[0];
                         const isReceived = addresses.includes(transfer.address);
                         const isConfirmed = transfer.hasPersistence;
 
