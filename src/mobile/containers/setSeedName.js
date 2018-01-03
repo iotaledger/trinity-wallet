@@ -9,23 +9,10 @@ import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import OnboardingButtons from '../components/onboardingButtons';
-import {
-    fetchFullAccountInfoForFirstUse,
-    getFullAccountInfo,
-    setFirstUse,
-    increaseSeedCount,
-    addAccountName,
-} from '../../shared/actions/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import {
-    clearTempData,
-    setSeedName,
-    clearSeed,
-    setReady,
-    setAdditionalAccountInfo,
-} from '../../shared/actions/tempAccount';
+import { setSeedName, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
 import { width, height } from '../util/dimensions';
-import keychain, { storeSeedInKeychain, hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
+import keychain, { hasDuplicateAccountName, hasDuplicateSeed } from '../util/keychain';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 
@@ -34,16 +21,9 @@ import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 
 export class SetSeedName extends Component {
     static propTypes = {
-        increaseSeedCount: PropTypes.func.isRequired,
+        navigator: PropTypes.object.isRequired,
         setSeedName: PropTypes.func.isRequired,
-        clearSeed: PropTypes.func.isRequired,
-        setReady: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        setFirstUse: PropTypes.func.isRequired,
-        clearTempData: PropTypes.func.isRequired,
-        addAccountName: PropTypes.func.isRequired,
-        getFullAccountInfo: PropTypes.func.isRequired,
-        fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
         setAdditionalAccountInfo: PropTypes.func.isRequired,
     };
 
@@ -371,16 +351,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    increaseSeedCount,
     setSeedName,
-    clearSeed,
-    setReady,
     generateAlert,
-    setFirstUse,
-    clearTempData,
-    addAccountName,
-    getFullAccountInfo,
-    fetchFullAccountInfoForFirstUse,
     setAdditionalAccountInfo,
 };
 
