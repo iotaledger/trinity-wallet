@@ -166,6 +166,9 @@ class Login extends Component {
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
             },
+            appStyle: {
+                orientation: 'portrait',
+            },
         });
     }
 
