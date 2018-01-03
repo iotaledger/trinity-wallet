@@ -55,7 +55,7 @@ class Login extends React.Component {
         if (account.firstUse) {
             getFullAccountInfo(seed.seed, seed.name);
         } else {
-            getAccountInfo(seed.name, seedIndex, account.accountInfo);
+            getAccountInfo(seed.seed, seed.name);
         }
     }
 

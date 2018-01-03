@@ -22,7 +22,7 @@ class HistoryView extends React.Component {
                 <Content>
                     <section>
                         <HistoryList
-                            transfers={accountInfo.transfers.length ? accountInfo.transfers[0] : []}
+                            transfers={accountInfo.transfers.length ? accountInfo.transfers : []}
                             addresses={Object.keys(accountInfo.addresses)}
                         />
                     </section>
