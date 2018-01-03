@@ -303,7 +303,13 @@ export const randomiseSeed = randomBytesFn => {
                 dispatch(setSeed(seed));
             } else {
                 console.log(error);
-                dispatch(generateAlert('error', 'Something went wrong', 'Please restart the app.'));
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:somethingWentWrong'),
+                        i18next.t('global:somethingWentWrongExplanation'),
+                    ),
+                );
             }
         });
     };
