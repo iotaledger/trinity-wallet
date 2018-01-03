@@ -12,6 +12,17 @@ const getProps = overrides =>
             isSyncing: false,
             backPress: noop,
             onManualSyncPress: noop,
+            t: arg => {
+                const translations = {
+                    'manualSync:youMayNotice': 'You may notice your device slowing down.',
+                    'manualSync:thisMayTake': 'This may take a while.',
+                    'manualSync:syncingYourAccount': 'Syncing your account.',
+                    'manualSync:syncAccount': 'SYNC ACCOUNT',
+                    'manualSync:pressToSync': 'Press the button below to sync your account.',
+                };
+
+                return translations[arg] ? translations[arg] : 'foo';
+            },
         },
         overrides,
     );
@@ -28,6 +39,10 @@ describe('Testing ManualSync component', () => {
 
         it('should require a onManualSyncPress function as a prop', () => {
             expect(ManualSync.propTypes.onManualSyncPress).toBe(PropTypes.func.isRequired);
+        });
+
+        it('should require a t function as a prop', () => {
+            expect(ManualSync.propTypes.t).toBe(PropTypes.func.isRequired);
         });
     });
 
