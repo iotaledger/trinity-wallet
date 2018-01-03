@@ -1,17 +1,17 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
-        "continue?": "Are you sure you want to continue?",
+        "send": "送金",
+        "cancel": "キャンセル",
+        "continue?": "本当に続行しますか？",
         "noTransactions": "NO RECENT HISTORY",
         "qr": "QRコード",
         "balanceError": "Not enough balance",
-        "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
+        "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
         "transferError": "Transfer Error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
-        "keyReuse": "Key reuse",
+        "keyReuse": "キーの再使用",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "無効な応答",
         "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
@@ -100,8 +100,7 @@
         "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
         "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation":
-            "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedExplanation": "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -334,11 +333,11 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "infoTextOne": "All your wallet data including your",
-        "infoTextTwo": "seeds, password",
-        "infoTextThree": "and",
-        "infoTextFour": "other account information",
-        "infoTextFive": "will be lost."
+        "infoTextOne": "全てのウォレットのデータ",
+        "infoTextTwo": "（Seedやパスワード",
+        "infoTextThree": "や",
+        "infoTextFour": "その他のアカウント情報）",
+        "infoTextFive": "が失われます。"
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
