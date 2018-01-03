@@ -1,4 +1,5 @@
 import toUpper from 'lodash/toUpper';
+import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, Image, StatusBar, BackHandler } from 'react-native';
@@ -80,29 +81,29 @@ class WalletResetConfirmation extends Component {
                 <View style={styles.midWrapper}>
                     <View style={styles.subHeaderWrapper}>
                         <Text style={[styles.subHeaderText, negativeColor]}>
-                            {toUpper('this action cannot be undone.')}
+                            {t('walletResetConfirmation:cannotUndo')}
                         </Text>
                     </View>
                     <View style={styles.infoTextWrapper}>
                         <Image source={infoImagePath} style={styles.infoIcon} />
                         <Text style={styles.infoText}>
-                            <Text style={styles.infoTextLight}>All your wallet data including your</Text>
-                            <Text style={styles.infoTextRegular}> seeds, password</Text>
-                            <Text style={styles.infoTextLight}> and</Text>
-                            <Text style={styles.infoTextRegular}> other account information</Text>
-                            <Text style={styles.infoTextLight}> will be lost.</Text>
+                            <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextOne')}</Text>
+                            <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextTwo')}}</Text>
+                            <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextThree')}</Text>
+                            <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextFour')}</Text>
+                            <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextFive')}}</Text>
                         </Text>
                     </View>
                     <View style={styles.confirmationTextWrapper}>
-                        <Text style={styles.confirmationText}>Are you sure you want to continue?</Text>
+                        <Text style={styles.confirmationText}>{t('global:continue?')}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomWrapper}>
                     <OnboardingButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.requirePassword}
-                        leftText={'NO'}
-                        rightText={'YES'}
+                        leftText={t('global:no')}
+                        rightText={t('global:yes')}
                     />
                 </View>
             </View>
@@ -203,4 +204,4 @@ const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
 });
 
-export default connect(mapStateToProps)(WalletResetConfirmation);
+export default translate(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation));
