@@ -1,5 +1,6 @@
 {
     "global": {
+        "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
         "qr": "QR",
         "balanceError": "Not enough balance",
@@ -340,5 +341,13 @@
         "reenter": "You will now be asked to re-enter your seed.",
         "reenterWarningOne": "If your device fails and you have not saved",
         "reenterWarningTwo": "your seed, you will lose your IOTA."
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "infoTextOne": "All your wallet data including your",
+        "infoTextTwo": "seeds, password",
+        "infoTextThree": "and",
+        "infoTextFour": "other account information",
+        "infoTextFive": "will be lost."
     }
 }
