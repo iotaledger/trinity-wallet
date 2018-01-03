@@ -224,4 +224,4 @@ const mapDispatchToProps = dispatch => ({
     },
 })
 
-export default translate(['viewSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Balance))
+export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance))

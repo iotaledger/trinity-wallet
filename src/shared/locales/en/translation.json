@@ -334,5 +334,11 @@
         "enterPassword": "Enter password to view your seed.",
         "viewSeed": "VIEW SEED",
         "hideSeed": "HIDE SEED"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "I have saved my seed",
+        "reenter": "You will now be asked to re-enter your seed.",
+        "reenterWarningOne": "If your device fails and you have not saved",
+        "reenterWarningTwo": "your seed, you will lose your IOTA."
     }
 }
