@@ -125,7 +125,7 @@ class Balance extends Component {
                             />
                         ) : (
                             <View style={styles.listView}>
-                                <Text style={styles.noTransactions}>{t('balance:noTransactions')}</Text>
+                                <Text style={styles.noTransactions}>{t('global:noTransactions')}</Text>
                             </View>
                         )}
                         <View style={styles.line} />
