@@ -19,6 +19,7 @@ class GenerateSeed extends React.PureComponent {
             push: PropTypes.func.isRequired,
         }).isRequired,
         showError: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired,
     };
 
     state = {

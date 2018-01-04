@@ -1,9 +1,8 @@
 import React from 'react';
-import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getCurrencySymbol } from 'libs/currency';
-import css from './Input.css';
+import css from 'components/UI/input/Input.css';
 
 import Chevron from 'images/chevron-down.png';
 
@@ -16,25 +15,11 @@ export default class AddressInput extends React.PureComponent {
         settings: PropTypes.object.isRequired,
         label: PropTypes.string.isRequired,
         labelMax: PropTypes.string.isRequired,
+        onChange: PropTypes.func.isRequired,
     };
 
     state = {
         unit: 'Mi',
-    };
-
-    unitChange = e => {
-        e.preventDefault();
-
-        const index = units.indexOf(this.state.unit) + 1;
-
-        this.setState({
-            unit: index === units.length ? units[0] : units[index],
-        });
-    };
-
-    maxAmmount = e => {
-        e.preventDefault();
-        this.props.onChange(this.props.balance.toString());
     };
 
     onChange = value => {
@@ -68,6 +53,21 @@ export default class AddressInput extends React.PureComponent {
         }
         return multiplier;
     }
+
+    maxAmmount = e => {
+        e.preventDefault();
+        this.props.onChange(this.props.balance.toString());
+    };
+
+    unitChange = e => {
+        e.preventDefault();
+
+        const index = units.indexOf(this.state.unit) + 1;
+
+        this.setState({
+            unit: index === units.length ? units[0] : units[index],
+        });
+    };
 
     render() {
         const { ammount, balance, settings, label, labelMax } = this.props;

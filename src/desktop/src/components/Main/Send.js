@@ -2,23 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import Textarea from 'react-textarea-autosize';
-import Template, { Content } from './Template';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH, formatValue, formatUnit } from 'libs/util';
 import { sendTransaction, sendTransferRequest } from 'actions/tempAccount';
 import { iota } from 'libs/iota';
 import { showError } from 'actions/notifications';
+import Template, { Content } from 'components/Main/Template';
 import AddressInput from 'components/UI/input/Address';
 import AmmountInput from 'components/UI/input/Ammount';
 import MessageInput from 'components/UI/input/Message';
 import Button from 'components/UI/Button';
 import Modal from 'components/UI/Modal';
-import css from './Send.css';
+import css from 'components/Main/Send.css';
 
 class Send extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
+        account: PropTypes.object.isRequired,
         seeds: PropTypes.object.isRequired,
+        settings: PropTypes.object.isRequired,
         showError: PropTypes.func.isRequired,
         sendTransaction: PropTypes.func.isRequired,
         sendTransferRequest: PropTypes.func.isRequired,
@@ -50,7 +51,7 @@ class Send extends React.PureComponent {
     };
 
     send = () => {
-        const { address, ammount, message } = this.state;
+        const { address, ammount } = this.state;
         const { showError, account } = this.props;
 
         if (address.length !== ADDRESS_LENGTH) {
@@ -123,7 +124,7 @@ class Send extends React.PureComponent {
                                 className="confirm"
                                 isOpen={isModalVisible}
                                 onClose={this.toggleConfirmation}
-                                hideCloseButton={true}
+                                hideCloseButton
                             >
                                 <h1>
                                     You are about to send{' '}

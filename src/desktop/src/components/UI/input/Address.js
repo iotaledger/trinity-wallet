@@ -1,10 +1,10 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { ADDRESS_LENGTH } from 'libs/util';
-import css from './Input.css';
+import css from 'components/UI/input/Input.css';
 import Modal from 'components/UI/Modal';
+import Button from 'components/UI/Button';
 
 import Camera from 'images/camera.png';
 
@@ -13,24 +13,11 @@ export default class AddressInput extends React.PureComponent {
         address: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         closeLabel: PropTypes.string.isRequired,
+        onChange: PropTypes.func.isRequired,
     };
 
     state = {
         showScanner: false,
-    };
-
-    openScanner = e => {
-        e.preventDefault();
-        this.setState(() => ({
-            showScanner: true,
-        }));
-    };
-
-    closeScanner = e => {
-        e.preventDefault();
-        this.setState(() => ({
-            showScanner: false,
-        }));
     };
 
     onScanEvent = address => {
@@ -44,6 +31,20 @@ export default class AddressInput extends React.PureComponent {
 
     onScanError = err => {
         console.log(err);
+    };
+
+    closeScanner = e => {
+        e.preventDefault();
+        this.setState(() => ({
+            showScanner: false,
+        }));
+    };
+
+    openScanner = e => {
+        e.preventDefault();
+        this.setState(() => ({
+            showScanner: true,
+        }));
     };
 
     render() {
@@ -65,7 +66,7 @@ export default class AddressInput extends React.PureComponent {
                     <small>{label}</small>
                 </fieldset>
                 {showScanner && (
-                    <Modal isOpen={true} onStateChange={showScanner => this.setState({ showScanner })} hideCloseButton>
+                    <Modal isOpen onStateChange={showScanner => this.setState({ showScanner })} hideCloseButton>
                         <div className={css.qrScanner}>
                             <QrReader delay={350} onError={this.onScanError} onScan={this.onScanEvent} />
                             <Button type="button" onClick={this.closeScanner} variant="cta">
