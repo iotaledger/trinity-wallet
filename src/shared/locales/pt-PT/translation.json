@@ -27,7 +27,7 @@
         "apply": "Apply",
         "save": "Save",
         "close": "FECHAR",
-        "continue": "Continue",
+        "continue": "Continuar",
         "manualCopy": "Anote a Seed",
         "paperWallet": "Imprima uma cópia em papel",
         "copyToClipboard": "Adicionar ao gestor de palavras-passe",
@@ -51,7 +51,7 @@
         "somethingWentWrong": "Ocorreu um problema",
         "somethingWentWrongExplanation": "Por favor, reinicie a aplicação.",
         "node": "Nó",
-        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
     },
     "addAdditionalSeed": {
