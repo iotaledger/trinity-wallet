@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
         "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
         "invalidResponseFetchingAccount": "アカウント情報呼び出し中にノードが無効な返答をしました。",
-        "invalidResponseSendingTransfer": "送金中にノードが無効な返答をしました。",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "戻る",
         "backLowercase": "戻る",
