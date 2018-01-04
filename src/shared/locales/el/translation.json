@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση.",
         "invalidResponsePollingExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη σταθμοσκόπηση.",
         "invalidResponseFetchingAccount": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη λήψη των πληροφοριών λογαριασμού σας.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+        "invalidResponseSendingTransfer": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά την αποστολή της μεταφοράς.",
         "seed": "Seed",
         "back": "ΠΙΣΩ",
         "backLowercase": "Πίσω",
@@ -297,16 +297,16 @@
         "scan": "Σάρωση QR κωδικού"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "ΣΥΣΤΗΜΑ ΜΟΝΑΔΑΣ",
+        "trillion": "Τρισεκατομμύριο",
+        "billion": "Δισεκατομμύριο",
+        "million": "Εκατομμύριο",
+        "thousand": "Χίλια",
+        "one": "Ένα"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το λογαριασμό;",
+        "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
         "enterPassword": "Enter your password to delete this account."
     },
