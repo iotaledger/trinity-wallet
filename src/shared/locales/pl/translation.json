@@ -340,7 +340,7 @@
         "infoTextFive": "zostaną utracone."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "Masz zamiar wysłać {{contents}} na ten adres",
         "aMessage": "wiadomość"
     }
 }
