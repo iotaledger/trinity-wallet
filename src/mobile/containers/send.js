@@ -147,7 +147,9 @@ class Send extends Component {
 
     isValidAmount(amount) {
         const value = parseFloat(amount);
-
+        if (value < 0) {
+            return false;
+        }
         return !isNaN(value);
     }
 
