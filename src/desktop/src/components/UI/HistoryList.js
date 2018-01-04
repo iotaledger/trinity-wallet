@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { formatValue, formatUnit, round } from 'libs/util';
-import { formatModalTime, formatTime, convertUnixTimeToJSDate } from 'libs/dateUtils';
+import { formatTime, convertUnixTimeToJSDate } from 'libs/dateUtils';
 
 import css from './HistoryList.css';
 
@@ -16,7 +16,7 @@ class HistoryList extends React.PureComponent {
     };
 
     render() {
-        const { transfers, addresses, limit } = this.props;
+        const { transfers, addresses, limit, t } = this.props;
 
         const transferLimit = limit ? limit : transfers.length;
 
@@ -37,7 +37,7 @@ class HistoryList extends React.PureComponent {
                                 )}
                             >
                                 <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
-                                <span>{!isConfirmed ? 'Pending' : isReceived ? 'Received' : 'Sent'}</span>
+                                <span>{!isConfirmed ? t('Pending') : isReceived ? t('Pending') : t('Pending')}</span>
                                 <span>{`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}</span>
                             </li>
                         );

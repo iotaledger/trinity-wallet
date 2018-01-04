@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { formatValue, formatUnit, round } from 'libs/util';
+import { formatValue, formatUnit } from 'libs/util';
 import { getSeedItems, getSelectedIndex, getSelectedSeed } from 'selectors/seeds';
 import { selectSeed } from 'actions/seeds';
 import Logo from 'components/UI/Logo';
@@ -13,6 +13,7 @@ class Header extends React.PureComponent {
         selectedSeedIndex: PropTypes.number,
         selectSeed: PropTypes.func.isRequired,
         account: PropTypes.object.isRequired,
+        seed: PropTypes.object.isRequired,
     };
 
     render() {

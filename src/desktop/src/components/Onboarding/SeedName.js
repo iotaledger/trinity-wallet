@@ -5,11 +5,10 @@ import { translate } from 'react-i18next';
 import { renameCurrentSeed } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
 import { showError } from 'actions/notifications';
-import Template, { Content, Footer } from './Template';
-import Infobox from '../UI/Infobox';
-import Button from '../UI/Button';
+import Template, { Content, Footer } from 'components/Onboarding/Template';
+import Infobox from 'components/UI/Infobox';
+import Button from 'components/UI/Button';
 import Input from 'components/UI/input/Text';
-import css from '../Layout/Onboarding.css';
 
 class SeedName extends React.PureComponent {
     static propTypes = {
@@ -19,6 +18,7 @@ class SeedName extends React.PureComponent {
             name: PropTypes.string,
         }).isRequired,
         t: PropTypes.func.isRequired,
+        showError: PropTypes.func.isRequired,
     };
 
     state = {
@@ -56,7 +56,7 @@ class SeedName extends React.PureComponent {
             <Template>
                 <Content>
                     <p>{t('addAdditionalSeed:enterAccountName')}</p>
-                    <Input value={this.state.name} label={t('addAdditionalSeed:accountName')} onChange={this.setName} />
+                    <Input value={name} label={t('addAdditionalSeed:accountName')} onChange={this.setName} />
                     <Infobox>
                         <p>{t('setSeedName:canUseMultipleSeeds')}</p>
                     </Infobox>

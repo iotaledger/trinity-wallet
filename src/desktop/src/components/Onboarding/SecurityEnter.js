@@ -6,12 +6,11 @@ import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from 'libs/util';
-import Template, { Content, Footer } from './Template';
 import { securelyPersistSeeds } from 'libs/storage';
+import Template, { Content, Footer } from 'components/Onboarding/Template';
 import Button from 'components/UI/Button';
 import Infobox from 'components/UI/Infobox';
 import PasswordInput from 'components/UI/input/Password';
-import css from 'components/Layout/Onboarding.css';
 
 class SecurityEnter extends React.PureComponent {
     static propTypes = {
@@ -28,7 +27,7 @@ class SecurityEnter extends React.PureComponent {
 
     onRequestNext = e => {
         e.preventDefault();
-        const { clearSeeds, history, seeds, setOnboardingCompletionStatus, showError, t } = this.props;
+        const { clearSeeds, history, seeds, showError, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
         if (password !== passwordConfirm) {
