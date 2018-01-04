@@ -84,7 +84,7 @@ class History extends Component {
                         </View>
                     ) : (
                         <View style={styles.noTransactionsContainer}>
-                            <Text style={styles.noTransactions}>NO TRANSACTION HISTORY</Text>
+                            <Text style={styles.noTransactions}>{t('global:noTransactions')}</Text>
                         </View>
                     )}
                 </View>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
@@ -15,6 +16,7 @@ import {
 import THEMES from '../theme/themes';
 
 import { width, height } from '../util/dimensions';
+
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 class Balance extends Component {
@@ -57,7 +59,7 @@ class Balance extends Component {
     }
 
     getDecimalPlaces(n) {
-        const s = '' + +n;
+        const s = `${+n}`;
         const match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
 
         if (!match) {
@@ -123,7 +125,7 @@ class Balance extends Component {
                             />
                         ) : (
                             <View style={styles.listView}>
-                                <Text style={styles.noTransactions}>NO RECENT HISTORY</Text>
+                                <Text style={styles.noTransactions}>{t('global:noTransactions')}</Text>
                             </View>
                         )}
                         <View style={styles.line} />
@@ -222,4 +224,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Balance);
+export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance));
