@@ -12,7 +12,7 @@
         "transferSent": "Transfert effectué",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
         "keyReuse": "Réutilisation de clé",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "Vous ne pouvez pas faire de transfert vers une adresse depuis laquelle un transfert a déjà été effectué.",
         "invalidResponse": "Réponse non valide",
         "invalidResponseExplanation": "Le node a retourné une réponse invalide.",
         "invalidResponsePollingExplanation": "Le node a retourné une réponse invalide lors de son interrogation.",
@@ -306,7 +306,7 @@
     },
     "deleteAccount": {
         "areYouSure": "Voulez-vous vraiment supprimer ce compte ?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
         "thisAction": "Cette action est irréversible.",
         "enterPassword": "Entrez votre mot de passe pour supprimer ce compte."
     },
