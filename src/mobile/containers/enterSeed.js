@@ -196,6 +196,7 @@ class EnterSeed extends React.Component {
                     backdropOpacity={1}
                     style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalVisible}
+                    onBackButtonPress={() => this.setState({ isModalVisible: false })}
                 >
                     {this._renderModalContent()}
                 </Modal>

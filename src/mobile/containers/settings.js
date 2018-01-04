@@ -595,6 +595,7 @@ class Settings extends Component {
                     backdropOpacity={0.8}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
+                    onBackButtonPress={() => this.setState({ isModalVisible: false })}
                 >
                     {this.renderModalContent()}
                 </Modal>
