@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "Node zwrócił nieprawidłową odpowiedź.",
         "invalidResponsePollingExplanation": "Node zwrócił nieprawidłową odpowiedź podczas pullingu.",
         "invalidResponseFetchingAccount": "Node zwrócił nieprawidłową odpowiedź podczas pobierania informacji o twoim koncie.",
-        "invalidResponseSendingTransfer": "Node zwrócił nieprawidłową odpowiedź podczas wysyłania transferu.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "WSTECZ",
         "backLowercase": "Wstecz",
