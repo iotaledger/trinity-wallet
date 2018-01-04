@@ -167,7 +167,7 @@
         "invalidAddressExplanation1": "L'indirizzo deve essere {{maxLength}} caratteri e deve avere un valore di checksum.",
         "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
         "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Fondi insufficienti",
         "notEnoughFundsExplanation": "Non hai abbastanza IOTA per completare questo trasferimento.",
         "keyReuse": "Riutilizzo di chiave",
         "keyReuseExplanation": "L'indirizzo al quale stai tentando di inviare a è già stato utilizzato. Si prega di provare un altro indirizzo.",
@@ -204,7 +204,7 @@
         "theme": "Tema",
         "currency": "Valuta",
         "language": "Lingua",
-        "accountManagement": "Account management",
+        "accountManagement": "Gestione conti",
         "addNewSeed": "Aggiungi un nuovo seme",
         "twoFA": "Autenticazione a due fattori",
         "changePassword": "Cambia password",
@@ -253,7 +253,7 @@
         "reminder": "Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Il tuo seme è composto da {{maxSeedLength}} caratteri letti da sinistra a destra. Annota il tuo seme e la relativa checksum, e",
         "tripleCheck": "controlla tre volte",
         "thatTheyAreCorrect": "che siano corretti."
     },
@@ -264,40 +264,40 @@
         "addressCopiedExplanation": "L'indirizzo è stato copiato negli Appunti."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Visualizza seme",
+        "viewAddresses": "Visualizza indirizzi",
+        "editAccountName": "Modifica nome conto",
+        "deleteAccount": "Cancella conto",
+        "addNewAccount": "Aggiungi nuovo conto"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Nodo personalizzato",
+        "add": "Aggiungi"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Usa un seme esistente",
+        "createNewSeed": "Crea un nuovo seme"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Seleziona un nodo",
+        "addCustomNode": "Aggiungi un nodo personalizzato",
+        "manualSync": "Sincronizzazione manuale"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Sfondo",
+        "frame": "Bordi"
     },
     "currencySelection": {
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Sei sicuro di volerti disconnettere?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Scansionare il proprio codice QR"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "SISTEMA DI UNITÀ",
         "trillion": "Trillion",
         "billion": "Billion",
         "million": "Million",
