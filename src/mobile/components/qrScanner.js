@@ -4,12 +4,15 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import { translate } from 'react-i18next';
+import { isAndroid } from '../util/device';
 
 import { width, height } from '../util/dimensions';
 
 class QRScanner extends Component {
     componentWillMount() {
-        this.requestCameraPermission();
+        if (isAndroid) {
+            this.requestCameraPermission();
+        }
     }
 
     async requestCameraPermission() {
