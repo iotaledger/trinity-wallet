@@ -3,31 +3,31 @@
         "send": "WYŚLIJ",
         "cancel": "ANULUJ",
         "continue?": "Czy na pewno chcesz kontynuować?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "BRAK OSTATNIEJ HISTORII",
         "qr": "Kod QR",
-        "balanceError": "Not enough balance",
+        "balanceError": "Brak wystarczających środków",
         "balanceErrorMessage": "Nie masz wystarczająco dużo IOTA, aby zakończyć ten transfer.",
-        "transferError": "Transfer Error",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
-        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "transferError": "Błąd transferu",
+        "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania twojego transferu. Spróbuj ponownie.",
+        "transferSent": "Transfer zrealizowany",
+        "transferSentMessage": "Transfer został przekazany do Tangle.",
         "keyReuse": "Ponowne użycie klucza",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "Nie można wysłać na adres, który został już obciążony.",
         "invalidResponse": "Błędna odpowiedź",
         "invalidResponseExplanation": "Node zwrócił nieprawidłową odpowiedź.",
         "invalidResponsePollingExplanation": "Node zwrócił nieprawidłową odpowiedź podczas pullingu.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
+        "invalidResponseFetchingAccount": "Node zwrócił nieprawidłową odpowiedź podczas pobierania informacji o twoim koncie.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "WSTECZ",
         "backLowercase": "Wstecz",
         "done": "GOTOWE",
-        "doneLowercase": "Done",
+        "doneLowercase": "Wykonano",
         "next": "DALEJ",
-        "apply": "Apply",
-        "save": "Save",
+        "apply": "Zastosuj",
+        "save": "Zapisz",
         "close": "ZAMKNIJ",
-        "continue": "Continue",
+        "continue": "Kontynuuj",
         "manualCopy": "Zanotuj seeda",
         "paperWallet": "Wydrukuj wersje papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
@@ -65,8 +65,8 @@
         "accountName": "Nazwa konta",
         "noNickname": "Nie wprowadzono nazwy konta",
         "noNicknameExplanation": "Wpisz nazwę konta dla twojego seeda.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "Seed jest już w użyciu",
+        "seedInUseExplanation": "Ten seed został już powiązany z Twoim portfelem. Proszę użyj innego."
     },
     "changePassword": {
         "oops": "Ups. Coś poszło nie tak",
@@ -119,7 +119,7 @@
         "enterPassword": "Wprowadź swoje hasło.",
         "useSeed": "UŻYJ SEED'a",
         "login": "ZALOGUJ",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Czy chcesz wybrać inny node?"
     },
     "loading": {
         "loadingFirstTime": "Ładowanie seeda po raz pierwszy.",
@@ -167,7 +167,7 @@
         "invalidAddressExplanation1": "Adres powinien składać się z {{maxLength}} znaków i posiadać sumę kontrolną.",
         "invalidAddressExplanation2": "Adres zawiera nieprawidłowe znaki.",
         "invalidAddressExplanation3": "Adres zawiera nieprawidłową sume kontrolną.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Brak wystarczających środków",
         "notEnoughFundsExplanation": "Nie masz wystarczająco dużo IOTA, aby zakończyć ten transfer.",
         "keyReuse": "Ponowne użycie klucza",
         "keyReuseExplanation": "Adres na który próbujesz wysłać został już użyty. Spróbuj użyć innego adresu.",
@@ -204,7 +204,7 @@
         "theme": "Motyw",
         "currency": "Waluta",
         "language": "Język",
-        "accountManagement": "Account management",
+        "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowego seeda",
         "twoFA": "Uwierzytelnienie dwuetapowe",
         "changePassword": "Zmiana hasła",
@@ -219,8 +219,8 @@
         "accountDeletedExplanation": "Twoje konto zostało usunięte z portfela.",
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnection": "Słabe połączenie",
+        "poorConnectionExplanation": "Nie można zmienić waluty ze względu na słabe połączenie."
     },
     "resetWalletConfirmation": {
         "thisAction": "Tej akcji nie można cofnąć.",
@@ -232,7 +232,7 @@
         "areYouSure": "Czy na pewno chcesz kontynuować?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Wprowadź hasło, aby zresetować swój portfel.",
         "cancel": "ANULUJ",
         "reset": "RESET"
     },
@@ -253,7 +253,7 @@
         "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Twój seed zawiera {{maxSeedLength}} znaków czytany od lewej do prawej. Zapisz seeda oraz sumę kontrolną i",
         "tripleCheck": "sprawdź trzykrotnie",
         "thatTheyAreCorrect": "że są one poprawne."
     },
@@ -264,58 +264,58 @@
         "addressCopiedExplanation": "Adres został skopiowany do schowka."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Podgląd seeda",
+        "viewAddresses": "Podgląd adresów",
+        "editAccountName": "Edytuj nazwę konta",
+        "deleteAccount": "Usuń konto",
+        "addNewAccount": "Dodaj nowe konto"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Niestandardowy node",
+        "add": "Dodaj"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Użyj istniejącego seeda",
+        "createNewSeed": "Stwórz nowego seeda"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Wybierz node",
+        "addCustomNode": "Dodaj niestandardowy node",
+        "manualSync": "Synchronizacja manualna"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Tło",
+        "frame": "Ramka"
     },
     "currencySelection": {
         "currency": "Waluta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Czy na pewno chcesz się wylogować?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Zeskanuj swój kod QR"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "JEDNOSTKA MIARY",
+        "trillion": "Trylion",
+        "billion": "Miliard",
+        "million": "Milion",
+        "thousand": "Tysiąc",
+        "one": "Jeden"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "Czy jesteś pewien że chcesz usunąć to konto?",
+        "yourSeedWillBeRemoved": "Twój seed oraz historia transakcji zostaną usunięte.",
         "thisAction": "Tej akcji nie można cofnąć.",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "Wprowadź hasło, aby usunąć to konto."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "Naciśnij poniższy przycisk, aby zsynchronizować swoje konto.",
         "thisMayTake": "To może chwilę potrwać.",
         "youMayNotice": "Możesz zaobserwować spowolnienie twojego urządzenia.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "syncAccount": "SYNCHRONIZACJA KONT",
+        "syncingYourAccount": "Synchronizacja twojego konta."
     },
     "useExistingSeed": {
         "title": "Enter a seed and account name."
