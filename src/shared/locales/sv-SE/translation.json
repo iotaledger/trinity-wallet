@@ -5,9 +5,9 @@
         "continue?": "Är du säker på att du vill fortsätta?",
         "noTransactions": "NO RECENT HISTORY",
         "qr": "QR",
-        "balanceError": "Not enough balance",
+        "balanceError": "Otillräckligt saldo",
         "balanceErrorMessage": "Du har inte tillräckligt IOTA att slutföra denna överföring.",
-        "transferError": "Transfer Error",
+        "transferError": "Överföringsfel",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
@@ -24,10 +24,10 @@
         "done": "KLAR",
         "doneLowercase": "Done",
         "next": "NÄSTA",
-        "apply": "Apply",
-        "save": "Save",
+        "apply": "Verkställ",
+        "save": "Spara",
         "close": "CLOSE",
-        "continue": "Continue",
+        "continue": "Fortsätt",
         "manualCopy": "Skriv ner din seed",
         "paperWallet": "Skriva ut papperskopia",
         "copyToClipboard": "Lägg till i lösenordshanteraren",
@@ -265,9 +265,9 @@
     },
     "accountManagement": {
         "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
+        "viewAddresses": "Visa adresser",
+        "editAccountName": "Ändra namn på konto",
+        "deleteAccount": "Radera konto",
         "addNewAccount": "Add new account"
     },
     "addCustomNode": {
@@ -281,7 +281,7 @@
     "advancedSettings": {
         "selectNode": "Select node",
         "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "manualSync": "Synka manuellt"
     },
     "advancedThemeCustomisation": {
         "background": "Background",
@@ -291,17 +291,17 @@
         "currency": "Valuta"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Är du säker att du vill logga ut?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Skanna din QR-kod"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
+        "trillion": "Biljon",
+        "billion": "Miljard",
+        "million": "Miljon",
+        "thousand": "Tusen",
         "one": "One"
     },
     "deleteAccount": {
@@ -314,7 +314,7 @@
         "pressToSync": "Press the button below to sync your account.",
         "thisMayTake": "Detta kan ta ett tag.",
         "youMayNotice": "Din enhet kan tillfälligt bli långsammare.",
-        "syncAccount": "SYNC ACCOUNT",
+        "syncAccount": "SYNKA KONTO",
         "syncingYourAccount": "Syncing your account."
     },
     "useExistingSeed": {
@@ -341,6 +341,6 @@
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "aMessage": "ett meddelande"
     }
 }
