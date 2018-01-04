@@ -207,13 +207,20 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                     dispatch(sendTransferSuccess({ address, value }));
                 } else {
                     dispatch(sendTransferError());
-                    dispatch(
-                        generateAlert(
-                            'error',
-                            'Invalid Response',
-                            'The node returned an invalid response while sending transfer.',
-                        ),
-                    );
+
+                    const alerts = {
+                        attachToTangle: [
+                            'Attach to Tangle unavailable',
+                            'Attach to Tangle is not available on your selected node.',
+                        ],
+                        default: ['Invalid Response', 'The node returned an invalid response while sending transfer.'],
+                    };
+
+                    const args =
+                        error.message.indexOf('attachToTangle is not available') > -1
+                            ? alerts.attachToTangle
+                            : alerts.default;
+                    dispatch(generateAlert('error', ...args));
                 }
             });
         };
