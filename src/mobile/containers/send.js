@@ -552,6 +552,7 @@ class Send extends Component {
                         backdropColor={THEMES.getHSL(backgroundColor)}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
+                        onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     >
                         {this._renderModalContent()}
                     </Modal>
