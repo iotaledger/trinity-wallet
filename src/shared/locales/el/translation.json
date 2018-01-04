@@ -90,10 +90,10 @@
         "seedCleared": "Σπόρος εκκαθαρίστηκε",
         "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
         "seedCopied": "Ο σπόρος αντιγράφηκε στο πρόχειρο",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "seedCopiedExplanation": "O σπόρος θα εκκαθαριστεί μόλις πατήσετε \"ΤΕΛΟΣ\" ή περάσουν 60 δευτερόλεπτα.",
         "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "doNotStore": "Μην αποθηκεύετε το σπόρο σας σε μορφή απλού κειμένου.",
+        "copyToClipboard": "Αντιγραφή στο πρόχειρο"
     },
     "enterSeed": {
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -119,7 +119,7 @@
         "enterPassword": "Παρακαλώ εισάγετε τον κωδικό σας.",
         "useSeed": "ΧΡΗΣΗ ΣΠΟΡΟΥ",
         "login": "ΣΥΝΔΕΣΗ",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Θέλετε να επιλέξετε διαφορετικό κόμβο;"
     },
     "loading": {
         "loadingFirstTime": "Φόρτωση σπόρου για πρώτη φορά.",
@@ -160,14 +160,14 @@
         "incorrectSeed": "Λάθος σπόρος",
         "incorrectSeedExplanation": "Ο σπόρος που πληκτρολογήσατε είναι εσφαλμένος. Παρακαλώ δοκιμάστε ξανά.",
         "thisIsACheck": "Αυτό είναι ένας έλεγχος για να βεβαιωθείτε ότι έχετε αποθηκεύσει το σπόρο σας.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "Αν δεν έχετε αποθηκεύσει το σπόρο σας, παρακαλούμε πηγαίνετε πίσω και κάντε το."
     },
     "send": {
         "invalidAddress": "Μη έγκυρη διεύθυνση",
         "invalidAddressExplanation1": "Η διεύθυνση πρέπει να είναι {{maxLength}} χαρακτήρες και θα πρέπει να έχει ένα άθροισμα ελέγχου.",
         "invalidAddressExplanation2": "Η διεύθυνση περιέχει μη έγκυρους χαρακτήρες.",
         "invalidAddressExplanation3": "Η διεύθυνση περιέχει ένα μη έγκυρο άθροισμα ελέγχου.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Ανεπαρκές χρηματικό υπόλοιπο",
         "notEnoughFundsExplanation": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
         "keyReuse": "Επαναχρησιμοποίηση κλειδιού",
         "keyReuseExplanation": "Η διεύθυνση στην οποία προσπαθείτε να στείλετε έχει ήδη χρησιμοποιηθεί. Παρακαλώ δοκιμάστε μια άλλη διεύθυνση.",
@@ -204,16 +204,16 @@
         "theme": "Θέμα",
         "currency": "Νόμισμα",
         "language": "Γλώσσα",
-        "accountManagement": "Account management",
+        "accountManagement": "Διαχείριση λογαριασμού",
         "addNewSeed": "Προσθέστε νέο σπόρο",
         "twoFA": "Έλεγχος ταυτότητας δύο παραγόντων",
         "changePassword": "Αλλάξτε κωδικό πρόσβασης",
         "advanced": "Ρυθμίσεις για προχωρημένους",
         "logout": "Αποσύνδεση",
         "reset": "Επαναφέρετε το πορτοφόλι",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
+        "syncingComplete": "Ο συγχρονισμός ολοκληρώθηκε",
+        "syncingCompleteExplanation": "Ο λογαριασμός σας έχει συγχρονιστεί με επιτυχία.",
+        "nicknameChanged": "Το όνομα λογαριασμού άλλαξε",
         "nicknameChangedExplanation": "Your account name has been changed.",
         "accountDeleted": "Account deleted",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
