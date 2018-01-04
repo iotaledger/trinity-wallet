@@ -3,7 +3,7 @@
         "send": "ENVOYER",
         "cancel": "ANNULER",
         "continue?": "Êtes-vous sûr(e) de vouloir continuer ?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "AUCUN HISTORIQUE RÉCENT",
         "qr": "QR",
         "balanceError": "Solde insuffisant",
         "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
@@ -22,9 +22,9 @@
         "back": "RETOUR",
         "backLowercase": "Retour",
         "done": "OK",
-        "doneLowercase": "Done",
+        "doneLowercase": "Ok",
         "next": "SUIVANT",
-        "apply": "Apply",
+        "apply": "Appliquer",
         "save": "Enregistrer",
         "close": "FERMER",
         "continue": "Continuer",
@@ -204,7 +204,7 @@
         "theme": "Thème",
         "currency": "Devise",
         "language": "Langue",
-        "accountManagement": "Account management",
+        "accountManagement": "Gestion du compte",
         "addNewSeed": "Ajouter une nouvelle seed",
         "twoFA": "Authentification à deux facteurs",
         "changePassword": "Modifier le mot de passe",
@@ -253,7 +253,7 @@
         "reminder": "Vous serez tenté de passer des étapes mais nous vous demandons de suivre le processus complet."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Votre seed se lit de gauche à droite et comporte {{maxSeedLength}} caractères. Notez-la, ainsi que le code de vérification et",
         "tripleCheck": "vérifiez à plusieurs reprises",
         "thatTheyAreCorrect": "qu'ils sont corrects."
     },
@@ -314,7 +314,7 @@
         "pressToSync": "Appuyez sur le bouton ci-dessous pour synchroniser votre compte.",
         "thisMayTake": "Cela peut prendre un peu temps.",
         "youMayNotice": "Il se peut que votre appareil ralentisse.",
-        "syncAccount": "SYNC ACCOUNT",
+        "syncAccount": "SYNCHRONISER LE COMPTE",
         "syncingYourAccount": "Synchronisation de votre compte."
     },
     "useExistingSeed": {
@@ -322,8 +322,8 @@
     },
     "viewSeed": {
         "enterPassword": "Entrez le mot de passe pour afficher votre seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "viewSeed": "VOIR LA SEED",
+        "hideSeed": "MASQUER LA SEED"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "J’ai sauvegardé ma seed",
