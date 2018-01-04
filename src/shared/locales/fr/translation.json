@@ -5,11 +5,11 @@
         "continue?": "Êtes-vous sûr(e) de vouloir continuer ?",
         "noTransactions": "NO RECENT HISTORY",
         "qr": "QR",
-        "balanceError": "Not enough balance",
+        "balanceError": "Solde insuffisant",
         "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
-        "transferError": "Transfer Error",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
+        "transferError": "Erreur de Transfert",
+        "transferErrorMessage": "Une erreur s'est produite lors du transfert. Veuillez réessayer.",
+        "transferSent": "Transfert effectué",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
         "keyReuse": "Réutilisation de clé",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "Le node a retourné une réponse invalide.",
         "invalidResponsePollingExplanation": "Le node a retourné une réponse invalide lors de son interrogation.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+        "invalidResponseSendingTransfer": "Le node a retourné une réponse invalide lors du transfert.",
         "seed": "Seed",
         "back": "RETOUR",
         "backLowercase": "Retour",
@@ -167,7 +167,7 @@
         "invalidAddressExplanation1": "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
         "invalidAddressExplanation2": "La Seed contient des caractères invalides.",
         "invalidAddressExplanation3": "La Seed contient un code de vérification invalide.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
         "keyReuse": "Réutilisation de clé",
         "keyReuseExplanation": "L’adresse vers laquelle vous souhaitez faire un envoi a déjà été utilisée. Veuillez essayer une autre adresse.",
@@ -291,7 +291,7 @@
         "currency": "Devise"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Êtes-vous sûr de vouloir vous déconnecter?"
+        "logoutConfirmation": "Êtes-vous sûr(e) de vouloir vous déconnecter ?"
     },
     "qrScanner": {
         "scan": "Scannez votre QR code"
@@ -305,7 +305,7 @@
         "one": "Un"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
+        "areYouSure": "Voulez-vous vraiment supprimer ce compte ?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "Cette action est irréversible.",
         "enterPassword": "Entrez votre mot de passe pour supprimer ce compte."
@@ -315,13 +315,13 @@
         "thisMayTake": "Cela peut prendre un peu temps.",
         "youMayNotice": "Il se peut que votre appareil ralentisse.",
         "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "syncingYourAccount": "Synchronisation de votre compte."
     },
     "useExistingSeed": {
         "title": "Entrez une seed et un nom de compte."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
+        "enterPassword": "Entrez le mot de passe pour afficher votre seed.",
         "viewSeed": "VIEW SEED",
         "hideSeed": "HIDE SEED"
     },
