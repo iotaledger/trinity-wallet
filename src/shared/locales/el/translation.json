@@ -18,7 +18,7 @@
         "invalidResponsePollingExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη σταθμοσκόπηση.",
         "invalidResponseFetchingAccount":
             "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη λήψη των πληροφοριών λογαριασμού σας.",
-        "invalidResponseSendingTransfer": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά την αποστολή μεταφοράς.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "ΠΙΣΩ",
         "backLowercase": "Πίσω",
