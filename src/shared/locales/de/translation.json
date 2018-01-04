@@ -1,22 +1,36 @@
 {
     "global": {
+        "send": "SENDEN",
+        "cancel": "ABBRECHEN",
+        "continue?": "Bist du sicher, dass du fortfahren möchtest?",
+        "noTransactions": "NO RECENT HISTORY",
+        "qr": "QR",
+        "balanceError": "Not enough balance",
+        "balanceErrorMessage": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
+        "transferError": "Transfer Error",
+        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferSent": "Transfer sent",
+        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "keyReuse": "Key Wiederverwendung",
+        "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Ungültige Antwort",
         "invalidResponseExplanation": "Der Node hat eine eine ungültige Antwort zurückgegeben.",
-        "invalidResponsePollingExplanation":
-            "Der Node hat eine eine ungültige Antwort zurückgegeben beim Aktualisieren.",
+        "invalidResponsePollingExplanation": "Der Node hat eine eine ungültige Antwort zurückgegeben beim Aktualisieren.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "ZURÜCK",
-        "backLowercase": "Back",
+        "backLowercase": "Zurück",
         "done": "FERTIG",
+        "doneLowercase": "Done",
         "next": "WEITER",
         "apply": "Apply",
-        "save": "Save",
-        "close": "CLOSE",
-        "continue": "Continue",
+        "save": "Speichern",
+        "close": "SCHLIEẞEN",
+        "continue": "Fortfahren",
         "manualCopy": "Schreibe deinen Seed auf",
         "paperWallet": "Ausdrucken",
         "copyToClipboard": "Zu Passwortmanager hinzufügen",
-        "qr": "QR",
         "notAvailable": "Dieser Inhalt ist nicht verfügbar",
         "notAvailableExplanation": "Die Funktion wird zu einem späteren Zeitpunkt hinzugefügt werden.",
         "enterSeed": "Bitte gib deinen Seed ein.",
@@ -37,16 +51,14 @@
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
         "somethingWentWrongExplanation": "Bitte die App neustarten.",
         "node": "Node",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
+        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um die Wallet zurückzusetzen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed beinhaltet ungültige Zeichen",
-        "seedInvalidCharsExplanation":
-            "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed hat ungültige Zeichen. Bitte versuche es erneut.",
+        "seedInvalidCharsExplanation": "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed hat ungültige Zeichen. Bitte versuche es erneut.",
         "seedTooShort": "Seed ist zu kurz",
-        "seedTooShortExplanation":
-            "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
+        "seedTooShortExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "nameInUse": "Kontoname wird bereits verwendet",
         "nameInUseExplanation": "Bitte benutze einen einzigartigen Kontonamen für deinen Seed.",
         "enterAccountName": "Gib einen Kontonamen ein.",
@@ -68,8 +80,7 @@
         "passwordTooShort": "Passwort ist zu kurz",
         "passwordTooShortExplanation": "Dein Passwort muss mindestens 12 Zeichen lang sein. Bitte erneut eingeben.",
         "oldPassword": "Altes Passwort kann nicht gesetzt werden",
-        "oldPasswordExplanation":
-            "Du kannst dein altes Passwort nicht als dein neues Passwort verwenden. Bitte versuche es mit einem neuen Passwort.",
+        "oldPasswordExplanation": "Du kannst dein altes Passwort nicht als dein neues Passwort verwenden. Bitte versuche es mit einem neuen Passwort.",
         "ensureStrongPassword": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
         "currentPassword": "Aktuelles Passwort",
         "newPassword": "Neues Passwort",
@@ -79,21 +90,17 @@
         "seedCleared": "Seed gelöscht",
         "seedClearedExplanation": "Der Seed wurde aus der Zwischenablage aus Sicherheitsgründen gelöscht.",
         "seedCopied": "Seed in Zwischenablage kopiert",
-        "seedCopiedExplanation":
-            "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst, oder 60 Sekunden vergangen sind.",
+        "seedCopiedExplanation": "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst, oder 60 Sekunden vergangen sind.",
         "clickToCopy": "Klicke die untere Schaltfläche um deinen Seed in deinen Passwort Manager zu kopieren.",
         "doNotStore": "Speichere deinen Seed nicht als Klartext.",
         "copyToClipboard": "In die Zwischenablage kopieren"
     },
     "enterSeed": {
         "invalidCharacters": "Seed beinhaltet ungültige Zeichen",
-        "invalidCharactersExplanation":
-            "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed hat ungültige Zeichen. Bitte versuche es erneut.",
+        "invalidCharactersExplanation": "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed hat ungültige Zeichen. Bitte versuche es erneut.",
         "seedTooShort": "Seed ist zu kurz",
-        "seedTooShortExplanation":
-            "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
-        "seedExplanation":
-            "Seeds sollten {{maxLength}} Zeichen lang sein und aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als {{maxLength}} Zeichen ist.",
+        "seedTooShortExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
+        "seedExplanation": "Seeds sollten {{maxLength}} Zeichen lang sein und aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als {{maxLength}} Zeichen ist.",
         "neverShare": "TEILE DEINEN SEED MIT NIEMANDEM"
     },
     "home": {
@@ -126,8 +133,7 @@
         "individualLetters": "Drücke beliebige Buchstaben um sie zufällig zu verteilen."
     },
     "onboardingComplete": {
-        "walletReady":
-            "Die Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, schau das Einstellungsmenü."
+        "walletReady": "Die Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, schau das Einstellungsmenü."
     },
     "paperWallet": {
         "clickToPrint": "Klicke die Schaltfläche unten, um eine Paper Wallet von Deinem Seed auszudrucken.",
@@ -164,8 +170,7 @@
         "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
         "keyReuse": "Key Wiederverwendung",
-        "keyReuseExplanation":
-            "Die Adresse die du zum Senden verwendest wurde bereits benutzt. Bitte versuche es mit einer anderen Adresse.",
+        "keyReuseExplanation": "Die Adresse die du zum Senden verwendest wurde bereits benutzt. Bitte versuche es mit einer anderen Adresse.",
         "recipientAddress": "Adresse des Empfängers",
         "amount": "Betrag",
         "max": "MAX",
@@ -178,19 +183,16 @@
     },
     "setPassword": {
         "passwordTooShort": "Passwort ist zu kurz",
-        "passwordTooShortExplanation":
-            "Dein Passwort muss mindestens ${MIN_PASSWORD_LENGTH} lang sein. Es ist im Moment ${this.state.password.length} Zeichen lang. Bitte versuche es erneut.",
+        "passwordTooShortExplanation": "Dein Passwort muss mindestens ${MIN_PASSWORD_LENGTH} lang sein. Es ist im Moment ${this.state.password.length} Zeichen lang. Bitte versuche es erneut.",
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
         "nowWeNeedTo": "Jetzt müssen wir ein Passwort einrichten.",
-        "anEncryptedCopy":
-            "Eine verschlüsselte Kopie deines Seeds wird auf deinem Gerät gespeichert. Du wirst dieses Passwort verwenden um in Zukunft auf dein Wallet zuzugreifen.",
+        "anEncryptedCopy": "Eine verschlüsselte Kopie deines Seeds wird auf deinem Gerät gespeichert. Du wirst dieses Passwort verwenden um in Zukunft auf dein Wallet zuzugreifen.",
         "ensure": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
         "retypePassword": "Passwort erneut eingeben"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "Du kannst mehrere Seeds in diesem Wallet verwenden. Jeder Seed benötigt einen Kontonamen.",
+        "canUseMultipleSeeds": "Du kannst mehrere Seeds in diesem Wallet verwenden. Jeder Seed benötigt einen Kontonamen.",
         "youCanAdd": "Du kannst mehr Seeds in den Einstellungen hinzufügen."
     },
     "settings": {
@@ -237,8 +239,7 @@
     "walletSetup": {
         "okay": "Okay. Lass uns Dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
-        "seedExplanation":
-            "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
+        "seedExplanation": "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
         "explanation1": "Du kannst ihn verwenden um auf dein Guthaben zuzugreifen von",
         "explanation2": " jedem Wallet ",
         "explanation3": "auf",
@@ -252,8 +253,7 @@
         "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Dein Seed ist 81 Zeichen lang und wird von links nach rechts gelesen. Schreibe deinen Seed und die Prüfsumme auf und",
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "prüfe dreimal",
         "thatTheyAreCorrect": "prüfe ob diese Korrekt sind."
     },
@@ -288,7 +288,7 @@
         "frame": "Frame"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "Währung"
     },
     "logoutConfirmationModal": {
         "logoutConfirmation": "Are you sure you want to log out?"
@@ -307,14 +307,40 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete this account?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
+        "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "enterPassword": "Enter your password to delete this account."
     },
     "manualSync": {
         "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down.",
+        "thisMayTake": "Dies kann eine Weile dauern.",
+        "youMayNotice": "Dein Gerät könnte dabei langsamer werden.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
+    },
+    "useExistingSeed": {
+        "title": "Enter a seed and account name."
+    },
+    "viewSeed": {
+        "enterPassword": "Enter password to view your seed.",
+        "viewSeed": "VIEW SEED",
+        "hideSeed": "HIDE SEED"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "I have saved my seed",
+        "reenter": "You will now be asked to re-enter your seed.",
+        "reenterWarningOne": "If your device fails and you have not saved",
+        "reenterWarningTwo": "your seed, you will lose your IOTA."
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "infoTextOne": "Alle deine Wallet Daten, einschließlich deiner",
+        "infoTextTwo": "Seeds, Passwörter",
+        "infoTextThree": "und",
+        "infoTextFour": "anderen Kontoinformationen",
+        "infoTextFive": "werden verloren gehen."
+    },
+    "transferConfirmation": {
+        "youAreAbout": "You are about to send {{contents}} to the address",
+        "aMessage": "a message"
     }
 }
