@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "노드가 잘못된 응답을 보냈습니다.",
         "invalidResponsePollingExplanation": "노드가 폴링 중 잘못된 응답을 보냈습니다.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "씨드",
         "back": "뒤로",
         "backLowercase": "뒤로가기",

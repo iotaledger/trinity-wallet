@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "The node returned an invalid response.",
         "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "BACK",
         "backLowercase": "Back",
