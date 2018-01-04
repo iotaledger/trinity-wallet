@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "Düğümü geçersiz yanıt döndürdü.",
         "invalidResponsePollingExplanation": "Düğüm yoklama sırasında geçersiz bir yanıt döndürdü.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Tohum",
         "back": "Geri",
         "backLowercase": "Geri",
