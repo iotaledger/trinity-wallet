@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "Noden returnerte et ugyldig svar.",
         "invalidResponsePollingExplanation": "Noden returnerte et ugyldig svar.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Hovednøkkel",
         "back": "TILBAKE",
         "backLowercase": "Tilbake",
