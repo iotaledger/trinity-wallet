@@ -215,11 +215,11 @@
         "syncingCompleteExplanation": "Your account has synced successfully.",
         "nicknameChanged": "Account name changed",
         "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
+        "accountDeleted": "Conta excluída",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
+        "poorConnection": "Conexão fraca",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
