@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "節點回傳無效回應。",
         "invalidResponsePollingExplanation": "節點於輪詢程序時回傳無效回應。",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "種子碼",
         "back": "返回",
         "backLowercase": "返回",
