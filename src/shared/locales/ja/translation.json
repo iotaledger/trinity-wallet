@@ -1,12 +1,28 @@
 {
     "global": {
+        "send": "送金",
+        "cancel": "キャンセル",
+        "continue?": "本当に続行しますか？",
+        "noTransactions": "最近の履歴なし",
+        "qr": "QRコード",
+        "balanceError": "残高が足りません",
+        "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
+        "transferError": "送金エラー",
+        "transferErrorMessage": "送金中に問題が発生しました。もう一度やり直してください。",
+        "transferSent": "送金完了",
+        "transferSentMessage": "送金情報がTangleに送られました。",
+        "keyReuse": "キーの再使用",
+        "keyReuseError": "一度支払いに使われたアドレスに送金することはできません。",
         "invalidResponse": "無効な応答",
         "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
         "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
+        "invalidResponseFetchingAccount": "アカウント情報呼び出し中にノードが無効な返答をしました。",
+        "invalidResponseSendingTransfer": "送金中にノードが無効な返答をしました。",
         "seed": "Seed",
         "back": "戻る",
         "backLowercase": "戻る",
         "done": "完了",
+        "doneLowercase": "完了",
         "next": "次へ",
         "apply": "決定",
         "save": "保存",
@@ -15,7 +31,6 @@
         "manualCopy": "Seedを書き写す",
         "paperWallet": "印刷する",
         "copyToClipboard": "パスワード マネージャーに追加",
-        "qr": "QRコード",
         "notAvailable": "この機能は使えません。",
         "notAvailableExplanation": "この機能は将来追加される予定です。",
         "enterSeed": "Seedを入力して下さい。",
@@ -239,7 +254,7 @@
         "reminder": "いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Seedは左から右へ読み、81文字あります。Seedとチェックサムが正確に書き留め、",
+        "yourSeedIs": "Seedは左から右へ読み、{{maxSeedLength}} 文字あります。Seedとチェックサムを正確に書き留めて、",
         "tripleCheck": "何度も確認",
         "thatTheyAreCorrect": "それらが正しいことを確認して下さい。"
     },
@@ -302,5 +317,31 @@
         "youMayNotice": "デバイスが遅くなることがあります。",
         "syncAccount": "同期アカウント",
         "syncingYourAccount": "アカウントを同期中"
+    },
+    "useExistingSeed": {
+        "title": "Seedとアカウント名を入力して下さい。"
+    },
+    "viewSeed": {
+        "enterPassword": "Seedを閲覧するにはパスワードを入力して下さい。",
+        "viewSeed": "Seedを見る",
+        "hideSeed": "Seedを隠す"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "私はSeedを保管しました",
+        "reenter": "Seedを再入力するよう求められます。",
+        "reenterWarningOne": "Seedを保存せずにデバイスを停止すると、",
+        "reenterWarningTwo": "IOTAを失います。"
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "この操作は元に戻せません。",
+        "infoTextOne": "全てのウォレットのデータ",
+        "infoTextTwo": "（Seedやパスワード",
+        "infoTextThree": "や",
+        "infoTextFour": "その他のアカウント情報）",
+        "infoTextFive": "が失われます。"
+    },
+    "transferConfirmation": {
+        "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
+        "aMessage": "メッセージ"
     }
 }
