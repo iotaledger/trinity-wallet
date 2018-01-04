@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     modalContent: {
-        backgroundColor: '#16313a',
         justifyContent: 'center',
     },
     dropdownTitle: {
@@ -570,7 +569,11 @@ class Settings extends Component {
     }
 
     renderModalContent() {
-        return <View style={styles.modalContent}>{this.state.modalContent}</View>;
+        return (
+            <View style={[styles.modalContent, { backgroundColor: THEMES.getHSL(this.props.backgroundColor) }]}>
+                {this.state.modalContent}
+            </View>
+        );
     }
 
     render() {
@@ -591,7 +594,7 @@ class Settings extends Component {
                     animationOutTiming={200}
                     backdropTransitionInTiming={500}
                     backdropTransitionOutTiming={200}
-                    backdropColor={'#132d38'}
+                    backdropColor={THEMES.getHSL(this.props.backgroundColor)}
                     backdropOpacity={0.8}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
