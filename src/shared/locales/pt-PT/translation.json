@@ -215,7 +215,7 @@
         "syncingCompleteExplanation": "Your account has synced successfully.",
         "nicknameChanged": "Account name changed",
         "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Conta excluída",
+        "accountDeleted": "Conta eliminada",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
@@ -267,12 +267,12 @@
         "viewSeed": "View seed",
         "viewAddresses": "View addresses",
         "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "deleteAccount": "Eliminar conta",
+        "addNewAccount": "Adicionar nova conta"
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "Adicionar"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
@@ -284,8 +284,8 @@
         "manualSync": "Manual sync"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Fundo",
+        "frame": "Moldura"
     },
     "currencySelection": {
         "currency": "Moeda"
@@ -332,7 +332,7 @@
         "reenterWarningTwo": "your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "ESTA AÇÃO NÃO PODE SER ANULADA.",
         "infoTextOne": "Toda a informação da sua carteira, incluindo",
         "infoTextTwo": "Seeds, palavra-passe",
         "infoTextThree": "e",
