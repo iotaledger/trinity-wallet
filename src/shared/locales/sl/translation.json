@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "Vozlišče je vrnilo neveljaven odziv.",
         "invalidResponsePollingExplanation": "Vozlišče ke vrnilo neveljaven odziv med pozivanjem.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Generirano število",
         "back": "NAZAJ",
         "backLowercase": "Nazaj",
