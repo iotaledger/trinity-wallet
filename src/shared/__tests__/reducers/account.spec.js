@@ -189,21 +189,6 @@ describe('Reducer: account', () => {
         expect(newState).to.eql(expectedState);
     });
 
-    it('FULL_ACCOUNT_INFO_FOR_FIRST_USE_FETCH_REQUEST should set firstUse to true', () => {
-        const initialState = {
-            firstUse: false,
-        };
-
-        const action = actions.fullAccountInfoForFirstUseFetchRequest();
-
-        const newState = reducer(initialState, action);
-        const expectedState = {
-            firstUse: true,
-        };
-
-        expect(newState).to.eql(expectedState);
-    });
-
     it('MANUAL_SYNC_SUCCESS should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
         const initialState = {
             unconfirmedBundleTails: { foo: {} },

@@ -8,15 +8,9 @@ import { StyleSheet, View, StatusBar, BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
-import COLORS from '../theme/Colors';
 import THEMES from '../theme/themes';
-import { clearTempData, setPassword, setSetting } from '../../shared/actions/tempAccount';
-import {
-    changeAccountName,
-    deleteAccount,
-    manuallySyncAccount,
-    fetchFullAccountInfoForFirstUse,
-} from 'iota-wallet-shared-modules/actions/account';
+import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
+import { changeAccountName, deleteAccount, manuallySyncAccount } from 'iota-wallet-shared-modules/actions/account';
 import {
     getSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
@@ -30,7 +24,7 @@ import {
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { renameKeys, MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
-
+import KeepAwake from 'react-native-keep-awake';
 import LogoutConfirmationModal from '../components/logoutConfirmationModal';
 import SettingsContent from '../components/settingsContent';
 import keychain, {
@@ -39,7 +33,6 @@ import keychain, {
     getSeed,
     updateAccountNameInKeychain,
     deleteFromKeychain,
-    storeSeedInKeychain,
 } from '../util/keychain';
 import { width, height } from '../util/dimensions';
 
@@ -137,9 +130,9 @@ class Settings extends Component {
         changeAccountName: PropTypes.func.isRequired,
         deleteAccount: PropTypes.func.isRequired,
         setPassword: PropTypes.func.isRequired,
-        fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
         addCustomPoWNode: PropTypes.func.isRequired,
         updateTheme: PropTypes.func.isRequired,
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
         themeName: PropTypes.string.isRequired,
         backgroundColor: PropTypes.object.isRequired,
@@ -159,6 +152,14 @@ class Settings extends Component {
             modalContent: <LogoutConfirmationModal />,
             selectedCurrency: this.props.currency,
         };
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (!this.props.isSyncing && newProps.isSyncing) {
+            KeepAwake.activate();
+        } else if (this.props.isSyncing && !newProps.isSyncing) {
+            KeepAwake.deactivate();
+        }
     }
 
     getChildrenProps(child) {
@@ -340,8 +341,14 @@ class Settings extends Component {
         return this.props.generateAlert('success', 'Custom node added', 'The custom node has been added successfully.');
     }
 
-    fetchAccountInfo(seed, accountName, password, promise, navigator) {
-        navigator.push({
+    fetchAccountInfo(seed, accountName) {
+        this.props.setAdditionalAccountInfo({
+            addingAdditionalAccount: true,
+            additionalAccountName: accountName,
+            seed,
+        });
+
+        this.props.navigator.push({
             screen: 'loading',
             navigatorStyle: {
                 navBarHidden: true,
@@ -351,8 +358,6 @@ class Settings extends Component {
             animated: false,
             overrideBackPress: true,
         });
-
-        return this.props.fetchFullAccountInfoForFirstUse(seed, accountName, password, promise, navigator);
     }
 
     // UseExistingSeed method
@@ -391,7 +396,7 @@ class Settings extends Component {
                 .get()
                 .then(credentials => {
                     if (isNull(credentials)) {
-                        this.fetchAccountInfo(seed, accountName, password, storeSeedInKeychain, navigator);
+                        this.fetchAccountInfo(seed, accountName);
                     } else {
                         if (hasDuplicateAccountName(credentials.data, accountName)) {
                             this.props.generateAlert(
@@ -406,7 +411,7 @@ class Settings extends Component {
                                 t('addAdditionalSeed:seedInUseExplanation'),
                             );
                         } else {
-                            this.fetchAccountInfo(seed, accountName, password, storeSeedInKeychain, navigator);
+                            this.fetchAccountInfo(seed, accountName);
                         }
                     }
                 })
@@ -522,6 +527,9 @@ class Settings extends Component {
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
             },
+            appStyle: {
+                orientation: 'portrait',
+            },
         });
     }
 
@@ -538,6 +546,9 @@ class Settings extends Component {
                 },
                 overrideBackPress: true,
             },
+            appStyle: {
+                orientation: 'portrait',
+            },
         });
     }
 
@@ -550,6 +561,9 @@ class Settings extends Component {
                     navBarTransparent: true,
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
+            },
+            appStyle: {
+                orientation: 'portrait',
             },
         });
         BackHandler.removeEventListener('homeBackPress');
@@ -597,11 +611,11 @@ const mapDispatchToProps = {
     setFullNode,
     getCurrencyData,
     setPassword,
-    fetchFullAccountInfoForFirstUse,
     addCustomPoWNode,
     generateAlert,
     manuallySyncAccount,
     updateTheme,
+    setAdditionalAccountInfo,
 };
 
 const mapStateToProps = state => ({

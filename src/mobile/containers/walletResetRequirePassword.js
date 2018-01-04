@@ -68,6 +68,9 @@ class WalletResetRequirePassword extends Component {
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
             },
+            appStyle: {
+                orientation: 'portrait',
+            },
         });
     }
 
@@ -78,13 +81,16 @@ class WalletResetRequirePassword extends Component {
     redirectToInitialScreen() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'welcome',
+                screen: 'languageSetup',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
                 overrideBackPress: true,
+            },
+            appStyle: {
+                orientation: 'portrait',
             },
         });
     }
