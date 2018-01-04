@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "Der Node hat eine eine ungültige Antwort zurückgegeben.",
         "invalidResponsePollingExplanation": "Der Node hat eine eine ungültige Antwort zurückgegeben beim Aktualisieren.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "ZURÜCK",
         "backLowercase": "Zurück",
