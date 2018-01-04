@@ -3,26 +3,26 @@
         "send": "送金",
         "cancel": "キャンセル",
         "continue?": "本当に続行しますか？",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "最近の履歴なし",
         "qr": "QRコード",
-        "balanceError": "Not enough balance",
+        "balanceError": "残高が足りません",
         "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
-        "transferError": "Transfer Error",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
-        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "transferError": "送金エラー",
+        "transferErrorMessage": "送金中に問題が発生しました。もう一度やり直してください。",
+        "transferSent": "送金完了",
+        "transferSentMessage": "送金情報がTangleに送られました。",
         "keyReuse": "キーの再使用",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "一度支払いに使われたアドレスに送金することはできません。",
         "invalidResponse": "無効な応答",
         "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
         "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
+        "invalidResponseFetchingAccount": "アカウント情報呼び出し中にノードが無効な返答をしました。",
+        "invalidResponseSendingTransfer": "送金中にノードが無効な返答をしました。",
         "seed": "Seed",
         "back": "戻る",
         "backLowercase": "戻る",
         "done": "完了",
-        "doneLowercase": "Done",
+        "doneLowercase": "完了",
         "next": "次へ",
         "apply": "決定",
         "save": "保存",
@@ -253,7 +253,7 @@
         "reminder": "いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Seedは左から右へ読み、{{maxSeedLength}} 文字あります。Seedとチェックサムを正確に書き留めて、",
         "tripleCheck": "何度も確認",
         "thatTheyAreCorrect": "それらが正しいことを確認して下さい。"
     },
@@ -318,21 +318,21 @@
         "syncingYourAccount": "アカウントを同期中"
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Seedとアカウント名を入力して下さい。"
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Seedを閲覧するにはパスワードを入力して下さい。",
+        "viewSeed": "Seedを見る",
+        "hideSeed": "Seedを隠す"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarningOne": "If your device fails and you have not saved",
-        "reenterWarningTwo": "your seed, you will lose your IOTA."
+        "alreadyHave": "私はSeedを保管しました",
+        "reenter": "Seedを再入力するよう求められます。",
+        "reenterWarningOne": "Seedを保存せずにデバイスを停止すると、",
+        "reenterWarningTwo": "IOTAを失います。"
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "この操作は元に戻せません。",
         "infoTextOne": "全てのウォレットのデータ",
         "infoTextTwo": "（Seedやパスワード",
         "infoTextThree": "や",
@@ -340,7 +340,7 @@
         "infoTextFive": "が失われます。"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
+        "aMessage": "メッセージ"
     }
 }
