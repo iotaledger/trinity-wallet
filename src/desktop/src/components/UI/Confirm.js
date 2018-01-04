@@ -1,7 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import { disposeOffAlert } from 'actions/alerts';
 import PropTypes from 'prop-types';
 import Modal from 'components/UI/Modal';
 import Button from 'components/UI/Button';
@@ -16,10 +13,10 @@ export default class Confirm extends React.PureComponent {
     };
 
     render() {
-        const { title, category, text, content, isOpen } = this.props;
+        const { category, content, isOpen } = this.props;
 
         return (
-            <Modal className="confirm" isOpen={isOpen} hideCloseButton={true}>
+            <Modal className="confirm" isOpen={isOpen} hideCloseButton>
                 {content.title ? <h1 className={category ? category : 'primary'}>{content.title}</h1> : null}
                 {content.message ? <p>{content.message}</p> : null}
                 <footer>

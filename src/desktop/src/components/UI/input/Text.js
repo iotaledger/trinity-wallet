@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Textarea from 'react-textarea-autosize';
 import css from './Input.css';
 
 export default class TextInput extends React.PureComponent {
@@ -16,7 +15,7 @@ export default class TextInput extends React.PureComponent {
         return (
             <div className={css.input}>
                 <fieldset>
-                    <input type="text" value={value} onChange={e => this.props.onChange(e.target.value)} />
+                    <input type="text" value={value} onChange={e => onChange(e.target.value)} />
                     <small>{label}</small>
                 </fieldset>
             </div>

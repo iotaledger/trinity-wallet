@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, NavLink } from 'react-router-dom';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { NavLink, Switch, Route } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { clearTempData } from 'actions/tempAccount';
@@ -10,15 +9,14 @@ import { showNotification } from 'actions/notifications';
 import Template, { Content } from 'components/Main/Template';
 import Confirm from 'components/UI/Confirm';
 
-import Language from './Language';
+import Language from 'components/Main/Settings/Language';
 
-import css from './Index.css';
+import css from 'components/Main/Settings/Index.css';
 
 import icoMode from 'images/mode.png';
 import icoTheme from 'images/theme.png';
 import icoCurrency from 'images/currency.png';
 import icoLanguage from 'images/language.png';
-import icoAccount from 'images/account.png';
 import ico2fa from 'images/2fa.png';
 import icoPassword from 'images/password.png';
 import icoAdvanced from 'images/advanced.png';
@@ -33,19 +31,20 @@ class Settings extends React.PureComponent {
         }).isRequired,
         clearTempData: PropTypes.func.isRequired,
         clearSeeds: PropTypes.func.isRequired,
+        showNotification: PropTypes.func.isRequired,
     };
 
     state = {
         modalLogout: false,
     };
 
-    toggleLogout = e => {
+    toggleLogout = () => {
         this.setState({
             modalLogout: !this.state.modalLogout,
         });
     };
 
-    doLogout = e => {
+    doLogout = () => {
         this.props.clearTempData();
         this.props.clearSeeds();
         this.props.history.push('/login');
@@ -120,7 +119,7 @@ class Settings extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
     showNotification,
