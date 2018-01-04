@@ -10,7 +10,7 @@ import Template, { Content, Footer } from 'components/Onboarding/Template';
 import PasswordInput from 'components/UI/input/Password';
 import Button from 'components/UI/Button';
 import Loading from 'components/UI/Loading';
-import css from '../Layout/Onboarding.css';
+import css from 'components/Layout/Onboarding.css';
 import { setTimeout } from 'timers';
 
 class Login extends React.Component {
@@ -22,21 +22,16 @@ class Login extends React.Component {
         account: PropTypes.shape({
             firstUse: PropTypes.bool.isRequired,
         }).isRequired,
+        tempAccount: PropTypes.object.isRequired,
         loadSeeds: PropTypes.func.isRequired,
         showError: PropTypes.func.isRequired,
+        getAccountInfo: PropTypes.func.isRequired,
         getFullAccountInfo: PropTypes.func.isRequired,
-        setFirstUse: PropTypes.func.isRequired,
     };
 
     state = {
         loading: false,
         password: '',
-    };
-
-    setPassword = password => {
-        this.setState({
-            password: password,
-        });
     };
 
     componentWillReceiveProps(newProps) {
@@ -49,8 +44,14 @@ class Login extends React.Component {
         }
     }
 
-    setupAccount(seed, seedIndex) {
-        const { t, account, getFullAccountInfo, getAccountInfo, showError, setFirstUse } = this.props;
+    setPassword = password => {
+        this.setState({
+            password: password,
+        });
+    };
+
+    setupAccount(seed) {
+        const { account, getFullAccountInfo, getAccountInfo } = this.props;
 
         if (account.firstUse) {
             getFullAccountInfo(seed.seed, seed.name);
@@ -92,7 +93,9 @@ class Login extends React.Component {
         const { t } = this.props;
         const { loading } = this.state;
 
-        if (loading) return <Loading loop={true} />;
+        if (loading) {
+            return <Loading loop />;
+        }
 
         return (
             <div className={css.wrapper}>

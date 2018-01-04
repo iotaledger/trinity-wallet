@@ -22,10 +22,12 @@ class Alerts extends React.PureComponent {
     render() {
         const { alerts, disposeOffAlert, t } = this.props;
 
-        if (!alerts.category.length) return null;
+        if (!alerts.category.length) {
+            return null;
+        }
 
         return (
-            <Modal className="confirm" isOpen={true} hideCloseButton={true}>
+            <Modal className="confirm" isOpen hideCloseButton>
                 <h1 className={alerts.category}>{alerts.title}</h1>
                 <p>{alerts.message}</p>
                 <Button onClick={disposeOffAlert} variant="success">

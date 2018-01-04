@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
-import { setCurrency, setTimeframe } from 'actions/marketData';
+import { setCurrency, setTimeframe, getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { formatValue, formatUnit, round } from 'libs/util';
 import { getCurrencySymbol } from 'libs/currency';
 import { getAccountInfoAsync, getNewAddressAsync } from 'actions/seeds';
-import { getMarketData, getChartData, getPrice } from 'actions/marketData';
-import Template, { Content } from './Template';
+import Template, { Content } from 'components/Main/Template';
 import HistoryList from 'components/UI/HistoryList';
 import Chart from 'components/UI/Chart';
-import css from './Balance.css';
+import css from 'components/Main/Balance.css';
 
 class Balance extends React.Component {
     static propTypes = {
@@ -28,6 +27,9 @@ class Balance extends React.Component {
         marketData: PropTypes.object.isRequired,
         setCurrency: PropTypes.func.isRequired,
         setTimeframe: PropTypes.func.isRequired,
+        getChartData: PropTypes.func.isRequired,
+        getPrice: PropTypes.func.isRequired,
+        getMarketData: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -47,12 +49,12 @@ class Balance extends React.Component {
     };
 
     getDecimalPlaces(n) {
-        var s = '' + +n;
-        var match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
+        const s = String(Number(n));
+        const match = /(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/.exec(s);
         if (!match) {
             return 0;
         }
-        return Math.max(0, (match[1] == '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
+        return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
     }
 
     render() {
@@ -69,7 +71,7 @@ class Balance extends React.Component {
                 <Content>
                     <section className={css.balance}>
                         <div>
-                            <h1>Balance</h1>
+                            <h1>{t('home:balance')}</h1>
                             <strong>{`${formatValue(accountInfo.balance)} ${formatUnit(accountInfo.balance)}`}</strong>
                             <small>{`${currencySymbol} ${fiatBalance}`}</small>
                         </div>

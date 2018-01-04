@@ -9,14 +9,18 @@ import {
     generateNewAddressRequest,
     generateNewAddressError,
 } from 'actions/tempAccount';
-import Template, { Content } from './Template';
+import Template, { Content } from 'components/Main/Template';
+import css from 'components/Main/Receive.css';
 import Button from 'components/UI/Button';
-import css from './Receive.css';
 
 class Receive extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
         tempAccount: PropTypes.object.isRequired,
+        seeds: PropTypes.object.isRequired,
+        account: PropTypes.object.isRequired,
+        generateNewAddressRequest: PropTypes.func.isRequired,
+        generateNewAddress: PropTypes.func.isRequired,
     };
 
     state = {};
@@ -38,13 +42,9 @@ class Receive extends React.PureComponent {
             <Template>
                 <Content>
                     <section className={css.receive}>
-                        {receiveAddress.length ? (
-                            <p className={css.address}>{receiveAddress}</p>
-                        ) : (
-                            <p>Click to generate a new address</p>
-                        )}
+                        {receiveAddress.length ? <p className={css.address}>{receiveAddress}</p> : null}
                         <QRCode value={receiveAddress} size={220} />
-                        <Button onClick={this.onGeneratePress}>Generate new address</Button>
+                        <Button onClick={this.onGeneratePress}>{t('receive:generateNewAddress')}</Button>
                     </section>
                     <section />
                 </Content>

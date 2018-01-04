@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
-import Template, { Content } from './Template';
+import Template, { Content } from 'components/Main/Template';
 import HistoryList from 'components/UI/HistoryList';
-import css from './Balance.css';
 
-class HistoryView extends React.Component {
+class HistoryView extends React.PureComponent {
     static propTypes = {
-        t: PropTypes.func.isRequired,
         account: PropTypes.object.isRequired,
+        seed: PropTypes.object.isRequired,
     };
 
     render() {

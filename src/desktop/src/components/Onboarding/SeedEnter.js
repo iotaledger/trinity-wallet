@@ -2,17 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { isValidSeed } from 'libs/util';
+import { isValidSeed, MAX_SEED_LENGTH } from 'libs/util';
 import { showError } from 'actions/notifications';
 import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
-import { MAX_SEED_LENGTH } from 'libs/util';
-import Template, { Content, Footer } from './Template';
-import Button from '../UI/Button';
-import Infobox from '../UI/Infobox';
+import Template, { Content, Footer } from 'components/Onboarding/Template';
+import Button from 'components/UI/Button';
+import Infobox from 'components/UI/Infobox';
 import SeedInput from 'components/UI/input/Seed';
-
-import css from '../Layout/Onboarding.css';
 
 class SeedEnter extends React.PureComponent {
     static propTypes = {
@@ -39,10 +36,6 @@ class SeedEnter extends React.PureComponent {
         }));
     };
 
-    getPaddedSeed = seed => {
-        return `${seed}${'9'.repeat(MAX_SEED_LENGTH - seed.length < 0 ? 0 : MAX_SEED_LENGTH - seed.length)}`;
-    };
-
     onSubmit = e => {
         e.preventDefault();
         const { addAndSelectSeed, clearSeeds, history, showError, t } = this.props;
@@ -61,6 +54,10 @@ class SeedEnter extends React.PureComponent {
         clearSeeds();
         addAndSelectSeed(seed);
         history.push('/seed/name');
+    };
+
+    getPaddedSeed = seed => {
+        return `${seed}${'9'.repeat(MAX_SEED_LENGTH - seed.length < 0 ? 0 : MAX_SEED_LENGTH - seed.length)}`;
     };
 
     getPaddedSeed = seed => {
