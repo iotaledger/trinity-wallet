@@ -20,13 +20,6 @@ import LottieView from 'lottie-react-native';
 import { width, height } from '../util/dimensions';
 class Loading extends Component {
     componentDidMount() {
-        this.animation.play();
-
-        KeepAwake.activate();
-
-        this.props.changeHomeScreenRoute('balance');
-        this.props.setSetting('mainSettings');
-
         const {
             firstUse,
             addingAdditionalAccount,
@@ -36,6 +29,15 @@ class Loading extends Component {
             password,
             navigator,
         } = this.props;
+
+        if (!firstUse && !addingAdditionalAccount) {
+            this.animation.play();
+        }
+
+        KeepAwake.activate();
+
+        this.props.changeHomeScreenRoute('balance');
+        this.props.setSetting('mainSettings');
 
         keychain
             .get()
@@ -89,16 +91,15 @@ class Loading extends Component {
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <View>
-                            <LottieView
-                                ref={animation => {
-                                    this.animation = animation;
-                                }}
-                                source={require('../animations/welcome.json')}
-                                style={styles.animation}
-                                loop={true}
-                            />
-                        </View>
+                        <Text style={styles.infoText}>{t('loadingFirstTime')}</Text>
+                        <Text style={styles.infoText}>{t('thisMayTake')}</Text>
+                        <Text style={styles.infoText}>{t('youMayNotice')}</Text>
+                        <ActivityIndicator
+                            animating={true}
+                            style={styles.activityIndicator}
+                            size="large"
+                            color={THEMES.getHSL(negativeColor)}
+                        />
                     </View>
                     <View style={{ flex: 1 }} />
                 </View>
@@ -179,6 +180,7 @@ const mapDispatchToProps = {
 
 Loading.propTypes = {
     firstUse: PropTypes.bool.isRequired,
+    addingAdditionalAccount: PropTypes.bool.isRequired,
     navigator: PropTypes.object.isRequired,
     getAccountInfo: PropTypes.func.isRequired,
     getFullAccountInfo: PropTypes.func.isRequired,
