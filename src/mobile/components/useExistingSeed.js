@@ -8,7 +8,7 @@ import QRScanner from '../components/qrScanner.js';
 import { Keyboard } from 'react-native';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import Modal from 'react-native-modal';
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
 import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import arrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right.png';
@@ -85,7 +85,7 @@ class UseExistingSeed extends React.Component {
 
         if (seed.length !== 0 && seed.length < 81) {
             checksumValue = '< 81';
-        } else if (seed.length === 81) {
+        } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
         }
         return checksumValue;
