@@ -33,10 +33,10 @@ class WriteSeedDown extends Component {
                 <View style={styles.midContainer}>
                     <Text style={styles.infoText}>
                         <Text style={styles.infoTextNormal}>
-                            {`Your seed is ${MAX_SEED_LENGTH} characters read from left to right. Write down your seed and checksum and`}
+                            {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
                         </Text>
-                        <Text style={styles.infoTextBold}> triple check </Text>
-                        <Text style={styles.infoTextNormal}>they are correct.</Text>
+                        <Text style={styles.infoTextBold}>{` ${t('writeSeedDown:tripleCheck')} `}</Text>
+                        <Text style={styles.infoTextNormal}>{t('writeSeedDown:thatTheyAreCorrect')}</Text>
                     </Text>
                     <Seedbox seed={this.props.tempAccount.seed} />
                     <View style={styles.checksum}>
@@ -46,7 +46,7 @@ class WriteSeedDown extends Component {
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={[styles.doneButton, positiveColorBorder]}>
-                            <Text style={[styles.doneText, positiveColorText]}>DONE</Text>
+                            <Text style={[styles.doneText, positiveColorText]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -200,4 +200,4 @@ const mapStateToProps = state => ({
     positiveColor: state.settings.theme.positiveColor,
 });
 
-export default connect(mapStateToProps)(WriteSeedDown);
+export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown));

@@ -81,9 +81,9 @@ class SaveSeedConfirmation extends Component {
                 <View style={styles.midContainer}>
                     <View style={styles.topMidContainer}>
                         <View style={styles.infoTextContainer}>
-                            <Text style={styles.infoTextLight}>You will now be asked to re-enter your seed.</Text>
-                            <Text style={styles.infoTextLight}>If your device fails and you have not saved</Text>
-                            <Text style={styles.infoTextLight}>your seed, you will lose your IOTA.</Text>
+                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenter')}</Text>
+                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenterWarningOne')}</Text>
+                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenterWarningTwo')}</Text>
                         </View>
                     </View>
                     <View style={styles.bottomMidContainer}>
@@ -93,7 +93,7 @@ class SaveSeedConfirmation extends Component {
                                 onPress={event => this.onCheckboxPress()}
                             >
                                 <Image source={this.state.checkboxImage} style={styles.checkbox} />
-                                <Text style={styles.checkboxText}>I have saved my seed</Text>
+                                <Text style={styles.checkboxText}>{t('saveSeedConfirmation:alreadyHave')}</Text>
                             </TouchableOpacity>
                         )}
                         {!this.state.showCheckbox && <View style={{ flex: 1 }} />}
@@ -104,14 +104,16 @@ class SaveSeedConfirmation extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={() => this.onBackPress()}
                             onRightButtonPress={() => this.onNextPress()}
-                            leftText="BACK"
-                            rightText="NEXT"
+                            leftText={t('global:back')}
+                            rightText={t('global:next')}
                         />
                     )}
                     {!this.state.hasSavedSeed && (
                         <TouchableOpacity onPress={() => this.onBackPress()}>
                             <View style={[styles.backButton, { borderColor: THEMES.getHSL(negativeColor) }]}>
-                                <Text style={[styles.backText, { color: THEMES.getHSL(negativeColor) }]}>BACK</Text>
+                                <Text style={[styles.backText, { color: THEMES.getHSL(negativeColor) }]}>
+                                    {t('global:back')}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     )}
@@ -216,4 +218,4 @@ const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
 });
 
-export default connect(mapStateToProps)(SaveSeedConfirmation);
+export default translate(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));
