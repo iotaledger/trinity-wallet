@@ -212,8 +212,8 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                     dispatch(sendTransferError());
                     const alerts = {
                         attachToTangle: [
-                            'Attach to Tangle unavailable',
-                            'Attach to Tangle is not available on your selected node.',
+                            i18next.t('global:attachToTangleUnavailable'),
+                            i18next.t('global:attachToTangleUnavailableExplanation'),
                         ],
                         default: [
                             i18next.t('global:invalidResponse'),
