@@ -214,13 +214,13 @@
         "syncingComplete": "Ο συγχρονισμός ολοκληρώθηκε",
         "syncingCompleteExplanation": "Ο λογαριασμός σας έχει συγχρονιστεί με επιτυχία.",
         "nicknameChanged": "Το όνομα λογαριασμού άλλαξε",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "nicknameChangedExplanation": "Έχει αλλάξει το όνομα λογαριασμού σας.",
+        "accountDeleted": "Ο λογαριασμός διαγράφηκε",
+        "accountDeletedExplanation": "Ο λογαριασμός έχει καταργηθεί από το πορτοφόλι.",
+        "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
+        "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
+        "poorConnection": "Κακή σύνδεση",
+        "poorConnectionExplanation": "Απέτυχε η αλλαγή νομίσματος εξαιτίας κακής σύνδεσης."
     },
     "resetWalletConfirmation": {
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
@@ -232,7 +232,7 @@
         "areYouSure": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
         "cancel": "ΑΚΥΡΟ",
         "reset": "ΕΠΑΝΑΦΟΡΑ"
     },
@@ -253,48 +253,48 @@
         "reminder": "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Ο σπόρος σας είναι {{maxSeedLength}} χαρακτήρες που διαβάζονται από αριστερά προς τα δεξιά. Γράψτε το σπόρο σας και το άθροισμα ελέγχου και",
         "tripleCheck": "τριπλοτσεκάρετε",
         "thatTheyAreCorrect": "ότι είναι σωστά."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Πακέτο κατακερματισμού αντιγράφηκε",
+        "bundleHashCopiedExplanation": "Το πακέτο κατακερματισμού έχει αντιγραφεί στο Πρόχειρο.",
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Η διεύθυνση έχει αντιγραφεί στο Πρόχειρο."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Προβολή σπόρου",
+        "viewAddresses": "Προβολή διευθύνσεων",
+        "editAccountName": "Επεξεργαστείτε το όνομα του λογαριασμού",
+        "deleteAccount": "Διαγραφή λογαριασμού",
+        "addNewAccount": "Προσθήκη νέου λογαριασμού"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Προσαρμοσμένος κόμβος",
+        "add": "Προσθήκη"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Χρήση υπάρχοντος σπόρου",
+        "createNewSeed": "Δημιουργία νέου σπόρου"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Επιλέξτε κόμβο",
+        "addCustomNode": "Προσθήκη προσαρμοσμένου κόμβου",
+        "manualSync": "Χειροκίνητος συγχρονισμός"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Φόντο",
+        "frame": "Πλαίσιο"
     },
     "currencySelection": {
         "currency": "Νόμισμα"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε;"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Σάρωση QR κωδικού"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
@@ -332,7 +332,7 @@
         "reenterWarningTwo": "your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "ΑΥΤΗ Η ΕΝΕΡΓΕΙΑ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΑΝΑΙΡΕΘΕΙ.",
         "infoTextOne": "Όλα τα δεδομένα του πορτοφολιού σας, συμπεριλαμβανομένων",
         "infoTextTwo": "seeds, password",
         "infoTextThree": "και",
