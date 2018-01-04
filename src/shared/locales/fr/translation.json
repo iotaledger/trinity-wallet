@@ -116,7 +116,7 @@
     "login": {
         "emptyPassword": "Mot de passe vide",
         "emptyPasswordExplanation": "Un mot de passe est requis pour la connexion. Veuillez réessayer.",
-        "enterPassword": "Veuillez renseigner votre mot de passe.",
+        "enterPassword": "Veuillez saisir votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
         "login": "SE CONNECTER",
         "selectDifferentNode": "Voulez-vous sélectionner un node différent ?"
@@ -158,7 +158,7 @@
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorrecte",
-        "incorrectSeedExplanation": "La seed que vous avez entrée est incorrecte. Veuillez réessayer.",
+        "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
         "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
         "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire."
     },
@@ -176,7 +176,7 @@
         "max": "MAX",
         "message": "Message",
         "send": "ENVOYER",
-        "invalidAmount": "Montant entré incorrect",
+        "invalidAmount": "Montant saisi incorrect",
         "invalidAmountExplanation": "Veuillez entrer une valeur numérique pour le montant de la transaction.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
         "iotaUnits": "Unités IOTA"
