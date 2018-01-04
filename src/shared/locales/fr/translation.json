@@ -1,21 +1,37 @@
 {
     "global": {
+        "send": "ENVOYER",
+        "cancel": "ANNULER",
+        "continue?": "Êtes-vous sûr(e) de vouloir continuer ?",
+        "noTransactions": "NO RECENT HISTORY",
+        "qr": "QR",
+        "balanceError": "Not enough balance",
+        "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
+        "transferError": "Transfer Error",
+        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferSent": "Transfer sent",
+        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "keyReuse": "Réutilisation de clé",
+        "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Réponse non valide",
         "invalidResponseExplanation": "Le node a retourné une réponse invalide.",
         "invalidResponsePollingExplanation": "Le node a retourné une réponse invalide lors de son interrogation.",
+        "invalidResponseFetchingAccount":
+            "The node returned an invalid response while fetching your account information.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending transfer.",
         "seed": "Seed",
         "back": "RETOUR",
-        "backLowercase": "Back",
+        "backLowercase": "Retour",
         "done": "OK",
+        "doneLowercase": "Done",
         "next": "SUIVANT",
         "apply": "Apply",
-        "save": "Save",
+        "save": "Enregistrer",
         "close": "FERMER",
-        "continue": "Continue",
+        "continue": "Continuer",
         "manualCopy": "Notez la seed",
         "paperWallet": "Imprimez la copie papier",
         "copyToClipboard": "Ajoutez à un gestionnaire de mot de passe",
-        "qr": "QR",
         "notAvailable": "Cette fonction n’est pas disponible",
         "notAvailableExplanation": "Elle sera ajoutée ultérieurement.",
         "enterSeed": "Veuillez entrer votre seed.",
@@ -36,8 +52,8 @@
         "somethingWentWrong": "Une erreur s'est produite",
         "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
         "node": "Node",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformAction": "Impossible d’effectuer cette action",
+        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -254,7 +270,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs":
-            "Votre Seed se lit de gauche à droite et comporte 81 caractères. Notez-la, ainsi que le code de vérification et",
+            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "vérifiez à plusieurs reprises",
         "thatTheyAreCorrect": "qu'ils sont corrects."
     },
@@ -308,14 +324,40 @@
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete this account?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
+        "thisAction": "Cette action est irréversible.",
         "enterPassword": "Enter your password to delete this account."
     },
     "manualSync": {
         "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down.",
+        "thisMayTake": "Cela peut prendre un peu temps.",
+        "youMayNotice": "Il se peut que votre appareil ralentisse.",
         "syncAccount": "SYNC ACCOUNT",
         "syncingYourAccount": "Syncing your account."
+    },
+    "useExistingSeed": {
+        "title": "Enter a seed and account name."
+    },
+    "viewSeed": {
+        "enterPassword": "Enter password to view your seed.",
+        "viewSeed": "VIEW SEED",
+        "hideSeed": "HIDE SEED"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "I have saved my seed",
+        "reenter": "You will now be asked to re-enter your seed.",
+        "reenterWarningOne": "If your device fails and you have not saved",
+        "reenterWarningTwo": "your seed, you will lose your IOTA."
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "infoTextOne": "Toutes vos données de wallet incluant vos",
+        "infoTextTwo": "seeds, mots de passe",
+        "infoTextThree": "et",
+        "infoTextFour": "les autres informations de compte",
+        "infoTextFive": "seront perdues."
+    },
+    "transferConfirmation": {
+        "youAreAbout": "You are about to send {{contents}} to the address",
+        "aMessage": "a message"
     }
 }
