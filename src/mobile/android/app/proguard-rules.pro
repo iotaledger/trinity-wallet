@@ -48,6 +48,11 @@
 -keepclassmembers class *  { @com.facebook.react.uimanager.annotations.ReactProp <methods>; }
 -keepclassmembers class *  { @com.facebook.react.uimanager.annotations.ReactPropGroup <methods>; }
 
+-keep class com.facebook.react.bridge.CatalystInstanceImpl { *; }
+-keep class com.facebook.react.bridge.JavaScriptExecutor { *; }
+-keep class com.facebook.react.bridge.queue.NativeRunnable { *; }
+-keep class com.facebook.react.bridge.ReadableType { *; }
+
 -dontwarn com.facebook.react.**
 
 # TextLayoutBuilder uses a non-public Android constructor within StaticLayout.
