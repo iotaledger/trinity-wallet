@@ -63,8 +63,8 @@
         "nameInUseExplanation": "Veuillez utiliser un nom de compte unique pour votre seed.",
         "enterAccountName": "Veuillez saisir un nom de compte.",
         "accountName": "Nom du compte",
-        "noNickname": "Aucun nom de compte entré",
-        "noNicknameExplanation": "Veuillez entrer un nom de compte pour votre seed.",
+        "noNickname": "Aucun nom de compte saisi",
+        "noNicknameExplanation": "Veuillez saisir un nom de compte pour votre seed.",
         "seedInUse": "Seed déjà utilisée",
         "seedInUseExplanation": "Cette seed est déjà liée à votre porte-monnaie. Veuillez en utiliser une autre."
     },
@@ -177,7 +177,7 @@
         "message": "Message",
         "send": "ENVOYER",
         "invalidAmount": "Montant saisi incorrect",
-        "invalidAmountExplanation": "Veuillez entrer une valeur numérique pour le montant de la transaction.",
+        "invalidAmountExplanation": "Veuillez saisir une valeur numérique pour le montant de la transaction.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
         "iotaUnits": "Unités IOTA"
     },
@@ -232,7 +232,7 @@
         "areYouSure": "Êtes-vous sûr(e) de vouloir continuer ?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Entrez votre mot de passe pour réinitialiser le wallet.",
+        "enterPassword": "Saisissez votre mot de passe pour réinitialiser le wallet.",
         "cancel": "ANNULER",
         "reset": "RÉINITIALISER"
     },
@@ -308,7 +308,7 @@
         "areYouSure": "Voulez-vous vraiment supprimer ce compte ?",
         "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
         "thisAction": "Cette action est irréversible.",
-        "enterPassword": "Entrez votre mot de passe pour supprimer ce compte."
+        "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
     },
     "manualSync": {
         "pressToSync": "Appuyez sur le bouton ci-dessous pour synchroniser votre compte.",
@@ -318,15 +318,15 @@
         "syncingYourAccount": "Synchronisation de votre compte."
     },
     "useExistingSeed": {
-        "title": "Entrez une seed et un nom de compte."
+        "title": "Saisissez une seed et un nom de compte."
     },
     "viewSeed": {
-        "enterPassword": "Entrez le mot de passe pour afficher votre seed.",
+        "enterPassword": "Saisissez le mot de passe pour afficher votre seed.",
         "viewSeed": "VOIR LA SEED",
         "hideSeed": "MASQUER LA SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "J’ai sauvegardé ma seed",
+        "alreadyHave": "J’ai enregistré ma seed",
         "reenter": "Vous allez devoir saisir à nouveau votre seed.",
         "reenterWarningOne": "Si votre appareil tombe en panne et que vous n’avez pas enregistré",
         "reenterWarningTwo": "votre seed, vous perdrez vos IOTA."
