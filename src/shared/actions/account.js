@@ -215,41 +215,78 @@ export const fetchFullAccountInfoForFirstUse = (
     storeInKeychainPromise,
     navigator = null,
 ) => dispatch => {
+    const onError = () => {
+        if (navigator) {
+            navigator.pop({ animated: false });
+        }
+
+        dispatch(generateAccountInfoErrorAlert());
+        dispatch(fullAccountInfoForFirstUseFetchError());
+    };
+
     dispatch(fullAccountInfoForFirstUseFetchRequest());
     getAccountData(seed, accountName)
         .then(data => {
             dispatch(clearTempData()); // Clean up partial state for reducer anyways.
-            storeInKeychainPromise(password, seed, accountName)
-                .then(() => {
-                    return dispatch(fullAccountInfoForFirstUseFetchSuccess(data));
-                })
-                .catch(() => {
-                    onError();
+
+            const unspentAddresses = getUnspentAddresses(data.addresses);
+            if (!isEmpty(unspentAddresses)) {
+                iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
+                    if (err) {
+                        onError();
+                    } else {
+                        storeInKeychainPromise(password, seed, accountName)
+                            .then(() => {
+                                const payloadWithHashes = assign({}, data, { hashes });
+                                dispatch(fullAccountInfoForFirstUseFetchSuccess(payloadWithHashes));
+                            })
+                            .catch(() => {
+                                onError();
+                            });
+                    }
                 });
+            } else {
+                storeInKeychainPromise(password, seed, accountName)
+                    .then(() => {
+                        dispatch(fullAccountInfoForFirstUseFetchSuccess(data));
+                    })
+                    .catch(() => {
+                        onError();
+                    });
+            }
         })
         .catch(() => onError());
-
-    function onError() {
-        if (navigator) {
-            navigator.pop({ animated: false });
-        }
-        dispatch(generateAccountInfoErrorAlert());
-        return dispatch(fullAccountInfoForFirstUseFetchError());
-    }
 };
 
 export const getFullAccountInfo = (seed, accountName, navigator = null) => {
     return dispatch => {
+        const onError = () => {
+            if (navigator) {
+                navigator.pop({ animated: false });
+            }
+
+            dispatch(generateAccountInfoErrorAlert());
+            dispatch(fullAccountInfoFetchError());
+        };
+
         dispatch(fullAccountInfoFetchRequest());
         getAccountData(seed, accountName)
-            .then(data => dispatch(fullAccountInfoFetchSuccess(data)))
-            .catch(() => {
-                if (navigator) {
-                    navigator.pop({ animated: false });
+            .then(data => {
+                const unspentAddresses = getUnspentAddresses(data.addresses);
+
+                if (!isEmpty(unspentAddresses)) {
+                    iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
+                        if (err) {
+                            onError();
+                        }
+                        const payloadWithHashes = assign({}, data, { hashes });
+                        dispatch(fullAccountInfoFetchSuccess(payloadWithHashes));
+                    });
+                } else {
+                    dispatch(fullAccountInfoFetchSuccess(assign({}, data, { hashes: [] })));
                 }
-                dispatch(generateAccountInfoErrorAlert());
-                dispatch(fullAccountInfoFetchError());
-            });
+            })
+            .catch(() => onError());
     };
 };
 
@@ -289,36 +326,6 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
         );
         return dispatch(manualSyncError());
     });
-};
-
-const getBundleWithPersistence = tailTxHash => {
-    return new Promise((resolve, reject) => {
-        iota.api.getBundle(tailTxHash.hash, (err, bundle) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(map(bundle, tx => Object.assign({}, tx, { persistence: tailTxHash.persistence })));
-            }
-        });
-    });
-};
-
-const getBundles = hashes => {
-    return reduce(
-        hashes,
-        (promise, hash, idx) => {
-            return promise
-                .then(result => {
-                    return getBundleWithPersistence(hash).then(bundle => {
-                        result.push(bundle);
-
-                        return result;
-                    });
-                })
-                .catch(console.error);
-        },
-        Promise.resolve([]),
-    );
 };
 
 export const getAccountInfo = (seed, accountName, navigator = null) => {
