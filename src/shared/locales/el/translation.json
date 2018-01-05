@@ -324,12 +324,12 @@
     },
     "viewSeed": {
         "enterPassword": "Εισάγετε κωδικό πρόσβασης για να δείτε το σπόρο σας.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "viewSeed": "ΠΡΟΒΟΛΗ ΣΠΟΡΟΥ",
+        "hideSeed": "ΑΠΟΚΡΥΨΗ ΣΠΟΡΟΥ"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
+        "alreadyHave": "Έχω αποθηκεύσει το σπόρο μου",
+        "reenter": "Τώρα θα σας ζητηθεί να επανεισάγετε το σπόρο σας.",
         "reenterWarningOne": "If your device fails and you have not saved",
         "reenterWarningTwo": "your seed, you will lose your IOTA."
     },
