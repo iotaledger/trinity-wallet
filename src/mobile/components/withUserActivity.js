@@ -38,7 +38,7 @@ export default () => C => {
                             this.props.setUserActivity({ inactive: true });
                         }
                     },
-                    30000,
+                    180000,
                 );
             } else if (nextAppState === 'active') {
                 this.props.setUserActivity({ minimised: false });

@@ -56,12 +56,14 @@ export function setCurrency(currency) {
 export function setPrice(data) {
     const priceData = get(data, `RAW.IOT`);
     const usdPrice = get(priceData, 'USD.PRICE') || 0;
+    const eurPrice = get(priceData, 'EUR.PRICE') || 0;
     const btcPrice = get(priceData, 'BTC.PRICE') || 0;
     const ethPrice = get(priceData, 'ETH.PRICE') || 0;
 
     return {
         type: ActionTypes.SET_PRICE,
         usd: usdPrice,
+        eur: eurPrice,
         btc: btcPrice,
         eth: ethPrice,
     };
@@ -105,14 +107,14 @@ export function getUrlNumberFormat(timeframe) {
 
 export function getPrice() {
     return dispatch =>
-        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,BTC,ETH')
+        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
             .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
             .then(json => dispatch(setPrice(json)));
 }
 
 export function getChartData() {
     return dispatch => {
-        const currencies = ['USD', 'BTC', 'ETH'];
+        const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
 
         currencies.forEach(currency => {
