@@ -7,7 +7,7 @@
         "qr": "Kod QR",
         "balanceError": "Brak wystarczających środków",
         "balanceErrorMessage": "Nie masz wystarczająco dużo IOTA, aby zakończyć ten transfer.",
-        "transferError": "Błąd transferu",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania twojego transferu. Spróbuj ponownie.",
         "transferSent": "Transfer zrealizowany",
         "transferSentMessage": "Transfer został przekazany do Tangle.",
@@ -52,7 +52,9 @@
         "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
         "node": "Węzeł",
         "cannotPerformAction": "Nie można wykonać akcji",
-        "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych."
+        "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
