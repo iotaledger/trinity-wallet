@@ -33,10 +33,8 @@ export default () => C => {
         handleAppStateChange = nextAppState => {
             if (nextAppState.match(/inactive|background/)) {
                 this.props.setUserActivity({ minimised: true });
-                console.log('minimised');
             } else if (nextAppState === 'active') {
                 this.props.setUserActivity({ minimised: false });
-                console.log('active');
             }
         };
 
