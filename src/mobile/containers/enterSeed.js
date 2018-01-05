@@ -130,7 +130,9 @@ class EnterSeed extends React.Component {
                                         <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                     </View>
                                 </View>
-                                <View style={{ flex: 1, flexDirection: 'row', width: width / 1.4 }}>
+                                <View
+                                    style={{ flex: 1, flexDirection: 'row', width: width / 1.4, alignItems: 'center' }}
+                                >
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
@@ -307,15 +309,17 @@ const styles = StyleSheet.create({
     textFieldContainer: {
         flex: 1,
         paddingRight: width / 30,
+        justifyContent: 'flex-end',
     },
     textField: {
         color: 'white',
         fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
-        justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: height / 90,
+        paddingBottom: height / 100,
+        justifyContent: 'flex-end',
+        height: height / 10,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
