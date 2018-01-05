@@ -22,7 +22,7 @@
         "back": "ANTERIOR",
         "backLowercase": "Voltar",
         "done": "CONCLUÍDO",
-        "doneLowercase": "Done",
+        "doneLowercase": "Concluir",
         "next": "SEGUINTE",
         "apply": "Aplicar",
         "save": "Gravar",
@@ -123,7 +123,7 @@
     },
     "loading": {
         "loadingFirstTime": "A carregar a Seed pela primeira vez.",
-        "thisMayTake": "Isto pode demorar algum tempo.",
+        "thisMayTake": "Isto pode demorar um pouco.",
         "youMayNotice": "Pode notar um abrandamento do seu dispositivo."
     },
     "newSeedSetup": {
