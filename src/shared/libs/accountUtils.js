@@ -551,11 +551,11 @@ export const getAccountData = (seed, accountName) => {
                                             if (err) {
                                                 reject(err);
                                             } else {
-                                                each(balances, (balance, idx) => {
+                                                each(balances.balances, (balance, idx) => {
                                                     const balanceAsNumber = parseInt(balance);
                                                     data.balance += balanceAsNumber;
 
-                                                    if (balance > 0) {
+                                                    if (balanceAsNumber > 0) {
                                                         data.inputs.push({
                                                             address: data.addresses[idx],
                                                             keyIndex: idx,
@@ -565,6 +565,7 @@ export const getAccountData = (seed, accountName) => {
                                                     }
                                                 });
 
+                                                console.log('Data', data);
                                                 const payload = organizeAccountInfo(accountName, data);
                                                 const unspentAddresses = getUnspentAddresses(payload.addresses);
                                                 if (!isEmpty(unspentAddresses)) {
