@@ -84,7 +84,7 @@
             {
                 "name": "IOTA URL Scheme",
                 "schemes": [
-                    "iota"
+                    "iot"
                 ]
             }
         ],
