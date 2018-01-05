@@ -45,6 +45,10 @@
 		BCCD269481564D2C81E6E261 /* libRNClipboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A3924744F3445B889D8805 /* libRNClipboard.a */; };
 		C89A2020D6B12FAF4A0F1EE1 /* libPods-iotaWalletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D51D802F5BB3E916B0C7685 /* libPods-iotaWalletTests.a */; };
 		CB1583E41FCFA657004C2604 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1583B41FCFA625004C2604 /* libKCKeepAwake.a */; };
+		CB17C6711FFE91D0006C7ACD /* libLottieReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB17C63F1FFE91C1006C7ACD /* libLottieReactNative.a */; };
+		CB17C67E1FFE9290006C7ACD /* libLottie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB17C67D1FFE9255006C7ACD /* libLottie.a */; };
+		CB17C67F1FFE92AF006C7ACD /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB17C6791FFE9255006C7ACD /* Lottie.framework */; };
+		CB17C6801FFE92AF006C7ACD /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CB17C6791FFE9255006C7ACD /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CB1C67D61F9A418D00229848 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1C67B21F9A415100229848 /* libRCTCamera.a */; };
 		CB1C68571F9CC65500229848 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1C68541F9CC62A00229848 /* libRNFS.a */; };
 		CB1C68581F9CC65500229848 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1C68561F9CC62A00229848 /* libRNFS.a */; };
@@ -308,6 +312,41 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = KCKeepAwake;
 		};
+		CB17C63E1FFE91C1006C7ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB17C6391FFE91C1006C7ACD /* LottieReactNative.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
+			remoteInfo = LottieReactNative;
+		};
+		CB17C6781FFE9255006C7ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB17C6721FFE9255006C7ACD /* Lottie.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 62CA59B81E3C173B002D7188;
+			remoteInfo = Lottie_iOS;
+		};
+		CB17C67A1FFE9255006C7ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB17C6721FFE9255006C7ACD /* Lottie.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FAE1F7E61E428CBE002E0974;
+			remoteInfo = Lottie_macOS;
+		};
+		CB17C67C1FFE9255006C7ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB17C6721FFE9255006C7ACD /* Lottie.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 84FE12EF1E4C1485009B157C;
+			remoteInfo = LottieLibraryIOS;
+		};
+		CB17C6811FFE92AF006C7ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB17C6721FFE9255006C7ACD /* Lottie.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 62CA59B71E3C173B002D7188;
+			remoteInfo = Lottie_iOS;
+		};
 		CB1C67B11F9A415100229848 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CB1C67AA1F9A414A00229848 /* RCTCamera.xcodeproj */;
@@ -429,6 +468,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CB17C6831FFE92AF006C7ACD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CB17C6801FFE92AF006C7ACD /* Lottie.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		009D0AF9A385401CA7316942 /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
@@ -506,6 +559,8 @@
 		A937E21FD0D64559BDD2A51D /* RNClipboard.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNClipboard.xcodeproj; path = "../node_modules/react-native-clipboard/RNClipboard.xcodeproj"; sourceTree = "<group>"; };
 		A97AE553233C113F1F0C49F8 /* Pods-iotaWallet-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		CB1583AF1FCFA61C004C2604 /* KCKeepAwake.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KCKeepAwake.xcodeproj; path = "../node_modules/react-native-keep-awake/ios/KCKeepAwake.xcodeproj"; sourceTree = "<group>"; };
+		CB17C6391FFE91C1006C7ACD /* LottieReactNative.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LottieReactNative.xcodeproj; path = "../node_modules/lottie-react-native/lib/ios/LottieReactNative.xcodeproj"; sourceTree = "<group>"; };
+		CB17C6721FFE9255006C7ACD /* Lottie.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Lottie.xcodeproj; path = "../node_modules/lottie-ios/Lottie.xcodeproj"; sourceTree = "<group>"; };
 		CB1C67AA1F9A414A00229848 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		CB1C684E1F9CC62900229848 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		CB262D141FE04011004E06D5 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNKeychain.xcodeproj; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; };
@@ -538,9 +593,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB17C67E1FFE9290006C7ACD /* libLottie.a in Frameworks */,
+				CB17C6711FFE91D0006C7ACD /* libLottieReactNative.a in Frameworks */,
 				CB262D1A1FE04020004E06D5 /* libRNKeychain.a in Frameworks */,
 				60F4FC861FD502A2001F5A1E /* libRNDeviceInfo.a in Frameworks */,
 				CB1583E41FCFA657004C2604 /* libKCKeepAwake.a in Frameworks */,
+				CB17C67F1FFE92AF006C7ACD /* Lottie.framework in Frameworks */,
 				6083B36F1FB7E65700DF3681 /* libRNShakeEvent.a in Frameworks */,
 				CB1C68571F9CC65500229848 /* libRNFS.a in Frameworks */,
 				CB1C68581F9CC65500229848 /* libRNFS.a in Frameworks */,
@@ -789,6 +847,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CB17C6721FFE9255006C7ACD /* Lottie.xcodeproj */,
+				CB17C6391FFE91C1006C7ACD /* LottieReactNative.xcodeproj */,
 				CB262D141FE04011004E06D5 /* RNKeychain.xcodeproj */,
 				60F4FC4A1FD50248001F5A1E /* RNDeviceInfo.xcodeproj */,
 				CB1583AF1FCFA61C004C2604 /* KCKeepAwake.xcodeproj */,
@@ -864,6 +924,24 @@
 			isa = PBXGroup;
 			children = (
 				CB1583B41FCFA625004C2604 /* libKCKeepAwake.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB17C63A1FFE91C1006C7ACD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB17C63F1FFE91C1006C7ACD /* libLottieReactNative.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB17C6731FFE9255006C7ACD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB17C6791FFE9255006C7ACD /* Lottie.framework */,
+				CB17C67B1FFE9255006C7ACD /* Lottie.framework */,
+				CB17C67D1FFE9255006C7ACD /* libLottie.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -992,10 +1070,12 @@
 				693A9AEA67E453FFFB11AE7D /* [CP] Copy Pods Resources */,
 				6083B2D61FB55CE400DF3681 /* ShellScript */,
 				60ACCF241FBD29BB001BC01F /* ShellScript */,
+				CB17C6831FFE92AF006C7ACD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CB17C6821FFE92AF006C7ACD /* PBXTargetDependency */,
 			);
 			name = iotaWallet;
 			productName = "Hello World";
@@ -1128,6 +1208,14 @@
 				{
 					ProductGroup = CB1583B01FCFA61C004C2604 /* Products */;
 					ProjectRef = CB1583AF1FCFA61C004C2604 /* KCKeepAwake.xcodeproj */;
+				},
+				{
+					ProductGroup = CB17C6731FFE9255006C7ACD /* Products */;
+					ProjectRef = CB17C6721FFE9255006C7ACD /* Lottie.xcodeproj */;
+				},
+				{
+					ProductGroup = CB17C63A1FFE91C1006C7ACD /* Products */;
+					ProjectRef = CB17C6391FFE91C1006C7ACD /* LottieReactNative.xcodeproj */;
 				},
 				{
 					ProductGroup = 604AFFAC1FAF8B71003CBDFE /* Products */;
@@ -1462,6 +1550,34 @@
 			fileType = archive.ar;
 			path = libKCKeepAwake.a;
 			remoteRef = CB1583B31FCFA625004C2604 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB17C63F1FFE91C1006C7ACD /* libLottieReactNative.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLottieReactNative.a;
+			remoteRef = CB17C63E1FFE91C1006C7ACD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB17C6791FFE9255006C7ACD /* Lottie.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Lottie.framework;
+			remoteRef = CB17C6781FFE9255006C7ACD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB17C67B1FFE9255006C7ACD /* Lottie.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Lottie.framework;
+			remoteRef = CB17C67A1FFE9255006C7ACD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB17C67D1FFE9255006C7ACD /* libLottie.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLottie.a;
+			remoteRef = CB17C67C1FFE9255006C7ACD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CB1C67B21F9A415100229848 /* libRCTCamera.a */ = {
@@ -1925,6 +2041,11 @@
 			isa = PBXTargetDependency;
 			target = 2D02E47A1E0B4A5D006451C7 /* iotaWallet-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+		};
+		CB17C6821FFE92AF006C7ACD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Lottie_iOS;
+			targetProxy = CB17C6811FFE92AF006C7ACD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
