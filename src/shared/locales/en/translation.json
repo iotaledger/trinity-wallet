@@ -354,7 +354,7 @@
         "infoTextFive": "will be lost."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "sendMessage": "<0>You are about to send <1>a message</1> to the address</0>",
+        "sendValue": " "
     }
 }
