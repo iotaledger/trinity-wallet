@@ -7,7 +7,7 @@
         "qr": "Kod QR",
         "balanceError": "Brak wystarczających środków",
         "balanceErrorMessage": "Nie masz wystarczająco dużo IOTA, aby zakończyć ten transfer.",
-        "transferError": "Błąd transferu",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania twojego transferu. Spróbuj ponownie.",
         "transferSent": "Transfer zrealizowany",
         "transferSentMessage": "Transfer został przekazany do Tangle.",
@@ -16,9 +16,8 @@
         "invalidResponse": "Błędna odpowiedź",
         "invalidResponseExplanation": "Node zwrócił nieprawidłową odpowiedź.",
         "invalidResponsePollingExplanation": "Node zwrócił nieprawidłową odpowiedź podczas pullingu.",
-        "invalidResponseFetchingAccount":
-            "Node zwrócił nieprawidłową odpowiedź podczas pobierania informacji o twoim koncie.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+        "invalidResponseFetchingAccount": "Node zwrócił nieprawidłową odpowiedź podczas pobierania informacji o twoim koncie.",
+        "invalidResponseSendingTransfer": "Node zwrócił nieprawidłową odpowiedź podczas wysyłania transferu.",
         "seed": "Seed",
         "back": "WSTECZ",
         "backLowercase": "Wstecz",
@@ -53,7 +52,9 @@
         "somethingWentWrongExplanation": "Uruchom ponownie aplikację.",
         "node": "Węzeł",
         "cannotPerformAction": "Nie można wykonać akcji",
-        "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych."
+        "cannotPerformActionExplanation": "Aby zresetować portfel przejdź do ustawień zaawansowanych.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -329,21 +330,21 @@
         "syncingYourAccount": "Synchronizacja twojego konta."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Wprowadź seeda oraz nazwę konta."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Wprowadź hasło, aby wyświetlić swojego seeda.",
+        "viewSeed": "POKAŻ SEEDA",
+        "hideSeed": "UKRYJ SEEDA"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarningOne": "If your device fails and you have not saved",
-        "reenterWarningTwo": "your seed, you will lose your IOTA."
+        "alreadyHave": "Zapisałem swojego seeda",
+        "reenter": "Teraz będziesz poproszony\/a o ponowne wprowadzenie swojego seeda.",
+        "reenterWarningOne": "W przypadku gdy twoje urządzenie ulegnie uszkodzeniu a nie zapisano",
+        "reenterWarningTwo": "seeda, stracisz swoje IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
         "infoTextOne": "Wszystkie twoje portfele w tym także twoje",
         "infoTextTwo": "seeedy, hasła",
         "infoTextThree": "oraz",
@@ -351,7 +352,7 @@
         "infoTextFive": "zostaną utracone."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "Masz zamiar wysłać {{contents}} na ten adres",
+        "aMessage": "wiadomość"
     }
 }

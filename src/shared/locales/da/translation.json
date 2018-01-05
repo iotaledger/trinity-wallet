@@ -7,7 +7,7 @@
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "Du har ikke nok IOTA til at gennemføre denne overførsel.",
-        "transferError": "Transfer Error",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
@@ -53,7 +53,9 @@
         "somethingWentWrongExplanation": "Genstart venligst appen.",
         "node": "Node",
         "cannotPerformAction": "Kan ikke udføre handling",
-        "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen."
+        "cannotPerformActionExplanation": "Åbn de avancerede indstillinger for at nulstille tegnebogen.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seedet indeholder ugyldige tegn",
