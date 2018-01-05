@@ -1,7 +1,7 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-
+const dialog = electron.dialog;
 const ipcMain = electron.ipcMain;
 // const shell = electron.shell;
 
@@ -30,7 +30,13 @@ const createWindow = () => {
     });
 
     mainWindow.loadURL('http://localhost:1074/');
+    // mainWindow.loadURL(url.format({
+    //     pathname: path.join(__dirname, 'index.html'),
+    //     protocol: 'file:',
+    //     slashes: true
+    // }));
 
+    // Open the DevTools.
     mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', () => {
