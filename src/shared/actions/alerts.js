@@ -24,5 +24,14 @@ export const generateAccountInfoErrorAlert = () => dispatch =>
             i18next.t('global:invalidResponseFetchingAccount'), // Or could just say communicating with your selected IOTA node.
         ),
     );
+export const generateSyncingSuccessAlert = () => dispatch => {
+    dispatch(
+        generateAlert(
+            'success',
+            i18next.t('settings:syncingComplete'),
+            i18next.t('settings:syncingCompleteExplanation'),
+        ),
+    );
+};
 
 export const disposeOffAlert = () => dispatch => dispatch(dispose());

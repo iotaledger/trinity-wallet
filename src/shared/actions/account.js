@@ -38,7 +38,7 @@ import {
     getAccountData,
 } from '../libs/accountUtils';
 import { setReady, clearTempData } from './tempAccount';
-import { generateAlert, generateAccountInfoErrorAlert } from '../actions/alerts';
+import { generateAlert, generateAccountInfoErrorAlert, generateSyncingSuccessAlert } from '../actions/alerts';
 import i18next from 'i18next';
 
 export const ActionTypes = {
@@ -296,15 +296,7 @@ export const manuallySyncAccount = (seed, accountName) => {
             dispatch(generateAccountInfoErrorAlert());
             return dispatch(fullAccountInfoFetchError());
         };
-        const generateSuccessAlert = () => {
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('settings:syncingComplete'),
-                    i18next.t('settings:syncingCompleteExplanation'),
-                ),
-            );
-        };
+
         dispatch(manualSyncRequest());
         getAccountData(seed, accountName)
             .then(data => {
@@ -315,13 +307,13 @@ export const manuallySyncAccount = (seed, accountName) => {
                         if (err) {
                             onError();
                         } else {
-                            generateSuccessAlert();
+                            dispatch(generateSyncingSuccessAlert());
                             const payloadWithHashes = assign({}, data, { hashes });
                             dispatch(manualSyncSuccess(payloadWithHashes));
                         }
                     });
                 } else {
-                    generateSuccessAlert();
+                    dispatch(generateSyncingSuccessAlert());
                     dispatch(manualSyncSuccess(assign({}, data, { hashes: [] })));
                 }
             })
