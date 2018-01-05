@@ -7,7 +7,7 @@
         "qr": "QR",
         "balanceError": "Μη αρκετό υπόλοιπο",
         "balanceErrorMessage": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
-        "transferError": "Σφάλμα μεταφοράς",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Κάτι πήγε στραβά κατά την αποστολή της μεταφοράς σας. Παρακαλώ δοκιμάστε ξανά.",
         "transferSent": "Μεταφορά απεστάλει",
         "transferSentMessage": "Η μεταφορά σας έχει αποσταλεί στο Tangle.",
@@ -52,7 +52,9 @@
         "somethingWentWrongExplanation": "Παρακαλώ επανεκκινήστε την εφαρμογή.",
         "node": "Κόμβος",
         "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
-        "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι."
+        "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
