@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
     },
     qrButtonContainer: {
         alignItems: 'center',
-        paddingBottom: height / 100,
+        paddingBottom: isAndroid ? height / 90 : height / 150,
         justifyContent: 'flex-end',
         height: height / 10,
     },
