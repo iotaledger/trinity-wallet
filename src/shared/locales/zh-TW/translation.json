@@ -7,7 +7,7 @@
         "qr": "QR Code",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
-        "transferError": "Transfer Error",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
@@ -53,7 +53,9 @@
         "somethingWentWrongExplanation": "請重新啟動程式",
         "node": "節點",
         "cannotPerformAction": "無法執行操作",
-        "cannotPerformActionExplanation": "轉到進階設定中重置錢包。"
+        "cannotPerformActionExplanation": "轉到進階設定中重置錢包。",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
