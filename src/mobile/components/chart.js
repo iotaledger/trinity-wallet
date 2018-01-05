@@ -18,6 +18,8 @@ const getChartCurrencySymbol = currency => {
         }
     } else if (currency === 'ETH') {
         return 'Ξ';
+    } else if (currency === 'EUR') {
+        return '€';
     }
 
     return '$';
@@ -31,7 +33,8 @@ const timeframeFromCurrent = {
 };
 
 const nextCurrency = {
-    USD: 'BTC',
+    USD: 'EUR',
+    EUR: 'BTC',
     BTC: 'ETH',
     ETH: 'USD',
 };
@@ -49,6 +52,9 @@ class Chart extends React.Component {
         switch (this.props.marketData.currency) {
             case 'USD':
                 this.setState({ price: this.props.marketData.usdPrice });
+                break;
+            case 'EUR':
+                this.setState({ price: this.props.marketData.eurPrice });
                 break;
             case 'BTC':
                 this.setState({ price: this.props.marketData.btcPrice });
@@ -118,8 +124,11 @@ class Chart extends React.Component {
 
     getPriceFormat(x) {
         const { marketData } = this.props;
+        x = parseFloat(x);
 
         if (marketData.currency === 'USD') {
+            return x.toFixed(3);
+        } else if (marketData.currency === 'EUR') {
             return x.toFixed(3);
         } else if (marketData.currency === 'BTC') {
             return x.toFixed(6);
