@@ -7,7 +7,7 @@
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "거래를 완료를 하기 위해서는 현재 IOTA 잔액이 충분하지 않습니다.",
-        "transferError": "Transfer Error",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
@@ -53,7 +53,9 @@
         "somethingWentWrongExplanation": "어플을 다시 실행하여 주십시오.",
         "node": "노드",
         "cannotPerformAction": "작업 수행할 수 없음",
-        "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오."
+        "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
