@@ -12,37 +12,31 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = state => ({
-    isSyncing: state.tempAccount.isSyncing,
-    isSendingTransfer: state.tempAccount.isSendingTransfer,
-});
-
 export default () => C => {
     class withUserActivity extends Component {
         componentDidMount() {
             AppState.addEventListener('change', this.handleAppStateChange);
+            timer.setTimeout(
+                'background',
+                () => {
+                    this.props.setUserActivity({ inactive: true });
+                },
+                180000,
+            );
         }
 
         componentWillUnmount() {
             AppState.removeEventListener('change', this.handleAppStateChange);
+            timer.clearTimeout('background');
         }
 
         handleAppStateChange = nextAppState => {
-            const { isSyncing, isSendingTransfer } = this.props;
             if (nextAppState.match(/inactive|background/)) {
                 this.props.setUserActivity({ minimised: true });
-                timer.setTimeout(
-                    'background',
-                    () => {
-                        if (!isSyncing && !isSendingTransfer) {
-                            this.props.setUserActivity({ inactive: true });
-                        }
-                    },
-                    180000,
-                );
+                console.log('minimised');
             } else if (nextAppState === 'active') {
                 this.props.setUserActivity({ minimised: false });
-                timer.clearTimeout('background');
+                console.log('active');
             }
         };
 
@@ -54,9 +48,7 @@ export default () => C => {
     withUserActivity.propTypes = {
         setUserActivity: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        isSyncing: PropTypes.bool.isRequired,
-        isSendingTransfer: PropTypes.bool.isRequired,
     };
 
-    return translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(withUserActivity));
+    return translate(['global'])(connect(null, mapDispatchToProps)(withUserActivity));
 };
