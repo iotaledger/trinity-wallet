@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Image, Text, StatusBar } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import LottieView from 'lottie-react-native';
 
 import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
@@ -29,6 +30,7 @@ class InitialLoading extends Component {
     }
 
     componentDidMount() {
+        this.animation.play();
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
     }
 
@@ -70,7 +72,15 @@ class InitialLoading extends Component {
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.logoContainer}>
-                    <Image source={iotaWhiteImagePath} style={styles.logo} />
+                    <View style={styles.animationContainer}>
+                        <LottieView
+                            ref={animation => {
+                                this.animation = animation;
+                            }}
+                            source={require('../animations/welcome.json')}
+                            style={styles.animation}
+                        />
+                    </View>
                 </View>
                 <View style={styles.textContainer}>
                     <Text style={styles.text}>IOTA Alpha Wallet {FULL_VERSION}</Text>
@@ -87,10 +97,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     logoContainer: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15,
+        flex: 1,
     },
     text: {
         backgroundColor: 'transparent',
@@ -105,6 +114,14 @@ const styles = StyleSheet.create({
     logo: {
         width: width / 4,
         height: width / 4,
+    },
+    animation: {
+        justifyContent: 'center',
+        width: width * 1.5,
+        height: width / 1.77 * 1.5,
+    },
+    animationContainer: {
+        paddingTop: height / 40,
     },
 });
 
