@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -23,25 +23,35 @@ class TransferConfirmationModal extends Component {
     render() {
         const { t, backgroundColor } = this.props;
         let transferContents = null;
-        if (this.props.amount === 0) {
-            transferContents = <Text style={styles.iotaText}>{t('transferConfirmation:aMessage')}</Text>;
+        let amount = this.props.amount;
+        let denomination = this.props.denomination;
+        if (amount == 0) {
+            //For some reason === does not work
+            transferContents = (
+                <Trans i18nKey="sendMessage">
+                    <Text style={styles.regularText}>
+                        You are about to send <Text style={styles.iotaText}>a message</Text> to the address
+                    </Text>
+                </Trans>
+            );
         } else {
             transferContents = (
-                <Text style={styles.iotaText}>
-                    {' '}
-                    {this.props.amount} {this.props.denomination}{' '}
-                </Text>
+                <Trans i18nKey="sendValue">
+                    <Text style={styles.regularText}>
+                        You are about to send{' '}
+                        <Text style={styles.iotaText}>
+                            {{ amount }} {{ denomination }}
+                        </Text>{' '}
+                        to the address
+                    </Text>
+                </Trans>
             );
         }
         return (
             <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
                 <View style={styles.modalContent}>
                     <View style={styles.textContainer}>
-                        <Text style={styles.text}>
-                            <Text style={styles.regularText}>
-                                {t('transferConfirmation:youAreAbout', { contents: transferContents })}
-                            </Text>
-                        </Text>
+                        <Text style={styles.text}>{transferContents}</Text>
                         <Text numberOfLines={3} style={styles.addressText}>
                             {this.props.address}
                         </Text>
