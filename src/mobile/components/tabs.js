@@ -47,7 +47,7 @@ class Tabs extends Component {
                 <BorderShadow
                     width={width}
                     height={8}
-                    color={COLORS.backgroundDarkGreen}
+                    color={this.props.barColor}
                     border={5}
                     opacity={0.6}
                     side="top"

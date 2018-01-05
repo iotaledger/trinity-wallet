@@ -7,7 +7,7 @@
         "qr": "QR",
         "balanceError": "Μη αρκετό υπόλοιπο",
         "balanceErrorMessage": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
-        "transferError": "Σφάλμα μεταφοράς",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Κάτι πήγε στραβά κατά την αποστολή της μεταφοράς σας. Παρακαλώ δοκιμάστε ξανά.",
         "transferSent": "Μεταφορά απεστάλει",
         "transferSentMessage": "Η μεταφορά σας έχει αποσταλεί στο Tangle.",
@@ -16,9 +16,8 @@
         "invalidResponse": "Μη έγκυρη απόκριση",
         "invalidResponseExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση.",
         "invalidResponsePollingExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη σταθμοσκόπηση.",
-        "invalidResponseFetchingAccount":
-            "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη λήψη των πληροφοριών λογαριασμού σας.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+        "invalidResponseFetchingAccount": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη λήψη των πληροφοριών λογαριασμού σας.",
+        "invalidResponseSendingTransfer": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά την αποστολή της μεταφοράς.",
         "seed": "Seed",
         "back": "ΠΙΣΩ",
         "backLowercase": "Πίσω",
@@ -53,7 +52,9 @@
         "somethingWentWrongExplanation": "Παρακαλώ επανεκκινήστε την εφαρμογή.",
         "node": "Κόμβος",
         "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
-        "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι."
+        "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -97,11 +98,10 @@
         "seedCleared": "Σπόρος εκκαθαρίστηκε",
         "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
         "seedCopied": "Ο σπόρος αντιγράφηκε στο πρόχειρο",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy":
-            "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "seedCopiedExplanation": "O σπόρος θα εκκαθαριστεί μόλις πατήσετε \"ΤΕΛΟΣ\" ή περάσουν 60 δευτερόλεπτα.",
+        "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
+        "doNotStore": "Μην αποθηκεύετε το σπόρο σας σε μορφή απλού κειμένου.",
+        "copyToClipboard": "Αντιγραφή στο πρόχειρο"
     },
     "enterSeed": {
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -131,7 +131,7 @@
         "enterPassword": "Παρακαλώ εισάγετε τον κωδικό σας.",
         "useSeed": "ΧΡΗΣΗ ΣΠΟΡΟΥ",
         "login": "ΣΥΝΔΕΣΗ",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Θέλετε να επιλέξετε διαφορετικό κόμβο;"
     },
     "loading": {
         "loadingFirstTime": "Φόρτωση σπόρου για πρώτη φορά.",
@@ -173,7 +173,7 @@
         "incorrectSeed": "Λάθος σπόρος",
         "incorrectSeedExplanation": "Ο σπόρος που πληκτρολογήσατε είναι εσφαλμένος. Παρακαλώ δοκιμάστε ξανά.",
         "thisIsACheck": "Αυτό είναι ένας έλεγχος για να βεβαιωθείτε ότι έχετε αποθηκεύσει το σπόρο σας.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "Αν δεν έχετε αποθηκεύσει το σπόρο σας, παρακαλούμε πηγαίνετε πίσω και κάντε το."
     },
     "send": {
         "invalidAddress": "Μη έγκυρη διεύθυνση",
@@ -181,7 +181,7 @@
             "Η διεύθυνση πρέπει να είναι {{maxLength}} χαρακτήρες και θα πρέπει να έχει ένα άθροισμα ελέγχου.",
         "invalidAddressExplanation2": "Η διεύθυνση περιέχει μη έγκυρους χαρακτήρες.",
         "invalidAddressExplanation3": "Η διεύθυνση περιέχει ένα μη έγκυρο άθροισμα ελέγχου.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Ανεπαρκές χρηματικό υπόλοιπο",
         "notEnoughFundsExplanation": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
         "keyReuse": "Επαναχρησιμοποίηση κλειδιού",
         "keyReuseExplanation":
@@ -223,23 +223,23 @@
         "theme": "Θέμα",
         "currency": "Νόμισμα",
         "language": "Γλώσσα",
-        "accountManagement": "Account management",
+        "accountManagement": "Διαχείριση λογαριασμού",
         "addNewSeed": "Προσθέστε νέο σπόρο",
         "twoFA": "Έλεγχος ταυτότητας δύο παραγόντων",
         "changePassword": "Αλλάξτε κωδικό πρόσβασης",
         "advanced": "Ρυθμίσεις για προχωρημένους",
         "logout": "Αποσύνδεση",
         "reset": "Επαναφέρετε το πορτοφόλι",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "syncingComplete": "Ο συγχρονισμός ολοκληρώθηκε",
+        "syncingCompleteExplanation": "Ο λογαριασμός σας έχει συγχρονιστεί με επιτυχία.",
+        "nicknameChanged": "Το όνομα λογαριασμού άλλαξε",
+        "nicknameChangedExplanation": "Έχει αλλάξει το όνομα λογαριασμού σας.",
+        "accountDeleted": "Ο λογαριασμός διαγράφηκε",
+        "accountDeletedExplanation": "Ο λογαριασμός έχει καταργηθεί από το πορτοφόλι.",
+        "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
+        "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
+        "poorConnection": "Κακή σύνδεση",
+        "poorConnectionExplanation": "Απέτυχε η αλλαγή νομίσματος εξαιτίας κακής σύνδεσης."
     },
     "resetWalletConfirmation": {
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
@@ -251,7 +251,7 @@
         "areYouSure": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
         "cancel": "ΑΚΥΡΟ",
         "reset": "ΕΠΑΝΑΦΟΡΑ"
     },
@@ -274,61 +274,60 @@
             "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Ο σπόρος σας είναι {{maxSeedLength}} χαρακτήρες που διαβάζονται από αριστερά προς τα δεξιά. Γράψτε το σπόρο σας και το άθροισμα ελέγχου και",
         "tripleCheck": "τριπλοτσεκάρετε",
         "thatTheyAreCorrect": "ότι είναι σωστά."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Πακέτο κατακερματισμού αντιγράφηκε",
+        "bundleHashCopiedExplanation": "Το πακέτο κατακερματισμού έχει αντιγραφεί στο Πρόχειρο.",
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Η διεύθυνση έχει αντιγραφεί στο Πρόχειρο."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Προβολή σπόρου",
+        "viewAddresses": "Προβολή διευθύνσεων",
+        "editAccountName": "Επεξεργαστείτε το όνομα του λογαριασμού",
+        "deleteAccount": "Διαγραφή λογαριασμού",
+        "addNewAccount": "Προσθήκη νέου λογαριασμού"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Προσαρμοσμένος κόμβος",
+        "add": "Προσθήκη"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Χρήση υπάρχοντος σπόρου",
+        "createNewSeed": "Δημιουργία νέου σπόρου"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Επιλέξτε κόμβο",
+        "addCustomNode": "Προσθήκη προσαρμοσμένου κόμβου",
+        "manualSync": "Χειροκίνητος συγχρονισμός"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Φόντο",
+        "frame": "Πλαίσιο"
     },
     "currencySelection": {
         "currency": "Νόμισμα"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε;"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Σάρωση QR κωδικού"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "ΣΥΣΤΗΜΑ ΜΟΝΑΔΑΣ",
+        "trillion": "Τρισεκατομμύριο",
+        "billion": "Δισεκατομμύριο",
+        "million": "Εκατομμύριο",
+        "thousand": "Χίλια",
+        "one": "Ένα"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το λογαριασμό;",
+        "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
         "enterPassword": "Enter your password to delete this account."
     },
@@ -354,7 +353,7 @@
         "reenterWarningTwo": "your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "ΑΥΤΗ Η ΕΝΕΡΓΕΙΑ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΑΝΑΙΡΕΘΕΙ.",
         "infoTextOne": "Όλα τα δεδομένα του πορτοφολιού σας, συμπεριλαμβανομένων",
         "infoTextTwo": "seeds, password",
         "infoTextThree": "και",
