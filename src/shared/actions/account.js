@@ -290,27 +290,13 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
     };
 };
 
-export const manuallySyncAccount = (seed, accountName) => dispatch => {
-    dispatch(manualSyncRequest());
-
-    iota.api.getAccountData(seed, (error, data) => {
-        if (!error) {
-            const payload = organizeAccountInfo(accountName, data);
-            const unspentAddresses = getUnspentAddresses(payload.addresses);
-
-            if (!isEmpty(unspentAddresses)) {
-                return iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
-                    if (err) {
-                        dispatch(generateAccountInfoErrorAlert());
-                        return dispatch(fullAccountInfoFetchError());
-                    }
-
-                    const payloadWithHashes = assign({}, payload, { hashes });
-
-                    return dispatch(manualSyncSuccess(payloadWithHashes));
-                });
-            }
-
+export const manuallySyncAccount = (seed, accountName) => {
+    return dispatch => {
+        const onError = () => {
+            dispatch(generateAccountInfoErrorAlert());
+            return dispatch(fullAccountInfoFetchError());
+        };
+        const generateSuccessAlert = () => {
             dispatch(
                 generateAlert(
                     'success',
@@ -318,14 +304,29 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
                     i18next.t('settings:syncingCompleteExplanation'),
                 ),
             );
-            return dispatch(manualSyncSuccess(assign({}, payload, { hashes: [] })));
-        }
-
-        dispatch(
-            generateAlert('error', i18next.t('global:invalidResponse'), i18next.t('global:invalidResponseExplanation')),
-        );
-        return dispatch(manualSyncError());
-    });
+        };
+        dispatch(manualSyncRequest());
+        getAccountData(seed, accountName)
+            .then(data => {
+                dispatch(clearTempData()); // Clean up partial state for reducer anyways.
+                const unspentAddresses = getUnspentAddresses(data.addresses);
+                if (!isEmpty(unspentAddresses)) {
+                    iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
+                        if (err) {
+                            onError();
+                        } else {
+                            generateSuccessAlert();
+                            const payloadWithHashes = assign({}, data, { hashes });
+                            dispatch(manualSyncSuccess(payloadWithHashes));
+                        }
+                    });
+                } else {
+                    generateSuccessAlert();
+                    dispatch(manualSyncSuccess(assign({}, data, { hashes: [] })));
+                }
+            })
+            .catch(() => onError());
+    };
 };
 
 export const getAccountInfo = (seed, accountName, navigator = null) => {
