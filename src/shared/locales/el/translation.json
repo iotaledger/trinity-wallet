@@ -323,7 +323,7 @@
         "title": "Εισάγετε έναν σπόρο και όνομα λογαριασμού."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
+        "enterPassword": "Εισάγετε κωδικό πρόσβασης για να δείτε το σπόρο σας.",
         "viewSeed": "VIEW SEED",
         "hideSeed": "HIDE SEED"
     },
