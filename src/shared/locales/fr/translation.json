@@ -53,8 +53,8 @@
         "node": "Node",
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
+        "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible sur le node selectionné."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
