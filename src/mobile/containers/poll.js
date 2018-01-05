@@ -31,7 +31,6 @@ export class Poll extends Component {
         isFetchingAccountInfo: PropTypes.bool.isRequired,
         isPromoting: PropTypes.bool.isRequired,
         isSyncing: PropTypes.bool.isRequired,
-        inactive: PropTypes.bool.isRequired,
         addingAdditionalAccount: PropTypes.bool.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
@@ -86,7 +85,7 @@ export class Poll extends Component {
             props.isFetchingAccountInfo ||
             props.isPromoting;
 
-        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething || props.inactive; // Stop polling if the app goes to an inactive state.
+        return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
 
     fetch(service) {
@@ -183,7 +182,6 @@ const mapStateToProps = state => ({
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
     isPromoting: state.polling.isPromoting,
     isSyncing: state.tempAccount.isSyncing,
-    inactive: state.tempAccount.inactive,
     addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
     isGeneratingReceiveAddress: state.tempAccount.isGeneratingReceiveAddress,
     isSendingTransfer: state.tempAccount.isSendingTransfer,

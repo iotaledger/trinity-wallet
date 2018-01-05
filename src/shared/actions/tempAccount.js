@@ -210,13 +210,23 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                     dispatch(sendTransferSuccess({ address, value }));
                 } else {
                     dispatch(sendTransferError());
-                    dispatch(
-                        generateAlert(
-                            'error',
+                    const alerts = {
+                        attachToTangle: [
+                            i18next.t('global:attachToTangleUnavailable'),
+                            i18next.t('global:attachToTangleUnavailableExplanation'),
+                        ],
+                        default: [
                             i18next.t('global:invalidResponse'),
                             i18next.t('global:invalidResponseSendingTransfer'),
-                        ),
-                    );
+                        ],
+                    };
+
+                    const args =
+                        error.message.indexOf('attachToTangle is not available') > -1
+                            ? alerts.attachToTangle
+                            : alerts.default;
+
+                    dispatch(generateAlert('error', ...args));
                 }
             });
         };
