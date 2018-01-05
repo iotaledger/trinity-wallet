@@ -3,7 +3,7 @@
         "send": "ENVIAR",
         "cancel": "CANCELAR",
         "continue?": "Tem a certeza que deseja continuar?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "NÃO EXISTE HISTÓRICO RECENTE",
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "Não tem fundos suficientes para realizar esta transferência.",
