@@ -4,7 +4,12 @@ import map from 'lodash/map';
 import get from 'lodash/get';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
+import reduce from 'lodash/reduce';
+import has from 'lodash/has';
+import omitBy from 'lodash/omitBy';
 import difference from 'lodash/difference';
+import find from 'lodash/find';
+import each from 'lodash/each';
 import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
 import merge from 'lodash/merge';
@@ -202,6 +207,21 @@ export const getAccountInfoNewSeedAsync = (seed, seedName) => {
     };
 };
 
+export const getBundle = (tailTx, allBundleObjects) => {
+    const bundle = [tailTx];
+    const bundleHash = tailTx.bundle;
+
+    let trunk = tailTx.trunkTransaction;
+    const nextTx = () => find(allBundleObjects, { hash: trunk });
+
+    while (nextTx() && nextTx().bundle === bundleHash) {
+        bundle.push(nextTx());
+        trunk = nextTx().trunkTransaction;
+    }
+
+    return bundle;
+};
+
 export const fetchFullAccountInfoForFirstUse = (
     seed,
     accountName,
@@ -262,23 +282,160 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
             if (error) {
                 onError();
             } else {
-                return iota.api.getAccountData(seed, (error, data) => {
-                    if (!error) {
-                        const payload = organizeAccountInfo(accountName, data);
-                        const unspentAddresses = getUnspentAddresses(payload.addresses);
+                const addressesOpts = {
+                    index: 0,
+                    total: null,
+                    returnAll: true,
+                    security: 2,
+                };
 
-                        if (!isEmpty(unspentAddresses)) {
-                            return iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
-                                if (err) {
-                                    onError();
-                                }
-                                const payloadWithHashes = assign({}, payload, { hashes });
-                                return dispatch(fullAccountInfoFetchSuccess(payloadWithHashes));
-                            });
-                        }
-                        return dispatch(fullAccountInfoFetchSuccess(assign({}, payload, { hashes: [] })));
+                const valuesToReturn = {
+                    latestAddress: '',
+                    addresses: [],
+                    transfers: [],
+                    inputs: [],
+                    balance: 0,
+                };
+
+                return iota.api.getNewAddress(seed, addressesOpts, (err, addresses) => {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        valuesToReturn.latestAddress = addresses[addresses.length - 1];
+                        valuesToReturn.addresses = addresses.slice(0, -1);
+
+                        const tailTransactions = [];
+                        const nonTailBundleHashes = [];
+                        const bundles = [];
+
+                        const pushIfNotExists = (pushTo, value) => {
+                            if (!includes(pushTo, value)) {
+                                pushTo.push(value);
+                            }
+                        };
+
+                        const pushTxIfNotFound = (pushTo, tx) => {
+                            const existingValue = find(pushTo, { hash: tx.hash });
+
+                            if (!existingValue) {
+                                pushTo.push(tx);
+                            }
+                        };
+
+                        return iota.api.findTransactionObjects({ addresses }, (err, txObjects) => {
+                            if (err) {
+                                console.error(err);
+                            } else {
+                                each(txObjects, tx => {
+                                    if (tx.currentIndex === 0) {
+                                        pushTxIfNotFound(tailTransactions, tx);
+                                    } else {
+                                        pushIfNotExists(nonTailBundleHashes, tx.bundle);
+                                    }
+                                });
+
+                                // Check inclusion
+                                iota.api.findTransactionObjects(
+                                    { bundles: nonTailBundleHashes },
+                                    (err, bundleObjects) => {
+                                        if (err) {
+                                            console.error(err);
+                                        } else {
+                                            each(bundleObjects, tx => {
+                                                if (tx.currentIndex === 0) {
+                                                    pushTxIfNotFound(tailTransactions, tx);
+                                                }
+                                            });
+
+                                            console.log('Length before', tailTransactions.length);
+                                            iota.api.getLatestInclusion(
+                                                map(tailTransactions, t => t.hash),
+                                                (err, states) => {
+                                                    if (err) {
+                                                        console.error(err);
+                                                    } else {
+                                                        const allTxsAsObjects = reduce(
+                                                            tailTransactions,
+                                                            (res, v, i) => {
+                                                                if (i === 0) {
+                                                                    res.confirmed = {};
+                                                                    res.unconfirmed = {};
+                                                                }
+                                                                if (states[i]) {
+                                                                    res.confirmed[v.bundle] = Object.assign({}, v, {
+                                                                        persistence: true,
+                                                                    });
+                                                                } else {
+                                                                    res.unconfirmed[v.bundle] = Object.assign({}, v, {
+                                                                        persistence: false,
+                                                                    });
+                                                                }
+
+                                                                return res;
+                                                            },
+                                                            {},
+                                                        );
+
+                                                        const filteredUnconfirmed = omitBy(
+                                                            allTxsAsObjects.unconfirmed,
+                                                            (value, key) => {
+                                                                return has(allTxsAsObjects.confirmed, key);
+                                                            },
+                                                        );
+
+                                                        const allTxs = [
+                                                            ...map(allTxsAsObjects.confirmed, t => t),
+                                                            ...map(filteredUnconfirmed, t => t),
+                                                        ];
+                                                        console.log('Length after', allTxs.length);
+
+                                                        const transfers = [];
+
+                                                        allTxs.forEach(tx =>
+                                                            transfers.push(getBundle(tx, bundleObjects)),
+                                                        );
+                                                        valuesToReturn.transfers = transfers;
+
+                                                        iota.api.getBalances(
+                                                            valuesToReturn.addresses,
+                                                            100,
+                                                            (err, balances) => {
+                                                                balances.balances.forEach((balance, index) => {
+                                                                    valuesToReturn.balance += parseInt(balance);
+
+                                                                    if (balance > 0) {
+                                                                        const newInput = {
+                                                                            address: valuesToReturn.addresses[index],
+                                                                            keyIndex: index,
+                                                                            security: 2,
+                                                                            balance: valuesToReturn.balance,
+                                                                        };
+
+                                                                        valuesToReturn.inputs.push(newInput);
+                                                                    }
+                                                                });
+
+                                                                const payload = organizeAccountInfo(
+                                                                    accountName,
+                                                                    valuesToReturn,
+                                                                );
+                                                                const payloadWithHashes = assign({}, payload, {
+                                                                    hashes: [],
+                                                                });
+                                                                return dispatch(
+                                                                    fullAccountInfoFetchSuccess(payloadWithHashes),
+                                                                );
+                                                            },
+                                                        );
+                                                    }
+                                                },
+                                            );
+                                        }
+                                    },
+                                );
+                            }
+                        });
                     }
-                    onError();
                 });
             }
         });
@@ -328,6 +485,36 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
         );
         return dispatch(manualSyncError());
     });
+};
+
+const getBundleWithPersistence = tailTxHash => {
+    return new Promise((resolve, reject) => {
+        iota.api.getBundle(tailTxHash.hash, (err, bundle) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(map(bundle, tx => Object.assign({}, tx, { persistence: tailTxHash.persistence })));
+            }
+        });
+    });
+};
+
+const getBundles = hashes => {
+    return reduce(
+        hashes,
+        (promise, hash, idx) => {
+            return promise
+                .then(result => {
+                    return getBundleWithPersistence(hash).then(bundle => {
+                        result.push(bundle);
+
+                        return result;
+                    });
+                })
+                .catch(console.error);
+        },
+        Promise.resolve([]),
+    );
 };
 
 export const getAccountInfo = (seed, accountName, navigator = null) => {
