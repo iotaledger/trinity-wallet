@@ -7,7 +7,7 @@
         "qr": "QR",
         "balanceError": "Μη αρκετό υπόλοιπο",
         "balanceErrorMessage": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
-        "transferError": "Transfer error",
+        "transferError": "Σφάλμα μεταφοράς",
         "transferErrorMessage": "Κάτι πήγε στραβά κατά την αποστολή της μεταφοράς σας. Παρακαλώ δοκιμάστε ξανά.",
         "transferSent": "Μεταφορά απεστάλει",
         "transferSentMessage": "Η μεταφορά σας έχει αποσταλεί στο Tangle.",
@@ -53,8 +53,8 @@
         "node": "Κόμβος",
         "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
         "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "attachToTangleUnavailable": "Η επισύναψη στο Tangle δεν είναι διαθέσιμη",
+        "attachToTangleUnavailableExplanation": "Επισύναψη στο Tangle δεν είναι διαθέσιμη για το επιλεγμένο κόμβο."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -330,19 +330,19 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Έχω αποθηκεύσει το σπόρο μου",
         "reenter": "Τώρα θα σας ζητηθεί να επανεισάγετε το σπόρο σας.",
-        "reenterWarningOne": "If your device fails and you have not saved",
-        "reenterWarningTwo": "your seed, you will lose your IOTA."
+        "reenterWarningOne": "Αν η συσκευή σας αποτύχει και δεν έχετε αποθηκεύσει",
+        "reenterWarningTwo": "το σπόρο σας, θα χάσετε τα ΙΟΤΑ σας."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ΑΥΤΗ Η ΕΝΕΡΓΕΙΑ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΑΝΑΙΡΕΘΕΙ.",
         "infoTextOne": "Όλα τα δεδομένα του πορτοφολιού σας, συμπεριλαμβανομένων",
-        "infoTextTwo": "seeds, password",
+        "infoTextTwo": "σπόροι, κωδικός πρόσβασης",
         "infoTextThree": "και",
         "infoTextFour": "άλλες πληροφορίες λογαριασμού",
         "infoTextFive": "θα χαθούν."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "Είστε έτοιμοι να στείλετε {{contents}} στη διεύθυνση",
+        "aMessage": "ένα μήνυμα"
     }
 }
