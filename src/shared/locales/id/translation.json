@@ -7,7 +7,7 @@
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
-        "transferError": "Transfer Error",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
@@ -52,7 +52,9 @@
         "somethingWentWrongExplanation": "Silahkan menjalankan aplikasi kembali.",
         "node": "Node",
         "cannotPerformAction": "Tidak dapat melakukan aksi ini",
-        "cannotPerformActionExplanation": "Klik aturan lanjut untuk menghapus dompet."
+        "cannotPerformActionExplanation": "Klik aturan lanjut untuk menghapus dompet.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
