@@ -612,7 +612,7 @@ export const getAccountData = (seed, accountName) => {
         };
 
         withHealthCheck()
-            .then(() => getAddresses(seed))
+            .then(() => getNewAddresses(seed))
             .then(addresses => {
                 data.latestAddress = addresses[addresses.length - 1];
                 data.addresses = addresses.slice(0, -1);
