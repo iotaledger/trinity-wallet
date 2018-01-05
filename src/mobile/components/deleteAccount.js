@@ -151,6 +151,7 @@ class DeleteAccount extends Component {
                         backdropOpacity={0.6}
                         style={{ alignItems: 'center' }}
                         isVisible={this.state.isModalVisible}
+                        onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     >
                         {this._renderModalContent()}
                     </Modal>

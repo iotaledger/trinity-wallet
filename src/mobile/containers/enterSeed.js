@@ -103,7 +103,7 @@ class EnterSeed extends React.Component {
 
         if (seed.length != 0 && seed.length < 81) {
             checksumValue = '< 81';
-        } else if (seed.length == 81) {
+        } else if (seed.length == 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
         }
         return checksumValue;
@@ -196,6 +196,7 @@ class EnterSeed extends React.Component {
                     backdropOpacity={1}
                     style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalVisible}
+                    onBackButtonPress={() => this.setState({ isModalVisible: false })}
                 >
                     {this._renderModalContent()}
                 </Modal>
