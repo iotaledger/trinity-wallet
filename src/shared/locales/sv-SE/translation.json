@@ -7,7 +7,7 @@
         "qr": "QR",
         "balanceError": "Otillräckligt saldo",
         "balanceErrorMessage": "Du har inte tillräckligt IOTA att slutföra denna överföring.",
-        "transferError": "Överföringsfel",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Något gick fel när överföringen skickades. Vänligen försök igen.",
         "transferSent": "Överföring skickad",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
@@ -52,7 +52,9 @@
         "somethingWentWrongExplanation": "Starta om appen.",
         "node": "Nod",
         "cannotPerformAction": "Kan inte utföra åtgärden",
-        "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken."
+        "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
