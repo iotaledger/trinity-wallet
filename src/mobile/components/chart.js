@@ -121,8 +121,6 @@ class Chart extends React.Component {
     getPriceFormat(x) {
         const { marketData } = this.props;
         x = parseFloat(x);
-        console.log(x);
-        console.log(typeof x);
 
         if (marketData.currency === 'USD') {
             return x.toFixed(3);
