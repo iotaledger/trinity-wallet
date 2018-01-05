@@ -7,7 +7,7 @@
         "qr": "QRコード",
         "balanceError": "残高が足りません",
         "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
-        "transferError": "送金エラー",
+        "transferError": "Transfer error",
         "transferErrorMessage": "送金中に問題が発生しました。もう一度やり直してください。",
         "transferSent": "送金完了",
         "transferSentMessage": "送金情報がTangleに送られました。",
@@ -52,7 +52,9 @@
         "somethingWentWrongExplanation": "アプリを再起動して下さい。",
         "node": "ノード",
         "cannotPerformAction": "操作を実行できません。",
-        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。"
+        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
