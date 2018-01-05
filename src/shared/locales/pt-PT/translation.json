@@ -116,7 +116,7 @@
     "login": {
         "emptyPassword": "Palavra-passe vazia",
         "emptyPasswordExplanation": "Deve inserir uma palavra-passe para iniciar a sessão, Por favor, tente de novo.",
-        "enterPassword": "Por favor, insira a sua palavra-passe.",
+        "enterPassword": "Por favor insira a sua palavra-passe.",
         "useSeed": "USAR A SEED",
         "login": "INICIAR SESSÃO",
         "selectDifferentNode": "Do you want to select a different node?"
