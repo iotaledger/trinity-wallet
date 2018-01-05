@@ -60,6 +60,10 @@ class StatefulDropdownAlert extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.disposeOffAlert();
+    }
+
     render() {
         return (
             <DropdownAlert

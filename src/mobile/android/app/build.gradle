@@ -99,9 +99,9 @@ android {
         applicationId "com.iota.wallet"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 3
+        versionCode 4
         multiDexEnabled true
-        versionName "1.0"
+        versionName "3.1"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
@@ -183,6 +183,7 @@ dependencies {
             transitive = true;
     }
     compile "com.android.support:multidex:1.0.1"
+    compile project(':lottie-react-native')
 }
 
 // Run this once to be able to run the application with BUCK
