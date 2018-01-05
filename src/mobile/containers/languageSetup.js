@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 1,
+        flex: 4,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -111,7 +111,7 @@ class LanguageSetup extends Component {
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.2 }} />
+                            <View style={{ flex: 0.5 }} />
                             <Dropdown
                                 onRef={c => (this.dropdown = c)}
                                 title={t('language')}

@@ -15,8 +15,10 @@
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Respuesta inválida",
         "invalidResponseExplanation": "El servidor devuelve una respuesta inválida.",
-        "invalidResponsePollingExplanation": "El servidor devuelve una respuesta inválida durante la obtención de datos de cartera.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponsePollingExplanation":
+            "El servidor devuelve una respuesta inválida durante la obtención de datos de cartera.",
+        "invalidResponseFetchingAccount":
+            "The node returned an invalid response while fetching your account information.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "ATRÁS",
@@ -58,9 +60,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
-        "seedInvalidCharsExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
+        "seedInvalidCharsExplanation":
+            "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
         "seedTooShort": "La seed es demasiado corta",
-        "seedTooShortExplanation": "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
+        "seedTooShortExplanation":
+            "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
         "nameInUse": "Nombre de cuenta ya está en uso",
         "nameInUseExplanation": "Por favor, usa un nombre de cuenta único para tu seed.",
         "enterAccountName": "Introduzca un nombre de cuenta.",
@@ -80,9 +84,11 @@
         "passwordsDoNotMatch": "Las contraseñas no coinciden",
         "passwordsDoNotMatchExplanation": "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.",
         "passwordTooShort": "La contraseña es demasiado corta",
-        "passwordTooShortExplanation": "La contraseña debe tener al menos 12 caracteres. Por favor, inténtalo de nuevo.",
+        "passwordTooShortExplanation":
+            "La contraseña debe tener al menos 12 caracteres. Por favor, inténtalo de nuevo.",
         "oldPassword": "No puedes reusar una vieja contraseña",
-        "oldPasswordExplanation": "No puedes reusar la contraseña anterior como una nueva. Por favor inténtalo de nuevo con una distinta.",
+        "oldPasswordExplanation":
+            "No puedes reusar la contraseña anterior como una nueva. Por favor inténtalo de nuevo con una distinta.",
         "ensureStrongPassword": "Asegúrate de utilizar una contraseña segura con al menos 12 caracteres.",
         "currentPassword": "Contraseña actual",
         "newPassword": "Contraseña nueva",
@@ -99,10 +105,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "La seed contiene caracteres inválidos",
-        "invalidCharactersExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
+        "invalidCharactersExplanation":
+            "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed tiene caracteres invalidos. Por favor intenta nuevamente.",
         "seedTooShort": "La seed es demasiado corta",
-        "seedTooShortExplanation": "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
-        "seedExplanation": "Las seeds deben ser de {{maxLength}} caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar seeds de más de {{maxLength}} caracteres.",
+        "seedTooShortExplanation":
+            "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
+        "seedExplanation":
+            "Las seeds deben ser de {{maxLength}} caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar seeds de más de {{maxLength}} caracteres.",
         "neverShare": "NUNCA COMPARTAS TU SEED CON NADIE"
     },
     "home": {
@@ -117,7 +126,8 @@
     },
     "login": {
         "emptyPassword": "Contraseña vacía",
-        "emptyPasswordExplanation": "Debe introducir una contraseña para iniciar sesión. Por favor, inténtelo de nuevo.",
+        "emptyPasswordExplanation":
+            "Debe introducir una contraseña para iniciar sesión. Por favor, inténtelo de nuevo.",
         "enterPassword": "Por favor introduzca su contraseña.",
         "useSeed": "USAR SEED",
         "login": "INICIAR SESIÓN",
@@ -135,7 +145,8 @@
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio."
     },
     "onboardingComplete": {
-        "walletReady": "La billetera está configurada y lista para usar. Si necesitas hacer cambios en el futuro, busca en el menú de Preferencias."
+        "walletReady":
+            "La billetera está configurada y lista para usar. Si necesitas hacer cambios en el futuro, busca en el menú de Preferencias."
     },
     "paperWallet": {
         "clickToPrint": "Pulsa el botón de abajo para imprimir una copia de tu seed.",
@@ -172,7 +183,8 @@
         "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "No tienes suficiente IOTA para completar esta transferencia.",
         "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuseExplanation":
+            "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Dirección del destinatario",
         "amount": "Monto",
         "max": "MAX",
@@ -185,11 +197,13 @@
     },
     "setPassword": {
         "passwordTooShort": "La contraseña es demasiado corta",
-        "passwordTooShortExplanation": "Tu contraseña debe tener al menos {{minLength}} caracteres. Actualmente tiene {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
+        "passwordTooShortExplanation":
+            "Tu contraseña debe tener al menos {{minLength}} caracteres. Actualmente tiene {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
         "passwordMismatch": "Las contraseñas no coinciden",
         "passwordMismatchExplanation": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
         "nowWeNeedTo": "Ahora tenemos que configurar una contraseña.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy":
+            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "Asegúrate de utilizar una contraseña segura con al menos 12 caracteres.",
         "retypePassword": "Retype Password"
     },
@@ -241,7 +255,8 @@
     "walletSetup": {
         "okay": "Vale. ¡Vamos a configurar tu billetera!",
         "doYouAlreadyHaveASeed": "¿Ya tienes un seed que te gustaría usar?",
-        "seedExplanation": "Una seed de IOTA funciona simultáneamente como nombre del usuario y contraseña para tu cuenta, combinados en una cadena de 81 caracteres.",
+        "seedExplanation":
+            "Una seed de IOTA funciona simultáneamente como nombre del usuario y contraseña para tu cuenta, combinados en una cadena de 81 caracteres.",
         "explanation1": "You can use it to access your funds from",
         "explanation2": " any wallet ",
         "explanation3": ", on",
@@ -255,7 +270,8 @@
         "reminder": "Puede tentarte saltar algunos pasos, pero te sugerimos seguir el proceso completo."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs":
+            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "comprueba tres veces",
         "thatTheyAreCorrect": "that they are correct."
     },
