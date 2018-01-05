@@ -24,8 +24,8 @@
         "done": "CONCLUÍDO",
         "doneLowercase": "Done",
         "next": "SEGUINTE",
-        "apply": "Apply",
-        "save": "Save",
+        "apply": "Aplicar",
+        "save": "Gravar",
         "close": "FECHAR",
         "continue": "Continuar",
         "manualCopy": "Anote a Seed",
@@ -204,14 +204,14 @@
         "theme": "Tema",
         "currency": "Moeda",
         "language": "Idioma",
-        "accountManagement": "Account management",
+        "accountManagement": "Gestão de Contas",
         "addNewSeed": "Adicionar nova Seed",
         "twoFA": "Autenticação 2-FA",
         "changePassword": "Alterar a palavra-passe",
         "advanced": "Configurações avançadas",
         "logout": "Terminar sessão",
         "reset": "Reiniciar completamente a carteira",
-        "syncingComplete": "Syncing complete",
+        "syncingComplete": "Sincronização completada",
         "syncingCompleteExplanation": "Your account has synced successfully.",
         "nicknameChanged": "Account name changed",
         "nicknameChangedExplanation": "Your account name has been changed.",
@@ -275,7 +275,7 @@
         "add": "Adicionar"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
+        "useExistingSeed": "Usar Seed existente",
         "createNewSeed": "Create new seed"
     },
     "advancedSettings": {
@@ -302,10 +302,10 @@
         "billion": "Billion",
         "million": "Million",
         "thousand": "Thousand",
-        "one": "One"
+        "one": "Um"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
+        "areYouSure": "Tem a certeza que pretende eliminar esta conta?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "Esta ação não pode ser anulada.",
         "enterPassword": "Enter your password to delete this account."
