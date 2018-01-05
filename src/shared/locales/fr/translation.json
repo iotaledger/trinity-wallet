@@ -7,7 +7,7 @@
         "qr": "QR",
         "balanceError": "Solde insuffisant",
         "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
-        "transferError": "Erreur de Transfert",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Une erreur s'est produite lors du transfert. Veuillez réessayer.",
         "transferSent": "Transfert effectué",
         "transferSentMessage": "Votre transfert a été envoyé au Tangle.",
@@ -52,7 +52,9 @@
         "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
         "node": "Node",
         "cannotPerformAction": "Impossible d’effectuer cette action",
-        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet."
+        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
