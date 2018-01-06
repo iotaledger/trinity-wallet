@@ -187,20 +187,20 @@
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Hasło musi mieć przynajmniej ${MIN_PASSWORD_LENGTH} znaków. Obecna długość to ${this.state.password.length} znaków. Proszę spróbować ponownie.",
         "passwordMismatch": "Hasła nie są zgodne",
-        "passwordMismatchExplanation": "Mieć wpisane hasła nie pasują. Proszę spróbować ponownie.",
+        "passwordMismatchExplanation": "Wpisane hasła nie pasują. Proszę spróbować ponownie.",
         "nowWeNeedTo": "Teraz musimy ustawić hasło.",
         "anEncryptedCopy": "Zaszyfrowana kopia Twojego seeda będzie przechowywana na Twoim urządzeniu. Będziesz korzystał z tego hasła w celu uzyskania dostępu do swojego portfela w przyszłości.",
         "ensure": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "retypePassword": "Wpisz hasło ponownie"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Możesz używać wielu seedów w tym portfelu. Każdy seed wymaga nazwy konta.",
+        "canUseMultipleSeeds": "Możesz używać wielu seedów w tym portfelu. Każdy seed wymaga osobnej nazwy konta.",
         "youCanAdd": "Można dodać więcej seedów w menu Ustawienia."
     },
     "settings": {
         "transferSending": "Transferuj wysyłanie",
         "transferSendingExplanation": "Proszę poczekać na wysłanie twojego transferu.",
-        "generatingAddress": "Generowanie adresu odbiorcy",
+        "generatingAddress": "Generowanie adresu odbiorczego",
         "generatingAddressExplanation": "Proszę poczekać na wygenerowanie twojego adresu.",
         "mode": "Tryb",
         "theme": "Motyw",
@@ -243,7 +243,7 @@
         "doYouAlreadyHaveASeed": "Czy posiadasz już seed'a, którego chciałbyś użyć?",
         "seedExplanation": "SEED IOTA jest jakby połączeniem twojej nazwy użytkownika oraz hasła do konta, składającego się z ciągu 81 znaków.",
         "explanation1": "Można go używać w celu uzyskania dostępu do swoich środków z",
-        "explanation2": " dowolny portfel ",
+        "explanation2": " jakikolwiek portfel ",
         "explanation3": ", na",
         "explanation4": " dowolne urządzenie",
         "explanation5": "Ale jeśli utracisz swojego seeda, utracisz również swoje IOTA.",
