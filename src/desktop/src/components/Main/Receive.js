@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
@@ -10,8 +11,10 @@ import {
     generateNewAddressError,
 } from 'actions/tempAccount';
 import Template, { Content } from 'components/Main/Template';
+import HistoryList from 'components/UI/HistoryList';
 import css from 'components/Main/Receive.css';
 import Button from 'components/UI/Button';
+import Clipboard from 'components/UI/Clipboard';
 
 class Receive extends React.PureComponent {
     static propTypes = {
@@ -36,17 +39,32 @@ class Receive extends React.PureComponent {
     };
 
     render() {
-        const { t, tempAccount: { receiveAddress } } = this.props;
+        const { t, tempAccount: { receiveAddress }, account, seeds } = this.props;
+
+        const seedInfo = seeds.items[seeds.selectedSeedIndex];
+        const accountInfo = account.accountInfo[seedInfo.name];
 
         return (
             <Template>
                 <Content>
-                    <section className={css.receive}>
-                        {receiveAddress.length ? <p className={css.address}>{receiveAddress}</p> : null}
+                    <section className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : null)}>
+                        <p className={css.address}>
+                            <Clipboard
+                                text={receiveAddress}
+                                title={t('receive:addressCopied')}
+                                success={t('receive:addressCopiedExplanation')}
+                            />
+                        </p>
                         <QRCode value={receiveAddress} size={220} />
                         <Button onClick={this.onGeneratePress}>{t('receive:generateNewAddress')}</Button>
                     </section>
-                    <section />
+                    <section>
+                        <HistoryList
+                            filter="received"
+                            transfers={accountInfo.transfers.length ? accountInfo.transfers : []}
+                            addresses={Object.keys(accountInfo.addresses)}
+                        />
+                    </section>
                 </Content>
             </Template>
         );

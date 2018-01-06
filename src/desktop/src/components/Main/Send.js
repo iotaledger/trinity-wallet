@@ -7,6 +7,7 @@ import { sendTransaction, sendTransferRequest } from 'actions/tempAccount';
 import { iota } from 'libs/iota';
 import { showError } from 'actions/notifications';
 import Template, { Content } from 'components/Main/Template';
+import HistoryList from 'components/UI/HistoryList';
 import AddressInput from 'components/UI/input/Address';
 import AmmountInput from 'components/UI/input/Ammount';
 import MessageInput from 'components/UI/input/Message';
@@ -159,7 +160,13 @@ class Send extends React.PureComponent {
                             </Button>
                         </div>
                     </section>
-                    <section />
+                    <section>
+                        <HistoryList
+                            filter="sent"
+                            transfers={accountInfo.transfers.length ? accountInfo.transfers : []}
+                            addresses={Object.keys(accountInfo.addresses)}
+                        />
+                    </section>
                 </Content>
             </Template>
         );

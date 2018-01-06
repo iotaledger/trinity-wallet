@@ -23,7 +23,10 @@ class SecurityEnter extends React.PureComponent {
         showError: PropTypes.func.isRequired,
     };
 
-    state = {};
+    state = {
+        password: '',
+        passwordConfirm: '',
+    };
 
     onRequestNext = e => {
         e.preventDefault();
