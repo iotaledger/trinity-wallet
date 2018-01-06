@@ -15,16 +15,34 @@ class TransferConfirmationModal extends Component {
 
     onSendPress() {
         this.props.hideModal(() => {
-            this.props.sendTransfer();
+            this.timeout = setTimeout(() => {
+                this.props.sendTransfer();
+            }, 250);
             this.props.clearOnSend();
         });
     }
 
     render() {
         const { t, backgroundColor } = this.props;
+        // TODO: fix this using trans component
+        /*
         let transferContents = null;
         if (this.props.amount === 0) {
             transferContents = <Text style={styles.iotaText}>{t('transferConfirmation:aMessage')}</Text>;
+        } else {
+            transferContents = (
+                <Text style={styles.iotaText}>
+                    {' '}
+                    {this.props.amount} {this.props.denomination}{' '}
+                </Text>
+            );
+        }
+        */
+        //hotfix
+        let transferContents = null;
+        if (this.props.amount == 0) {
+            //doesn't work with === for some reason
+            transferContents = <Text style={styles.iotaText}>a message</Text>;
         } else {
             transferContents = (
                 <Text style={styles.iotaText}>
@@ -39,7 +57,7 @@ class TransferConfirmationModal extends Component {
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>
                             <Text style={styles.regularText}>
-                                {t('transferConfirmation:youAreAbout', { contents: transferContents })}
+                                You are about to send {transferContents} to the address
                             </Text>
                         </Text>
                         <Text numberOfLines={3} style={styles.addressText}>

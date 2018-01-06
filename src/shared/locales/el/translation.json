@@ -16,9 +16,8 @@
         "invalidResponse": "Μη έγκυρη απόκριση",
         "invalidResponseExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση.",
         "invalidResponsePollingExplanation": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη σταθμοσκόπηση.",
-        "invalidResponseFetchingAccount":
-            "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη λήψη των πληροφοριών λογαριασμού σας.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+        "invalidResponseFetchingAccount": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά τη λήψη των πληροφοριών λογαριασμού σας.",
+        "invalidResponseSendingTransfer": "Ο κόμβος επέστρεψε μη έγκυρη απόκριση κατά την αποστολή της μεταφοράς.",
         "seed": "Seed",
         "back": "ΠΙΣΩ",
         "backLowercase": "Πίσω",
@@ -53,15 +52,15 @@
         "somethingWentWrongExplanation": "Παρακαλώ επανεκκινήστε την εφαρμογή.",
         "node": "Κόμβος",
         "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
-        "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι."
+        "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
+        "attachToTangleUnavailable": "Η επισύναψη στο Tangle δεν είναι διαθέσιμη",
+        "attachToTangleUnavailableExplanation": "Επισύναψη στο Tangle δεν είναι διαθέσιμη για το επιλεγμένο κόμβο."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
-        "seedInvalidCharsExplanation":
-            "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedInvalidCharsExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
-        "seedTooShortExplanation":
-            "Οι σπόροι πρέπει να έχουν {{maxLength}} χαρακτήρες μήκος. Ο σπόρος σας είναι επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedTooShortExplanation": "Οι σπόροι πρέπει να έχουν {{maxLength}} χαρακτήρες μήκος. Ο σπόρος σας είναι επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "nameInUse": "Όνομα λογαριασμού ήδη σε χρήση",
         "nameInUseExplanation": "Παρακαλούμε να χρησιμοποιήσετε ένα μοναδικό όνομα λογαριασμού για το σπόρο σας.",
         "enterAccountName": "Εισάγετε ένα όνομα λογαριασμού.",
@@ -69,13 +68,11 @@
         "noNickname": "Δεν έγινε εισαγωγή ονόματος λογαριασμού",
         "noNicknameExplanation": "Παρακαλούμε εισάγετε ένα όνομα λογαριασμού για το σπόρο σας.",
         "seedInUse": "Σπόρος ήδη σε χρήση",
-        "seedInUseExplanation":
-            "Αυτός ο σπόρος είναι ήδη συνδεδεμένος στο πορτοφόλι σας. Παρακαλούμε να χρησιμοποιήσετε έναν άλλο."
+        "seedInUseExplanation": "Αυτός ο σπόρος είναι ήδη συνδεδεμένος στο πορτοφόλι σας. Παρακαλούμε να χρησιμοποιήσετε έναν άλλο."
     },
     "changePassword": {
         "oops": "Ωχ! Κάτι πήγε στραβά",
-        "oopsExplanation":
-            "Μοιάζει με κάτι να πήγε στραβά κατά την ενημέρωση του κωδικού πρόσβασης. Παρακαλώ δοκιμάστε ξανά.",
+        "oopsExplanation": "Μοιάζει με κάτι να πήγε στραβά κατά την ενημέρωση του κωδικού πρόσβασης. Παρακαλώ δοκιμάστε ξανά.",
         "passwordUpdated": "Κωδικός πρόσβασης ενημερώθηκε",
         "passwordUpdatedExplanation": "O κωδικός πρόσβασής σας έχει ενημερωθεί με επιτυχώς.",
         "incorrectPassword": "Εσφαλμένος κωδικός πρόσβασης",
@@ -85,10 +82,8 @@
         "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Δεν μπορείτε ορίσετε τον παλιό κωδικό πρόσβασης",
-        "oldPasswordExplanation":
-            "Δεν μπορείτε να χρησιμοποιήσετε τον παλιό κωδικό πρόσβασης ως τον νέο σας κωδικό. Παρακαλούμε δοκιμάστε ξανά με ένα νέο κωδικό πρόσβασης.",
-        "ensureStrongPassword":
-            "Βεβαιωθείτε ότι χρησιμοποιείτε έναν ισχυρό κωδικό πρόσβασης τουλάχιστον 12 χαρακτήρων.",
+        "oldPasswordExplanation": "Δεν μπορείτε να χρησιμοποιήσετε τον παλιό κωδικό πρόσβασης ως τον νέο σας κωδικό. Παρακαλούμε δοκιμάστε ξανά με ένα νέο κωδικό πρόσβασης.",
+        "ensureStrongPassword": "Βεβαιωθείτε ότι χρησιμοποιείτε έναν ισχυρό κωδικό πρόσβασης τουλάχιστον 12 χαρακτήρων.",
         "currentPassword": "Τρέχων κωδικός πρόσβασης",
         "newPassword": "Νέος κωδικός πρόσβασης",
         "confirmPassword": "Επιβεβαίωση νέου κωδικού πρόσβασης"
@@ -97,21 +92,17 @@
         "seedCleared": "Σπόρος εκκαθαρίστηκε",
         "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
         "seedCopied": "Ο σπόρος αντιγράφηκε στο πρόχειρο",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy":
-            "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "seedCopiedExplanation": "O σπόρος θα εκκαθαριστεί μόλις πατήσετε \"ΤΕΛΟΣ\" ή περάσουν 60 δευτερόλεπτα.",
+        "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
+        "doNotStore": "Μην αποθηκεύετε το σπόρο σας σε μορφή απλού κειμένου.",
+        "copyToClipboard": "Αντιγραφή στο πρόχειρο"
     },
     "enterSeed": {
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
-        "invalidCharactersExplanation":
-            "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "invalidCharactersExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
-        "seedTooShortExplanation":
-            "Οι σπόροι πρέπει να έχουν {{maxLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
-        "seedExplanation":
-            "Οι σπόροι πρέπει να είναι {{maxLength}} χαρακτήρων και πρέπει να περιέχουν τα κεφαλαία γράμματα A-Z, ή τον αριθμό 9. Δεν μπορείτε να χρησιμοποιήσετε σπόρους που είναι μεγαλύτεροι από {{maxLength}} χαρακτήρες.",
+        "seedTooShortExplanation": "Οι σπόροι πρέπει να έχουν {{maxLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedExplanation": "Οι σπόροι πρέπει να είναι {{maxLength}} χαρακτήρων και πρέπει να περιέχουν τα κεφαλαία γράμματα A-Z, ή τον αριθμό 9. Δεν μπορείτε να χρησιμοποιήσετε σπόρους που είναι μεγαλύτεροι από {{maxLength}} χαρακτήρες.",
         "neverShare": "ΜΗ ΜΟΙΡΑΖΕΣΤΕ ΠΟΤΕ ΤΟΝ ΣΠΟΡΟ ΣΑΣ ΜΕ ΚΑΝΕΝΑΝ"
     },
     "home": {
@@ -126,12 +117,11 @@
     },
     "login": {
         "emptyPassword": "Κενός κωδικός πρόσβασης",
-        "emptyPasswordExplanation":
-            "Πρέπει να εισαγάγετε έναν κωδικό πρόσβασης για να συνδεθείτε. Παρακαλώ δοκιμάστε ξανά.",
+        "emptyPasswordExplanation": "Πρέπει να εισαγάγετε έναν κωδικό πρόσβασης για να συνδεθείτε. Παρακαλώ δοκιμάστε ξανά.",
         "enterPassword": "Παρακαλώ εισάγετε τον κωδικό σας.",
         "useSeed": "ΧΡΗΣΗ ΣΠΟΡΟΥ",
         "login": "ΣΥΝΔΕΣΗ",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Θέλετε να επιλέξετε διαφορετικό κόμβο;"
     },
     "loading": {
         "loadingFirstTime": "Φόρτωση σπόρου για πρώτη φορά.",
@@ -145,8 +135,7 @@
         "individualLetters": "Πατήστε μεμονομένα γράμματα για να τα τυχαιοποιήσετε."
     },
     "onboardingComplete": {
-        "walletReady":
-            "Το πορτοφόλι είναι πλέον εγκατεστημένο και έτοιμο για χρήση. Εάν χρειάζεται να κάνετε οποιεσδήποτε αλλαγές στο μέλλον, κοιτάξτε στο μενού ρυθμίσεων."
+        "walletReady": "Το πορτοφόλι είναι πλέον εγκατεστημένο και έτοιμο για χρήση. Εάν χρειάζεται να κάνετε οποιεσδήποτε αλλαγές στο μέλλον, κοιτάξτε στο μενού ρυθμίσεων."
     },
     "paperWallet": {
         "clickToPrint": "Κάντε κλικ στο παρακάτω κουμπί για να εκτυπώσετε ένα αντίγραφο του σπόρου σας.",
@@ -173,19 +162,17 @@
         "incorrectSeed": "Λάθος σπόρος",
         "incorrectSeedExplanation": "Ο σπόρος που πληκτρολογήσατε είναι εσφαλμένος. Παρακαλώ δοκιμάστε ξανά.",
         "thisIsACheck": "Αυτό είναι ένας έλεγχος για να βεβαιωθείτε ότι έχετε αποθηκεύσει το σπόρο σας.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "Αν δεν έχετε αποθηκεύσει το σπόρο σας, παρακαλούμε πηγαίνετε πίσω και κάντε το."
     },
     "send": {
         "invalidAddress": "Μη έγκυρη διεύθυνση",
-        "invalidAddressExplanation1":
-            "Η διεύθυνση πρέπει να είναι {{maxLength}} χαρακτήρες και θα πρέπει να έχει ένα άθροισμα ελέγχου.",
+        "invalidAddressExplanation1": "Η διεύθυνση πρέπει να είναι {{maxLength}} χαρακτήρες και θα πρέπει να έχει ένα άθροισμα ελέγχου.",
         "invalidAddressExplanation2": "Η διεύθυνση περιέχει μη έγκυρους χαρακτήρες.",
         "invalidAddressExplanation3": "Η διεύθυνση περιέχει ένα μη έγκυρο άθροισμα ελέγχου.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Ανεπαρκές χρηματικό υπόλοιπο",
         "notEnoughFundsExplanation": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
         "keyReuse": "Επαναχρησιμοποίηση κλειδιού",
-        "keyReuseExplanation":
-            "Η διεύθυνση στην οποία προσπαθείτε να στείλετε έχει ήδη χρησιμοποιηθεί. Παρακαλώ δοκιμάστε μια άλλη διεύθυνση.",
+        "keyReuseExplanation": "Η διεύθυνση στην οποία προσπαθείτε να στείλετε έχει ήδη χρησιμοποιηθεί. Παρακαλώ δοκιμάστε μια άλλη διεύθυνση.",
         "recipientAddress": "Διεύθυνση Παραλήπτη",
         "amount": "Ποσό",
         "max": "ΜΕΓΙΣΤΟ",
@@ -198,20 +185,16 @@
     },
     "setPassword": {
         "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
-        "passwordTooShortExplanation":
-            "Οι σπόροι πρέπει να έχουν {{minLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "passwordTooShortExplanation": "Οι σπόροι πρέπει να έχουν {{minLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "passwordMismatch": "Οι κωδικοί πρόσβασης δεν ταιριάζουν",
-        "passwordMismatchExplanation":
-            "Οι κωδικοί πρόσβασης που έχετε καταχωρήσει δεν ταιριάζουν. Παρακαλώ ξαναπροσπαθήστε.",
+        "passwordMismatchExplanation": "Οι κωδικοί πρόσβασης που έχετε καταχωρήσει δεν ταιριάζουν. Παρακαλώ ξαναπροσπαθήστε.",
         "nowWeNeedTo": "Τώρα πρέπει να ορίσουμε έναν κωδικό πρόσβασης.",
-        "anEncryptedCopy":
-            "Ένα κρυπτογραφημένο αντίγραφο του σπόρου σας θα αποθηκευτεί στη συσκευή σας. Θα μπορείτε να χρησιμοποιήσετε αυτόν τον κωδικό πρόσβασης για να αποκτήσετε πρόσβαση το πορτοφόλι σας στο μέλλον.",
+        "anEncryptedCopy": "Ένα κρυπτογραφημένο αντίγραφο του σπόρου σας θα αποθηκευτεί στη συσκευή σας. Θα μπορείτε να χρησιμοποιήσετε αυτόν τον κωδικό πρόσβασης για να αποκτήσετε πρόσβαση το πορτοφόλι σας στο μέλλον.",
         "ensure": "Βεβαιωθείτε ότι χρησιμοποιείτε έναν ισχυρό κωδικό πρόσβασης τουλάχιστον 12 χαρακτήρων.",
         "retypePassword": "Πληκτρολογήστε ξανά τον κωδικό πρόσβασης"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "Μπορείτε να χρησιμοποιήσετε πολλούς σπόρους με αυτό το πορτοφόλι. Κάθε Σπόρος απαιτεί ένα όνομα λογαριασμού.",
+        "canUseMultipleSeeds": "Μπορείτε να χρησιμοποιήσετε πολλούς σπόρους με αυτό το πορτοφόλι. Κάθε Σπόρος απαιτεί ένα όνομα λογαριασμού.",
         "youCanAdd": "Μπορείτε να προσθέσετε περισσότερους σπόρους από το μενού ρυθμίσεων."
     },
     "settings": {
@@ -223,23 +206,23 @@
         "theme": "Θέμα",
         "currency": "Νόμισμα",
         "language": "Γλώσσα",
-        "accountManagement": "Account management",
+        "accountManagement": "Διαχείριση λογαριασμού",
         "addNewSeed": "Προσθέστε νέο σπόρο",
         "twoFA": "Έλεγχος ταυτότητας δύο παραγόντων",
         "changePassword": "Αλλάξτε κωδικό πρόσβασης",
         "advanced": "Ρυθμίσεις για προχωρημένους",
         "logout": "Αποσύνδεση",
         "reset": "Επαναφέρετε το πορτοφόλι",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "syncingComplete": "Ο συγχρονισμός ολοκληρώθηκε",
+        "syncingCompleteExplanation": "Ο λογαριασμός σας έχει συγχρονιστεί με επιτυχία.",
+        "nicknameChanged": "Το όνομα λογαριασμού άλλαξε",
+        "nicknameChangedExplanation": "Έχει αλλάξει το όνομα λογαριασμού σας.",
+        "accountDeleted": "Ο λογαριασμός διαγράφηκε",
+        "accountDeletedExplanation": "Ο λογαριασμός έχει καταργηθεί από το πορτοφόλι.",
+        "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
+        "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
+        "poorConnection": "Κακή σύνδεση",
+        "poorConnectionExplanation": "Απέτυχε η αλλαγή νομίσματος εξαιτίας κακής σύνδεσης."
     },
     "resetWalletConfirmation": {
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
@@ -251,15 +234,14 @@
         "areYouSure": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
         "cancel": "ΑΚΥΡΟ",
         "reset": "ΕΠΑΝΑΦΟΡΑ"
     },
     "walletSetup": {
         "okay": "Εντάξει. Ας εγκαταστήσουμε το πορτοφόλι σας!",
         "doYouAlreadyHaveASeed": "Έχετε ήδη έναν σπόρο που θα θέλατε να χρησιμοποιήσετε;",
-        "seedExplanation":
-            "Ο σπόρος ΙΟΤΑ είναι όπως ένα όνομα χρήστη και κωδικός πρόσβασης για το λογαριασμό σας, σε συνδυασμένα σε μια συμβολοσειρά 81 χαρακτήρων.",
+        "seedExplanation": "Ο σπόρος ΙΟΤΑ είναι όπως ένα όνομα χρήστη και κωδικός πρόσβασης για το λογαριασμό σας, σε συνδυασμένα σε μια συμβολοσειρά 81 χαρακτήρων.",
         "explanation1": "Μπορείτε να το χρησιμοποιήσετε για να αποκτήσετε πρόσβαση στα κεφάλαιά σας από",
         "explanation2": " κάθε πορτοφόλι ",
         "explanation3": ", σε",
@@ -270,99 +252,97 @@
     "welcome": {
         "thankYou": "Σας ευχαριστούμε που κατεβάσατε το πορτοφόλι ΙΟΤΑ.",
         "weWillSpend": "Θα περάσουμε τα επόμενα λίγα λεπτά εγκαθιστώντας το πορτοφόλι σας.",
-        "reminder":
-            "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
+        "reminder": "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Ο σπόρος σας είναι {{maxSeedLength}} χαρακτήρες που διαβάζονται από αριστερά προς τα δεξιά. Γράψτε το σπόρο σας και το άθροισμα ελέγχου και",
         "tripleCheck": "τριπλοτσεκάρετε",
         "thatTheyAreCorrect": "ότι είναι σωστά."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Πακέτο κατακερματισμού αντιγράφηκε",
+        "bundleHashCopiedExplanation": "Το πακέτο κατακερματισμού έχει αντιγραφεί στο Πρόχειρο.",
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Η διεύθυνση έχει αντιγραφεί στο Πρόχειρο."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Προβολή σπόρου",
+        "viewAddresses": "Προβολή διευθύνσεων",
+        "editAccountName": "Επεξεργαστείτε το όνομα του λογαριασμού",
+        "deleteAccount": "Διαγραφή λογαριασμού",
+        "addNewAccount": "Προσθήκη νέου λογαριασμού"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Προσαρμοσμένος κόμβος",
+        "add": "Προσθήκη"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Χρήση υπάρχοντος σπόρου",
+        "createNewSeed": "Δημιουργία νέου σπόρου"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Επιλέξτε κόμβο",
+        "addCustomNode": "Προσθήκη προσαρμοσμένου κόμβου",
+        "manualSync": "Χειροκίνητος συγχρονισμός"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Φόντο",
+        "frame": "Πλαίσιο"
     },
     "currencySelection": {
         "currency": "Νόμισμα"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε;"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Σάρωση QR κωδικού"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "ΣΥΣΤΗΜΑ ΜΟΝΑΔΑΣ",
+        "trillion": "Τρισεκατομμύριο",
+        "billion": "Δισεκατομμύριο",
+        "million": "Εκατομμύριο",
+        "thousand": "Χίλια",
+        "one": "Ένα"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το λογαριασμό;",
+        "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να διαγράψετε αυτό το λογαριασμό."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "Πιέστε το κάτωθι κουμπί για να συφχρονίσετε το λογαριασμό σας.",
         "thisMayTake": "Αυτό μπορεί να διαρκέσει λίγο.",
         "youMayNotice": "Ενδέχεται να παρατηρήσετε τη συσκευή να επιβραδύνει.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "syncAccount": "ΣΥΓΧΡΟΝΙΣΜΟΣ ΛΟΓΑΡΙΑΣΜΟΥ",
+        "syncingYourAccount": "Ο λογαριασμός σας συντονίζεται."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Εισάγετε έναν σπόρο και όνομα λογαριασμού."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Εισάγετε κωδικό πρόσβασης για να δείτε το σπόρο σας.",
+        "viewSeed": "ΠΡΟΒΟΛΗ ΣΠΟΡΟΥ",
+        "hideSeed": "ΑΠΟΚΡΥΨΗ ΣΠΟΡΟΥ"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarningOne": "If your device fails and you have not saved",
-        "reenterWarningTwo": "your seed, you will lose your IOTA."
+        "alreadyHave": "Έχω αποθηκεύσει το σπόρο μου",
+        "reenter": "Τώρα θα σας ζητηθεί να επανεισάγετε το σπόρο σας.",
+        "reenterWarningOne": "Αν η συσκευή σας αποτύχει και δεν έχετε αποθηκεύσει",
+        "reenterWarningTwo": "το σπόρο σας, θα χάσετε τα ΙΟΤΑ σας."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "ΑΥΤΗ Η ΕΝΕΡΓΕΙΑ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΑΝΑΙΡΕΘΕΙ.",
         "infoTextOne": "Όλα τα δεδομένα του πορτοφολιού σας, συμπεριλαμβανομένων",
-        "infoTextTwo": "seeds, password",
+        "infoTextTwo": "σπόροι, κωδικός πρόσβασης",
         "infoTextThree": "και",
         "infoTextFour": "άλλες πληροφορίες λογαριασμού",
         "infoTextFive": "θα χαθούν."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "Είστε έτοιμοι να στείλετε {{contents}} στη διεύθυνση",
+        "aMessage": "ένα μήνυμα"
     }
 }
