@@ -11,7 +11,7 @@
             margin-bottom: 20px;
         }
 
-        strong {
+        > strong {
             font-size: 42px;
             display: block;
             line-height: 42px;
