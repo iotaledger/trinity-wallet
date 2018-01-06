@@ -1,4 +1,4 @@
-import i18next from 'i18next';
+import i18next from '../i18next.js';
 import cloneDeep from 'lodash/cloneDeep';
 import size from 'lodash/size';
 import get from 'lodash/get';

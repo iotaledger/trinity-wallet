@@ -36,7 +36,7 @@
     "punycode": "^1.4.1",
     "querystring-es3": "^0.2.1",
     "react": "16.0.0-alpha.12",
-    "react-i18next": "^6.2.0",
+    "react-i18next": "^7.3.0",
     "react-native": "0.47.2",
     "react-native-camera": "^0.10.0",
     "react-native-clipboard": "^0.0.5",
