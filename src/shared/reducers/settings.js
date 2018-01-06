@@ -115,6 +115,8 @@ const initialState = {
             l: 0.7666666666666666,
             a: 1,
         },
+        secondaryBarColor: 'white',
+        secondaryBackgroundColor: 'white',
     },
 };
 

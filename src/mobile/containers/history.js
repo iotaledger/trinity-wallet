@@ -23,6 +23,7 @@ class History extends Component {
         positiveColor: PropTypes.object.isRequired,
         extraColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -49,9 +50,19 @@ class History extends Component {
     }
 
     render() {
-        const { t, addresses, transfers, positiveColor, negativeColor, backgroundColor, extraColor } = this.props;
+        const {
+            t,
+            addresses,
+            transfers,
+            positiveColor,
+            negativeColor,
+            backgroundColor,
+            extraColor,
+            secondaryBackgroundColor,
+        } = this.props;
         const hasTransactions = transfers.length > 0;
-
+        const textColor = { color: secondaryBackgroundColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
@@ -71,6 +82,9 @@ class History extends Component {
                                         negativeColor={THEMES.getHSL(negativeColor)}
                                         extraColor={THEMES.getHSL(extraColor)}
                                         backgroundColor={THEMES.getHSL(backgroundColor)}
+                                        textColor={textColor}
+                                        borderColor={borderColor}
+                                        secondaryBackgroundColor={secondaryBackgroundColor}
                                     />
                                 )}
                                 renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
@@ -84,7 +98,7 @@ class History extends Component {
                         </View>
                     ) : (
                         <View style={styles.noTransactionsContainer}>
-                            <Text style={styles.noTransactions}>{t('global:noTransactions')}</Text>
+                            <Text style={[styles.noTransactions, textColor]}>{t('global:noTransactions')}</Text>
                         </View>
                     )}
                 </View>
@@ -112,7 +126,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     noTransactions: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
@@ -126,6 +139,7 @@ const mapStateToProps = ({ tempAccount, account, settings }) => ({
     positiveColor: settings.theme.positiveColor,
     backgroundColor: settings.theme.backgroundColor,
     extraColor: settings.theme.extraColor,
+    secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {

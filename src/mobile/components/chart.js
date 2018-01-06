@@ -139,35 +139,35 @@ class Chart extends React.Component {
 
     render() {
         const { price } = this.state;
-        const { marketData } = this.props;
+        const { marketData, textColor, borderColor, secondaryBackgroundColor } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         return (
             <View style={styles.container}>
                 <View style={styles.topContainer}>
-                    <View style={styles.buttonContainer}>
+                    <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
                             onPress={event => this.changeCurrency()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
-                                <Text style={styles.buttonText}>{marketData.currency}</Text>
+                                <Text style={[styles.buttonText, textColor]}>{marketData.currency}</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
                     <View style={styles.priceContainer}>
-                        <Text style={styles.iotaPrice}>
+                        <Text style={[styles.iotaPrice, textColor]}>
                             {getChartCurrencySymbol(marketData.currency)} {this.getPriceFormat(price)} / Mi
                         </Text>
                     </View>
-                    <View style={styles.buttonContainer}>
+                    <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
                             onPress={event => this.changeTimeframe()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
                             <View style={styles.button}>
-                                <Text style={styles.buttonText}>{marketData.timeframe}</Text>
+                                <Text style={[styles.buttonText, textColor]}>{marketData.timeframe}</Text>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -203,9 +203,15 @@ class Chart extends React.Component {
                             tickFormat={x => this.getPriceFormat(x)}
                             style={{
                                 axis: { stroke: 'transparent' },
-                                tickLabels: { fill: 'white', fontSize: width / 44, fontFamily: 'Lato-Regular' },
+                                tickLabels: {
+                                    fill: secondaryBackgroundColor,
+                                    fontSize: width / 44,
+                                    fontFamily: 'Lato-Regular',
+                                },
                             }}
-                            gridComponent={<Line type={'grid'} style={{ stroke: 'white', strokeWidth: 0.1 }} />}
+                            gridComponent={
+                                <Line type={'grid'} style={{ stroke: secondaryBackgroundColor, strokeWidth: 0.1 }} />
+                            }
                             tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
                             tickValues={this.getTickValues()}
                             domain={{
@@ -215,13 +221,13 @@ class Chart extends React.Component {
                     </VictoryChart>
                 </View>
                 <View style={styles.marketDataContainer}>
-                    <Text style={styles.marketFigure}>
-                        <Text style={styles.marketFigureTitle}>MCAP</Text> $ {marketData.mcap}
+                    <Text style={[styles.marketFigure, textColor]}>
+                        <Text style={[styles.marketFigureTitle, textColor]}>MCAP</Text> $ {marketData.mcap}
                     </Text>
-                    <Text style={styles.marketFigure}>
+                    <Text style={[styles.marketFigure, textColor]}>
                         <Text style={styles.marketFigureTitle}>Change</Text> {marketData.change24h}%
                     </Text>
-                    <Text style={styles.marketFigure}>
+                    <Text style={[styles.marketFigure, textColor]}>
                         <Text style={styles.marketFigureTitle}>Volume (24h)</Text> $ {marketData.volume}
                     </Text>
                 </View>
@@ -235,7 +241,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
         flexDirection: 'row',
-        borderColor: '#f2f2f2',
         borderWidth: height / 2000,
         borderRadius: GENERAL.borderRadiusSmall,
         paddingHorizontal: width / 40,
@@ -279,19 +284,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     buttonText: {
-        color: 'white',
         fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
         fontSize: width / 35,
     },
     iotaPrice: {
-        color: 'white',
         fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
         fontSize: width / 24,
     },
     marketFigure: {
-        color: 'white',
         fontWeight: 'normal',
         fontFamily: 'Lato-Regular',
         fontSize: width / 37.6,

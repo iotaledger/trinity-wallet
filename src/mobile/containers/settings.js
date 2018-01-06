@@ -140,6 +140,7 @@ class Settings extends Component {
         positiveColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         extraColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -174,6 +175,8 @@ class Settings extends Component {
                 onLanguagePress: () => this.featureUnavailable(),
                 themeName: this.props.themeName,
                 currency: this.props.currency,
+                borderBottomColor: { borderBottomColor: this.props.secondaryBackgroundColor },
+                textColor: { color: this.props.secondaryBackgroundColor },
             },
             advancedSettings: {
                 setSetting: setting => this.props.setSetting(setting),
@@ -645,6 +648,7 @@ const mapStateToProps = state => ({
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
     extraColor: state.settings.theme.extraColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(

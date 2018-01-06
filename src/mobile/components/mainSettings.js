@@ -59,13 +59,11 @@ const styles = StyleSheet.create({
         marginRight: width / 25,
     },
     titleText: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
     },
     separator: {
-        borderBottomColor: 'white',
         borderBottomWidth: height / 1500,
         width: width / 1.16,
         alignSelf: 'center',
@@ -75,7 +73,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     settingText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         marginLeft: width / 12,
@@ -91,10 +88,10 @@ const MainSettings = props => (
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
                         <Image source={modeImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>{props.t('mode')}</Text>
+                        <Text style={[styles.titleText, props.textColor]}>{props.t('mode')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
-                        <Text style={styles.settingText}>{props.mode}</Text>
+                        <Text style={[styles.settingText, props.textColor]}>{props.mode}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -104,10 +101,10 @@ const MainSettings = props => (
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
                         <Image source={themeImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>{props.t('theme')}</Text>
+                        <Text style={[styles.titleText, props.textColor]}>{props.t('theme')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
-                        <Text style={styles.settingText}>{props.themeName}</Text>
+                        <Text style={[styles.settingText, props.textColor]}>{props.themeName}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -117,10 +114,10 @@ const MainSettings = props => (
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
                         <Image source={currencyImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>{props.t('currency')}</Text>
+                        <Text style={[styles.titleText, props.textColor]}>{props.t('currency')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
-                        <Text style={styles.settingText}>{props.currency}</Text>
+                        <Text style={[styles.settingText, props.textColor]}>{props.currency}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -130,10 +127,10 @@ const MainSettings = props => (
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
                         <Image source={languageImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>{props.t('language')}</Text>
+                        <Text style={[styles.titleText, props.textColor]}>{props.t('language')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
-                        <Text numberOfLines={1} style={styles.settingText}>
+                        <Text numberOfLines={1} style={[styles.settingText, props.textColor]}>
                             {selectLocale(i18next.language)}
                         </Text>
                     </View>
@@ -141,13 +138,13 @@ const MainSettings = props => (
             </TouchableOpacity>
         </View>
         <View style={styles.separatorContainer}>
-            <View style={styles.separator} />
+            <View style={[styles.separator, props.borderBottomColor]} />
         </View>
         <View style={styles.itemContainer}>
             <TouchableOpacity onPress={() => props.setSetting('accountManagement')}>
                 <View style={styles.item}>
                     <Image source={accountImagePath} style={styles.icon} />
-                    <Text style={styles.titleText}>{props.t('accountManagement')}</Text>
+                    <Text style={[styles.titleText, props.textColor]}>{props.t('accountManagement')}</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -155,7 +152,7 @@ const MainSettings = props => (
             <TouchableOpacity onPress={() => props.on2FASetupPress()}>
                 <View style={styles.item}>
                     <Image source={twoFactorAuthImagePath} style={styles.icon} />
-                    <Text style={styles.titleText}>{props.t('twoFA')}</Text>
+                    <Text style={[styles.titleText, props.textColor]}>{props.t('twoFA')}</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -163,18 +160,18 @@ const MainSettings = props => (
             <TouchableOpacity onPress={() => props.setSetting('changePassword')}>
                 <View style={styles.item}>
                     <Image source={passwordImagePath} style={styles.icon} />
-                    <Text style={styles.titleText}>{props.t('changePassword')}</Text>
+                    <Text style={[styles.titleText, props.textColor]}>{props.t('changePassword')}</Text>
                 </View>
             </TouchableOpacity>
         </View>
         <View style={styles.separatorContainer}>
-            <View style={styles.separator} />
+            <View style={[styles.separator, props.borderBottomColor]} />
         </View>
         <View style={styles.itemContainer}>
             <TouchableOpacity onPress={() => props.setSetting('advancedSettings')}>
                 <View style={styles.item}>
                     <Image source={advancedImagePath} style={styles.icon} />
-                    <Text style={styles.titleText}>{props.t('advanced')}</Text>
+                    <Text style={[styles.titleText, props.textColor]}>{props.t('advanced')}</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -182,7 +179,7 @@ const MainSettings = props => (
             <TouchableOpacity onPress={() => props.setModalContent('logoutConfirmation')}>
                 <View style={styles.item}>
                     <Image source={logoutImagePath} style={styles.icon} />
-                    <Text style={styles.titleText}>{props.t('logout')}</Text>
+                    <Text style={[styles.titleText, props.textColor]}>{props.t('logout')}</Text>
                 </View>
             </TouchableOpacity>
         </View>
