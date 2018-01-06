@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, StatusBar, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, StatusBar, Text, ActivityIndicator, Animated } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import {
@@ -16,16 +16,10 @@ import { Navigation } from 'react-native-navigation';
 import IotaSpin from '../components/iotaSpin';
 import THEMES from '../theme/themes';
 import KeepAwake from 'react-native-keep-awake';
-
+import LottieView from 'lottie-react-native';
 import { width, height } from '../util/dimensions';
-
 class Loading extends Component {
     componentDidMount() {
-        KeepAwake.activate();
-
-        this.props.changeHomeScreenRoute('balance');
-        this.props.setSetting('mainSettings');
-
         const {
             firstUse,
             addingAdditionalAccount,
@@ -35,6 +29,15 @@ class Loading extends Component {
             password,
             navigator,
         } = this.props;
+
+        if (!firstUse && !addingAdditionalAccount) {
+            this.animation.play();
+        }
+
+        KeepAwake.activate();
+
+        this.props.changeHomeScreenRoute('balance');
+        this.props.setSetting('mainSettings');
 
         keychain
             .get()
@@ -106,7 +109,18 @@ class Loading extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <IotaSpin duration={3000} />
+                <View style={styles.animationContainer}>
+                    <View>
+                        <LottieView
+                            ref={animation => {
+                                this.animation = animation;
+                            }}
+                            source={require('../animations/welcome.json')}
+                            style={styles.animation}
+                            loop={true}
+                        />
+                    </View>
+                </View>
             </View>
         );
     }
@@ -132,6 +146,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: height / 40,
     },
+    animation: {
+        justifyContent: 'center',
+        width: width * 1.5,
+        height: width / 1.77 * 1.5,
+    },
+    animationContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
@@ -156,6 +180,7 @@ const mapDispatchToProps = {
 
 Loading.propTypes = {
     firstUse: PropTypes.bool.isRequired,
+    addingAdditionalAccount: PropTypes.bool.isRequired,
     navigator: PropTypes.object.isRequired,
     getAccountInfo: PropTypes.func.isRequired,
     getFullAccountInfo: PropTypes.func.isRequired,

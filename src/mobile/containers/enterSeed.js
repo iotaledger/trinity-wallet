@@ -103,7 +103,7 @@ class EnterSeed extends React.Component {
 
         if (seed.length != 0 && seed.length < 81) {
             checksumValue = '< 81';
-        } else if (seed.length == 81) {
+        } else if (seed.length == 81 && seed.match(VALID_SEED_REGEX)) {
             checksumValue = getChecksum(seed);
         }
         return checksumValue;
@@ -130,7 +130,9 @@ class EnterSeed extends React.Component {
                                         <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                     </View>
                                 </View>
-                                <View style={{ flex: 1, flexDirection: 'row', width: width / 1.4 }}>
+                                <View
+                                    style={{ flex: 1, flexDirection: 'row', width: width / 1.4, alignItems: 'center' }}
+                                >
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
@@ -196,6 +198,7 @@ class EnterSeed extends React.Component {
                     backdropOpacity={1}
                     style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalVisible}
+                    onBackButtonPress={() => this.setState({ isModalVisible: false })}
                 >
                     {this._renderModalContent()}
                 </Modal>
@@ -306,15 +309,17 @@ const styles = StyleSheet.create({
     textFieldContainer: {
         flex: 1,
         paddingRight: width / 30,
+        justifyContent: 'flex-end',
     },
     textField: {
         color: 'white',
         fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
-        justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: height / 90,
+        paddingBottom: isAndroid ? height / 90 : height / 150,
+        justifyContent: 'flex-end',
+        height: height / 10,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
