@@ -251,7 +251,7 @@
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA.",
-        "weWillSpend": "Kilka następnych minut spędzimy na Konfiguracji portfela.",
+        "weWillSpend": "KIlka następnych minut spędzimy nad konfiguracją portfela.",
         "reminder": "Możesz ulec pokusie, aby pominąć pewne kroki, ale radzimy przejść przez cały proces."
     },
     "writeSeedDown": {
@@ -283,7 +283,7 @@
     "advancedSettings": {
         "selectNode": "Wybierz node",
         "addCustomNode": "Dodaj niestandardowy node",
-        "manualSync": "Synchronizacja manualna"
+        "manualSync": "Ręczna synchronizacja"
     },
     "advancedThemeCustomisation": {
         "background": "Tło",
@@ -315,7 +315,7 @@
     "manualSync": {
         "pressToSync": "Naciśnij poniższy przycisk, aby zsynchronizować swoje konto.",
         "thisMayTake": "To może chwilę potrwać.",
-        "youMayNotice": "Możesz zaobserwować spowolnienie twojego urządzenia.",
+        "youMayNotice": "Można zaobserwować spowolnienie urządzenia.",
         "syncAccount": "SYNCHRONIZACJA KONT",
         "syncingYourAccount": "Synchronizacja twojego konta."
     },
