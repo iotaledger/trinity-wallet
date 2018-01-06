@@ -3,6 +3,7 @@ package com.iota.wallet;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.airbnb.android.react.lottie.LottiePackage;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
@@ -56,7 +57,8 @@ public class MainApplication extends NavigationApplication {
             new ExtraDimensionsPackage(),
             new RNDetectNavbarAndroidPackage(),
             new KCKeepAwakePackage(),
-            new KeychainPackage()
+            new KeychainPackage(),
+            new LottiePackage()
     );
   }
 

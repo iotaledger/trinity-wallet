@@ -30,12 +30,12 @@ class CopySeedToClipboard extends Component {
 
     componentWillUnmount() {
         this.clearTimeout();
-        Clipboard.setString('');
+        Clipboard.setString(' ');
     }
 
     onDonePress() {
         this.clearTimeout();
-        Clipboard.setString('');
+        Clipboard.setString(' ');
         this.props.setCopiedToClipboard(true);
 
         this.props.navigator.pop({
@@ -51,7 +51,7 @@ class CopySeedToClipboard extends Component {
         this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
 
         this.timeout = setTimeout(() => {
-            Clipboard.setString('');
+            Clipboard.setString(' ');
             this.generateClipboardClearAlert();
         }, 60000);
     }
