@@ -68,7 +68,7 @@
         "noNickname": "Nie wprowadzono nazwy konta",
         "noNicknameExplanation": "Wpisz nazwę konta dla twojego seeda.",
         "seedInUse": "Seed jest już w użyciu",
-        "seedInUseExplanation": "Ten seed został już powiązany z Twoim portfelem. Proszę użyj innego."
+        "seedInUseExplanation": "Ten seed jest powiązany z Twoim portfelem. Proszę użyj innego."
     },
     "changePassword": {
         "oops": "Ups. Coś poszło nie tak",
@@ -77,12 +77,12 @@
         "passwordUpdatedExplanation": "Twoje hasło zostało pomyślnie zaktualizowane.",
         "incorrectPassword": "Nieprawidłowe hasło",
         "incorrectPasswordExplanation": "Podane hasło jest nieprawidłowe. Spróbuj ponownie.",
-        "passwordsDoNotMatch": "Hasła nie są zgodne",
+        "passwordsDoNotMatch": "Hasła się różnią",
         "passwordsDoNotMatchExplanation": "Hasła się różnią. Proszę spróbować jeszcze raz.",
         "passwordTooShort": "Hasło jest zbyt krótkie",
-        "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
+        "passwordTooShortExplanation": "Hasło musi miec minimum 12 znakow. Spróbuj ponownie.",
         "oldPassword": "Nie można ustawić starego hasła",
-        "oldPasswordExplanation": "Nie można użyć starego hasła ponownie. Proszę spróbować ponownie z nowym hasłem.",
+        "oldPasswordExplanation": "Nie można ponownie użyć starego hasła. Proszę spróbować z nowym hasłem.",
         "ensureStrongPassword": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "currentPassword": "Obecne hasło",
         "newPassword": "Nowe hasło",
