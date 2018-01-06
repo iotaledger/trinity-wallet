@@ -1,5 +1,6 @@
 package org.iota.mobile;
 
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -15,7 +16,8 @@ public class PoWModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public String doPoW(String trytes, int mwm) {
-        return Interface.doPOW(trytes, mwm);
+    public void doPoW(String trytes, int mwm, Promise promise) {
+      String nonce = Interface.doPOW(trytes, mwm);
+      promise.resolve(nonce);
     }
 }
