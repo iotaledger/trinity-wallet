@@ -390,7 +390,9 @@ class Send extends Component {
 
     render() {
         const { amount, address, message } = this.state;
-        const { t, ctaColor, backgroundColor, negativeColor } = this.props;
+        const { t, ctaColor, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -403,14 +405,14 @@ class Send extends Component {
                                 <TextField
                                     ref="address"
                                     autoCapitalize={'characters'}
-                                    style={styles.textField}
+                                    style={[styles.textField, textColor]}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                     labelFontSize={height / 55}
                                     maxLength={90}
                                     fontSize={height / 40}
                                     height={height / 24}
                                     labelPadding={2}
-                                    baseColor="white"
+                                    baseColor={secondaryBackgroundColor}
                                     tintColor={THEMES.getHSL(negativeColor)}
                                     enablesReturnKeyAutomatically={true}
                                     returnKeyType="next"
@@ -423,8 +425,8 @@ class Send extends Component {
                             </View>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity onPress={() => this.setModalContent('qrScanner')}>
-                                    <View style={styles.button}>
-                                        <Text style={styles.qrText}>{t('global:qr')}</Text>
+                                    <View style={[styles.button, borderColor]}>
+                                        <Text style={[styles.qrText, textColor]}>{t('global:qr')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -440,7 +442,7 @@ class Send extends Component {
                                     fontSize={height / 40}
                                     height={height / 24}
                                     labelPadding={2}
-                                    baseColor="white"
+                                    baseColor={secondaryBackgroundColor}
                                     enablesReturnKeyAutomatically={true}
                                     returnKeyType="next"
                                     label={t('amount')}
@@ -451,7 +453,7 @@ class Send extends Component {
                                     onSubmitEditing={() => this.refs.message.focus()}
                                 />
                             </View>
-                            <Text style={styles.conversionText}>
+                            <Text style={[styles.conversionText, textColor]}>
                                 {' '}
                                 {this.state.denomination === currencySymbol
                                     ? this.getConversionTextFiat()
@@ -459,8 +461,8 @@ class Send extends Component {
                             </Text>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity onPress={event => this.onDenominationPress()}>
-                                    <View style={styles.button}>
-                                        <Text style={styles.buttonText}> {this.state.denomination} </Text>
+                                    <View style={[styles.button, borderColor]}>
+                                        <Text style={[styles.buttonText, textColor]}> {this.state.denomination} </Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -468,8 +470,8 @@ class Send extends Component {
                         <View style={styles.maxContainer}>
                             <View style={styles.maxButtonContainer}>
                                 <TouchableOpacity onPress={event => this.onMaxPress()}>
-                                    <View style={styles.maxButton}>
-                                        <Text style={styles.maxButtonText}>{t('max')}</Text>
+                                    <View style={[styles.maxButton, borderColor]}>
+                                        <Text style={[styles.maxButtonText, textColor]}>{t('max')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -478,13 +480,13 @@ class Send extends Component {
                         <View style={styles.messageFieldContainer}>
                             <TextField
                                 ref={'message'}
-                                style={styles.textField}
+                                style={[styles.textField, textColor]}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={height / 55}
                                 fontSize={height / 40}
                                 height={height / 24}
                                 labelPadding={2}
-                                baseColor="white"
+                                baseColor={secondaryBackgroundColor}
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="send"
                                 label={t('message')}
@@ -529,7 +531,7 @@ class Send extends Component {
                                     }
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color="#F7D002"
+                                    color={THEMES.getHSL(negativeColor)}
                                 />
                             )}
                     </View>
@@ -540,7 +542,7 @@ class Send extends Component {
                         >
                             <View style={styles.info}>
                                 <Image source={infoImagePath} style={styles.infoIcon} />
-                                <Text style={styles.infoText}>{t('iotaUnits')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('iotaUnits')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -613,27 +615,23 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     textField: {
-        color: 'white',
         fontFamily: 'Lato-Light',
     },
     button: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderColor: 'white',
         borderWidth: 0.8,
         borderRadius: GENERAL.borderRadius,
         width: width / 6.5,
         height: height / 16,
     },
     qrText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
     buttonText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
@@ -651,10 +649,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     sendIOTAText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 25.9,
         backgroundColor: 'transparent',
+        color: 'white',
     },
     sendIOTAImage: {
         height: width / 35,
@@ -669,7 +667,6 @@ const styles = StyleSheet.create({
     },
     conversionText: {
         fontFamily: 'Lato-Light',
-        color: 'white',
         backgroundColor: 'transparent',
         position: 'absolute',
         bottom: height / 45,
@@ -682,7 +679,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     maxButtonText: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
@@ -699,14 +695,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderColor: 'white',
         borderWidth: 0.8,
         borderRadius: GENERAL.borderRadius,
         width: width / 6,
         height: height / 16,
     },
     infoText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 29.6,
         textAlign: 'center',
@@ -738,6 +732,7 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     barColor: state.settings.theme.barColor,
     negativeColor: state.settings.theme.negativeColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {

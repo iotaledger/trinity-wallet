@@ -27,9 +27,12 @@ class AdvancedThemeCustomisation extends React.Component {
     }
 
     onApplyPress() {
+        const { backgroundColor, barColor } = this.state;
         let theme = cloneDeep(this.props.theme);
-        theme.backgroundColor = this.state.backgroundColor;
-        theme.barColor = this.state.barColor;
+        theme.backgroundColor = backgroundColor;
+        theme.barColor = barColor;
+        theme.secondaryBackgroundColor = tinycolor(backgroundColor).isDark() ? 'white' : '#222';
+        theme.secondaryBarColor = tinycolor(barColor).isDark() ? 'white' : '#222';
         this.props.updateTheme(theme, 'Custom');
         this.props.backPress();
     }
