@@ -53,8 +53,8 @@
         "node": "ノード",
         "cannotPerformAction": "操作を実行できません。",
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "attachToTangleUnavailable": "Tangleにアタッチ出来ません。",
+        "attachToTangleUnavailableExplanation": "選択したノードではTangleにアタッチ出来ません。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
