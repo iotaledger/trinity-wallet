@@ -1,28 +1,28 @@
-import React, { Component } from 'react'
-import { translate } from 'react-i18next'
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native'
-import { connect } from 'react-redux'
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util'
-import Seedbox from '../components/seedBox.js'
-import { width, height } from '../util/dimensions'
-import THEMES from '../theme/themes'
-import GENERAL from '../theme/general'
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png'
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota'
+import React, { Component } from 'react';
+import { translate } from 'react-i18next';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import Seedbox from '../components/seedBox.js';
+import { width, height } from '../util/dimensions';
+import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 
 class WriteSeedDown extends Component {
     onDonePress() {
         this.props.navigator.pop({
             animated: false,
-        })
+        });
     }
 
     render() {
-        const { t, positiveColor, backgroundColor } = this.props
-        const checksum = getChecksum(this.props.tempAccount.seed)
+        const { t, positiveColor, backgroundColor } = this.props;
+        const checksum = getChecksum(this.props.tempAccount.seed);
 
-        const positiveColorText = { color: THEMES.getHSL(positiveColor) }
-        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) }
+        const positiveColorText = { color: THEMES.getHSL(positiveColor) };
+        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
@@ -51,7 +51,7 @@ class WriteSeedDown extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -192,12 +192,12 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Regular',
     },
-})
+});
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
-})
+});
 
-export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown))
+export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown));

@@ -27,6 +27,8 @@
     "iota-wallet-shared-modules": "../shared/",
     "iota.lib.js": "^0.4.6",
     "lodash": "^4.17.4",
+    "lottie-ios": "^2.1.5",
+    "lottie-react-native": "2.2.7",
     "os-browserify": "^0.1.2",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
@@ -34,7 +36,7 @@
     "punycode": "^1.4.1",
     "querystring-es3": "^0.2.1",
     "react": "16.0.0-alpha.12",
-    "react-i18next": "^6.2.0",
+    "react-i18next": "^7.3.0",
     "react-native": "0.47.2",
     "react-native-camera": "^0.10.0",
     "react-native-clipboard": "^0.0.5",
@@ -120,9 +122,9 @@
       "/node_modules/",
       "/shared/"
     ],
-      "transformIgnorePatterns": [
-          "node_modules/?!(react-native|iota-wallet-shared-modules)"
-      ]
+    "transformIgnorePatterns": [
+      "node_modules/?!(react-native|iota-wallet-shared-modules)"
+    ]
   },
   "react-native": {
     "zlib": "browserify-zlib",
