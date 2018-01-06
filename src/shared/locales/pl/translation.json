@@ -6,7 +6,7 @@
         "noTransactions": "BRAK OSTATNIEJ HISTORII",
         "qr": "Kod QR",
         "balanceError": "Brak wystarczających środków",
-        "balanceErrorMessage": "Nie masz wystarczająco dużo IOTA, aby zakończyć ten transfer.",
+        "balanceErrorMessage": "Nie masz wystarczającej ilości IOTA, aby zakończyć ten transfer.",
         "transferError": "Błąd transferu",
         "transferErrorMessage": "Coś poszło nie tak podczas przetwarzania twojego transferu. Spróbuj ponownie.",
         "transferSent": "Transfer zrealizowany",
