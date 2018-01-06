@@ -3,13 +3,13 @@
         "send": "ENVIAR",
         "cancel": "CANCELAR",
         "continue?": "Tem a certeza que deseja continuar?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "NÃO EXISTE HISTÓRICO RECENTE",
         "qr": "QR",
-        "balanceError": "Not enough balance",
-        "balanceErrorMessage": "Não contém fundos suficientes para realizar esta transferência.",
-        "transferError": "Transfer Error",
+        "balanceError": "Saldo insuficiente",
+        "balanceErrorMessage": "Não tem fundos suficientes para realizar esta transferência.",
+        "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
+        "transferSent": "Transferência concluída",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
         "keyReuse": "Reutilização da chave",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
@@ -21,14 +21,14 @@
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "ANTERIOR",
-        "backLowercase": "Anterior",
+        "backLowercase": "Voltar",
         "done": "CONCLUÍDO",
-        "doneLowercase": "Done",
+        "doneLowercase": "Concluir",
         "next": "SEGUINTE",
-        "apply": "Apply",
-        "save": "Save",
+        "apply": "Aplicar",
+        "save": "Gravar",
         "close": "FECHAR",
-        "continue": "Continue",
+        "continue": "Continuar",
         "manualCopy": "Anote a Seed",
         "paperWallet": "Imprima uma cópia em papel",
         "copyToClipboard": "Adicionar ao gestor de palavras-passe",
@@ -52,8 +52,10 @@
         "somethingWentWrong": "Ocorreu um problema",
         "somethingWentWrongExplanation": "Por favor, reinicie a aplicação.",
         "node": "Nó",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet."
+        "cannotPerformAction": "Não é possível executar a ação",
+        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -123,14 +125,14 @@
     "login": {
         "emptyPassword": "Palavra-passe vazia",
         "emptyPasswordExplanation": "Deve inserir uma palavra-passe para iniciar a sessão, Por favor, tente de novo.",
-        "enterPassword": "Por favor, insira a sua palavra-passe.",
+        "enterPassword": "Por favor insira a sua palavra-passe.",
         "useSeed": "USAR A SEED",
         "login": "INICIAR SESSÃO",
         "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "A carregar a Seed pela primeira vez.",
-        "thisMayTake": "Isto pode demorar algum tempo.",
+        "thisMayTake": "Isto pode demorar um pouco.",
         "youMayNotice": "Pode notar um abrandamento do seu dispositivo."
     },
     "newSeedSetup": {
@@ -175,7 +177,7 @@
         "invalidAddressExplanation1": "O endereço deve ter {{maxLength}} caracteres e o código de verificação.",
         "invalidAddressExplanation2": "O endereço contém caracteres inválidos.",
         "invalidAddressExplanation3": "O endereço contém um código de verificação incorreto.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Fundos insuficientes",
         "notEnoughFundsExplanation": "Não contém fundos suficientes para realizar esta transferência.",
         "keyReuse": "Reutilização da chave",
         "keyReuseExplanation":
@@ -207,7 +209,7 @@
         "youCanAdd": "Pode adicionar mais Seeds no menu de configuração."
     },
     "settings": {
-        "transferSending": "A realizar a sua transferência",
+        "transferSending": "A realizar transferência",
         "transferSendingExplanation": "Por favor aguarde enquanto a sua transferência está a ser realizada.",
         "generatingAddress": "A gerar endereço próprio",
         "generatingAddressExplanation": "Por favor aguarde enquanto o seu endereço está a ser gerado.",
@@ -215,22 +217,22 @@
         "theme": "Tema",
         "currency": "Moeda",
         "language": "Idioma",
-        "accountManagement": "Account management",
+        "accountManagement": "Gestão de Contas",
         "addNewSeed": "Adicionar nova Seed",
         "twoFA": "Autenticação 2-FA",
         "changePassword": "Alterar a palavra-passe",
         "advanced": "Configurações avançadas",
         "logout": "Terminar sessão",
         "reset": "Reiniciar completamente a carteira",
-        "syncingComplete": "Syncing complete",
+        "syncingComplete": "Sincronização completada",
         "syncingCompleteExplanation": "Your account has synced successfully.",
         "nicknameChanged": "Account name changed",
         "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
+        "accountDeleted": "Conta eliminada",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
+        "poorConnection": "Conexão fraca",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
@@ -280,15 +282,15 @@
         "viewSeed": "View seed",
         "viewAddresses": "View addresses",
         "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "deleteAccount": "Eliminar conta",
+        "addNewAccount": "Adicionar nova conta"
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "Adicionar"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
+        "useExistingSeed": "Usar Seed existente",
         "createNewSeed": "Create new seed"
     },
     "advancedSettings": {
@@ -297,8 +299,8 @@
         "manualSync": "Manual sync"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Fundo",
+        "frame": "Moldura"
     },
     "currencySelection": {
         "currency": "Moeda"
@@ -315,10 +317,10 @@
         "billion": "Billion",
         "million": "Million",
         "thousand": "Thousand",
-        "one": "One"
+        "one": "Um"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
+        "areYouSure": "Tem a certeza que pretende eliminar esta conta?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "Esta ação não pode ser anulada.",
         "enterPassword": "Enter your password to delete this account."
@@ -345,7 +347,7 @@
         "reenterWarningTwo": "your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "ESTA AÇÃO NÃO PODE SER ANULADA.",
         "infoTextOne": "Toda a informação da sua carteira, incluindo",
         "infoTextTwo": "Seeds, palavra-passe",
         "infoTextThree": "e",
@@ -354,6 +356,6 @@
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "aMessage": "uma mensagem"
     }
 }
