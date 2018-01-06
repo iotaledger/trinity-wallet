@@ -7,7 +7,7 @@
         "qr": "QRコード",
         "balanceError": "残高が足りません",
         "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
-        "transferError": "Transfer error",
+        "transferError": "送金エラー",
         "transferErrorMessage": "送金中に問題が発生しました。もう一度やり直してください。",
         "transferSent": "送金完了",
         "transferSentMessage": "送金情報がTangleに送られました。",
@@ -17,7 +17,7 @@
         "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
         "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
         "invalidResponseFetchingAccount": "アカウント情報呼び出し中にノードが無効な返答をしました。",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+        "invalidResponseSendingTransfer": "送金中にノードが無効な応答をしました。",
         "seed": "Seed",
         "back": "戻る",
         "backLowercase": "戻る",
@@ -102,8 +102,7 @@
         "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
         "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation":
-            "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedExplanation": "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
