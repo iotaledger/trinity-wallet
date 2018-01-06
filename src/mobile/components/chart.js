@@ -11,7 +11,11 @@ const chartHeight = height * 0.4;
 
 const getChartCurrencySymbol = currency => {
     if (currency === 'BTC') {
-        return '₿';
+        if (isAndroid) {
+            return '฿';
+        } else {
+            return '₿';
+        }
     } else if (currency === 'ETH') {
         return 'Ξ';
     } else if (currency === 'EUR') {
