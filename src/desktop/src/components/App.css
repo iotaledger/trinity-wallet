@@ -14,9 +14,9 @@
     --color-bg-secondary: #1a1b1b;
 
     --color-valid: #009a33;
-    --color-extra: #008b9a;
+    --color-extra: #8bd4ff;
     --color-warning: var(--color-highlight);
-    --color-error: #ff6c69;
+    --color-error: #f75602;
 
     --font-size-default: 14px;
     --font-size-small: 12px;
@@ -24,7 +24,7 @@
     --font-size-title: 20px;
 
     --z-index-modal: 2048;
-    --z-index-overlay: 1024;
+    --z-index-overlay: 2049;
     --z-index-dropdown: 512;
     --z-index-elevated: 1;
 }
