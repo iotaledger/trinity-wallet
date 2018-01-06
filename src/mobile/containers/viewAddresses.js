@@ -33,7 +33,7 @@ class ViewAddresses extends Component {
                         renderRow={(rowData, sectionID, rowID) => (
                             <View style={{ flexDirection: 'row', paddingHorizontal: width / 15 }}>
                                 <TouchableOpacity
-                                    onPress={() => this.copy(rowID)}
+                                    onPress={() => this.copy(rowData)}
                                     style={{ alignItems: 'flex-start', flex: 8, justifyContent: 'center' }}
                                 >
                                     <View>
