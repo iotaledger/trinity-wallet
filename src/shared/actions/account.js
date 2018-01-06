@@ -32,8 +32,12 @@ import {
     getPendingTxTailsHashes,
 } from '../libs/accountUtils';
 import { setReady, clearTempData } from './tempAccount';
-import { generateAlert, generateAccountInfoErrorAlert } from '../actions/alerts';
-import i18next from 'i18next';
+import {
+    generateAccountInfoErrorAlert,
+    generateSyncingCompleteAlert,
+    generateInvalidResponseAlert,
+    generateAccountDeletedAlert,
+} from '../actions/alerts';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -313,19 +317,11 @@ export const manuallySyncAccount = (seed, accountName) => dispatch => {
                 });
             }
 
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('settings:syncingComplete'),
-                    i18next.t('settings:syncingCompleteExplanation'),
-                ),
-            );
+            dispatch(generateSyncingCompleteAlert());
             return dispatch(manualSyncSuccess(assign({}, payload, { hashes: [] })));
         }
 
-        dispatch(
-            generateAlert('error', i18next.t('global:invalidResponse'), i18next.t('global:invalidResponseExplanation')),
-        );
+        dispatch(generateInvalidResponseAlert());
         return dispatch(manualSyncError());
     });
 };
@@ -448,9 +444,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
 
 export const deleteAccount = accountName => dispatch => {
     dispatch(removeAccount(accountName));
-    dispatch(
-        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
-    );
+    dispatch(generateAccountDeletedAlert());
 };
 
 // Aim to update local transfers, addresses, hashes in store after a new transaction is made.
