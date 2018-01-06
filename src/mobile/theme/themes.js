@@ -8,6 +8,8 @@ const themes = {
         positiveColor: tinycolor(`#9DFFAF`).toHsl(),
         negativeColor: tinycolor(`#F7D002`).toHsl(),
         extraColor: tinycolor(`#88D4FF`).toHsl(),
+        secondaryBarColor: 'white',
+        secondaryBackgroundColor: 'white',
     },
     Grey: {
         backgroundColor: tinycolor(`#313131`).toHsl(),
@@ -16,6 +18,8 @@ const themes = {
         positiveColor: tinycolor(`#9DFFAF`).toHsl(),
         negativeColor: tinycolor(`#F7D002`).toHsl(),
         extraColor: tinycolor(`#88D4FF`).toHsl(),
+        secondaryBarColor: 'white',
+        secondaryBackgroundColor: 'white',
     },
     Blue: {
         backgroundColor: tinycolor(`#20303f`).toHsl(),
@@ -24,6 +28,8 @@ const themes = {
         positiveColor: tinycolor(`#9DFFAF`).toHsl(),
         negativeColor: tinycolor(`#F7D002`).toHsl(),
         extraColor: tinycolor(`#88D4FF`).toHsl(),
+        secondaryBarColor: 'white',
+        secondaryBackgroundColor: 'white',
     },
     Custom: {
         backgroundColor: tinycolor(`#1a373e`).toHsl(),
@@ -32,6 +38,8 @@ const themes = {
         positiveColor: tinycolor(`#9DFFAF`).toHsl(),
         negativeColor: tinycolor(`#F7D002`).toHsl(),
         extraColor: tinycolor(`#88D4FF`).toHsl(),
+        secondaryBarColor: 'white',
+        secondaryBackgroundColor: 'white',
     },
 };
 
