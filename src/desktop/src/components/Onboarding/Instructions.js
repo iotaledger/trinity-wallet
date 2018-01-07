@@ -22,7 +22,7 @@ export default translate('welcome1')(
                         </p>
                     </Content>
                     <Footer>
-                        <Button to="/" variant="warning">
+                        <Button to="/" variant="secondary">
                             {t('global:back')}
                         </Button>
                         <Button to="/wallet-setup" variant="success">
