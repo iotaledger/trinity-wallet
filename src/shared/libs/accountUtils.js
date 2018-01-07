@@ -591,8 +591,10 @@ const getAddresses = (
 export const getAccountData = (seed, accountName) => {
     return new Promise((resolve, reject) => {
         const tailTransactions = [];
-        const nonTailBundleHashes = [];
+        const allBundleHashes = [];
+
         let allBundleObjects = [];
+
         const transfers = [];
 
         const data = {
@@ -620,21 +622,16 @@ export const getAccountData = (seed, accountName) => {
                 return findTransactionObjects({ addresses: data.addresses });
             })
             .then(txObjects => {
-                each(txObjects, tx => {
-                    if (tx.currentIndex === 0) {
-                        pushIfNotExists(tailTransactions, tx);
-                    } else {
-                        pushIfNotExists(nonTailBundleHashes, tx.bundle);
-                    }
-                });
+                each(txObjects, tx => pushIfNotExists(allBundleHashes, tx.bundle)); // Grab all bundle hashes
 
-                return findTransactionObjects({ bundles: nonTailBundleHashes });
+                return findTransactionObjects({ bundles: allBundleHashes });
             })
             .then(bundleObjects => {
                 allBundleObjects = bundleObjects;
+
                 each(allBundleObjects, tx => {
                     if (tx.currentIndex === 0) {
-                        pushIfNotExists(tailTransactions, tx);
+                        pushIfNotExists(tailTransactions, tx); // Keep a copy of all tail transactions to check confirmations
                     }
                 });
 
@@ -664,6 +661,7 @@ export const getAccountData = (seed, accountName) => {
                     {},
                 );
 
+                // Get rid of transactions duplicates that are already confirmed
                 const deduplicatedUnconfirmedTxs = omitBy(allTxsAsObjects.unconfirmed, (value, key) => {
                     return has(allTxsAsObjects.confirmed, key);
                 });
@@ -673,7 +671,14 @@ export const getAccountData = (seed, accountName) => {
                     ...map(deduplicatedUnconfirmedTxs, t => t),
                 ];
 
-                each(finalTailTxs, tx => transfers.push(getBundle(tx, allBundleObjects)));
+                each(finalTailTxs, tx => {
+                    const bundle = getBundle(tx, allBundleObjects);
+
+                    if (iota.utils.isBundle(bundle)) {
+                        transfers.push(bundle);
+                    }
+                });
+
                 data.transfers = transfers;
 
                 return getBalances(data.addresses);
