@@ -248,7 +248,7 @@ export const fetchFullAccountInfoForFirstUse = (
             } else {
                 storeInKeychainPromise(password, seed, accountName)
                     .then(() => {
-                        dispatch(fullAccountInfoForFirstUseFetchSuccess(data));
+                        dispatch(fullAccountInfoForFirstUseFetchSuccess(assign({}, data, { hashes: [] })));
                     })
                     .catch(() => {
                         onError();
