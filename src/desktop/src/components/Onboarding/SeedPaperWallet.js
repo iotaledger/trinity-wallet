@@ -4,12 +4,9 @@ import QRCode from 'qrcode.react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedSeed } from 'selectors/seeds';
-import { MAX_SEED_LENGTH } from 'libs/util';
-import Template, { Main, Footer } from './Template';
-import BoxedSeed from '../UI/BoxedSeed';
-import Button from '../UI/Button';
-import Steps from '../UI/Steps';
-import css from './SeedPaperWallet.css';
+import BoxedSeed from 'components/UI/BoxedSeed';
+import Button from 'components/UI/Button';
+import css from 'components/Onboarding/SeedPaperWallet.css';
 
 class SeedPaperWallet extends PureComponent {
     static propTypes = {
@@ -17,7 +14,7 @@ class SeedPaperWallet extends PureComponent {
         seed: PropTypes.string,
     };
 
-    print = e => {
+    print = () => {
         window.print();
     };
 
@@ -39,7 +36,7 @@ class SeedPaperWallet extends PureComponent {
                     </div>
                 </div>
                 <div className={css.printBtnWrapper}>
-                    <Button onClick={this.print} variant="cta">
+                    <Button onClick={this.print} variant="secondary">
                         {t('paperWallet:printWallet')}
                     </Button>
                 </div>
