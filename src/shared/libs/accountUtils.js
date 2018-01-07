@@ -8,11 +8,11 @@ import isNull from 'lodash/isNull';
 import isObject from 'lodash/isObject';
 import has from 'lodash/has';
 import omitBy from 'lodash/omitBy';
-import size from 'lodash/size';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
 import { iota } from '../libs/iota';
 import { getBundleTailsForSentTransfers } from './promoter';
+import { getAllAddresses } from './addresses';
 
 export const formatFullAddressData = data => {
     const addresses = data.addresses;
@@ -446,26 +446,6 @@ export const getBundle = (tailTx, allBundleObjects) => {
     return bundle;
 };
 
-export const getNewAddresses = (
-    seed,
-    options = {
-        index: 0,
-        total: null,
-        returnAll: true,
-        security: 2,
-    },
-) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getNewAddress(seed, options, (err, addresses) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(addresses);
-            }
-        });
-    });
-};
-
 export const findTransactionObjects = input => {
     return new Promise((resolve, reject) => {
         iota.api.findTransactionObjects(input, (err, txObjects) => {
@@ -514,80 +494,6 @@ export const withHealthCheck = () => {
     });
 };
 
-const getRemainingAddresses = (res, rej, addresses, start, allRemaining) => {
-    if (!addresses[start]) {
-        res(allRemaining);
-        return;
-    }
-
-    return iota.api.findTransactions({ addresses: [addresses[start]] }, (err, hashes) => {
-        if (err) {
-            rej(err);
-        } else {
-            if (size(hashes)) {
-                allRemaining.push(addresses[start]);
-                start = start + 1;
-
-                getRemainingAddresses(res, rej, addresses, start, allRemaining);
-            } else {
-                allRemaining.push(addresses[start]);
-                res(allRemaining);
-            }
-        }
-    });
-};
-
-const getRelevantAddresses = (resolve, reject, seed, opts, allAddresses) => {
-    iota.api.getNewAddress(seed, opts, (err, addresses) => {
-        if (err) {
-            reject(err);
-        } else {
-            const latest = addresses[addresses.length - 1];
-            iota.api.findTransactions({ addresses: [latest] }, (err, hashes) => {
-                if (size(hashes)) {
-                    allAddresses = [...allAddresses, ...addresses];
-                    const newOpts = Object.assign({}, opts, { index: opts.total + opts.index });
-                    getRelevantAddresses(resolve, reject, seed, newOpts, allAddresses);
-                } else {
-                    iota.api.findTransactions({ addresses: addresses.slice(5, 10) }, (err, hashes) => {
-                        if (size(hashes)) {
-                            // include first five
-                            allAddresses = [...allAddresses, ...addresses.slice(0, 5)];
-                            new Promise((res, rej) => {
-                                getRemainingAddresses(res, rej, addresses.slice(5, 10), 0, []);
-                            }).then(allRemaining => {
-                                allAddresses = [...allAddresses, ...allRemaining];
-                                resolve(allAddresses);
-                            });
-                        } else {
-                            new Promise((res, rej) => {
-                                getRemainingAddresses(res, rej, addresses.slice(0, 5), 0, []);
-                            }).then(allRemaining => {
-                                allAddresses = [...allAddresses, ...allRemaining];
-                                resolve(allAddresses);
-                            });
-                        }
-                    });
-                }
-            });
-        }
-    });
-};
-
-const getAddresses = (
-    seed,
-    addressesOpts = {
-        index: 0,
-        total: 10,
-        returnAll: true,
-        security: 2,
-    },
-) => {
-    return new Promise((res, rej) => {
-        getRelevantAddresses(res, rej, seed, addressesOpts, []);
-    });
-};
-
 export const getAccountData = (seed, accountName) => {
     return new Promise((resolve, reject) => {
         const tailTransactions = [];
@@ -614,7 +520,7 @@ export const getAccountData = (seed, accountName) => {
         };
 
         withHealthCheck()
-            .then(() => getAddresses(seed))
+            .then(() => getAllAddresses(seed))
             .then(addresses => {
                 data.latestAddress = addresses[addresses.length - 1];
                 data.addresses = addresses.slice(0, -1);
