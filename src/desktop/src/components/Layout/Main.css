@@ -1,18 +1,16 @@
 .wrapper {
     --header-height: 100px;
     --sidebar-width: 80px;
-
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-
     > header {
-        background: rgba(0, 0, 0, 0.2);
+        background: var(--color-bg-secondary);
         display: flex;
         height: var(--header-height);
         position: fixed;
         width: 100%;
-
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
         .logo {
             align-items: center;
             display: flex;
@@ -21,68 +19,69 @@
             min-width: var(--sidebar-width);
         }
     }
-
     > main {
         display: flex;
         min-height: 100vh;
         padding-top: var(--header-height);
     }
-
     .content {
         flex: 1 1 calc(100% - var(--sidebar-width));
         position: relative;
     }
-
-    /*.sidebar {
-        background: rgba(0, 0, 0, 0.2);
-        flex: 1 1 var(--sidebar-width);
-        height: calc(100vh - var(--header-height));
-        overflow: auto;
-    }*/
-
     .inner {
         height: calc(100vh - var(--header-height));
         overflow: auto;
         padding: 24px;
+        display: flex;
+        > section {
+            width: 50%;
+            flex: 1 0 auto;
+            padding: 20px;
+        }
     }
 }
 
 .sidebar {
-    background: rgba(0, 0, 0, 0.2);
-    flex: 1 1 var(--sidebar-width);
+    background: var(--color-bg-secondary);
+    flex: 1 0 var(--sidebar-width);
     height: calc(100vh - var(--header-height));
     overflow: auto;
     text-align: center;
-
-    ul {
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    position: relative;
+    nav {
         list-style: none;
         margin: 0;
         padding: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
-
     img {
         display: block;
         margin: auto;
-        margin-bottom: 4px;
-        width: 20px;
-        height: 20px;
+        margin-bottom: 10px;
+        width: 36px;
+        height: 36px;
     }
-
     a {
         border-bottom: 1px solid var(--color-sidenav-underline);
         color: var(--color-sidenav-text);
         display: block;
-        font-size: var(--font-size-small);
-        padding: 20px 0;
+        font-size: 11px;
+        margin: 10px 0;
         height: 80px;
+        width: var(--sidebar-width);
         text-decoration: none;
         text-transform: uppercase;
-
+        opacity: 0.4;
+        transition: all 0.2s ease-out;
         &:global(.nav-active),
         &:hover {
-            background: var(--color-pale-darkgreen);
-            border-bottom: 1px solid var(--color-sidenav-underline-active);
-            color: var(--color-sidenav-text-active);
+            opacity: 1;
         }
     }
 }
@@ -90,12 +89,13 @@
 .seedsList {
     flex: 1 1 calc(100% - var(--sidebar-width));
     display: flex;
-
     ul {
         display: flex;
         list-style: none;
         margin: 0;
         padding: 0;
+        width: calc(100% - var(--sidebar-width));
+        height: 100%;
     }
 
     li {
@@ -106,31 +106,34 @@
         justify-content: center;
         padding: 0 16px;
         text-align: center;
-    }
-
-    li.active,
-    li:hover {
-        background: var(--color-pale-darkgreen);
-        border-bottom: 1px solid var(--color-sidenav-underline-active);
-        color: var(--color-sidenav-text-active);
+        position: relative;
+        border-top: 3px solid transparent;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            width: 100%;
+            border-top: 3px solid transparent;
+        }
+        &.active:after {
+            border-bottom: 3px solid var(--color-highlight);
+            box-shadow: 0 2px 2px rgba(247, 208, 2, 0.2);
+        }
     }
 
     h1,
     h2 {
         margin: 0;
+        font-size: var(--font-size-medium);
+        text-align: left;
         font-weight: 400;
     }
-
     h1 {
-        font-size: var(--font-size-medium);
-        margin-bottom: 2px;
+        margin-bottom: 4px;
     }
-
     h2 {
         font-size: var(--font-size-small);
-    }
-
-    .active {
+        font-weight: 200;
     }
 }
 
@@ -161,7 +164,6 @@
         animation-timing-function: ease;
         z-index: 1;
     }
-
     &-exit {
         animation-name: fade-out;
         animation-duration: 0.3s;
