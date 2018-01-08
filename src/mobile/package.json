@@ -24,8 +24,11 @@
     "https-browserify": "0.0.1",
     "i18next": "^10.1.0",
     "inherits": "^2.0.3",
-    "iota.lib.js": "git+https://github.com/laumair/iota.lib.js.git#f58beaa",
+    "iota-wallet-shared-modules": "../shared/",
+    "iota.lib.js": "^0.4.6",
     "lodash": "^4.17.4",
+    "lottie-ios": "^2.1.5",
+    "lottie-react-native": "2.2.7",
     "os-browserify": "^0.1.2",
     "path-browserify": "0.0.0",
     "process": "^0.11.10",
@@ -33,10 +36,11 @@
     "punycode": "^1.4.1",
     "querystring-es3": "^0.2.1",
     "react": "16.0.0-alpha.12",
-    "react-i18next": "^6.2.0",
+    "react-i18next": "^7.3.0",
     "react-native": "0.47.2",
     "react-native-camera": "^0.10.0",
     "react-native-clipboard": "^0.0.5",
+    "react-native-color": "^0.0.10",
     "react-native-crypto": "^2.0.2",
     "react-native-detect-navbar-android": "^0.2.0",
     "react-native-device-info": "^0.13.0",
@@ -78,6 +82,7 @@
     "stream-browserify": "^1.0.0",
     "string_decoder": "^0.10.31",
     "timers-browserify": "^1.4.2",
+    "tinycolor2": "^1.4.1",
     "tty-browserify": "0.0.0",
     "url": "^0.10.3",
     "util": "^0.10.3",
@@ -112,7 +117,14 @@
     "roots": [
       "../"
     ],
-    "setupTestFrameworkScriptFile": "./testConfig.js"
+    "setupTestFrameworkScriptFile": "./testConfig.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/shared/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/?!(react-native|iota-wallet-shared-modules)"
+    ]
   },
   "react-native": {
     "zlib": "browserify-zlib",
@@ -139,6 +151,11 @@
     "tty": "tty-browserify",
     "vm": "vm-browserify",
     "tls": false
+  },
+  "rnpm": {
+    "android": {
+      "mainFilePath": "src/main/java/com/iotawallet/MainApplication.java"
+    }
   },
   "browser": {
     "zlib": "browserify-zlib",

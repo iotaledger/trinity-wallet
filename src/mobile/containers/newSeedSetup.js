@@ -2,65 +2,113 @@ import split from 'lodash/split';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableHighlight, ListView, TouchableOpacity, Image, StatusBar } from 'react-native';
-import OnboardingButtons from '../components/onboardingButtons.js';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableHighlight,
+    ListView,
+    TouchableOpacity,
+    Image,
+    StatusBar,
+    BackHandler,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { randomBytes } from 'react-native-randombytes';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Navigation } from 'react-native-navigation';
+import OnboardingButtons from '../components/onboardingButtons';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
+
 import { width, height } from '../util/dimensions';
 import { isIPhoneX } from '../util/device';
 
-const StatusBarDefaultBarStyle = 'light-content';
-
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable global-require */
-
 class NewSeedSetup extends Component {
-    constructor(props) {
-        super(props);
+    static propTypes = {
+        navigator: PropTypes.object.isRequired,
+        tempAccount: PropTypes.object.isRequired,
+        setSeed: PropTypes.func.isRequired,
+        randomiseSeed: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        ctaColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
+        onboardingComplete: PropTypes.bool.isRequired,
+    };
+
+    constructor() {
+        super();
+
         this.state = {
             randomised: false,
-            infoTextHeight: 0,
+            infoTextColor: 'transparent',
         };
+    }
+
+    componentDidMount() {
+        if (this.props.onboardingComplete) {
+            BackHandler.addEventListener('newSeedSetupBackPress', () => {
+                this.goBack();
+                return true;
+            });
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.props.onboardingComplete) {
+            BackHandler.removeEventListener('newSeedSetupBackPress');
+        }
+    }
+
+    goBack() {
+        // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
+            },
+            appStyle: {
+                orientation: 'portrait',
+            },
+        });
     }
 
     onGeneratePress() {
         this.props.randomiseSeed(randomBytes);
-        this.setState({ randomised: true, infoTextHeight: height / 38 });
+        this.setState({ randomised: true, infoTextColor: 'white' });
     }
 
     onNextPress() {
         const { t } = this.props;
+
         if (this.state.randomised) {
             this.props.navigator.push({
                 screen: 'saveYourSeed',
                 navigatorStyle: { navBarHidden: true, navBarTransparent: true },
                 animated: false,
-                overrideBackPress: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             });
         } else {
-            this.dropdown.alertWithType('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
+            this.props.generateAlert('error', t('seedNotGenerated'), t('seedNotGeneratedExplanation'));
         }
     }
 
     onBackPress() {
         this.props.clearSeed();
         if (!this.props.account.onboardingComplete) {
-            this.props.navigator.push({
-                screen: 'walletSetup',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                },
+            this.props.navigator.pop({
                 animated: false,
-                overrideBackPress: true,
             });
         } else {
             // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
@@ -70,10 +118,8 @@ class NewSeedSetup extends Component {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundImageName: 'bg-blue.png',
-                        screenBackgroundColor: COLORS.backgroundGreen,
+                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                     },
-                    overrideBackPress: true,
                 },
             });
         }
@@ -106,40 +152,41 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { tempAccount: { seed }, t } = this.props;
+        const { tempAccount: { seed }, t, ctaColor, backgroundColor, negativeColor } = this.props;
+        const viewOpacity = this.state.randomised ? 1 : 0.1;
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <View style={{ flex: 150 }} />
                     <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
-                        <View style={styles.generateButton}>
+                        <View style={[styles.generateButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
                             <Text style={styles.generateText}>{t('pressForNewSeed')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.midContainer}>
+                    <View style={{ flex: isIPhoneX ? 100 : 30 }} />
                     <ListView
-                        contentContainerStyle={styles.list}
+                        contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
                         dataSource={ds.cloneWithRows(split(seed, ''))}
                         renderRow={(rowData, rowID, sectionID) => (
                             <TouchableHighlight
                                 key={sectionID}
                                 onPress={event => this.onItemPress(sectionID)}
-                                underlayColor="#F7D002"
+                                style={styles.tileContainer}
+                                underlayColor={THEMES.getHSL(negativeColor)}
                             >
                                 <View style={styles.tile}>
                                     <Text
                                         style={{
-                                            backgroundColor: 'white',
-                                            width: width / 14.5,
-                                            height: width / 14.5,
-                                            color: '#1F4A54',
+                                            backgroundColor: 'transparent',
+                                            color: THEMES.getHSL(backgroundColor),
                                             fontFamily: 'Lato-Bold',
                                             fontSize: width / 28.9,
                                             textAlign: 'center',
-                                            paddingTop: height / 130,
-                                            opacity: this.state.randomised ? 1 : 0.1,
+                                            opacity: viewOpacity,
                                         }}
                                     >
                                         {rowData}
@@ -152,73 +199,38 @@ class NewSeedSetup extends Component {
                         scrollEnabled={false}
                         enableEmptySections
                     />
-                </View>
-                <View style={styles.bottomContainer}>
-                    <View style={{ justifyContent: 'center', flex: 0.4 }}>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 100 }}>
                         <Text
                             style={{
-                                color: 'white',
+                                color: this.state.infoTextColor,
                                 fontFamily: 'Lato-Light',
                                 textAlign: 'center',
                                 fontSize: width / 27.6,
                                 backgroundColor: 'transparent',
-                                height: this.state.infoTextHeight,
                             }}
                         >
                             {t('individualLetters')}
                         </Text>
                     </View>
-                    <View style={styles.buttonsContainer}>
-                        <TouchableOpacity onPress={event => this.onBackPress()}>
-                            <View style={styles.leftButton}>
-                                <Text style={styles.leftText}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={event => this.onNextPress()}>
-                            <View
-                                style={{
-                                    borderColor: '#9DFFAF',
-                                    borderWidth: 1.2,
-                                    borderRadius: 10,
-                                    width: width / 3,
-                                    height: height / 14,
-                                    alignItems: 'center',
-                                    justifyContent: 'space-around',
-                                    opacity: this.state.randomised ? 1 : 0.3,
-                                }}
-                            >
-                                <Text style={styles.rightText}>{t('global:next')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
                 </View>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
+                <View style={styles.bottomContainer}>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this.onBackPress()}
+                        onRightButtonPress={() => this.onNextPress()}
+                        leftText={t('global:back')}
+                        rightText={t('global:next')}
+                    />
+                </View>
+                <StatefulDropdownAlert />
             </View>
         );
     }
 }
 
-NewSeedSetup.propTypes = {
-    navigator: PropTypes.object.isRequired,
-    tempAccount: PropTypes.object.isRequired,
-    setSeed: PropTypes.func.isRequired,
-    randomiseSeed: PropTypes.func.isRequired,
-};
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 2.1,
@@ -227,32 +239,36 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 4,
+        flex: 5.55,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
     },
     bottomContainer: {
-        flex: 1.3,
+        flex: 0.75,
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
     list: {
-        justifyContent: isIPhoneX ? 'flex-start' : 'center',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        height: isIPhoneX ? width / 1.1 : width / 1.15,
-        width: isIPhoneX ? width / 1.1 : width / 1.15,
-        flex: 1,
+        paddingHorizontal: width / 20,
     },
-
     gridContainer: {
-        height: width / 1.15,
-        width: width / 1.15,
+        //  flex: 1
     },
     tile: {
-        padding: height / 150,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    tileContainer: {
+        width: width / 14.5,
+        height: width / 14.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        margin: width / 80,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -268,14 +284,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     generateButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 2.2,
         height: height / 16,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#009f3f',
     },
     generateText: {
         color: 'white',
@@ -298,7 +311,7 @@ const styles = StyleSheet.create({
     leftButton: {
         borderColor: '#F7D002',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -355,18 +368,17 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
+    backgroundColor: state.settings.theme.backgroundColor,
+    ctaColor: state.settings.theme.ctaColor,
+    negativeColor: state.settings.theme.negativeColor,
+    onboardingComplete: state.account.onboardingComplete,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setSeed: seed => {
-        dispatch(setSeed(seed));
-    },
-    clearSeed: () => {
-        dispatch(clearSeed());
-    },
-    randomiseSeed: randomBytes => {
-        dispatch(randomiseSeed(randomBytes));
-    },
-});
+const mapDispatchToProps = {
+    setSeed,
+    clearSeed,
+    randomiseSeed,
+    generateAlert,
+};
 
 export default translate(['newSeedSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup));

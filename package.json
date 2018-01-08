@@ -6,9 +6,9 @@
     "main": "index.js",
     "scripts": {
         "format": "prettier --write \"**/*.{js,json,css}\"",
-        "precommit": "lint-staged",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "full-setup": "yarn && cd src/desktop && yarn && cd ../shared && yarn && cd ../mobile && yarn && cd ios && pod install",
+        "precommit": "lint-staged && yarn test:all",
+        "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../",
+        "full-setup": "yarn && node full-setup.js",
         "start:desktop": "cd src/desktop && yarn start",
         "start:mobile": "cd src/mobile && yarn start"
     },
@@ -36,6 +36,8 @@
         "eslint-plugin-react": "^7.5.1",
         "husky": "^0.14.3",
         "lint-staged": "^4.2.3",
+        "node-cmd": "^3.0.0",
+        "os": "^0.1.1",
         "prettier": "^1.7.4"
     },
     "dependencies": {}

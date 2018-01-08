@@ -1,4 +1,3 @@
-import merge from 'lodash/merge';
 import React from 'react';
 import { translate } from 'react-i18next';
 import {
@@ -8,31 +7,31 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
-    ScrollView,
     StatusBar,
+    Keyboard,
 } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import QRScanner from '../components/qrScanner.js';
-import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+import Modal from 'react-native-modal';
+import { TextField } from 'react-native-material-textfield';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
-import Modal from 'react-native-modal';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import COLORS from '../theme/Colors';
-
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
+import StatefulDropdownAlert from './statefulDropdownAlert';
+import QRScanner from '../components/qrScanner';
+import OnboardingButtons from '../components/onboardingButtons';
+import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
-const StatusBarDefaultBarStyle = 'light-content';
 
 class EnterSeed extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             seed: '',
             isModalVisible: false,
@@ -48,9 +47,9 @@ class EnterSeed extends React.Component {
     onDonePress() {
         const { t } = this.props;
         if (!this.state.seed.match(VALID_SEED_REGEX) && this.state.seed.length == MAX_SEED_LENGTH) {
-            this.dropdown.alertWithType('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
+            this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         } else if (this.state.seed.length < MAX_SEED_LENGTH) {
-            this.dropdown.alertWithType(
+            this.props.generateAlert(
                 'error',
                 t('seedTooShort'),
                 t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: this.state.seed.length }),
@@ -59,9 +58,12 @@ class EnterSeed extends React.Component {
             this.props.setSeed(this.state.seed);
             this.props.navigator.push({
                 screen: 'setSeedName',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: COLORS.backgroundGreen,
+                },
                 animated: false,
-                overrideBackPress: true,
             });
         }
     }
@@ -87,8 +89,25 @@ class EnterSeed extends React.Component {
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = () => (
-        <QRScanner onQRRead={data => this.onQRRead(data)} hideModal={() => this._hideModal()} />
+        <QRScanner
+            backgroundColor={COLORS.backgroundGreen}
+            ctaColor={COLORS.greenLight}
+            onQRRead={data => this.onQRRead(data)}
+            hideModal={() => this._hideModal()}
+        />
     );
+
+    getChecksumValue() {
+        const { seed } = this.state;
+        let checksumValue = '...';
+
+        if (seed.length != 0 && seed.length < 81) {
+            checksumValue = '< 81';
+        } else if (seed.length == 81 && seed.match(VALID_SEED_REGEX)) {
+            checksumValue = getChecksum(seed);
+        }
+        return checksumValue;
+    }
 
     render() {
         const { seed } = this.state;
@@ -103,12 +122,17 @@ class EnterSeed extends React.Component {
                                 <View style={styles.logoContainer}>
                                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                 </View>
-                                <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>{t('global:enterSeed')}</Text>
-                                </View>
                             </View>
                             <View style={styles.topMidContainer}>
-                                <View style={{ flexDirection: 'row' }}>
+                                <View style={{ flex: 1, justifyContent: 'center' }}>
+                                    <View style={{ flex: 0.3 }} />
+                                    <View style={styles.titleContainer}>
+                                        <Text style={styles.title}>{t('global:enterSeed')}</Text>
+                                    </View>
+                                </View>
+                                <View
+                                    style={{ flex: 1, flexDirection: 'row', width: width / 1.4, alignItems: 'center' }}
+                                >
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
@@ -138,6 +162,9 @@ class EnterSeed extends React.Component {
                                         </TouchableOpacity>
                                     </View>
                                 </View>
+                                <View style={styles.checksum}>
+                                    <Text style={styles.checksumText}>{this.getChecksumValue()}</Text>
+                                </View>
                             </View>
                             <View style={styles.bottomMidContainer}>
                                 <View style={styles.infoTextContainer}>
@@ -159,16 +186,7 @@ class EnterSeed extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
+                <StatefulDropdownAlert />
                 <Modal
                     animationIn={'bounceInUp'}
                     animationOut={'bounceOut'}
@@ -180,6 +198,7 @@ class EnterSeed extends React.Component {
                     backdropOpacity={1}
                     style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalVisible}
+                    onBackButtonPress={() => this.setState({ isModalVisible: false })}
                 >
                     {this._renderModalContent()}
                 </Modal>
@@ -196,21 +215,21 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
-        flex: 1.2,
+        flex: 0.6,
         paddingTop: height / 22,
     },
     topMidContainer: {
-        flex: 1.9,
+        flex: 2.5,
         alignItems: 'center',
-        justifyContent: 'center',
+        width,
     },
     bottomMidContainer: {
-        flex: 2.4,
+        flex: 2.8,
         alignItems: 'center',
         justifyContent: 'center',
     },
     bottomContainer: {
-        flex: 1.2,
+        flex: 0.8,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -220,9 +239,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     titleContainer: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15,
     },
     title: {
         color: 'white',
@@ -234,7 +253,7 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -277,7 +296,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 0.8,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6.5,
         height: height / 16,
     },
@@ -290,15 +309,17 @@ const styles = StyleSheet.create({
     textFieldContainer: {
         flex: 1,
         paddingRight: width / 30,
+        justifyContent: 'flex-end',
     },
     textField: {
         color: 'white',
         fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
-        justifyContent: 'flex-end',
         alignItems: 'center',
-        paddingBottom: height / 90,
+        paddingBottom: isAndroid ? height / 90 : height / 150,
+        justifyContent: 'flex-end',
+        height: height / 10,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
@@ -329,6 +350,20 @@ const styles = StyleSheet.create({
         height: width / 12,
         alignSelf: 'center',
     },
+    checksum: {
+        width: width / 8,
+        height: height / 20,
+        borderRadius: GENERAL.borderRadiusSmall,
+        borderColor: 'white',
+        borderWidth: height / 1000,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    checksumText: {
+        fontSize: width / 29.6,
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+    },
 });
 
 const mapStateToProps = state => ({
@@ -337,10 +372,9 @@ const mapStateToProps = state => ({
     account: state.account,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setSeed: seed => {
-        dispatch(setSeed(seed));
-    },
-});
+const mapDispatchToProps = {
+    setSeed,
+    generateAlert,
+};
 
 export default translate(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));

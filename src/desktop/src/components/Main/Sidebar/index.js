@@ -5,10 +5,11 @@ import Link from './Link';
 import css from '../../Layout/Main.css';
 
 const images = {
-    balance: require('../../../../../shared/images/balance.png'),
-    send: require('../../../../../shared/images/send.png'),
-    receive: require('../../../../../shared/images/receive.png'),
-    settings: require('../../../../../shared/images/settings.png'),
+    balance: require('images/balance.png'),
+    send: require('images/send.png'),
+    receive: require('images/receive.png'),
+    history: require('images/history.png'),
+    settings: require('images/settings.png'),
 };
 
 class Sidebar extends React.PureComponent {
@@ -20,28 +21,27 @@ class Sidebar extends React.PureComponent {
         const { t } = this.props;
         return (
             <div className={css.sidebar}>
-                <ul>
-                    <li>
-                        <Link to="/balance" image={images.balance}>
-                            Balance
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/send" image={images.send}>
-                            Send
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/receive" image={images.receive}>
-                            Receive
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/settings" image={images.settings}>
-                            Settings
-                        </Link>
-                    </li>
-                </ul>
+                <nav>
+                    <Link to="/balance" image={images.balance}>
+                        Balance
+                    </Link>
+
+                    <Link to="/send" image={images.send}>
+                        Send
+                    </Link>
+
+                    <Link to="/receive" image={images.receive}>
+                        Receive
+                    </Link>
+
+                    <Link to="/history" image={images.history}>
+                        History
+                    </Link>
+
+                    <Link to="/settings" image={images.settings}>
+                        Settings
+                    </Link>
+                </nav>
             </div>
         );
     }

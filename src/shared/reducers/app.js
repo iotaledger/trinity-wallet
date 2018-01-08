@@ -2,6 +2,8 @@ import { ActionTypes } from '../actions/app.js';
 
 const initialState = {
     isOnboardingCompleted: false,
+    mode: 'STANDARD',
+    root: 'initialLoading',
 };
 
 export default (state = initialState, action) => {
@@ -12,6 +14,5 @@ export default (state = initialState, action) => {
                 isOnboardingCompleted: action.payload,
             };
     }
-
     return state;
 };

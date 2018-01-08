@@ -1,27 +1,51 @@
-import React from 'react';
-import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
+import PropTypes from 'prop-types';
+import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import SimpleTransactionRow from '../components/simpleTransactionRow';
 import Chart from '../components/chart';
+import {
+    getAddressesForSelectedAccountViaSeedIndex,
+    getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
+    getBalanceForSelectedAccountViaSeedIndex,
+} from '../../shared/selectors/account';
+import THEMES from '../theme/themes';
 
-import { isAndroid } from '../util/device';
 import { width, height } from '../util/dimensions';
+
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
-class Balance extends React.Component {
+class Balance extends Component {
+    static propTypes = {
+        marketData: PropTypes.object.isRequired,
+        isSendingTransfer: PropTypes.bool.isRequired,
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        isSyncing: PropTypes.bool.isRequired,
+        seedIndex: PropTypes.number.isRequired,
+        balance: PropTypes.number.isRequired,
+        addresses: PropTypes.array.isRequired,
+        transfers: PropTypes.array.isRequired,
+        settings: PropTypes.object.isRequired,
+        setCurrency: PropTypes.func.isRequired,
+        setTimeframe: PropTypes.func.isRequired,
+        extraColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
+    };
+
     constructor() {
         super();
+
         this.state = {
             balanceIsShort: true,
         };
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.tempAccount.seedIndex !== this.props.tempAccount.seedIndex) {
+        if (newProps.seedIndex !== this.props.seedIndex) {
             this.setState({ balanceIsShort: true });
         }
     }
@@ -35,29 +59,37 @@ class Balance extends React.Component {
     }
 
     getDecimalPlaces(n) {
-        var s = '' + +n;
-        var match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
+        const s = `${+n}`;
+        const match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
+
         if (!match) {
             return 0;
         }
-        return Math.max(0, (match[1] == '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
+
+        return Math.max(0, (match[1] === '0' ? 0 : (match[1] || '').length) - (match[2] || 0));
     }
 
     render() {
-        const { t } = this.props;
-        const accountInfo = this.props.account.accountInfo;
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-        const addresses = Object.keys(currentSeedAccountInfo.addresses);
+        const {
+            t,
+            balance,
+            settings,
+            marketData,
+            transfers,
+            addresses,
+            isSendingTransfer,
+            isGeneratingReceiveAddress,
+            isSyncing,
+            negativeColor,
+            extraColor,
+        } = this.props;
+
         const shortenedBalance =
-            roundDown(formatValue(this.props.account.balance), 1) +
-            (this.props.account.balance < 1000 || this.getDecimalPlaces(formatValue(this.props.account.balance)) <= 1
-                ? ''
-                : '+');
-        const currencySymbol = getCurrencySymbol(this.props.settings.currency);
-        const fiatBalance =
-            this.props.account.balance * this.props.marketData.usdPrice / 1000000 * this.props.settings.conversionRate;
-        const recentTransactions = accountInfo[Object.keys(accountInfo)[seedIndex]].transfers.slice(0, 4);
+            roundDown(formatValue(balance), 1) +
+            (balance < 1000 || this.getDecimalPlaces(formatValue(balance)) <= 1 ? '' : '+');
+        const currencySymbol = getCurrencySymbol(settings.currency);
+        const fiatBalance = balance * marketData.usdPrice / 1000000 * settings.conversionRate;
+        const recentTransactions = transfers.slice(0, 4);
         const hasTransactions = recentTransactions.length > 0;
 
         return (
@@ -66,10 +98,7 @@ class Balance extends React.Component {
                     <StatusBar barStyle="light-content" />
                     <View style={styles.balanceContainer}>
                         <Text style={styles.iotaBalance} onPress={event => this.onBalanceClick()}>
-                            {this.state.balanceIsShort
-                                ? shortenedBalance
-                                : formatValue(this.props.account.balance)}{' '}
-                            {formatUnit(this.props.account.balance)}
+                            {this.state.balanceIsShort ? shortenedBalance : formatValue(balance)} {formatUnit(balance)}
                         </Text>
                         <Text style={styles.fiatBalance}>
                             {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
@@ -81,7 +110,12 @@ class Balance extends React.Component {
                             <ListView
                                 dataSource={ds.cloneWithRows(recentTransactions)}
                                 renderRow={dataSource => (
-                                    <SimpleTransactionRow addresses={addresses} rowData={dataSource} />
+                                    <SimpleTransactionRow
+                                        negativeColor={THEMES.getHSL(negativeColor)}
+                                        extraColor={THEMES.getHSL(extraColor)}
+                                        addresses={addresses}
+                                        rowData={dataSource}
+                                    />
                                 )}
                                 renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                                 enableEmptySections
@@ -91,17 +125,17 @@ class Balance extends React.Component {
                             />
                         ) : (
                             <View style={styles.listView}>
-                                <Text style={styles.noTransactions}>NO RECENT HISTORY</Text>
+                                <Text style={styles.noTransactions}>{t('global:noTransactions')}</Text>
                             </View>
                         )}
                         <View style={styles.line} />
                     </View>
                     <View style={styles.chartContainer}>
                         <Chart
-                            isSendingTransfer={this.props.tempAccount.isSendingTransfer}
-                            isGeneratingReceiveAddress={this.props.tempAccount.isGeneratingReceiveAddress}
-                            isSyncing={this.props.tempAccount.isSyncing}
-                            marketData={this.props.marketData}
+                            isSendingTransfer={isSendingTransfer}
+                            isGeneratingReceiveAddress={isGeneratingReceiveAddress}
+                            isSyncing={isSyncing}
+                            marketData={marketData}
                             setCurrency={currency => this.props.setCurrency(currency)}
                             setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
                         />
@@ -131,8 +165,6 @@ const styles = StyleSheet.create({
     chartContainer: {
         flex: 5,
         paddingVertical: height / 70,
-        // justifyContent: 'flex-end',
-        //paddingVertical: isAndroid ? height / 80 : 0,
     },
     iotaBalance: {
         color: 'white',
@@ -169,11 +201,18 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
-    marketData: state.marketData,
-    account: state.account,
-    tempAccount: state.tempAccount,
-    settings: state.settings,
+const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
+    marketData,
+    isSendingTransfer: tempAccount.isSendingTransfer,
+    isGeneratingReceiveAddress: tempAccount.isGeneratingReceiveAddress,
+    isSyncing: tempAccount.isSyncing,
+    seedIndex: tempAccount.seedIndex,
+    balance: getBalanceForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
+    addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
+    transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
+    settings,
+    negativeColor: settings.theme.negativeColor,
+    extraColor: settings.theme.extraColor,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -185,4 +224,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Balance);
+export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(Balance));

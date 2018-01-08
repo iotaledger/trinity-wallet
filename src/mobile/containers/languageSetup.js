@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
@@ -8,6 +8,7 @@ import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import Dropdown from '../components/dropdown';
 import COLORS from '../theme/Colors';
+import GENERAL from '../theme/general';
 
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundDarkGreen,
+        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 22,
     },
     midContainer: {
-        flex: 1,
+        flex: 4,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     nextButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -82,9 +83,9 @@ class LanguageSetup extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -95,32 +96,41 @@ class LanguageSetup extends Component {
     render() {
         const { t } = this.props;
         return (
-            <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
-                <View style={styles.container}>
-                    <Image style={styles.helloBackground} source={helloBackImagePath} />
-                    <StatusBar barStyle="light-content" />
-                    <View style={styles.topContainer}>
-                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                    </View>
-                    <View style={styles.midContainer}>
-                        <View style={{ flex: 0.2 }} />
-                        <Dropdown
-                            title={t('language')}
-                            dropdownWidth={styles.dropdownWidth}
-                            defaultOption={defaultLanguageLabel}
-                            options={I18N_LOCALE_LABELS}
-                            saveSelection={language => this.clickDropdownItem(language)}
-                        />
-                    </View>
-                    <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={() => this.onNextPress()}>
-                            <View style={styles.nextButton}>
-                                <Text style={styles.nextText}>{t('global:next')}</Text>
-                            </View>
-                        </TouchableOpacity>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    if (this.dropdown) {
+                        this.dropdown.closeDropdown();
+                    }
+                }}
+            >
+                <View style={{ flex: 1, backgroundColor: COLORS.backgroundGreen }}>
+                    <View style={styles.container}>
+                        <Image style={styles.helloBackground} source={helloBackImagePath} />
+                        <StatusBar barStyle="light-content" />
+                        <View style={styles.topContainer}>
+                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                        </View>
+                        <View style={styles.midContainer}>
+                            <View style={{ flex: 0.5 }} />
+                            <Dropdown
+                                onRef={c => (this.dropdown = c)}
+                                title={t('language')}
+                                dropdownWidth={styles.dropdownWidth}
+                                defaultOption={defaultLanguageLabel}
+                                options={I18N_LOCALE_LABELS}
+                                saveSelection={language => this.clickDropdownItem(language)}
+                            />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <TouchableOpacity onPress={() => this.onNextPress()}>
+                                <View style={styles.nextButton}>
+                                    <Text style={styles.nextText}>{t('global:next')}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
