@@ -183,12 +183,15 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
     return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 
-        const verifyAndSend = (filtered, expectedOutputsLength, transfer, inputs, addressData) => {
+        const verifyAndSend = (filtered, expectedOutputsLength, transfer, inputs) => {
             if (filtered.length !== expectedOutputsLength) {
                 return dispatch(
                     generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                 );
             }
+
+            const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+            const addressData = selectedAccount.addresses;
 
             const options = { inputs };
 
@@ -265,15 +268,13 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
             );
         };
 
-        const getStartingIndex = addresses => {
+        const getStartingIndex = () => {
+            const addresses = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
             const address = addresses.find(address => address.balance > 0);
             return address ? address.index : 0;
         };
 
-        const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-        const start = getStartingIndex(selectedAccount.addresses);
-
-        return getUnspentInputs(seed, start, value, null, unspentInputs, selectedAccount.addresses);
+        return getUnspentInputs(seed, getStartingIndex(), value, null, unspentInputs);
     };
 };
 
