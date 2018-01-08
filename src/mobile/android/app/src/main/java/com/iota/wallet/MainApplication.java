@@ -20,6 +20,8 @@ import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.rnfs.RNFSPackage;
 import com.rnprint.RNPrint.RNPrintPackage;
 
+import org.iota.mobile.IOTAMobilePackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,6 +32,9 @@ public class MainApplication extends NavigationApplication {
   @Override
   protected void attachBaseContext(Context base) {
     super.attachBaseContext(base);
+
+    System.loadLibrary("dummy");
+
     MultiDex.install(this);
   }
 
@@ -58,7 +63,8 @@ public class MainApplication extends NavigationApplication {
             new RNDetectNavbarAndroidPackage(),
             new KCKeepAwakePackage(),
             new KeychainPackage(),
-            new LottiePackage()
+            new LottiePackage(),
+            new IOTAMobilePackage()
     );
   }
 
