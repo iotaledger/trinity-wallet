@@ -8,13 +8,12 @@ export default class Button extends React.PureComponent {
     static propTypes = {
         children: PropTypes.node,
         className: PropTypes.string,
-        variant: PropTypes.oneOf(['default', 'success', 'warning', 'danger', 'info', 'extra', 'cta', 'successDisabled'])
-            .isRequired,
+        variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'extra']).isRequired,
         to: PropTypes.string,
     };
 
     static defaultProps = {
-        variant: 'default',
+        variant: 'primary',
     };
 
     render() {
@@ -22,14 +21,14 @@ export default class Button extends React.PureComponent {
 
         if (to) {
             return (
-                <Link {...this.props} className={classNames(className, css[variant])}>
+                <Link {...this.props} className={classNames(css[className], css[variant])}>
                     {children}
                 </Link>
             );
         }
 
         return (
-            <button {...this.props} className={classNames(className, css[variant])}>
+            <button {...this.props} className={classNames(css[className], css[variant])}>
                 {children}
             </button>
         );

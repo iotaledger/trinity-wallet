@@ -1,13 +1,12 @@
 import React from 'react';
-// import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-// import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import Balance from '../Main/Balance';
-import Send from '../Main/Send';
-import Login from '../Main/Login';
-
-// import css from './Main.css';
+import Balance from 'components/Main/Balance';
+import Receive from 'components/Main/Receive';
+import Send from 'components/Main/Send';
+import Login from 'components/Main/Login';
+import HistoryView from 'components/Main/History';
+import Settings from 'components/Main/Settings/Index';
 
 export default withRouter(
     class Main extends React.PureComponent {
@@ -22,9 +21,9 @@ export default withRouter(
                     <Route path="/login" component={Login} />
                     <Route path="/balance" component={Balance} />
                     <Route path="/send" component={Send} />
-                    <Route path="/receive" component={Balance} />
-                    <Route exact path="/settings" component={Balance} />
-                    <Route path="/settings/add-seed" component={Balance} />
+                    <Route path="/receive" component={Receive} />
+                    <Route path="/history" component={HistoryView} />
+                    <Route exact path="/settings/:setting?" component={Settings} />
                     <Redirect from="/" to="/login" />
                 </Switch>
             );
