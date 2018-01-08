@@ -1,4 +1,4 @@
-import i18next from 'i18next';
+import i18next from '../i18next.js';
 
 export const ActionTypes = {
     SHOW: 'IOTA/ALERTS/SHOW',
@@ -24,7 +24,7 @@ export const generateAccountInfoErrorAlert = () => dispatch =>
             i18next.t('global:invalidResponseFetchingAccount'), // Or could just say communicating with your selected IOTA node.
         ),
     );
-export const generateSyncingSuccessAlert = () => dispatch => {
+export const generateSyncingCompleteAlert = () => dispatch => {
     dispatch(
         generateAlert(
             'success',
@@ -33,5 +33,15 @@ export const generateSyncingSuccessAlert = () => dispatch => {
         ),
     );
 };
+
+export const generateAccountDeletedAlert = () => dispatch =>
+    dispatch(
+        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
+    );
+
+export const generateInvalidResponseAlert = () => dispatch =>
+    dispatch(
+        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
+    );
 
 export const disposeOffAlert = () => dispatch => dispatch(dispose());

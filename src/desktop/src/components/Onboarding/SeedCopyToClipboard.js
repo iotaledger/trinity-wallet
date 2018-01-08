@@ -27,7 +27,7 @@ class SeedCopyToClipboard extends React.PureComponent {
                 <div className={css.buttonWrapper}>
                     <CopyToClipboard text={seed}>
                         <Button
-                            variant="cta"
+                            variant="secondary"
                             onClick={() =>
                                 showNotification({
                                     type: 'success',
