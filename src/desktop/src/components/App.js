@@ -9,6 +9,7 @@ import Loading from 'components/UI/Loading';
 import Onboarding from 'components/Layout/Onboarding';
 import Main from 'components/Layout/Main';
 import Notifications from 'components/UI/Notifications';
+import Alerts from 'components/UI/Alerts';
 
 import './App.css';
 
@@ -77,13 +78,14 @@ class App extends React.Component {
         const { app } = this.props;
 
         if (this.state.initialized === false) {
-            return <Loading />;
+            return <Loading loop={false} />;
         }
 
         return (
             <div>
                 {this.state.error && <p>{this.state.error.message}</p>}
                 <Notifications />
+                <Alerts />
                 {app.isOnboardingCompleted ? <Main /> : <Onboarding />}
             </div>
         );

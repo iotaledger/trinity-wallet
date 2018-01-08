@@ -34,7 +34,7 @@ class WalletSetup extends React.PureComponent {
                     </Infobox>
                 </Content>
                 <Footer>
-                    <Button to="/seed/generate" variant="warning">
+                    <Button to="/seed/generate" variant="secondary">
                         {t('global:no')}
                     </Button>
                     <Button to="/seed/enter" variant="success">
