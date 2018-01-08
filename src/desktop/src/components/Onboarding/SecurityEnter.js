@@ -6,12 +6,11 @@ import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
 import { showError } from 'actions/notifications';
 import { seedsSelector } from 'selectors/seeds';
 import { isValidPassword } from 'libs/util';
-import Template, { Content, Footer } from './Template';
 import { securelyPersistSeeds } from 'libs/storage';
-import Button from '../UI/Button';
-import Infobox from '../UI/Infobox';
-import PasswordInput from '../UI/PasswordInput';
-import css from '../Layout/Onboarding.css';
+import Template, { Content, Footer } from 'components/Onboarding/Template';
+import Button from 'components/UI/Button';
+import Infobox from 'components/UI/Infobox';
+import PasswordInput from 'components/UI/input/Password';
 
 class SecurityEnter extends React.PureComponent {
     static propTypes = {
@@ -24,11 +23,14 @@ class SecurityEnter extends React.PureComponent {
         showError: PropTypes.func.isRequired,
     };
 
-    state = {};
+    state = {
+        password: '',
+        passwordConfirm: '',
+    };
 
     onRequestNext = e => {
         e.preventDefault();
-        const { clearSeeds, history, seeds, setOnboardingCompletionStatus, showError, t } = this.props;
+        const { clearSeeds, history, seeds, showError, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
         if (password !== passwordConfirm) {
@@ -50,10 +52,15 @@ class SecurityEnter extends React.PureComponent {
         history.push('/done');
     };
 
-    changeHandler = e => {
-        const { target: { name, value } } = e;
+    updatePassword = value => {
         this.setState(() => ({
-            [name]: value,
+            password: value,
+        }));
+    };
+
+    confirmPassword = value => {
+        this.setState(() => ({
+            passwordConfirm: value,
         }));
     };
 
@@ -63,26 +70,22 @@ class SecurityEnter extends React.PureComponent {
             <Template type="form" onSubmit={this.onRequestNext}>
                 <Content>
                     <p>{t('setPassword:nowWeNeedTo')}</p>
-                    <div className={css.formGroup}>
-                        <PasswordInput
-                            placeholder={t('global:password')}
-                            name="password"
-                            onChange={this.changeHandler}
-                        />
-                    </div>
-                    <div className={css.formGroup}>
-                        <PasswordInput
-                            placeholder={t('setPassword:retypePassword')}
-                            name="passwordConfirm"
-                            onChange={this.changeHandler}
-                        />
-                    </div>
+                    <PasswordInput
+                        value={this.state.password}
+                        label={t('global:password')}
+                        onChange={this.updatePassword}
+                    />
+                    <PasswordInput
+                        value={this.state.passwordConfirm}
+                        label={t('setPassword:retypePassword')}
+                        onChange={this.confirmPassword}
+                    />
                     <Infobox>
                         <p>{t('setPassword:anEncryptedCopy')}</p>
                     </Infobox>
                 </Content>
                 <Footer>
-                    <Button to="/seed/name" variant="warning">
+                    <Button to="/seed/name" variant="secondary">
                         {t('global:back')}
                     </Button>
                     <Button type="submit" variant="success">
