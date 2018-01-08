@@ -330,8 +330,8 @@
     "saveSeedConfirmation": {
         "alreadyHave": "我已儲存我的種子",
         "reenter": "現在, 您將被要求重新輸入您的種子。",
-        "reenterWarningOne": "If your device fails and you have not saved",
-        "reenterWarningTwo": "your seed, you will lose your IOTA."
+        "reenterWarningOne": "如果您的裝置出現失敗且未儲存",
+        "reenterWarningTwo": "你的種子, 你將會失去你的IOTA。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
