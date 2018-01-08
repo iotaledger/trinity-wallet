@@ -432,15 +432,24 @@ export const getConfirmedTxTailsHashes = (states, hashes) => {
 };
 
 export const getBundle = (tailTx, allBundleObjects) => {
+    if (tailTx.currentIndex === tailTx.lastIndex) {
+        return [tailTx];
+    }
+
     const bundle = [tailTx];
     const bundleHash = tailTx.bundle;
 
     let trunk = tailTx.trunkTransaction;
+    let stop = false;
     const nextTx = () => find(allBundleObjects, { hash: trunk });
 
-    while (nextTx() && nextTx().bundle === bundleHash) {
+    while (nextTx() && nextTx().bundle === bundleHash && !stop) {
         bundle.push(nextTx());
         trunk = nextTx().trunkTransaction;
+
+        if (nextTx().currentIndex === nextTx().lastIndex) {
+            stop = true;
+        }
     }
 
     return bundle;
