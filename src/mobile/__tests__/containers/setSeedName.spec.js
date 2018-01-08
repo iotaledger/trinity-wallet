@@ -16,6 +16,8 @@ const getProps = overrides =>
             },
             setSeedName: noop,
             t: () => 'foo',
+            generateAlert: noop,
+            setAdditionalAccountInfo: noop,
         },
         overrides,
     );

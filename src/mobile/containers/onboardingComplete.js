@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
 import COLORS from '../theme/Colors';
-
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
-class OnboardingComplete extends React.Component {
+class OnboardingComplete extends Component {
     onNextPress() {
         this.props.navigator.push({
             screen: 'login',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: COLORS.backgroundGreen,
             },
             animated: false,
             overrideBackPress: true,
@@ -32,17 +32,14 @@ class OnboardingComplete extends React.Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.infoTextContainer}>
-                        <Text style={styles.infoText}>
-                            The wallet is now set up and ready to use. If you need to make any changes in the future,
-                            look in the Settings menu.
-                        </Text>
+                        <Text style={styles.infoText}>{t('walletReady')}</Text>
                     </View>
                     <Image source={balloonsImagePath} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={event => this.onNextPress()}>
                         <View style={styles.nextButton}>
-                            <Text style={styles.nextText}>NEXT</Text>
+                            <Text style={styles.nextText}>{t('global:next')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -77,7 +74,7 @@ const styles = StyleSheet.create({
     nextButton: {
         borderColor: '#9DFFAF',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -118,4 +115,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default OnboardingComplete;
+export default translate(['onboardingComplete', 'global'])(OnboardingComplete);

@@ -1,35 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Image,
-    ScrollView,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import COLORS from '../theme/Colors';
+import OnboardingButtons from '../components/onboardingButtons';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import StatefulDropdownAlert from './statefulDropdownAlert';
+import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
 
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-//import DropdownHolder from './dropdownHolder';
 
 import { width, height } from '../util/dimensions';
-const StatusBarDefaultBarStyle = 'light-content';
-//const dropdown = DropdownHolder.getDropDown();
 
-class SeedReentry extends React.Component {
-    constructor(props) {
-        super(props);
+class SeedReentry extends Component {
+    static propTypes = {
+        generateAlert: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired,
+        negativeColor: PropTypes.object.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+    };
+
+    constructor() {
+        super();
+
         this.state = {
             seed: '',
         };
@@ -37,15 +34,18 @@ class SeedReentry extends React.Component {
 
     onDonePress() {
         const { t } = this.props;
-        if (this.state.seed == this.props.tempAccount.seed) {
+        if (this.state.seed === this.props.tempAccount.seed) {
             this.props.navigator.push({
                 screen: 'setSeedName',
-                navigatorStyle: { navBarHidden: true, navBarTransparent: true },
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                },
                 animated: false,
-                overrideBackPress: true,
             });
         } else {
-            this.dropdown.alertWithType('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
+            this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
         }
     }
 
@@ -57,10 +57,10 @@ class SeedReentry extends React.Component {
 
     render() {
         const { seed } = this.state;
-        const { t } = this.props;
+        const { t, backgroundColor, negativeColor } = this.props;
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
@@ -82,10 +82,10 @@ class SeedReentry extends React.Component {
                                     labelPadding={3}
                                     baseColor="white"
                                     label={t('global:seed')}
-                                    tintColor="#F7D002"
+                                    tintColor={THEMES.getHSL(negativeColor)}
                                     autoCapitalize={'characters'}
                                     autoCorrect={false}
-                                    enablesReturnKeyAutomatically={true}
+                                    enablesReturnKeyAutomatically
                                     returnKeyType="done"
                                     value={seed}
                                     onChangeText={seed => this.setState({ seed })}
@@ -95,10 +95,7 @@ class SeedReentry extends React.Component {
                                     onSubmitEditing={() => this.onDonePress()}
                                 />
                                 <View style={styles.infoTextContainer}>
-                                    <Image
-                                        source={require('iota-wallet-shared-modules/images/info.png')}
-                                        style={styles.infoIcon}
-                                    />
+                                    <Image source={infoImagePath} style={styles.infoIcon} />
                                     <Text style={styles.infoText}>{t('thisIsACheck')}</Text>
                                     <Text style={styles.infoText}>{t('ifYouHaveNotSaved')}</Text>
                                 </View>
@@ -114,16 +111,7 @@ class SeedReentry extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
+                <StatefulDropdownAlert />
             </View>
         );
     }
@@ -134,7 +122,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1.2,
@@ -145,6 +132,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingTop: height / 8,
+        width,
     },
     bottomContainer: {
         flex: 1.7,
@@ -171,7 +159,7 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -214,7 +202,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: GENERAL.borderRadius,
         width: width / 6,
         height: height / 16,
     },
@@ -237,39 +225,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: height / 90,
     },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
-    },
 });
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
-export default translate(['seedReentry', 'global'])(connect(mapStateToProps)(SeedReentry));
+const mapDispatchToProps = {
+    generateAlert,
+};
+
+export default translate(['seedReentry', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedReentry));

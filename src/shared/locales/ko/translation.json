@@ -1,16 +1,37 @@
 {
     "global": {
+        "send": "보내기",
+        "cancel": "취소",
+        "continue?": "계속하시겠습니까?",
+        "noTransactions": "NO RECENT HISTORY",
+        "qr": "QR",
+        "balanceError": "Not enough balance",
+        "balanceErrorMessage": "거래를 완료를 하기 위해서는 현재 IOTA 잔액이 충분하지 않습니다.",
+        "transferError": "Transfer error",
+        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferSent": "Transfer sent",
+        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "keyReuse": "키 재사용",
+        "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "잘못된 응답",
         "invalidResponseExplanation": "노드가 잘못된 응답을 보냈습니다.",
         "invalidResponsePollingExplanation": "노드가 폴링 중 잘못된 응답을 보냈습니다.",
+        "invalidResponseFetchingAccount":
+            "The node returned an invalid response while fetching your account information.",
+        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "씨드",
         "back": "뒤로",
+        "backLowercase": "뒤로가기",
         "done": "완료",
+        "doneLowercase": "Done",
         "next": "다음",
+        "apply": "Apply",
+        "save": "저장하기",
+        "close": "닫기",
+        "continue": "계속 하기",
         "manualCopy": "씨드 기록하기",
         "paperWallet": "종이 인쇄하기",
         "copyToClipboard": "패스워드 관리자에 입력하기",
-        "qr": "QR",
         "notAvailable": "이 기능은 사용할 수 없습니다.",
         "notAvailableExplanation": "이 기능은 추후에 추가될 예정입니다.",
         "enterSeed": "씨드를 입력하십시오.",
@@ -29,19 +50,27 @@
         "syncInProgress": "동기화 진행 중...",
         "syncInProgressExplanation": "동기화가 완료될 때까지 기다려 주세요.",
         "somethingWentWrong": "알 수 없는 오류가 발생하였습니다.",
-        "somethingWentWrongExplanation": "어플을 다시 실행하여 주십시오."
+        "somethingWentWrongExplanation": "어플을 다시 실행하여 주십시오.",
+        "node": "노드",
+        "cannotPerformAction": "작업 수행할 수 없음",
+        "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
+        "attachToTangleUnavailable": "Attach to Tangle unavailable",
+        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
         "seedInvalidCharsExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "씨드는 {{maxLength}} 의 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 의 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "seedTooShortExplanation":
+            "씨드는 {{maxLength}} 의 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 의 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
         "nameInUse": "계정이 이미 존재합니다.",
         "nameInUseExplanation": "씨드를 위한 고유 계정 이름을 사용하십시오.",
         "enterAccountName": "계정 이름을 입력하십시오.",
         "accountName": "계정 이름",
         "noNickname": "계정 이름이 등록되지 않음",
-        "noNicknameExplanation": "씨드를 위한 계정 이름을 입력해주십시오."
+        "noNicknameExplanation": "씨드를 위한 계정 이름을 입력해주십시오.",
+        "seedInUse": "Seed already in use",
+        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
         "oops": "죄송합니다. 오류가 발생했습니다.",
@@ -72,10 +101,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "유효하지 않은 문자가 씨드에 포함되어 있음",
-        "invalidCharactersExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
+        "invalidCharactersExplanation":
+            "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
-        "seedTooShortExplanation": "씨드는 {{maxLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
-        "seedExplanation": "씨드는 {{maxLength}} 자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. {{maxLength}} 자 이상의 씨드는 사용할 수 없습니다.",
+        "seedTooShortExplanation":
+            "씨드는 {{maxLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "seedExplanation":
+            "씨드는 {{maxLength}} 자까지 포함할 수 있고 대문자(A부터 Z) 와 숫자 9를 포함해야 합니다. {{maxLength}} 자 이상의 씨드는 사용할 수 없습니다.",
         "neverShare": "다른 이와 절대로 씨드를 공유하지 마십시오."
     },
     "home": {
@@ -93,7 +125,8 @@
         "emptyPasswordExplanation": "로그인을 위해 비밀번호를 입력하십시오. 다시 시도하십시오.",
         "enterPassword": "비밀번호를 입력 해주십시오.",
         "useSeed": "씨드 사용하기",
-        "login": "로그인"
+        "login": "로그인",
+        "selectDifferentNode": "Do you want to select a different node?"
     },
     "loading": {
         "loadingFirstTime": "처음으로 씨드를 불러오는 중입니다.",
@@ -141,7 +174,7 @@
         "invalidAddressExplanation1": "주소는 {{maxLength}} 글자 수를 포함해야하고 체크섬을 포함해야 합니다.",
         "invalidAddressExplanation2": "주소에 유효하지 않은 문자가 포함되어 있습니다.",
         "invalidAddressExplanation3": "주소에 유효하지 않은 체크섬이 포함되어 있습니다.",
-        "notEnoughFunds": "잔액 부족",
+        "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "거래를 완료를 하기 위해서는 현재 IOTA 잔액이 충분하지 않습니다.",
         "keyReuse": "키 재사용",
         "keyReuseExplanation": "입력한 주소는 이미 사용되었습니다. 다른 주소를 사용하십시오.",
@@ -157,7 +190,8 @@
     },
     "setPassword": {
         "passwordTooShort": "비밀번호가 너무 짧습니다.",
-        "passwordTooShortExplanation": "씨드는 최소 {{minLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
+        "passwordTooShortExplanation":
+            "씨드는 최소 {{minLength}} 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
         "passwordMismatch": "비밀번호가 일치하지 않습니다.",
         "passwordMismatchExplanation": "입력한 비밀번호가 일치하지 않습니다. 다시 입력해주십시오.",
         "nowWeNeedTo": "이제 비밀번호를 설정해야합니다.",
@@ -178,13 +212,13 @@
         "theme": "테마",
         "currency": "통화",
         "language": "언어",
+        "accountManagement": "Account management",
         "addNewSeed": "새 씨드 추가하기",
         "twoFA": "2단계 인증",
         "changePassword": "비밀번호 변경하기",
         "advanced": "고급 설정",
         "logout": "로그아웃",
         "reset": "지갑 초기화",
-        "back": "뒤로가기",
         "syncingComplete": "동기화 완료",
         "syncingCompleteExplanation": "귀하의 계정이 성공적으로 동기화되었습니다.",
         "nicknameChanged": "계정 이름 변경됨",
@@ -192,7 +226,9 @@
         "accountDeleted": "계정 삭제됨",
         "accountDeletedExplanation": "지갑에서 귀하의 계정이 삭제되었습니다.",
         "cannotPerformAction": "작업 수행할 수 없음",
-        "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오."
+        "cannotPerformActionExplanation": "지갑을 초기화를 하려면 고급 설정으로 이동하십시오.",
+        "poorConnection": "Poor connection",
+        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
         "thisAction": "이 작업은 취소할 수 없습니다.",
@@ -204,7 +240,7 @@
         "areYouSure": "계속하시겠습니까?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "지갑을 초기화하기 위해 비밀번호를 입력하십시오.",
+        "enterPassword": "Enter your password to reset the wallet.",
         "cancel": "취소",
         "reset": "초기화"
     },
@@ -225,7 +261,8 @@
         "reminder": "몇 가지 단계를 건너 뛰길 원하시더라도, 모든 프로세스를 완벽히 따르길 권장합니다."
     },
     "writeSeedDown": {
-        "yourSeedIs": "당신의 씨드는 왼쪽에서 오른쪽으로 읽히는 81글자입니다. 당신의 씨드 및 체크섬을 적어 놓고",
+        "yourSeedIs":
+            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "여러 번 검사하십시오",
         "thatTheyAreCorrect": "모든 정보가 올바른지."
     },
@@ -234,5 +271,85 @@
         "bundleHashCopiedExplanation": "번들 해시가 클립보드에 복사되었습니다.",
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다."
+    },
+    "accountManagement": {
+        "viewSeed": "View seed",
+        "viewAddresses": "View addresses",
+        "editAccountName": "Edit account name",
+        "deleteAccount": "Delete account",
+        "addNewAccount": "Add new account"
+    },
+    "addCustomNode": {
+        "customNode": "Custom node",
+        "add": "Add"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Use existing seed",
+        "createNewSeed": "Create new seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Select node",
+        "addCustomNode": "Add custom node",
+        "manualSync": "Manual sync"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Background",
+        "frame": "Frame"
+    },
+    "currencySelection": {
+        "currency": "통화"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Are you sure you want to log out?"
+    },
+    "qrScanner": {
+        "scan": "Scan your QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "UNIT SYSTEM",
+        "trillion": "Trillion",
+        "billion": "Billion",
+        "million": "Million",
+        "thousand": "Thousand",
+        "one": "One"
+    },
+    "deleteAccount": {
+        "areYouSure": "Are you sure you want to delete this account?",
+        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "thisAction": "이 작업은 취소할 수 없습니다.",
+        "enterPassword": "Enter your password to delete this account."
+    },
+    "manualSync": {
+        "pressToSync": "Press the button below to sync your account.",
+        "thisMayTake": "시간이 조금 걸릴 수 있습니다.",
+        "youMayNotice": "당신의 디바이스가 느려지는 것을 감지할 수도 있습니다.",
+        "syncAccount": "SYNC ACCOUNT",
+        "syncingYourAccount": "Syncing your account."
+    },
+    "useExistingSeed": {
+        "title": "Enter a seed and account name."
+    },
+    "viewSeed": {
+        "enterPassword": "Enter password to view your seed.",
+        "viewSeed": "VIEW SEED",
+        "hideSeed": "HIDE SEED"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "I have saved my seed",
+        "reenter": "You will now be asked to re-enter your seed.",
+        "reenterWarningOne": "If your device fails and you have not saved",
+        "reenterWarningTwo": "your seed, you will lose your IOTA."
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "infoTextOne": "귀하의 모든 지갑 데이터들",
+        "infoTextTwo": "seeds, password",
+        "infoTextThree": "그리고",
+        "infoTextFour": "기타 계정 정보들은",
+        "infoTextFive": "삭제될 것입니다."
+    },
+    "transferConfirmation": {
+        "youAreAbout": "You are about to send {{contents}} to the address",
+        "aMessage": "a message"
     }
 }

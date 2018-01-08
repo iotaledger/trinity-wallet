@@ -1,16 +1,36 @@
 {
     "global": {
+        "send": "送金",
+        "cancel": "キャンセル",
+        "continue?": "本当に続行しますか？",
+        "noTransactions": "最近の履歴なし",
+        "qr": "QRコード",
+        "balanceError": "残高が足りません",
+        "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
+        "transferError": "送金エラー",
+        "transferErrorMessage": "送金中に問題が発生しました。もう一度やり直してください。",
+        "transferSent": "送金完了",
+        "transferSentMessage": "送金情報がTangleに送られました。",
+        "keyReuse": "キーの再使用",
+        "keyReuseError": "一度支払いに使われたアドレスに送金することはできません。",
         "invalidResponse": "無効な応答",
         "invalidResponseExplanation": "このノードは、無効な応答を返しました。",
         "invalidResponsePollingExplanation": "このノードは、ポーリング中に無効な応答を返しました。",
+        "invalidResponseFetchingAccount": "アカウント情報呼び出し中にノードが無効な返答をしました。",
+        "invalidResponseSendingTransfer": "送金中にノードが無効な応答をしました。",
         "seed": "Seed",
         "back": "戻る",
+        "backLowercase": "戻る",
         "done": "完了",
+        "doneLowercase": "完了",
         "next": "次へ",
+        "apply": "決定",
+        "save": "保存",
+        "close": "閉じる",
+        "continue": "次へ",
         "manualCopy": "Seedを書き写す",
         "paperWallet": "印刷する",
         "copyToClipboard": "パスワード マネージャーに追加",
-        "qr": "QRコード",
         "notAvailable": "この機能は使えません。",
         "notAvailableExplanation": "この機能は将来追加される予定です。",
         "enterSeed": "Seedを入力して下さい。",
@@ -29,7 +49,12 @@
         "syncInProgress": "同期中...",
         "syncInProgressExplanation": "同期が完了するまでお待ち下さい。",
         "somethingWentWrong": "何かが間違っています。",
-        "somethingWentWrongExplanation": "アプリを再起動して下さい。"
+        "somethingWentWrongExplanation": "アプリを再起動して下さい。",
+        "node": "ノード",
+        "cannotPerformAction": "操作を実行できません。",
+        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
+        "attachToTangleUnavailable": "Tangleにアタッチ出来ません。",
+        "attachToTangleUnavailableExplanation": "選択したノードではTangleにアタッチ出来ません。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
@@ -41,7 +66,9 @@
         "enterAccountName": "アカウント名を入力して下さい。",
         "accountName": "アカウント名",
         "noNickname": "アカウント名が入力されていません。",
-        "noNicknameExplanation": "Seedのアカウント名を入力して下さい。"
+        "noNicknameExplanation": "Seedのアカウント名を入力して下さい。",
+        "seedInUse": "このseedはすでに使われています。",
+        "seedInUseExplanation": "このseedは既にウォレットにリンクされています。違うseedをご使用下さい。"
     },
     "changePassword": {
         "oops": "不具合が発生しました。",
@@ -94,7 +121,8 @@
         "emptyPasswordExplanation": "ログインするにはパスワードを入力する必要があります。もう一度やり直して下さい。",
         "enterPassword": "パスワードを入力して下さい。",
         "useSeed": "Seedでログイン",
-        "login": "ログイン"
+        "login": "ログイン",
+        "selectDifferentNode": "別のノードを選択しますか？"
     },
     "loading": {
         "loadingFirstTime": "初めてのSeedを読み込んでいます。",
@@ -142,7 +170,7 @@
         "invalidAddressExplanation1": "アドレスは{{maxLength}}文字にする必要があり、チェックサムを持っている必要があります。",
         "invalidAddressExplanation2": "アドレスに無効な文字が含まれています。",
         "invalidAddressExplanation3": "アドレスに無効なチェックサムがあります。",
-        "notEnoughFunds": "残高不足です。",
+        "notEnoughFunds": "残高不足",
         "notEnoughFundsExplanation": "送金を完了するための十分なIOTAが有りません。",
         "keyReuse": "キーの再使用",
         "keyReuseExplanation": "送金しようとしているアドレスは既に使用されています。別のアドレスをお試しください。",
@@ -179,13 +207,13 @@
         "theme": "テーマ",
         "currency": "通貨",
         "language": "言語",
+        "accountManagement": "アカウント設定",
         "addNewSeed": "新しいSeedを追加",
         "twoFA": "2要素認証",
         "changePassword": "パスワード変更",
         "advanced": "詳細設定",
         "logout": "ログアウト",
         "reset": "ウォレットをリセットします。",
-        "back": "戻る",
         "syncingComplete": "同期が完了しました。",
         "syncingCompleteExplanation": "アカウントは正常に同期しました。",
         "nicknameChanged": "アカウント名が変更されました。",
@@ -193,7 +221,9 @@
         "accountDeleted": "アカウントは削除されました。",
         "accountDeletedExplanation": "アカウントはウォレットから削除されました。",
         "cannotPerformAction": "操作を実行できません。",
-        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。"
+        "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
+        "poorConnection": "接続不良",
+        "poorConnectionExplanation": "接続不良により通貨を変更できませんでした。"
     },
     "resetWalletConfirmation": {
         "thisAction": "この操作は元に戻せません。",
@@ -226,7 +256,7 @@
         "reminder": "いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Seedは左から右へ読み、81文字あります。Seedとチェックサムが正確に書き留め、",
+        "yourSeedIs": "Seedは左から右へ読み、{{maxSeedLength}} 文字あります。Seedとチェックサムを正確に書き留めて、",
         "tripleCheck": "何度も確認",
         "thatTheyAreCorrect": "それらが正しいことを確認して下さい。"
     },
@@ -235,5 +265,85 @@
         "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。"
+    },
+    "accountManagement": {
+        "viewSeed": "Seedを表示",
+        "viewAddresses": "アドレスを表示",
+        "editAccountName": "アカウント名を編集",
+        "deleteAccount": "アカウントを削除",
+        "addNewAccount": "新しいアカウントを追加"
+    },
+    "addCustomNode": {
+        "customNode": "カスタムノード",
+        "add": "追加"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "既存のseedを使用",
+        "createNewSeed": "新しいseedを作成"
+    },
+    "advancedSettings": {
+        "selectNode": "ノードを選択",
+        "addCustomNode": "カスタムノードの追加",
+        "manualSync": "手動同期"
+    },
+    "advancedThemeCustomisation": {
+        "background": "背景",
+        "frame": "フレーム"
+    },
+    "currencySelection": {
+        "currency": "通貨"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "ログアウトしてもよろしいですか？"
+    },
+    "qrScanner": {
+        "scan": "QRコード読み取り"
+    },
+    "unitInfoModal": {
+        "unitSystem": "単位",
+        "trillion": "一兆",
+        "billion": "十億",
+        "million": "百万",
+        "thousand": "千",
+        "one": "一"
+    },
+    "deleteAccount": {
+        "areYouSure": "このアカウントを削除しますか？",
+        "yourSeedWillBeRemoved": "seedとトランザクションの履歴を削除します。",
+        "thisAction": "この操作は元に戻せません。",
+        "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
+    },
+    "manualSync": {
+        "pressToSync": "アカウントを同期するには下のボタンを押して下さい。",
+        "thisMayTake": "少々お待ち下さい。",
+        "youMayNotice": "デバイスが遅くなることがあります。",
+        "syncAccount": "同期アカウント",
+        "syncingYourAccount": "アカウントを同期中"
+    },
+    "useExistingSeed": {
+        "title": "Seedとアカウント名を入力して下さい。"
+    },
+    "viewSeed": {
+        "enterPassword": "Seedを閲覧するにはパスワードを入力して下さい。",
+        "viewSeed": "Seedを見る",
+        "hideSeed": "Seedを隠す"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "私はSeedを保管しました",
+        "reenter": "Seedを再入力するよう求められます。",
+        "reenterWarningOne": "Seedを保存せずにデバイスを停止すると、",
+        "reenterWarningTwo": "IOTAを失います。"
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "この操作は元に戻せません。",
+        "infoTextOne": "全てのウォレットのデータ",
+        "infoTextTwo": "（Seedやパスワード",
+        "infoTextThree": "や",
+        "infoTextFour": "その他のアカウント情報）",
+        "infoTextFive": "が失われます。"
+    },
+    "transferConfirmation": {
+        "youAreAbout": "アドレスに {{contents}} を送信しようとしています。",
+        "aMessage": "メッセージ"
     }
 }
