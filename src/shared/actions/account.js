@@ -4,12 +4,7 @@ import map from 'lodash/map';
 import get from 'lodash/get';
 import filter from 'lodash/filter';
 import size from 'lodash/size';
-import reduce from 'lodash/reduce';
-import has from 'lodash/has';
-import omitBy from 'lodash/omitBy';
 import difference from 'lodash/difference';
-import find from 'lodash/find';
-import each from 'lodash/each';
 import isEmpty from 'lodash/isEmpty';
 import union from 'lodash/union';
 import merge from 'lodash/merge';
@@ -20,7 +15,6 @@ import {
     getPendingTxTailsHashesForSelectedAccount,
 } from '../selectors/account';
 import {
-    organizeAccountInfo,
     formatTransfers,
     formatFullAddressData,
     calculateBalance,
@@ -38,8 +32,12 @@ import {
     getAccountData,
 } from '../libs/accountUtils';
 import { setReady, clearTempData } from './tempAccount';
-import { generateAlert, generateAccountInfoErrorAlert, generateSyncingSuccessAlert } from '../actions/alerts';
-import i18next from 'i18next';
+import {
+    generateAccountInfoErrorAlert,
+    generateSyncingCompleteAlert,
+    generateInvalidResponseAlert,
+    generateAccountDeletedAlert,
+} from '../actions/alerts';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNT/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -293,8 +291,8 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
 export const manuallySyncAccount = (seed, accountName) => {
     return dispatch => {
         const onError = () => {
-            dispatch(generateAccountInfoErrorAlert());
-            return dispatch(fullAccountInfoFetchError());
+            dispatch(generateInvalidResponseAlert());
+            return dispatch(manualSyncError());
         };
 
         dispatch(manualSyncRequest());
@@ -307,13 +305,13 @@ export const manuallySyncAccount = (seed, accountName) => {
                         if (err) {
                             onError();
                         } else {
-                            dispatch(generateSyncingSuccessAlert());
+                            dispatch(generateSyncingCompleteAlert());
                             const payloadWithHashes = assign({}, data, { hashes });
                             dispatch(manualSyncSuccess(payloadWithHashes));
                         }
                     });
                 } else {
-                    dispatch(generateSyncingSuccessAlert());
+                    dispatch(generateSyncingCompleteAlert());
                     dispatch(manualSyncSuccess(assign({}, data, { hashes: [] })));
                 }
             })
@@ -439,9 +437,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
 
 export const deleteAccount = accountName => dispatch => {
     dispatch(removeAccount(accountName));
-    dispatch(
-        generateAlert('success', i18next.t('settings:accountDeleted'), i18next.t('settings:accountDeletedExplanation')),
-    );
+    dispatch(generateAccountDeletedAlert());
 };
 
 // Aim to update local transfers, addresses, hashes in store after a new transaction is made.
