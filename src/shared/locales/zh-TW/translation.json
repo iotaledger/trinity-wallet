@@ -3,21 +3,20 @@
         "send": "傳送",
         "cancel": "取消",
         "continue?": "您確定要繼續嗎？",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "無近來歷史",
         "qr": "QR Code",
-        "balanceError": "Not enough balance",
+        "balanceError": "餘額不足",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
-        "transferError": "Transfer error",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
+        "transferError": "交易錯誤",
+        "transferErrorMessage": "交易傳送時發生錯誤，請再試一次",
+        "transferSent": "交易送出",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
         "keyReuse": "重新使用加密鑰匙",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "您不能發送到已用過的位址。",
         "invalidResponse": "無效的回應",
         "invalidResponseExplanation": "節點回傳無效回應。",
         "invalidResponsePollingExplanation": "節點於輪詢程序時回傳無效回應。",
-        "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information.",
+        "invalidResponseFetchingAccount": "在取得您的帳戶資料時結點傳回無效的回覆",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "種子碼",
         "back": "返回",
@@ -61,8 +60,7 @@
         "seedInvalidChars": "種子碼包含無效字元",
         "seedInvalidCharsExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短。",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "此帳戶已有人使用",
         "nameInUseExplanation": "種子碼請使用獨特帳戶名稱",
         "enterAccountName": "輸入帳戶名稱",
@@ -103,10 +101,8 @@
         "invalidCharacters": "種子碼包含無效字元",
         "invalidCharactersExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短",
-        "seedTooShortExplanation":
-            "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation":
-            "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
+        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
@@ -189,8 +185,7 @@
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
-        "passwordTooShortExplanation":
-            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "密碼不符",
         "passwordMismatchExplanation": "您輸入的密碼不符。請再試一遍。",
         "nowWeNeedTo": "現在需要設置密碼。",
@@ -260,8 +255,7 @@
         "reminder": "您或許希望跳過一些步驟，但我們建議您按完整程序設置。"
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "再三確認",
         "thatTheyAreCorrect": "兩者皆正確"
     },
