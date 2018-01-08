@@ -324,12 +324,12 @@
     },
     "viewSeed": {
         "enterPassword": "輸入密碼查看您的種子。",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "viewSeed": "查看種子",
+        "hideSeed": "隱藏種子"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
+        "alreadyHave": "我已儲存我的種子",
+        "reenter": "現在, 您將被要求重新輸入您的種子。",
         "reenterWarningOne": "If your device fails and you have not saved",
         "reenterWarningTwo": "your seed, you will lose your IOTA."
     },
