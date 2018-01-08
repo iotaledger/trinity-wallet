@@ -234,7 +234,7 @@
         "areYouSure": "您確定要繼續嗎？"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "輸入密碼以重設您的錢包。",
         "cancel": "取消",
         "reset": "重設"
     },
@@ -244,8 +244,8 @@
         "seedExplanation": "IOTA種子碼是由您帳戶的名稱和密碼結合成為81個字元長的字串。",
         "explanation1": "您可以使用它來存取您的資金從",
         "explanation2": " 任何錢包 ",
-        "explanation3": ", on",
-        "explanation4": " any device",
+        "explanation3": "， 啟用",
+        "explanation4": " 任何裝置",
         "explanation5": ". But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "請妥善保存您的種子碼"
     },
@@ -266,42 +266,42 @@
         "addressCopiedExplanation": "The address has been copied to the clipboard."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "查看種子",
+        "viewAddresses": "檢視地址",
+        "editAccountName": "修改帳戶名",
+        "deleteAccount": "刪除帳戶",
+        "addNewAccount": "新增帳戶"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "自訂節點",
+        "add": "新增"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "使用現有的種子",
+        "createNewSeed": "創建新種子"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "選擇節點",
+        "addCustomNode": "增加自訂節點",
+        "manualSync": "手動同步"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "背景",
+        "frame": "邊框"
     },
     "currencySelection": {
         "currency": "貨幣"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "您確定要登出？"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "掃描 QR 碼"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
+        "unitSystem": "單位系統",
+        "trillion": "兆",
+        "billion": "十億",
         "million": "Million",
         "thousand": "Thousand",
         "one": "One"
