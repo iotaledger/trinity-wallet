@@ -4,8 +4,10 @@ import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, Statu
 import OnboardingButtons from '../components/onboardingButtons.js';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
-import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked.png';
-import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked.png';
+import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-white.png';
+import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
+import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
+import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
 import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { connect } from 'react-redux';
@@ -17,7 +19,10 @@ class SaveSeedConfirmation extends Component {
         super();
 
         this.state = {
-            checkboxImage: checkboxUncheckedImagePath,
+            checkboxImage:
+                props.secondaryBackgroundColor === 'white'
+                    ? whiteCheckboxCheckedImagePath
+                    : blackCheckboxCheckedImagePath,
             hasSavedSeed: false,
             iotaLogoVisibility: 'hidden',
             showCheckbox: false,
@@ -55,6 +60,12 @@ class SaveSeedConfirmation extends Component {
     }
 
     onCheckboxPress() {
+        const { secondaryBackgroundColor } = this.props;
+        const checkboxUncheckedImagePath =
+            secondaryBackgroundColor === 'white' ? whiteCheckboxUncheckedImagePath : blackCheckboxUncheckedImagePath;
+        const checkboxCheckedImagePath =
+            secondaryBackgroundColor === 'white' ? whiteCheckboxCheckedImagePath : blackCheckboxCheckedImagePath;
+
         if (this.state.checkboxImage === checkboxCheckedImagePath) {
             this.setState({
                 checkboxImage: checkboxUncheckedImagePath,
@@ -71,7 +82,9 @@ class SaveSeedConfirmation extends Component {
     }
 
     render() {
-        const { t, negativeColor, backgroundColor } = this.props;
+        const { t, negativeColor, backgroundColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
@@ -81,9 +94,13 @@ class SaveSeedConfirmation extends Component {
                 <View style={styles.midContainer}>
                     <View style={styles.topMidContainer}>
                         <View style={styles.infoTextContainer}>
-                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenter')}</Text>
-                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenterWarningOne')}</Text>
-                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenterWarningTwo')}</Text>
+                            <Text style={[styles.infoTextLight, textColor]}>{t('saveSeedConfirmation:reenter')}</Text>
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                {t('saveSeedConfirmation:reenterWarningOne')}
+                            </Text>
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                {t('saveSeedConfirmation:reenterWarningTwo')}
+                            </Text>
                         </View>
                     </View>
                     <View style={styles.bottomMidContainer}>
@@ -93,7 +110,9 @@ class SaveSeedConfirmation extends Component {
                                 onPress={event => this.onCheckboxPress()}
                             >
                                 <Image source={this.state.checkboxImage} style={styles.checkbox} />
-                                <Text style={styles.checkboxText}>{t('saveSeedConfirmation:alreadyHave')}</Text>
+                                <Text style={[styles.checkboxText, textColor]}>
+                                    {t('saveSeedConfirmation:alreadyHave')}
+                                </Text>
                             </TouchableOpacity>
                         )}
                         {!this.state.showCheckbox && <View style={{ flex: 1 }} />}
@@ -155,7 +174,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     backButton: {
-        borderColor: '#F7D002',
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
         width: width / 3,
@@ -164,7 +182,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     backText: {
-        color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
@@ -178,16 +195,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     infoTextLight: {
-        color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-        paddingTop: height / 30,
-        textAlign: 'center',
-    },
-    infoTextRegular: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
@@ -216,6 +224,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 export default translate(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));

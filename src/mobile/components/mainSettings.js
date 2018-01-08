@@ -4,15 +4,6 @@ import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import i18next from 'i18next';
 import { width, height } from '../util/dimensions';
 import { selectLocale } from '../components/locale';
-import modeImagePath from 'iota-wallet-shared-modules/images/mode.png';
-import themeImagePath from 'iota-wallet-shared-modules/images/theme.png';
-import currencyImagePath from 'iota-wallet-shared-modules/images/currency.png';
-import languageImagePath from 'iota-wallet-shared-modules/images/language.png';
-import accountImagePath from 'iota-wallet-shared-modules/images/account.png';
-import twoFactorAuthImagePath from 'iota-wallet-shared-modules/images/2fa.png';
-import passwordImagePath from 'iota-wallet-shared-modules/images/password.png';
-import advancedImagePath from 'iota-wallet-shared-modules/images/advanced.png';
-import logoutImagePath from 'iota-wallet-shared-modules/images/logout.png';
 
 const styles = StyleSheet.create({
     container: {
@@ -87,7 +78,7 @@ const MainSettings = props => (
             <TouchableOpacity onPress={() => props.onModePress()}>
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Image source={modeImagePath} style={styles.icon} />
+                        <Image source={props.modeImagePath} style={styles.icon} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('mode')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -100,7 +91,7 @@ const MainSettings = props => (
             <TouchableOpacity onPress={() => props.onThemePress()}>
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Image source={themeImagePath} style={styles.icon} />
+                        <Image source={props.themeImagePath} style={styles.icon} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('theme')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -113,7 +104,7 @@ const MainSettings = props => (
             <TouchableOpacity onPress={() => props.setSetting('currencySelection')}>
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Image source={currencyImagePath} style={styles.icon} />
+                        <Image source={props.currencyImagePath} style={styles.icon} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('currency')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -126,7 +117,7 @@ const MainSettings = props => (
             <TouchableOpacity onPress={() => props.onLanguagePress()}>
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
-                        <Image source={languageImagePath} style={styles.icon} />
+                        <Image source={props.languageImagePath} style={styles.icon} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('language')}</Text>
                     </View>
                     <View style={styles.innerItemContainerRight}>
@@ -143,7 +134,7 @@ const MainSettings = props => (
         <View style={styles.itemContainer}>
             <TouchableOpacity onPress={() => props.setSetting('accountManagement')}>
                 <View style={styles.item}>
-                    <Image source={accountImagePath} style={styles.icon} />
+                    <Image source={props.accountImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('accountManagement')}</Text>
                 </View>
             </TouchableOpacity>
@@ -151,7 +142,7 @@ const MainSettings = props => (
         <View style={styles.itemContainer}>
             <TouchableOpacity onPress={() => props.on2FASetupPress()}>
                 <View style={styles.item}>
-                    <Image source={twoFactorAuthImagePath} style={styles.icon} />
+                    <Image source={props.twoFactorAuthImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('twoFA')}</Text>
                 </View>
             </TouchableOpacity>
@@ -159,7 +150,7 @@ const MainSettings = props => (
         <View style={styles.itemContainer}>
             <TouchableOpacity onPress={() => props.setSetting('changePassword')}>
                 <View style={styles.item}>
-                    <Image source={passwordImagePath} style={styles.icon} />
+                    <Image source={props.passwordImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('changePassword')}</Text>
                 </View>
             </TouchableOpacity>
@@ -170,7 +161,7 @@ const MainSettings = props => (
         <View style={styles.itemContainer}>
             <TouchableOpacity onPress={() => props.setSetting('advancedSettings')}>
                 <View style={styles.item}>
-                    <Image source={advancedImagePath} style={styles.icon} />
+                    <Image source={props.advancedImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('advanced')}</Text>
                 </View>
             </TouchableOpacity>
@@ -178,7 +169,7 @@ const MainSettings = props => (
         <View style={styles.itemContainer}>
             <TouchableOpacity onPress={() => props.setModalContent('logoutConfirmation')}>
                 <View style={styles.item}>
-                    <Image source={logoutImagePath} style={styles.icon} />
+                    <Image source={props.logoutImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('logout')}</Text>
                 </View>
             </TouchableOpacity>

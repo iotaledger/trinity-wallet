@@ -8,8 +8,8 @@ import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
-
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
+import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { width, height } from '../util/dimensions';
 import THEMES from '../theme/themes';
@@ -68,9 +68,11 @@ class WalletResetConfirmation extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
         const negativeColor = { color: THEMES.getHSL(this.props.negativeColor) };
+        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
 
         return (
             <View style={[styles.container, backgroundColor]}>
@@ -84,9 +86,9 @@ class WalletResetConfirmation extends Component {
                             {t('walletResetConfirmation:cannotUndo')}
                         </Text>
                     </View>
-                    <View style={styles.infoTextWrapper}>
+                    <View style={[styles.infoTextWrapper, { borderColor: secondaryBackgroundColor }]}>
                         <Image source={infoImagePath} style={styles.infoIcon} />
-                        <Text style={styles.infoText}>
+                        <Text style={[styles.infoText, textColor]}>
                             <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextOne')}</Text>
                             <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextTwo')}}</Text>
                             <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextThree')}</Text>
@@ -95,7 +97,7 @@ class WalletResetConfirmation extends Component {
                         </Text>
                     </View>
                     <View style={styles.confirmationTextWrapper}>
-                        <Text style={styles.confirmationText}>{t('global:continue?')}</Text>
+                        <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomWrapper}>
@@ -140,13 +142,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 10,
     },
     subHeaderText: {
-        fontFamily: Fonts.secondary,
         fontSize: width / 22.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextWrapper: {
-        borderColor: COLORS.white,
         borderWidth: 1,
         borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
@@ -157,7 +157,6 @@ const styles = StyleSheet.create({
         borderStyle: 'dotted',
     },
     infoText: {
-        color: COLORS.white,
         fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 60,
@@ -169,7 +168,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        fontFamily: COLORS.secondary,
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
@@ -182,7 +180,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     confirmationText: {
-        color: COLORS.white,
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
@@ -202,6 +199,7 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 export default translate(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation));

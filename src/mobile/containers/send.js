@@ -42,7 +42,8 @@ import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import KeepAwake from 'react-native-keep-awake';
 
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
+import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import { width, height } from '../util/dimensions';
 
 let sentDenomination = '';
@@ -71,6 +72,7 @@ class Send extends Component {
         barColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -269,6 +271,7 @@ class Send extends Component {
 
     setModalContent(selectedSetting) {
         let modalContent;
+        const { secondaryBackgroundColor, secondaryBarColor } = this.props;
         switch (selectedSetting) {
             case 'qrScanner':
                 modalContent = (
@@ -295,6 +298,8 @@ class Send extends Component {
                         sendTransfer={() => this.sendTransfer()}
                         hideModal={callback => this._hideModal(callback)}
                         backgroundColor={THEMES.getHSL(this.props.barColor)}
+                        borderColor={{ borderColor: secondaryBackgroundColor }}
+                        textColor={{ color: secondaryBackgroundColor }}
                     />
                 );
                 this.setState({
@@ -308,6 +313,9 @@ class Send extends Component {
                     <UnitInfoModal
                         backgroundColor={THEMES.getHSL(this.props.barColor)}
                         hideModal={() => this._hideModal()}
+                        textColor={{ color: secondaryBarColor }}
+                        borderColor={{ borderColor: secondaryBarColor }}
+                        secondaryBarColor={secondaryBarColor}
                     />
                 );
                 this.setState({
@@ -390,9 +398,20 @@ class Send extends Component {
 
     render() {
         const { amount, address, message } = this.state;
-        const { t, ctaColor, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const {
+            t,
+            ctaColor,
+            backgroundColor,
+            negativeColor,
+            secondaryBackgroundColor,
+            secondaryCtaColor,
+            ctaBorderColor,
+        } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
+        const sendBorderColor = { borderColor: ctaBorderColor };
+        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
+        const ctaTextColor = { color: secondaryCtaColor };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -436,7 +455,7 @@ class Send extends Component {
                                 <TextField
                                     ref={'amount'}
                                     keyboardType={'numeric'}
-                                    style={styles.textField}
+                                    style={[styles.textField, textColor]}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                     labelFontSize={height / 55}
                                     fontSize={height / 40}
@@ -501,7 +520,7 @@ class Send extends Component {
                     <View style={styles.midContainer}>
                         {!this.props.isSendingTransfer &&
                             !this.props.isGettingSensitiveInfoToMakeTransaction && (
-                                <View style={styles.sendIOTAButtonContainer}>
+                                <View style={styles.sendButtonContainer}>
                                     <TouchableOpacity
                                         onPress={event => {
                                             this.setModalContent('transferConfirmation');
@@ -512,11 +531,12 @@ class Send extends Component {
                                     >
                                         <View
                                             style={[
-                                                styles.sendIOTAButton,
+                                                styles.sendButton,
                                                 { backgroundColor: THEMES.getHSL(ctaColor) },
+                                                sendBorderColor,
                                             ]}
                                         >
-                                            <Text style={styles.sendIOTAText}>{t('send')}</Text>
+                                            <Text style={[styles.sendText, ctaTextColor]}>{t('send')}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -641,24 +661,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: height / 110,
     },
-    sendIOTAButton: {
-        borderRadius: GENERAL.borderRadiusLarge,
+    sendButton: {
+        borderRadius: GENERAL.borderRadius,
         width: width / 2,
         height: height / 13,
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 1.2,
     },
-    sendIOTAText: {
+    sendText: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 25.9,
         backgroundColor: 'transparent',
-        color: 'white',
     },
     sendIOTAImage: {
         height: width / 35,
         width: width / 35,
     },
-    sendIOTAButtonContainer: {
+    sendButtonContainer: {
         alignItems: 'center',
     },
     separator: {
@@ -733,6 +753,9 @@ const mapStateToProps = state => ({
     barColor: state.settings.theme.barColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryBarColor: state.settings.theme.secondaryBarColor,
+    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
+    ctaBorderColor: state.settings.theme.ctaBorderColor,
 });
 
 const mapDispatchToProps = {

@@ -139,7 +139,7 @@ class Chart extends React.Component {
 
     render() {
         const { price } = this.state;
-        const { marketData, textColor, borderColor, secondaryBackgroundColor } = this.props;
+        const { marketData, textColor, borderColor, secondaryBackgroundColor, chartLineColor } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         return (
             <View style={styles.container}>
@@ -175,10 +175,17 @@ class Chart extends React.Component {
                 <View style={styles.chartContainer}>
                     <VictoryChart domainPadding={isAndroid ? 0 : 15} height={chartHeight} width={chartWidth}>
                         <Defs>
-                            <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
-                                <Stop stopColor="#FFA25B" stopOpacity="1" offset="100%" />
-                                <Stop stopColor="#FFFFFF" stopOpacity="0.25" offset="0%" />
-                            </LinearGradient>
+                            {(secondaryBackgroundColor === 'white' && (
+                                <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
+                                    <Stop stopColor={chartLineColor} stopOpacity="1" offset="100%" />
+                                    <Stop stopColor="#FFFFFF" stopOpacity="0.25" offset="0%" />
+                                </LinearGradient>
+                            )) || (
+                                <LinearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
+                                    <Stop stopColor={chartLineColor} stopOpacity="1" offset="100%" />
+                                    <Stop stopColor="transparent" stopOpacity="0.25" offset="0%" />
+                                </LinearGradient>
+                            )}
                         </Defs>
                         <VictoryLine
                             data={data}

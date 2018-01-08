@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { width, height } from '../util/dimensions';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import { translate } from 'react-i18next';
@@ -17,6 +15,8 @@ export class EditAccountName extends Component {
         accountName: PropTypes.string.isRequired,
         saveAccountName: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
+        textColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -33,7 +33,7 @@ export class EditAccountName extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, tickImagePath } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -41,12 +41,12 @@ export class EditAccountName extends Component {
                     <View style={styles.topContainer}>
                         <View style={styles.textFieldContainer}>
                             <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={width / 31.8}
                                 fontSize={width / 20.7}
                                 labelPadding={3}
-                                baseColor="white"
+                                baseColor={secondaryBackgroundColor}
                                 label={t('accountName')}
                                 tintColor={THEMES.getHSL(this.props.negativeColor)}
                                 autoCapitalize="words"
@@ -67,12 +67,12 @@ export class EditAccountName extends Component {
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.props.saveAccountName(trim(this.state.accountName))}>
                             <View style={styles.itemRight}>
-                                <Text style={styles.titleTextRight}>{t('global:save')}</Text>
+                                <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
@@ -94,18 +94,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: height / 10,
     },
-    saveButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-    },
     saveText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
@@ -145,7 +134,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleTextLeft: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -155,7 +143,6 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleTextRight: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
