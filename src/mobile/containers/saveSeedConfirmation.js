@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
 import OnboardingButtons from '../components/onboardingButtons.js';
-import COLORS from '../theme/Colors';
+import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
+import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked.png';
+import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import { connect } from 'react-redux';
 
 import { width, height } from '../util/dimensions';
 
-class SaveSeedConfirmation extends React.Component {
-    constructor(props) {
-        super(props);
+class SaveSeedConfirmation extends Component {
+    constructor() {
+        super();
+
         this.state = {
-            checkboxImage: require('iota-wallet-shared-modules/images/checkbox-unchecked.png'),
+            checkboxImage: checkboxUncheckedImagePath,
             hasSavedSeed: false,
             iotaLogoVisibility: 'hidden',
             showCheckbox: false,
@@ -41,22 +48,22 @@ class SaveSeedConfirmation extends React.Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
     onCheckboxPress() {
-        if (this.state.checkboxImage == require('iota-wallet-shared-modules/images/checkbox-checked.png')) {
+        if (this.state.checkboxImage === checkboxCheckedImagePath) {
             this.setState({
-                checkboxImage: require('iota-wallet-shared-modules/images/checkbox-unchecked.png'),
+                checkboxImage: checkboxUncheckedImagePath,
                 hasSavedSeed: false,
                 iotaLogoVisibility: 'hidden',
             });
         } else {
             this.setState({
-                checkboxImage: require('iota-wallet-shared-modules/images/checkbox-checked.png'),
+                checkboxImage: checkboxCheckedImagePath,
                 hasSavedSeed: true,
                 iotaLogoVisibility: 'visible',
             });
@@ -64,22 +71,19 @@ class SaveSeedConfirmation extends React.Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, negativeColor, backgroundColor } = this.props;
         return (
-            <ImageBackground source={require('iota-wallet-shared-modules/images/bg-blue.png')} style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
-                    <Image
-                        source={require('iota-wallet-shared-modules/images/iota-glow.png')}
-                        style={styles.iotaLogo}
-                    />
+                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.topMidContainer}>
                         <View style={styles.infoTextContainer}>
-                            <Text style={styles.infoTextLight}>You will now be asked to re-enter your seed.</Text>
-                            <Text style={styles.infoTextLight}>If your device fails and you have not saved</Text>
-                            <Text style={styles.infoTextLight}>your seed, you will lose your IOTA.</Text>
+                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenter')}</Text>
+                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenterWarningOne')}</Text>
+                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenterWarningTwo')}</Text>
                         </View>
                     </View>
                     <View style={styles.bottomMidContainer}>
@@ -89,7 +93,7 @@ class SaveSeedConfirmation extends React.Component {
                                 onPress={event => this.onCheckboxPress()}
                             >
                                 <Image source={this.state.checkboxImage} style={styles.checkbox} />
-                                <Text style={styles.checkboxText}>I have saved my seed</Text>
+                                <Text style={styles.checkboxText}>{t('saveSeedConfirmation:alreadyHave')}</Text>
                             </TouchableOpacity>
                         )}
                         {!this.state.showCheckbox && <View style={{ flex: 1 }} />}
@@ -100,19 +104,21 @@ class SaveSeedConfirmation extends React.Component {
                         <OnboardingButtons
                             onLeftButtonPress={() => this.onBackPress()}
                             onRightButtonPress={() => this.onNextPress()}
-                            leftText="BACK"
-                            rightText="NEXT"
+                            leftText={t('global:back')}
+                            rightText={t('global:next')}
                         />
                     )}
                     {!this.state.hasSavedSeed && (
                         <TouchableOpacity onPress={() => this.onBackPress()}>
-                            <View style={styles.backButton}>
-                                <Text style={styles.backText}>BACK</Text>
+                            <View style={[styles.backButton, { borderColor: THEMES.getHSL(negativeColor) }]}>
+                                <Text style={[styles.backText, { color: THEMES.getHSL(negativeColor) }]}>
+                                    {t('global:back')}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     )}
                 </View>
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -122,7 +128,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundDarkGreen,
     },
     topContainer: {
         flex: 1,
@@ -152,7 +157,7 @@ const styles = StyleSheet.create({
     backButton: {
         borderColor: '#F7D002',
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -208,4 +213,9 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SaveSeedConfirmation;
+const mapStateToProps = state => ({
+    backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
+});
+
+export default translate(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));

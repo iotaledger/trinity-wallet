@@ -1,24 +1,48 @@
-import merge from 'lodash/merge';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar, BackHandler } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
-import COLORS from '../theme/Colors';
-
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import OnboardingButtons from '../components/onboardingButtons';
+import StatefulDropdownAlert from './statefulDropdownAlert';
+import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
+import { Navigation } from 'react-native-navigation';
+import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
 class SaveYourSeed extends Component {
+    static propTypes = {
+        navigator: PropTypes.object.isRequired,
+        setCopiedToClipboard: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        extraColor: PropTypes.object.isRequired,
+        onboardingComplete: PropTypes.bool.isRequired,
+    };
+
+    componentDidMount() {
+        if (this.props.onboardingComplete) {
+            BackHandler.addEventListener('saveYourSeedBackPress', () => {
+                this.onBackPress();
+                return true;
+            });
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.props.onboardingComplete) {
+            BackHandler.removeEventListener('saveYourSeedBackPress');
+        }
+    }
+
     componentWillReceiveProps(newProps) {
         const { t } = this.props;
         if (newProps.tempAccount.copiedToClipboard) {
             this.timeout = setTimeout(() => {
-                this.dropdown.alertWithType('info', t('seedCleared'), t('seedClearedExplanation'));
+                this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
             }, 500);
             this.props.setCopiedToClipboard(false);
         }
@@ -26,9 +50,12 @@ class SaveYourSeed extends Component {
     onDonePress() {
         this.props.navigator.push({
             screen: 'saveSeedConfirmation',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+            },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
@@ -41,32 +68,44 @@ class SaveYourSeed extends Component {
     onWriteClick() {
         this.props.navigator.push({
             screen: 'writeSeedDown',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+            },
             animated: false,
-            overrideBackPress: true,
         });
     }
     onPrintClick() {
         this.props.navigator.push({
             screen: 'paperWallet',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+            },
             animated: false,
-            overrideBackPress: true,
         });
     }
     onCopyClick() {
         this.props.navigator.push({
             screen: 'copySeedToClipboard',
-            navigatorStyle: { navBarHidden: true, navBarTransparent: true, screenBackgroundImageName: 'bg-blue.png' },
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+            },
             animated: false,
-            overrideBackPress: true,
         });
     }
 
     render() {
-        const { t } = this.props;
+        const { t, backgroundColor, extraColor } = this.props;
+        const extraColorText = { color: THEMES.getHSL(extraColor) };
+        const extraColorBorder = { borderColor: THEMES.getHSL(extraColor) };
+
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -79,22 +118,28 @@ class SaveYourSeed extends Component {
                 <View style={styles.midContainer}>
                     <View style={{ paddingTop: height / 20 }}>
                         <TouchableOpacity onPress={event => this.onWriteClick()}>
-                            <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>{t('global:manualCopy').toUpperCase()}</Text>
+                            <View style={[styles.optionButton, extraColorBorder]}>
+                                <Text style={[styles.optionButtonText, extraColorText]}>
+                                    {t('global:manualCopy').toUpperCase()}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onPrintClick()}>
-                            <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>{t('global:paperWallet').toUpperCase()}</Text>
+                            <View style={[styles.optionButton, extraColorBorder]}>
+                                <Text style={[styles.optionButtonText, extraColorText]}>
+                                    {t('global:paperWallet').toUpperCase()}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
                         <TouchableOpacity onPress={event => this.onCopyClick()}>
-                            <View style={styles.optionButton}>
-                                <Text style={styles.optionButtonText}>{t('global:copyToClipboard').toUpperCase()}</Text>
+                            <View style={[styles.optionButton, extraColorBorder]}>
+                                <Text style={[styles.optionButtonText, extraColorText]}>
+                                    {t('global:copyToClipboard').toUpperCase()}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -107,15 +152,7 @@ class SaveYourSeed extends Component {
                         rightText={t('global:done')}
                     />
                 </View>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                />
+                <StatefulDropdownAlert />
             </View>
         );
     }
@@ -126,7 +163,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
         flex: 1,
@@ -146,16 +182,14 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     optionButtonText: {
-        color: '#88D4FF',
         fontFamily: 'Lato-Regular',
         fontSize: width / 25.3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     optionButton: {
-        borderColor: '#8BD4FF',
         borderWidth: 1.5,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.36,
         height: height / 14,
         alignItems: 'center',
@@ -235,14 +269,14 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
+    backgroundColor: state.settings.theme.backgroundColor,
+    extraColor: state.settings.theme.extraColor,
+    onboardingComplete: state.account.onboardingComplete,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setCopiedToClipboard: boolean => dispatch(setCopiedToClipboard(boolean)),
-});
-
-SaveYourSeed.propTypes = {
-    navigator: PropTypes.object.isRequired,
+const mapDispatchToProps = {
+    setCopiedToClipboard,
+    generateAlert,
 };
 
 export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));

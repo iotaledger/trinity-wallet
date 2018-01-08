@@ -1,33 +1,30 @@
 import get from 'lodash/get';
-import isUndefined from 'lodash/isUndefined';
-import toUpper from 'lodash/toUpper';
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Image,
-    ImageBackground,
-    ScrollView,
-    StatusBar,
-} from 'react-native';
-import Colors from '../theme/Colors';
-import Fonts from '../theme/Fonts';
-import keychain from '../util/keychain';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import { Keyboard } from 'react-native';
-import { width, height } from '../util/dimensions';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
 import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import Colors from '../theme/Colors';
+import Fonts from '../theme/Fonts';
+import keychain from '../util/keychain';
+import { width, height } from '../util/dimensions';
+import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
+import { translate } from 'react-i18next';
 
 class ChangePassword extends Component {
+    static propTypes = {
+        password: PropTypes.string.isRequired,
+        setPassword: PropTypes.func.isRequired,
+        backPress: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+    };
+
     constructor() {
         super();
+
         this.state = {
             currentPassword: '',
             newPassword: '',
@@ -35,36 +32,9 @@ class ChangePassword extends Component {
         };
     }
 
-    renderTextField(ref, value, label, onChangeText, returnKeyType, onSubmitEditing) {
-        // This should be abstracted away as an independent component
-        // We are using almost the same field styles and props
-        // across all app
-        const props = {
-            ref: ref,
-            style: styles.textField,
-            labelTextStyle: { fontFamily: Fonts.tertiary },
-            labelFontSize: height / 55,
-            fontSize: height / 40,
-            baseColor: Colors.white,
-            tintColor: Colors.orangeDark,
-            autoCapitalize: 'none',
-            autoCorrect: false,
-            enablesReturnKeyAutomatically: true,
-            containerStyle: styles.textFieldContainer,
-            secureTextEntry: true,
-            label,
-            value,
-            onChangeText,
-            returnKeyType,
-            onSubmitEditing,
-        };
-
-        return <TextField {...props} />;
-    }
-
     isValid() {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { password, t } = this.props;
+        const { password } = this.props;
 
         return (
             currentPassword === password &&
@@ -77,16 +47,11 @@ class ChangePassword extends Component {
 
     changePassword() {
         const isValid = this.isValid();
-        const { password, setPassword, t } = this.props;
+        const { password, setPassword, generateAlert, t } = this.props;
         const { newPassword } = this.state;
 
         if (isValid) {
-            const throwErr = () =>
-                this.props.dropdown.alertWithType(
-                    'error',
-                    'Oops! Something went wrong',
-                    'Looks like something went wrong while updating your password. Please try again.',
-                );
+            const throwErr = () => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongExplanation'));
 
             keychain
                 .get()
@@ -102,53 +67,15 @@ class ChangePassword extends Component {
                 .then(() => {
                     setPassword(newPassword);
                     this.fallbackToInitialState();
-                    // TODO:
-                    // We might need to rethink on having a global dropdown alerting system
-                    // via redux. Generally we should redirect user to the previous screen
-                    // on password update but we are kind of limited as we have to keep track
-                    // on dropdown reference inside this component.
-                    this.props.dropdown.alertWithType(
-                        'success',
-                        'Password updated',
-                        'Your password has been successfully updated.',
-                    );
+
+                    generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
+
                     this.props.backPress();
                 })
-                .catch(err => throwErr());
+                .catch(() => throwErr());
         }
 
         return this.renderInvalidSubmissionAlerts();
-    }
-
-    renderInvalidSubmissionAlerts() {
-        const { currentPassword, newPassword, confirmedNewPassword } = this.state;
-        const { password, t } = this.props;
-
-        if (currentPassword !== password) {
-            return this.props.dropdown.alertWithType(
-                'error',
-                'Incorrect password',
-                'Your current password is incorrect. Please try again.',
-            );
-        } else if (newPassword !== confirmedNewPassword) {
-            return this.props.dropdown.alertWithType(
-                'error',
-                'Password mismatch',
-                'Passwords do not match. Please try again.',
-            );
-        } else if (newPassword.length < 12 || confirmedNewPassword.length < 12) {
-            return this.props.dropdown.alertWithType(
-                'error',
-                'Password is too short',
-                'Your password must be at least 12 characters. Please try again.',
-            );
-        } else if (newPassword === currentPassword) {
-            return this.props.dropdown.alertWithType(
-                'error',
-                'Cannot set old password',
-                'You cannot use the old password as your new password. Please try again with a new password.',
-            );
-        }
     }
 
     fallbackToInitialState() {
@@ -157,6 +84,48 @@ class ChangePassword extends Component {
             newPassword: '',
             confirmedNewPassword: '',
         });
+    }
+
+    renderTextField(ref, value, label, onChangeText, returnKeyType, onSubmitEditing) {
+        // This should be abstracted away as an independent component
+        // We are using almost the same field styles and props
+        // across all app
+        const props = {
+            ref: ref,
+            style: styles.textField,
+            labelTextStyle: { fontFamily: Fonts.tertiary },
+            labelFontSize: height / 55,
+            fontSize: height / 40,
+            baseColor: Colors.white,
+            tintColor: THEMES.getHSL(this.props.negativeColor),
+            autoCapitalize: 'none',
+            autoCorrect: false,
+            enablesReturnKeyAutomatically: true,
+            containerStyle: styles.textFieldContainer,
+            secureTextEntry: true,
+            label,
+            value,
+            onChangeText,
+            returnKeyType,
+            onSubmitEditing,
+        };
+
+        return <TextField {...props} />;
+    }
+
+    renderInvalidSubmissionAlerts() {
+        const { currentPassword, newPassword, confirmedNewPassword } = this.state;
+        const { password, generateAlert, t } = this.props;
+
+        if (currentPassword !== password) {
+            return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
+        } else if (newPassword !== confirmedNewPassword) {
+            return generateAlert('error', t('passwordsDoNotMatch'), t('passwordsDoNotMatchExplanation'));
+        } else if (newPassword.length < 12 || confirmedNewPassword.length < 12) {
+            return generateAlert('error', t('passwordTooShort'), t('passwordTooShortExplanation'));
+        } else if (newPassword === currentPassword) {
+            return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
+        }
     }
 
     render() {
@@ -169,14 +138,12 @@ class ChangePassword extends Component {
                     <View style={styles.topContainer}>
                         <View style={styles.infoTextWrapper}>
                             <Image source={infoImagePath} style={styles.infoIcon} />
-                            <Text style={styles.infoText}>
-                                Ensure you use a strong password of at least 12 characters.
-                            </Text>
+                            <Text style={styles.infoText}>{t('ensureStrongPassword')}</Text>
                         </View>
                         {this.renderTextField(
                             'currentPassword',
                             currentPassword,
-                            'Current Password',
+                            t('currentPassword'),
                             currentPassword => this.setState({ currentPassword }),
                             'next',
                             onSubmitEditing => this.refs.newPassword.focus(),
@@ -184,7 +151,7 @@ class ChangePassword extends Component {
                         {this.renderTextField(
                             'newPassword',
                             newPassword,
-                            'New Password',
+                            t('newPassword'),
                             newPassword => this.setState({ newPassword }),
                             'next',
                             onSubmitEditing => this.refs.confirmedNewPassword.focus(),
@@ -192,7 +159,7 @@ class ChangePassword extends Component {
                         {this.renderTextField(
                             'confirmedNewPassword',
                             confirmedNewPassword,
-                            'Confirm New Password',
+                            t('confirmPassword'),
                             confirmedNewPassword => this.setState({ confirmedNewPassword }),
                             'done',
                             onSubmitEditing => this.changePassword(),
@@ -201,17 +168,17 @@ class ChangePassword extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
-                                <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>Back</Text>
+                                <Image source={arrowLeftImagePath} style={styles.iconLeft} />
+                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
-                        {currentPassword != '' &&
-                            newPassword != '' &&
-                            confirmedNewPassword != '' && (
+                        {currentPassword !== '' &&
+                            newPassword !== '' &&
+                            confirmedNewPassword !== '' && (
                                 <TouchableOpacity onPress={() => this.changePassword()}>
                                     <View style={styles.itemRight}>
-                                        <Image source={tickImagePath} style={styles.icon} />
-                                        <Text style={styles.titleText}>Save</Text>
+                                        <Text style={styles.titleTextRight}>{t('global:save')}</Text>
+                                        <Image source={tickImagePath} style={styles.iconRight} />
                                     </View>
                                 </TouchableOpacity>
                             )}
@@ -230,7 +197,7 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 1,
-        width: width,
+        width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -248,7 +215,7 @@ const styles = StyleSheet.create({
     infoTextWrapper: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadius,
         width: width / 1.6,
         alignItems: 'center',
         justifyContent: 'center',
@@ -288,22 +255,28 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
         justifyContent: 'flex-end',
     },
-    icon: {
-        width: width / 22,
-        height: width / 22,
-        marginRight: width / 25,
+    iconLeft: {
+        width: width / 28,
+        height: width / 28,
+        marginRight: width / 20,
     },
-    titleText: {
+    titleTextLeft: {
         color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
     },
+    iconRight: {
+        width: width / 28,
+        height: width / 28,
+    },
+    titleTextRight: {
+        color: 'white',
+        fontFamily: 'Lato-Regular',
+        fontSize: width / 23,
+        backgroundColor: 'transparent',
+        marginRight: width / 20,
+    },
 });
 
-ChangePassword.propTypes = {
-    password: PropTypes.string.isRequired,
-    setPassword: PropTypes.func.isRequired,
-};
-
-export default ChangePassword;
+export default translate(['changePassword', 'global'])(ChangePassword);

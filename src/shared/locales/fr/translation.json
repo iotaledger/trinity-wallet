@@ -1,16 +1,36 @@
 {
     "global": {
+        "send": "ENVOYER",
+        "cancel": "ANNULER",
+        "continue?": "Êtes-vous sûr(e) de vouloir continuer ?",
+        "noTransactions": "AUCUN HISTORIQUE RÉCENT",
+        "qr": "QR",
+        "balanceError": "Solde insuffisant",
+        "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
+        "transferError": "Erreur de transfert",
+        "transferErrorMessage": "Une erreur s'est produite lors du transfert. Veuillez réessayer.",
+        "transferSent": "Transfert effectué",
+        "transferSentMessage": "Votre transfert a été envoyé au Tangle.",
+        "keyReuse": "Réutilisation de clé",
+        "keyReuseError": "Vous ne pouvez pas faire de transfert vers une adresse depuis laquelle un transfert a déjà été effectué.",
         "invalidResponse": "Réponse non valide",
         "invalidResponseExplanation": "Le node a retourné une réponse invalide.",
         "invalidResponsePollingExplanation": "Le node a retourné une réponse invalide lors de son interrogation.",
+        "invalidResponseFetchingAccount": "Le node a renvoyé une réponse non valide lors de la récupération des informations de votre compte.",
+        "invalidResponseSendingTransfer": "Le node a retourné une réponse invalide lors du transfert.",
         "seed": "Seed",
         "back": "RETOUR",
+        "backLowercase": "Retour",
         "done": "OK",
+        "doneLowercase": "Ok",
         "next": "SUIVANT",
+        "apply": "Appliquer",
+        "save": "Enregistrer",
+        "close": "FERMER",
+        "continue": "Continuer",
         "manualCopy": "Notez la seed",
         "paperWallet": "Imprimez la copie papier",
         "copyToClipboard": "Ajoutez à un gestionnaire de mot de passe",
-        "qr": "QR",
         "notAvailable": "Cette fonction n’est pas disponible",
         "notAvailableExplanation": "Elle sera ajoutée ultérieurement.",
         "enterSeed": "Veuillez entrer votre seed.",
@@ -29,7 +49,12 @@
         "syncInProgress": "Synchronisation en cours",
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
-        "somethingWentWrongExplanation": "Veuillez redémarrer l'application."
+        "somethingWentWrongExplanation": "Veuillez redémarrer l'application.",
+        "node": "Node",
+        "cannotPerformAction": "Impossible d’effectuer cette action",
+        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
+        "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
+        "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible sur le node selectionné."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -40,8 +65,10 @@
         "nameInUseExplanation": "Veuillez utiliser un nom de compte unique pour votre seed.",
         "enterAccountName": "Veuillez saisir un nom de compte.",
         "accountName": "Nom du compte",
-        "noNickname": "Aucun nom de compte entré",
-        "noNicknameExplanation": "Veuillez entrer un nom de compte pour votre seed."
+        "noNickname": "Aucun nom de compte saisi",
+        "noNicknameExplanation": "Veuillez saisir un nom de compte pour votre seed.",
+        "seedInUse": "Seed déjà utilisée",
+        "seedInUseExplanation": "Cette seed est déjà liée à votre porte-monnaie. Veuillez en utiliser une autre."
     },
     "changePassword": {
         "oops": "Oups. Une erreur est survenue",
@@ -64,8 +91,8 @@
     "copyToClipboard": {
         "seedCleared": "Seed effacée",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
-        "seedCopied": "Seed copié dans le presse-papier",
-        "seedCopiedExplanation": "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se soient écoulées.",
+        "seedCopied": "Seed copiée dans le presse-papier",
+        "seedCopiedExplanation": "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez vos graines dans un gestionnaire de mot de passe.",
         "doNotStore": "Ne stockez pas votre seed en texte en clair.",
         "copyToClipboard": "Copier dans le presse-papier"
@@ -91,9 +118,10 @@
     "login": {
         "emptyPassword": "Mot de passe vide",
         "emptyPasswordExplanation": "Un mot de passe est requis pour la connexion. Veuillez réessayer.",
-        "enterPassword": "Veuillez renseigner votre mot de passe.",
+        "enterPassword": "Veuillez saisir votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
-        "login": "SE CONNECTER"
+        "login": "SE CONNECTER",
+        "selectDifferentNode": "Voulez-vous sélectionner un node différent ?"
     },
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
@@ -132,9 +160,9 @@
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorrecte",
-        "incorrectSeedExplanation": "La seed que vous avez entrée est incorrecte. Veuillez réessayer.",
+        "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
         "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
-        "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir à l’écran précédent et le faire."
+        "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire."
     },
     "send": {
         "invalidAddress": "Adresse invalide",
@@ -150,8 +178,8 @@
         "max": "MAX",
         "message": "Message",
         "send": "ENVOYER",
-        "invalidAmount": "Montant entré incorrect",
-        "invalidAmountExplanation": "Veuillez entrer une valeur numérique pour le montant de la transaction.",
+        "invalidAmount": "Montant saisi incorrect",
+        "invalidAmountExplanation": "Veuillez saisir une valeur numérique pour le montant de la transaction.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
         "iotaUnits": "Unités IOTA"
     },
@@ -178,13 +206,13 @@
         "theme": "Thème",
         "currency": "Devise",
         "language": "Langue",
+        "accountManagement": "Gestion du compte",
         "addNewSeed": "Ajouter une nouvelle seed",
         "twoFA": "Authentification à deux facteurs",
         "changePassword": "Modifier le mot de passe",
         "advanced": "Réglages avancés",
         "logout": "Déconnexion",
         "reset": "Réinitialiser le wallet",
-        "back": "Retour",
         "syncingComplete": "Synchronisation terminée",
         "syncingCompleteExplanation": "Votre compte a été synchronisé avec succès.",
         "nicknameChanged": "Nom de compte modifié",
@@ -192,7 +220,9 @@
         "accountDeleted": "Compte supprimé",
         "accountDeletedExplanation": "Votre compte a été supprimé du wallet.",
         "cannotPerformAction": "Impossible d’effectuer cette action",
-        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet."
+        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
+        "poorConnection": "Mauvaise connexion",
+        "poorConnectionExplanation": "Impossible de changer de monnaie à cause de la mauvaise connexion."
     },
     "resetWalletConfirmation": {
         "thisAction": "Cette action est irréversible.",
@@ -204,7 +234,7 @@
         "areYouSure": "Êtes-vous sûr(e) de vouloir continuer ?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Entrez le mot de passe pour réinitialiser votre wallet.",
+        "enterPassword": "Saisissez votre mot de passe pour réinitialiser le wallet.",
         "cancel": "ANNULER",
         "reset": "RÉINITIALISER"
     },
@@ -225,7 +255,7 @@
         "reminder": "Vous serez tenté de passer des étapes mais nous vous demandons de suivre le processus complet."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Votre Seed se lit de gauche à droite et comporte 81 caractères. Notez-la, ainsi que le code de vérification et",
+        "yourSeedIs": "Votre seed se lit de gauche à droite et comporte {{maxSeedLength}} caractères. Notez-la, ainsi que le code de vérification et",
         "tripleCheck": "vérifiez à plusieurs reprises",
         "thatTheyAreCorrect": "qu'ils sont corrects."
     },
@@ -234,5 +264,85 @@
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papiers.",
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papiers."
+    },
+    "accountManagement": {
+        "viewSeed": "Consulter la seed",
+        "viewAddresses": "Consulter les adresses",
+        "editAccountName": "Modifier le nom du compte",
+        "deleteAccount": "Supprimer le compte",
+        "addNewAccount": "Ajouter un nouveau compte"
+    },
+    "addCustomNode": {
+        "customNode": "Node personnalisé",
+        "add": "Ajouter"
+    },
+    "addNewAccount": {
+        "useExistingSeed": "Utiliser une seed existante",
+        "createNewSeed": "Créer une nouvelle seed"
+    },
+    "advancedSettings": {
+        "selectNode": "Choisir un node",
+        "addCustomNode": "Ajouter un node personnalisé",
+        "manualSync": "Synchro manuelle"
+    },
+    "advancedThemeCustomisation": {
+        "background": "Arrière-plan",
+        "frame": "Contours"
+    },
+    "currencySelection": {
+        "currency": "Devise"
+    },
+    "logoutConfirmationModal": {
+        "logoutConfirmation": "Êtes-vous sûr(e) de vouloir vous déconnecter ?"
+    },
+    "qrScanner": {
+        "scan": "Scannez votre QR code"
+    },
+    "unitInfoModal": {
+        "unitSystem": "SYSTÈME D’UNITÉS",
+        "trillion": "Billion",
+        "billion": "Milliard",
+        "million": "Million",
+        "thousand": "Mille",
+        "one": "Un"
+    },
+    "deleteAccount": {
+        "areYouSure": "Voulez-vous vraiment supprimer ce compte ?",
+        "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
+        "thisAction": "Cette action est irréversible.",
+        "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
+    },
+    "manualSync": {
+        "pressToSync": "Appuyez sur le bouton ci-dessous pour synchroniser votre compte.",
+        "thisMayTake": "Cela peut prendre un peu temps.",
+        "youMayNotice": "Il se peut que votre appareil ralentisse.",
+        "syncAccount": "SYNCHRONISER LE COMPTE",
+        "syncingYourAccount": "Synchronisation de votre compte."
+    },
+    "useExistingSeed": {
+        "title": "Saisissez une seed et un nom de compte."
+    },
+    "viewSeed": {
+        "enterPassword": "Saisissez le mot de passe pour afficher votre seed.",
+        "viewSeed": "VOIR LA SEED",
+        "hideSeed": "MASQUER LA SEED"
+    },
+    "saveSeedConfirmation": {
+        "alreadyHave": "J’ai enregistré ma seed",
+        "reenter": "Vous allez devoir saisir à nouveau votre seed.",
+        "reenterWarningOne": "Si votre appareil tombe en panne et que vous n’avez pas enregistré",
+        "reenterWarningTwo": "votre seed, vous perdrez vos IOTA."
+    },
+    "walletResetConfirmation": {
+        "cannotUndo": "CETTE ACTION NE PEUT PAS ÊTRE ANNULÉE.",
+        "infoTextOne": "Toutes vos données de wallet incluant vos",
+        "infoTextTwo": "seeds, mots de passe",
+        "infoTextThree": "et",
+        "infoTextFour": "les autres informations de compte",
+        "infoTextFive": "seront perdues."
+    },
+    "transferConfirmation": {
+        "youAreAbout": "Vous êtes sur le point d’envoyer {{contents}} à l’adresse",
+        "aMessage": "un message"
     }
 }

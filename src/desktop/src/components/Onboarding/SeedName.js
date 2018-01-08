@@ -5,11 +5,10 @@ import { translate } from 'react-i18next';
 import { renameCurrentSeed } from 'actions/seeds';
 import { getSelectedSeed } from 'selectors/seeds';
 import { showError } from 'actions/notifications';
-import Template, { Content, Footer } from './Template';
-import Infobox from '../UI/Infobox';
-import Button from '../UI/Button';
-import Input from '../UI/Input';
-import css from '../Layout/Onboarding.css';
+import Template, { Content, Footer } from 'components/Onboarding/Template';
+import Infobox from 'components/UI/Infobox';
+import Button from 'components/UI/Button';
+import Input from 'components/UI/input/Text';
 
 class SeedName extends React.PureComponent {
     static propTypes = {
@@ -19,6 +18,7 @@ class SeedName extends React.PureComponent {
             name: PropTypes.string,
         }).isRequired,
         t: PropTypes.func.isRequired,
+        showError: PropTypes.func.isRequired,
     };
 
     state = {
@@ -43,10 +43,9 @@ class SeedName extends React.PureComponent {
         history.push('/security/enter');
     };
 
-    setName = e => {
-        const { target } = e;
+    setName = name => {
         this.setState(() => ({
-            name: target.value,
+            name: name,
         }));
     };
 
@@ -57,16 +56,13 @@ class SeedName extends React.PureComponent {
             <Template>
                 <Content>
                     <p>{t('addAdditionalSeed:enterAccountName')}</p>
-                    <div className={css.formGroup}>
-                        <label>{t('addAdditionalSeed:accountName')}</label>
-                        <Input value={name} placeholder={t('addAdditionalSeed:accountName')} onChange={this.setName} />
-                    </div>
+                    <Input value={name} label={t('addAdditionalSeed:accountName')} onChange={this.setName} />
                     <Infobox>
                         <p>{t('setSeedName:canUseMultipleSeeds')}</p>
                     </Infobox>
                 </Content>
                 <Footer>
-                    <Button to="/seed/enter" variant="warning">
+                    <Button to="/seed/enter" variant="secondary">
                         {t('global:back')}
                     </Button>
                     <Button onClick={this.onRequestNext} variant="success">

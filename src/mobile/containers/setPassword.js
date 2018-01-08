@@ -1,37 +1,42 @@
 import isEmpty from 'lodash/isEmpty';
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Image,
-    ScrollView,
-    StatusBar,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 import { connect } from 'react-redux';
 import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { clearTempData, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { TextField } from 'react-native-material-textfield';
-import DropdownAlert from '../node_modules/react-native-dropdownalert/DropdownAlert';
-import { Keyboard } from 'react-native';
 import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
-import OnboardingButtons from '../components/onboardingButtons.js';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import OnboardingButtons from '../components/onboardingButtons';
+import StatefulDropdownAlert from './statefulDropdownAlert';
 import { isAndroid } from '../util/device';
 import COLORS from '../theme/Colors';
-
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
-const MIN_PASSWORD_LENGTH = 12;
-const StatusBarDefaultBarStyle = 'light-content';
 
-class SetPassword extends React.Component {
-    constructor(props) {
-        super(props);
+const MIN_PASSWORD_LENGTH = 12;
+
+class SetPassword extends Component {
+    static propTypes = {
+        tempAccount: PropTypes.object.isRequired,
+        navigator: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired,
+        setOnboardingComplete: PropTypes.func.isRequired,
+        clearTempData: PropTypes.func.isRequired,
+        clearSeed: PropTypes.func.isRequired,
+        increaseSeedCount: PropTypes.func.isRequired,
+        addAccountName: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+    };
+
+    constructor() {
+        super();
+
         this.state = {
             password: '',
             reentry: '',
@@ -40,6 +45,29 @@ class SetPassword extends React.Component {
 
     onDonePress() {
         const { t } = this.props;
+
+        const ifNoKeychainDuplicates = (password, seed, accountName) => {
+            storeSeedInKeychain(password, seed, accountName)
+                .then(() => {
+                    this.props.addAccountName(accountName);
+                    this.props.increaseSeedCount();
+                    this.props.clearTempData();
+                    this.props.clearSeed();
+                    this.props.setOnboardingComplete(true);
+                    this.props.navigator.push({
+                        screen: 'onboardingComplete',
+                        navigatorStyle: {
+                            navBarHidden: true,
+                            navBarTransparent: true,
+                            screenBackgroundColor: COLORS.backgroundGreen,
+                        },
+                        animated: false,
+                        overrideBackPress: true,
+                    });
+                })
+                .catch(err => console.error(err));
+        };
+
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password === this.state.reentry) {
             keychain
                 .get()
@@ -50,72 +78,52 @@ class SetPassword extends React.Component {
                             this.props.tempAccount.seed,
                             this.props.tempAccount.seedName,
                         );
-                    } else {
-                        if (hasDuplicateAccountName(credentials.data, this.props.tempAccount.seedName)) {
-                            return this.dropdown.alertWithType(
-                                'error',
-                                'Account name already in use',
-                                'This account name is already linked to your wallet. Please use a different one.',
-                            );
-                        } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
-                            return this.dropdown.alertWithType(
-                                'error',
-                                'Seed already in use',
-                                'This seed is already linked to your wallet. Please use a different one.',
-                            );
-                        }
+                    }
 
-                        return ifNoKeychainDuplicates(
-                            this.state.password,
-                            this.props.tempAccount.seed,
-                            this.props.tempAccount.seedName,
+                    if (hasDuplicateAccountName(credentials.data, this.props.tempAccount.seedName)) {
+                        return this.props.generateAlert(
+                            'error',
+                            t('addAdditionalSeed:nameInUse'),
+                            t('addAdditionalSeed:nameInUseExplanation'),
+                        );
+                    } else if (hasDuplicateSeed(credentials.data, this.props.tempAccount.seed)) {
+                        return this.props.generateAlert(
+                            'error',
+                            t('addAdditionalSeed:seedInUse'),
+                            t('addAdditionalSeed:seedInUseExplanation'),
                         );
                     }
+
+                    return ifNoKeychainDuplicates(
+                        this.state.password,
+                        this.props.tempAccount.seed,
+                        this.props.tempAccount.seedName,
+                    );
                 })
-                .catch(err => {
-                    console.log(err);
-                    this.dropdown.alertWithType(
+                .catch(() => {
+                    this.props.generateAlert(
                         'error',
-                        'Something went wrong',
-                        'Something went wrong while setting your account name. Please try again.',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongExplanation'),
                     );
                 });
-
-            ifNoKeychainDuplicates = (password, seed, accountName) => {
-                storeSeedInKeychain(password, seed, accountName)
-                    .then(() => {
-                        this.props.addAccountName(accountName);
-                        this.props.increaseSeedCount();
-                        this.props.clearTempData();
-                        this.props.clearSeed();
-                        this.props.setOnboardingComplete(true);
-                        this.props.navigator.push({
-                            screen: 'onboardingComplete',
-                            navigatorStyle: {
-                                navBarHidden: true,
-                                navBarTransparent: true,
-                            },
-                            animated: false,
-                            overrideBackPress: true,
-                        });
-                    })
-                    .catch(err => console.log(err));
-            };
-        } else {
-            if (this.state.password.length < MIN_PASSWORD_LENGTH || this.state.reentry.length < MIN_PASSWORD_LENGTH) {
-                this.dropdown.alertWithType(
-                    'error',
-                    t('passwordTooShort'),
-                    t('passwordTooShortExplanation', {
-                        minLength: MIN_PASSWORD_LENGTH,
-                        currentLength: this.state.password.length,
-                    }),
-                );
-            } else if (!(this.state.password === this.state.reentry)) {
-                this.dropdown.alertWithType('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
-            }
+        } else if (
+            this.state.password.length < MIN_PASSWORD_LENGTH ||
+            this.state.reentry.length < MIN_PASSWORD_LENGTH
+        ) {
+            this.props.generateAlert(
+                'error',
+                t('passwordTooShort'),
+                t('passwordTooShortExplanation', {
+                    minLength: MIN_PASSWORD_LENGTH,
+                    currentLength: this.state.password.length,
+                }),
+            );
+        } else if (!(this.state.password === this.state.reentry)) {
+            this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
         }
     }
+
     onBackPress() {
         this.props.navigator.pop({
             animated: false,
@@ -124,11 +132,11 @@ class SetPassword extends React.Component {
 
     _renderContent() {
         const { t } = this.props;
-        let { password, reentry } = this.state;
+        const { password, reentry } = this.state;
 
         return (
             <View>
-                <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+                <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss}>
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
@@ -163,7 +171,7 @@ class SetPassword extends React.Component {
                                     onChangeText={password => this.setState({ password })}
                                     onSubmitEditing={() => this.reentry.focus()}
                                     containerStyle={{
-                                        width: width / 1.36,
+                                        width: width / 1.4,
                                     }}
                                     secureTextEntry={true}
                                 />
@@ -185,7 +193,7 @@ class SetPassword extends React.Component {
                                     returnKeyType="done"
                                     value={reentry}
                                     onChangeText={reentry => this.setState({ reentry })}
-                                    containerStyle={{ width: width / 1.36 }}
+                                    containerStyle={{ width: width / 1.4 }}
                                     secureTextEntry={true}
                                     onSubmitEditing={() => this.onDonePress()}
                                 />
@@ -202,16 +210,6 @@ class SetPassword extends React.Component {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-                <DropdownAlert
-                    ref={ref => (this.dropdown = ref)}
-                    successColor="#009f3f"
-                    errorColor="#A10702"
-                    titleStyle={styles.dropdownTitle}
-                    defaultTextContainer={styles.dropdownTextContainer}
-                    messageStyle={styles.dropdownMessage}
-                    imageStyle={styles.dropdownImage}
-                    inactiveStatusBarStyle={StatusBarDefaultBarStyle}
-                />
             </View>
         );
     }
@@ -221,8 +219,9 @@ class SetPassword extends React.Component {
 
         return (
             <View style={styles.container}>
-                {isAndroid && <View style={styles.container}>{this._renderContent()}</View>}
-                {!isAndroid && (
+                {isAndroid ? (
+                    <View style={styles.container}>{this._renderContent()}</View>
+                ) : (
                     <KeyboardAwareScrollView
                         resetScrollToCoords={{ x: 0, y: 0 }}
                         contentContainerStyle={styles.container}
@@ -232,6 +231,7 @@ class SetPassword extends React.Component {
                         {this._renderContent()}
                     </KeyboardAwareScrollView>
                 )}
+                <StatefulDropdownAlert />
             </View>
         );
     }
@@ -254,6 +254,7 @@ const styles = StyleSheet.create({
         flex: 4.8,
         justifyContent: 'space-around',
         alignItems: 'center',
+        width,
     },
     textfieldsContainer: {
         justifyContent: 'center',
@@ -281,7 +282,7 @@ const styles = StyleSheet.create({
     infoTextContainer: {
         borderColor: 'white',
         borderWidth: 1,
-        borderRadius: 15,
+        borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.5,
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -335,68 +336,21 @@ const styles = StyleSheet.create({
         height: width / 5,
         width: width / 5,
     },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
-    },
 });
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setOnboardingComplete: boolean => {
-        dispatch(setOnboardingComplete(boolean));
-    },
-    storeSeedInKeychain: password => {
-        dispatch(storeSeedInKeychain(password));
-    },
-    clearTempData: () => {
-        dispatch(clearTempData());
-    },
-    clearSeed: () => {
-        dispatch(clearSeed());
-    },
-    increaseSeedCount: () => {
-        dispatch(increaseSeedCount());
-    },
-    addAccountName: newSeed => {
-        dispatch(addAccountName(newSeed));
-    },
-});
+const mapDispatchToProps = {
+    setOnboardingComplete,
+    clearTempData,
+    clearSeed,
+    increaseSeedCount,
+    addAccountName,
+    generateAlert,
+};
 
-export default translate(['setPassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SetPassword));
+export default translate(['setPassword', 'global', 'addAdditionalSeed'])(
+    connect(mapStateToProps, mapDispatchToProps)(SetPassword),
+);
