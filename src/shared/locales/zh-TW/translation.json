@@ -121,7 +121,7 @@
         "enterPassword": "請輸入您的密碼。",
         "useSeed": "使用種子碼",
         "login": "登入",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "您要選擇不同的節點嗎？"
     },
     "loading": {
         "loadingFirstTime": "首次載入種子碼。",
@@ -169,7 +169,7 @@
         "invalidAddressExplanation1": "地址應該為{{maxLength}} 字元長度且應有一個檢查碼",
         "invalidAddressExplanation2": "地址包含無效的字元。",
         "invalidAddressExplanation3": "地址包含一個無效檢查碼。",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "餘額不足",
         "notEnoughFundsExplanation": "您的IOTA不足以完成本次交易。",
         "keyReuse": "重新使用加密鑰匙",
         "keyReuseExplanation": "您欲發送的接收地址已有人使用。請輸入別的地址。",
@@ -185,7 +185,7 @@
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "您的密碼必須至少{{最小的長度}} 字元。目前{{目前長度}} 字元長。請再試一次",
         "passwordMismatch": "密碼不符",
         "passwordMismatchExplanation": "您輸入的密碼不符。請再試一遍。",
         "nowWeNeedTo": "現在需要設置密碼。",
@@ -206,7 +206,7 @@
         "theme": "佈景主題",
         "currency": "貨幣",
         "language": "語言",
-        "accountManagement": "Account management",
+        "accountManagement": "帳戶管理",
         "addNewSeed": "增加新的種子碼",
         "twoFA": "雙因素身分驗證",
         "changePassword": "修改密碼",
@@ -221,8 +221,8 @@
         "accountDeletedExplanation": "您的帳戶已從錢包中刪除。",
         "cannotPerformAction": "無法執行操作",
         "cannotPerformActionExplanation": "轉到進階設定中重置錢包。",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnection": "連線不良",
+        "poorConnectionExplanation": "由於連接不良, 無法更改幣別。"
     },
     "resetWalletConfirmation": {
         "thisAction": "此向操作無法復原",
