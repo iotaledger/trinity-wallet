@@ -167,7 +167,7 @@ export const generateNewAddress = (seed, seedName, addresses) => {
                 // In case the newly created address is not part of the addresses object
                 // Add that as a key with a 0 balance.
                 if (!(addressNoChecksum in addresses)) {
-                    updatedAddresses[addressNoChecksum] = { balance: 0, spent: false };
+                    updatedAddresses[addressNoChecksum] = { index, balance: 0, spent: false };
                 }
 
                 dispatch(updateAddresses(seedName, updatedAddresses));
@@ -183,15 +183,12 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
     return (dispatch, getState) => {
         dispatch(sendTransferRequest());
 
-        const verifyAndSend = (filtered, expectedOutputsLength, transfer, inputs) => {
+        const verifyAndSend = (filtered, expectedOutputsLength, transfer, inputs, addressData) => {
             if (filtered.length !== expectedOutputsLength) {
                 return dispatch(
                     generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                 );
             }
-
-            const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
-            const addressData = selectedAccount.addresses;
 
             const options = { inputs };
 
@@ -268,7 +265,15 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
             );
         };
 
-        return getUnspentInputs(seed, 0, value, null, unspentInputs);
+        const getStartingIndex = addresses => {
+            const address = addresses.find(address => address.balance > 0);
+            return address ? address.index : 0;
+        };
+
+        const selectedAccount = getSelectedAccount(accountName, getState().account.accountInfo);
+        const start = getStartingIndex(selectedAccount.addresses);
+
+        return getUnspentInputs(seed, start, value, null, unspentInputs, selectedAccount.addresses);
     };
 };
 
