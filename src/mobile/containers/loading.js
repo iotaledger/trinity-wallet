@@ -1,49 +1,93 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, WebView, StatusBar, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, StatusBar, Text, ActivityIndicator, Animated } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
-import { setBalance, setFirstUse } from 'iota-wallet-shared-modules/actions/account';
+import {
+    getAccountInfo,
+    getFullAccountInfo,
+    fetchFullAccountInfoForFirstUse,
+} from 'iota-wallet-shared-modules/actions/account';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
+import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
+import keychain, { getSeed, storeSeedInKeychain } from '../util/keychain';
 import { Navigation } from 'react-native-navigation';
-import Home from './home';
 import IotaSpin from '../components/iotaSpin';
-import COLORS from '../theme/Colors';
-
+import THEMES from '../theme/themes';
+import KeepAwake from 'react-native-keep-awake';
+import LottieView from 'lottie-react-native';
 import { width, height } from '../util/dimensions';
-const logoSpin = require('../logo-spin/logo-spin-glow.html');
-
 class Loading extends Component {
     componentDidMount() {
+        const {
+            firstUse,
+            addingAdditionalAccount,
+            additionalAccountName,
+            selectedAccountName,
+            seed,
+            password,
+            navigator,
+        } = this.props;
+
+        if (!firstUse && !addingAdditionalAccount) {
+            this.animation.play();
+        }
+
+        KeepAwake.activate();
+
         this.props.changeHomeScreenRoute('balance');
         this.props.setSetting('mainSettings');
+
+        keychain
+            .get()
+            .then(credentials => {
+                const firstSeed = getSeed(credentials.data, 0);
+
+                if (firstUse && !addingAdditionalAccount) {
+                    this.props.getFullAccountInfo(firstSeed, selectedAccountName, navigator);
+                } else if (!firstUse && addingAdditionalAccount) {
+                    this.props.fetchFullAccountInfoForFirstUse(
+                        seed,
+                        additionalAccountName,
+                        password,
+                        storeSeedInKeychain,
+                        navigator,
+                    );
+                } else {
+                    this.props.getAccountInfo(firstSeed, selectedAccountName, navigator);
+                }
+            })
+            .catch(err => console.log(err)); // Dropdown
     }
 
     componentWillReceiveProps(newProps) {
-        const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
+        const ready = !this.props.ready && newProps.ready;
+
         if (ready) {
+            KeepAwake.deactivate();
             Navigation.startSingleScreenApp({
                 screen: {
                     screen: 'home',
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
-                        screenBackgroundColor: COLORS.backgroundGreen,
+                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                     },
-                    overrideBackPress: true,
+                },
+                appStyle: {
+                    orientation: 'portrait',
                 },
             });
         }
     }
 
     render() {
-        const { tempAccount: { ready }, account: { firstUse }, navigator, t } = this.props;
+        const { firstUse, t, addingAdditionalAccount, negativeColor, backgroundColor } = this.props;
 
-        if (this.props.account.firstUse) {
+        if (firstUse || addingAdditionalAccount) {
             return (
-                <View style={styles.container}>
+                <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -54,20 +98,31 @@ class Loading extends Component {
                             animating={true}
                             style={styles.activityIndicator}
                             size="large"
-                            color="#F7D002"
+                            color={THEMES.getHSL(negativeColor)}
                         />
                     </View>
                     <View style={{ flex: 1 }} />
                 </View>
             );
-        } else if (!this.props.account.firstUse) {
-            return (
-                <View style={styles.container}>
-                    <StatusBar barStyle="light-content" />
-                    <IotaSpin duration={3000} />
-                </View>
-            );
         }
+
+        return (
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content" />
+                <View style={styles.animationContainer}>
+                    <View>
+                        <LottieView
+                            ref={animation => {
+                                this.animation = animation;
+                            }}
+                            source={require('../animations/welcome.json')}
+                            style={styles.animation}
+                            loop={true}
+                        />
+                    </View>
+                </View>
+            </View>
+        );
     }
 }
 
@@ -76,7 +131,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: COLORS.backgroundGreen,
     },
     infoText: {
         color: 'white',
@@ -92,30 +146,48 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: height / 40,
     },
+    animation: {
+        justifyContent: 'center',
+        width: width * 1.5,
+        height: width / 1.77 * 1.5,
+    },
+    animationContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
 
 const mapStateToProps = state => ({
-    marketData: state.marketData,
-    tempAccount: state.tempAccount,
-    account: state.account,
+    firstUse: state.account.firstUse,
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+    addingAdditionalAccount: state.tempAccount.addingAdditionalAccount,
+    additionalAccountName: state.tempAccount.additionalAccountName,
+    seed: state.tempAccount.seed,
+    ready: state.tempAccount.ready,
+    password: state.tempAccount.password,
+    backgroundColor: state.settings.theme.backgroundColor,
+    negativeColor: state.settings.theme.negativeColor,
 });
 
-const mapDispatchToProps = dispatch => ({
-    setBalance: addressesWithBalance => {
-        dispatch(setBalance(addressesWithBalance));
-    },
-    setFirstUse: boolean => {
-        dispatch(setFirstUse(boolean));
-    },
-    changeHomeScreenRoute: route => dispatch(changeHomeScreenRoute(route)),
-    setSetting: setting => dispatch(setSetting(setting)),
-});
+const mapDispatchToProps = {
+    changeHomeScreenRoute,
+    setSetting,
+    getAccountInfo,
+    getFullAccountInfo,
+    fetchFullAccountInfoForFirstUse,
+};
 
 Loading.propTypes = {
-    marketData: PropTypes.object.isRequired,
-    tempAccount: PropTypes.object.isRequired,
-    account: PropTypes.object.isRequired,
+    firstUse: PropTypes.bool.isRequired,
+    addingAdditionalAccount: PropTypes.bool.isRequired,
     navigator: PropTypes.object.isRequired,
+    getAccountInfo: PropTypes.func.isRequired,
+    getFullAccountInfo: PropTypes.func.isRequired,
+    fetchFullAccountInfoForFirstUse: PropTypes.func.isRequired,
+    selectedAccountName: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.object.isRequired,
+    negativeColor: PropTypes.object.isRequired,
 };
 
 export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));

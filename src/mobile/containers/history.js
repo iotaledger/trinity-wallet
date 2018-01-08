@@ -1,55 +1,64 @@
-import React from 'react';
-import { TouchableOpacity, StyleSheet, View, ListView, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, View, ListView, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import {
+    getAddressesForSelectedAccountViaSeedIndex,
+    getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
+} from '../../shared/selectors/account';
 import TransactionRow from '../components/transactionRow';
-import Modal from 'react-native-modal';
-import DropdownHolder from '../components/dropdownHolder';
+import { width, height } from '../util/dimensions';
+import THEMES from '../theme/themes';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-import { width, height } from '../util/dimensions';
 
-class History extends React.Component {
-    constructor(props) {
-        super(props);
+class History extends Component {
+    static propTypes = {
+        addresses: PropTypes.array.isRequired,
+        transfers: PropTypes.array.isRequired,
+        closeTopBar: PropTypes.func.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
+        positiveColor: PropTypes.object.isRequired,
+        extraColor: PropTypes.object.isRequired,
+        negativeColor: PropTypes.object.isRequired,
+    };
+
+    constructor() {
+        super();
+
         this.state = { viewRef: null };
     }
 
+    // FIXME: findNodeHangle is not defined
     imageLoaded() {
         this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
     }
 
     copyBundleHash(item) {
         const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
         Clipboard.setString(item);
-        dropdown.alertWithType('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
+        generateAlert('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
     }
 
     copyAddress(item) {
         const { t } = this.props;
-        const dropdown = DropdownHolder.getDropdown();
         Clipboard.setString(item);
-        dropdown.alertWithType('success', t('addressCopied'), t('addressCopiedExplanation'));
+        generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
     render() {
-        const { t } = this.props;
-        const accountInfo = this.props.account.accountInfo;
-        const seedIndex = this.props.tempAccount.seedIndex;
-        const currentSeedAccountInfo = accountInfo[Object.keys(accountInfo)[seedIndex]];
-        const addresses = Object.keys(currentSeedAccountInfo.addresses);
-        const transactions = currentSeedAccountInfo.transfers;
-        const hasTransactions = transactions.length > 0;
+        const { t, addresses, transfers, positiveColor, negativeColor, backgroundColor, extraColor } = this.props;
+        const hasTransactions = transfers.length > 0;
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     {hasTransactions ? (
                         <View style={styles.listView}>
                             <ListView
-                                dataSource={ds.cloneWithRows(
-                                    accountInfo[Object.keys(accountInfo)[seedIndex]].transfers,
-                                )}
+                                dataSource={ds.cloneWithRows(transfers)}
                                 renderRow={dataSource => (
                                     <TransactionRow
                                         addresses={addresses}
@@ -58,6 +67,10 @@ class History extends React.Component {
                                         onPress={event => this._showModal()}
                                         copyAddress={item => this.copyAddress(item)}
                                         copyBundleHash={item => this.copyBundleHash(item)}
+                                        positiveColor={THEMES.getHSL(positiveColor)}
+                                        negativeColor={THEMES.getHSL(negativeColor)}
+                                        extraColor={THEMES.getHSL(extraColor)}
+                                        backgroundColor={THEMES.getHSL(backgroundColor)}
                                     />
                                 )}
                                 renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
@@ -71,7 +84,7 @@ class History extends React.Component {
                         </View>
                     ) : (
                         <View style={styles.noTransactionsContainer}>
-                            <Text style={styles.noTransactions}>NO TRANSACTION HISTORY</Text>
+                            <Text style={styles.noTransactions}>{t('global:noTransactions')}</Text>
                         </View>
                     )}
                 </View>
@@ -106,9 +119,17 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
-    account: state.account,
-    tempAccount: state.tempAccount,
+const mapStateToProps = ({ tempAccount, account, settings }) => ({
+    addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
+    transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
+    negativeColor: settings.theme.negativeColor,
+    positiveColor: settings.theme.positiveColor,
+    backgroundColor: settings.theme.backgroundColor,
+    extraColor: settings.theme.extraColor,
 });
 
-export default translate(['history', 'global'])(connect(mapStateToProps)(History));
+const mapDispatchToProps = {
+    generateAlert,
+};
+
+export default translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History));
