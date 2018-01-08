@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
         marginTop: height / 150,
     },
     dropdownInnerContainer: {
+        shadowColor: '#222',
         shadowOffset: {
             width: 0,
             height: 2,
@@ -171,7 +172,6 @@ export class Dropdown extends Component {
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
         const heightValue = options.length < 7 ? height / 22.4 * options.length + height / 70 : height / 3.2;
         const dropdownHeight = isDropdownOpen ? heightValue : 0;
-        const shadowColor = shadow ? { shadowColor: THEMES.getHSL(barColor) } : { shadowColor: 'transparent' };
         const backgroundColor = background
             ? { backgroundColor: THEMES.getHSL(this.props.backgroundColor) }
             : { backgroundColor: 'transparent' };
@@ -220,7 +220,7 @@ export class Dropdown extends Component {
                     }}
                 >
                     <View style={[styles.dropdownContainer, dropdownWidth]}>
-                        <View style={[styles.dropdownInnerContainer, shadowColor]}>
+                        <View style={styles.dropdownInnerContainer}>
                             <ListView
                                 dataSource={ds.cloneWithRows(options)}
                                 renderRow={(rowData, sectionId, rowId) => {

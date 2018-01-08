@@ -44,7 +44,7 @@ class TransactionRow extends React.Component {
                                     styles.modalStatus,
                                     { color: this.props.positiveColor },
                                     !isReceived && { color: this.props.negativeColor },
-                                    !hasPersistence && { color: '#f75602' },
+                                    !hasPersistence && { color: this.props.pendingColor },
                                 ]}
                             >
                                 {hasPersistence ? (isReceived ? 'Received' : 'Sent') : 'Pending'}
@@ -108,6 +108,7 @@ class TransactionRow extends React.Component {
             textColor,
             secondaryBackgroundColor,
             borderColor,
+            pendingColor,
         } = this.props;
         const hasPersistence = this.props.rowData[0].persistence;
         const isReceived = this.props.addresses.includes(this.props.rowData[0].address);
@@ -150,7 +151,7 @@ class TransactionRow extends React.Component {
                                     styles.status,
                                     { color: positiveColor },
                                     !isReceived && { color: negativeColor },
-                                    !hasPersistence && { color: '#f75602' },
+                                    !hasPersistence && { color: pendingColor },
                                 ]}
                             >
                                 {hasPersistence ? (isReceived ? 'Received' : 'Sent') : 'Pending'}

@@ -117,6 +117,10 @@ const initialState = {
         },
         secondaryBarColor: 'white',
         secondaryBackgroundColor: 'white',
+        secondaryCtaColor: 'white',
+        ctaBorderColor: 'transparent',
+        pendingColor: '#f75602',
+        chartLineColor: '#FFA25B',
     },
 };
 

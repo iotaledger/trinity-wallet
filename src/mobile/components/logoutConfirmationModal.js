@@ -9,12 +9,12 @@ import { width, height } from '../util/dimensions';
 
 class LogoutConfirmationModal extends Component {
     render() {
-        const { t, backgroundColor } = this.props;
+        const { t, backgroundColor, textColor, borderColor } = this.props;
 
         return (
             <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
-                <View style={styles.modalContent}>
-                    <Text style={styles.questionText}>{t('logoutConfirmation')}</Text>
+                <View style={[styles.modalContent, borderColor]}>
+                    <Text style={[styles.questionText, textColor]}>{t('logoutConfirmation')}</Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.props.logout()}
@@ -33,12 +33,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 18,
         width: width / 1.15,
     },
     questionText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
