@@ -60,7 +60,7 @@
         "seedInvalidChars": "種子碼包含無效字元",
         "seedInvalidCharsExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短。",
-        "seedTooShortExplanation": "種子必須是{{最大的長度}} 字元長。您的種子目前{{目前長度}} 字元",
+        "seedTooShortExplanation": "種子必須是{{最大的長度}} 字元長。您的種子目前{{目前長度}} 字元。請再試一次",
         "nameInUse": "此帳戶已有人使用",
         "nameInUseExplanation": "種子碼請使用獨特帳戶名稱",
         "enterAccountName": "輸入帳戶名稱",
@@ -92,7 +92,7 @@
         "seedCleared": "種子碼已清除",
         "seedClearedExplanation": "為保安全，種子碼已從剪貼簿清除。",
         "seedCopied": "複製種子到剪貼簿",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "seedCopiedExplanation": "只要按下“完成” 或是60秒後種子將被清除",
         "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理系統。",
         "doNotStore": "不要儲存種子於ㄧ般文字",
         "copyToClipboard": "複製到剪貼簿"
