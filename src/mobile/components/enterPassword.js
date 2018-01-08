@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
         paddingTop: height / 15,
     },
     title: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
@@ -71,9 +70,9 @@ class EnterPassword extends Component {
 
     render() {
         const { password } = this.state;
-        const { t, positiveColor } = this.props;
+        const { t, positiveColor, secondaryBackgroundColor, textColor } = this.props;
         const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
-        const textColor = { color: THEMES.getHSL(positiveColor) };
+        const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -81,17 +80,17 @@ class EnterPassword extends Component {
                     <View style={styles.topContainer}>
                         <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                         <View style={styles.titleContainer}>
-                            <Text style={styles.title}>{t('enterPassword')}</Text>
+                            <Text style={[styles.title, textColor]}>{t('enterPassword')}</Text>
                         </View>
                     </View>
                     <View style={styles.midContainer}>
                         <TextField
-                            style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                            style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                             labelFontSize={width / 31.8}
                             fontSize={width / 20.7}
                             labelPadding={3}
-                            baseColor="white"
+                            baseColor={secondaryBackgroundColor}
                             label={t('global:password')}
                             tintColor={THEMES.getHSL(this.props.negativeColor)}
                             autoCapitalize={'none'}
@@ -110,7 +109,7 @@ class EnterPassword extends Component {
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={this.handleLogin}>
                             <View style={[styles.loginButton, borderColor]}>
-                                <Text style={[styles.loginText, textColor]}>{t('login')}</Text>
+                                <Text style={[styles.loginText, positiveTextColor]}>{t('login')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -124,6 +123,8 @@ EnterPassword.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     positiveColor: PropTypes.object.isRequired,
+    textColor: PropTypes.object.isRequired,
+    secondaryBackgroundColor: PropTypes.string.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPassword);

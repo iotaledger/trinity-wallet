@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { width, height } from '../util/dimensions';
 import Dropdown from './dropdown';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import { translate } from 'react-i18next';
 
@@ -43,7 +42,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleTextLeft: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -53,7 +51,6 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleTextRight: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -82,7 +79,17 @@ class CurrencySelection extends Component {
     }
 
     render() {
-        const { currency, currencies, backPress, t } = this.props;
+        const {
+            currency,
+            currencies,
+            backPress,
+            t,
+            textColor,
+            secondaryBackgroundColor,
+            arrowLeftImagePath,
+            tickImagePath,
+        } = this.props;
+
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
@@ -108,12 +115,12 @@ class CurrencySelection extends Component {
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveCurrencySelection(this.dropdown.getSelected())}>
                             <View style={styles.itemRight}>
-                                <Text style={styles.titleTextRight}>{t('global:save')}</Text>
+                                <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>

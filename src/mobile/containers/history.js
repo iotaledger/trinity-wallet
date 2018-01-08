@@ -24,6 +24,7 @@ class History extends Component {
         extraColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        pendingColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -59,6 +60,7 @@ class History extends Component {
             backgroundColor,
             extraColor,
             secondaryBackgroundColor,
+            pendingColor,
         } = this.props;
         const hasTransactions = transfers.length > 0;
         const textColor = { color: secondaryBackgroundColor };
@@ -85,6 +87,7 @@ class History extends Component {
                                         textColor={textColor}
                                         borderColor={borderColor}
                                         secondaryBackgroundColor={secondaryBackgroundColor}
+                                        pendingColor={pendingColor}
                                     />
                                 )}
                                 renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
@@ -140,6 +143,7 @@ const mapStateToProps = ({ tempAccount, account, settings }) => ({
     backgroundColor: settings.theme.backgroundColor,
     extraColor: settings.theme.extraColor,
     secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
+    pendingColor: settings.theme.pendingColor,
 });
 
 const mapDispatchToProps = {

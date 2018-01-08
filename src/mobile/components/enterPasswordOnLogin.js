@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
         paddingTop: height / 15,
     },
     title: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
@@ -79,9 +78,7 @@ class EnterPasswordOnLogin extends Component {
 
     render() {
         const { password } = this.state;
-        const { t, positiveColor } = this.props;
-        const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
-        const textColor = { color: THEMES.getHSL(positiveColor) };
+        const { t, textColor, secondaryBackgroundColor, negativeColor } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -89,19 +86,19 @@ class EnterPasswordOnLogin extends Component {
                     <View style={styles.topContainer}>
                         <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                         <View style={styles.titleContainer}>
-                            <Text style={styles.title}>{t('enterPassword')}</Text>
+                            <Text style={[styles.title, textColor]}>{t('enterPassword')}</Text>
                         </View>
                     </View>
                     <View style={styles.midContainer}>
                         <TextField
-                            style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                            style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                             labelFontSize={width / 31.8}
                             fontSize={width / 20.7}
                             labelPadding={3}
-                            baseColor="white"
+                            baseColor={secondaryBackgroundColor}
                             label={t('global:password')}
-                            tintColor={THEMES.getHSL(this.props.negativeColor)}
+                            tintColor={THEMES.getHSL(negativeColor)}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -133,6 +130,9 @@ EnterPasswordOnLogin.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     positiveColor: PropTypes.object.isRequired,
+    textColor: PropTypes.object.isRequired,
+    secondaryBackgroundColor: PropTypes.string.isRequired,
+    negativeColor: PropTypes.object.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPasswordOnLogin);

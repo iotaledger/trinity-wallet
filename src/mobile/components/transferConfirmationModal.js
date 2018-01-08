@@ -23,7 +23,7 @@ class TransferConfirmationModal extends Component {
     }
 
     render() {
-        const { t, backgroundColor } = this.props;
+        const { t, backgroundColor, textColor, borderColor } = this.props;
         // TODO: fix this using trans component
         /*
         let transferContents = null;
@@ -53,14 +53,14 @@ class TransferConfirmationModal extends Component {
         }
         return (
             <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor }}>
-                <View style={styles.modalContent}>
+                <View style={[styles.modalContent, borderColor]}>
                     <View style={styles.textContainer}>
-                        <Text style={styles.text}>
-                            <Text style={styles.regularText}>
+                        <Text style={[styles.text, textColor]}>
+                            <Text style={[styles.regularText, textColor]}>
                                 You are about to send {transferContents} to the address
                             </Text>
                         </Text>
-                        <Text numberOfLines={3} style={styles.addressText}>
+                        <Text numberOfLines={3} style={[styles.addressText, textColor]}>
                             {this.props.address}
                         </Text>
                     </View>
@@ -92,26 +92,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     text: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 31.8,
     },
     regularText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 31.8,
     },
     middleText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Light',
         fontSize: width / 31.8,
         paddingBottom: height / 80,
     },
     addressText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 31.8,
@@ -119,7 +115,6 @@ const styles = StyleSheet.create({
         marginTop: height / 70,
     },
     iotaText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
