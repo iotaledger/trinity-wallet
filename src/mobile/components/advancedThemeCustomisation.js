@@ -11,8 +11,6 @@ import {
 } from 'react-native-color';
 import tinycolor from 'tinycolor2';
 import { width, height } from '../util/dimensions';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import cloneDeep from 'lodash/cloneDeep';
 import { translate } from 'react-i18next';
 
@@ -38,7 +36,7 @@ class AdvancedThemeCustomisation extends React.Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, secondaryBackgroundColor, tickImagePath, arrowLeftImagePath, textColor } = this.props;
         const backgroundTextColor = tinycolor(this.state.backgroundColor).isDark() ? '#FAFAFA' : '#222';
         const barTextColor = tinycolor(this.state.barColor).isDark() ? '#FAFAFA' : '#222';
         return (
@@ -112,12 +110,12 @@ class AdvancedThemeCustomisation extends React.Component {
                     <TouchableOpacity onPress={() => this.props.backPress()}>
                         <View style={styles.itemLeft}>
                             <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                            <Text style={styles.titleTextLeft}>Back</Text>
+                            <Text style={[styles.titleTextLeft, textColor]}>Back</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.onApplyPress()}>
                         <View style={styles.itemRight}>
-                            <Text style={styles.titleTextRight}>Apply</Text>
+                            <Text style={[styles.titleTextRight, textColor]}>Apply</Text>
                             <Image source={tickImagePath} style={styles.iconRight} />
                         </View>
                     </TouchableOpacity>

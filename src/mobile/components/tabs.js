@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
             height: 2,
         },
         shadowOpacity: 1.0,
+        shadowColor: 'black',
     },
 });
 
@@ -37,9 +38,7 @@ class Tabs extends Component {
         );
 
         const tabContainer = (
-            <View style={[styles.tabBar, { backgroundColor: this.props.barColor, shadowColor: this.props.barColor }]}>
-                {childComponents}
-            </View>
+            <View style={[styles.tabBar, { backgroundColor: this.props.barColor }]}>{childComponents}</View>
         );
 
         if (isAndroid) {

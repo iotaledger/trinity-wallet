@@ -12,9 +12,8 @@ import {
 import tinycolor from 'tinycolor2';
 import { width, height } from '../util/dimensions';
 import Dropdown from '../components/dropdown';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
-import chevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down.png';
+import blackChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-black.png';
+import whiteChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-white.png';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import Triangle from 'react-native-triangle';
@@ -50,7 +49,13 @@ class ThemeCustomisation extends React.Component {
             negativeColor,
             extraColor,
             secondaryBackgroundColor,
+            secondaryCtaColor,
+            ctaBorderColor,
         } = this.state.theme;
+        const { arrowLeftImagePath, tickImagePath } = this.props;
+        const chevronDownImagePath =
+            secondaryBackgroundColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
+
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
@@ -87,7 +92,7 @@ class ThemeCustomisation extends React.Component {
                                 styles.demoContainer,
                                 {
                                     backgroundColor: THEMES.getHSL(backgroundColor),
-                                    shadowColor: THEMES.getHSL(barColor),
+                                    shadowColor: 'black',
                                     borderColor: secondaryBackgroundColor,
                                 },
                             ]}
@@ -108,7 +113,7 @@ class ThemeCustomisation extends React.Component {
                                     styles.frameBar,
                                     {
                                         backgroundColor: THEMES.getHSL(backgroundColor),
-                                        shadowColor: THEMES.getHSL(barColor),
+                                        shadowColor: 'black',
                                     },
                                 ]}
                             >
@@ -152,28 +157,37 @@ class ThemeCustomisation extends React.Component {
                                 <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
                                     <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>SAVE</Text>
                                 </View>
-                                <View style={[styles.ctaButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
-                                    <Text style={styles.ctaText}>SEND</Text>
+                                <View
+                                    style={[
+                                        styles.ctaButton,
+                                        { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
+                                    ]}
+                                >
+                                    <Text style={[styles.ctaText, { color: secondaryCtaColor }]}>SEND</Text>
                                 </View>
                             </View>
                         </View>
-                        <TouchableOpacity
+                        {/*}<TouchableOpacity
                             onPress={() => this.onAdvancedPress()}
-                            style={[styles.advancedButton, { borderColor: secondaryBackgroundColor }]}
+                            style={[styles.advancedButton, { borderColor: this.props.secondaryBackgroundColor }]}
                         >
-                            <Text style={[styles.advancedText, { color: secondaryBackgroundColor }]}>ADVANCED</Text>
-                        </TouchableOpacity>
+                            <Text style={[styles.advancedText, { color: this.props.secondaryBackgroundColor }]}>ADVANCED</Text>
+                        </TouchableOpacity>*/}
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => this.props.backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={[styles.titleTextLeft, { color: secondaryBackgroundColor }]}>Back</Text>
+                                <Text style={[styles.titleTextLeft, { color: this.props.secondaryBackgroundColor }]}>
+                                    Back
+                                </Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.onApplyPress(theme, themeName)}>
                             <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, { color: secondaryBackgroundColor }]}>Apply</Text>
+                                <Text style={[styles.titleTextRight, { color: this.props.secondaryBackgroundColor }]}>
+                                    Apply
+                                </Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
@@ -340,6 +354,7 @@ const styles = StyleSheet.create({
         height: height / 15,
         alignItems: 'center',
         justifyContent: 'center',
+        borderWidth: 1.2,
     },
     ctaText: {
         color: 'white',

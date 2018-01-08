@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import whiteArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-white.png';
+import blackArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-black.png';
 import GENERAL from '../theme/general';
+import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -44,7 +46,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleText: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -55,7 +56,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     syncButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
         width: width / 2.7,
@@ -65,13 +65,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     syncButtonText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
     infoText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -92,17 +90,19 @@ const ManualSync = props => (
             <View style={{ flex: 0.5 }} />
             {!props.isSyncing && (
                 <View style={styles.innerContainer}>
-                    <Text style={styles.infoText}>{props.t('manualSync:pressToSync')}</Text>
-                    <Text style={styles.infoText}>{props.t('manualSync:thisMayTake')}</Text>
-                    <Text style={styles.infoText}>{props.t('manualSync:youMayNotice')}</Text>
+                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:pressToSync')}</Text>
+                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:thisMayTake')}</Text>
+                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:youMayNotice')}</Text>
                     <View style={styles.syncButtonContainer}>
                         <TouchableOpacity
                             onPress={() => {
                                 props.onManualSyncPress();
                             }}
                         >
-                            <View style={styles.syncButton}>
-                                <Text style={styles.syncButtonText}>{props.t('manualSync:syncAccount')}</Text>
+                            <View style={[styles.syncButton, props.borderColor]}>
+                                <Text style={[styles.syncButtonText, props.textColor]}>
+                                    {props.t('manualSync:syncAccount')}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -110,14 +110,14 @@ const ManualSync = props => (
             )}
             {props.isSyncing && (
                 <View style={styles.innerContainer}>
-                    <Text style={styles.infoText}>{props.t('manualSync:syncingYourAccount')}</Text>
-                    <Text style={styles.infoText}>{props.t('manualSync:thisMayTake')}</Text>
-                    <Text style={styles.infoText}>{props.t('manualSync:youMayNotice')}</Text>
+                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:syncingYourAccount')}</Text>
+                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:thisMayTake')}</Text>
+                    <Text style={[styles.infoText, props.textColor]}>{props.t('manualSync:youMayNotice')}</Text>
                     <ActivityIndicator
                         animating={props.isSyncing}
                         style={styles.activityIndicator}
                         size="large"
-                        color="#F7D002"
+                        color={THEMES.getHSL(props.negativeColor)}
                     />
                 </View>
             )}
@@ -126,8 +126,8 @@ const ManualSync = props => (
             {!props.isSyncing && (
                 <TouchableOpacity onPress={() => props.backPress()}>
                     <View style={styles.item}>
-                        <Image source={arrowLeftImagePath} style={styles.icon} />
-                        <Text style={styles.titleText}>{props.t('global:backLowercase')}</Text>
+                        <Image source={props.arrowLeftImagePath} style={styles.icon} />
+                        <Text style={[styles.titleText, props.textColor]}>{props.t('global:backLowercase')}</Text>
                     </View>
                 </TouchableOpacity>
             )}
@@ -140,6 +140,8 @@ ManualSync.propTypes = {
     backPress: PropTypes.func.isRequired,
     onManualSyncPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
+    negativeColor: PropTypes.object.isRequired,
+    textColor: PropTypes.object.isRequired,
 };
 
 export default ManualSync;

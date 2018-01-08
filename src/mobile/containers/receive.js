@@ -55,6 +55,7 @@ class Receive extends Component {
         ctaColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -152,9 +153,13 @@ class Receive extends Component {
             ctaColor,
             negativeColor,
             secondaryBackgroundColor,
+            secondaryCtaColor,
+            ctaBorderColor,
         } = this.props;
         const message = this.state.message;
         const textColor = { color: secondaryBackgroundColor };
+        const ctaTextColor = { color: secondaryCtaColor };
+        const generateBorderColor = { borderColor: ctaBorderColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const qrBorder =
             secondaryBackgroundColor === 'white' ? { borderColor: 'transparent' } : { borderColor: 'black' };
@@ -237,8 +242,16 @@ class Receive extends Component {
                                         }
                                     }}
                                 >
-                                    <View style={[styles.generateButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
-                                        <Text style={styles.generateText}>{t('generateNewAddress')}</Text>
+                                    <View
+                                        style={[
+                                            styles.generateButton,
+                                            { backgroundColor: THEMES.getHSL(ctaColor) },
+                                            generateBorderColor,
+                                        ]}
+                                    >
+                                        <Text style={[styles.generateText, ctaTextColor]}>
+                                            {t('generateNewAddress')}
+                                        </Text>
                                     </View>
                                 </TouchableOpacity>
                             )}
@@ -248,7 +261,7 @@ class Receive extends Component {
                                     animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color="#F7D002"
+                                    color={THEMES.getHSL(negativeColor)}
                                 />
                             </View>
                         )}
@@ -310,6 +323,7 @@ const styles = StyleSheet.create({
         height: height / 13,
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 1.5,
     },
     generateText: {
         fontFamily: 'Lato-Bold',
@@ -363,6 +377,8 @@ const mapStateToProps = state => ({
     ctaColor: state.settings.theme.ctaColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
+    ctaBorderColor: state.settings.theme.ctaBorderColor,
 });
 
 const mapDispatchToProps = {

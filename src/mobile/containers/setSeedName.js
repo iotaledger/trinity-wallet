@@ -17,7 +17,7 @@ import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import infoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 
 export class SetSeedName extends Component {
     static propTypes = {

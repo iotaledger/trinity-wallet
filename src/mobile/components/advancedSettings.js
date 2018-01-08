@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
-import nodeImagePath from 'iota-wallet-shared-modules/images/node.png';
-import syncImagePath from 'iota-wallet-shared-modules/images/sync.png';
-import crossImagePath from 'iota-wallet-shared-modules/images/cross.png';
-import addImagePath from 'iota-wallet-shared-modules/images/add.png';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
+import whiteNodeImagePath from 'iota-wallet-shared-modules/images/node-white.png';
+import whiteSyncImagePath from 'iota-wallet-shared-modules/images/sync-white.png';
+import whiteCrossImagePath from 'iota-wallet-shared-modules/images/cross-white.png';
+import blackNodeImagePath from 'iota-wallet-shared-modules/images/node-black.png';
+import blackSyncImagePath from 'iota-wallet-shared-modules/images/sync-black.png';
+import blackCrossImagePath from 'iota-wallet-shared-modules/images/cross-black.png';
+
 import { translate } from 'react-i18next';
 
 class AdvancedSettings extends Component {
@@ -14,10 +16,16 @@ class AdvancedSettings extends Component {
         setSetting: PropTypes.func.isRequired,
         onResetWalletPress: PropTypes.func.isRequired,
         node: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        borderColor: PropTypes.object.isRequired,
     };
 
     render() {
-        const { t } = this.props;
+        const { t, textColor, borderColor, secondaryBackgroundColor, arrowLeftImagePath, addImagePath } = this.props;
+        const nodeImagePath = secondaryBackgroundColor === 'white' ? whiteNodeImagePath : blackNodeImagePath;
+        const syncImagePath = secondaryBackgroundColor === 'white' ? whiteSyncImagePath : blackSyncImagePath;
+        const crossImagePath = secondaryBackgroundColor === 'white' ? whiteCrossImagePath : blackCrossImagePath;
+
         return (
             <View style={styles.container}>
                 <View style={{ flex: 4.5 }}>
@@ -25,8 +33,8 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('nodeSelection')}>
                             <View style={styles.item}>
                                 <Image source={nodeImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>{t('selectNode')}</Text>
-                                <Text numberOfLines={1} style={styles.settingText}>
+                                <Text style={[styles.titleText, textColor]}>{t('selectNode')}</Text>
+                                <Text numberOfLines={1} style={[styles.settingText, textColor]}>
                                     {this.props.node}
                                 </Text>
                             </View>
@@ -36,7 +44,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('addCustomNode')}>
                             <View style={styles.item}>
                                 <Image source={addImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>{t('addCustomNode')}</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('addCustomNode')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -44,18 +52,18 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('manualSync')}>
                             <View style={styles.item}>
                                 <Image source={syncImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>{t('manualSync')}</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('manualSync')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.separatorContainer}>
-                        <View style={styles.separator} />
+                        <View style={[styles.separator, borderColor]} />
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={event => this.props.onResetWalletPress()}>
                             <View style={styles.item}>
                                 <Image source={crossImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>{t('settings:reset')}</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('settings:reset')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -66,7 +74,7 @@ class AdvancedSettings extends Component {
                         <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.backIcon} />
-                                <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -114,7 +122,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleText: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -130,7 +137,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     settingText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         marginLeft: width / 12,

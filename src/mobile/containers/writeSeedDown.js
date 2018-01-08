@@ -18,9 +18,10 @@ class WriteSeedDown extends Component {
     }
 
     render() {
-        const { t, positiveColor, backgroundColor } = this.props;
+        const { t, positiveColor, backgroundColor, secondaryBackgroundColor } = this.props;
         const checksum = getChecksum(this.props.tempAccount.seed);
-
+        const textColor = { color: secondaryBackgroundColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
         const positiveColorText = { color: THEMES.getHSL(positiveColor) };
         const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
 
@@ -31,16 +32,16 @@ class WriteSeedDown extends Component {
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
-                    <Text style={styles.infoText}>
+                    <Text style={[styles.infoText, textColor]}>
                         <Text style={styles.infoTextNormal}>
                             {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
                         </Text>
                         <Text style={styles.infoTextBold}>{` ${t('writeSeedDown:tripleCheck')} `}</Text>
                         <Text style={styles.infoTextNormal}>{t('writeSeedDown:thatTheyAreCorrect')}</Text>
                     </Text>
-                    <Seedbox seed={this.props.tempAccount.seed} />
-                    <View style={styles.checksum}>
-                        <Text style={styles.checksumText}>{checksum}</Text>
+                    <Seedbox borderColor={borderColor} textColor={textColor} seed={this.props.tempAccount.seed} />
+                    <View style={[styles.checksum, borderColor]}>
+                        <Text style={[styles.checksumText, textColor]}>{checksum}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
@@ -106,14 +107,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'center',
@@ -198,6 +197,7 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown));
