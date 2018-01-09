@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { width, height } from '../util/dimensions';
 import Dropdown from './dropdown';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
