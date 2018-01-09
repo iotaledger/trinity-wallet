@@ -625,6 +625,7 @@ const mapStateToProps = state => ({
     ctaColor: state.settings.theme.ctaColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
+    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
 });
 
 export default translate(['paperWallet', 'global'])(connect(mapStateToProps)(PaperWallet));

@@ -21,7 +21,6 @@ class InitialLoading extends Component {
         navigator: PropTypes.object.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
         backgroundColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -32,7 +31,7 @@ class InitialLoading extends Component {
 
     componentDidMount() {
         this.animation.play();
-        this.timeout = setTimeout(this.onLoaded.bind(this), 100);
+        this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
     }
 
     onLoaded() {
@@ -50,7 +49,7 @@ class InitialLoading extends Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'home',
+                screen: 'login',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -68,7 +67,7 @@ class InitialLoading extends Component {
     }
 
     render() {
-        const { backgroundColor, secondaryBackgroundColor } = this.props;
+        const { backgroundColor } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
@@ -84,9 +83,7 @@ class InitialLoading extends Component {
                     </View>
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={[styles.text, { color: secondaryBackgroundColor }]}>
-                        IOTA Alpha Wallet {FULL_VERSION}
-                    </Text>
+                    <Text style={styles.text}>IOTA Alpha Wallet {FULL_VERSION}</Text>
                 </View>
             </View>
         );
@@ -107,6 +104,7 @@ const styles = StyleSheet.create({
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
+        color: 'white',
         fontSize: width / 33.75,
     },
     textContainer: {
@@ -130,7 +128,6 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     onboardingComplete: state.account.onboardingComplete,
     backgroundColor: state.settings.theme.backgroundColor,
-    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 export default connect(mapStateToProps, null)(InitialLoading);
