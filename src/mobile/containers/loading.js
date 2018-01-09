@@ -20,6 +20,12 @@ import KeepAwake from 'react-native-keep-awake';
 import LottieView from 'lottie-react-native';
 import { width, height } from '../util/dimensions';
 class Loading extends Component {
+    constructor() {
+        super();
+        this.state = {
+            elipsis: '',
+        };
+    }
     componentDidMount() {
         const {
             firstUse,
@@ -34,6 +40,7 @@ class Loading extends Component {
         if (!firstUse && !addingAdditionalAccount) {
             this.animation.play();
         }
+        this.animateElipses(['.', '..', ''], 0);
 
         KeepAwake.activate();
 
@@ -66,6 +73,7 @@ class Loading extends Component {
         const ready = !this.props.ready && newProps.ready;
 
         if (ready) {
+            clearTimeout(this.timeout);
             KeepAwake.deactivate();
             Navigation.startSingleScreenApp({
                 screen: {
@@ -83,6 +91,18 @@ class Loading extends Component {
         }
     }
 
+    componentWillUnmount() {
+        clearTimeout(this.timeout);
+    }
+
+    animateElipses = (chars, index, timer = 750) => {
+        this.timeout = setTimeout(() => {
+            this.setState({ elipsis: chars[index] });
+            const next = index === chars.length - 1 ? 0 : index + 1;
+            this.animateElipses(chars, next);
+        }, timer);
+    };
+
     render() {
         const {
             firstUse,
@@ -98,6 +118,7 @@ class Loading extends Component {
             return (
                 <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                     <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                    <View style={{ flex: 1 }} />
                     <View style={styles.animationContainer}>
                         <View>
                             <LottieView
@@ -110,12 +131,24 @@ class Loading extends Component {
                             />
                         </View>
                     </View>
+                    <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: height / 15 }}>
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
+                                <View style={{ alignItems: 'flex-start', width: width / 30 }}>
+                                    <Text style={[styles.infoText, textColor]}>{this.state.elipsis}</Text>
+                                </View>
+                            </View>
+
+                            <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
+                        </View>
+                    </View>
                 </View>
             );
         }
 
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.animationContainer}>
                     <View>
@@ -123,7 +156,7 @@ class Loading extends Component {
                             ref={animation => {
                                 this.animation = animation;
                             }}
-                            source={require('../animations/welcome.json')}
+                            source={require('iota-wallet-shared-modules/animations/welcome.json')}
                             style={styles.animationLoading}
                             loop={true}
                         />
@@ -144,8 +177,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
-        paddingTop: height / 30,
         textAlign: 'center',
+        paddingBottom: height / 30,
     },
     activityIndicator: {
         flex: 1,
@@ -160,13 +193,14 @@ const styles = StyleSheet.create({
     },
     animationNewSeed: {
         justifyContent: 'center',
-        width,
-        height: width,
+        width: width / 2.5,
+        height: width / 2.5,
     },
     animationContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        padding: height / 30,
     },
 });
 
