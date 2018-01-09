@@ -4,7 +4,8 @@ import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { StyleSheet, View, Text, StatusBar, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, Keyboard } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
@@ -186,7 +187,7 @@ class Login extends Component {
         const tickImagePath = secondaryBackgroundColor === 'white' ? whiteTickImagePath : blackTickImagePath;
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 {!this.state.changingNode && (
                     <EnterPasswordOnLogin
                         backgroundColor={backgroundColor}
