@@ -37,7 +37,7 @@ class InitialLoading extends Component {
         if (!this.props.onboardingComplete) {
             this.clearKeychain();
             this.props.navigator.push({
-                screen: 'languageSetup',
+                screen: 'welcome',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -48,7 +48,7 @@ class InitialLoading extends Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'welcome',
+                screen: 'login',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
