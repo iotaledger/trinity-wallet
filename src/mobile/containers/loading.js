@@ -14,6 +14,10 @@ import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { getSelectedAccountNameViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import keychain, { getSeed, storeSeedInKeychain } from '../util/keychain';
 import { Navigation } from 'react-native-navigation';
+import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
+import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
+import whiteWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-white.json';
+import blackWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-black.json';
 import IotaSpin from '../components/iotaSpin';
 import THEMES from '../theme/themes';
 import KeepAwake from 'react-native-keep-awake';
@@ -113,6 +117,10 @@ class Loading extends Component {
             secondaryBackgroundColor,
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
+        const loadingAnimationPath =
+            secondaryBackgroundColor === 'white' ? whiteLoadingAnimation : blackLoadingAnimation;
+        const welcomeAnimationPath =
+            secondaryBackgroundColor === 'white' ? whiteWelcomeAnimation : blackWelcomeAnimation;
 
         if (firstUse || addingAdditionalAccount) {
             return (
@@ -125,7 +133,7 @@ class Loading extends Component {
                                 ref={animation => {
                                     this.animation = animation;
                                 }}
-                                source={require('iota-wallet-shared-modules/animations/loading.json')}
+                                source={loadingAnimationPath}
                                 style={styles.animationNewSeed}
                                 loop={true}
                             />
@@ -156,7 +164,7 @@ class Loading extends Component {
                             ref={animation => {
                                 this.animation = animation;
                             }}
-                            source={require('iota-wallet-shared-modules/animations/welcome.json')}
+                            source={blackWelcomeAnimation}
                             style={styles.animationLoading}
                             loop={true}
                         />
