@@ -171,6 +171,8 @@ export class SetSeedName extends Component {
         const { accountName } = this.state;
         const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
+
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
@@ -208,7 +210,7 @@ export class SetSeedName extends Component {
                                 }}
                                 onSubmitEditing={() => this.onDonePress()}
                             />
-                            <View style={styles.infoTextContainer}>
+                            <View style={[styles.infoTextContainer, borderColor]}>
                                 <Image source={infoImagePath} style={styles.infoIcon} />
                                 <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
                                 <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
