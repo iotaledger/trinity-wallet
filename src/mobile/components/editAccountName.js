@@ -15,8 +15,6 @@ export class EditAccountName extends Component {
         accountName: PropTypes.string.isRequired,
         saveAccountName: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
-        textColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
