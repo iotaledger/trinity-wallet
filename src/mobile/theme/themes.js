@@ -71,7 +71,7 @@ const themes = {
         pendingColor: 'white',
         chartLineColor: 'white',
     },
-    Custom: {
+    /* Custom: {
         backgroundColor: tinycolor(`#1a373e`).toHsl(),
         barColor: tinycolor(`#0b282f`).toHsl(),
         ctaColor: tinycolor(`#009f3f`).toHsl(),
@@ -84,7 +84,7 @@ const themes = {
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
         chartLineColor: 'white',
-    },
+    }, */
 };
 
 const getHSL = color => {

@@ -15,14 +15,14 @@ import { connect } from 'react-redux';
 import { width, height } from '../util/dimensions';
 
 class SaveSeedConfirmation extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             checkboxImage:
                 props.secondaryBackgroundColor === 'white'
-                    ? whiteCheckboxCheckedImagePath
-                    : blackCheckboxCheckedImagePath,
+                    ? whiteCheckboxUncheckedImagePath
+                    : blackCheckboxUncheckedImagePath,
             hasSavedSeed: false,
             iotaLogoVisibility: 'hidden',
             showCheckbox: false,
