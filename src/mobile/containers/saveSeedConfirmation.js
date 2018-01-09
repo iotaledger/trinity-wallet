@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
@@ -87,7 +88,7 @@ class SaveSeedConfirmation extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -108,7 +109,7 @@ class SaveYourSeed extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     <Text style={[styles.infoText, textColor]}>
