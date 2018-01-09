@@ -6,7 +6,8 @@ import { getVersion, getBuildNumber } from 'react-native-device-info';
 import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import LottieView from 'lottie-react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
-
+import whiteWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-white.json';
+import blackWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-black.json';
 import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
@@ -70,7 +71,8 @@ class InitialLoading extends Component {
     render() {
         const { backgroundColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
-
+        const welcomeAnimationPath =
+            secondaryBackgroundColor === 'white' ? whiteWelcomeAnimation : blackWelcomeAnimation;
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
@@ -80,7 +82,7 @@ class InitialLoading extends Component {
                             ref={animation => {
                                 this.animation = animation;
                             }}
-                            source={require('iota-wallet-shared-modules/animations/welcome.json')}
+                            source={blackWelcomeAnimation}
                             style={styles.animation}
                         />
                     </View>
