@@ -86,6 +86,7 @@ class Send extends Component {
             dataSource: ds.cloneWithRows([]),
             selectedSetting: '',
             modalContent: '',
+            maxPressed: false,
         };
     }
 
@@ -104,22 +105,22 @@ class Send extends Component {
     onDenominationPress() {
         switch (this.state.denomination) {
             case 'Mi':
-                this.setState({ denomination: 'Gi' });
+                this.setState({ denomination: 'Gi', maxPressed: false });
                 break;
             case 'Gi':
-                this.setState({ denomination: 'Ti' });
+                this.setState({ denomination: 'Ti', maxPressed: false });
                 break;
             case 'Ti':
-                this.setState({ denomination: currencySymbol });
+                this.setState({ denomination: currencySymbol, maxPressed: false });
                 break;
             case currencySymbol:
-                this.setState({ denomination: 'i' });
+                this.setState({ denomination: 'i', maxPressed: false });
                 break;
             case 'i':
-                this.setState({ denomination: 'Ki' });
+                this.setState({ denomination: 'Ki', maxPressed: false });
                 break;
             case 'Ki':
-                this.setState({ denomination: 'Mi' });
+                this.setState({ denomination: 'Mi', maxPressed: false });
                 break;
         }
     }
