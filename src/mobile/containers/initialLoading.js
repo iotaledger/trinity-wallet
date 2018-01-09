@@ -80,7 +80,7 @@ class InitialLoading extends Component {
                             ref={animation => {
                                 this.animation = animation;
                             }}
-                            source={require('../animations/welcome.json')}
+                            source={require('iota-wallet-shared-modules/animations/welcome.json')}
                             style={styles.animation}
                         />
                     </View>
