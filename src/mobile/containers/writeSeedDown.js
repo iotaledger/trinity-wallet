@@ -39,7 +39,12 @@ class WriteSeedDown extends Component {
                         <Text style={styles.infoTextBold}>{` ${t('writeSeedDown:tripleCheck')} `}</Text>
                         <Text style={styles.infoTextNormal}>{t('writeSeedDown:thatTheyAreCorrect')}</Text>
                     </Text>
-                    <Seedbox borderColor={borderColor} textColor={textColor} seed={this.props.tempAccount.seed} />
+                    <Seedbox
+                        secondaryBackgroundColor={secondaryBackgroundColor}
+                        borderColor={borderColor}
+                        textColor={textColor}
+                        seed={this.props.tempAccount.seed}
+                    />
                     <View style={[styles.checksum, borderColor]}>
                         <Text style={[styles.checksumText, textColor]}>{checksum}</Text>
                     </View>

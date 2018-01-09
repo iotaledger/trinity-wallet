@@ -43,6 +43,7 @@ class NewSeedSetup extends Component {
         onboardingComplete: PropTypes.bool.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
     };
 
     constructor() {
