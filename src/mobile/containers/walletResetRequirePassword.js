@@ -9,7 +9,8 @@ import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { persistor } from '../store';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, BackHandler } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
 import THEMES from '../theme/themes';
 import Fonts from '../theme/Fonts';
@@ -17,7 +18,8 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Keyboard } from 'react-native';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -133,6 +135,7 @@ class WalletResetRequirePassword extends Component {
         const textColor = { color: secondaryBackgroundColor };
 
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         const onboardingButtonsOverride = {
             rightButton: {
@@ -152,11 +155,11 @@ class WalletResetRequirePassword extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                            <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midWrapper}>
                             <Text style={[styles.generalText, textColor]}>{t('enterPassword')}</Text>
@@ -168,7 +171,7 @@ class WalletResetRequirePassword extends Component {
                                 labelPadding={3}
                                 baseColor={secondaryBackgroundColor}
                                 label={t('global:password')}
-                                tintColor="#F7D002"
+                                tintColor={THEMES.getHSL(negativeColor)}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -208,7 +211,7 @@ const styles = StyleSheet.create({
         flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midWrapper: {
         flex: 1.6,
@@ -228,8 +231,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     iotaLogo: {
-        height: width / 5,
-        width: width / 5,
+        height: width / 7,
+        width: width / 7,
     },
     buttonsContainer: {
         alignItems: 'flex-end',

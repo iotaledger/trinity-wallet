@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, StatusBar, Text, ActivityIndicator, Animated } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator, Animated } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import {
@@ -96,27 +97,26 @@ class Loading extends Component {
         if (firstUse || addingAdditionalAccount) {
             return (
                 <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                    <StatusBar barStyle="light-content" />
-                    <View style={{ flex: 1 }} />
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
-                        <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
-                        <Text style={[styles.infoText, textColor]}>{t('youMayNotice')}</Text>
-                        <ActivityIndicator
-                            animating={true}
-                            style={styles.activityIndicator}
-                            size="large"
-                            color={THEMES.getHSL(negativeColor)}
-                        />
+                    <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                    <View style={styles.animationContainer}>
+                        <View>
+                            <LottieView
+                                ref={animation => {
+                                    this.animation = animation;
+                                }}
+                                source={require('iota-wallet-shared-modules/animations/loading.json')}
+                                style={styles.animationNewSeed}
+                                loop={true}
+                            />
+                        </View>
                     </View>
-                    <View style={{ flex: 1 }} />
                 </View>
             );
         }
 
         return (
             <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.animationContainer}>
                     <View>
                         <LottieView
@@ -124,7 +124,7 @@ class Loading extends Component {
                                 this.animation = animation;
                             }}
                             source={require('../animations/welcome.json')}
-                            style={styles.animation}
+                            style={styles.animationLoading}
                             loop={true}
                         />
                     </View>
@@ -153,10 +153,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: height / 40,
     },
-    animation: {
+    animationLoading: {
         justifyContent: 'center',
         width: width * 1.5,
         height: width / 1.77 * 1.5,
+    },
+    animationNewSeed: {
+        justifyContent: 'center',
+        width,
+        height: width,
     },
     animationContainer: {
         flex: 1,

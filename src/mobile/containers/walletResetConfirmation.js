@@ -2,7 +2,8 @@ import toUpper from 'lodash/toUpper';
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, Image, StatusBar, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, Image, BackHandler } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { Navigation } from 'react-native-navigation';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
@@ -10,7 +11,8 @@ import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { width, height } from '../util/dimensions';
 import THEMES from '../theme/themes';
 import { connect } from 'react-redux';
@@ -73,12 +75,13 @@ class WalletResetConfirmation extends Component {
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
         const negativeColor = { color: THEMES.getHSL(this.props.negativeColor) };
         const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
+        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topWrapper}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={styles.subHeaderWrapper}>
@@ -123,7 +126,7 @@ const styles = StyleSheet.create({
         flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midWrapper: {
         flex: 2.1,
@@ -186,8 +189,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     iotaLogo: {
-        height: width / 5,
-        width: width / 5,
+        height: width / 7,
+        width: width / 7,
     },
 });
 

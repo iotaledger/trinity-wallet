@@ -3,7 +3,8 @@ import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
@@ -25,6 +26,8 @@ export class SetSeedName extends Component {
         setSeedName: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         setAdditionalAccountInfo: PropTypes.func.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -165,27 +168,30 @@ export class SetSeedName extends Component {
     }
 
     render() {
-        let { accountName } = this.state;
-        const { t, backgroundColor, negativeColor } = this.props;
+        const { accountName } = this.state;
+        const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.greetingText}>{t('addAdditionalSeed:enterAccountName')}</Text>
+                                <Text style={[styles.greetingText, textColor]}>
+                                    {t('addAdditionalSeed:enterAccountName')}
+                                </Text>
                             </View>
                         </View>
                         <View style={styles.midContainer}>
                             <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={width / 31.8}
                                 fontSize={width / 20.7}
                                 labelPadding={3}
-                                baseColor="white"
+                                baseColor={secondaryBackgroundColor}
                                 label={t('addAdditionalSeed:accountName')}
                                 tintColor={THEMES.getHSL(negativeColor)}
                                 autoCapitalize="words"
@@ -204,8 +210,8 @@ export class SetSeedName extends Component {
                             />
                             <View style={styles.infoTextContainer}>
                                 <Image source={infoImagePath} style={styles.infoIcon} />
-                                <Text style={styles.infoText}>{t('canUseMultipleSeeds')}</Text>
-                                <Text style={styles.infoText}>{t('youCanAdd')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('canUseMultipleSeeds')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('youCanAdd')}</Text>
                             </View>
                         </View>
                         <View style={styles.bottomContainer}>
@@ -254,15 +260,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: height / 15,
     },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
     infoTextContainer: {
-        borderColor: 'white',
         borderWidth: 1,
         borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
@@ -274,35 +272,16 @@ const styles = StyleSheet.create({
         marginTop: height / 15,
     },
     infoText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
-    warningText: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 27.6,
-        textAlign: 'center',
-        paddingTop: height / 70,
-        backgroundColor: 'transparent',
-    },
     greetingText: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    questionText: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 20.7,
-        textAlign: 'center',
-        paddingHorizontal: width / 7,
-        paddingTop: height / 25,
         backgroundColor: 'transparent',
     },
     infoIcon: {
@@ -313,35 +292,6 @@ const styles = StyleSheet.create({
         height: width / 5,
         width: width / 5,
     },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
-    },
 });
 
 const mapStateToProps = state => ({
@@ -349,6 +299,7 @@ const mapStateToProps = state => ({
     account: state.account,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {
