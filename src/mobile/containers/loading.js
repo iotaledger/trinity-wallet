@@ -83,7 +83,15 @@ class Loading extends Component {
     }
 
     render() {
-        const { firstUse, t, addingAdditionalAccount, negativeColor, backgroundColor } = this.props;
+        const {
+            firstUse,
+            t,
+            addingAdditionalAccount,
+            negativeColor,
+            backgroundColor,
+            secondaryBackgroundColor,
+        } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
 
         if (firstUse || addingAdditionalAccount) {
             return (
@@ -91,9 +99,9 @@ class Loading extends Component {
                     <StatusBar barStyle="light-content" />
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                        <Text style={styles.infoText}>{t('loadingFirstTime')}</Text>
-                        <Text style={styles.infoText}>{t('thisMayTake')}</Text>
-                        <Text style={styles.infoText}>{t('youMayNotice')}</Text>
+                        <Text style={[styles.infoText, textColor]}>{t('loadingFirstTime')}</Text>
+                        <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
+                        <Text style={[styles.infoText, textColor]}>{t('youMayNotice')}</Text>
                         <ActivityIndicator
                             animating={true}
                             style={styles.activityIndicator}
@@ -133,7 +141,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -168,6 +175,7 @@ const mapStateToProps = state => ({
     password: state.tempAccount.password,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {
