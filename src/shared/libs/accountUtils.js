@@ -448,11 +448,12 @@ export const getBundle = (tailTx, allBundleObjects) => {
 
     while (nextTx() && nextTx().bundle === bundleHash && !stop) {
         bundle.push(nextTx());
-        trunk = nextTx().trunkTransaction;
 
         if (nextTx().currentIndex === nextTx().lastIndex) {
             stop = true;
         }
+
+        trunk = nextTx().trunkTransaction;
     }
 
     return bundle;
