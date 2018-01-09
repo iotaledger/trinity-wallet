@@ -7,7 +7,7 @@ import { isAndroid } from '../util/device';
 import GENERAL from '../theme/general';
 
 const chartWidth = width * 0.98;
-const chartHeight = height * 0.4;
+const chartHeight = height * 0.38;
 
 const getChartCurrencySymbol = currency => {
     if (currency === 'BTC') {
