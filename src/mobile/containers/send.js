@@ -152,6 +152,9 @@ class Send extends Component {
         if (value < 0) {
             return false;
         }
+        if (value > 0 && value < 1) {
+            return false;
+        }
         return !isNaN(value);
     }
 
@@ -182,11 +185,9 @@ class Send extends Component {
         const amount = this.state.amount;
 
         const addressIsValid = this.isValidAddress(address);
-
         const enoughBalance = this.enoughBalance();
         const amountIsValid = this.isValidAmount(amount);
         const addressCharsAreValid = this.isValidAddressChars(address);
-
         if (addressIsValid && enoughBalance && amountIsValid && addressCharsAreValid) {
             return this._showModal();
         }
@@ -215,7 +216,8 @@ class Send extends Component {
         sentDenomination = this.state.denomination;
 
         const address = this.state.address;
-        const value = parseFloat(this.state.amount) * this.getUnitMultiplier();
+        const value = parseInt(parseFloat(this.state.amount) * this.getUnitMultiplier(), 10);
+
         const message = this.state.message;
 
         this.props.getFromKeychainRequest('send', 'makeTransaction');
@@ -250,7 +252,7 @@ class Send extends Component {
                 multiplier = 1000000000000;
                 break;
             case currencySymbol:
-                multiplier = 1000000 * this.props.conversionRate;
+                multiplier = 1000000 / this.props.usdPrice / this.props.conversionRate;
                 break;
         }
         return multiplier;
@@ -369,12 +371,12 @@ class Send extends Component {
     }
 
     getConversionTextFiat() {
-        const convertedValue = round(this.state.amount / this.props.usdPrice / this.props.conversionRate, 2);
+        const convertedValue = round(this.state.amount / this.props.usdPrice / this.props.conversionRate, 10);
         let conversionText = '';
         if (0 < convertedValue && convertedValue < 0.01) {
             conversionText = '< 0.01 Mi';
         } else if (convertedValue >= 0.01) {
-            conversionText = '= ' + convertedValue + ' Mi';
+            conversionText = '= ' + convertedValue.toFixed(2) + ' Mi';
         }
         return conversionText;
     }
