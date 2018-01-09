@@ -213,6 +213,7 @@ class Login extends Component {
                                 textColor={textColor}
                                 tickImagePath={tickImagePath}
                                 arrowLeftImagePath={arrowLeftImagePath}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
                             />
                         </View>
                         <View style={{ flex: 0.2 }} />
