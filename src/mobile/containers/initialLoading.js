@@ -25,7 +25,6 @@ class InitialLoading extends Component {
 
     constructor() {
         super();
-
         console.ignoredYellowBox = ['Setting a timer']; // eslint-disable-line no-console
     }
 
@@ -49,7 +48,7 @@ class InitialLoading extends Component {
             });
         } else {
             this.props.navigator.push({
-                screen: 'login',
+                screen: 'welcome',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
