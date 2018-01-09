@@ -17,8 +17,8 @@ class TransferConfirmationModal extends Component {
         this.props.hideModal(() => {
             this.timeout = setTimeout(() => {
                 this.props.sendTransfer();
+                this.props.clearOnSend();
             }, 250);
-            this.props.clearOnSend();
         });
     }
 
