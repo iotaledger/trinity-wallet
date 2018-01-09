@@ -270,7 +270,8 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
 
         const getStartingIndex = () => {
             const addresses = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
-            const address = addresses.find(address => address.balance > 0);
+            const address = Object.keys(addresses).find(address => addresses[address].balance > 0);
+
             return address ? address.index : 0;
         };
 
@@ -289,13 +290,15 @@ export const checkForNewAddress = (seedName, addressData, txArray) => {
             // If current addresses does not include change address, add new address and balance
             if (!addresses.includes(addressNoChecksum)) {
                 const addressArray = [addressNoChecksum];
+                const index = addresses.length + 1;
+
                 // Check change address balance
                 iota.api.getBalances(addressArray, 1, (error, success) => {
                     if (!error) {
                         const addressBalance = parseInt(success.balances[0]);
-                        addressData[addressNoChecksum] = { balance: addressBalance, spent: false };
+                        addressData[addressNoChecksum] = { index, balance: addressBalance, spent: false };
                     } else {
-                        addressData[addressNoChecksum] = { balance: 0, spent: false };
+                        addressData[addressNoChecksum] = { index, balance: 0, spent: false };
                     }
                 });
             }
