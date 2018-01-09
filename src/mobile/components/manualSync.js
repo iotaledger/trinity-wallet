@@ -140,8 +140,6 @@ ManualSync.propTypes = {
     backPress: PropTypes.func.isRequired,
     onManualSyncPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    negativeColor: PropTypes.object.isRequired,
-    textColor: PropTypes.object.isRequired,
 };
 
 export default ManualSync;
