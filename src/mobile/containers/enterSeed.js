@@ -19,7 +19,7 @@ import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import infoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
+import cameraImagePath from 'iota-wallet-shared-modules/images/camera-white.png';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import QRScanner from '../components/qrScanner';
 import OnboardingButtons from '../components/onboardingButtons';
