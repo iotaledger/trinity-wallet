@@ -26,8 +26,6 @@ export class SetSeedName extends Component {
         setSeedName: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         setAdditionalAccountInfo: PropTypes.func.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
-        negativeColor: PropTypes.object.isRequired,
     };
 
     constructor(props) {
