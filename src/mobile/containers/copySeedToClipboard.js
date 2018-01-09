@@ -80,6 +80,7 @@ class CopySeedToClipboard extends Component {
             ctaBorderColor,
         } = this.props;
         const textColor = { color: secondaryBackgroundColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
         const ctaTextColor = { color: secondaryCtaColor };
 
         return (
@@ -91,7 +92,12 @@ class CopySeedToClipboard extends Component {
                 <View style={styles.midContainer}>
                     <Text style={[styles.infoTextNormal, textColor]}>{t('clickToCopy')}</Text>
                     <Text style={[styles.infoTextBold, textColor]}>{t('doNotStore')}</Text>
-                    <Seedbox seed={this.props.tempAccount.seed} />
+                    <Seedbox
+                        secondaryBackgroundColor={secondaryBackgroundColor}
+                        borderColor={borderColor}
+                        textColor={textColor}
+                        seed={this.props.tempAccount.seed}
+                    />
                     <TouchableOpacity onPress={event => this.onCopyPress()} style={{ marginTop: height / 22 }}>
                         <View
                             style={[
