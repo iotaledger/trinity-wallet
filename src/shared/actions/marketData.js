@@ -54,7 +54,7 @@ export function setCurrency(currency) {
 }
 
 export function setPrice(data) {
-    const priceData = get(data, `RAW.IOT`);
+    const priceData = get(data, 'RAW.IOT');
     const usdPrice = get(priceData, 'USD.PRICE') || 0;
     const eurPrice = get(priceData, 'EUR.PRICE') || 0;
     const btcPrice = get(priceData, 'BTC.PRICE') || 0;
@@ -74,16 +74,12 @@ export function getUrlTimeFormat(timeframe) {
     switch (timeframe) {
         case '24h':
             return 'hour';
-            break;
         case '7d':
             return 'day';
-            break;
         case '1m':
             return 'day';
-            break;
         case '1h':
             return 'minute';
-            break;
     }
 }
 
@@ -92,16 +88,12 @@ export function getUrlNumberFormat(timeframe) {
     switch (timeframe) {
         case '24h':
             return '23';
-            break;
         case '7d':
             return '6';
-            break;
         case '1m':
             return '29';
-            break;
         case '1h':
             return '59';
-            break;
     }
 }
 
@@ -176,7 +168,7 @@ export function changeCurrency(currency, timeframe) {
     return dispatch => {
         dispatch(setCurrency(currency));
         dispatch(getPrice(currency));
-        dispatch(getChartData(currency, timeFrame));
+        dispatch(getChartData(currency, timeframe));
     };
 }
 export function changeTimeframe(currency, timeframe) {
