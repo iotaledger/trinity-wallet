@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import THEMES from '../theme/themes';
 import { width, height } from '../util/dimensions';
 
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 4.8,
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15,
+        paddingTop: height / 8,
     },
     title: {
         fontFamily: 'Lato-Regular',
@@ -36,8 +37,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     iotaLogo: {
-        height: width / 5,
-        width: width / 5,
+        height: width / 7,
+        width: width / 7,
     },
     loginButton: {
         borderWidth: 1.2,
@@ -73,6 +74,7 @@ class EnterPassword extends Component {
         const { t, positiveColor, secondaryBackgroundColor, textColor } = this.props;
         const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
         const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
+        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
