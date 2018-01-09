@@ -80,7 +80,7 @@ class EnterPassword extends Component {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                        <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                         <View style={styles.titleContainer}>
                             <Text style={[styles.title, textColor]}>{t('enterPassword')}</Text>
                         </View>
