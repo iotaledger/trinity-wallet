@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { width, height } from '../util/dimensions';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import addImagePath from 'iota-wallet-shared-modules/images/add.png';
 import { TextField } from 'react-native-material-textfield';
 import { translate } from 'react-i18next';
 import THEMES from '../theme/themes';
@@ -45,7 +43,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleTextLeft: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -55,7 +52,6 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleTextRight: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -72,6 +68,8 @@ class AddCustomNode extends Component {
         currentNode: PropTypes.string.isRequired,
         onDuplicateNodeError: PropTypes.func.isRequired,
         checkNode: PropTypes.func.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -112,7 +110,16 @@ class AddCustomNode extends Component {
     }
 
     render() {
-        const { node, nodes, backPress, t } = this.props;
+        const {
+            node,
+            nodes,
+            backPress,
+            t,
+            secondaryBackgroundColor,
+            textColor,
+            arrowLeftImagePath,
+            addImagePath,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -120,12 +127,12 @@ class AddCustomNode extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.2 }} />
                         <TextField
-                            style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                            style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                             labelFontSize={width / 31.8}
                             fontSize={width / 20.7}
                             labelPadding={3}
-                            baseColor="white"
+                            baseColor={secondaryBackgroundColor}
                             label={t('customNode')}
                             tintColor={THEMES.getHSL(this.props.negativeColor)}
                             autoCapitalize="none"
@@ -144,13 +151,13 @@ class AddCustomNode extends Component {
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         {this.state.customNode.startsWith('http') && (
                             <TouchableOpacity onPress={() => this.addNode()}>
                                 <View style={styles.itemRight}>
-                                    <Text style={styles.titleTextRight}>{t('add')}</Text>
+                                    <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
                                     <Image source={addImagePath} style={styles.iconRight} />
                                 </View>
                             </TouchableOpacity>

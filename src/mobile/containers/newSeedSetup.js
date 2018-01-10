@@ -41,6 +41,9 @@ class NewSeedSetup extends Component {
         ctaColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -86,7 +89,7 @@ class NewSeedSetup extends Component {
 
     onGeneratePress() {
         this.props.randomiseSeed(randomBytes);
-        this.setState({ randomised: true, infoTextColor: 'white' });
+        this.setState({ randomised: true, infoTextColor: this.props.secondaryBackgroundColor });
     }
 
     onNextPress() {
@@ -152,8 +155,20 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { tempAccount: { seed }, t, ctaColor, backgroundColor, negativeColor } = this.props;
+        const {
+            tempAccount: { seed },
+            t,
+            ctaColor,
+            backgroundColor,
+            negativeColor,
+            secondaryBackgroundColor,
+            secondaryCtaColor,
+            ctaBorderColor,
+        } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
         const viewOpacity = this.state.randomised ? 1 : 0.1;
+        const ctaTextColor = { color: secondaryCtaColor };
+
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
@@ -161,8 +176,13 @@ class NewSeedSetup extends Component {
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     <View style={{ flex: 150 }} />
                     <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
-                        <View style={[styles.generateButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
-                            <Text style={styles.generateText}>{t('pressForNewSeed')}</Text>
+                        <View
+                            style={[
+                                styles.generateButton,
+                                { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
+                            ]}
+                        >
+                            <Text style={[styles.generateText, ctaTextColor]}>{t('pressForNewSeed')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -175,7 +195,7 @@ class NewSeedSetup extends Component {
                             <TouchableHighlight
                                 key={sectionID}
                                 onPress={event => this.onItemPress(sectionID)}
-                                style={styles.tileContainer}
+                                style={[styles.tileContainer, { backgroundColor: secondaryBackgroundColor }]}
                                 underlayColor={THEMES.getHSL(negativeColor)}
                             >
                                 <View style={styles.tile}>
@@ -267,21 +287,7 @@ const styles = StyleSheet.create({
         height: width / 14.5,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'white',
         margin: width / 80,
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 35,
-        paddingBottom: height / 30,
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
     },
     generateButton: {
         borderRadius: GENERAL.borderRadius,
@@ -289,9 +295,9 @@ const styles = StyleSheet.create({
         height: height / 16,
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 1.2,
     },
     generateText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
@@ -329,39 +335,9 @@ const styles = StyleSheet.create({
         width: width / 5,
     },
     infoText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
-    },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
     },
 });
 
@@ -372,6 +348,9 @@ const mapStateToProps = state => ({
     ctaColor: state.settings.theme.ctaColor,
     negativeColor: state.settings.theme.negativeColor,
     onboardingComplete: state.account.onboardingComplete,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
+    ctaBorderColor: state.settings.theme.ctaBorderColor,
 });
 
 const mapDispatchToProps = {

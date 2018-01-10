@@ -21,6 +21,7 @@ class SaveYourSeed extends Component {
         backgroundColor: PropTypes.object.isRequired,
         extraColor: PropTypes.object.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     componentDidMount() {
@@ -100,7 +101,8 @@ class SaveYourSeed extends Component {
     }
 
     render() {
-        const { t, backgroundColor, extraColor } = this.props;
+        const { t, backgroundColor, extraColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
         const extraColorText = { color: THEMES.getHSL(extraColor) };
         const extraColorBorder = { borderColor: THEMES.getHSL(extraColor) };
 
@@ -109,7 +111,7 @@ class SaveYourSeed extends Component {
                 <StatusBar barStyle="light-content" />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
-                    <Text style={styles.infoText}>
+                    <Text style={[styles.infoText, textColor]}>
                         <Text style={styles.infoTextNormal}>{t('mustSaveYourSeed')}</Text>
                         <Text style={styles.infoTextBold}>{t('atLeastOne')}</Text>
                         <Text style={styles.infoTextNormal}>{t('ofTheOptions')}</Text>
@@ -195,21 +197,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 35,
-        paddingBottom: height / 30,
-    },
-    title: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 23,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
     infoText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         textAlign: 'left',
@@ -219,14 +207,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 9,
     },
     infoTextNormal: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 23,
         textAlign: 'center',
@@ -236,35 +222,6 @@ const styles = StyleSheet.create({
         height: width / 5,
         width: width / 5,
     },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
-    },
 });
 
 const mapStateToProps = state => ({
@@ -272,6 +229,7 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     extraColor: state.settings.theme.extraColor,
     onboardingComplete: state.account.onboardingComplete,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {
