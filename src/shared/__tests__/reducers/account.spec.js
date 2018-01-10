@@ -14,7 +14,7 @@ describe('Reducer: account', () => {
             unspentAddressesHashes: {},
             pendingTxTailsHashes: {},
             is2FAEnabled: false,
-            token2FA: '',
+            key2FA: '',
         };
 
         expect(reducer(undefined, {})).to.eql(initialState);

@@ -6,6 +6,7 @@ import { TextField } from 'react-native-material-textfield';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     },
     loginButton: {
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
@@ -71,7 +72,7 @@ class EnterPassword extends Component {
 
     render() {
         const { password } = this.state;
-        const { t, positiveColor, secondaryBackgroundColor, textColor } = this.props;
+        const { t, positiveColor, secondaryBackgroundColor, textColor, negativeColor } = this.props;
         const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
         const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
@@ -94,7 +95,7 @@ class EnterPassword extends Component {
                             labelPadding={3}
                             baseColor={secondaryBackgroundColor}
                             label={t('global:password')}
-                            tintColor={THEMES.getHSL(this.props.negativeColor)}
+                            tintColor={THEMES.getHSL(negativeColor)}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically

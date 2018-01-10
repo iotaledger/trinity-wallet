@@ -5,7 +5,9 @@ import { TextField } from 'react-native-material-textfield';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import OnboardingButtons from '../components/onboardingButtons';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -16,6 +18,7 @@ const styles = StyleSheet.create({
     },
     midContainer: {
         flex: 4.8,
+        width,
         alignItems: 'center',
         paddingTop: height / 4.2,
     },
@@ -23,6 +26,7 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
+        paddingBottom: height / 20,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -39,16 +43,15 @@ const styles = StyleSheet.create({
         height: width / 7,
         width: width / 7,
     },
-    loginButton: {
+    doneButton: {
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 20,
     },
-    loginText: {
+    doneText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
@@ -57,39 +60,34 @@ const styles = StyleSheet.create({
 
 class Enter2FA extends Component {
     static propTypes = {
-        onLoginPress: PropTypes.func.isRequired,
-        onLogin2FA: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired,
+        onComplete2FA: PropTypes.func.isRequired,
         positiveColor: PropTypes.object.isRequired,
-        isEnable2FA: PropTypes.bool.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         negativeColor: PropTypes.object.isRequired,
+        onBackPress: PropTypes.func.isRequired,
     };
 
     state = {
-        codefor2FA: '',
-        isEnable2FA: this.props.isEnable2FA,
+        token2FA: '',
     };
 
-    handleChange2FA = codefor2FA => this.setState({ codefor2FA });
+    handleChange2FAToken = token2FA => this.setState({ token2FA });
 
-    handleLogin = () => {
-        const { password } = this.state;
-        const { onLoginPress } = this.props;
-        onLoginPress(password);
+    handleDonePress = () => {
+        const { token2FA } = this.state;
+        const { onComplete2FA } = this.props;
+        onComplete2FA(token2FA);
     };
 
-    handleLogin2FA = () => {
-        const { codefor2FA } = this.state;
-        const { onLogin2FA } = this.props;
-        onLogin2FA(codefor2FA);
+    handleBackPress = () => {
+        const { onBackPress } = this.props;
+        onBackPress();
     };
 
     render() {
         const { codefor2FA } = this.state;
-        const { t, positiveColor, secondaryBackgroundColor, negativeColor } = this.props;
-        const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
-        const textColor = { color: THEMES.getHSL(positiveColor) };
+        const { positiveColor, secondaryBackgroundColor, negativeColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -98,37 +96,38 @@ class Enter2FA extends Component {
                     <View style={styles.topContainer}>
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                         <View style={styles.titleContainer}>
-                            <Text style={styles.title}>Please enter your 2FA Token:</Text>
+                            <Text style={[styles.title, textColor]}>Please enter your 2FA Token</Text>
                         </View>
                     </View>
                     <View style={styles.midContainer}>
                         <TextField
-                            style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                            style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                             labelFontSize={width / 31.8}
                             fontSize={width / 20.7}
                             labelPadding={3}
-                            baseColor="white"
-                            label="2FA Code"
+                            baseColor={secondaryBackgroundColor}
+                            label="Token"
                             tintColor={THEMES.getHSL(negativeColor)}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
                             value={codefor2FA}
-                            onChangeText={this.handleChange2FA}
+                            onChangeText={this.handleChange2FAToken}
                             containerStyle={{
                                 width: width / 1.4,
                             }}
-                            onSubmitEditing={this.handleLogin2FA}
+                            onSubmitEditing={this.handleDonePress}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={this.handleLogin2FA}>
-                            <View style={[styles.loginButton, borderColor]}>
-                                <Text style={[styles.loginText, textColor]}>{t('login')}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <OnboardingButtons
+                            onLeftButtonPress={this.handleBackPress}
+                            onRightButtonPress={this.handleDonePress}
+                            leftText={'BACK'}
+                            rightText={'DONE'}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
