@@ -209,6 +209,7 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                     );
                     dispatch(sendTransferSuccess({ address, value }));
                 } else {
+                    console.log(error);
                     dispatch(sendTransferError());
                     const alerts = {
                         attachToTangle: [

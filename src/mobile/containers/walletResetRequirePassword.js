@@ -33,6 +33,7 @@ class WalletResetRequirePassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -81,7 +82,7 @@ class WalletResetRequirePassword extends Component {
     redirectToInitialScreen() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'languageSetup',
+                screen: 'welcome',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -128,7 +129,9 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
-        const { t, negativeColor } = this.props;
+        const { t, negativeColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
 
         const onboardingButtonsOverride = {
@@ -156,14 +159,14 @@ class WalletResetRequirePassword extends Component {
                             <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midWrapper}>
-                            <Text style={styles.generalText}>{t('enterPassword')}</Text>
+                            <Text style={[styles.generalText, textColor]}>{t('enterPassword')}</Text>
                             <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={width / 31.8}
                                 fontSize={width / 20.7}
                                 labelPadding={3}
-                                baseColor="white"
+                                baseColor={secondaryBackgroundColor}
                                 label={t('global:password')}
                                 tintColor="#F7D002"
                                 autoCapitalize={'none'}
@@ -218,21 +221,10 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     generalText: {
-        color: 'white',
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         paddingBottom: height / 10,
-        backgroundColor: 'transparent',
-    },
-    questionText: {
-        color: COLORS.white,
-        fontFamily: Fonts.secondary,
-        fontSize: width / 20.25,
-        textAlign: 'center',
-        paddingLeft: width / 7,
-        paddingRight: width / 7,
-        paddingTop: height / 25,
         backgroundColor: 'transparent',
     },
     iotaLogo: {
@@ -244,51 +236,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
     },
-    textFieldContainer: {
-        width: width / 1.65,
-    },
-    textField: {
-        color: COLORS.white,
-        fontFamily: Fonts.tertiary,
-    },
-    textFieldLabel: {
-        fontFamily: Fonts.tertiary,
-    },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
-    },
 });
 
 const mapStateToProps = state => ({
     password: state.tempAccount.password,
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {
