@@ -15,7 +15,7 @@ const account = (
         unspentAddressesHashes: {},
         pendingTxTailsHashes: {},
         is2FAEnabled: false,
-        token2FA: '',
+        key2FA: '',
     },
     action,
 ) => {
@@ -209,15 +209,15 @@ const account = (
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),
             };
-        case ActionTypes.SET_STATUS_2FA:
+        case ActionTypes.SET_2FA_STATUS:
             return {
                 ...state,
-                status2FA: action.payload,
+                is2FAEnabled: action.payload,
             };
-        case ActionTypes.SET_SEED_2FA:
+        case ActionTypes.SET_2FA_KEY:
             return {
                 ...state,
-                seed2FA: action.payload,
+                key2FA: action.payload,
             };
         default:
             return state;
