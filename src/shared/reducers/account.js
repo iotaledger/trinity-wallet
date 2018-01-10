@@ -14,6 +14,8 @@ const account = (
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
         unspentAddressesHashes: {},
         pendingTxTailsHashes: {},
+        is2FAEnabled: false,
+        token2FA: '',
     },
     action,
 ) => {
@@ -206,6 +208,16 @@ const account = (
                 pendingTxTailsHashes: merge({}, state.pendingTxTailsHashes, {
                     [action.payload.accountName]: action.payload.pendingTxTailsHashes,
                 }),
+            };
+        case ActionTypes.SET_STATUS_2FA:
+            return {
+                ...state,
+                status2FA: action.payload,
+            };
+        case ActionTypes.SET_SEED_2FA:
+            return {
+                ...state,
+                seed2FA: action.payload,
             };
         default:
             return state;

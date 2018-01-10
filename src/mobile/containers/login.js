@@ -8,6 +8,7 @@ import { StyleSheet, View, Text, Keyboard } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
+import authenticator from 'authenticator';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -49,6 +50,7 @@ class Login extends Component {
         positiveColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        seed2FA: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -58,6 +60,7 @@ class Login extends Component {
             isModalVisible: false,
         };
 
+        this.onLogin2FA = this.onLogin2FA.bind(this);
         this.onLoginPress = this.onLoginPress.bind(this);
         this.navigateToNodeSelection = this.navigateToNodeSelection.bind(this);
     }
@@ -145,6 +148,20 @@ class Login extends Component {
                     }
                 })
                 .catch(err => console.log(err)); // Dropdown
+        }
+    }
+
+    onLogin2FA(password) {
+        Keyboard.dismiss();
+        if (password) {
+            const value2FA = authenticator.verifyToken(this.props.seed2FA, password);
+            if (value2FA === null) {
+                this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+            } else {
+                this.navigateToHome();
+            }
+        } else {
+            this.props.generateAlert('error', 'Empty code', 'The code you entered is empty');
         }
     }
 

@@ -10,7 +10,13 @@ import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import THEMES from '../theme/themes';
 import { clearTempData, setPassword, setSetting, setAdditionalAccountInfo } from '../../shared/actions/tempAccount';
-import { changeAccountName, deleteAccount, manuallySyncAccount } from 'iota-wallet-shared-modules/actions/account';
+import {
+    changeAccountName,
+    deleteAccount,
+    manuallySyncAccount,
+    update2FA,
+    seed2FA,
+} from 'iota-wallet-shared-modules/actions/account';
 import {
     getSelectedAccountViaSeedIndex,
     getSelectedAccountNameViaSeedIndex,
@@ -167,6 +173,8 @@ class Settings extends Component {
         negativeColor: PropTypes.object.isRequired,
         extraColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        isEnable2FA: PropTypes.bool.isRequired,
+        seed2FA: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -223,7 +231,7 @@ class Settings extends Component {
                 t: this.props.t,
                 setSetting: setting => this.props.setSetting(setting),
                 setModalContent: content => this.setModalContent(content),
-                on2FASetupPress: () => this.featureUnavailable(),
+                on2FASetupPress: () => this.on2FASetupPress(),
                 onThemePress: () => this.props.setSetting('themeCustomisation'),
                 onModePress: () => this.featureUnavailable(),
                 mode: this.props.mode,
@@ -429,6 +437,39 @@ class Settings extends Component {
 
     hideModal() {
         this.setState({ isModalVisible: false });
+    }
+
+    on2FASetupPress() {
+        const { t } = this.props;
+        if (!this.props.isEnable2FA) {
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'settings2FA',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                        generateAlert: this.props.generateAlert,
+                    },
+                    overrideBackPress: true,
+                },
+            });
+        } else {
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'disable2FA',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
+                        generateAlert: this.props.generateAlert,
+                    },
+                    overrideBackPress: true,
+                },
+            });
+            //this.props.generateAlert('success', '2FA is already enabled', this.props.seed2FA);
+            //this.props.update2FA(false); //make a page to disable 2FA
+        }
     }
 
     onManualSyncPress() {
@@ -752,6 +793,7 @@ const mapDispatchToProps = {
     manuallySyncAccount,
     updateTheme,
     setAdditionalAccountInfo,
+    update2FA,
 };
 
 const mapStateToProps = state => ({
