@@ -45,12 +45,15 @@ class Disable2FA extends Component {
     disable2FA() {
         this.props.set2FAStatus(false);
         this.props.set2FAKey('');
-        this.props.generateAlert(
-            'success',
-            '2FA is now disabled',
-            'You have succesfully disabled Two Factor Authentication.',
-        );
+
         this.goBack();
+        this.timeout = setTimeout(() => {
+            this.props.generateAlert(
+                'success',
+                '2FA is now disabled',
+                'You have succesfully disabled Two Factor Authentication.',
+            );
+        }, 300);
     }
     goBack() {
         // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
