@@ -129,7 +129,7 @@ class TwoFactorSetupAddKey extends Component {
             this.props.generateAlert(
                 'success',
                 'Key copied to clipboard',
-                'Your secret key have been copied to the clipboard',
+                'Your 2FA key has been copied to the clipboard.',
             );
         }
     }
