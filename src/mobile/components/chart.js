@@ -127,11 +127,9 @@ class Chart extends React.Component {
         x = parseFloat(x);
 
         if (marketData.currency === 'USD') {
-            return x.toFixed(3);
+            return x.toFixed(2);
         } else if (marketData.currency === 'EUR') {
-            return x.toFixed(3);
-        } else if (marketData.currency === 'BTC') {
-            return x.toFixed(6);
+            return x.toFixed(2);
         }
 
         return x.toFixed(5);
@@ -201,8 +199,7 @@ class Chart extends React.Component {
                             }}
                             scale={{ x: 'time', y: 'linear' }}
                             animate={{
-                                duration: 1500,
-                                onLoad: { duration: 2000 },
+                                duration: 450,
                             }}
                         />
                         <VictoryAxis
