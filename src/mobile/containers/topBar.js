@@ -21,6 +21,7 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
 } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { setPollFor } from '../../shared/actions/polling';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import THEMES from '../theme/themes';
@@ -286,6 +287,7 @@ class TopBar extends Component {
                         },
                     ]}
                 >
+                    <DynamicStatusBar textColor={secondaryBarColor} />
                     <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                         <View style={styles.chevronWrapper}>

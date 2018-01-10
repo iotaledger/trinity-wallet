@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, StatusBar, BackHandler, ToastAndroid } from 'react-native';
+import { StyleSheet, View, BackHandler, ToastAndroid } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import UserInactivity from 'react-native-user-inactivity';
 import { Navigation } from 'react-native-navigation';
@@ -124,8 +125,7 @@ class Home extends Component {
     };
 
     handleInactivity = () => {
-        const { setUserActivity } = this.props;
-        setUserActivity({ inactive: true });
+        this.props.setUserActivity({ inactive: true });
     };
 
     render() {
@@ -153,7 +153,7 @@ class Home extends Component {
         return (
             <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={this.handleInactivity}>
                 <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
-                    <StatusBar barStyle="light-content" />
+                    <DynamicStatusBar textColor={secondaryBarColor} />
                     {!inactive &&
                         !minimised && (
                             <View style={{ flex: 1 }}>

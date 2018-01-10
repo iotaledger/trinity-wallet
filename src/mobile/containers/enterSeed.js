@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
-        flex: 0.6,
+        flex: 1,
         paddingTop: height / 22,
     },
     topMidContainer: {
