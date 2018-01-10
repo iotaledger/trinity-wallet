@@ -1,9 +1,12 @@
 import { AsyncStorage } from 'react-native';
-import store, { persistState } from 'iota-wallet-shared-modules/store';
+import store, { persistState } from '../shared/store';
+import initializeApp from './routes/entry';
 
-export const persistor = persistState(store, {
-    storage: AsyncStorage,
-    blacklist: ['tempAccount', 'keychain', 'polling'],
-});
-
-export default store;
+export const persistor = persistState(
+    store,
+    {
+        storage: AsyncStorage,
+        blacklist: ['tempAccount', 'keychain', 'polling'],
+    },
+    persistedState => initializeApp(persistedState),
+);

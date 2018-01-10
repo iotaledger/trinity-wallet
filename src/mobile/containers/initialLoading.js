@@ -73,6 +73,8 @@ class InitialLoading extends Component {
         const textColor = { color: secondaryBackgroundColor };
         const welcomeAnimationPath =
             secondaryBackgroundColor === 'white' ? whiteWelcomeAnimation : blackWelcomeAnimation;
+
+        console.log('Secondary background color', secondaryBackgroundColor);
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
