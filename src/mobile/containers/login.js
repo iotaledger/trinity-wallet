@@ -11,7 +11,7 @@ import { Navigation } from 'react-native-navigation';
 import authenticator from 'authenticator';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
-import { setPassword, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setPassword, setReady, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -53,6 +53,7 @@ class Login extends Component {
         secondaryBackgroundColor: PropTypes.string.isRequired,
         key2FA: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
+        setUserActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -75,6 +76,7 @@ class Login extends Component {
         this.getWalletData();
         this.props.getCurrencyData(currency);
         KeepAwake.deactivate();
+        this.props.setUserActivity({ inactive: false });
     }
 
     componentWillReceiveProps(newProps) {
@@ -347,6 +349,7 @@ const mapDispatchToProps = {
     setFullNode,
     changeHomeScreenRoute,
     setSetting,
+    setUserActivity,
 };
 
 export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
