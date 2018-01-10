@@ -71,6 +71,7 @@ class History extends Component {
                     {hasTransactions ? (
                         <View style={styles.listView}>
                             <ListView
+                                contentContainerStyle={{ paddingTop: 1, paddingBottom: 1 }}
                                 dataSource={ds.cloneWithRows(transfers)}
                                 renderRow={dataSource => (
                                     <TransactionRow
