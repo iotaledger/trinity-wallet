@@ -173,8 +173,7 @@ class Settings extends Component {
         negativeColor: PropTypes.object.isRequired,
         extraColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
-        isEnable2FA: PropTypes.bool.isRequired,
-        seed2FA: PropTypes.string.isRequired,
+        is2FAEnabled: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -440,11 +439,11 @@ class Settings extends Component {
     }
 
     on2FASetupPress() {
-        const { t } = this.props;
-        if (!this.props.isEnable2FA) {
+        const { t, is2FAEnabled } = this.props;
+        if (!is2FAEnabled) {
             Navigation.startSingleScreenApp({
                 screen: {
-                    screen: 'settings2FA',
+                    screen: 'twoFactorSetupAddKey',
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
@@ -820,6 +819,7 @@ const mapStateToProps = state => ({
     negativeColor: state.settings.theme.negativeColor,
     extraColor: state.settings.theme.extraColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    is2FAEnabled: state.account.is2FAEnabled,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(
