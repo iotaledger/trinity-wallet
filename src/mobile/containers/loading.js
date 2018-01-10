@@ -41,9 +41,8 @@ class Loading extends Component {
             navigator,
         } = this.props;
 
-        if (!firstUse && !addingAdditionalAccount) {
-            this.animation.play();
-        }
+        this.animation.play();
+
         this.animateElipses(['.', '..', ''], 0);
 
         KeepAwake.activate();
@@ -164,7 +163,7 @@ class Loading extends Component {
                             ref={animation => {
                                 this.animation = animation;
                             }}
-                            source={blackWelcomeAnimation}
+                            source={welcomeAnimationPath}
                             style={styles.animationLoading}
                             loop={true}
                         />

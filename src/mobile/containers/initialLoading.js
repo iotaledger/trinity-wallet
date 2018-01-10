@@ -82,7 +82,7 @@ class InitialLoading extends Component {
                             ref={animation => {
                                 this.animation = animation;
                             }}
-                            source={blackWelcomeAnimation}
+                            source={welcomeAnimationPath}
                             style={styles.animation}
                         />
                     </View>
