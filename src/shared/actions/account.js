@@ -66,6 +66,8 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/ACCOUNT/ACCOUNT_INFO_FETCH_REQUEST',
     ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNT/ACCOUNT_INFO_FETCH_SUCCESS',
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNT/ACCOUNT_INFO_FETCH_ERROR',
+    SET_STATUS_2FA: 'IOTA/ACCOUNT/SET_STATUS_2FA',
+    SET_SEED_2FA: 'IOTA/ACCOUNT/SET_SEED_2FA',
 };
 
 export const manualSyncRequest = () => ({
@@ -500,3 +502,13 @@ export const updateAccountInfo = (accountName, newTransferBundle, value) => (dis
         );
     }
 };
+
+export const update2FA = value => ({
+    type: ActionTypes.SET_STATUS_2FA,
+    payload: value,
+});
+
+export const seed2FA = value => ({
+    type: ActionTypes.SET_SEED_2FA,
+    payload: value,
+});
