@@ -450,7 +450,6 @@ class Settings extends Component {
                         screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                         generateAlert: this.props.generateAlert,
                     },
-                    overrideBackPress: true,
                 },
             });
         } else {
@@ -463,7 +462,6 @@ class Settings extends Component {
                         screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                         generateAlert: this.props.generateAlert,
                     },
-                    overrideBackPress: true,
                 },
             });
             //this.props.generateAlert('success', '2FA is already enabled', this.props.seed2FA);

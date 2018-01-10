@@ -214,7 +214,7 @@ class Home extends Component {
                         </View>
                     )}
                     {minimised && <View />}
-                    {/*<Poll />*/}
+                    <Poll />
                     <StatefulDropdownAlert />
                 </View>
             </UserInactivity>
