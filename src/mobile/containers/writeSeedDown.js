@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import Seedbox from '../components/seedBox.js';
@@ -27,7 +28,7 @@ class WriteSeedDown extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>

@@ -10,9 +10,9 @@ import {
     ListView,
     TouchableOpacity,
     Image,
-    StatusBar,
     BackHandler,
 } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
@@ -115,16 +115,7 @@ class NewSeedSetup extends Component {
             });
         } else {
             // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'home',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                    },
-                },
-            });
+            this.goBack();
         }
     }
 
@@ -171,7 +162,7 @@ class NewSeedSetup extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     <View style={{ flex: 150 }} />
