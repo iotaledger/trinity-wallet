@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: height / 30,
         position: 'absolute',
-        top: height / 10.5,
+        top: height / 8.5,
         zIndex: 1,
         shadowOffset: {
             width: 0,
