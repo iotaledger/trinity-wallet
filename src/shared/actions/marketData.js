@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
-import isEmpty from 'lodash/isEmpty';
 import size from 'lodash/size';
 
 // FIXME: Hacking no-console linting.
