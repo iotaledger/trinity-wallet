@@ -106,7 +106,9 @@ class TwoFactorSetupEnterToken extends Component {
         if (value) {
             this.props.set2FAStatus(true);
             this.navigateToHome();
-            return this.props.generateAlert('success', '2FA is now enabled', 'You´ve succesfully enabled 2FA');
+            this.timeout = setTimeout(() => {
+                this.props.generateAlert('success', '2FA is now enabled', 'You´ve succesfully enabled 2FA');
+            }, 300);
         } else {
             this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
         }
