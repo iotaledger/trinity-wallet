@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import { showError } from './notifications';
 
 export const ActionTypes = {
@@ -38,7 +39,7 @@ export function getCurrencyData(currency) {
                 },
             )
             .then(json => {
-                const conversionRate = json.rates[currency] || 1;
+                const conversionRate = get(json, `rates${currency}`) || 1;
                 dispatch(setCurrencyData(conversionRate, currency));
             });
     };
