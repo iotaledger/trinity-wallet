@@ -6,7 +6,7 @@ import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png
 import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import { StyleSheet, View, Text, Image, Clipboard, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, Clipboard, TouchableOpacity, BackHandler } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { Navigation } from 'react-native-navigation';
 import QRCode from 'react-native-qrcode-svg';
@@ -114,6 +114,13 @@ class TwoFactorSetupAddKey extends Component {
             code: '',
             authkey: authenticator.generateKey(),
         };
+    }
+
+    componentDidMount() {
+        BackHandler.addEventListener('newSeedSetupBackPress', () => {
+            this.goBack();
+            return true;
+        });
     }
 
     onKeyPress(address) {
