@@ -1,6 +1,5 @@
 import { ActionTypes } from '../actions/settings.js';
 import { defaultNode as fullNode } from '../config';
-import assign from 'lodash/assign';
 
 const initialState = {
     locale: 'en',
@@ -13,6 +12,7 @@ const initialState = {
         'https://iotanode.us:443',
         'http://astra2261.startdedicated.net:14265',
         'http://iota.nck.nz:14265',
+        'http://www.veriti.io',
     ],
     availableNodes: [
         'https://iri2-api.iota.fm:443',
