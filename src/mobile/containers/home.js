@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, BackHandler, ToastAndroid } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
-import UserInactivity from 'react-native-user-inactivity';
+import UserInactivity from '../components/userInactivity';
 import { Navigation } from 'react-native-navigation';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
@@ -81,6 +81,10 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
+    constructor() {
+        super();
+        this.onLoginPress = this.onLoginPress.bind(this);
+    }
     componentDidMount() {
         BackHandler.addEventListener('homeBackPress', () => {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
@@ -121,6 +125,7 @@ class Home extends Component {
             );
         } else {
             this.props.setUserActivity({ inactive: false });
+            this.userInactivity.setIsActive();
         }
     };
 
@@ -151,7 +156,14 @@ class Home extends Component {
         const barTextColor = { color: secondaryBarColor };
         const textColor = { color: secondaryBackgroundColor };
         return (
-            <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={this.handleInactivity}>
+            <UserInactivity
+                ref={c => {
+                    this.userInactivity = c;
+                }}
+                timeForInactivity={180000}
+                checkInterval={5000}
+                onInactivity={this.handleInactivity}
+            >
                 <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
                     <DynamicStatusBar textColor={secondaryBarColor} />
                     {!inactive &&

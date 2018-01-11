@@ -128,6 +128,7 @@ EnterPassword.propTypes = {
     positiveColor: PropTypes.object.isRequired,
     textColor: PropTypes.object.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
+    negativeColor: PropTypes.object.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPassword);
