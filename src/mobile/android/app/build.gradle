@@ -99,7 +99,7 @@ android {
         applicationId "com.iota.wallet"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 6
+        versionCode 7
         multiDexEnabled true
         versionName "3.2.1"
         multiDexEnabled true
@@ -107,6 +107,17 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+
+    signingConfigs {
+            release {
+                if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                    storeFile file(MYAPP_RELEASE_STORE_FILE)
+                    storePassword MYAPP_RELEASE_STORE_PASSWORD
+                    keyAlias MYAPP_RELEASE_KEY_ALIAS
+                    keyPassword MYAPP_RELEASE_KEY_PASSWORD
+                }
+            }
+        }
 
     splits {
         abi {
@@ -122,6 +133,7 @@ android {
     buildTypes {
         release {
             debuggable false
+            signingConfig signingConfigs.release
             shrinkResources enableProguardInReleaseBuilds
             zipAlignEnabled enableProguardInReleaseBuilds
             minifyEnabled enableProguardInReleaseBuilds
