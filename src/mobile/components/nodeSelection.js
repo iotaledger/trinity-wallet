@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import Dropdown from '../components/dropdown';
 import { width, height } from '../util/dimensions';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import { translate } from 'react-i18next';
 
 const styles = StyleSheet.create({
@@ -70,6 +68,8 @@ class NodeSelection extends Component {
         nodes: PropTypes.array.isRequired,
         backPress: PropTypes.func.isRequired,
         setNode: PropTypes.func.isRequired,
+        textColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     saveNodeSelection() {
@@ -80,7 +80,17 @@ class NodeSelection extends Component {
     }
 
     render() {
-        const { node, nodes, backPress, t } = this.props;
+        const {
+            node,
+            nodes,
+            backPress,
+            t,
+            textColor,
+            secondaryBackgroundColor,
+            nodeSelection,
+            arrowLeftImagePath,
+            tickImagePath,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback
@@ -107,12 +117,12 @@ class NodeSelection extends Component {
                         <TouchableOpacity onPress={() => backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.saveNodeSelection()}>
                             <View style={styles.itemRight}>
-                                <Text style={styles.titleTextRight}>{t('global:save')}</Text>
+                                <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>

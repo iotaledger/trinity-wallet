@@ -15,6 +15,10 @@ import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selec
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import OnboardingButtons from '../components/onboardingButtons';
 import NodeSelection from '../components/nodeSelection';
+import whiteArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-white.png';
+import blackArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left-black.png';
+import whiteTickImagePath from 'iota-wallet-shared-modules/images/tick-white.png';
+import blackTickImagePath from 'iota-wallet-shared-modules/images/tick-black.png';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain from '../util/keychain';
@@ -43,6 +47,7 @@ class Login extends Component {
         backgroundColor: PropTypes.object.isRequired,
         positiveColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -79,14 +84,15 @@ class Login extends Component {
     }
 
     _renderModalContent = () => {
-        const { backgroundColor } = this.props;
+        const { backgroundColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
         return (
             <View
                 style={{ width: width / 1.15, alignItems: 'center', backgroundColor: THEMES.getHSL(backgroundColor) }}
             >
                 <View style={styles.modalContent}>
-                    <Text style={styles.questionText}>Cannot connect to IOTA node.</Text>
-                    <Text style={styles.infoText}>Do you want to select a different node?</Text>
+                    <Text style={[styles.questionText, textColor]}>Cannot connect to IOTA node.</Text>
+                    <Text style={[styles.infoText, textColor]}>Do you want to select a different node?</Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this._hideModal()}
                         onRightButtonPress={() => this.navigateToNodeSelection()}
@@ -173,7 +179,11 @@ class Login extends Component {
     }
 
     render() {
-        const { backgroundColor, positiveColor, negativeColor } = this.props;
+        const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+        const arrowLeftImagePath =
+            secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
+        const tickImagePath = secondaryBackgroundColor === 'white' ? whiteTickImagePath : blackTickImagePath;
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <StatusBar barStyle="light-content" />
@@ -184,6 +194,8 @@ class Login extends Component {
                         positiveColor={positiveColor}
                         onLoginPress={this.onLoginPress}
                         navigateToNodeSelection={this.navigateToNodeSelection}
+                        secondaryBackgroundColor={secondaryBackgroundColor}
+                        textColor={textColor}
                     />
                 )}
                 {this.state.changingNode && (
@@ -198,6 +210,10 @@ class Login extends Component {
                                 node={this.props.fullNode}
                                 nodes={this.props.availablePoWNodes}
                                 backPress={() => this.setState({ changingNode: false })}
+                                textColor={textColor}
+                                tickImagePath={tickImagePath}
+                                arrowLeftImagePath={arrowLeftImagePath}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
                             />
                         </View>
                         <View style={{ flex: 0.2 }} />
@@ -230,35 +246,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
-    },
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -269,14 +256,12 @@ const styles = StyleSheet.create({
         width: width / 1.15,
     },
     questionText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
         paddingBottom: height / 40,
     },
     infoText: {
-        color: 'white',
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
@@ -294,6 +279,7 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {
