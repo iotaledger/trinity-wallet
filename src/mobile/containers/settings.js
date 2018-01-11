@@ -4,7 +4,7 @@ import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, StatusBar, BackHandler } from 'react-native';
+import { StyleSheet, View, BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
@@ -757,7 +757,6 @@ class Settings extends Component {
 
         return (
             <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
                 <View style={{ flex: 1 }} />
                 <View style={styles.settingsContainer}>
                     <SettingsContent component={this.props.currentSetting} {...childrenProps} />
