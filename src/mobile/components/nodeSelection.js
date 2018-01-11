@@ -104,7 +104,7 @@ class NodeSelection extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.2 }} />
                         <Dropdown
-                            onRef={c => {
+                            onRef={(c) => {
                                 this.dropdown = c;
                             }}
                             title={t('global:node')}

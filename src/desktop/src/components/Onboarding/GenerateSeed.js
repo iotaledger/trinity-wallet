@@ -26,7 +26,7 @@ class GenerateSeed extends React.PureComponent {
         seed: null,
     };
 
-    onUpdatedSeed = seed => {
+    onUpdatedSeed = (seed) => {
         this.setState(() => ({
             seed,
         }));
@@ -88,7 +88,7 @@ class GenerateSeed extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: getSelectedSeed(state).seed,
 });
 

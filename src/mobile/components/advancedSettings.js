@@ -30,7 +30,7 @@ class AdvancedSettings extends Component {
             <View style={styles.container}>
                 <View style={{ flex: 4.5 }}>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={event => this.props.setSetting('nodeSelection')}>
+                        <TouchableOpacity onPress={(event) => this.props.setSetting('nodeSelection')}>
                             <View style={styles.item}>
                                 <Image source={nodeImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('selectNode')}</Text>
@@ -41,7 +41,7 @@ class AdvancedSettings extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={event => this.props.setSetting('addCustomNode')}>
+                        <TouchableOpacity onPress={(event) => this.props.setSetting('addCustomNode')}>
                             <View style={styles.item}>
                                 <Image source={addImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('addCustomNode')}</Text>
@@ -49,7 +49,7 @@ class AdvancedSettings extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={event => this.props.setSetting('manualSync')}>
+                        <TouchableOpacity onPress={(event) => this.props.setSetting('manualSync')}>
                             <View style={styles.item}>
                                 <Image source={syncImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('manualSync')}</Text>
@@ -60,7 +60,7 @@ class AdvancedSettings extends Component {
                         <View style={[styles.separator, borderColor]} />
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={event => this.props.onResetWalletPress()}>
+                        <TouchableOpacity onPress={(event) => this.props.onResetWalletPress()}>
                             <View style={styles.item}>
                                 <Image source={crossImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('settings:reset')}</Text>
@@ -71,7 +71,7 @@ class AdvancedSettings extends Component {
                 <View style={{ flex: 5.5, justifyContent: 'flex-end' }}>
                     <View style={{ flex: 4.5 }} />
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
+                        <TouchableOpacity onPress={(event) => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.backIcon} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>

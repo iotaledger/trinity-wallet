@@ -53,7 +53,8 @@
         "somethingWentWrongExplanation": "Start de app opnieuw.",
         "node": "Node",
         "cannotPerformAction": "Kan actie niet uitvoeren",
-        "cannotPerformActionExplanation": "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen.",
+        "cannotPerformActionExplanation":
+            "Ga naar de geavanceerde instellingen om uw portefeuille opnieuw in te stellen.",
         "attachToTangleUnavailable": "Attach to Tangle unavailable",
         "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
     },

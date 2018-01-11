@@ -17,7 +17,7 @@ class TransactionRow extends React.Component {
         };
     }
 
-    _showModal = data => this.setState({ isModalVisible: true });
+    _showModal = (data) => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });
 

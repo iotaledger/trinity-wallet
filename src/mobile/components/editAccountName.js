@@ -52,7 +52,7 @@ export class EditAccountName extends Component {
                                 enablesReturnKeyAutomatically={true}
                                 returnKeyType="done"
                                 value={this.state.accountName}
-                                onChangeText={accountName => this.setState({ accountName })}
+                                onChangeText={(accountName) => this.setState({ accountName })}
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
@@ -62,7 +62,7 @@ export class EditAccountName extends Component {
                         <View style={styles.saveButtonContainer} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.props.backPress()}>
+                        <TouchableOpacity onPress={(event) => this.props.backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>

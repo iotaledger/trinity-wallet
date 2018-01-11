@@ -21,7 +21,7 @@ class DeleteAccount extends Component {
         };
     }
 
-    _showModal = data => this.setState({ isModalVisible: true });
+    _showModal = (data) => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
@@ -122,7 +122,7 @@ class DeleteAccount extends Component {
                                     enablesReturnKeyAutomatically={true}
                                     returnKeyType="done"
                                     value={this.state.password}
-                                    onChangeText={password => this.setState({ password })}
+                                    onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{
                                         width: width / 1.4,
                                     }}
@@ -133,7 +133,7 @@ class DeleteAccount extends Component {
                         <View style={{ flex: 1.3 }} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.onBackPress()}>
+                        <TouchableOpacity onPress={(event) => this.onBackPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
