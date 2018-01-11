@@ -274,7 +274,7 @@
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "Dodaj"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
@@ -286,7 +286,7 @@
         "manualSync": "Manual sync"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
+        "background": "Ozadje",
         "frame": "Frame"
     },
     "currencySelection": {
@@ -296,7 +296,7 @@
         "logoutConfirmation": "Are you sure you want to log out?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Skeniraj QR kodo"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
