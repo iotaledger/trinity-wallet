@@ -54,6 +54,8 @@ class Receive extends Component {
         getFromKeychainError: PropTypes.func.isRequired,
         ctaColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -150,8 +152,18 @@ class Receive extends Component {
             t,
             ctaColor,
             negativeColor,
+            secondaryBackgroundColor,
+            secondaryCtaColor,
+            ctaBorderColor,
         } = this.props;
         const message = this.state.message;
+        const textColor = { color: secondaryBackgroundColor };
+        const ctaTextColor = { color: secondaryCtaColor };
+        const generateBorderColor = { borderColor: ctaBorderColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
+        const qrBorder =
+            secondaryBackgroundColor === 'white' ? { borderColor: 'transparent' } : { borderColor: 'black' };
+
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
@@ -163,42 +175,51 @@ class Receive extends Component {
                             justifyContent: 'flex-end',
                         }}
                     >
-                        <View style={[styles.qrContainer, { opacity: this.getQrOpacity() }]}>
+                        <View style={[styles.qrContainer, { opacity: this.getQrOpacity() }, qrBorder]}>
                             <QRCode
                                 value={JSON.stringify({ address: receiveAddress, message })}
                                 size={height / 5}
-                                bgColor="#000"
-                                fgColor="#FFF"
+                                color={'black'}
                             />
                         </View>
                         {receiveAddress.length > 1 && (
                             <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                                <View style={styles.receiveAddressContainer}>
-                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(0, 18)}</Text>
-                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(18, 36)}</Text>
-                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(36, 54)}</Text>
-                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(54, 72)}</Text>
-                                    <Text style={styles.receiveAddressText}>{receiveAddress.substring(72, 90)}</Text>
+                                <View style={[styles.receiveAddressContainer, borderColor]}>
+                                    <Text style={[styles.receiveAddressText, textColor]}>
+                                        {receiveAddress.substring(0, 18)}
+                                    </Text>
+                                    <Text style={[styles.receiveAddressText, textColor]}>
+                                        {receiveAddress.substring(18, 36)}
+                                    </Text>
+                                    <Text style={[styles.receiveAddressText, textColor]}>
+                                        {receiveAddress.substring(36, 54)}
+                                    </Text>
+                                    <Text style={[styles.receiveAddressText, textColor]}>
+                                        {receiveAddress.substring(54, 72)}
+                                    </Text>
+                                    <Text style={[styles.receiveAddressText, textColor]}>
+                                        {receiveAddress.substring(72, 90)}
+                                    </Text>
                                 </View>
                             </TouchableOpacity>
                         )}
                         {receiveAddress.length <= 1 && (
                             // Place holder
                             <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
-                                <View style={styles.receiveAddressContainer}>
-                                    <Text style={styles.receiveAddressText}>{Array(19).join(' ')}</Text>
+                                <View style={[styles.receiveAddressContainer, borderColor]}>
+                                    <Text style={[styles.receiveAddressText, textColor]}>{Array(19).join(' ')}</Text>
                                 </View>
                             </TouchableOpacity>
                         )}
                     </View>
                     <View style={{ alignItems: 'center', flex: 0.5, justifyContent: 'flex-start' }}>
                         <TextField
-                            style={styles.textField}
-                            labelTextStyle={{ fontFamily: 'Lato-Light', color: 'white' }}
+                            style={[styles.textField, textColor]}
+                            labelTextStyle={{ fontFamily: 'Lato-Light', color: secondaryBackgroundColor }}
                             labelFontSize={height / 55}
                             fontSize={height / 40}
                             labelPadding={3}
-                            baseColor="white"
+                            baseColor={secondaryBackgroundColor}
                             tintColor={THEMES.getHSL(negativeColor)}
                             enablesReturnKeyAutomatically={true}
                             returnKeyType="done"
@@ -221,8 +242,16 @@ class Receive extends Component {
                                         }
                                     }}
                                 >
-                                    <View style={[styles.generateButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
-                                        <Text style={styles.generateText}>{t('generateNewAddress')}</Text>
+                                    <View
+                                        style={[
+                                            styles.generateButton,
+                                            { backgroundColor: THEMES.getHSL(ctaColor) },
+                                            generateBorderColor,
+                                        ]}
+                                    >
+                                        <Text style={[styles.generateText, ctaTextColor]}>
+                                            {t('generateNewAddress')}
+                                        </Text>
                                     </View>
                                 </TouchableOpacity>
                             )}
@@ -232,7 +261,7 @@ class Receive extends Component {
                                     animating={isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress}
                                     style={styles.activityIndicator}
                                     size="large"
-                                    color="#F7D002"
+                                    color={THEMES.getHSL(negativeColor)}
                                 />
                             </View>
                         )}
@@ -246,8 +275,8 @@ class Receive extends Component {
                                     }}
                                     style={styles.removeButtonContainer}
                                 >
-                                    <View style={styles.removeButton}>
-                                        <Text style={styles.removeText}>{t('removeMessage')}</Text>
+                                    <View style={[styles.removeButton, borderColor]}>
+                                        <Text style={[styles.removeText, textColor]}>{t('removeMessage')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             )}
@@ -266,7 +295,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     receiveAddressContainer: {
-        borderColor: 'white',
         borderWidth: 1,
         borderRadius: GENERAL.borderRadius,
         height: width / 3.4,
@@ -284,7 +312,6 @@ const styles = StyleSheet.create({
     receiveAddressText: {
         fontFamily: 'Inconsolata-Bold',
         fontSize: width / 21.8,
-        color: 'white',
         backgroundColor: 'transparent',
         textAlign: 'center',
         height: width / 20,
@@ -296,34 +323,34 @@ const styles = StyleSheet.create({
         height: height / 13,
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 1.5,
     },
     generateText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
         paddingLeft: 6,
+        color: 'white',
     },
     separator: {
         flex: 1,
         height: 15,
     },
     textField: {
-        color: 'white',
         fontFamily: 'Lato-Light',
     },
     qrContainer: {
-        backgroundColor: 'white',
         borderRadius: GENERAL.borderRadiusLarge,
         padding: width / 30,
         marginBottom: height / 40,
+        backgroundColor: 'white',
+        borderWidth: 2,
     },
     removeButtonContainer: {
         alignItems: 'center',
         justifyContent: 'center',
     },
     removeButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
         width: width / 2.7,
@@ -333,7 +360,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     removeText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
@@ -350,6 +376,9 @@ const mapStateToProps = state => ({
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
     ctaColor: state.settings.theme.ctaColor,
     negativeColor: state.settings.theme.negativeColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
+    ctaBorderColor: state.settings.theme.ctaBorderColor,
 });
 
 const mapDispatchToProps = {

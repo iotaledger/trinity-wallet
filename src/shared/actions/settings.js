@@ -90,8 +90,8 @@ export function updateTheme(theme, themeName) {
     return dispatch => {
         dispatch({
             type: ActionTypes.UPDATE_THEME,
-            theme: theme,
-            themeName: themeName,
+            theme,
+            themeName,
         });
     };
 }

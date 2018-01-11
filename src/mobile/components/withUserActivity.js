@@ -16,13 +16,6 @@ export default () => C => {
     class withUserActivity extends Component {
         componentDidMount() {
             AppState.addEventListener('change', this.handleAppStateChange);
-            timer.setTimeout(
-                'background',
-                () => {
-                    this.props.setUserActivity({ inactive: true });
-                },
-                180000,
-            );
         }
 
         componentWillUnmount() {
