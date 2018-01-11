@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
 class CurrencySelection extends Component {
     static propTypes = {
         isFetchingCurrencyData: PropTypes.bool.isRequired,
+        hasErrorFetchingCurrencyData: PropTypes.bool.isRequired,
         getCurrencyData: PropTypes.func.isRequired,
         currency: PropTypes.string.isRequired,
         currencies: PropTypes.array.isRequired,
@@ -104,11 +105,15 @@ class CurrencySelection extends Component {
         arrowLeftImagePath: PropTypes.number.isRequired,
     };
 
-    saveCurrencySelection(currency) {
-        const { backPress, getCurrencyData } = this.props;
+    componentWillReceiveProps(newProps) {
+        const props = this.props;
 
-        // backPress();
-        getCurrencyData(currency);
+        const wasFetchingCurrencyData = props.isFetchingCurrencyData && !newProps.isFetchingCurrencyData;
+        const shouldNavigateBack = wasFetchingCurrencyData && !newProps.hasErrorFetchingCurrencyData;
+
+        if (shouldNavigateBack) {
+            props.backPress();
+        }
     }
 
     renderBackOption() {
@@ -130,7 +135,7 @@ class CurrencySelection extends Component {
         const props = this.props;
 
         return (
-            <TouchableOpacity onPress={() => this.saveCurrencySelection(this.dropdown.getSelected())}>
+            <TouchableOpacity onPress={() => props.getCurrencyData(this.dropdown.getSelected())}>
                 <View style={styles.itemRight}>
                     <Text style={[styles.titleTextRight, { color: props.secondaryBackgroundColor }]}>
                         {props.t('global:save')}
@@ -141,20 +146,8 @@ class CurrencySelection extends Component {
         );
     }
     render() {
-        const {
-            currency,
-            currencies,
-            t,
-            secondaryBackgroundColor,
-            negativeColor,
-            arrowLeftImagePath,
-            tickImagePath,
-            isFetchingCurrencyData,
-        } = this.props;
+        const { currency, currencies, t, secondaryBackgroundColor, negativeColor, isFetchingCurrencyData } = this.props;
 
-        console.log('Nef', negativeColor);
-        console.log(arrowLeftImagePath);
-        console.log(tickImagePath);
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
