@@ -101,7 +101,7 @@ android {
         targetSdkVersion 26
         versionCode 6
         multiDexEnabled true
-        versionName "3.2"
+        versionName "3.2.1"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
