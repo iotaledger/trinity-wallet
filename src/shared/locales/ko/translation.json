@@ -59,7 +59,8 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
-        "seedInvalidCharsExplanation": "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
+        "seedInvalidCharsExplanation":
+            "씨드는 A부터 Z까지의 대문자 그리고 숫자 9만 포함할 수 있습니다. 당신의 씨드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해주십시오.",
         "seedTooShort": "씨드가 너무 짧습니다.",
         "seedTooShortExplanation":
             "씨드는 {{maxLength}} 의 글자 수를 포함해야 합니다. 당신의 씨드는 {{currentLength}} 의 글자 수를 포함하고 있습니다. 다시 시도해주십시오.",
@@ -195,7 +196,8 @@
         "passwordMismatch": "비밀번호가 일치하지 않습니다.",
         "passwordMismatchExplanation": "입력한 비밀번호가 일치하지 않습니다. 다시 입력해주십시오.",
         "nowWeNeedTo": "이제 비밀번호를 설정해야합니다.",
-        "anEncryptedCopy": "귀하의 디바이스에 암호화된 씨드가 저장될 것입니다. 지갑에 엑세스하기 위해서 이 비밀번호를 사용하십시오.",
+        "anEncryptedCopy":
+            "귀하의 디바이스에 암호화된 씨드가 저장될 것입니다. 지갑에 엑세스하기 위해서 이 비밀번호를 사용하십시오.",
         "ensure": "최소 12글자로 이루어진 비밀번호를 사용하십시오.",
         "retypePassword": "비밀번호 다시 입력"
     },

@@ -228,8 +228,8 @@ class Settings extends Component {
         const props = {
             mainSettings: {
                 t: this.props.t,
-                setSetting: setting => this.props.setSetting(setting),
-                setModalContent: content => this.setModalContent(content),
+                setSetting: (setting) => this.props.setSetting(setting),
+                setModalContent: (content) => this.setModalContent(content),
                 on2FASetupPress: () => this.on2FASetupPress(),
                 onThemePress: () => this.props.setSetting('themeCustomisation'),
                 onModePress: () => this.featureUnavailable(),
@@ -250,7 +250,7 @@ class Settings extends Component {
                 logoutImagePath,
             },
             advancedSettings: {
-                setSetting: setting => this.props.setSetting(setting),
+                setSetting: (setting) => this.props.setSetting(setting),
                 onResetWalletPress: () => this.onResetWalletPress(),
                 node: this.props.fullNode,
                 textColor: { color: secondaryBackgroundColor },
@@ -260,7 +260,7 @@ class Settings extends Component {
                 secondaryBackgroundColor,
             },
             accountManagement: {
-                setSetting: setting => this.props.setSetting(setting),
+                setSetting: (setting) => this.props.setSetting(setting),
                 onDeleteAccountPress: () => this.onDeleteAccountPress(),
                 textColor: { color: secondaryBackgroundColor },
                 secondaryBackgroundColor: secondaryBackgroundColor,
@@ -287,7 +287,7 @@ class Settings extends Component {
             editAccountName: {
                 seedIndex: this.props.seedIndex,
                 accountName: this.props.selectedAccountName,
-                saveAccountName: accountName => this.saveAccountName(accountName),
+                saveAccountName: (accountName) => this.saveAccountName(accountName),
                 backPress: () => this.props.setSetting('accountManagement'),
                 negativeColor: negativeColor,
                 textColor: { color: secondaryBackgroundColor },
@@ -331,7 +331,7 @@ class Settings extends Component {
                 arrowLeftImagePath,
             },
             nodeSelection: {
-                setNode: selectedNode => {
+                setNode: (selectedNode) => {
                     changeIotaNode(selectedNode);
                     this.props.setFullNode(selectedNode);
                 },
@@ -344,16 +344,16 @@ class Settings extends Component {
                 arrowLeftImagePath,
             },
             addCustomNode: {
-                setNode: selectedNode => {
+                setNode: (selectedNode) => {
                     changeIotaNode(selectedNode);
                     this.props.setFullNode(selectedNode);
                 },
                 nodes: this.props.availablePoWNodes,
                 onDuplicateNodeError: () => this.onDuplicateNodeError(),
-                checkNode: cb => checkNode(cb), // TODO: Try to get rid of the callback
+                checkNode: (cb) => checkNode(cb), // TODO: Try to get rid of the callback
                 currentNode: this.props.fullNode,
                 onAddNodeError: () => this.onAddNodeError(),
-                onAddNodeSuccess: customNode => this.onAddNodeSuccess(customNode),
+                onAddNodeSuccess: (customNode) => this.onAddNodeSuccess(customNode),
                 backPress: () => this.props.setSetting('advancedSettings'),
                 negativeColor: negativeColor,
                 textColor: { color: secondaryBackgroundColor },
@@ -362,11 +362,11 @@ class Settings extends Component {
                 addImagePath,
             },
             currencySelection: {
-                getCurrencyData: currency => this.props.getCurrencyData(currency),
+                getCurrencyData: (currency) => this.props.getCurrencyData(currency),
                 currency: this.props.currency,
                 currencies: this.props.availableCurrencies,
                 backPress: () => this.props.setSetting('mainSettings'),
-                setCurrencySetting: currency => this.setState({ selectedCurrency: currency }),
+                setCurrencySetting: (currency) => this.setState({ selectedCurrency: currency }),
                 textColor: { color: secondaryBackgroundColor },
                 tickImagePath,
                 arrowLeftImagePath,
@@ -379,7 +379,7 @@ class Settings extends Component {
             },
             changePassword: {
                 password: this.props.password,
-                setPassword: password => this.props.setPassword(password),
+                setPassword: (password) => this.props.setPassword(password),
                 backPress: () => this.props.setSetting('mainSettings'),
                 generateAlert: this.props.generateAlert,
                 negativeColor: negativeColor,
@@ -474,7 +474,7 @@ class Settings extends Component {
 
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.manuallySyncAccount(seed, selectedAccountName);
@@ -486,7 +486,7 @@ class Settings extends Component {
                     );
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+            .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
     onAddNodeError() {
@@ -560,7 +560,7 @@ class Settings extends Component {
         } else {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     if (isNull(credentials)) {
                         this.fetchAccountInfo(seed, accountName);
                     } else {
@@ -581,7 +581,7 @@ class Settings extends Component {
                         }
                     }
                 })
-                .catch(err => console.log(err)); // eslint-disable no-console
+                .catch((err) => console.log(err)); // eslint-disable no-console
         }
     }
 
@@ -616,7 +616,7 @@ class Settings extends Component {
 
                     this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
                 })
-                .catch(err => console.log(err)); // eslint-disable-line no-console
+                .catch((err) => console.log(err)); // eslint-disable-line no-console
         }
     }
 
@@ -637,7 +637,7 @@ class Settings extends Component {
 
         deleteFromKeychain(seedIndex, password)
             .then(() => this.props.deleteAccount(selectedAccountName))
-            .catch(err => console.error(err));
+            .catch((err) => console.error(err));
     }
 
     setModalContent(modalSetting) {
@@ -793,7 +793,7 @@ const mapDispatchToProps = {
     update2FA,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     currentSetting: state.tempAccount.currentSetting,

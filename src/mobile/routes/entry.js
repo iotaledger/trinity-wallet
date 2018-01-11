@@ -8,7 +8,7 @@ import i18 from '../i18next';
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
 
-export default store => {
+export default (store) => {
     registerScreens(store, Provider);
     translate.setI18n(i18);
 

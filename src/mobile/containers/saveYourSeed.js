@@ -120,7 +120,7 @@ class SaveYourSeed extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ paddingTop: height / 20 }}>
-                        <TouchableOpacity onPress={event => this.onWriteClick()}>
+                        <TouchableOpacity onPress={(event) => this.onWriteClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:manualCopy').toUpperCase()}
@@ -129,7 +129,7 @@ class SaveYourSeed extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onPrintClick()}>
+                        <TouchableOpacity onPress={(event) => this.onPrintClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:paperWallet').toUpperCase()}
@@ -138,7 +138,7 @@ class SaveYourSeed extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={event => this.onCopyClick()}>
+                        <TouchableOpacity onPress={(event) => this.onCopyClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
                                     {t('global:copyToClipboard').toUpperCase()}
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     extraColor: state.settings.theme.extraColor,

@@ -30,15 +30,15 @@ export function setCurrencyData(conversionRate, currency) {
 
 export function getCurrencyData(currency) {
     const url = 'https://api.fixer.io/latest?base=USD';
-    return dispatch => {
+    return (dispatch) => {
         return fetch(url)
             .then(
-                response => response.json(),
-                error => {
+                (response) => response.json(),
+                (error) => {
                     console.log('SOMETHING WENT WRONG: ', error);
                 },
             )
-            .then(json => {
+            .then((json) => {
                 const conversionRate = get(json, `rates${currency}`) || 1;
                 dispatch(setCurrencyData(conversionRate, currency));
             });
@@ -61,7 +61,7 @@ export const invalidServerError = () => {
 };
 
 export function setFullNode(fullNode) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({
             type: ActionTypes.SET_FULLNODE,
             payload: fullNode,
@@ -70,7 +70,7 @@ export function setFullNode(fullNode) {
 }
 
 export function addCustomPoWNode(customNode) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_POW_NODE,
             payload: customNode,
@@ -79,7 +79,7 @@ export function addCustomPoWNode(customNode) {
 }
 
 export function addCustomNode(customNode) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_NODE,
             payload: customNode,
@@ -88,7 +88,7 @@ export function addCustomNode(customNode) {
 }
 
 export function updateTheme(theme, themeName) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch({
             type: ActionTypes.UPDATE_THEME,
             theme,
