@@ -111,6 +111,7 @@ class NodeSelection extends Component {
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={node}
                             options={nodes}
+                            background
                         />
                     </View>
                     <View style={styles.bottomContainer}>
