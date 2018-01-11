@@ -91,7 +91,7 @@ class Balance extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     account: state.account,
     seed: getSelectedSeed(state),
     marketData: state.marketData,

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Lottie from 'react-lottie';
 
-import * as loading from 'animations/loading.json';
+import * as loading from 'animations/loading-white.json';
 import logo from 'images/iota.png';
 
 export default class Logo extends React.PureComponent {

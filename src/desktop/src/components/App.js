@@ -92,7 +92,7 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     settings: state.settings,
     app: state.app,
 });

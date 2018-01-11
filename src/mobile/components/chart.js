@@ -9,7 +9,7 @@ import GENERAL from '../theme/general';
 const chartWidth = width * 0.98;
 const chartHeight = height * 0.38;
 
-const getChartCurrencySymbol = currency => {
+const getChartCurrencySymbol = (currency) => {
     if (currency === 'BTC') {
         if (isAndroid) {
             return '฿';
@@ -81,7 +81,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.y;
             }),
         );
@@ -92,7 +92,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const minValue = Math.min(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.y;
             }),
         );
@@ -103,7 +103,7 @@ class Chart extends React.Component {
         const { marketData } = this.props;
         const data = marketData.chartData[marketData.currency][marketData.timeframe];
         const maxValue = Math.max(
-            ...data.map(object => {
+            ...data.map((object) => {
                 return object.x;
             }),
         );
@@ -144,7 +144,7 @@ class Chart extends React.Component {
                 <View style={styles.topContainer}>
                     <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
-                            onPress={event => this.changeCurrency()}
+                            onPress={(event) => this.changeCurrency()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -160,7 +160,7 @@ class Chart extends React.Component {
                     </View>
                     <View style={[styles.buttonContainer, borderColor]}>
                         <TouchableWithoutFeedback
-                            onPress={event => this.changeTimeframe()}
+                            onPress={(event) => this.changeTimeframe()}
                             hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             style={{ alignItems: 'flex-start' }}
                         >
@@ -204,7 +204,7 @@ class Chart extends React.Component {
                         />
                         <VictoryAxis
                             dependentAxis
-                            tickFormat={x => this.getPriceFormat(x)}
+                            tickFormat={(x) => this.getPriceFormat(x)}
                             style={{
                                 axis: { stroke: 'transparent' },
                                 tickLabels: {
