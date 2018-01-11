@@ -25,8 +25,10 @@ class UseExistingSeed extends React.Component {
         addAccount: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -80,6 +82,8 @@ class UseExistingSeed extends React.Component {
             backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
             onQRRead={data => this.onQRRead(data)}
             hideModal={() => this._hideModal()}
+            secondaryCtaColor={this.props.secondaryCtaColor}
+            ctaBorderColor={this.props.ctaBorderColor}
         />
     );
 
