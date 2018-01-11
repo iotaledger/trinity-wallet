@@ -108,6 +108,7 @@ class CurrencySelection extends Component {
                             options={currencies}
                             defaultOption={currency}
                             dropdownWidth={styles.dropdownWidth}
+                            background
                         />
                     </View>
                     <View style={styles.bottomContainer}>
