@@ -9,9 +9,10 @@ import { Keyboard } from 'react-native';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/util';
-import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import arrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right.png';
+import whiteCameraImagePath from 'iota-wallet-shared-modules/images/camera-white.png';
+import blackCameraImagePath from 'iota-wallet-shared-modules/images/camera-black.png';
+import blackArrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right-black.png';
+import whiteArrowRightImagePath from 'iota-wallet-shared-modules/images/arrow-right-white.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
@@ -23,6 +24,9 @@ class UseExistingSeed extends React.Component {
         seedCount: PropTypes.number.isRequired,
         addAccount: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        textColor: PropTypes.object.isRequired,
+        borderColor: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -92,8 +96,11 @@ class UseExistingSeed extends React.Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, textColor, borderColor, secondaryBackgroundColor, arrowLeftImagePath } = this.props;
         const { seed, accountName } = this.state;
+        const arrowRightImagePath =
+            secondaryBackgroundColor === 'white' ? whiteArrowRightImagePath : blackArrowRightImagePath;
+        const cameraImagePath = secondaryBackgroundColor === 'white' ? whiteCameraImagePath : blackCameraImagePath;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
@@ -102,18 +109,18 @@ class UseExistingSeed extends React.Component {
                         <View style={styles.seedContainer}>
                             <View style={{ flex: 0.5 }} />
                             <View style={styles.titleContainer}>
-                                <Text style={styles.title}>{t('useExistingSeed:title')}</Text>
+                                <Text style={[styles.title, textColor]}>{t('useExistingSeed:title')}</Text>
                             </View>
                             <View style={{ flex: 1 }} />
                             <View style={{ flexDirection: 'row', width: width / 1.4 }}>
                                 <View style={styles.textFieldContainer}>
                                     <TextField
-                                        style={styles.textField}
+                                        style={[styles.textField, textColor]}
                                         labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                         labelFontSize={width / 31.8}
                                         fontSize={width / 20.7}
                                         labelPadding={3}
-                                        baseColor="white"
+                                        baseColor={secondaryBackgroundColor}
                                         tintColor={THEMES.getHSL(this.props.negativeColor)}
                                         enablesReturnKeyAutomatically
                                         label="Seed"
@@ -126,28 +133,28 @@ class UseExistingSeed extends React.Component {
                                 </View>
                                 <View style={styles.qrButtonContainer}>
                                     <TouchableOpacity onPress={() => this.onQRPress()}>
-                                        <View style={styles.qrButton}>
+                                        <View style={[styles.qrButton, borderColor]}>
                                             <Image source={cameraImagePath} style={styles.qrImage} />
-                                            <Text style={styles.qrText}>{` ${t('global:qr')} `}</Text>
+                                            <Text style={[styles.qrText, textColor]}>{` ${t('global:qr')} `}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
                             </View>
                             <View style={{ flex: 1 }} />
-                            <View style={styles.checksum}>
-                                <Text style={styles.checksumText}>{this.getChecksumValue()}</Text>
+                            <View style={[styles.checksum, borderColor]}>
+                                <Text style={[styles.checksumText, textColor]}>{this.getChecksumValue()}</Text>
                             </View>
                         </View>
                         <View style={{ flex: 1 }} />
                         <View style={styles.accountNameContainer}>
                             <TextField
                                 ref="accountName"
-                                style={styles.textField}
+                                style={[styles.textField, textColor]}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={width / 31.8}
                                 fontSize={width / 20.7}
                                 labelPadding={3}
-                                baseColor="white"
+                                baseColor={secondaryBackgroundColor}
                                 tintColor={THEMES.getHSL(this.props.negativeColor)}
                                 enablesReturnKeyAutomatically
                                 label={t('addAdditionalSeed:accountName')}
@@ -163,7 +170,7 @@ class UseExistingSeed extends React.Component {
                         <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
@@ -171,7 +178,7 @@ class UseExistingSeed extends React.Component {
                             style={{ flex: 1 }}
                         >
                             <View style={styles.itemRight}>
-                                <Text style={styles.titleTextRight}>{t('global:doneLowercase')}</Text>
+                                <Text style={[styles.titleTextRight, textColor]}>{t('global:doneLowercase')}</Text>
                                 <Image source={arrowRightImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
@@ -228,7 +235,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 30,
     },
     title: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
@@ -251,14 +257,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderColor: 'white',
         borderWidth: 0.8,
         borderRadius: GENERAL.borderRadius,
         width: width / 6.5,
         height: height / 16,
     },
     qrText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
@@ -269,7 +273,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textField: {
-        color: 'white',
         fontFamily: 'Lato-Light',
     },
     qrButtonContainer: {
@@ -303,7 +306,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleTextLeft: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -313,7 +315,6 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleTextRight: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -323,14 +324,12 @@ const styles = StyleSheet.create({
         width: width / 8,
         height: height / 20,
         borderRadius: GENERAL.borderRadiusSmall,
-        borderColor: 'white',
         borderWidth: height / 1000,
         justifyContent: 'center',
         alignItems: 'center',
     },
     checksumText: {
         fontSize: width / 29.6,
-        color: 'white',
         fontFamily: 'Lato-Regular',
     },
 });

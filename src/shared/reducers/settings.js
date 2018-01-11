@@ -115,6 +115,12 @@ const initialState = {
             l: 0.7666666666666666,
             a: 1,
         },
+        secondaryBarColor: 'white',
+        secondaryBackgroundColor: 'white',
+        secondaryCtaColor: 'white',
+        ctaBorderColor: 'transparent',
+        pendingColor: '#f75602',
+        chartLineColor: '#FFA25B',
     },
 };
 
