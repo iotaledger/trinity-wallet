@@ -65,13 +65,13 @@ class SetPassword extends Component {
                         overrideBackPress: true,
                     });
                 })
-                .catch(err => console.error(err));
+                .catch((err) => console.error(err));
         };
 
         if (this.state.password.length >= MIN_PASSWORD_LENGTH && this.state.password === this.state.reentry) {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     if (isEmpty(credentials)) {
                         return ifNoKeychainDuplicates(
                             this.state.password,
@@ -168,7 +168,7 @@ class SetPassword extends Component {
                                     enablesReturnKeyAutomatically={true}
                                     returnKeyType="next"
                                     value={password}
-                                    onChangeText={password => this.setState({ password })}
+                                    onChangeText={(password) => this.setState({ password })}
                                     onSubmitEditing={() => this.reentry.focus()}
                                     containerStyle={{
                                         width: width / 1.4,
@@ -176,7 +176,7 @@ class SetPassword extends Component {
                                     secureTextEntry={true}
                                 />
                                 <TextField
-                                    ref={c => {
+                                    ref={(c) => {
                                         this.reentry = c;
                                     }}
                                     style={{ color: 'white', fontFamily: 'Lato-Light' }}
@@ -192,7 +192,7 @@ class SetPassword extends Component {
                                     enablesReturnKeyAutomatically={true}
                                     returnKeyType="done"
                                     value={reentry}
-                                    onChangeText={reentry => this.setState({ reentry })}
+                                    onChangeText={(reentry) => this.setState({ reentry })}
                                     containerStyle={{ width: width / 1.4 }}
                                     secureTextEntry={true}
                                     onSubmitEditing={() => this.onDonePress()}
@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 

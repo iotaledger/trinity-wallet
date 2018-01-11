@@ -44,13 +44,13 @@ class SaveYourSeedOptions extends PureComponent {
                                 {t('saveYourSeed:ofTheOptions')}
                             </p>
                             <nav>
-                                <Button onClick={e => this.changeType(e, 'manual')} variant="extra">
+                                <Button onClick={(e) => this.changeType(e, 'manual')} variant="extra">
                                     {t('global:manualCopy')}
                                 </Button>
-                                <Button onClick={e => this.changeType(e, 'paper')} variant="extra">
+                                <Button onClick={(e) => this.changeType(e, 'paper')} variant="extra">
                                     {t('global:paperWallet')}
                                 </Button>
-                                <Button onClick={e => this.changeType(e, 'clipboard')} variant="extra">
+                                <Button onClick={(e) => this.changeType(e, 'clipboard')} variant="extra">
                                     {t('copyToClipboard:copyToClipboard')}
                                 </Button>
                             </nav>
@@ -80,7 +80,7 @@ class SaveYourSeedOptions extends PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     seed: getSelectedSeed(state).seed,
 });
 
