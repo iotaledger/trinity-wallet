@@ -39,13 +39,13 @@ class History extends Component {
     }
 
     copyBundleHash(item) {
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
         Clipboard.setString(item);
         generateAlert('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
     }
 
     copyAddress(item) {
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
         Clipboard.setString(item);
         generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
