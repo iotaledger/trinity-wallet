@@ -17,12 +17,12 @@ class OnboardingButtons extends Component {
 
         return (
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity onPress={event => this.props.onLeftButtonPress()}>
+                <TouchableOpacity onPress={(event) => this.props.onLeftButtonPress()}>
                     <View style={[styles.leftButton, negativeBorderColor]}>
                         <Text style={[styles.leftText, negativeTextColor]}>{this.props.leftText}</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={event => this.props.onRightButtonPress()}>
+                <TouchableOpacity onPress={(event) => this.props.onRightButtonPress()}>
                     <View style={[styles.rightButton, positiveBorderColor]}>
                         <Text style={[styles.rightText, positiveTextColor]}>{this.props.rightText}</Text>
                     </View>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
