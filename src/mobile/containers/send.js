@@ -13,7 +13,6 @@ import {
     Image,
     TouchableOpacity,
     ListView,
-    StatusBar,
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
@@ -422,7 +421,6 @@ class Send extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <StatusBar barStyle="light-content" />
                     <View style={styles.emptyContainer} />
                     <View style={styles.topContainer}>
                         <View style={styles.fieldContainer}>
