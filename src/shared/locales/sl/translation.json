@@ -7,17 +7,16 @@
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "Nimate dovolj IOTA za dokončanje tega prenosa.",
-        "transferError": "Transfer error",
+        "transferError": "Napaka pri prenosu",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
+        "transferSent": "Prenos uspešen",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
         "keyReuse": "Ponovna uporaba ključa",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Neveljaven odziv",
         "invalidResponseExplanation": "Vozlišče je vrnilo neveljaven odziv.",
         "invalidResponsePollingExplanation": "Vozlišče ke vrnilo neveljaven odziv med pozivanjem.",
-        "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Generirano število",
         "back": "NAZAJ",
@@ -26,9 +25,9 @@
         "doneLowercase": "Done",
         "next": "NAPREJ",
         "apply": "Apply",
-        "save": "Save",
+        "save": "Shrani",
         "close": "Zapri",
-        "continue": "Continue",
+        "continue": "Nadaljuj",
         "manualCopy": "Zapišite generirano vrednost",
         "paperWallet": "Natisnite kopijo",
         "copyToClipboard": "Dodajte v upravitelja gesel",
@@ -59,11 +58,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
-        "seedInvalidCharsExplanation":
-            "Generirana vrednost lahko vsebuje samo črke od A-Z in številko 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite ponovno.",
+        "seedInvalidCharsExplanation": "Generirana vrednost lahko vsebuje samo črke od A-Z in številko 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite ponovno.",
         "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation":
-            "Generirana vrednost mora biti {{maxLenght}} znakov dolga. Vaša generirana vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite znova.",
+        "seedTooShortExplanation": "Generirana vrednost mora biti {{maxLenght}} znakov dolga. Vaša generirana vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite znova.",
         "nameInUse": "Ime računa je že v uporabi",
         "nameInUseExplanation": "Prosimo vnesite edinstveno ime računa za pridobitev generirane vrednosti.",
         "enterAccountName": "Vnesite ime računa.",
@@ -75,8 +72,7 @@
     },
     "changePassword": {
         "oops": "Oops! Nekaj je šlo narobe",
-        "oopsExplanation":
-            "Izgleda kot da je nekaj šlo narobe pri posodabljanju vašega gesla. Prosimo poskusite ponovno.",
+        "oopsExplanation": "Izgleda kot da je nekaj šlo narobe pri posodabljanju vašega gesla. Prosimo poskusite ponovno.",
         "passwordUpdated": "Geslo posodobljeno",
         "passwordUpdatedExplanation": "Vaše geslo je bilo uspešno posodobljeno.",
         "incorrectPassword": "Napačno geslo",
@@ -86,8 +82,7 @@
         "passwordTooShort": "Geslo je prekratko",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Ni mogoče nastavite starega gesla",
-        "oldPasswordExplanation":
-            "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
+        "oldPasswordExplanation": "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
         "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
         "currentPassword": "Trenutno Geslo",
         "newPassword": "Novo Geslo",
@@ -104,13 +99,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Generirana vrednost vsebuje beveljavne znake",
-        "invalidCharactersExplanation":
-            "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
+        "invalidCharactersExplanation": "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
         "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation":
-            "Generirano vrednost mora biti {{maxLenght}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite ponovno.",
-        "seedExplanation":
-            "Generirana vrednost mora biti {{maxLenght}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLenght}}.",
+        "seedTooShortExplanation": "Generirano vrednost mora biti {{maxLenght}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLenght}} znakov dolga. Prosimo poskusite ponovno.",
+        "seedExplanation": "Generirana vrednost mora biti {{maxLenght}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLenght}}.",
         "neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
     },
     "home": {
@@ -143,8 +135,7 @@
         "individualLetters": "Pritisnite posamezne znake za jih ponaključit."
     },
     "onboardingComplete": {
-        "walletReady":
-            "Denarnica je nastavljena in pripravljena za uporabo. Če želite boste v prihodnosti želeleli kaj spreminjati poglejte v meni za nastavitve."
+        "walletReady": "Denarnica je nastavljena in pripravljena za uporabo. Če želite boste v prihodnosti želeleli kaj spreminjati poglejte v meni za nastavitve."
     },
     "paperWallet": {
         "clickToPrint": "Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
@@ -194,19 +185,16 @@
     },
     "setPassword": {
         "passwordTooShort": "Geslo je prekratko",
-        "passwordTooShortExplanation":
-            "Vaše geslo mora biti vsaj {{minLenght}} znakov dolgo. Vaše trenutno geslo je {{currentLenght}} znakov dolgo. Prosimo poskusite ponovno.",
+        "passwordTooShortExplanation": "Vaše geslo mora biti vsaj {{minLenght}} znakov dolgo. Vaše trenutno geslo je {{currentLenght}} znakov dolgo. Prosimo poskusite ponovno.",
         "passwordMismatch": "Gesli se ne ujemata",
         "passwordMismatchExplanation": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
         "nowWeNeedTo": "Ok, zdaj moramo nastaviti geslo.",
-        "anEncryptedCopy":
-            "Šifrirana kopija vaše generirane vrednosti bo shranjena v napravi. Uporabite geslo za dostop do vaše denarnice v prihodnosti.",
+        "anEncryptedCopy": "Šifrirana kopija vaše generirane vrednosti bo shranjena v napravi. Uporabite geslo za dostop do vaše denarnice v prihodnosti.",
         "ensure": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
         "retypePassword": "Ponovno vnesite geslo"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
+        "canUseMultipleSeeds": "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
         "youCanAdd": "Dodate lahko več generiranih vrednosti v meniju za nastavitve."
     },
     "settings": {
@@ -267,8 +255,7 @@
         "reminder": "Mogoče vas bo zamikalo, da preskočite nekaj korakov, vendar vas pozivamo, da dokončaste proces."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "tri krat preveri",
         "thatTheyAreCorrect": "da so pravilni."
     },
