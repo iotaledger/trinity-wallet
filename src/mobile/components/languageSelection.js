@@ -112,6 +112,7 @@ class LanguageSelection extends Component {
                             saveSelection={language => {
                                 this.languageSelected = language;
                             }}
+                            background
                         />
                     </View>
                     <View style={styles.bottomContainer}>
