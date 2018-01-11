@@ -11,7 +11,23 @@ export const ActionTypes = {
     SET_LANGUAGE: 'IOTA/SETTINGS/SET_LANGUAGE',
     SET_CURRENCY_DATA: 'IOTA/SETTINGS/SET_CURRENCY',
     UPDATE_THEME: 'IOTA/SETTINGS/UPDATE_THEME',
+    CURRENCY_DATA_FETCH_REQUEST: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_REQUEST',
+    CURRENCY_DATA_FETCH_SUCCESS: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_SUCCESS',
+    CURRENCY_DATA_FETCH_ERROR: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_ERROR',
 };
+
+const currencyDataFetchRequest = () => ({
+    type: ActionTypes.CURRENCY_DATA_FETCH_REQUEST,
+});
+
+const currencyDataFetchSuccess = payload => ({
+    type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
+    payload,
+});
+
+const currencyDataFetchError = () => ({
+    type: ActionTypes.CURRENCY_DATA_FETCH_ERROR,
+});
 
 export function setLocale(locale) {
     return {
@@ -20,27 +36,27 @@ export function setLocale(locale) {
     };
 }
 
-export function setCurrencyData(conversionRate, currency) {
-    return {
-        type: ActionTypes.SET_CURRENCY_DATA,
-        currency,
-        conversionRate,
-    };
-}
-
 export function getCurrencyData(currency) {
     const url = 'https://api.fixer.io/latest?base=USD';
     return dispatch => {
+        dispatch(currencyDataFetchRequest());
+
         return fetch(url)
             .then(
                 response => response.json(),
                 error => {
-                    console.log('SOMETHING WENT WRONG: ', error);
+                    console.error(error);
+                    dispatch(currencyDataFetchError());
                 },
             )
             .then(json => {
                 const conversionRate = get(json, `rates${currency}`) || 1;
-                dispatch(setCurrencyData(conversionRate, currency));
+                dispatch(
+                    currencyDataFetchSuccess({
+                        conversionRate,
+                        currency,
+                    }),
+                );
             });
     };
 }

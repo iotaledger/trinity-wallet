@@ -1,20 +1,22 @@
-import { ActionTypes } from '../actions/alerts.js';
+import { ActionTypes as SettingsActionTypes } from '../actions/settings';
 
 const initialState = {
-    isFetchingCurrencyInfo: false,
+    isFetchingCurrencyData: false,
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.SHOW:
+        case SettingsActionTypes.CURRENCY_DATA_FETCH_REQUEST:
             return {
                 ...state,
-                category: action.category,
-                title: action.title,
-                message: action.message,
+                isFetchingCurrencyData: true,
             };
-        case ActionTypes.HIDE:
-            return initialState;
+        case SettingsActionTypes.CURRENCY_DATA_FETCH_SUCCESS:
+        case SettingsActionTypes.CURRENCY_DATA_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingCurrencyData: false,
+            };
         default:
             return state;
     }
