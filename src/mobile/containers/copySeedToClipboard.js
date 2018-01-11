@@ -99,7 +99,7 @@ class CopySeedToClipboard extends Component {
                         textColor={textColor}
                         seed={this.props.tempAccount.seed}
                     />
-                    <TouchableOpacity onPress={event => this.onCopyPress()} style={{ marginTop: height / 22 }}>
+                    <TouchableOpacity onPress={(event) => this.onCopyPress()} style={{ marginTop: height / 22 }}>
                         <View
                             style={[
                                 styles.copyButton,
@@ -111,7 +111,7 @@ class CopySeedToClipboard extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={event => this.onDonePress()}>
+                    <TouchableOpacity onPress={(event) => this.onDonePress()}>
                         <View style={[styles.doneButton, { borderColor: THEMES.getHSL(positiveColor) }]}>
                             <Text style={[styles.doneText, { color: THEMES.getHSL(positiveColor) }]}>
                                 {t('global:done')}
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
