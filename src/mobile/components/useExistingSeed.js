@@ -78,7 +78,7 @@ class UseExistingSeed extends React.Component {
         <QRScanner
             ctaColor={THEMES.getHSL(this.props.ctaColor)}
             backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
-            onQRRead={data => this.onQRRead(data)}
+            onQRRead={(data) => this.onQRRead(data)}
             hideModal={() => this._hideModal()}
         />
     );
@@ -127,7 +127,7 @@ class UseExistingSeed extends React.Component {
                                         autoCorrect={false}
                                         value={seed}
                                         maxLength={MAX_SEED_LENGTH}
-                                        onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
+                                        onChangeText={(seed) => this.setState({ seed: seed.toUpperCase() })}
                                         onSubmitEditing={() => this.refs.accountName.focus()}
                                     />
                                 </View>
@@ -162,19 +162,19 @@ class UseExistingSeed extends React.Component {
                                 autoCorrect={false}
                                 value={accountName}
                                 containerStyle={{ width: width / 1.4 }}
-                                onChangeText={accountName => this.setState({ accountName })}
+                                onChangeText={(accountName) => this.setState({ accountName })}
                             />
                         </View>
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
+                        <TouchableOpacity onPress={(event) => this.props.backPress()} style={{ flex: 1 }}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={event => this.props.addAccount(seed, trim(accountName))}
+                            onPress={(event) => this.props.addAccount(seed, trim(accountName))}
                             style={{ flex: 1 }}
                         >
                             <View style={styles.itemRight}>

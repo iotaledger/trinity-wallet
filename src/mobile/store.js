@@ -8,5 +8,5 @@ export const persistor = persistState(
         storage: AsyncStorage,
         blacklist: ['tempAccount', 'keychain', 'polling'],
     },
-    persistedState => initializeApp(persistedState),
+    (persistedState) => initializeApp(persistedState),
 );

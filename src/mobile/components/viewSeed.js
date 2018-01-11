@@ -41,7 +41,7 @@ class ViewSeed extends Component {
         if (this.state.password === this.props.password) {
             keychain
                 .get()
-                .then(credentials => {
+                .then((credentials) => {
                     const data = get(credentials, 'data');
 
                     if (!data) {
@@ -52,7 +52,7 @@ class ViewSeed extends Component {
                         this.setState({ showSeed: true });
                     }
                 })
-                .catch(err => console.log(err));
+                .catch((err) => console.log(err));
         } else {
             this.props.onWrongPassword();
         }
@@ -66,7 +66,7 @@ class ViewSeed extends Component {
         AppState.removeEventListener('change', this._handleAppStateChange);
     }
 
-    _handleAppStateChange = nextAppState => {
+    _handleAppStateChange = (nextAppState) => {
         if (nextAppState.match(/inactive|background/)) {
             this.hideSeed();
         }
@@ -108,7 +108,7 @@ class ViewSeed extends Component {
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
                                     value={this.state.password}
-                                    onChangeText={password => this.setState({ password })}
+                                    onChangeText={(password) => this.setState({ password })}
                                     containerStyle={{
                                         width: width / 1.4,
                                     }}
@@ -158,7 +158,7 @@ class ViewSeed extends Component {
                         )}
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.props.backPress()}>
+                        <TouchableOpacity onPress={(event) => this.props.backPress()}>
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
