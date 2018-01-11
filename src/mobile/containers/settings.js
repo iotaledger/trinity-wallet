@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
 class Settings extends Component {
     static propTypes = {
         isFetchingCurrencyData: PropTypes.bool.isRequired,
+        hasErrorFetchingCurrencyData: PropTypes.bool.isRequired,
         navigator: PropTypes.object.isRequired,
         accountInfo: PropTypes.object.isRequired,
         selectedAccount: PropTypes.object.isRequired,
@@ -369,6 +370,7 @@ class Settings extends Component {
                 secondaryBackgroundColor,
                 negativeColor,
                 isFetchingCurrencyData: this.props.isFetchingCurrencyData,
+                hasErrorFetchingCurrencyData: this.props.hasErrorFetchingCurrencyData,
                 tickImagePath,
                 arrowLeftImagePath,
             },
@@ -818,6 +820,7 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
     isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
+    hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(
