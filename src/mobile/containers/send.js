@@ -73,6 +73,7 @@ class Send extends Component {
         negativeColor: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -283,6 +284,8 @@ class Send extends Component {
                         hideModal={() => this._hideModal()}
                         backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
                         ctaColor={THEMES.getHSL(this.props.ctaColor)}
+                        secondaryCtaColor={this.props.secondaryCtaColor}
+                        ctaBorderColor={this.props.ctaBorderColor}
                     />
                 );
                 this.setState({
