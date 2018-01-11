@@ -171,7 +171,11 @@ class UseExistingSeed extends React.Component {
                         </View>
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
+                        <TouchableOpacity
+                            onPress={event => this.props.backPress()}
+                            style={{ flex: 1 }}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
@@ -179,6 +183,7 @@ class UseExistingSeed extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={event => this.props.addAccount(seed, trim(accountName))}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                             style={{ flex: 1 }}
                         >
                             <View style={styles.itemRight}>
