@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
 export class Dropdown extends Component {
     static propTypes = {
         onRef: PropTypes.func,
+        disableWhen: PropTypes.bool,
     };
 
     constructor(props) {
@@ -163,9 +164,8 @@ export class Dropdown extends Component {
             title,
             dropdownWidth,
             background,
-            shadow,
             negativeColor,
-            barColor,
+            disableWhen,
             secondaryBackgroundColor,
         } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
@@ -189,7 +189,13 @@ export class Dropdown extends Component {
                     {title}
                 </Text>
                 <View style={styles.dropdownButtonContainer}>
-                    <TouchableWithoutFeedback onPress={() => this.onDropdownTitlePress()}>
+                    <TouchableWithoutFeedback
+                        onPress={() => {
+                            if (!disableWhen) {
+                                this.onDropdownTitlePress();
+                            }
+                        }}
+                    >
                         <View
                             style={[
                                 styles.dropdownButton,
