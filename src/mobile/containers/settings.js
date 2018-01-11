@@ -169,11 +169,13 @@ class Settings extends Component {
         backgroundColor: PropTypes.object.isRequired,
         barColor: PropTypes.object.isRequired,
         ctaColor: PropTypes.object.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
         positiveColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         extraColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -204,6 +206,8 @@ class Settings extends Component {
             barColor,
             backgroundColor,
             extraColor,
+            ctaBorderColor,
+            secondaryCtaColor,
         } = this.props;
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -329,6 +333,8 @@ class Settings extends Component {
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 borderColor: { borderColor: secondaryBackgroundColor },
                 arrowLeftImagePath,
+                ctaBorderColor: ctaBorderColor,
+                secondaryCtaColor: secondaryCtaColor,
             },
             nodeSelection: {
                 setNode: selectedNode => {
@@ -813,11 +819,13 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     barColor: state.settings.theme.barColor,
     ctaColor: state.settings.theme.ctaColor,
+    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
     extraColor: state.settings.theme.extraColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
+    ctaBorderColor: state.settings.theme.ctaBorderColor,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(
