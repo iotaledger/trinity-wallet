@@ -10,25 +10,21 @@ import { width, height } from '../util/dimensions';
 class OnboardingButtons extends Component {
     render() {
         const { style, positiveColor, negativeColor } = this.props;
-        const positiveColorText = { color: THEMES.getHSL(positiveColor) };
-        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
-        const negativeColorText = { color: THEMES.getHSL(negativeColor) };
-        const negativeColorBorder = { borderColor: THEMES.getHSL(negativeColor) };
+        const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
+        const positiveBorderColor = { borderColor: THEMES.getHSL(positiveColor) };
+        const negativeTextColor = { color: THEMES.getHSL(negativeColor) };
+        const negativeBorderColor = { borderColor: THEMES.getHSL(negativeColor) };
 
         return (
             <View style={styles.buttonsContainer}>
                 <TouchableOpacity onPress={event => this.props.onLeftButtonPress()}>
-                    <View style={[styles.leftButton, get(style, 'leftButton'), negativeColorBorder]}>
-                        <Text style={[styles.leftText, get(style, 'leftText'), negativeColorText]}>
-                            {this.props.leftText}
-                        </Text>
+                    <View style={[styles.leftButton, negativeBorderColor]}>
+                        <Text style={[styles.leftText, negativeTextColor]}>{this.props.leftText}</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={event => this.props.onRightButtonPress()}>
-                    <View style={[styles.rightButton, positiveColorBorder, get(style, 'rightButton')]}>
-                        <Text style={[styles.rightText, positiveColorText, get(style, 'rightText')]}>
-                            {this.props.rightText}
-                        </Text>
+                    <View style={[styles.rightButton, positiveBorderColor]}>
+                        <Text style={[styles.rightText, positiveTextColor]}>{this.props.rightText}</Text>
                     </View>
                 </TouchableOpacity>
             </View>

@@ -13,6 +13,8 @@ describe('Reducer: account', () => {
             unconfirmedBundleTails: {},
             unspentAddressesHashes: {},
             pendingTxTailsHashes: {},
+            is2FAEnabled: false,
+            key2FA: '',
         };
 
         expect(reducer(undefined, {})).to.eql(initialState);

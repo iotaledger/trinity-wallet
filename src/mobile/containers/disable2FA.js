@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import keychain from '../util/keychain';
+import { set2FAKey, set2FAStatus } from 'iota-wallet-shared-modules/actions/account';
 import { resetWallet } from 'iota-wallet-shared-modules/actions/app';
 import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { persistor } from '../store';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
 import THEMES from '../theme/themes';
@@ -23,19 +22,13 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 
 import { width, height } from '../util/dimensions';
 
-class WalletResetRequirePassword extends Component {
+class Disable2FA extends Component {
     static propTypes = {
-        password: PropTypes.string.isRequired,
-        navigator: PropTypes.object.isRequired,
-        resetWallet: PropTypes.func.isRequired,
-        setFirstUse: PropTypes.func.isRequired,
-        setOnboardingComplete: PropTypes.func.isRequired,
-        clearTempData: PropTypes.func.isRequired,
-        setPassword: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
-        secondaryBackgroundColor: PropTypes.string.isRequired,
+        set2FAStatus: PropTypes.func.isRequired,
+        set2FAKey: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -46,20 +39,22 @@ class WalletResetRequirePassword extends Component {
         };
 
         this.goBack = this.goBack.bind(this);
-        this.resetWallet = this.resetWallet.bind(this);
+        this.disable2FA = this.disable2FA.bind(this);
     }
 
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', () => {
-            this.goBack();
-            return true;
-        });
-    }
+    disable2FA() {
+        this.props.set2FAStatus(false);
+        this.props.set2FAKey('');
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress');
+        this.goBack();
+        this.timeout = setTimeout(() => {
+            this.props.generateAlert(
+                'success',
+                '2FA is now disabled',
+                'You have succesfully disabled Two Factor Authentication.',
+            );
+        }, 300);
     }
-
     goBack() {
         // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
         Navigation.startSingleScreenApp({
@@ -71,70 +66,13 @@ class WalletResetRequirePassword extends Component {
                     screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 },
             },
-            appStyle: {
-                orientation: 'portrait',
-            },
         });
-    }
-
-    isAuthenticated() {
-        return this.props.password === this.state.password;
-    }
-
-    redirectToInitialScreen() {
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'welcome',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
-                },
-                overrideBackPress: true,
-            },
-            appStyle: {
-                orientation: 'portrait',
-            },
-        });
-    }
-
-    resetWallet() {
-        const isAuthenticated = this.isAuthenticated();
-        const { t } = this.props;
-
-        if (isAuthenticated) {
-            persistor
-                .purge()
-                .then(() => keychain.clear())
-                .then(() => {
-                    this.redirectToInitialScreen();
-                    this.props.setOnboardingComplete(false);
-                    this.props.setFirstUse(true);
-                    this.props.clearTempData();
-                    this.props.setPassword('');
-                    this.props.resetWallet();
-                })
-                .catch(error => {
-                    this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongExplanation'),
-                    );
-                });
-        } else {
-            this.props.generateAlert(
-                'error',
-                t('global:unrecognisedPassword'),
-                t('global:unrecognisedPasswordExplanation'),
-            );
-        }
     }
 
     render() {
         const { t, negativeColor, secondaryBackgroundColor } = this.props;
-        const textColor = { color: secondaryBackgroundColor };
-
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+        const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         const onboardingButtonsOverride = {
@@ -162,7 +100,7 @@ class WalletResetRequirePassword extends Component {
                             <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midWrapper}>
-                            <Text style={[styles.generalText, textColor]}>{t('enterPassword')}</Text>
+                            <Text style={[styles.generalText, textColor]}>Enter your token to disable 2FA</Text>
                             <TextField
                                 style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
@@ -170,7 +108,7 @@ class WalletResetRequirePassword extends Component {
                                 fontSize={width / 20.7}
                                 labelPadding={3}
                                 baseColor={secondaryBackgroundColor}
-                                label={t('global:password')}
+                                label="Token"
                                 tintColor={THEMES.getHSL(negativeColor)}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
@@ -181,16 +119,15 @@ class WalletResetRequirePassword extends Component {
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
-                                secureTextEntry
                             />
                         </View>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 style={onboardingButtonsOverride}
                                 onLeftButtonPress={this.goBack}
-                                onRightButtonPress={this.resetWallet}
+                                onRightButtonPress={this.disable2FA}
                                 leftText={t('cancel')}
-                                rightText={t('reset')}
+                                rightText="DONE"
                             />
                         </View>
                     </View>
@@ -230,14 +167,18 @@ const styles = StyleSheet.create({
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
     },
+    questionText: {
+        fontFamily: Fonts.secondary,
+        fontSize: width / 20.25,
+        textAlign: 'center',
+        paddingLeft: width / 7,
+        paddingRight: width / 7,
+        paddingTop: height / 25,
+        backgroundColor: 'transparent',
+    },
     iotaLogo: {
         height: width / 7,
         width: width / 7,
-    },
-    buttonsContainer: {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        flexDirection: 'row',
     },
 });
 
@@ -245,6 +186,7 @@ const mapStateToProps = state => ({
     password: state.tempAccount.password,
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
+    key2FA: state.account.key2FA,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
@@ -255,8 +197,10 @@ const mapDispatchToProps = {
     clearTempData,
     setPassword,
     generateAlert,
+    set2FAKey,
+    set2FAStatus,
 };
 
 export default translate(['resetWalletRequirePassword', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(WalletResetRequirePassword),
+    connect(mapStateToProps, mapDispatchToProps)(Disable2FA),
 );
