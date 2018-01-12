@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { generateAlert } from './alerts';
 import { showError } from './notifications';
 
 export const ActionTypes = {
@@ -36,7 +37,7 @@ export function setLocale(locale) {
     };
 }
 
-export function getCurrencyData(currency) {
+export function getCurrencyData(currency, withAlerts = false) {
     const url = 'https://api.fixer.io/latest?base=USD';
     return dispatch => {
         dispatch(currencyDataFetchRequest());
@@ -45,8 +46,17 @@ export function getCurrencyData(currency) {
             .then(
                 response => response.json(),
                 error => {
-                    console.error(error);
                     dispatch(currencyDataFetchError());
+
+                    if (withAlerts) {
+                        dispatch(
+                            generateAlert(
+                                'error',
+                                'Could not fetch',
+                                `Something went wrong while fetching conversion rates for ${currency}.`,
+                            ),
+                        );
+                    }
                 },
             )
             .then(json => {
@@ -57,6 +67,16 @@ export function getCurrencyData(currency) {
                         currency,
                     }),
                 );
+
+                if (withAlerts) {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            'Conversion rates',
+                            `Successfully fetched latest conversion rates for ${currency}.`,
+                        ),
+                    );
+                }
             });
     };
 }

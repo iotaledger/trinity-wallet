@@ -135,7 +135,7 @@ class CurrencySelection extends Component {
         const props = this.props;
 
         return (
-            <TouchableOpacity onPress={() => props.getCurrencyData(this.dropdown.getSelected())}>
+            <TouchableOpacity onPress={() => props.getCurrencyData(this.dropdown.getSelected(), true)}>
                 <View style={styles.itemRight}>
                     <Text style={[styles.titleTextRight, { color: props.secondaryBackgroundColor }]}>
                         {props.t('global:save')}
