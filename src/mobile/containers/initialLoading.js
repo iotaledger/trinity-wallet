@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Image, Text, StatusBar } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import LottieView from 'lottie-react-native';
-
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import whiteWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-white.json';
+import blackWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-black.json';
 import keychain from '../util/keychain';
 import { width, height } from '../util/dimensions';
 import { isIOS } from '../util/device';
@@ -21,6 +23,7 @@ class InitialLoading extends Component {
         navigator: PropTypes.object.isRequired,
         onboardingComplete: PropTypes.bool.isRequired,
         backgroundColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -66,23 +69,27 @@ class InitialLoading extends Component {
     }
 
     render() {
-        const { backgroundColor } = this.props;
+        const { backgroundColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+        const welcomeAnimationPath =
+            secondaryBackgroundColor === 'white' ? whiteWelcomeAnimation : blackWelcomeAnimation;
+
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.logoContainer}>
                     <View style={styles.animationContainer}>
                         <LottieView
                             ref={animation => {
                                 this.animation = animation;
                             }}
-                            source={require('../animations/welcome.json')}
+                            source={welcomeAnimationPath}
                             style={styles.animation}
                         />
                     </View>
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>IOTA Alpha Wallet {FULL_VERSION}</Text>
+                    <Text style={[styles.text, textColor]}>IOTA Alpha Wallet {FULL_VERSION}</Text>
                 </View>
             </View>
         );
@@ -103,7 +110,6 @@ const styles = StyleSheet.create({
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'Lato-Regular',
-        color: 'white',
         fontSize: width / 33.75,
     },
     textContainer: {
@@ -127,6 +133,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
     onboardingComplete: state.account.onboardingComplete,
     backgroundColor: state.settings.theme.backgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 export default connect(mapStateToProps, null)(InitialLoading);
