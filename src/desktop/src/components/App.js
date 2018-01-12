@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,30 +14,11 @@ import Alerts from 'components/UI/Alerts';
 
 import './App.css';
 
-// should be used later:
-
-// class ErrorBoundary extends React.Component {
-//     static propTypes = {
-//         children: PropTypes.node,
-//     };
-//
-//     state = {};
-//
-//     componentDidCatch(error) {
-//         this.setState(() => ({
-//             error,
-//         }));
-//     }
-//     render() {
-//         if (this.state.error) {
-//             return <p>{this.state.error.message}</p>;
-//         }
-//         return this.props.children;
-//     }
-// }
-
 class App extends React.Component {
     static propTypes = {
+        history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+        }).isRequired,
         settings: PropTypes.shape({
             locale: PropTypes.string.isRequired,
             fullNode: PropTypes.string.isRequired,
@@ -62,9 +44,32 @@ class App extends React.Component {
         });
     }
 
+    componentDidMount() {
+        this.onMenuToggle = this.menuToggle.bind(this);
+        Electron.onEvent('menu', this.onMenuToggle);
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.settings.locale !== this.props.settings.locale) {
             i18next.changeLanguage(nextProps.settings.locale);
+        }
+    }
+
+    componentWillUnmount() {
+        Electron.removeEvent('menu', this.onMenuToggle);
+    }
+
+    menuToggle(item) {
+        switch (item) {
+            case 'send':
+                this.props.history.push('/send');
+                break;
+            case 'receive':
+                this.props.history.push('/receive');
+                break;
+            case 'history':
+                this.props.history.push('/history');
+                break;
         }
     }
 
