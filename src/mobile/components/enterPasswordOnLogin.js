@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, Keyboard } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
 import OnboardingButtons from '../components/onboardingButtons';
 
@@ -13,7 +15,7 @@ const styles = StyleSheet.create({
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midContainer: {
         flex: 4.8,
@@ -30,27 +32,25 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 15,
+        paddingTop: height / 8,
     },
     title: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     iotaLogo: {
-        height: width / 5,
-        width: width / 5,
+        height: width / 7,
+        width: width / 7,
     },
     loginButton: {
         borderWidth: 1.2,
-        borderRadius: 10,
+        borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 20,
     },
     loginText: {
         fontFamily: 'Lato-Light',
@@ -79,29 +79,28 @@ class EnterPasswordOnLogin extends Component {
 
     render() {
         const { password } = this.state;
-        const { t, positiveColor } = this.props;
-        const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
-        const textColor = { color: THEMES.getHSL(positiveColor) };
+        const { t, textColor, secondaryBackgroundColor, negativeColor } = this.props;
+        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View>
                     <View style={styles.topContainer}>
-                        <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                        <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                         <View style={styles.titleContainer}>
-                            <Text style={styles.title}>{t('enterPassword')}</Text>
+                            <Text style={[styles.title, textColor]}>{t('enterPassword')}</Text>
                         </View>
                     </View>
                     <View style={styles.midContainer}>
                         <TextField
-                            style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                            style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                             labelTextStyle={{ fontFamily: 'Lato-Light' }}
                             labelFontSize={width / 31.8}
                             fontSize={width / 20.7}
                             labelPadding={3}
-                            baseColor="white"
+                            baseColor={secondaryBackgroundColor}
                             label={t('global:password')}
-                            tintColor={THEMES.getHSL(this.props.negativeColor)}
+                            tintColor={THEMES.getHSL(negativeColor)}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -132,7 +131,10 @@ class EnterPasswordOnLogin extends Component {
 EnterPasswordOnLogin.propTypes = {
     onLoginPress: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    positiveColor: PropTypes.object.isRequired,
+    textColor: PropTypes.object.isRequired,
+    secondaryBackgroundColor: PropTypes.string.isRequired,
+    negativeColor: PropTypes.object.isRequired,
+    navigateToNodeSelection: PropTypes.func.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPasswordOnLogin);

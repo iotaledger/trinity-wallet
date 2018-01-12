@@ -12,9 +12,8 @@ import {
 import tinycolor from 'tinycolor2';
 import { width, height } from '../util/dimensions';
 import Dropdown from '../components/dropdown';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
-import chevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down.png';
+import blackChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-black.png';
+import whiteChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-white.png';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 import Triangle from 'react-native-triangle';
@@ -42,7 +41,21 @@ class ThemeCustomisation extends React.Component {
 
     render() {
         const { themes, theme, themeName } = this.state;
-        const { backgroundColor, barColor, ctaColor, positiveColor, negativeColor, extraColor } = this.state.theme;
+        const {
+            backgroundColor,
+            barColor,
+            ctaColor,
+            positiveColor,
+            negativeColor,
+            extraColor,
+            secondaryBackgroundColor,
+            secondaryCtaColor,
+            ctaBorderColor,
+        } = this.state.theme;
+        const { arrowLeftImagePath, tickImagePath } = this.props;
+        const chevronDownImagePath =
+            secondaryBackgroundColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
+
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
@@ -79,12 +92,19 @@ class ThemeCustomisation extends React.Component {
                                 styles.demoContainer,
                                 {
                                     backgroundColor: THEMES.getHSL(backgroundColor),
-                                    shadowColor: THEMES.getHSL(barColor),
+                                    shadowColor: 'black',
+                                    borderColor: secondaryBackgroundColor,
                                 },
                             ]}
                         >
                             <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: height / 44 }}>
-                                <Text style={{ fontFamily: 'Lato-Regular', fontSize: width / 29.6, color: 'white' }}>
+                                <Text
+                                    style={{
+                                        fontFamily: 'Lato-Regular',
+                                        fontSize: width / 29.6,
+                                        color: secondaryBackgroundColor,
+                                    }}
+                                >
                                     MOCKUP
                                 </Text>
                             </View>
@@ -93,11 +113,13 @@ class ThemeCustomisation extends React.Component {
                                     styles.frameBar,
                                     {
                                         backgroundColor: THEMES.getHSL(backgroundColor),
-                                        shadowColor: THEMES.getHSL(barColor),
+                                        shadowColor: 'black',
                                     },
                                 ]}
                             >
-                                <Text style={styles.frameBarTitle}>MAIN ACCOUNT</Text>
+                                <Text style={[styles.frameBarTitle, { color: secondaryBackgroundColor }]}>
+                                    MAIN ACCOUNT
+                                </Text>
                                 <Image style={styles.chevron} source={chevronDownImagePath} />
                             </View>
                             {/*
@@ -135,25 +157,37 @@ class ThemeCustomisation extends React.Component {
                                 <View style={[styles.button, { borderColor: THEMES.getHSL(extraColor) }]}>
                                     <Text style={[styles.buttonText, { color: THEMES.getHSL(extraColor) }]}>SAVE</Text>
                                 </View>
-                                <View style={[styles.ctaButton, { backgroundColor: THEMES.getHSL(ctaColor) }]}>
-                                    <Text style={styles.ctaText}>SEND</Text>
+                                <View
+                                    style={[
+                                        styles.ctaButton,
+                                        { backgroundColor: THEMES.getHSL(ctaColor), borderColor: ctaBorderColor },
+                                    ]}
+                                >
+                                    <Text style={[styles.ctaText, { color: secondaryCtaColor }]}>SEND</Text>
                                 </View>
                             </View>
                         </View>
-                        <TouchableOpacity onPress={() => this.onAdvancedPress()} style={styles.advancedButton}>
-                            <Text style={styles.advancedText}>ADVANCED</Text>
-                        </TouchableOpacity>
+                        {/*}<TouchableOpacity
+                            onPress={() => this.onAdvancedPress()}
+                            style={[styles.advancedButton, { borderColor: this.props.secondaryBackgroundColor }]}
+                        >
+                            <Text style={[styles.advancedText, { color: this.props.secondaryBackgroundColor }]}>ADVANCED</Text>
+                        </TouchableOpacity>*/}
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={() => this.props.backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>Back</Text>
+                                <Text style={[styles.titleTextLeft, { color: this.props.secondaryBackgroundColor }]}>
+                                    Back
+                                </Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.onApplyPress(theme, themeName)}>
                             <View style={styles.itemRight}>
-                                <Text style={styles.titleTextRight}>Apply</Text>
+                                <Text style={[styles.titleTextRight, { color: this.props.secondaryBackgroundColor }]}>
+                                    Apply
+                                </Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
@@ -189,11 +223,10 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 1.5,
         borderStyle: 'dotted',
-        borderColor: 'white',
         alignItems: 'center',
         marginTop: height / 30,
         position: 'absolute',
-        top: height / 10.5,
+        top: height / 8.5,
         zIndex: 1,
         shadowOffset: {
             width: 0,
@@ -233,7 +266,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleTextLeft: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -243,14 +275,12 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleTextRight: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
     advancedButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
         width: width / 2.7,
@@ -263,7 +293,6 @@ const styles = StyleSheet.create({
         zIndex: 3,
     },
     advancedText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
@@ -299,34 +328,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: width / 30,
     },
-    dropdownContainer: {
-        justifyContent: 'flex-start',
-        marginTop: height / 40,
-    },
-    dropdownTitle: {
-        fontFamily: 'Lato-Regular',
-        fontSize: width / 33,
-        backgroundColor: 'transparent',
-    },
-    dropdownButtonContainer: {
-        marginTop: height / 200,
-    },
-    dropdownSelected: {
-        color: 'white',
-        fontFamily: 'Lato-Light',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-        paddingBottom: height / 150,
-    },
-    dropdownButton: {
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-        justifyContent: 'space-between',
-        borderBottomColor: 'white',
-        borderBottomWidth: 0.7,
-        width: width / 1.5,
-        height: height / 25,
-    },
     buttonsContainer: {
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -353,6 +354,7 @@ const styles = StyleSheet.create({
         height: height / 15,
         alignItems: 'center',
         justifyContent: 'center',
+        borderWidth: 1.2,
     },
     ctaText: {
         color: 'white',

@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, StatusBar, BackHandler, ToastAndroid } from 'react-native';
+import { StyleSheet, View, BackHandler, ToastAndroid } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import UserInactivity from 'react-native-user-inactivity';
 import { Navigation } from 'react-native-navigation';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { clearTempData, setPassword, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import balanceImagePath from 'iota-wallet-shared-modules/images/balance.png';
-import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
-import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
-import historyImagePath from 'iota-wallet-shared-modules/images/history.png';
-import settingsImagePath from 'iota-wallet-shared-modules/images/settings.png';
+import whiteBalanceImagePath from 'iota-wallet-shared-modules/images/balance-white.png';
+import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
+import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
+import whiteHistoryImagePath from 'iota-wallet-shared-modules/images/history-white.png';
+import whiteSettingsImagePath from 'iota-wallet-shared-modules/images/settings-white.png';
+import blackBalanceImagePath from 'iota-wallet-shared-modules/images/balance-black.png';
+import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
+import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
+import blackHistoryImagePath from 'iota-wallet-shared-modules/images/history-black.png';
+import blackSettingsImagePath from 'iota-wallet-shared-modules/images/settings-black.png';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import TopBar from './topBar';
 import withUserActivity from '../components/withUserActivity';
@@ -119,8 +125,7 @@ class Home extends Component {
     };
 
     handleInactivity = () => {
-        const { setUserActivity } = this.props;
-        setUserActivity({ inactive: true });
+        this.props.setUserActivity({ inactive: true });
     };
 
     render() {
@@ -133,12 +138,22 @@ class Home extends Component {
             backgroundColor,
             negativeColor,
             positiveColor,
+            secondaryBarColor,
+            secondaryBackgroundColor,
         } = this.props;
 
+        const balanceImagePath = secondaryBarColor === 'white' ? whiteBalanceImagePath : blackBalanceImagePath;
+        const sendImagePath = secondaryBarColor === 'white' ? whiteSendImagePath : blackSendImagePath;
+        const receiveImagePath = secondaryBarColor === 'white' ? whiteReceiveImagePath : blackReceiveImagePath;
+        const historyImagePath = secondaryBarColor === 'white' ? whiteHistoryImagePath : blackHistoryImagePath;
+        const settingsImagePath = secondaryBarColor === 'white' ? whiteSettingsImagePath : blackSettingsImagePath;
+
+        const barTextColor = { color: secondaryBarColor };
+        const textColor = { color: secondaryBackgroundColor };
         return (
             <UserInactivity timeForInactivity={300000} checkInterval={2000} onInactivity={this.handleInactivity}>
                 <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
-                    <StatusBar barStyle="light-content" />
+                    <DynamicStatusBar textColor={secondaryBarColor} />
                     {!inactive &&
                         !minimised && (
                             <View style={{ flex: 1 }}>
@@ -151,11 +166,36 @@ class Home extends Component {
                                         onPress={name => this.props.changeHomeScreenRoute(name)}
                                         barColor={THEMES.getHSL(barColor)}
                                     >
-                                        <Tab name="balance" icon={balanceImagePath} text={t('home:balance')} />
-                                        <Tab name="send" icon={sendImagePath} text={t('home:send')} />
-                                        <Tab name="receive" icon={receiveImagePath} text={t('home:receive')} />
-                                        <Tab name="history" icon={historyImagePath} text={t('home:history')} />
-                                        <Tab name="settings" icon={settingsImagePath} text={t('home:settings')} />
+                                        <Tab
+                                            name="balance"
+                                            icon={balanceImagePath}
+                                            textColor={barTextColor}
+                                            text={t('home:balance')}
+                                        />
+                                        <Tab
+                                            name="send"
+                                            icon={sendImagePath}
+                                            textColor={barTextColor}
+                                            text={t('home:send')}
+                                        />
+                                        <Tab
+                                            name="receive"
+                                            icon={receiveImagePath}
+                                            textColor={barTextColor}
+                                            text={t('home:receive')}
+                                        />
+                                        <Tab
+                                            name="history"
+                                            icon={historyImagePath}
+                                            textColor={barTextColor}
+                                            text={t('home:history')}
+                                        />
+                                        <Tab
+                                            name="settings"
+                                            icon={settingsImagePath}
+                                            textColor={barTextColor}
+                                            text={t('home:settings')}
+                                        />
                                     </Tabs>
                                 </View>
                                 <TopBar />
@@ -168,6 +208,8 @@ class Home extends Component {
                                 backgroundColor={backgroundColor}
                                 negativeColor={negativeColor}
                                 positiveColor={positiveColor}
+                                secondaryBackgroundColor={secondaryBackgroundColor}
+                                textColor={textColor}
                             />
                         </View>
                     )}
@@ -190,6 +232,8 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
     positiveColor: state.settings.theme.positiveColor,
+    secondaryBarColor: state.settings.theme.secondaryBarColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {
@@ -213,6 +257,8 @@ Home.propTypes = {
     negativeColor: PropTypes.object.isRequired,
     positiveColor: PropTypes.object.isRequired,
     tempAccount: PropTypes.object.isRequired,
+    secondaryBarColor: PropTypes.string.isRequired,
+    secondaryBackgroundColor: PropTypes.string.isRequired,
 };
 
 export default withUserActivity()(

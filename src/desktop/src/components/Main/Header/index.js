@@ -24,7 +24,7 @@ class Header extends React.PureComponent {
         return (
             <header>
                 <div className={css.logo}>
-                    <Logo width={38} />
+                    <Logo size={38} />
                 </div>
                 <div className={css.seedsList}>
                     <ul>

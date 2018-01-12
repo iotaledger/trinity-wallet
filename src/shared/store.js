@@ -1,7 +1,7 @@
+import isFunction from 'lodash/isFunction';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 
 import marketData from './reducers/marketData';
 import tempAccount from './reducers/tempAccount';
@@ -14,6 +14,7 @@ import alerts from './reducers/alerts';
 import home from './reducers/home';
 import keychain from './reducers/keychain';
 import polling from './reducers/polling';
+import ui from './reducers/ui';
 import { ActionTypes } from './actions/app';
 
 const reducers = combineReducers({
@@ -28,6 +29,7 @@ const reducers = combineReducers({
     home,
     keychain,
     polling,
+    ui,
 });
 
 const rootReducer = (state, action) => {
@@ -47,6 +49,11 @@ const store = createStore(
     ),
 );
 
-export const persistState = (state, config) => persistStore(state, config);
+export const persistState = (state, config, cb) =>
+    persistStore(state, config, () => {
+        if (isFunction(cb)) {
+            cb(state);
+        }
+    });
 
 export default store;
