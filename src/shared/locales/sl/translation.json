@@ -7,9 +7,9 @@
         "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "Nimate dovolj IOTA za dokončanje tega prenosa.",
-        "transferError": "Transfer error",
+        "transferError": "Napaka pri prenosu",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
+        "transferSent": "Prenos uspešen",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
         "keyReuse": "Ponovna uporaba ključa",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
@@ -26,9 +26,9 @@
         "doneLowercase": "Done",
         "next": "NAPREJ",
         "apply": "Apply",
-        "save": "Save",
+        "save": "Shrani",
         "close": "Zapri",
-        "continue": "Continue",
+        "continue": "Nadaljuj",
         "manualCopy": "Zapišite generirano vrednost",
         "paperWallet": "Natisnite kopijo",
         "copyToClipboard": "Dodajte v upravitelja gesel",
@@ -287,7 +287,7 @@
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "Dodaj"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
@@ -299,7 +299,7 @@
         "manualSync": "Manual sync"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
+        "background": "Ozadje",
         "frame": "Frame"
     },
     "currencySelection": {
@@ -309,7 +309,7 @@
         "logoutConfirmation": "Are you sure you want to log out?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Skeniraj QR kodo"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
