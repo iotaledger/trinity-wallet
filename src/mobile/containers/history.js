@@ -102,6 +102,7 @@ class History extends Component {
                                     <RefreshControl
                                         refreshing={this.state.refreshing}
                                         onRefresh={this._onRefresh.bind(this)}
+                                        tintColor={THEMES.getHSL(negativeColor)}
                                     />
                                 }
                                 contentContainerStyle={{ paddingTop: 1, paddingBottom: 1 }}
