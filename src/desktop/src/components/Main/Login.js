@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -41,6 +42,8 @@ class Login extends React.Component {
                 loading: false,
             });
             this.props.history.push('/balance');
+
+            Electron.updateMenu('authorised', true);
         }
     }
 
