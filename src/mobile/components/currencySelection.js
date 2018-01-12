@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class CurrencySelection extends Component {
+export class CurrencySelection extends Component {
     static propTypes = {
         isFetchingCurrencyData: PropTypes.bool.isRequired,
         hasErrorFetchingCurrencyData: PropTypes.bool.isRequired,
@@ -114,6 +114,14 @@ class CurrencySelection extends Component {
         if (shouldNavigateBack) {
             props.backPress();
         }
+    }
+
+    getNewlySelectedValue() {
+        if (this.dropdown) {
+            return this.dropdown.getSelected();
+        }
+
+        return this.props.currency; // Just return currency selected in the store as a fallback
     }
 
     renderBackOption() {
@@ -145,6 +153,7 @@ class CurrencySelection extends Component {
             </TouchableOpacity>
         );
     }
+
     render() {
         const { currency, currencies, t, secondaryBackgroundColor, negativeColor, isFetchingCurrencyData } = this.props;
 
@@ -173,7 +182,7 @@ class CurrencySelection extends Component {
                     {isFetchingCurrencyData && (
                         <View style={styles.innerContainer}>
                             <Text style={[styles.infoText, { color: secondaryBackgroundColor }]}>
-                                Fetching latest conversion rates for {this.dropdown.getSelected()}
+                                Fetching latest conversion rates for {this.getNewlySelectedValue()}
                             </Text>
                             <ActivityIndicator
                                 animating={true}
