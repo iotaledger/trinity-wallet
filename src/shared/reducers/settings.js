@@ -1,19 +1,10 @@
 import { ActionTypes } from '../actions/settings.js';
-import { defaultNode as fullNode } from '../config';
+import { defaultNode as fullNode, nodes as availablePoWNodes } from '../config';
 
 const initialState = {
     locale: 'en',
     fullNode,
-    availablePoWNodes: [
-        'https://iri2-api.iota.fm:443',
-        'https://iri3-api.iota.fm:443',
-        'https://ceres.iota.community:14600/',
-        'https://node.tangle.works:443',
-        'https://iotanode.us:443',
-        'http://astra2261.startdedicated.net:14265',
-        'http://iota.nck.nz:14265',
-        'http://www.veriti.io',
-    ],
+    availablePoWNodes,
     availableNodes: [
         'https://iri2-api.iota.fm:443',
         'https://ceres.iota.community:14600/',
@@ -122,6 +113,7 @@ const initialState = {
         pendingColor: '#f75602',
         chartLineColor: '#FFA25B',
     },
+    hasRandomizedNode: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -184,6 +176,12 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 theme: action.theme,
                 themeName: action.themeName,
+            };
+        case ActionTypes.SET_RANDOMLY_SELECTED_NODE:
+            return {
+                ...state,
+                fullNode: action.payload,
+                hasRandomizedNode: true,
             };
     }
 
