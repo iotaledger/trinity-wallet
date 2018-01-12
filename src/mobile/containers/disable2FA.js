@@ -115,7 +115,7 @@ class Disable2FA extends Component {
                                 enablesReturnKeyAutomatically
                                 returnKeyType="done"
                                 value={this.state.password}
-                                onChangeText={(password) => this.setState({ password })}
+                                onChangeText={password => this.setState({ password })}
                                 containerStyle={{
                                     width: width / 1.4,
                                 }}
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     password: state.tempAccount.password,
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,

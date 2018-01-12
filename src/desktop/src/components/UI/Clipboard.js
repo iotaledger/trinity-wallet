@@ -26,8 +26,7 @@ class Clipboard extends React.PureComponent {
                             type: 'success',
                             title: title,
                             text: success,
-                        })
-                    }
+                        })}
                 >
                     {text}
                 </span>

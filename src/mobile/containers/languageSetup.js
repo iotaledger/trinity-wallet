@@ -113,12 +113,12 @@ class LanguageSetup extends Component {
                         <View style={styles.midContainer}>
                             <View style={{ flex: 0.5 }} />
                             <Dropdown
-                                onRef={(c) => (this.dropdown = c)}
+                                onRef={c => (this.dropdown = c)}
                                 title={t('language')}
                                 dropdownWidth={styles.dropdownWidth}
                                 defaultOption={defaultLanguageLabel}
                                 options={I18N_LOCALE_LABELS}
-                                saveSelection={(language) => this.clickDropdownItem(language)}
+                                saveSelection={language => this.clickDropdownItem(language)}
                             />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -135,6 +135,6 @@ class LanguageSetup extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = state => ({});
 
 export default translate(['languageSetup', 'global'])(connect(mapStateToProps)(LanguageSetup));

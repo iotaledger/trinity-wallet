@@ -4,7 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { SetSeedName } from '../../containers/setSeedName';
 
-const getProps = (overrides) =>
+const getProps = overrides =>
     assign(
         {},
         {

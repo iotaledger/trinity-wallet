@@ -140,7 +140,7 @@ class AddCustomNode extends Component {
                             enablesReturnKeyAutomatically={true}
                             returnKeyType="done"
                             value={this.state.accountName}
-                            onChangeText={(customNode) => this.setState({ customNode })}
+                            onChangeText={customNode => this.setState({ customNode })}
                             containerStyle={{
                                 width: width / 1.4,
                             }}

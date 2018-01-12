@@ -224,7 +224,7 @@ class Send extends Component {
         this.props.getFromKeychainRequest('send', 'makeTransaction');
         keychain
             .get()
-            .then((credentials) => {
+            .then(credentials => {
                 this.props.getFromKeychainSuccess('send', 'makeTransaction');
 
                 if (get(credentials, 'data')) {
@@ -261,9 +261,9 @@ class Send extends Component {
 
     _showModal = () => this.setState({ isModalVisible: true });
 
-    _hideModal = (callback) =>
+    _hideModal = callback =>
         this.setState({ isModalVisible: false }, () => {
-            const callable = (fn) => isFunction(fn);
+            const callable = fn => isFunction(fn);
 
             if (callable(callback)) {
                 setTimeout(callback);
@@ -279,7 +279,7 @@ class Send extends Component {
             case 'qrScanner':
                 modalContent = (
                     <QRScanner
-                        onQRRead={(data) => this.onQRRead(data)}
+                        onQRRead={data => this.onQRRead(data)}
                         hideModal={() => this._hideModal()}
                         backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
                         ctaColor={THEMES.getHSL(this.props.ctaColor)}
@@ -299,7 +299,7 @@ class Send extends Component {
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
-                        hideModal={(callback) => this._hideModal(callback)}
+                        hideModal={callback => this._hideModal(callback)}
                         backgroundColor={THEMES.getHSL(this.props.barColor)}
                         borderColor={{ borderColor: secondaryBackgroundColor }}
                         textColor={{ color: secondaryBackgroundColor }}
@@ -441,7 +441,7 @@ class Send extends Component {
                                     label={t('recipientAddress')}
                                     autoCorrect={false}
                                     value={address}
-                                    onChangeText={(address) => this.setState({ address })}
+                                    onChangeText={address => this.setState({ address })}
                                     onSubmitEditing={() => this.refs.amount.focus()}
                                 />
                             </View>
@@ -471,7 +471,7 @@ class Send extends Component {
                                     tintColor={THEMES.getHSL(negativeColor)}
                                     autoCorrect={false}
                                     value={amount}
-                                    onChangeText={(amount) => this.onAmountType(amount)}
+                                    onChangeText={amount => this.onAmountType(amount)}
                                     onSubmitEditing={() => this.refs.message.focus()}
                                 />
                             </View>
@@ -482,7 +482,7 @@ class Send extends Component {
                                     : this.getConversionTextIota()}{' '}
                             </Text>
                             <View style={styles.buttonContainer}>
-                                <TouchableOpacity onPress={(event) => this.onDenominationPress()}>
+                                <TouchableOpacity onPress={event => this.onDenominationPress()}>
                                     <View style={[styles.button, borderColor]}>
                                         <Text style={[styles.buttonText, textColor]}> {this.state.denomination} </Text>
                                     </View>
@@ -491,7 +491,7 @@ class Send extends Component {
                         </View>
                         <View style={styles.maxContainer}>
                             <View style={styles.maxButtonContainer}>
-                                <TouchableOpacity onPress={(event) => this.onMaxPress()}>
+                                <TouchableOpacity onPress={event => this.onMaxPress()}>
                                     <View style={[styles.maxButton, borderColor]}>
                                         <Text style={[styles.maxButtonText, textColor]}>{t('max')}</Text>
                                     </View>
@@ -515,7 +515,7 @@ class Send extends Component {
                                 tintColor={THEMES.getHSL(negativeColor)}
                                 autoCorrect={false}
                                 value={message}
-                                onChangeText={(message) => this.setState({ message })}
+                                onChangeText={message => this.setState({ message })}
                                 onSubmitEditing={() => this.onSendPress()}
                             />
                         </View>
@@ -525,7 +525,7 @@ class Send extends Component {
                             !this.props.isGettingSensitiveInfoToMakeTransaction && (
                                 <View style={styles.sendButtonContainer}>
                                     <TouchableOpacity
-                                        onPress={(event) => {
+                                        onPress={event => {
                                             this.setModalContent('transferConfirmation');
                                             this.refs.address.blur();
                                             this.refs.amount.blur();
@@ -741,7 +741,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     currency: state.settings.currency,
     balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),

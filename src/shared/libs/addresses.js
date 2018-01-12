@@ -102,14 +102,14 @@ const getRelevantAddresses = (resolve, reject, seed, opts, allAddresses, withNew
                                 allAddresses = [...allAddresses, ...addresses.slice(0, 5)];
                                 new Promise((res, rej) => {
                                     getRemainingAddresses(res, rej, addresses.slice(5, 10), 0, []);
-                                }).then((allRemaining) => {
+                                }).then(allRemaining => {
                                     allAddresses = [...allAddresses, ...allRemaining];
                                     resolve(allAddresses);
                                 });
                             } else {
                                 new Promise((res, rej) => {
                                     getRemainingAddresses(res, rej, addresses.slice(0, 5), 0, []);
-                                }).then((allRemaining) => {
+                                }).then(allRemaining => {
                                     allAddresses = [...allAddresses, ...allRemaining];
                                     resolve(allAddresses);
                                 });

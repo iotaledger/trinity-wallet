@@ -101,7 +101,7 @@ class Receive extends Component {
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
         return keychain
             .get()
-            .then((credentials) => {
+            .then(credentials => {
                 this.props.getFromKeychainSuccess('receive', 'addressGeneration');
 
                 if (get(credentials, 'data')) {
@@ -227,7 +227,7 @@ class Receive extends Component {
                             autoCorrect={false}
                             value={message}
                             containerStyle={{ width: width / 1.36 }}
-                            onChangeText={(message) => this.setState({ message })}
+                            onChangeText={message => this.setState({ message })}
                             ref="message"
                         />
                     </View>
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     isSyncing: state.tempAccount.isSyncing,
