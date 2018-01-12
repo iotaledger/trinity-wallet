@@ -107,13 +107,19 @@ class AdvancedThemeCustomisation extends React.Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.props.backPress()}>
+                    <TouchableOpacity
+                        onPress={() => this.props.backPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
                         <View style={styles.itemLeft}>
                             <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                             <Text style={[styles.titleTextLeft, textColor]}>Back</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.onApplyPress()}>
+                    <TouchableOpacity
+                        onPress={() => this.onApplyPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
                         <View style={styles.itemRight}>
                             <Text style={[styles.titleTextRight, textColor]}>Apply</Text>
                             <Image source={tickImagePath} style={styles.iconRight} />
