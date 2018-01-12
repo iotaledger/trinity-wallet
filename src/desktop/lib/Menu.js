@@ -1,4 +1,4 @@
-const { Menu, ipcMain } = require('electron');
+const { Menu, ipcMain, dialog } = require('electron');
 
 const state = {
     authorised: false,
@@ -26,7 +26,7 @@ const initMenu = (app, getWindow) => {
                         submenu: [
                             {
                                 label: 'Language',
-                                click: () => navigate('settings/theme'),
+                                click: () => navigate('settings/language'),
                             },
                             {
                                 label: 'Currency',
@@ -42,12 +42,12 @@ const initMenu = (app, getWindow) => {
                             {
                                 label: 'Two-factor authentication',
                                 enabled: state.authorised,
-                                click: () => navigate('settings/2fa'),
+                                click: () => navigate('settings/twoFA'),
                             },
                             {
                                 label: 'Change password',
                                 enabled: state.authorised,
-                                click: () => navigate('settings/password'),
+                                click: () => navigate('settings/changePassword'),
                             },
                             {
                                 label: 'Advanced settings',
@@ -100,23 +100,46 @@ const initMenu = (app, getWindow) => {
 
         if (state.authorised) {
             template.push({
-                label: 'Wallet',
+                label: 'Account',
                 submenu: [
                     {
-                        label: 'Balance',
+                        label: 'View Balance',
                         click: navigate('balance'),
                     },
                     {
-                        label: 'Send',
+                        label: 'Send transactions',
                         click: navigate('send'),
                     },
                     {
-                        label: 'Receive',
+                        label: 'Receive iota',
                         click: navigate('receive'),
                     },
                     {
-                        label: 'History',
+                        label: 'View History',
                         click: navigate('history'),
+                    },
+                    {
+                        type: 'separator',
+                    },
+                    {
+                        label: 'Logout',
+                        click: function() {
+                            const mainWindow = getWindow('main');
+                            if (mainWindow) {
+                                dialog.showMessageBox(
+                                    mainWindow,
+                                    {
+                                        type: 'question',
+                                        buttons: ['Yes', 'No'],
+                                    },
+                                    (index) => {
+                                        if (index === 0) {
+                                            mainWindow.webContents.send('menu', 'logout');
+                                        }
+                                    },
+                                );
+                            }
+                        },
                     },
                 ],
             });

@@ -62,7 +62,7 @@ class App extends React.Component {
     menuToggle(item) {
         switch (item) {
             case 'logout':
-                //
+                this.props.history.push('/login');
                 break;
             default:
                 this.props.history.push(`/${item}`);
