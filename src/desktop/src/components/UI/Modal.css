@@ -1,8 +1,8 @@
 .backdrop {
+    background: var(--color-bg);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(22, 55, 62, 0.95);
     right: 0;
     top: 0;
     width: 100vw;
@@ -34,6 +34,10 @@
 }
 
 .wrapper {
-    max-width: 80vw;
+    width: 80vw;
+    max-width: 960px;
+}
+
+.wide {
     background-color: rgba(255, 255, 255, 0.1);
 }
