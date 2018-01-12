@@ -55,7 +55,7 @@ class CopySeedToClipboard extends Component {
         this.timeout = setTimeout(() => {
             Clipboard.setString(' ');
             this.generateClipboardClearAlert();
-        }, 60000);
+        }, 30000);
     }
 
     generateClipboardClearAlert() {
