@@ -136,6 +136,8 @@ const styles = StyleSheet.create({
 
 class Settings extends Component {
     static propTypes = {
+        isFetchingCurrencyData: PropTypes.bool.isRequired,
+        hasErrorFetchingCurrencyData: PropTypes.bool.isRequired,
         navigator: PropTypes.object.isRequired,
         accountInfo: PropTypes.object.isRequired,
         selectedAccount: PropTypes.object.isRequired,
@@ -185,7 +187,6 @@ class Settings extends Component {
             isModalVisible: false,
             modalSetting: 'addNewSeed',
             modalContent: <LogoutConfirmationModal />,
-            selectedCurrency: this.props.currency,
         };
     }
 
@@ -368,12 +369,14 @@ class Settings extends Component {
                 addImagePath,
             },
             currencySelection: {
-                getCurrencyData: currency => this.props.getCurrencyData(currency),
+                getCurrencyData: (currency, withAlerts) => this.props.getCurrencyData(currency, withAlerts),
                 currency: this.props.currency,
                 currencies: this.props.availableCurrencies,
                 backPress: () => this.props.setSetting('mainSettings'),
-                setCurrencySetting: currency => this.setState({ selectedCurrency: currency }),
-                textColor: { color: secondaryBackgroundColor },
+                secondaryBackgroundColor,
+                negativeColor,
+                isFetchingCurrencyData: this.props.isFetchingCurrencyData,
+                hasErrorFetchingCurrencyData: this.props.hasErrorFetchingCurrencyData,
                 tickImagePath,
                 arrowLeftImagePath,
             },
@@ -470,8 +473,6 @@ class Settings extends Component {
                     },
                 },
             });
-            //this.props.generateAlert('success', '2FA is already enabled', this.props.seed2FA);
-            //this.props.update2FA(false); //make a page to disable 2FA
         }
     }
 
@@ -824,6 +825,8 @@ const mapStateToProps = state => ({
     extraColor: state.settings.theme.extraColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
+    isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
+    hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
 });
 
