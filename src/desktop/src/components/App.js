@@ -78,7 +78,7 @@ class App extends React.Component {
         const { app } = this.props;
 
         if (this.state.initialized === false) {
-            return <Loading />;
+            return <Loading loop={false} />;
         }
 
         return (

@@ -13,14 +13,14 @@ import Language from 'components/Main/Settings/Language';
 
 import css from 'components/Main/Settings/Index.css';
 
-import icoMode from 'images/mode.png';
-import icoTheme from 'images/theme.png';
-import icoCurrency from 'images/currency.png';
-import icoLanguage from 'images/language.png';
-import ico2fa from 'images/2fa.png';
-import icoPassword from 'images/password.png';
-import icoAdvanced from 'images/advanced.png';
-import icoLogout from 'images/logout.png';
+import icoMode from 'images/mode-white.png';
+import icoTheme from 'images/theme-white.png';
+import icoCurrency from 'images/currency-white.png';
+import icoLanguage from 'images/language-white.png';
+import ico2fa from 'images/2fa-white.png';
+import icoPassword from 'images/password-white.png';
+import icoAdvanced from 'images/advanced-white.png';
+import icoLogout from 'images/logout-white.png';
 
 class Settings extends React.PureComponent {
     static propTypes = {

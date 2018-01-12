@@ -43,8 +43,8 @@
 
     &--success {
         composes: notification;
-        background-color: var(--color-success);
-        color: black;
+        background-color: var(--color-valid);
+        color: white;
     }
 
     &--extra {

@@ -9,7 +9,8 @@ import { Navigation } from 'react-native-navigation';
 import { clearTempData, setPassword } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { persistor } from '../store';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, BackHandler } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import COLORS from '../theme/Colors';
 import THEMES from '../theme/themes';
 import Fonts from '../theme/Fonts';
@@ -17,7 +18,8 @@ import { TextField } from 'react-native-material-textfield';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Keyboard } from 'react-native';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -33,6 +35,7 @@ class WalletResetRequirePassword extends Component {
         generateAlert: PropTypes.func.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -81,7 +84,7 @@ class WalletResetRequirePassword extends Component {
     redirectToInitialScreen() {
         Navigation.startSingleScreenApp({
             screen: {
-                screen: 'languageSetup',
+                screen: 'welcome',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -128,8 +131,11 @@ class WalletResetRequirePassword extends Component {
     }
 
     render() {
-        const { t, negativeColor } = this.props;
+        const { t, negativeColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
+        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         const onboardingButtonsOverride = {
             rightButton: {
@@ -149,23 +155,23 @@ class WalletResetRequirePassword extends Component {
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topWrapper}>
-                            <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                            <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                         </View>
                         <View style={styles.midWrapper}>
-                            <Text style={styles.generalText}>{t('enterPassword')}</Text>
+                            <Text style={[styles.generalText, textColor]}>{t('enterPassword')}</Text>
                             <TextField
-                                style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                                 labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                 labelFontSize={width / 31.8}
                                 fontSize={width / 20.7}
                                 labelPadding={3}
-                                baseColor="white"
+                                baseColor={secondaryBackgroundColor}
                                 label={t('global:password')}
-                                tintColor="#F7D002"
+                                tintColor={THEMES.getHSL(negativeColor)}
                                 autoCapitalize={'none'}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -205,7 +211,7 @@ const styles = StyleSheet.create({
         flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midWrapper: {
         flex: 1.6,
@@ -218,70 +224,20 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     generalText: {
-        color: 'white',
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
     },
-    questionText: {
-        color: COLORS.white,
-        fontFamily: Fonts.secondary,
-        fontSize: width / 20.25,
-        textAlign: 'center',
-        paddingLeft: width / 7,
-        paddingRight: width / 7,
-        paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
     iotaLogo: {
-        height: width / 5,
-        width: width / 5,
+        height: width / 7,
+        width: width / 7,
     },
     buttonsContainer: {
         alignItems: 'flex-end',
         justifyContent: 'center',
         flexDirection: 'row',
-    },
-    textFieldContainer: {
-        width: width / 1.65,
-    },
-    textField: {
-        color: COLORS.white,
-        fontFamily: Fonts.tertiary,
-    },
-    textFieldLabel: {
-        fontFamily: Fonts.tertiary,
-    },
-    dropdownTitle: {
-        fontSize: width / 25.9,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-    },
-    dropdownTextContainer: {
-        flex: 1,
-        paddingLeft: width / 20,
-        paddingRight: width / 15,
-        paddingVertical: height / 30,
-    },
-    dropdownMessage: {
-        fontSize: width / 29.6,
-        textAlign: 'left',
-        fontWeight: 'normal',
-        color: 'white',
-        backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
-        paddingTop: height / 60,
-    },
-    dropdownImage: {
-        marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
-        alignSelf: 'center',
     },
 });
 
@@ -289,6 +245,7 @@ const mapStateToProps = state => ({
     password: state.tempAccount.password,
     negativeColor: state.settings.theme.negativeColor,
     backgroundColor: state.settings.theme.backgroundColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {

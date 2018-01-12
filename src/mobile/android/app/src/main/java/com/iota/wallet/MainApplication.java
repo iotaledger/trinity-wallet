@@ -3,6 +3,7 @@ package com.iota.wallet;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.airbnb.android.react.lottie.LottiePackage;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
@@ -19,6 +20,8 @@ import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.rnfs.RNFSPackage;
 import com.rnprint.RNPrint.RNPrintPackage;
 
+import org.iota.mobile.IOTAMobilePackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,6 +32,9 @@ public class MainApplication extends NavigationApplication {
   @Override
   protected void attachBaseContext(Context base) {
     super.attachBaseContext(base);
+
+    System.loadLibrary("dummy");
+
     MultiDex.install(this);
   }
 
@@ -56,7 +62,9 @@ public class MainApplication extends NavigationApplication {
             new ExtraDimensionsPackage(),
             new RNDetectNavbarAndroidPackage(),
             new KCKeepAwakePackage(),
-            new KeychainPackage()
+            new KeychainPackage(),
+            new LottiePackage(),
+            new IOTAMobilePackage()
     );
   }
 

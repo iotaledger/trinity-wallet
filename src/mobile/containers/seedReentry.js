@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Image } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { TextField } from 'react-native-material-textfield';
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
@@ -11,7 +12,8 @@ import StatefulDropdownAlert from './statefulDropdownAlert';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
+import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
 
 import { width, height } from '../util/dimensions';
@@ -22,6 +24,7 @@ class SeedReentry extends Component {
         t: PropTypes.func.isRequired,
         negativeColor: PropTypes.object.isRequired,
         backgroundColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -57,11 +60,14 @@ class SeedReentry extends Component {
 
     render() {
         const { seed } = this.state;
-        const { t, backgroundColor, negativeColor } = this.props;
+        const { t, backgroundColor, negativeColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
+        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.container}>
@@ -70,17 +76,17 @@ class SeedReentry extends Component {
                                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                                 </View>
                                 <View style={styles.titleContainer}>
-                                    <Text style={styles.title}>{t('global:enterSeed')}</Text>
+                                    <Text style={[styles.title, textColor]}>{t('global:enterSeed')}</Text>
                                 </View>
                             </View>
                             <View style={styles.midContainer}>
                                 <TextField
-                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                    style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                     labelFontSize={width / 31.8}
                                     fontSize={width / 20.7}
                                     labelPadding={3}
-                                    baseColor="white"
+                                    baseColor={secondaryBackgroundColor}
                                     label={t('global:seed')}
                                     tintColor={THEMES.getHSL(negativeColor)}
                                     autoCapitalize={'characters'}
@@ -94,10 +100,10 @@ class SeedReentry extends Component {
                                     }}
                                     onSubmitEditing={() => this.onDonePress()}
                                 />
-                                <View style={styles.infoTextContainer}>
+                                <View style={[styles.infoTextContainer, borderColor]}>
                                     <Image source={infoImagePath} style={styles.infoIcon} />
-                                    <Text style={styles.infoText}>{t('thisIsACheck')}</Text>
-                                    <Text style={styles.infoText}>{t('ifYouHaveNotSaved')}</Text>
+                                    <Text style={[styles.infoText, textColor]}>{t('thisIsACheck')}</Text>
+                                    <Text style={[styles.infoText, textColor]}>{t('ifYouHaveNotSaved')}</Text>
                                 </View>
                             </View>
                             <View style={styles.bottomContainer}>
@@ -150,14 +156,12 @@ const styles = StyleSheet.create({
         paddingTop: height / 15,
     },
     title: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextContainer: {
-        borderColor: 'white',
         borderWidth: 1,
         borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
@@ -168,7 +172,6 @@ const styles = StyleSheet.create({
         paddingVertical: height / 35,
     },
     infoText: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'center',
@@ -176,7 +179,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     warningText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'center',
@@ -217,7 +219,6 @@ const styles = StyleSheet.create({
         paddingRight: width / 30,
     },
     textField: {
-        color: 'white',
         fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
@@ -231,6 +232,7 @@ const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 const mapDispatchToProps = {

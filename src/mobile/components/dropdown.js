@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     dropdownItem: {
-        color: 'white',
         fontSize: width / 23,
         fontFamily: 'Lato-Light',
         backgroundColor: 'transparent',
@@ -71,6 +70,7 @@ const styles = StyleSheet.create({
         marginTop: height / 150,
     },
     dropdownInnerContainer: {
+        shadowColor: '#222',
         shadowOffset: {
             width: 0,
             height: 2,
@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.6,
     },
     selected: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -91,7 +90,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
         justifyContent: 'space-between',
-        borderBottomColor: 'white',
         borderBottomWidth: 0.7,
         width: width / 3,
         height: height / 22,
@@ -108,6 +106,7 @@ const styles = StyleSheet.create({
 export class Dropdown extends Component {
     static propTypes = {
         onRef: PropTypes.func,
+        disableWhen: PropTypes.bool,
     };
 
     constructor(props) {
@@ -160,12 +159,19 @@ export class Dropdown extends Component {
     }
 
     render() {
-        const { options, title, dropdownWidth, background, shadow, negativeColor, barColor } = this.props;
+        const {
+            options,
+            title,
+            dropdownWidth,
+            background,
+            negativeColor,
+            disableWhen,
+            secondaryBackgroundColor,
+        } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
         const heightValue = options.length < 7 ? height / 22.4 * options.length + height / 70 : height / 3.2;
         const dropdownHeight = isDropdownOpen ? heightValue : 0;
-        const shadowColor = shadow ? { shadowColor: THEMES.getHSL(barColor) } : { shadowColor: 'transparent' };
         const backgroundColor = background
             ? { backgroundColor: THEMES.getHSL(this.props.backgroundColor) }
             : { backgroundColor: 'transparent' };
@@ -183,15 +189,27 @@ export class Dropdown extends Component {
                     {title}
                 </Text>
                 <View style={styles.dropdownButtonContainer}>
-                    <TouchableWithoutFeedback onPress={() => this.onDropdownTitlePress()}>
-                        <View style={[styles.dropdownButton, dropdownWidth]}>
-                            <Text numberOfLines={1} style={[styles.selected]}>
+                    <TouchableWithoutFeedback
+                        onPress={() => {
+                            if (!disableWhen) {
+                                this.onDropdownTitlePress();
+                            }
+                        }}
+                    >
+                        <View
+                            style={[
+                                styles.dropdownButton,
+                                dropdownWidth,
+                                { borderBottomColor: secondaryBackgroundColor },
+                            ]}
+                        >
+                            <Text numberOfLines={1} style={[styles.selected, { color: secondaryBackgroundColor }]}>
                                 {selectedOption}
                             </Text>
                             <Triangle
                                 width={width / 40}
                                 height={width / 40}
-                                color={'white'}
+                                color={secondaryBackgroundColor}
                                 direction={triangleDirection}
                                 style={styles.triangle}
                             />
@@ -208,7 +226,7 @@ export class Dropdown extends Component {
                     }}
                 >
                     <View style={[styles.dropdownContainer, dropdownWidth]}>
-                        <View style={[styles.dropdownInnerContainer, shadowColor]}>
+                        <View style={styles.dropdownInnerContainer}>
                             <ListView
                                 dataSource={ds.cloneWithRows(options)}
                                 renderRow={(rowData, sectionId, rowId) => {
@@ -228,7 +246,11 @@ export class Dropdown extends Component {
                                                     >
                                                         <Text
                                                             numberOfLines={1}
-                                                            style={[styles.dropdownItem, dropdownWidth]}
+                                                            style={[
+                                                                styles.dropdownItem,
+                                                                dropdownWidth,
+                                                                { color: secondaryBackgroundColor },
+                                                            ]}
                                                         >
                                                             {rowData}
                                                         </Text>
@@ -252,7 +274,11 @@ export class Dropdown extends Component {
                                                 >
                                                     <Text
                                                         numberOfLines={1}
-                                                        style={[styles.dropdownItem, dropdownWidth]}
+                                                        style={[
+                                                            styles.dropdownItem,
+                                                            dropdownWidth,
+                                                            { color: secondaryBackgroundColor },
+                                                        ]}
                                                     >
                                                         {rowData}
                                                     </Text>
@@ -276,6 +302,7 @@ const mapStateToProps = state => ({
     barColor: state.settings.theme.barColor,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 export default connect(mapStateToProps)(Dropdown);
