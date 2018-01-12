@@ -68,14 +68,7 @@ export default class UserInactivity extends Component {
     setIsActive = () => {
         this.lastInteraction = new Date();
         if (this.state.timeWentInactive) {
-            this.setState(
-                {
-                    timeWentInactive: null,
-                },
-                () => {
-                    this.props.onInactivity(null);
-                },
-            );
+            this.setState({ timeWentInactive: null });
         }
         this.maybeStartWatchingForInactivity();
     };
