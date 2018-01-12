@@ -1,5 +1,6 @@
 {
     "name": "iota-desktop-wallet",
+    "productName": "Trinity",
     "version": "0.1.0",
     "description": "iota light wallet for desktop",
     "main": "main.js",
