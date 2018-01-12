@@ -6,7 +6,7 @@ export const iota = new IOTA({ provider: defaultNode });
 export const changeIotaNode = provider => iota.changeNode({ provider });
 
 export const getRandomNode = () => {
-    const x = Math.floor(Math.random() * 7);
+    const x = Math.floor(Math.random() * nodes.length);
 
     return nodes[x];
 };
