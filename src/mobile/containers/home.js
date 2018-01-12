@@ -28,6 +28,7 @@ import Tabs from '../components/tabs';
 import Tab from '../components/tab';
 import TabContent from '../components/tabContent';
 import EnterPassword from '../components/enterPassword';
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 import { width, height } from '../util/dimensions';
 
 const styles = StyleSheet.create({
@@ -128,6 +129,28 @@ class Home extends Component {
         }
     };
 
+    onSwipeRight() {
+        const { currentRoute, changeHomeScreenRoute } = this.props;
+        const availableRoutes = ['balance', 'send', 'receive', 'history', 'settings'];
+        const currentRouteIndex = availableRoutes.indexOf(currentRoute);
+        if (currentRouteIndex === 0) {
+            return;
+        }
+        const nextRoute = availableRoutes[currentRouteIndex - 1];
+        changeHomeScreenRoute(nextRoute);
+    }
+
+    onSwipeLeft() {
+        const { currentRoute, changeHomeScreenRoute } = this.props;
+        const availableRoutes = ['balance', 'send', 'receive', 'history', 'settings'];
+        const currentRouteIndex = availableRoutes.indexOf(currentRoute);
+        if (currentRouteIndex === availableRoutes.length - 1) {
+            return;
+        }
+        const nextRoute = availableRoutes[currentRouteIndex + 1];
+        changeHomeScreenRoute(nextRoute);
+    }
+
     handleInactivity = () => {
         this.props.setUserActivity({ inactive: true });
     };
@@ -154,6 +177,12 @@ class Home extends Component {
 
         const barTextColor = { color: secondaryBarColor };
         const textColor = { color: secondaryBackgroundColor };
+
+        const config = {
+            velocityThreshold: 0.3,
+            directionalOffsetThreshold: 80,
+        };
+
         return (
             <UserInactivity
                 ref={c => {
@@ -163,71 +192,78 @@ class Home extends Component {
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
-                    <DynamicStatusBar textColor={secondaryBarColor} />
-                    {!inactive &&
-                        !minimised && (
-                            <View style={{ flex: 1 }}>
-                                <View style={styles.topContainer} />
-                                <View style={styles.midContainer}>
-                                    <TabContent navigator={navigator} />
+                <GestureRecognizer
+                    onSwipeLeft={state => this.onSwipeLeft(state)}
+                    onSwipeRight={state => this.onSwipeRight(state)}
+                    config={config}
+                    style={{ flex: 1 }}
+                >
+                    <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
+                        <DynamicStatusBar textColor={secondaryBarColor} />
+                        {!inactive &&
+                            !minimised && (
+                                <View style={{ flex: 1 }}>
+                                    <View style={styles.topContainer} />
+                                    <View style={styles.midContainer}>
+                                        <TabContent navigator={navigator} />
+                                    </View>
+                                    <View style={styles.bottomContainer}>
+                                        <Tabs
+                                            onPress={name => this.props.changeHomeScreenRoute(name)}
+                                            barColor={THEMES.getHSL(barColor)}
+                                        >
+                                            <Tab
+                                                name="balance"
+                                                icon={balanceImagePath}
+                                                textColor={barTextColor}
+                                                text={t('home:balance')}
+                                            />
+                                            <Tab
+                                                name="send"
+                                                icon={sendImagePath}
+                                                textColor={barTextColor}
+                                                text={t('home:send')}
+                                            />
+                                            <Tab
+                                                name="receive"
+                                                icon={receiveImagePath}
+                                                textColor={barTextColor}
+                                                text={t('home:receive')}
+                                            />
+                                            <Tab
+                                                name="history"
+                                                icon={historyImagePath}
+                                                textColor={barTextColor}
+                                                text={t('home:history')}
+                                            />
+                                            <Tab
+                                                name="settings"
+                                                icon={settingsImagePath}
+                                                textColor={barTextColor}
+                                                text={t('home:settings')}
+                                            />
+                                        </Tabs>
+                                    </View>
+                                    <TopBar />
                                 </View>
-                                <View style={styles.bottomContainer}>
-                                    <Tabs
-                                        onPress={name => this.props.changeHomeScreenRoute(name)}
-                                        barColor={THEMES.getHSL(barColor)}
-                                    >
-                                        <Tab
-                                            name="balance"
-                                            icon={balanceImagePath}
-                                            textColor={barTextColor}
-                                            text={t('home:balance')}
-                                        />
-                                        <Tab
-                                            name="send"
-                                            icon={sendImagePath}
-                                            textColor={barTextColor}
-                                            text={t('home:send')}
-                                        />
-                                        <Tab
-                                            name="receive"
-                                            icon={receiveImagePath}
-                                            textColor={barTextColor}
-                                            text={t('home:receive')}
-                                        />
-                                        <Tab
-                                            name="history"
-                                            icon={historyImagePath}
-                                            textColor={barTextColor}
-                                            text={t('home:history')}
-                                        />
-                                        <Tab
-                                            name="settings"
-                                            icon={settingsImagePath}
-                                            textColor={barTextColor}
-                                            text={t('home:settings')}
-                                        />
-                                    </Tabs>
-                                </View>
-                                <TopBar />
+                            )}
+                        {inactive && (
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                <EnterPassword
+                                    onLoginPress={this.onLoginPress}
+                                    backgroundColor={backgroundColor}
+                                    negativeColor={negativeColor}
+                                    positiveColor={positiveColor}
+                                    secondaryBackgroundColor={secondaryBackgroundColor}
+                                    textColor={textColor}
+                                />
                             </View>
                         )}
-                    {inactive && (
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <EnterPassword
-                                onLoginPress={this.onLoginPress}
-                                backgroundColor={backgroundColor}
-                                negativeColor={negativeColor}
-                                positiveColor={positiveColor}
-                                secondaryBackgroundColor={secondaryBackgroundColor}
-                                textColor={textColor}
-                            />
-                        </View>
-                    )}
-                    {minimised && <View />}
-                    <Poll />
-                    <StatefulDropdownAlert />
-                </View>
+                        {minimised && <View />}
+                        <Poll />
+                        <StatefulDropdownAlert />
+                    </View>
+                </GestureRecognizer>
             </UserInactivity>
         );
     }
@@ -245,6 +281,7 @@ const mapStateToProps = state => ({
     positiveColor: state.settings.theme.positiveColor,
     secondaryBarColor: state.settings.theme.secondaryBarColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    currentRoute: state.home.childRoute,
 });
 
 const mapDispatchToProps = {
@@ -270,6 +307,7 @@ Home.propTypes = {
     tempAccount: PropTypes.object.isRequired,
     secondaryBarColor: PropTypes.string.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
+    currentRoute: PropTypes.string.isRequired,
 };
 
 export default withUserActivity()(
