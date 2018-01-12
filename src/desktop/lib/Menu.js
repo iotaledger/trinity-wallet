@@ -5,6 +5,13 @@ const state = {
 };
 
 const initMenu = (app, getWindow) => {
+    const navigate = (path) => {
+        const mainWindow = getWindow('main');
+        if (mainWindow) {
+            mainWindow.webContents.send('menu', path);
+        }
+    };
+
     const createMenu = () => {
         const template = [
             {
@@ -13,6 +20,41 @@ const initMenu = (app, getWindow) => {
                     {
                         label: 'About ' + app.getName(),
                         role: 'about',
+                    },
+                    {
+                        label: 'Preferences',
+                        submenu: [
+                            {
+                                label: 'Language',
+                                click: () => navigate('settings/theme'),
+                            },
+                            {
+                                label: 'Currency',
+                                click: () => navigate('settings/currency'),
+                            },
+                            {
+                                label: 'Theme',
+                                click: () => navigate('settings/theme'),
+                            },
+                            {
+                                type: 'separator',
+                            },
+                            {
+                                label: 'Two-factor authentication',
+                                enabled: state.authorised,
+                                click: () => navigate('settings/2fa'),
+                            },
+                            {
+                                label: 'Change password',
+                                enabled: state.authorised,
+                                click: () => navigate('settings/password'),
+                            },
+                            {
+                                label: 'Advanced settings',
+                                enabled: state.authorised,
+                                click: () => navigate('settings/advanced'),
+                            },
+                        ],
                     },
                     {
                         type: 'separator',
@@ -62,39 +104,19 @@ const initMenu = (app, getWindow) => {
                 submenu: [
                     {
                         label: 'Balance',
-                        click: function() {
-                            const mainWindow = getWindow('main');
-                            if (mainWindow) {
-                                mainWindow.webContents.send('menu', 'balance');
-                            }
-                        },
+                        click: navigate('balance'),
                     },
                     {
                         label: 'Send',
-                        click: function() {
-                            const mainWindow = getWindow('main');
-                            if (mainWindow) {
-                                mainWindow.webContents.send('menu', 'send');
-                            }
-                        },
+                        click: navigate('send'),
                     },
                     {
                         label: 'Receive',
-                        click: function() {
-                            const mainWindow = getWindow('main');
-                            if (mainWindow) {
-                                mainWindow.webContents.send('menu', 'receive');
-                            }
-                        },
+                        click: navigate('receive'),
                     },
                     {
                         label: 'History',
-                        click: function() {
-                            const mainWindow = getWindow('main');
-                            if (mainWindow) {
-                                mainWindow.webContents.send('menu', 'history');
-                            }
-                        },
+                        click: navigate('history'),
                     },
                 ],
             });

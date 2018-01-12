@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Settings from 'components/Settings/Index';
 import Welcome from '../Onboarding/Welcome';
 import Instructions from '../Onboarding/Instructions';
 import LightServerSetup from '../Onboarding/LightServerSetup';
@@ -44,6 +45,7 @@ export default withRouter(
                                 <Route path="/security/enter" component={SecurityEnter} />
                                 <Route exact path="/security/extra" component={() => {}} />
                                 <Route path="/security/extra/authenticator" component={() => {}} />
+                                <Route exact path="/settings/:setting?" component={Settings} />
                                 <Route path="/done" component={Done} />
                                 <Route path="/" component={Welcome} />
                             </Switch>

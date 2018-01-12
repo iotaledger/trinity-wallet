@@ -101,6 +101,7 @@
 }
 
 .history-item {
+    margin: 0 auto;
     width: 560px;
     border: 2px solid #fff;
     padding: 35px;
