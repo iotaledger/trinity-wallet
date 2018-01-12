@@ -125,7 +125,6 @@ class Home extends Component {
             );
         } else {
             this.props.setUserActivity({ inactive: false });
-            this.userInactivity.setIsActive();
         }
     };
 
@@ -161,7 +160,7 @@ class Home extends Component {
                     this.userInactivity = c;
                 }}
                 timeForInactivity={180000}
-                checkInterval={5000}
+                checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
                 <View style={{ flex: 1, backgroundColor: THEMES.getHSL(backgroundColor) }}>
