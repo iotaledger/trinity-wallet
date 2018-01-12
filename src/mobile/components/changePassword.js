@@ -56,7 +56,7 @@ class ChangePassword extends Component {
 
             keychain
                 .get()
-                .then((credentials) => {
+                .then(credentials => {
                     const payload = get(credentials, 'data');
 
                     if (payload) {
@@ -146,29 +146,29 @@ class ChangePassword extends Component {
                             'currentPassword',
                             currentPassword,
                             t('currentPassword'),
-                            (currentPassword) => this.setState({ currentPassword }),
+                            currentPassword => this.setState({ currentPassword }),
                             'next',
-                            (onSubmitEditing) => this.refs.newPassword.focus(),
+                            onSubmitEditing => this.refs.newPassword.focus(),
                         )}
                         {this.renderTextField(
                             'newPassword',
                             newPassword,
                             t('newPassword'),
-                            (newPassword) => this.setState({ newPassword }),
+                            newPassword => this.setState({ newPassword }),
                             'next',
-                            (onSubmitEditing) => this.refs.confirmedNewPassword.focus(),
+                            onSubmitEditing => this.refs.confirmedNewPassword.focus(),
                         )}
                         {this.renderTextField(
                             'confirmedNewPassword',
                             confirmedNewPassword,
                             t('confirmPassword'),
-                            (confirmedNewPassword) => this.setState({ confirmedNewPassword }),
+                            confirmedNewPassword => this.setState({ confirmedNewPassword }),
                             'done',
-                            (onSubmitEditing) => this.changePassword(),
+                            onSubmitEditing => this.changePassword(),
                         )}
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={(event) => this.props.backPress()}>
+                        <TouchableOpacity onPress={event => this.props.backPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>

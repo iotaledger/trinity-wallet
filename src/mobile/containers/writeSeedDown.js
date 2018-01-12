@@ -51,7 +51,7 @@ class WriteSeedDown extends Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={(event) => this.onDonePress()}>
+                    <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={[styles.doneButton, positiveColorBorder]}>
                             <Text style={[styles.doneText, positiveColorText]}>{t('global:done')}</Text>
                         </View>
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
