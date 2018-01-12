@@ -9,8 +9,8 @@
         "../shared"
     ],
     "scripts": {
-        "start": "concurrently --kill-others \"npm run devserver\" \"npm run electron\"",
-        "electron": "electron main.dev.js",
+        "start": "concurrently --kill-others \"npm run devserver\" \"cross-env NODE_ENV=development electron main.js\"",
+        "electron": "electron main.js",
         "devserver": "node server.js",
         "build": "rm -rf ./dist && cross-env NODE_ENV=production webpack -p --env=production --config webpack.config",
         "compile": "npm run compile:linux && npm run compile:mac && npm run compile:win",
