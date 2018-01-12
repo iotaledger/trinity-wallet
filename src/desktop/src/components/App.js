@@ -61,14 +61,11 @@ class App extends React.Component {
 
     menuToggle(item) {
         switch (item) {
-            case 'send':
-                this.props.history.push('/send');
+            case 'logout':
+                //
                 break;
-            case 'receive':
-                this.props.history.push('/receive');
-                break;
-            case 'history':
-                this.props.history.push('/history');
+            default:
+                this.props.history.push(`/${item}`);
                 break;
         }
     }
@@ -99,6 +96,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
     settings: state.settings,
+    tempAccount: state.tempAccount,
     app: state.app,
 });
 

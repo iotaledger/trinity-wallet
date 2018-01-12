@@ -1,7 +1,5 @@
-// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Header from './Header';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import css from '../Layout/Main.css';
@@ -14,8 +12,6 @@ export const Content = ({ children }) =>
     );
 
 export const Footer = ({ children }) => children && <footer>{children}</footer>;
-
-// export const Sidebar = ({ children }) => children && <section>{children}</section>;
 
 export default class Template extends React.Component {
     static propTypes = {
@@ -42,13 +38,12 @@ export default class Template extends React.Component {
 
     render() {
         const { children } = this.props;
-        // delete props.bodyClass;
         return (
             <section className={css.wrapper}>
                 <Header />
                 <main>
                     <Sidebar />
-                    {React.Children.map(children, child => {
+                    {React.Children.map(children, (child) => {
                         if (child.type === Content) {
                             return child;
                         }
