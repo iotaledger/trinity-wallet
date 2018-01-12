@@ -128,7 +128,10 @@ export class CurrencySelection extends Component {
         const props = this.props;
 
         return (
-            <TouchableOpacity onPress={props.backPress}>
+            <TouchableOpacity
+                onPress={props.backPress}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.itemLeft}>
                     <Image source={props.arrowLeftImagePath} style={styles.iconLeft} />
                     <Text style={[styles.titleTextLeft, { color: props.secondaryBackgroundColor }]}>
@@ -143,7 +146,10 @@ export class CurrencySelection extends Component {
         const props = this.props;
 
         return (
-            <TouchableOpacity onPress={() => props.getCurrencyData(this.dropdown.getSelected(), true)}>
+            <TouchableOpacity
+                onPress={() => props.getCurrencyData(this.dropdown.getSelected(), true)}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.itemRight}>
                     <Text style={[styles.titleTextRight, { color: props.secondaryBackgroundColor }]}>
                         {props.t('global:save')}
@@ -177,6 +183,7 @@ export class CurrencySelection extends Component {
                             defaultOption={currency}
                             dropdownWidth={styles.dropdownWidth}
                             disableWhen={isFetchingCurrencyData}
+                            background
                         />
                     </View>
                     {isFetchingCurrencyData && (

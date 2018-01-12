@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, ListView, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
+import { StyleSheet, View, ListView, Text, TouchableWithoutFeedback, Clipboard, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import {
     getAddressesForSelectedAccountViaSeedIndex,
     getDeduplicatedTransfersForSelectedAccountViaSeedIndex,
-} from '../../shared/selectors/account';
+    getSelectedAccountNameViaSeedIndex,
+} from 'iota-wallet-shared-modules/selectors/account';
+import { getAccountInfo } from 'iota-wallet-shared-modules/actions/account';
 import TransactionRow from '../components/transactionRow';
 import { width, height } from '../util/dimensions';
+import keychain, { getSeed } from '../util/keychain';
 import THEMES from '../theme/themes';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -25,12 +28,36 @@ class History extends Component {
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         pendingColor: PropTypes.string.isRequired,
+        getAccountInfo: PropTypes.func.isRequired,
+        selectedAccountName: PropTypes.string.isRequired,
+        isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
     };
 
     constructor() {
         super();
+        this.state = { viewRef: null, refreshing: false };
+    }
 
-        this.state = { viewRef: null };
+    componentWillReceiveProps(newProps) {
+        if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
+            this.setState({ refreshing: false });
+        }
+    }
+
+    _onRefresh() {
+        this.setState({ refreshing: true });
+        this.updateAccountData();
+    }
+
+    updateAccountData() {
+        const { selectedAccountName } = this.props;
+        keychain
+            .get()
+            .then(credentials => {
+                const seed = getSeed(credentials.data, 0);
+                this.props.getAccountInfo(seed, selectedAccountName);
+            })
+            .catch(err => console.log(err));
     }
 
     // FIXME: findNodeHangle is not defined
@@ -71,6 +98,13 @@ class History extends Component {
                     {hasTransactions ? (
                         <View style={styles.listView}>
                             <ListView
+                                refreshControl={
+                                    <RefreshControl
+                                        refreshing={this.state.refreshing}
+                                        onRefresh={this._onRefresh.bind(this)}
+                                        tintColor={THEMES.getHSL(negativeColor)}
+                                    />
+                                }
                                 contentContainerStyle={{ paddingTop: 1, paddingBottom: 1 }}
                                 dataSource={ds.cloneWithRows(transfers)}
                                 renderRow={dataSource => (
@@ -139,16 +173,19 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ tempAccount, account, settings }) => ({
     addresses: getAddressesForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
     transfers: getDeduplicatedTransfersForSelectedAccountViaSeedIndex(tempAccount.seedIndex, account.accountInfo),
+    selectedAccountName: getSelectedAccountNameViaSeedIndex(tempAccount.seedIndex, account.seedNames),
     negativeColor: settings.theme.negativeColor,
     positiveColor: settings.theme.positiveColor,
     backgroundColor: settings.theme.backgroundColor,
     extraColor: settings.theme.extraColor,
     secondaryBackgroundColor: settings.theme.secondaryBackgroundColor,
     pendingColor: settings.theme.pendingColor,
+    isFetchingLatestAccountInfoOnLogin: tempAccount.isFetchingLatestAccountInfoOnLogin,
 });
 
 const mapDispatchToProps = {
     generateAlert,
+    getAccountInfo,
 };
 
 export default translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History));

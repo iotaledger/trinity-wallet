@@ -58,7 +58,6 @@ export function setPrice(data) {
     const eurPrice = get(priceData, 'EUR.PRICE') || 0;
     const btcPrice = get(priceData, 'BTC.PRICE') || 0;
     const ethPrice = get(priceData, 'ETH.PRICE') || 0;
-
     return {
         type: ActionTypes.SET_PRICE,
         usd: usdPrice,
@@ -134,17 +133,10 @@ export function setChartData(json, currency, timeframe) {
         const data = [];
         for (let i = 0; i <= timeValue; i++) {
             const y = get(response, `[${i}].close`);
-            if (currency === 'BTC') {
-                data[i] = {
-                    x: i,
-                    y: parseFloat(y.toFixed(5)),
-                };
-            } else {
-                data[i] = {
-                    x: i,
-                    y: parseFloat(y),
-                };
-            }
+            data[i] = {
+                x: i,
+                y: parseFloat(y),
+            };
         }
 
         return {

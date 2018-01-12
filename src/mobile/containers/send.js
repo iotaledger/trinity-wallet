@@ -13,7 +13,6 @@ import {
     Image,
     TouchableOpacity,
     ListView,
-    StatusBar,
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
@@ -73,6 +72,7 @@ class Send extends Component {
         negativeColor: PropTypes.object.isRequired,
         isSendingTransfer: PropTypes.bool.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -283,6 +283,8 @@ class Send extends Component {
                         hideModal={() => this._hideModal()}
                         backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
                         ctaColor={THEMES.getHSL(this.props.ctaColor)}
+                        secondaryCtaColor={this.props.secondaryCtaColor}
+                        ctaBorderColor={this.props.ctaBorderColor}
                     />
                 );
                 this.setState({
@@ -419,7 +421,6 @@ class Send extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
-                    <StatusBar barStyle="light-content" />
                     <View style={styles.emptyContainer} />
                     <View style={styles.topContainer}>
                         <View style={styles.fieldContainer}>
