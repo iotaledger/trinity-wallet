@@ -2,7 +2,6 @@ import isFunction from 'lodash/isFunction';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 
 import marketData from './reducers/marketData';
 import tempAccount from './reducers/tempAccount';
