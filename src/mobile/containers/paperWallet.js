@@ -50,8 +50,8 @@ class PaperWallet extends Component {
 
             // Doesn't convert to PDF for android.
             if (isIOS) {
-                Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then((item) =>
-                    item.forEach((item) => RNFS.unlink(item.path)),
+                Promise.resolve(RNFS.readDir(RNFS.TemporaryDirectoryPath)).then(item =>
+                    item.forEach(item => RNFS.unlink(item.path)),
                 );
             }
         }
@@ -394,14 +394,14 @@ class PaperWallet extends Component {
                                 <Text style={styles.checksumText}>{checksum}</Text>
                             </View>
                         </View>
-                        <QRCode value={this.props.tempAccount.seed} getRef={(c) => (this.svg = c)} size={width / 3.4} />
+                        <QRCode value={this.props.tempAccount.seed} getRef={c => (this.svg = c)} size={width / 3.4} />
                     </View>
-                    <TouchableOpacity style={styles.checkboxContainer} onPress={(event) => this.onCheckboxPress()}>
+                    <TouchableOpacity style={styles.checkboxContainer} onPress={event => this.onCheckboxPress()}>
                         <Image source={this.state.checkboxImage} style={styles.checkbox} />
                         <Text style={[styles.checkboxText, textColor]}>{t('iotaLogo')}</Text>
                     </TouchableOpacity>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={(event) => this.onPrintPress()}>
+                        <TouchableOpacity onPress={event => this.onPrintPress()}>
                             <View
                                 style={[
                                     styles.printButton,
@@ -414,7 +414,7 @@ class PaperWallet extends Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={(event) => this.onDonePress()}>
+                    <TouchableOpacity onPress={event => this.onDonePress()}>
                         <View style={[styles.doneButton, positiveColorBorder]}>
                             <Text style={[styles.doneText, positiveColorText]}>{t('global:done')}</Text>
                         </View>
@@ -619,7 +619,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,

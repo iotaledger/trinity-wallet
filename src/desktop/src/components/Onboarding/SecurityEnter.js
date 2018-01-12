@@ -28,7 +28,7 @@ class SecurityEnter extends React.PureComponent {
         passwordConfirm: '',
     };
 
-    onRequestNext = (e) => {
+    onRequestNext = e => {
         e.preventDefault();
         const { clearSeeds, history, seeds, showError, t } = this.props;
         const { password, passwordConfirm } = this.state;
@@ -52,13 +52,13 @@ class SecurityEnter extends React.PureComponent {
         history.push('/done');
     };
 
-    updatePassword = (value) => {
+    updatePassword = value => {
         this.setState(() => ({
             password: value,
         }));
     };
 
-    confirmPassword = (value) => {
+    confirmPassword = value => {
         this.setState(() => ({
             passwordConfirm: value,
         }));
@@ -97,7 +97,7 @@ class SecurityEnter extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     seeds: seedsSelector(state),
 });
 

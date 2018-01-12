@@ -64,7 +64,7 @@ class EnterPasswordOnLogin extends Component {
         password: '',
     };
 
-    handleChangeText = (password) => this.setState({ password });
+    handleChangeText = password => this.setState({ password });
 
     handleLogin = () => {
         const { password } = this.state;

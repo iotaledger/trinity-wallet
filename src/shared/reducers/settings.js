@@ -173,11 +173,11 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 language: action.payload,
             };
-        case ActionTypes.SET_CURRENCY_DATA:
+        case ActionTypes.CURRENCY_DATA_FETCH_SUCCESS:
             return {
                 ...state,
-                currency: action.currency,
-                conversionRate: action.conversionRate,
+                currency: action.payload.currency,
+                conversionRate: action.payload.conversionRate,
             };
         case ActionTypes.UPDATE_THEME:
             return {

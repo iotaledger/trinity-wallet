@@ -3,7 +3,7 @@ import IOTA from './iota.lib.promisified';
 
 export const iota = new IOTA({ provider: selectRandomNode() });
 
-export const changeIotaNode = (provider) => iota.changeNode({ provider });
+export const changeIotaNode = provider => iota.changeNode({ provider });
 
 function selectRandomNode() {
     const nodes = [
@@ -23,7 +23,7 @@ function listener() {
     return node.settings.fullNode;
 }
 
-export const convertFromTrytes = (trytes) => {
+export const convertFromTrytes = trytes => {
     trytes = trytes.replace(/9+$/, '');
     const message = iota.utils.fromTrytes(trytes);
     if (trytes === '') {
@@ -32,7 +32,7 @@ export const convertFromTrytes = (trytes) => {
     return message;
 };
 
-export const getBalances = (addresses) => {
+export const getBalances = addresses => {
     iota.api.getBalances(addresses, 1, (error, success) => {
         if (!error) {
             console.log(success);
@@ -42,7 +42,7 @@ export const getBalances = (addresses) => {
     });
 };
 
-export const checkNode = (cb) => {
+export const checkNode = cb => {
     iota.api.getNodeInfo((error, success) => {
         if (error) {
             cb(error);
@@ -53,6 +53,6 @@ export const checkNode = (cb) => {
     });
 };
 
-export const getChecksum = (seed) => {
+export const getChecksum = seed => {
     return iota.utils.addChecksum(seed, 3, false).substr(-3);
 };

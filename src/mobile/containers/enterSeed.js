@@ -38,7 +38,7 @@ class EnterSeed extends React.Component {
         };
     }
 
-    handleKeyPress = (event) => {
+    handleKeyPress = event => {
         if (event.key == 'Enter') {
             Keyboard.dismiss();
         }
@@ -92,7 +92,7 @@ class EnterSeed extends React.Component {
         <QRScanner
             backgroundColor={COLORS.backgroundGreen}
             ctaColor={COLORS.greenLight}
-            onQRRead={(data) => this.onQRRead(data)}
+            onQRRead={data => this.onQRRead(data)}
             hideModal={() => this._hideModal()}
         />
     );
@@ -149,7 +149,7 @@ class EnterSeed extends React.Component {
                                             autoCorrect={false}
                                             value={seed}
                                             maxLength={MAX_SEED_LENGTH}
-                                            onChangeText={(seed) => this.setState({ seed: seed.toUpperCase() })}
+                                            onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
                                             onSubmitEditing={() => this.onDonePress()}
                                         />
                                     </View>
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     marketData: state.marketData,
     tempAccount: state.tempAccount,
     account: state.account,
