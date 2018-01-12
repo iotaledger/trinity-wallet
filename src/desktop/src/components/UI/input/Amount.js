@@ -4,13 +4,13 @@ import classNames from 'classnames';
 import { getCurrencySymbol } from 'libs/currency';
 import css from 'components/UI/input/Input.css';
 
-import Chevron from 'images/chevron-down.png';
+import Chevron from 'images/chevron-down-white.png';
 
 const units = ['$', 'i', 'Ki', 'Mi', 'Gi', 'Ti'];
 
 export default class AddressInput extends React.PureComponent {
     static propTypes = {
-        ammount: PropTypes.string.isRequired,
+        amount: PropTypes.string.isRequired,
         balance: PropTypes.number.isRequired,
         settings: PropTypes.object.isRequired,
         label: PropTypes.string.isRequired,
@@ -26,7 +26,7 @@ export default class AddressInput extends React.PureComponent {
         value = value.replace(/,/g, '.');
         const trailingDot = value[value.length - 1] === '.' && value.match(/^\d+(\.\d{0,20})?$/g) ? '.' : '';
         value =
-            !value.length || value.match(/^\d+(\.\d{0,20})?$/g) ? value * this.getUnitMultiplier() : this.props.ammount;
+            !value.length || value.match(/^\d+(\.\d{0,20})?$/g) ? value * this.getUnitMultiplier() : this.props.amount;
         this.props.onChange(value + trailingDot);
     };
 
@@ -54,7 +54,7 @@ export default class AddressInput extends React.PureComponent {
         return multiplier;
     }
 
-    maxAmmount = e => {
+    maxAmount = e => {
         e.preventDefault();
         this.props.onChange(this.props.balance.toString());
     };
@@ -70,7 +70,7 @@ export default class AddressInput extends React.PureComponent {
     };
 
     render() {
-        const { ammount, balance, settings, label, labelMax } = this.props;
+        const { amount, balance, settings, label, labelMax } = this.props;
         const { unit } = this.state;
 
         return (
@@ -84,14 +84,14 @@ export default class AddressInput extends React.PureComponent {
                     </a>
                     <input
                         type="text"
-                        value={ammount / this.getUnitMultiplier() + (ammount[ammount.length - 1] === '.' ? '.' : '')}
+                        value={amount / this.getUnitMultiplier() + (amount[amount.length - 1] === '.' ? '.' : '')}
                         onChange={e => this.onChange(e.target.value)}
                     />
                     <small>{label}</small>
                 </fieldset>
                 <a
-                    className={classNames(css.checkbox, parseInt(ammount) === balance ? css.on : css.off)}
-                    onClick={this.maxAmmount}
+                    className={classNames(css.checkbox, parseInt(amount) === balance ? css.on : css.off)}
+                    onClick={this.maxAmount}
                 >
                     {labelMax}
                 </a>

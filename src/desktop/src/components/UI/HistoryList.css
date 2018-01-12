@@ -26,7 +26,7 @@
                     content: '';
                     display: inline-block;
                     vertical-align: middle;
-                    background: url('images/send.png') center;
+                    background: url('images/send-white.png') center;
                     background-size: cover;
                     width: 12px;
                     height: 12px;
@@ -47,7 +47,7 @@
     .received {
         color: var(--color-extra);
         > span:nth-child(1):before {
-            background: url('images/receive.png') center;
+            background: url('images/receive-white.png') center;
             background-size: cover;
         }
     }
