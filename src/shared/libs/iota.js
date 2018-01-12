@@ -1,10 +1,23 @@
 // import IOTA from 'iota.lib.js';
 import IOTA from './iota.lib.promisified';
-import { defaultNode } from '../config';
 
-export const iota = new IOTA({ provider: defaultNode });
+export const iota = new IOTA({ provider: selectRandomNode() });
 
 export const changeIotaNode = provider => iota.changeNode({ provider });
+
+function selectRandomNode() {
+    const x = Math.floor(Math.random() * 7);
+    const nodes = [
+        'https://iri2-api.iota.fm:443',
+        'https://iri3-api.iota.fm:443',
+        'https://node.tangle.works:443',
+        'https://iotanode.us:443',
+        'http://astra2261.startdedicated.net:14265',
+        'http://iota.nck.nz:14265',
+        'http://www.veriti.io',
+    ];
+    return nodes[x];
+}
 
 function listener() {
     let node = store.getStore().getState().settings.fullNode;

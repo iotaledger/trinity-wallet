@@ -4,12 +4,14 @@ import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { StyleSheet, View, Text, StatusBar, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, Keyboard } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
+import authenticator from 'authenticator';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
-import { setPassword, setReady } from 'iota-wallet-shared-modules/actions/tempAccount';
+import { setPassword, setReady, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -20,6 +22,7 @@ import blackArrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-lef
 import whiteTickImagePath from 'iota-wallet-shared-modules/images/tick-white.png';
 import blackTickImagePath from 'iota-wallet-shared-modules/images/tick-black.png';
 import EnterPasswordOnLogin from '../components/enterPasswordOnLogin';
+import Enter2FA from '../components/enter2FA';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import keychain from '../util/keychain';
 import THEMES from '../theme/themes';
@@ -48,6 +51,9 @@ class Login extends Component {
         positiveColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        key2FA: PropTypes.string.isRequired,
+        is2FAEnabled: PropTypes.bool.isRequired,
+        setUserActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -55,9 +61,13 @@ class Login extends Component {
 
         this.state = {
             isModalVisible: false,
+            changingNode: false,
+            completing2FA: false,
         };
 
+        this.onComplete2FA = this.onComplete2FA.bind(this);
         this.onLoginPress = this.onLoginPress.bind(this);
+        this.onBackPress = this.onBackPress.bind(this);
         this.navigateToNodeSelection = this.navigateToNodeSelection.bind(this);
     }
 
@@ -66,6 +76,7 @@ class Login extends Component {
         this.getWalletData();
         this.props.getCurrencyData(currency);
         KeepAwake.deactivate();
+        this.props.setUserActivity({ inactive: false });
     }
 
     componentWillReceiveProps(newProps) {
@@ -73,10 +84,6 @@ class Login extends Component {
             this._showModal();
         }
     }
-
-    _showModal = data => this.setState({ isModalVisible: true });
-
-    _hideModal = () => this.setState({ isModalVisible: false });
 
     navigateToNodeSelection() {
         this._hideModal();
@@ -104,16 +111,8 @@ class Login extends Component {
         );
     };
 
-    getWalletData() {
-        this.props.getChartData();
-        this.props.getPrice();
-        this.props.getMarketData();
-    }
-
     onLoginPress(password) {
-        const { firstUse, t, setPassword, selectedAccount } = this.props;
-
-        Keyboard.dismiss();
+        const { firstUse, t, setPassword, selectedAccount, is2FAEnabled } = this.props;
 
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
@@ -125,15 +124,19 @@ class Login extends Component {
                     const hasCorrectPassword = get(credentials, 'password') === password;
                     if (hasData && hasCorrectPassword) {
                         setPassword(password);
-                        if (firstUse) {
-                            this.navigateToLoading();
-                        } else {
-                            const addresses = get(selectedAccount, 'addresses');
-                            if (!isEmpty(addresses)) {
+                        if (!is2FAEnabled) {
+                            if (firstUse) {
                                 this.navigateToLoading();
                             } else {
-                                this.navigateToHome();
+                                const addresses = get(selectedAccount, 'addresses');
+                                if (!isEmpty(addresses)) {
+                                    this.navigateToLoading();
+                                } else {
+                                    this.navigateToHome();
+                                }
                             }
+                        } else {
+                            this.setState({ completing2FA: true });
                         }
                     } else {
                         this.props.generateAlert(
@@ -146,6 +149,44 @@ class Login extends Component {
                 .catch(err => console.log(err)); // Dropdown
         }
     }
+
+    onComplete2FA(token) {
+        const { firstUse, selectedAccount } = this.props;
+        if (token) {
+            const value2FA = authenticator.verifyToken(this.props.key2FA, token);
+            if (value2FA) {
+                if (firstUse) {
+                    this.navigateToLoading();
+                } else {
+                    const addresses = get(selectedAccount, 'addresses');
+                    if (!isEmpty(addresses)) {
+                        this.navigateToLoading();
+                    } else {
+                        this.navigateToHome();
+                    }
+                }
+                this.setState({ completing2FA: false });
+            } else {
+                this.props.generateAlert('error', 'Wrong Code', 'The code you entered is not correct');
+            }
+        } else {
+            this.props.generateAlert('error', 'Empty code', 'The code you entered is empty');
+        }
+    }
+
+    onBackPress() {
+        this.setState({ completing2FA: false });
+    }
+
+    getWalletData() {
+        this.props.getChartData();
+        this.props.getPrice();
+        this.props.getMarketData();
+    }
+
+    _showModal = () => this.setState({ isModalVisible: true });
+
+    _hideModal = () => this.setState({ isModalVisible: false });
 
     navigateToLoading() {
         this.props.navigator.push({
@@ -186,18 +227,31 @@ class Login extends Component {
         const tickImagePath = secondaryBackgroundColor === 'white' ? whiteTickImagePath : blackTickImagePath;
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
-                {!this.state.changingNode && (
-                    <EnterPasswordOnLogin
-                        backgroundColor={backgroundColor}
-                        negativeColor={negativeColor}
-                        positiveColor={positiveColor}
-                        onLoginPress={this.onLoginPress}
-                        navigateToNodeSelection={this.navigateToNodeSelection}
-                        secondaryBackgroundColor={secondaryBackgroundColor}
-                        textColor={textColor}
-                    />
-                )}
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
+                {!this.state.changingNode &&
+                    !this.state.completing2FA && (
+                        <EnterPasswordOnLogin
+                            backgroundColor={backgroundColor}
+                            negativeColor={negativeColor}
+                            positiveColor={positiveColor}
+                            onLoginPress={this.onLoginPress}
+                            navigateToNodeSelection={this.navigateToNodeSelection}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            textColor={textColor}
+                        />
+                    )}
+                {!this.state.changingNode &&
+                    this.state.completing2FA && (
+                        <Enter2FA
+                            negativeColor={negativeColor}
+                            positiveColor={positiveColor}
+                            onComplete2FA={this.onComplete2FA}
+                            onBackPress={this.onBackPress}
+                            navigateToNodeSelection={this.navigateToNodeSelection}
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            textColor={textColor}
+                        />
+                    )}
                 {this.state.changingNode && (
                     <View>
                         <View style={{ flex: 0.8 }} />
@@ -280,6 +334,8 @@ const mapStateToProps = state => ({
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+    is2FAEnabled: state.account.is2FAEnabled,
+    key2FA: state.account.key2FA,
 });
 
 const mapDispatchToProps = {
@@ -293,6 +349,7 @@ const mapDispatchToProps = {
     setFullNode,
     changeHomeScreenRoute,
     setSetting,
+    setUserActivity,
 };
 
 export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));
