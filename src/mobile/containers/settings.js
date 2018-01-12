@@ -363,7 +363,7 @@ class Settings extends Component {
                 addImagePath,
             },
             currencySelection: {
-                getCurrencyData: currency => this.props.getCurrencyData(currency),
+                getCurrencyData: (currency, withAlerts) => this.props.getCurrencyData(currency, withAlerts),
                 currency: this.props.currency,
                 currencies: this.props.availableCurrencies,
                 backPress: () => this.props.setSetting('mainSettings'),
