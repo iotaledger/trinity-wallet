@@ -66,12 +66,14 @@
         "react-transition-group": "^2.2.1",
         "redux": "^3.7.2",
         "redux-persist": "^4.9.1",
+        "serviceworker-webpack-plugin": "^0.2.3",
         "sjcl": "^1.0.7",
         "style-loader": "^0.19.1",
         "url-loader": "^0.6.2",
         "webpack": "^3.6.0",
         "webpack-dev-middleware": "^2.0.3",
-        "webpack-hot-middleware": "^2.19.1"
+        "webpack-hot-middleware": "^2.19.1",
+        "worker-loader": "^1.1.0"
     },
     "build": {
         "directories": {
