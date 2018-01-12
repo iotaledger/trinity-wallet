@@ -39,13 +39,13 @@ class History extends Component {
     }
 
     copyBundleHash(item) {
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
         Clipboard.setString(item);
         generateAlert('success', t('bundleHashCopied'), t('bundleHashCopiedExplanation'));
     }
 
     copyAddress(item) {
-        const { t } = this.props;
+        const { t, generateAlert } = this.props;
         Clipboard.setString(item);
         generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
@@ -71,6 +71,7 @@ class History extends Component {
                     {hasTransactions ? (
                         <View style={styles.listView}>
                             <ListView
+                                contentContainerStyle={{ paddingTop: 1, paddingBottom: 1 }}
                                 dataSource={ds.cloneWithRows(transfers)}
                                 renderRow={dataSource => (
                                     <TransactionRow

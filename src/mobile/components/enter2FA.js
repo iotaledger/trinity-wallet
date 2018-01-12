@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Image, Keyboard } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
@@ -8,6 +7,7 @@ import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { width, height } from '../util/dimensions';
+import OnboardingButtons from '../components/onboardingButtons';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     },
     midContainer: {
         flex: 4.8,
+        width,
         alignItems: 'center',
         paddingTop: height / 4.2,
     },
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
+        paddingBottom: height / 20,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -41,40 +43,51 @@ const styles = StyleSheet.create({
         height: width / 7,
         width: width / 7,
     },
-    loginButton: {
+    doneButton: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
         width: width / 3,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginBottom: height / 20,
     },
-    loginText: {
+    doneText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
 });
 
-class EnterPassword extends Component {
-    state = {
-        password: '',
+class Enter2FA extends Component {
+    static propTypes = {
+        onComplete2FA: PropTypes.func.isRequired,
+        positiveColor: PropTypes.object.isRequired,
+        secondaryBackgroundColor: PropTypes.string.isRequired,
+        negativeColor: PropTypes.object.isRequired,
+        onBackPress: PropTypes.func.isRequired,
     };
 
-    handleChangeText = password => this.setState({ password });
+    state = {
+        token2FA: '',
+    };
 
-    handleLogin = () => {
-        const { password } = this.state;
-        const { onLoginPress } = this.props;
-        onLoginPress(password);
+    handleChange2FAToken = token2FA => this.setState({ token2FA });
+
+    handleDonePress = () => {
+        const { token2FA } = this.state;
+        const { onComplete2FA } = this.props;
+        onComplete2FA(token2FA);
+    };
+
+    handleBackPress = () => {
+        const { onBackPress } = this.props;
+        onBackPress();
     };
 
     render() {
-        const { password } = this.state;
-        const { t, positiveColor, secondaryBackgroundColor, textColor, negativeColor } = this.props;
-        const borderColor = { borderColor: THEMES.getHSL(positiveColor) };
-        const positiveTextColor = { color: THEMES.getHSL(positiveColor) };
+        const { codefor2FA } = this.state;
+        const { positiveColor, secondaryBackgroundColor, negativeColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
         const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
@@ -83,7 +96,7 @@ class EnterPassword extends Component {
                     <View style={styles.topContainer}>
                         <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                         <View style={styles.titleContainer}>
-                            <Text style={[styles.title, textColor]}>{t('enterPassword')}</Text>
+                            <Text style={[styles.title, textColor]}>Please enter your 2FA Token</Text>
                         </View>
                     </View>
                     <View style={styles.midContainer}>
@@ -94,27 +107,27 @@ class EnterPassword extends Component {
                             fontSize={width / 20.7}
                             labelPadding={3}
                             baseColor={secondaryBackgroundColor}
-                            label={t('global:password')}
+                            label="Token"
                             tintColor={THEMES.getHSL(negativeColor)}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
-                            value={password}
-                            onChangeText={this.handleChangeText}
+                            value={codefor2FA}
+                            onChangeText={this.handleChange2FAToken}
                             containerStyle={{
                                 width: width / 1.4,
                             }}
-                            secureTextEntry
-                            onSubmitEditing={this.handleLogin}
+                            onSubmitEditing={this.handleDonePress}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={this.handleLogin}>
-                            <View style={[styles.loginButton, borderColor]}>
-                                <Text style={[styles.loginText, positiveTextColor]}>{t('login')}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <OnboardingButtons
+                            onLeftButtonPress={this.handleBackPress}
+                            onRightButtonPress={this.handleDonePress}
+                            leftText={'BACK'}
+                            rightText={'DONE'}
+                        />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -122,12 +135,4 @@ class EnterPassword extends Component {
     }
 }
 
-EnterPassword.propTypes = {
-    onLoginPress: PropTypes.func.isRequired,
-    t: PropTypes.func.isRequired,
-    positiveColor: PropTypes.object.isRequired,
-    textColor: PropTypes.object.isRequired,
-    secondaryBackgroundColor: PropTypes.string.isRequired,
-};
-
-export default translate(['login', 'global'])(EnterPassword);
+export default Enter2FA;

@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
-import isEmpty from 'lodash/isEmpty';
 import size from 'lodash/size';
 
 // FIXME: Hacking no-console linting.
@@ -135,10 +134,17 @@ export function setChartData(json, currency, timeframe) {
         const data = [];
         for (let i = 0; i <= timeValue; i++) {
             const y = get(response, `[${i}].close`);
-            data[i] = {
-                x: i,
-                y: parseFloat(y),
-            };
+            if (currency === 'BTC') {
+                data[i] = {
+                    x: i,
+                    y: parseFloat(y.toFixed(5)),
+                };
+            } else {
+                data[i] = {
+                    x: i,
+                    y: parseFloat(y),
+                };
+            }
         }
 
         return {

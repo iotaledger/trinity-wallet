@@ -136,7 +136,12 @@ class ViewSeed extends Component {
                         {this.state.showSeed && (
                             <View style={{ flex: 1 }}>
                                 <View style={styles.seedBoxContainer}>
-                                    <Seedbox seed={this.state.seed} />
+                                    <Seedbox
+                                        seed={this.state.seed}
+                                        secondaryBackgroundColor={secondaryBackgroundColor}
+                                        borderColor={borderColor}
+                                        textColor={textColor}
+                                    />
                                 </View>
                                 <View style={styles.hideButtonContainer}>
                                     <TouchableOpacity
