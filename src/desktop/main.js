@@ -47,10 +47,12 @@ app.on('activate', () => {
     }
 });
 
-app.setAsDefaultProtocolClient('iot');
+app.setAsDefaultProtocolClient('iota');
 app.on('open-url', function(event, url) {
     event.preventDefault();
     let deeplinkingUrl = url;
+    console.log('test main' + url);
+    mainWindow.webContents.send('url-params', url);
     logEverywhere('open-url# ' + deeplinkingUrl);
 });
 
