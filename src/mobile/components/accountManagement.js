@@ -28,7 +28,7 @@ class AdvancedSettings extends Component {
             <View style={styles.advancedSettingsContainer}>
                 <View style={{ flex: 5.5 }}>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={(event) => this.props.setSetting('viewSeed')}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('viewSeed')}>
                             <View style={styles.item}>
                                 <Image source={keyImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('viewSeed')}</Text>
@@ -36,7 +36,7 @@ class AdvancedSettings extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={(event) => this.props.setSetting('viewAddresses')}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('viewAddresses')}>
                             <View style={styles.item}>
                                 <Image source={addressesImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('viewAddresses')}</Text>
@@ -44,7 +44,7 @@ class AdvancedSettings extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={(event) => this.props.setSetting('editAccountName')}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('editAccountName')}>
                             <View style={styles.item}>
                                 <Image source={editImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('editAccountName')}</Text>
@@ -52,7 +52,7 @@ class AdvancedSettings extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={(event) => this.props.onDeleteAccountPress()}>
+                        <TouchableOpacity onPress={event => this.props.onDeleteAccountPress()}>
                             <View style={styles.item}>
                                 <Image source={deleteImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('deleteAccount')}</Text>
@@ -63,7 +63,7 @@ class AdvancedSettings extends Component {
                         <View style={[styles.separator, { borderBottomColor: secondaryBackgroundColor }]} />
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={(event) => this.props.setSetting('addNewAccount')}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('addNewAccount')}>
                             <View style={styles.item}>
                                 <Image source={addImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('addNewAccount')}</Text>
@@ -74,7 +74,7 @@ class AdvancedSettings extends Component {
                 <View style={{ flex: 4.5 }}>
                     <View style={{ flex: 3.5 }} />
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={(event) => this.props.setSetting('mainSettings')}>
+                        <TouchableOpacity onPress={event => this.props.setSetting('mainSettings')}>
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.backIcon} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
