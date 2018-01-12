@@ -7,8 +7,9 @@ import { sendTransaction, sendTransferRequest } from 'actions/tempAccount';
 import { iota } from 'libs/iota';
 import { showError } from 'actions/notifications';
 import Template, { Content } from 'components/Main/Template';
+import HistoryList from 'components/UI/HistoryList';
 import AddressInput from 'components/UI/input/Address';
-import AmmountInput from 'components/UI/input/Ammount';
+import AmountInput from 'components/UI/input/Amount';
 import MessageInput from 'components/UI/input/Message';
 import Button from 'components/UI/Button';
 import Modal from 'components/UI/Modal';
@@ -27,7 +28,7 @@ class Send extends React.PureComponent {
 
     state = {
         address: '',
-        ammount: '0',
+        amount: '0',
         message: '',
         isModalVisible: false,
     };
@@ -38,9 +39,9 @@ class Send extends React.PureComponent {
         }));
     };
 
-    onAmmountChange = value => {
+    onAmountChange = value => {
         this.setState(() => ({
-            ammount: value,
+            amount: value,
         }));
     };
 
@@ -51,7 +52,7 @@ class Send extends React.PureComponent {
     };
 
     send = () => {
-        const { address, ammount } = this.state;
+        const { address, amount } = this.state;
         const { showError, account } = this.props;
 
         if (address.length !== ADDRESS_LENGTH) {
@@ -78,7 +79,7 @@ class Send extends React.PureComponent {
             });
         }
 
-        if (parseFloat(ammount) > account.balance) {
+        if (parseFloat(amount) > account.balance) {
             return showError({
                 title: 'send:notEnoughFunds',
                 text: 'send:notEnoughFundsExplanation',
@@ -96,7 +97,7 @@ class Send extends React.PureComponent {
     };
 
     sendTransfer = () => {
-        const { address, ammount, message } = this.state;
+        const { address, amount, message } = this.state;
         const { sendTransferRequest, sendTransaction, seeds, account } = this.props;
 
         this.toggleConfirmation();
@@ -105,12 +106,12 @@ class Send extends React.PureComponent {
         const seedInfo = seeds.items[seeds.selectedSeedIndex];
         const accountInfo = account.accountInfo[seedInfo.name];
 
-        sendTransaction(seedInfo.seed, accountInfo, seedInfo.name, address, parseInt(ammount), message);
+        sendTransaction(seedInfo.seed, accountInfo, seedInfo.name, address, parseInt(amount), message);
     };
 
     render() {
         const { t, settings, account, seeds } = this.props;
-        const { address, ammount, message, isModalVisible } = this.state;
+        const { address, amount, message, isModalVisible } = this.state;
 
         const seedInfo = seeds.items[seeds.selectedSeedIndex];
         const accountInfo = account.accountInfo[seedInfo.name];
@@ -128,7 +129,7 @@ class Send extends React.PureComponent {
                             >
                                 <h1>
                                     You are about to send{' '}
-                                    <strong>{`${formatValue(ammount)} ${formatUnit(ammount)}`}</strong> to the address:{' '}
+                                    <strong>{`${formatValue(amount)} ${formatUnit(amount)}`}</strong> to the address:{' '}
                                     <br />
                                     <strong>{address}</strong>
                                 </h1>
@@ -145,13 +146,13 @@ class Send extends React.PureComponent {
                                 label={t('send:recipientAddress')}
                                 closeLabel={t('global:back')}
                             />
-                            <AmmountInput
-                                ammount={ammount}
+                            <AmountInput
+                                amount={amount}
                                 settings={settings}
                                 label={t('send:amount')}
                                 labelMax={t('send:max')}
                                 balance={accountInfo.balance}
-                                onChange={this.onAmmountChange}
+                                onChange={this.onAmountChange}
                             />
                             <MessageInput message={message} label={t('send:message')} onChange={this.onMessageChange} />
                             <Button onClick={this.send} variant="success">
@@ -159,7 +160,13 @@ class Send extends React.PureComponent {
                             </Button>
                         </div>
                     </section>
-                    <section />
+                    <section>
+                        <HistoryList
+                            filter="sent"
+                            transfers={accountInfo.transfers.length ? accountInfo.transfers : []}
+                            addresses={Object.keys(accountInfo.addresses)}
+                        />
+                    </section>
                 </Content>
             </Template>
         );

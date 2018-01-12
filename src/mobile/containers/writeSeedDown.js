@@ -1,46 +1,53 @@
-import React, { Component } from 'react'
-import { translate } from 'react-i18next'
-import { StyleSheet, View, Text, TouchableOpacity, Image, StatusBar } from 'react-native'
-import { connect } from 'react-redux'
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util'
-import Seedbox from '../components/seedBox.js'
-import { width, height } from '../util/dimensions'
-import THEMES from '../theme/themes'
-import GENERAL from '../theme/general'
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png'
-import { getChecksum } from 'iota-wallet-shared-modules/libs/iota'
+import React, { Component } from 'react';
+import { translate } from 'react-i18next';
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import { connect } from 'react-redux';
+import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
+import Seedbox from '../components/seedBox.js';
+import { width, height } from '../util/dimensions';
+import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 
 class WriteSeedDown extends Component {
     onDonePress() {
         this.props.navigator.pop({
             animated: false,
-        })
+        });
     }
 
     render() {
-        const { t, positiveColor, backgroundColor } = this.props
-        const checksum = getChecksum(this.props.tempAccount.seed)
-
-        const positiveColorText = { color: THEMES.getHSL(positiveColor) }
-        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) }
+        const { t, positiveColor, backgroundColor, secondaryBackgroundColor } = this.props;
+        const checksum = getChecksum(this.props.tempAccount.seed);
+        const textColor = { color: secondaryBackgroundColor };
+        const borderColor = { borderColor: secondaryBackgroundColor };
+        const positiveColorText = { color: THEMES.getHSL(positiveColor) };
+        const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
-                    <Text style={styles.infoText}>
+                    <Text style={[styles.infoText, textColor]}>
                         <Text style={styles.infoTextNormal}>
                             {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
                         </Text>
                         <Text style={styles.infoTextBold}>{` ${t('writeSeedDown:tripleCheck')} `}</Text>
                         <Text style={styles.infoTextNormal}>{t('writeSeedDown:thatTheyAreCorrect')}</Text>
                     </Text>
-                    <Seedbox seed={this.props.tempAccount.seed} />
-                    <View style={styles.checksum}>
-                        <Text style={styles.checksumText}>{checksum}</Text>
+                    <Seedbox
+                        secondaryBackgroundColor={secondaryBackgroundColor}
+                        borderColor={borderColor}
+                        textColor={textColor}
+                        seed={this.props.tempAccount.seed}
+                    />
+                    <View style={[styles.checksum, borderColor]}>
+                        <Text style={[styles.checksumText, textColor]}>{checksum}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
@@ -51,7 +58,7 @@ class WriteSeedDown extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -106,14 +113,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
-        color: 'white',
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
         textAlign: 'center',
@@ -192,12 +197,13 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'Lato-Regular',
     },
-})
+});
 
 const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
-})
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+});
 
-export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown))
+export default translate(['writeSeedDown', 'global'])(connect(mapStateToProps)(WriteSeedDown));

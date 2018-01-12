@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from 'components/UI/Logo';
-import classNames from 'classnames';
 import css from './Loading.css';
 
 export default class Loading extends React.PureComponent {
@@ -14,7 +13,7 @@ export default class Loading extends React.PureComponent {
 
         return (
             <div className={css.loading}>
-                <Logo width={168} className={classNames('animated', loop && 'loop')} />
+                <Logo size={200} animate loop={loop} />
             </div>
         );
     }
