@@ -6,7 +6,7 @@ import css from 'components/UI/input/Input.css';
 import Modal from 'components/UI/Modal';
 import Button from 'components/UI/Button';
 
-import Camera from 'images/camera.png';
+import Camera from 'images/camera-white.png';
 
 export default class AddressInput extends React.PureComponent {
     static propTypes = {
