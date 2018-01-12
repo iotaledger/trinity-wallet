@@ -6,16 +6,15 @@ export const iota = new IOTA({ provider: selectRandomNode() });
 export const changeIotaNode = provider => iota.changeNode({ provider });
 
 function selectRandomNode() {
-    const x = Math.floor(Math.random() * 7);
     const nodes = [
-        'https://iri2-api.iota.fm:443',
-        'https://iri3-api.iota.fm:443',
-        'https://node.tangle.works:443',
+        'http://iri2.iota.fm:80',
+        'http://iri3.iota.fm:80',
+        'https://node.neffware.com:443',
         'https://iotanode.us:443',
         'http://astra2261.startdedicated.net:14265',
-        'http://iota.nck.nz:14265',
         'http://www.veriti.io',
     ];
+    const x = Math.floor(Math.random() * nodes.length);
     return nodes[x];
 }
 

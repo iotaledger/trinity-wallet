@@ -46,7 +46,6 @@ class Login extends Component {
         getChartData: PropTypes.func.isRequired,
         getCurrencyData: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        setFullNode: PropTypes.func.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         positiveColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
