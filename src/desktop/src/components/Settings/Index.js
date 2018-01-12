@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { NavLink, Switch, Route } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { clearTempData } from 'actions/tempAccount';
-import { clearSeeds } from 'actions/seeds';
 import { showNotification } from 'actions/notifications';
 import Template, { Content } from 'components/Main/Template';
 import Confirm from 'components/UI/Confirm';
@@ -30,8 +28,6 @@ class Settings extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        clearTempData: PropTypes.func.isRequired,
-        clearSeeds: PropTypes.func.isRequired,
         tempAccount: PropTypes.object,
         showNotification: PropTypes.func.isRequired,
     };
@@ -47,8 +43,6 @@ class Settings extends React.PureComponent {
     };
 
     doLogout = () => {
-        this.props.clearTempData();
-        this.props.clearSeeds();
         this.props.history.push('/login');
     };
 
@@ -142,8 +136,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     showNotification,
-    clearTempData,
-    clearSeeds,
 };
 
 export default translate('settings')(connect(mapStateToProps, mapDispatchToProps)(Settings));
