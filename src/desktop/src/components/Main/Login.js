@@ -12,6 +12,7 @@ import Button from 'components/UI/Button';
 import Loading from 'components/UI/Loading';
 import css from 'components/Layout/Onboarding.css';
 import { setTimeout } from 'timers';
+import { ipcRenderer } from 'electron';
 
 class Login extends React.Component {
     static propTypes = {
@@ -33,6 +34,19 @@ class Login extends React.Component {
         loading: false,
         password: '',
     };
+
+    componentDidMount() {
+        let regex = /send/;
+        ipcRenderer.on('url-params', (e, data) => {
+            let result = data.match(regex);
+            console.log(result);
+            if (result !== null) {
+                console.log(true);
+            } else {
+                console.log(false);
+            }
+        });
+    }
 
     componentWillReceiveProps(newProps) {
         const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
