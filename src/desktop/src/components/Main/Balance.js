@@ -76,6 +76,7 @@ class Balance extends React.Component {
                             <small>{`${currencySymbol} ${fiatBalance}`}</small>
                         </div>
                         <HistoryList
+                            inline
                             transfers={accountInfo.transfers.length ? accountInfo.transfers : []}
                             limit={10}
                             addresses={Object.keys(accountInfo.addresses)}

@@ -39,6 +39,10 @@
             width: 100%;
         }
 
+        > header {
+            text-align: center;
+        }
+
         > main {
             display: flex;
             flex: 1 1 auto;

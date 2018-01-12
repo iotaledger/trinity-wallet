@@ -1,6 +1,5 @@
 import { ActionTypes } from '../actions/settings.js';
 import { defaultNode as fullNode } from '../config';
-import assign from 'lodash/assign';
 
 const initialState = {
     locale: 'en',
@@ -13,6 +12,7 @@ const initialState = {
         'https://iotanode.us:443',
         'http://astra2261.startdedicated.net:14265',
         'http://iota.nck.nz:14265',
+        'http://www.veriti.io',
     ],
     availableNodes: [
         'https://iri2-api.iota.fm:443',
@@ -115,6 +115,12 @@ const initialState = {
             l: 0.7666666666666666,
             a: 1,
         },
+        secondaryBarColor: 'white',
+        secondaryBackgroundColor: 'white',
+        secondaryCtaColor: 'white',
+        ctaBorderColor: 'transparent',
+        pendingColor: '#f75602',
+        chartLineColor: '#FFA25B',
     },
 };
 
@@ -167,11 +173,11 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 language: action.payload,
             };
-        case ActionTypes.SET_CURRENCY_DATA:
+        case ActionTypes.CURRENCY_DATA_FETCH_SUCCESS:
             return {
                 ...state,
-                currency: action.currency,
-                conversionRate: action.conversionRate,
+                currency: action.payload.currency,
+                conversionRate: action.payload.conversionRate,
             };
         case ActionTypes.UPDATE_THEME:
             return {

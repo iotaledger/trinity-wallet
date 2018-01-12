@@ -3,22 +3,26 @@ import { translate } from 'react-i18next';
 import { Provider } from 'react-redux';
 import '../shim';
 import registerScreens from './navigation';
-import store from '../store';
 import i18 from '../i18next';
 
-registerScreens(store, Provider);
-translate.setI18n(i18);
+// Initialization function
+// Passed as a callback to persistStore to adjust the rendering time
 
-Navigation.startSingleScreenApp({
-    screen: {
-        screen: 'initialLoading',
-        navigatorStyle: {
-            navBarHidden: true,
-            navBarTransparent: true,
+export default store => {
+    registerScreens(store, Provider);
+    translate.setI18n(i18);
+
+    Navigation.startSingleScreenApp({
+        screen: {
+            screen: 'initialLoading',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+            },
+            overrideBackPress: true,
         },
-        overrideBackPress: true,
-    },
-    appStyle: {
-        orientation: 'portrait',
-    },
-});
+        appStyle: {
+            orientation: 'portrait',
+        },
+    });
+};

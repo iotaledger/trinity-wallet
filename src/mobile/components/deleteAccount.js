@@ -7,8 +7,6 @@ import { width, height } from '../util/dimensions';
 import Modal from 'react-native-modal';
 import { TextField } from 'react-native-material-textfield';
 import THEMES from '../theme/themes';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import GENERAL from '../theme/general';
 import { translate } from 'react-i18next';
 
@@ -56,7 +54,7 @@ class DeleteAccount extends Component {
         this._hideModal();
     }
 
-    _renderModalContent = (titleColour, sendOrReceive) => {
+    _renderModalContent = (borderColor, textColor) => {
         const { t } = this.props;
         return (
             <View
@@ -66,8 +64,8 @@ class DeleteAccount extends Component {
                     backgroundColor: THEMES.getHSL(this.props.backgroundColor),
                 }}
             >
-                <View style={styles.modalContent}>
-                    <Text style={[styles.infoText, { paddingBottom: height / 16 }]}>
+                <View style={[styles.modalContent, borderColor]}>
+                    <Text style={[styles.infoText, { paddingBottom: height / 16 }, textColor]}>
                         Are you sure you want to delete your account called {this.props.currentAccountName}?
                     </Text>
                     <OnboardingButtons
@@ -82,7 +80,16 @@ class DeleteAccount extends Component {
     };
 
     render() {
-        const { t, negativeColor } = this.props;
+        const {
+            t,
+            negativeColor,
+            textColor,
+            secondaryBackgroundColor,
+            backgroundColor,
+            borderColor,
+            arrowLeftImagePath,
+            tickImagePath,
+        } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -91,8 +98,8 @@ class DeleteAccount extends Component {
                         <View style={{ flex: 0.3 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <Text style={styles.infoText}>{t('areYouSure')}</Text>
-                                <Text style={styles.infoText}>{t('yourSeedWillBeRemoved')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('areYouSure')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
                                 <Text style={[styles.warningText, { color: THEMES.getHSL(negativeColor) }]}>
                                     {t('thisAction')}
                                 </Text>
@@ -100,14 +107,14 @@ class DeleteAccount extends Component {
                         )}
                         {this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <Text style={styles.infoText}>{t('enterPassword')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('enterPassword')}</Text>
                                 <TextField
-                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                    style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                     labelFontSize={width / 31.8}
                                     fontSize={width / 20.7}
                                     labelPadding={3}
-                                    baseColor="white"
+                                    baseColor={secondaryBackgroundColor}
                                     label={t('global:password')}
                                     tintColor={THEMES.getHSL(negativeColor)}
                                     autoCapitalize={'none'}
@@ -129,12 +136,12 @@ class DeleteAccount extends Component {
                         <TouchableOpacity onPress={event => this.onBackPress()}>
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                                <Text style={styles.titleTextLeft}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.onContinuePress()}>
                             <View style={styles.itemRight}>
-                                <Text style={styles.titleTextRight}>{t('global:continue')}</Text>
+                                <Text style={[styles.titleTextRight, textColor]}>{t('global:continue')}</Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />
                             </View>
                         </TouchableOpacity>
@@ -147,12 +154,13 @@ class DeleteAccount extends Component {
                         animationOutTiming={200}
                         backdropTransitionInTiming={500}
                         backdropTransitionOutTiming={200}
-                        backdropColor={'#132d38'}
+                        backdropColor={THEMES.getHSL(backgroundColor)}
                         backdropOpacity={0.6}
                         style={{ alignItems: 'center' }}
                         isVisible={this.state.isModalVisible}
+                        onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     >
-                        {this._renderModalContent()}
+                        {this._renderModalContent(borderColor, textColor)}
                     </Modal>
                 </View>
             </TouchableWithoutFeedback>
@@ -171,7 +179,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 18,
         width: width / 1.15,
     },
@@ -211,7 +218,6 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleTextLeft: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
@@ -221,21 +227,18 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleTextRight: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
     infoText: {
-        color: 'white',
         fontFamily: Fonts.secondary,
         fontSize: width / 25.9,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     warningText: {
-        color: Colors.orangeDark,
         fontFamily: Fonts.secondary,
         fontSize: width / 25.9,
         textAlign: 'center',

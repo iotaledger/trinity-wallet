@@ -1,35 +1,41 @@
-import React, { Component } from 'react'
-import { translate } from 'react-i18next'
-import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground, StatusBar } from 'react-native'
-import OnboardingButtons from '../components/onboardingButtons.js'
-import THEMES from '../theme/themes'
-import GENERAL from '../theme/general'
-import checkboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked.png'
-import checkboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked.png'
-import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png'
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { translate } from 'react-i18next';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
+import OnboardingButtons from '../components/onboardingButtons.js';
+import THEMES from '../theme/themes';
+import GENERAL from '../theme/general';
+import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-white.png';
+import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
+import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
+import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
+import blueBackgroundImagePath from 'iota-wallet-shared-modules/images/bg-blue.png';
+import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import { connect } from 'react-redux';
 
-import { width, height } from '../util/dimensions'
+import { width, height } from '../util/dimensions';
 
 class SaveSeedConfirmation extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props);
 
         this.state = {
-            checkboxImage: checkboxUncheckedImagePath,
+            checkboxImage:
+                props.secondaryBackgroundColor === 'white'
+                    ? whiteCheckboxUncheckedImagePath
+                    : blackCheckboxUncheckedImagePath,
             hasSavedSeed: false,
             iotaLogoVisibility: 'hidden',
             showCheckbox: false,
-        }
+        };
     }
 
     componentDidMount() {
-        this.timeout = setTimeout(this.onTimerComplete.bind(this), 5000)
+        this.timeout = setTimeout(this.onTimerComplete.bind(this), 5000);
     }
 
     onTimerComplete() {
-        this.setState({ showCheckbox: true })
+        this.setState({ showCheckbox: true });
     }
 
     onBackPress() {
@@ -39,7 +45,7 @@ class SaveSeedConfirmation extends Component {
                 navBarTransparent: true,
             },
             animated: false,
-        })
+        });
     }
 
     onNextPress() {
@@ -51,39 +57,51 @@ class SaveSeedConfirmation extends Component {
                 screenBackgroundColor: THEMES.getHSL(this.props.backgroundColor),
             },
             animated: false,
-        })
+        });
     }
 
     onCheckboxPress() {
+        const { secondaryBackgroundColor } = this.props;
+        const checkboxUncheckedImagePath =
+            secondaryBackgroundColor === 'white' ? whiteCheckboxUncheckedImagePath : blackCheckboxUncheckedImagePath;
+        const checkboxCheckedImagePath =
+            secondaryBackgroundColor === 'white' ? whiteCheckboxCheckedImagePath : blackCheckboxCheckedImagePath;
+
         if (this.state.checkboxImage === checkboxCheckedImagePath) {
             this.setState({
                 checkboxImage: checkboxUncheckedImagePath,
                 hasSavedSeed: false,
                 iotaLogoVisibility: 'hidden',
-            })
+            });
         } else {
             this.setState({
                 checkboxImage: checkboxCheckedImagePath,
                 hasSavedSeed: true,
                 iotaLogoVisibility: 'visible',
-            })
+            });
         }
     }
 
     render() {
-        const { t, negativeColor, backgroundColor } = this.props
+        const { t, negativeColor, backgroundColor, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
+
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <View style={styles.topMidContainer}>
                         <View style={styles.infoTextContainer}>
-                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenter')}</Text>
-                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenterWarningOne')}</Text>
-                            <Text style={styles.infoTextLight}>{t('saveSeedConfirmation:reenterWarningTwo')}</Text>
+                            <Text style={[styles.infoTextLight, textColor]}>{t('saveSeedConfirmation:reenter')}</Text>
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                {t('saveSeedConfirmation:reenterWarningOne')}
+                            </Text>
+                            <Text style={[styles.infoTextLight, textColor]}>
+                                {t('saveSeedConfirmation:reenterWarningTwo')}
+                            </Text>
                         </View>
                     </View>
                     <View style={styles.bottomMidContainer}>
@@ -93,7 +111,9 @@ class SaveSeedConfirmation extends Component {
                                 onPress={event => this.onCheckboxPress()}
                             >
                                 <Image source={this.state.checkboxImage} style={styles.checkbox} />
-                                <Text style={styles.checkboxText}>{t('saveSeedConfirmation:alreadyHave')}</Text>
+                                <Text style={[styles.checkboxText, textColor]}>
+                                    {t('saveSeedConfirmation:alreadyHave')}
+                                </Text>
                             </TouchableOpacity>
                         )}
                         {!this.state.showCheckbox && <View style={{ flex: 1 }} />}
@@ -119,7 +139,7 @@ class SaveSeedConfirmation extends Component {
                     )}
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -155,7 +175,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     backButton: {
-        borderColor: '#F7D002',
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
         width: width / 3,
@@ -164,7 +183,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     backText: {
-        color: '#F7D002',
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
@@ -178,16 +196,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     infoTextLight: {
-        color: 'white',
         fontFamily: 'Lato-Light',
-        fontSize: width / 23,
-        backgroundColor: 'transparent',
-        paddingTop: height / 30,
-        textAlign: 'center',
-    },
-    infoTextRegular: {
-        color: 'white',
-        fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
@@ -211,11 +220,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginLeft: width / 40,
     },
-})
+});
 
 const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
-})
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
+});
 
-export default translate(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation))
+export default translate(['saveSeedConfirmation', 'global'])(connect(mapStateToProps)(SaveSeedConfirmation));
