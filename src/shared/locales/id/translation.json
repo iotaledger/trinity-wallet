@@ -54,7 +54,7 @@
         "cannotPerformAction": "Tidak dapat melakukan aksi ini",
         "cannotPerformActionExplanation": "Klik aturan lanjut untuk menghapus dompet.",
         "attachToTangleUnavailable": "Tambatkan ke Tangle tidak tersedia",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "attachToTangleUnavailableExplanation": "Menambatkan pada Tangle tidak tersedia pada node pilihan anda."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -266,22 +266,22 @@
         "addressCopiedExplanation": "Alamat telah disalin ke papan klip."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Lihat seed",
+        "viewAddresses": "Lihat alamat",
+        "editAccountName": "Ubah nama akun",
+        "deleteAccount": "Hapus akun",
+        "addNewAccount": "Tambahkan akun baru"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Node kustom",
+        "add": "Tambahkan"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Gunakan seed yang ada saat ini",
+        "createNewSeed": "Buat seed baru"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
+        "selectNode": "Pilih node",
         "addCustomNode": "Add custom node",
         "manualSync": "Manual sync"
     },
