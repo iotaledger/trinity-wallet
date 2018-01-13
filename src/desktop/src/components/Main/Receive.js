@@ -4,38 +4,39 @@ import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
-import {
-    generateNewAddress,
-    setReceiveAddress,
-    generateNewAddressRequest,
-    generateNewAddressError,
-} from 'actions/tempAccount';
+import { generateNewAddress } from 'worker';
+
+import { generateNewAddressRequest, generateNewAddressError, generateNewAddressSuccess } from 'actions/tempAccount';
 import Template, { Content } from 'components/Main/Template';
 import HistoryList from 'components/UI/HistoryList';
 import css from 'components/Main/Receive.css';
 import Button from 'components/UI/Button';
 import Clipboard from 'components/UI/Clipboard';
 
+// const worker = new Worker();
+
 class Receive extends React.PureComponent {
     static propTypes = {
         t: PropTypes.func.isRequired,
-        tempAccount: PropTypes.object.isRequired,
-        seeds: PropTypes.object.isRequired,
         account: PropTypes.object.isRequired,
-        generateNewAddressRequest: PropTypes.func.isRequired,
-        generateNewAddress: PropTypes.func.isRequired,
+        tempAccount: PropTypes.object.isRequired,
+        seeds: PropTypes.object,
     };
 
     state = {};
 
     onGeneratePress = () => {
-        const { generateNewAddressRequest, generateNewAddress, seeds, account } = this.props;
+        const { seeds, account } = this.props;
 
         const seedInfo = seeds.items[seeds.selectedSeedIndex];
-        const accountInfo = account.accountInfo[seedInfo.name];
+        const seedName = seedInfo.name;
+        const accountInfo = account.accountInfo[seedName];
 
-        generateNewAddressRequest();
-        generateNewAddress(seedInfo.seed, seedInfo.name, accountInfo.addresses);
+        generateNewAddress({
+            seed: seedInfo.seed,
+            addresses: accountInfo.addresses,
+            seedName,
+        });
     };
 
     render() {
@@ -78,10 +79,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    generateNewAddress,
-    setReceiveAddress,
     generateNewAddressRequest,
     generateNewAddressError,
+    generateNewAddressSuccess,
 };
 
 export default translate('receive')(connect(mapStateToProps, mapDispatchToProps)(Receive));

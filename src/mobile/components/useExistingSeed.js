@@ -25,8 +25,10 @@ class UseExistingSeed extends React.Component {
         addAccount: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
         textColor: PropTypes.object.isRequired,
         borderColor: PropTypes.object.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -80,6 +82,8 @@ class UseExistingSeed extends React.Component {
             backgroundColor={THEMES.getHSL(this.props.backgroundColor)}
             onQRRead={data => this.onQRRead(data)}
             hideModal={() => this._hideModal()}
+            secondaryCtaColor={this.props.secondaryCtaColor}
+            ctaBorderColor={this.props.ctaBorderColor}
         />
     );
 
@@ -167,7 +171,11 @@ class UseExistingSeed extends React.Component {
                         </View>
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.props.backPress()} style={{ flex: 1 }}>
+                        <TouchableOpacity
+                            onPress={event => this.props.backPress()}
+                            style={{ flex: 1 }}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
@@ -175,6 +183,7 @@ class UseExistingSeed extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={event => this.props.addAccount(seed, trim(accountName))}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                             style={{ flex: 1 }}
                         >
                             <View style={styles.itemRight}>

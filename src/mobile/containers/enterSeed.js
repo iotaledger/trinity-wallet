@@ -94,6 +94,7 @@ class EnterSeed extends React.Component {
             ctaColor={COLORS.greenLight}
             onQRRead={data => this.onQRRead(data)}
             hideModal={() => this._hideModal()}
+            secondaryCtaColor="transparent"
         />
     );
 
