@@ -6,6 +6,7 @@ import { persistStore } from 'redux-persist';
 import { withRouter } from 'react-router-dom';
 import store from 'store';
 import i18next from 'libs/i18next';
+import { translate } from 'react-i18next';
 import Loading from 'components/UI/Loading';
 import Onboarding from 'components/Layout/Onboarding';
 import Main from 'components/Layout/Main';
@@ -16,6 +17,7 @@ import './App.css';
 
 class App extends React.Component {
     static propTypes = {
+        t: PropTypes.func.isRequired,
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
@@ -47,11 +49,13 @@ class App extends React.Component {
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
+        Electron.changeLanguage(this.props.t);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.settings.locale !== this.props.settings.locale) {
             i18next.changeLanguage(nextProps.settings.locale);
+            Electron.changeLanguage(this.props.t);
         }
     }
 
@@ -94,10 +98,10 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     settings: state.settings,
     tempAccount: state.tempAccount,
     app: state.app,
 });
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(translate('onboardingComplete')(connect(mapStateToProps)(App)));
