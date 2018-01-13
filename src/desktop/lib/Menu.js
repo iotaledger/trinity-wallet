@@ -4,6 +4,37 @@ const state = {
     authorised: false,
 };
 
+let language = {
+    about: 'About',
+    settings: 'Settings',
+    language: 'Language',
+    currency: 'Currency',
+    theme: 'Theme',
+    twoFA: 'Two-factor authentication',
+    changePassword: 'Change password',
+    advanced: 'Advanced settings',
+    hide: 'Hide',
+    hideOthers: 'Hide Others',
+    showAll: 'Show All',
+    quit: 'Quit',
+    edit: 'Edit',
+    undo: 'Undo',
+    redo: 'Redo',
+    cut: 'Cut',
+    copy: 'Copy',
+    paste: 'Paste',
+    selectAll: 'Select All',
+    account: 'Account',
+    balance: 'Balance',
+    send: 'Send',
+    receive: 'Receive',
+    history: 'History',
+    logout: 'Logout',
+    logoutConfirm: 'Are you sure you want to log out?',
+    yes: 'Yes',
+    no: 'No',
+};
+
 const initMenu = (app, getWindow) => {
     const navigate = (path) => {
         const mainWindow = getWindow('main');
@@ -18,39 +49,39 @@ const initMenu = (app, getWindow) => {
                 label: app.getName(),
                 submenu: [
                     {
-                        label: 'About ' + app.getName(),
+                        label: `${language.about} ${app.getName()}`,
                         role: 'about',
                     },
                     {
-                        label: 'Preferences',
+                        label: language.settings,
                         submenu: [
                             {
-                                label: 'Language',
+                                label: language.language,
                                 click: () => navigate('settings/language'),
                             },
                             {
-                                label: 'Currency',
+                                label: language.currency,
                                 click: () => navigate('settings/currency'),
                             },
                             {
-                                label: 'Theme',
+                                label: language.theme,
                                 click: () => navigate('settings/theme'),
                             },
                             {
                                 type: 'separator',
                             },
                             {
-                                label: 'Two-factor authentication',
+                                label: language.twoFA,
                                 enabled: state.authorised,
                                 click: () => navigate('settings/twoFA'),
                             },
                             {
-                                label: 'Change password',
+                                label: language.changePassword,
                                 enabled: state.authorised,
                                 click: () => navigate('settings/changePassword'),
                             },
                             {
-                                label: 'Advanced settings',
+                                label: language.advanced,
                                 enabled: state.authorised,
                                 click: () => navigate('settings/advanced'),
                             },
@@ -60,22 +91,22 @@ const initMenu = (app, getWindow) => {
                         type: 'separator',
                     },
                     {
-                        label: 'Hide ' + app.getName(),
+                        label: `${language.hide} ${app.getName()}`,
                         role: 'hide',
                     },
                     {
-                        label: 'Hide Others',
+                        label: language.hideOthers,
                         role: 'hideothers',
                     },
                     {
-                        label: 'Show All',
+                        label: language.showAll,
                         role: 'unhide',
                     },
                     {
                         type: 'separator',
                     },
                     {
-                        label: 'Quit',
+                        label: language.quit,
                         accelerator: 'Command+Q',
                         click: function() {
                             app.quit();
@@ -86,43 +117,43 @@ const initMenu = (app, getWindow) => {
         ];
 
         template.push({
-            label: 'Edit',
+            label: language.edit,
             submenu: [
-                { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
-                { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:' },
+                { label: language.undo, accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
+                { label: language.redo, accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:' },
                 { type: 'separator' },
-                { label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
-                { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
-                { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
-                { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+                { label: language.cut, accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+                { label: language.copy, accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+                { label: language.paste, accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
+                { label: language.selectAll, accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
             ],
         });
 
         if (state.authorised) {
             template.push({
-                label: 'Account',
+                label: language.account,
                 submenu: [
                     {
-                        label: 'View Balance',
+                        label: language.balance,
                         click: navigate('balance'),
                     },
                     {
-                        label: 'Send transactions',
+                        label: language.send,
                         click: navigate('send'),
                     },
                     {
-                        label: 'Receive iota',
+                        label: language.receive,
                         click: navigate('receive'),
                     },
                     {
-                        label: 'View History',
+                        label: language.history,
                         click: navigate('history'),
                     },
                     {
                         type: 'separator',
                     },
                     {
-                        label: 'Logout',
+                        label: language.logout,
                         click: function() {
                             const mainWindow = getWindow('main');
                             if (mainWindow) {
@@ -130,7 +161,9 @@ const initMenu = (app, getWindow) => {
                                     mainWindow,
                                     {
                                         type: 'question',
-                                        buttons: ['Yes', 'No'],
+                                        title: language.logout,
+                                        message: language.logoutConfirm,
+                                        buttons: [language.yes, language.no],
                                     },
                                     (index) => {
                                         if (index === 0) {
@@ -152,6 +185,11 @@ const initMenu = (app, getWindow) => {
     app.once('ready', () => {
         ipcMain.on('menu.update', (e, settings) => {
             state[settings.attribute] = settings.value;
+            createMenu();
+        });
+
+        ipcMain.on('menu.language', (e, data) => {
+            language = data;
             createMenu();
         });
 
