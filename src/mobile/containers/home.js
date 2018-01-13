@@ -181,6 +181,8 @@ class Home extends Component {
         const config = {
             velocityThreshold: 0.3,
             directionalOffsetThreshold: 80,
+            detectSwipeUp: false,
+            detectSwipeDown: false,
         };
 
         return (
