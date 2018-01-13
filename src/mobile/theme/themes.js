@@ -87,7 +87,7 @@ const themes = {
     }, */
 };
 
-const getHSL = (color) => {
+const getHSL = color => {
     return tinycolor(color).toHslString();
 };
 

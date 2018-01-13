@@ -58,7 +58,6 @@ export function setPrice(data) {
     const eurPrice = get(priceData, 'EUR.PRICE') || 0;
     const btcPrice = get(priceData, 'BTC.PRICE') || 0;
     const ethPrice = get(priceData, 'ETH.PRICE') || 0;
-
     return {
         type: ActionTypes.SET_PRICE,
         usd: usdPrice,
@@ -97,25 +96,25 @@ export function getUrlNumberFormat(timeframe) {
 }
 
 export function getPrice() {
-    return (dispatch) =>
+    return dispatch =>
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
-            .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
-            .then((json) => dispatch(setPrice(json)));
+            .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
+            .then(json => dispatch(setPrice(json)));
 }
 
 export function getChartData() {
-    return (dispatch) => {
+    return dispatch => {
         const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
 
-        currencies.forEach((currency) => {
-            timeframes.forEach((timeframe) => {
+        currencies.forEach(currency => {
+            timeframes.forEach(timeframe => {
                 const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
                     timeframe,
                 )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
                 return fetch(url)
-                    .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
-                    .then((json) => {
+                    .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
+                    .then(json => {
                         if (json) {
                             dispatch(setChartData(json, currency, timeframe));
                         }
@@ -134,17 +133,10 @@ export function setChartData(json, currency, timeframe) {
         const data = [];
         for (let i = 0; i <= timeValue; i++) {
             const y = get(response, `[${i}].close`);
-            if (currency === 'BTC') {
-                data[i] = {
-                    x: i,
-                    y: parseFloat(y.toFixed(5)),
-                };
-            } else {
-                data[i] = {
-                    x: i,
-                    y: parseFloat(y),
-                };
-            }
+            data[i] = {
+                x: i,
+                y: parseFloat(y),
+            };
         }
 
         return {
@@ -164,21 +156,21 @@ export function setChartData(json, currency, timeframe) {
 }
 
 export function getMarketData() {
-    return (dispatch) =>
+    return dispatch =>
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD')
-            .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
-            .then((json) => dispatch(setMarketData(json)));
+            .then(response => response.json(), error => console.log('SOMETHING WENT WRONG: ', error))
+            .then(json => dispatch(setMarketData(json)));
 }
 
 export function changeCurrency(currency, timeframe) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(setCurrency(currency));
         dispatch(getPrice(currency));
         dispatch(getChartData(currency, timeframe));
     };
 }
 export function changeTimeframe(currency, timeframe) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(setTimeframe(timeframe));
         dispatch(getPrice(currency));
         dispatch(getChartData(currency, timeframe));

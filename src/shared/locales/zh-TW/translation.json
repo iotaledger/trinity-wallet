@@ -102,8 +102,7 @@
         "invalidCharactersExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一遍。",
         "seedTooShort": "種子碼過短",
         "seedTooShortExplanation": "您的密碼必須至少{{最大的長度}} 字元。目前{{目前長度}} 字元長。請再試一次",
-        "seedExplanation":
-            "種子應{{maxLength}} 字長, 並應包含大寫字母 a-z, 或數字9。您不能使用種子長於{{maxLength}} 字元。",
+        "seedExplanation": "種子應{{maxLength}} 字長, 並應包含大寫字母 a-z, 或數字9。您不能使用種子長於{{maxLength}} 字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {

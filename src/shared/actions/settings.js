@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { generateAlert } from './alerts';
 import { showError } from './notifications';
 
 export const ActionTypes = {
@@ -11,7 +12,29 @@ export const ActionTypes = {
     SET_LANGUAGE: 'IOTA/SETTINGS/SET_LANGUAGE',
     SET_CURRENCY_DATA: 'IOTA/SETTINGS/SET_CURRENCY',
     UPDATE_THEME: 'IOTA/SETTINGS/UPDATE_THEME',
+    CURRENCY_DATA_FETCH_REQUEST: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_REQUEST',
+    CURRENCY_DATA_FETCH_SUCCESS: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_SUCCESS',
+    CURRENCY_DATA_FETCH_ERROR: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_ERROR',
+    SET_RANDOMLY_SELECTED_NODE: 'IOTA/SETTINGS/SET_RANDOMLY_SELECTED_NODE',
 };
+
+const currencyDataFetchRequest = () => ({
+    type: ActionTypes.CURRENCY_DATA_FETCH_REQUEST,
+});
+
+const currencyDataFetchSuccess = payload => ({
+    type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
+    payload,
+});
+
+const currencyDataFetchError = () => ({
+    type: ActionTypes.CURRENCY_DATA_FETCH_ERROR,
+});
+
+export const setRandomlySelectedNode = payload => ({
+    type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
+    payload,
+});
 
 export function setLocale(locale) {
     return {
@@ -20,27 +43,46 @@ export function setLocale(locale) {
     };
 }
 
-export function setCurrencyData(conversionRate, currency) {
-    return {
-        type: ActionTypes.SET_CURRENCY_DATA,
-        currency,
-        conversionRate,
-    };
-}
-
-export function getCurrencyData(currency) {
+export function getCurrencyData(currency, withAlerts = false) {
     const url = 'https://api.fixer.io/latest?base=USD';
-    return (dispatch) => {
+    return dispatch => {
+        dispatch(currencyDataFetchRequest());
+
         return fetch(url)
             .then(
-                (response) => response.json(),
-                (error) => {
-                    console.log('SOMETHING WENT WRONG: ', error);
+                response => response.json(),
+                error => {
+                    dispatch(currencyDataFetchError());
+
+                    if (withAlerts) {
+                        dispatch(
+                            generateAlert(
+                                'error',
+                                'Could not fetch',
+                                `Something went wrong while fetching conversion rates for ${currency}.`,
+                            ),
+                        );
+                    }
                 },
             )
-            .then((json) => {
+            .then(json => {
                 const conversionRate = get(json, `rates${currency}`) || 1;
-                dispatch(setCurrencyData(conversionRate, currency));
+                dispatch(
+                    currencyDataFetchSuccess({
+                        conversionRate,
+                        currency,
+                    }),
+                );
+
+                if (withAlerts) {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            'Conversion rates',
+                            `Successfully fetched latest conversion rates for ${currency}.`,
+                        ),
+                    );
+                }
             });
     };
 }
@@ -61,7 +103,7 @@ export const invalidServerError = () => {
 };
 
 export function setFullNode(fullNode) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
             type: ActionTypes.SET_FULLNODE,
             payload: fullNode,
@@ -70,7 +112,7 @@ export function setFullNode(fullNode) {
 }
 
 export function addCustomPoWNode(customNode) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_POW_NODE,
             payload: customNode,
@@ -79,7 +121,7 @@ export function addCustomPoWNode(customNode) {
 }
 
 export function addCustomNode(customNode) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
             type: ActionTypes.ADD_CUSTOM_NODE,
             payload: customNode,
@@ -88,7 +130,7 @@ export function addCustomNode(customNode) {
 }
 
 export function updateTheme(theme, themeName) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({
             type: ActionTypes.UPDATE_THEME,
             theme,

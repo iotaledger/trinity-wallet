@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, ListView, StatusBar, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, ListView, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { setCurrency, setTimeframe } from 'iota-wallet-shared-modules/actions/marketData';
 import { round, roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
@@ -102,9 +102,8 @@ class Balance extends Component {
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
-                    <StatusBar barStyle="light-content" />
                     <View style={styles.balanceContainer}>
-                        <Text style={[styles.iotaBalance, textColor]} onPress={(event) => this.onBalanceClick()}>
+                        <Text style={[styles.iotaBalance, textColor]} onPress={event => this.onBalanceClick()}>
                             {this.state.balanceIsShort ? shortenedBalance : formatValue(balance)} {formatUnit(balance)}
                         </Text>
                         <Text style={[styles.fiatBalance, textColor]}>
@@ -116,7 +115,7 @@ class Balance extends Component {
                         {hasTransactions ? (
                             <ListView
                                 dataSource={ds.cloneWithRows(recentTransactions)}
-                                renderRow={(dataSource) => (
+                                renderRow={dataSource => (
                                     <SimpleTransactionRow
                                         negativeColor={THEMES.getHSL(negativeColor)}
                                         extraColor={THEMES.getHSL(extraColor)}
@@ -144,8 +143,8 @@ class Balance extends Component {
                             isGeneratingReceiveAddress={isGeneratingReceiveAddress}
                             isSyncing={isSyncing}
                             marketData={marketData}
-                            setCurrency={(currency) => this.props.setCurrency(currency)}
-                            setTimeframe={(timeframe) => this.props.setTimeframe(timeframe)}
+                            setCurrency={currency => this.props.setCurrency(currency)}
+                            setTimeframe={timeframe => this.props.setTimeframe(timeframe)}
                             secondaryBackgroundColor={secondaryBackgroundColor}
                             textColor={{ color: secondaryBackgroundColor }}
                             borderColor={{ borderColor: secondaryBackgroundColor }}
@@ -226,11 +225,11 @@ const mapStateToProps = ({ tempAccount, account, marketData, settings }) => ({
     chartLineColor: settings.theme.chartLineColor,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    setCurrency: (currency) => {
+const mapDispatchToProps = dispatch => ({
+    setCurrency: currency => {
         dispatch(setCurrency(currency));
     },
-    setTimeframe: (timeframe) => {
+    setTimeframe: timeframe => {
         dispatch(setTimeframe(timeframe));
     },
 });

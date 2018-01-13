@@ -43,7 +43,7 @@ class SeedName extends React.PureComponent {
         history.push('/security/enter');
     };
 
-    setName = (name) => {
+    setName = name => {
         this.setState(() => ({
             name: name,
         }));
@@ -74,7 +74,7 @@ class SeedName extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     seed: getSelectedSeed(state),
 });
 
