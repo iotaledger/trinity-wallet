@@ -1,4 +1,4 @@
-const { Menu, ipcMain, dialog } = require('electron');
+const { Menu, ipcMain, dialog, shell } = require('electron');
 
 const state = {
     authorised: false,
@@ -177,6 +177,19 @@ const initMenu = (app, getWindow) => {
                 ],
             });
         }
+
+        template.push({
+            label: 'Help',
+            submenu: [
+                {
+                    label: `${app.getName()} Help`,
+                    click: function() {
+                        //TODO: Change to wallet documentation link
+                        shell.openExternal('https://iota.readme.io/docs/what-is-iota');
+                    },
+                },
+            ],
+        });
 
         const applicationMenu = Menu.buildFromTemplate(template);
         Menu.setApplicationMenu(applicationMenu);
