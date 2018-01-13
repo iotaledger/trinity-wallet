@@ -106,6 +106,7 @@ export class Dropdown extends Component {
     static propTypes = {
         onRef: PropTypes.func,
         disableWhen: PropTypes.bool,
+        shadow: PropTypes.bool,
     };
 
     constructor(props) {
@@ -166,6 +167,7 @@ export class Dropdown extends Component {
             negativeColor,
             disableWhen,
             secondaryBackgroundColor,
+            shadow,
         } = this.props;
         const { isDropdownOpen, selectedOption } = this.state;
         const triangleDirection = isDropdownOpen ? 'up' : 'down';
