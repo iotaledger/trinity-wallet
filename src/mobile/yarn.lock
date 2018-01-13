@@ -5311,6 +5311,10 @@ react-native-svg@^6.0.1-rc.1:
     github-download "^0.5.0"
     lodash "^4.16.6"
 
+"react-native-swipe-gestures@https://github.com/thegamenicorus/react-native-swipe-gestures":
+  version "1.0.2"
+  resolved "https://github.com/thegamenicorus/react-native-swipe-gestures#c31c28fcf64ee14d24a256814b35e34b28aa9518"
+
 react-native-tab-view@^0.0.70:
   version "0.0.70"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.70.tgz#1dd2ded32acd0cb6bfef38d26e53675db733b37b"
@@ -5348,12 +5352,6 @@ react-native-udp@^1.2.9:
     inherits "^2.0.1"
     ip-regex "^1.0.3"
     util "^0.10.3"
-
-"react-native-user-inactivity@https://github.com/jkomyno/react-native-user-inactivity":
-  version "1.0.0"
-  resolved "https://github.com/jkomyno/react-native-user-inactivity#a4f2a6f2c2664fc6a1152356f8053a8baf338c4c"
-  dependencies:
-    prop-types "^15.5.10"
 
 react-native@0.47.2:
   version "0.47.2"
