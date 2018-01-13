@@ -15,6 +15,7 @@ function selectRandomNode() {
         'http://astra2261.startdedicated.net:14265',
         'http://iota.nck.nz:14265',
         'http://www.veriti.io',
+        'http://148.251.181.105:14265,',
     ];
     return nodes[x];
 }
