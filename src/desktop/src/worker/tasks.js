@@ -9,7 +9,7 @@ import { iota } from '../../../shared/libs/iota';
 import { MAX_SEED_LENGTH } from '../../../shared/libs/util';
 
 // Wrapper to pass the action to dispatch from within the worker to the main thread
-const dispatch = (action) => {
+const dispatch = action => {
     self.postMessage({
         type: 'dispatch',
         action,

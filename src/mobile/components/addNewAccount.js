@@ -27,7 +27,10 @@ class AddNewAccount extends Component {
             <View style={styles.container}>
                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={(event) => this.onExistingSeedPress()}>
+                        <TouchableOpacity
+                            onPress={event => this.onExistingSeedPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.item}>
                                 <Image source={keyImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('useExistingSeed')}</Text>
@@ -35,7 +38,10 @@ class AddNewAccount extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={(event) => this.onNewSeedPress()}>
+                        <TouchableOpacity
+                            onPress={event => this.onNewSeedPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.item}>
                                 <Image source={addImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('createNewSeed')}</Text>
@@ -45,7 +51,10 @@ class AddNewAccount extends Component {
                     <View style={{ flex: 7 }} />
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <TouchableOpacity onPress={(event) => this.props.backPress()}>
+                    <TouchableOpacity
+                        onPress={event => this.props.backPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
                         <View style={styles.item}>
                             <Image source={arrowLeftImagePath} style={styles.backIcon} />
                             <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>

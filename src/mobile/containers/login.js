@@ -46,7 +46,6 @@ class Login extends Component {
         getChartData: PropTypes.func.isRequired,
         getCurrencyData: PropTypes.func.isRequired,
         generateAlert: PropTypes.func.isRequired,
-        setFullNode: PropTypes.func.isRequired,
         backgroundColor: PropTypes.object.isRequired,
         positiveColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
@@ -119,7 +118,7 @@ class Login extends Component {
         } else {
             keychain
                 .get()
-                .then((credentials) => {
+                .then(credentials => {
                     const hasData = get(credentials, 'data');
                     const hasCorrectPassword = get(credentials, 'password') === password;
                     if (hasData && hasCorrectPassword) {
@@ -146,7 +145,7 @@ class Login extends Component {
                         );
                     }
                 })
-                .catch((err) => console.log(err)); // Dropdown
+                .catch(err => console.log(err)); // Dropdown
         }
     }
 
@@ -257,7 +256,7 @@ class Login extends Component {
                         <View style={{ flex: 0.8 }} />
                         <View style={{ flex: 4.62 }}>
                             <NodeSelection
-                                setNode={(selectedNode) => {
+                                setNode={selectedNode => {
                                     changeIotaNode(selectedNode);
                                     this.props.setFullNode(selectedNode);
                                 }}
@@ -323,7 +322,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     firstUse: state.account.firstUse,
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     fullNode: state.settings.fullNode,

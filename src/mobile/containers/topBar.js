@@ -105,10 +105,10 @@ class TopBar extends Component {
         const selectedSubtitle = this.humanizeBalance(balance);
         const subtitleColor = secondaryBarColor === 'white' ? '#d3d3d3' : '#262626';
 
-        const getBalance = (currentIdx) => {
+        const getBalance = currentIdx => {
             const seedStrings = Object.keys(accountInfo);
             const data = accountInfo[seedStrings[currentIdx]].addresses;
-            const balances = Object.values(data).map((x) => x.balance);
+            const balances = Object.values(data).map(x => x.balance);
 
             if (isEmpty(data)) {
                 return this.humanizeBalance(0); // no addresses
@@ -242,7 +242,7 @@ class TopBar extends Component {
     }
 
     humanizeBalance(balance) {
-        const decimalPlaces = (n) => {
+        const decimalPlaces = n => {
             const s = '' + +n;
             const match = /(?:\.(\d+))?(?:[eE]([+\-]?\d+))?$/.exec(s);
             if (!match) {
@@ -383,7 +383,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     seedNames: state.account.seedNames,
     accountInfo: state.account.accountInfo,
