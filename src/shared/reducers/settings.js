@@ -1,19 +1,10 @@
 import { ActionTypes } from '../actions/settings.js';
-import { defaultNode as fullNode } from '../config';
+import { defaultNode as fullNode, nodes as availablePoWNodes } from '../config';
 
 const initialState = {
     locale: 'en',
     fullNode,
-    availablePoWNodes: [
-        'http://iri2.iota.fm:80',
-        'https://ceres.iota.community:14600',
-        'https://node.tangle.works:443',
-        'https://iotanode.us:443',
-        'http://astra2261.startdedicated.net:14265',
-        'http://iota.nck.nz:14265',
-        'http://www.veriti.io',
-        'http://148.251.181.105:14265',
-    ],
+    availablePoWNodes,
     availableNodes: [
         'https://iri2-api.iota.fm:443',
         'https://ceres.iota.community:14600',
@@ -124,6 +115,7 @@ const initialState = {
         pendingColor: '#f75602',
         chartLineColor: '#FFA25B',
     },
+    hasRandomizedNode: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -175,17 +167,23 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 language: action.payload,
             };
-        case ActionTypes.SET_CURRENCY_DATA:
+        case ActionTypes.CURRENCY_DATA_FETCH_SUCCESS:
             return {
                 ...state,
-                currency: action.currency,
-                conversionRate: action.conversionRate,
+                currency: action.payload.currency,
+                conversionRate: action.payload.conversionRate,
             };
         case ActionTypes.UPDATE_THEME:
             return {
                 ...state,
                 theme: action.theme,
                 themeName: action.themeName,
+            };
+        case ActionTypes.SET_RANDOMLY_SELECTED_NODE:
+            return {
+                ...state,
+                fullNode: action.payload,
+                hasRandomizedNode: true,
             };
     }
 

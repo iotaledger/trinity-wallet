@@ -6,7 +6,7 @@ export const persistor = persistState(
     store,
     {
         storage: AsyncStorage,
-        blacklist: ['tempAccount', 'keychain', 'polling'],
+        blacklist: ['tempAccount', 'keychain', 'polling', 'ui'],
     },
     persistedState => initializeApp(persistedState),
 );

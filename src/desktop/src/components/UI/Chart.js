@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory';
 import { getCurrencySymbol } from 'libs/currency';
-import imageChevron from 'images/chevron-down.png';
+import imageChevron from 'images/chevron-down-white.png';
 import Button from 'components/UI/Button';
 import css from './Chart.css';
 

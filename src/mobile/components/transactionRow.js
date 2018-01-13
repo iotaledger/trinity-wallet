@@ -91,7 +91,7 @@ class TransactionRow extends React.Component {
                         enableEmptySections
                     />
                     <Text style={[styles.modalBundleTitle, textColor]}>Message:</Text>
-                    <Text style={[styles.hash, textColor]} numberOfLines={2}>
+                    <Text style={[styles.hash, textColor]}>
                         {convertFromTrytes(this.props.rowData[0].signatureMessageFragment)}
                     </Text>
                 </View>
