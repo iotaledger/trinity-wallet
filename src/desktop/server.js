@@ -29,7 +29,7 @@ app.get('*', (request, response) => {
     response.sendFile(__dirname + '/dist/index.html');
 });
 
-app.listen(PORT, (error) => {
+app.listen(PORT, error => {
     if (error) {
         console.error(error);
     } else {

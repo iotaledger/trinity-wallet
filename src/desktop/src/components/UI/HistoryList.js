@@ -25,7 +25,7 @@ class HistoryList extends React.PureComponent {
         activeItem: null,
     };
 
-    setHistoryItem = (itemIndex) => {
+    setHistoryItem = itemIndex => {
         this.setState({
             activeItem: itemIndex,
         });

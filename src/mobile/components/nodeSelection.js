@@ -104,23 +104,30 @@ class NodeSelection extends Component {
                     <View style={styles.topContainer}>
                         <View style={{ flex: 0.2 }} />
                         <Dropdown
-                            onRef={(c) => {
+                            onRef={c => {
                                 this.dropdown = c;
                             }}
                             title={t('global:node')}
                             dropdownWidth={styles.dropdownWidth}
                             defaultOption={node}
                             options={nodes}
+                            background
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={() => backPress()}>
+                        <TouchableOpacity
+                            onPress={() => backPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.saveNodeSelection()}>
+                        <TouchableOpacity
+                            onPress={() => this.saveNodeSelection()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />

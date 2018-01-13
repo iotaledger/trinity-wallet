@@ -47,7 +47,7 @@ class Header extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     account: state.account,
     seeds: getSeedItems(state),
     seed: getSelectedSeed(state),

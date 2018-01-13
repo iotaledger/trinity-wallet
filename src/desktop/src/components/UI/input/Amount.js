@@ -22,7 +22,7 @@ export default class AddressInput extends React.PureComponent {
         unit: 'Mi',
     };
 
-    onChange = (value) => {
+    onChange = value => {
         value = value.replace(/,/g, '.');
         const trailingDot = value[value.length - 1] === '.' && value.match(/^\d+(\.\d{0,20})?$/g) ? '.' : '';
         value =
@@ -54,12 +54,12 @@ export default class AddressInput extends React.PureComponent {
         return multiplier;
     }
 
-    maxAmount = (e) => {
+    maxAmount = e => {
         e.preventDefault();
         this.props.onChange(this.props.balance.toString());
     };
 
-    unitChange = (e) => {
+    unitChange = e => {
         e.preventDefault();
 
         const index = units.indexOf(this.state.unit) + 1;
@@ -85,7 +85,7 @@ export default class AddressInput extends React.PureComponent {
                     <input
                         type="text"
                         value={amount / this.getUnitMultiplier() + (amount[amount.length - 1] === '.' ? '.' : '')}
-                        onChange={(e) => this.onChange(e.target.value)}
+                        onChange={e => this.onChange(e.target.value)}
                     />
                     <small>{label}</small>
                 </fieldset>

@@ -94,7 +94,7 @@ class SeedReentry extends Component {
                                     enablesReturnKeyAutomatically
                                     returnKeyType="done"
                                     value={seed}
-                                    onChangeText={(seed) => this.setState({ seed })}
+                                    onChangeText={seed => this.setState({ seed })}
                                     containerStyle={{
                                         width: width / 1.4,
                                     }}
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     backgroundColor: state.settings.theme.backgroundColor,
     negativeColor: state.settings.theme.negativeColor,
