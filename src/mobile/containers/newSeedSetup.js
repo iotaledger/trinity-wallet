@@ -166,7 +166,7 @@ class NewSeedSetup extends Component {
                 <View style={styles.topContainer}>
                     <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
                     <View style={{ flex: 150 }} />
-                    <TouchableOpacity onPress={(event) => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
+                    <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
                         <View
                             style={[
                                 styles.generateButton,
@@ -185,7 +185,7 @@ class NewSeedSetup extends Component {
                         renderRow={(rowData, rowID, sectionID) => (
                             <TouchableHighlight
                                 key={sectionID}
-                                onPress={(event) => this.onItemPress(sectionID)}
+                                onPress={event => this.onItemPress(sectionID)}
                                 style={[styles.tileContainer, { backgroundColor: secondaryBackgroundColor }]}
                                 underlayColor={THEMES.getHSL(negativeColor)}
                             >
@@ -332,7 +332,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     tempAccount: state.tempAccount,
     account: state.account,
     backgroundColor: state.settings.theme.backgroundColor,

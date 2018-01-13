@@ -20,7 +20,7 @@ export default class AddressInput extends React.PureComponent {
         showScanner: false,
     };
 
-    onScanEvent = (address) => {
+    onScanEvent = address => {
         if (address !== null) {
             this.setState(() => ({
                 showScanner: false,
@@ -29,18 +29,18 @@ export default class AddressInput extends React.PureComponent {
         }
     };
 
-    onScanError = (err) => {
+    onScanError = err => {
         console.log(err);
     };
 
-    closeScanner = (e) => {
+    closeScanner = e => {
         e.preventDefault();
         this.setState(() => ({
             showScanner: false,
         }));
     };
 
-    openScanner = (e) => {
+    openScanner = e => {
         e.preventDefault();
         this.setState(() => ({
             showScanner: true,
@@ -60,13 +60,13 @@ export default class AddressInput extends React.PureComponent {
                     <input
                         type="text"
                         value={address}
-                        onChange={(e) => this.props.onChange(e.target.value)}
+                        onChange={e => this.props.onChange(e.target.value)}
                         maxLength={ADDRESS_LENGTH}
                     />
                     <small>{label}</small>
                 </fieldset>
                 {showScanner && (
-                    <Modal isOpen onStateChange={(showScanner) => this.setState({ showScanner })} hideCloseButton>
+                    <Modal isOpen onStateChange={showScanner => this.setState({ showScanner })} hideCloseButton>
                         <div className={css.qrScanner}>
                             <QrReader delay={350} onError={this.onScanError} onScan={this.onScanEvent} />
                             <Button type="button" onClick={this.closeScanner} variant="cta">

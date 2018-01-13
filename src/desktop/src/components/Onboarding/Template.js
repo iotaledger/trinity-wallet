@@ -47,12 +47,12 @@ export default class Template extends React.Component {
                     <Logo size={72} />
                     {headline && <h1>{headline}</h1>}
                 </header>
-                {React.Children.map(children, (child) => {
+                {React.Children.map(children, child => {
                     if (child.type === Content) {
                         return child;
                     }
                 })}
-                {React.Children.map(children, (child) => {
+                {React.Children.map(children, child => {
                     if (child.type === Footer) {
                         return child;
                     }

@@ -4,7 +4,7 @@ import isNull from 'lodash/isNull';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, StatusBar, BackHandler } from 'react-native';
+import { StyleSheet, View, BackHandler } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
@@ -136,6 +136,8 @@ const styles = StyleSheet.create({
 
 class Settings extends Component {
     static propTypes = {
+        isFetchingCurrencyData: PropTypes.bool.isRequired,
+        hasErrorFetchingCurrencyData: PropTypes.bool.isRequired,
         navigator: PropTypes.object.isRequired,
         accountInfo: PropTypes.object.isRequired,
         selectedAccount: PropTypes.object.isRequired,
@@ -169,11 +171,13 @@ class Settings extends Component {
         backgroundColor: PropTypes.object.isRequired,
         barColor: PropTypes.object.isRequired,
         ctaColor: PropTypes.object.isRequired,
+        ctaBorderColor: PropTypes.string.isRequired,
         positiveColor: PropTypes.object.isRequired,
         negativeColor: PropTypes.object.isRequired,
         extraColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
+        secondaryCtaColor: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -183,7 +187,6 @@ class Settings extends Component {
             isModalVisible: false,
             modalSetting: 'addNewSeed',
             modalContent: <LogoutConfirmationModal />,
-            selectedCurrency: this.props.currency,
         };
     }
 
@@ -204,6 +207,8 @@ class Settings extends Component {
             barColor,
             backgroundColor,
             extraColor,
+            ctaBorderColor,
+            secondaryCtaColor,
         } = this.props;
         const arrowLeftImagePath =
             secondaryBackgroundColor === 'white' ? whiteArrowLeftImagePath : blackArrowLeftImagePath;
@@ -228,8 +233,8 @@ class Settings extends Component {
         const props = {
             mainSettings: {
                 t: this.props.t,
-                setSetting: (setting) => this.props.setSetting(setting),
-                setModalContent: (content) => this.setModalContent(content),
+                setSetting: setting => this.props.setSetting(setting),
+                setModalContent: content => this.setModalContent(content),
                 on2FASetupPress: () => this.on2FASetupPress(),
                 onThemePress: () => this.props.setSetting('themeCustomisation'),
                 onModePress: () => this.featureUnavailable(),
@@ -250,7 +255,7 @@ class Settings extends Component {
                 logoutImagePath,
             },
             advancedSettings: {
-                setSetting: (setting) => this.props.setSetting(setting),
+                setSetting: setting => this.props.setSetting(setting),
                 onResetWalletPress: () => this.onResetWalletPress(),
                 node: this.props.fullNode,
                 textColor: { color: secondaryBackgroundColor },
@@ -260,7 +265,7 @@ class Settings extends Component {
                 secondaryBackgroundColor,
             },
             accountManagement: {
-                setSetting: (setting) => this.props.setSetting(setting),
+                setSetting: setting => this.props.setSetting(setting),
                 onDeleteAccountPress: () => this.onDeleteAccountPress(),
                 textColor: { color: secondaryBackgroundColor },
                 secondaryBackgroundColor: secondaryBackgroundColor,
@@ -287,7 +292,7 @@ class Settings extends Component {
             editAccountName: {
                 seedIndex: this.props.seedIndex,
                 accountName: this.props.selectedAccountName,
-                saveAccountName: (accountName) => this.saveAccountName(accountName),
+                saveAccountName: accountName => this.saveAccountName(accountName),
                 backPress: () => this.props.setSetting('accountManagement'),
                 negativeColor: negativeColor,
                 textColor: { color: secondaryBackgroundColor },
@@ -329,9 +334,11 @@ class Settings extends Component {
                 secondaryBackgroundColor: secondaryBackgroundColor,
                 borderColor: { borderColor: secondaryBackgroundColor },
                 arrowLeftImagePath,
+                ctaBorderColor: ctaBorderColor,
+                secondaryCtaColor: secondaryCtaColor,
             },
             nodeSelection: {
-                setNode: (selectedNode) => {
+                setNode: selectedNode => {
                     changeIotaNode(selectedNode);
                     this.props.setFullNode(selectedNode);
                 },
@@ -344,16 +351,16 @@ class Settings extends Component {
                 arrowLeftImagePath,
             },
             addCustomNode: {
-                setNode: (selectedNode) => {
+                setNode: selectedNode => {
                     changeIotaNode(selectedNode);
                     this.props.setFullNode(selectedNode);
                 },
                 nodes: this.props.availablePoWNodes,
                 onDuplicateNodeError: () => this.onDuplicateNodeError(),
-                checkNode: (cb) => checkNode(cb), // TODO: Try to get rid of the callback
+                checkNode: cb => checkNode(cb), // TODO: Try to get rid of the callback
                 currentNode: this.props.fullNode,
                 onAddNodeError: () => this.onAddNodeError(),
-                onAddNodeSuccess: (customNode) => this.onAddNodeSuccess(customNode),
+                onAddNodeSuccess: customNode => this.onAddNodeSuccess(customNode),
                 backPress: () => this.props.setSetting('advancedSettings'),
                 negativeColor: negativeColor,
                 textColor: { color: secondaryBackgroundColor },
@@ -362,12 +369,14 @@ class Settings extends Component {
                 addImagePath,
             },
             currencySelection: {
-                getCurrencyData: (currency) => this.props.getCurrencyData(currency),
+                getCurrencyData: (currency, withAlerts) => this.props.getCurrencyData(currency, withAlerts),
                 currency: this.props.currency,
                 currencies: this.props.availableCurrencies,
                 backPress: () => this.props.setSetting('mainSettings'),
-                setCurrencySetting: (currency) => this.setState({ selectedCurrency: currency }),
-                textColor: { color: secondaryBackgroundColor },
+                secondaryBackgroundColor,
+                negativeColor,
+                isFetchingCurrencyData: this.props.isFetchingCurrencyData,
+                hasErrorFetchingCurrencyData: this.props.hasErrorFetchingCurrencyData,
                 tickImagePath,
                 arrowLeftImagePath,
             },
@@ -379,7 +388,7 @@ class Settings extends Component {
             },
             changePassword: {
                 password: this.props.password,
-                setPassword: (password) => this.props.setPassword(password),
+                setPassword: password => this.props.setPassword(password),
                 backPress: () => this.props.setSetting('mainSettings'),
                 generateAlert: this.props.generateAlert,
                 negativeColor: negativeColor,
@@ -464,8 +473,6 @@ class Settings extends Component {
                     },
                 },
             });
-            //this.props.generateAlert('success', '2FA is already enabled', this.props.seed2FA);
-            //this.props.update2FA(false); //make a page to disable 2FA
         }
     }
 
@@ -474,7 +481,7 @@ class Settings extends Component {
 
         keychain
             .get()
-            .then((credentials) => {
+            .then(credentials => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.manuallySyncAccount(seed, selectedAccountName);
@@ -486,7 +493,7 @@ class Settings extends Component {
                     );
                 }
             })
-            .catch((err) => console.error(err)); // eslint-disable-line no-console
+            .catch(err => console.error(err)); // eslint-disable-line no-console
     }
 
     onAddNodeError() {
@@ -560,7 +567,7 @@ class Settings extends Component {
         } else {
             keychain
                 .get()
-                .then((credentials) => {
+                .then(credentials => {
                     if (isNull(credentials)) {
                         this.fetchAccountInfo(seed, accountName);
                     } else {
@@ -581,7 +588,7 @@ class Settings extends Component {
                         }
                     }
                 })
-                .catch((err) => console.log(err)); // eslint-disable no-console
+                .catch(err => console.log(err)); // eslint-disable no-console
         }
     }
 
@@ -616,7 +623,7 @@ class Settings extends Component {
 
                     this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
                 })
-                .catch((err) => console.log(err)); // eslint-disable-line no-console
+                .catch(err => console.log(err)); // eslint-disable-line no-console
         }
     }
 
@@ -637,7 +644,7 @@ class Settings extends Component {
 
         deleteFromKeychain(seedIndex, password)
             .then(() => this.props.deleteAccount(selectedAccountName))
-            .catch((err) => console.error(err));
+            .catch(err => console.error(err));
     }
 
     setModalContent(modalSetting) {
@@ -751,7 +758,6 @@ class Settings extends Component {
 
         return (
             <View style={styles.container}>
-                <StatusBar barStyle="light-content" />
                 <View style={{ flex: 1 }} />
                 <View style={styles.settingsContainer}>
                     <SettingsContent component={this.props.currentSetting} {...childrenProps} />
@@ -793,7 +799,7 @@ const mapDispatchToProps = {
     update2FA,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     selectedAccountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
     currentSetting: state.tempAccount.currentSetting,
@@ -813,11 +819,15 @@ const mapStateToProps = (state) => ({
     backgroundColor: state.settings.theme.backgroundColor,
     barColor: state.settings.theme.barColor,
     ctaColor: state.settings.theme.ctaColor,
+    secondaryCtaColor: state.settings.theme.secondaryCtaColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
     extraColor: state.settings.theme.extraColor,
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
+    isFetchingCurrencyData: state.ui.isFetchingCurrencyData,
+    hasErrorFetchingCurrencyData: state.ui.hasErrorFetchingCurrencyData,
+    ctaBorderColor: state.settings.theme.ctaBorderColor,
 });
 
 export default translate(['settings', 'global', 'addAdditionalSeed', 'deleteAccount', 'manualSync'])(

@@ -23,20 +23,22 @@ class QRScanner extends Component {
     }
 
     render() {
-        const { t, backgroundColor, ctaColor } = this.props;
+        const { t, backgroundColor, ctaColor, secondaryCtaColor, ctaBorderColor } = this.props;
 
         return (
             <View style={styles.modalContent}>
                 <View style={{ alignItems: 'center', backgroundColor: backgroundColor }}>
                     <View style={{ height: height / 12 }} />
                     <Text style={styles.qrInfoText}>{t('scan')}</Text>
-                    <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />
+                    <QRCodeScanner onRead={data => this.props.onQRRead(data.data)} />
                     <View style={{ paddingBottom: height / 15 }}>
                         <TouchableOpacity
-                            style={[styles.closeButton, { backgroundColor: ctaColor }]}
+                            style={[styles.closeButton, { backgroundColor: ctaColor }, { borderColor: ctaBorderColor }]}
                             onPress={() => this.props.hideModal()}
                         >
-                            <Text style={styles.closeButtonText}>{t('global:close')}</Text>
+                            <Text style={[styles.closeButtonText, { color: secondaryCtaColor }]}>
+                                {t('global:close')}
+                            </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#009f3f',
+        borderWidth: 1.2,
     },
     closeButtonText: {
         color: 'white',

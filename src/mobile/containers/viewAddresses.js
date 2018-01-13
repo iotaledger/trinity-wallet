@@ -64,7 +64,11 @@ class ViewAddresses extends Component {
                     />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={(event) => this.props.backPress()} style={{ flex: 1 }}>
+                    <TouchableOpacity
+                        onPress={event => this.props.backPress()}
+                        style={{ flex: 1 }}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
                         <View style={styles.itemLeft}>
                             <Image source={arrowLeftImagePath} style={styles.icon} />
                             <Text style={[styles.titleText, textColor]}>Back</Text>
@@ -139,7 +143,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
