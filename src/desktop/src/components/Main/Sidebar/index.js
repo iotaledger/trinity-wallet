@@ -5,11 +5,11 @@ import Link from './Link';
 import css from '../../Layout/Main.css';
 
 const images = {
-    balance: require('images/balance.png'),
-    send: require('images/send.png'),
-    receive: require('images/receive.png'),
-    history: require('images/history.png'),
-    settings: require('images/settings.png'),
+    balance: require('images/balance-white.png'),
+    send: require('images/send-white.png'),
+    receive: require('images/receive-white.png'),
+    history: require('images/history-white.png'),
+    settings: require('images/settings-white.png'),
 };
 
 class Sidebar extends React.PureComponent {

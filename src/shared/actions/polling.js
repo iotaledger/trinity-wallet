@@ -148,7 +148,7 @@ export const fetchMarketData = () => {
 export const fetchPrice = () => {
     return dispatch => {
         dispatch(fetchPriceRequest());
-        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,BTC,ETH')
+        fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
             .then(response => response.json(), () => dispatch(fetchPriceError()))
             .then(json => {
                 dispatch(setPrice(json));

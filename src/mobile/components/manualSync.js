@@ -124,7 +124,10 @@ const ManualSync = props => (
         </View>
         <View style={styles.bottomContainer}>
             {!props.isSyncing && (
-                <TouchableOpacity onPress={() => props.backPress()}>
+                <TouchableOpacity
+                    onPress={() => props.backPress()}
+                    hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                >
                     <View style={styles.item}>
                         <Image source={props.arrowLeftImagePath} style={styles.icon} />
                         <Text style={[styles.titleText, props.textColor]}>{props.t('global:backLowercase')}</Text>
