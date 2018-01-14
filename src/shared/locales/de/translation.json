@@ -46,7 +46,7 @@
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte nochmal versuchen.",
-        "syncInProgress": "Synchronisierung ...",
+        "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
         "somethingWentWrongExplanation": "Bitte die App neustarten.",
@@ -132,7 +132,7 @@
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
         "seedNotGeneratedExplanation": "Bitte klicke die \"Neuen Seed erzeugen\" Schaltfläche.",
         "pressForNewSeed": "DRÜCKE FÜR NEUEN SEED",
-        "individualLetters": "Drücke beliebige Buchstaben um sie zufällig zu verteilen."
+        "individualLetters": "Drücke beliebige Buchstaben um sie zufällig neu zu setzen."
     },
     "onboardingComplete": {
         "walletReady": "Das Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, benutze das Einstellungsmenü."
@@ -255,7 +255,7 @@
         "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Dein Seed ist {{maxSeedLength}} Zeichen lang. Bitte schreibe deinen Seed und die Checksumme auf und",
+        "yourSeedIs": "Dein Seed ist {{maxSeedLength}} Zeichen lang, von links nach rechts. Bitte schreibe deinen Seed und die Checksumme auf und",
         "tripleCheck": "prüfe dreimal",
         "thatTheyAreCorrect": "prüfe ob diese korrekt sind."
     },
