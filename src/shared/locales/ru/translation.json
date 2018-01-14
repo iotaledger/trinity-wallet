@@ -44,8 +44,8 @@
         "yes": "ДА",
         "no": "НЕТ",
         "password": "Пароль",
-        "unrecognisedPassword": "Пароль не распознан",
-        "unrecognisedPasswordExplanation": "Некорректный пароль. Повторите попытку.",
+        "unrecognisedPassword": "Нераспознанный пароль",
+        "unrecognisedPasswordExplanation": "Нераспознанный пароль. Повторите попытку.",
         "syncInProgress": "Идёт синхронизация",
         "syncInProgressExplanation": "Пожалуйста, подождите, пока синхронизация будет завершена.",
         "somethingWentWrong": "Произошла ошибка",
@@ -63,8 +63,8 @@
         "seedTooShortExplanation": "Ключ должен быть длиной {{maxLength}} символ. Ваш текущий ключ имеет длину {{currentLength}}. Пожалуйста, попробуйте снова.",
         "nameInUse": "Данный ник уже занят",
         "nameInUseExplanation": "Пожалуйста, используйте уникальный ник для вашего ключа.",
-        "enterAccountName": "Введите свой ник.",
-        "accountName": "Ваш ник",
+        "enterAccountName": "Введите название счёта.",
+        "accountName": "Название счёта",
         "noNickname": "Вы не ввели ник от аккаунта",
         "noNicknameExplanation": "Пожалуйста, введите ник для вашего ключа.",
         "seedInUse": "Ключ уже используется",
@@ -189,7 +189,7 @@
         "passwordMismatch": "Пароли не совпадают",
         "passwordMismatchExplanation": "Введенные пароли не совпадают. Пожалуйста, попробуйте еще раз.",
         "nowWeNeedTo": "Теперь нам нужно установить пароль.",
-        "anEncryptedCopy": "Зашифрованная копия вашего ключа будет сохранена на вашем устройстве. Вы сможете использовать пароль для доступа к кошельку в дальнейшем.",
+        "anEncryptedCopy": "Зашифрованная копия вашего ключа будет сохранена на вашем устройстве. Вы сможете использовать данный пароль для доступа к кошельку в дальнейшем.",
         "ensure": "Убедитесь, что вы используете надежный пароль из по крайней мере 12 символов.",
         "retypePassword": "Введите пароль еще раз"
     },
@@ -247,7 +247,7 @@
         "explanation3": "на",
         "explanation4": "любом устройстве,",
         "explanation5": "Но если вы потеряете свой ключ, вы потеряете ваши IOTA.",
-        "keepSafe": "Пожалуйста, тщательно храните свой ключ."
+        "keepSafe": "Пожалуйста, храните ваш ключ в безопасности."
     },
     "welcome": {
         "thankYou": "Благодарим вас за загрузку кошелька IOTA.",
@@ -339,10 +339,10 @@
         "infoTextTwo": "ключи, пароли",
         "infoTextThree": "и",
         "infoTextFour": "другую информацию",
-        "infoTextFive": "будут потеряны."
+        "infoTextFive": "будут утеряны."
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "aMessage": "сообщение"
     }
 }
