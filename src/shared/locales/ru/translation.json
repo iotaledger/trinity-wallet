@@ -16,7 +16,7 @@
         "invalidResponse": "Неправильный отклик",
         "invalidResponseExplanation": "Узел вернул недопустимый отклик.",
         "invalidResponsePollingExplanation": "Узел вернул недопустимый отклик во время опроса.",
-        "invalidResponseFetchingAccount": "Узел возвращается с неверным ответом при запросе данных вашего счёта.",
+        "invalidResponseFetchingAccount": "Узел вернул неверный ответ при запросе данных вашего счёта.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Ключ",
         "back": "НАЗАД",
