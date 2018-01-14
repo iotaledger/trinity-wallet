@@ -16,8 +16,7 @@
         "invalidResponse": "Ogiltigt svar",
         "invalidResponseExplanation": "Noden returnerade ett ogiltigt svar.",
         "invalidResponsePollingExplanation": "Noden returnerade ett ogiltigt svar.",
-        "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information.",
+        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Seed",
         "back": "TILLBAKA",
@@ -59,11 +58,9 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
-        "seedInvalidCharsExplanation":
-            "Din seed kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken, försök igen.",
+        "seedInvalidCharsExplanation": "Din seed kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken, försök igen.",
         "seedTooShort": "Din seed är för kort",
-        "seedTooShortExplanation":
-            "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
+        "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "nameInUse": "Kontonamnet används redan",
         "nameInUseExplanation": "Vänligen använd ett unikt namn för din seed.",
         "enterAccountName": "Ange ditt kontonamn.",
@@ -85,8 +82,7 @@
         "passwordTooShort": "Lösenordet är för kort",
         "passwordTooShortExplanation": "Ditt lösenord måste åtminstone vara 12 tecken långt, försök igen.",
         "oldPassword": "Ett gammalt lösenord får ej användas",
-        "oldPasswordExplanation":
-            "Ett gammalt lösenord får ej användas som ditt nya, försök igen med ett nytt lösenord.",
+        "oldPasswordExplanation": "Ett gammalt lösenord får ej användas som ditt nya, försök igen med ett nytt lösenord.",
         "ensureStrongPassword": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
         "currentPassword": "Nuvarande lösenord",
         "newPassword": "Nytt lösenord",
@@ -103,13 +99,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
-        "invalidCharactersExplanation":
-            "Seeden kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken, försök igen.",
+        "invalidCharactersExplanation": "Seeden kan endast innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken, försök igen.",
         "seedTooShort": "Seeden är för kort",
-        "seedTooShortExplanation":
-            "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
-        "seedExplanation":
-            "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
+        "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
+        "seedExplanation": "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
         "neverShare": "DELA ALDRIG DIN SEED MED NÅGON"
     },
     "home": {
@@ -142,8 +135,7 @@
         "individualLetters": "Tryck på enskilda bokstäver för att slumpmässigt ändra de."
     },
     "onboardingComplete": {
-        "walletReady":
-            "Plånboken är nu inställd och redo för att användas. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
+        "walletReady": "Plånboken är nu inställd och redo för att användas. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
     },
     "paperWallet": {
         "clickToPrint": "Klicka på knappen nedan för att skriva ut en papperskopia av din seed.",
@@ -193,13 +185,11 @@
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
-        "passwordTooShortExplanation":
-            "Ditt lösenord måste vara minst ${MIN_PASSWORD_LENGTH} tecken. Det är för närvarande ${this.state.password.length} tecken lång. Vänligen försök igen.",
+        "passwordTooShortExplanation": "Ditt lösenord måste vara minst ${MIN_PASSWORD_LENGTH} tecken. Det är för närvarande ${this.state.password.length} tecken lång. Vänligen försök igen.",
         "passwordMismatch": "Lösenorden matchar inte",
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
         "nowWeNeedTo": "Nu behöver vi ställa in ett lösenord.",
-        "anEncryptedCopy":
-            "En krypterad version av din seed sparas på din enhet. Detta lösenord kommer användas för att få tillgång till din plånbok i framtiden.",
+        "anEncryptedCopy": "En krypterad version av din seed sparas på din enhet. Detta lösenord kommer användas för att få tillgång till din plånbok i framtiden.",
         "ensure": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
         "retypePassword": "Skriv lösenordet igen"
     },
@@ -251,8 +241,7 @@
     "walletSetup": {
         "okay": "Okej. Låt oss ställa in din plånbok!",
         "doYouAlreadyHaveASeed": "Har du redan en seed som du vill använda?",
-        "seedExplanation":
-            "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
+        "seedExplanation": "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
         "explanation1": "Du kan använda det för att komma åt dina pengar från",
         "explanation2": " vilken plånbok som helst ",
         "explanation3": ", på",
@@ -266,8 +255,7 @@
         "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig att följa hela processen."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
         "tripleCheck": "kolla mer än 2 gånger",
         "thatTheyAreCorrect": "att den stämmer."
     },
