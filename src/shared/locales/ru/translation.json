@@ -7,10 +7,10 @@
         "qr": "QR-код",
         "balanceError": "Недостаточно средств",
         "balanceErrorMessage": "У вас недостаточно IOTA для данной операции.",
-        "transferError": "Transfer error",
+        "transferError": "Ошибка перевода",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Перевод отправлен",
-        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "transferSentMessage": "Ваш перевод отправлен в Tangle.",
         "keyReuse": "Повторное использование адреса для отправки",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Неправильный отклик",
@@ -46,15 +46,15 @@
         "password": "Пароль",
         "unrecognisedPassword": "Пароль не распознан",
         "unrecognisedPasswordExplanation": "Некорректный пароль. Повторите попытку.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "syncInProgress": "Идет синхронизация",
+        "syncInProgressExplanation": "Пожалуйста, подождите, пока синхронизация будет завершена.",
         "somethingWentWrong": "Произошла ошибка",
         "somethingWentWrongExplanation": "Пожалуйста, перезапустите приложение.",
         "node": "Узел",
-        "cannotPerformAction": "Cannot perform action",
+        "cannotPerformAction": "Не удается выполнить действие",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "attachToTangleUnavailable": "Привязка к Tangle недоступна",
+        "attachToTangleUnavailableExplanation": "Привязка к Tangle недоступна на выбранном узле."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -67,8 +67,8 @@
         "accountName": "Ваш ник",
         "noNickname": "Вы не ввели ник от аккаунта",
         "noNicknameExplanation": "Пожалуйста, введите ник для вашего ключа.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "Ключ уже используется",
+        "seedInUseExplanation": "Данный ключ уже привязан к вашему кошельку. Пожайлуста, используйте другой."
     },
     "changePassword": {
         "oops": "Упс! Произошла какая-то ошибка",
@@ -91,11 +91,11 @@
     "copyToClipboard": {
         "seedCleared": "Ключ очищен",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
-        "seedCopied": "Copied seed to clipboard",
+        "seedCopied": "Ключ скопирован в буфер обмена",
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей.",
         "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "copyToClipboard": "Скопировать в буфер обмена"
     },
     "enterSeed": {
         "invalidCharacters": "Ключ содержит недопустимые символы",
@@ -121,7 +121,7 @@
         "enterPassword": "Пожалуйста, введите пароль.",
         "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
         "login": "ВОЙТИ",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Вы хотите выбрать другой узел?"
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
@@ -148,13 +148,13 @@
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
         "generateNewAddress": "СГЕНЕРИРОВАТЬ НОВЫЙ АДРЕС",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "Сообщение (опционально)",
+        "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ"
     },
     "saveYourSeed": {
         "seedCleared": "Ключ очищен",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
-        "mustSaveYourSeed": "You must save your seed with ",
+        "mustSaveYourSeed": "Вам необходимо сохранить ваш ключ с помощью ",
         "atLeastOne": "по крайней мере один ",
         "ofTheOptions": "из представленных вариантов."
     },
@@ -162,14 +162,14 @@
         "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
         "thisIsACheck": "Это проверка, чтобы убедиться, что вы сохранили свой ключ.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "Если вы не сохранили свой ключ, пожалуйста, вернитесь на предыдущий экран и сделайте это."
     },
     "send": {
         "invalidAddress": "Неверный адрес",
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "Адрес содержит недопустимые символы.",
         "invalidAddressExplanation3": "Адрес содержит некорректную контрольную сумму.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Недостаточно средств",
         "notEnoughFundsExplanation": "У вас недостаточно IOTA для данной операции.",
         "keyReuse": "Повторное использование адреса для отправки",
         "keyReuseExplanation": "Адрес, на который вы отправляете, уже был повторно использован. Пожалуйста, используйте другой адрес.",
@@ -178,10 +178,10 @@
         "max": "МАКС.",
         "message": "Сообщение",
         "send": "ОТПРАВИТЬ",
-        "invalidAmount": "Incorrect amount entered",
+        "invalidAmount": "Указана неверная сумма",
         "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
         "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "iotaUnits": "IOTA единицы"
     },
     "setPassword": {
         "passwordTooShort": "Слишком короткий пароль",
@@ -206,14 +206,14 @@
         "theme": "Тема оформления",
         "currency": "Валюта",
         "language": "Язык",
-        "accountManagement": "Account management",
+        "accountManagement": "Управление учетной записью",
         "addNewSeed": "Добавить новый ключ",
         "twoFA": "Двухфакторная аутентификация",
         "changePassword": "Изменить пароль",
         "advanced": "Расширенные настройки",
         "logout": "Выход",
         "reset": "Сбросить кошелек",
-        "syncingComplete": "Syncing complete",
+        "syncingComplete": "Синхронизация завершена",
         "syncingCompleteExplanation": "Your account has synced successfully.",
         "nicknameChanged": "Account name changed",
         "nicknameChangedExplanation": "Your account name has been changed.",
