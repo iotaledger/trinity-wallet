@@ -3,7 +3,7 @@
         "send": "SENDEN",
         "cancel": "ABBRECHEN",
         "continue?": "Bist du sicher, daß du fortfahren möchtest?",
-        "noTransactions": "KEINE AKTUELLE HISTORIE",
+        "noTransactions": "KEINE AKTUELLER VERLAUF",
         "qr": "QR",
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
@@ -82,7 +82,7 @@
         "passwordTooShort": "Passwort ist zu kurz",
         "passwordTooShortExplanation": "Dein Passwort muss mindestens 12 Zeichen lang sein. Bitte erneut eingeben.",
         "oldPassword": "Altes Passwort kann nicht gesetzt werden",
-        "oldPasswordExplanation": "Du kannst dein altes Passwort nicht als dein neues Passwort verwenden. Bitte versuche es mit einem neuen Passwort.",
+        "oldPasswordExplanation": "Du kannst dein altes Passwort nicht als neues Passwort verwenden. Bitte versuche es mit einem anderen Passwort.",
         "ensureStrongPassword": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
         "currentPassword": "Aktuelles Passwort",
         "newPassword": "Neues Passwort",
@@ -93,7 +93,7 @@
         "seedClearedExplanation": "Der Seed wurde aus der Zwischenablage aus Sicherheitsgründen gelöscht.",
         "seedCopied": "Seed in Zwischenablage kopiert",
         "seedCopiedExplanation": "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst, oder 60 Sekunden vergangen sind.",
-        "clickToCopy": "Klicke die untere Schaltfläche um deinen Seed in deinen Passwort Manager zu kopieren.",
+        "clickToCopy": "Klicke die untere Schaltfläche um deinen Seed in deinen Passwort-Manager zu kopieren.",
         "doNotStore": "Speichere deinen Seed nicht als Klartext.",
         "copyToClipboard": "In die Zwischenablage kopieren"
     },
@@ -135,7 +135,7 @@
         "individualLetters": "Drücke beliebige Buchstaben um sie zufällig zu verteilen."
     },
     "onboardingComplete": {
-        "walletReady": "Die Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, schau das Einstellungsmenü."
+        "walletReady": "Die Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, benutze das Einstellungsmenü."
     },
     "paperWallet": {
         "clickToPrint": "Klicke die Schaltfläche unten, um eine Paper Wallet von Deinem Seed auszudrucken.",
@@ -308,12 +308,12 @@
     },
     "deleteAccount": {
         "areYouSure": "Sind Sie sicher, dass Sie dieses Konto löschen wollen?",
-        "yourSeedWillBeRemoved": "Dein Seed und die Transaktionshistorie werden gelöscht.",
+        "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "enterPassword": "Bitte geben Sie Ihr Passwort ein, um das Konto zu löschen."
     },
     "manualSync": {
-        "pressToSync": "Drücke den Knopf unten um dein Konto zu synchronisieren.",
+        "pressToSync": "Drücke die Schaltfläche unten um dein Konto zu synchronisieren.",
         "thisMayTake": "Dies kann eine Weile dauern.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden.",
         "syncAccount": "Konto synchronisieren",
