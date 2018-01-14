@@ -16,8 +16,8 @@
         "invalidResponse": "Неправильный отклик",
         "invalidResponseExplanation": "Узел вернул недопустимый отклик.",
         "invalidResponsePollingExplanation": "Узел вернул недопустимый отклик во время опроса.",
-        "invalidResponseFetchingAccount": "Узел вернул неверный ответ при запросе данных вашего счёта.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+        "invalidResponseFetchingAccount": "Нод вернул неверный ответ при запросе данных вашего счёта.",
+        "invalidResponseSendingTransfer": "Нод выдал ошибку при отправке перевода.",
         "seed": "Ключ",
         "back": "НАЗАД",
         "backLowercase": "Назад",
@@ -92,7 +92,7 @@
         "seedCleared": "Ключ очищен",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
         "seedCopied": "Ключ скопирован в буфер обмена",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "seedCopiedExplanation": "Поле с ключём будет очищено после нажатия кнопки «Готово» или по истечению 60 секунд.",
         "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей.",
         "doNotStore": "Не храните ваш ключ в виде обычного текстового файла.",
         "copyToClipboard": "Скопировать в буфер обмена"
@@ -273,7 +273,7 @@
         "addNewAccount": "Добавить новый счёт"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
+        "customNode": "Пользовательский Нод",
         "add": "Добавить"
     },
     "addNewAccount": {
@@ -282,7 +282,7 @@
     },
     "advancedSettings": {
         "selectNode": "Выбрать узел",
-        "addCustomNode": "Add custom node",
+        "addCustomNode": "Добавить пользовательский Нод",
         "manualSync": "Ручная синхронизация"
     },
     "advancedThemeCustomisation": {
