@@ -16,7 +16,7 @@
         "invalidResponse": "Неправильный отклик",
         "invalidResponseExplanation": "Узел вернул недопустимый отклик.",
         "invalidResponsePollingExplanation": "Узел вернул недопустимый отклик во время опроса.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
+        "invalidResponseFetchingAccount": "Узел возвращается с неверным ответом при запросе данных вашего счёта.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
         "seed": "Ключ",
         "back": "НАЗАД",
@@ -166,7 +166,7 @@
     },
     "send": {
         "invalidAddress": "Неверный адрес",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "Адрес должен быть длиной в {{maxLength}} символ и содержать контрольную сумму.",
         "invalidAddressExplanation2": "Адрес содержит недопустимые символы.",
         "invalidAddressExplanation3": "Адрес содержит некорректную контрольную сумму.",
         "notEnoughFunds": "Недостаточно средств",
