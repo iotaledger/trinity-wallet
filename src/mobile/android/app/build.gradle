@@ -99,9 +99,9 @@ android {
         applicationId "com.iota.wallet"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 7
+        versionCode 8
         multiDexEnabled true
-        versionName "3.2.1"
+        versionName "3.2.2"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
