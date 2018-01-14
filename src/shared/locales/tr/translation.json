@@ -3,14 +3,14 @@
         "send": "GÖNDER",
         "cancel": "İPTAL",
         "continue?": "Devam etmek istediğine emin misin?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "GÖNDERİ GEÇMİŞİ YOK",
         "qr": "QR",
         "balanceError": "Yetersiz bakiye",
         "balanceErrorMessage": "Bu aktarımı tamamlamak için yeterli Iota'nız yok.",
         "transferError": "Aktarım hatası",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
-        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "transferErrorMessage": "Transferinizi gönderirken bir şeyler yanlış gitti. lütfen tekrar deneyin.",
+        "transferSent": "Transfer Gönder",
+        "transferSentMessage": "Transferiniz Tangle a gönderildi.",
         "keyReuse": "Anahtar tekrar kullanımı",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Geçersiz yanıt",
@@ -22,12 +22,12 @@
         "back": "Geri",
         "backLowercase": "Geri",
         "done": "Tamamlandı",
-        "doneLowercase": "Done",
+        "doneLowercase": "Tamam",
         "next": "SONRAKİ",
-        "apply": "Apply",
-        "save": "Save",
-        "close": "CLOSE",
-        "continue": "Continue",
+        "apply": "Uygula",
+        "save": "Kaydet",
+        "close": "KAPAT",
+        "continue": "Devam Et",
         "manualCopy": "Cüzdan şifreni yaz",
         "paperWallet": "Kağıdın bir kopyasını al",
         "copyToClipboard": "Şifre yöneticisine ekle",
@@ -53,8 +53,8 @@
         "node": "Ağ",
         "cannotPerformAction": "İşlem gerçekleştirilemiyor",
         "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "attachToTangleUnavailable": "Tangle kullanılmayacak şekilde ekle",
+        "attachToTangleUnavailableExplanation": "Seçilen düğümünüzde Tangle eklentisi mevcut değil."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -67,7 +67,7 @@
         "accountName": "Hesap adı",
         "noNickname": "Hiçbir hesap adı girilmedi",
         "noNicknameExplanation": "Lütfen tohumunuz için benzersiz bir hesap adı kullanın.",
-        "seedInUse": "Seed already in use",
+        "seedInUse": "Kaynak zaten kullanımda",
         "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
@@ -121,7 +121,7 @@
         "enterPassword": "Lütfen şifrenizi girin.",
         "useSeed": "CÜZDAN ŞİFRESİNİ KULLAN",
         "login": "GİRİŞ YAP",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Farklı düğüm seçmek istiyor musunuz?"
     },
     "loading": {
         "loadingFirstTime": "Cüzdan şifresi ilk kez yükleniyor.",
@@ -169,7 +169,7 @@
         "invalidAddressExplanation1": "Adres {{maxLength}} karakter uzunluğunda olmalı ve bir sağlama toplamı olmalıdır.",
         "invalidAddressExplanation2": "Adres geçersiz karakterler içeriyor.",
         "invalidAddressExplanation3": "Adres geçersiz bir sağlama toplamı içeryor.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Yetersiz bakiye",
         "notEnoughFundsExplanation": "Bu aktarımı tamamlamak için yeterli Iota'nız yok.",
         "keyReuse": "Anahtar tekrar kullanımı",
         "keyReuseExplanation": "Göndermeye çalıştığınız adres zaten kullanılıyor. Lütfen başka bir adres deneyin.",
@@ -206,7 +206,7 @@
         "theme": "Tema",
         "currency": "Kur",
         "language": "Dil",
-        "accountManagement": "Account management",
+        "accountManagement": "Hesap Yönetimi",
         "addNewSeed": "Yeni tohum ekleyin",
         "twoFA": "İki aşamalı doğrulama",
         "changePassword": "Parola Değiştir",
@@ -221,7 +221,7 @@
         "accountDeletedExplanation": "Hesabınız cüzdandan kaldırıldı.",
         "cannotPerformAction": "İşlem gerçekleştirilemiyor",
         "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin.",
-        "poorConnection": "Poor connection",
+        "poorConnection": "Kötü bağlantı",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection."
     },
     "resetWalletConfirmation": {
@@ -266,15 +266,15 @@
         "addressCopiedExplanation": "Adres panoya kopyalanmış."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Kaynağı görüntüle",
+        "viewAddresses": "Adresleri görüntüle",
+        "editAccountName": "Hesap adını Düzenle",
+        "deleteAccount": "Hesabı Sil",
+        "addNewAccount": "Yeni hesap ekle"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Özel düğüm",
+        "add": "Ekle"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
@@ -283,11 +283,11 @@
     "advancedSettings": {
         "selectNode": "Select node",
         "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "manualSync": "Manuel Senkronizasyon"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Arka plan",
+        "frame": "Çerçeve"
     },
     "currencySelection": {
         "currency": "Kur"
@@ -300,11 +300,11 @@
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
+        "trillion": "Trilyon",
+        "billion": "Milyar",
         "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "thousand": "Bin",
+        "one": "Bir"
     },
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete this account?",
