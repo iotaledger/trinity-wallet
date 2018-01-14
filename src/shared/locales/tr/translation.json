@@ -18,7 +18,7 @@
         "invalidResponsePollingExplanation": "Düğüm yoklama sırasında geçersiz bir yanıt döndürdü.",
         "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
         "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
-        "seed": "Tohum",
+        "seed": "Oluşum",
         "back": "Geri",
         "backLowercase": "Geri",
         "done": "Tamamlandı",
@@ -293,10 +293,10 @@
         "currency": "Kur"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Çıkmak istediğine emin misin?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "QR Kodunuzu Tarayın"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
@@ -316,16 +316,16 @@
         "pressToSync": "Press the button below to sync your account.",
         "thisMayTake": "Bu biraz sürebilir.",
         "youMayNotice": "Cihazınızın yavaşladığını fark edebilirsiniz.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "syncAccount": "HESABI EŞİTLE",
+        "syncingYourAccount": "Hesabınız eşitleniyor."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Oluşum ve hesap adınızı girin."
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
         "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "hideSeed": "Oluşumu gizle"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "I have saved my seed",
