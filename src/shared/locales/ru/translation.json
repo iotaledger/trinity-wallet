@@ -12,7 +12,7 @@
         "transferSent": "Перевод отправлен",
         "transferSentMessage": "Ваш перевод отправлен в Tangle.",
         "keyReuse": "Повторное использование адреса для отправки",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "Вы не можете сделать перевод на адрес, с которого уже был осуществлён вывод.",
         "invalidResponse": "Неправильный отклик",
         "invalidResponseExplanation": "Узел вернул недопустимый отклик.",
         "invalidResponsePollingExplanation": "Узел вернул недопустимый отклик во время опроса.",
