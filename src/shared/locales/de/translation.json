@@ -3,7 +3,7 @@
         "send": "SENDEN",
         "cancel": "ABBRECHEN",
         "continue?": "Bist du sicher, daß du fortfahren möchtest?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "KEINE AKTUELLE HISTORIE",
         "qr": "QR",
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
@@ -255,7 +255,7 @@
         "reminder": "Wir raten dazu, den Prozess vollständig zu durchlaufen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "Dein Seed ist {{maxSeedLength}} Zeichen lang. Bitte schreibe deinen Seed und die Checksumme auf und",
         "tripleCheck": "prüfe dreimal",
         "thatTheyAreCorrect": "prüfe ob diese Korrekt sind."
     },
@@ -342,7 +342,7 @@
         "infoTextFive": "werden verloren gehen."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
         "aMessage": "eine Nachricht"
     }
 }
