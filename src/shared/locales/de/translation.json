@@ -266,15 +266,15 @@
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
+        "viewSeed": "Seed anzeigen",
+        "viewAddresses": "Adressen anzeigen",
         "editAccountName": "Edit account name",
         "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "addNewAccount": "Neues Konto hinzufügen"
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "Hinzufügen"
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
