@@ -8,7 +8,7 @@
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
         "transferError": "Übertragungsfehler",
-        "transferErrorMessage": "Beim senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
+        "transferErrorMessage": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "transferSent": "Transaktion gesendet",
         "transferSentMessage": "Deine Transaktion wurde an den Tangle gesendet.",
         "keyReuse": "Key Wiederverwendung",
@@ -93,7 +93,7 @@
         "seedClearedExplanation": "Der Seed wurde aus der Zwischenablage aus Sicherheitsgründen gelöscht.",
         "seedCopied": "Seed in Zwischenablage kopiert",
         "seedCopiedExplanation": "Der Seed wird aus der Zwischenablage gelöscht sobald du \"FERTIG\" klickst, oder 60 Sekunden vergangen sind.",
-        "clickToCopy": "Klicke die untere Schaltfläche um deinen Seed in deinen Passwort-Manager zu kopieren.",
+        "clickToCopy": "Klicke die Schaltfläche unten um den Seed in einen Passwort-Manager zu kopieren.",
         "doNotStore": "Speichere deinen Seed nicht als Klartext.",
         "copyToClipboard": "In die Zwischenablage kopieren"
     },
@@ -124,7 +124,7 @@
         "selectDifferentNode": "Möchtest du einen anderen Node auswählen?"
     },
     "loading": {
-        "loadingFirstTime": "Lade Seed zum ersten Mal.",
+        "loadingFirstTime": "Lade den Seed zum ersten Mal.",
         "thisMayTake": "Dies kann eine Weile dauern.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden."
     },
@@ -161,8 +161,8 @@
     "seedReentry": {
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch mal.",
-        "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gespeichert hast.",
-        "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gespeichert hast, gehe zurück und tu dies."
+        "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, daß du deinen Seed gesichert hast.",
+        "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und tu dies."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
@@ -172,7 +172,7 @@
         "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
         "keyReuse": "Key Wiederverwendung",
-        "keyReuseExplanation": "Die Adresse die du zum Senden verwendest wurde bereits benutzt. Bitte versuche es mit einer anderen Adresse.",
+        "keyReuseExplanation": "Die Adresse, die du zum Senden verwendest, wurde bereits benutzt. Bitte versuche es mit einer anderen Adresse.",
         "recipientAddress": "Adresse des Empfängers",
         "amount": "Betrag",
         "max": "MAX",
@@ -185,7 +185,7 @@
     },
     "setPassword": {
         "passwordTooShort": "Passwort ist zu kurz",
-        "passwordTooShortExplanation": "Dein Passwort muss mindestens {{minLength}} lang sein. Es ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
+        "passwordTooShortExplanation": "Dein Passwort muss mindestens {{minLength}} Zeichen lang sein. Es ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
         "nowWeNeedTo": "Jetzt müssen wir ein Passwort einrichten.",
@@ -260,8 +260,8 @@
         "thatTheyAreCorrect": "prüfe ob diese korrekt sind."
     },
     "history": {
-        "bundleHashCopied": "Bundle Hash kopiert",
-        "bundleHashCopiedExplanation": "Deine Bundle Hash wurde in die Zwischenablage kopiert.",
+        "bundleHashCopied": "Bündel-Hash kopiert",
+        "bundleHashCopiedExplanation": "Dein Bündel-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
     },
