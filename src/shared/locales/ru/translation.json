@@ -3,12 +3,12 @@
         "send": "ОТПРАВИТЬ",
         "cancel": "ОТМЕНА",
         "continue?": "Вы уверены, что хотите продолжить?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "НЕДАВНЯЯ ИСТОРИЯ ОТСУТСТВУЕТ",
         "qr": "QR-код",
         "balanceError": "Недостаточно средств",
         "balanceErrorMessage": "У вас недостаточно IOTA для данной операции.",
         "transferError": "Ошибка перевода",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
+        "transferErrorMessage": "Что-то пошло не так при отправке вашего перевода. Пожалуйста, повторите попытку.",
         "transferSent": "Перевод отправлен",
         "transferSentMessage": "Ваш перевод отправлен в Tangle.",
         "keyReuse": "Повторное использование адреса для отправки",
@@ -324,17 +324,17 @@
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
+        "viewSeed": "ПОКАЗАТЬ КЛЮЧ",
         "hideSeed": "HIDE SEED"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "I have saved my seed",
         "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarningOne": "If your device fails and you have not saved",
-        "reenterWarningTwo": "your seed, you will lose your IOTA."
+        "reenterWarningOne": "Если ваше устройство выйдет из строя, и вы не сохранили",
+        "reenterWarningTwo": "ваш ключ, то потеряете ваши IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "ЭТО ДЕЙСТВИЕ НЕ МОЖЕТ БЫТЬ ОТМЕНЕНО.",
         "infoTextOne": "Все данные из вашего кошелька, включая",
         "infoTextTwo": "ключи, пароли",
         "infoTextThree": "и",
@@ -342,7 +342,7 @@
         "infoTextFive": "будут утеряны."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "Вы собираетесь отправить {{contents}} на адрес",
         "aMessage": "сообщение"
     }
 }
