@@ -3,7 +3,7 @@
         "send": "SKICKA",
         "cancel": "AVBRYT",
         "continue?": "Är du säker på att du vill fortsätta?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "Ingen historik",
         "qr": "QR",
         "balanceError": "Otillräckligt saldo",
         "balanceErrorMessage": "Du har inte tillräckligt IOTA att slutföra denna överföring.",
