@@ -335,8 +335,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
-        "infoTextOne": "Alle deine Wallet Daten, einschließlich deiner",
-        "infoTextTwo": "Seeds, Passwörter",
+        "infoTextOne": "Alle deine Wallet-Daten, einschließlich deiner",
+        "infoTextTwo": "Seeds, deinem Passwort",
         "infoTextThree": "und",
         "infoTextFour": "andere Kontoinformationen",
         "infoTextFive": "werden verloren gehen."
