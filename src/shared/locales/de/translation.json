@@ -299,7 +299,7 @@
         "scan": "QR-Code scannen"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "EINHEITENSYSTEM",
         "trillion": "Billionen",
         "billion": "Milliarden",
         "million": "Millionen",
@@ -308,19 +308,19 @@
     },
     "deleteAccount": {
         "areYouSure": "Sind Sie sicher, dass Sie dieses Konto löschen wollen?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "yourSeedWillBeRemoved": "Dein Seed und die Transaktionshistorie werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "enterPassword": "Bitte geben Sie Ihr Passwort ein, um das Konto zu löschen."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "Drücke den Knopf unten um dein Konto zu synchronisieren.",
         "thisMayTake": "Dies kann eine Weile dauern.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden.",
         "syncAccount": "Konto synchronisieren",
         "syncingYourAccount": "Konto wird synchronisiert."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Gib einen Seed und einen Kontonamen ein."
     },
     "viewSeed": {
         "enterPassword": "Gib dein Passwort ein um den Seed anzuzeigen.",
@@ -329,9 +329,9 @@
     },
     "saveSeedConfirmation": {
         "alreadyHave": "Ich habe mein Seed gespeichert",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarningOne": "If your device fails and you have not saved",
-        "reenterWarningTwo": "your seed, you will lose your IOTA."
+        "reenter": "Du wirst jetzt aufgefordert deinen Seed erneut einzugeben.",
+        "reenterWarningOne": "Wenn dein Gerät kaputt geht und der Seed ist nicht gesichert,",
+        "reenterWarningTwo": "dann wirst du deine IOTAs verlieren."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
