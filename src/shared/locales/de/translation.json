@@ -121,7 +121,7 @@
         "enterPassword": "Bitte gib dein Passwort ein.",
         "useSeed": "SEED BENUTZEN",
         "login": "ANMELDEN",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Möchtest du einen anderen Node auswählen?"
     },
     "loading": {
         "loadingFirstTime": "Lade Seed zum ersten Mal.",
@@ -169,7 +169,7 @@
         "invalidAddressExplanation1": "Die Adresse sollte {{maxLength}} Zeichen lang sein und eine Prüfsumme haben.",
         "invalidAddressExplanation2": "Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Nicht genügend Guthaben",
         "notEnoughFundsExplanation": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
         "keyReuse": "Key Wiederverwendung",
         "keyReuseExplanation": "Die Adresse die du zum Senden verwendest wurde bereits benutzt. Bitte versuche es mit einer anderen Adresse.",
@@ -206,7 +206,7 @@
         "theme": "Theme",
         "currency": "Währung",
         "language": "Sprache",
-        "accountManagement": "Account management",
+        "accountManagement": "Accountverwaltung",
         "addNewSeed": "Neuen Seed hinzufügen",
         "twoFA": "2-Faktor-Authentifizierung",
         "changePassword": "Passwort ändern",
@@ -221,8 +221,8 @@
         "accountDeletedExplanation": "Dein Account wurde von der Wallet entfernt.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um die Wallet zurückzusetzen.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "poorConnection": "Schlechte Verbindung",
+        "poorConnectionExplanation": "Fehler beim Ändern der Währung durch eine schlechte Verbindung."
     },
     "resetWalletConfirmation": {
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
@@ -234,7 +234,7 @@
         "areYouSure": "Bist du sicher, dass du fortfahren möchtest?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
         "cancel": "ABBRECHEN",
         "reset": "ZURÜCKSETZEN"
     },
