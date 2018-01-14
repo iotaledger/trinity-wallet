@@ -268,42 +268,42 @@
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
         "viewAddresses": "Adressen anzeigen",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
+        "editAccountName": "Kontoname ändern",
+        "deleteAccount": "Konto löschen",
         "addNewAccount": "Neues Konto hinzufügen"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
+        "customNode": "Benutzerdefinierte Node",
         "add": "Hinzufügen"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Vorhandenen Seed verwenden",
+        "createNewSeed": "Neuen Seed erstellen"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Node auswählen",
+        "addCustomNode": "Benutzerdefinierte Node hinzufügen",
+        "manualSync": "Manuell Synchronisieren"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Hintergrund",
+        "frame": "Rahmen"
     },
     "currencySelection": {
         "currency": "Währung"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Bist du sicher, dass du dich ausloggen möchtest?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "QR-Code scannen"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
+        "trillion": "Billionen",
+        "billion": "Milliarden",
+        "million": "Millionen",
+        "thousand": "Tausend",
         "one": "One"
     },
     "deleteAccount": {
@@ -323,9 +323,9 @@
         "title": "Enter a seed and account name."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Gib dein Passwort ein um den Seed anzuzeigen.",
+        "viewSeed": "Seed anzeigen",
+        "hideSeed": "Seed ausblenden"
     },
     "saveSeedConfirmation": {
         "alreadyHave": "I have saved my seed",
