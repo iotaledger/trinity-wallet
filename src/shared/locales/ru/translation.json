@@ -46,7 +46,7 @@
         "password": "Пароль",
         "unrecognisedPassword": "Пароль не распознан",
         "unrecognisedPasswordExplanation": "Некорректный пароль. Повторите попытку.",
-        "syncInProgress": "Идет синхронизация",
+        "syncInProgress": "Идёт синхронизация",
         "syncInProgressExplanation": "Пожалуйста, подождите, пока синхронизация будет завершена.",
         "somethingWentWrong": "Произошла ошибка",
         "somethingWentWrongExplanation": "Пожалуйста, перезапустите приложение.",
@@ -214,15 +214,15 @@
         "logout": "Выход",
         "reset": "Сбросить кошелек",
         "syncingComplete": "Синхронизация завершена",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "syncingCompleteExplanation": "Ваша учётная запись была успешно синхронизирована.",
+        "nicknameChanged": "Имя учетной записи изменено",
+        "nicknameChangedExplanation": "Имя вашей учетной записи изменено.",
+        "accountDeleted": "Учетная запись удалена",
+        "accountDeletedExplanation": "Ваша учетная запись была удалена из кошелька.",
+        "cannotPerformAction": "Не удается выполнить действие",
+        "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса кошелька.",
+        "poorConnection": "Плохое соединение",
+        "poorConnectionExplanation": "Не удалось изменить валюту из-за плохой связи."
     },
     "resetWalletConfirmation": {
         "thisAction": "Это действие нельзя будет отменить.",
@@ -234,7 +234,7 @@
         "areYouSure": "Вы уверены, что хотите продолжить?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Введите ваш пароль для сброса кошелька.",
         "cancel": "ОТМЕНА",
         "reset": "СБРОС"
     },
