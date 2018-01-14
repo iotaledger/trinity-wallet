@@ -185,7 +185,7 @@
     },
     "setPassword": {
         "passwordTooShort": "Passwort ist zu kurz",
-        "passwordTooShortExplanation": "Dein Passwort muss mindestens ${MIN_PASSWORD_LENGTH} lang sein. Es ist im Moment ${this.state.password.length} Zeichen lang. Bitte versuche es erneut.",
+        "passwordTooShortExplanation": "Dein Passwort muss mindestens {{minLength}} lang sein. Es ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
         "nowWeNeedTo": "Jetzt müssen wir ein Passwort einrichten.",
@@ -198,7 +198,7 @@
         "youCanAdd": "Du kannst mehr Seeds in den Einstellungen hinzufügen."
     },
     "settings": {
-        "transferSending": "Überweisung senden",
+        "transferSending": "Sende Überweisung",
         "transferSendingExplanation": "Bitte warte bis deine Überweisung gesendet wurde.",
         "generatingAddress": "Erzeuge Empfangsadresse",
         "generatingAddressExplanation": "Bitte warte bis deine Adresse erzeugt wurde.",
@@ -217,7 +217,7 @@
         "syncingCompleteExplanation": "Dein Konto wurde erfolgreich synchronisiert.",
         "nicknameChanged": "Konto-Name geändert",
         "nicknameChangedExplanation": "Der Name des Kontos wurde geändert.",
-        "accountDeleted": "Account entfernt",
+        "accountDeleted": "Account gelöscht",
         "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet gelöscht.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
@@ -229,7 +229,7 @@
         "warning1": "Alle deine Wallet-Daten, einschließlich deiner",
         "warning2": " Seeds, deinem Passwort, ",
         "warning3": "und",
-        "warning4": " andere Kontoinformationen",
+        "warning4": " anderer Kontoinformationen",
         "warning5": " werden verloren gehen.",
         "areYouSure": "Bist du sicher, daß du fortfahren möchtest?"
     },
@@ -257,7 +257,7 @@
     "writeSeedDown": {
         "yourSeedIs": "Dein Seed ist {{maxSeedLength}} Zeichen lang. Bitte schreibe deinen Seed und die Checksumme auf und",
         "tripleCheck": "prüfe dreimal",
-        "thatTheyAreCorrect": "prüfe ob diese Korrekt sind."
+        "thatTheyAreCorrect": "prüfe ob diese korrekt sind."
     },
     "history": {
         "bundleHashCopied": "Bundle Hash kopiert",
@@ -324,21 +324,21 @@
     },
     "viewSeed": {
         "enterPassword": "Gib dein Passwort ein um den Seed anzuzeigen.",
-        "viewSeed": "Seed anzeigen",
-        "hideSeed": "Seed ausblenden"
+        "viewSeed": "SEED ANZEIGEN",
+        "hideSeed": "SEED AUSBLENDEN"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "Ich habe mein Seed gespeichert",
+        "alreadyHave": "Ich habe mein Seed gesichert",
         "reenter": "Du wirst jetzt aufgefordert deinen Seed erneut einzugeben.",
-        "reenterWarningOne": "Wenn dein Gerät kaputt geht und der Seed ist nicht gesichert,",
-        "reenterWarningTwo": "dann wirst du deine IOTAs verlieren."
+        "reenterWarningOne": "Wenn dein Gerät kaputt geht und dein Seed ist nicht",
+        "reenterWarningTwo": "gesichert, dann wirst du deine IOTAs verlieren."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
         "infoTextOne": "Alle deine Wallet-Daten, einschließlich deiner",
         "infoTextTwo": "Seeds, deinem Passwort",
         "infoTextThree": "und",
-        "infoTextFour": "andere Kontoinformationen",
+        "infoTextFour": "anderer Kontoinformationen",
         "infoTextFive": "werden verloren gehen."
     },
     "transferConfirmation": {
