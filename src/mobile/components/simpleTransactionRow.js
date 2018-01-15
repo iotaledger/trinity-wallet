@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
 class SimpleTransactionRow extends Component {
     render() {
         const { t, rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor } = this.props;
-        console.log(rowData);
         const transfer = getRelevantTransfer(rowData, addresses);
         const isReceived = isReceivedTransfer(rowData, addresses);
         const sign = isReceived ? '+' : '-';
