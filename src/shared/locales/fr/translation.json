@@ -314,7 +314,7 @@
     },
     "manualSync": {
         "pressToSync": "Appuyez sur le bouton ci-dessous pour synchroniser votre compte.",
-        "thisMayTake": "Cela peut prendre un peu temps.",
+        "thisMayTake": "Cela peut prendre un peu de temps.",
         "youMayNotice": "Il se peut que votre appareil ralentisse.",
         "syncAccount": "SYNCHRONISER LE COMPTE",
         "syncingYourAccount": "Synchronisation de votre compte."
