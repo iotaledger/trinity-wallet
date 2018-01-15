@@ -78,7 +78,6 @@ export default class SeedGenerator extends React.PureComponent {
 
     render() {
         const { seed, updateCounter } = this.state;
-        const dummyArray = new Array(MAX_SEED_LENGTH).fill('');
         return (
             <div className={classNames(css.wrapper, seed ? css.enabled : css.disabled)}>
                 {seed

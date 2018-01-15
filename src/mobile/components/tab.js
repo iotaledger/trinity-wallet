@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
         width: width / 15,
     },
     iconTitle: {
-        color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
         paddingTop: height / 80,
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
 
 class Tab extends Component {
     render() {
-        const { onPress, name, icon, text, isActive } = this.props;
+        const { onPress, name, icon, text, isActive, textColor } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={onPress}>
@@ -44,8 +43,8 @@ class Tab extends Component {
                     <Text
                         style={
                             isActive
-                                ? [styles.iconTitle, styles.fullyOpaque]
-                                : [styles.iconTitle, styles.partiallyOpaque]
+                                ? [styles.iconTitle, styles.fullyOpaque, textColor]
+                                : [styles.iconTitle, styles.partiallyOpaque, textColor]
                         }
                     >
                         {text}

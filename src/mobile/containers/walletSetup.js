@@ -6,7 +6,7 @@ import OnboardingButtons from '../components/onboardingButtons';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import infoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 
 import { width, height } from '../util/dimensions';
 

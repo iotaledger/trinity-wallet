@@ -17,7 +17,7 @@ import {
 } from '../../shared/actions/polling';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from '../../shared/actions/account';
 import keychain, { getSeed } from '../util/keychain';
-import { isWithinAnHourAndTenMinutesAgo, isTenMinutesAgo, isAnHourAgo } from '../../shared/libs/promoter';
+import { isWithinADayAndTenMinutesAgo, isTenMinutesAgo, isADayAgo } from '../../shared/libs/promoter';
 import { sortWithProp } from '../../shared/libs/accountUtils';
 import { rearrangeObjectKeys } from '../../shared/libs/util';
 
@@ -50,7 +50,7 @@ export class Poll extends Component {
 
     static shouldPromote(latestTail) {
         const attachmentTimestamp = get(latestTail, 'attachmentTimestamp');
-        return isWithinAnHourAndTenMinutesAgo(attachmentTimestamp);
+        return isWithinADayAndTenMinutesAgo(attachmentTimestamp);
     }
 
     constructor() {
@@ -155,7 +155,7 @@ export class Poll extends Component {
                     }
                 }
 
-                if (isAnHourAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
+                if (isADayAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
                     this.props.removeBundleFromUnconfirmedBundleTails(top);
                     this.props.setPollFor(allPollingServices[next]);
                 }
