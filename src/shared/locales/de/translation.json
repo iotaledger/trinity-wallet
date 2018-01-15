@@ -58,7 +58,7 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
-        "seedInvalidCharsExplanation": "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed hat ungültige Zeichen. Bitte versuche es erneut.",
+        "seedInvalidCharsExplanation": "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed enthält ungültige Zeichen. Bitte versuche es erneut.",
         "seedTooShort": "Seed ist zu kurz",
         "seedTooShortExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "nameInUse": "Kontoname wird bereits verwendet",
