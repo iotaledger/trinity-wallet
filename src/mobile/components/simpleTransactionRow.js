@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
+import { isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
 import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
@@ -36,8 +37,8 @@ class SimpleTransactionRow extends Component {
         const { t, rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor } = this.props;
         const sign = rowData[0].transferValue < 0 ? '-' : '+';
         const address = get(rowData, '[0].address');
-        const sendOrReceive = addresses.includes(address);
-        const titleColour = sendOrReceive ? extraColor : negativeColor;
+        const isReceived = isReceivedTransfer(rowData, addresses);
+        const titleColour = isReceived ? extraColor : negativeColor;
         const sendImagePath = secondaryBackgroundColor === 'white' ? whiteSendImagePath : blackSendImagePath;
         const receiveImagePath = secondaryBackgroundColor === 'white' ? whiteReceiveImagePath : blackReceiveImagePath;
         const icon = rowData[0].transferValue < 0 ? sendImagePath : receiveImagePath;
@@ -54,7 +55,7 @@ class SimpleTransactionRow extends Component {
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
                     <Text style={[styles.text, { color: titleColour }]}>
-                        {sendOrReceive
+                        {isReceived
                             ? rowData[0].persistence ? 'Received' : 'Receiving'
                             : rowData[0].persistence ? 'Sent' : 'Sending'}
                     </Text>

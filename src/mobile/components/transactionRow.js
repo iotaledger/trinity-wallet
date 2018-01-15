@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView } from 'react-native';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
-import { convertFromTrytes } from 'iota-wallet-shared-modules/libs/iota';
+import { convertFromTrytes, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
 import GENERAL from '../theme/general';
 
@@ -109,9 +109,11 @@ class TransactionRow extends React.Component {
             secondaryBackgroundColor,
             borderColor,
             pendingColor,
+            addresses,
+            rowData,
         } = this.props;
         const hasPersistence = this.props.rowData[0].persistence;
-        const isReceived = this.props.addresses.includes(this.props.rowData[0].address);
+        const isReceived = isReceivedTransfer(rowData, addresses);
         const titleColour = isReceived ? extraColor : negativeColor;
         const containerBorderColor =
             secondaryBackgroundColor === 'white'
