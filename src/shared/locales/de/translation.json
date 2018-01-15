@@ -184,7 +184,7 @@
         "iotaUnits": "IOTA Einheiten"
     },
     "setPassword": {
-        "passwordTooShort": "Passwort ist zu kurz",
+        "passwordTooShort": "Das Passwort ist zu kurz",
         "passwordTooShortExplanation": "Dein Passwort muss mindestens {{minLength}} Zeichen lang sein. Es ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
