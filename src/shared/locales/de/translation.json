@@ -195,7 +195,7 @@
     },
     "setSeedName": {
         "canUseMultipleSeeds": "Du kannst mehrere Seeds in diesem Wallet verwenden. Jeder Seed benötigt einen Kontonamen.",
-        "youCanAdd": "Du kannst mehr Seeds in den Einstellungen hinzufügen."
+        "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
     },
     "settings": {
         "transferSending": "Sende Überweisung",
