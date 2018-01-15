@@ -72,7 +72,7 @@
     },
     "changePassword": {
         "oops": "Ups! Etwas ist schiefgegangen",
-        "oopsExplanation": "Etwas ist beim Aktualisieren deines Passworts schiefgelaufen. Bitte versuche es erneut.",
+        "oopsExplanation": "Beim Aktualisieren deines Passworts ist etwas schiefgelaufen. Bitte versuche es erneut.",
         "passwordUpdated": "Passwort aktualisiert",
         "passwordUpdatedExplanation": "Dein Passwort wurde erfolgreich aktualisiert.",
         "incorrectPassword": "Falsches Passwort",
