@@ -167,7 +167,7 @@
     "send": {
         "invalidAddress": "Adresse invalide",
         "invalidAddressExplanation1": "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
-        "invalidAddressExplanation2": "La Seed contient des caractères invalides.",
+        "invalidAddressExplanation2": "L'adresse contient des caractères invalides.",
         "invalidAddressExplanation3": "La Seed contient un code de vérification invalide.",
         "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
@@ -314,7 +314,7 @@
     },
     "manualSync": {
         "pressToSync": "Appuyez sur le bouton ci-dessous pour synchroniser votre compte.",
-        "thisMayTake": "Cela peut prendre un peu de temps.",
+        "thisMayTake": "Cela peut prendre un certain temps.",
         "youMayNotice": "Il se peut que votre appareil ralentisse.",
         "syncAccount": "SYNCHRONISER LE COMPTE",
         "syncingYourAccount": "Synchronisation de votre compte."
