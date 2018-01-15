@@ -1,15 +1,15 @@
-// import IOTA from 'iota.lib.js';
 import IOTA from './iota.lib.promisified';
-import { defaultNode } from '../config';
+import { defaultNode, nodes } from '../config';
 
 export const iota = new IOTA({ provider: defaultNode });
 
 export const changeIotaNode = provider => iota.changeNode({ provider });
 
-function listener() {
-    let node = store.getStore().getState().settings.fullNode;
-    return node.settings.fullNode;
-}
+export const getRandomNode = () => {
+    const x = Math.floor(Math.random() * nodes.length);
+
+    return nodes[x];
+};
 
 export const convertFromTrytes = trytes => {
     trytes = trytes.replace(/9+$/, '');

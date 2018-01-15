@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { width, height } from '../util/dimensions';
-import keyImagePath from 'iota-wallet-shared-modules/images/key.png';
-import addImagePath from 'iota-wallet-shared-modules/images/add.png';
-import arrowLeftPath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import { translate } from 'react-i18next';
 
 class AddNewAccount extends Component {
@@ -12,6 +9,7 @@ class AddNewAccount extends Component {
         addExistingSeed: PropTypes.func.isRequired,
         addNewSeed: PropTypes.func.isRequired,
         backPress: PropTypes.func.isRequired,
+        textColor: PropTypes.object.isRequired,
     };
 
     onNewSeedPress() {
@@ -23,33 +21,43 @@ class AddNewAccount extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, textColor, secondaryBackgroundColor, arrowLeftImagePath, addImagePath, keyImagePath } = this.props;
+
         return (
             <View style={styles.container}>
                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={event => this.onExistingSeedPress()}>
+                        <TouchableOpacity
+                            onPress={event => this.onExistingSeedPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.item}>
                                 <Image source={keyImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>{t('useExistingSeed')}</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('useExistingSeed')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableOpacity onPress={event => this.onNewSeedPress()}>
+                        <TouchableOpacity
+                            onPress={event => this.onNewSeedPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.item}>
                                 <Image source={addImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>{t('createNewSeed')}</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('createNewSeed')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={{ flex: 7 }} />
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <TouchableOpacity onPress={event => this.props.backPress()}>
+                    <TouchableOpacity
+                        onPress={event => this.props.backPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
                         <View style={styles.item}>
-                            <Image source={arrowLeftPath} style={styles.backIcon} />
-                            <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
+                            <Image source={arrowLeftImagePath} style={styles.backIcon} />
+                            <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

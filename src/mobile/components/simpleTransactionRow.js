@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
-import sendImagePath from 'iota-wallet-shared-modules/images/send.png';
-import receiveImagePath from 'iota-wallet-shared-modules/images/receive.png';
+import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
+import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
+import blackSendImagePath from 'iota-wallet-shared-modules/images/send-black.png';
+import blackReceiveImagePath from 'iota-wallet-shared-modules/images/receive-black.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -31,12 +33,14 @@ const styles = StyleSheet.create({
 
 class SimpleTransactionRow extends Component {
     render() {
-        const { t, rowData, addresses, negativeColor, extraColor } = this.props;
-        const icon = rowData[0].transferValue < 0 ? sendImagePath : receiveImagePath;
+        const { t, rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor } = this.props;
         const sign = rowData[0].transferValue < 0 ? '-' : '+';
         const address = get(rowData, '[0].address');
         const sendOrReceive = addresses.includes(address);
         const titleColour = sendOrReceive ? extraColor : negativeColor;
+        const sendImagePath = secondaryBackgroundColor === 'white' ? whiteSendImagePath : blackSendImagePath;
+        const receiveImagePath = secondaryBackgroundColor === 'white' ? whiteReceiveImagePath : blackReceiveImagePath;
+        const icon = rowData[0].transferValue < 0 ? sendImagePath : receiveImagePath;
 
         return (
             <View style={styles.container}>

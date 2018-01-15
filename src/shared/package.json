@@ -16,6 +16,7 @@
     "dependencies": {
         "bluebird": "^3.5.1",
         "i18next": "^10.2.2",
+        "i18next-browser-languagedetector": "^2.1.0",
         "iota.lib.js": "^0.4.5",
         "lodash": "^4.17.4",
         "moment": "^2.19.1",

@@ -17,9 +17,9 @@ import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
+import infoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
 import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
-import cameraImagePath from 'iota-wallet-shared-modules/images/camera.png';
+import cameraImagePath from 'iota-wallet-shared-modules/images/camera-white.png';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import QRScanner from '../components/qrScanner';
 import OnboardingButtons from '../components/onboardingButtons';
@@ -94,6 +94,7 @@ class EnterSeed extends React.Component {
             ctaColor={COLORS.greenLight}
             onQRRead={data => this.onQRRead(data)}
             hideModal={() => this._hideModal()}
+            secondaryCtaColor="transparent"
         />
     );
 
@@ -130,7 +131,9 @@ class EnterSeed extends React.Component {
                                         <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                     </View>
                                 </View>
-                                <View style={{ flex: 1, flexDirection: 'row', width: width / 1.4 }}>
+                                <View
+                                    style={{ flex: 1, flexDirection: 'row', width: width / 1.4, alignItems: 'center' }}
+                                >
                                     <View style={styles.textFieldContainer}>
                                         <TextField
                                             style={styles.textField}
@@ -213,7 +216,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.backgroundGreen,
     },
     topContainer: {
-        flex: 0.6,
+        flex: 1,
         paddingTop: height / 22,
     },
     topMidContainer: {
@@ -307,15 +310,17 @@ const styles = StyleSheet.create({
     textFieldContainer: {
         flex: 1,
         paddingRight: width / 30,
+        justifyContent: 'flex-end',
     },
     textField: {
         color: 'white',
         fontFamily: 'Inconsolata-Bold',
     },
     qrButtonContainer: {
-        justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: height / 90,
+        paddingBottom: isAndroid ? height / 90 : height / 150,
+        justifyContent: 'flex-end',
+        height: height / 10,
     },
     dropdownTitle: {
         fontSize: width / 25.9,
