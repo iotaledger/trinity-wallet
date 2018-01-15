@@ -124,7 +124,7 @@
         "selectDifferentNode": "Möchtest du einen anderen Node auswählen?"
     },
     "loading": {
-        "loadingFirstTime": "Lade den Seed zum ersten Mal.",
+        "loadingFirstTime": "Lädt den Seed zum ersten Mal.",
         "thisMayTake": "Dies kann eine Weile dauern.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden."
     },
