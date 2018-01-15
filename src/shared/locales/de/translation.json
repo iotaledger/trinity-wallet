@@ -2,7 +2,7 @@
     "global": {
         "send": "SENDEN",
         "cancel": "ABBRECHEN",
-        "continue?": "Bist du sicher, dass Du fortfahren möchtest?",
+        "continue?": "Bist du sicher, dass du fortfahren möchtest?",
         "noTransactions": "KEINE AKTUELLER VERLAUF",
         "qr": "QR",
         "balanceError": "Nicht genügend Guthaben",
@@ -53,7 +53,7 @@
         "node": "Node",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
-        "attachToTangleUnavailable": "Senden an den Tangle nicht möglich",
+        "attachToTangleUnavailable": "Anhängen an den Tangle nicht möglich",
         "attachToTangleUnavailableExplanation": "Senden an den Tangle ist mit dem ausgewählten Node nicht möglich."
     },
     "addAdditionalSeed": {
@@ -121,7 +121,7 @@
         "enterPassword": "Bitte gib dein Passwort ein.",
         "useSeed": "SEED BENUTZEN",
         "login": "ANMELDEN",
-        "selectDifferentNode": "Möchtest du einen anderen Node auswählen?"
+        "selectDifferentNode": "Möchtest Du einen anderen Node auswählen?"
     },
     "loading": {
         "loadingFirstTime": "Lädt den Seed zum ersten Mal.",
@@ -132,13 +132,13 @@
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
         "seedNotGeneratedExplanation": "Bitte klicke die Schaltfläche \"Neuen Seed erzeugen\".",
         "pressForNewSeed": "DRÜCKE FÜR NEUEN SEED",
-        "individualLetters": "Drücke beliebige Buchstaben um sie zufällig neu zu setzen."
+        "individualLetters": "Drücke beliebige Buchstaben, um sie zufällig neu zu setzen."
     },
     "onboardingComplete": {
         "walletReady": "Das Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, benutze das Einstellungsmenü."
     },
     "paperWallet": {
-        "clickToPrint": "Klicke die Schaltfläche unten, um deinen Seed als Paper-Wallet auszudrucken.",
+        "clickToPrint": "Klicke die Schaltfläche unten, um Deinen Seed als Paper-Wallet auszudrucken.",
         "storeSafely": "Sicher aufbewahren.",
         "neverShare": "Teile niemals deinen Seed.",
         "iotaLogo": "IOTA Logo",
@@ -162,7 +162,7 @@
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch mal.",
         "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gesichert hast.",
-        "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und sichere ihn."
+        "ifYouHaveNotSaved": "Wenn du Deinen Seed nicht gesichert hast, gehe zurück und sichere ihn."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
@@ -241,7 +241,7 @@
     "walletSetup": {
         "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
-        "seedExplanation": "Der IOTA Seed ist wie ein Nutzername und Passwort zu Deinem Konto und besteht aus 81 Zeichen.",
+        "seedExplanation": "Der IOTA Seed ist eine Art Nutzername und Passwort zu deinem Konto und besteht aus 81 Zeichen.",
         "explanation1": "Du kannst ihn verwenden um auf dein Guthaben zuzugreifen von",
         "explanation2": " jedem Wallet ",
         "explanation3": "auf",
