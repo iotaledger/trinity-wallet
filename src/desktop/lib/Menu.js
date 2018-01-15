@@ -135,19 +135,19 @@ const initMenu = (app, getWindow) => {
                 submenu: [
                     {
                         label: language.balance,
-                        click: navigate('balance'),
+                        click: () => navigate('balance'),
                     },
                     {
                         label: language.send,
-                        click: navigate('send'),
+                        click: () => navigate('send'),
                     },
                     {
                         label: language.receive,
-                        click: navigate('receive'),
+                        click: () => navigate('receive'),
                     },
                     {
                         label: language.history,
-                        click: navigate('history'),
+                        click: () => navigate('history'),
                     },
                     {
                         type: 'separator',
