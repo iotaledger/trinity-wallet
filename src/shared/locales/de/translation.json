@@ -62,7 +62,7 @@
         "seedTooShort": "Seed ist zu kurz",
         "seedTooShortExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "nameInUse": "Kontoname wird bereits verwendet",
-        "nameInUseExplanation": "Bitte benutze einen einzigartigen Kontonamen für deinen Seed.",
+        "nameInUseExplanation": "Bitte benutze einen eindeutigen Kontonamen für deinen Seed.",
         "enterAccountName": "Gib einen Kontonamen ein.",
         "accountName": "Kontoname",
         "noNickname": "Kein Kontoname eingegeben",
@@ -307,23 +307,23 @@
         "one": "Eins"
     },
     "deleteAccount": {
-        "areYouSure": "Sind Sie sicher, dass Sie dieses Konto löschen wollen?",
+        "areYouSure": "Willst du dieses Konto wirklich löschen?",
         "yourSeedWillBeRemoved": "Dein Seed und der Transaktionsverlauf werden gelöscht.",
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
-        "enterPassword": "Bitte geben Sie Ihr Passwort ein, um das Konto zu löschen."
+        "enterPassword": "Bitte gib dein Passwort ein, um das Konto zu löschen."
     },
     "manualSync": {
-        "pressToSync": "Drücke die Schaltfläche unten um dein Konto zu synchronisieren.",
+        "pressToSync": "Drücke die Schaltfläche unten, um dein Konto zu synchronisieren.",
         "thisMayTake": "Dies kann eine Weile dauern.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden.",
-        "syncAccount": "Konto synchronisieren",
+        "syncAccount": "KONTO SYNCHRONISIEREN",
         "syncingYourAccount": "Konto wird synchronisiert."
     },
     "useExistingSeed": {
         "title": "Gib einen Seed und einen Kontonamen ein."
     },
     "viewSeed": {
-        "enterPassword": "Gib dein Passwort ein um den Seed anzuzeigen.",
+        "enterPassword": "Gib dein Passwort ein, um den Seed anzuzeigen.",
         "viewSeed": "SEED ANZEIGEN",
         "hideSeed": "SEED AUSBLENDEN"
     },
