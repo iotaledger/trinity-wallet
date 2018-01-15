@@ -20,6 +20,9 @@ import WalletResetRequirePassword from '../containers/walletResetRequirePassword
 import OnboardingComplete from '../containers/onboardingComplete';
 import SetSeedName from '../containers/setSeedName';
 import SeedReentry from '../containers/seedReentry';
+import TwoFactorSetupAddKey from '../containers/twoFactorSetupAddKey';
+import TwoFactorSetupEnterToken from '../containers/twoFactorSetupEnterToken';
+import Disable2FA from '../containers/disable2FA';
 import { isIPhoneX } from '../util/device';
 
 function getGenerator(screen) {
@@ -51,4 +54,7 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponent('setSeedName', () => SetSeedName, store, Provider);
     Navigation.registerComponent('seedReentry', () => SeedReentry, store, Provider);
     Navigation.registerComponent('saveSeedConfirmation', () => SaveSeedConfirmation, store, Provider);
+    Navigation.registerComponent('twoFactorSetupAddKey', () => TwoFactorSetupAddKey, store, Provider);
+    Navigation.registerComponent('twoFactorSetupEnterToken', () => TwoFactorSetupEnterToken, store, Provider);
+    Navigation.registerComponent('disable2FA', () => Disable2FA, store, Provider);
 }

@@ -1,0 +1,35 @@
+.receive {
+    text-align: center;
+
+    .address {
+        display: block;
+        padding: 0px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        word-wrap: break-word;
+        border-radius: 4px;
+        width: 100%;
+        margin: 0 auto 30px;
+        min-height: 100px;
+        max-width: 320px;
+        > span {
+            display: block;
+            padding: 20px;
+        }
+    }
+
+    canvas {
+        display: block;
+        margin: 0 auto 30px;
+        background: #fff;
+        border-radius: 4px;
+        padding: 20px;
+    }
+}
+
+.empty {
+    p,
+    canvas {
+        opacity: 0.2;
+        pointer-events: none;
+    }
+}

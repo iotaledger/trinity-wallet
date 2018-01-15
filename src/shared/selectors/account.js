@@ -3,6 +3,12 @@ import isEmpty from 'lodash/isEmpty';
 import { createSelector } from 'reselect';
 import { deduplicateTransferBundles } from '../libs/accountUtils';
 
+export const getAccountFromState = state => state.account || {};
+
+export const getAccountInfoFromState = createSelector(getAccountFromState, state => {
+    return state.accountInfo || {};
+});
+
 export const currentAccountSelector = (seedName, accountInfo) => get(accountInfo, seedName);
 
 export const currentAccountSelectorBySeedIndex = (seedIndex, accountInfo) => {

@@ -1,8 +1,8 @@
+import isFunction from 'lodash/isFunction';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-
 import marketData from './reducers/marketData';
 import tempAccount from './reducers/tempAccount';
 import account from './reducers/account';
@@ -14,7 +14,13 @@ import alerts from './reducers/alerts';
 import home from './reducers/home';
 import keychain from './reducers/keychain';
 import polling from './reducers/polling';
+import ui from './reducers/ui';
 import { ActionTypes } from './actions/app';
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+const developmentMiddleware = [thunk, logger];
+const productionMiddleware = [thunk];
 
 const reducers = combineReducers({
     alerts,
@@ -28,6 +34,7 @@ const reducers = combineReducers({
     home,
     keychain,
     polling,
+    ui,
 });
 
 const rootReducer = (state, action) => {
@@ -38,15 +45,22 @@ const rootReducer = (state, action) => {
     return reducers(state, action);
 };
 
+const middleware = isDevelopment ? developmentMiddleware : productionMiddleware;
+
 const store = createStore(
     rootReducer,
     compose(
-        applyMiddleware(thunk),
+        applyMiddleware(...middleware),
         autoRehydrate(),
         typeof window !== 'undefined' && window.devToolsExtension ? window.devToolsExtension() : f => f,
     ),
 );
 
-export const persistState = (state, config) => persistStore(state, config);
+export const persistState = (state, config, cb) =>
+    persistStore(state, config, () => {
+        if (isFunction(cb)) {
+            cb(state);
+        }
+    });
 
 export default store;
