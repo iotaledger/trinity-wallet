@@ -31,7 +31,6 @@ class InitialLoading extends Component {
     }
 
     componentDidMount() {
-        AsyncStorage.getAllKeys((err, keys) => AsyncStorage.multiGet(keys, (e, t) => console.log(t)));
         this.animation.play();
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
     }

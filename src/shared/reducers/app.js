@@ -1,9 +1,14 @@
+import merge from 'lodash/merge';
 import { ActionTypes } from '../actions/app.js';
 
 const initialState = {
     isOnboardingCompleted: false,
     mode: 'STANDARD',
     root: 'initialLoading',
+    versions: {
+        android: {},
+        ios: {},
+    },
 };
 
 export default (state = initialState, action) => {
@@ -13,6 +18,10 @@ export default (state = initialState, action) => {
                 ...state,
                 isOnboardingCompleted: action.payload,
             };
+        case ActionTypes.SET_VERSIONS:
+            return merge({}, state, {
+                versions: action.payload,
+            });
     }
     return state;
 };
