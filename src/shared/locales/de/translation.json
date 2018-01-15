@@ -68,7 +68,7 @@
         "noNickname": "Kein Kontoname eingegeben",
         "noNicknameExplanation": "Bitte gib einen Kontonamen für deinen Seed ein.",
         "seedInUse": "Dieser Seed wird bereits verwendet",
-        "seedInUseExplanation": "Dieser Seed wurde bereits mit deinem Wallet verknüpft. Bitte nutze einen anderen."
+        "seedInUseExplanation": "Dieser Seed ist bereits mit deinem Wallet verknüpft. Bitte benutze einen anderen."
     },
     "changePassword": {
         "oops": "Ups! Etwas ist schiefgegangen",
@@ -124,7 +124,7 @@
         "selectDifferentNode": "Möchtest du einen anderen Node auswählen?"
     },
     "loading": {
-        "loadingFirstTime": "Lädt den Seed zum ersten Mal.",
+        "loadingFirstTime": "Lade den Seed zum ersten Mal.",
         "thisMayTake": "Dies kann eine Weile dauern.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden."
     },
@@ -221,7 +221,7 @@
         "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet gelöscht.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen, um das Wallet zurückzusetzen.",
-        "poorConnection": "Schlechte Netzwerkverbindung",
+        "poorConnection": "Schlechte Verbindung",
         "poorConnectionExplanation": "Fehler beim Ändern der Währung wegen schlechter Verbindung."
     },
     "resetWalletConfirmation": {
