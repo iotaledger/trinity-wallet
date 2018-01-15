@@ -33,7 +33,7 @@ const Electron = {
             copy: 'Copy',
             paste: 'Paste',
             selectAll: 'Select All',
-            account: t(''),
+            account: t('Account'),
             balance: capitalize(t('home:balance')),
             send: capitalize(t('home:send')),
             receive: capitalize(t('home:receive')),
