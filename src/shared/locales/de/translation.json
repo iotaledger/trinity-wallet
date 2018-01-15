@@ -138,7 +138,7 @@
         "walletReady": "Das Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, benutze das Einstellungsmenü."
     },
     "paperWallet": {
-        "clickToPrint": "Klicke die Schaltfläche unten, um ein Paper-Wallet von deinem Seed auszudrucken.",
+        "clickToPrint": "Klicke die Schaltfläche unten, um deinen Seed als Paper-Wallet auszudrucken.",
         "storeSafely": "Sicher aufbewahren.",
         "neverShare": "Teile niemals deinen Seed.",
         "iotaLogo": "IOTA Logo",
@@ -153,7 +153,7 @@
     },
     "saveYourSeed": {
         "seedCleared": "Seed aus Zwischenablage gelöscht",
-        "seedClearedExplanation": "Der Seed wurde aus der Zwischenablage aus Sicherheitsgründen gelöscht.",
+        "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht.",
         "mustSaveYourSeed": "Du musst deinen Seed mit ",
         "atLeastOne": "mindestens einer ",
         "ofTheOptions": "von den aufgeführten Optionen speichern."
@@ -161,8 +161,8 @@
     "seedReentry": {
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch mal.",
-        "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, daß du deinen Seed gesichert hast.",
-        "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und tu dies."
+        "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gesichert hast.",
+        "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und sichere ihn."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
@@ -170,7 +170,7 @@
         "invalidAddressExplanation2": "Adresse enthält ungültige Zeichen.",
         "invalidAddressExplanation3": "Adresse enthält eine ungültige Prüfsumme.",
         "notEnoughFunds": "Nicht genügend Guthaben",
-        "notEnoughFundsExplanation": "Du hast nicht genug IOTA um den Transfer abzuschließen.",
+        "notEnoughFundsExplanation": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
         "keyReuse": "Key Wiederverwendung",
         "keyReuseExplanation": "Die Adresse, die du zum Senden verwendest, wurde bereits benutzt. Bitte versuche es mit einer anderen Adresse.",
         "recipientAddress": "Adresse des Empfängers",
@@ -220,18 +220,18 @@
         "accountDeleted": "Account gelöscht",
         "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet gelöscht.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
-        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
+        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen, um das Wallet zurückzusetzen.",
         "poorConnection": "Schlechte Verbindung",
-        "poorConnectionExplanation": "Fehler beim Ändern der Währung durch eine schlechte Verbindung."
+        "poorConnectionExplanation": "Fehler beim Ändern der Währung wegen schlechter Verbindung."
     },
     "resetWalletConfirmation": {
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
-        "warning1": "Alle deine Wallet-Daten, einschließlich deiner",
+        "warning1": "All deine Wallet-Daten, einschließlich deiner",
         "warning2": " Seeds, deinem Passwort, ",
         "warning3": "und",
         "warning4": " anderer Kontoinformationen",
         "warning5": " werden verloren gehen.",
-        "areYouSure": "Bist du sicher, daß du fortfahren möchtest?"
+        "areYouSure": "Bist du sicher, dass du fortfahren möchtest?"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -335,7 +335,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DIESE AKTION KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN.",
-        "infoTextOne": "Alle deine Wallet-Daten, einschließlich deiner",
+        "infoTextOne": "All deine Wallet-Daten, einschließlich deiner",
         "infoTextTwo": "Seeds, deinem Passwort",
         "infoTextThree": "und",
         "infoTextFour": "anderer Kontoinformationen",
