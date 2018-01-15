@@ -1,3 +1,4 @@
+// FILE MUST BE NAMED *.worker.js OR OTHERWISE IT'S NOT RECOGNIZED BY WEBPACKS WORKER-LOADER!
 import { generateNewAddress } from 'actions/tempAccount';
 import { getAccountInfo, getFullAccountInfo } from 'actions/account';
 
