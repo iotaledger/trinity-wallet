@@ -17,7 +17,7 @@ import {
 } from '../../shared/actions/polling';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from '../../shared/actions/account';
 import keychain, { getSeed } from '../util/keychain';
-import { isWithinAnHourAndTenMinutesAgo, isTenMinutesAgo, isAnHourAgo } from '../../shared/libs/promoter';
+import { isWithinADayAndTenMinutesAgo, isTenMinutesAgo, isADayAgo } from '../../shared/libs/promoter';
 import { sortWithProp } from '../../shared/libs/accountUtils';
 import { rearrangeObjectKeys } from '../../shared/libs/util';
 
@@ -50,7 +50,7 @@ export class Poll extends Component {
 
     static shouldPromote(latestTail) {
         const attachmentTimestamp = get(latestTail, 'attachmentTimestamp');
-        return isWithinAnHourAndTenMinutesAgo(attachmentTimestamp);
+        return isWithinADayAndTenMinutesAgo(attachmentTimestamp);
     }
 
     constructor() {
@@ -110,13 +110,13 @@ export class Poll extends Component {
 
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.getAccountInfo(seed, selectedAccountName);
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+            .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
     startBackgroundProcesses() {
@@ -155,7 +155,7 @@ export class Poll extends Component {
                     }
                 }
 
-                if (isAnHourAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
+                if (isADayAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
                     this.props.removeBundleFromUnconfirmedBundleTails(top);
                     this.props.setPollFor(allPollingServices[next]);
                 }
@@ -173,7 +173,7 @@ export class Poll extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,
