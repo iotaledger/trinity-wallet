@@ -146,7 +146,7 @@
     },
     "receive": {
         "addressCopied": "Adressée copiée",
-        "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papiers.",
+        "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
         "generateNewAddress": "GÉNÉRER UNE NOUVELLE ADRESSE",
         "message": "Message facultatif",
         "removeMessage": "SUPPRIMER LE MESSAGE"
@@ -334,7 +334,7 @@
         "reenterWarningTwo": "votre seed, vous perdrez vos IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "CETTE ACTION NE PEUT PAS ÊTRE ANNULÉE.",
+        "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
         "infoTextOne": "Toutes vos données de wallet incluant vos",
         "infoTextTwo": "seeds, mots de passe",
         "infoTextThree": "et",
