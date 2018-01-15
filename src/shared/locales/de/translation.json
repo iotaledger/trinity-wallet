@@ -49,7 +49,7 @@
         "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
-        "somethingWentWrongExplanation": "Bitte die App neustarten.",
+        "somethingWentWrongExplanation": "Bitte die App neu starten.",
         "node": "Node",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
@@ -57,7 +57,7 @@
         "attachToTangleUnavailableExplanation": "Senden an den Tangle ist mit dem ausgewählten Node nicht möglich."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "Seed beinhaltet ungültige Zeichen",
+        "seedInvalidChars": "Seed enthält ungültige Zeichen",
         "seedInvalidCharsExplanation": "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed hat ungültige Zeichen. Bitte versuche es erneut.",
         "seedTooShort": "Seed ist zu kurz",
         "seedTooShortExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
@@ -81,7 +81,7 @@
         "passwordsDoNotMatchExplanation": "Passwörter stimmen nicht überein. Bitte versuche es erneut.",
         "passwordTooShort": "Passwort ist zu kurz",
         "passwordTooShortExplanation": "Dein Passwort muss mindestens 12 Zeichen lang sein. Bitte erneut eingeben.",
-        "oldPassword": "Altes Passwort kann nicht gesetzt werden",
+        "oldPassword": "Ein altes Passwort kann nicht wieder verwendet werden",
         "oldPasswordExplanation": "Du kannst dein altes Passwort nicht als neues Passwort verwenden. Bitte versuche es mit einem anderen Passwort.",
         "ensureStrongPassword": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
         "currentPassword": "Aktuelles Passwort",
