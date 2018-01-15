@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -5,7 +6,8 @@ import { connect } from 'react-redux';
 import { getSecurelyPersistedSeeds } from 'libs/storage';
 import { getAccountInfo, getFullAccountInfo, setFirstUse } from 'actions/account';
 import { showError } from 'actions/notifications';
-import { loadSeeds } from 'actions/seeds';
+import { clearTempData } from 'actions/tempAccount';
+import { loadSeeds, clearSeeds } from 'actions/seeds';
 import Template, { Content, Footer } from 'components/Onboarding/Template';
 import PasswordInput from 'components/UI/input/Password';
 import Button from 'components/UI/Button';
@@ -27,12 +29,20 @@ class Login extends React.Component {
         showError: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         getFullAccountInfo: PropTypes.func.isRequired,
+        clearTempData: PropTypes.func.isRequired,
+        clearSeeds: PropTypes.func.isRequired,
     };
 
     state = {
         loading: false,
         password: '',
     };
+
+    componentDidMount() {
+        this.props.clearTempData();
+        this.props.clearSeeds();
+        Electron.updateMenu('authorised', false);
+    }
 
     componentWillReceiveProps(newProps) {
         const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
@@ -41,6 +51,8 @@ class Login extends React.Component {
                 loading: false,
             });
             this.props.history.push('/balance');
+
+            Electron.updateMenu('authorised', true);
         }
     }
 
@@ -130,6 +142,8 @@ const mapDispatchToProps = {
     loadSeeds,
     getFullAccountInfo,
     getAccountInfo,
+    clearTempData,
+    clearSeeds,
     setFirstUse,
 };
 
