@@ -12,25 +12,11 @@ worker.onmessage = ({ data }) => {
     }
 };
 
-const runTask = (type, payload) => {
+store.subscribe(() => worker.postMessage({ type: 'setState', payload: store.getState() }));
+
+export const runTask = (type, payload) => {
     return worker.postMessage({
         type,
         payload,
-    });
-};
-
-export const generateNewAddress = ({
-    seed,
-    seedName,
-    addresses,
-}: {
-    seed: string,
-    addresses: Array<{ balance: number, spent: boolean }>,
-    seedName: string,
-}) => {
-    return runTask('generateNewAddress', {
-        seed: seed,
-        addresses: addresses,
-        seedName,
     });
 };
