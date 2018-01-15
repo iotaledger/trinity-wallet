@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
 class SimpleTransactionRow extends Component {
     render() {
         const { t, rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor } = this.props;
-        const sign = rowData[0].transferValue < 0 ? '-' : '+';
         const address = get(rowData, '[0].address');
         const isReceived = isReceivedTransfer(rowData, addresses);
+        const sign = isReceived ? '+' : '-';
         const titleColour = isReceived ? extraColor : negativeColor;
         const sendImagePath = secondaryBackgroundColor === 'white' ? whiteSendImagePath : blackSendImagePath;
         const receiveImagePath = secondaryBackgroundColor === 'white' ? whiteReceiveImagePath : blackReceiveImagePath;
-        const icon = rowData[0].transferValue < 0 ? sendImagePath : receiveImagePath;
+        const icon = isReceived ? receiveImagePath : sendImagePath;
 
         return (
             <View style={styles.container}>
