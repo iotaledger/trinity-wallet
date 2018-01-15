@@ -300,7 +300,6 @@ export const manuallySyncAccount = (seed, accountName) => {
         dispatch(manualSyncRequest());
         getAccountData(seed, accountName)
             .then(data => {
-                dispatch(clearTempData()); // Clean up partial state for reducer anyways.
                 const unspentAddresses = getUnspentAddresses(data.addresses);
                 if (!isEmpty(unspentAddresses)) {
                     iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
