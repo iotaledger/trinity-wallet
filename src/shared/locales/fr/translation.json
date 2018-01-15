@@ -14,10 +14,10 @@
         "keyReuse": "Réutilisation de clé",
         "keyReuseError": "Vous ne pouvez pas faire de transfert vers une adresse depuis laquelle un transfert a déjà été effectué.",
         "invalidResponse": "Réponse non valide",
-        "invalidResponseExplanation": "Le node a retourné une réponse invalide.",
+        "invalidResponseExplanation": "Le node a renvoyé une réponse invalide.",
         "invalidResponsePollingExplanation": "Le node a retourné une réponse invalide lors de son interrogation.",
         "invalidResponseFetchingAccount": "Le node a renvoyé une réponse non valide lors de la récupération des informations de votre compte.",
-        "invalidResponseSendingTransfer": "Le node a retourné une réponse invalide lors du transfert.",
+        "invalidResponseSendingTransfer": "Le node a renvoyé une réponse invalide lors du transfert.",
         "seed": "Seed",
         "back": "RETOUR",
         "backLowercase": "Retour",
@@ -85,8 +85,8 @@
         "oldPasswordExplanation": "Vous ne pouvez pas utiliser l’ancien mot de passe comme nouveau mot de passe. Veuillez réessayer avec un nouveau mot de passe.",
         "ensureStrongPassword": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "currentPassword": "Mot de passe actuel",
-        "newPassword": "Nouveau Mot de passe",
-        "confirmPassword": "Confirmer le Nouveau Mot de passe"
+        "newPassword": "Nouveau mot de passe",
+        "confirmPassword": "Confirmer le nouveau mot de passe"
     },
     "copyToClipboard": {
         "seedCleared": "Seed effacée",
@@ -131,7 +131,7 @@
     "newSeedSetup": {
         "seedNotGenerated": "La seed n'a pas été générée",
         "seedNotGeneratedExplanation": "Cliquez sur le bouton \"Générer une Nouvelle Seed\".",
-        "pressForNewSeed": "CLIQUEZ POUR UNE NOUVELLE SEED",
+        "pressForNewSeed": "NOUVELLE SEED",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
     },
     "onboardingComplete": {
@@ -168,7 +168,7 @@
         "invalidAddress": "Adresse invalide",
         "invalidAddressExplanation1": "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
         "invalidAddressExplanation2": "L'adresse contient des caractères invalides.",
-        "invalidAddressExplanation3": "La Seed contient un code de vérification invalide.",
+        "invalidAddressExplanation3": "L'adresse contient un code de vérification invalide.",
         "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
         "keyReuse": "Réutilisation de clé",
@@ -191,7 +191,7 @@
         "nowWeNeedTo": "Maintenant nous devons paramétrer un mot de passe.",
         "anEncryptedCopy": "Une copie chiffrée de votre seed sera stockée sur votre appareil. Vous utiliserez ce mot de passe pour accéder à votre wallet à l’avenir.",
         "ensure": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
-        "retypePassword": "Confirmer le Mot de passe"
+        "retypePassword": "Confirmer le mot de passe"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "Vous pouvez utiliser plusieurs seeds avec ce wallet. Chaque seed requiert un nom de compte.",
@@ -222,7 +222,7 @@
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
         "poorConnection": "Mauvaise connexion",
-        "poorConnectionExplanation": "Impossible de changer de monnaie à cause de la mauvaise connexion."
+        "poorConnectionExplanation": "Impossible de changer de devise à cause de la mauvaise connexion."
     },
     "resetWalletConfirmation": {
         "thisAction": "Cette action est irréversible.",
@@ -261,9 +261,9 @@
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
-        "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papiers.",
+        "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",
-        "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papiers."
+        "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papier."
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
