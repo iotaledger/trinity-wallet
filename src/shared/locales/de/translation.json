@@ -30,7 +30,7 @@
         "continue": "Fortfahren",
         "manualCopy": "Schreibe deinen Seed auf",
         "paperWallet": "Ausdrucken",
-        "copyToClipboard": "Zum Passwortmanager hinzufügen",
+        "copyToClipboard": "Zum Passwort-Manager hinzufügen",
         "notAvailable": "Diese Funktion ist nicht verfügbar",
         "notAvailableExplanation": "Die Funktion wird zu einem späteren Zeitpunkt hinzugefügt werden.",
         "enterSeed": "Bitte gib deinen Seed ein.",
@@ -226,7 +226,7 @@
     },
     "resetWalletConfirmation": {
         "thisAction": "Diese Aktion kann nicht rückgängig gemacht werden.",
-        "warning1": "All deine Wallet-Daten, einschließlich deiner",
+        "warning1": "Alle deine Wallet-Daten, einschließlich deiner",
         "warning2": " Seeds, deinem Passwort, ",
         "warning3": "und",
         "warning4": " anderer Kontoinformationen",
@@ -257,7 +257,7 @@
     "writeSeedDown": {
         "yourSeedIs": "Dein Seed ist {{maxSeedLength}} Zeichen lang, von links nach rechts. Bitte schreibe deinen Seed und die Checksumme auf und",
         "tripleCheck": "prüfe dreimal",
-        "thatTheyAreCorrect": "prüfe ob diese korrekt sind."
+        "thatTheyAreCorrect": "ob diese korrekt sind."
     },
     "history": {
         "bundleHashCopied": "Bündel-Hash kopiert",
