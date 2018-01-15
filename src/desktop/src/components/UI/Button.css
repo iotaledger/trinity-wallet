@@ -1,19 +1,29 @@
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .button {
+    position: relative;
     border: none;
     border-radius: 4px;
     border-color: inherit inherit;
     cursor: pointer;
     display: inline-block;
-    height: 38px;
+    height: 42px;
     line-height: 38px;
-    font-size: var(--font-size-default);
+    font-size: var(--font-size-small);
+    line-height: var(--font-size-small);
     min-width: 140px;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 200;
-    padding: 0 14px;
+    padding: 1px 24px 0;
     color: var(--color-body);
     user-select: none;
+    overflow: hidden;
+    transition: padding 0.2s cubic-bezier(0.55, 0, 0.1, 1);
     &:focus {
         outline: none;
     }
@@ -31,6 +41,20 @@
     &:disabled {
         opacity: 0.5;
         pointer-events: none;
+    }
+    &:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 26px;
+        width: 16px;
+        height: 16px;
+        margin: -8px 0 0 -8px;
+        border-radius: 50%;
+        border: 1px solid transparent;
+        border-top-color: #fff;
+        opacity: 0;
     }
 }
 
@@ -69,4 +93,15 @@ footer .button + .button {
 .warning {
     composes: button;
     background: var(--color-warning);
+}
+
+.loading {
+    pointer-events: none;
+    padding-left: 48px;
+    box-shadow: inset 0 0 0 30px rgba(0, 0, 0, 0.1), 1px 2px 2px 1px rgba(0, 0, 0, 0.1);
+    &:before {
+        transition: all 0.8s cubic-bezier(0.55, 0, 0.1, 1);
+        opacity: 1;
+        animation: spin 0.6s ease infinite;
+    }
 }

@@ -101,11 +101,17 @@ class Login extends React.Component {
     };
 
     render() {
-        const { t } = this.props;
+        const { t, account } = this.props;
         const { loading } = this.state;
 
         if (loading) {
-            return <Loading loop />;
+            return (
+                <Loading
+                    loop
+                    title={account.firstUse ? t('loading:thisMayTake') : null}
+                    subtitle={account.firstUse ? t('loading:loadingFirstTime') : null}
+                />
+            );
         }
 
         return (
