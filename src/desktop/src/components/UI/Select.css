@@ -1,21 +1,22 @@
 .select {
     width: 100%;
-
     select {
         font-family: 'Lato';
-        border: none;
-        background: none;
-        color: white;
-        border-bottom: 1px solid white;
-        height: 50px;
-        width: 100%;
-        line-height: 50px;
+        font-weight: 200;
         font-size: var(--font-size-default);
+        line-height: 26px;
+        width: 100%;
+        border: none;
+        background: #2a4a51;
+        color: #fff;
+        padding: 6px 12px;
+        resize: none;
         -webkit-appearance: none;
         -webkit-border-radius: 0px;
+        border-radius: 4px;
         cursor: pointer;
         &:focus {
-            outline: 0;
+            outline: none;
         }
     }
     > div {
@@ -29,9 +30,13 @@
             border-width: 6px 4px 0 4px;
             border-color: #fff transparent transparent transparent;
             position: absolute;
-            right: 0px;
-            top: 50%;
+            right: 12px;
+            top: calc(50% - 2px);
+            opacity: 0.6;
             pointer-event: none;
+        }
+        &:hover:after {
+            opacity: 1;
         }
     }
 }

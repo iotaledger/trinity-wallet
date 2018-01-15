@@ -17,7 +17,6 @@ import Seedbox from '../components/seedBox.js';
 import { TextField } from 'react-native-material-textfield';
 import keychain, { getSeed } from '../util/keychain';
 import { width, height } from '../util/dimensions';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
 
@@ -83,26 +82,25 @@ class ViewSeed extends Component {
     }
 
     render() {
-        const { t } = this.props;
-
+        const { t, textColor, secondaryBackgroundColor, borderColor, arrowLeftImagePath } = this.props;
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         {!this.state.showSeed && (
                             <View style={styles.passwordTextContainer}>
-                                <Text style={styles.generalText}>{t('viewSeed:enterPassword')}</Text>
+                                <Text style={[styles.generalText, textColor]}>{t('viewSeed:enterPassword')}</Text>
                             </View>
                         )}
                         {!this.state.showSeed && (
                             <View style={styles.textFieldContainer}>
                                 <TextField
-                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
+                                    style={{ color: secondaryBackgroundColor, fontFamily: 'Lato-Light' }}
                                     labelTextStyle={{ fontFamily: 'Lato-Light' }}
                                     labelFontSize={width / 31.8}
                                     fontSize={width / 20.7}
                                     labelPadding={3}
-                                    baseColor="white"
+                                    baseColor={secondaryBackgroundColor}
                                     label="Password"
                                     tintColor={THEMES.getHSL(this.props.negativeColor)}
                                     autoCapitalize={'none'}
@@ -126,8 +124,8 @@ class ViewSeed extends Component {
                                             this.viewSeed();
                                         }}
                                     >
-                                        <View style={styles.viewButton}>
-                                            <Text style={styles.viewText}>{t('viewSeed:viewSeed')}</Text>
+                                        <View style={[styles.viewButton, borderColor]}>
+                                            <Text style={[styles.viewText, textColor]}>{t('viewSeed:viewSeed')}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -138,7 +136,12 @@ class ViewSeed extends Component {
                         {this.state.showSeed && (
                             <View style={{ flex: 1 }}>
                                 <View style={styles.seedBoxContainer}>
-                                    <Seedbox seed={this.state.seed} />
+                                    <Seedbox
+                                        seed={this.state.seed}
+                                        secondaryBackgroundColor={secondaryBackgroundColor}
+                                        borderColor={borderColor}
+                                        textColor={textColor}
+                                    />
                                 </View>
                                 <View style={styles.hideButtonContainer}>
                                     <TouchableOpacity
@@ -146,8 +149,8 @@ class ViewSeed extends Component {
                                             this.hideSeed();
                                         }}
                                     >
-                                        <View style={styles.viewButton}>
-                                            <Text style={styles.viewText}>{t('viewSeed:hideSeed')}</Text>
+                                        <View style={[styles.viewButton, borderColor]}>
+                                            <Text style={[styles.viewText, textColor]}>{t('viewSeed:hideSeed')}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -155,10 +158,13 @@ class ViewSeed extends Component {
                         )}
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.props.backPress()}>
+                        <TouchableOpacity
+                            onPress={event => this.props.backPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
-                                <Text style={styles.titleText}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -175,7 +181,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     generalText: {
-        color: 'white',
         fontFamily: Fonts.secondary,
         fontSize: width / 23,
         textAlign: 'center',
@@ -227,13 +232,11 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleText: {
-        color: 'white',
         fontFamily: 'Lato-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
     },
     viewButton: {
-        borderColor: 'rgba(255, 255, 255, 0.6)',
         borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
         width: width / 2.7,
@@ -243,7 +246,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     viewText: {
-        color: 'white',
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',

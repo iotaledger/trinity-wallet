@@ -26,27 +26,27 @@ export const getFirstConsistentTail = (tails, idx) => {
         .catch(() => false);
 };
 
-export const isWithinAnHourAndTenMinutesAgo = timestamp => {
+export const isWithinADayAndTenMinutesAgo = timestamp => {
     const dateObject = convertUnixTimeToJSDate(timestamp);
 
     if (isValid(dateObject.format())) {
-        return isMinutesAgo(dateObject, 10) && !isMinutesAgo(dateObject, 60);
+        return isMinutesAgo(dateObject, 10) && !isMinutesAgo(dateObject, 1440);
     }
 
     return (
         isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 10) &&
-        !isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 60)
+        !isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 1440)
     );
 };
 
-export const isWithinAnHour = timestamp => {
+export const isWithinADay = timestamp => {
     const dateObject = convertUnixTimeToJSDate(timestamp);
 
     if (isValid(dateObject.format())) {
-        return !isMinutesAgo(dateObject, 60);
+        return !isMinutesAgo(dateObject, 1440);
     }
 
-    return !isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 60);
+    return !isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 1440);
 };
 
 export const isTenMinutesAgo = timestamp => {
@@ -59,14 +59,14 @@ export const isTenMinutesAgo = timestamp => {
     return isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 10);
 };
 
-export const isAnHourAgo = timestamp => {
+export const isADayAgo = timestamp => {
     const dateObject = convertUnixTimeToJSDate(timestamp);
 
     if (isValid(dateObject.format())) {
-        return isMinutesAgo(dateObject, 60);
+        return isMinutesAgo(dateObject, 1440);
     }
 
-    return isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 60);
+    return isMinutesAgo(convertUnixTimeToJSDate(timestamp / 1000), 1440);
 };
 
 export const getBundleTailsForSentTransfers = (transfers, addresses) => {
@@ -77,9 +77,9 @@ export const getBundleTailsForSentTransfers = (transfers, addresses) => {
         each(val, v => {
             const attachmentTimestamp = get(v, 'attachmentTimestamp');
 
-            // Pick all those transaction that were replayed with in the last hour
-            const hasMadeReattachmentWithinAnHour = isWithinAnHour(attachmentTimestamp);
-            if (!v.persistence && v.currentIndex === 0 && v.value > 0 && hasMadeReattachmentWithinAnHour) {
+            // Pick all those transaction that were replayed within twenty-four hours
+            const hasMadeReattachmentWithinADay = isWithinADay(attachmentTimestamp);
+            if (!v.persistence && v.currentIndex === 0 && v.value > 0 && hasMadeReattachmentWithinADay) {
                 const bundle = v.bundle;
 
                 if (bundle in payload) {

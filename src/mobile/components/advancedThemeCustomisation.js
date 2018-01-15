@@ -11,8 +11,6 @@ import {
 } from 'react-native-color';
 import tinycolor from 'tinycolor2';
 import { width, height } from '../util/dimensions';
-import arrowLeftImagePath from 'iota-wallet-shared-modules/images/arrow-left.png';
-import tickImagePath from 'iota-wallet-shared-modules/images/tick.png';
 import cloneDeep from 'lodash/cloneDeep';
 import { translate } from 'react-i18next';
 
@@ -27,15 +25,18 @@ class AdvancedThemeCustomisation extends React.Component {
     }
 
     onApplyPress() {
+        const { backgroundColor, barColor } = this.state;
         let theme = cloneDeep(this.props.theme);
-        theme.backgroundColor = this.state.backgroundColor;
-        theme.barColor = this.state.barColor;
+        theme.backgroundColor = backgroundColor;
+        theme.barColor = barColor;
+        theme.secondaryBackgroundColor = tinycolor(backgroundColor).isDark() ? 'white' : '#222';
+        theme.secondaryBarColor = tinycolor(barColor).isDark() ? 'white' : '#222';
         this.props.updateTheme(theme, 'Custom');
         this.props.backPress();
     }
 
     render() {
-        const { t } = this.props;
+        const { t, secondaryBackgroundColor, tickImagePath, arrowLeftImagePath, textColor } = this.props;
         const backgroundTextColor = tinycolor(this.state.backgroundColor).isDark() ? '#FAFAFA' : '#222';
         const barTextColor = tinycolor(this.state.barColor).isDark() ? '#FAFAFA' : '#222';
         return (
@@ -106,15 +107,21 @@ class AdvancedThemeCustomisation extends React.Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.props.backPress()}>
+                    <TouchableOpacity
+                        onPress={() => this.props.backPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
                         <View style={styles.itemLeft}>
                             <Image source={arrowLeftImagePath} style={styles.iconLeft} />
-                            <Text style={styles.titleTextLeft}>Back</Text>
+                            <Text style={[styles.titleTextLeft, textColor]}>Back</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.onApplyPress()}>
+                    <TouchableOpacity
+                        onPress={() => this.onApplyPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
                         <View style={styles.itemRight}>
-                            <Text style={styles.titleTextRight}>Apply</Text>
+                            <Text style={[styles.titleTextRight, textColor]}>Apply</Text>
                             <Image source={tickImagePath} style={styles.iconRight} />
                         </View>
                     </TouchableOpacity>

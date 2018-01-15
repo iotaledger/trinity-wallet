@@ -2,15 +2,17 @@ import toUpper from 'lodash/toUpper';
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, Image, StatusBar, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, Image, BackHandler } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { Navigation } from 'react-native-navigation';
 import Fonts from '../theme/Fonts';
 import OnboardingButtons from '../components/onboardingButtons.js';
 import COLORS from '../theme/Colors';
 import GENERAL from '../theme/general';
-
-import infoImagePath from 'iota-wallet-shared-modules/images/info.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
+import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
+import whiteIotaImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { width, height } from '../util/dimensions';
 import THEMES from '../theme/themes';
 import { connect } from 'react-redux';
@@ -68,15 +70,18 @@ class WalletResetConfirmation extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const { t, secondaryBackgroundColor } = this.props;
+        const textColor = { color: secondaryBackgroundColor };
         const backgroundColor = { backgroundColor: THEMES.getHSL(this.props.backgroundColor) };
         const negativeColor = { color: THEMES.getHSL(this.props.negativeColor) };
+        const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
+        const iotaLogoImagePath = secondaryBackgroundColor === 'white' ? whiteIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, backgroundColor]}>
-                <StatusBar barStyle="light-content" />
+                <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topWrapper}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Image source={iotaLogoImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={styles.subHeaderWrapper}>
@@ -84,9 +89,9 @@ class WalletResetConfirmation extends Component {
                             {t('walletResetConfirmation:cannotUndo')}
                         </Text>
                     </View>
-                    <View style={styles.infoTextWrapper}>
+                    <View style={[styles.infoTextWrapper, { borderColor: secondaryBackgroundColor }]}>
                         <Image source={infoImagePath} style={styles.infoIcon} />
-                        <Text style={styles.infoText}>
+                        <Text style={[styles.infoText, textColor]}>
                             <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextOne')}</Text>
                             <Text style={styles.infoTextRegular}>{t('walletResetConfirmation:infoTextTwo')}}</Text>
                             <Text style={styles.infoTextLight}>{t('walletResetConfirmation:infoTextThree')}</Text>
@@ -95,7 +100,7 @@ class WalletResetConfirmation extends Component {
                         </Text>
                     </View>
                     <View style={styles.confirmationTextWrapper}>
-                        <Text style={styles.confirmationText}>{t('global:continue?')}</Text>
+                        <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                     </View>
                 </View>
                 <View style={styles.bottomWrapper}>
@@ -121,7 +126,7 @@ const styles = StyleSheet.create({
         flex: 1.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 22,
+        paddingTop: height / 16,
     },
     midWrapper: {
         flex: 2.1,
@@ -140,13 +145,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 10,
     },
     subHeaderText: {
-        fontFamily: Fonts.secondary,
         fontSize: width / 22.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextWrapper: {
-        borderColor: COLORS.white,
         borderWidth: 1,
         borderRadius: GENERAL.borderRadiusLarge,
         width: width / 1.6,
@@ -157,7 +160,6 @@ const styles = StyleSheet.create({
         borderStyle: 'dotted',
     },
     infoText: {
-        color: COLORS.white,
         fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 60,
@@ -169,7 +171,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        fontFamily: COLORS.secondary,
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
@@ -182,15 +183,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     confirmationText: {
-        color: COLORS.white,
         fontFamily: Fonts.secondary,
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     iotaLogo: {
-        height: width / 5,
-        width: width / 5,
+        height: width / 7,
+        width: width / 7,
     },
 });
 
@@ -202,6 +202,7 @@ const mapStateToProps = state => ({
     backgroundColor: state.settings.theme.backgroundColor,
     positiveColor: state.settings.theme.positiveColor,
     negativeColor: state.settings.theme.negativeColor,
+    secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
 });
 
 export default translate(['walletResetConfirmation', 'global'])(connect(mapStateToProps)(WalletResetConfirmation));

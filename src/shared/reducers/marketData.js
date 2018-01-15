@@ -10,6 +10,12 @@ const initialState = {
             '1m': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
             '1h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
         },
+        EUR: {
+            '24h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '7d': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '1m': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+            '1h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
+        },
         BTC: {
             '24h': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
             '7d': [{ x: 0, y: 0 }, { x: 1, y: 1 }],
@@ -27,6 +33,7 @@ const initialState = {
     volume: '0',
     change24h: '0.00',
     usdPrice: 0,
+    eurPrice: 0,
     btcPrice: 0,
     ethPrice: 0,
 };
@@ -47,6 +54,7 @@ const marketData = (state = initialState, action) => {
             return {
                 ...state,
                 usdPrice: action.usd,
+                eurPrice: action.eur,
                 btcPrice: action.btc,
                 ethPrice: action.eth,
             };

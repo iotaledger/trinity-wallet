@@ -21,25 +21,28 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
 } from 'react-native';
+import DynamicStatusBar from '../components/dynamicStatusBar';
 import { setPollFor } from '../../shared/actions/polling';
 import { roundDown, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
 import THEMES from '../theme/themes';
-import chevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up.png';
-import chevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down.png';
+import blackChevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up-black.png';
+import blackChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-black.png';
+import whiteChevronUpImagePath from 'iota-wallet-shared-modules/images/chevron-up-white.png';
+import whiteChevronDownImagePath from 'iota-wallet-shared-modules/images/chevron-down-white.png';
 import { getSelectedAccountViaSeedIndex } from 'iota-wallet-shared-modules/selectors/account';
 
 const { height, width } = Dimensions.get('window');
 
 class TopBar extends Component {
-    static getIconPath(isActive) {
+    static getIconPath(isActive, chevronUpImagePath, chevronDownImagePath) {
         if (isActive) {
             return {
-                source: chevronUpImagePath,
+                source: chevronDownImagePath,
             };
         }
 
         return {
-            source: chevronDownImagePath,
+            source: chevronUpImagePath,
         };
     }
 
@@ -60,6 +63,7 @@ class TopBar extends Component {
         selectedAccount: PropTypes.object.isRequired,
         barColor: PropTypes.object.isRequired,
         setPollFor: PropTypes.func.isRequired,
+        secondaryBarColor: PropTypes.string.isRequired,
     };
 
     componentDidMount() {
@@ -95,10 +99,11 @@ class TopBar extends Component {
     }
 
     renderTitles() {
-        const { isTopBarActive, seedNames, balance, accountInfo, seedIndex } = this.props;
-
+        const { isTopBarActive, seedNames, balance, accountInfo, seedIndex, secondaryBarColor } = this.props;
+        const borderBottomColor = { borderBottomColor: secondaryBarColor };
         const selectedTitle = get(seedNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = this.humanizeBalance(balance);
+        const subtitleColor = secondaryBarColor === 'white' ? '#d3d3d3' : '#262626';
 
         const getBalance = currentIdx => {
             const seedStrings = Object.keys(accountInfo);
@@ -135,14 +140,22 @@ class TopBar extends Component {
                         <Text
                             numberOfLines={1}
                             style={
-                                disableWhen ? StyleSheet.flatten([styles.mainTitle, styles.disabled]) : styles.mainTitle
+                                disableWhen
+                                    ? StyleSheet.flatten([
+                                          styles.mainTitle,
+                                          styles.disabled,
+                                          { color: secondaryBarColor },
+                                      ])
+                                    : [styles.mainTitle, { color: secondaryBarColor }]
                             }
                         >
                             {selectedTitle}
                         </Text>
                         <Text
                             style={
-                                disableWhen ? StyleSheet.flatten([styles.subtitle, styles.disabled]) : styles.subtitle
+                                disableWhen
+                                    ? StyleSheet.flatten([styles.subtitle, styles.disabled, { color: subtitleColor }])
+                                    : [styles.subtitle, { color: subtitleColor }]
                             }
                         >
                             {selectedSubtitle}
@@ -172,12 +185,20 @@ class TopBar extends Component {
                 >
                     <Text
                         numberOfLines={1}
-                        style={disableWhen ? StyleSheet.flatten([styles.mainTitle, styles.disabled]) : styles.mainTitle}
+                        style={
+                            disableWhen
+                                ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: secondaryBarColor }])
+                                : [styles.mainTitle, { color: secondaryBarColor }]
+                        }
                     >
                         {t.title}
                     </Text>
                     <Text
-                        style={disableWhen ? StyleSheet.flatten([styles.subtitle, styles.disabled]) : styles.subtitle}
+                        style={
+                            disableWhen
+                                ? StyleSheet.flatten([styles.subtitle, styles.disabled, { color: subtitleColor }])
+                                : [styles.subtitle, { color: subtitleColor }]
+                        }
                     >
                         {t.subtitle}
                     </Text>
@@ -191,7 +212,7 @@ class TopBar extends Component {
             return (
                 <View key={idx} style={styles.centralView}>
                     {children}
-                    <View style={styles.separator} />
+                    <View style={[styles.separator, borderBottomColor]} />
                 </View>
             );
         });
@@ -199,7 +220,7 @@ class TopBar extends Component {
         return (
             <View style={styles.titleWrapper}>
                 {baseContent}
-                {size(withoutSelectedTitle) ? <View style={styles.topSeparator} /> : null}
+                {size(withoutSelectedTitle) ? <View style={[styles.topSeparator, borderBottomColor]} /> : null}
                 {restContent}
             </View>
         );
@@ -239,8 +260,12 @@ class TopBar extends Component {
     }
 
     render() {
-        const { seedIndex, seedNames, isTopBarActive } = this.props;
-        const iconProps = TopBar.getIconPath(isTopBarActive);
+        const { seedIndex, seedNames, isTopBarActive, secondaryBarColor } = this.props;
+        const chevronUpImagePath = secondaryBarColor === 'white' ? whiteChevronUpImagePath : blackChevronUpImagePath;
+        const chevronDownImagePath =
+            secondaryBarColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
+
+        const iconProps = TopBar.getIconPath(isTopBarActive, chevronUpImagePath, chevronDownImagePath);
         const children = this.renderTitles();
         const hasMultipleSeeds = size(this.filterSeedTitles(seedNames, seedIndex));
         const shouldDisable = this.shouldDisable();
@@ -258,10 +283,11 @@ class TopBar extends Component {
                         styles.container,
                         {
                             backgroundColor: THEMES.getHSL(this.props.barColor),
-                            shadowColor: THEMES.getHSL(this.props.barColor),
+                            shadowColor: 'black',
                         },
                     ]}
                 >
+                    <DynamicStatusBar textColor={secondaryBarColor} />
                     <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                         <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
                         <View style={styles.chevronWrapper}>
@@ -311,7 +337,6 @@ const styles = StyleSheet.create({
     mainTitle: {
         fontFamily: 'Lato-Regular',
         fontSize: width / 24.4,
-        color: '#ffffff',
         paddingBottom: height / 170,
         paddingHorizontal: width / 9,
     },
@@ -319,7 +344,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: 'Lato-Regular',
         fontSize: width / 27.6,
-        color: '#d3d3d3',
         paddingHorizontal: width / 9,
     },
     centralView: {
@@ -347,14 +371,12 @@ const styles = StyleSheet.create({
         marginVertical: height / 60,
         height: 1,
         borderBottomWidth: height / 3000,
-        borderBottomColor: 'white',
     },
     topSeparator: {
         width: width,
         marginVertical: height / 60,
         height: 1,
         borderBottomWidth: height / 3000,
-        borderBottomColor: 'white',
     },
     scrollViewContainer: {
         maxHeight: height,
@@ -374,6 +396,7 @@ const mapStateToProps = state => ({
     isTopBarActive: state.home.isTopBarActive,
     selectedAccount: getSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
     barColor: state.settings.theme.barColor,
+    secondaryBarColor: state.settings.theme.secondaryBarColor,
 });
 
 const mapDispatchToProps = {
