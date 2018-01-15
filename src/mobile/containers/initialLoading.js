@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text } from 'react-native';
+import { AsyncStorage, StyleSheet, View, Text } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import iotaWhiteImagePath from 'iota-wallet-shared-modules/images/iota-white.png';
 import LottieView from 'lottie-react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import whiteWelcomeAnimation from 'iota-wallet-shared-modules/animations/welcome-white.json';
@@ -32,6 +31,7 @@ class InitialLoading extends Component {
     }
 
     componentDidMount() {
+        AsyncStorage.getAllKeys((err, keys) => AsyncStorage.multiGet(keys, (e, t) => console.log(t)));
         this.animation.play();
         this.timeout = setTimeout(this.onLoaded.bind(this), 2000);
     }
