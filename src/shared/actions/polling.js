@@ -19,7 +19,7 @@ import {
     updateUnconfirmedBundleTails,
     removeBundleFromUnconfirmedBundleTails,
 } from './account';
-import { getFirstConsistentTail, isWithinAnHour } from '../libs/promoter';
+import { getFirstConsistentTail, isWithinADay } from '../libs/promoter';
 import {
     getSelectedAccount,
     getExistingUnspentAddressesHashes,
@@ -352,9 +352,9 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
 
         const tailsFromLatestTransactionObjects = filter(txs, t => {
             const attachmentTimestamp = get(t, 'attachmentTimestamp');
-            const hasMadeReattachmentWithinAnHour = isWithinAnHour(attachmentTimestamp);
+            const hasMadeReattachmentWithinADay = isWithinADay(attachmentTimestamp);
 
-            return !t.persistence && t.currentIndex === 0 && t.value > 0 && hasMadeReattachmentWithinAnHour;
+            return !t.persistence && t.currentIndex === 0 && t.value > 0 && hasMadeReattachmentWithinADay;
         });
 
         if (size(tailsFromLatestTransactionObjects) > size(allTails)) {
