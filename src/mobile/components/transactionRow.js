@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet, Dimensions, ListView, ScrollView } from 'react-native';
 import { formatValue, formatUnit, round } from 'iota-wallet-shared-modules/libs/util';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
-import { convertFromTrytes, isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { convertFromTrytes, isReceivedTransfer, getRelevantTransfer } from 'iota-wallet-shared-modules/libs/iota';
 import Modal from 'react-native-modal';
 import GENERAL from '../theme/general';
 
@@ -21,7 +21,7 @@ class TransactionRow extends React.Component {
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
-    _renderModalContent = (titleColour, isReceived, hasPersistence, textColor, borderColor) => (
+    _renderModalContent = (transfer, titleColour, isReceived, hasPersistence, textColor, borderColor) => (
         <TouchableOpacity onPress={() => this._hideModal()}>
             <View style={{ flex: 1, justifyContent: 'center', width: width / 1.15 }}>
                 <View style={[styles.modalContent, borderColor, { backgroundColor: this.props.backgroundColor }]}>
@@ -36,8 +36,8 @@ class TransactionRow extends React.Component {
                                     color: titleColour,
                                 }}
                             >
-                                {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(this.props.rowData[0].value), 1)}{' '}
-                                {formatUnit(this.props.rowData[0].value)}
+                                {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(transfer.value), 1)}{' '}
+                                {formatUnit(transfer.value)}
                             </Text>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Text
@@ -51,18 +51,18 @@ class TransactionRow extends React.Component {
                                     {hasPersistence ? (isReceived ? 'Received' : 'Sent') : 'Pending'}
                                 </Text>
                                 <Text style={[styles.modalTimestamp, textColor]}>
-                                    {formatModalTime(convertUnixTimeToJSDate(this.props.rowData[0].timestamp))}
+                                    {formatModalTime(convertUnixTimeToJSDate(transfer.timestamp))}
                                 </Text>
                             </View>
                         </View>
                         <Text style={[styles.modalBundleTitle, textColor]}>Bundle Hash:</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <TouchableOpacity
-                                onPress={() => this.props.copyBundleHash(this.props.rowData[0].bundle)}
+                                onPress={() => this.props.copyBundleHash(transfer.bundle)}
                                 style={{ flex: 7 }}
                             >
                                 <Text style={[styles.bundleHash, textColor]} numberOfLines={2}>
-                                    {this.props.rowData[0].bundle}
+                                    {transfer.bundle}
                                 </Text>
                                 <View style={{ flex: 1 }} />
                             </TouchableOpacity>
@@ -93,7 +93,7 @@ class TransactionRow extends React.Component {
                         />
                         <Text style={[styles.modalBundleTitle, textColor]}>Message:</Text>
                         <Text style={[styles.hash, textColor]}>
-                            {convertFromTrytes(this.props.rowData[0].signatureMessageFragment)}
+                            {convertFromTrytes(transfer.signatureMessageFragment)}
                         </Text>
                     </ScrollView>
                 </View>
@@ -114,8 +114,9 @@ class TransactionRow extends React.Component {
             addresses,
             rowData,
         } = this.props;
-        const hasPersistence = this.props.rowData[0].persistence;
         const isReceived = isReceivedTransfer(rowData, addresses);
+        const transfer = getRelevantTransfer(rowData, addresses);
+        const hasPersistence = rowData[0].persistence;
         const titleColour = isReceived ? extraColor : negativeColor;
         const containerBorderColor =
             secondaryBackgroundColor === 'white'
@@ -126,7 +127,7 @@ class TransactionRow extends React.Component {
                 ? { backgroundColor: 'rgba(255, 255, 255, 0.08)' }
                 : { backgroundColor: 'transparent' };
         return (
-            <TouchableOpacity onPress={() => this._showModal(this.props.rowData[0])}>
+            <TouchableOpacity onPress={() => this._showModal(transfer)}>
                 <View style={{ flex: 1, alignItems: 'center' }}>
                     <View style={[styles.container, containerBorderColor, containerBackgroundColor]}>
                         <View
@@ -147,8 +148,8 @@ class TransactionRow extends React.Component {
                                     color: titleColour,
                                 }}
                             >
-                                {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(this.props.rowData[0].value), 1)}{' '}
-                                {formatUnit(this.props.rowData[0].value)}
+                                {isReceived ? 'RECEIVE' : 'SEND'} {round(formatValue(transfer.value), 1)}{' '}
+                                {formatUnit(transfer.value)}
                             </Text>
                             <Text
                                 style={[
@@ -179,12 +180,12 @@ class TransactionRow extends React.Component {
                             >
                                 <Text style={[styles.messageTitle, textColor]}>Message:</Text>
                                 <Text style={[styles.message, textColor]} numberOfLines={1}>
-                                    {convertFromTrytes(this.props.rowData[0].signatureMessageFragment)}
+                                    {convertFromTrytes(transfer.signatureMessageFragment)}
                                 </Text>
                             </View>
                             <View style={{ flex: 1, alignItems: 'flex-end' }}>
                                 <Text style={[styles.timestamp, textColor]}>
-                                    {formatTime(convertUnixTimeToJSDate(this.props.rowData[0].timestamp))}
+                                    {formatTime(convertUnixTimeToJSDate(transfer.timestamp))}
                                 </Text>
                             </View>
                         </View>
@@ -202,7 +203,14 @@ class TransactionRow extends React.Component {
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
                 >
-                    {this._renderModalContent(titleColour, isReceived, hasPersistence, textColor, borderColor)}
+                    {this._renderModalContent(
+                        transfer,
+                        titleColour,
+                        isReceived,
+                        hasPersistence,
+                        textColor,
+                        borderColor,
+                    )}
                 </Modal>
             </TouchableOpacity>
         );

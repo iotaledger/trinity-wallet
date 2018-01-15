@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { round, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/util';
-import { isReceivedTransfer } from 'iota-wallet-shared-modules/libs/iota';
+import { isReceivedTransfer, getRelevantTransfer } from 'iota-wallet-shared-modules/libs/iota';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/dateUtils';
 import whiteSendImagePath from 'iota-wallet-shared-modules/images/send-white.png';
 import whiteReceiveImagePath from 'iota-wallet-shared-modules/images/receive-white.png';
@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
 class SimpleTransactionRow extends Component {
     render() {
         const { t, rowData, addresses, negativeColor, extraColor, secondaryBackgroundColor } = this.props;
-        const address = get(rowData, '[0].address');
+        console.log(rowData);
+        const transfer = getRelevantTransfer(rowData, addresses);
         const isReceived = isReceivedTransfer(rowData, addresses);
         const sign = isReceived ? '+' : '-';
         const titleColour = isReceived ? extraColor : negativeColor;
@@ -50,7 +51,7 @@ class SimpleTransactionRow extends Component {
                 </View>
                 <View style={{ flex: 3, alignItems: 'flex-start' }}>
                     <Text style={[styles.text, { color: titleColour, padding: 5 }]}>
-                        {formatTime(convertUnixTimeToJSDate(rowData[0].timestamp))}
+                        {formatTime(convertUnixTimeToJSDate(transfer.timestamp))}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
@@ -62,7 +63,7 @@ class SimpleTransactionRow extends Component {
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
                     <Text style={[styles.text, { color: titleColour }]}>
-                        {sign} {round(formatValue(rowData[0].value), 1)} {formatUnit(rowData[0].value)}
+                        {sign} {round(formatValue(transfer.value), 1)} {formatUnit(transfer.value)}
                     </Text>
                 </View>
             </View>
