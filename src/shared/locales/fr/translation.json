@@ -266,8 +266,8 @@
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papiers."
     },
     "accountManagement": {
-        "viewSeed": "Consulter la seed",
-        "viewAddresses": "Consulter les adresses",
+        "viewSeed": "Afficher la seed",
+        "viewAddresses": "Afficher les adresses",
         "editAccountName": "Modifier le nom du compte",
         "deleteAccount": "Supprimer le compte",
         "addNewAccount": "Ajouter un nouveau compte"
