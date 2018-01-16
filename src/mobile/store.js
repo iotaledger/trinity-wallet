@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
-import store, { persistStore, getStoredState, purgeStoredState, createPersistor } from '../shared/store';
+import store, { persistStore, purgeStoredState, createPersistor } from '../shared/store';
 import initializeApp from './routes/entry';
 import { AsyncStorage } from 'react-native';
 import { setAppVersions, resetWallet } from '../shared/actions/app';
@@ -11,7 +11,7 @@ export const persistConfig = {
     blacklist: ['alerts', 'tempAccount', 'keychain', 'polling', 'ui'],
 };
 
-const shouldMigrate = (freshState, restoredState) => {
+const shouldMigrate = restoredState => {
     const restoredVersion = get(restoredState, 'app.versions.version');
     const restoredBuildNumber = get(restoredState, 'app.versions.buildNumber');
 
@@ -22,15 +22,16 @@ const shouldMigrate = (freshState, restoredState) => {
 };
 
 const migrate = (state, restoredState) => {
-    const hasAnUpdate = shouldMigrate(state.getState(), restoredState);
+    const hasAnUpdate = shouldMigrate(restoredState);
 
     if (!hasAnUpdate) {
         state.dispatch(
             setAppVersions({
-                version: '14',
+                version: getVersion(),
                 buildNumber: getBuildNumber(),
             }),
         );
+
         return initializeApp(state);
     }
 
@@ -40,7 +41,7 @@ const migrate = (state, restoredState) => {
             // Set the new app version
             state.dispatch(
                 setAppVersions({
-                    version: '14',
+                    version: getVersion(),
                     buildNumber: getBuildNumber(),
                 }),
             );

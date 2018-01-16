@@ -78,8 +78,8 @@ class Login extends Component {
     componentDidMount() {
         const { currency } = this.props;
         this.checkForUpdates();
-        // this.getWalletData();
-        // this.props.getCurrencyData(currency);
+        this.getWalletData();
+        this.props.getCurrencyData(currency);
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
     }
@@ -97,20 +97,8 @@ class Login extends Component {
         const currentVersion = get(versions, 'version');
         const currentBuildNumber = get(versions, 'buildNumber');
 
-        console.log('Latest version', latestVersion);
-        console.log('Latest build', latestBuildNumber);
-        console.log('Current ver', currentVersion);
-        console.log('Current build', currentBuildNumber);
-
         if (latestVersion !== currentVersion || latestBuildNumber !== currentBuildNumber) {
-            this.props.migrate(
-                {
-                    version: '8',
-                    buildNumber: latestBuildNumber,
-                },
-                persistConfig,
-                persistor,
-            );
+            this.props.migrate({ version: latestVersion, buildNumber: latestBuildNumber }, persistConfig, persistor);
         }
     }
 
@@ -249,9 +237,6 @@ class Login extends Component {
     }
 
     render() {
-        AsyncStorage.getAllKeys((err, keys) =>
-            keys.forEach(key => AsyncStorage.getItem(key, (e, k) => console.log(JSON.parse(k)))),
-        );
         const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const arrowLeftImagePath =
