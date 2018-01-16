@@ -32,7 +32,7 @@
         "paperWallet": "Ausdrucken",
         "copyToClipboard": "Zum Passwort-Manager hinzufügen",
         "notAvailable": "Diese Funktion ist nicht verfügbar",
-        "notAvailableExplanation": "Diese Funktion wird zu einem späteren Zeitpunkt hinzugefügt.",
+        "notAvailableExplanation": "Sie wird zu einem späteren Zeitpunkt hinzugefügt.",
         "enterSeed": "Bitte gib deinen Seed ein.",
         "mainWallet": "HAUPTKONTO",
         "secondWallet": "ZWEITES KONTO",
@@ -239,7 +239,7 @@
         "reset": "ZURÜCKSETZEN"
     },
     "walletSetup": {
-        "okay": "Okay. Lass uns dein Wallet einrichten!",
+        "okay": "Okay. Lass uns dein Konto einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
         "explanation1": "Du kannst ihn verwenden um auf dein Guthaben zuzugreifen von",
@@ -261,7 +261,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
-        "bundleHashCopiedExplanation": "Dein Bündel-Hash wurde in die Zwischenablage kopiert.",
+        "bundleHashCopiedExplanation": "Dein Bundel-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
     },
