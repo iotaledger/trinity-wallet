@@ -10,14 +10,11 @@ export const persistor = persistState(
         blacklist: ['alerts', 'tempAccount', 'keychain', 'polling', 'ui'],
     },
     {
-        android: {
-            version: getVersion(),
-            buildNumber: getBuildNumber(),
-        },
-        ios: {
-            version: getVersion(),
-            buildNumber: getBuildNumber(),
-        },
+        version: getVersion(),
+        buildNumber: getBuildNumber(),
     },
-    persistedState => initializeApp(persistedState),
+    persistedState => {
+        console.log('persisted', persistedState.getState());
+        initializeApp(persistedState);
+    },
 );
