@@ -139,7 +139,7 @@
     },
     "paperWallet": {
         "clickToPrint": "Klicke die Schaltfläche unten, um deinen Seed als Paper-Wallet auszudrucken.",
-        "storeSafely": "Sicher aufbewahren.",
+        "storeSafely": "Bewahre ihn sicher auf.",
         "neverShare": "Teile niemals deinen Seed.",
         "iotaLogo": "IOTA Logo",
         "printWallet": "PAPER-WALLET DRUCKEN"
@@ -152,7 +152,7 @@
         "removeMessage": "NACHRICHT LÖSCHEN"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed aus Zwischenablage gelöscht",
+        "seedCleared": "Seed gelöscht",
         "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht.",
         "mustSaveYourSeed": "Du musst deinen Seed mit ",
         "atLeastOne": "mindestens einer ",
@@ -179,7 +179,7 @@
         "message": "Nachricht",
         "send": "SENDEN",
         "invalidAmount": "Falschen Betrag eingegeben",
-        "invalidAmountExplanation": "Bitte gib einen numerischen Wert als Buchungsbetrag ein.",
+        "invalidAmountExplanation": "Bitte gib einen numerischen Wert als Betrag ein.",
         "maximumSelected": "MAXIMALER Betrag ausgewählt",
         "iotaUnits": "IOTA Einheiten"
     },
@@ -189,7 +189,7 @@
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
         "nowWeNeedTo": "Jetzt müssen wir ein Passwort einrichten.",
-        "anEncryptedCopy": "Eine verschlüsselte Kopie deines Seeds wird auf deinem Gerät gespeichert. Du wirst dieses Passwort verwenden um in Zukunft auf dein Wallet zuzugreifen.",
+        "anEncryptedCopy": "Eine verschlüsselte Kopie deines Seeds wird auf deinem Gerät gespeichert. Du wirst dieses Passwort verwenden um in Zukunft auf deine Wallet zuzugreifen.",
         "ensure": "Verwende ein sicheres Passwort mit mindestens 12 Zeichen.",
         "retypePassword": "Passwort erneut eingeben"
     },
@@ -273,7 +273,7 @@
         "addNewAccount": "Neues Konto hinzufügen"
     },
     "addCustomNode": {
-        "customNode": "Benutzerdefinierte Node",
+        "customNode": "Benutzerdefinierter Node",
         "add": "Hinzufügen"
     },
     "addNewAccount": {
@@ -282,7 +282,7 @@
     },
     "advancedSettings": {
         "selectNode": "Node auswählen",
-        "addCustomNode": "Benutzerdefinierte Node hinzufügen",
+        "addCustomNode": "Benutzerdefinierter Node hinzufügen",
         "manualSync": "Manuell synchronisieren"
     },
     "advancedThemeCustomisation": {
