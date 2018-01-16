@@ -234,7 +234,7 @@
         "areYouSure": "Êtes-vous sûr(e) de vouloir continuer ?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Saisissez votre mot de passe pour réinitialiser le wallet.",
+        "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
         "cancel": "ANNULER",
         "reset": "RÉINITIALISER"
     },
@@ -277,12 +277,12 @@
         "add": "Ajouter"
     },
     "addNewAccount": {
-        "useExistingSeed": "Utiliser une seed existante",
-        "createNewSeed": "Créer une nouvelle seed"
+        "useExistingSeed": "Utiliser un code d'accès existant",
+        "createNewSeed": "Créer une nouveau code d'accès"
     },
     "advancedSettings": {
-        "selectNode": "Choisir un node",
-        "addCustomNode": "Ajouter un node personnalisé",
+        "selectNode": "Choisir un nœud",
+        "addCustomNode": "Ajouter un nœud personnalisé",
         "manualSync": "Synchro manuelle"
     },
     "advancedThemeCustomisation": {
@@ -296,7 +296,7 @@
         "logoutConfirmation": "Êtes-vous sûr(e) de vouloir vous déconnecter ?"
     },
     "qrScanner": {
-        "scan": "Scannez votre QR code"
+        "scan": "Scannez votre code QR"
     },
     "unitInfoModal": {
         "unitSystem": "SYSTÈME D’UNITÉS",
@@ -308,9 +308,9 @@
     },
     "deleteAccount": {
         "areYouSure": "Voulez-vous vraiment supprimer ce compte ?",
-        "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
+        "yourSeedWillBeRemoved": "Votre code d'accès et l'historique de ses transactions seront supprimés.",
         "thisAction": "Cette action est irréversible.",
-        "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
+        "enterPassword": "Introduisez votre mot de passe pour supprimer ce compte."
     },
     "manualSync": {
         "pressToSync": "Appuyez sur le bouton ci-dessous pour synchroniser votre compte.",
@@ -320,7 +320,7 @@
         "syncingYourAccount": "Synchronisation de votre compte."
     },
     "useExistingSeed": {
-        "title": "Saisissez une seed et un nom de compte."
+        "title": "Introduisez un code d'accès et un nom de compte."
     },
     "viewSeed": {
         "enterPassword": "Saisissez le mot de passe pour afficher votre seed.",
