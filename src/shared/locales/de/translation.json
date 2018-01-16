@@ -220,7 +220,7 @@
         "accountDeleted": "Account gelöscht",
         "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet gelöscht.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
-        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen, um das Wallet zurückzusetzen.",
+        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
         "poorConnection": "Schlechte Verbindung",
         "poorConnectionExplanation": "Fehler beim Ändern der Währung wegen schlechter Verbindung."
     },
@@ -234,14 +234,14 @@
         "areYouSure": "Bist du sicher, dass du fortfahren möchtest?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
+        "enterPassword": "Gib dein Passwort ein um das Wallet zurückzusetzen.",
         "cancel": "ABBRECHEN",
         "reset": "ZURÜCKSETZEN"
     },
     "walletSetup": {
         "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
-        "seedExplanation": "Der IOTA Seed ist eine Art Nutzername und Passwort zu deinem Konto und besteht aus 81 Zeichen.",
+        "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
         "explanation1": "Du kannst ihn verwenden um auf dein Guthaben zuzugreifen von",
         "explanation2": " jedem Wallet ",
         "explanation3": "auf",
