@@ -28,7 +28,7 @@
         "save": "Speichern",
         "close": "SCHLIEẞEN",
         "continue": "Fortfahren",
-        "manualCopy": "Schreibe deinen Seed auf",
+        "manualCopy": "Seed aufschreiben",
         "paperWallet": "Ausdrucken",
         "copyToClipboard": "Zum Passwort-Manager hinzufügen",
         "notAvailable": "Diese Funktion ist nicht verfügbar",
@@ -132,7 +132,7 @@
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
         "seedNotGeneratedExplanation": "Bitte klicke die Schaltfläche \"Neuen Seed erzeugen\".",
         "pressForNewSeed": "DRÜCKE FÜR NEUEN SEED",
-        "individualLetters": "Drücke beliebige Buchstaben, um sie zufällig neu zu setzen."
+        "individualLetters": "Drücke beliebige Buchstaben um sie zufällig neu zu setzen."
     },
     "onboardingComplete": {
         "walletReady": "Das Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, benutze das Einstellungsmenü."
