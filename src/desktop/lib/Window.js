@@ -1,6 +1,6 @@
 const { ipcRenderer: ipc } = require('electron');
 
-const capitalize = (string) => {
+const capitalize = string => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
@@ -12,7 +12,7 @@ const Electron = {
         });
     },
 
-    changeLanguage: (t) => {
+    changeLanguage: t => {
         ipc.send('menu.language', {
             about: 'About',
             settings: capitalize(t('home:settings')),
@@ -22,17 +22,17 @@ const Electron = {
             twoFA: t('settings:twoFA'),
             changePassword: t('settings:changePassword'),
             advanced: t('settings:advanced'),
-            hide: 'Hide',
-            hideOthers: 'Hide Others',
-            showAll: 'Show All',
-            quit: 'Quit',
-            edit: 'Edit',
-            undo: 'Undo',
-            redo: 'Redo',
-            cut: 'Cut',
-            copy: 'Copy',
-            paste: 'Paste',
-            selectAll: 'Select All',
+            hide: t('settings:hide'),
+            hideOthers: t('settings:hideOthers'),
+            showAll: t('settings:showAll'),
+            quit: t('settings:quit'),
+            edit: t('settings:edit'),
+            undo: t('settings:undo'),
+            redo: t('settings:redo'),
+            cut: t('settings:cut'),
+            copy: t('settings:copy'),
+            paste: t('settings:paste'),
+            selectAll: t('settings:selectAll'),
             account: 'Account',
             balance: capitalize(t('home:balance')),
             send: capitalize(t('home:send')),
@@ -50,7 +50,7 @@ const Electron = {
         if (!listeners) {
             listeners = this._eventListeners[event] = [];
             ipc.on(event, (e, args) => {
-                listeners.forEach((call) => {
+                listeners.forEach(call => {
                     call(args);
                 });
             });
