@@ -32,7 +32,7 @@
         "paperWallet": "Imprimer une copie papier",
         "copyToClipboard": "Ajouter à un gestionnaire de mot de passe",
         "notAvailable": "Cette fonction n’est pas disponible",
-        "notAvailableExplanation": "Ce sera ajouté ultérieurement.",
+        "notAvailableExplanation": "Ce sera implémenté ultérieurement.",
         "enterSeed": "Veuillez entrer votre seed.",
         "mainWallet": "COMPTE PRINCIPAL",
         "secondWallet": "DEUXIÈME COMPTE",
@@ -54,12 +54,12 @@
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
         "attachToTangleUnavailable": "La fonction Attacher au Tangle n'est pas disponible",
-        "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le node sélectionné."
+        "attachToTangleUnavailableExplanation": "La fonction Attacher au Tangle n'est pas disponible pour le nœud sélectionné."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
         "seedInvalidCharsExplanation": "Les codes d'accès ne peuvent être composés que de lettres majuscules de A à Z et du chiffre 9. Votre code comporte des caractères invalides. Veuillez réessayer.",
-        "seedTooShort": "La seed est trop courte",
+        "seedTooShort": "Code d'accès trop court",
         "seedTooShortExplanation": "Les codes d'accès doivent être composés de {{maxLength}} caractères. Votre code en comporte {{currentLength}}. Veuillez réessayer.",
         "nameInUse": "Nom de compte déjà utilisé",
         "nameInUseExplanation": "Veuillez utiliser un nom de compte unique pour votre seed.",
@@ -101,8 +101,8 @@
         "invalidCharacters": "La seed contient des caractères invalides",
         "invalidCharactersExplanation": "Les adresses de connexion ne peuvent être composées que de lettres majuscules de A à Z et du chiffre 9. Votre adresse comporte des caractères invalides. Veuillez réessayer.",
         "seedTooShort": "La seed est trop courte",
-        "seedTooShortExplanation": "Les adresses de connexion doivent être composées de {{maxLength}} caractères. L'adresse introduite en comporte {{currentLength}}. Veuillez réessayer.",
-        "seedExplanation": "Les adresses de connexion doivent être composées de {{maxLength}} caractères. Seules les lettres majuscules de A à Z et le chiffre 9 sont permis. Vous ne pouvez pas utiliser d'adresse plus longue.",
+        "seedTooShortExplanation": "Les codes d'accès doivent être composés de {{maxLength}} caractères. L'adresse introduite en comporte {{currentLength}}. Veuillez réessayer.",
+        "seedExplanation": "Les codes d'accès doivent être composés de {{maxLength}} caractères. Seules les lettres majuscules de A à Z et le chiffre 9 sont permis. Vous ne pouvez pas utiliser de code plus long.",
         "neverShare": "NE PARTAGEZ JAMAIS VOTRE SEED"
     },
     "home": {
@@ -118,29 +118,29 @@
     "login": {
         "emptyPassword": "Mot de passe vide",
         "emptyPasswordExplanation": "Un mot de passe est requis pour la connexion. Veuillez réessayer.",
-        "enterPassword": "Veuillez saisir votre mot de passe.",
+        "enterPassword": "Veuillez introduire votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
-        "login": "CONNEXION",
+        "login": "SE CONNECTER",
         "selectDifferentNode": "Voulez-vous sélectionner un nœud différent ?"
     },
     "loading": {
-        "loadingFirstTime": "Première connexion à cette adresse.",
+        "loadingFirstTime": "Première connexion à ce code d'accès.",
         "thisMayTake": "Cela peut prendre un certain temps.",
         "youMayNotice": "Il se peut que votre appareil ralentisse."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "La seed n'a pas été générée",
+        "seedNotGenerated": "Le code d'accès n'a pas été généré",
         "seedNotGeneratedExplanation": "Cliquez sur le bouton \"Générer une Nouvelle Seed\".",
-        "pressForNewSeed": "NOUVELLE SEED",
+        "pressForNewSeed": "NOUVEAU CODE D'ACCÈS",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
     },
     "onboardingComplete": {
-        "walletReady": "Le wallet est maintenant paramétré et prêt à être utilisé. Si vous souhaitez effectuer des changements à l'avenir, rendez vous dans le menu Paramètres."
+        "walletReady": "Le portefeuille est maintenant configuré et prêt à l'utilisation. Pour toute modification ultérieure, rendez-vous dans le menu Réglages."
     },
     "paperWallet": {
         "clickToPrint": "Cliquez sur le bouton ci-dessous pour imprimer une copie papier de votre seed.",
         "storeSafely": "Conservez-la en lieu sûr.",
-        "neverShare": "Ne communiquez votre seed à personne.",
+        "neverShare": "Ne divulguez jamais votre code d'accès.",
         "iotaLogo": "Logo IOTA",
         "printWallet": "IMPRIMER LE WALLET PAPIER"
     },
