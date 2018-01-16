@@ -4,12 +4,13 @@ import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import { StyleSheet, View, Text, Keyboard } from 'react-native';
+import { AsyncStorage, StyleSheet, View, Text, Keyboard } from 'react-native';
 import DynamicStatusBar from '../components/dynamicStatusBar';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import authenticator from 'authenticator';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
+import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { getCurrencyData, setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setPassword, setReady, setUserActivity } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
@@ -29,6 +30,8 @@ import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 import { setSetting } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
+import { migrate } from '../../shared/actions/app';
+import { persistor, persistConfig } from '../store';
 import { width, height } from '../util/dimensions';
 import KeepAwake from 'react-native-keep-awake';
 
@@ -40,6 +43,7 @@ class Login extends Component {
         fullNode: PropTypes.string.isRequired,
         availablePoWNodes: PropTypes.array.isRequired,
         currency: PropTypes.string.isRequired,
+        versions: PropTypes.object.isRequired,
         setPassword: PropTypes.func.isRequired,
         getMarketData: PropTypes.func.isRequired,
         getPrice: PropTypes.func.isRequired,
@@ -53,6 +57,7 @@ class Login extends Component {
         key2FA: PropTypes.string.isRequired,
         is2FAEnabled: PropTypes.bool.isRequired,
         setUserActivity: PropTypes.func.isRequired,
+        migrate: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -72,8 +77,9 @@ class Login extends Component {
 
     componentDidMount() {
         const { currency } = this.props;
-        this.getWalletData();
-        this.props.getCurrencyData(currency);
+        this.checkForUpdates();
+        // this.getWalletData();
+        // this.props.getCurrencyData(currency);
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
     }
@@ -81,6 +87,30 @@ class Login extends Component {
     componentWillReceiveProps(newProps) {
         if (newProps.hasErrorFetchingAccountInfoOnLogin && !this.props.hasErrorFetchingAccountInfoOnLogin) {
             this._showModal();
+        }
+    }
+
+    checkForUpdates() {
+        const latestVersion = getVersion();
+        const latestBuildNumber = getBuildNumber();
+        const { versions } = this.props;
+        const currentVersion = get(versions, 'version');
+        const currentBuildNumber = get(versions, 'buildNumber');
+
+        console.log('Latest version', latestVersion);
+        console.log('Latest build', latestBuildNumber);
+        console.log('Current ver', currentVersion);
+        console.log('Current build', currentBuildNumber);
+
+        if (latestVersion !== currentVersion || latestBuildNumber !== currentBuildNumber) {
+            this.props.migrate(
+                {
+                    version: '8',
+                    buildNumber: latestBuildNumber,
+                },
+                persistConfig,
+                persistor,
+            );
         }
     }
 
@@ -219,6 +249,9 @@ class Login extends Component {
     }
 
     render() {
+        AsyncStorage.getAllKeys((err, keys) =>
+            keys.forEach(key => AsyncStorage.getItem(key, (e, k) => console.log(JSON.parse(k)))),
+        );
         const { backgroundColor, positiveColor, negativeColor, secondaryBackgroundColor } = this.props;
         const textColor = { color: secondaryBackgroundColor };
         const arrowLeftImagePath =
@@ -335,6 +368,7 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     is2FAEnabled: state.account.is2FAEnabled,
     key2FA: state.account.key2FA,
+    versions: state.app.versions,
 });
 
 const mapDispatchToProps = {
@@ -349,6 +383,7 @@ const mapDispatchToProps = {
     changeHomeScreenRoute,
     setSetting,
     setUserActivity,
+    migrate,
 };
 
 export default translate(['login', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Login));

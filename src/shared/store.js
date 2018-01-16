@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { autoRehydrate } from 'redux-persist';
+import { autoRehydrate, persistStore, getStoredState, purgeStoredState, createPersistor } from 'redux-persist';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import marketData from './reducers/marketData';
@@ -15,7 +15,6 @@ import keychain from './reducers/keychain';
 import polling from './reducers/polling';
 import ui from './reducers/ui';
 import { ActionTypes } from './actions/app';
-import { migrateBeforePersist } from './migrations';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -56,6 +55,6 @@ const store = createStore(
     ),
 );
 
-export const persistState = (state, config, versions, cb) => migrateBeforePersist(state, config, versions, cb);
+export { persistStore, getStoredState, purgeStoredState, createPersistor };
 
 export default store;
