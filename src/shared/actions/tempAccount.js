@@ -205,6 +205,7 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                             'success',
                             i18next.t('global:transferSent'),
                             i18next.t('global:transferSentMessage'),
+                            20000,
                         ),
                     );
                     dispatch(sendTransferSuccess({ address, value }));
@@ -237,17 +238,23 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                 dispatch(sendTransferError());
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
+                    20000,
                 );
             }
             if (get(inputs, 'allBalance') < value) {
                 dispatch(sendTransferError());
                 return dispatch(
-                    generateAlert('error', i18next.t('global:balanceError'), i18next.t('global:balanceErrorMessage')),
+                    generateAlert(
+                        'error',
+                        i18next.t('global:balanceError'),
+                        i18next.t('global:balanceErrorMessage'),
+                        20000,
+                    ),
                 );
             } else if (get(inputs, 'totalBalance') < value) {
                 dispatch(sendTransferError());
                 return dispatch(
-                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError'), 20000),
                 );
             }
 

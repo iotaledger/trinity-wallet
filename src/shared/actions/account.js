@@ -264,7 +264,6 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
             if (navigator) {
                 navigator.pop({ animated: false });
             }
-
             dispatch(generateAccountInfoErrorAlert());
             dispatch(fullAccountInfoFetchError());
         };
