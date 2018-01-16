@@ -12,12 +12,12 @@
         "transferSent": "Transfert effectué",
         "transferSentMessage": "Votre transfert a été envoyé sur le Tangle.",
         "keyReuse": "Réutilisation de clé",
-        "keyReuseError": "Vous ne pouvez pas effectuer de transfert vers une adresse qui a déjà débitée.",
+        "keyReuseError": "Vous ne pouvez pas effectuer de transfert vers une adresse qui a déjà été débitée.",
         "invalidResponse": "Réponse non valide",
-        "invalidResponseExplanation": "Le node a renvoyé une réponse invalide.",
-        "invalidResponsePollingExplanation": "Le nœud a renvoyé une réponse non valide lors de son interrogation.",
-        "invalidResponseFetchingAccount": "Le nœud a renvoyé une réponse non valide lors de la récupération des informations de votre compte.",
-        "invalidResponseSendingTransfer": "Le node a renvoyé une réponse invalide lors du transfert.",
+        "invalidResponseExplanation": "Le nœud a renvoyé une réponse invalide.",
+        "invalidResponsePollingExplanation": "Le nœud a renvoyé une réponse invalide lors de son interrogation.",
+        "invalidResponseFetchingAccount": "Le nœud a renvoyé une réponse invalide lors de la récupération des informations de votre compte.",
+        "invalidResponseSendingTransfer": "Le nœud a renvoyé une réponse invalide lors du transfert.",
         "seed": "Seed",
         "back": "RETOUR",
         "backLowercase": "Retour",
@@ -328,10 +328,10 @@
         "hideSeed": "MASQUER LA SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "J’ai enregistré ma seed",
-        "reenter": "Vous allez devoir saisir à nouveau votre seed.",
+        "alreadyHave": "J’ai enregistré mon code d'accès",
+        "reenter": "Vous allez maintenant devoir réintroduire votre code d'accès.",
         "reenterWarningOne": "Si votre appareil tombe en panne et que vous n’avez pas enregistré",
-        "reenterWarningTwo": "votre seed, vous perdrez vos IOTA."
+        "reenterWarningTwo": "votre code d'accès, vous perdrez vos IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
