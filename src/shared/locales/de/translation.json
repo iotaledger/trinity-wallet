@@ -117,7 +117,7 @@
     },
     "login": {
         "emptyPassword": "Leeres Passwort",
-        "emptyPasswordExplanation": "Du musst ein Passwort eingeben um dich anzumelden. Bitte versuche es verneut.",
+        "emptyPasswordExplanation": "Du musst ein Passwort eingeben um dich anzumelden. Bitte versuche es erneut.",
         "enterPassword": "Bitte gib dein Passwort ein.",
         "useSeed": "SEED BENUTZEN",
         "login": "ANMELDEN",
