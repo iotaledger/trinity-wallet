@@ -99,6 +99,7 @@ class Send extends Component {
             KeepAwake.activate();
         } else if (this.props.isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
+            this.setState({ message: '', amount: '', address: '' });
         }
     }
 
@@ -297,7 +298,6 @@ class Send extends Component {
                 modalContent = (
                     <TransferConfirmationModal
                         amount={this.state.amount}
-                        clearOnSend={() => this.setState({ message: '', amount: '', address: '' })}
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
@@ -517,7 +517,7 @@ class Send extends Component {
                                 autoCorrect={false}
                                 value={message}
                                 onChangeText={message => this.setState({ message })}
-                                onSubmitEditing={() => this.onSendPress()}
+                                onSubmitEditing={() => this.setModalContent('transferConfirmation')}
                             />
                         </View>
                     </View>
