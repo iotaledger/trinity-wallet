@@ -112,7 +112,6 @@ class History extends Component {
                                         addresses={addresses}
                                         rowData={dataSource}
                                         titleColor="#F8FFA6"
-                                        onPress={event => this._showModal()}
                                         copyAddress={item => this.copyAddress(item)}
                                         copyBundleHash={item => this.copyBundleHash(item)}
                                         positiveColor={THEMES.getHSL(positiveColor)}
