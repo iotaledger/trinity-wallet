@@ -17,12 +17,12 @@ class TransactionRow extends React.Component {
         };
     }
 
-    _showModal = data => this.setState({ isModalVisible: true });
+    _showModal = () => this.setState({ isModalVisible: true });
 
     _hideModal = () => this.setState({ isModalVisible: false });
 
     _renderModalContent = (transfer, titleColour, isReceived, hasPersistence, textColor, borderColor) => (
-        <TouchableOpacity onPress={() => this._hideModal()}>
+        <TouchableOpacity style={{ width, height, alignItems: 'center' }} onPress={() => this._hideModal()}>
             <View style={{ flex: 1, justifyContent: 'center', width: width / 1.15 }}>
                 <View style={[styles.modalContent, borderColor, { backgroundColor: this.props.backgroundColor }]}>
                     <ScrollView>
@@ -202,6 +202,7 @@ class TransactionRow extends React.Component {
                     backdropOpacity={0.6}
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalVisible}
+                    onBackButtonPress={() => this._hideModal()}
                 >
                     {this._renderModalContent(
                         transfer,
