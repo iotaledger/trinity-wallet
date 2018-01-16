@@ -189,13 +189,13 @@
         "passwordMismatch": "Les mots de passe ne correspondent pas",
         "passwordMismatchExplanation": "Les mots de passe que vous avez saisis ne correspondent pas. Veuillez réessayer.",
         "nowWeNeedTo": "Maintenant nous devons paramétrer un mot de passe.",
-        "anEncryptedCopy": "Une copie chiffrée de votre seed sera stockée sur votre appareil. Vous utiliserez ce mot de passe pour accéder à votre wallet à l’avenir.",
+        "anEncryptedCopy": "Une copie chiffrée de votre code d'accès sera conservée sur votre appareil. Désormais, c'est à l'aide de ce mot de passe que vous vous connecterez à votre portefeuille.",
         "ensure": "Veillez à utiliser un mot de passe fort d'au moins 12 caractères.",
         "retypePassword": "Confirmer le mot de passe"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Vous pouvez utiliser plusieurs seeds avec ce wallet. Chaque seed requiert un nom de compte.",
-        "youCanAdd": "Vous pouvez ajouter plus de seeds dans le menu Paramètres."
+        "canUseMultipleSeeds": "Ce portefeuille vous permet d'utiliser plusieurs codes d'accès. Chaque code d'accès requiert un nom de compte.",
+        "youCanAdd": "Vous pouvez ajouter plus de codes d'accès dans le menu Réglages."
     },
     "settings": {
         "transferSending": "Transfert en cours",
@@ -212,15 +212,15 @@
         "changePassword": "Modifier le mot de passe",
         "advanced": "Réglages avancés",
         "logout": "Déconnexion",
-        "reset": "Réinitialiser le wallet",
+        "reset": "Réinitialiser le portefeuille",
         "syncingComplete": "Synchronisation terminée",
         "syncingCompleteExplanation": "Votre compte a été synchronisé avec succès.",
         "nicknameChanged": "Nom de compte modifié",
-        "nicknameChangedExplanation": "Votre nom de compte a été modifié.",
+        "nicknameChangedExplanation": "Le nom de votre compte a été modifié.",
         "accountDeleted": "Compte supprimé",
-        "accountDeletedExplanation": "Votre compte a été supprimé du wallet.",
+        "accountDeletedExplanation": "Votre compte a été supprimé du portefeuille.",
         "cannotPerformAction": "Impossible d’effectuer cette action",
-        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le wallet.",
+        "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
         "poorConnection": "Mauvaise connexion",
         "poorConnectionExplanation": "Impossible de changer de devise à cause de la mauvaise connexion."
     },
