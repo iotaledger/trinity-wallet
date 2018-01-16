@@ -265,7 +265,7 @@ class TopBar extends Component {
         const chevronDownImagePath =
             secondaryBarColor === 'white' ? whiteChevronDownImagePath : blackChevronDownImagePath;
 
-        const iconProps = TopBar.getIconPath(isTopBarActive, chevronUpImagePath, chevronDownImagePath);
+        const iconProps = TopBar.getIconPath(isTopBarActive, chevronDownImagePath, chevronUpImagePath);
         const children = this.renderTitles();
         const hasMultipleSeeds = size(this.filterSeedTitles(seedNames, seedIndex));
         const shouldDisable = this.shouldDisable();
