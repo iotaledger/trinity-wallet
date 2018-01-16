@@ -5,10 +5,7 @@ const initialState = {
     isOnboardingCompleted: false,
     mode: 'STANDARD',
     root: 'initialLoading',
-    versions: {
-        android: {},
-        ios: {},
-    },
+    versions: {},
 };
 
 export default (state = initialState, action) => {

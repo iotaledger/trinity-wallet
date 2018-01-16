@@ -1,7 +1,9 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
-import { persistStore, getStoredState, purgeStoredState } from 'redux-persist';
+import merge from 'lodash/merge';
+import pickBy from 'lodash/pickBy';
+import { persistStore, getStoredState, purgeStoredState, createPersistor } from 'redux-persist';
 import { setAppVersions } from './actions/app';
 
 const persistState = (state, config, cb) =>
@@ -11,14 +13,36 @@ const persistState = (state, config, cb) =>
         }
     });
 
-const purgeBeforePersist = (state, config, cb) =>
+const migrateSafely = (incomingState, restoredState, blacklist) => {
+    const { app: { versions } } = incomingState;
+
+    // Start by keeping all reducers that are blacklisted
+    const latestIncomingState = pickBy(incomingState, (v, k) => blacklist.indexOf(k) > -1);
+
+    // Always keep the latest version
+    const latestRestoredState = merge({}, restoredState, { app: { versions } });
+
+    return merge({}, latestIncomingState, latestRestoredState);
+};
+
+const purgeBeforePersist = (restoredState, state, config, cb) =>
     purgeStoredState({ storage: config.storage })
-        .then(() => persistState(state, config, cb))
+        .then(() => {
+            const incomingState = state.getState();
+
+            const updatedState = migrateSafely(incomingState, restoredState, config.blacklist);
+
+            const persistor = createPersistor(state, config);
+            persistor.rehydrate(updatedState);
+
+            return persistState(state, config, cb);
+        })
         .catch(() => persistState(state, config, cb));
 
 export const migrateBeforePersist = (state, config, versions, cb) =>
     getStoredState(config, (err, restoredState) => {
         state.dispatch(setAppVersions(versions));
+
         // Fresh install
         if (isEmpty(restoredState)) {
             return persistState(state, config, cb);
@@ -26,17 +50,12 @@ export const migrateBeforePersist = (state, config, versions, cb) =>
 
         const { app } = state.getState();
 
-        const currentAndroidVersion = get(restoredState, 'app.versions.android');
-        const currentIosVersion = get(restoredState, 'app.versions.ios');
+        const restoredVersion = get(restoredState, 'app.versions.version');
+        const restoredBuildNumber = get(restoredState, 'app.versions.buildNumber');
 
-        const incomingAndroidVersion = get(app, 'versions.android');
-        const incomingIosVersion = get(app, 'versions.ios');
-        const hasAppVersions = !isEmpty(currentAndroidVersion) || !isEmpty(currentIosVersion);
-        const hasAnUpdate =
-            get(currentIosVersion, 'version') !== get(incomingIosVersion, 'version') ||
-            get(currentIosVersion, 'buildNumber') !== get(incomingIosVersion, 'buildNumber') ||
-            get(currentAndroidVersion, 'version') !== get(incomingAndroidVersion, 'version') ||
-            get(currentAndroidVersion, 'buildNumber') !== get(incomingAndroidVersion, 'buildNumber');
+        const incomingVersion = get(app, 'versions.version');
+        const incomingBuildNumber = get(app, 'versions.buildNumber');
+        const hasAnUpdate = restoredVersion !== incomingVersion || restoredBuildNumber !== incomingBuildNumber;
 
-        return !hasAppVersions || hasAnUpdate ? purgeBeforePersist(state, config, cb) : persistState(state, config, cb);
+        return hasAnUpdate ? purgeBeforePersist(restoredState, state, config, cb) : persistState(state, config, cb);
     });
