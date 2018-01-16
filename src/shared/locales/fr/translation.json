@@ -239,8 +239,8 @@
         "reset": "RÉINITIALISER"
     },
     "walletSetup": {
-        "okay": "Ok. Paramétrons votre wallet !",
-        "doYouAlreadyHaveASeed": "Est-ce que vous possédez une seed que vous souhaitez utiliser ?",
+        "okay": "Bien ! Configurons votre portefeuille !",
+        "doYouAlreadyHaveASeed": "Détenez-vous déjà un code d'accès que vous désirez utiliser ?",
         "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
         "explanation1": "Vous pouvez l’utiliser pour accéder à vos fonds à partir de",
         "explanation2": " n’importe quel wallet ",
@@ -251,8 +251,8 @@
     },
     "welcome": {
         "thankYou": "Merci d’avoir téléchargé le wallet IOTA.",
-        "weWillSpend": "Nous allons passer les prochaines minutes à paramétrer votre wallet.",
-        "reminder": "Vous serez tenté de passer des étapes mais nous vous demandons de suivre le processus complet."
+        "weWillSpend": "Durant les prochaines minutes, nous allons configurer votre portefeuille.",
+        "reminder": "Vous pourriez être tenté de brûler certaines étapes, mais il est impératif de suivre la procédure complète."
     },
     "writeSeedDown": {
         "yourSeedIs": "Votre seed se lit de gauche à droite et comporte {{maxSeedLength}} caractères. Notez-la, ainsi que le code de vérification et",
@@ -281,7 +281,7 @@
         "createNewSeed": "Créer une nouveau code d'accès"
     },
     "advancedSettings": {
-        "selectNode": "Choisir un nœud",
+        "selectNode": "Sélectionner un nœud",
         "addCustomNode": "Ajouter un nœud personnalisé",
         "manualSync": "Synchro manuelle"
     },
