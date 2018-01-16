@@ -67,7 +67,7 @@
         "accountName": "Nom du compte",
         "noNickname": "Aucun nom de compte saisi",
         "noNicknameExplanation": "Veuillez saisir un nom de compte pour votre seed.",
-        "seedInUse": "Seed déjà utilisée",
+        "seedInUse": "Code d'accès déjà utilisé",
         "seedInUseExplanation": "Cette seed est déjà liée à votre wallet. Veuillez en utiliser une autre."
     },
     "changePassword": {
@@ -160,32 +160,32 @@
     },
     "seedReentry": {
         "incorrectSeed": "Seed incorrecte",
-        "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
-        "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
+        "incorrectSeedExplanation": "Le code d'accès introduit est incorrect. Veuillez réessayer.",
+        "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre code d'accès.",
         "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire."
     },
     "send": {
         "invalidAddress": "Adresse invalide",
-        "invalidAddressExplanation1": "L'adresse doit comporter {{maxLength}} caractères et présenter un code de vérification.",
+        "invalidAddressExplanation1": "L'adresse doit être composée de {{maxLength}} caractères et un checksum doit être visible.",
         "invalidAddressExplanation2": "L'adresse contient des caractères invalides.",
         "invalidAddressExplanation3": "L'adresse contient un code de vérification invalide.",
         "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
         "keyReuse": "Réutilisation de clé",
-        "keyReuseExplanation": "L’adresse vers laquelle vous souhaitez faire un envoi a déjà été utilisée. Veuillez essayer une autre adresse.",
+        "keyReuseExplanation": "L’adresse vers laquelle vous essayez d'effectuer un transfert a déjà été utilisée. Veuillez choisir une autre adresse.",
         "recipientAddress": "Adresse du destinataire",
         "amount": "Montant",
         "max": "MAX",
         "message": "Message",
         "send": "ENVOYER",
-        "invalidAmount": "Montant saisi incorrect",
-        "invalidAmountExplanation": "Veuillez saisir une valeur numérique pour le montant de la transaction.",
+        "invalidAmount": "Montant introduit incorrect",
+        "invalidAmountExplanation": "Veuillez introduire une valeur numérique pour le montant de la transaction.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
         "iotaUnits": "Unités IOTA"
     },
     "setPassword": {
         "passwordTooShort": "Le mot de passe est trop court",
-        "passwordTooShortExplanation": "Votre mot de passe doit comporter au moins {{minLength}} caractères. Il comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
+        "passwordTooShortExplanation": "Votre mot de passe doit être composé d'au moins {{minLength}} caractères. Celui que vous avez introduit n'en comporte que {{currentLength}}. Veuillez réessayer.",
         "passwordMismatch": "Les mots de passe ne correspondent pas",
         "passwordMismatchExplanation": "Les mots de passe que vous avez saisis ne correspondent pas. Veuillez réessayer.",
         "nowWeNeedTo": "Maintenant nous devons paramétrer un mot de passe.",
