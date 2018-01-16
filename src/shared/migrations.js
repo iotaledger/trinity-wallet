@@ -13,16 +13,16 @@ const persistState = (state, config, cb) =>
         }
     });
 
-const migrateSafely = (incomingState, restoredState, blacklist) => {
+const updateSafely = (incomingState, restoredState, blacklist) => {
     const { app: { versions } } = incomingState;
 
     // Start by keeping all reducers that are blacklisted
-    const latestIncomingState = pickBy(incomingState, (v, k) => blacklist.indexOf(k) > -1);
+    const relevantIncomingState = pickBy(incomingState, (v, k) => blacklist.indexOf(k) > -1);
 
     // Always keep the latest version
     const latestRestoredState = merge({}, restoredState, { app: { versions } });
 
-    return merge({}, latestIncomingState, latestRestoredState);
+    return merge({}, relevantIncomingState, latestRestoredState);
 };
 
 const purgeBeforePersist = (restoredState, state, config, cb) =>
@@ -30,7 +30,7 @@ const purgeBeforePersist = (restoredState, state, config, cb) =>
         .then(() => {
             const incomingState = state.getState();
 
-            const updatedState = migrateSafely(incomingState, restoredState, config.blacklist);
+            const updatedState = updateSafely(incomingState, restoredState, config.blacklist);
 
             const persistor = createPersistor(state, config);
             persistor.rehydrate(updatedState);
