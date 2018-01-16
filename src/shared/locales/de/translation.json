@@ -217,7 +217,7 @@
         "syncingCompleteExplanation": "Dein Konto wurde erfolgreich synchronisiert.",
         "nicknameChanged": "Konto-Name geändert",
         "nicknameChangedExplanation": "Der Name des Kontos wurde geändert.",
-        "accountDeleted": "Account gelöscht",
+        "accountDeleted": "Konto gelöscht",
         "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet gelöscht.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
