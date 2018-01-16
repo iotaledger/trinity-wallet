@@ -15,7 +15,7 @@
         "keyReuseError": "Vous ne pouvez pas faire de transfert vers une adresse depuis laquelle un transfert a déjà été effectué.",
         "invalidResponse": "Réponse non valide",
         "invalidResponseExplanation": "Le node a renvoyé une réponse invalide.",
-        "invalidResponsePollingExplanation": "Le node a retourné une réponse invalide lors de son interrogation.",
+        "invalidResponsePollingExplanation": "Le nœud a renvoyé une réponse non valide lors de son interrogation.",
         "invalidResponseFetchingAccount": "Le node a renvoyé une réponse non valide lors de la récupération des informations de votre compte.",
         "invalidResponseSendingTransfer": "Le node a renvoyé une réponse invalide lors du transfert.",
         "seed": "Seed",
@@ -29,8 +29,8 @@
         "close": "FERMER",
         "continue": "Continuer",
         "manualCopy": "Notez la seed",
-        "paperWallet": "Imprimez la copie papier",
-        "copyToClipboard": "Ajoutez à un gestionnaire de mot de passe",
+        "paperWallet": "Imprimer une copie papier",
+        "copyToClipboard": "Ajouter à un gestionnaire de mot de passe",
         "notAvailable": "Cette fonction n’est pas disponible",
         "notAvailableExplanation": "Ce sera ajouté ultérieurement.",
         "enterSeed": "Veuillez entrer votre seed.",
@@ -141,7 +141,7 @@
         "clickToPrint": "Cliquez sur le bouton ci-dessous pour imprimer une copie papier de votre seed.",
         "storeSafely": "Conservez-la en lieu sûr.",
         "neverShare": "Ne communiquez votre seed à personne.",
-        "iotaLogo": "logo IOTA",
+        "iotaLogo": "Logo IOTA",
         "printWallet": "IMPRIMER LE WALLET PAPIER"
     },
     "receive": {
