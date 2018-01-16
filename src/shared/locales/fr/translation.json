@@ -242,7 +242,7 @@
         "okay": "Ok. Paramétrons votre wallet !",
         "doYouAlreadyHaveASeed": "Est-ce que vous possédez une seed que vous souhaitez utiliser ?",
         "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
-        "explanation1": "Vous pouvez l’utiliser pour accéder à vos fonds de",
+        "explanation1": "Vous pouvez l’utiliser pour accéder à vos fonds à partir de",
         "explanation2": " n’importe quel wallet ",
         "explanation3": ", sur",
         "explanation4": " n'importe quel appareil",
