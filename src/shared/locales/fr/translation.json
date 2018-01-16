@@ -142,7 +142,7 @@
         "storeSafely": "Conservez-la en lieu sûr.",
         "neverShare": "Ne divulguez jamais votre code d'accès.",
         "iotaLogo": "Logo IOTA",
-        "printWallet": "IMPRIMER LE WALLET PAPIER"
+        "printWallet": "IMPRIMER LA VERSION PAPIER DU PORTEFEUILLE"
     },
     "receive": {
         "addressCopied": "Adressée copiée",
@@ -162,13 +162,13 @@
         "incorrectSeed": "Seed incorrecte",
         "incorrectSeedExplanation": "Le code d'accès introduit est incorrect. Veuillez réessayer.",
         "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre code d'accès.",
-        "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire."
+        "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre code d'accès, veuillez revenir en arrière et faites-le."
     },
     "send": {
         "invalidAddress": "Adresse invalide",
         "invalidAddressExplanation1": "L'adresse doit être composée de {{maxLength}} caractères et un checksum doit être visible.",
         "invalidAddressExplanation2": "L'adresse contient des caractères invalides.",
-        "invalidAddressExplanation3": "L'adresse contient un code de vérification invalide.",
+        "invalidAddressExplanation3": "Le checksum de cette adresse est invalide.",
         "notEnoughFunds": "Fonds insuffisants",
         "notEnoughFundsExplanation": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
         "keyReuse": "Réutilisation de clé",
@@ -194,7 +194,7 @@
         "retypePassword": "Confirmer le mot de passe"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Ce portefeuille vous permet d'utiliser plusieurs codes d'accès. Chaque code d'accès requiert un nom de compte.",
+        "canUseMultipleSeeds": "Ce portefeuille vous permet d'utiliser plusieurs codes d'accès. Chaque code d'accès doit être lié à un nom de compte.",
         "youCanAdd": "Vous pouvez ajouter plus de codes d'accès dans le menu Réglages."
     },
     "settings": {
