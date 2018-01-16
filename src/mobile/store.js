@@ -3,10 +3,10 @@ import { getVersion, getBuildNumber } from 'react-native-device-info';
 import store, { persistStore, getStoredState, purgeStoredState, createPersistor } from '../shared/store';
 import initializeApp from './routes/entry';
 import { AsyncStorage } from 'react-native';
-import { setAppVersions } from '../shared/actions/app';
+import { setAppVersions, resetWallet } from '../shared/actions/app';
 import { updatePersistedState } from '../shared/libs/util';
 
-const persistConfig = {
+export const persistConfig = {
     storage: AsyncStorage,
     blacklist: ['alerts', 'tempAccount', 'keychain', 'polling', 'ui'],
 };
@@ -15,36 +15,43 @@ const shouldMigrate = (freshState, restoredState) => {
     const restoredVersion = get(restoredState, 'app.versions.version');
     const restoredBuildNumber = get(restoredState, 'app.versions.buildNumber');
 
-    const incomingVersion = get(freshState, 'app.versions.version');
-    const incomingBuildNumber = get(freshState, 'app.versions.buildNumber');
-    return restoredVersion !== incomingVersion || restoredBuildNumber !== incomingBuildNumber;
+    const currentVersion = getVersion();
+    const currentBuildNumber = getBuildNumber();
+
+    return restoredVersion !== currentVersion || restoredBuildNumber !== currentBuildNumber;
 };
 
-const migrate = async state => {
-    state.dispatch(
-        setAppVersions({
-            version: '14',
-            buildNumber: getBuildNumber(),
-        }),
-    );
-
-    const restoredState = await getStoredState(persistConfig);
+const migrate = (state, restoredState) => {
     const hasAnUpdate = shouldMigrate(state.getState(), restoredState);
 
     if (!hasAnUpdate) {
-        console.log('Not  has an update');
-        return persistStore(state, persistConfig, () => initializeApp(state));
+        state.dispatch(
+            setAppVersions({
+                version: '14',
+                buildNumber: getBuildNumber(),
+            }),
+        );
+        return initializeApp(state);
     }
 
-    console.log('Has an update');
-    const persistor = createPersistor(state, persistConfig);
-    await purgeStoredState({ storage: persistConfig.storage });
+    return purgeStoredState({ storage: persistConfig.storage })
+        .then(() => {
+            state.dispatch(resetWallet());
+            // Set the new app version
+            state.dispatch(
+                setAppVersions({
+                    version: '14',
+                    buildNumber: getBuildNumber(),
+                }),
+            );
 
-    const updatedState = updatePersistedState(state.getState(), restoredState, persistConfig.blacklist);
-    persistor.rehydrate(updatedState);
-    initializeApp(state);
+            const persistor = createPersistor(state, persistConfig);
+            const updatedState = updatePersistedState(state.getState(), restoredState);
+            persistor.rehydrate(updatedState);
 
-    return persistor;
+            return initializeApp(state);
+        })
+        .catch(() => initializeApp(state));
 };
 
-export const persistor = migrate(store);
+export const persistor = persistStore(store, persistConfig, (err, restoredState) => migrate(store, restoredState));
