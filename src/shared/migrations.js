@@ -14,13 +14,16 @@ const persistState = (state, config, cb) =>
     });
 
 const updateSafely = (incomingState, restoredState, blacklist) => {
-    const { app: { versions } } = incomingState;
+    const { app: { versions }, settings: { fullNode, availablePoWNodes } } = incomingState;
 
     // Start by keeping all reducers that are blacklisted
     const relevantIncomingState = pickBy(incomingState, (v, k) => blacklist.indexOf(k) > -1);
 
     // Always keep the latest version
-    const latestRestoredState = merge({}, restoredState, { app: { versions } });
+    const latestRestoredState = merge({}, restoredState, {
+        app: { versions },
+        settings: { fullNode, availablePoWNodes },
+    });
 
     return merge({}, relevantIncomingState, latestRestoredState);
 };
