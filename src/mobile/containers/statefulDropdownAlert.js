@@ -45,6 +45,11 @@ class StatefulDropdownAlert extends Component {
     static propTypes = {
         alerts: PropTypes.object.isRequired,
         disposeOffAlert: PropTypes.func.isRequired,
+        closeInterval: PropTypes.number,
+    };
+
+    static defaultProps = {
+        closeInterval: 5500,
     };
 
     componentWillReceiveProps(newProps) {
@@ -65,6 +70,8 @@ class StatefulDropdownAlert extends Component {
     }
 
     render() {
+        const { closeInterval } = this.props.alerts;
+        const closeAfter = closeInterval;
         return (
             <DropdownAlert
                 ref={ref => (this.dropdown = ref)}
@@ -78,7 +85,7 @@ class StatefulDropdownAlert extends Component {
                 inactiveStatusBarStyle={StatusBarDefaultBarStyle}
                 onCancel={this.props.disposeOffAlert}
                 onClose={this.props.disposeOffAlert}
-                closeInterval={5500}
+                closeInterval={closeAfter}
             />
         );
     }
