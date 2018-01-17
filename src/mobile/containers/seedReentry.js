@@ -14,7 +14,8 @@ import GENERAL from '../theme/general';
 
 import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
 import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 
 import { width, height } from '../util/dimensions';
 
@@ -64,6 +65,7 @@ class SeedReentry extends Component {
         const textColor = { color: secondaryBackgroundColor };
         const borderColor = { borderColor: secondaryBackgroundColor };
         const infoImagePath = secondaryBackgroundColor === 'white' ? whiteInfoImagePath : blackInfoImagePath;
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
@@ -73,7 +75,7 @@ class SeedReentry extends Component {
                         <View style={styles.container}>
                             <View style={styles.topContainer}>
                                 <View style={styles.logoContainer}>
-                                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                                    <Image source={iotaImagePath} style={styles.iotaLogo} />
                                 </View>
                                 <View style={styles.titleContainer}>
                                     <Text style={[styles.title, textColor]}>{t('global:enterSeed')}</Text>

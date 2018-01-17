@@ -167,7 +167,7 @@ export const generateNewAddress = (seed, seedName, addresses) => {
                 // In case the newly created address is not part of the addresses object
                 // Add that as a key with a 0 balance.
                 if (!(addressNoChecksum in addresses)) {
-                    updatedAddresses[addressNoChecksum] = { balance: 0, spent: false };
+                    updatedAddresses[addressNoChecksum] = { index, balance: 0, spent: false };
                 }
 
                 dispatch(updateAddresses(seedName, updatedAddresses));
@@ -205,6 +205,7 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                             'success',
                             i18next.t('global:transferSent'),
                             i18next.t('global:transferSentMessage'),
+                            100000,
                         ),
                     );
                     dispatch(sendTransferSuccess({ address, value }));
@@ -215,10 +216,12 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
                         attachToTangle: [
                             i18next.t('global:attachToTangleUnavailable'),
                             i18next.t('global:attachToTangleUnavailableExplanation'),
+                            100000,
                         ],
                         default: [
                             i18next.t('global:invalidResponse'),
                             i18next.t('global:invalidResponseSendingTransfer'),
+                            100000,
                         ],
                     };
 
@@ -235,19 +238,28 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
         const unspentInputs = (err, inputs) => {
             if (err && err.message !== 'Not enough balance') {
                 dispatch(sendTransferError());
+                console.log(err);
                 return dispatch(
                     generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
+                    100000,
                 );
             }
             if (get(inputs, 'allBalance') < value) {
                 dispatch(sendTransferError());
+                console.log(err);
                 return dispatch(
-                    generateAlert('error', i18next.t('global:balanceError'), i18next.t('global:balanceErrorMessage')),
+                    generateAlert(
+                        'error',
+                        i18next.t('global:balanceError'),
+                        i18next.t('global:balanceErrorMessage'),
+                        20000,
+                    ),
                 );
             } else if (get(inputs, 'totalBalance') < value) {
                 dispatch(sendTransferError());
+                console.log(err);
                 return dispatch(
-                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
+                    generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError'), 20000),
                 );
             }
 
@@ -269,7 +281,14 @@ export const sendTransaction = (seed, address, value, message, accountName) => {
             );
         };
 
-        return getUnspentInputs(seed, 0, value, null, unspentInputs);
+        const getStartingIndex = () => {
+            const addresses = getSelectedAccount(accountName, getState().account.accountInfo).addresses;
+            const address = Object.keys(addresses).find(address => addresses[address].balance > 0);
+
+            return address ? address.index : 0;
+        };
+
+        return getUnspentInputs(seed, getStartingIndex(), value, null, unspentInputs);
     };
 };
 
@@ -284,13 +303,15 @@ export const checkForNewAddress = (seedName, addressData, txArray) => {
             // If current addresses does not include change address, add new address and balance
             if (!addresses.includes(addressNoChecksum)) {
                 const addressArray = [addressNoChecksum];
+                const index = addresses.length + 1;
+
                 // Check change address balance
                 iota.api.getBalances(addressArray, 1, (error, success) => {
                     if (!error) {
                         const addressBalance = parseInt(success.balances[0]);
-                        addressData[addressNoChecksum] = { balance: addressBalance, spent: false };
+                        addressData[addressNoChecksum] = { index, balance: addressBalance, spent: false };
                     } else {
-                        addressData[addressNoChecksum] = { balance: 0, spent: false };
+                        addressData[addressNoChecksum] = { index, balance: 0, spent: false };
                     }
                 });
             }

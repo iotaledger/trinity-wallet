@@ -5,7 +5,8 @@ import DynamicStatusBar from '../components/dynamicStatusBar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { setCopiedToClipboard } from '../../shared/actions/tempAccount';
@@ -106,12 +107,13 @@ class SaveYourSeed extends Component {
         const textColor = { color: secondaryBackgroundColor };
         const extraColorText = { color: THEMES.getHSL(extraColor) };
         const extraColorBorder = { borderColor: THEMES.getHSL(extraColor) };
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <Text style={[styles.infoText, textColor]}>
                         <Text style={styles.infoTextNormal}>{t('mustSaveYourSeed')}</Text>
                         <Text style={styles.infoTextBold}>{t('atLeastOne')}</Text>
