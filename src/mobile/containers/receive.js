@@ -30,6 +30,7 @@ import { TextField } from 'react-native-material-textfield';
 import keychain, { getSeed } from '../util/keychain';
 import GENERAL from '../theme/general';
 import THEMES from '../theme/themes';
+import CustomTextInput from '../components/customTextInput';
 
 import { width, height } from '../util/dimensions';
 import { isAndroid } from '../util/device';
@@ -56,6 +57,7 @@ class Receive extends Component {
         negativeColor: PropTypes.object.isRequired,
         secondaryBackgroundColor: PropTypes.string.isRequired,
         secondaryCtaColor: PropTypes.string.isRequired,
+        textInputColor: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -155,6 +157,7 @@ class Receive extends Component {
             secondaryBackgroundColor,
             secondaryCtaColor,
             ctaBorderColor,
+            textInputColor,
         } = this.props;
         const message = this.state.message;
         const textColor = { color: secondaryBackgroundColor };
@@ -212,26 +215,24 @@ class Receive extends Component {
                             </TouchableOpacity>
                         )}
                     </View>
-                    <View style={{ alignItems: 'center', flex: 0.5, justifyContent: 'flex-start' }}>
-                        <TextField
-                            style={[styles.textField, textColor]}
-                            labelTextStyle={{ fontFamily: 'Lato-Light', color: secondaryBackgroundColor }}
-                            labelFontSize={height / 55}
-                            fontSize={height / 40}
-                            labelPadding={3}
-                            baseColor={secondaryBackgroundColor}
-                            tintColor={THEMES.getHSL(negativeColor)}
-                            enablesReturnKeyAutomatically={true}
-                            returnKeyType="done"
+                    <View style={{ alignItems: 'center', flex: 0.7, justifyContent: 'center' }}>
+                        <CustomTextInput
+                            onRef={c => {
+                                this.addressField = c;
+                            }}
                             label={t('message')}
-                            autoCorrect={false}
-                            value={message}
-                            containerStyle={{ width: width / 1.36 }}
                             onChangeText={message => this.setState({ message })}
-                            ref="message"
+                            containerStyle={{ width: width / 1.36 }}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="done"
+                            secondaryBackgroundColor={secondaryBackgroundColor}
+                            value={message}
+                            negativeColor={negativeColor}
+                            backgroundColor={textInputColor}
                         />
                     </View>
-                    <View style={{ flex: 0.5, justifyContent: 'center' }}>
+                    <View style={{ flex: 0.3, justifyContent: 'flex-start' }}>
                         {receiveAddress === ' ' &&
                             (!isGeneratingReceiveAddress && !isGettingSensitiveInfoToGenerateAddress) && (
                                 <TouchableOpacity
@@ -378,6 +379,7 @@ const mapStateToProps = state => ({
     secondaryBackgroundColor: state.settings.theme.secondaryBackgroundColor,
     secondaryCtaColor: state.settings.theme.secondaryCtaColor,
     ctaBorderColor: state.settings.theme.ctaBorderColor,
+    textInputColor: state.settings.theme.textInputColor,
 });
 
 const mapDispatchToProps = {
