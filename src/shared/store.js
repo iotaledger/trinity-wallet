@@ -1,6 +1,5 @@
-import isFunction from 'lodash/isFunction';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { autoRehydrate, persistStore } from 'redux-persist';
+import { autoRehydrate, persistStore, getStoredState, purgeStoredState, createPersistor } from 'redux-persist';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import marketData from './reducers/marketData';
@@ -56,11 +55,6 @@ const store = createStore(
     ),
 );
 
-export const persistState = (state, config, cb) =>
-    persistStore(state, config, () => {
-        if (isFunction(cb)) {
-            cb(state);
-        }
-    });
+export { persistStore, getStoredState, purgeStoredState, createPersistor };
 
 export default store;
