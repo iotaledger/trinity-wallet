@@ -242,11 +242,11 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "explanation1": "You can use it to access your funds from",
-        "explanation2": " any wallet ",
-        "explanation3": ", on",
-        "explanation4": " any device",
-        "explanation5": ". But if you lose your seed, you also lose your IOTA.",
+        "explanation1": "您可以用它来访问您的资金，从",
+        "explanation2": " 任何钱包 ",
+        "explanation3": "，在",
+        "explanation4": " 任何设备上",
+        "explanation5": "。但是, 如果你丢失了你的种子, 你也会丢失您的IOTA。",
         "keepSafe": "请您保管好你的种子."
     },
     "welcome": {
@@ -255,21 +255,21 @@
         "reminder": "您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs": "你的种子是从左向右读的{{maxSeedLength}} 个字符。请记下您的种子和校验和",
         "tripleCheck": "第三次检查",
-        "thatTheyAreCorrect": "that they are correct."
+        "thatTheyAreCorrect": "以确保它们是正确的。"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopied": "已复制地址",
+        "addressCopiedExplanation": "地址已复制到剪贴板。"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
+        "viewSeed": "查看种子",
+        "viewAddresses": "查看地址",
+        "editAccountName": "编辑帐户",
+        "deleteAccount": "删除帐户",
         "addNewAccount": "Add new account"
     },
     "addCustomNode": {
