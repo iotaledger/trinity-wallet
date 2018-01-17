@@ -100,7 +100,7 @@ const accountInfoFetchRequest = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
 });
 
-const accountInfoFetchSuccess = payload => ({
+const accountInfoFetchSuccess = (payload) => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
     payload,
 });
@@ -121,7 +121,7 @@ const promoteTransactionError = () => ({
     type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
 });
 
-export const setPollFor = payload => ({
+export const setPollFor = (payload) => ({
     type: ActionTypes.SET_POLL_FOR,
     payload,
 });
@@ -129,16 +129,16 @@ export const setPollFor = payload => ({
 // TODO: Do not call fetch again for market data api calls.
 // Instead just directly dispatch
 export const fetchMarketData = () => {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(fetchMarketDataRequest());
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD')
             .then(
-                response => response.json(),
+                (response) => response.json(),
                 () => {
                     dispatch(fetchMarketDataError());
                 },
             )
-            .then(json => {
+            .then((json) => {
                 dispatch(setMarketData(json));
                 dispatch(fetchMarketDataSuccess());
             });
@@ -146,11 +146,11 @@ export const fetchMarketData = () => {
 };
 
 export const fetchPrice = () => {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(fetchPriceRequest());
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
-            .then(response => response.json(), () => dispatch(fetchPriceError()))
-            .then(json => {
+            .then((response) => response.json(), () => dispatch(fetchPriceError()))
+            .then((json) => {
                 dispatch(setPrice(json));
                 dispatch(fetchPriceSuccess());
             });
@@ -158,7 +158,7 @@ export const fetchPrice = () => {
 };
 
 export const fetchChartData = () => {
-    return dispatch => {
+    return (dispatch) => {
         const currencies = ['USD', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
 
@@ -170,14 +170,14 @@ export const fetchChartData = () => {
                 )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
                 return fetch(url)
                     .then(
-                        response => response.json(),
+                        (response) => response.json(),
                         () => {
                             if (i === currencies.length - 1 && j === timeframes.length - 1) {
                                 dispatch(fetchChartDataError());
                             }
                         },
                     )
-                    .then(json => {
+                    .then((json) => {
                         if (json) {
                             dispatch(setChartData(json, currency, timeframe));
                         }
@@ -191,6 +191,23 @@ export const fetchChartData = () => {
         });
     };
 };
+
+/**
+ *   Poll for updated account information.
+ *   - Starts by checking if there are pending transaction hashes. In case there are it would grab persistence on those.
+ *   - Checks for latest addresses.
+ *   - Grabs balance on latest addresses
+ *   - Grabs transaction hashes on all unspent addresses
+ *   - Checks if there are new transaction hashes by comparing it with a local copy of transaction hashes.
+ *     In case there are new hashes, constructs the bundle and dispatch with latest account information
+ *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
+ *
+ *   @method getAccountInfo
+ *   @param {string} seed
+ *   @param {string} accountName
+ *   @param {object} [navigator=null]
+ *   @returns {function} dispatch
+ **/
 
 export const getAccountInfo = (seed, accountName) => {
     return (dispatch, getState) => {
@@ -217,40 +234,41 @@ export const getAccountInfo = (seed, accountName) => {
             transfers: selectedAccount.transfers,
         };
 
-        const checkConfirmationForPendingTxs = () => {
+        const checkConfirmationForPendingTxsAndLatestAddresses = () => {
+            const addressSearchIndex = Object.keys(payload.addresses).length
+                ? Object.keys(payload.addresses).length - 1
+                : 0;
             if (isEmpty(pendingTxTailsHashes)) {
-                return Promise.resolve(getTotalBalance(Object.keys(payload.addresses)));
+                return Promise.resolve(getLatestAddresses(seed, addressSearchIndex));
             }
 
             return Promise.resolve(getHashesWithPersistence(pendingTxTailsHashes))
                 .then(({ states, hashes }) => {
                     return getConfirmedTxTailsHashes(states, hashes);
                 })
-                .then(confirmedHashes => {
+                .then((confirmedHashes) => {
                     if (!isEmpty(confirmedHashes)) {
                         payload = assign({}, payload, {
                             transfers: markTransfersConfirmed(payload.transfers, confirmedHashes),
                             pendingTxTailsHashes: filter(
                                 payload.pendingTxTailsHashes,
-                                tx => !includes(confirmedHashes, tx),
+                                (tx) => !includes(confirmedHashes, tx),
                             ),
                         });
                     }
 
-                    return Promise.resolve(getTotalBalance(Object.keys(payload.addresses)));
+                    return Promise.resolve(getLatestAddresses(seed, addressSearchIndex));
                 });
         };
 
-        return checkConfirmationForPendingTxs()
-            .then(balance => {
-                payload = assign({}, payload, { balance });
-
-                const index = Object.keys(payload.addresses).length ? Object.keys(payload.addresses).length - 1 : 0;
-
-                return getLatestAddresses(seed, index);
-            })
-            .then(addressData => {
+        return checkConfirmationForPendingTxsAndLatestAddresses()
+            .then((addressData) => {
                 payload = merge({}, payload, { addresses: addressData });
+
+                return getTotalBalance(Object.keys(payload.addresses));
+            })
+            .then((balance) => {
+                payload = assign({}, payload, { balance });
 
                 const unspentAddresses = getUnspentAddresses(payload.addresses);
                 if (isEmpty(unspentAddresses)) {
@@ -259,7 +277,7 @@ export const getAccountInfo = (seed, accountName) => {
 
                 return getTransactionHashes(unspentAddresses);
             })
-            .then(latestHashes => {
+            .then((latestHashes) => {
                 const hasNewHashes = size(latestHashes) > size(existingHashes);
 
                 if (hasNewHashes) {
@@ -273,13 +291,13 @@ export const getAccountInfo = (seed, accountName) => {
 
                 throw new Error('intentionally break chain');
             })
-            .then(txs => {
-                const tailTxs = filter(txs, t => t.currentIndex === 0);
+            .then((txs) => {
+                const tailTxs = filter(txs, (t) => t.currentIndex === 0);
 
-                return getHashesWithPersistence(map(tailTxs, t => t.hash));
+                return getHashesWithPersistence(map(tailTxs, (t) => t.hash));
             })
             .then(({ states, hashes }) => getBundlesWithPersistence(states, hashes))
-            .then(bundles => {
+            .then((bundles) => {
                 const updatedTransfers = [...payload.transfers, ...bundles];
                 const updatedTransfersWithFormatting = formatTransfers(
                     updatedTransfers,
@@ -293,7 +311,7 @@ export const getAccountInfo = (seed, accountName) => {
 
                 return dispatch(accountInfoFetchSuccess(payload));
             })
-            .catch(err => {
+            .catch((err) => {
                 if (err && err.message === 'intentionally break chain') {
                     dispatch(accountInfoFetchSuccess(payload));
                 } else {
@@ -313,15 +331,15 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
 
     const alertArguments = (title, message, status = 'success') => [status, title, message];
 
-    const promote = tail => {
+    const promote = (tail) => {
         const spamTransfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }];
 
-        return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, err => {
+        return iota.api.promoteTransaction(tail.hash, 3, 14, spamTransfer, { interrupt: false, delay: 0 }, (err) => {
             if (err) {
                 if (err.message.indexOf('Inconsistent subtangle') > -1) {
-                    consistentTails = filter(consistentTails, t => t.hash !== tail.hash);
+                    consistentTails = filter(consistentTails, (t) => t.hash !== tail.hash);
 
-                    return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
+                    return getFirstConsistentTail(consistentTails, 0).then((consistentTail) => {
                         if (!consistentTail) {
                             return dispatch(promoteTransactionError());
                         }
@@ -350,7 +368,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             return dispatch(promoteTransactionError());
         }
 
-        const tailsFromLatestTransactionObjects = filter(txs, t => {
+        const tailsFromLatestTransactionObjects = filter(txs, (t) => {
             const attachmentTimestamp = get(t, 'attachmentTimestamp');
             const hasMadeReattachmentWithinADay = isWithinADay(attachmentTimestamp);
 
@@ -364,18 +382,18 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             allTails = tailsFromLatestTransactionObjects;
         }
 
-        return iota.api.getLatestInclusion(map(allTails, t => t.hash), (err, states) => {
+        return iota.api.getLatestInclusion(map(allTails, (t) => t.hash), (err, states) => {
             if (err) {
                 return dispatch(promoteTransactionError());
             }
 
-            if (some(states, state => state)) {
+            if (some(states, (state) => state)) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
 
                 return dispatch(promoteTransactionSuccess()); // In case the transaction is approved, no need to go further and promote it.
             }
 
-            return getFirstConsistentTail(consistentTails, 0).then(consistentTail => {
+            return getFirstConsistentTail(consistentTails, 0).then((consistentTail) => {
                 if (!consistentTail) {
                     // Grab hash from the top tail to replay
                     const topTx = head(allTails);
@@ -395,7 +413,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
                             ),
                         );
 
-                        const newTail = filter(newTxs, t => t.currentIndex === 0);
+                        const newTail = filter(newTxs, (t) => t.currentIndex === 0);
                         // Update local copy for all tails
                         allTails = concat([], newTail, allTails);
 
