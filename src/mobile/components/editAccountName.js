@@ -62,13 +62,19 @@ export class EditAccountName extends Component {
                         <View style={styles.saveButtonContainer} />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.props.backPress()}>
+                        <TouchableOpacity
+                            onPress={event => this.props.backPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.saveAccountName(trim(this.state.accountName))}>
+                        <TouchableOpacity
+                            onPress={() => this.props.saveAccountName(trim(this.state.accountName))}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemRight}>
                                 <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
                                 <Image source={tickImagePath} style={styles.iconRight} />

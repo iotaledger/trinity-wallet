@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         flex: 1.2,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
+        paddingTop: height / 22,
     },
     midContainer: {
         flex: 4.8,
@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     iotaLogo: {
-        height: width / 7,
-        width: width / 7,
+        height: width / 5,
+        width: width / 5,
     },
     loginButton: {
         borderWidth: 1.2,
@@ -128,6 +128,7 @@ EnterPassword.propTypes = {
     positiveColor: PropTypes.object.isRequired,
     textColor: PropTypes.object.isRequired,
     secondaryBackgroundColor: PropTypes.string.isRequired,
+    negativeColor: PropTypes.object.isRequired,
 };
 
 export default translate(['login', 'global'])(EnterPassword);

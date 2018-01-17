@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: height / 16,
+        paddingTop: height / 22,
         width,
     },
     midWrapper: {
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
         marginBottom: height / 8,
     },
     iotaLogo: {
-        height: width / 7,
-        width: width / 7,
+        height: width / 5,
+        width: width / 5,
     },
 });
 

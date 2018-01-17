@@ -75,7 +75,10 @@ const styles = StyleSheet.create({
 const MainSettings = props => (
     <View style={styles.container}>
         <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.onModePress()}>
+            <TouchableOpacity
+                onPress={() => props.onModePress()}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
                         <Image source={props.modeImagePath} style={styles.icon} />
@@ -88,7 +91,10 @@ const MainSettings = props => (
             </TouchableOpacity>
         </View>
         <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.onThemePress()}>
+            <TouchableOpacity
+                onPress={() => props.onThemePress()}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
                         <Image source={props.themeImagePath} style={styles.icon} />
@@ -101,7 +107,10 @@ const MainSettings = props => (
             </TouchableOpacity>
         </View>
         <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.setSetting('currencySelection')}>
+            <TouchableOpacity
+                onPress={() => props.setSetting('currencySelection')}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
                         <Image source={props.currencyImagePath} style={styles.icon} />
@@ -114,7 +123,10 @@ const MainSettings = props => (
             </TouchableOpacity>
         </View>
         <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.onLanguagePress()}>
+            <TouchableOpacity
+                onPress={() => props.onLanguagePress()}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.item}>
                     <View style={styles.innerItemContainerLeft}>
                         <Image source={props.languageImagePath} style={styles.icon} />
@@ -132,7 +144,10 @@ const MainSettings = props => (
             <View style={[styles.separator, props.borderBottomColor]} />
         </View>
         <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.setSetting('accountManagement')}>
+            <TouchableOpacity
+                onPress={() => props.setSetting('accountManagement')}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.item}>
                     <Image source={props.accountImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('accountManagement')}</Text>
@@ -140,7 +155,10 @@ const MainSettings = props => (
             </TouchableOpacity>
         </View>
         <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.on2FASetupPress()}>
+            <TouchableOpacity
+                onPress={() => props.on2FASetupPress()}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.item}>
                     <Image source={props.twoFactorAuthImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('twoFA')}</Text>
@@ -148,7 +166,10 @@ const MainSettings = props => (
             </TouchableOpacity>
         </View>
         <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.setSetting('changePassword')}>
+            <TouchableOpacity
+                onPress={() => props.setSetting('changePassword')}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.item}>
                     <Image source={props.passwordImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('changePassword')}</Text>
@@ -159,7 +180,10 @@ const MainSettings = props => (
             <View style={[styles.separator, props.borderBottomColor]} />
         </View>
         <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.setSetting('advancedSettings')}>
+            <TouchableOpacity
+                onPress={() => props.setSetting('advancedSettings')}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.item}>
                     <Image source={props.advancedImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('advanced')}</Text>
@@ -167,7 +191,10 @@ const MainSettings = props => (
             </TouchableOpacity>
         </View>
         <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={() => props.setModalContent('logoutConfirmation')}>
+            <TouchableOpacity
+                onPress={() => props.setModalContent('logoutConfirmation')}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
                 <View style={styles.item}>
                     <Image source={props.logoutImagePath} style={styles.icon} />
                     <Text style={[styles.titleText, props.textColor]}>{props.t('logout')}</Text>

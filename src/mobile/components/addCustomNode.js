@@ -148,14 +148,20 @@ class AddCustomNode extends Component {
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={() => backPress()}>
+                        <TouchableOpacity
+                            onPress={() => backPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.itemLeft}>
                                 <Image source={arrowLeftImagePath} style={styles.iconLeft} />
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
                         {this.state.customNode.startsWith('http') && (
-                            <TouchableOpacity onPress={() => this.addNode()}>
+                            <TouchableOpacity
+                                onPress={() => this.addNode()}
+                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                            >
                                 <View style={styles.itemRight}>
                                     <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
                                     <Image source={addImagePath} style={styles.iconRight} />

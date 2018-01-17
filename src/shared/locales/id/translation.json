@@ -3,32 +3,32 @@
         "send": "KIRIM",
         "cancel": "BATAL",
         "continue?": "Anda yakin ingin melanjutkan?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "TIDAK ADA RIWAYAT TERKINI",
         "qr": "QR",
-        "balanceError": "Not enough balance",
+        "balanceError": "Saldo tidak mencukupi",
         "balanceErrorMessage": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
-        "transferError": "Transfer error",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
-        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "transferError": "Kesalahan pengiriman",
+        "transferErrorMessage": "Terjadi kesalahan saat pengiriman. Silakan coba lagi.",
+        "transferSent": "Sudah terkirim",
+        "transferSentMessage": "Transfer anda telah dikirim ke Tangle.",
         "keyReuse": "Kunci kembali digunakan",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "Anda tidak dapat mengirim ke alamat yang telah melakukan pengeluaran.",
         "invalidResponse": "Respon tidak sah",
         "invalidResponseExplanation": "Node mengembalikan response yang tidak valid.",
         "invalidResponsePollingExplanation": "Node mengembalikan response yang tidak valid ketika memungut suara.",
         "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+            "Node memberikan tanggapan yang tidak benar ketika menarik informasi dari akun anda.",
+        "invalidResponseSendingTransfer": "Node memberikan tanggapan yang tidak benar ketika melakukan pengiriman.",
         "seed": "Benih",
         "back": "KEMBALI",
         "backLowercase": "Kembali",
         "done": "SELESAI",
-        "doneLowercase": "Done",
+        "doneLowercase": "Selesai",
         "next": "BERIKUTNYA",
         "apply": "Apply",
-        "save": "Save",
+        "save": "Simpan",
         "close": "TUTUP",
-        "continue": "Continue",
+        "continue": "Lanjutkan",
         "manualCopy": "Tulis Seed Anda",
         "paperWallet": "Cetak ke printer",
         "copyToClipboard": "Tambahkan ke manajer kata sandi",
@@ -54,8 +54,8 @@
         "node": "Node",
         "cannotPerformAction": "Tidak dapat melakukan aksi ini",
         "cannotPerformActionExplanation": "Klik aturan lanjut untuk menghapus dompet.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "attachToTangleUnavailable": "Tambatkan ke Tangle tidak tersedia",
+        "attachToTangleUnavailableExplanation": "Menambatkan pada Tangle tidak tersedia pada node pilihan anda."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -177,7 +177,7 @@
         "invalidAddressExplanation1": "Alamat harus {{maxLength}} karakter dan memiliki cek jumlah.",
         "invalidAddressExplanation2": "Seed berisi karakter yang tidak valid.",
         "invalidAddressExplanation3": "Alamat memiliki cek jumlah yang salah.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Dana tidak mencukupi",
         "notEnoughFundsExplanation": "Anda tidak memiliki IOTA yang mencukupi untuk menyelesaikan transfer ini.",
         "keyReuse": "Kunci kembali digunakan",
         "keyReuseExplanation": "Alamat yang anda tuju telah digunakan. Silahkan coba alamat yang lain.",
@@ -217,7 +217,7 @@
         "theme": "Tema",
         "currency": "Mata Uang",
         "language": "Bahasa",
-        "accountManagement": "Account management",
+        "accountManagement": "Pengelolaan akun",
         "addNewSeed": "Tambahkan Seed baru",
         "twoFA": "Autentikasi dua faktor",
         "changePassword": "Ubah Kata Sandi",
@@ -245,7 +245,7 @@
         "areYouSure": "Anda yakin ingin melanjutkan?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda.",
         "cancel": "BATAL",
         "reset": "HAPUS"
     },
@@ -279,22 +279,22 @@
         "addressCopiedExplanation": "Alamat telah disalin ke papan klip."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Lihat seed",
+        "viewAddresses": "Lihat alamat",
+        "editAccountName": "Ubah nama akun",
+        "deleteAccount": "Hapus akun",
+        "addNewAccount": "Tambahkan akun baru"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Node kustom",
+        "add": "Tambahkan"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Gunakan seed yang ada saat ini",
+        "createNewSeed": "Buat seed baru"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
+        "selectNode": "Pilih node",
         "addCustomNode": "Add custom node",
         "manualSync": "Manual sync"
     },

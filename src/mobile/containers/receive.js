@@ -329,7 +329,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
-        paddingLeft: 6,
         color: 'white',
     },
     separator: {

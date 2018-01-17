@@ -158,7 +158,10 @@ class ViewSeed extends Component {
                         )}
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={event => this.props.backPress()}>
+                        <TouchableOpacity
+                            onPress={event => this.props.backPress()}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
                             <View style={styles.item}>
                                 <Image source={arrowLeftImagePath} style={styles.icon} />
                                 <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
