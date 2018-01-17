@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         width: width / 1.15,
-        maxHeight: height,
+        maxHeight: height / 1.1,
         padding: width / 25,
         justifyContent: 'center',
         borderRadius: GENERAL.borderRadius,
