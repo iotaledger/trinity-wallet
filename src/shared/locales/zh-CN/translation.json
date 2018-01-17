@@ -81,28 +81,28 @@
         "passwordsDoNotMatchExplanation": "密码不匹配。请重试。",
         "passwordTooShort": "密码太短",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
-        "oldPassword": "Cannot set old password",
-        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPassword": "无法使用旧密码",
+        "oldPasswordExplanation": "无法将旧密码设置为新密码。请尝试输入新密码。",
         "ensureStrongPassword": "请您确保使用至少 12 个字符的强密码。",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "currentPassword": "当前密码",
+        "newPassword": "新密码",
+        "confirmPassword": "确认新密码"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "seedCleared": "种子已清除",
+        "seedClearedExplanation": "为了安全，种子码已从剪贴板中清除。",
+        "seedCopied": "将种子复制到剪贴板",
+        "seedCopiedExplanation": "只要按下\"完成\"或60秒后种子将被清除",
+        "clickToCopy": "点击下面的按钮将种子复制到密码管理器",
+        "doNotStore": "不要将您的种子保存在纯文本文件中。",
+        "copyToClipboard": "复制到剪贴板"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharacters": "种子包含无效字符",
+        "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
-        "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
+        "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
@@ -110,32 +110,32 @@
         "send": "发送",
         "receive": "接收",
         "history": "历史",
-        "settings": "SETTINGS"
+        "settings": "设置"
     },
     "languageSetup": {
         "language": "语言"
     },
     "login": {
-        "emptyPassword": "Empty password",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
+        "emptyPassword": "密码为空",
+        "emptyPasswordExplanation": "您必须输入密码才能登录。请重试。",
         "enterPassword": "请输入您的密码.",
         "useSeed": "使用种子",
-        "login": "LOG IN",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "login": "登录",
+        "selectDifferentNode": "是否要选择其他节点？"
     },
     "loading": {
-        "loadingFirstTime": "Loading seed for the first time.",
-        "thisMayTake": "This may take a while.",
-        "youMayNotice": "You may notice your device slowing down."
+        "loadingFirstTime": "首次读取种子",
+        "thisMayTake": "可能需要一段时间",
+        "youMayNotice": "您的设备可能会变慢。"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please click the Generate New Seed button.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGenerated": "尚未生成种子",
+        "seedNotGeneratedExplanation": "请点击生成种子按钮",
+        "pressForNewSeed": "点击生成新种子",
         "individualLetters": "通过点击各个字母来随机生成。"
     },
     "onboardingComplete": {
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "钱包现在已设置好并可以使用。如果您需要在将来进行任何更改，请在设置菜单中查找。"
     },
     "paperWallet": {
         "clickToPrint": "请单击下面的按钮以将您的种子打印到纸上。",
@@ -145,15 +145,15 @@
         "printWallet": "打印出纸版钱包"
     },
     "receive": {
-        "addressCopied": "Address copied",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
+        "addressCopied": "已复制地址",
+        "addressCopiedExplanation": "您的地址已复制到剪贴板。",
         "generateNewAddress": "生成新的地址",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "可选消息",
+        "removeMessage": "移除消息"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "种子已清除",
+        "seedClearedExplanation": "为了安全，种子码已从剪贴板中清除。",
         "mustSaveYourSeed": "You must save your seed with ",
         "atLeastOne": "至少一个 ",
         "ofTheOptions": "of the options listed below."
