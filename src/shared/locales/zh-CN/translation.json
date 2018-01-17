@@ -161,7 +161,7 @@
     "seedReentry": {
         "incorrectSeed": "错误的种子",
         "incorrectSeedExplanation": "你输入的种子不正确。请再试一次",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
+        "thisIsACheck": "请确保您已经保存了种子",
         "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
     },
     "send": {
