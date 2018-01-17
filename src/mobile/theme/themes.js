@@ -14,6 +14,7 @@ const themes = {
         ctaBorderColor: 'transparent',
         pendingColor: '#f75602',
         chartLineColor: '#FFA25B',
+        textInputColor: '#2A4A52',
     },
     Grey: {
         backgroundColor: tinycolor(`#313131`).toHsl(),
