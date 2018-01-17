@@ -8,7 +8,8 @@ import Seedbox from '../components/seedBox.js';
 import { width, height } from '../util/dimensions';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
 
 class WriteSeedDown extends Component {
@@ -25,12 +26,13 @@ class WriteSeedDown extends Component {
         const borderColor = { borderColor: secondaryBackgroundColor };
         const positiveColorText = { color: THEMES.getHSL(positiveColor) };
         const positiveColorBorder = { borderColor: THEMES.getHSL(positiveColor) };
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
 
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Image source={iotaImagePath} style={styles.iotaLogo} />
                 </View>
                 <View style={styles.midContainer}>
                     <Text style={[styles.infoText, textColor]}>
