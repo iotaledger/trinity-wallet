@@ -31,6 +31,7 @@ class History extends Component {
         getAccountInfo: PropTypes.func.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
+        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -53,13 +54,17 @@ class History extends Component {
         const isAlreadyFetchingAccountInfo = props.isFetchingAccountInfo;
 
         if (isAlreadyFetchingAccountInfo) {
-            props.generateAlert(
-                'error',
-                'Already fetching transaction history',
-                'Your transaction history will be updated automatically.',
-            );
+            this.generateAlreadyFetchingAccountInfoAlert();
         }
         return isAlreadyDoingSomeHeavyLifting || isAlreadyFetchingAccountInfo;
+    }
+
+    generateAlreadyFetchingAccountInfoAlert() {
+        this.props.generateAlert(
+            'error',
+            'Already fetching transaction history',
+            'Your transaction history will be updated automatically.',
+        );
     }
 
     _onRefresh() {
