@@ -186,6 +186,10 @@ export default (state = initialState, action) => {
                 isSyncing: true,
             };
         case AccountActionTypes.MANUAL_SYNC_SUCCESS:
+            return {
+                ...state,
+                isSyncing: false,
+            };
         case ActionTypes.MANUAL_SYNC_ERROR:
             return {
                 ...state,

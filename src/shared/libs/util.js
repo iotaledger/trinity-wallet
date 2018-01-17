@@ -3,9 +3,9 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import isString from 'lodash/isString';
 import keys from 'lodash/keys';
-import concat from 'lodash/concat';
+import merge from 'lodash/merge';
 import filter from 'lodash/filter';
-import transform from 'lodash/transform';
+import cloneDeep from 'lodash/cloneDeep';
 
 export const MAX_SEED_LENGTH = 81;
 
@@ -165,4 +165,19 @@ export const rearrangeObjectKeys = (obj, prop) => {
     };
 
     return reduce(withPropAsLastEl, order, {});
+};
+
+export const updatePersistedState = (incomingState, restoredState) => {
+    const { app: { versions }, settings: { availablePoWNodes } } = incomingState;
+    const restoredCopy = cloneDeep(restoredState);
+
+    if ('app' in restoredCopy) {
+        restoredCopy.app.versions = versions;
+    }
+
+    if ('settings' in restoredCopy) {
+        restoredCopy.settings.availablePoWNodes = availablePoWNodes;
+    }
+
+    return merge({}, incomingState, restoredCopy);
 };

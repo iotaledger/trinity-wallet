@@ -1,26 +1,18 @@
 import { ActionTypes } from '../actions/settings.js';
-import { defaultNode as fullNode } from '../config';
+import { defaultNode as fullNode, nodes as availablePoWNodes } from '../config';
 
 const initialState = {
     locale: 'en',
     fullNode,
-    availablePoWNodes: [
-        'https://iri2-api.iota.fm:443',
-        'https://iri3-api.iota.fm:443',
-        'https://ceres.iota.community:14600/',
-        'https://node.tangle.works:443',
-        'https://iotanode.us:443',
-        'http://astra2261.startdedicated.net:14265',
-        'http://iota.nck.nz:14265',
-        'http://www.veriti.io',
-    ],
+    availablePoWNodes,
     availableNodes: [
-        'https://iri2-api.iota.fm:443',
-        'https://ceres.iota.community:14600/',
+        'http://iri2.iota.fm:80',
+        'https://ceres.iota.community:14600',
         'https://nodes.iota.cafe:443',
         'https://node.tangle.works:443',
-        'http://148.251.181.105:14265/',
-        'https://n1.iota.nu:443',
+        'http://148.251.181.105:14265',
+        'http://iri3.iota.fm:80',
+        'http://nelson1.iota.fm:80',
         'https://iotanode.us:443',
         'http://node.lukaseder.de:14265',
         'http://eugene.iotasupport.com:14999',
@@ -122,6 +114,7 @@ const initialState = {
         pendingColor: '#f75602',
         chartLineColor: '#FFA25B',
     },
+    hasRandomizedNode: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -184,6 +177,12 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 theme: action.theme,
                 themeName: action.themeName,
+            };
+        case ActionTypes.SET_RANDOMLY_SELECTED_NODE:
+            return {
+                ...state,
+                fullNode: action.payload,
+                hasRandomizedNode: true,
             };
     }
 
