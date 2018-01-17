@@ -28,7 +28,7 @@
         "save": "Speichern",
         "close": "SCHLIEẞEN",
         "continue": "Fortfahren",
-        "manualCopy": "Schreibe deinen Seed auf",
+        "manualCopy": "Seed aufschreiben",
         "paperWallet": "Ausdrucken",
         "copyToClipboard": "Zum Passwort-Manager hinzufügen",
         "notAvailable": "Diese Funktion ist nicht verfügbar",
@@ -120,7 +120,7 @@
     },
     "login": {
         "emptyPassword": "Leeres Passwort",
-        "emptyPasswordExplanation": "Du musst ein Passwort eingeben um dich anzumelden. Bitte versuche es verneut.",
+        "emptyPasswordExplanation": "Du musst ein Passwort eingeben um dich anzumelden. Bitte versuche es erneut.",
         "enterPassword": "Bitte gib dein Passwort ein.",
         "useSeed": "SEED BENUTZEN",
         "login": "ANMELDEN",
@@ -135,14 +135,14 @@
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
         "seedNotGeneratedExplanation": "Bitte klicke die Schaltfläche \"Neuen Seed erzeugen\".",
         "pressForNewSeed": "DRÜCKE FÜR NEUEN SEED",
-        "individualLetters": "Drücke beliebige Buchstaben, um sie zufällig neu zu setzen."
+        "individualLetters": "Drücke beliebige Buchstaben um sie zufällig neu zu setzen."
     },
     "onboardingComplete": {
         "walletReady": "Das Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen willst, benutze das Einstellungsmenü."
     },
     "paperWallet": {
         "clickToPrint": "Klicke die Schaltfläche unten, um deinen Seed als Paper-Wallet auszudrucken.",
-        "storeSafely": "Sicher aufbewahren.",
+        "storeSafely": "Bewahre ihn sicher auf.",
         "neverShare": "Teile niemals deinen Seed.",
         "iotaLogo": "IOTA Logo",
         "printWallet": "PAPER-WALLET DRUCKEN"
@@ -155,7 +155,7 @@
         "removeMessage": "NACHRICHT LÖSCHEN"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed aus Zwischenablage gelöscht",
+        "seedCleared": "Seed gelöscht",
         "seedClearedExplanation": "Der Seed wurde aus Sicherheitsgründen aus der Zwischenablage gelöscht.",
         "mustSaveYourSeed": "Du musst deinen Seed mit ",
         "atLeastOne": "mindestens einer ",
@@ -182,7 +182,7 @@
         "message": "Nachricht",
         "send": "SENDEN",
         "invalidAmount": "Falschen Betrag eingegeben",
-        "invalidAmountExplanation": "Bitte gib einen numerischen Wert als Buchungsbetrag ein.",
+        "invalidAmountExplanation": "Bitte gib einen numerischen Wert als Betrag ein.",
         "maximumSelected": "MAXIMALER Betrag ausgewählt",
         "iotaUnits": "IOTA Einheiten"
     },
@@ -192,14 +192,13 @@
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
         "nowWeNeedTo": "Jetzt müssen wir ein Passwort einrichten.",
-        "anEncryptedCopy":
-            "Eine verschlüsselte Kopie deines Seeds wird auf deinem Gerät gespeichert. Du wirst dieses Passwort verwenden um in Zukunft auf dein Wallet zuzugreifen.",
-        "ensure": "Verwende ein starkes Passwort mit mindestens 12 Zeichen.",
+        "anEncryptedCopy": "Eine verschlüsselte Kopie deines Seeds wird auf deinem Gerät gespeichert. Du wirst dieses Passwort verwenden um in Zukunft auf dein Wallet zuzugreifen.",
+        "ensure": "Verwende ein sicheres Passwort mit mindestens 12 Zeichen.",
         "retypePassword": "Passwort erneut eingeben"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "Du kannst mehrere Seeds in diesem Wallet verwenden. Jeder Seed benötigt einen Kontonamen.",
-        "youCanAdd": "Du kannst weitere Seeds in den Einstellungen hinzufügen."
+        "youCanAdd": "Du kannst in den Einstellungen weitere Seeds hinzufügen."
     },
     "settings": {
         "transferSending": "Sende Überweisung",
@@ -221,10 +220,10 @@
         "syncingCompleteExplanation": "Dein Konto wurde erfolgreich synchronisiert.",
         "nicknameChanged": "Konto-Name geändert",
         "nicknameChangedExplanation": "Der Name des Kontos wurde geändert.",
-        "accountDeleted": "Account gelöscht",
+        "accountDeleted": "Konto gelöscht",
         "accountDeletedExplanation": "Dein Konto wurde aus dem Wallet gelöscht.",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
-        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen, um das Wallet zurückzusetzen.",
+        "cannotPerformActionExplanation": "Gehe auf erweiterte Einstellungen um das Wallet zurückzusetzen.",
         "poorConnection": "Schlechte Verbindung",
         "poorConnectionExplanation": "Fehler beim Ändern der Währung wegen schlechter Verbindung."
     },
@@ -238,14 +237,14 @@
         "areYouSure": "Bist du sicher, dass du fortfahren möchtest?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
+        "enterPassword": "Gib dein Passwort ein um das Wallet zurückzusetzen.",
         "cancel": "ABBRECHEN",
         "reset": "ZURÜCKSETZEN"
     },
     "walletSetup": {
-        "okay": "Okay. Lass uns dein Wallet einrichten!",
+        "okay": "Okay. Lass uns dein Konto einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
-        "seedExplanation": "Der IOTA Seed ist eine Art Nutzername und Passwort zu deinem Konto und besteht aus 81 Zeichen.",
+        "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
         "explanation1": "Du kannst ihn verwenden um auf dein Guthaben zuzugreifen von",
         "explanation2": " jedem Wallet ",
         "explanation3": "auf",
@@ -264,8 +263,8 @@
         "thatTheyAreCorrect": "ob diese korrekt sind."
     },
     "history": {
-        "bundleHashCopied": "Bündel-Hash kopiert",
-        "bundleHashCopiedExplanation": "Dein Bündel-Hash wurde in die Zwischenablage kopiert.",
+        "bundleHashCopied": "Bundle-Hash kopiert",
+        "bundleHashCopiedExplanation": "Dein Bundel-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert."
     },
@@ -277,7 +276,7 @@
         "addNewAccount": "Neues Konto hinzufügen"
     },
     "addCustomNode": {
-        "customNode": "Benutzerdefinierte Node",
+        "customNode": "Benutzerdefinierter Node",
         "add": "Hinzufügen"
     },
     "addNewAccount": {
@@ -286,7 +285,7 @@
     },
     "advancedSettings": {
         "selectNode": "Node auswählen",
-        "addCustomNode": "Benutzerdefinierte Node hinzufügen",
+        "addCustomNode": "Benutzerdefinierter Node hinzufügen",
         "manualSync": "Manuell synchronisieren"
     },
     "advancedThemeCustomisation": {
