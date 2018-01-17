@@ -260,8 +260,8 @@
         "thatTheyAreCorrect": "以确保它们是正确的。"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "绑定哈希值已复制",
+        "bundleHashCopiedExplanation": "绑定哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "地址已复制到剪贴板。"
     },
@@ -270,23 +270,23 @@
         "viewAddresses": "查看地址",
         "editAccountName": "编辑帐户",
         "deleteAccount": "删除帐户",
-        "addNewAccount": "Add new account"
+        "addNewAccount": "添加新帐户"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "自定义节点",
+        "add": "新增"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "使用现有种子",
+        "createNewSeed": "创建新种子"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "选择节点",
+        "addCustomNode": "添加自定义节点",
+        "manualSync": "手动同步"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
+        "background": "背景",
         "frame": "框架"
     },
     "currencySelection": {
