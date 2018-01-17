@@ -6,6 +6,7 @@ import { getSecurelyPersistedSeeds } from 'libs/storage';
 import { setFirstUse } from 'actions/account';
 import { showError } from 'actions/notifications';
 import { loadSeeds } from 'actions/seeds';
+import { sendAmount } from 'actions/deepLinks.js';
 import { runTask } from 'worker';
 import Template, { Content, Footer } from 'components/Onboarding/Template';
 import PasswordInput from 'components/UI/input/Password';
@@ -35,12 +36,16 @@ class Login extends React.Component {
     };
 
     componentDidMount() {
-        let regex = /send/;
+        let regex = /\/([0-9]+)(?=[^\/send]*$)/;
         ipcRenderer.on('url-params', (e, data) => {
             let result = data.match(regex);
-            console.log(result);
+            console.log('result: '+ result);
             if (result !== null) {
-                console.log(true);
+                this.setState({
+                    amount: result[1]
+                });
+                console.log(this.state.amount);
+                this.props.sendAmountDeepLink(this.state.amount);
             } else {
                 console.log(false);
             }
@@ -53,7 +58,11 @@ class Login extends React.Component {
             this.setState({
                 loading: false,
             });
-            this.props.history.push('/balance');
+            if(!this.state['amount']) {
+                this.props.history.push('/balance');
+            } else {
+                this.props.history.push('/send');
+            }
         }
     }
 
@@ -138,10 +147,15 @@ const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
 });
 
-const mapDispatchToProps = {
-    showError,
-    loadSeeds,
-    setFirstUse,
+const mapDispatchToProps = dispatch => {
+        return {
+            showError,
+            loadSeeds,
+            setFirstUse,
+            sendAmountDeepLink: amount => {
+            dispatch(sendAmount(amount));
+        }
+    }
 };
 
 export default translate('login')(connect(mapStateToProps, mapDispatchToProps)(Login));
