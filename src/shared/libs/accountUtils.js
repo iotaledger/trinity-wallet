@@ -16,7 +16,11 @@ import { getAllAddresses } from './addresses';
 
 export const formatFullAddressData = data => {
     const addresses = data.addresses;
-    const addressData = Object.assign({}, ...addresses.map(n => ({ [n]: { balance: 0, spent: false } })));
+    const addressData = Object.assign(
+        {},
+        ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } })),
+    );
+
     for (let i = 0; i < data.inputs.length; i++) {
         addressData[data.inputs[i].address].balance = data.inputs[i].balance;
     }

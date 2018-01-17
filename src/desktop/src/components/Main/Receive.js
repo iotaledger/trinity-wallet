@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
-import { generateNewAddress } from 'worker';
+import { runTask } from 'worker';
 
 import { generateNewAddressRequest, generateNewAddressError, generateNewAddressSuccess } from 'actions/tempAccount';
 import Template, { Content } from 'components/Main/Template';
@@ -32,11 +32,7 @@ class Receive extends React.PureComponent {
         const seedName = seedInfo.name;
         const accountInfo = account.accountInfo[seedName];
 
-        generateNewAddress({
-            seed: seedInfo.seed,
-            addresses: accountInfo.addresses,
-            seedName,
-        });
+        runTask('generateNewAddress', [seedInfo.seed, seedName, accountInfo.addresses]);
     };
 
     render() {
@@ -72,7 +68,7 @@ class Receive extends React.PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     tempAccount: state.tempAccount,
     account: state.account,
     seeds: state.seeds,
