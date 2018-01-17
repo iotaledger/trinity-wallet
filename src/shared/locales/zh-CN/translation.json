@@ -154,7 +154,7 @@
     "saveYourSeed": {
         "seedCleared": "种子已清除",
         "seedClearedExplanation": "为了安全，种子码已从剪贴板中清除。",
-        "mustSaveYourSeed": "You must save your seed with ",
+        "mustSaveYourSeed": "您必须将您的种子保存 ",
         "atLeastOne": "至少一个 ",
         "ofTheOptions": "of the options listed below."
     },
