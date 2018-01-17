@@ -234,6 +234,7 @@ export const fetchFullAccountInfoForFirstUse = (
                 iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
                     if (err) {
                         onError();
+                        console.log(err);
                     } else {
                         storeInKeychainPromise(password, seed, accountName)
                             .then(() => {
@@ -242,6 +243,7 @@ export const fetchFullAccountInfoForFirstUse = (
                             })
                             .catch(() => {
                                 onError();
+                                console.log(err);
                             });
                     }
                 });
@@ -277,6 +279,7 @@ export const getFullAccountInfo = (seed, accountName, navigator = null) => {
                     iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
                         if (err) {
                             onError();
+                            console.log(err);
                         }
                         const payloadWithHashes = assign({}, data, { hashes });
                         dispatch(fullAccountInfoFetchSuccess(payloadWithHashes));
@@ -304,6 +307,7 @@ export const manuallySyncAccount = (seed, accountName) => {
                     iota.api.findTransactions({ addresses: unspentAddresses }, (err, hashes) => {
                         if (err) {
                             onError();
+                            console.log(err);
                         } else {
                             dispatch(generateSyncingCompleteAlert());
                             const payloadWithHashes = assign({}, data, { hashes });
@@ -430,6 +434,7 @@ export const getAccountInfo = (seed, accountName, navigator = null) => {
 
                     dispatch(accountInfoFetchError());
                     dispatch(generateAccountInfoErrorAlert());
+                    console.log(err);
                 }
             });
     };
