@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1</string>
+	<string>__RN_CONFIG_IOS_VERSION</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>12.3</string>
+	<string>__RN_CONFIG_IOS_BUILD_NUMBER</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
