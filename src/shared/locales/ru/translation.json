@@ -3,107 +3,116 @@
         "send": "ОТПРАВИТЬ",
         "cancel": "ОТМЕНА",
         "continue?": "Вы уверены, что хотите продолжить?",
-        "noTransactions": "NO RECENT HISTORY",
+        "noTransactions": "НЕДАВНЯЯ ИСТОРИЯ ОТСУТСТВУЕТ",
         "qr": "QR-код",
-        "balanceError": "Not enough balance",
+        "balanceError": "Недостаточно средств",
         "balanceErrorMessage": "У вас недостаточно IOTA для данной операции.",
-        "transferError": "Transfer error",
-        "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
-        "transferSent": "Transfer sent",
-        "transferSentMessage": "Your transfer has been sent to the Tangle.",
+        "transferError": "Ошибка перевода",
+        "transferErrorMessage": "Что-то пошло не так при отправке вашего перевода. Пожалуйста, повторите попытку.",
+        "transferSent": "Перевод отправлен",
+        "transferSentMessage": "Ваш перевод отправлен в Tangle.",
         "keyReuse": "Повторное использование адреса для отправки",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuseError": "Вы не можете сделать перевод на адрес, с которого уже был осуществлён вывод.",
         "invalidResponse": "Неправильный отклик",
         "invalidResponseExplanation": "Узел вернул недопустимый отклик.",
         "invalidResponsePollingExplanation": "Узел вернул недопустимый отклик во время опроса.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
-        "seed": "Ключ",
+        "invalidResponseFetchingAccount": "Нод выдаёт неверный ответ при запросе данных вашего счёта.",
+        "invalidResponseSendingTransfer": "Нод выдал ошибку при отправке перевода.",
+        "seed": "Ключ (seed)",
         "back": "НАЗАД",
         "backLowercase": "Назад",
         "done": "ГОТОВО",
-        "doneLowercase": "Done",
+        "doneLowercase": "Готово",
         "next": "ДАЛЕЕ",
-        "apply": "Apply",
+        "apply": "Применить",
         "save": "Сохранить",
         "close": "ЗАКРЫТЬ",
         "continue": "Продолжить",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "copyToClipboard": "Add to password manager",
+        "manualCopy": "Запишите ключ (seed)",
+        "paperWallet": "Распечатать бумажную версию",
+        "copyToClipboard": "Добавить в менеджер паролей",
         "notAvailable": "Эта функция не доступна",
-        "notAvailableExplanation": "Это будет добавлено на более поздней стадии.",
+        "notAvailableExplanation": "Данная функция будет добавлена на более поздней стадии.",
         "enterSeed": "Пожалуйста, введите ваш ключ.",
-        "mainWallet": "ОСНОВНОЙ СЧЕТ",
-        "secondWallet": "ВТОРОЙ СЧЕТ",
-        "thirdWallet": "ТРЕТИЙ СЧЕТ",
-        "fourthWallet": "ЧЕТВЕРТЫЙ СЧЕТ",
-        "fifthWallet": "ПЯТЫЙ СЧЕТ",
-        "sixthWallet": "ШЕСТОЙ СЧЕТ",
-        "otherWallet": "ДРУГОЙ СЧЕТ",
+        "mainWallet": "ОСНОВНОЙ СЧЁТ",
+        "secondWallet": "ВТОРОЙ СЧЁТ",
+        "thirdWallet": "ТРЕТИЙ СЧЁТ",
+        "fourthWallet": "ЧЕТВЕРТЫЙ СЧЁТ",
+        "fifthWallet": "ПЯТЫЙ СЧЁТ",
+        "sixthWallet": "ШЕСТОЙ СЧЁТ",
+        "otherWallet": "ДРУГОЙ СЧЁТ",
         "yes": "ДА",
         "no": "НЕТ",
         "password": "Пароль",
-        "unrecognisedPassword": "Пароль не распознан",
-        "unrecognisedPasswordExplanation": "Некорректный пароль. Повторите попытку.",
-        "syncInProgress": "Syncing in progress",
-        "syncInProgressExplanation": "Please wait until syncing is complete.",
+        "unrecognisedPassword": "Нераспознанный пароль",
+        "unrecognisedPasswordExplanation": "Нераспознанный пароль. Пожайлуста, повторите попытку.",
+        "syncInProgress": "Идёт синхронизация",
+        "syncInProgressExplanation": "Пожалуйста, подождите, пока синхронизация будет завершена.",
         "somethingWentWrong": "Произошла ошибка",
         "somethingWentWrongExplanation": "Пожалуйста, перезапустите приложение.",
-        "node": "Узел",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node."
+        "node": "Нод",
+        "cannotPerformAction": "Не удается выполнить действие",
+        "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса настроек кошелька.",
+        "attachToTangleUnavailable": "Привязка к Tangle недоступна",
+        "attachToTangleUnavailableExplanation": "Привязка к Tangle недоступна на выбранном узле."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
-        "seedInvalidCharsExplanation": "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
+        "seedInvalidCharsExplanation":
+            "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
         "seedTooShort": "Ключ слишком короткий",
-        "seedTooShortExplanation": "Ключ должен быть длиной {{maxLength}} символ. Ваш текущий ключ имеет длину {{currentLength}}. Пожалуйста, попробуйте снова.",
+        "seedTooShortExplanation":
+            "Ключ должен быть длиной {{maxLength}} символ. Ваш текущий ключ имеет длину {{currentLength}}. Пожалуйста, попробуйте снова.",
         "nameInUse": "Данный ник уже занят",
         "nameInUseExplanation": "Пожалуйста, используйте уникальный ник для вашего ключа.",
-        "enterAccountName": "Введите свой ник.",
-        "accountName": "Ваш ник",
+        "enterAccountName": "Введите название счёта.",
+        "accountName": "Название счёта",
         "noNickname": "Вы не ввели ник от аккаунта",
         "noNicknameExplanation": "Пожалуйста, введите ник для вашего ключа.",
-        "seedInUse": "Seed already in use",
-        "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
+        "seedInUse": "Ключ (seed) уже используется",
+        "seedInUseExplanation": "Данный ключ уже привязан к вашему кошельку. Пожайлуста, используйте другой."
     },
     "changePassword": {
         "oops": "Упс! Произошла какая-то ошибка",
-        "oopsExplanation": "Похоже, что-то пошло не так во время обновления вашего пароля. Пожалуйста, попробуйте снова.",
+        "oopsExplanation":
+            "Похоже, что-то пошло не так во время обновления вашего пароля. Пожалуйста, попробуйте снова.",
         "passwordUpdated": "Пароль обновлён",
         "passwordUpdatedExplanation": "Ваш пароль был успешно обновлен.",
-        "incorrectPassword": "Неправильный пароль",
+        "incorrectPassword": "Неверный пароль",
         "incorrectPasswordExplanation": "Неверный пароль. Пожалуйста, попробуйте снова.",
         "passwordsDoNotMatch": "Пароли не совпадают",
         "passwordsDoNotMatchExplanation": "Пароли не совпадают. Пожалуйста, попробуйте еще раз.",
         "passwordTooShort": "Слишком короткий пароль",
-        "passwordTooShortExplanation": "Ваш пароль должен быть длиной по крайней мере 8 символов. Пожалуйста, попробуйте еще раз.",
+        "passwordTooShortExplanation":
+            "Ваш пароль должен быть длиной по крайней мере 8 символов. Пожалуйста, попробуйте еще раз.",
         "oldPassword": "Не удается установить старый пароль",
-        "oldPasswordExplanation": "Вы не можете использовать ваш старый пароль в качестве нового. Пожалуйста, попробуйте еще раз с новым паролем.",
+        "oldPasswordExplanation":
+            "Вы не можете использовать ваш старый пароль в качестве нового. Пожалуйста, попробуйте еще раз с новым паролем.",
         "ensureStrongPassword": "Убедитесь, что вы используете надежный пароль из по крайней мере 12 символов.",
         "currentPassword": "Текущий пароль",
         "newPassword": "Новый пароль",
         "confirmPassword": "Подтвердите новый пароль"
     },
     "copyToClipboard": {
-        "seedCleared": "Ключ очищен",
-        "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
-        "seedCopied": "Copied seed to clipboard",
-        "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
+        "seedCleared": "Ключ (seed) очищен",
+        "seedClearedExplanation": "Ключ (seed) был удален из буфера обмена для вашей безопасности.",
+        "seedCopied": "Ключ скопирован в буфер обмена",
+        "seedCopiedExplanation":
+            "Поле с ключём будет очищено после нажатия кнопки «Готово» или по истечению 60 секунд.",
         "clickToCopy": "Нажмите на кнопку ниже и скопируйте свой ключ в менеджер паролей.",
-        "doNotStore": "Do not store your seed in plain text.",
-        "copyToClipboard": "Copy to clipboard"
+        "doNotStore": "Не храните ваш ключ в виде обычного текстового файла.",
+        "copyToClipboard": "Скопировать в буфер обмена"
     },
     "enterSeed": {
-        "invalidCharacters": "Ключ содержит недопустимые символы",
-        "invalidCharactersExplanation": "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
+        "invalidCharacters": "Ключ (seed) содержит недопустимые символы",
+        "invalidCharactersExplanation":
+            "Ключ (seed) может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте снова.",
         "seedTooShort": "Ключ слишком короткий",
-        "seedTooShortExplanation": "Ключ должен быть длиной {{maxLength}} символ. Ваш текущий ключ имеет длину {{currentLength}}. Пожалуйста, попробуйте снова.",
-        "seedExplanation": "Ключ должен быть длиной {{maxLength}} символ и содержать только заглавные буквы A-Z и цифру 9. Более длинные ключи, чем {{maxLength}}, не допускаются.",
-        "neverShare": "Никому никогда не сообщайте ваш ключ"
+        "seedTooShortExplanation":
+            "Ключ должен быть длиной {{maxLength}} символ. Ваш текущий ключ имеет длину {{currentLength}}. Пожалуйста, попробуйте снова.",
+        "seedExplanation":
+            "Ключ должен быть длиной {{maxLength}} символ и содержать только заглавные буквы A-Z и цифру 9. Более длинные ключи, чем {{maxLength}}, не допускаются.",
+        "neverShare": "НИКОГДА НИКОМУ НЕ СООБЩАЙТЕ ВАШ КЛЮЧ"
     },
     "home": {
         "balance": "БАЛАНС",
@@ -121,7 +130,7 @@
         "enterPassword": "Пожалуйста, введите пароль.",
         "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
         "login": "ВОЙТИ",
-        "selectDifferentNode": "Do you want to select a different node?"
+        "selectDifferentNode": "Вы хотите выбрать другой узел?"
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
@@ -135,7 +144,8 @@
         "individualLetters": "Нажмите какие-нибудь клавиши на клавиатуре в случайном порядке."
     },
     "onboardingComplete": {
-        "walletReady": "Кошелек настроен и готов к использованию. Если вам понадобится в будущем внести какие-либо изменения, используйте НАСТРОЙКИ из меню."
+        "walletReady":
+            "Кошелек настроен и готов к использованию. Если вам понадобится в будущем внести какие-либо изменения, используйте НАСТРОЙКИ из меню."
     },
     "paperWallet": {
         "clickToPrint": "Нажмите на кнопку ниже, чтобы напечатать бумажную копию вашего ключа.",
@@ -148,13 +158,13 @@
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
         "generateNewAddress": "СГЕНЕРИРОВАТЬ НОВЫЙ АДРЕС",
-        "message": "Optional message",
-        "removeMessage": "REMOVE MESSAGE"
+        "message": "Сообщение (опционально)",
+        "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ"
     },
     "saveYourSeed": {
         "seedCleared": "Ключ очищен",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для вашей безопасности.",
-        "mustSaveYourSeed": "You must save your seed with ",
+        "mustSaveYourSeed": "Вам необходимо сохранить ваш ключ с помощью ",
         "atLeastOne": "по крайней мере один ",
         "ofTheOptions": "из представленных вариантов."
     },
@@ -162,92 +172,97 @@
         "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
         "thisIsACheck": "Это проверка, чтобы убедиться, что вы сохранили свой ключ.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "ifYouHaveNotSaved": "Если вы не сохранили свой ключ, пожалуйста, вернитесь на предыдущий экран и сделайте это."
     },
     "send": {
         "invalidAddress": "Неверный адрес",
-        "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
+        "invalidAddressExplanation1": "Адрес должен быть длиной в {{maxLength}} символ и содержать контрольную сумму.",
         "invalidAddressExplanation2": "Адрес содержит недопустимые символы.",
         "invalidAddressExplanation3": "Адрес содержит некорректную контрольную сумму.",
-        "notEnoughFunds": "Insufficient funds",
+        "notEnoughFunds": "Недостаточно средств",
         "notEnoughFundsExplanation": "У вас недостаточно IOTA для данной операции.",
         "keyReuse": "Повторное использование адреса для отправки",
-        "keyReuseExplanation": "Адрес, на который вы отправляете, уже был повторно использован. Пожалуйста, используйте другой адрес.",
+        "keyReuseExplanation":
+            "Адрес, на который вы отправляете, уже был повторно использован. Пожалуйста, используйте другой адрес.",
         "recipientAddress": "Адрес получателя",
         "amount": "Сумма",
         "max": "МАКС.",
         "message": "Сообщение",
         "send": "ОТПРАВИТЬ",
-        "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a numerical value for the transaction amount.",
-        "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units"
+        "invalidAmount": "Указана неверная сумма",
+        "invalidAmountExplanation": "Пожалуйста, введите числовое значение для суммы перевода.",
+        "maximumSelected": "Выбрана МАКСИМАЛЬНАЯ сумма",
+        "iotaUnits": "IOTA единицы"
     },
     "setPassword": {
         "passwordTooShort": "Слишком короткий пароль",
-        "passwordTooShortExplanation": "Ваш пароль должен быть длиной, как минимум, ${MIN_PASSWORD_LENGTH} символов. Текущая длина ${this.state.password.length}. Пожалуйста, попробуйте снова.",
+        "passwordTooShortExplanation":
+            "Ваш пароль должен быть длиной, как минимум, ${MIN_PASSWORD_LENGTH} символов. Текущая длина ${this.state.password.length}. Пожалуйста, попробуйте снова.",
         "passwordMismatch": "Пароли не совпадают",
         "passwordMismatchExplanation": "Введенные пароли не совпадают. Пожалуйста, попробуйте еще раз.",
         "nowWeNeedTo": "Теперь нам нужно установить пароль.",
-        "anEncryptedCopy": "Зашифрованная копия вашего ключа будет сохранена на вашем устройстве. Вы сможете использовать пароль для доступа к кошельку в дальнейшем.",
+        "anEncryptedCopy":
+            "Зашифрованная копия вашего ключа будет сохранена на вашем устройстве. Вы сможете использовать данный пароль для доступа к кошельку в дальнейшем.",
         "ensure": "Убедитесь, что вы используете надежный пароль из по крайней мере 12 символов.",
         "retypePassword": "Введите пароль еще раз"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Вы можете использовать несколько ключей в данном кошельке. Каждый ключ требует создания своего ника.",
-        "youCanAdd": "Вы можете добавить ключи в меню Настройки."
+        "canUseMultipleSeeds":
+            "Вы можете использовать несколько ключей в данном кошельке. Каждый ключ требует создания своего ника.",
+        "youCanAdd": "Вы можете добавить больше ключей в меню Настроек."
     },
     "settings": {
-        "transferSending": "Перевод осуществляется",
-        "transferSendingExplanation": "Пожалуйста, дождитесь завершения перевода.",
+        "transferSending": "Осуществляется перевод",
+        "transferSendingExplanation": "Пожалуйста, подождите завершения вашего перевода.",
         "generatingAddress": "Генерация адреса для приема средств",
         "generatingAddressExplanation": "Пожалуйста, подождите, пока ваш адрес генерируется.",
         "mode": "Режим",
         "theme": "Тема оформления",
         "currency": "Валюта",
         "language": "Язык",
-        "accountManagement": "Account management",
+        "accountManagement": "Управление счётом",
         "addNewSeed": "Добавить новый ключ",
         "twoFA": "Двухфакторная аутентификация",
         "changePassword": "Изменить пароль",
-        "advanced": "Расширенные настройки",
+        "advanced": "Дополнительные настройки",
         "logout": "Выход",
-        "reset": "Сбросить кошелек",
-        "syncingComplete": "Syncing complete",
-        "syncingCompleteExplanation": "Your account has synced successfully.",
-        "nicknameChanged": "Account name changed",
-        "nicknameChangedExplanation": "Your account name has been changed.",
-        "accountDeleted": "Account deleted",
-        "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection."
+        "reset": "Сбросить настройки кошелька",
+        "syncingComplete": "Синхронизация завершена",
+        "syncingCompleteExplanation": "Ваша учётная запись была успешно синхронизирована.",
+        "nicknameChanged": "Название счёта изменено",
+        "nicknameChangedExplanation": "Название вашего счёта изменено.",
+        "accountDeleted": "Счёт удален",
+        "accountDeletedExplanation": "Ваш счёт был удален из кошелька.",
+        "cannotPerformAction": "Не удается выполнить действие",
+        "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса настроек кошелька.",
+        "poorConnection": "Плохое соединение",
+        "poorConnectionExplanation": "Не удалось изменить валюту по причине плохой связи."
     },
     "resetWalletConfirmation": {
-        "thisAction": "Это действие нельзя будет отменить.",
+        "thisAction": "Данное действие нельзя будет отменить.",
         "warning1": "Все данные из вашего кошелька, включая",
         "warning2": " ключи, пароли, ",
         "warning3": "и",
-        "warning4": " другую информацию",
+        "warning4": " другую информацию счёта",
         "warning5": " будут потеряны.",
         "areYouSure": "Вы уверены, что хотите продолжить?"
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "Введите ваш пароль для сброса настроек кошелька.",
         "cancel": "ОТМЕНА",
-        "reset": "СБРОС"
+        "reset": "СБРОС НАСТРОЕК"
     },
     "walletSetup": {
-        "okay": "Окей, давайте настроим ваш кошелек!",
+        "okay": "Хорошо, давайте настроим ваш кошелек!",
         "doYouAlreadyHaveASeed": "У вас уже есть ключ (seed), который вы хотели бы использовать?",
-        "seedExplanation": "Ключ IOTA, комбинация длиной 81 символ, представляет собой одновременно и логин, и пароль к вашему счету.",
+        "seedExplanation":
+            "Ключ (seed) IOTA, комбинация длиной 81 символ, представляет собой одновременно и имя пользователя, и пароль к вашему счету.",
         "explanation1": "Вы сможете использовать его для доступа к вашим средствам из",
         "explanation2": " любого кошелька ",
         "explanation3": "на",
         "explanation4": "любом устройстве,",
         "explanation5": "Но если вы потеряете свой ключ, вы потеряете ваши IOTA.",
-        "keepSafe": "Пожалуйста, тщательно храните свой ключ."
+        "keepSafe": "Пожалуйста, храните ваш ключ в безопасности."
     },
     "welcome": {
         "thankYou": "Благодарим вас за загрузку кошелька IOTA.",
@@ -255,94 +270,95 @@
         "reminder": "Возможно, вы захотите пропустить некоторые шаги, но мы настоятельно рекомендуем пройти их все."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right. Write down your seed and checksum and",
+        "yourSeedIs":
+            "Ваш ключ (seed) имеет длину в {{maxSeedLength}} символ, которые читаются слева направо. Запишите ваш ключ, а также контрольную сумму и",
         "tripleCheck": "трижды проверьте,",
         "thatTheyAreCorrect": "что они правильны."
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "bundleHashCopied": "Хэш пакет скопирован",
+        "bundleHashCopiedExplanation": "Хэш пакет скопирован в буфер обмена.",
         "addressCopied": "Адрес скопирован",
-        "addressCopiedExplanation": "The address has been copied to the clipboard."
+        "addressCopiedExplanation": "Адрес скопирован в буфер обмена."
     },
     "accountManagement": {
-        "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
-        "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "viewSeed": "Показать ключ (seed)",
+        "viewAddresses": "Показать адреса",
+        "editAccountName": "Изменить название счёта",
+        "deleteAccount": "﻿Удалить счёт",
+        "addNewAccount": "Добавить новый счёт"
     },
     "addCustomNode": {
-        "customNode": "Custom node",
-        "add": "Add"
+        "customNode": "Пользовательский Нод",
+        "add": "Добавить"
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "useExistingSeed": "Использовать текущий ключ (seed)",
+        "createNewSeed": "Создать новый ключ (seed)"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
-        "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync"
+        "selectNode": "Выбрать Нод",
+        "addCustomNode": "Добавить пользовательский Нод",
+        "manualSync": "Ручная синхронизация"
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
-        "frame": "Frame"
+        "background": "Фон",
+        "frame": "Рамка"
     },
     "currencySelection": {
         "currency": "Валюта"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "Вы уверены, что хотите выйти?"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "Сканировать QR-код"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "unitSystem": "СИСТЕМА ЕДИНИЦ",
+        "trillion": "Триллион",
+        "billion": "Миллиард",
+        "million": "Миллион",
+        "thousand": "Тысяча",
+        "one": "Одна"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete this account?",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
+        "areYouSure": "Вы уверены, что хотите удалить данный счёт?",
+        "yourSeedWillBeRemoved": "Ваш ключ (seed) и история транзакций будут удалены.",
         "thisAction": "Это действие нельзя будет отменить.",
-        "enterPassword": "Enter your password to delete this account."
+        "enterPassword": "Введите ваш пароль для удаления данного счёта."
     },
     "manualSync": {
-        "pressToSync": "Press the button below to sync your account.",
+        "pressToSync": "Нажмите на кнопку ниже, чтобы синхронизировать ваш счёт.",
         "thisMayTake": "Это может занять некоторое время.",
         "youMayNotice": "Вы можете заметить замедление работы вашего устройства.",
-        "syncAccount": "SYNC ACCOUNT",
-        "syncingYourAccount": "Syncing your account."
+        "syncAccount": "СИНХРОНИЗИРОВАТЬ СЧЁТ",
+        "syncingYourAccount": "Синхронизация вашего счёта."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Введите ключ (seed) и название счёта."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "VIEW SEED",
-        "hideSeed": "HIDE SEED"
+        "enterPassword": "Введите пароль, чтобы увидеть ваш ключ (seed).",
+        "viewSeed": "ПОКАЗАТЬ КЛЮЧ (SEED)",
+        "hideSeed": "СКРЫТЬ КЛЮЧ (SEED)"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarningOne": "If your device fails and you have not saved",
-        "reenterWarningTwo": "your seed, you will lose your IOTA."
+        "alreadyHave": "Я сохранил свой ключ (seed)",
+        "reenter": "Сейчас у вас попросят повторно ввести ваш ключ (seed).",
+        "reenterWarningOne": "Если ваше устройство выйдет из строя, и вы не сохранили",
+        "reenterWarningTwo": "ваш ключ (seed), то потеряете ваши IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "ЭТО ДЕЙСТВИЕ НЕ МОЖЕТ БЫТЬ ОТМЕНЕНО.",
         "infoTextOne": "Все данные из вашего кошелька, включая",
         "infoTextTwo": "ключи, пароли",
         "infoTextThree": "и",
         "infoTextFour": "другую информацию",
-        "infoTextFive": "будут потеряны."
+        "infoTextFive": "будут утеряны."
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "youAreAbout": "Вы собираетесь отправить {{contents}} на адрес",
+        "aMessage": "сообщение"
     }
 }

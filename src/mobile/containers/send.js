@@ -344,8 +344,15 @@ class Send extends Component {
                     message: data.message,
                 });
             }
+        }
+        if (data.match(/iota:/)) {
+            // For codes with iota: at the front (TheTangle.org)
+            data = data.substring(5);
+            this.setState({
+                address: data,
+            });
         } else {
-            // For codes with plain text (Bitfinex and Binance)
+            // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.setState({
                 address: data,
             });
