@@ -15,6 +15,7 @@ import Loading from 'components/UI/Loading';
 import css from 'components/Layout/Onboarding.css';
 import { setTimeout } from 'timers';
 import { ipcRenderer } from 'electron';
+import { ADDRESS_LENGTH } from 'libs/util';
 
 class Login extends React.Component {
     static propTypes = {
@@ -36,15 +37,22 @@ class Login extends React.Component {
     };
 
     componentDidMount() {
-        let regex = /\/([0-9]+)(?=[^\/send]*$)/;
+        let regexAddress = /\:\/\/(.*?)\/\?/;
+        let regexAmount = /amount=(.*?)\&/;
+        let regexMessage = /message=([^\n\r]*)/;
         ipcRenderer.on('url-params', (e, data) => {
-            let result = data.match(regex);
-            console.log('result: '+ result);
-            if (result !== null) {
+            let address = data.match(regexAddress);
+            console.log('result '+ address);
+
+            if (address !== null) {
+               let amount = data.match(regexAmount);
+                let message = data.match(regexMessage);
                 this.setState({
-                    amount: result[1]
+                    address: address[1],
+                    amount: amount[1],
+                    message: message[1]
                 });
-                console.log(this.state.amount);
+                console.log(this.state.address);
                 this.props.sendAmountDeepLink(this.state.amount);
             } else {
                 console.log(false);
@@ -53,6 +61,7 @@ class Login extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
+        console.log('props '+ newPropsnewProps);
         const ready = !this.props.tempAccount.ready && newProps.tempAccount.ready;
         if (ready) {
             this.setState({
