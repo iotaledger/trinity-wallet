@@ -54,7 +54,8 @@
         "cannotPerformAction": "无法执行操作",
         "cannotPerformActionExplanation": "转到高级设置以重置钱包。",
         "attachToTangleUnavailable": "无法连接到Tangle",
-        "attachToTangleUnavailableExplanation": "连接到Tangle的功能在选定的节点上无法使用"
+        "attachToTangleUnavailableExplanation": "连接到Tangle的功能在选定的节点上无法使用",
+        "wallet": "Wallet"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -222,7 +223,16 @@
         "cannotPerformAction": "无法执行操作",
         "cannotPerformActionExplanation": "转到高级设置以重置钱包。",
         "poorConnection": "连接不良",
-        "poorConnectionExplanation": "由于网络连接问题, 无法更改货币。"
+        "poorConnectionExplanation": "由于网络连接问题, 无法更改货币。",
+        "hide": "Hide",
+        "hideOthers": "Hide Others",
+        "showAll": "Show All",
+        "quit": "Quit",
+        "edit": "Edit",
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste",
+        "selectAll": "Select All"
     },
     "resetWalletConfirmation": {
         "thisAction": "本操作无法撤销。",
