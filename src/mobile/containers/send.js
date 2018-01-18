@@ -99,6 +99,7 @@ class Send extends Component {
             KeepAwake.activate();
         } else if (this.props.isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
+            this.setState({ message: '', amount: '', address: '' });
         }
     }
 
@@ -297,7 +298,6 @@ class Send extends Component {
                 modalContent = (
                     <TransferConfirmationModal
                         amount={this.state.amount}
-                        clearOnSend={() => this.setState({ message: '', amount: '', address: '' })}
                         denomination={this.state.denomination}
                         address={this.state.address}
                         sendTransfer={() => this.sendTransfer()}
@@ -344,8 +344,15 @@ class Send extends Component {
                     message: data.message,
                 });
             }
+        }
+        if (data.match(/iota:/)) {
+            // For codes with iota: at the front (TheTangle.org)
+            data = data.substring(5);
+            this.setState({
+                address: data,
+            });
         } else {
-            // For codes with plain text (Bitfinex and Binance)
+            // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.setState({
                 address: data,
             });
@@ -517,7 +524,7 @@ class Send extends Component {
                                 autoCorrect={false}
                                 value={message}
                                 onChangeText={message => this.setState({ message })}
-                                onSubmitEditing={() => this.onSendPress()}
+                                onSubmitEditing={() => this.setModalContent('transferConfirmation')}
                             />
                         </View>
                     </View>

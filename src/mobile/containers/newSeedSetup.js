@@ -21,7 +21,8 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import StatefulDropdownAlert from './statefulDropdownAlert';
 import { Navigation } from 'react-native-navigation';
 import OnboardingButtons from '../components/onboardingButtons';
-import iotaGlowImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import glowIotaImagePath from 'iota-wallet-shared-modules/images/iota-glow.png';
+import blackIotaImagePath from 'iota-wallet-shared-modules/images/iota-black.png';
 import THEMES from '../theme/themes';
 import GENERAL from '../theme/general';
 
@@ -159,12 +160,12 @@ class NewSeedSetup extends Component {
         const textColor = { color: secondaryBackgroundColor };
         const viewOpacity = this.state.randomised ? 1 : 0.1;
         const ctaTextColor = { color: secondaryCtaColor };
-
+        const iotaImagePath = secondaryBackgroundColor === 'white' ? glowIotaImagePath : blackIotaImagePath;
         return (
             <View style={[styles.container, { backgroundColor: THEMES.getHSL(backgroundColor) }]}>
                 <DynamicStatusBar textColor={secondaryBackgroundColor} />
                 <View style={styles.topContainer}>
-                    <Image source={iotaGlowImagePath} style={styles.iotaLogo} />
+                    <Image source={iotaImagePath} style={styles.iotaLogo} />
                     <View style={{ flex: 150 }} />
                     <TouchableOpacity onPress={event => this.onGeneratePress()} style={{ paddingTop: height / 30 }}>
                         <View
