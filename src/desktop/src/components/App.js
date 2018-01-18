@@ -11,6 +11,7 @@ import Loading from 'components/UI/Loading';
 import Onboarding from 'components/Layout/Onboarding';
 import Main from 'components/Layout/Main';
 import Notifications from 'components/UI/Notifications';
+import Theme from 'components/UI/Theme';
 import Alerts from 'components/UI/Alerts';
 
 import './App.css';
@@ -91,6 +92,7 @@ class App extends React.Component {
             <div>
                 {this.state.error && <p>{this.state.error.message}</p>}
                 <Notifications />
+                <Theme />
                 <Alerts />
                 {app.isOnboardingCompleted ? <Main /> : <Onboarding />}
             </div>

@@ -20,7 +20,7 @@
                 color: var(--color-warning);
             }
             h1.success {
-                color: var(--color-valid);
+                color: var(--color-positive);
             }
         }
         strong {
