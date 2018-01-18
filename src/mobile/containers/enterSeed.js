@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import { setSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/util';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota';
@@ -125,43 +125,30 @@ class EnterSeed extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.topMidContainer}>
-                                <View style={{ flex: 1, justifyContent: 'center' }}>
+                                <View style={{ flex: 0.8, justifyContent: 'center' }}>
                                     <View style={{ flex: 0.3 }} />
                                     <View style={styles.titleContainer}>
                                         <Text style={styles.title}>{t('global:enterSeed')}</Text>
                                     </View>
                                 </View>
-                                <View
-                                    style={{ flex: 1, flexDirection: 'row', width: width / 1.4, alignItems: 'center' }}
-                                >
-                                    <View style={styles.textFieldContainer}>
-                                        <TextField
-                                            style={styles.textField}
-                                            labelTextStyle={{ fontFamily: 'Inconsolata-Bold', fontSize: width / 20.7 }}
-                                            labelFontSize={width / 31.8}
-                                            fontSize={isAndroid ? width / 27.6 : width / 20.7}
-                                            labelPadding={3}
-                                            baseColor={'white'}
-                                            tintColor={'#F7D002'}
-                                            enablesReturnKeyAutomatically={true}
-                                            returnKeyType={'done'}
-                                            autoCapitalize={'characters'}
-                                            label={t('global:seed')}
-                                            autoCorrect={false}
-                                            value={seed}
-                                            maxLength={MAX_SEED_LENGTH}
-                                            onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
-                                            onSubmitEditing={() => this.onDonePress()}
-                                        />
-                                    </View>
-                                    <View style={styles.qrButtonContainer}>
-                                        <TouchableOpacity onPress={() => this.onQRPress()}>
-                                            <View style={styles.qrButton}>
-                                                <Image source={cameraImagePath} style={styles.qrImage} />
-                                                <Text style={styles.qrText}>{t('global:qr')}</Text>
-                                            </View>
-                                        </TouchableOpacity>
-                                    </View>
+                                <View style={{ flex: 1.2, width: width / 1.4, justifyContent: 'flex-start' }}>
+                                    <CustomTextInput
+                                        label={t('global:seed')}
+                                        onChangeText={seed => this.setState({ seed: seed.toUpperCase() })}
+                                        containerStyle={{ width: width / 1.4 }}
+                                        autoCapitalize={'characters'}
+                                        autoCorrect={false}
+                                        enablesReturnKeyAutomatically
+                                        returnKeyType="done"
+                                        onSubmitEditing={() => this.onDonePress()}
+                                        maxLength={MAX_SEED_LENGTH}
+                                        secondaryBackgroundColor="white"
+                                        negativeColor="#F7D002"
+                                        backgroundColor="#2A4A52"
+                                        value={seed}
+                                        widget="qr"
+                                        onQRPress={() => this.onQRPress()}
+                                    />
                                 </View>
                                 <View style={styles.checksum}>
                                     <Text style={styles.checksumText}>{this.getChecksumValue()}</Text>
@@ -286,41 +273,9 @@ const styles = StyleSheet.create({
         width: width / 20,
         height: width / 20,
     },
-    qrImage: {
-        height: width / 28,
-        width: width / 28,
-        marginRight: width / 100,
-    },
-    qrButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderColor: 'white',
-        borderWidth: 0.8,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 6.5,
-        height: height / 16,
-    },
-    qrText: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 34.5,
-        backgroundColor: 'transparent',
-    },
-    textFieldContainer: {
-        flex: 1,
-        paddingRight: width / 30,
-        justifyContent: 'flex-end',
-    },
     textField: {
         color: 'white',
         fontFamily: 'Inconsolata-Bold',
-    },
-    qrButtonContainer: {
-        alignItems: 'center',
-        paddingBottom: isAndroid ? height / 90 : height / 150,
-        justifyContent: 'flex-end',
-        height: height / 10,
     },
     dropdownTitle: {
         fontSize: width / 25.9,

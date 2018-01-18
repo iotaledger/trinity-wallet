@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/account';
 import { clearTempData, clearSeed } from 'iota-wallet-shared-modules/actions/tempAccount';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { TextField } from 'react-native-material-textfield';
+import CustomTextInput from '../components/customTextInput';
 import keychain, { hasDuplicateSeed, hasDuplicateAccountName, storeSeedInKeychain } from '../util/keychain';
 import OnboardingButtons from '../components/onboardingButtons';
 import StatefulDropdownAlert from './statefulDropdownAlert';
@@ -154,48 +154,36 @@ class SetPassword extends Component {
                                 </View>
                             </View>
                             <View style={styles.textfieldsContainer}>
-                                <TextField
-                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor="white"
+                                <CustomTextInput
                                     label={t('global:password')}
-                                    tintColor="#F7D002"
+                                    onChangeText={password => this.setState({ password })}
+                                    containerStyle={{ width: width / 1.4 }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
-                                    enablesReturnKeyAutomatically={true}
+                                    enablesReturnKeyAutomatically
                                     returnKeyType="next"
-                                    value={password}
-                                    onChangeText={password => this.setState({ password })}
                                     onSubmitEditing={() => this.reentry.focus()}
-                                    containerStyle={{
-                                        width: width / 1.4,
-                                    }}
-                                    secureTextEntry={true}
+                                    secondaryBackgroundColor="white"
+                                    negativeColor="#F7D002"
+                                    backgroundColor="#2A4A52"
+                                    secureTextEntry
                                 />
-                                <TextField
+                                <CustomTextInput
                                     ref={c => {
                                         this.reentry = c;
                                     }}
-                                    style={{ color: 'white', fontFamily: 'Lato-Light' }}
-                                    labelTextStyle={{ fontFamily: 'Lato-Light' }}
-                                    labelFontSize={width / 31.8}
-                                    fontSize={width / 20.7}
-                                    labelPadding={3}
-                                    baseColor="white"
                                     label={t('retypePassword')}
-                                    tintColor="#F7D002"
-                                    autoCapitalize={'none'}
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically={true}
-                                    returnKeyType="done"
-                                    value={reentry}
                                     onChangeText={reentry => this.setState({ reentry })}
                                     containerStyle={{ width: width / 1.4 }}
-                                    secureTextEntry={true}
+                                    autoCapitalize={'none'}
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    returnKeyType="done"
                                     onSubmitEditing={() => this.onDonePress()}
+                                    secondaryBackgroundColor="white"
+                                    negativeColor="#F7D002"
+                                    backgroundColor="#2A4A52"
+                                    secureTextEntry
                                 />
                             </View>
                             <View style={{ flex: 0.2 }} />
