@@ -2,6 +2,7 @@ import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
 import { MAX_SEED_LENGTH } from 'libs/util';
+import { getChecksum } from 'libs/iota';
 import css from 'components/UI/input/Input.css';
 import Modal from 'components/UI/Modal';
 import Button from 'components/UI/Button';
@@ -20,7 +21,7 @@ export default class SeedInout extends React.PureComponent {
         showScanner: false,
     };
 
-    onScanEvent = address => {
+    onScanEvent = (address) => {
         if (address !== null) {
             this.setState(() => ({
                 showScanner: false,
@@ -29,18 +30,18 @@ export default class SeedInout extends React.PureComponent {
         }
     };
 
-    onScanError = err => {
+    onScanError = (err) => {
         console.log(err);
     };
 
-    closeScanner = e => {
+    closeScanner = (e) => {
         e.preventDefault();
         this.setState(() => ({
             showScanner: false,
         }));
     };
 
-    openScanner = e => {
+    openScanner = (e) => {
         e.preventDefault();
         this.setState(() => ({
             showScanner: true,
@@ -60,13 +61,16 @@ export default class SeedInout extends React.PureComponent {
                     <input
                         type="text"
                         value={seed}
-                        onChange={e => onChange(e.target.value)}
+                        onChange={(e) => onChange(e.target.value)}
                         maxLength={MAX_SEED_LENGTH}
                     />
                     <small>{label}</small>
                 </fieldset>
+                {seed.length ? (
+                    <span className={css.info}>{seed.length < MAX_SEED_LENGTH ? '< 81' : getChecksum(seed)}</span>
+                ) : null}
                 {showScanner && (
-                    <Modal isOpen onStateChange={showScanner => this.setState({ showScanner })} hideCloseButton>
+                    <Modal isOpen onStateChange={(showScanner) => this.setState({ showScanner })}>
                         <div className={css.qrScanner}>
                             <QrReader delay={350} onError={this.onScanError} onScan={this.onScanEvent} />
                             <Button type="button" onClick={this.closeScanner} variant="secondary">

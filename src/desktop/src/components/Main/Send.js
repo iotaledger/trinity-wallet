@@ -125,8 +125,8 @@ class Send extends React.PureComponent {
                             <Modal
                                 className="confirm"
                                 isOpen={isModalVisible}
+                                isConfirm
                                 onClose={this.toggleConfirmation}
-                                hideCloseButton
                             >
                                 <h1>
                                     You are about to send{' '}
