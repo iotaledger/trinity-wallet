@@ -8,7 +8,7 @@
         padding: 20px 0;
     }
 
-    li {
+    a {
         list-style: none;
         > div {
             list-style: none;
