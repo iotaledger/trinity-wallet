@@ -23,3 +23,12 @@
         border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 }
+
+.public {
+    display: flex;
+    width: 100%;
+}
+
+.public + button {
+    margin-left: 40px;
+}
