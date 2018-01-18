@@ -17,9 +17,8 @@ import {
 } from '../../shared/actions/polling';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from '../../shared/actions/account';
 import keychain, { getSeed } from '../util/keychain';
-import { isWithinADayAndTenMinutesAgo, isTenMinutesAgo, isADayAgo } from '../../shared/libs/promoter';
+import { isWithinADay } from '../../shared/libs/promoter';
 import { sortWithProp } from '../../shared/libs/accountUtils';
-import { rearrangeObjectKeys } from '../../shared/libs/util';
 
 export class Poll extends Component {
     static propTypes = {
@@ -50,7 +49,7 @@ export class Poll extends Component {
 
     static shouldPromote(latestTail) {
         const attachmentTimestamp = get(latestTail, 'attachmentTimestamp');
-        return isWithinADayAndTenMinutesAgo(attachmentTimestamp);
+        return isWithinADay(attachmentTimestamp);
     }
 
     constructor() {
@@ -110,13 +109,13 @@ export class Poll extends Component {
 
         keychain
             .get()
-            .then(credentials => {
+            .then((credentials) => {
                 if (get(credentials, 'data')) {
                     const seed = getSeed(credentials.data, seedIndex);
                     this.props.getAccountInfo(seed, selectedAccountName);
                 }
             })
-            .catch(err => console.error(err)); // eslint-disable-line no-console
+            .catch((err) => console.error(err)); // eslint-disable-line no-console
     }
 
     startBackgroundProcesses() {
@@ -134,33 +133,17 @@ export class Poll extends Component {
             const top = bundles[0];
 
             const tails = unconfirmedBundleTails[top];
-            const isTheOnlyBundle = size(bundles) === 1;
 
             const tailsSortedWithAttachmentTimestamp = sortWithProp(tails, 'attachmentTimestamp');
             const tailWithMostRecentTimestamp = get(tailsSortedWithAttachmentTimestamp, '[0]');
 
+            // Check if lies within a day
             if (Poll.shouldPromote(tailWithMostRecentTimestamp)) {
                 this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
             } else {
-                /* eslint-disable no-lonely-if */
-                // Check where it lies within the ten minutes
-
-                if (!isTenMinutesAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
-                    this.props.setPollFor(allPollingServices[next]);
-
-                    // Move the top transaction to the last
-                    // Ignore if its the only bundle
-                    if (!isTheOnlyBundle) {
-                        this.props.setNewUnconfirmedBundleTails(rearrangeObjectKeys(unconfirmedBundleTails, top));
-                    }
-                }
-
-                if (isADayAgo(get(tailWithMostRecentTimestamp, 'attachmentTimestamp'))) {
-                    this.props.removeBundleFromUnconfirmedBundleTails(top);
-                    this.props.setPollFor(allPollingServices[next]);
-                }
-
-                /* eslint-enable no-lonely-if */
+                // Otherwise get rid of it and move on
+                this.props.removeBundleFromUnconfirmedBundleTails(top);
+                this.props.setPollFor(allPollingServices[next]);
             }
         } else {
             // In case there are no unconfirmed bundle tails, move to the next service item
@@ -173,7 +156,7 @@ export class Poll extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,
