@@ -181,6 +181,7 @@ const account = (
                 accountInfo: {
                     ...state.accountInfo,
                     [action.payload.accountName]: {
+                        ...get(state.accountInfo, `${action.payload.accountName}`),
                         transfers: action.payload.transfers,
                         addresses: {
                             ...get(state.accountInfo, `${action.payload.accountName}.addresses`),
