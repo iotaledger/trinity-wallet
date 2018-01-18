@@ -1,5 +1,6 @@
 .chart {
     width: 100%;
+    overflow: hidden;
 
     nav,
     ul {
