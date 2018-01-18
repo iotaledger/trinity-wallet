@@ -7,24 +7,24 @@ export default class Confirm extends React.PureComponent {
     static propTypes = {
         isOpen: PropTypes.bool.isRequired,
         category: PropTypes.oneOf(['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'extra']),
-        content: PropTypes.object.isVisible,
+        translations: PropTypes.object.isRequired,
         onCancel: PropTypes.func.isRequired,
         onConfirm: PropTypes.func.isRequired,
     };
 
     render() {
-        const { category, content, isOpen } = this.props;
+        const { category, translations, isOpen } = this.props;
 
         return (
             <Modal className="confirm" isOpen={isOpen} hideCloseButton>
-                {content.title ? <h1 className={category ? category : 'primary'}>{content.title}</h1> : null}
-                {content.message ? <p>{content.message}</p> : null}
+                {translations.title ? <h1 className={category ? category : 'primary'}>{translations.title}</h1> : null}
+                {translations.message ? <p>{translations.message}</p> : null}
                 <footer>
                     <Button onClick={this.props.onCancel} variant="secondary">
-                        {content.cancel}
+                        {translations.cancel}
                     </Button>
                     <Button onClick={this.props.onConfirm} variant="success">
-                        {content.confirm}
+                        {translations.confirm}
                     </Button>
                 </footer>
             </Modal>
